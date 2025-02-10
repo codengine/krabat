@@ -39,9 +39,6 @@ public class Info extends Mainanim {
     private final Borderrect brPfeill;
     private final Borderrect brPfeilr;
 
-    private String outputText = "";
-    private GenericPoint outputTextPos;
-
     private int menuitem = 0;
     private int olditem = 0;
 
@@ -188,8 +185,8 @@ public class Info extends Mainanim {
             evalMouseMoveEvent(mainFrame.Mousepoint);
 
             for (int i = 0; i <= 3; i++) {
-                outputText = BildText[PictureCounter][mainFrame.sprache - 1][i];
-                outputTextPos = BildPunkte[PictureCounter][i];
+                String outputText = BildText[PictureCounter][mainFrame.sprache - 1][i];
+                GenericPoint outputTextPos = BildPunkte[PictureCounter][i];
                 if (outputText != "") // leere Dinger ueberspringen
                 {
                     mainFrame.ifont.drawString(g, outputText, pLO.x + outputTextPos.x + mainFrame.scrollx,

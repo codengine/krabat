@@ -36,7 +36,6 @@ public class Wudowa extends Mainanim {
     public static final int Breite = 55;
     public static final int Hoehe = 110;
 
-    private int Head = 1;
     private int Body = 1;
     private int Lach = 1;
     private int Steh = 1;
@@ -95,10 +94,10 @@ public class Wudowa extends Mainanim {
 
         // Normales Reden wie immer
         if ((TalkPerson == 56) && (mainFrame.talkCount > 1)) {
-            Head = (int) Math.round(Math.random() * 6);
-            Head += 2;
-            if (Head == 8) {
-                Head = 2;
+            int head = (int) Math.round(Math.random() * 6);
+            head += 2;
+            if (head == 8) {
+                head = 2;
             }
 
             if ((--Verbody) < 1) {
@@ -112,10 +111,10 @@ public class Wudowa extends Mainanim {
 
             if (!isZoomed)  // ungezoomte Variante
             {
-                g.drawImage(alte_head[Head], drawPoint.x, drawPoint.y, null);
+                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, null);
                 g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
             } else {
-                g.drawImage(alte_head[Head], drawPoint.x, drawPoint.y, (int) xGroesse, KopfGroesse, null);
+                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, (int) xGroesse, KopfGroesse, null);
                 g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
             }
             drawVorder(g);

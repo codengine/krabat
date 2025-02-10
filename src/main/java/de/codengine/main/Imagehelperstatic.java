@@ -28,7 +28,6 @@ public class Imagehelperstatic {
     private final int char_height = 21;  // Hoehe eines Zeichens in Pixeln
     // private GenericImage Fontbild;
     private int[][] ftable;
-    private int stat;
     private final GenericImage Error;
     private static final int[] SPACEBITS = {0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
@@ -76,7 +75,7 @@ public class Imagehelperstatic {
             } else {
                 allFont[i] = cutChar(i);
                 GenericToolkit.getDefaultToolkit().prepareImage(allFont[i], observer);
-                stat = 0;
+                int stat = 0;
                 while ((stat & GenericToolkitImpl.ALLBITS) == 0) {
                     stat = GenericToolkit.getDefaultToolkit().checkImage(allFont[i], observer);
                     // update (stat);

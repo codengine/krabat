@@ -80,7 +80,6 @@ public class Kutsche extends Mainanim {
     private float Yoffset;
 
     private float Xende;
-    private float Yende;
 
     // private float Xanfang;
     private float Yanfang;
@@ -158,13 +157,13 @@ public class Kutsche extends Mainanim {
         Yanfang = Ypos;
 
         Xende = Endpunkte[Kutschenzustand].x;
-        Yende = Endpunkte[Kutschenzustand].y;
+        float yende = Endpunkte[Kutschenzustand].y;
 
         scale = Scalings[Kutschenzustand];
 
         Xoffset = Offsets[Kutschenzustand];
         if (Xende != Xpos) {
-            Yoffset = (Yende - Ypos) / (Xende - Xpos) * Xoffset;
+            Yoffset = (yende - Ypos) / (Xende - Xpos) * Xoffset;
         } else {
             Yoffset = 0f;
         }

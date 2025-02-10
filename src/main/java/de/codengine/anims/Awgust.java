@@ -61,8 +61,7 @@ public class Awgust extends Mainanim {
     private int direction_y = 1;          // Laufrichtung y
     private int Tdirection_y = 1;
 
-    private boolean horizontal = true;    // Animationen in x oder y Richtung
-    private boolean Thorizontal = true;
+    private boolean Thorizontal = true; // Animationen in x oder y Richtung
 
     public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
@@ -152,7 +151,7 @@ public class Awgust extends Mainanim {
     // false = weiterlaufen, true = stehengebleibt
     public synchronized boolean Move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        horizontal = Thorizontal;
+        boolean horizontal = Thorizontal;
         walkto = Twalkto;
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;

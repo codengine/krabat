@@ -37,7 +37,6 @@ public class Kulow1 extends Mainloc {
     private WikowarRybow fischer;
     private final Multiple2 Dialog;
 
-    private final boolean showRybowar = true;
     private final GenericPoint rybowarTalk;
     // private borderrect rybowarRect;
     private boolean rybowarhoertzu = false;
@@ -57,7 +56,6 @@ public class Kulow1 extends Mainloc {
     private int AnimCounter = 0;
     private boolean AnimActive = false;
     private boolean AnimLocked = false;
-    private final boolean AnimMCLocked = false;
 
     private int Counter = 0;
 
@@ -282,18 +280,14 @@ public class Kulow1 extends Mainloc {
         // Rybowar
         g.setClip(rybowarUp.x, rybowarUp.y, WikowarRybow.Breite + 50, WikowarRybow.Hoehe);
         g.drawImage(backright, 640, 0, null);
-        if ((!AnimLocked) && (!AnimMCLocked)) {
-            if (showRybowar) {
-                fischer.drawRybowar(g, TalkPerson, AnimTalkPerson, rybowarUp,
-                        rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
-                        octopussyerscheint, rybowarnimmtfisch);
-            }
+        if ((!AnimLocked)) {
+            fischer.drawRybowar(g, TalkPerson, AnimTalkPerson, rybowarUp,
+                    rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
+                    octopussyerscheint, rybowarnimmtfisch);
         } else {
-            if (showRybowar) {
-                fischer.drawRybowar(g, TalkPerson, 0, rybowarUp,
-                        rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
-                        octopussyerscheint, rybowarnimmtfisch);
-            }
+            fischer.drawRybowar(g, TalkPerson, 0, rybowarUp,
+                    rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
+                    octopussyerscheint, rybowarnimmtfisch);
         }
 
         if (octopussyerscheint) {

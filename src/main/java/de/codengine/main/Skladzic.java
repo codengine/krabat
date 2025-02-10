@@ -44,9 +44,6 @@ public class Skladzic extends Mainanim {
     private Borderrect brSklad;
     private final GenericColor inakt = new GenericColor(156, 132, 107);
 
-    private String outputText = "";
-    private GenericPoint outputTextPos;
-
     private int menuitem = 0;
     private int olditem = 0;
     private int nFeldAktiv = -1;
@@ -129,6 +126,7 @@ public class Skladzic extends Mainanim {
     public void paintSpeichern(GenericDrawingContext g) {
 
         // Speichern - Background zeichnen
+        String outputText = "";
         if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);
@@ -139,7 +137,7 @@ public class Skladzic extends Mainanim {
 
             // Datum und GenericImage jedes Spielstandes anzeigen
             for (int i = 1; i <= 6; ++i) {
-                outputTextPos = GetCurrentXY(i - 1);
+                GenericPoint outputTextPos = GetCurrentXY(i - 1);
                 if (Dir[i].Location != 0) {
                     outputText = Dir[i].ConvertTime();
                     g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollx + 1,

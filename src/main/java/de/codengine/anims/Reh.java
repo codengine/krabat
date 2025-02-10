@@ -29,8 +29,6 @@ import de.codengine.platform.GenericImage;
 public class Reh extends Mainanim {
     private final GenericImage[] reh;
 
-    private final boolean[] isHirsch;
-
     private boolean istErNochDa;
 
     private final boolean wegRennRichtung; // true = nach links
@@ -90,7 +88,7 @@ public class Reh extends Mainanim {
         Verhinderwegrenn = MAX_VERHINDERWEGRENN;
         istErNochDa = true;
 
-        isHirsch = new boolean[this.Wieviele];
+        boolean[] isHirsch = new boolean[this.Wieviele];
 
         Verhindergrasen = new int[this.Wieviele];
         Verhinderlauf = new int[this.Wieviele];

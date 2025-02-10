@@ -29,17 +29,11 @@ public class Showrect {
 
     // private Start mainFrame;
 
-    private final boolean istDeaktiviert = false;
-
     public Showrect(Start caller) {
         // mainFrame = caller;
     }
 
     public void Zeichne(GenericDrawingContext g, Vector<Bordertrapez> Rechtecke) {
-        if (istDeaktiviert) {
-            return;
-        }
-
         g.setColor(GenericColor.white);
         GenericRectangle my;
         my = g.getClipBounds();

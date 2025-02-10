@@ -39,7 +39,6 @@ public class Swoboda extends Mainloc {
     private boolean setAnim = false;
     private boolean krabatHere = false;
     private boolean rapakiAchtung = false;
-    private final boolean macHere = true;
     private boolean mlynkHatStock = false;
 
     private static final int KRABATRABE = 3;
@@ -262,10 +261,8 @@ public class Swoboda extends Mainloc {
         }
 
         // Mac zeichnen bei Reden und Herumstehen,
-        if (macHere) {
-            g.setClip(mutterPoint.x, mutterPoint.y, mutter.Breites, mutter.Hoehes);
-            mutter.drawMac(g, mutterPoint, TalkPerson);
-        }
+        g.setClip(mutterPoint.x, mutterPoint.y, mutter.Breites, mutter.Hoehes);
+        mutter.drawMac(g, mutterPoint, TalkPerson);
 
         // Mueller zeichnen
         // Clipping - Rectangle feststellen und setzen

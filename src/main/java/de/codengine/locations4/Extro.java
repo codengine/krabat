@@ -36,7 +36,6 @@ public class Extro extends Mainloc {
 
     private boolean setAnim = true;
 
-    private final boolean krabatVisible = false;
     private boolean rapakVisible = true;
     private boolean isWotrowLocation = true;
 
@@ -153,40 +152,6 @@ public class Extro extends Mainloc {
 
         // Krabat einen Schritt gehen lassen
         mainFrame.wegGeher.GeheWeg();
-
-        if (krabatVisible) {
-            // Animation??
-            if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
-
-                // Cursorruecksetzung nach Animationsende
-                if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
-                }
-            } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
-                    // beim Reden
-                    switch (TalkPerson) {
-                        case 1:
-                            // Krabat spricht gestikulierend
-                            mainFrame.krabat.talkKrabat(g);
-                            break;
-                        case 3:
-                            // Krabat spricht im Monolog
-                            mainFrame.krabat.describeKrabat(g);
-                            break;
-                        default:
-                            // steht Krabat nur da
-                            mainFrame.krabat.drawKrabat(g);
-                            break;
-                    }
-                }
-                // Rumstehen oder Laufen
-                else {
-                    mainFrame.krabat.drawKrabat(g);
-                }
-            }
-        }
 
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 

@@ -53,8 +53,6 @@ public class Install extends Mainloc {
 
     private boolean licenseAccepted = false;
 
-    private int col = 0;
-	
     /*
     private static final int MINX = 93;
     private static final int MAXX = 547;
@@ -91,9 +89,6 @@ public class Install extends Mainloc {
 
     private static final String Such10 = "lax.stdout.redirect=console";
     private static final String Such11 = "lax.stderr.redirect=console";
-
-    private String TempString = "";
-    private GenericPoint TempPoint = new GenericPoint(0, 0);
 
     private final File name;
 
@@ -221,11 +216,12 @@ public class Install extends Mainloc {
         }
 
         // Ueberschrift anzeigen
-        TempString = "Krabat - Instalacija";
-        TempPoint = mainFrame.ifont.CenterAnimText(TempString, new GenericPoint(320, 60));
-        mainFrame.ifont.drawString(g, TempString, TempPoint.x, TempPoint.y, FarbenArray[13]);
+        String tempString = "Krabat - Instalacija";
+        GenericPoint tempPoint = mainFrame.ifont.CenterAnimText(tempString, new GenericPoint(320, 60));
+        mainFrame.ifont.drawString(g, tempString, tempPoint.x, tempPoint.y, FarbenArray[13]);
 
         // hier die Unterscheidung, ob Lizenz angenommen wurde oder nicht
+        int col;
         if (licenseAccepted) {
             // Sprachenchooser immer anzeigen
             mainFrame.ifont.drawString(g, "Pro#su r#e#k wuzwoli#c", 93, 100, FarbenArray[13]);

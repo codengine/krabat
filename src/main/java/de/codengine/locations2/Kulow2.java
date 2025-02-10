@@ -38,7 +38,6 @@ public class Kulow2 extends Mainloc {
     private final GenericPoint rybowarTalk;
     // private borderrect rybowarRect;
     private boolean rybowarhoertzu = false;
-    private final boolean rybowargibtkrosik = false;
     // private boolean rybowarsuchtzrawc = false;
     // private boolean octopussyerscheint = false;
 
@@ -273,7 +272,7 @@ public class Kulow2 extends Mainloc {
         // Rybowar
         g.setClip(rybowarUp.x, rybowarUp.y, WikowarRybow.Breite, WikowarRybow.Hoehe);
         g.drawImage(backright, 640, 0, null);
-        fischer.drawRybowar(g, TalkPerson, 0, rybowarUp, rybowarhoertzu, rybowargibtkrosik, false, false, false);
+        fischer.drawRybowar(g, TalkPerson, 0, rybowarUp, rybowarhoertzu, false, false, false, false);
 
         // Krabats neue Position festlegen wenn noetig
         mainFrame.wegGeher.GeheWeg();

@@ -30,10 +30,8 @@ public class Imagefont {
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
     public GenericImage[] redFont;
     private final Start mainFrame;
-    private Imagehelperstatic im;
     // private imagehelpercutandsave im2;
     private static final int ZEIT = 3;  // entspricht 0.3 Sekunden
-    private GenericImageFilter Change;
 
     // Variablen fuer das Cacheing
     private static final int GROESSE = 150;
@@ -67,7 +65,7 @@ public class Imagefont {
         //  im2.CutFont (redFont);
         //im2 = null;
 
-        im = new Imagehelperstatic(observer);
+        Imagehelperstatic im = new Imagehelperstatic(observer);
         im.CutFont(redFont);
         im = null;
 
@@ -92,9 +90,9 @@ public class Imagefont {
         boolean zentriert = true;           // Zentrierung oder linksbuendig
 
         // Fontfilter initialisieren, wenn noetig
-        Change = null;
+        GenericImageFilter change = null;
         if (Farbe != 1) {
-            Change = new FontFilter(Farbe);
+            change = new FontFilter(Farbe);
         }
 
         // feststellen, ob Rot oder Gruen oder Dunkelgruen oder Dunkelrot -> Keinen Hintergrund schwaerzen
@@ -264,7 +262,7 @@ public class Imagefont {
                     g.drawImage(cache[tmp], new_xpos, ypos + offset, null);
                 } else {
                     // Bild ist nicht im Cache, also neu erzeugen und im Cache ablegen
-                    GenericImage TempIm = GenericToolkit.getDefaultToolkit().createImage(new GenericFilteredImageSource(redFont[ch].getSource(), Change));
+                    GenericImage TempIm = GenericToolkit.getDefaultToolkit().createImage(new GenericFilteredImageSource(redFont[ch].getSource(), change));
 
 //				if ((clear_background == true) && (override_clear == false))
 //				    {

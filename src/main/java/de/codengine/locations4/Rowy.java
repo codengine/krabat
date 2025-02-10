@@ -61,7 +61,6 @@ public class Rowy extends Mainloc {
     private int AnimTalkPerson = 0;
     private boolean animActive = false;
 
-    private final GenericPoint muellerTalk;
     private final GenericPoint muellerPoint;
 
     // Variablen fuer Morphing-Animationen
@@ -191,10 +190,6 @@ public class Rowy extends Mainloc {
         muellerPoint = new GenericPoint();
         muellerPoint.x = muellerFeet.x - (Oldmlynk.Breite / 2);
         muellerPoint.y = muellerFeet.y - Oldmlynk.Hoehe;
-
-        muellerTalk = new GenericPoint();
-        muellerTalk.x = muellerFeet.x;
-        muellerTalk.y = muellerPoint.y - 50;
 
         InitLocation(oldLocation);
         mainFrame.Freeze(false);

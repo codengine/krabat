@@ -41,8 +41,6 @@ public class Mlyn2 extends Mainloc {
 
     private boolean muellerSprichtMitStock = false;
 
-    private final boolean schnauzeRad = false;
-
     // Texte
     private static final String H1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00000");
     private static final String D1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00001");
@@ -430,10 +428,6 @@ public class Mlyn2 extends Mainloc {
     }
 
     private void evalSound() {
-        if (schnauzeRad) {
-            return;
-        }
-
         int zf = (int) (Math.random() * 100);
 
         if (zf > 96) {

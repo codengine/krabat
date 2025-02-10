@@ -64,7 +64,6 @@ public class Hrodz extends Mainloc {
 
     // Flag, ob man rechts oder links vom "Loch" ist
     private boolean isRight;
-    private final boolean istGruftAuf = false; // muss so sein, man kann bei offener nicht mehr Speichern
     private boolean krabatFaelltRunter = false; // dto.
 
     private int SonderAnim = 0;
@@ -165,13 +164,9 @@ public class Hrodz extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // offene oder geschlossene Gruft zeichnen
-        if (!istGruftAuf) {
-            g.setClip(462, 416, 100, 49);
-            g.drawImage(gruftzu, 462, 416, null);
-        } else {
-            g.setClip(455, 414, 99, 54);
-            g.drawImage(gruftauf, 455, 414, null);
-        }
+        // Gruft geschlossen, muss so sein, man kann bei offener nicht mehr Speichern
+        g.setClip(462, 416, 100, 49);
+        g.drawImage(gruftzu, 462, 416, null);
 
         // Debugging - Zeichnen der Laufrechtecke
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);

@@ -50,7 +50,6 @@ public class Druzina extends Mainanim {
     private int direction_y = 1;          // Laufrichtung y
     private int Tdirection_y = 1;
 
-    private boolean horizontal = true;    // Animationen in x oder y Richtung
     private boolean Thorizontal = true;
 
     public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
@@ -116,7 +115,8 @@ public class Druzina extends Mainanim {
     // false = weiterlaufen, true = stehengebleibt
     public synchronized boolean Move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        horizontal = Thorizontal;
+        // Animationen in x oder y Richtung
+        boolean horizontal = Thorizontal;
         walkto = Twalkto;
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
