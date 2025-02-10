@@ -54,7 +54,7 @@ public class Wegsucher {
     // Rekursive Funktion zum Zusammensetzen des Weges
     private void RekursivSuche(int aktPos, Vector<Integer> vWeg) {
         // nicht an gleiche Instanz anhaengen, sonst Probleme beim Backtracking
-        Vector<Integer> vTemp = (Vector<Integer>) vWeg.clone();
+        Vector<Integer> vTemp = new Vector<>(vWeg);
 
         // aktuelle Position an Weg anhaengen
         vTemp.addElement(aktPos);
