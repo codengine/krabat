@@ -97,6 +97,7 @@ public class Skica extends Mainanim {
         }
     }
 
+    @SuppressWarnings("EmptyMethod")
     public void evalMouseExitEvent(GenericMouseEvent e) {
         //FIXME: Why no handling here?
     }

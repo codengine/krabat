@@ -170,6 +170,7 @@ public class PredMalickow extends Mainanim {
             case 1:
                 // Laufanim
                 // wohin laufen
+                //noinspection IfStatementWithIdenticalBranches
                 if (back) {
                     // PredMalickow bewegen
                     Walkcounter++;

@@ -528,6 +528,7 @@ public class Install extends Mainloc {
     }
 
     // File wird gesucht und geladen
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean LoadFile() {
         if (!name.exists()) {
             System.out.println("Fehlerhafte Installation - Krabat.lax fehlt !");

@@ -412,7 +412,7 @@ public class Terassa extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                if (!mussKrabatEbeneWechseln(pTxxx)) {
+                if (canKrabatStayOnLayer(pTxxx)) {
                     mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
                     mainFrame.repaint();
                 }
@@ -526,7 +526,7 @@ public class Terassa extends Mainloc {
                     pTxxx = pHammer;
                 }
 
-                if (!mussKrabatEbeneWechseln(pTxxx)) {
+                if (canKrabatStayOnLayer(pTxxx)) {
                     mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
                     mainFrame.repaint();
                 }
@@ -544,7 +544,7 @@ public class Terassa extends Mainloc {
                 // Schmied anreden
                 if (schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible) {
                     nextActionID = 50;
-                    if (!mussKrabatEbeneWechseln(pSchmied)) {
+                    if (canKrabatStayOnLayer(pSchmied)) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pSchmied);
                         mainFrame.repaint();
                     }
@@ -555,7 +555,7 @@ public class Terassa extends Mainloc {
                 if (hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
                         schmiedVisible) {
                     nextActionID = 55;
-                    if (!mussKrabatEbeneWechseln(pHammer)) {
+                    if (canKrabatStayOnLayer(pHammer)) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pHammer);
                         mainFrame.repaint();
                     }
@@ -653,14 +653,14 @@ public class Terassa extends Mainloc {
     }
 
     // hier wird festgestellt, ob Krabat den Vorder/Hintergrundwechsel durchfuehren muss
-    private boolean mussKrabatEbeneWechseln(GenericPoint Zielpunkt) {
+    private boolean canKrabatStayOnLayer(GenericPoint Zielpunkt) {
         // rects sind verschieden, je nach dem, ob er oben ist
         if (isVordergrund) {
             if (vorWennVor[0].PointInside(Zielpunkt) ||
                     vorWennVor[1].PointInside(Zielpunkt) ||
                     vorWennVor[2].PointInside(Zielpunkt)) {
                 // der WegGeher kann normal wie immer angesprochen werden, nix wird veraendert
-                return false;
+                return true;
             } else {
                 // Laufpunkt wird extra gesetzt und Anim bei Erreichen eingeschaltet
 
@@ -671,13 +671,13 @@ public class Terassa extends Mainloc {
                 mainFrame.wegGeher.SetzeWegOhneStand(walktoOben);
                 mainFrame.repaint();
                 nextActionID = 800;
-                return true;
+                return false;
             }
         } else {
             if (!vorWennHinten[0].PointInside(Zielpunkt) &&
                     !vorWennHinten[1].PointInside(Zielpunkt)) {
                 // der WegGeher kann normal wie immer angesprochen werden, nix wird veraendert
-                return false;
+                return true;
             } else {
                 // Laufpunkt wird extra gesetzt und Anim bei Erreichen eingeschaltet
 
@@ -688,7 +688,7 @@ public class Terassa extends Mainloc {
                 mainFrame.wegGeher.SetzeWegOhneStand(walktoUnten);
                 mainFrame.repaint();
                 nextActionID = 900;
-                return true;
+                return false;
             }
         }
     }
@@ -1001,7 +1001,7 @@ public class Terassa extends Mainloc {
             case 541:
                 // Krabat zieht sich Bedienstetenkleidung an
                 nextActionID = 700;
-                if (!mussKrabatEbeneWechseln(vorUmziehPoint)) {
+                if (canKrabatStayOnLayer(vorUmziehPoint)) {
                     mainFrame.wegGeher.SetzeNeuenWeg(vorUmziehPoint);
                 }
                 break;
@@ -1009,7 +1009,7 @@ public class Terassa extends Mainloc {
             case 553:
                 // Krabat zieht sich wieder normale Klamotten an
                 nextActionID = 750;
-                if (!mussKrabatEbeneWechseln(vorUmziehPoint)) {
+                if (canKrabatStayOnLayer(vorUmziehPoint)) {
                     mainFrame.wegGeher.SetzeNeuenWeg(vorUmziehPoint);
                 }
                 break;
