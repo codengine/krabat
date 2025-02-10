@@ -25,89 +25,84 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Kutser extends Mainanim
-{
+public class Kutser extends Mainanim {
     private GenericImage[] kutser_look;
     private GenericImage[] kutser_listen;
     private GenericImage[] kutser_talk;
-    
+
     public static final int Breite = 65;
-    public static final int Hoehe  = 81;
-    
+    public static final int Hoehe = 81;
+
     private int Talk = 0;
     private int Listen = 0;
     private int Look = 0;
 
     private int Verhindertalk;
 
-    private static final int MAX_VERHINDERTALK = 2;  
-  
-    public Kutser (Start caller)
-    {
-        super (caller);
-      
-        kutser_look    = new GenericImage[2];
-        kutser_listen  = new GenericImage[2];
-        kutser_talk    = new GenericImage[7];
-            
+    private static final int MAX_VERHINDERTALK = 2;
+
+    public Kutser(Start caller) {
+        super(caller);
+
+        kutser_look = new GenericImage[2];
+        kutser_listen = new GenericImage[2];
+        kutser_talk = new GenericImage[7];
+
         InitImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
-    } 
-	 
-    private void InitImages()
-    {
-        kutser_look[0] = getPicture ("gfx/most/kutscher.gif");
-        kutser_look[1] = getPicture ("gfx/most/kutscher-a.gif");
-
-        kutser_listen[0] = getPicture ("gfx/most/kutscher2.gif");
-        kutser_listen[1] = getPicture ("gfx/most/kutscher2a.gif");
-
-        kutser_talk[0] = getPicture ("gfx/most/kutscher2t1.gif");
-        kutser_talk[1] = getPicture ("gfx/most/kutscher2t2.gif");
-        kutser_talk[2] = getPicture ("gfx/most/kutscher2t3.gif");
-        kutser_talk[3] = getPicture ("gfx/most/kutscher2t4.gif");
-        kutser_talk[4] = getPicture ("gfx/most/kutscher2t5.gif");
-        kutser_talk[5] = getPicture ("gfx/most/kutscher2t6.gif");
-        kutser_talk[6] = getPicture ("gfx/most/kutscher2t7.gif");
     }
-  
+
+    private void InitImages() {
+        kutser_look[0] = getPicture("gfx/most/kutscher.gif");
+        kutser_look[1] = getPicture("gfx/most/kutscher-a.gif");
+
+        kutser_listen[0] = getPicture("gfx/most/kutscher2.gif");
+        kutser_listen[1] = getPicture("gfx/most/kutscher2a.gif");
+
+        kutser_talk[0] = getPicture("gfx/most/kutscher2t1.gif");
+        kutser_talk[1] = getPicture("gfx/most/kutscher2t2.gif");
+        kutser_talk[2] = getPicture("gfx/most/kutscher2t3.gif");
+        kutser_talk[3] = getPicture("gfx/most/kutscher2t4.gif");
+        kutser_talk[4] = getPicture("gfx/most/kutscher2t5.gif");
+        kutser_talk[5] = getPicture("gfx/most/kutscher2t6.gif");
+        kutser_talk[6] = getPicture("gfx/most/kutscher2t7.gif");
+    }
+
     // Zeichne Dundak, wie er dasteht oder spricht
-    public void drawKutser (GenericDrawingContext g, int TalkPerson, GenericPoint Posit, boolean isListening)
-    {
+    public void drawKutser(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, boolean isListening) {
         // beim Reden
-        if ((TalkPerson == 39) && (mainFrame.talkCount > 1))
-	    {
-                // Head evaluieren
-                if ((--Verhindertalk) < 1)
-                    {
-                        Verhindertalk = MAX_VERHINDERTALK;
-                        Talk = (int) (Math.random () * 6.9);
-                    }
-	      
-                g.drawImage (kutser_talk[Talk], Posit.x, Posit.y, null);				
-            }  
-        else 
-            {
-                // hier unterscheiden, ob er zuhoert oder nicht
-                int zf = (int) (Math.random () * 50);
+        if ((TalkPerson == 39) && (mainFrame.talkCount > 1)) {
+            // Head evaluieren
+            if ((--Verhindertalk) < 1) {
+                Verhindertalk = MAX_VERHINDERTALK;
+                Talk = (int) (Math.random() * 6.9);
+            }
 
-                if (isListening == true)
-                    {
-                        // zuhoeren
-                        if (Listen == 1) Listen = 0;
-                        else if (zf > 45) Listen = 1;
+            g.drawImage(kutser_talk[Talk], Posit.x, Posit.y, null);
+        } else {
+            // hier unterscheiden, ob er zuhoert oder nicht
+            int zf = (int) (Math.random() * 50);
 
-                        g.drawImage (kutser_listen[Listen], Posit.x, Posit.y, null);		
-                    }
-                else
-                    {
-                        // rumschauen
-                        if (Look == 1) Look = 0;
-                        else if (zf > 45) Look = 1;
+            if (isListening == true) {
+                // zuhoeren
+                if (Listen == 1) {
+                    Listen = 0;
+                } else if (zf > 45) {
+                    Listen = 1;
+                }
 
-                        g.drawImage (kutser_look[Look], Posit.x, Posit.y, null);
-                    }
-            }		
+                g.drawImage(kutser_listen[Listen], Posit.x, Posit.y, null);
+            } else {
+                // rumschauen
+                if (Look == 1) {
+                    Look = 0;
+                } else if (zf > 45) {
+                    Look = 1;
+                }
+
+                g.drawImage(kutser_look[Look], Posit.x, Posit.y, null);
+            }
+        }
     }
 }    

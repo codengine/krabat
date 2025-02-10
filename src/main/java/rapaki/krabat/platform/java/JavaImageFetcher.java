@@ -30,20 +30,20 @@ import java.net.URL;
 public class JavaImageFetcher extends GenericImageFetcher {
 
     private final String urlBase;
-    
+
     private final Component comp;
-    
+
     public JavaImageFetcher(String urlBase, Component comp) {
         this.urlBase = urlBase;
         this.comp = comp;
     }
-    
+
     public GenericImage fetchImage(String relativePath) {
-        
-        MediaTracker tracker = new MediaTracker (comp);
-        
+
+        MediaTracker tracker = new MediaTracker(comp);
+
         Image img = null;
-        
+
         URL url = null;
         try {
             url = new URL(urlBase + "/" + relativePath.substring(0, relativePath.length() - 3) + "png");
@@ -57,14 +57,14 @@ public class JavaImageFetcher extends GenericImageFetcher {
         // ReturnImage = getToolkit().getImage ("jar:file:///" + System.getProperty("user.dir") + "!" + Filename);
         try {
             img = comp.getToolkit().getImage(url);
-            tracker.addImage (img, 0);
+            tracker.addImage(img, 0);
             tracker.waitForAll();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        
-        JavaImage retImage = new JavaImage(img); 
-        
-        return retImage; 
+
+        JavaImage retImage = new JavaImage(img);
+
+        return retImage;
     }
 }

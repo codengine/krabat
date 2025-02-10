@@ -22,41 +22,41 @@ package rapaki.krabat.main;
 
 public class GenericMemoryImageSource {
 
-	private final int w;
-	
-	private final int h;
-	
-	private final int[] pix;
-	
-	private final int off;
-	
-	private final int scan;
-	
-	public GenericMemoryImageSource(int w, int h, int[] pix, int off, int scan) {
-		this.w = w;
-		this.h = h;
-		this.pix = pix;
-		this.off = off;
-		this.scan = scan;
-	}
-	
-	public int getW() {
-		return w;
-	}
-	
-	public int getH() {
-		return h;
-	}
-	
-	public int[] getPix() {
-		return pix;
-	}
-	
-	public int getOff() {
-		return off;
-	}
-	
-	public int getScan() {
-		return scan;
-	}
+    private final int w;
+
+    private final int h;
+
+    private final int[] pix;
+
+    private final int off;
+
+    private final int scan;
+
+    public GenericMemoryImageSource(int w, int h, int[] pix, int off, int scan) {
+        this.w = w;
+        this.h = h;
+        this.pix = pix;
+        this.off = off;
+        this.scan = scan;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public int getH() {
+        return h;
+    }
+
+    public int[] getPix() {
+        return pix;
+    }
+
+    public int getOff() {
+        return off;
+    }
+
+    public int getScan() {
+        return scan;
+    }
 }

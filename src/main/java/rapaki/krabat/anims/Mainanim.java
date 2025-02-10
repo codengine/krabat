@@ -25,27 +25,24 @@ import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.platform.GenericImageFetcher;
 
 
-public class Mainanim
-{
+public class Mainanim {
     // Objekt auf "start" - sollte das hier rein (Geschwindigkeit ???)
     public Start mainFrame;
-    
+
     private GenericImageFetcher imageFetcher;
-    
+
     // Konstruktor
-    public Mainanim (Start caller)
-    {
-    	mainFrame = caller;
-    	imageFetcher = mainFrame.imageFetcher;
-    }	
+    public Mainanim(Start caller) {
+        mainFrame = caller;
+        imageFetcher = mainFrame.imageFetcher;
+    }
 
     // Methode zum Laden (registrieren) eines Bildes
-    public GenericImage getPicture (String Filename)
-    {
+    public GenericImage getPicture(String Filename) {
         return imageFetcher.fetchImage(Filename);
     }
-    
+
     public void cleanup() {
-    	// override for cleanup actions
+        // override for cleanup actions
     }
 }

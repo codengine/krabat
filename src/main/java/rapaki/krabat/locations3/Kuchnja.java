@@ -27,35 +27,34 @@ import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.sound.BackgroundMusicPlayer;
 
-public class Kuchnja extends Mainloc 
-{
+public class Kuchnja extends Mainloc {
     private GenericImage background, herd, schwein, herd2, herd3, holz;
     private GenericImage Feuer[];
     private GenericImage Wusmuz[];
     private GenericImage Ueberkoch[];
     private Kuchar kuchar;
     private Multiple2 Dialog;
-  
+
     private boolean kucharHoertZu = false;
     private boolean kucharIstAufgestanden = false;
-  
+
     // private boolean walkReady = true;
-  
+
     private int Feuerwidth = 25;
     private int Feuercount = 0;
     private int Verhinderfeuer;
     private static final int MAX_VERHINDERFEUER = 2;
-  
+
     private int Wusmuzcount = 1;
     private int Wusmuzy = 399;
     private int Verhinderwusmuz;
     private static final int MAX_VERHINDERWUSMUZ = 2;
-  
+
     private int Verhindersteigen;
     private static final int MAX_VERHINDERSTEIGEN = 5;
-  
+
     private int Ueberkochcount = 0;
-  
+
     private boolean isUeberkoching = false;
 
     private boolean ueberkochSound = true;
@@ -69,75 +68,74 @@ public class Kuchnja extends Mainloc
     private int Verhinderflieg;
     */
     // private static final int MAX_VERHINDERFLIEG = 2;
-    private static final GenericPoint flugStart = new GenericPoint (195, 393);
-    private static final GenericPoint flugEnde  = new GenericPoint (140, 479);
+    private static final GenericPoint flugStart = new GenericPoint(195, 393);
+    private static final GenericPoint flugEnde = new GenericPoint(140, 479);
     private static final float XOFFSET = 8;
     private float Yoffset;
     private float Xpos, Ypos;
- 
+
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang 
-        = new Borderrect (467, 120, 505, 320);
-    private static final Borderrect glocke 
-        = new Borderrect (104, 230, 125, 252);
-    private static final Borderrect kochtopf 
-        = new Borderrect ( 40, 390, 110, 455);
+    private static final Borderrect rechterAusgang
+            = new Borderrect(467, 120, 505, 320);
+    private static final Borderrect glocke
+            = new Borderrect(104, 230, 125, 252);
+    private static final Borderrect kochtopf
+            = new Borderrect(40, 390, 110, 455);
     private static final Borderrect drjewo
-        = new Borderrect (237, 342, 305, 392);
-    private static final Borderrect durje 
-        = new Borderrect (  9,  87, 100, 380);
+            = new Borderrect(237, 342, 305, 392);
+    private static final Borderrect durje
+            = new Borderrect(9, 87, 100, 380);
     private static final Borderrect kachle
-        = new Borderrect (141, 427, 218, 479);
+            = new Borderrect(141, 427, 218, 479);
     private static final Borderrect wokno
-        = new Borderrect (560,   0, 640, 118);
+            = new Borderrect(560, 0, 640, 118);
     private static final Borderrect swinjo
-        = new Borderrect (454, 387, 639, 479);
+            = new Borderrect(454, 387, 639, 479);
     private static final Borderrect herdRect     // zum drueberzeichnen
-        = new Borderrect (  0, 386, 347, 520);
+            = new Borderrect(0, 386, 347, 520);
     private static final Borderrect schweinRect  // zum drueberzeichnen
-        = new Borderrect (388, 344, 639, 479);
+            = new Borderrect(388, 344, 639, 479);
 
     // Konstante Points
-    private static final GenericPoint pRight  = new GenericPoint (470, 343);
-    private static final GenericPoint pKuchar = new GenericPoint (410, 379);
-    private static final GenericPoint pSwinjo = new GenericPoint (490, 430);
-    private static final GenericPoint pDrjewo = new GenericPoint (260, 400);
-    private static final GenericPoint pWokno  = new GenericPoint (575, 355);
-    private static final GenericPoint pKachle = new GenericPoint (250, 500);
-    private static final GenericPoint pTopf   = new GenericPoint ( 66, 470);
-    private static final GenericPoint pGlocke = new GenericPoint (121, 381);
-    private static final GenericPoint pDurje  = new GenericPoint ( 79, 398);
-  
+    private static final GenericPoint pRight = new GenericPoint(470, 343);
+    private static final GenericPoint pKuchar = new GenericPoint(410, 379);
+    private static final GenericPoint pSwinjo = new GenericPoint(490, 430);
+    private static final GenericPoint pDrjewo = new GenericPoint(260, 400);
+    private static final GenericPoint pWokno = new GenericPoint(575, 355);
+    private static final GenericPoint pKachle = new GenericPoint(250, 500);
+    private static final GenericPoint pTopf = new GenericPoint(66, 470);
+    private static final GenericPoint pGlocke = new GenericPoint(121, 381);
+    private static final GenericPoint pDurje = new GenericPoint(79, 398);
+
     // private static final GenericPoint kuPoint     = new GenericPoint (403, 240);
     // private static final GenericPoint kuPointHerd = new GenericPoint ( 66, 341);
-  
-    private static final GenericPoint FeuerMitte = new GenericPoint (171, 469);
-  
+
+    private static final GenericPoint FeuerMitte = new GenericPoint(171, 469);
+
     // Konstnate ints
     private static final int fKuchar = 12;
     private static final int fSwinjo = 6;
     private static final int fDrjewo = 12;
-    private static final int fDurje  = 9;
+    private static final int fDurje = 9;
     private static final int fGlocke = 9;
-    private static final int fWokno  = 12;
-    private static final int fHerd   = 6;
-    private static final int fHornc  = 6;
+    private static final int fWokno = 12;
+    private static final int fHerd = 6;
+    private static final int fHornc = 6;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Kuchnja (Start caller,int oldLocation) 
-    {
-        super (caller, 120);
-    
-        mainFrame.Freeze (true);
-      	
+    public Kuchnja(Start caller, int oldLocation) {
+        super(caller, 120);
+
+        mainFrame.Freeze(true);
+
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 2f;
         mainFrame.krabat.defScale = -80;
-    
-        kuchar  = new Kuchar (mainFrame);
-        Dialog = new Multiple2 (mainFrame);
+
+        kuchar = new Kuchar(mainFrame);
+        Dialog = new Multiple2(mainFrame);
     
         /*kuchar.maxx     = mainFrame.krabat.maxx;
           kuchar.zoomf    = mainFrame.krabat.zoomf;
@@ -145,205 +143,202 @@ public class Kuchnja extends Mainloc
     
           kuchar.SetKucharPos (kuPoint);
           kuchar.SetFacing (6); */
-    
-        Feuer  = new GenericImage[11];
+
+        Feuer = new GenericImage[11];
         Wusmuz = new GenericImage[6];
         Ueberkoch = new GenericImage[4];
-  	
-        InitLocation (oldLocation);
+
+        InitLocation(oldLocation);
 
         Verhinderfeuer = MAX_VERHINDERFEUER;
         Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
         Verhindersteigen = MAX_VERHINDERSTEIGEN;
 
-	// Verhinderflieg = MAX_VERHINDERFLIEG;
+        // Verhinderflieg = MAX_VERHINDERFLIEG;
 
-	Xpos     = flugStart.x;
-	float xe = flugEnde.x;
-	Ypos     = flugStart.y;
-	float ye = flugEnde.y;
+        Xpos = flugStart.x;
+        float xe = flugEnde.x;
+        Ypos = flugStart.y;
+        float ye = flugEnde.y;
 
-	Yoffset = (ye - Ypos) / (Xpos - xe) * XOFFSET;
-    
-        mainFrame.Freeze (false);
+        Yoffset = (ye - Ypos) / (Xpos - xe) * XOFFSET;
+
+        mainFrame.Freeze(false);
     }
-  
+
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation (int oldLocation)
-    {
+    private void InitLocation(int oldLocation) {
         // Feuergroesse zuruecksetzen, wenn kein Load erfolgte
-        if (oldLocation != 0)
-            {	
-                mainFrame.Actions[625] = false;
-                mainFrame.Actions[626] = false;
-                mainFrame.Actions[627] = false;
+        if (oldLocation != 0) {
+            mainFrame.Actions[625] = false;
+            mainFrame.Actions[626] = false;
+            mainFrame.Actions[627] = false;
+        } else {
+            // wenn Load erfolgte, dann muss die wusmuzgroesse festgestellt werden
+            if (mainFrame.Actions[625] == true) {
+                Wusmuzy = 395;
             }
-        else
-            {
-                // wenn Load erfolgte, dann muss die wusmuzgroesse festgestellt werden
-                if (mainFrame.Actions[625] == true) Wusmuzy = 395;
-                if (mainFrame.Actions[626] == true) Wusmuzy = 393;
-                if (mainFrame.Actions[627] == true) Wusmuzy = 391;
-            }	
-    
+            if (mainFrame.Actions[626] == true) {
+                Wusmuzy = 393;
+            }
+            if (mainFrame.Actions[627] == true) {
+                Wusmuzy = 391;
+            }
+        }
+
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements ();
+        mainFrame.wegGeher.vBorders.removeAllElements();
         // mainFrame.wegGeher.vBorders.addElement 
         //	(new bordertrapez (405, 445, 400, 475, 305, 354));
         // mainFrame.wegGeher.vBorders.addElement
         //     (new bordertrapez (478, 353, 482, 372));
-        mainFrame.wegGeher.vBorders.addElement 
-            (new Bordertrapez (370, 575, 360, 610, 373, 399));
-        mainFrame.wegGeher.vBorders.addElement 
-            (new Bordertrapez (125, 610, 75, 620, 400, 430));
-        mainFrame.wegGeher.vBorders.addElement 
-            (new Bordertrapez ( 75, 380, 75, 380, 431, 510));
-       
-        mainFrame.wegSucher.ClearMatrix (3);
-    
-        mainFrame.wegSucher.PosVerbinden (0, 1); 
-        mainFrame.wegSucher.PosVerbinden (1, 2);
+        mainFrame.wegGeher.vBorders.addElement
+                (new Bordertrapez(370, 575, 360, 610, 373, 399));
+        mainFrame.wegGeher.vBorders.addElement
+                (new Bordertrapez(125, 610, 75, 620, 400, 430));
+        mainFrame.wegGeher.vBorders.addElement
+                (new Bordertrapez(75, 380, 75, 380, 431, 510));
+
+        mainFrame.wegSucher.ClearMatrix(3);
+
+        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.wegSucher.PosVerbinden(1, 2);
         // mainFrame.wegSucher.PosVerbinden (2, 3);
 
         InitImages();
-        switch (oldLocation)
-            {
-            case 0: 
+        switch (oldLocation) {
+            case 0:
                 // Einsprung fuer Load
-                BackgroundMusicPlayer.getInstance ().playTrack (25, true);
+                BackgroundMusicPlayer.getInstance().playTrack(25, true);
                 break;
             case 94:
                 // von Jezba aus - Skip aus Teil 2
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (284, 417));
-                mainFrame.krabat.SetFacing (3);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(284, 417));
+                mainFrame.krabat.SetFacing(3);
                 break;
             case 121:
                 // von Hintergasse aus, geht nicht !!!!!!!!! (?)
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (455, 325));
-                mainFrame.krabat.SetFacing (9);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(455, 325));
+                mainFrame.krabat.SetFacing(9);
                 break;
             case 141:
                 // von Dinglinger reingesteckt worden - STRAFE !
-                BackgroundMusicPlayer.getInstance ().playTrack (25, true);
-		// Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement (new Integer (41));
-		// Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement (new Integer (53));
-		// Flag setzen -> normale Kleidung
+                BackgroundMusicPlayer.getInstance().playTrack(25, true);
+                // Diesntkleidung zu Inventar hinzufuegen
+                mainFrame.inventory.vInventory.addElement(new Integer(41));
+                // Eigene Kleidung entfernen
+                mainFrame.inventory.vInventory.removeElement(new Integer(53));
+                // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (284, 417));
-                mainFrame.krabat.SetFacing (3);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(284, 417));
+                mainFrame.krabat.SetFacing(3);
                 break;
             case 143:
                 // von Hauptwaechter reingesteckt worden - STRAFE !
-                BackgroundMusicPlayer.getInstance ().playTrack (25, true);
-		// Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement (new Integer (41));
-		// Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement (new Integer (53));
-		// Flag setzen -> normale Kleidung
+                BackgroundMusicPlayer.getInstance().playTrack(25, true);
+                // Diesntkleidung zu Inventar hinzufuegen
+                mainFrame.inventory.vInventory.addElement(new Integer(41));
+                // Eigene Kleidung entfernen
+                mainFrame.inventory.vInventory.removeElement(new Integer(53));
+                // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (284, 417));
-                mainFrame.krabat.SetFacing (3);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(284, 417));
+                mainFrame.krabat.SetFacing(3);
                 break;
             case 145:
                 // von August reingesteckt worden - STRAFE !  geht nicht !!! (?)
-		// Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement (new Integer (41));
-		// Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement (new Integer (53));
-		// Flag setzen -> normale Kleidung
+                // Diesntkleidung zu Inventar hinzufuegen
+                mainFrame.inventory.vInventory.addElement(new Integer(41));
+                // Eigene Kleidung entfernen
+                mainFrame.inventory.vInventory.removeElement(new Integer(53));
+                // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (284, 417));
-                mainFrame.krabat.SetFacing (3);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(284, 417));
+                mainFrame.krabat.SetFacing(3);
                 break;
-            }    
+        }
 
-        mainFrame.CheckKrabat ();
+        mainFrame.CheckKrabat();
 
     }
 
     // Bilder vorbereiten
-    private void InitImages() 
-    {
-        background = getPicture ("gfx-dd/kuchnja/kuchnja.gif");
-        herd       = getPicture ("gfx-dd/kuchnja/herd.gif");
-        schwein    = getPicture ("gfx-dd/kuchnja/schwein.gif");
-        herd2      = getPicture ("gfx-dd/kuchnja/herd2.gif");
-        herd3      = getPicture ("gfx-dd/kuchnja/herd3.gif");
-	holz       = getPicture ("gfx-dd/kuchnja/kdrjewo.gif");
+    private void InitImages() {
+        background = getPicture("gfx-dd/kuchnja/kuchnja.gif");
+        herd = getPicture("gfx-dd/kuchnja/herd.gif");
+        schwein = getPicture("gfx-dd/kuchnja/schwein.gif");
+        herd2 = getPicture("gfx-dd/kuchnja/herd2.gif");
+        herd3 = getPicture("gfx-dd/kuchnja/herd3.gif");
+        holz = getPicture("gfx-dd/kuchnja/kdrjewo.gif");
 
-        Feuer[0]    = getPicture ("gfx/wjes/wn0.gif");
-        Feuer[1]    = getPicture ("gfx/wjes/wn1.gif");
-        Feuer[2]    = getPicture ("gfx/wjes/wn2.gif");
-        Feuer[3]    = getPicture ("gfx/wjes/wn3.gif");
-        Feuer[4]    = getPicture ("gfx/wjes/wn4.gif");
-        Feuer[5]    = getPicture ("gfx/wjes/wn5.gif");
-        Feuer[6]    = getPicture ("gfx/wjes/wn6.gif");
-        Feuer[7]    = getPicture ("gfx/wjes/wn7.gif");
-        Feuer[8]    = getPicture ("gfx/wjes/wn8.gif");
-        Feuer[9]    = getPicture ("gfx/wjes/wn9.gif");
-        Feuer[10]   = getPicture ("gfx/wjes/wn10.gif");
-    
-        Wusmuz[1]   = getPicture ("gfx-dd/kuchnja/sp1.gif");
-        Wusmuz[2]   = getPicture ("gfx-dd/kuchnja/sp2.gif");
-        Wusmuz[3]   = getPicture ("gfx-dd/kuchnja/sp3.gif");
-        Wusmuz[4]   = getPicture ("gfx-dd/kuchnja/sp4.gif");
-        Wusmuz[5]   = getPicture ("gfx-dd/kuchnja/sp5.gif");
-    
-        Ueberkoch[0] = getPicture ("gfx-dd/kuchnja/herd7.gif");
-        Ueberkoch[1] = getPicture ("gfx-dd/kuchnja/herd6.gif");
-        Ueberkoch[2] = getPicture ("gfx-dd/kuchnja/herd5.gif");
-        Ueberkoch[3] = getPicture ("gfx-dd/kuchnja/herd4.gif");
-     
+        Feuer[0] = getPicture("gfx/wjes/wn0.gif");
+        Feuer[1] = getPicture("gfx/wjes/wn1.gif");
+        Feuer[2] = getPicture("gfx/wjes/wn2.gif");
+        Feuer[3] = getPicture("gfx/wjes/wn3.gif");
+        Feuer[4] = getPicture("gfx/wjes/wn4.gif");
+        Feuer[5] = getPicture("gfx/wjes/wn5.gif");
+        Feuer[6] = getPicture("gfx/wjes/wn6.gif");
+        Feuer[7] = getPicture("gfx/wjes/wn7.gif");
+        Feuer[8] = getPicture("gfx/wjes/wn8.gif");
+        Feuer[9] = getPicture("gfx/wjes/wn9.gif");
+        Feuer[10] = getPicture("gfx/wjes/wn10.gif");
+
+        Wusmuz[1] = getPicture("gfx-dd/kuchnja/sp1.gif");
+        Wusmuz[2] = getPicture("gfx-dd/kuchnja/sp2.gif");
+        Wusmuz[3] = getPicture("gfx-dd/kuchnja/sp3.gif");
+        Wusmuz[4] = getPicture("gfx-dd/kuchnja/sp4.gif");
+        Wusmuz[5] = getPicture("gfx-dd/kuchnja/sp5.gif");
+
+        Ueberkoch[0] = getPicture("gfx-dd/kuchnja/herd7.gif");
+        Ueberkoch[1] = getPicture("gfx-dd/kuchnja/herd6.gif");
+        Ueberkoch[2] = getPicture("gfx-dd/kuchnja/herd5.gif");
+        Ueberkoch[3] = getPicture("gfx-dd/kuchnja/herd4.gif");
+
         loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintLocation (GenericDrawingContext g)
-    {
+    public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
         /*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
           {
           Dialog.paintMultiple (g);
           return;
-          } */ 
-    
+          } */
+
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false)
-            {
-                mainFrame.scrollx = 0;
-                mainFrame.scrolly = 0;
-                Cursorform = 200;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
-                mainFrame.Clipset = true;
-                g.setClip(0, 0, 644, 484);
-                mainFrame.isAnim = true;
-            }
+        if (mainFrame.Clipset == false) {
+            mainFrame.scrollx = 0;
+            mainFrame.scrolly = 0;
+            Cursorform = 200;
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+            mainFrame.Clipset = true;
+            g.setClip(0, 0, 644, 484);
+            mainFrame.isAnim = true;
+        }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage (background, 0, 0, null);
+        g.drawImage(background, 0, 0, null);
 
         // Kuchar Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
         Borderrect temp = kuchar.KucharRect();
-        g.setClip (temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
-                   temp.ru_point.y - temp.lo_point.y);
-                 
-        // Zeichne Hintergrund neu
-        g.drawImage (background, 0, 0, null); 
+        g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
+                temp.ru_point.y - temp.lo_point.y);
 
-	// Hintergrund fuer fliegendes Holz wiederherstellen
-	if (holzFliegt == true)
-	    {
-		g.setClip (154, 410,  90,  70);
-		g.drawImage (background, 0, 0, null);
-	    }
+        // Zeichne Hintergrund neu
+        g.drawImage(background, 0, 0, null);
+
+        // Hintergrund fuer fliegendes Holz wiederherstellen
+        if (holzFliegt == true) {
+            g.setClip(154, 410, 90, 70);
+            g.drawImage(background, 0, 0, null);
+        }
 
         // Kuchar bewegen
         /*if (walkReady == false)
@@ -371,1449 +366,1434 @@ public class Kuchnja extends Mainloc
           {
           kuchar.drawKuchar (g);
           }	*/
-	
-	// Kuchar-Cliprect wieder neu holen
+
+        // Kuchar-Cliprect wieder neu holen
         temp = kuchar.KucharRect();
-        g.setClip (temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
-                   temp.ru_point.y - temp.lo_point.y);
-                 
-        kuchar.drawKuchar (g, TalkPerson, kucharHoertZu, kucharIstAufgestanden, schnauzeKuchar); 		
-    
+        g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
+                temp.ru_point.y - temp.lo_point.y);
+
+        kuchar.drawKuchar(g, TalkPerson, kucharHoertZu, kucharIstAufgestanden, schnauzeKuchar);
+
         // Debugging - Zeichnen der Laufrechtecke
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
-  	
+
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg ();
-    
+        mainFrame.wegGeher.GeheWeg();
+
         // Krabat zeichnen
 
         // Animation??
-        if (mainFrame.krabat.nAnimation != 0)
-            { 
-                mainFrame.krabat.DoAnimation (g);
-      
-                // Cursorruecksetzung nach Animationsende
-                if (mainFrame.krabat.nAnimation == 0) evalMouseMoveEvent (mainFrame.Mousepoint);
-            }  
-        else
-            {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0))
-                    {
-                        // beim Reden
-                        switch (TalkPerson)
-                            {
-                            case 1:
-                                // Krabat spricht gestikulierend
-                                mainFrame.krabat.talkKrabat (g);
-                                break;
-                            case 3:
-                                // Krabat spricht im Monolog
-                                mainFrame.krabat.describeKrabat (g);
-                                break;
-                            default:
-                                // steht Krabat nur da
-                                mainFrame.krabat.drawKrabat (g);
-                                break;
-                            }    
-                    }
-                // Rumstehen oder Laufen
-                else mainFrame.krabat.drawKrabat (g);
-            }  
-    
+        if (mainFrame.krabat.nAnimation != 0) {
+            mainFrame.krabat.DoAnimation(g);
+
+            // Cursorruecksetzung nach Animationsende
+            if (mainFrame.krabat.nAnimation == 0) {
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+            }
+        } else {
+            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                // beim Reden
+                switch (TalkPerson) {
+                    case 1:
+                        // Krabat spricht gestikulierend
+                        mainFrame.krabat.talkKrabat(g);
+                        break;
+                    case 3:
+                        // Krabat spricht im Monolog
+                        mainFrame.krabat.describeKrabat(g);
+                        break;
+                    default:
+                        // steht Krabat nur da
+                        mainFrame.krabat.drawKrabat(g);
+                        break;
+                }
+            }
+            // Rumstehen oder Laufen
+            else {
+                mainFrame.krabat.drawKrabat(g);
+            }
+        }
+
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
+        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter Herd oder Schwein ? (nur Clipping - Region wird neugezeichnet)
-        if (herdRect.IsPointInRect (pKrTemp) == true)
-            {
-                g.drawImage (herd, 25, 387, null);
-            }
-        if (schweinRect.IsPointInRect (pKrTemp) == true) {
-            g.drawImage (schwein, 427, 337, null);
+        if (herdRect.IsPointInRect(pKrTemp) == true) {
+            g.drawImage(herd, 25, 387, null);
         }
-    
+        if (schweinRect.IsPointInRect(pKrTemp) == true) {
+            g.drawImage(schwein, 427, 337, null);
+        }
+
         // Herd - Anims sind im Vordergrund, deshalb hier
-    
+
         // Clipbounds retten, da spaeter wiederhergestellt werden muessen
         GenericRectangle miy;
         miy = g.getClipBounds();
-        g.setClip (0, 335, 335, 479);
-    
+        g.setClip(0, 335, 335, 479);
+
         // Feuer je nach Groesse animieren
-        if ((--Verhinderfeuer) < 1)
-            {
-                Verhinderfeuer = MAX_VERHINDERFEUER;
-                Feuercount++;
-                if (Feuercount == 11) Feuercount = 0;
-	    
-                if ((mainFrame.Actions[625] == true) && (Feuerwidth < 32)) Feuerwidth++;
-                if ((mainFrame.Actions[626] == true) && (Feuerwidth < 39)) Feuerwidth++;
-                if ((mainFrame.Actions[627] == true) && (Feuerwidth < 46)) Feuerwidth++;
+        if ((--Verhinderfeuer) < 1) {
+            Verhinderfeuer = MAX_VERHINDERFEUER;
+            Feuercount++;
+            if (Feuercount == 11) {
+                Feuercount = 0;
             }
-    
+
+            if ((mainFrame.Actions[625] == true) && (Feuerwidth < 32)) {
+                Feuerwidth++;
+            }
+            if ((mainFrame.Actions[626] == true) && (Feuerwidth < 39)) {
+                Feuerwidth++;
+            }
+            if ((mainFrame.Actions[627] == true) && (Feuerwidth < 46)) {
+                Feuerwidth++;
+            }
+        }
+
         float feuerTemp = Feuerwidth;
         float Feueroffset = feuerTemp / 1.1f;
-    
-        g.drawImage (Feuer[Feuercount], FeuerMitte.x - (Feuerwidth / 2), 481 - ((int) Feueroffset), Feuerwidth, Feuerwidth, null);
 
-	// hier das fliegende Holzscheit animieren
-	if (holzFliegt == true)
-	    {
-		Xpos -= XOFFSET;
-		Ypos += Yoffset;
+        g.drawImage(Feuer[Feuercount], FeuerMitte.x - (Feuerwidth / 2), 481 - ((int) Feueroffset), Feuerwidth, Feuerwidth, null);
 
-		if (Xpos < flugEnde.x)
-		    {
-			holzFliegt = false;
-			Xpos = flugStart.x;
-			Ypos = flugStart.y;
-		    }
-		else
-		    {
-			g.drawImage (holz, (int) Xpos, (int) Ypos, null);
-		    }
-	    }
+        // hier das fliegende Holzscheit animieren
+        if (holzFliegt == true) {
+            Xpos -= XOFFSET;
+            Ypos += Yoffset;
 
-	// Herd davorzeichnen
-        g.drawImage (herd2, 149, 461, null);
-    
+            if (Xpos < flugEnde.x) {
+                holzFliegt = false;
+                Xpos = flugStart.x;
+                Ypos = flugStart.y;
+            } else {
+                g.drawImage(holz, (int) Xpos, (int) Ypos, null);
+            }
+        }
+
+        // Herd davorzeichnen
+        g.drawImage(herd2, 149, 461, null);
+
         // Wusmuz je nach Groesse animieren
-        if (isUeberkoching == false)
-            {
-                // nur Kochen, bis 3. Mal Holz angelegt
-                if ((--Verhinderwusmuz) < 1)
-                    {
-                        Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
-                        Wusmuzcount++;
-                        if (Wusmuzcount == 6) Wusmuzcount = 1;
-      
-                        if ((--Verhindersteigen) < 1)
-                            {
-                                Verhindersteigen = MAX_VERHINDERSTEIGEN;	
-                                if ((mainFrame.Actions[625] == true) && (Wusmuzy > 395)) Wusmuzy--;
-                                if ((mainFrame.Actions[626] == true) && (Wusmuzy > 393)) Wusmuzy--;
-                                if ((mainFrame.Actions[627] == true) && (Wusmuzy > 391)) Wusmuzy--;
-                            }	
-                    }		
-      
-		evalSound (mainFrame.Actions[625], false);  // einzelne Blubbs
+        if (isUeberkoching == false) {
+            // nur Kochen, bis 3. Mal Holz angelegt
+            if ((--Verhinderwusmuz) < 1) {
+                Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
+                Wusmuzcount++;
+                if (Wusmuzcount == 6) {
+                    Wusmuzcount = 1;
+                }
 
-                // hier Skip auf richtige Ueberkochanims
-                if (Wusmuzy <= 391) isUeberkoching = true;  
-    	
-                g.drawImage (Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
-                g.drawImage (herd3, 48, 406, null);
-            }	
-        else
-            {
-                // hier geht es dann mit dem richtigen Ueberkochen los...
-
-		evalSound (true, true); // einmaliges langes Blubb
-		
-                if ((--Verhinderwusmuz) < 1)
-                    {
-                        Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
-                        Wusmuzcount++;
-                        if (Wusmuzcount == 6) Wusmuzcount = 1;
-      	
-                        if ((--Verhindersteigen) < 1)
-                            {
-                                Verhindersteigen = MAX_VERHINDERSTEIGEN;
-                                if (Ueberkochcount < 3) Ueberkochcount++;
-                            }	
+                if ((--Verhindersteigen) < 1) {
+                    Verhindersteigen = MAX_VERHINDERSTEIGEN;
+                    if ((mainFrame.Actions[625] == true) && (Wusmuzy > 395)) {
+                        Wusmuzy--;
                     }
-                g.drawImage (Ueberkoch[Ueberkochcount], 41, 387, null);
-                g.drawImage (Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
-            }		
-
-        // Clipping - Region wiederherstellen
-        g.setClip( (int) miy.getX(), (int) miy.getY(), (int) miy.getWidth(), (int) miy.getHeight()); 
-    
-        // sonst noch was zu tun ?
-        if  (outputText != "")
-            {
-                // Textausgabe
-                GenericRectangle my;
-                my = g.getClipBounds();
-                g.setClip (0, 0, 644, 484);
-                mainFrame.ifont.drawString (g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-                g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight()); 
+                    if ((mainFrame.Actions[626] == true) && (Wusmuzy > 393)) {
+                        Wusmuzy--;
+                    }
+                    if ((mainFrame.Actions[627] == true) && (Wusmuzy > 391)) {
+                        Wusmuzy--;
+                    }
+                }
             }
 
-        // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
-        if (mainFrame.talkCount > 0)
-            {
-                -- mainFrame.talkCount;
-                if (mainFrame.talkCount <= 1)
-                    {
-                        mainFrame.Clipset = false;
-                        outputText = "";
-                        TalkPerson = 0;
-                    }
-            }  
+            evalSound(mainFrame.Actions[625], false);  // einzelne Blubbs
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) TalkPause--;
+            // hier Skip auf richtige Ueberkochanims
+            if (Wusmuzy <= 391) {
+                isUeberkoching = true;
+            }
+
+            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
+            g.drawImage(herd3, 48, 406, null);
+        } else {
+            // hier geht es dann mit dem richtigen Ueberkochen los...
+
+            evalSound(true, true); // einmaliges langes Blubb
+
+            if ((--Verhinderwusmuz) < 1) {
+                Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
+                Wusmuzcount++;
+                if (Wusmuzcount == 6) {
+                    Wusmuzcount = 1;
+                }
+
+                if ((--Verhindersteigen) < 1) {
+                    Verhindersteigen = MAX_VERHINDERSTEIGEN;
+                    if (Ueberkochcount < 3) {
+                        Ueberkochcount++;
+                    }
+                }
+            }
+            g.drawImage(Ueberkoch[Ueberkochcount], 41, 387, null);
+            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
+        }
+
+        // Clipping - Region wiederherstellen
+        g.setClip((int) miy.getX(), (int) miy.getY(), (int) miy.getWidth(), (int) miy.getHeight());
+
+        // sonst noch was zu tun ?
+        if (outputText != "") {
+            // Textausgabe
+            GenericRectangle my;
+            my = g.getClipBounds();
+            g.setClip(0, 0, 644, 484);
+            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        }
+
+        // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
+        if (mainFrame.talkCount > 0) {
+            --mainFrame.talkCount;
+            if (mainFrame.talkCount <= 1) {
+                mainFrame.Clipset = false;
+                outputText = "";
+                TalkPerson = 0;
+            }
+        }
+
+        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+            TalkPause--;
+        }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true)
-            {
-                mainFrame.Clipset = false;
-                Dialog.paintMultiple(g);
-                return;
-            }  
+        if (mainFrame.isMultiple == true) {
+            mainFrame.Clipset = false;
+            Dialog.paintMultiple(g);
+            return;
+        }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) DoAction ();
+        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+            DoAction();
+        }
     }
 
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
-    public void evalMouseEvent (GenericMouseEvent e)
-    {
+    public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true)
-            {
-                Dialog.evalMouseEvent (e);
-                return;
-            }  
+        if (mainFrame.isMultiple == true) {
+            Dialog.evalMouseEvent(e);
+            return;
+        }
 
-        GenericPoint pTemp = e.getPoint ();
-        if (mainFrame.talkCount != 0) mainFrame.Clipset = false;
-        if (mainFrame.talkCount > 1) 
-            {
-                mainFrame.talkCount = 1;
-                TalkPerson = 0;
-            }	 
-        outputText="";
+        GenericPoint pTemp = e.getPoint();
+        if (mainFrame.talkCount != 0) {
+            mainFrame.Clipset = false;
+        }
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+            TalkPerson = 0;
+        }
+        outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true)
-            {
-                return;
-            }
-    
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
+
         // Wenn Krabat - Animation, dann normales Gameplay aussetzen
-        if (mainFrame.krabat.nAnimation != 0)
-            {
-                return;
-            }    
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-            {
-                // linker Maustaste
-                if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-                    {
-			nextActionID = 0;
+        if (mainFrame.invCursor == true) {
+            // linker Maustaste
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                nextActionID = 0;
 
-                        Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.KrabatRect();
 
-                        // Aktion, wenn Krabat angeclickt wurde
-                        if (tmp.IsPointInRect (pTemp) == true)
-                            {
-                                nextActionID = 500 + mainFrame.whatItem;
-                                mainFrame.repaint();
-                                return;
-                            }	
+                // Aktion, wenn Krabat angeclickt wurde
+                if (tmp.IsPointInRect(pTemp) == true) {
+                    nextActionID = 500 + mainFrame.whatItem;
+                    mainFrame.repaint();
+                    return;
+                }
 
-                        // Ausreden fuer Koch
-                        if (kuchar.KucharRect().IsPointInRect (pTemp) == true)
-                            {
-                                // Extra - Sinnloszeug
-                                nextActionID = 150;
-                                pTemp = pKuchar;
-                            }				        
+                // Ausreden fuer Koch
+                if (kuchar.KucharRect().IsPointInRect(pTemp) == true) {
+                    // Extra - Sinnloszeug
+                    nextActionID = 150;
+                    pTemp = pKuchar;
+                }
 
-                        // Holz in Ofen schmeissen oder Ausreden fuer Ofen
-                        if (kachle.IsPointInRect (pTemp) == true) 
-                            {
-                                switch (mainFrame.whatItem)
-                                    {
-                                    case 35: // drjewo
-                                        nextActionID = 45;
-                                        break;
-                                    default:
-                                        nextActionID = 155;
-                                        break;
-                                    }		
-                                pTemp = pKachle;
-                            }
-        
-                        // Schwein Ausreden
-                        if (swinjo.IsPointInRect (pTemp) == true) 
-                            {
-                                switch (mainFrame.whatItem)
-                                    {
-                                    case 37: // kotwica
-                                        nextActionID = 195;
-                                        break;
-                                    default:
-	    				nextActionID = 160;
-	    				break;
-                                    }		
-                                pTemp = pSwinjo;
-                            }
-
-                        // Holz Ausreden
-                        if (drjewo.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 165;
-                                pTemp = pDrjewo;
-                            }
-
-                        // Tuer Ausreden
-                        if (durje.IsPointInRect (pTemp) == true) 
-                            {
-                                switch (mainFrame.whatItem)
-                                    {
-                                    default:
-	    				nextActionID = 170;
-	    				break;
-                                    }
-                                pTemp = pDurje;    			
-                            }
-
-                        // Glocke Ausreden
-                        if (glocke.IsPointInRect (pTemp) == true) 
-                            {
-                                switch (mainFrame.whatItem)
-                                    {
-                                    default:
-	    				nextActionID = 175;
-	    				break;
-                                    }
-                                pTemp = pGlocke;
-                            }
-
-                        // Fenster Ausreden
-                        if (wokno.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 180;
-	   			pTemp = pWokno;
-                            }
-
-                        // Kochtopf ausreden
-                        if (kochtopf.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 185;
-                                pTemp = pTopf;
-                            }
-        
-                        // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                        mainFrame.wegGeher.SetzeNeuenWeg (pTemp);
-                        mainFrame.repaint();
+                // Holz in Ofen schmeissen oder Ausreden fuer Ofen
+                if (kachle.IsPointInRect(pTemp) == true) {
+                    switch (mainFrame.whatItem) {
+                        case 35: // drjewo
+                            nextActionID = 45;
+                            break;
+                        default:
+                            nextActionID = 155;
+                            break;
                     }
-      
-                // rechte Maustaste
-                else
-                    {
-                        // grundsaetzlich Gegenstand wieder ablegen
-                        mainFrame.invCursor = false;
-                        evalMouseMoveEvent (mainFrame.Mousepoint);
-                        nextActionID = 0;
-                        mainFrame.krabat.StopWalking();
-                        mainFrame.repaint();
-                        return;
-                    }  
+                    pTemp = pKachle;
+                }
+
+                // Schwein Ausreden
+                if (swinjo.IsPointInRect(pTemp) == true) {
+                    switch (mainFrame.whatItem) {
+                        case 37: // kotwica
+                            nextActionID = 195;
+                            break;
+                        default:
+                            nextActionID = 160;
+                            break;
+                    }
+                    pTemp = pSwinjo;
+                }
+
+                // Holz Ausreden
+                if (drjewo.IsPointInRect(pTemp) == true) {
+                    nextActionID = 165;
+                    pTemp = pDrjewo;
+                }
+
+                // Tuer Ausreden
+                if (durje.IsPointInRect(pTemp) == true) {
+                    switch (mainFrame.whatItem) {
+                        default:
+                            nextActionID = 170;
+                            break;
+                    }
+                    pTemp = pDurje;
+                }
+
+                // Glocke Ausreden
+                if (glocke.IsPointInRect(pTemp) == true) {
+                    switch (mainFrame.whatItem) {
+                        default:
+                            nextActionID = 175;
+                            break;
+                    }
+                    pTemp = pGlocke;
+                }
+
+                // Fenster Ausreden
+                if (wokno.IsPointInRect(pTemp) == true) {
+                    nextActionID = 180;
+                    pTemp = pWokno;
+                }
+
+                // Kochtopf ausreden
+                if (kochtopf.IsPointInRect(pTemp) == true) {
+                    nextActionID = 185;
+                    pTemp = pTopf;
+                }
+
+                // wenn nichts anderes gewaehlt, dann nur hinlaufen
+                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.repaint();
             }
+
+            // rechte Maustaste
+            else {
+                // grundsaetzlich Gegenstand wieder ablegen
+                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                nextActionID = 0;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
+                return;
+            }
+        }
 
         // normaler Cursor, normale Reaktion
-        else
-            {
-                if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-                    {   
-                        // linke Maustaste
-                        nextActionID = 0;
-        
-                        GenericPoint pTt = new GenericPoint (pTemp.x, pTemp.y);
+        else {
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                // linke Maustaste
+                nextActionID = 0;
 
-                        // zu Hintergasse gehen ? -> Anschiss
-                        if (rechterAusgang.IsPointInRect (pTemp) == true)
-                            { 
-                                nextActionID = 620;
-                                GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-                                // Wenn nahe am Ausgang, dann "gerade" verlassen
-                                if (rechterAusgang.IsPointInRect (kt) == false)
-                                    {
-                                        pTt = pRight;
-                                    }
-                                else
-                                    {
-                                        // es wird nach unten verlassen
-                                        pTt = new GenericPoint (kt.x, pRight.y);
-                                    }
-            
-                                // if (mainFrame.dClick == true)
-                                // {
-                                //   mainFrame.krabat.StopWalking();
-                                //   mainFrame.repaint();
-                                //   return;
-                                // }  
-                            }
-        
-                        // Schwein ansehen
-                        if (swinjo.IsPointInRect (pTemp) == true) {
-                            nextActionID = 2;
-                            pTt = pSwinjo;
-                        }
-                        // Holz ansehen
-                        if (drjewo.IsPointInRect (pTemp) == true) {
-                            nextActionID = 3;
-                            pTt = pDrjewo;
-                        }
-                        // Tuer ansehen
-                        if (durje.IsPointInRect (pTemp) == true) {
-                            nextActionID = 4;
-                            pTt = pDurje;
-                        }
-                        // Glocke ansehen
-                        if (glocke.IsPointInRect (pTemp) == true) {
-                            nextActionID = 5;
-                            pTt = pGlocke;
-                        }
-                        // Fenster ansehen
-                        if (wokno.IsPointInRect (pTemp) == true) {
-                            nextActionID = 6;
-                            pTt = pWokno;
-                        }
-                        // Herd (Feuer) ansehen
-                        if (kachle.IsPointInRect (pTemp) == true) {
-                            nextActionID = 7;
-                            pTt = pKachle;
-                        }
-        
-                        // Kochtopf ansehen
-                        if (kochtopf.IsPointInRect (pTemp) == true) {
-                            nextActionID = 8;
-                            pTt = pTopf;
-                        }
-        
-                        // Kuchar ansehen
-                        if ((kuchar.KucharRect().IsPointInRect (pTemp) == true) && (rechterAusgang.IsPointInRect (pTemp) == false))
-                            {
-                                nextActionID = 1;
-                                pTt = pKuchar;
-                            }
-        
-                        mainFrame.wegGeher.SetzeNeuenWeg (pTt);
-                        mainFrame.repaint();
+                GenericPoint pTt = new GenericPoint(pTemp.x, pTemp.y);
+
+                // zu Hintergasse gehen ? -> Anschiss
+                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                    nextActionID = 620;
+                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+
+                    // Wenn nahe am Ausgang, dann "gerade" verlassen
+                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                        pTt = pRight;
+                    } else {
+                        // es wird nach unten verlassen
+                        pTt = new GenericPoint(kt.x, pRight.y);
                     }
-      
-                else
-                    {
-                        // rechte Maustaste
 
-                        // Mit dem Kuchar reden
-                        if ((kuchar.KucharRect().IsPointInRect (pTemp) == true) && (rechterAusgang.IsPointInRect (pTemp) == false))
-                            {
-                                nextActionID = 50;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pKuchar);
-                                mainFrame.repaint();
-                                return;
-                            }
+                    // if (mainFrame.dClick == true)
+                    // {
+                    //   mainFrame.krabat.StopWalking();
+                    //   mainFrame.repaint();
+                    //   return;
+                    // }
+                }
 
-                        // Holz mitnehmen
-                        if (drjewo.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 40;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pDrjewo);
-                                mainFrame.repaint();
-                                return;
-                            }
+                // Schwein ansehen
+                if (swinjo.IsPointInRect(pTemp) == true) {
+                    nextActionID = 2;
+                    pTt = pSwinjo;
+                }
+                // Holz ansehen
+                if (drjewo.IsPointInRect(pTemp) == true) {
+                    nextActionID = 3;
+                    pTt = pDrjewo;
+                }
+                // Tuer ansehen
+                if (durje.IsPointInRect(pTemp) == true) {
+                    nextActionID = 4;
+                    pTt = pDurje;
+                }
+                // Glocke ansehen
+                if (glocke.IsPointInRect(pTemp) == true) {
+                    nextActionID = 5;
+                    pTt = pGlocke;
+                }
+                // Fenster ansehen
+                if (wokno.IsPointInRect(pTemp) == true) {
+                    nextActionID = 6;
+                    pTt = pWokno;
+                }
+                // Herd (Feuer) ansehen
+                if (kachle.IsPointInRect(pTemp) == true) {
+                    nextActionID = 7;
+                    pTt = pKachle;
+                }
 
-                        // Ofen mitnehmen
-                        if (kachle.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 80;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pKachle);
-                                mainFrame.repaint();
-                                return;
-                            }
-        
-                        // Schwein mitnehmen
-                        if (swinjo.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 55;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pSwinjo);
-                                mainFrame.repaint();
-                                return;
-                            }
+                // Kochtopf ansehen
+                if (kochtopf.IsPointInRect(pTemp) == true) {
+                    nextActionID = 8;
+                    pTt = pTopf;
+                }
 
-                        // Tuer mitnehmen
-                        if (durje.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 60;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pDurje);
-                                mainFrame.repaint();
-                                return;
-                            }
+                // Kuchar ansehen
+                if ((kuchar.KucharRect().IsPointInRect(pTemp) == true) && (rechterAusgang.IsPointInRect(pTemp) == false)) {
+                    nextActionID = 1;
+                    pTt = pKuchar;
+                }
 
-                        // Glocke mitnehmen
-                        if (glocke.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 65;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pGlocke);
-                                mainFrame.repaint();
-                                return;
-                            }
+                mainFrame.wegGeher.SetzeNeuenWeg(pTt);
+                mainFrame.repaint();
+            } else {
+                // rechte Maustaste
 
-                        // Fenster mitnehmen
-                        if (wokno.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 70;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pWokno);
-                                mainFrame.repaint();
-                                return;
-                            }
+                // Mit dem Kuchar reden
+                if ((kuchar.KucharRect().IsPointInRect(pTemp) == true) && (rechterAusgang.IsPointInRect(pTemp) == false)) {
+                    nextActionID = 50;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pKuchar);
+                    mainFrame.repaint();
+                    return;
+                }
 
-                        // Kochtopf mitnehmen
-                        if (kochtopf.IsPointInRect (pTemp) == true) 
-                            {
-                                nextActionID = 75;
-                                mainFrame.wegGeher.SetzeNeuenWeg (pTopf);
-                                mainFrame.repaint();
-                                return;
-                            }
-        
-                        // Wenn Ausgang -> kein Inventar anzeigen
-                        if (rechterAusgang.IsPointInRect (pTemp) == true)
-                            {
-                                return;
-                            }
-             
-                        // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
-                        nextActionID = 123;
-                        mainFrame.krabat.StopWalking();
-                        mainFrame.repaint();
-                    }
+                // Holz mitnehmen
+                if (drjewo.IsPointInRect(pTemp) == true) {
+                    nextActionID = 40;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pDrjewo);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Ofen mitnehmen
+                if (kachle.IsPointInRect(pTemp) == true) {
+                    nextActionID = 80;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pKachle);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Schwein mitnehmen
+                if (swinjo.IsPointInRect(pTemp) == true) {
+                    nextActionID = 55;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pSwinjo);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Tuer mitnehmen
+                if (durje.IsPointInRect(pTemp) == true) {
+                    nextActionID = 60;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pDurje);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Glocke mitnehmen
+                if (glocke.IsPointInRect(pTemp) == true) {
+                    nextActionID = 65;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pGlocke);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Fenster mitnehmen
+                if (wokno.IsPointInRect(pTemp) == true) {
+                    nextActionID = 70;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pWokno);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Kochtopf mitnehmen
+                if (kochtopf.IsPointInRect(pTemp) == true) {
+                    nextActionID = 75;
+                    mainFrame.wegGeher.SetzeNeuenWeg(pTopf);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Wenn Ausgang -> kein Inventar anzeigen
+                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                    return;
+                }
+
+                // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
+                nextActionID = 123;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
             }
+        }
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
-    public void evalMouseMoveEvent (GenericPoint pTemp)
-    {
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true)
-            {
-                Dialog.evalMouseMoveEvent (pTemp);
-                return;
-            }  
+        if (mainFrame.isMultiple == true) {
+            Dialog.evalMouseMoveEvent(pTemp);
+            return;
+        }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0))
-            {
-                if (Cursorform != 20)
-                    {
-                        Cursorform = 20;
-                        mainFrame.setCursor (mainFrame.Nix);
-                    }
-                return;		
+        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+            if (Cursorform != 20) {
+                Cursorform = 20;
+                mainFrame.setCursor(mainFrame.Nix);
             }
-    
-        // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-            {
-                // hier kommt Routine hin, die Highlight berechnet
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
-                if ((tmp.IsPointInRect (pTemp) == true) ||
-                    (kuchar.KucharRect().IsPointInRect (pTemp) == true) ||
-                    (kachle.IsPointInRect (pTemp) == true) ||
-  		    (glocke.IsPointInRect (pTemp) == true) || 
-                    (drjewo.IsPointInRect (pTemp) == true) ||
-                    (durje.IsPointInRect (pTemp) == true) ||
-                    (wokno.IsPointInRect (pTemp) == true) ||
-                    (swinjo.IsPointInRect (pTemp) == true) ||
-                    (kochtopf.IsPointInRect (pTemp) == true))
-                    {
-                        mainFrame.invHighCursor = true;
-                    }
-                else mainFrame.invHighCursor = false;
-    	
-                if ((Cursorform != 10) && (mainFrame.invHighCursor == false))
-                    {
-                        Cursorform = 10;
-                        mainFrame.setCursor (mainFrame.Cinventar);
-                    }
-    	
-                if ((Cursorform != 11) && (mainFrame.invHighCursor == true))
-                    {
-                        Cursorform = 11;
-                        mainFrame.setCursor (mainFrame.CHinventar);
-                    }	
-            }
-  	
-        // normaler Cursor, normale Reaktion
-        else
-            {
-                if (rechterAusgang.IsPointInRect (pTemp) == true)
-                    {
-                        if (Cursorform != 3)
-                            {
-                                mainFrame.setCursor(mainFrame.Cright);
-                                Cursorform = 3;
-                            }
-                        return;
-                    }
+            return;
+        }
 
-                if ((glocke.IsPointInRect (pTemp) == true) || 
-                    (drjewo.IsPointInRect (pTemp) == true) ||
-                    (durje.IsPointInRect (pTemp) == true) ||
-                    (wokno.IsPointInRect (pTemp) == true) ||
-                    (kachle.IsPointInRect (pTemp) == true) ||
-                    (swinjo.IsPointInRect (pTemp) == true) ||
-                    (kochtopf.IsPointInRect (pTemp) == true) ||
-                    (kuchar.KucharRect().IsPointInRect (pTemp) == true))
-                    {
-                        if (Cursorform != 1)
-                            {
-                                mainFrame.setCursor (mainFrame.Kreuz);
-                                Cursorform = 1;
-                            }
-                        return;
-                    }
-	
-                // sonst normal-Cursor
-                if (Cursorform != 0)
-                    {
-                        mainFrame.setCursor (mainFrame.Normal);
-                        Cursorform = 0;
-                    }
+        // wenn InventarCursor, dann anders reagieren
+        if (mainFrame.invCursor == true) {
+            // hier kommt Routine hin, die Highlight berechnet
+            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            if ((tmp.IsPointInRect(pTemp) == true) ||
+                    (kuchar.KucharRect().IsPointInRect(pTemp) == true) ||
+                    (kachle.IsPointInRect(pTemp) == true) ||
+                    (glocke.IsPointInRect(pTemp) == true) ||
+                    (drjewo.IsPointInRect(pTemp) == true) ||
+                    (durje.IsPointInRect(pTemp) == true) ||
+                    (wokno.IsPointInRect(pTemp) == true) ||
+                    (swinjo.IsPointInRect(pTemp) == true) ||
+                    (kochtopf.IsPointInRect(pTemp) == true)) {
+                mainFrame.invHighCursor = true;
+            } else {
+                mainFrame.invHighCursor = false;
             }
+
+            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+                Cursorform = 10;
+                mainFrame.setCursor(mainFrame.Cinventar);
+            }
+
+            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+                Cursorform = 11;
+                mainFrame.setCursor(mainFrame.CHinventar);
+            }
+        }
+
+        // normaler Cursor, normale Reaktion
+        else {
+            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 3) {
+                    mainFrame.setCursor(mainFrame.Cright);
+                    Cursorform = 3;
+                }
+                return;
+            }
+
+            if ((glocke.IsPointInRect(pTemp) == true) ||
+                    (drjewo.IsPointInRect(pTemp) == true) ||
+                    (durje.IsPointInRect(pTemp) == true) ||
+                    (wokno.IsPointInRect(pTemp) == true) ||
+                    (kachle.IsPointInRect(pTemp) == true) ||
+                    (swinjo.IsPointInRect(pTemp) == true) ||
+                    (kochtopf.IsPointInRect(pTemp) == true) ||
+                    (kuchar.KucharRect().IsPointInRect(pTemp) == true)) {
+                if (Cursorform != 1) {
+                    mainFrame.setCursor(mainFrame.Kreuz);
+                    Cursorform = 1;
+                }
+                return;
+            }
+
+            // sonst normal-Cursor
+            if (Cursorform != 0) {
+                mainFrame.setCursor(mainFrame.Normal);
+                Cursorform = 0;
+            }
+        }
     }
 
-    public void evalMouseExitEvent (GenericMouseEvent e)
-    {
-  	if (mainFrame.isMultiple == true) Dialog.evalMouseExitEvent (e);
-    }		
+    public void evalMouseExitEvent(GenericMouseEvent e) {
+        if (mainFrame.isMultiple == true) {
+            Dialog.evalMouseExitEvent(e);
+        }
+    }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
-    public void evalKeyEvent (GenericKeyEvent e)
-    {
+    public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true)
-            {
-                Dialog.evalKeyEvent (e);
-                return;
-            }  
+        if (mainFrame.isMultiple == true) {
+            Dialog.evalKeyEvent(e);
+            return;
+        }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) return;
+        if (mainFrame.invCursor == true) {
+            return;
+        }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) return;
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
 
         // Bei Krabat - Animation keine Keys
-        if (mainFrame.krabat.nAnimation != 0) return;
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
 
         // Nur auf Funktionstasten reagieren
         int Taste = e.getKeyCode();
 
         // Hauptmenue aktivieren
-        if (Taste == GenericKeyEvent.VK_F1)
-            {
-                Keyclear();
-                nextActionID = 122;
-                mainFrame.repaint();
-                return;
-            }    
+        if (Taste == GenericKeyEvent.VK_F1) {
+            Keyclear();
+            nextActionID = 122;
+            mainFrame.repaint();
+            return;
+        }
 
         // Save - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F2)
-            {
-                Keyclear();
-                nextActionID = 121;
-                mainFrame.repaint();
-                return;
-            }
+        if (Taste == GenericKeyEvent.VK_F2) {
+            Keyclear();
+            nextActionID = 121;
+            mainFrame.repaint();
+            return;
+        }
 
         // Load - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F3)
-            {
-                Keyclear();
-                nextActionID = 120;
-                mainFrame.repaint();
-                return;
-            } 
-    }  
+        if (Taste == GenericKeyEvent.VK_F3) {
+            Keyclear();
+            nextActionID = 120;
+            mainFrame.repaint();
+            return;
+        }
+    }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear()
-    {
-        outputText="";
-        if (mainFrame.talkCount > 1) mainFrame.talkCount = 1;
+    private void Keyclear() {
+        outputText = "";
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+        }
         mainFrame.Clipset = false;
         mainFrame.isAnim = false;
         mainFrame.krabat.StopWalking();
     }
-  
-    private GenericPoint evalKucharTalkPoint ()
-    {
+
+    private GenericPoint evalKucharTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = kuchar.KucharRect ();
-        GenericPoint tTalk = new GenericPoint ((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
+        Borderrect temp = kuchar.KucharRect();
+        GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
         return tTalk;
     }
-    
-    private void evalSound (boolean erster, boolean zweiter)
-    {
-	// zufaellig wavs fuer Geschnatter abspielen...
-	if (zweiter == false)  // nur einzelne blubbs spielen
-	    {
-		if (schnauzeKuchar == true) return; // grosses Blubb hat Prio vor allem anderen
 
-		int zfz = (int) (Math.random () * 100);
-		if (((zfz > 97) && (erster == false)) || ((zfz > 95) && (erster == true)))
-		    {
-			int zwzfz = (int) (Math.random () * 2.99);
-			zwzfz += 49;
-			mainFrame.wave.PlayFile ("sfx-dd/blubb" + (char) zwzfz + ".wav");
-		    }
-	    }
-	else
-	    {
-		if (ueberkochSound == true) // nur 1x abspielen
-		    {
-			ueberkochSound = false;
-			mainFrame.wave.PlayFile ("sfx-dd/blubblub.wav");
-		    }
-	    }
-    }    
-  
+    private void evalSound(boolean erster, boolean zweiter) {
+        // zufaellig wavs fuer Geschnatter abspielen...
+        if (zweiter == false)  // nur einzelne blubbs spielen
+        {
+            if (schnauzeKuchar == true) {
+                return; // grosses Blubb hat Prio vor allem anderen
+            }
+
+            int zfz = (int) (Math.random() * 100);
+            if (((zfz > 97) && (erster == false)) || ((zfz > 95) && (erster == true))) {
+                int zwzfz = (int) (Math.random() * 2.99);
+                zwzfz += 49;
+                mainFrame.wave.PlayFile("sfx-dd/blubb" + (char) zwzfz + ".wav");
+            }
+        } else {
+            if (ueberkochSound == true) // nur 1x abspielen
+            {
+                ueberkochSound = false;
+                mainFrame.wave.PlayFile("sfx-dd/blubblub.wav");
+            }
+        }
+    }
+
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction ()
-    {
+    private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if ((mainFrame.krabat.isWandering == true) ||
-            (mainFrame.krabat.isWalking == true))
+                (mainFrame.krabat.isWalking == true)) {
             return;
+        }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600))
-            {
-                setKrabatAusrede();
-    	
-                // manche Ausreden erfordern neuen Cursor !!!
-    	
-                evalMouseMoveEvent (mainFrame.Mousepoint);
-    	
-                return;
-            }		
+        if ((nextActionID > 499) && (nextActionID < 600)) {
+            setKrabatAusrede();
 
-  	// Hier Evaluation der Screenaufrufe, in Superklasse
-  	if ((nextActionID > 119) && (nextActionID < 129))
-            {
-  		SwitchScreen ();
-  		return;
-            }		
-  	
+            // manche Ausreden erfordern neuen Cursor !!!
+
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+
+            return;
+        }
+
+        // Hier Evaluation der Screenaufrufe, in Superklasse
+        if ((nextActionID > 119) && (nextActionID < 129)) {
+            SwitchScreen();
+            return;
+        }
+
         // Was soll Krabat machen ?
-        switch (nextActionID)
-            {
+        switch (nextActionID) {
             case 1:
                 // Kuchar anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00000"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00001"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00002"),
-                            fKuchar, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00000"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00001"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00002"),
+                        fKuchar, 3, 0, 0);
                 break;
 
             case 2:
                 // Schwein anschauen
-                int zuffZahl = (int) (Math.random () * 2.9);
-                switch (zuffZahl) 
-                    {
+                int zuffZahl = (int) (Math.random() * 2.9);
+                switch (zuffZahl) {
                     case 0:
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00003"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00004"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00005"),
-                                    fSwinjo, 3, 0, 0);
+                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00003"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00004"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00005"),
+                                fSwinjo, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00006"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00007"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00008"),
-                                    fSwinjo, 3, 0, 0);
+                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00006"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00007"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00008"),
+                                fSwinjo, 3, 0, 0);
                         break;
 
                     case 2:
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00009"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00010"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00011"),
-                                    fSwinjo, 3, 0, 0);
+                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00009"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00010"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00011"),
+                                fSwinjo, 3, 0, 0);
                         break;
-                    }
+                }
                 break;
 
             case 3:
                 // Holz anschauen
-                int zuffZahl3 = (int) (Math.random () * 1.9);
-                switch (zuffZahl3) 
-                    {
+                int zuffZahl3 = (int) (Math.random() * 1.9);
+                switch (zuffZahl3) {
                     case 0:
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00012"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00013"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00014"),
-                                    fDrjewo, 3, 0, 0);
+                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00012"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00013"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00014"),
+                                fDrjewo, 3, 0, 0);
                         break;
 
                     case 1:
-		      	KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00015"),
-		      	            Start.stringManager.getTranslation("Loc3_Kuchnja_00016"),
-		      	            Start.stringManager.getTranslation("Loc3_Kuchnja_00017"),
-		      	            fDrjewo, 3, 0, 0);
+                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00015"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00016"),
+                                Start.stringManager.getTranslation("Loc3_Kuchnja_00017"),
+                                fDrjewo, 3, 0, 0);
                         break;
-                    }
+                }
                 break;
 
             case 4:
                 // Tuer anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00018"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00019"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00020"),
-                            fDurje, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00018"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00019"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00020"),
+                        fDurje, 3, 0, 0);
                 break;
 
             case 5:
                 // Glocke anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00021"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00022"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00023"),
-                            fGlocke, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00021"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00022"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00023"),
+                        fGlocke, 3, 0, 0);
                 break;
 
             case 6:
                 // Fenster anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00024"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00025"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00026"),
-                            fWokno, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00024"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00025"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00026"),
+                        fWokno, 3, 0, 0);
                 break;
 
             case 7:
                 // Herd anschauen
-                if ((mainFrame.Actions[625] == false) && (mainFrame.Actions[626] == false) && (mainFrame.Actions[627] == false)) 
-                    {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00027"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00028"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00029"),
-                                    fHerd, 3, 0, 0);
-                    }
-                else 
-                    {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00030"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00031"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00032"),
-                                    fHerd, 3, 0, 0);
-                    }
+                if ((mainFrame.Actions[625] == false) && (mainFrame.Actions[626] == false) && (mainFrame.Actions[627] == false)) {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00027"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00028"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00029"),
+                            fHerd, 3, 0, 0);
+                } else {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00030"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00031"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00032"),
+                            fHerd, 3, 0, 0);
+                }
                 break;
 
             case 8:
                 // Kochtopf anschauen
-                if ((mainFrame.Actions[625] == false) && (mainFrame.Actions[626] == false) && (mainFrame.Actions[627] == false)) 
-                    {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00033"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00034"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00035"),
-                                    fHornc, 3, 0, 0);
-                    }
-                else 
-                    {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00036"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00037"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00038"),
-                                    fHornc, 3, 0, 0);
-                    }
+                if ((mainFrame.Actions[625] == false) && (mainFrame.Actions[626] == false) && (mainFrame.Actions[627] == false)) {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00033"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00034"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00035"),
+                            fHornc, 3, 0, 0);
+                } else {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00036"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00037"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00038"),
+                            fHornc, 3, 0, 0);
+                }
                 break;
 
 
             case 40:
                 // Holzscheitel mitnehmen (wenn noch keins im Inventar)
-                if (mainFrame.Actions[950] == false) 
-                    {
-                        nextActionID = 0;
-                        // zu Inventar hinzufuegen
-                        mainFrame.inventory.vInventory.addElement (new Integer (35));
-                        mainFrame.Actions[950] = true;
-                        mainFrame.krabat.nAnimation = 122;
-  	  		mainFrame.krabat.SetFacing (fDrjewo);
-                        mainFrame.repaint();
-                    }
-                else 
-                    {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00039"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00040"),
-                                    Start.stringManager.getTranslation("Loc3_Kuchnja_00041"),
-                                    fDrjewo, 3, 0, 0);
-                    }
+                if (mainFrame.Actions[950] == false) {
+                    nextActionID = 0;
+                    // zu Inventar hinzufuegen
+                    mainFrame.inventory.vInventory.addElement(new Integer(35));
+                    mainFrame.Actions[950] = true;
+                    mainFrame.krabat.nAnimation = 122;
+                    mainFrame.krabat.SetFacing(fDrjewo);
+                    mainFrame.repaint();
+                } else {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00039"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00040"),
+                            Start.stringManager.getTranslation("Loc3_Kuchnja_00041"),
+                            fDrjewo, 3, 0, 0);
+                }
                 break;
 
             case 45:
                 // Holz in Ofen schmeissen -> Reaktion je nach Feuergroesse
-                mainFrame.krabat.SetFacing (fHerd);
+                mainFrame.krabat.SetFacing(fHerd);
                 mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.invCursor = false;
                 // Holz aus Inventory entfernen
                 mainFrame.krabat.nAnimation = 149;
-                mainFrame.inventory.vInventory.removeElement (new Integer (35));
-		// bei 3. Stufe die Kuchar-Sound abschalten
-		if (mainFrame.Actions[626] == true) schnauzeKuchar = true;
-		nextActionID = 46;
-		break;
+                mainFrame.inventory.vInventory.removeElement(new Integer(35));
+                // bei 3. Stufe die Kuchar-Sound abschalten
+                if (mainFrame.Actions[626] == true) {
+                    schnauzeKuchar = true;
+                }
+                nextActionID = 46;
+                break;
 
-	    case 46:
-		// Ende K-Anim und Start Holz-Anim
-		if (mainFrame.krabat.nAnimation == 149) break;
-		holzFliegt = true;
-		nextActionID = 47;
-		break;
+            case 46:
+                // Ende K-Anim und Start Holz-Anim
+                if (mainFrame.krabat.nAnimation == 149) {
+                    break;
+                }
+                holzFliegt = true;
+                nextActionID = 47;
+                break;
 
-	    case 47:
-		// Ende Holzfliegen und weiter
-		if (holzFliegt == true) break;
+            case 47:
+                // Ende Holzfliegen und weiter
+                if (holzFliegt == true) {
+                    break;
+                }
                 mainFrame.Actions[950] = false;
-			  
-                if (mainFrame.Actions[626] == true)  mainFrame.Actions[627] = true;
-                if (mainFrame.Actions[625] == true)  mainFrame.Actions[626] = true;
-                if (mainFrame.Actions[625] == false) mainFrame.Actions[625] = true;
+
+                if (mainFrame.Actions[626] == true) {
+                    mainFrame.Actions[627] = true;
+                }
+                if (mainFrame.Actions[625] == true) {
+                    mainFrame.Actions[626] = true;
+                }
+                if (mainFrame.Actions[625] == false) {
+                    mainFrame.Actions[625] = true;
+                }
 
                 // Feuer erste Stufe
-                if (mainFrame.Actions[626] == false)
-                    {
-                        nextActionID = 300;
-                        break;
-                    }
-	  		
+                if (mainFrame.Actions[626] == false) {
+                    nextActionID = 300;
+                    break;
+                }
+
                 // Feuer 2. Stufe
-                if (mainFrame.Actions[627] == false)
-                    {
-                        nextActionID = 301; 
-                        break;
-                    }
-	  		
+                if (mainFrame.Actions[627] == false) {
+                    nextActionID = 301;
+                    break;
+                }
+
                 // Feuer groesste Stufe
-                nextActionID = 302; 
+                nextActionID = 302;
                 break;
 
 
             case 50:
                 // Krabat beginnt MC (Kuchar benutzen)
-                mainFrame.krabat.SetFacing (fKuchar);
+                mainFrame.krabat.SetFacing(fKuchar);
                 mainFrame.fPlayAnim = true;
                 kucharHoertZu = true;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 600;
                 break;
-  
+
             case 55:
                 // Schwein mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00042"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00043"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00044"),
-                            fSwinjo, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00042"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00043"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00044"),
+                        fSwinjo, 3, 0, 0);
                 break;
 
             case 60:
                 // Tuer mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00045"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00046"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00047"),
-                            fDurje, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00045"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00046"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00047"),
+                        fDurje, 3, 0, 0);
                 break;
 
             case 65:
                 // Glocke mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00048"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00049"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00050"),
-                            fGlocke, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00048"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00049"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00050"),
+                        fGlocke, 3, 0, 0);
                 break;
 
             case 70:
                 // Fenster mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00051"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00052"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00053"),
-                            fWokno, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00051"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00052"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00053"),
+                        fWokno, 3, 0, 0);
                 break;
 
             case 75:
                 // Kochtopf mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00054"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00055"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00056"),
-                            fHornc, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00054"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00055"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00056"),
+                        fHornc, 3, 0, 0);
                 break;
 
             case 80:
                 // Herd mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00057"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00058"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00059"),
-                            fHornc, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00057"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00058"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00059"),
+                        fHornc, 3, 0, 0);
                 break;
 
             case 100:
-		// Animationssequenz beenden
+                // Animationssequenz beenden
                 mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 // Gehe zu Hintergasse
-                NeuesBild (121, locationID);
+                NeuesBild(121, locationID);
                 break;
 
             case 150:
                 // Kuchar - Ausreden
-                MPersonAusrede (fKuchar);
+                MPersonAusrede(fKuchar);
                 break;
 
             case 155:
                 // Dinge ins Feuer schmeissen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00060"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00061"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00062"),
-                            fHerd, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00060"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00061"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00062"),
+                        fHerd, 3, 0, 0);
                 break;
 
             case 160:
                 // Dinge dem Schwein geben
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00063"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00064"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00065"),
-                            fSwinjo, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00063"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00064"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00065"),
+                        fSwinjo, 3, 0, 0);
                 break;
 
             case 165:
                 // Drjewo - Ausreden
-                DingAusrede (fDrjewo);
+                DingAusrede(fDrjewo);
                 break;
 
             case 170:
                 // durje - Ausreden
-                DingAusrede (fDurje);
+                DingAusrede(fDurje);
                 break;
 
             case 175:
                 // klinkac  Ausreden
-                DingAusrede (fGlocke);
+                DingAusrede(fGlocke);
                 break;
 
             case 180:
                 // wokno - Ausreden
-                DingAusrede (fWokno);
+                DingAusrede(fWokno);
                 break;
 
             case 185:
                 // Dinge in den Topf werfen
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00066"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00067"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00068"),
-                            fHornc, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00066"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00067"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00068"),
+                        fHornc, 3, 0, 0);
                 break;
 
-	    case 195:
-		// kotwica auf swino
-		KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00069"),
-			    Start.stringManager.getTranslation("Loc3_Kuchnja_00070"),
-			    Start.stringManager.getTranslation("Loc3_Kuchnja_00071"),
-			    fSwinjo, 3, 0, 0);
-		break;
+            case 195:
+                // kotwica auf swino
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00069"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00070"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00071"),
+                        fSwinjo, 3, 0, 0);
+                break;
 
 
-                // Sequenzen mit Kuchar  /////////////////////////////////
+            // Sequenzen mit Kuchar  /////////////////////////////////
 
             case 300:
                 // Reaktion Krabat, wenn Holz in Ofen
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00072"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00073"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00074"),
-                            0, 3, 2, 800);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00072"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00073"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00074"),
+                        0, 3, 2, 800);
                 break;
 
             case 301:
                 // Reaktion Krabat, wenn Holz in Ofen 2 mal
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00075"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00076"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00077"),
-                            0, 3, 2, 800);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00075"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00076"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00077"),
+                        0, 3, 2, 800);
                 break;
 
             case 302:
                 // Reaktion Krabat, wenn Holz in Ofen 3 mal -> dann zur Hintergasse
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00078"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00079"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00080"),
-                            0, 3, 2, 303);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00078"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00079"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00080"),
+                        0, 3, 2, 303);
                 break;
 
             case 303:
                 // Reaktion Koch, wenn Brei ueberkocht
-		kucharHoertZu = true;
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00081"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00082"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00083"),
-                            fKuchar, 42, 2, 304, evalKucharTalkPoint ());
+                kucharHoertZu = true;
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00081"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00082"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00083"),
+                        fKuchar, 42, 2, 304, evalKucharTalkPoint());
                 break;
 
             case 304:
                 // Koch aufstehen lassen
                 kucharIstAufgestanden = true;
-		kucharHoertZu = false;
+                kucharHoertZu = false;
                 nextActionID = 305;
                 break;
-      	
+
             case 305:
                 // kleine Verzoegerung...
                 nextActionID = 309;
                 break;
-      	
+
             case 309:
                 // Reaktion Koch, wenn Brei ueberkocht
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00084"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00085"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00086"),
-                            0, 42, 2, 310, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00084"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00085"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00086"),
+                        0, 42, 2, 310, evalKucharTalkPoint());
                 break;
 
             case 310:
                 // Krabat geht zum Ausgang Hintergasse
                 nextActionID = 320;
-                mainFrame.wegGeher.SetzeNeuenWeg (pRight);
+                mainFrame.wegGeher.SetzeNeuenWeg(pRight);
                 break;
 
             case 320:
                 // nun auch wirklich hinten raus laufen
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg (pRight);
+                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pRight);
                 nextActionID = 100;
                 break;
 
-                // Dialog mit Kuchar ///////////////////////////////////
-      
+            // Dialog mit Kuchar ///////////////////////////////////
+
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC (20);
+                Dialog.InitMC(20);
 
-				// Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1)
-                    {
-                        // 1. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00087"), 1000, 504, new int[] {504}, 610);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00088"), 504, 503, new int[] {503}, 611);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00089"), 503, 502, new int[] {502}, 612);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00090"), 502, 501, new int[] {501}, 613);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00091"), 501, 500, new int[] {500}, 615);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00092"), 500, 1000, null, 617);
-					
-                        // 2. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00093"), 1000, 507, new int[] {507}, 630);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00094"), 507, 506, new int[] {506}, 631);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00095"), 506, 505, new int[] {505}, 632);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00096"), 505, 1000, null, 634);
-	  	    
-                        // 3. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00097"), 1000, 509, new int[] {509}, 640);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00098"), 509, 508, new int[] {508}, 641);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00099"), 508, 1000, null, 642);
-	  	    
-                        // 4. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00100"), 1000, 1000, null, 620);
-                    }
+                // Obersorbische Fragen /////////////////////////////////
+                if (mainFrame.sprache == 1) {
+                    // 1. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00087"), 1000, 504, new int[]{504}, 610);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00088"), 504, 503, new int[]{503}, 611);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00089"), 503, 502, new int[]{502}, 612);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00090"), 502, 501, new int[]{501}, 613);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00091"), 501, 500, new int[]{500}, 615);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00092"), 500, 1000, null, 617);
 
-				// Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2)
-                    {
-                        // 1. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00101"), 1000, 504, new int[] {504}, 610);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00102"), 504, 503, new int[] {503}, 611);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00103"), 503, 502, new int[] {502}, 612);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00104"), 502, 501, new int[] {501}, 613);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00105"), 501, 500, new int[] {500}, 615);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00106"), 500, 1000, null, 617);
-					
-                        // 2. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00107"), 1000, 507, new int[] {507}, 630);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00108"), 507, 506, new int[] {506}, 631);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00109"), 506, 505, new int[] {505}, 632);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00110"), 505, 1000, null, 634);
-	  	    
-                        // 3. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00111"), 1000, 509, new int[] {509}, 640);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00112"), 509, 508, new int[] {508}, 641);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00113"), 508, 1000, null, 642);
-	  	    
-                        // 4. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00114"), 1000, 1000, null, 620);
-                    }
+                    // 2. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00093"), 1000, 507, new int[]{507}, 630);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00094"), 507, 506, new int[]{506}, 631);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00095"), 506, 505, new int[]{505}, 632);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00096"), 505, 1000, null, 634);
 
-				// Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3)
-                    {
-                        // 1. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00115"), 1000, 504, new int[] {504}, 610);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00116"), 504, 503, new int[] {503}, 611);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00117"), 503, 502, new int[] {502}, 612);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00118"), 502, 501, new int[] {501}, 613);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00119"), 501, 500, new int[] {500}, 615);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00120"), 500, 1000, null, 617);
-					
-                        // 2. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00121"), 1000, 507, new int[] {507}, 630);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00122"), 507, 506, new int[] {506}, 631);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00123"), 506, 505, new int[] {505}, 632);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00124"), 505, 1000, null, 634);
-	  	    
-                        // 3. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00125"), 1000, 509, new int[] {509}, 640);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00126"), 509, 508, new int[] {508}, 641);
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00127"), 508, 1000, null, 642);
-	  	    
-                        // 4. Frage
-                        Dialog.ExtendMC (Start.stringManager.getTranslation("Loc3_Kuchnja_00128"), 1000, 1000, null, 620);
-                    }
+                    // 3. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00097"), 1000, 509, new int[]{509}, 640);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00098"), 509, 508, new int[]{508}, 641);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00099"), 508, 1000, null, 642);
+
+                    // 4. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00100"), 1000, 1000, null, 620);
+                }
+
+                // Niedersorbische Fragen /////////////////////////////////
+                if (mainFrame.sprache == 2) {
+                    // 1. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00101"), 1000, 504, new int[]{504}, 610);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00102"), 504, 503, new int[]{503}, 611);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00103"), 503, 502, new int[]{502}, 612);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00104"), 502, 501, new int[]{501}, 613);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00105"), 501, 500, new int[]{500}, 615);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00106"), 500, 1000, null, 617);
+
+                    // 2. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00107"), 1000, 507, new int[]{507}, 630);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00108"), 507, 506, new int[]{506}, 631);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00109"), 506, 505, new int[]{505}, 632);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00110"), 505, 1000, null, 634);
+
+                    // 3. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00111"), 1000, 509, new int[]{509}, 640);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00112"), 509, 508, new int[]{508}, 641);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00113"), 508, 1000, null, 642);
+
+                    // 4. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00114"), 1000, 1000, null, 620);
+                }
+
+                // Deutsche Fragen /////////////////////////////////
+                if (mainFrame.sprache == 3) {
+                    // 1. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00115"), 1000, 504, new int[]{504}, 610);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00116"), 504, 503, new int[]{503}, 611);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00117"), 503, 502, new int[]{502}, 612);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00118"), 502, 501, new int[]{501}, 613);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00119"), 501, 500, new int[]{500}, 615);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00120"), 500, 1000, null, 617);
+
+                    // 2. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00121"), 1000, 507, new int[]{507}, 630);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00122"), 507, 506, new int[]{506}, 631);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00123"), 506, 505, new int[]{505}, 632);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00124"), 505, 1000, null, 634);
+
+                    // 3. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00125"), 1000, 509, new int[]{509}, 640);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00126"), 509, 508, new int[]{508}, 641);
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00127"), 508, 1000, null, 642);
+
+                    // 4. Frage
+                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00128"), 1000, 1000, null, 620);
+                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
                 break;
-          
+
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText (outputText);
+                outputTextPos = mainFrame.ifont.KrabatText(outputText);
                 TalkPerson = 1;
-                TalkPause  = 2;
-        
+                TalkPause = 2;
+
                 nextActionID = Dialog.ActionID;
 
                 break;
-                
-                // Antworten zu Frage 1 ////////////////////////////
+
+            // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00129"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00130"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00131"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00129"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00130"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00131"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 611:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00132"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00133"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00134"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00132"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00133"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00134"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 612:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00135"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00136"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00137"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00135"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00136"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00137"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 613:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00138"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00139"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00140"),
-                            0, 42, 2, 614, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00138"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00139"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00140"),
+                        0, 42, 2, 614, evalKucharTalkPoint());
                 break;
 
             case 614:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00141"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00142"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00143"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00141"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00142"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00143"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 615:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00144"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00145"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00146"),
-                            0, 42, 2, 616, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00144"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00145"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00146"),
+                        0, 42, 2, 616, evalKucharTalkPoint());
                 break;
 
             case 616:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00147"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00148"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00149"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00147"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00148"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00149"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 617:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00150"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00151"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00152"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00150"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00151"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00152"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
-                // Antworten zu Frage 2 ////////////////////////////       
+            // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Koch (zufaellige Antwort)
-				// Zafallszahl von 0 bis 5 generieren
-		mainFrame.fPlayAnim = true;
-		evalMouseMoveEvent (mainFrame.Mousepoint);
-		mainFrame.krabat.SetFacing (12);
+                // Zafallszahl von 0 bis 5 generieren
+                mainFrame.fPlayAnim = true;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.krabat.SetFacing(12);
                 nextActionID = 800;  // Dialog danach beenden (ausser letzte Antwort)
-                int zuffZahl2 = (int) (Math.random () * 5.9);
-                switch (zuffZahl2) 
-                    {
+                int zuffZahl2 = (int) (Math.random() * 5.9);
+                switch (zuffZahl2) {
                     case 0:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00153"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00154"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00155"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00153"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00154"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00155"));
+                        }
                         break;
                     case 1:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00156"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00157"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00158"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00156"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00157"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00158"));
+                        }
                         break;
                     case 2:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00159"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00160"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00161"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00159"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00160"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00161"));
+                        }
                         break;
                     case 3:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00162"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00163"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00164"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00162"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00163"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00164"));
+                        }
                         break;
                     case 4:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00165"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00166"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00167"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00165"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00166"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00167"));
+                        }
                         break;
                     case 5:
-                        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00168"));
-                        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00169"));
-                        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc3_Kuchnja_00170"));
+                        if (mainFrame.sprache == 1) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00168"));
+                        }
+                        if (mainFrame.sprache == 2) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00169"));
+                        }
+                        if (mainFrame.sprache == 3) {
+                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00170"));
+                        }
                         nextActionID = 621;
                         break;
-                    }
+                }
 
-                outputTextPos = mainFrame.ifont.CenterText (outputText, evalKucharTalkPoint());
+                outputTextPos = mainFrame.ifont.CenterText(outputText, evalKucharTalkPoint());
                 TalkPerson = 42;
-                TalkPause  = 2;
+                TalkPause = 2;
                 break;
 
             case 621:
                 // Reaktion Krabat
-                KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00171"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00172"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00173"),
-                            0, 1, 2, 800);
+                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00171"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00172"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00173"),
+                        0, 1, 2, 800);
                 break;
 
-                // Antworten zu Frage 3 ////////////////////////////       
+            // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00174"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00175"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00176"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00174"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00175"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00176"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 631:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00177"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00178"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00179"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00177"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00178"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00179"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 632:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00180"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00181"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00182"),
-                            0, 42, 2, 633, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00180"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00181"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00182"),
+                        0, 42, 2, 633, evalKucharTalkPoint());
                 break;
 
             case 633:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00183"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00184"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00185"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00183"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00184"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00185"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 634:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00186"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00187"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00188"),
-                            0, 42, 2, 635, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00186"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00187"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00188"),
+                        0, 42, 2, 635, evalKucharTalkPoint());
                 break;
 
             case 635:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00189"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00190"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00191"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00189"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00190"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00191"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
 
                 break;
 
-                // Antworten zu Frage 4 ////////////////////////////       
+            // Antworten zu Frage 4 ////////////////////////////
             case 640:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00192"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00193"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00194"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00192"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00193"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00194"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
-        
+
             case 641:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00195"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00196"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00197"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00195"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00196"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00197"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 642:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00198"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00199"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00200"),
-                            0, 42, 2, 643, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00198"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00199"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00200"),
+                        0, 42, 2, 643, evalKucharTalkPoint());
                 break;
 
             case 643:
                 // Reaktion Koch
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnja_00201"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00202"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00203"),
-                            0, 42, 2, 600, evalKucharTalkPoint ());
+                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00201"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00202"),
+                        Start.stringManager.getTranslation("Loc3_Kuchnja_00203"),
+                        0, 42, 2, 600, evalKucharTalkPoint());
                 break;
-        
+
             case 800:
                 // MC beenden, wenn zuende gelabert...
                 mainFrame.fPlayAnim = false;
                 nextActionID = 0;
                 kucharHoertZu = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.repaint();
                 break;
-      		      
+
             default:
-                System.out.println ("Falsche Action-ID !");
-            }
+                System.out.println("Falsche Action-ID !");
+        }
 
     }
 }

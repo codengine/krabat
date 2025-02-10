@@ -23,38 +23,38 @@ package rapaki.krabat.main;
 // ok
 
 public class GenericPoint {
-	
-	public int x;
-	
-	public int y;
-	
-	public GenericPoint() {
-		x = 0;
-		y = 0;
-	}
-	
-	public GenericPoint(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
 
-	public GenericPoint(GenericPoint pt) {
-		this.x = pt.x;
-		this.y = pt.y;
-	}
-	
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		
-		if (o instanceof GenericPoint) {
-			GenericPoint inst = (GenericPoint) o;
-			if ((inst.x == x) && (inst.y == y)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
+    public int x;
+
+    public int y;
+
+    public GenericPoint() {
+        x = 0;
+        y = 0;
+    }
+
+    public GenericPoint(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public GenericPoint(GenericPoint pt) {
+        this.x = pt.x;
+        this.y = pt.y;
+    }
+
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof GenericPoint) {
+            GenericPoint inst = (GenericPoint) o;
+            if ((inst.x == x) && (inst.y == y)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

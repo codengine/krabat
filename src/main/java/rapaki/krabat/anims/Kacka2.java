@@ -26,8 +26,7 @@ import rapaki.krabat.main.GenericRectangle;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Kacka2 extends Mainanim
-{
+public class Kacka2 extends Mainanim {
 
     private GenericImage kacka_flieg[];
     private GenericImage kacka_lande[];
@@ -50,14 +49,14 @@ public class Kacka2 extends Mainanim
     private float Positx;
     private float Posity;
 
-    private static final GenericPoint Pstart = new GenericPoint (-40, 190);
+    private static final GenericPoint Pstart = new GenericPoint(-40, 190);
     private GenericPoint Pstop;
 
     private static final int Flugbreite = 43;
-    private static final int Flughoehe  = 46;
+    private static final int Flughoehe = 46;
 
     private static final int Redebreite = 40;
-    private static final int Redehoehe  = 17;
+    private static final int Redehoehe = 17;
 
     private boolean isFlying = true;
     private boolean isGleiting = false;
@@ -68,40 +67,37 @@ public class Kacka2 extends Mainanim
 
     private static final int FLUGOFFSET = 19;
 
-    private boolean landeSoundPlayed = false; 
+    private boolean landeSoundPlayed = false;
     private boolean flugSoundPlayed = false;
 
-    public Kacka2 (Start caller)
-    {
-        super (caller);
-	
+    public Kacka2(Start caller) {
+        super(caller);
+
         kacka_flieg = new GenericImage[3];
         kacka_lande = new GenericImage[3];
-        kacka_rede  = new GenericImage[2];
+        kacka_rede = new GenericImage[2];
 
         InitImages();
 
         Verhinderschnatter = MAX_VERHINDERSCHNATTER;
         Verhinderflieg = MAX_VERHINDERFLIEG;
         Verhinderland = MAX_VERHINDERLAND;
-    } 
-	 
-    private void InitImages()
-    {
-        kacka_flieg[0] = getPicture ("gfx/mertens/kacka2-f1.gif");
-        kacka_flieg[1] = getPicture ("gfx/mertens/kacka2-f3.gif");
-        kacka_flieg[2] = getPicture ("gfx/mertens/kacka2-f2.gif");
-
-        kacka_lande[0] = getPicture ("gfx/mertens/kacka2-f3a.gif");
-        kacka_lande[1] = getPicture ("gfx/mertens/kacka2-f3b.gif");
-        kacka_lande[2] = getPicture ("gfx/mertens/kacka2-f3c.gif");
-
-        kacka_rede[0] = getPicture ("gfx/mertens/kacka2.gif");
-        kacka_rede[1] = getPicture ("gfx/mertens/kacka2a.gif");
     }
 
-    public void cleanup()
-    {
+    private void InitImages() {
+        kacka_flieg[0] = getPicture("gfx/mertens/kacka2-f1.gif");
+        kacka_flieg[1] = getPicture("gfx/mertens/kacka2-f3.gif");
+        kacka_flieg[2] = getPicture("gfx/mertens/kacka2-f2.gif");
+
+        kacka_lande[0] = getPicture("gfx/mertens/kacka2-f3a.gif");
+        kacka_lande[1] = getPicture("gfx/mertens/kacka2-f3b.gif");
+        kacka_lande[2] = getPicture("gfx/mertens/kacka2-f3c.gif");
+
+        kacka_rede[0] = getPicture("gfx/mertens/kacka2.gif");
+        kacka_rede[1] = getPicture("gfx/mertens/kacka2a.gif");
+    }
+
+    public void cleanup() {
         kacka_flieg[0] = null;
         kacka_flieg[1] = null;
         kacka_flieg[2] = null;
@@ -115,9 +111,8 @@ public class Kacka2 extends Mainanim
     }
 
     // Startpos festlegen, sobald bekannt
-    public void initPos (GenericPoint andereEnte)
-    {
-        Pstop = new GenericPoint (andereEnte.x - 40, andereEnte.y);
+    public void initPos(GenericPoint andereEnte) {
+        Pstop = new GenericPoint(andereEnte.x - 40, andereEnte.y);
         Positx = Pstart.x;
         Posity = Pstart.y;
 
@@ -126,129 +121,115 @@ public class Kacka2 extends Mainanim
 
         Yoffset = (float) (Ydiff / Xdiff * Xoffset);
 
-        System.out.println ("Yoffset = " + Yoffset);
+        System.out.println("Yoffset = " + Yoffset);
     }
-  
+
     // evaluiere Rechteck zum Loeschen der Ente
-    public GenericRectangle kackaRect ()
-    {
-        if (isFlying == true)
-            {
-                // Berechnung beim Fliegen
-                int x = (int) (Positx - (Flugbreite / 2));
-                int y = (int) (Posity - Flughoehe + FLUGOFFSET);
-                return (new GenericRectangle (x, y, Flugbreite, Flughoehe));
-            }
-        else
-            {
-                // Berechnung beim Reden
-                int x = (int) (Positx - (Redebreite / 2));
-                int y = (int) (Posity - Redehoehe);
-		// System.out.println ("Rectangle Ente 2 : " + x + " " + y + " " + Redebreite + " " + Redehoehe);
-                return (new GenericRectangle (x, y, Redebreite, Redehoehe));
-            }
+    public GenericRectangle kackaRect() {
+        if (isFlying == true) {
+            // Berechnung beim Fliegen
+            int x = (int) (Positx - (Flugbreite / 2));
+            int y = (int) (Posity - Flughoehe + FLUGOFFSET);
+            return (new GenericRectangle(x, y, Flugbreite, Flughoehe));
+        } else {
+            // Berechnung beim Reden
+            int x = (int) (Positx - (Redebreite / 2));
+            int y = (int) (Posity - Redehoehe);
+            // System.out.println ("Rectangle Ente 2 : " + x + " " + y + " " + Redebreite + " " + Redehoehe);
+            return (new GenericRectangle(x, y, Redebreite, Redehoehe));
+        }
     }
 
     // Zeichne Ente, wie sie dasteht oder spricht: Flag gibt an, dass sie zuendegeflogen ist
-    public boolean drawKacka (GenericDrawingContext offGraph, int TalkPerson)
-    {
+    public boolean drawKacka(GenericDrawingContext offGraph, int TalkPerson) {
         // Redende Kacka
-        if ((TalkPerson == 72) && (mainFrame.talkCount > 1))
-            {
-                if ((--Verhinderschnatter) < 1)
-                    {
-                        Verhinderschnatter = MAX_VERHINDERSCHNATTER;
-                        if (Schnatter == 0) Schnatter = 1;
-                        else Schnatter = 0;
-                    }
-
-                // Kacka zeichnen
-                offGraph.drawImage (kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
+        if ((TalkPerson == 72) && (mainFrame.talkCount > 1)) {
+            if ((--Verhinderschnatter) < 1) {
+                Verhinderschnatter = MAX_VERHINDERSCHNATTER;
+                if (Schnatter == 0) {
+                    Schnatter = 1;
+                } else {
+                    Schnatter = 0;
+                }
             }
-        
-        else
-            {
-                if (isFlying == false)
-                    {
-                        // wenn sie nicht mehr fliegt, dann nur noch so zeichnen
-                        offGraph.drawImage (kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
-                    }
-                else
-                    {
-                        // gleitet schon ?
-                        if (isGleiting == true)
-                            {
-                                // landet schon
-                                if (isLanding == true)
-                                    {
-					if (landeSoundPlayed == false)  // hier Sound 1x abspielen
-					    {
-						landeSoundPlayed = true;
-						mainFrame.wave.PlayFile ("sfx/woda3.wav");
-					    }
 
-                                        if ((--Verhinderland) < 1)
-                                            {
-                                                Verhinderland = MAX_VERHINDERLAND;
-                                                if (Land < 2) Land++;
-                                            }
-                                        
-                                        offGraph.drawImage (kacka_lande[Land], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
-                                    }
-                                // gleitet noch
-                                else
-                                    {
-                                        offGraph.drawImage (kacka_flieg[1], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
-                                    }
-                            }
-                        else
-                            {
-                                // fliegt noch
-                                if ((--Verhinderflieg) < 1)
-                                    {
-                                        Verhinderflieg = MAX_VERHINDERFLIEG;
-                                        if (forward == true)
-                                            {
-                                                Flieg++;
-                                                if (Flieg == 3)
-                                                    {
-                                                        Flieg = 1;
-                                                        forward = false;
-                                                    }
-                                            }
-                                        else
-                                            {
-                                                Flieg--;
-                                                if (Flieg == -1)
-                                                    {
-                                                        Flieg = 1;
-                                                        forward = true;
-                                                    }
-                                            }
-                                    }
-                                offGraph.drawImage (kacka_flieg[Flieg], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
-                            }
+            // Kacka zeichnen
+            offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
+        } else {
+            if (isFlying == false) {
+                // wenn sie nicht mehr fliegt, dann nur noch so zeichnen
+                offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
+            } else {
+                // gleitet schon ?
+                if (isGleiting == true) {
+                    // landet schon
+                    if (isLanding == true) {
+                        if (landeSoundPlayed == false)  // hier Sound 1x abspielen
+                        {
+                            landeSoundPlayed = true;
+                            mainFrame.wave.PlayFile("sfx/woda3.wav");
+                        }
 
-                        // die Position muss noch weitergeschaltet werden
-                        Positx += Xoffset;
-                        
-			// Ypos nur solange hochzaehlen, bis Maximum erreicht
-			if (((int) Posity) < Pstop.y) Posity += Yoffset;
+                        if ((--Verhinderland) < 1) {
+                            Verhinderland = MAX_VERHINDERLAND;
+                            if (Land < 2) {
+                                Land++;
+                            }
+                        }
+
+                        offGraph.drawImage(kacka_lande[Land], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
                     }
+                    // gleitet noch
+                    else {
+                        offGraph.drawImage(kacka_flieg[1], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
+                    }
+                } else {
+                    // fliegt noch
+                    if ((--Verhinderflieg) < 1) {
+                        Verhinderflieg = MAX_VERHINDERFLIEG;
+                        if (forward == true) {
+                            Flieg++;
+                            if (Flieg == 3) {
+                                Flieg = 1;
+                                forward = false;
+                            }
+                        } else {
+                            Flieg--;
+                            if (Flieg == -1) {
+                                Flieg = 1;
+                                forward = true;
+                            }
+                        }
+                    }
+                    offGraph.drawImage(kacka_flieg[Flieg], (int) (Positx - (Flugbreite / 2)), (int) (Posity - Flughoehe + FLUGOFFSET), null);
+                }
+
+                // die Position muss noch weitergeschaltet werden
+                Positx += Xoffset;
+
+                // Ypos nur solange hochzaehlen, bis Maximum erreicht
+                if (((int) Posity) < Pstop.y) {
+                    Posity += Yoffset;
+                }
             }
+        }
         // hier das Umschalten fliegen -> gleiten -> landen -> ich habe fertig
-	if ((Pstop.x - Positx) < 180) 
-	    {
-		if (flugSoundPlayed == false)
-		    {
-			flugSoundPlayed = true;
-			mainFrame.wave.PlayFile ("sfx/quack.wav");
-		    }
-	    }
+        if ((Pstop.x - Positx) < 180) {
+            if (flugSoundPlayed == false) {
+                flugSoundPlayed = true;
+                mainFrame.wave.PlayFile("sfx/quack.wav");
+            }
+        }
 
-        if ((Pstop.x - Positx) < 150) isGleiting = true;
-        if ((Pstop.x - Positx) < 40) isLanding = true;
-        if ((Pstop.x - Positx) < 2) isFlying = false;
+        if ((Pstop.x - Positx) < 150) {
+            isGleiting = true;
+        }
+        if ((Pstop.x - Positx) < 40) {
+            isLanding = true;
+        }
+        if ((Pstop.x - Positx) < 2) {
+            isFlying = false;
+        }
 
         return (isFlying); // wenn gelandet, dann false
     }

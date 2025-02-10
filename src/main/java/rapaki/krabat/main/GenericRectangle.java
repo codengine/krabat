@@ -23,31 +23,31 @@ package rapaki.krabat.main;
 // ok
 
 public class GenericRectangle {
-	
-	private final Borderrect rectangleImpl;
-	
-	public GenericRectangle(int x, int y, int width, int height) {
-		rectangleImpl = new Borderrect(x, y, x + width, y + height);
-	}
 
-	public int getX() {
-		return rectangleImpl.lo_point.x;
-	}
+    private final Borderrect rectangleImpl;
 
-	public int getY() {
-		return rectangleImpl.lo_point.y;
-	}
+    public GenericRectangle(int x, int y, int width, int height) {
+        rectangleImpl = new Borderrect(x, y, x + width, y + height);
+    }
 
-	public int getWidth() {
-		return (rectangleImpl.ru_point.x - rectangleImpl.lo_point.x);
-	}
+    public int getX() {
+        return rectangleImpl.lo_point.x;
+    }
 
-	public int getHeight() {
-		return (rectangleImpl.ru_point.y - rectangleImpl.lo_point.y);
-	}
+    public int getY() {
+        return rectangleImpl.lo_point.y;
+    }
 
-	public boolean contains(GenericPoint pTemp) {
-		return rectangleImpl.IsPointInRect(pTemp);
-	}
+    public int getWidth() {
+        return (rectangleImpl.ru_point.x - rectangleImpl.lo_point.x);
+    }
+
+    public int getHeight() {
+        return (rectangleImpl.ru_point.y - rectangleImpl.lo_point.y);
+    }
+
+    public boolean contains(GenericPoint pTemp) {
+        return rectangleImpl.IsPointInRect(pTemp);
+    }
 
 }

@@ -28,9 +28,8 @@ import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.sound.BackgroundMusicPlayer;
 
-public class Labyr122 extends Mainloc2 
-{
-    private GenericImage background, lab122, lab123; 
+public class Labyr122 extends Mainloc2 {
+    private GenericImage background, lab122, lab123;
     private Mlynk2 mueller;
     private boolean setAnim = true;
 
@@ -39,265 +38,255 @@ public class Labyr122 extends Mainloc2
     private Bumm muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
-  
-  
+
+
     // Vordergrund - Rects
-    private static final Borderrect lab122Rect     = new Borderrect (296, 162, 610, 355);
-    private static final Borderrect lab123Rect     = new Borderrect (189, 329, 252, 377);
+    private static final Borderrect lab122Rect = new Borderrect(296, 162, 610, 355);
+    private static final Borderrect lab123Rect = new Borderrect(189, 329, 252, 377);
 
     // Konstante Points
     // private static final GenericPoint Pright    = new GenericPoint (639, 282);
     // private static final GenericPoint Pdown     = new GenericPoint (254, 479);
-    private static final GenericPoint mlynkFeet = new GenericPoint (288, 344);
+    private static final GenericPoint mlynkFeet = new GenericPoint(288, 344);
 
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Labyr122 (Start caller, int Richtung) 
-    {
-	super (caller);
-	mainFrame.Freeze (true);
+    public Labyr122(Start caller, int Richtung) {
+        super(caller);
+        mainFrame.Freeze(true);
 
-	mainFrame.CheckKrabat ();
+        mainFrame.CheckKrabat();
 
-        BackgroundMusicPlayer.getInstance ().stop ();
+        BackgroundMusicPlayer.getInstance().stop();
 
-	mainFrame.krabat.maxx = 479;
-	mainFrame.krabat.zoomf = 6.97f;
-	mainFrame.krabat.defScale = -30;
-  	
-	mueller = new Mlynk2 (mainFrame);
+        mainFrame.krabat.maxx = 479;
+        mainFrame.krabat.zoomf = 6.97f;
+        mainFrame.krabat.defScale = -30;
 
-	muellermorph = new Bumm (mainFrame);
+        mueller = new Mlynk2(mainFrame);
 
-	mueller.maxx     = 0;
-	mueller.zoomf    = 4f;
-	mueller.defScale = 0;
-    
-	mueller.SetMlynkPos (mlynkFeet);
-	mueller.SetFacing (6);
+        muellermorph = new Bumm(mainFrame);
 
-	InitLocation ();
-    
-	mainFrame.Freeze (false);
+        mueller.maxx = 0;
+        mueller.zoomf = 4f;
+        mueller.defScale = 0;
+
+        mueller.SetMlynkPos(mlynkFeet);
+        mueller.SetFacing(6);
+
+        InitLocation();
+
+        mainFrame.Freeze(false);
     }
-  
+
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation ()
-    {
-	// von unten aus
-	mainFrame.krabat.SetKrabatPos (new GenericPoint (254, 452));
-	mainFrame.krabat.SetFacing (12);
-	TalkPause = 10;
-	InitImages();
+    private void InitLocation() {
+        // von unten aus
+        mainFrame.krabat.SetKrabatPos(new GenericPoint(254, 452));
+        mainFrame.krabat.SetFacing(12);
+        TalkPause = 10;
+        InitImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() 
-    {
-	background = getPicture ("gfx/labyrinth/laby12.gif");
-	lab122     = getPicture ("gfx/labyrinth/lab12-2.gif");
-	lab123     = getPicture ("gfx/labyrinth/lab12-3.gif");
- 
-	loadPicture();
+    private void InitImages() {
+        background = getPicture("gfx/labyrinth/laby12.gif");
+        lab122 = getPicture("gfx/labyrinth/lab12-2.gif");
+        lab123 = getPicture("gfx/labyrinth/lab12-3.gif");
+
+        loadPicture();
     }
-    
+
     public void cleanup() {
-    	background = null;
-    	lab122 = null;
-    	lab123 = null;
-    	
-    	mueller.cleanup();
-    	mueller = null;
-    	muellermorph.cleanup();
-    	muellermorph = null;
+        background = null;
+        lab122 = null;
+        lab123 = null;
+
+        mueller.cleanup();
+        mueller = null;
+        muellermorph.cleanup();
+        muellermorph = null;
     }
 
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintLocation (GenericDrawingContext g)
-    {
+    public void paintLocation(GenericDrawingContext g) {
 
-	// Clipping -Region initialisieren
-	if (mainFrame.Clipset == false)
-	    {
-		mainFrame.scrollx = 0;
-		mainFrame.scrolly = 0;
-		Cursorform = 200;
-		evalMouseMoveEvent (mainFrame.Mousepoint);
-		mainFrame.Clipset = true;
-		g.setClip (0, 0, 644, 484);
-		mainFrame.isAnim = true;
-		mainFrame.fPlayAnim = true;
-	    }
+        // Clipping -Region initialisieren
+        if (mainFrame.Clipset == false) {
+            mainFrame.scrollx = 0;
+            mainFrame.scrolly = 0;
+            Cursorform = 200;
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+            mainFrame.Clipset = true;
+            g.setClip(0, 0, 644, 484);
+            mainFrame.isAnim = true;
+            mainFrame.fPlayAnim = true;
+        }
 
-	// Hintergrund und Krabat zeichnen
-	g.drawImage (background, 0, 0, null);
-    
-	// wenn der Mueller morpht, dann diesen Hintergrund loeschen
-	if (ismuellermorphing == true)
-	    {
-		g.setClip (muellermorph.bummRect());
-		g.drawImage (background, 0, 0, null);       		
-	    }
+        // Hintergrund und Krabat zeichnen
+        g.drawImage(background, 0, 0, null);
 
-	if (muellerVisible == true)
-	    {
-		// Hintergrund fuer Mueller loeschen
-		// Clipping - Rectangle feststellen und setzen
-		Borderrect temp = mueller.MlynkRect();
-		g.setClip (temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-			   temp.ru_point.y - temp.lo_point.y + 20);
-		
-		// Zeichne Hintergrund neu
+        // wenn der Mueller morpht, dann diesen Hintergrund loeschen
+        if (ismuellermorphing == true) {
+            g.setClip(muellermorph.bummRect());
+            g.drawImage(background, 0, 0, null);
+        }
 
-		// Redet er etwa gerade ??
-		if ((TalkPerson == 36) && (mainFrame.talkCount > 0))
-		    {
-			mueller.talkMlynk (g);	
-		    }
-		
-		// nur rumstehen oder laufen
-		else 
-		    {
-			mueller.drawMlynk (g);
-		    }  
-	    }
+        if (muellerVisible == true) {
+            // Hintergrund fuer Mueller loeschen
+            // Clipping - Rectangle feststellen und setzen
+            Borderrect temp = mueller.MlynkRect();
+            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
+                    temp.ru_point.y - temp.lo_point.y + 20);
 
-	// bei gemorphtem Mueller nun das Bumm zeichnen
-	if (ismuellermorphing == true)
-	    {
-		g.setClip (muellermorph.bummRect ());
-		muellermorphcount = muellermorph.drawBumm (g);
-	    }
- 
+            // Zeichne Hintergrund neu
 
-	// Krabat zeichnen
-	mainFrame.krabat.drawKrabat (g);
-   
-	// Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-	GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
+            // Redet er etwa gerade ??
+            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+                mueller.talkMlynk(g);
+            }
 
-	// hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-	if (lab122Rect.IsPointInRect (pKrTemp) == true)
-	    {
-		g.drawImage (lab122, 338, 192, null);
-	    }
+            // nur rumstehen oder laufen
+            else {
+                mueller.drawMlynk(g);
+            }
+        }
 
-	// hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-	if (lab123Rect.IsPointInRect (pKrTemp) == true)
-	    {
-		g.drawImage (lab123, 211, 354, null);
-	    }
+        // bei gemorphtem Mueller nun das Bumm zeichnen
+        if (ismuellermorphing == true) {
+            g.setClip(muellermorph.bummRect());
+            muellermorphcount = muellermorph.drawBumm(g);
+        }
 
-	// sonst noch was zu tun ?
-	if  (outputText != "")
-	    {
-		// Textausgabe
-		GenericRectangle my;
-		my = g.getClipBounds();
-		g.setClip (0, 0, 644, 484);
-		mainFrame.ifont.drawString (g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-		g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight()); 
-	    }
 
-	if ((mainFrame.talkCount < 1) && (TalkPause > 0)) TalkPause--;
+        // Krabat zeichnen
+        mainFrame.krabat.drawKrabat(g);
 
-	if (mainFrame.talkCount > 0)
-	    {
-		mainFrame.talkCount--;
-		if (mainFrame.talkCount < 1)
-		    {
-			mainFrame.Clipset = false;
-			outputText = "";
-		    }  
-	    }	
-    
-	if (setAnim == true)
-	    {
-		setAnim = false;
-		nextActionID = 10;
-	    }		
+        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
+        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
-	// Gibt es was zu tun ?
-	if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) DoAction ();
+        // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
+        if (lab122Rect.IsPointInRect(pKrTemp) == true) {
+            g.drawImage(lab122, 338, 192, null);
+        }
+
+        // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
+        if (lab123Rect.IsPointInRect(pKrTemp) == true) {
+            g.drawImage(lab123, 211, 354, null);
+        }
+
+        // sonst noch was zu tun ?
+        if (outputText != "") {
+            // Textausgabe
+            GenericRectangle my;
+            my = g.getClipBounds();
+            g.setClip(0, 0, 644, 484);
+            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        }
+
+        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+            TalkPause--;
+        }
+
+        if (mainFrame.talkCount > 0) {
+            mainFrame.talkCount--;
+            if (mainFrame.talkCount < 1) {
+                mainFrame.Clipset = false;
+                outputText = "";
+            }
+        }
+
+        if (setAnim == true) {
+            setAnim = false;
+            nextActionID = 10;
+        }
+
+        // Gibt es was zu tun ?
+        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+            DoAction();
+        }
     }
 
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
-    public void evalMouseEvent (GenericMouseEvent e)
-    {
-	// GenericPoint pTemp = e.getPoint ();
-	if (mainFrame.talkCount != 0) mainFrame.Clipset = false;
-	if (mainFrame.talkCount > 1) mainFrame.talkCount = 1;
-	outputText="";
-	return;    
+    public void evalMouseEvent(GenericMouseEvent e) {
+        // GenericPoint pTemp = e.getPoint ();
+        if (mainFrame.talkCount != 0) {
+            mainFrame.Clipset = false;
+        }
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+        }
+        outputText = "";
+        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
-    public void evalMouseMoveEvent (GenericPoint pTemp)
-    {
-	if (Cursorform != 20)
-	    {
-		Cursorform = 20;
-		mainFrame.setCursor (mainFrame.Nix);
-	    }
-	return;		
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
+        if (Cursorform != 20) {
+            Cursorform = 20;
+            mainFrame.setCursor(mainFrame.Nix);
+        }
+        return;
     }
 
     // dieses Event nicht beachten
-    public void evalMouseExitEvent (GenericMouseEvent e) {
+    public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
-    public void evalKeyEvent (GenericKeyEvent e)
-    {
-	return;
+    public void evalKeyEvent(GenericKeyEvent e) {
+        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction ()
-    {
-	// Was soll Krabat machen ?
-	switch (nextActionID)
-	    {
-	    case 10:
-		// Morphing beginnt
-		muellermorph.Init (mlynkFeet, 100);  // 68 - 100 - scaleMueller
-		ismuellermorphing = true;
-		nextActionID = 13;
-		break;
+    private void DoAction() {
+        // Was soll Krabat machen ?
+        switch (nextActionID) {
+            case 10:
+                // Morphing beginnt
+                muellermorph.Init(mlynkFeet, 100);  // 68 - 100 - scaleMueller
+                ismuellermorphing = true;
+                nextActionID = 13;
+                break;
 
-	    case 13:
-		// Mueller erscheint
-		if (muellermorphcount < 3) break;
-		muellerVisible = true;
-		nextActionID = 18;
-		break;
-		
-	    case 18:
-		// Mueller sagt seinen Spruch
-		if (muellermorphcount < 8) break;
-		ismuellermorphing = false;
-		mainFrame.Clipset = false;
-		MuellerMecker (mueller.evalMlynkTalkPoint());
-		TalkPerson = 36;
-		TalkPause = 5;
-		nextActionID = 20;
-		break;
-        
-	    case 20:
-		// Gehe zu Muehle zurueck
-		NeuesBild (90, 77);
-		break;
+            case 13:
+                // Mueller erscheint
+                if (muellermorphcount < 3) {
+                    break;
+                }
+                muellerVisible = true;
+                nextActionID = 18;
+                break;
 
-	    default:
-		System.out.println ("Falsche Action-ID !");
-	    }
+            case 18:
+                // Mueller sagt seinen Spruch
+                if (muellermorphcount < 8) {
+                    break;
+                }
+                ismuellermorphing = false;
+                mainFrame.Clipset = false;
+                MuellerMecker(mueller.evalMlynkTalkPoint());
+                TalkPerson = 36;
+                TalkPause = 5;
+                nextActionID = 20;
+                break;
+
+            case 20:
+                // Gehe zu Muehle zurueck
+                NeuesBild(90, 77);
+                break;
+
+            default:
+                System.out.println("Falsche Action-ID !");
+        }
 
     }
 }

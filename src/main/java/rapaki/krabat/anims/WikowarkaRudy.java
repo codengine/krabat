@@ -26,8 +26,7 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class WikowarkaRudy extends Mainanim
-{
+public class WikowarkaRudy extends Mainanim {
     // Alle GenericImage - Objekte
     private GenericImage[] krabat_front;
     private GenericImage[] krabat_back;
@@ -42,30 +41,30 @@ public class WikowarkaRudy extends Mainanim
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
     // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
-  
+
     // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint (0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint (0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
+    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
+    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
     private int direction_x = 1;          // Laufrichtung x
     private int Tdirection_x = 1;
-  
+
     private int direction_y = 1;          // Laufrichtung y
     private int Tdirection_y = 1;
-  
+
     // private boolean horizontal = true;    // Animationen in x oder y Richtung
     // private boolean Thorizontal = true;
-  
+
     // public  boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-  
+
     // Spritevariablen
-    private static final int CWIDTH  = 33;// Default - Werte Hoehe,Breite
+    private static final int CWIDTH = 33;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 35;
 
     // Abstaende default
     // private static final int[] CHORIZ_DIST = {6, 10, 11, 9, 10, 10, 10, 11, 11, 10};
-    private static final int CVERT_DIST = 4; 
-  
+    private static final int CVERT_DIST = 4;
+
     private int VerhinderTalk;
     private static final int MAX_VERHINDERTALK = 5;
     private int TalkPos = 0;
@@ -76,7 +75,7 @@ public class WikowarkaRudy extends Mainanim
     private int Guck = 0;
     private int Verhinderguck;
     private static final int MAX_VERHINDERGUCK = 70;
-  
+
     // Variablen fuer Laufberechnung
     /*private static final int CLOHNENX = 49;  // Werte fuer Entscheidung, ob sich
       private static final int CLOHNENY = 25;  // Laufen ueberhaupt lohnt (halber Schritt)
@@ -86,7 +85,7 @@ public class WikowarkaRudy extends Mainanim
     // public  int nAnimation = 0;           // ID der ggw. Animation
     // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
     // private int nAnimStep = 0;            // ggw. Pos in Animation
-  
+
     // Variablen fuer Zooming
     /*public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
       // (Vordergrund) bildabhaengig
@@ -98,67 +97,64 @@ public class WikowarkaRudy extends Mainanim
       public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
       public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
     */
-	
+
     // Initialisierung ////////////////////////////////////////////////////////////////
-    
-    public WikowarkaRudy (Start caller)
-    {
-	super (caller);
 
-	krabat_front     = new GenericImage[4];
-	krabat_back      = new GenericImage[4];
-	krabat_talk      = new GenericImage[8];
-	krabat_extra     = new GenericImage[2];
-	hrajer_extra     = new GenericImage[3];
-    
-	InitImages ();
-    
-	VerhinderTalk = MAX_VERHINDERTALK;
-	Verhinderguck = MAX_VERHINDERGUCK;
+    public WikowarkaRudy(Start caller) {
+        super(caller);
+
+        krabat_front = new GenericImage[4];
+        krabat_back = new GenericImage[4];
+        krabat_talk = new GenericImage[8];
+        krabat_extra = new GenericImage[2];
+        hrajer_extra = new GenericImage[3];
+
+        InitImages();
+
+        VerhinderTalk = MAX_VERHINDERTALK;
+        Verhinderguck = MAX_VERHINDERGUCK;
     }
-  
+
     // Bilder vorbereiten
-    private void InitImages () 
-    {
-	krabat_front[0] = getPicture ("gfx-dd/lodz/zona.gif");
-	krabat_front[1] = getPicture ("gfx-dd/lodz/zona5.gif");
-	krabat_front[2] = getPicture ("gfx-dd/lodz/zona.gif");
-	krabat_front[3] = getPicture ("gfx-dd/lodz/zona6.gif");
+    private void InitImages() {
+        krabat_front[0] = getPicture("gfx-dd/lodz/zona.gif");
+        krabat_front[1] = getPicture("gfx-dd/lodz/zona5.gif");
+        krabat_front[2] = getPicture("gfx-dd/lodz/zona.gif");
+        krabat_front[3] = getPicture("gfx-dd/lodz/zona6.gif");
 
-	krabat_back[0]  = getPicture ("gfx-dd/lodz/zona4.gif");
-	krabat_back[1]  = getPicture ("gfx-dd/lodz/zona2.gif");
-	krabat_back[2]  = getPicture ("gfx-dd/lodz/zona4.gif");
-	krabat_back[3]  = getPicture ("gfx-dd/lodz/zona3.gif");
+        krabat_back[0] = getPicture("gfx-dd/lodz/zona4.gif");
+        krabat_back[1] = getPicture("gfx-dd/lodz/zona2.gif");
+        krabat_back[2] = getPicture("gfx-dd/lodz/zona4.gif");
+        krabat_back[3] = getPicture("gfx-dd/lodz/zona3.gif");
 
-	krabat_talk[0]  = getPicture ("gfx-dd/lodz/zona.gif");
-	krabat_talk[1]  = getPicture ("gfx-dd/lodz/zona9.gif");
-	krabat_talk[2]  = getPicture ("gfx-dd/lodz/zona10.gif");
-	krabat_talk[3]  = getPicture ("gfx-dd/lodz/zona11.gif");
-	krabat_talk[4]  = getPicture ("gfx-dd/lodz/zona12.gif");
-	krabat_talk[5]  = getPicture ("gfx-dd/lodz/zona13.gif");
-	krabat_talk[6]  = getPicture ("gfx-dd/lodz/zona14.gif");
-	krabat_talk[7]  = getPicture ("gfx-dd/lodz/zona15.gif");
-    
-	krabat_extra[0] = getPicture ("gfx-dd/lodz/zona7.gif");
-	krabat_extra[1] = getPicture ("gfx-dd/lodz/zona8.gif");
+        krabat_talk[0] = getPicture("gfx-dd/lodz/zona.gif");
+        krabat_talk[1] = getPicture("gfx-dd/lodz/zona9.gif");
+        krabat_talk[2] = getPicture("gfx-dd/lodz/zona10.gif");
+        krabat_talk[3] = getPicture("gfx-dd/lodz/zona11.gif");
+        krabat_talk[4] = getPicture("gfx-dd/lodz/zona12.gif");
+        krabat_talk[5] = getPicture("gfx-dd/lodz/zona13.gif");
+        krabat_talk[6] = getPicture("gfx-dd/lodz/zona14.gif");
+        krabat_talk[7] = getPicture("gfx-dd/lodz/zona15.gif");
 
-	hrajer_extra[0] = getPicture ("gfx-dd/lodz/kzona.gif");
-	hrajer_extra[1] = getPicture ("gfx-dd/lodz/kzona2.gif");
-	hrajer_extra[2] = getPicture ("gfx-dd/lodz/kzona3.gif");
+        krabat_extra[0] = getPicture("gfx-dd/lodz/zona7.gif");
+        krabat_extra[1] = getPicture("gfx-dd/lodz/zona8.gif");
+
+        hrajer_extra[0] = getPicture("gfx-dd/lodz/kzona.gif");
+        hrajer_extra[1] = getPicture("gfx-dd/lodz/kzona2.gif");
+        hrajer_extra[2] = getPicture("gfx-dd/lodz/kzona3.gif");
     }
 
 
     // Laufen mit Plokarka ////////////////////////////////////////////////////////////////
 
-  // Plokarka um einen Schritt weitersetzen
-  // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move ()
-    {
-	// Variablen uebernehmen (Threadsynchronisierung)
-	// horizontal = Thorizontal;
-	walkto = Twalkto;
-	direction_x = Tdirection_x;
-	direction_y = Tdirection_y;
+    // Plokarka um einen Schritt weitersetzen
+    // false = weiterlaufen, true = stehengebleibt
+    public synchronized boolean Move() {
+        // Variablen uebernehmen (Threadsynchronisierung)
+        // horizontal = Thorizontal;
+        walkto = Twalkto;
+        direction_x = Tdirection_x;
+        direction_y = Tdirection_y;
     
 	/*if (horizontal == true)
 	  // Horizontal laufen
@@ -188,30 +184,31 @@ public class WikowarkaRudy extends Mainanim
 	else
 	// Vertikal laufen
 	{*/
-	// neuen Punkt ermitteln und setzen
-    	VerschiebeY();
-    	xps = txps;
-    	yps = typs;
-    	
-    	// Animationsphase weiterschalten
-    	anim_pos++;
-    	if (anim_pos == 4) anim_pos = 0;
-      
-    	// Naechsten Schritt auf Gueltigkeit ueberpruefen
-    	VerschiebeY();
-    	
-    	// Ueberschreitung feststellen in Y - Richtung
-    	if (((walkto.y - (int) typs) * direction_y) <= 0)
-	    {	
-		// System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-		SetZonaPos (walkto);
-		anim_pos = 0;
-		isMoving = true;
-		return true;
-	    }	
-	/*  }  */
-	isMoving = false;
-	return false;
+        // neuen Punkt ermitteln und setzen
+        VerschiebeY();
+        xps = txps;
+        yps = typs;
+
+        // Animationsphase weiterschalten
+        anim_pos++;
+        if (anim_pos == 4) {
+            anim_pos = 0;
+        }
+
+        // Naechsten Schritt auf Gueltigkeit ueberpruefen
+        VerschiebeY();
+
+        // Ueberschreitung feststellen in Y - Richtung
+        if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
+            SetZonaPos(walkto);
+            anim_pos = 0;
+            isMoving = true;
+            return true;
+        }
+        /*  }  */
+        isMoving = false;
+        return false;
     }
 
     // Horizontal - Positions - Verschieberoutine
@@ -236,38 +233,38 @@ public class WikowarkaRudy extends Mainanim
     }	*/
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY ()
-    {
-	// Skalierungsfaktor holen
-	// int scale = getScale(((int) xps), ((int) yps));
-    	
-    // Zooming - Faktor beruecksichtigen in y-Richtung
-	float vert_dist = CVERT_DIST; /* - (scale / SLOWY); */
+    private void VerschiebeY() {
+        // Skalierungsfaktor holen
+        // int scale = getScale(((int) xps), ((int) yps));
+
+        // Zooming - Faktor beruecksichtigen in y-Richtung
+        float vert_dist = CVERT_DIST; /* - (scale / SLOWY); */
 	/*if (vert_dist < 1) 
     {
       vert_dist = 1;
       // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
       // und vert_distance ein Pixel erlaubt oder nicht
     }*/
-    
-		// Verschiebungsoffset berechnen (fuer schraege Bewegung)
-	float z = Math.abs(yps - walkto.y) / vert_dist;
-      
-	txps = xps;  
-	if (z != 0) txps += direction_x * (Math.abs(xps - walkto.x) / z);
-		
-	typs = yps + (direction_y * vert_dist);
-	// System.out.println(xps + " " + txps + " " + yps + " " + typs);
-    }	
-	
+
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = Math.abs(yps - walkto.y) / vert_dist;
+
+        txps = xps;
+        if (z != 0) {
+            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+        }
+
+        typs = yps + (direction_y * vert_dist);
+        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+    }
+
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo (GenericPoint aim)
-    {
-	int xricht, yricht;
-	// boolean horiz;
-   
-	// Lohnt es sich zu laufen ?
+    public synchronized void MoveTo(GenericPoint aim) {
+        int xricht, yricht;
+        // boolean horiz;
+
+        // Lohnt es sich zu laufen ?
 	/*int scale = getScale ((int) xps, (int) yps);
 	  int lohnenx = CLOHNENX - (scale / 2);
 	  int lohneny = CLOHNENY - (scale / 4);
@@ -281,11 +278,19 @@ public class WikowarkaRudy extends Mainanim
 	  return;
 	  }*/
 
-	// Laufrichtung ermitteln
-	if (aim.x > ((int) xps) ) xricht = 1; else xricht = -1;
-	if (aim.y > ((int) yps) ) yricht = 1; else yricht = -1;
+        // Laufrichtung ermitteln
+        if (aim.x > ((int) xps)) {
+            xricht = 1;
+        } else {
+            xricht = -1;
+        }
+        if (aim.y > ((int) yps)) {
+            yricht = 1;
+        } else {
+            yricht = -1;
+        }
 
-	// Horizontal oder verikal laufen ?
+        // Horizontal oder verikal laufen ?
 	/*if (aim.x == ((int) xps) ) horiz = false;
 	  else
 	  {
@@ -297,45 +302,44 @@ public class WikowarkaRudy extends Mainanim
 	  if (angle > (22 * Math.PI / 180))  horiz = false;
 	  else horiz = true;
 	  }*/
-    
-	// horiz = false;
-    
-	// Variablen an Move uebergeben
-	Twalkto      = aim;
-	// Thorizontal  = horiz;
-	Tdirection_x = xricht;
-	Tdirection_y = yricht;
 
-	if (anim_pos == 0) anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
-	// System.out.println("Animpos ist . " + anim_pos);
+        // horiz = false;
+
+        // Variablen an Move uebergeben
+        Twalkto = aim;
+        // Thorizontal  = horiz;
+        Tdirection_x = xricht;
+        Tdirection_y = yricht;
+
+        if (anim_pos == 0) {
+            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        }
+        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void SetZonaPos (GenericPoint aim)
-    {
-	// point bezeichnet Fusskoordinaten
-	// pos_x = aim.x;
-	// pos_y = aim.y;
+    public void SetZonaPos(GenericPoint aim) {
+        // point bezeichnet Fusskoordinaten
+        // pos_x = aim.x;
+        // pos_y = aim.y;
 
-	xps = aim.x;        // Float - Variablen initialisieren
-	yps = aim.y;
+        xps = aim.x;        // Float - Variablen initialisieren
+        yps = aim.y;
 
-	//System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
+        //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
     }
 
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetZonaPos ()
-    {
-	//System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-	return (new GenericPoint (((int) xps), ((int) yps)));
+    public GenericPoint GetZonaPos() {
+        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
+        return (new GenericPoint(((int) xps), ((int) yps)));
     }
-  
+
     // Krabat - Animationen /////////////////////////////////////////////////////////////
 
-  // je nach Laufrichtung Krabat zeichnen
-    public void drawZona (GenericDrawingContext offGraph, boolean isListening)
-    {
-	// je nach Richtung Sprite auswaehlen und zeichnen
+    // je nach Laufrichtung Krabat zeichnen
+    public void drawZona(GenericDrawingContext offGraph, boolean isListening) {
+        // je nach Richtung Sprite auswaehlen und zeichnen
 	/*if (horizontal == true)
     {
       // nach links laufen
@@ -357,62 +361,61 @@ public class WikowarkaRudy extends Mainanim
       }
       else
       {*/
-	
-	// auch hier Uebergabe von isListening -> schneller
-	// this.isListening = isListening;
 
-	// hier evaluieren, ob geguckt werden darf oder nicht
-	if ((isMoving == false) && (isListening == false))
-	    {
-		// Weiterschalten
-		if ((--Verhinderguck) < 1)
-		    {
-			Verhinderguck = MAX_VERHINDERGUCK;
-			Guck = (int) (Math.random() * 1.9);
-		    }
-		
-		// Wenn Extrawurst, dann diese ausfuehren
-		if (Guck == 1) 
-		    {
-			MaleIhn (offGraph, krabat_talk[1]);
-			return;
-		    }
-	    }
+        // auch hier Uebergabe von isListening -> schneller
+        // this.isListening = isListening;
 
-	// nach oben laufen
-	if (direction_y  == 1) MaleIhn (offGraph, krabat_front[anim_pos]);
-	
-	// nach unten laufen
-	if (direction_y == -1) MaleIhn (offGraph, krabat_back[anim_pos]);
+        // hier evaluieren, ob geguckt werden darf oder nicht
+        if ((isMoving == false) && (isListening == false)) {
+            // Weiterschalten
+            if ((--Verhinderguck) < 1) {
+                Verhinderguck = MAX_VERHINDERGUCK;
+                Guck = (int) (Math.random() * 1.9);
+            }
+
+            // Wenn Extrawurst, dann diese ausfuehren
+            if (Guck == 1) {
+                MaleIhn(offGraph, krabat_talk[1]);
+                return;
+            }
+        }
+
+        // nach oben laufen
+        if (direction_y == 1) {
+            MaleIhn(offGraph, krabat_front[anim_pos]);
+        }
+
+        // nach unten laufen
+        if (direction_y == -1) {
+            MaleIhn(offGraph, krabat_back[anim_pos]);
+        }
 	/*
 	  }  
 	  }*/
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction)
-    {
-	switch (direction)
-	    {
+    public void SetFacing(int direction) {
+        switch (direction) {
 		/*  case 3:
 		    horizontal=true;
 		    direction_x=1;
 		    break;*/
-	    case 6:
-		// horizontal=false;
-		direction_y=1;
-		break;
+            case 6:
+                // horizontal=false;
+                direction_y = 1;
+                break;
 		/*  case 9:
 		    horizontal=true;
 		    direction_x=-1;
 		    break;*/
-	    case 12:
-		// horizontal=false;
-		direction_y=-1;
-		break;
-	    default:
-		System.out.println("Falsche Uhrzeit zum Witzereissen!");
-	    }
+            case 12:
+                // horizontal=false;
+                direction_y = -1;
+                break;
+            default:
+                System.out.println("Falsche Uhrzeit zum Witzereissen!");
+        }
     }
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
@@ -435,57 +438,54 @@ public class WikowarkaRudy extends Mainanim
       }
       return rgabe;
       }*/
-  
+
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
-    public void talkZona (GenericDrawingContext offGraph, boolean isListening)
-    {
-	// isListening wird nur bei "draw" ausgewertet
-	// d.h. aktiviert -> Gucken gesperrt
-	// deaktiviert -> Guckt nach Ende Talk wieder
+    public void talkZona(GenericDrawingContext offGraph, boolean isListening) {
+        // isListening wird nur bei "draw" ausgewertet
+        // d.h. aktiviert -> Gucken gesperrt
+        // deaktiviert -> Guckt nach Ende Talk wieder
 
-	// this.isListening = isListening;
+        // this.isListening = isListening;
 
-	// schraeggucken deaktivieren
-	Guck = 0;
+        // schraeggucken deaktivieren
+        Guck = 0;
 
-	if ((--VerhinderTalk) < 1)
-	    {
-		VerhinderTalk = MAX_VERHINDERTALK;
-		TalkPos = (int) Math.round (Math.random () * 8);
-    
-		if (TalkPos == 8) TalkPos = 7;
-	    }  
-           
-	MaleIhn (offGraph, krabat_talk[TalkPos]);
+        if ((--VerhinderTalk) < 1) {
+            VerhinderTalk = MAX_VERHINDERTALK;
+            TalkPos = (int) Math.round(Math.random() * 8);
+
+            if (TalkPos == 8) {
+                TalkPos = 7;
+            }
+        }
+
+        MaleIhn(offGraph, krabat_talk[TalkPos]);
     }
-  
-    public void giveWosusk (GenericDrawingContext g, GenericPoint lo)
-    {
-	// alles "overriden" und die 2 Images fuer Give zeichnen
-	// Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-	g.setClip (lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
-	g.drawImage (krabat_extra[0], lo.x, lo.y          , null);
-	g.drawImage (hrajer_extra[0], lo.x, lo.y + CHEIGHT, null);
+
+    public void giveWosusk(GenericDrawingContext g, GenericPoint lo) {
+        // alles "overriden" und die 2 Images fuer Give zeichnen
+        // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
+        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.drawImage(krabat_extra[0], lo.x, lo.y, null);
+        g.drawImage(hrajer_extra[0], lo.x, lo.y + CHEIGHT, null);
     }
-  
-    public void giveMetal (GenericDrawingContext g, GenericPoint lo)
-    {
-	// alles "overriden" und Images fuer Give zeichnen 
-	// Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-	g.setClip (lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
-	g.drawImage (krabat_extra[1], lo.x, lo.y          , null);
-	g.drawImage (hrajer_extra[1], lo.x, lo.y + CHEIGHT, null);
+
+    public void giveMetal(GenericDrawingContext g, GenericPoint lo) {
+        // alles "overriden" und Images fuer Give zeichnen
+        // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
+        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.drawImage(krabat_extra[1], lo.x, lo.y, null);
+        g.drawImage(hrajer_extra[1], lo.x, lo.y + CHEIGHT, null);
     }
-  
-    public void Kiss (GenericDrawingContext g, GenericPoint lo)
-    {
-	// alles "overriden" und 1 Kiss-Image zeichnen
-	// Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-	g.setClip (lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
-	g.drawImage (hrajer_extra[2], lo.x, lo.y, null);
+
+    public void Kiss(GenericDrawingContext g, GenericPoint lo) {
+        // alles "overriden" und 1 Kiss-Image zeichnen
+        // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
+        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.drawImage(hrajer_extra[2], lo.x, lo.y, null);
     }
-  
+
     // Hojnt beim Monolog (ohne Gestikulieren)
     /*public void describeHojnt(Graphics offGraph)
       {
@@ -502,20 +502,18 @@ public class WikowarkaRudy extends Mainanim
 
     // Zooming-Variablen berechnen
 
-    private int getLeftPos (int pox,int poy)
-    {
-	// Linke x-Koordinate = Fusspunkt - halbe Breite
-	// + halbe Hoehendifferenz
-	// int helper = getScale(pox, poy);
-	return (pox - (CWIDTH / 2));
-    }  
+    private int getLeftPos(int pox, int poy) {
+        // Linke x-Koordinate = Fusspunkt - halbe Breite
+        // + halbe Hoehendifferenz
+        // int helper = getScale(pox, poy);
+        return (pox - (CWIDTH / 2));
+    }
 
-    private int getUpPos (int pox, int poy)
-    {
-	// obere y-Koordinate = untere y-Koordinate - konstante Hoehe 
-	// + Hoehendifferenz
-	// int helper = getScale(pox, poy);
-	return (poy - (CHEIGHT / 2));
+    private int getUpPos(int pox, int poy) {
+        // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
+        // + Hoehendifferenz
+        // int helper = getScale(pox, poy);
+        return (poy - (CHEIGHT / 2));
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -543,49 +541,46 @@ public class WikowarkaRudy extends Mainanim
       // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2); 
       return ((int) help2);
       }
-      } */ 
+      } */
 
     // Clipping - Region vor Zeichnen von Krabat setzen
-    private void KrabatClip(GenericDrawingContext g, int xx, int yy)
-    {
-	// Links - oben - Korrdinaten ermitteln
-	int x = getLeftPos(xx,yy); 
-	int y = getUpPos  (xx,yy);
-	// System.out.println(xx +  " " + x);
-    
-    // Breite und Hoehe ermitteln
-	int xd = 2 * (xx - x);
-	int yd = 2 * (yy - y);     
-	g.setClip (x, y, xd, yd);
-    
-	// Fuer Debugging ClipRectangle zeichnen 
-	// g.setColor(Color.white);
-	// g.drawRect(x, y, xd - 1, yd - 1);
-  	// System.out.println(x + " " + y + " " + xd + " " + yd);
-    }  
+    private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
+        // Links - oben - Korrdinaten ermitteln
+        int x = getLeftPos(xx, yy);
+        int y = getUpPos(xx, yy);
+        // System.out.println(xx +  " " + x);
+
+        // Breite und Hoehe ermitteln
+        int xd = 2 * (xx - x);
+        int yd = 2 * (yy - y);
+        g.setClip(x, y, xd, yd);
+
+        // Fuer Debugging ClipRectangle zeichnen
+        // g.setColor(Color.white);
+        // g.drawRect(x, y, xd - 1, yd - 1);
+        // System.out.println(x + " " + y + " " + xd + " " + yd);
+    }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect ZonaRect()
-    {
-	int x = getLeftPos ( ((int) xps), ((int) yps) );
-	int y = getUpPos   ( ((int) xps), ((int) yps) );
-	int xd = (2 * ( ((int) xps) - x)) + x;
-	int yd = (2 * ( ((int) yps) - y)) + y;
-	// System.out.println(x + " " + y + " " + xd + " " + yd);
-	return (new Borderrect (x, y, xd, yd)); 
-    }		
-  
-    private void MaleIhn (GenericDrawingContext g, GenericImage ktemp)
-    {
-	// Clipping - Region setzen
-	KrabatClip(g, ((int) xps), ((int) yps));
-    
-    // Groesse und Position der Figur berechnen
-	int left  = getLeftPos ( ((int) xps), ((int) yps) );
-	int up    = getUpPos   ( ((int) xps), ((int) yps) );
-	// int scale = getScale   ( ((int) xps), ((int) yps) );
-    
-	// Figur zeichnen
-	g.drawImage (ktemp, left, up);
-    }		
+    public Borderrect ZonaRect() {
+        int x = getLeftPos(((int) xps), ((int) yps));
+        int y = getUpPos(((int) xps), ((int) yps));
+        int xd = (2 * (((int) xps) - x)) + x;
+        int yd = (2 * (((int) yps) - y)) + y;
+        // System.out.println(x + " " + y + " " + xd + " " + yd);
+        return (new Borderrect(x, y, xd, yd));
+    }
+
+    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
+        // Clipping - Region setzen
+        KrabatClip(g, ((int) xps), ((int) yps));
+
+        // Groesse und Position der Figur berechnen
+        int left = getLeftPos(((int) xps), ((int) yps));
+        int up = getUpPos(((int) xps), ((int) yps));
+        // int scale = getScale   ( ((int) xps), ((int) yps) );
+
+        // Figur zeichnen
+        g.drawImage(ktemp, left, up);
+    }
 }

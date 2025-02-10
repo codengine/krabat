@@ -26,119 +26,114 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Ryby extends Mainanim
-{
+public class Ryby extends Mainanim {
     private GenericImage[] ryby_left;
     private GenericImage[] ryby_right;
-    
-    private static final Borderrect fisch1Rect = new Borderrect (364, 266, 639, 300);
+
+    private static final Borderrect fisch1Rect = new Borderrect(364, 266, 639, 300);
     // private static final borderrect fisch2Rect = new borderrect (559, 300, 639, 399);
-    private static final Borderrect fisch3Rect = new Borderrect (546, 451, 639, 479);
+    private static final Borderrect fisch3Rect = new Borderrect(546, 451, 639, 479);
 
     private int Rybycount = 0;
-    
+
     private boolean isFischJumping = false;
     private boolean isLeftFish = false;
-    
+
     private GenericPoint Position;
-    
+
     private int Verhinderanim;
     private static final int MAX_VERHINDERANIM = 30;
-    
+
     private int Verhindercount;
     private static final int MAX_VERHINDERCOUNT = 2;
 
-    public Ryby (Start caller)
-    {
-	super (caller);
-      
-	ryby_left  = new GenericImage [5];
-	ryby_right = new GenericImage [5];
-      
-	InitImages();
-      
-	Position = new GenericPoint ();
-      
-	Verhinderanim = MAX_VERHINDERANIM;
-	Verhindercount = MAX_VERHINDERCOUNT;
-    } 
-	 
-    private void InitImages()
-    {
-	ryby_left[0] = getPicture ("gfx/haty/fisch1.gif");
-	ryby_left[1] = getPicture ("gfx/haty/fisch2.gif");
-	ryby_left[2] = getPicture ("gfx/haty/fisch3.gif");
-	ryby_left[3] = getPicture ("gfx/haty/fisch4.gif");
-	ryby_left[4] = getPicture ("gfx/haty/fisch5.gif");
-    
-	ryby_right[0] = getPicture ("gfx/haty/rfisch1.gif");
-	ryby_right[1] = getPicture ("gfx/haty/rfisch2.gif");
-	ryby_right[2] = getPicture ("gfx/haty/rfisch3.gif");
-	ryby_right[3] = getPicture ("gfx/haty/rfisch4.gif");
-	ryby_right[4] = getPicture ("gfx/haty/rfisch5.gif");
-    }
-  
-    // Zeichne Hauptwachter, wie er dasteht oder spricht
-    public void drawRyby (GenericDrawingContext offGraph, boolean noSound)
-    {
-	// zuerst Unterscheidung, ob Fisch schon da ist oder nicht...
-	if (isFischJumping == true)
-	    {
-		// Fisch weiterschalten, wenn noetig
-		if ((--Verhindercount) < 1)
-		    {
-			if ((Rybycount == 3) && (noSound == false))mainFrame.wave.PlayFile ("sfx/woda1.wav");
+    public Ryby(Start caller) {
+        super(caller);
 
-			Verhindercount = MAX_VERHINDERCOUNT;
-			Rybycount++;
-			if (Rybycount < 5)
-			    {
-				// Fisch zeichnen, je nach Richtung		
-				if (isLeftFish == true) offGraph.drawImage (ryby_left[Rybycount], Position.x, Position.y, null);
-				else offGraph.drawImage (ryby_right[Rybycount], Position.x, Position.y, null);
-			    }
-			else
-			    {
-				// Fisch wieder ausschalten
-				isFischJumping = false;
-			    }
-		    }
-		else
-		    {
-			// wenn warten, dann aktuellen Fisch zeichnen
-			// Fisch zeichnen, je nach Richtung		
-			if (isLeftFish == true) offGraph.drawImage (ryby_left[Rybycount], Position.x, Position.y, null);
-			else offGraph.drawImage (ryby_right[Rybycount], Position.x, Position.y, null);
-		    }						
-	    }
-	else
-	    {
-		// berechnen, ob ein Fisch wieder kommen darf
-		if ((--Verhinderanim) < 1)
-		    {
-			Verhinderanim = MAX_VERHINDERANIM;
-        	
-			// wahrscheinlichkeit von 75 %
-			int zuffi = (int) Math.round (Math.random () * 100);
-			if (zuffi < 75)
-			    {
-				// entscheiden, ob Fisch nach links oder rechts
-				if (zuffi < 37) isLeftFish = true;
-				else isLeftFish = false;
-        		
-				// zufaelligen Punkt innerhalb der 3 rects ermitteln
-				do
-				    {
-					Position.x = (int) ((Math.random () * 293.9) + 346);
-					Position.y = (int) ((Math.random () * 285.9) + 194);
-				    }
-				while ((fisch1Rect.IsPointInRect (Position) == false) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
-				       (fisch3Rect.IsPointInRect (Position) == false));
-        	  
-				Rybycount = 0;
-				isFischJumping = true;
-			    }
-		    }				
-	    }				
+        ryby_left = new GenericImage[5];
+        ryby_right = new GenericImage[5];
+
+        InitImages();
+
+        Position = new GenericPoint();
+
+        Verhinderanim = MAX_VERHINDERANIM;
+        Verhindercount = MAX_VERHINDERCOUNT;
+    }
+
+    private void InitImages() {
+        ryby_left[0] = getPicture("gfx/haty/fisch1.gif");
+        ryby_left[1] = getPicture("gfx/haty/fisch2.gif");
+        ryby_left[2] = getPicture("gfx/haty/fisch3.gif");
+        ryby_left[3] = getPicture("gfx/haty/fisch4.gif");
+        ryby_left[4] = getPicture("gfx/haty/fisch5.gif");
+
+        ryby_right[0] = getPicture("gfx/haty/rfisch1.gif");
+        ryby_right[1] = getPicture("gfx/haty/rfisch2.gif");
+        ryby_right[2] = getPicture("gfx/haty/rfisch3.gif");
+        ryby_right[3] = getPicture("gfx/haty/rfisch4.gif");
+        ryby_right[4] = getPicture("gfx/haty/rfisch5.gif");
+    }
+
+    // Zeichne Hauptwachter, wie er dasteht oder spricht
+    public void drawRyby(GenericDrawingContext offGraph, boolean noSound) {
+        // zuerst Unterscheidung, ob Fisch schon da ist oder nicht...
+        if (isFischJumping == true) {
+            // Fisch weiterschalten, wenn noetig
+            if ((--Verhindercount) < 1) {
+                if ((Rybycount == 3) && (noSound == false)) {
+                    mainFrame.wave.PlayFile("sfx/woda1.wav");
+                }
+
+                Verhindercount = MAX_VERHINDERCOUNT;
+                Rybycount++;
+                if (Rybycount < 5) {
+                    // Fisch zeichnen, je nach Richtung
+                    if (isLeftFish == true) {
+                        offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
+                    } else {
+                        offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
+                    }
+                } else {
+                    // Fisch wieder ausschalten
+                    isFischJumping = false;
+                }
+            } else {
+                // wenn warten, dann aktuellen Fisch zeichnen
+                // Fisch zeichnen, je nach Richtung
+                if (isLeftFish == true) {
+                    offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
+                } else {
+                    offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
+                }
+            }
+        } else {
+            // berechnen, ob ein Fisch wieder kommen darf
+            if ((--Verhinderanim) < 1) {
+                Verhinderanim = MAX_VERHINDERANIM;
+
+                // wahrscheinlichkeit von 75 %
+                int zuffi = (int) Math.round(Math.random() * 100);
+                if (zuffi < 75) {
+                    // entscheiden, ob Fisch nach links oder rechts
+                    if (zuffi < 37) {
+                        isLeftFish = true;
+                    } else {
+                        isLeftFish = false;
+                    }
+
+                    // zufaelligen Punkt innerhalb der 3 rects ermitteln
+                    do {
+                        Position.x = (int) ((Math.random() * 293.9) + 346);
+                        Position.y = (int) ((Math.random() * 285.9) + 194);
+                    }
+                    while ((fisch1Rect.IsPointInRect(Position) == false) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
+                            (fisch3Rect.IsPointInRect(Position) == false));
+
+                    Rybycount = 0;
+                    isFischJumping = true;
+                }
+            }
+        }
     }
 }    

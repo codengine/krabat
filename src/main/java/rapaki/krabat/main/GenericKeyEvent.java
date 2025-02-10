@@ -24,20 +24,20 @@ package rapaki.krabat.main;
 
 public class GenericKeyEvent {
 
-	public static final int VK_ESCAPE = 27;
-	public static final int VK_F1 = 112;
-	public static final int VK_F2 = 113;
-	public static final int VK_F3 = 114;
-	public static final int VK_F5 = 116;
-	
-	private final int keyCode;
+    public static final int VK_ESCAPE = 27;
+    public static final int VK_F1 = 112;
+    public static final int VK_F2 = 113;
+    public static final int VK_F3 = 114;
+    public static final int VK_F5 = 116;
 
-	public GenericKeyEvent(int keyCode) {
-		this.keyCode = keyCode;
-	}
-	
-	public int getKeyCode() {
-		return keyCode;
-	}
+    private final int keyCode;
+
+    public GenericKeyEvent(int keyCode) {
+        this.keyCode = keyCode;
+    }
+
+    public int getKeyCode() {
+        return keyCode;
+    }
 
 }

@@ -25,14 +25,14 @@ import rapaki.krabat.platform.GenericImageProducer;
 import java.awt.image.ImageProducer;
 
 public class JavaImageProducer extends GenericImageProducer {
-	
-	private final ImageProducer producer;
-	
-	public JavaImageProducer(ImageProducer producer) {
-		this.producer = producer;
-	}
-	
-	public ImageProducer getProducer() {
-		return producer;
-	}
+
+    private final ImageProducer producer;
+
+    public JavaImageProducer(ImageProducer producer) {
+        this.producer = producer;
+    }
+
+    public ImageProducer getProducer() {
+        return producer;
+    }
 }

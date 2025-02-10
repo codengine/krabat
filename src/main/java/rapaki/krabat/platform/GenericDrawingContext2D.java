@@ -25,12 +25,12 @@ import rapaki.krabat.main.GenericColor;
 
 public abstract class GenericDrawingContext2D {
 
-	public abstract void setComposite(GenericAlphaComposite ad);
+    public abstract void setComposite(GenericAlphaComposite ad);
 
-	public abstract void setColor(GenericColor color);
+    public abstract void setColor(GenericColor color);
 
-	public abstract void drawImage(GenericImage himmel1, int i, int j, GenericImageObserver observer);
+    public abstract void drawImage(GenericImage himmel1, int i, int j, GenericImageObserver observer);
 
-	public abstract void fillRect(int i, int j, int k, int l);
+    public abstract void fillRect(int i, int j, int k, int l);
 
 }

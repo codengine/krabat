@@ -26,26 +26,26 @@ import rapaki.krabat.main.GenericPoint;
 
 public abstract class GenericToolkitImpl {
 
-	public static final int ALLBITS = 32;
+    public static final int ALLBITS = 32;
 
-	public abstract GenericImage createImage(
-			GenericMemoryImageSource genericMemoryImageSource);
+    public abstract GenericImage createImage(
+            GenericMemoryImageSource genericMemoryImageSource);
 
-	public abstract GenericCursor createCustomCursor(GenericImage getCursorImage,
-			GenericPoint hotSpot, String string);
+    public abstract GenericCursor createCustomCursor(GenericImage getCursorImage,
+                                                     GenericPoint hotSpot, String string);
 
-	public abstract void prepareImage(GenericImage genericImage,
-			GenericImageObserver observer);
+    public abstract void prepareImage(GenericImage genericImage,
+                                      GenericImageObserver observer);
 
-	public abstract int checkImage(GenericImage genericImage,
-			GenericImageObserver observer);
+    public abstract int checkImage(GenericImage genericImage,
+                                   GenericImageObserver observer);
 
-	public abstract GenericImage createImage(
-			GenericFilteredImageSource genericFilteredImageSource);
+    public abstract GenericImage createImage(
+            GenericFilteredImageSource genericFilteredImageSource);
 
-	public abstract GenericImage createImage(int i, int j);
+    public abstract GenericImage createImage(int i, int j);
 
-	public abstract void grabPixelsFromImage(GenericImage actualImage, 
-			int x, int y, int w, int h, int[] pix, int off, int scansize);
+    public abstract void grabPixelsFromImage(GenericImage actualImage,
+                                             int x, int y, int w, int h, int[] pix, int off, int scansize);
 
 }

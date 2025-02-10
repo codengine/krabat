@@ -25,15 +25,15 @@ import rapaki.krabat.platform.GenericImageObserver;
 import java.awt.image.ImageObserver;
 
 public class JavaImageObserver extends GenericImageObserver {
-	
-	private final ImageObserver observer;
-	
-	public JavaImageObserver(ImageObserver observer) {
-		this.observer = observer;
-	}
-	
-	public ImageObserver getObserver() {
-		return observer;
-	}
-	
+
+    private final ImageObserver observer;
+
+    public JavaImageObserver(ImageObserver observer) {
+        this.observer = observer;
+    }
+
+    public ImageObserver getObserver() {
+        return observer;
+    }
+
 }

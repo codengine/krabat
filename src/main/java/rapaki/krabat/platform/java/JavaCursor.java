@@ -26,13 +26,13 @@ import java.awt.*;
 
 public class JavaCursor extends GenericCursor {
 
-	private final Cursor cursor;
-	
-	public JavaCursor(Cursor cursor) {
-		this.cursor = cursor;
-	}
-	
-	public Cursor getCursor() {
-		return cursor;
-	}
+    private final Cursor cursor;
+
+    public JavaCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
+
+    public Cursor getCursor() {
+        return cursor;
+    }
 }

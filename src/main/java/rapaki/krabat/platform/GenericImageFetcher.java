@@ -21,7 +21,7 @@
 package rapaki.krabat.platform;
 
 public abstract class GenericImageFetcher {
-	
-	public abstract GenericImage fetchImage(String relativePath);
-	
+
+    public abstract GenericImage fetchImage(String relativePath);
+
 }

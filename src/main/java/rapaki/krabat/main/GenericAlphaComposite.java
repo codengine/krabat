@@ -22,26 +22,26 @@ package rapaki.krabat.main;
 
 public class GenericAlphaComposite {
 
-	public static final int SRC_OVER = 3;
+    public static final int SRC_OVER = 3;
 
-	private final int rule;
-	
-	private final float alpha; 
-	
-	private GenericAlphaComposite(int rule, float alpha) {
-		this.rule = rule;
-		this.alpha = alpha;
-	}
-	
-	public static GenericAlphaComposite getInstance(int rule, float alpha) {
-		return new GenericAlphaComposite(rule, alpha);
-	}
+    private final int rule;
 
-	public int getRule() {
-		return rule;
-	}
-	
-	public float getAplha() {
-		return alpha;
-	}
+    private final float alpha;
+
+    private GenericAlphaComposite(int rule, float alpha) {
+        this.rule = rule;
+        this.alpha = alpha;
+    }
+
+    public static GenericAlphaComposite getInstance(int rule, float alpha) {
+        return new GenericAlphaComposite(rule, alpha);
+    }
+
+    public int getRule() {
+        return rule;
+    }
+
+    public float getAplha() {
+        return alpha;
+    }
 }

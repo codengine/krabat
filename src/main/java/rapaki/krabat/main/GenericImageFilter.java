@@ -22,19 +22,19 @@ package rapaki.krabat.main;
 
 public abstract class GenericImageFilter {
 
-	protected int whatColor;
+    protected int whatColor;
 
-	public boolean canFilterIndexColorModel;
-	  
-	public GenericImageFilter(int whatColor) {
-	    this.whatColor = whatColor;
-	    canFilterIndexColorModel = true;
-	}
-	
-	public int getWhatColor() {
-		return whatColor;
-	}
+    public boolean canFilterIndexColorModel;
 
-	public abstract int filterRGB (int r, int g, int b);
+    public GenericImageFilter(int whatColor) {
+        this.whatColor = whatColor;
+        canFilterIndexColorModel = true;
+    }
+
+    public int getWhatColor() {
+        return whatColor;
+    }
+
+    public abstract int filterRGB(int r, int g, int b);
 
 }

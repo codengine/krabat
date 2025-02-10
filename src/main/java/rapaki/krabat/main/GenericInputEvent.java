@@ -23,7 +23,7 @@ package rapaki.krabat.main;
 // ok
 
 public class GenericInputEvent {
-	
-	public static final int BUTTON3_MASK = 4;
+
+    public static final int BUTTON3_MASK = 4;
 
 }

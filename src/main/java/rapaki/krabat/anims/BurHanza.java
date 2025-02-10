@@ -25,93 +25,87 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class BurHanza extends Mainanim
-{
+public class BurHanza extends Mainanim {
     private GenericImage[] bur_work;
     private GenericImage[] bur_talk;
 
     public static final int Breite = 53;
-    public static final int Hoehe  = 54;
-    
+    public static final int Hoehe = 54;
+
     private int Talk = 0;
     private int Work = 0;
-    
+
     private int Verhindertalk;
     private int Verhinderwork;
     private static final int MAX_VERHINDERTALK = 2;
     private static final int MAX_VERHINDERWORK = 5;
-    
-    public BurHanza (Start caller)
-    {
-      super (caller);
-      
-      bur_work = new GenericImage[4];
-      bur_talk = new GenericImage[4];
-      
-      InitImages();
-      
-      Verhindertalk = MAX_VERHINDERTALK;
-      Verhinderwork = MAX_VERHINDERWORK;
-    } 
-	 
-    private void InitImages()
-    {
-      bur_work[0] = getPicture ("gfx/polo/dzona1.gif");
-      bur_work[1] = getPicture ("gfx/polo/dzona2.gif");
-      bur_work[2] = getPicture ("gfx/polo/dzona3.gif");
-      bur_work[3] = getPicture ("gfx/polo/dzona4.gif");
-      
-      bur_talk[0] = getPicture ("gfx/polo/dzona-r1.gif");
-      bur_talk[1] = getPicture ("gfx/polo/dzona-r2.gif");
-      bur_talk[2] = getPicture ("gfx/polo/dzona-r3.gif");
-      bur_talk[3] = getPicture ("gfx/polo/dzona-r4.gif");
+
+    public BurHanza(Start caller) {
+        super(caller);
+
+        bur_work = new GenericImage[4];
+        bur_talk = new GenericImage[4];
+
+        InitImages();
+
+        Verhindertalk = MAX_VERHINDERTALK;
+        Verhinderwork = MAX_VERHINDERWORK;
     }
-  
-    public void cleanup()
-    {
-      bur_work[0] = null;
-      bur_work[1] = null;
-      bur_work[2] = null;
-      bur_work[3] = null;
-      
-      bur_talk[0] = null;
-      bur_talk[1] = null;
-      bur_talk[2] = null;
-      bur_talk[3] = null;
+
+    private void InitImages() {
+        bur_work[0] = getPicture("gfx/polo/dzona1.gif");
+        bur_work[1] = getPicture("gfx/polo/dzona2.gif");
+        bur_work[2] = getPicture("gfx/polo/dzona3.gif");
+        bur_work[3] = getPicture("gfx/polo/dzona4.gif");
+
+        bur_talk[0] = getPicture("gfx/polo/dzona-r1.gif");
+        bur_talk[1] = getPicture("gfx/polo/dzona-r2.gif");
+        bur_talk[2] = getPicture("gfx/polo/dzona-r3.gif");
+        bur_talk[3] = getPicture("gfx/polo/dzona-r4.gif");
     }
-  
+
+    public void cleanup() {
+        bur_work[0] = null;
+        bur_work[1] = null;
+        bur_work[2] = null;
+        bur_work[3] = null;
+
+        bur_talk[0] = null;
+        bur_talk[1] = null;
+        bur_talk[2] = null;
+        bur_talk[3] = null;
+    }
+
     // Zeichne Hanza, wie er dasteht oder spricht
-    public void drawHanza (GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos)
-    {
-      // Zona beim Reden
-      if ((TalkPerson == 29) && (mainFrame.talkCount > 1))
-      {
-      	if ((--Verhindertalk) < 1)
-      	{
-      	  Verhindertalk = MAX_VERHINDERTALK;
-      	  Talk = (int) (Math.random () * 3.9);
-      	}	
-      	
-      	offGraph.drawImage (bur_talk[Talk], pos.x, pos.y, null);
-      }
-      else
-      {
-      	if ((--Verhinderwork) < 1)
-      	{
-      	  Verhinderwork = MAX_VERHINDERWORK;
-      	  
-      	  Work++;
-      	  if (Work == 4) Work = 0;
-      	  
-      	  if (Work == 3)
-      	  {
-	      int zf = (int) (Math.random () * 50);
-	      if (zf < 40) Work = 0;
-	      else if ((mainFrame.inventory.noBackgroundSound == false) || (mainFrame.invCursor == false)) mainFrame.wave.PlayFile ("sfx/nepl.wav");
-      	  }
-      	}
-      	
-      	offGraph.drawImage (bur_work[Work], pos.x, pos.y, null);	
-      }			
+    public void drawHanza(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
+        // Zona beim Reden
+        if ((TalkPerson == 29) && (mainFrame.talkCount > 1)) {
+            if ((--Verhindertalk) < 1) {
+                Verhindertalk = MAX_VERHINDERTALK;
+                Talk = (int) (Math.random() * 3.9);
+            }
+
+            offGraph.drawImage(bur_talk[Talk], pos.x, pos.y, null);
+        } else {
+            if ((--Verhinderwork) < 1) {
+                Verhinderwork = MAX_VERHINDERWORK;
+
+                Work++;
+                if (Work == 4) {
+                    Work = 0;
+                }
+
+                if (Work == 3) {
+                    int zf = (int) (Math.random() * 50);
+                    if (zf < 40) {
+                        Work = 0;
+                    } else if ((mainFrame.inventory.noBackgroundSound == false) || (mainFrame.invCursor == false)) {
+                        mainFrame.wave.PlayFile("sfx/nepl.wav");
+                    }
+                }
+            }
+
+            offGraph.drawImage(bur_work[Work], pos.x, pos.y, null);
+        }
     }
 }    

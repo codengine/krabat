@@ -25,245 +25,240 @@ import rapaki.krabat.main.Borderrect;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Husa extends Mainanim
-{
+public class Husa extends Mainanim {
 
     private GenericImage Gaense[][];
     private Borderrect Grenze;
     private float Positx;
     private float Posity;
-  
+
     private int Richtung;
     private int Aktion;
     private int ResetSchnatter = 0;
     private int ResetRichtung = 0;
     private int ResetAktion = 0;
-  
+
     private static final int KONSTANTE1 = 100;
     private static final int KONSTANTE2 = 100;
     private static final int KONSTANTE3 = 100;
 
     public boolean lautloseGaense = false;  // Schalter, ob sie auch wirklich Schnattern sollen (Intro)
-  
-    public Husa (Start caller, Borderrect gr)
-    {
-	super (caller);
-	
-	Gaense = new GenericImage [4][9];
-	Grenze = gr;
-	Positx = (Grenze.ru_point.x + Grenze.lo_point.x) / 2;
-	Posity = (Grenze.ru_point.y + Grenze.lo_point.y) / 2;
-	
-	// System.out.println (Position);
-	
-	Richtung = (int) Math.round (Math.random() * 3) + 1;
-	if (Richtung == 4) Richtung = 3;
-	Aktion = 3;	  
-	InitImages ();
-    }		
-	
+
+    public Husa(Start caller, Borderrect gr) {
+        super(caller);
+
+        Gaense = new GenericImage[4][9];
+        Grenze = gr;
+        Positx = (Grenze.ru_point.x + Grenze.lo_point.x) / 2;
+        Posity = (Grenze.ru_point.y + Grenze.lo_point.y) / 2;
+
+        // System.out.println (Position);
+
+        Richtung = (int) Math.round(Math.random() * 3) + 1;
+        if (Richtung == 4) {
+            Richtung = 3;
+        }
+        Aktion = 3;
+        InitImages();
+    }
+
     // 2. Konstruktor fuer vordefinierte Positionen erforderlich !! (???)
-	
-    private void InitImages ()
-    {
-	Gaense[1][1]  = getPicture ("gfx/doma/g1a.gif");
-	Gaense[1][2]  = getPicture ("gfx/doma/g1a2.gif");
-	Gaense[1][3]  = getPicture ("gfx/doma/g1b.gif");
-	Gaense[1][4]  = getPicture ("gfx/doma/g1b2.gif");
-	Gaense[1][5]  = getPicture ("gfx/doma/g1c.gif");
-	Gaense[1][6]  = getPicture ("gfx/doma/g1c2.gif");
-	Gaense[1][7]  = getPicture ("gfx/doma/g1d.gif");
-	Gaense[1][8]  = getPicture ("gfx/doma/g1d2.gif");
-	Gaense[2][1]  = getPicture ("gfx/doma/g2a.gif");
-	Gaense[2][2]  = getPicture ("gfx/doma/g2a2.gif");
-	Gaense[2][3]  = getPicture ("gfx/doma/g2b.gif");
-	Gaense[2][4]  = getPicture ("gfx/doma/g2b2.gif");
-	Gaense[2][5]  = getPicture ("gfx/doma/g2c.gif");
-	Gaense[2][6]  = getPicture ("gfx/doma/g2c2.gif");
-	Gaense[3][1]  = getPicture ("gfx/doma/g3a.gif");
-	Gaense[3][2]  = getPicture ("gfx/doma/g3a2.gif");
-	Gaense[3][3]  = getPicture ("gfx/doma/g3b.gif");
-	Gaense[3][4]  = getPicture ("gfx/doma/g3b2.gif");
-	Gaense[3][5]  = getPicture ("gfx/doma/g3c.gif");
-	Gaense[3][6]  = getPicture ("gfx/doma/g3c2.gif");
-	Gaense[3][7]  = getPicture ("gfx/doma/g3d.gif");
-	Gaense[3][8]  = getPicture ("gfx/doma/g3d2.gif");
-    }
-	
-    public void cleanup()
-    {
-	Gaense[1][1]  = null;
-	Gaense[1][2]  = null;
-	Gaense[1][3]  = null;
-	Gaense[1][4]  = null;
-	Gaense[1][5]  = null;
-	Gaense[1][6]  = null;
-	Gaense[1][7]  = null;
-	Gaense[1][8]  = null;
-	Gaense[2][1]  = null;
-	Gaense[2][2]  = null;
-	Gaense[2][3]  = null;
-	Gaense[2][4]  = null;
-	Gaense[2][5]  = null;
-	Gaense[2][6]  = null;
-	Gaense[3][1]  = null;
-	Gaense[3][2]  = null;
-	Gaense[3][3]  = null;
-	Gaense[3][4]  = null;
-	Gaense[3][5]  = null;
-	Gaense[3][6]  = null;
-	Gaense[3][7]  = null;
-	Gaense[3][8]  = null;
-    }
-	
-    public void BewegeGans (GenericDrawingContext offGraph)
-    {
-	ResetRichtung++;
-    
-	// Entscheidung, ob die Animphase oder die Richtung gewechselt werden soll
-	int zuffi = (int) Math.round (Math.random() * KONSTANTE1);
-    
-	if ((Aktion & 1) == 0) ResetSchnatter++;
-    
-	// die kleineren Anims, die oefter erfolgen duerfen
-	if ((zuffi < 20) || (ResetSchnatter == 4))
-	    {
-		ResetSchnatter = 0;
-		if ((Aktion & 1) == 0)
-		    {
-			// es ist eine Schnatteraktion, also zuruecksetzen
-			Aktion--;
-		    }
-		else
-		    {
-			// das Schnattern darf beginnen
-			Aktion++;
-		    }
-	    }					 	
-	else if ((zuffi > 80) && (ResetRichtung > 15))
-	    {
-		ResetRichtung = 0; 
-    	
-		// die groesseren Bewegungen, die nicht so oft erscheinen sollen
-      
-		// Test, ob die Richtung gewechselt werden darf, das darf nur bei Aktion = 3 erfolgen
-		if (Aktion == 3)
-		    {
-			int zu = (int) Math.round (Math.random () * KONSTANTE2);
-			if (zu > 70)
-			    {
-				// Richtungswechsel je nach bereits vorhandener Richtung
-				switch (Richtung)
-				    {
-				    case 1:
-      				// kann nur groesser werden
-					Richtung++;
-					break;
-				    case 2:
-      				// kann groesser oder kleiner werden
-					if (((int) Math.round (Math.random() * 10)) > 5) Richtung--;
-					else Richtung++;
-					break;
-				    case 3:
-					Richtung--;
-					break;
-				    default:
-					System.out.println ("Falsche Richtungsvariable aufgetreten !");
-				    }						
-			    }
-		    }
-	    }
 
-	ResetAktion ++;
-	EvalNewAction();
- 
-	if ((Aktion == 7) || (Aktion == 8))
-	    {
-		if (Richtung == 1)
-		    {
-			// System.out.println ("x + 1");
-			if ((Positx - Grenze.lo_point.x) > 1) Positx -= 0.5;
-			else
-			    {
-				while ((Aktion == 7) || (Aktion == 8)) GetNewAction();
-			    }		
-		    }
-		else
-		    {
-			// System.out.println ("x - 1");
-			if ((Grenze.ru_point.x - Positx) > 1) Positx += 0.5;
-			else
-			    {
-				while ((Aktion == 7) || (Aktion == 8)) GetNewAction();
-			    }		
-		    }
-            
-		int zi = (int) Math.round (Math.random() * 100);
-      
-		if ((zi < 15) && ((Posity - Grenze.lo_point.y) > 1)) Posity -= 0.5;
-		if ((zi > 85) && ((Grenze.ru_point.y - Posity) > 1)) Posity += 0.5;	
-	    }					 	
- 
-	offGraph.drawImage (Gaense[Richtung][Aktion], (int) Positx, (int) Posity, null);		
-
-	EvalSound ();
+    private void InitImages() {
+        Gaense[1][1] = getPicture("gfx/doma/g1a.gif");
+        Gaense[1][2] = getPicture("gfx/doma/g1a2.gif");
+        Gaense[1][3] = getPicture("gfx/doma/g1b.gif");
+        Gaense[1][4] = getPicture("gfx/doma/g1b2.gif");
+        Gaense[1][5] = getPicture("gfx/doma/g1c.gif");
+        Gaense[1][6] = getPicture("gfx/doma/g1c2.gif");
+        Gaense[1][7] = getPicture("gfx/doma/g1d.gif");
+        Gaense[1][8] = getPicture("gfx/doma/g1d2.gif");
+        Gaense[2][1] = getPicture("gfx/doma/g2a.gif");
+        Gaense[2][2] = getPicture("gfx/doma/g2a2.gif");
+        Gaense[2][3] = getPicture("gfx/doma/g2b.gif");
+        Gaense[2][4] = getPicture("gfx/doma/g2b2.gif");
+        Gaense[2][5] = getPicture("gfx/doma/g2c.gif");
+        Gaense[2][6] = getPicture("gfx/doma/g2c2.gif");
+        Gaense[3][1] = getPicture("gfx/doma/g3a.gif");
+        Gaense[3][2] = getPicture("gfx/doma/g3a2.gif");
+        Gaense[3][3] = getPicture("gfx/doma/g3b.gif");
+        Gaense[3][4] = getPicture("gfx/doma/g3b2.gif");
+        Gaense[3][5] = getPicture("gfx/doma/g3c.gif");
+        Gaense[3][6] = getPicture("gfx/doma/g3c2.gif");
+        Gaense[3][7] = getPicture("gfx/doma/g3d.gif");
+        Gaense[3][8] = getPicture("gfx/doma/g3d2.gif");
     }
 
-    private void EvalNewAction()
-    {
-	// Hier nur zufaellig die Phasen einer Richtung berechnen
-	int zuf = (int) Math.round (Math.random () * KONSTANTE3);
-	if ((zuf > 70) && ((Aktion & 1) != 0) && (ResetAktion > 10))
-	    {
-		ResetAktion = 0;
-		GetNewAction();
-	    }
+    public void cleanup() {
+        Gaense[1][1] = null;
+        Gaense[1][2] = null;
+        Gaense[1][3] = null;
+        Gaense[1][4] = null;
+        Gaense[1][5] = null;
+        Gaense[1][6] = null;
+        Gaense[1][7] = null;
+        Gaense[1][8] = null;
+        Gaense[2][1] = null;
+        Gaense[2][2] = null;
+        Gaense[2][3] = null;
+        Gaense[2][4] = null;
+        Gaense[2][5] = null;
+        Gaense[2][6] = null;
+        Gaense[3][1] = null;
+        Gaense[3][2] = null;
+        Gaense[3][3] = null;
+        Gaense[3][4] = null;
+        Gaense[3][5] = null;
+        Gaense[3][6] = null;
+        Gaense[3][7] = null;
+        Gaense[3][8] = null;
     }
-  
-    private void GetNewAction()
-    {	
-	// Hier wird immer neue Aktion berechnet
-	int zf = 0;
-      
-	do
-	    {
-		zf = (int) Math.round (Math.random ()	* 90);
-		zf = zf /10;
-	    }
-	while (((zf & 1) == 0) || (zf > ((Richtung == 2) ? 5 : 7)) || (zf == Aktion));
-       	  
-	// System.out.println ("Neue Aktion " + zf);
-      
-	Aktion = zf;
-    } 
 
-    private void EvalSound ()
-    {
-	// zufaellig wavs fuer Geschnatter abspielen...
-	
-	if (lautloseGaense == true) return; // kein Sound, wenn vom Programm aus abgeschaltet
+    public void BewegeGans(GenericDrawingContext offGraph) {
+        ResetRichtung++;
 
-	int zufallsZahl = (int) (Math.random () * 100);
+        // Entscheidung, ob die Animphase oder die Richtung gewechselt werden soll
+        int zuffi = (int) Math.round(Math.random() * KONSTANTE1);
 
-	if (zufallsZahl > 98) // nur selten was ausgeben
-	    {
-		int zweiterZufall = (int) (Math.random () * 3.9);
-		zweiterZufall += 49;
-		mainFrame.wave.PlayFile ("sfx/husa" + (char) zweiterZufall + ".wav");
-	    }
-    }  
-    
-    public Borderrect GetHusaRect()
-    {
-  	// gibt Borderrect zurueck, in dem sich die Gans befindet
-	int a, b, c, d;
-    
-	a = (int) Positx;
-	if (Richtung == 2) a += 3;  // bei Brieteren Images bisschen einruecken
-	b = (int) Posity;
-	c = a + 35;
-	d = b + 40;
-    
-	return (new Borderrect (a, b, c, d));
-    }	 
+        if ((Aktion & 1) == 0) {
+            ResetSchnatter++;
+        }
+
+        // die kleineren Anims, die oefter erfolgen duerfen
+        if ((zuffi < 20) || (ResetSchnatter == 4)) {
+            ResetSchnatter = 0;
+            if ((Aktion & 1) == 0) {
+                // es ist eine Schnatteraktion, also zuruecksetzen
+                Aktion--;
+            } else {
+                // das Schnattern darf beginnen
+                Aktion++;
+            }
+        } else if ((zuffi > 80) && (ResetRichtung > 15)) {
+            ResetRichtung = 0;
+
+            // die groesseren Bewegungen, die nicht so oft erscheinen sollen
+
+            // Test, ob die Richtung gewechselt werden darf, das darf nur bei Aktion = 3 erfolgen
+            if (Aktion == 3) {
+                int zu = (int) Math.round(Math.random() * KONSTANTE2);
+                if (zu > 70) {
+                    // Richtungswechsel je nach bereits vorhandener Richtung
+                    switch (Richtung) {
+                        case 1:
+                            // kann nur groesser werden
+                            Richtung++;
+                            break;
+                        case 2:
+                            // kann groesser oder kleiner werden
+                            if (((int) Math.round(Math.random() * 10)) > 5) {
+                                Richtung--;
+                            } else {
+                                Richtung++;
+                            }
+                            break;
+                        case 3:
+                            Richtung--;
+                            break;
+                        default:
+                            System.out.println("Falsche Richtungsvariable aufgetreten !");
+                    }
+                }
+            }
+        }
+
+        ResetAktion++;
+        EvalNewAction();
+
+        if ((Aktion == 7) || (Aktion == 8)) {
+            if (Richtung == 1) {
+                // System.out.println ("x + 1");
+                if ((Positx - Grenze.lo_point.x) > 1) {
+                    Positx -= 0.5;
+                } else {
+                    while ((Aktion == 7) || (Aktion == 8)) {
+                        GetNewAction();
+                    }
+                }
+            } else {
+                // System.out.println ("x - 1");
+                if ((Grenze.ru_point.x - Positx) > 1) {
+                    Positx += 0.5;
+                } else {
+                    while ((Aktion == 7) || (Aktion == 8)) {
+                        GetNewAction();
+                    }
+                }
+            }
+
+            int zi = (int) Math.round(Math.random() * 100);
+
+            if ((zi < 15) && ((Posity - Grenze.lo_point.y) > 1)) {
+                Posity -= 0.5;
+            }
+            if ((zi > 85) && ((Grenze.ru_point.y - Posity) > 1)) {
+                Posity += 0.5;
+            }
+        }
+
+        offGraph.drawImage(Gaense[Richtung][Aktion], (int) Positx, (int) Posity, null);
+
+        EvalSound();
+    }
+
+    private void EvalNewAction() {
+        // Hier nur zufaellig die Phasen einer Richtung berechnen
+        int zuf = (int) Math.round(Math.random() * KONSTANTE3);
+        if ((zuf > 70) && ((Aktion & 1) != 0) && (ResetAktion > 10)) {
+            ResetAktion = 0;
+            GetNewAction();
+        }
+    }
+
+    private void GetNewAction() {
+        // Hier wird immer neue Aktion berechnet
+        int zf = 0;
+
+        do {
+            zf = (int) Math.round(Math.random() * 90);
+            zf = zf / 10;
+        }
+        while (((zf & 1) == 0) || (zf > ((Richtung == 2) ? 5 : 7)) || (zf == Aktion));
+
+        // System.out.println ("Neue Aktion " + zf);
+
+        Aktion = zf;
+    }
+
+    private void EvalSound() {
+        // zufaellig wavs fuer Geschnatter abspielen...
+
+        if (lautloseGaense == true) {
+            return; // kein Sound, wenn vom Programm aus abgeschaltet
+        }
+
+        int zufallsZahl = (int) (Math.random() * 100);
+
+        if (zufallsZahl > 98) // nur selten was ausgeben
+        {
+            int zweiterZufall = (int) (Math.random() * 3.9);
+            zweiterZufall += 49;
+            mainFrame.wave.PlayFile("sfx/husa" + (char) zweiterZufall + ".wav");
+        }
+    }
+
+    public Borderrect GetHusaRect() {
+        // gibt Borderrect zurueck, in dem sich die Gans befindet
+        int a, b, c, d;
+
+        a = (int) Positx;
+        if (Richtung == 2) {
+            a += 3;  // bei Brieteren Images bisschen einruecken
+        }
+        b = (int) Posity;
+        c = a + 35;
+        d = b + 40;
+
+        return (new Borderrect(a, b, c, d));
+    }
 }    		

@@ -30,36 +30,36 @@ import java.awt.image.ImageProducer;
 
 public class JavaImage extends GenericImage {
 
-	private final Image image;
-	
-	public JavaImage(Image image) {
-		this.image = image;
-	}
-	
-	public Image getImage() {
-		return image;
-	}
-	
-	public GenericDrawingContext getGraphics() {
-		return new JavaDrawingContext(image.getGraphics());
-	}
+    private final Image image;
 
-	public int getHeight(GenericImageObserver object) {
-		return image.getHeight(((JavaImageObserver) object).getObserver());
-	}
+    public JavaImage(Image image) {
+        this.image = image;
+    }
 
-	public GenericImage getScaledInstance(int width, int height, int hints) {
-		Image scaled = image.getScaledInstance(width, height, hints);
-		return new JavaImage(scaled);
-	}
+    public Image getImage() {
+        return image;
+    }
 
-	public GenericImageProducer getSource() {
-		ImageProducer producer = image.getSource();
-		return new JavaImageProducer(producer);
-	}
+    public GenericDrawingContext getGraphics() {
+        return new JavaDrawingContext(image.getGraphics());
+    }
 
-	public int getWidth(GenericImageObserver object) {
-		return image.getWidth(((JavaImageObserver) object).getObserver());
-	}
+    public int getHeight(GenericImageObserver object) {
+        return image.getHeight(((JavaImageObserver) object).getObserver());
+    }
+
+    public GenericImage getScaledInstance(int width, int height, int hints) {
+        Image scaled = image.getScaledInstance(width, height, hints);
+        return new JavaImage(scaled);
+    }
+
+    public GenericImageProducer getSource() {
+        ImageProducer producer = image.getSource();
+        return new JavaImageProducer(producer);
+    }
+
+    public int getWidth(GenericImageObserver object) {
+        return image.getWidth(((JavaImageObserver) object).getObserver());
+    }
 
 }

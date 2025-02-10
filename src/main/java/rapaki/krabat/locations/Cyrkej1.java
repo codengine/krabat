@@ -26,579 +26,537 @@ import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.sound.BackgroundMusicPlayer;
 
-public class Cyrkej1 extends Mainloc 
-{
-  private GenericImage background;
-  private int WaitCount;
+public class Cyrkej1 extends Mainloc {
+    private GenericImage background;
+    private int WaitCount;
 
-  // Konstanten - Rects
-  private static final Borderrect linkerAusgang  = new Borderrect (  0, 426,  38, 479);
-  private static final Borderrect rechterAusgang = new Borderrect (590, 300, 639, 400);
-  private static final Borderrect brTuer         = new Borderrect (312, 297, 354, 327);
-  
-  // Punkte in Location
-  private static final GenericPoint Ptuer  = new GenericPoint (334, 330);
-  private static final GenericPoint Pleft  = new GenericPoint (  0, 462); 
-  private static final GenericPoint Pright = new GenericPoint (639, 350); 
-  
-  // Konstante ints
-  private static final int fTuer = 12;
-   
-  // Initialisierung ////////////////////////////////////////////////////////
+    // Konstanten - Rects
+    private static final Borderrect linkerAusgang = new Borderrect(0, 426, 38, 479);
+    private static final Borderrect rechterAusgang = new Borderrect(590, 300, 639, 400);
+    private static final Borderrect brTuer = new Borderrect(312, 297, 354, 327);
 
-  // Instanz von dieser Location erzeugen
-  public Cyrkej1 (Start caller, int oldLocation) 
-  {
-    super (caller);
-    mainFrame.Freeze (true);
-    
-    // Krabat - Definition
-  	mainFrame.Actions[851] = true;
-  	mainFrame.CheckKrabat ();
-  	
-        BackgroundMusicPlayer.getInstance ().playTrack (7, true);
-    
-    mainFrame.krabat.maxx = 0;
-    mainFrame.krabat.zoomf = 21f;
-    mainFrame.krabat.defScale = 0;
-  	
-    InitLocation (oldLocation);
-    mainFrame.Freeze (false);
-  }
-  
-  // Gegend intialisieren (Grenzen u.s.w.)
-  private void InitLocation (int oldLocation)
-  {
-    // Grenzen setzen
-    mainFrame.wegGeher.vBorders.removeAllElements ();
-    mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (330, 600,  40, 600, 384, 462));
-    mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (334, 335, 337, 374, 330, 383));
-    mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (605, 639, 380, 639, 311, 383));
-    mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (600, 290, 610, 310));
-       
-    // Matrix loeschen
-    mainFrame.wegSucher.ClearMatrix (4);
-	
-    // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-    mainFrame.wegSucher.PosVerbinden (0, 1); 
-    mainFrame.wegSucher.PosVerbinden (0, 2);
-    mainFrame.wegSucher.PosVerbinden (2, 3);
+    // Punkte in Location
+    private static final GenericPoint Ptuer = new GenericPoint(334, 330);
+    private static final GenericPoint Pleft = new GenericPoint(0, 462);
+    private static final GenericPoint Pright = new GenericPoint(639, 350);
 
-    InitImages();
-    switch (oldLocation)
-    {
-      case 0: 
-        // Einsprung fuer Load
-        break;
-    	case 21:
-        // von Kulow aus
-        mainFrame.krabat.SetKrabatPos (new GenericPoint (604, 370));
-        mainFrame.krabat.SetFacing (9);
-        break;
-      case 18: 
-        // von Dubring aus
-        mainFrame.krabat.SetKrabatPos (new GenericPoint ( 78, 456));
-        mainFrame.krabat.SetFacing (3);
-        break;
-      case 23:
-      	// von Pinca aus
-      	mainFrame.krabat.SetKrabatPos (Ptuer);
-      	mainFrame.krabat.SetFacing (6);
-      	break;
-    }    
-  }
+    // Konstante ints
+    private static final int fTuer = 12;
 
-  // Bilder vorbereiten
-  private void InitImages() 
-  {
-    background = getPicture ("gfx/cyrkej/cyrkej2.gif");
+    // Initialisierung ////////////////////////////////////////////////////////
 
-    loadPicture();
-  }
-  
-  public void cleanup() {
-	  background = null;
-  }
+    // Instanz von dieser Location erzeugen
+    public Cyrkej1(Start caller, int oldLocation) {
+        super(caller);
+        mainFrame.Freeze(true);
 
+        // Krabat - Definition
+        mainFrame.Actions[851] = true;
+        mainFrame.CheckKrabat();
 
-  // Paint-Routine dieser Location //////////////////////////////////////////
+        BackgroundMusicPlayer.getInstance().playTrack(7, true);
 
-  public void paintLocation (GenericDrawingContext g)
-  {
+        mainFrame.krabat.maxx = 0;
+        mainFrame.krabat.zoomf = 21f;
+        mainFrame.krabat.defScale = 0;
 
-    // Clipping -Region initialisieren
-    if (mainFrame.Clipset == false)
-    {
-      mainFrame.scrollx = 0;
-      mainFrame.scrolly = 0;
-      Cursorform = 200;
-    	evalMouseMoveEvent (mainFrame.Mousepoint);
-    	mainFrame.Clipset = true;
-      g.setClip(0, 0, 644, 484);
-      mainFrame.isAnim = true;
+        InitLocation(oldLocation);
+        mainFrame.Freeze(false);
     }
 
-    // Hintergrund und Krabat zeichnen
-    g.drawImage (background, 0, 0, null);
+    // Gegend intialisieren (Grenzen u.s.w.)
+    private void InitLocation(int oldLocation) {
+        // Grenzen setzen
+        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(330, 600, 40, 600, 384, 462));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(334, 335, 337, 374, 330, 383));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(605, 639, 380, 639, 311, 383));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(600, 290, 610, 310));
 
-    // Debugging - Zeichnen der Laufrechtecke
-    // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
-  	
-    mainFrame.wegGeher.GeheWeg ();
-    
-    // Krabat zeichnen
+        // Matrix loeschen
+        mainFrame.wegSucher.ClearMatrix(4);
 
-    // Animation??
-    if (mainFrame.krabat.nAnimation != 0)
-    { 
-      mainFrame.krabat.DoAnimation (g);
-      
-      // Cursorruecksetzung nach Animationsende
-      if (mainFrame.krabat.nAnimation == 0) evalMouseMoveEvent (mainFrame.Mousepoint);
-    }  
-    else
-    {
-      if ((mainFrame.talkCount > 0) && (TalkPerson != 0))
-      {
-        // beim Reden
-        switch (TalkPerson)
-        {
-          case 1:
-            // Krabat spricht gestikulierend
-            mainFrame.krabat.talkKrabat (g);
-            break;
-          case 3:
-            // Krabat spricht im Monolog
-            mainFrame.krabat.describeKrabat (g);
-            break;
-          default:
-            // Krabat steht da
-            mainFrame.krabat.drawKrabat (g);
-            break;
-        }    
-      }
-      // Rumstehen oder Laufen
-      else mainFrame.krabat.drawKrabat (g);
-    }  
-    
-    // sonst noch was zu tun ?
-    if  (outputText != "")
-    {
-      // Textausgabe
-      GenericRectangle my;
-      my = g.getClipBounds();
-      g.setClip (0, 0, 644, 484);
-      mainFrame.ifont.drawString (g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-      g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight()); 
+        // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
+        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.wegSucher.PosVerbinden(0, 2);
+        mainFrame.wegSucher.PosVerbinden(2, 3);
+
+        InitImages();
+        switch (oldLocation) {
+            case 0:
+                // Einsprung fuer Load
+                break;
+            case 21:
+                // von Kulow aus
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(604, 370));
+                mainFrame.krabat.SetFacing(9);
+                break;
+            case 18:
+                // von Dubring aus
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(78, 456));
+                mainFrame.krabat.SetFacing(3);
+                break;
+            case 23:
+                // von Pinca aus
+                mainFrame.krabat.SetKrabatPos(Ptuer);
+                mainFrame.krabat.SetFacing(6);
+                break;
+        }
     }
 
-    // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
-    if (mainFrame.talkCount > 0)
-    {
-      -- mainFrame.talkCount;
-      if (mainFrame.talkCount <= 1)
-      {
-        mainFrame.Clipset = false;
+    // Bilder vorbereiten
+    private void InitImages() {
+        background = getPicture("gfx/cyrkej/cyrkej2.gif");
+
+        loadPicture();
+    }
+
+    public void cleanup() {
+        background = null;
+    }
+
+
+    // Paint-Routine dieser Location //////////////////////////////////////////
+
+    public void paintLocation(GenericDrawingContext g) {
+
+        // Clipping -Region initialisieren
+        if (mainFrame.Clipset == false) {
+            mainFrame.scrollx = 0;
+            mainFrame.scrolly = 0;
+            Cursorform = 200;
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+            mainFrame.Clipset = true;
+            g.setClip(0, 0, 644, 484);
+            mainFrame.isAnim = true;
+        }
+
+        // Hintergrund und Krabat zeichnen
+        g.drawImage(background, 0, 0, null);
+
+        // Debugging - Zeichnen der Laufrechtecke
+        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+
+        mainFrame.wegGeher.GeheWeg();
+
+        // Krabat zeichnen
+
+        // Animation??
+        if (mainFrame.krabat.nAnimation != 0) {
+            mainFrame.krabat.DoAnimation(g);
+
+            // Cursorruecksetzung nach Animationsende
+            if (mainFrame.krabat.nAnimation == 0) {
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+            }
+        } else {
+            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                // beim Reden
+                switch (TalkPerson) {
+                    case 1:
+                        // Krabat spricht gestikulierend
+                        mainFrame.krabat.talkKrabat(g);
+                        break;
+                    case 3:
+                        // Krabat spricht im Monolog
+                        mainFrame.krabat.describeKrabat(g);
+                        break;
+                    default:
+                        // Krabat steht da
+                        mainFrame.krabat.drawKrabat(g);
+                        break;
+                }
+            }
+            // Rumstehen oder Laufen
+            else {
+                mainFrame.krabat.drawKrabat(g);
+            }
+        }
+
+        // sonst noch was zu tun ?
+        if (outputText != "") {
+            // Textausgabe
+            GenericRectangle my;
+            my = g.getClipBounds();
+            g.setClip(0, 0, 644, 484);
+            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        }
+
+        // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
+        if (mainFrame.talkCount > 0) {
+            --mainFrame.talkCount;
+            if (mainFrame.talkCount <= 1) {
+                mainFrame.Clipset = false;
+                outputText = "";
+                TalkPerson = 0;
+            }
+        }
+
+        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+            TalkPause--;
+        }
+
+        // Gibt es was zu tun ?
+        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+            DoAction();
+        }
+    }
+
+
+    // Mouse-Auswertung dieser Location ///////////////////////////////////////
+
+    public void evalMouseEvent(GenericMouseEvent e) {
+        GenericPoint pTemp = e.getPoint();
+        if (mainFrame.talkCount != 0) {
+            mainFrame.Clipset = false;
+        }
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+        }
         outputText = "";
-        TalkPerson = 0;
-      }
-    }  
-    
-    if ((TalkPause > 0) && (mainFrame.talkCount < 1)) TalkPause--;
-    
-    // Gibt es was zu tun ?
-    if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) DoAction ();
-  }
 
+        // Wenn in Animation, dann normales Gameplay aussetzen
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
 
-  // Mouse-Auswertung dieser Location ///////////////////////////////////////
+        // Wenn Krabat - Animation, dann normales Gameplay aussetzen
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
 
-  public void evalMouseEvent (GenericMouseEvent e)
-  {
-    GenericPoint pTemp = e.getPoint ();
-    if (mainFrame.talkCount != 0) mainFrame.Clipset = false;
-    if (mainFrame.talkCount > 1) mainFrame.talkCount = 1;
-    outputText="";
+        // wenn InventarCursor, dann anders reagieren
+        if (mainFrame.invCursor == true) {
+            // linker Maustaste
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                nextActionID = 0;
 
-    // Wenn in Animation, dann normales Gameplay aussetzen
-    if (mainFrame.fPlayAnim == true)
-    {
-      return;
+                Borderrect tmp = mainFrame.krabat.KrabatRect();
+
+                // Aktion, wenn Krabat angeclickt wurde
+                if (tmp.IsPointInRect(pTemp) == true) {
+                    nextActionID = 500 + mainFrame.whatItem;
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Ausreden fuer Tuer
+                if (brTuer.IsPointInRect(pTemp) == true) {
+                    // Standard - Sinnloszeug
+                    nextActionID = 150;
+                    pTemp = Ptuer;
+                }
+
+                // wenn nichts anderes gewaehlt, dann nur hinlaufen
+                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.repaint();
+            }
+
+            // rechte Maustaste
+            else {
+                // grundsaetzlich Gegenstand wieder ablegen
+                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                nextActionID = 0;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
+                return;
+            }
+        }
+
+        // normaler Cursor, normale Reaktion
+        else {
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                // linke Maustaste
+                nextActionID = 0;
+
+                // zu Kulow gehen
+                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                    nextActionID = 101;
+
+                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+
+                    // Wenn nahe am Ausgang, dann "gerade" verlassen
+                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                        pTemp = Pright;
+                    } else {
+                        pTemp = new GenericPoint(Pright.x, kt.y);
+                    }
+
+                    if (mainFrame.dClick == true) {
+                        mainFrame.krabat.StopWalking();
+                        mainFrame.repaint();
+                        return;
+                    }
+                }
+
+                // zu Dubring gehen
+                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                    nextActionID = 100;
+                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+
+                    // Wenn nahe am Ausgang, dann "gerade" verlassen
+                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                        pTemp = Pleft;
+                    } else {
+                        pTemp = new GenericPoint(Pleft.x, kt.y);
+                    }
+
+                    if (mainFrame.dClick == true) {
+                        mainFrame.krabat.StopWalking();
+                        mainFrame.repaint();
+                        return;
+                    }
+                }
+
+                // Tuer anschauen
+                if (brTuer.IsPointInRect(pTemp) == true) {
+                    nextActionID = 1;
+                    pTemp = Ptuer;
+                }
+
+                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.repaint();
+            } else {
+                // rechte Maustaste
+
+                // Kulow anschauen
+                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                    return;
+                }
+
+                // Dubring anschauen
+                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                    return;
+                }
+
+                // an Tuer klopfen
+                if (brTuer.IsPointInRect(pTemp) == true) {
+                    nextActionID = 50;
+                    mainFrame.wegGeher.SetzeNeuenWeg(Ptuer);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
+                nextActionID = 123;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
+            }
+        }
     }
-    
-    // Wenn Krabat - Animation, dann normales Gameplay aussetzen
-    if (mainFrame.krabat.nAnimation != 0)
-    {
-    	return;
-    }    
 
-    // wenn InventarCursor, dann anders reagieren
-    if (mainFrame.invCursor == true)
-    {
-      // linker Maustaste
-      if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-      {
-	  nextActionID = 0;
+    // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
+        // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
+        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+            if (Cursorform != 20) {
+                Cursorform = 20;
+                mainFrame.setCursor(mainFrame.Nix);
+            }
+            return;
+        }
 
-	  Borderrect tmp = mainFrame.krabat.KrabatRect();
+        // wenn InventarCursor, dann anders reagieren
+        if (mainFrame.invCursor == true) {
+            // hier kommt Routine hin, die Highlight berechnet
+            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            if ((tmp.IsPointInRect(pTemp) == true) || (brTuer.IsPointInRect(pTemp) == true)) {
+                mainFrame.invHighCursor = true;
+            } else {
+                mainFrame.invHighCursor = false;
+            }
 
-        // Aktion, wenn Krabat angeclickt wurde
-        if (tmp.IsPointInRect (pTemp) == true)
-        {
-        	nextActionID = 500 + mainFrame.whatItem;
-        	mainFrame.repaint();
-        	return;
-        }	
-        
-        // Ausreden fuer Tuer
-        if (brTuer.IsPointInRect (pTemp) == true)
-        {
-        	// Standard - Sinnloszeug
-        	nextActionID = 150;
-        	pTemp = Ptuer;
-        }				        
+            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+                Cursorform = 10;
+                mainFrame.setCursor(mainFrame.Cinventar);
+            }
 
-        // wenn nichts anderes gewaehlt, dann nur hinlaufen
-        mainFrame.wegGeher.SetzeNeuenWeg (pTemp);
-        mainFrame.repaint();
-      }
-      
-      // rechte Maustaste
-      else
-      {
-        // grundsaetzlich Gegenstand wieder ablegen
-        mainFrame.invCursor = false;
-        evalMouseMoveEvent (mainFrame.Mousepoint);
-        nextActionID = 0;
-        mainFrame.krabat.StopWalking();
-        mainFrame.repaint();
-        return;
-      }  
+            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+                Cursorform = 11;
+                mainFrame.setCursor(mainFrame.CHinventar);
+            }
+        }
+
+
+        // normaler Cursor, normale Reaktion
+        else {
+            if (brTuer.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 1) {
+                    mainFrame.setCursor(mainFrame.Kreuz);
+                    Cursorform = 1;
+                }
+                return;
+            }
+
+            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 3) {
+                    mainFrame.setCursor(mainFrame.Cright);
+                    Cursorform = 3;
+                }
+                return;
+            }
+
+            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 2) {
+                    mainFrame.setCursor(mainFrame.Cleft);
+                    Cursorform = 2;
+                }
+                return;
+            }
+
+            // sonst normal-Cursor
+            if (Cursorform != 0) {
+                mainFrame.setCursor(mainFrame.Normal);
+                Cursorform = 0;
+            }
+        }
     }
 
-    // normaler Cursor, normale Reaktion
-    else
-    {
-      if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-      {   
-        // linke Maustaste
-        nextActionID = 0;
+    // dieses Event nicht beachten
+    public void evalMouseExitEvent(GenericMouseEvent e) {
+    }
 
-        // zu Kulow gehen
-        if (rechterAusgang.IsPointInRect (pTemp) == true)
-        {
-          nextActionID = 101;
+    // Key - Auswertung dieser Location /////////////////////////////////
 
-          GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-          // Wenn nahe am Ausgang, dann "gerade" verlassen
-          if (rechterAusgang.IsPointInRect (kt) == false)
-          {
-          	pTemp = Pright;
-          }
-          else
-          {
-          	pTemp = new GenericPoint (Pright.x, kt.y);
-          }
-            
-          if (mainFrame.dClick == true)
-          {
-            mainFrame.krabat.StopWalking();
+    public void evalKeyEvent(GenericKeyEvent e) {
+        // Wenn Inventarcursor, dann keine Keys
+        if (mainFrame.invCursor == true) {
+            return;
+        }
+
+        // Bei Animationen keine Keys
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
+
+        // Bei Krabat - Animation keine Keys
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
+
+        // Nur auf Funktionstasten reagieren
+        int Taste = e.getKeyCode();
+
+        // Hauptmenue aktivieren
+        if (Taste == GenericKeyEvent.VK_F1) {
+            Keyclear();
+            nextActionID = 122;
             mainFrame.repaint();
             return;
-          }  
         }
-        
-        // zu Dubring gehen
-        if (linkerAusgang.IsPointInRect (pTemp) == true)
-        {
-          nextActionID = 100;
-          GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-          // Wenn nahe am Ausgang, dann "gerade" verlassen
-          if (linkerAusgang.IsPointInRect (kt) == false)
-          {
-          	pTemp = Pleft;
-          }
-          else
-          {
-          	pTemp = new GenericPoint (Pleft.x, kt.y);
-          }
-            
-          if (mainFrame.dClick == true)
-          {
-            mainFrame.krabat.StopWalking();
+
+        // Save - Screen aktivieren
+        if (Taste == GenericKeyEvent.VK_F2) {
+            Keyclear();
+            nextActionID = 121;
             mainFrame.repaint();
             return;
-          }  
         }
 
-        // Tuer anschauen
-        if (brTuer.IsPointInRect (pTemp) == true)
-        {
-          nextActionID = 1;
-          pTemp = Ptuer;
+        // Load - Screen aktivieren
+        if (Taste == GenericKeyEvent.VK_F3) {
+            Keyclear();
+            nextActionID = 120;
+            mainFrame.repaint();
+            return;
         }
+    }
 
-        mainFrame.wegGeher.SetzeNeuenWeg (pTemp);
-        mainFrame.repaint();
-      }
-      
-      else
-      {
-        // rechte Maustaste
-
-        // Kulow anschauen
-        if (linkerAusgang.IsPointInRect (pTemp) == true)
-        {
-          return;  
+    // Vor Key - Events alles deaktivieren
+    private void Keyclear() {
+        outputText = "";
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
         }
-        
-        // Dubring anschauen
-        if (rechterAusgang.IsPointInRect (pTemp) == true)
-        {
-          return;
-        }
-
-        // an Tuer klopfen
-        if (brTuer.IsPointInRect (pTemp) == true)
-        {
-        	nextActionID = 50;
-        	mainFrame.wegGeher.SetzeNeuenWeg (Ptuer);
-        	mainFrame.repaint();
-        	return;
-        }
-
-      	// Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
-        nextActionID = 123;
+        mainFrame.Clipset = false;
+        mainFrame.isAnim = false;
         mainFrame.krabat.StopWalking();
-        mainFrame.repaint();
-      }
-    }
-  }
-
-  // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
-  public void evalMouseMoveEvent (GenericPoint pTemp)
-  {
-    // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-    if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0))
-    {
-      if (Cursorform != 20)
-      {
-        Cursorform = 20;
-        mainFrame.setCursor (mainFrame.Nix);
-      }
-      return;		
-    }
-    
-    // wenn InventarCursor, dann anders reagieren
-    if (mainFrame.invCursor == true)
-    {
-      // hier kommt Routine hin, die Highlight berechnet
-    	Borderrect tmp = mainFrame.krabat.KrabatRect();
-    	if ((tmp.IsPointInRect (pTemp) == true) || (brTuer.IsPointInRect (pTemp) == true))
-    	{
-    		mainFrame.invHighCursor = true;
-    	}
-    	else mainFrame.invHighCursor = false;
-    	
-    	if ((Cursorform != 10) && (mainFrame.invHighCursor == false))
-    	{
-    		Cursorform = 10;
-    		mainFrame.setCursor (mainFrame.Cinventar);
-    	}
-    	
-    	if ((Cursorform != 11) && (mainFrame.invHighCursor == true))
-    	{
-    		Cursorform = 11;
-    		mainFrame.setCursor (mainFrame.CHinventar);
-    	}	
     }
 
-  	
-    // normaler Cursor, normale Reaktion
-    else
-    {
-      if (brTuer.IsPointInRect (pTemp) == true)    
-      {
-        if (Cursorform != 1)
-        {
-          mainFrame.setCursor (mainFrame.Kreuz);
-          Cursorform = 1;
+    // Aktionen dieser Location ////////////////////////////////////////
+
+    private void DoAction() {
+        // nichts zu tun, oder Krabat laeuft noch
+        if ((mainFrame.krabat.isWandering == true) ||
+                (mainFrame.krabat.isWalking == true)) {
+            return;
         }
-        return;
-      }
 
-      if (rechterAusgang.IsPointInRect (pTemp) == true)
-      {
-        if (Cursorform != 3)
-        {
-          mainFrame.setCursor(mainFrame.Cright);
-          Cursorform = 3;
+        // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
+        if ((nextActionID > 499) && (nextActionID < 600)) {
+            setKrabatAusrede();
+
+            // manche Ausreden erfordern neuen Cursor !!!
+
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+
+            return;
         }
-        return;
-      }
-    
-      if (linkerAusgang.IsPointInRect (pTemp) == true)
-      {
-        if (Cursorform != 2)
-        {
-          mainFrame.setCursor (mainFrame.Cleft);
-          Cursorform = 2;
+
+        // Hier Evaluation der Screenaufrufe, in Superklasse
+        if ((nextActionID > 119) && (nextActionID < 129)) {
+            SwitchScreen();
+            return;
         }
-        return;
-      }
 
-      // sonst normal-Cursor
-      if (Cursorform != 0)
-      {
-        mainFrame.setCursor (mainFrame.Normal);
-        Cursorform = 0;
-      }
+        // Was soll Krabat machen ?
+        switch (nextActionID) {
+            case 1:
+                // Tuer anschauen
+                KrabatSagt(Start.stringManager.getTranslation("Loc1_Cyrkej1_00000"),
+                        Start.stringManager.getTranslation("Loc1_Cyrkej1_00001"),
+                        Start.stringManager.getTranslation("Loc1_Cyrkej1_00002"),
+                        fTuer, 3, 0, 0);
+                break;
+
+            case 50:
+                // An Tuer der Kirche klopfen
+                mainFrame.fPlayAnim = true;
+                mainFrame.krabat.SetFacing(fTuer);
+                mainFrame.krabat.nAnimation = 4;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.wave.PlayFile("sfx/klopfklopf.wav");
+                nextActionID = 55;
+                WaitCount = 50;
+                break;
+
+            case 55:
+                // bisschen warten
+                if ((--WaitCount) < 1) {
+                    nextActionID = 58;
+                }
+                break;
+
+            case 58:
+                // Leider hoert keiner
+                KrabatSagt(Start.stringManager.getTranslation("Loc1_Cyrkej1_00003"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00004"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00005"),
+                        fTuer, 3, 0, 0);
+                mainFrame.fPlayAnim = false;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                break;
+
+            case 100:
+                // gehe zu Dubring
+                mainFrame.Actions[851] = false;
+                NeuesBild(18, 22);
+                break;
+
+            case 101:
+                // Goto Kulow
+                mainFrame.Actions[851] = false;
+                NeuesBild(21, 22);
+                break;
+
+            case 150:
+                // Tuer - Ausreden
+                DingAusrede(fTuer);
+                break;
+
+            default:
+                System.out.println("Falsche Action-ID !");
+        }
+
     }
-  }
-
-  // dieses Event nicht beachten
-  public void evalMouseExitEvent (GenericMouseEvent e) {
-  }
-
-  // Key - Auswertung dieser Location /////////////////////////////////
-
-  public void evalKeyEvent (GenericKeyEvent e)
-  {
-    // Wenn Inventarcursor, dann keine Keys
-    if (mainFrame.invCursor == true) return;
-
-    // Bei Animationen keine Keys
-    if (mainFrame.fPlayAnim == true) return;
-
-    // Bei Krabat - Animation keine Keys
-    if (mainFrame.krabat.nAnimation != 0) return;
-
-    // Nur auf Funktionstasten reagieren
-    int Taste = e.getKeyCode();
-
-    // Hauptmenue aktivieren
-    if (Taste == GenericKeyEvent.VK_F1)
-    {
-      Keyclear();
-      nextActionID = 122;
-      mainFrame.repaint();
-      return;
-    }    
-
-    // Save - Screen aktivieren
-    if (Taste == GenericKeyEvent.VK_F2)
-    {
-      Keyclear();
-      nextActionID = 121;
-      mainFrame.repaint();
-      return;
-    }
-
-    // Load - Screen aktivieren
-    if (Taste == GenericKeyEvent.VK_F3)
-    {
-      Keyclear();
-      nextActionID = 120;
-      mainFrame.repaint();
-      return;
-    } 
-  }  
-
-  // Vor Key - Events alles deaktivieren
-  private void Keyclear()
-  {
-    outputText="";
-    if (mainFrame.talkCount > 1) mainFrame.talkCount = 1;
-    mainFrame.Clipset = false;
-    mainFrame.isAnim = false;
-    mainFrame.krabat.StopWalking();
-  }
-
-  // Aktionen dieser Location ////////////////////////////////////////
-
-  private void DoAction ()
-  {
-    // nichts zu tun, oder Krabat laeuft noch
-    if ((mainFrame.krabat.isWandering == true) ||
-	(mainFrame.krabat.isWalking == true))
-      return;
-
-    // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-    if ((nextActionID > 499) && (nextActionID < 600))
-    {
-    	setKrabatAusrede();
-    	
-    	// manche Ausreden erfordern neuen Cursor !!!
-    	
-    	evalMouseMoveEvent (mainFrame.Mousepoint);
-    	
-    	return;
-    }		
-
-  	// Hier Evaluation der Screenaufrufe, in Superklasse
-  	if ((nextActionID > 119) && (nextActionID < 129))
-  	{
-  		SwitchScreen ();
-  		return;
-  	}		
-  	
-    // Was soll Krabat machen ?
-    switch (nextActionID)
-      {
-      case 1:
-        // Tuer anschauen
-        KrabatSagt (Start.stringManager.getTranslation("Loc1_Cyrkej1_00000"), 
-                    Start.stringManager.getTranslation("Loc1_Cyrkej1_00001"), 
-                    Start.stringManager.getTranslation("Loc1_Cyrkej1_00002"),
-                    fTuer, 3, 0, 0);
-        break;
-
-      case 50:
-        // An Tuer der Kirche klopfen
-        mainFrame.fPlayAnim = true;
-        mainFrame.krabat.SetFacing (fTuer);
-        mainFrame.krabat.nAnimation = 4;
-        evalMouseMoveEvent (mainFrame.Mousepoint);
-	mainFrame.wave.PlayFile ("sfx/klopfklopf.wav");
-        nextActionID = 55;
-        WaitCount = 50;
-        break;
-
-      case 55:
-      	// bisschen warten
-      	if ((--WaitCount) < 1) nextActionID = 58;
-      	break;
-      
-      case 58:
-        // Leider hoert keiner
-        KrabatSagt (Start.stringManager.getTranslation("Loc1_Cyrkej1_00003"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00004"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00005"),
-                    fTuer, 3, 0, 0);
-        mainFrame.fPlayAnim = false;
-        evalMouseMoveEvent (mainFrame.Mousepoint);
-        break;
-
-      case 100:
-        // gehe zu Dubring 
-  			mainFrame.Actions[851] = false;
-        NeuesBild (18, 22);
-        break;
-
-      case 101:
-      	// Goto Kulow
-		  	mainFrame.Actions[851] = false;
-        NeuesBild (21, 22);
-        break;
-      
-      case 150:
-      	// Tuer - Ausreden
-        DingAusrede (fTuer);
-        break;
-      
-      default:
-	System.out.println ("Falsche Action-ID !");
-      }
-
-  }
 }

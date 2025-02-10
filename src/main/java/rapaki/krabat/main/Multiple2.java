@@ -25,221 +25,209 @@ import rapaki.krabat.platform.GenericDrawingContext;
 
 public class Multiple2  // Turrican II laesst gruessen!!!!!!
 {
-  private Start mainFrame;
-  
-  // fuer Anzeige
-  private int selected = -1;
-  private int oldsel = -1;
-  private int Cursorform;
-  private boolean Paintcall = false;
-  private int yoff;
-  
-  // Variable fuer maximale MC-Groesse
-  private static final int MCGROESSE = 10;
+    private Start mainFrame;
 
-  // Variablen fuer Fragen
-  private int Anzahl;
-  public  String[]    Fragen          = new String    [MCGROESSE];
-  private GenericRectangle[] Positionen      = new GenericRectangle [MCGROESSE];
-  private int[]       Nextactionids   = new int       [MCGROESSE];
-  private int[][]     Actionvariablen = new int       [MCGROESSE][10];
-  
-  public int Antwort = 0;
-  public int ActionID = 0;
-  
-  // Im Konstruktor Variablen bereitstellen
-  public Multiple2 (Start caller)
-  {
-    mainFrame = caller;
-  }
+    // fuer Anzeige
+    private int selected = -1;
+    private int oldsel = -1;
+    private int Cursorform;
+    private boolean Paintcall = false;
+    private int yoff;
 
-  // Hier wird neue MC-Routine initialisiert
-  public void InitMC (int yoff)
-  {
-    // hier wird Init des Cursors beim Aufrufen erzwungen
-    Cursorform = 200;
-    Anzahl = -1;
-    this.yoff = yoff;
-  }
+    // Variable fuer maximale MC-Groesse
+    private static final int MCGROESSE = 10;
 
-  // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
-  public void ExtendMC (String text, int Aktiv, int Gefragt, int [] Nachfolger, int nextActionID)
-  {
-    // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
-    if ((Aktiv < 1000) && (mainFrame.Actions[Aktiv] == false)) return;
-    
-    // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
-    if ((Gefragt < 1000) && (mainFrame.Actions[Gefragt] == true)) return;
-    
-    // Anzahl Fragen um 1 erhoehen
-    Anzahl++;
-    
-    // String merken
-    Fragen [Anzahl] = mainFrame.ifont.TeileText (text);
-    
-    // Rectangle je nach Position des Textes festlegen
-    // 1. Rectangle extra
-    if (Anzahl == 0) Positionen [Anzahl] = new GenericRectangle (0, yoff, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl (Fragen[Anzahl]) - 1) * 27));
-    else
-    {
-      // folgende Rects immer anschliessend
-      int temp = (int) Positionen[Anzahl-1].getY() + (int) Positionen[Anzahl-1].getHeight();
-      Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl (Fragen[Anzahl]) - 1) * 27));
+    // Variablen fuer Fragen
+    private int Anzahl;
+    public String[] Fragen = new String[MCGROESSE];
+    private GenericRectangle[] Positionen = new GenericRectangle[MCGROESSE];
+    private int[] Nextactionids = new int[MCGROESSE];
+    private int[][] Actionvariablen = new int[MCGROESSE][10];
+
+    public int Antwort = 0;
+    public int ActionID = 0;
+
+    // Im Konstruktor Variablen bereitstellen
+    public Multiple2(Start caller) {
+        mainFrame = caller;
     }
-    
-    // nextActionID merken (wird zurueckgegeben bei Erfolg)
-    Nextactionids [Anzahl] = nextActionID;
-    
-    // hier das Array fuer alle Nachfolger initialisieren (NULL = kein Array)
-    for (int i = 0; i < 10; i++)
-    {
-    	if (Nachfolger != null)
-    	{
-    		if (i < Nachfolger.length) 
-    		{
-    			Actionvariablen [Anzahl][i] = Nachfolger [i];
-    		  // System.out.println ("Variable " + Actionvariablen [Anzahl][i] + " wurde uebernommen.");
-    		}	
-    		else Actionvariablen [Anzahl][i] = 1000; // 1000 -> ungueltig !
-    	}
-    	else Actionvariablen [Anzahl][i] = 1000; // 1000 -> ungueltig !
-    }	
-    
-    // alles gemerkt, ok	
-  }
-  
-  // Paint - Routine fuer Multiple Choice
-  public void paintMultiple (GenericDrawingContext g)
-  {
-    GenericRectangle my;
-    my = g.getClipBounds();
-    g.setClip(0, 0, 1284, 964);
- 
-    // 1.Aufruf, zuerst alles Zeichnen
-    if (mainFrame.Clipset == false)
-    {
-      mainFrame.Clipset = true;
-      Paintcall = true;
-      evalMouseMoveEvent (mainFrame.Mousepoint);
-      
-      for (int i = 0;i <= Anzahl; ++i)
-      {
-        if (selected == i)  mainFrame.ifont.drawString (g, ("$" + Fragen[i]),
+
+    // Hier wird neue MC-Routine initialisiert
+    public void InitMC(int yoff) {
+        // hier wird Init des Cursors beim Aufrufen erzwungen
+        Cursorform = 200;
+        Anzahl = -1;
+        this.yoff = yoff;
+    }
+
+    // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
+    public void ExtendMC(String text, int Aktiv, int Gefragt, int[] Nachfolger, int nextActionID) {
+        // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
+        if ((Aktiv < 1000) && (mainFrame.Actions[Aktiv] == false)) {
+            return;
+        }
+
+        // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
+        if ((Gefragt < 1000) && (mainFrame.Actions[Gefragt] == true)) {
+            return;
+        }
+
+        // Anzahl Fragen um 1 erhoehen
+        Anzahl++;
+
+        // String merken
+        Fragen[Anzahl] = mainFrame.ifont.TeileText(text);
+
+        // Rectangle je nach Position des Textes festlegen
+        // 1. Rectangle extra
+        if (Anzahl == 0) {
+            Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
+        } else {
+            // folgende Rects immer anschliessend
+            int temp = (int) Positionen[Anzahl - 1].getY() + (int) Positionen[Anzahl - 1].getHeight();
+            Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
+        }
+
+        // nextActionID merken (wird zurueckgegeben bei Erfolg)
+        Nextactionids[Anzahl] = nextActionID;
+
+        // hier das Array fuer alle Nachfolger initialisieren (NULL = kein Array)
+        for (int i = 0; i < 10; i++) {
+            if (Nachfolger != null) {
+                if (i < Nachfolger.length) {
+                    Actionvariablen[Anzahl][i] = Nachfolger[i];
+                    // System.out.println ("Variable " + Actionvariablen [Anzahl][i] + " wurde uebernommen.");
+                } else {
+                    Actionvariablen[Anzahl][i] = 1000; // 1000 -> ungueltig !
+                }
+            } else {
+                Actionvariablen[Anzahl][i] = 1000; // 1000 -> ungueltig !
+            }
+        }
+
+        // alles gemerkt, ok
+    }
+
+    // Paint - Routine fuer Multiple Choice
+    public void paintMultiple(GenericDrawingContext g) {
+        GenericRectangle my;
+        my = g.getClipBounds();
+        g.setClip(0, 0, 1284, 964);
+
+        // 1.Aufruf, zuerst alles Zeichnen
+        if (mainFrame.Clipset == false) {
+            mainFrame.Clipset = true;
+            Paintcall = true;
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+
+            for (int i = 0; i <= Anzahl; ++i) {
+                if (selected == i) {
+                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
                             (int) Positionen[i].getX() + mainFrame.scrollx + 30,
                             (int) Positionen[i].getY() + mainFrame.scrolly + 10, 1);
-        else                mainFrame.ifont.drawString (g, ("$" + Fragen[i]),
+                } else {
+                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
                             (int) Positionen[i].getX() + mainFrame.scrollx + 30,
                             (int) Positionen[i].getY() + mainFrame.scrolly + 10, 0xff00b000);
-      }
-      oldsel = selected;
-      g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
-      return;
+                }
+            }
+            oldsel = selected;
+            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            return;
+        }
+
+        if (oldsel != -1) {
+            mainFrame.ifont.drawString(g, ("$" + Fragen[oldsel]),
+                    (int) Positionen[oldsel].getX() + mainFrame.scrollx + 30,
+                    (int) Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
+        }
+        if (oldsel != -1) {
+            oldsel = -1;
+        }
+
+        if (selected != -1) {
+            mainFrame.ifont.drawString(g, ("$" + Fragen[selected]),
+                    (int) Positionen[selected].getX() + mainFrame.scrollx + 30,
+                    (int) Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
+        }
+
+        if (selected != -1) {
+            oldsel = selected;
+        }
+        // System.out.println ("Paint : " + selected);
+        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
     }
-    
-    if (oldsel != -1)
-    {
-      mainFrame.ifont.drawString (g, ("$" + Fragen[oldsel]),
-                                 (int) Positionen[oldsel].getX() + mainFrame.scrollx + 30,
-                                 (int) Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
-    }                             
-    if (oldsel != -1) oldsel = -1;
-    
-    if (selected != -1)
-    {
-      mainFrame.ifont.drawString (g, ("$" + Fragen[selected]),
-                                 (int) Positionen[selected].getX() + mainFrame.scrollx + 30,
-                                 (int) Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
-    }                              
 
-    if (selected != -1) oldsel = selected;
-    // System.out.println ("Paint : " + selected);
-    g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
-  }
+    // Mouse - Listener fuer Multiple Choice
+    public void evalMouseEvent(GenericMouseEvent e) {
+        GenericPoint pTemp = e.getPoint();
+        if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+            // Linke Maustaste
+            for (int i = 0; i <= Anzahl; ++i) {
+                if (Positionen[i].contains(pTemp) == true) {
+                    // Antwort angeben fuer die Location
+                    Antwort = i;
+                    ActionID = Nextactionids[i];
 
-  // Mouse - Listener fuer Multiple Choice
-  public void evalMouseEvent (GenericMouseEvent e)
-  {
-    GenericPoint pTemp = e.getPoint();
-    if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK)
-    {
-      // Linke Maustaste
-      for (int i = 0; i <= Anzahl; ++i)
-      {
-        if (Positionen[i].contains(pTemp) == true)
-        {
-          // Antwort angeben fuer die Location
-          Antwort = i;
-          ActionID = Nextactionids[i];
-          
-          // Actionarray bearbeiten
-          for (int f = 0; f < 10; f++)
-          {
-          	if (Actionvariablen [i][f] < 1000) 
-          	{
-          		mainFrame.Actions[Actionvariablen[i][f]] = true;
-          		// System.out.println ("Actionvariable " + Actionvariablen[i][f] + " wurde true gesetzt.");
-          	}	
-          }		
-          
-          // MC-Klasse deaktivieren und alles zuruecksetzen
-          selected = -1;
-          oldsel = -1;
-          mainFrame.fPlayAnim = true;
-          mainFrame.isMultiple = false;
-          mainFrame.Clipset = false;
-          mainFrame.repaint();
-          break;
-        }  
-      }
+                    // Actionarray bearbeiten
+                    for (int f = 0; f < 10; f++) {
+                        if (Actionvariablen[i][f] < 1000) {
+                            mainFrame.Actions[Actionvariablen[i][f]] = true;
+                            // System.out.println ("Actionvariable " + Actionvariablen[i][f] + " wurde true gesetzt.");
+                        }
+                    }
+
+                    // MC-Klasse deaktivieren und alles zuruecksetzen
+                    selected = -1;
+                    oldsel = -1;
+                    mainFrame.fPlayAnim = true;
+                    mainFrame.isMultiple = false;
+                    mainFrame.Clipset = false;
+                    mainFrame.repaint();
+                    break;
+                }
+            }
+        }
     }
-  }
 
-  public void evalMouseMoveEvent (GenericPoint pTemp)
-  {
-    // Cursor auf Normal setzen je nach Bedarf
-    if (Cursorform != 0)
-    {
-    	Cursorform = 0;
-    	mainFrame.setCursor (mainFrame.Normal);
-    }		
-    
-    // System.out.println("Move Thrown !");
-    selected = -1;
-    for (int i = 0; i <= Anzahl; ++i)
-    { 
-      if (Positionen[i].contains (pTemp) == true)
-      {
-        selected = i;
-        // System.out.println("Over an Item!");
-        break;
-      }  
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
+        // Cursor auf Normal setzen je nach Bedarf
+        if (Cursorform != 0) {
+            Cursorform = 0;
+            mainFrame.setCursor(mainFrame.Normal);
+        }
+
+        // System.out.println("Move Thrown !");
+        selected = -1;
+        for (int i = 0; i <= Anzahl; ++i) {
+            if (Positionen[i].contains(pTemp) == true) {
+                selected = i;
+                // System.out.println("Over an Item!");
+                break;
+            }
+        }
+
+        // System.out.println("Move : " + selected);
+
+        if (Paintcall == true) {
+            Paintcall = false;
+            return;
+        }
+        if (oldsel != selected) {
+            // System.out.println("Repainting for move!");
+            mainFrame.repaint();
+        }
     }
- 
-    // System.out.println("Move : " + selected);
- 
-    if (Paintcall == true)
-    {
-      Paintcall = false;
-      return;
-    }  
-    if (oldsel != selected)
-    {
-      // System.out.println("Repainting for move!");
-      mainFrame.repaint();
-    }  
-  }  
 
-  public void evalMouseExitEvent (GenericMouseEvent e)
-  {	
-    // System.out.println("ExitEvent erhalten !");
-    selected = -1;
-    mainFrame.repaint();
-  }  
-  
-  // Key - Auswertung dieser Location /////////////////////////////////
+    public void evalMouseExitEvent(GenericMouseEvent e) {
+        // System.out.println("ExitEvent erhalten !");
+        selected = -1;
+        mainFrame.repaint();
+    }
 
-  public void evalKeyEvent (GenericKeyEvent e)
-  {
-    // Key - Events werden hier nicht ausgewertet !!!!!!!!!!!!!!!!!!!!!!!!!!
-  }
+    // Key - Auswertung dieser Location /////////////////////////////////
+
+    public void evalKeyEvent(GenericKeyEvent e) {
+        // Key - Events werden hier nicht ausgewertet !!!!!!!!!!!!!!!!!!!!!!!!!!
+    }
 }

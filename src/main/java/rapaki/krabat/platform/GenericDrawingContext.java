@@ -25,32 +25,32 @@ import rapaki.krabat.main.GenericRectangle;
 
 public abstract class GenericDrawingContext {
 
-	public abstract void setClip(int x, int y, int xd, int yd);
+    public abstract void setClip(int x, int y, int xd, int yd);
 
-	public abstract void drawImage(GenericImage genericImage, int left, int up,
-			int koerperbreite, int kopfhoehe, GenericImageObserver observer);
+    public abstract void drawImage(GenericImage genericImage, int left, int up,
+                                   int koerperbreite, int kopfhoehe, GenericImageObserver observer);
 
-	public abstract void drawImage(GenericImage genericImage, int x, int i, GenericImageObserver observer);
+    public abstract void drawImage(GenericImage genericImage, int x, int i, GenericImageObserver observer);
 
-	public abstract GenericRectangle getClipBounds();
+    public abstract GenericRectangle getClipBounds();
 
-	public abstract void clearRect(int k, int j, int i, int k2);
+    public abstract void clearRect(int k, int j, int i, int k2);
 
-	public abstract void setClip(GenericRectangle txx);
+    public abstract void setClip(GenericRectangle txx);
 
-	public abstract void setColor(GenericColor inakt);
+    public abstract void setColor(GenericColor inakt);
 
-	public abstract void drawRect(int i, int j, int k, int l);
-	
-	public abstract void drawLine(int i, int j, int k, int l);
+    public abstract void drawRect(int i, int j, int k, int l);
 
-	public abstract void fillRect(int i, int j, int k, int l);
+    public abstract void drawLine(int i, int j, int k, int l);
 
-	public abstract void drawImage(GenericImage genericImage, int x, int y);
+    public abstract void fillRect(int i, int j, int k, int l);
 
-	public abstract void drawImage(GenericImage ktemp, int left, int up,
-			int koerperbreite, int i);
-	
-	public abstract GenericDrawingContext2D get2DContext();
-	
+    public abstract void drawImage(GenericImage genericImage, int x, int y);
+
+    public abstract void drawImage(GenericImage ktemp, int left, int up,
+                                   int koerperbreite, int i);
+
+    public abstract GenericDrawingContext2D get2DContext();
+
 }

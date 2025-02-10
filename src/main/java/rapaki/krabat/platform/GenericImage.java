@@ -21,16 +21,16 @@
 package rapaki.krabat.platform;
 
 public abstract class GenericImage {
-	
-	public static final int SCALE_DEFAULT = 1;
 
-	public abstract int getHeight(GenericImageObserver object);
+    public static final int SCALE_DEFAULT = 1;
 
-	public abstract int getWidth(GenericImageObserver object);
+    public abstract int getHeight(GenericImageObserver object);
 
-	public abstract GenericImageProducer getSource();
+    public abstract int getWidth(GenericImageObserver object);
 
-	public abstract GenericDrawingContext getGraphics();
+    public abstract GenericImageProducer getSource();
 
-	public abstract GenericImage getScaledInstance(int width, int height, int hints);
+    public abstract GenericDrawingContext getGraphics();
+
+    public abstract GenericImage getScaledInstance(int width, int height, int hints);
 }

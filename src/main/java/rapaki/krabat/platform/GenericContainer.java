@@ -22,8 +22,8 @@ package rapaki.krabat.platform;
 
 public abstract class GenericContainer {
 
-	public abstract void setCursor(GenericCursor cursor);
+    public abstract void setCursor(GenericCursor cursor);
 
-	public abstract void repaint();
-	
+    public abstract void repaint();
+
 }

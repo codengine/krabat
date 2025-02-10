@@ -26,9 +26,8 @@ import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.sound.BackgroundMusicPlayer;
 
-public class Wotrow extends Mainloc 
-{
-    private GenericImage background, foreground; 
+public class Wotrow extends Mainloc {
+    private GenericImage background, foreground;
     private GenericImage mond;
 
     // Strings - Texte
@@ -36,19 +35,19 @@ public class Wotrow extends Mainloc
       private static final String D1Text = Start.stringManager.getTranslation("Loc4_Wotrow_00001");
       private static final String N1Text = Start.stringManager.getTranslation("Loc4_Wotrow_00002");
     */
-  
+
     // Konstanten - Rects
-    private static final Borderrect obererAusgang  = new Borderrect (325, 119, 387, 149);
-    private static final Borderrect untererAusgang = new Borderrect (309, 445, 423, 479);
-    private static final Borderrect brWoda         = new Borderrect (420, 270, 525, 280);
-    private static final Borderrect brWokno        = new Borderrect (331, 398, 360, 411);
-  
+    private static final Borderrect obererAusgang = new Borderrect(325, 119, 387, 149);
+    private static final Borderrect untererAusgang = new Borderrect(309, 445, 423, 479);
+    private static final Borderrect brWoda = new Borderrect(420, 270, 525, 280);
+    private static final Borderrect brWokno = new Borderrect(331, 398, 360, 411);
+
     // Konstante Points
-    private static final GenericPoint Pdown     = new GenericPoint (357, 479);
-    private static final GenericPoint Pup       = new GenericPoint (332, 175);
-    private static final GenericPoint Pwoda     = new GenericPoint (406, 278);
-    private static final GenericPoint Pwokno    = new GenericPoint (388, 443);
-  
+    private static final GenericPoint Pdown = new GenericPoint(357, 479);
+    private static final GenericPoint Pup = new GenericPoint(332, 175);
+    private static final GenericPoint Pwoda = new GenericPoint(406, 278);
+    private static final GenericPoint Pwokno = new GenericPoint(388, 443);
+
     // wir beginnen bei Y - Koordinate 148
     /*    private static final int[] Carray = {360, 358, 356, 355, 353, 352, 351, 349, 347, 346, 
 	  345, 344, 343, 342, 341, 340, 339, 339, 338, 337,
@@ -78,557 +77,504 @@ public class Wotrow extends Mainloc
 	  375, 375, 375, 375, 375, 375, 375, 375, 375, 375,
 	  375, 375, 376, 378, 379, 380, 381, 382, 383, 385,
 	  387, 389, 390, 392, 396, 400, 404, 408, 412, 416};*/
-    
+
     // letzte Y - Koordinate = 387
-                                       
+
     // Konstante ints
-    private static final int fExit  = 6;
-    private static final int fWoda  = 3;
+    private static final int fExit = 6;
+    private static final int fWoda = 3;
     private static final int fWokno = 9;
 
     // fuers Blinkern
-    private static final Bordertrapez Blink[] = 
-    {new Bordertrapez (430, 461, 421, 460, 273, 277),
-     new Bordertrapez (469, 491, 470, 491, 274, 277)};
-                   
+    private static final Bordertrapez Blink[] =
+            {new Bordertrapez(430, 461, 421, 460, 273, 277),
+                    new Bordertrapez(469, 491, 470, 491, 274, 277)};
+
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
     private static final int ANIMZUSTAENDE = 9;
-  
-    private static final GenericColor blinkFarbe = new GenericColor (222, 214, 148);
-  
+
+    private static final GenericColor blinkFarbe = new GenericColor(222, 214, 148);
+
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Wotrow (Start caller,int oldLocation) 
-    {
-        super (caller);
-        mainFrame.Freeze (true);
-    
-        mainFrame.CheckKrabat ();
+    public Wotrow(Start caller, int oldLocation) {
+        super(caller);
+        mainFrame.Freeze(true);
 
-        BackgroundMusicPlayer.getInstance ().stop (); 
+        mainFrame.CheckKrabat();
 
-  	mainFrame.krabat.maxx = 400;
+        BackgroundMusicPlayer.getInstance().stop();
+
+        mainFrame.krabat.maxx = 400;
         mainFrame.krabat.zoomf = 8f;
         mainFrame.krabat.defScale = 60;
-  	
-  	// fuer Blinkern rein
-  	InitBlinker();
-  	
-  	InitLocation (oldLocation);
-        mainFrame.Freeze (false);
-    }
-  
-    // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation (int oldLocation)
-    {
-        // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements ();
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (441, 463, 340, 368, 403, 479));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (410, 414, 441, 463, 390, 402));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (373, 376, 409, 412, 371, 389));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (373, 356, 374, 370));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (437, 439, 373, 376, 326, 355));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (440, 442, 437, 439, 319, 325));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (440, 312, 441, 318));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (407, 408, 440, 441, 282, 311));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (401, 402, 407, 408, 272, 281));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (390, 391, 401, 402, 266, 271));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (382, 383, 390, 391, 255, 265));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (367, 368, 382, 383, 222, 254));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (332, 333, 367, 368, 199, 221));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (330, 331, 332, 333, 190, 198));
-        mainFrame.wegGeher.vBorders.addElement (new Bordertrapez (332, 333, 330, 331, 175, 189));
-       
-        mainFrame.wegSucher.ClearMatrix (15);
 
-        mainFrame.wegSucher.PosVerbinden (0, 1); 
-        mainFrame.wegSucher.PosVerbinden (1, 2); 
-        mainFrame.wegSucher.PosVerbinden (2, 3); 
-        mainFrame.wegSucher.PosVerbinden (3, 4); 
-        mainFrame.wegSucher.PosVerbinden (4, 5); 
-        mainFrame.wegSucher.PosVerbinden (5, 6); 
-        mainFrame.wegSucher.PosVerbinden (6, 7); 
-        mainFrame.wegSucher.PosVerbinden (7, 8); 
-        mainFrame.wegSucher.PosVerbinden (8, 9); 
-        mainFrame.wegSucher.PosVerbinden (9, 10); 
-        mainFrame.wegSucher.PosVerbinden (10, 11); 
-        mainFrame.wegSucher.PosVerbinden (11, 12); 
-        mainFrame.wegSucher.PosVerbinden (12, 13); 
-        mainFrame.wegSucher.PosVerbinden (13, 14); 
+        // fuer Blinkern rein
+        InitBlinker();
+
+        InitLocation(oldLocation);
+        mainFrame.Freeze(false);
+    }
+
+    // Gegend intialisieren (Grenzen u.s.w.)
+    private void InitLocation(int oldLocation) {
+        // Grenzen setzen
+        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(441, 463, 340, 368, 403, 479));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(410, 414, 441, 463, 390, 402));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(373, 376, 409, 412, 371, 389));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(373, 356, 374, 370));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(437, 439, 373, 376, 326, 355));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(440, 442, 437, 439, 319, 325));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(440, 312, 441, 318));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(407, 408, 440, 441, 282, 311));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(401, 402, 407, 408, 272, 281));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(390, 391, 401, 402, 266, 271));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(382, 383, 390, 391, 255, 265));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(367, 368, 382, 383, 222, 254));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(332, 333, 367, 368, 199, 221));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(330, 331, 332, 333, 190, 198));
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(332, 333, 330, 331, 175, 189));
+
+        mainFrame.wegSucher.ClearMatrix(15);
+
+        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.wegSucher.PosVerbinden(3, 4);
+        mainFrame.wegSucher.PosVerbinden(4, 5);
+        mainFrame.wegSucher.PosVerbinden(5, 6);
+        mainFrame.wegSucher.PosVerbinden(6, 7);
+        mainFrame.wegSucher.PosVerbinden(7, 8);
+        mainFrame.wegSucher.PosVerbinden(8, 9);
+        mainFrame.wegSucher.PosVerbinden(9, 10);
+        mainFrame.wegSucher.PosVerbinden(10, 11);
+        mainFrame.wegSucher.PosVerbinden(11, 12);
+        mainFrame.wegSucher.PosVerbinden(12, 13);
+        mainFrame.wegSucher.PosVerbinden(13, 14);
 
         InitImages();
-        switch (oldLocation)
-            {
-            case 0: 
+        switch (oldLocation) {
+            case 0:
                 // Einsprung fuer Load
                 break;
             case 201:
                 // von Oben aus 
-    		mainFrame.krabat.SetKrabatPos (new GenericPoint (332, 185));
-                mainFrame.krabat.SetFacing (6);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(332, 185));
+                mainFrame.krabat.SetFacing(6);
                 break;
-            case 203: 
+            case 203:
                 // von Unten aus (Doma4)
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (372, 462));
-                mainFrame.krabat.SetFacing (12);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(372, 462));
+                mainFrame.krabat.SetFacing(12);
                 break;
-            }    
+        }
     }
 
     // Bilder vorbereiten
-    private void InitImages() 
-    {
-        background = getPicture ("gfx/wotrow/wotrow.gif");
-        foreground = getPicture ("gfx/wotrow/wotrow-fg.gif");
-    
-        mond = getPicture ("gfx/wotrow/mesack.gif");
+    private void InitImages() {
+        background = getPicture("gfx/wotrow/wotrow.gif");
+        foreground = getPicture("gfx/wotrow/wotrow-fg.gif");
+
+        mond = getPicture("gfx/wotrow/mesack.gif");
 
         loadPicture();
     }
 
 
-    private void InitBlinker ()
-    {
+    private void InitBlinker() {
         // hier wird das Blinkern festgelegt, indem das Array initialisiert wird, wo der
         // Blinkstatus gespeichert wird
-    
+
         // So viele Borderrects
         int AnzahlRects = Blink.length;
-    
+
         // So viele Sachen sind zu merken
         int AnzahlMerksachen = 3;
-    
+
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1; // 1 Mindestens !
-    
-        for (int i = 0; i < Blink.length; i++)
-            {
-  		if ((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) > AnzahlStriche) AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
+
+        for (int i = 0; i < Blink.length; i++) {
+            if ((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) > AnzahlStriche) {
+                AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
-  	
-  	// Groesse des Arrays steht fest, also Init
-  	MerkArray = new int[AnzahlRects][AnzahlStriche][AnzahlMerksachen];
-  	
-  	// Jetzt das Array initialisieren und beschraenken, da nicht alle borderrects so viele Striche haben wie das Groesste
-  	for (int i = 0; i < MerkArray.length; i++)
-            {
-  		for (int j = 0; j < MerkArray[i].length; j++)
-                    {
-                        // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                        if (((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) < j) && (j > 0)) MerkArray[i][j][2] = -1;
-                        else
-                            {
-                                // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
-                                int zuffZahl = 0;
-  		  	
-                                // System.out.println ("Array " + i + " " + j + "bekommt einen Blinker...");
-  		  	
-                                do
-                                    {
-                                        zuffZahl = (int) Math.round (Math.random () * 7);
-                                    }
-                                while (zuffZahl > ANIMZUSTAENDE);
-  		  	
-                                MerkArray [i][j][2] = zuffZahl;
-                            }
-  		  
-                        // x - und y - Koordinate = 0 -> Platz ist frei
-                        MerkArray[i][j][0] = 0;
-                        MerkArray[i][j][1] = 0;
+        }
+
+        // Groesse des Arrays steht fest, also Init
+        MerkArray = new int[AnzahlRects][AnzahlStriche][AnzahlMerksachen];
+
+        // Jetzt das Array initialisieren und beschraenken, da nicht alle borderrects so viele Striche haben wie das Groesste
+        for (int i = 0; i < MerkArray.length; i++) {
+            for (int j = 0; j < MerkArray[i].length; j++) {
+                // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
+                if (((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) < j) && (j > 0)) {
+                    MerkArray[i][j][2] = -1;
+                } else {
+                    // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
+                    int zuffZahl = 0;
+
+                    // System.out.println ("Array " + i + " " + j + "bekommt einen Blinker...");
+
+                    do {
+                        zuffZahl = (int) Math.round(Math.random() * 7);
                     }
-            }				
+                    while (zuffZahl > ANIMZUSTAENDE);
+
+                    MerkArray[i][j][2] = zuffZahl;
+                }
+
+                // x - und y - Koordinate = 0 -> Platz ist frei
+                MerkArray[i][j][0] = 0;
+                MerkArray[i][j][1] = 0;
+            }
+        }
     }
-   
+
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintLocation (GenericDrawingContext g)
-    {
+    public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false)
-            {
-                mainFrame.scrollx = 0;
-                mainFrame.scrolly = 0;
-                Cursorform = 200;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
-                mainFrame.Clipset = true;
-                g.setClip(0, 0, 644, 484);
-                mainFrame.isAnim = true;
-            }
+        if (mainFrame.Clipset == false) {
+            mainFrame.scrollx = 0;
+            mainFrame.scrolly = 0;
+            Cursorform = 200;
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+            mainFrame.Clipset = true;
+            g.setClip(0, 0, 644, 484);
+            mainFrame.isAnim = true;
+        }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage (background, 0, 0, null);
-    
+        g.drawImage(background, 0, 0, null);
+
         // Mond zeichnen
-        g.drawImage (mond, 399, 26, null);
-    
+        g.drawImage(mond, 399, 26, null);
+
         // Blinkern ermoeglichen
         // g.setClip (392, 246, 248, 107);
-        g.setClip (0, 0, 644, 484);
-        g.drawImage (background, 0, 0, null);
+        g.setClip(0, 0, 644, 484);
+        g.drawImage(background, 0, 0, null);
         Blink(g);
-    
+
         // Debugging - Zeichnen der Laufrechtecke
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
-    
-        // hier ist der Sound...
-        evalSound ();    
 
-        mainFrame.wegGeher.GeheWeg ();
-    
-	//         mainFrame.krabat.SetKrabatPos (CorrectX (mainFrame.krabat.GetKrabatPos()));
+        // hier ist der Sound...
+        evalSound();
+
+        mainFrame.wegGeher.GeheWeg();
+
+        //         mainFrame.krabat.SetKrabatPos (CorrectX (mainFrame.krabat.GetKrabatPos()));
 
         // Krabat zeichnen
 
         // Animation??
-        if (mainFrame.krabat.nAnimation != 0)
-            { 
-                mainFrame.krabat.DoAnimation (g);
-      
-                // Cursorruecksetzung nach Animationsende
-                if (mainFrame.krabat.nAnimation == 0) evalMouseMoveEvent (mainFrame.Mousepoint);
-            }  
-        else
-            {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0))
-                    {
-                        // beim Reden
-                        switch (TalkPerson)
-                            {
-                            case 1:
-                                // Krabat spricht gestikulierend
-                                mainFrame.krabat.talkKrabat (g);
-                                break;
-                            case 3:
-                                // Krabat spricht im Monolog
-                                mainFrame.krabat.describeKrabat (g);
-                                break;
-                            default:
-                                // steht Krabat nur da
-                                mainFrame.krabat.drawKrabat (g);
-                                break;
-                            }    
-                    }
-                // Rumstehen oder Laufen
-                else mainFrame.krabat.drawKrabat (g);
-            }  
-    
-        // Vordergrund vor Krabat zeichnen
-        g.drawImage (foreground, 335, 64, null);
-    
-        // sonst noch was zu tun ?
-        if  (outputText != "")
-            {
-                // Textausgabe
-                GenericRectangle my;
-                my = g.getClipBounds();
-                g.setClip (0, 0, 644, 484);
-                mainFrame.ifont.drawString (g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-                g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight()); 
+        if (mainFrame.krabat.nAnimation != 0) {
+            mainFrame.krabat.DoAnimation(g);
+
+            // Cursorruecksetzung nach Animationsende
+            if (mainFrame.krabat.nAnimation == 0) {
+                evalMouseMoveEvent(mainFrame.Mousepoint);
             }
+        } else {
+            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                // beim Reden
+                switch (TalkPerson) {
+                    case 1:
+                        // Krabat spricht gestikulierend
+                        mainFrame.krabat.talkKrabat(g);
+                        break;
+                    case 3:
+                        // Krabat spricht im Monolog
+                        mainFrame.krabat.describeKrabat(g);
+                        break;
+                    default:
+                        // steht Krabat nur da
+                        mainFrame.krabat.drawKrabat(g);
+                        break;
+                }
+            }
+            // Rumstehen oder Laufen
+            else {
+                mainFrame.krabat.drawKrabat(g);
+            }
+        }
+
+        // Vordergrund vor Krabat zeichnen
+        g.drawImage(foreground, 335, 64, null);
+
+        // sonst noch was zu tun ?
+        if (outputText != "") {
+            // Textausgabe
+            GenericRectangle my;
+            my = g.getClipBounds();
+            g.setClip(0, 0, 644, 484);
+            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
-        if (mainFrame.talkCount > 0)
-            {
-                -- mainFrame.talkCount;
-                if (mainFrame.talkCount <= 1)
-                    {
-                        mainFrame.Clipset = false;
-                        outputText = "";
-                        TalkPerson = 0;
-                    }
-            }  
-    
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) TalkPause--;
+        if (mainFrame.talkCount > 0) {
+            --mainFrame.talkCount;
+            if (mainFrame.talkCount <= 1) {
+                mainFrame.Clipset = false;
+                outputText = "";
+                TalkPerson = 0;
+            }
+        }
+
+        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+            TalkPause--;
+        }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) DoAction ();
+        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+            DoAction();
+        }
     }
 
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
-    public void evalMouseEvent (GenericMouseEvent e)
-    {
-        GenericPoint pTemp = e.getPoint ();
-        if (mainFrame.talkCount != 0) mainFrame.Clipset = false;
-        if (mainFrame.talkCount > 1) 
-            {
-                mainFrame.talkCount = 1;
-                TalkPerson = 0;
-            }	 
-        outputText="";
+    public void evalMouseEvent(GenericMouseEvent e) {
+        GenericPoint pTemp = e.getPoint();
+        if (mainFrame.talkCount != 0) {
+            mainFrame.Clipset = false;
+        }
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+            TalkPerson = 0;
+        }
+        outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true)
-            {
-                return;
-            }
-    
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
+
         // Wenn Krabat - Animation, dann normales Gameplay aussetzen
-        if (mainFrame.krabat.nAnimation != 0)
-            {
-                return;
-            }    
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-            {
-                // linker Maustaste
-                if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-                    {
-			nextActionID = 0;
+        if (mainFrame.invCursor == true) {
+            // linker Maustaste
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                nextActionID = 0;
 
-                        Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.KrabatRect();
 
-                        // Aktion, wenn Krabat angeclickt wurde
-                        if (tmp.IsPointInRect (pTemp) == true)
-                            {
-                                nextActionID = 500 + mainFrame.whatItem;
-                                mainFrame.repaint();
-                                return;
-                            }	
+                // Aktion, wenn Krabat angeclickt wurde
+                if (tmp.IsPointInRect(pTemp) == true) {
+                    nextActionID = 500 + mainFrame.whatItem;
+                    mainFrame.repaint();
+                    return;
+                }
 
-			// Ausreden fuer woda
-			if (brWoda.IsPointInRect (pTemp) == true)
-			    {
-				pTemp = Pwoda;
-				nextActionID = 150;
-			    }
+                // Ausreden fuer woda
+                if (brWoda.IsPointInRect(pTemp) == true) {
+                    pTemp = Pwoda;
+                    nextActionID = 150;
+                }
 
-			// Ausreden fuer wokno
-			if (brWokno.IsPointInRect (pTemp) == true)
-			    {
-				pTemp = Pwokno;
-				nextActionID = 155;
-			    }
+                // Ausreden fuer wokno
+                if (brWokno.IsPointInRect(pTemp) == true) {
+                    pTemp = Pwokno;
+                    nextActionID = 155;
+                }
 
-                        // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                        SetzeNeuenWeg (pTemp);
-                        mainFrame.repaint();
+                // wenn nichts anderes gewaehlt, dann nur hinlaufen
+                SetzeNeuenWeg(pTemp);
+                mainFrame.repaint();
+            }
+
+            // rechte Maustaste
+            else {
+                // grundsaetzlich Gegenstand wieder ablegen
+                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                nextActionID = 0;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
+                return;
+            }
+        }
+
+        // normaler Cursor, normale Reaktion
+        else {
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+                // linke Maustaste
+                nextActionID = 0;
+
+                // nach Unten gehen ?
+                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                    nextActionID = 100;
+                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+
+                    // Wenn nahe am Ausgang, dann "gerade" verlassen
+                    if (untererAusgang.IsPointInRect(kt) == false) {
+                        pTemp = Pdown;
+                    } else {
+                        pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
-      
-                // rechte Maustaste
-                else
-                    {
-                        // grundsaetzlich Gegenstand wieder ablegen
-                        mainFrame.invCursor = false;
-                        evalMouseMoveEvent (mainFrame.Mousepoint);
-                        nextActionID = 0;
+
+                    if (mainFrame.dClick == true) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
-                    }  
-            }
-
-        // normaler Cursor, normale Reaktion
-        else
-            {
-                if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-                    {   
-                        // linke Maustaste
-                        nextActionID = 0;
-
-                        // nach Unten gehen ?
-                        if (untererAusgang.IsPointInRect (pTemp) == true)
-                            { 
-                                nextActionID = 100;
-                                GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-                                // Wenn nahe am Ausgang, dann "gerade" verlassen
-                                if (untererAusgang.IsPointInRect (kt) == false)
-                                    {
-                                        pTemp = Pdown;
-                                    }
-                                else
-                                    {
-                                        pTemp = new GenericPoint (kt.x, Pdown.y);
-                                    }
-            
-                                if (mainFrame.dClick == true)
-                                    {
-                                        mainFrame.krabat.StopWalking();
-                                        mainFrame.repaint();
-                                        return;
-                                    }  
-                            }
-
-                        // nach Oben gehen
-                        if (obererAusgang.IsPointInRect (pTemp) == true)
-                            {
-                                nextActionID = 101;
-                                GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-                                // Wenn nahe am Ausgang, dann "gerade" verlassen
-                                if (obererAusgang.IsPointInRect (kt) == false)
-                                    {
-                                        pTemp = Pup;
-                                    }
-                                else
-                                    {
-                                        pTemp = new GenericPoint (kt.x, Pup.y);
-                                    }
-            
-                                if (mainFrame.dClick == true)
-                                    {
-                                        mainFrame.krabat.StopWalking();
-                                        mainFrame.repaint();
-                                        return;
-                                    }  
-                            }
-
-			// Anschauen woda
-			if (brWoda.IsPointInRect (pTemp) == true)
-			    {
-				pTemp = Pwoda;
-				nextActionID = 1;
-			    }
-
-			// Anschauen wokno
-			if (brWokno.IsPointInRect (pTemp) == true)
-			    {
-				pTemp = Pwokno;
-				nextActionID = 5;
-			    }
-
-                        SetzeNeuenWeg (pTemp);
-                        mainFrame.repaint();
                     }
-      
-                else
-                    {
-                        // rechte Maustaste
+                }
 
-                        // Njedz Anschauen
-                        if (untererAusgang.IsPointInRect (pTemp) == true)
-                            { 
-                                return;
-                            }
+                // nach Oben gehen
+                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                    nextActionID = 101;
+                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
-                        // Kolmc anschauen
-                        if (obererAusgang.IsPointInRect (pTemp) == true)
-                            {
-                                return;  
-                            }
-        
-			// Woda mitnehmen
-			if (brWoda.IsPointInRect (pTemp) == true)
-			    {
-				nextActionID = 50;
-				mainFrame.wegGeher.SetzeNeuenWeg (Pwoda);
-				mainFrame.repaint();
-				return;
-			    }
+                    // Wenn nahe am Ausgang, dann "gerade" verlassen
+                    if (obererAusgang.IsPointInRect(kt) == false) {
+                        pTemp = Pup;
+                    } else {
+                        pTemp = new GenericPoint(kt.x, Pup.y);
+                    }
 
-			// Wokno mitnehmen
-			if (brWokno.IsPointInRect (pTemp) == true)
-			    {
-				nextActionID = 55;
-				mainFrame.wegGeher.SetzeNeuenWeg (Pwokno);
-				mainFrame.repaint();
-				return;
-			    }
-
-                        // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
-                        nextActionID = 123;
+                    if (mainFrame.dClick == true) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
+                        return;
                     }
+                }
+
+                // Anschauen woda
+                if (brWoda.IsPointInRect(pTemp) == true) {
+                    pTemp = Pwoda;
+                    nextActionID = 1;
+                }
+
+                // Anschauen wokno
+                if (brWokno.IsPointInRect(pTemp) == true) {
+                    pTemp = Pwokno;
+                    nextActionID = 5;
+                }
+
+                SetzeNeuenWeg(pTemp);
+                mainFrame.repaint();
+            } else {
+                // rechte Maustaste
+
+                // Njedz Anschauen
+                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                    return;
+                }
+
+                // Kolmc anschauen
+                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                    return;
+                }
+
+                // Woda mitnehmen
+                if (brWoda.IsPointInRect(pTemp) == true) {
+                    nextActionID = 50;
+                    mainFrame.wegGeher.SetzeNeuenWeg(Pwoda);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Wokno mitnehmen
+                if (brWokno.IsPointInRect(pTemp) == true) {
+                    nextActionID = 55;
+                    mainFrame.wegGeher.SetzeNeuenWeg(Pwokno);
+                    mainFrame.repaint();
+                    return;
+                }
+
+                // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
+                nextActionID = 123;
+                mainFrame.krabat.StopWalking();
+                mainFrame.repaint();
             }
+        }
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
-    public void evalMouseMoveEvent (GenericPoint pTemp)
-    {
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0))
-            {
-                if (Cursorform != 20)
-                    {
-                        Cursorform = 20;
-                        mainFrame.setCursor (mainFrame.Nix);
-                    }
-                return;		
+        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+            if (Cursorform != 20) {
+                Cursorform = 20;
+                mainFrame.setCursor(mainFrame.Nix);
             }
-  
+            return;
+        }
+
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-            {
-                // hier kommt Routine hin, die Highlight berechnet
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
-                if ((tmp.IsPointInRect (pTemp) == true) || (brWoda.IsPointInRect (pTemp) == true) ||
-		    (brWokno.IsPointInRect (pTemp) == true))
-                    {
-                        mainFrame.invHighCursor = true;
-                    }
-                else mainFrame.invHighCursor = false;
-    	
-                if ((Cursorform != 10) && (mainFrame.invHighCursor == false))
-                    {
-                        Cursorform = 10;
-                        mainFrame.setCursor (mainFrame.Cinventar);
-                    }
-    	
-                if ((Cursorform != 11) && (mainFrame.invHighCursor == true))
-                    {
-                        Cursorform = 11;
-                        mainFrame.setCursor (mainFrame.CHinventar);
-                    }	
+        if (mainFrame.invCursor == true) {
+            // hier kommt Routine hin, die Highlight berechnet
+            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            if ((tmp.IsPointInRect(pTemp) == true) || (brWoda.IsPointInRect(pTemp) == true) ||
+                    (brWokno.IsPointInRect(pTemp) == true)) {
+                mainFrame.invHighCursor = true;
+            } else {
+                mainFrame.invHighCursor = false;
             }
 
-  	
+            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+                Cursorform = 10;
+                mainFrame.setCursor(mainFrame.Cinventar);
+            }
+
+            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+                Cursorform = 11;
+                mainFrame.setCursor(mainFrame.CHinventar);
+            }
+        }
+
+
         // normaler Cursor, normale Reaktion
-        else
-            {
-                if ((brWoda.IsPointInRect (pTemp) == true) || (brWokno.IsPointInRect (pTemp) == true))
-		    {
-			if (Cursorform != 1)
-			    {
-				mainFrame.setCursor (mainFrame.Kreuz);
-				Cursorform = 1;
-			    }
-			return;
-		    }
-
-                if (obererAusgang.IsPointInRect (pTemp) == true)
-                    {
-                        if (Cursorform != 4)
-                            {
-                                mainFrame.setCursor (mainFrame.Cup);
-                                Cursorform = 4;
-                            }
-                        return;
-                    }
-
-                if (untererAusgang.IsPointInRect (pTemp) == true)
-                    {
-                        if (Cursorform != 5)
-                            {
-                                mainFrame.setCursor (mainFrame.Cdown);
-                                Cursorform = 5;
-                            }
-                        return;
-                    }
-    
-                // sonst normal-Cursor
-                if (Cursorform != 0)
-                    {
-                        mainFrame.setCursor (mainFrame.Normal);
-                        Cursorform = 0;
-                    }
+        else {
+            if ((brWoda.IsPointInRect(pTemp) == true) || (brWokno.IsPointInRect(pTemp) == true)) {
+                if (Cursorform != 1) {
+                    mainFrame.setCursor(mainFrame.Kreuz);
+                    Cursorform = 1;
+                }
+                return;
             }
+
+            if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 4) {
+                    mainFrame.setCursor(mainFrame.Cup);
+                    Cursorform = 4;
+                }
+                return;
+            }
+
+            if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (Cursorform != 5) {
+                    mainFrame.setCursor(mainFrame.Cdown);
+                    Cursorform = 5;
+                }
+                return;
+            }
+
+            // sonst normal-Cursor
+            if (Cursorform != 0) {
+                mainFrame.setCursor(mainFrame.Normal);
+                Cursorform = 0;
+            }
+        }
     }
 
     // Routinen fuer veraendertes Laufen auf definierter Linie, deaktiviert!!!
-  
-    private void SetzeNeuenWeg (GenericPoint dest)
-    {
-  	// GenericPoint right = CorrectSetX (dest);
-  	// mainFrame.wegGeher.SetzeNeuenWeg (right);
 
-	// Routine wird nicht mehr genutzt
-  	mainFrame.wegGeher.SetzeNeuenWeg (dest);
+    private void SetzeNeuenWeg(GenericPoint dest) {
+        // GenericPoint right = CorrectSetX (dest);
+        // mainFrame.wegGeher.SetzeNeuenWeg (right);
+
+        // Routine wird nicht mehr genutzt
+        mainFrame.wegGeher.SetzeNeuenWeg(dest);
     }		
   
     /*
@@ -640,7 +586,7 @@ public class Wotrow extends Mainloc
 
 	*/
 
-  	// X - Koordinate beim Laufen nur auf definiertem Stueck beachten
+    // X - Koordinate beim Laufen nur auf definiertem Stueck beachten
   	/*if (dst.y < 148) return dst;
 	  if (dst.y > 387) return dst;
 	  else return (new GenericPoint ((Carray [dst.y - 148]), dst.y));*/
@@ -654,271 +600,261 @@ public class Wotrow extends Mainloc
 
 	*/
 
-  	// Hier wird Y-Koordinate auch in anderen Rects beeinflusst -> "Ausschalten" der BestRect - Routine
+    // Hier wird Y-Koordinate auch in anderen Rects beeinflusst -> "Ausschalten" der BestRect - Routine
   	/*if (dst.y < 148) return (new GenericPoint (CorrectX (new GenericPoint (dst.x, 148))));
 	  if (dst.y > 387) return dst;
 
 	  return (new GenericPoint (Carray [dst.y - 148], dst.y));*/
     // }
-    
+
     // dieses Event nicht beachten
-    public void evalMouseExitEvent (GenericMouseEvent e) {
+    public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
-    public void evalKeyEvent (GenericKeyEvent e)
-    {
+    public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) return;
+        if (mainFrame.invCursor == true) {
+            return;
+        }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) return;
+        if (mainFrame.fPlayAnim == true) {
+            return;
+        }
 
         // Bei Krabat - Animation keine Keys
-        if (mainFrame.krabat.nAnimation != 0) return;
+        if (mainFrame.krabat.nAnimation != 0) {
+            return;
+        }
 
         // Nur auf Funktionstasten reagieren
         int Taste = e.getKeyCode();
 
         // Hauptmenue aktivieren
-        if (Taste == GenericKeyEvent.VK_F1)
-            {
-                Keyclear();
-                nextActionID = 122;
-                mainFrame.repaint();
-                return;
-            }    
+        if (Taste == GenericKeyEvent.VK_F1) {
+            Keyclear();
+            nextActionID = 122;
+            mainFrame.repaint();
+            return;
+        }
 
         // Save - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F2)
-            {
-                Keyclear();
-                nextActionID = 121;
-                mainFrame.repaint();
-                return;
-            }
+        if (Taste == GenericKeyEvent.VK_F2) {
+            Keyclear();
+            nextActionID = 121;
+            mainFrame.repaint();
+            return;
+        }
 
         // Load - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F3)
-            {
-                Keyclear();
-                nextActionID = 120;
-                mainFrame.repaint();
-                return;
-            } 
-    }  
+        if (Taste == GenericKeyEvent.VK_F3) {
+            Keyclear();
+            nextActionID = 120;
+            mainFrame.repaint();
+            return;
+        }
+    }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear()
-    {
-        outputText="";
-        if (mainFrame.talkCount > 1) mainFrame.talkCount = 1;
+    private void Keyclear() {
+        outputText = "";
+        if (mainFrame.talkCount > 1) {
+            mainFrame.talkCount = 1;
+        }
         mainFrame.Clipset = false;
         mainFrame.isAnim = false;
         mainFrame.krabat.StopWalking();
     }
 
     // Umgebungs-Sounds abspielen
-    private void evalSound ()
-    {
-        int zfz = (int) (Math.random () * 100);
+    private void evalSound() {
+        int zfz = (int) (Math.random() * 100);
 
         if (zfz > 92) {
-            mainFrame.wave.PlayFile ("sfx/grillen.wav");
+            mainFrame.wave.PlayFile("sfx/grillen.wav");
         }
 
         if (zfz > 98) {
-            int zfz2 = (int) (Math.random () * 1.99f);
-            
-            if (zfz2 < 1)
-                mainFrame.wave.PlayFile ("sfx/uhu1.wav");
-            else
-                mainFrame.wave.PlayFile ("sfx/uhu2.wav");
+            int zfz2 = (int) (Math.random() * 1.99f);
+
+            if (zfz2 < 1) {
+                mainFrame.wave.PlayFile("sfx/uhu1.wav");
+            } else {
+                mainFrame.wave.PlayFile("sfx/uhu2.wav");
+            }
         }
     }
 
-    private void Blink (GenericDrawingContext g)
-    {
-        g.setColor (blinkFarbe);				
-  	
-  	// System.out.println ("Blinkern...");
-  	
-  	// Das Array Stueck fuer Stueck abarbeiten
-  	for (int i = 0; i < MerkArray.length; i++)
-            {
-  		for (int j = 0; j < MerkArray[i].length; j++)
-                    {
-                        // nur bearbeiten, falls der Eintrag nicht gesperrt ist
-                        if (MerkArray[i][j][2] > -1)
-                            {
-                                // ein leeres Feld bekommt einen neuen Eintrag zugewiesen
-                                if ((MerkArray[i][j][0] == 0) && (MerkArray[i][j][1] == 0))
-                                    {
-		  			// gewisse Haeufigkeit fuer Neubelegung festlegen
-		  			int zuffZahl = (int) Math.round (Math.random () * 50);
-		  			if (zuffZahl > 25)
-                                            {
-		  				// Werte fuer Zufallsgenerator berechnen
-                                                int xlaenge = ((Blink[i].x2 > Blink[i].x4) ? Blink[i].x2 : Blink[i].x4)
-                                                    - ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3); 
-                                                int ylaenge = Blink[i].y2 - Blink[i].y1;	          
-                                                int xoffset = ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
-  			
-                                                // ungueltige Werte nicht beachten
-                                                do
-                                                    {
-                                                        MerkArray[i][j][0] = (int) Math.round (Math.random () * xlaenge) + xoffset;
-                                                        MerkArray[i][j][1] = (int) Math.round (Math.random () * ylaenge) + Blink[i].y1;
-                                                    }  
-                                                while (Blink[i].PointInside (new GenericPoint (MerkArray[i][j][0], MerkArray[i][j][1])) == false);
-                                            }  
-                                    }
-  		    
-                                // wenn der Eintrag gueltig ist, dann auch zeichnen
-                                if ((MerkArray[i][j][0] != 0) && (MerkArray[i][j][1] != 0))
-                                    {	
-                                        // den Eintrag zeichnen
-                                        switch (MerkArray[i][j][2])
-                                            {
-                                            case 0: // Ein Punkt
-					    case 1:
-                                                g.drawLine (MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
-                                                break;
-          			
-                                            case 2: // Zwei Punkte
-					    case 3:
-                                                g.drawLine (MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
-                                                break;
-          			
-                                            case 4: // Drei Punkte
-					    case 5:
-                                                g.drawLine (MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 2, MerkArray[i][j][1]);
-                                                break;
-          			
-                                            case 6: // Zwei Punkte
-					    case 7:
-                                                g.drawLine (MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
-                                                break;
-          			
-                                            case 8: // Ein Punkt
-					    case 9:
-                                                g.drawLine (MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
-                                                break;
-          
-                                            default: 
-						System.out.println ("Fehler in Blinkerroutine !!!");
-            
-                                            }			
-          
-                                        // Status weiterzaehlen
-                                        MerkArray[i][j][2]++;
-    	      
-                                        // System.out.println ("Ein Blinker wurde gezeichnet.");
-      	    
-                                        // wenn zuende, dann loeschen
-                                        if (MerkArray[i][j][2] > ANIMZUSTAENDE)
-                                            {
-                                                MerkArray[i][j][0] = 0;
-                                                MerkArray[i][j][1] = 0;
-                                                MerkArray[i][j][2] = 0;
-                                            }
-                                    }  		
+    private void Blink(GenericDrawingContext g) {
+        g.setColor(blinkFarbe);
+
+        // System.out.println ("Blinkern...");
+
+        // Das Array Stueck fuer Stueck abarbeiten
+        for (int i = 0; i < MerkArray.length; i++) {
+            for (int j = 0; j < MerkArray[i].length; j++) {
+                // nur bearbeiten, falls der Eintrag nicht gesperrt ist
+                if (MerkArray[i][j][2] > -1) {
+                    // ein leeres Feld bekommt einen neuen Eintrag zugewiesen
+                    if ((MerkArray[i][j][0] == 0) && (MerkArray[i][j][1] == 0)) {
+                        // gewisse Haeufigkeit fuer Neubelegung festlegen
+                        int zuffZahl = (int) Math.round(Math.random() * 50);
+                        if (zuffZahl > 25) {
+                            // Werte fuer Zufallsgenerator berechnen
+                            int xlaenge = ((Blink[i].x2 > Blink[i].x4) ? Blink[i].x2 : Blink[i].x4)
+                                    - ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+                            int ylaenge = Blink[i].y2 - Blink[i].y1;
+                            int xoffset = ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+
+                            // ungueltige Werte nicht beachten
+                            do {
+                                MerkArray[i][j][0] = (int) Math.round(Math.random() * xlaenge) + xoffset;
+                                MerkArray[i][j][1] = (int) Math.round(Math.random() * ylaenge) + Blink[i].y1;
                             }
+                            while (Blink[i].PointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])) == false);
+                        }
                     }
-            }				
+
+                    // wenn der Eintrag gueltig ist, dann auch zeichnen
+                    if ((MerkArray[i][j][0] != 0) && (MerkArray[i][j][1] != 0)) {
+                        // den Eintrag zeichnen
+                        switch (MerkArray[i][j][2]) {
+                            case 0: // Ein Punkt
+                            case 1:
+                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
+                                break;
+
+                            case 2: // Zwei Punkte
+                            case 3:
+                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
+                                break;
+
+                            case 4: // Drei Punkte
+                            case 5:
+                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 2, MerkArray[i][j][1]);
+                                break;
+
+                            case 6: // Zwei Punkte
+                            case 7:
+                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
+                                break;
+
+                            case 8: // Ein Punkt
+                            case 9:
+                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
+                                break;
+
+                            default:
+                                System.out.println("Fehler in Blinkerroutine !!!");
+
+                        }
+
+                        // Status weiterzaehlen
+                        MerkArray[i][j][2]++;
+
+                        // System.out.println ("Ein Blinker wurde gezeichnet.");
+
+                        // wenn zuende, dann loeschen
+                        if (MerkArray[i][j][2] > ANIMZUSTAENDE) {
+                            MerkArray[i][j][0] = 0;
+                            MerkArray[i][j][1] = 0;
+                            MerkArray[i][j][2] = 0;
+                        }
+                    }
+                }
+            }
+        }
     }
-   
+
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction ()
-    {
+    private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if ((mainFrame.krabat.isWandering == true) ||
-            (mainFrame.krabat.isWalking == true))
+                (mainFrame.krabat.isWalking == true)) {
             return;
+        }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600))
-            {
-                setKrabatAusrede();
-    	
-                // manche Ausreden erfordern neuen Cursor !!!
-    	
-                evalMouseMoveEvent (mainFrame.Mousepoint);
-    	
-                return;
-            }		
+        if ((nextActionID > 499) && (nextActionID < 600)) {
+            setKrabatAusrede();
 
-  	// Hier Evaluation der Screenaufrufe, in Superklasse
-  	if ((nextActionID > 119) && (nextActionID < 129))
-            {
-  		SwitchScreen ();
-  		return;
-            }		
-  	
+            // manche Ausreden erfordern neuen Cursor !!!
+
+            evalMouseMoveEvent(mainFrame.Mousepoint);
+
+            return;
+        }
+
+        // Hier Evaluation der Screenaufrufe, in Superklasse
+        if ((nextActionID > 119) && (nextActionID < 129)) {
+            SwitchScreen();
+            return;
+        }
+
         // Was soll Krabat machen ?
-        switch (nextActionID)
-            {
+        switch (nextActionID) {
 
-	    case 1:
-		// Look woda
-		KrabatSagt (Start.stringManager.getTranslation("Loc4_Wotrow_00003"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00004"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00005"),
-			    fWoda, 3, 0, 0);
-		break;
+            case 1:
+                // Look woda
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00003"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00004"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00005"),
+                        fWoda, 3, 0, 0);
+                break;
 
-	    case 5:
-		// Look Wokno
-		KrabatSagt (Start.stringManager.getTranslation("Loc4_Wotrow_00006"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00007"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00008"),
-			    fWokno, 3, 0, 0);
-		break;
+            case 5:
+                // Look Wokno
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00006"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00007"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00008"),
+                        fWokno, 3, 0, 0);
+                break;
 
-	    case 50:
-		// Use woda
-		KrabatSagt (Start.stringManager.getTranslation("Loc4_Wotrow_00009"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00010"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00011"),
-			    fWoda, 3, 0, 0);
-		break;
+            case 50:
+                // Use woda
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00009"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00010"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00011"),
+                        fWoda, 3, 0, 0);
+                break;
 
-	    case 55:
-		// Use wokno
-		KrabatSagt (Start.stringManager.getTranslation("Loc4_Wotrow_00012"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00013"),
-			    Start.stringManager.getTranslation("Loc4_Wotrow_00014"),
-			    fWokno, 3, 0, 0);
-		break;
+            case 55:
+                // Use wokno
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00012"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00013"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00014"),
+                        fWokno, 3, 0, 0);
+                break;
 
-	    case 150:
-		// Ausrede woda
-		DingAusrede (fWoda);
-		break;
+            case 150:
+                // Ausrede woda
+                DingAusrede(fWoda);
+                break;
 
-	    case 155:
-		// Ausrede wokno
-		DingAusrede (fWokno);
-		break;
+            case 155:
+                // Ausrede wokno
+                DingAusrede(fWokno);
+                break;
 
             case 100:
                 // Nicht zurueckgehen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Wotrow_00015"),
-                            Start.stringManager.getTranslation("Loc4_Wotrow_00016"),
-                            Start.stringManager.getTranslation("Loc4_Wotrow_00017"),
-                            fExit, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00015"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00016"),
+                        Start.stringManager.getTranslation("Loc4_Wotrow_00017"),
+                        fExit, 3, 0, 0);
                 break;
 
             case 101:
                 // Gehe zu Hrod
-                NeuesBild (201, 200);
+                NeuesBild(201, 200);
                 break;
 
             default:
-                System.out.println ("Falsche Action-ID !");
-            }
+                System.out.println("Falsche Action-ID !");
+        }
 
     }
 }

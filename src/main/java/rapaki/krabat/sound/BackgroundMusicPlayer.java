@@ -26,70 +26,71 @@ import rapaki.krabat.Start;
 
 /**
  * Klasse zum Abspielen der Krabat-Hintergrundmusik (Wiedergabe von MP3-Dateien). Die Benutzung
- * erfolgt als Singleton, das Abspielen wird stets im Hintergrund-Thread gestartet. 
- * 
+ * erfolgt als Singleton, das Abspielen wird stets im Hintergrund-Thread gestartet.
+ *
  * @author Stefan Saring
  */
 public class BackgroundMusicPlayer {
-    
+
     private static final String FILE_PREFIX = "titel";
 
     private static BackgroundMusicPlayer instance;
     private AbstractPlayer player;
-    
-    private BackgroundMusicPlayer (AbstractPlayer player) {
+
+    private BackgroundMusicPlayer(AbstractPlayer player) {
         // player = new MP3Player (urlBase);
         this.player = player;
         // player = new DummyPlayer(urlBase);
     }
-    
+
     /**
      * Liefert die einzige MusicPlayer-Instanz.
+     *
      * @return MusicPlayer
      */
-    public static BackgroundMusicPlayer getInstance () {
+    public static BackgroundMusicPlayer getInstance() {
         if (instance == null) {
             // TODO yes this is dirty!!!!
-            instance = new BackgroundMusicPlayer (Start.player);
+            instance = new BackgroundMusicPlayer(Start.player);
         }
         return instance;
     }
-    
+
     /**
      * Spielt den Track mit der angegebenen Nummer in einem Hintergrund-Thread ab. Eine
      * evtl. bereits laufende Wiedergabe wird zunächst gestoppt.
-     * 
+     *
      * @param trackNumber Nr des abzuspielenden Tracks
-     * @param repeat Flag, ob der Track im Endlos-Modus wiederholt werden soll
+     * @param repeat      Flag, ob der Track im Endlos-Modus wiederholt werden soll
      */
-    public void playTrack (int trackNumber, boolean repeat) {
+    public void playTrack(int trackNumber, boolean repeat) {
         // 1 abziehen, weil die ursprünglichen CD-Tracks mit 2 anfingen (Nr. 1 waren Daten)
         // => die MP3-Tracks fangen aber mit 1 an
-        player.play (getFilename (trackNumber - 1), repeat);
+        player.play(getFilename(trackNumber - 1), repeat);
     }
 
     public void pause() {
-    	player.pause();
+        player.pause();
     }
-    
+
     public void resume() {
-    	player.resume();
+        player.resume();
     }
-    
+
     /**
      * Beendet eine evtl. laufende Wiedergabe.
      */
-    public void stop () {
-        player.stop ();
+    public void stop() {
+        player.stop();
     }
-    
-    private String getFilename (int trackNumber) {
-        StringBuilder sb = new StringBuilder ();
-        sb.append (player.getMusicDir()).append (FILE_PREFIX);
+
+    private String getFilename(int trackNumber) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(player.getMusicDir()).append(FILE_PREFIX);
         if (trackNumber < 10) {
-            sb.append ("0");
+            sb.append("0");
         }
-        sb.append (trackNumber).append (player.getMusicSuffix());
-        return sb.toString ();
+        sb.append(trackNumber).append(player.getMusicSuffix());
+        return sb.toString();
     }
 }

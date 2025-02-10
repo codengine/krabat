@@ -24,87 +24,86 @@ import rapaki.krabat.Start;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class LogoPtack extends Mainanim
-{
-	private GenericImage[] vogel;
-	private int x,y;
-	private int animpos = 1;
-  private boolean last2 = false;
-  private boolean animlock = true;
-	
-	public LogoPtack (Start caller, int x, int y)
-  {
-    super (caller);
-    
-  	this.x = x;
-  	this.y = y;
-  	animpos = 1;
-  	  	  	
-  	vogel = new GenericImage[4];
-  	
-  	InitImages();
-  
-  }
-  
-	  private void InitImages()
-	  {
-			vogel[1] = getPicture ("gfx/intro/iv1.gif");
-			vogel[2] = getPicture ("gfx/intro/iv2.gif");
-			vogel[3] = getPicture ("gfx/intro/iv3.gif");
-	  }
-	  
-	  public void cleanup()
-	  {
-			vogel[1] = null;
-			vogel[2] = null;
-			vogel[3] = null;
-	  }
-	  
-  public boolean Flieg (GenericDrawingContext g)		
-  {
-    switch (animpos)
-    {
-    	case 1:
-    		// Gleitphase
-    		if ((Math.round (Math.random() * 30) < 20) && (y > 200))
-    		{
-    			if (last2 == true)
-    			{
-    				last2 = false;
-    				animpos = 3;
-    				animlock = true;
-    			}
-    			else
-    			{
-    				last2 = true;
-    				animpos = 2;
-    				animlock = true;
-    			}
-    		}						
-    		break;
-    	case 2:
-    		// Fluegelschlag 1. Richtung
-    		if (animlock == false) animpos = 1;
-    		else animlock = false;
-    		break;
-    	case 3:
-    		// Fluegelschlag 2. Richtung		
-    		if (animlock == false) animpos = 1;
-    		else animlock = false;
-    		break;
-    }			
-    
-    x -= 8;
-    if (animpos == 1)
-    {
-    	y += 1;
+public class LogoPtack extends Mainanim {
+    private GenericImage[] vogel;
+    private int x, y;
+    private int animpos = 1;
+    private boolean last2 = false;
+    private boolean animlock = true;
+
+    public LogoPtack(Start caller, int x, int y) {
+        super(caller);
+
+        this.x = x;
+        this.y = y;
+        animpos = 1;
+
+        vogel = new GenericImage[4];
+
+        InitImages();
+
     }
-    else y -= 1;		
-    
-    // g.setClip (xx, yy, xx + 50, yy + 50);
-    g.drawImage (vogel[animpos], x, y, null);
-    if (x < -50) return false;
-    else return true;
-  }
+
+    private void InitImages() {
+        vogel[1] = getPicture("gfx/intro/iv1.gif");
+        vogel[2] = getPicture("gfx/intro/iv2.gif");
+        vogel[3] = getPicture("gfx/intro/iv3.gif");
+    }
+
+    public void cleanup() {
+        vogel[1] = null;
+        vogel[2] = null;
+        vogel[3] = null;
+    }
+
+    public boolean Flieg(GenericDrawingContext g) {
+        switch (animpos) {
+            case 1:
+                // Gleitphase
+                if ((Math.round(Math.random() * 30) < 20) && (y > 200)) {
+                    if (last2 == true) {
+                        last2 = false;
+                        animpos = 3;
+                        animlock = true;
+                    } else {
+                        last2 = true;
+                        animpos = 2;
+                        animlock = true;
+                    }
+                }
+                break;
+            case 2:
+                // Fluegelschlag 1. Richtung
+                if (animlock == false) {
+                    animpos = 1;
+                } else {
+                    animlock = false;
+                }
+                break;
+            case 3:
+                // Fluegelschlag 2. Richtung
+                if (animlock == false) {
+                    animpos = 1;
+                } else {
+                    animlock = false;
+                }
+                break;
+        }
+
+        x -= 8;
+        if (animpos == 1) {
+            y += 1;
+        } else {
+            y -= 1;
+        }
+
+        // g.setClip (xx, yy, xx + 50, yy + 50);
+        g.drawImage(vogel[animpos], x, y, null);
+        if (x < -50) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }    						
     						

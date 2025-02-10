@@ -25,10 +25,9 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class KrabatWerfen extends Mainanim
-{
+public class KrabatWerfen extends Mainanim {
     private GenericImage[] krabat_werfen;
-	  
+
     private static final int CWIDTH = 100;
     private static final int CHEIGHT = 100;
 
@@ -42,67 +41,68 @@ public class KrabatWerfen extends Mainanim
     private int Verhinderwerfen;
 
     private static final int MAX_VERHINDERWERFEN = 2;
-	
-    public KrabatWerfen (Start caller)
-    {
-        super (caller);
-		
+
+    public KrabatWerfen(Start caller) {
+        super(caller);
+
         krabat_werfen = new GenericImage[4];
 
         InitImages();
 
         Verhinderwerfen = MAX_VERHINDERWERFEN;
-    } 
-	 
-    private void InitImages()
-    {
-        krabat_werfen[0] = getPicture ("gfx-dd/haska/k-l-kw1.gif");
-        krabat_werfen[1] = getPicture ("gfx-dd/haska/k-l-kw2.gif");
-        krabat_werfen[2] = getPicture ("gfx-dd/haska/k-l-kw3.gif");
-        krabat_werfen[3] = getPicture ("gfx-dd/haska/k-l-kw4.gif");
     }
-  
+
+    private void InitImages() {
+        krabat_werfen[0] = getPicture("gfx-dd/haska/k-l-kw1.gif");
+        krabat_werfen[1] = getPicture("gfx-dd/haska/k-l-kw2.gif");
+        krabat_werfen[2] = getPicture("gfx-dd/haska/k-l-kw3.gif");
+        krabat_werfen[3] = getPicture("gfx-dd/haska/k-l-kw4.gif");
+    }
+
     // Zeichne Krabat, wie er dasteht oder spricht
-    public boolean drawKrabat (GenericDrawingContext g, GenericPoint pos)
-    {
+    public boolean drawKrabat(GenericDrawingContext g, GenericPoint pos) {
         // Ermittlung der Hoehendifferenz beim Zooming
         float helper = (maxx - pos.y) / zoomf;
-        if (helper < 0) helper = 0;
+        if (helper < 0) {
+            helper = 0;
+        }
         helper += defScale;
-    
+
         int tHelper = (int) helper;
-    
+
         // Links-Oben-Pos berechnen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        int x = pos.x - ((CWIDTH  - tHelper) / 2);
+        int x = pos.x - ((CWIDTH - tHelper) / 2);
         int y = pos.y - (CHEIGHT - tHelper);
 
         // Krabat beim Schiessen zeichnen
-        g.setClip (x, y, CWIDTH - tHelper, CHEIGHT - tHelper);
-        g.drawImage (krabat_werfen[BildIndex], x, y, CWIDTH - tHelper, CHEIGHT - tHelper, null);
-    
+        g.setClip(x, y, CWIDTH - tHelper, CHEIGHT - tHelper);
+        g.drawImage(krabat_werfen[BildIndex], x, y, CWIDTH - tHelper, CHEIGHT - tHelper, null);
+
         boolean zurueck = true;
 
         // Warteschleife fuer das Weiterschalten des Images
-        if ((--Verhinderwerfen) < 1)
-            {
-                Verhinderwerfen = MAX_VERHINDERWERFEN;
-                BildIndex++;
+        if ((--Verhinderwerfen) < 1) {
+            Verhinderwerfen = MAX_VERHINDERWERFEN;
+            BildIndex++;
 
-		if (BildIndex == 1) mainFrame.wave.PlayFile ("sfx-dd/wusch2.wav");
+            if (BildIndex == 1) {
+                mainFrame.wave.PlayFile("sfx-dd/wusch2.wav");
+            }
 
-                if (BildIndex > 3)
-                    {
-                        // hier einen Umaluf weiterschalten
-                        --Umlaeufe;
-                        BildIndex = 0;
+            if (BildIndex > 3) {
+                // hier einen Umaluf weiterschalten
+                --Umlaeufe;
+                BildIndex = 0;
                         /*if (Umlaeufe < 1)
                             {
                                // Ende, wenn fertig!
                                 zurueck = false;
                             }*/
-                    }
-                if ((Umlaeufe == 0) && (BildIndex == 3)) zurueck = false;
             }
+            if ((Umlaeufe == 0) && (BildIndex == 3)) {
+                zurueck = false;
+            }
+        }
 
         // Bei true = weitermachen / false = fertig
         return (zurueck);

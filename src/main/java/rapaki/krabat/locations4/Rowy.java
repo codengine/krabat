@@ -29,8 +29,7 @@ import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.sound.BackgroundMusicPlayer;
 
-public class Rowy extends Mainloc
-{
+public class Rowy extends Mainloc {
     private GenericImage background, backgroundBright, grab, imSargOffen;
     private GenericImage krabat_aufstehen[] = new GenericImage[4];
     private GenericImage krabat_anzuenden[] = new GenericImage[3];
@@ -58,7 +57,7 @@ public class Rowy extends Mainloc
     private int AnimID = 10;
     private int AnimCounter = 0;
     private String AnimOutputText = "";
-    private GenericPoint AnimOutputTextPos = new GenericPoint (0, 0);
+    private GenericPoint AnimOutputTextPos = new GenericPoint(0, 0);
     private int AnimTalkPerson = 0;
     private boolean animActive = false;
 
@@ -72,40 +71,40 @@ public class Rowy extends Mainloc
 
     // konstante Rects
     private static final Borderrect horncy =
-            new Borderrect (551, 391, 639, 479);
+            new Borderrect(551, 391, 639, 479);
     private static final Borderrect swaixtix =
-            new Borderrect (144, 254, 192, 396);
+            new Borderrect(144, 254, 192, 396);
     private static final Borderrect swaixtixArm =
-            new Borderrect (124, 255, 141, 290);
+            new Borderrect(124, 255, 141, 290);
     private static final Borderrect swaixtixGefallen =
-            new Borderrect (16, 320, 160, 380);
+            new Borderrect(16, 320, 160, 380);
     private static final Borderrect syno =
-            new Borderrect (32, 434, 115, 479);
+            new Borderrect(32, 434, 115, 479);
     private static final Borderrect brMueller =
-            new Borderrect (268, 323, 298, 413);
+            new Borderrect(268, 323, 298, 413);
 
     // alle Graeber (von links oben nach rechts unten)
     private static final Borderrect brGrab1 =
-            new Borderrect (228, 368, 253, 396);
+            new Borderrect(228, 368, 253, 396);
     private static final Borderrect brGrab2 =
-            new Borderrect (280, 376, 325, 400);
+            new Borderrect(280, 376, 325, 400);
     private static final Borderrect brGrab3 = // (dieses Grab wird geoeffnet !)
-            new Borderrect (335, 391, 398, 416);
+            new Borderrect(335, 391, 398, 416);
     private static final Borderrect brGrab4 =
-            new Borderrect (356, 425, 470, 442);
+            new Borderrect(356, 425, 470, 442);
 
     // konstante Points
-    private static final GenericPoint Phorncy = new GenericPoint (520, 420);
-    private static final GenericPoint Pswaixtix = new GenericPoint (175, 430);
-    private static final GenericPoint PswaixtixArm = new GenericPoint (130, 395);
-    private static final GenericPoint Psyno = new GenericPoint (152, 455);
-    private static final GenericPoint muellerFeet = new GenericPoint (291, 420);
-    private static final GenericPoint pTalkToMueller = new GenericPoint (195, 430);
-    private static final GenericPoint pTouchMueller = new GenericPoint (242, 435);
-    private static final GenericPoint pGrab1 = new GenericPoint (236, 430);
-    private static final GenericPoint pGrab2 = new GenericPoint (295, 430);
-    private static final GenericPoint pGrab3 = new GenericPoint (320, 430);
-    private static final GenericPoint pGrab4 = new GenericPoint (330, 438);
+    private static final GenericPoint Phorncy = new GenericPoint(520, 420);
+    private static final GenericPoint Pswaixtix = new GenericPoint(175, 430);
+    private static final GenericPoint PswaixtixArm = new GenericPoint(130, 395);
+    private static final GenericPoint Psyno = new GenericPoint(152, 455);
+    private static final GenericPoint muellerFeet = new GenericPoint(291, 420);
+    private static final GenericPoint pTalkToMueller = new GenericPoint(195, 430);
+    private static final GenericPoint pTouchMueller = new GenericPoint(242, 435);
+    private static final GenericPoint pGrab1 = new GenericPoint(236, 430);
+    private static final GenericPoint pGrab2 = new GenericPoint(295, 430);
+    private static final GenericPoint pGrab3 = new GenericPoint(320, 430);
+    private static final GenericPoint pGrab4 = new GenericPoint(330, 438);
 
     // konstante ints
     private static final int fHorncy = 3;
@@ -121,14 +120,14 @@ public class Rowy extends Mainloc
 
     // String fuer Muellerdrohen
     private static final String HMuellerDrohen[] = {Start.stringManager.getTranslation("Loc4_Rowy_00000"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00001"), Start.stringManager.getTranslation("Loc4_Rowy_00002"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00003"), Start.stringManager.getTranslation("Loc4_Rowy_00004"), Start.stringManager.getTranslation("Loc4_Rowy_00005")};
+            Start.stringManager.getTranslation("Loc4_Rowy_00001"), Start.stringManager.getTranslation("Loc4_Rowy_00002"),
+            Start.stringManager.getTranslation("Loc4_Rowy_00003"), Start.stringManager.getTranslation("Loc4_Rowy_00004"), Start.stringManager.getTranslation("Loc4_Rowy_00005")};
     private static final String DMuellerDrohen[] = {Start.stringManager.getTranslation("Loc4_Rowy_00006"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00007"), Start.stringManager.getTranslation("Loc4_Rowy_00008"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00009"), Start.stringManager.getTranslation("Loc4_Rowy_00010"), Start.stringManager.getTranslation("Loc4_Rowy_00011")};
+            Start.stringManager.getTranslation("Loc4_Rowy_00007"), Start.stringManager.getTranslation("Loc4_Rowy_00008"),
+            Start.stringManager.getTranslation("Loc4_Rowy_00009"), Start.stringManager.getTranslation("Loc4_Rowy_00010"), Start.stringManager.getTranslation("Loc4_Rowy_00011")};
     private static final String NMuellerDrohen[] = {Start.stringManager.getTranslation("Loc4_Rowy_00012"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00013"), Start.stringManager.getTranslation("Loc4_Rowy_00014"),
-    Start.stringManager.getTranslation("Loc4_Rowy_00015"), Start.stringManager.getTranslation("Loc4_Rowy_00016"), Start.stringManager.getTranslation("Loc4_Rowy_00017")};
+            Start.stringManager.getTranslation("Loc4_Rowy_00013"), Start.stringManager.getTranslation("Loc4_Rowy_00014"),
+            Start.stringManager.getTranslation("Loc4_Rowy_00015"), Start.stringManager.getTranslation("Loc4_Rowy_00016"), Start.stringManager.getTranslation("Loc4_Rowy_00017")};
 
     private static final String[] knochenText = {Start.stringManager.getTranslation("Loc4_Rowy_00018"), Start.stringManager.getTranslation("Loc4_Rowy_00019"), Start.stringManager.getTranslation("Loc4_Rowy_00020")}; // habe ich hier eingefuegt, damit Texte immer nur hier oben oder in DoActions -> leicht auffindbar...
 
@@ -141,19 +140,19 @@ public class Rowy extends Mainloc
     private boolean zeigeGrab = false;
 
     private int fledermausActionID = 0;
-    private final static GenericPoint fledermausStartPos = new GenericPoint (265, 325);
-    private final static GenericPoint fledermausSitzPos = new GenericPoint (532, 195);
-    private final static GenericPoint fledermausEndPos = new GenericPoint (265, 350);
-    private GenericPoint fledermausCurrentPos = new GenericPoint (265, 325);
+    private final static GenericPoint fledermausStartPos = new GenericPoint(265, 325);
+    private final static GenericPoint fledermausSitzPos = new GenericPoint(532, 195);
+    private final static GenericPoint fledermausEndPos = new GenericPoint(265, 350);
+    private GenericPoint fledermausCurrentPos = new GenericPoint(265, 325);
     private int fledermausCounter = 0;
     private int fledermausQuasselFrame = 0;
 
     private boolean isSchafDa = false;
-    private final static GenericPoint schafPosLO = new GenericPoint (426, 395);
+    private final static GenericPoint schafPosLO = new GenericPoint(426, 395);
     private int schafCounter = 1;
     private int schafMeckerFrame = 0;
     private boolean schnauzeSchaf = false;
-    
+
     private boolean muellerExplodiert = false;
     private int muellerExplosionCounter = 0;
 
@@ -165,175 +164,171 @@ public class Rowy extends Mainloc
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Rowy (Start caller, int oldLocation)
-    {
-        super (caller);
-        mainFrame.Freeze (true);
+    public Rowy(Start caller, int oldLocation) {
+        super(caller);
+        mainFrame.Freeze(true);
 
-        mainFrame.CheckKrabat ();
+        mainFrame.CheckKrabat();
 
-        BackgroundMusicPlayer.getInstance ().playTrack (17, true);
+        BackgroundMusicPlayer.getInstance().playTrack(17, true);
 
         mainFrame.krabat.maxx = 430;
         mainFrame.krabat.zoomf = 4.5f;
         mainFrame.krabat.defScale = -25;  // -45 war zu gross (Jan)
 
-        mueller = new Mlynk2 (mainFrame);
+        mueller = new Mlynk2(mainFrame);
         mueller.maxx = 0;
         mueller.zoomf = 1f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos (muellerFeet);
-        mueller.SetFacing (9);
+        mueller.SetMlynkPos(muellerFeet);
+        mueller.SetFacing(9);
 
-        alterMueller = new Oldmlynk (mainFrame, Muellerzooming, true);
-        
-        muellerMorph = new Bumm (mainFrame);
+        alterMueller = new Oldmlynk(mainFrame, Muellerzooming, true);
 
-        muellerPoint = new GenericPoint ();
+        muellerMorph = new Bumm(mainFrame);
+
+        muellerPoint = new GenericPoint();
         muellerPoint.x = muellerFeet.x - (Oldmlynk.Breite / 2);
         muellerPoint.y = muellerFeet.y - Oldmlynk.Hoehe;
 
-        muellerTalk = new GenericPoint ();
+        muellerTalk = new GenericPoint();
         muellerTalk.x = muellerFeet.x;
         muellerTalk.y = muellerPoint.y - 50;
 
-        InitLocation (oldLocation);
-        mainFrame.Freeze (false);
+        InitLocation(oldLocation);
+        mainFrame.Freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation (int oldLocation)
-    {
-        initLocationWalkingRects ();
-        InitImages ();
-        switch (oldLocation)
-        {
+    private void InitLocation(int oldLocation) {
+        initLocationWalkingRects();
+        InitImages();
+        switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 // Berechnen, ob Mueller da ist
                 muellerda = mainFrame.Actions[985];
-                if (muellerda == true)
+                if (muellerda == true) {
                     animActive = true;
+                }
                 break;
             case 201:
                 // von Hrodz aus
-                mainFrame.krabat.SetKrabatPos (new GenericPoint (475, 455));
-                mainFrame.krabat.SetFacing (6);
+                mainFrame.krabat.SetKrabatPos(new GenericPoint(475, 455));
+                mainFrame.krabat.SetFacing(6);
                 // hier sofort Aufstehsequenz abspielen
                 mainFrame.fPlayAnim = true;
-		initSound = false; // nur hier darf der Sound gespielt werden
+                initSound = false; // nur hier darf der Sound gespielt werden
                 nextActionID = 100;
                 break;
         }
     }
 
     // begehbare Breiche initialisieren
-    public void initLocationWalkingRects ()
-    {
+    public void initLocationWalkingRects() {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements ();
-        mainFrame.wegGeher.vBorders.addElement (
-            new Bordertrapez (112, 330, 175, 330, 430, 479));
-        mainFrame.wegGeher.vBorders.addElement (
-            new Bordertrapez (331, 454, 494, 456));
-        mainFrame.wegGeher.vBorders.addElement (
-            new Bordertrapez (495, 410, 525, 479));
-        mainFrame.wegGeher.vBorders.addElement (
-            new Bordertrapez (432, 505, 432, 525, 383, 409));
+        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.wegGeher.vBorders.addElement(
+                new Bordertrapez(112, 330, 175, 330, 430, 479));
+        mainFrame.wegGeher.vBorders.addElement(
+                new Bordertrapez(331, 454, 494, 456));
+        mainFrame.wegGeher.vBorders.addElement(
+                new Bordertrapez(495, 410, 525, 479));
+        mainFrame.wegGeher.vBorders.addElement(
+                new Bordertrapez(432, 505, 432, 525, 383, 409));
 
         // wenn Swaixtix noch nicht umgefallen -> Treppe (5. Trapez) noch da
-        if (mainFrame.Actions[986] == false)
-            mainFrame.wegSucher.ClearMatrix (5);
-        else
-            mainFrame.wegSucher.ClearMatrix (4);
+        if (mainFrame.Actions[986] == false) {
+            mainFrame.wegSucher.ClearMatrix(5);
+        } else {
+            mainFrame.wegSucher.ClearMatrix(4);
+        }
 
-        mainFrame.wegSucher.PosVerbinden (0, 1); 
-        mainFrame.wegSucher.PosVerbinden (1, 2);
-        mainFrame.wegSucher.PosVerbinden (2, 3);
+        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.wegSucher.PosVerbinden(2, 3);
 
         // wenn Swaixtix noch nicht umgefallen -> Treppe (5. Trapez) hinzufuegen
-        if (mainFrame.Actions[986] == false)
-        {
-            mainFrame.wegGeher.vBorders.addElement (
-                new Bordertrapez (130, 131, 112, 114, 395, 429));
+        if (mainFrame.Actions[986] == false) {
+            mainFrame.wegGeher.vBorders.addElement(
+                    new Bordertrapez(130, 131, 112, 114, 395, 429));
 
-            mainFrame.wegSucher.PosVerbinden (0, 4);
+            mainFrame.wegSucher.PosVerbinden(0, 4);
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages ()
-    {
-        background = getPicture ("gfx/wotrow/rowy1.gif");
-        backgroundBright = getPicture ("gfx/wotrow/rowy2.gif");
-        grab = getPicture ("gfx/wotrow/sarg.gif");
-        imSargOffen = getPicture ("gfx/wotrow/rsarg.gif");
-        imSchaale = getPicture ("gfx/wotrow/rskla.gif");
-        imStroh = getPicture ("gfx/wotrow/rstroh.gif");
-        imKorraktor = getPicture ("gfx/wotrow/rkniha.gif");
-    
-        krabat_aufstehen[0] = getPicture ("gfx/anims/k-u-takeunten.gif");
-        krabat_aufstehen[1] = getPicture ("gfx/anims/k-u-10.gif");
-        krabat_aufstehen[2] = getPicture ("gfx/wotrow/k-u-lookleft.gif");
-        krabat_aufstehen[3] = getPicture ("gfx/wotrow/k-u-lookright.gif");
-        krabat_anzuenden[0] = getPicture ("gfx/wotrow/k-o-kamj1.gif");
-        krabat_anzuenden[1] = getPicture ("gfx/wotrow/k-o-kamj2.gif");
-        krabat_anzuenden[2] = getPicture ("gfx/wotrow/k-o-kamj3.gif");
-        krabat_grab_oeffnen = getPicture ("gfx/anims/k-r-takeunten.gif");
-        krabat_links_back[0] = getPicture ("gfx/wotrow/k-l-lb1.gif");
-        krabat_links_back[1] = getPicture ("gfx/wotrow/k-l-lb2.gif");
-        krabat_links_back[2] = getPicture ("gfx/wotrow/k-l-lb3.gif");
-        krabat_links_back[3] = getPicture ("gfx/wotrow/k-l-lb4.gif");
-        krabat_links_zucken = getPicture ("gfx/wotrow/k-l-zucken.gif");
-        krabat_links_stehen = getPicture ("gfx/anims/k-l-10.gif");
-        alter_mueller[0] = getPicture ("gfx/wotrow/rdml.gif");
-        alter_mueller[1] = getPicture ("gfx/wotrow/rdml2.gif");
+    private void InitImages() {
+        background = getPicture("gfx/wotrow/rowy1.gif");
+        backgroundBright = getPicture("gfx/wotrow/rowy2.gif");
+        grab = getPicture("gfx/wotrow/sarg.gif");
+        imSargOffen = getPicture("gfx/wotrow/rsarg.gif");
+        imSchaale = getPicture("gfx/wotrow/rskla.gif");
+        imStroh = getPicture("gfx/wotrow/rstroh.gif");
+        imKorraktor = getPicture("gfx/wotrow/rkniha.gif");
 
-        fledermaus[0] = getPicture ("gfx/wotrow/fmaus1a.gif");
-        fledermaus[1] = getPicture ("gfx/wotrow/fmaus2a.gif");
-        fledermaus[2] = getPicture ("gfx/wotrow/fmaus1.gif");
-        fledermaus[3] = getPicture ("gfx/wotrow/fmaus2.gif");
+        krabat_aufstehen[0] = getPicture("gfx/anims/k-u-takeunten.gif");
+        krabat_aufstehen[1] = getPicture("gfx/anims/k-u-10.gif");
+        krabat_aufstehen[2] = getPicture("gfx/wotrow/k-u-lookleft.gif");
+        krabat_aufstehen[3] = getPicture("gfx/wotrow/k-u-lookright.gif");
+        krabat_anzuenden[0] = getPicture("gfx/wotrow/k-o-kamj1.gif");
+        krabat_anzuenden[1] = getPicture("gfx/wotrow/k-o-kamj2.gif");
+        krabat_anzuenden[2] = getPicture("gfx/wotrow/k-o-kamj3.gif");
+        krabat_grab_oeffnen = getPicture("gfx/anims/k-r-takeunten.gif");
+        krabat_links_back[0] = getPicture("gfx/wotrow/k-l-lb1.gif");
+        krabat_links_back[1] = getPicture("gfx/wotrow/k-l-lb2.gif");
+        krabat_links_back[2] = getPicture("gfx/wotrow/k-l-lb3.gif");
+        krabat_links_back[3] = getPicture("gfx/wotrow/k-l-lb4.gif");
+        krabat_links_zucken = getPicture("gfx/wotrow/k-l-zucken.gif");
+        krabat_links_stehen = getPicture("gfx/anims/k-l-10.gif");
+        alter_mueller[0] = getPicture("gfx/wotrow/rdml.gif");
+        alter_mueller[1] = getPicture("gfx/wotrow/rdml2.gif");
 
-        fledermausSitzen[0] = getPicture ("gfx/wotrow/fmaus3.gif");
-        fledermausSitzen[1] = getPicture ("gfx/wotrow/fmaus3a.gif");
-        fledermausSitzen[2] = getPicture ("gfx/wotrow/fmaus3b.gif");
+        fledermaus[0] = getPicture("gfx/wotrow/fmaus1a.gif");
+        fledermaus[1] = getPicture("gfx/wotrow/fmaus2a.gif");
+        fledermaus[2] = getPicture("gfx/wotrow/fmaus1.gif");
+        fledermaus[3] = getPicture("gfx/wotrow/fmaus2.gif");
 
-        schaf[0] = getPicture ("gfx/wotrow/rschaf.gif");
-        schaf[1] = getPicture ("gfx/wotrow/rschaf2.gif");
-        schaf[2] = getPicture ("gfx/wotrow/rschaf3.gif");
-        
-        imFeuer[0]  =   getPicture ("gfx/wjes/wn0.gif");
-        imFeuer[1]  =   getPicture ("gfx/wjes/wn1.gif");
-        imFeuer[2]  =   getPicture ("gfx/wjes/wn2.gif");
-        imFeuer[3]  =   getPicture ("gfx/wjes/wn3.gif");
-        imFeuer[4]  =   getPicture ("gfx/wjes/wn4.gif");
-        imFeuer[5]  =   getPicture ("gfx/wjes/wn5.gif");
-        imFeuer[6]  =   getPicture ("gfx/wjes/wn6.gif");
-        imFeuer[7]  =   getPicture ("gfx/wjes/wn7.gif");
-        imFeuer[8]  =   getPicture ("gfx/wjes/wn8.gif");
-        imFeuer[9]  =   getPicture ("gfx/wjes/wn9.gif");
-        imFeuer[10] =   getPicture ("gfx/wjes/wn10.gif");
-        
-        imSwaixtixKippen[0] = getPicture ("gfx/wotrow/sw1.gif");
-        imSwaixtixKippen[1] = getPicture ("gfx/wotrow/sw2.gif");
-        imSwaixtixKippen[2] = getPicture ("gfx/wotrow/sw3.gif");
-        imSwaixtixKippen[3] = getPicture ("gfx/wotrow/sw4.gif");
-        imSwaixtixKippen[4] = getPicture ("gfx/wotrow/sw6.gif");
-        imSwaixtixKippen[5] = getPicture ("gfx/wotrow/sw5.gif");
-        imOhneSwaixtix = getPicture ("gfx/wotrow/rback.gif");
+        fledermausSitzen[0] = getPicture("gfx/wotrow/fmaus3.gif");
+        fledermausSitzen[1] = getPicture("gfx/wotrow/fmaus3a.gif");
+        fledermausSitzen[2] = getPicture("gfx/wotrow/fmaus3b.gif");
 
-        muellerExplosion[0] = getPicture ("gfx/wotrow/rml1.gif");
-        muellerExplosion[1] = getPicture ("gfx/wotrow/rml2.gif");
-        muellerExplosion[2] = getPicture ("gfx/wotrow/rml3.gif");
-        muellerExplosion[3] = getPicture ("gfx/wotrow/rml4.gif");
-        muellerExplosion[4] = getPicture ("gfx/wotrow/rml5.gif");
-        muellerExplosion[5] = getPicture ("gfx/wotrow/rml6.gif");
-        muellerExplosion[6] = getPicture ("gfx/wotrow/rml7.gif");
-        muellerExplosion[7] = getPicture ("gfx/wotrow/rml8.gif");
-        muellerExplosion[8] = getPicture ("gfx/wotrow/rml9.gif");
-        muellerExplosion[9] = getPicture ("gfx/wotrow/rml10.gif");
-        muellerExplosion[10] = getPicture ("gfx/wotrow/rml11.gif");
+        schaf[0] = getPicture("gfx/wotrow/rschaf.gif");
+        schaf[1] = getPicture("gfx/wotrow/rschaf2.gif");
+        schaf[2] = getPicture("gfx/wotrow/rschaf3.gif");
+
+        imFeuer[0] = getPicture("gfx/wjes/wn0.gif");
+        imFeuer[1] = getPicture("gfx/wjes/wn1.gif");
+        imFeuer[2] = getPicture("gfx/wjes/wn2.gif");
+        imFeuer[3] = getPicture("gfx/wjes/wn3.gif");
+        imFeuer[4] = getPicture("gfx/wjes/wn4.gif");
+        imFeuer[5] = getPicture("gfx/wjes/wn5.gif");
+        imFeuer[6] = getPicture("gfx/wjes/wn6.gif");
+        imFeuer[7] = getPicture("gfx/wjes/wn7.gif");
+        imFeuer[8] = getPicture("gfx/wjes/wn8.gif");
+        imFeuer[9] = getPicture("gfx/wjes/wn9.gif");
+        imFeuer[10] = getPicture("gfx/wjes/wn10.gif");
+
+        imSwaixtixKippen[0] = getPicture("gfx/wotrow/sw1.gif");
+        imSwaixtixKippen[1] = getPicture("gfx/wotrow/sw2.gif");
+        imSwaixtixKippen[2] = getPicture("gfx/wotrow/sw3.gif");
+        imSwaixtixKippen[3] = getPicture("gfx/wotrow/sw4.gif");
+        imSwaixtixKippen[4] = getPicture("gfx/wotrow/sw6.gif");
+        imSwaixtixKippen[5] = getPicture("gfx/wotrow/sw5.gif");
+        imOhneSwaixtix = getPicture("gfx/wotrow/rback.gif");
+
+        muellerExplosion[0] = getPicture("gfx/wotrow/rml1.gif");
+        muellerExplosion[1] = getPicture("gfx/wotrow/rml2.gif");
+        muellerExplosion[2] = getPicture("gfx/wotrow/rml3.gif");
+        muellerExplosion[3] = getPicture("gfx/wotrow/rml4.gif");
+        muellerExplosion[4] = getPicture("gfx/wotrow/rml5.gif");
+        muellerExplosion[5] = getPicture("gfx/wotrow/rml6.gif");
+        muellerExplosion[6] = getPicture("gfx/wotrow/rml7.gif");
+        muellerExplosion[7] = getPicture("gfx/wotrow/rml8.gif");
+        muellerExplosion[8] = getPicture("gfx/wotrow/rml9.gif");
+        muellerExplosion[9] = getPicture("gfx/wotrow/rml10.gif");
+        muellerExplosion[10] = getPicture("gfx/wotrow/rml11.gif");
 
         loadPicture();
     }
@@ -341,345 +336,327 @@ public class Rowy extends Mainloc
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintLocation (GenericDrawingContext g)
-    {
-	// Sound bei init
-	if (initSound == false)
-	    {
-		initSound = true;
-		mainFrame.wave.PlayFile ("sfx/schildlegen.wav");
-	    }
+    public void paintLocation(GenericDrawingContext g) {
+        // Sound bei init
+        if (initSound == false) {
+            initSound = true;
+            mainFrame.wave.PlayFile("sfx/schildlegen.wav");
+        }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false)
-        {
+        if (mainFrame.Clipset == false) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
-            evalMouseMoveEvent (mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.Mousepoint);
             mainFrame.Clipset = true;
-            g.setClip (0, 0, 644, 484);
+            g.setClip(0, 0, 644, 484);
             mainFrame.isAnim = true;
         }
 
         // Sonderbild "Grab" oder normale Location malen ?
-        if (zeigeGrab == true)
-        {
-            g.drawImage (grab, 0, 0, null);
+        if (zeigeGrab == true) {
+            g.drawImage(grab, 0, 0, null);
 
             // Schrei des Schreckens zeigen ?
-            if (sonderAnimCounter < 24) 
-            {
-                mainFrame.ifont.drawString (g, knochenText[mainFrame.sprache - 1], 210, 230, FarbenArray[1]);
+            if (sonderAnimCounter < 24) {
+                mainFrame.ifont.drawString(g, knochenText[mainFrame.sprache - 1], 210, 230, FarbenArray[1]);
             }
-        }
-        else
-        {
+        } else {
             // normaler Ablauf -> Hintergrund und Krabat zeichnen
 
             // wenn Swaixtix brennt -> hellen Hintergrund zeichnen
-            if (mainFrame.Actions[984] == false)
-                g.drawImage (background, 0, 0, null);
-            else
-                g.drawImage (backgroundBright, 0, 0, null);
-            
+            if (mainFrame.Actions[984] == false) {
+                g.drawImage(background, 0, 0, null);
+            } else {
+                g.drawImage(backgroundBright, 0, 0, null);
+            }
+
             // hat Kabat schon Schaale (982) und Stroh (983) hingelegt ?
-            if ((mainFrame.Actions[982] == true) || (mainFrame.Actions[983] == true))
-            {
-                g.setClip (122, 260, 22, 20);
-                if (mainFrame.Actions[982] == true)
-                    g.drawImage (imSchaale, 123, 261, null);
-                if (mainFrame.Actions[983] == true)
-                    g.drawImage (imStroh, 123, 261, null);
+            if ((mainFrame.Actions[982] == true) || (mainFrame.Actions[983] == true)) {
+                g.setClip(122, 260, 22, 20);
+                if (mainFrame.Actions[982] == true) {
+                    g.drawImage(imSchaale, 123, 261, null);
+                }
+                if (mainFrame.Actions[983] == true) {
+                    g.drawImage(imStroh, 123, 261, null);
+                }
             }
 
             // ist 3.Grab bereits offen ?
             if (mainFrame.Actions[987] == true) {
-                g.setClip (312, 376, 117, 54);
-                g.drawImage (imSargOffen, 313, 377, null);
+                g.setClip(312, 376, 117, 54);
+                g.drawImage(imSargOffen, 313, 377, null);
             }
-            
+
             // ist Swaixtix umgefallen -> mit Hintergrund ueberpinseln !
-            if (mainFrame.Actions[986] == true) 
-            {
-                g.setClip (0, 244, 251, 177);
-                g.drawImage (imOhneSwaixtix, 0, 244, null);
-                
+            if (mainFrame.Actions[986] == true) {
+                g.setClip(0, 244, 251, 177);
+                g.drawImage(imOhneSwaixtix, 0, 244, null);
+
                 // liegt der Korraktor noch auf dem Swaixtix-Sockel ? 
-                if (mainFrame.Actions[985] == false)
-                    g.drawImage (imKorraktor, 145, 387, null);
-                
-                // Umfall-Animation abspielen ???
-                if (SonderAnim == 5)
-                {
-                    if (sonderAnimCounter > 10) {
-                        g.drawImage (imSwaixtixKippen[0], 103, 248, null);
-                        g.drawImage (imFeuer[0], 101, 252, null);
-                    }
-                    else {
-                        if (sonderAnimCounter > 8) {
-                            g.drawImage (imSwaixtixKippen[1], 81, 250, null);
-                            g.drawImage (imFeuer[0], 78, 257, null);
-                        }
-                        else {
-                            if (sonderAnimCounter > 6) {
-                                g.drawImage (imSwaixtixKippen[2], 62, 260, null);
-                                g.drawImage (imFeuer[0], 60, 267, null);
-                            }
-                            else {
-                                if (sonderAnimCounter > 4) {
-                                    g.drawImage (imSwaixtixKippen[3], 41, 270, null);
-                                    g.drawImage (imFeuer[0], 38, 283, null);
-                                }
-                                else {
-                                    if (sonderAnimCounter > 2) {
-                                        g.drawImage (imSwaixtixKippen[4], 22, 282, null);
-                                        g.drawImage (imFeuer[0], 23, 300, null);
-                                    }
-                                    else {
-                                        g.drawImage (imSwaixtixKippen[5], 7, 286, null);
-                                        g.drawImage (imFeuer[0], 8, 331, null);
-					if (swaixtixSound == false) {
-					    swaixtixSound = true;
-					    mainFrame.wave.PlayFile ("sfx-dd/schlag.wav");
-					}
-                                    }
-                                }
-                            }
-                        }
-                    }
+                if (mainFrame.Actions[985] == false) {
+                    g.drawImage(imKorraktor, 145, 387, null);
                 }
-                else {
-                    g.drawImage (imSwaixtixKippen[5], 7, 286, null);
+
+                // Umfall-Animation abspielen ???
+                if (SonderAnim == 5) {
+                    if (sonderAnimCounter > 10) {
+                        g.drawImage(imSwaixtixKippen[0], 103, 248, null);
+                        g.drawImage(imFeuer[0], 101, 252, null);
+                    } else {
+                        if (sonderAnimCounter > 8) {
+                            g.drawImage(imSwaixtixKippen[1], 81, 250, null);
+                            g.drawImage(imFeuer[0], 78, 257, null);
+                        } else {
+                            if (sonderAnimCounter > 6) {
+                                g.drawImage(imSwaixtixKippen[2], 62, 260, null);
+                                g.drawImage(imFeuer[0], 60, 267, null);
+                            } else {
+                                if (sonderAnimCounter > 4) {
+                                    g.drawImage(imSwaixtixKippen[3], 41, 270, null);
+                                    g.drawImage(imFeuer[0], 38, 283, null);
+                                } else {
+                                    if (sonderAnimCounter > 2) {
+                                        g.drawImage(imSwaixtixKippen[4], 22, 282, null);
+                                        g.drawImage(imFeuer[0], 23, 300, null);
+                                    } else {
+                                        g.drawImage(imSwaixtixKippen[5], 7, 286, null);
+                                        g.drawImage(imFeuer[0], 8, 331, null);
+                                        if (swaixtixSound == false) {
+                                            swaixtixSound = true;
+                                            mainFrame.wave.PlayFile("sfx-dd/schlag.wav");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    g.drawImage(imSwaixtixKippen[5], 7, 286, null);
                 }
             }
-            
+
             // brennt Swajxtix's Fote ? -> Feueranimation abspielen (nicht bei Swaixtix-Umkippen)
-            if ((mainFrame.Actions[984] == true) && (SonderAnim != 5))
-            {
-                switchAnim = ! (switchAnim);
-                if (switchAnim == true)
-                {
+            if ((mainFrame.Actions[984] == true) && (SonderAnim != 5)) {
+                switchAnim = !(switchAnim);
+                if (switchAnim == true) {
                     feuerAnimCount++;
-                    if (feuerAnimCount == 11) feuerAnimCount = 0;
-                }  
+                    if (feuerAnimCount == 11) {
+                        feuerAnimCount = 0;
+                    }
+                }
                 // Feuer an welcher Position (steht/liegt Swaixtix ?) ?
                 if (mainFrame.Actions[986] == false) {
-                    g.setClip (120, 248, 26, 26);
-                    g.drawImage (imFeuer[feuerAnimCount], 120, 248, null);
-                }
-                else {
-                    g.setClip (8, 331, 26, 26);
-                    g.drawImage (imFeuer[feuerAnimCount], 8, 331, null);
+                    g.setClip(120, 248, 26, 26);
+                    g.drawImage(imFeuer[feuerAnimCount], 120, 248, null);
+                } else {
+                    g.setClip(8, 331, 26, 26);
+                    g.drawImage(imFeuer[feuerAnimCount], 8, 331, null);
                 }
             }
-            
+
             // Morphing-Rauchanimationen abspielen ?
-            if (isMuellerMorphing == true)
-            {
+            if (isMuellerMorphing == true) {
                 // -> dann zeichne jetzt Hintergrund neu, bevor Figuren draufkommen
-                g.setClip (muellerMorph.bummRect ());
-                drawSpecialBackgrounds (g);
+                g.setClip(muellerMorph.bummRect());
+                drawSpecialBackgrounds(g);
             }
-            
+
             // Mueller Hintergrund loeschen
-            if (muellerda == true)
-            {
+            if (muellerda == true) {
                 // Clipping - Rectangle feststellen und setzen
-		Borderrect temp;
-		if (mueller.GetFacing () == 3) temp = mueller.MlynkRectMitStockAndersrum();
-		else temp = mueller.MlynkRectMitStock ();
-                g.setClip (temp.lo_point.x - 10, temp.lo_point.y - 10,
+                Borderrect temp;
+                if (mueller.GetFacing() == 3) {
+                    temp = mueller.MlynkRectMitStockAndersrum();
+                } else {
+                    temp = mueller.MlynkRectMitStock();
+                }
+                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
                         temp.ru_point.x - temp.lo_point.x + 20,
                         temp.ru_point.y - temp.lo_point.y + 20);
-                drawSpecialBackgrounds (g);
-		// System.out.println ("Loesch-Koordinaten: " + temp.lo_point.x + " " + temp.lo_point.y + " bis " + temp.ru_point.x + " " + temp.ru_point.y);
+                drawSpecialBackgrounds(g);
+                // System.out.println ("Loesch-Koordinaten: " + temp.lo_point.x + " " + temp.lo_point.y + " bis " + temp.ru_point.x + " " + temp.ru_point.y);
             }
 
             // Mueller bewegen
-            if ((muellerda == true) && (walkReady == false))
-            {
+            if ((muellerda == true) && (walkReady == false)) {
                 // Mueller um 1 Schritt weiterbewegen (nur virtuell)
                 walkReady = mueller.Move();
             }
 
             // Mueller zeichnen
-            if (muellerda == true)
-            {
+            if (muellerda == true) {
                 // Facing checken (nach links oder rechts glotzen, je nach Krabat)
-		Borderrect temp;
-                if (mainFrame.krabat.GetKrabatPos().x > muellerFeet.x)
-		    {
-			mueller.SetFacing (3);
-			temp = mueller.MlynkRectMitStockAndersrum();
-		    }
-                else
-		    {
-			mueller.SetFacing (9);
-			temp = mueller.MlynkRectMitStock ();
-		    }
+                Borderrect temp;
+                if (mainFrame.krabat.GetKrabatPos().x > muellerFeet.x) {
+                    mueller.SetFacing(3);
+                    temp = mueller.MlynkRectMitStockAndersrum();
+                } else {
+                    mueller.SetFacing(9);
+                    temp = mueller.MlynkRectMitStock();
+                }
 
                 // Clipping - Rectangle feststellen und setzen (30 Pixel wegen Kij dazu (SS))
-                g.setClip (temp.lo_point.x - 10, temp.lo_point.y - 10,
-			   temp.ru_point.x - temp.lo_point.x + 20,
-			   temp.ru_point.y - temp.lo_point.y + 20);
-		// System.out.println ("Zeichen-Koordinaten: " + temp.lo_point.x + " " + temp.lo_point.y + " bis " + temp.ru_point.x + " " + temp.ru_point.y);
+                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
+                        temp.ru_point.x - temp.lo_point.x + 20,
+                        temp.ru_point.y - temp.lo_point.y + 20);
+                // System.out.println ("Zeichen-Koordinaten: " + temp.lo_point.x + " " + temp.lo_point.y + " bis " + temp.ru_point.x + " " + temp.ru_point.y);
 
                 // Zeichne ihn jetzt
 
                 // Redet er etwa gerade ??
                 if (((TalkPerson == 36) && (mainFrame.talkCount > 0)) ||
-                        (AnimOutputText != ""))
-                {
+                        (AnimOutputText != "")) {
                     // Nach 4 Frames erneut entscheiden, ob Mueller mit oder ohne Stock redet
-                    if ((muellerTalkCounter++) % 4 == 0)
-                    {
-                        if (((int) (Math.random () * 2)) == 0)
+                    if ((muellerTalkCounter++) % 4 == 0) {
+                        if (((int) (Math.random() * 2)) == 0) {
                             muellerTalkWithStock = false;
-                        else
+                        } else {
                             muellerTalkWithStock = true;
+                        }
                     }
 
                     // Mueller redet (mit oder ohne Stock ?)
                     if (muellerTalkWithStock == false) {
-                        mueller.talkMlynk (g);
-                    }
-                    else {
+                        mueller.talkMlynk(g);
+                    } else {
                         // bei "mit Stock reden" Richtung beachten !
-                        if (mueller.GetFacing () == 9)
-                            mueller.talkMlynkWithKij (g);
-                        else
-                            mueller.talkMlynkWithKijAndersrum (g, true);  // STock ist immer oben
+                        if (mueller.GetFacing() == 9) {
+                            mueller.talkMlynkWithKij(g);
+                        } else {
+                            mueller.talkMlynkWithKijAndersrum(g, true);  // STock ist immer oben
+                        }
                     }
                 }
                 // nur rumstehen oder laufen
-                else
-                {
-                    if (istMuellerSchonTot == false) 
-			mueller.drawMlynk (g);
-		    else // mit Zwinkern aufhoeren
-			mueller.drawMlynkWithoutZwinkern (g);
+                else {
+                    if (istMuellerSchonTot == false) {
+                        mueller.drawMlynk(g);
+                    } else // mit Zwinkern aufhoeren
+                    {
+                        mueller.drawMlynkWithoutZwinkern(g);
+                    }
                 }
             }
 
             // alten Mueller zeichnen, wenn er da ist
-            if (alterMuellerda == true)
-            {
-                g.setClip (muellerPoint.x, muellerPoint.y,
+            if (alterMuellerda == true) {
+                g.setClip(muellerPoint.x, muellerPoint.y,
                         Oldmlynk.Breite, Oldmlynk.Hoehe);
-                drawSpecialBackgrounds (g);
+                drawSpecialBackgrounds(g);
 
-                alterMueller.drawOldmlynk (g, TalkPerson, muellerPoint);
+                alterMueller.drawOldmlynk(g, TalkPerson, muellerPoint);
             }
 
             // explodiert der Mueller zur Zeit ?
-            if (muellerExplodiert == true)
-            {
-                g.setClip (muellerPoint.x, muellerPoint.y,
-                           Oldmlynk.Breite, Oldmlynk.Hoehe);
-                drawSpecialBackgrounds (g);
+            if (muellerExplodiert == true) {
+                g.setClip(muellerPoint.x, muellerPoint.y,
+                        Oldmlynk.Breite, Oldmlynk.Hoehe);
+                drawSpecialBackgrounds(g);
 
-                if (muellerExplosionCounter < muellerExplosion.length * 2)
-                    g.drawImage (muellerExplosion[(muellerExplosionCounter++) / 2],
-                                 muellerPoint.x, muellerPoint.y, 
-                                 Oldmlynk.Breite, Oldmlynk.Hoehe, null);
-                else
+                if (muellerExplosionCounter < muellerExplosion.length * 2) {
+                    g.drawImage(muellerExplosion[(muellerExplosionCounter++) / 2],
+                            muellerPoint.x, muellerPoint.y,
+                            Oldmlynk.Breite, Oldmlynk.Hoehe, null);
+                } else {
                     muellerExplodiert = false;
+                }
             }
 
             // ist Fledermaus da ?
-            if (fledermausActionID > 0)
-            {
+            if (fledermausActionID > 0) {
                 // clip setzen und hintergrund ueberpinseln
-                g.setClip (fledermausCurrentPos.x - 2, fledermausCurrentPos.y - 2, 44, 34);
-                g.drawImage (backgroundBright, 0, 0, 640, 480, null);
+                g.setClip(fledermausCurrentPos.x - 2, fledermausCurrentPos.y - 2, 44, 34);
+                g.drawImage(backgroundBright, 0, 0, 640, 480, null);
 
-                switch (fledermausActionID)
-                {
-                    case 1: 
+                switch (fledermausActionID) {
+                    case 1:
                         // auf Kopfehoehe des Muellers flattern (vor Hochfliegen)
-                        g.drawImage (fledermaus[fledermausCounter++ % 2], 
-                                     fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                        g.drawImage(fledermaus[fledermausCounter++ % 2],
+                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
                         break;
 
                     case 2: // zur Decke hinauffliegen
                         // X-Verschiebung fuer Anim-Step berechnen
-                        float factorHoch = (fledermausSitzPos.x - fledermausStartPos.x) 
-                            / (float) (fledermausStartPos.y - fledermausSitzPos.y);
+                        float factorHoch = (fledermausSitzPos.x - fledermausStartPos.x)
+                                / (float) (fledermausStartPos.y - fledermausSitzPos.y);
                         int tempXDistHoch = (int) ((fledermausStartPos.y - fledermausCurrentPos.y) * factorHoch);
                         fledermausCurrentPos.x = fledermausStartPos.x + tempXDistHoch;
 
-                        g.drawImage (fledermaus[fledermausCounter++ % 2], 
-                                     fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                        g.drawImage(fledermaus[fledermausCounter++ % 2],
+                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
 
-                        if (fledermausCurrentPos.y >= fledermausSitzPos.y) 
+                        if (fledermausCurrentPos.y >= fledermausSitzPos.y) {
                             fledermausCurrentPos.y -= 2;
-                        else
+                        } else {
                             fledermausActionID = 3;
+                        }
                         break;
 
                     case 3: // an Decke haengen
-                        g.drawImage (fledermausSitzen[0], fledermausSitzPos.x, fledermausSitzPos.y, null);
+                        g.drawImage(fledermausSitzen[0], fledermausSitzPos.x, fledermausSitzPos.y, null);
                         break;
 
                     case 4: // an Decke haengen und reden (1 von den 3 QuasselFrames zeigen)
-                        g.drawImage (fledermausSitzen[fledermausQuasselFrame], fledermausSitzPos.x, fledermausSitzPos.y, null);
-                        if ((fledermausCounter++ % 3) == 0)
-                            fledermausQuasselFrame = (int) (Math.random () * 3);
+                        g.drawImage(fledermausSitzen[fledermausQuasselFrame], fledermausSitzPos.x, fledermausSitzPos.y, null);
+                        if ((fledermausCounter++ % 3) == 0) {
+                            fledermausQuasselFrame = (int) (Math.random() * 3);
+                        }
                         break;
 
                     case 5: // von Decke auf Kopfehoehe runterfliegen
                         // X-Verschiebung fuer Anim-Step berechnen
-                        float factorRunter = (fledermausSitzPos.x - fledermausEndPos.x) 
-                            / (float) (fledermausEndPos.y - fledermausSitzPos.y);
+                        float factorRunter = (fledermausSitzPos.x - fledermausEndPos.x)
+                                / (float) (fledermausEndPos.y - fledermausSitzPos.y);
                         int tempXDistRunter = (int) ((fledermausEndPos.y - fledermausCurrentPos.y) * factorRunter);
                         fledermausCurrentPos.x = fledermausEndPos.x + tempXDistRunter;
 
-                        g.drawImage (fledermaus[(fledermausCounter++ % 2) + 2], 
-                                     fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                        g.drawImage(fledermaus[(fledermausCounter++ % 2) + 2],
+                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
 
-                        if (fledermausCurrentPos.y <= fledermausEndPos.y) 
+                        if (fledermausCurrentPos.y <= fledermausEndPos.y) {
                             fledermausCurrentPos.y += 2;
-                       else
-                           fledermausActionID = 6;
-                       break;
+                        } else {
+                            fledermausActionID = 6;
+                        }
+                        break;
 
-                    case 6: 
+                    case 6:
                         // auf Kopfehoehe des Muellers flattern (nach Hochfliegen)
-                        g.drawImage (fledermaus[(fledermausCounter++ % 2) + 2], 
-                                     fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                        g.drawImage(fledermaus[(fledermausCounter++ % 2) + 2],
+                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
                         break;
                 }
             }
-            
+
             // ist Schaf da ?
-            if (isSchafDa == true)
-            {
+            if (isSchafDa == true) {
                 // clip setzen und hintergrund ueberpinseln
-                g.setClip (schafPosLO.x - 1, schafPosLO.y - 1, 120 + 2, 75 + 2);
-                g.drawImage (backgroundBright, 0, 0, 640, 480, null);
+                g.setClip(schafPosLO.x - 1, schafPosLO.y - 1, 120 + 2, 75 + 2);
+                g.drawImage(backgroundBright, 0, 0, 640, 480, null);
                 // Schaf malen
-                g.drawImage (schaf[schafMeckerFrame], schafPosLO.x, schafPosLO.y, null);
+                g.drawImage(schaf[schafMeckerFrame], schafPosLO.x, schafPosLO.y, null);
                 // aller 4 Frames soll Schaf was anderes machen
-                if ((schafCounter++ % 30) == 0)
-		    {
-			schafCounter = 1;
+                if ((schafCounter++ % 30) == 0) {
+                    schafCounter = 1;
 
-			schafMeckerFrame = (int) (Math.random () * 2.99);
+                    schafMeckerFrame = (int) (Math.random() * 2.99);
 
-			// Schafsbloeken synchron zum offenen Maul
-			if ((schafMeckerFrame == 2) && (schnauzeSchaf == false)) mainFrame.wave.PlayFile ("sfx/wowca.wav");
-		    }
+                    // Schafsbloeken synchron zum offenen Maul
+                    if ((schafMeckerFrame == 2) && (schnauzeSchaf == false)) {
+                        mainFrame.wave.PlayFile("sfx/wowca.wav");
+                    }
+                }
             }
-                
+
             // Morphing-Rauchanimationen abspielen ?
-            if (isMuellerMorphing == true)
-            {
+            if (isMuellerMorphing == true) {
                 // dann jetzt Rauchanimation zeichnen ueber Figuren zeichnen
-                g.setClip (muellerMorph.bummRect ());
-                muellerMorphCount = muellerMorph.drawBumm (g);
+                g.setClip(muellerMorph.bummRect());
+                muellerMorphCount = muellerMorph.drawBumm(g);
             }
-            
+
             // Debugging - Zeichnen der Laufrechtecke
             // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
@@ -687,65 +664,61 @@ public class Rowy extends Mainloc
             // evalSound ();    
 
             // Krabat einen Schritt gehen lassen
-            mainFrame.wegGeher.GeheWeg ();
+            mainFrame.wegGeher.GeheWeg();
 
             // Sonderanimationen fuer Krabat ?
-            if (SonderAnim != 0)
-            {
+            if (SonderAnim != 0) {
                 // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
-                GenericPoint hier = new GenericPoint (mainFrame.krabat.GetKrabatPos().x,
+                GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x,
                         mainFrame.krabat.GetKrabatPos().y);
 
                 // Groesse
                 int scale = mainFrame.krabat.defScale;
-                scale += (int)(((float) mainFrame.krabat.maxx -
+                scale += (int) (((float) mainFrame.krabat.maxx -
                         (float) hier.y) / mainFrame.krabat.zoomf);
 
                 // hier Test auf "nicht zu gross"
-                if (scale < mainFrame.krabat.defScale)
+                if (scale < mainFrame.krabat.defScale) {
                     scale = mainFrame.krabat.defScale;
+                }
 
                 // System.out.println ("Scale ist " + scale + " gross.");
 
                 // Hoehe: nur offset
-                int hoch = (int)(100 - scale);
+                int hoch = (int) (100 - scale);
 
                 // Breite abhaengig von Hoehe...
-                int weit = (int)(50 - (scale / 2));
+                int weit = (int) (50 - (scale / 2));
 
                 hier.x -= weit / 2;
                 hier.y -= hoch;
 
                 // Cliprect setzen
-                g.setClip (hier.x, hier.y, weit + 1, hoch + 1);
+                g.setClip(hier.x, hier.y, weit + 1, hoch + 1);
 
-                switch (SonderAnim)
-                {
+                switch (SonderAnim) {
                     case 1:
                         // Krabat sthet nach runterfallen wieder auf
                         if (sonderAnimCounter > 20) {
-                            g.drawImage (krabat_aufstehen[0],
-                                hier.x, hier.y, weit, hoch, null);
-                        }
-                        else {
-                            if (sonderAnimCounter > 14) {
-                                g.drawImage (krabat_aufstehen[1],
+                            g.drawImage(krabat_aufstehen[0],
                                     hier.x, hier.y, weit, hoch, null);
-                            }
-                            else {
-                                if (sonderAnimCounter > 7) {
-                                    g.drawImage (krabat_aufstehen[2],
+                        } else {
+                            if (sonderAnimCounter > 14) {
+                                g.drawImage(krabat_aufstehen[1],
                                         hier.x, hier.y, weit, hoch, null);
-                                }
-                                else {
-                                    if (sonderAnimCounter > 0) {
-                                        g.drawImage (krabat_aufstehen[3],
+                            } else {
+                                if (sonderAnimCounter > 7) {
+                                    g.drawImage(krabat_aufstehen[2],
                                             hier.x, hier.y, weit, hoch, null);
+                                } else {
+                                    if (sonderAnimCounter > 0) {
+                                        g.drawImage(krabat_aufstehen[3],
+                                                hier.x, hier.y, weit, hoch, null);
                                     }
                                 }
                             }
                         }
-            
+
                         // Aufstehsequenz beendet ?
                         sonderAnimCounter--;
                         if (sonderAnimCounter == 0) {
@@ -753,26 +726,24 @@ public class Rowy extends Mainloc
                             nextActionID = 101;
                         }
                         break;
-                        
+
                     case 2:
                         // Krabat zeundet Stroh bei Swaixtix an
                         if (sonderAnimCounter > 14) {
-                            g.drawImage (krabat_anzuenden[0],
-                                hier.x, hier.y, weit, hoch, null);
-                        }
-                        else {
-                            if (sonderAnimCounter > 7) {
-                                g.drawImage (krabat_anzuenden[1],
+                            g.drawImage(krabat_anzuenden[0],
                                     hier.x, hier.y, weit, hoch, null);
-                            }
-                            else {
-                                if (sonderAnimCounter > 0) {
-                                    g.drawImage (krabat_anzuenden[2],
+                        } else {
+                            if (sonderAnimCounter > 7) {
+                                g.drawImage(krabat_anzuenden[1],
                                         hier.x, hier.y, weit, hoch, null);
+                            } else {
+                                if (sonderAnimCounter > 0) {
+                                    g.drawImage(krabat_anzuenden[2],
+                                            hier.x, hier.y, weit, hoch, null);
                                 }
                             }
                         }
-            
+
                         // Aufstehsequenz beendet ?
                         sonderAnimCounter--;
                         if (sonderAnimCounter == 0) {
@@ -784,13 +755,14 @@ public class Rowy extends Mainloc
                     case 3:
                         // Krabat oeffnet Grab
                         // Cliprect setzen
-                        g.setClip (hier.x, hier.y, weit*2 + 1, hoch + 1);
-                        g.drawImage (krabat_grab_oeffnen,
-                            hier.x, hier.y, weit*2, hoch, null);
+                        g.setClip(hier.x, hier.y, weit * 2 + 1, hoch + 1);
+                        g.drawImage(krabat_grab_oeffnen,
+                                hier.x, hier.y, weit * 2, hoch, null);
 
-                        if (sonderAnimCounter == 3)
+                        if (sonderAnimCounter == 3) {
                             mainFrame.Actions[987] = true; // Flag fuer Grab offen
-                        
+                        }
+
                         // Grab-Oeffnen-Sequenz beenden ?
                         if (--sonderAnimCounter == 0) {
                             SonderAnim = 0;
@@ -802,34 +774,35 @@ public class Rowy extends Mainloc
                         // Krabat laeuft rueckwaets 
                         // --> Krabat im aktuellen Schritt zeichnen
                         int nrStep = sonderAnimCounter++ % 4;
-                        g.drawImage (krabat_links_back[nrStep],
-                            hier.x, hier.y, weit, hoch, null);
+                        g.drawImage(krabat_links_back[nrStep],
+                                hier.x, hier.y, weit, hoch, null);
 
                         // X-Position von Krabat um einen Schritt vermindern
-                        GenericPoint pCurrent = mainFrame.krabat.GetKrabatPos ();
+                        GenericPoint pCurrent = mainFrame.krabat.GetKrabatPos();
                         pCurrent.x -= 14;
-                        mainFrame.krabat.SetKrabatPos (pCurrent);
-                        
+                        mainFrame.krabat.SetKrabatPos(pCurrent);
+
                         // wenn Krabat kurz vor Swaixtix -> Laufen beenden
                         if (pCurrent.x < PswaixtixArm.x + 65) {
                             pCurrent.x = PswaixtixArm.x + 65;
-                            mainFrame.krabat.SetKrabatPos (pCurrent);
-			    // System.out.println ("Koordinaten fuer K vor Sw: " + pCurrent.x + " " + pCurrent.y);
+                            mainFrame.krabat.SetKrabatPos(pCurrent);
+                            // System.out.println ("Koordinaten fuer K vor Sw: " + pCurrent.x + " " + pCurrent.y);
                             SonderAnim = 0;
                             nextActionID = 1104;
                         }
                         break;
-                        
+
                     case 5:
                         // Krabat schmeisst Swaixtix um
                         // --> Krabat in Auffang-Position zeichnen
-                        
-                        if (sonderAnimCounter > 9)
-                            g.drawImage (krabat_links_zucken,
-                                hier.x, hier.y, weit, hoch, null);
-                        else
-                            g.drawImage (krabat_links_stehen,
-                                hier.x, hier.y, weit, hoch, null);
+
+                        if (sonderAnimCounter > 9) {
+                            g.drawImage(krabat_links_zucken,
+                                    hier.x, hier.y, weit, hoch, null);
+                        } else {
+                            g.drawImage(krabat_links_stehen,
+                                    hier.x, hier.y, weit, hoch, null);
+                        }
 
                         // Umschmeiss-Aktion beenden ?
                         if (--sonderAnimCounter <= 0) {
@@ -838,44 +811,39 @@ public class Rowy extends Mainloc
                         }
                         break;
                 }
-            }
-            else
-            {
+            } else {
                 // keine spezielle Sonderanimationen !
 
                 // Animation??
-                if (mainFrame.krabat.nAnimation != 0)
-                {
-                    mainFrame.krabat.DoAnimation (g);
+                if (mainFrame.krabat.nAnimation != 0) {
+                    mainFrame.krabat.DoAnimation(g);
 
                     // Cursorruecksetzung nach Animationsende
-                    if (mainFrame.krabat.nAnimation == 0)
-                        evalMouseMoveEvent (mainFrame.Mousepoint);
-                }
-                else
-                {
-                    if ((mainFrame.talkCount > 0) && (TalkPerson != 0))
-                    {
+                    if (mainFrame.krabat.nAnimation == 0) {
+                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                    }
+                } else {
+                    if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
                         // beim Reden
-                        switch (TalkPerson)
-                        {
+                        switch (TalkPerson) {
                             case 1:
                                 // Krabat spricht gestikulierend
-                                mainFrame.krabat.talkKrabat (g);
+                                mainFrame.krabat.talkKrabat(g);
                                 break;
                             case 3:
                                 // Krabat spricht im Monolog
-                                mainFrame.krabat.describeKrabat (g);
+                                mainFrame.krabat.describeKrabat(g);
                                 break;
                             default:
                                 // steht Krabat nur da
-                                mainFrame.krabat.drawKrabat (g);
+                                mainFrame.krabat.drawKrabat(g);
                                 break;
                         }
                     }
                     // Rumstehen oder Laufen
-                    else
-                        mainFrame.krabat.drawKrabat (g);
+                    else {
+                        mainFrame.krabat.drawKrabat(g);
+                    }
                 }
             }
 
@@ -884,14 +852,13 @@ public class Rowy extends Mainloc
         }
 
         // Ausgabe von Animoutputtext
-        if (AnimOutputText != "")
-        {
+        if (AnimOutputText != "") {
             // Textausgabe
-        	GenericRectangle may;
+            GenericRectangle may;
             may = g.getClipBounds();
-            g.setClip (0, 0, 644, 484);
+            g.setClip(0, 0, 644, 484);
             // um 45 Pixel hoeher zeichnen, dass sich Muelle-Mecker-Text nicht mit  Kr-Texten ueberscheiden !
-            mainFrame.ifont.drawString (g, AnimOutputText,
+            mainFrame.ifont.drawString(g, AnimOutputText,
                     AnimOutputTextPos.x, AnimOutputTextPos.y - 45,
                     FarbenArray[AnimTalkPerson]);
             g.setClip((int) may.getX(), (int) may.getY(),
@@ -899,145 +866,131 @@ public class Rowy extends Mainloc
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "")
-        {
+        if (outputText != "") {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
-            g.setClip (0, 0, 644, 484);
-            mainFrame.ifont.drawString (g, outputText, outputTextPos.x,
+            g.setClip(0, 0, 644, 484);
+            mainFrame.ifont.drawString(g, outputText, outputTextPos.x,
                     outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip((int) my.getX(), (int) my.getY(),
                     (int) my.getWidth(), (int) my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
-        if (mainFrame.talkCount > 0)
-        {
-            -- mainFrame.talkCount;
-            if (mainFrame.talkCount <= 1)
-            {
+        if (mainFrame.talkCount > 0) {
+            --mainFrame.talkCount;
+            if (mainFrame.talkCount <= 1) {
                 mainFrame.Clipset = false;
                 outputText = "";
                 TalkPerson = 0;
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1))
+        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
             TalkPause--;
+        }
 
         // Anims bedienen
-        if (animActive == true)
+        if (animActive == true) {
             DoAnims();
+        }
 
         // Gibt es was zu tun ?
         if ((nextActionID != 0) && (TalkPause < 1) &&
-                (mainFrame.talkCount < 1))
-            DoAction ();
+                (mainFrame.talkCount < 1)) {
+            DoAction();
+        }
     }
 
     // Zeichnen spezieller Background-Grafiken, die vom normalen Hintergrundbild
     // abweichen (z.B. offenes Grab bei Rauchanimation).
-    public void drawSpecialBackgrounds (GenericDrawingContext g)
-    {
+    public void drawSpecialBackgrounds(GenericDrawingContext g) {
         // Zeichne Hintergrund neu
-        g.drawImage (backgroundBright, 0, 0, null);
-        
+        g.drawImage(backgroundBright, 0, 0, null);
+
         // gekippte Saeule (+ sauberen Hintergrund) zeichnen, falls umgefallen
         if (mainFrame.Actions[986] == true) {
-            g.drawImage (imOhneSwaixtix, 0, 244, null);
-            g.drawImage (imSwaixtixKippen[5], 7, 286, null);
+            g.drawImage(imOhneSwaixtix, 0, 244, null);
+            g.drawImage(imSwaixtixKippen[5], 7, 286, null);
         }
 
         // wenn 3.Grab bereits offen ist, auch neu zeichnen
-        if (mainFrame.Actions[987] == true)
-            g.drawImage (imSargOffen, 313, 377, null);
+        if (mainFrame.Actions[987] == true) {
+            g.drawImage(imSargOffen, 313, 377, null);
+        }
     }
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
-    public void evalMouseEvent (GenericMouseEvent e)
-    {
-        GenericPoint pTemp = e.getPoint ();
-        if (mainFrame.talkCount != 0)
+    public void evalMouseEvent(GenericMouseEvent e) {
+        GenericPoint pTemp = e.getPoint();
+        if (mainFrame.talkCount != 0) {
             mainFrame.Clipset = false;
-        if (mainFrame.talkCount > 1)
+        }
+        if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
+        }
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true)
-        {
+        if (mainFrame.fPlayAnim == true) {
             return;
         }
 
         // Wenn Krabat - Animation, dann normales Gameplay aussetzen
-        if (mainFrame.krabat.nAnimation != 0)
-        {
+        if (mainFrame.krabat.nAnimation != 0) {
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-        {
+        if (mainFrame.invCursor == true) {
             // linker Maustaste
-            if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-            {
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
 
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect (pTemp) == true)
-                {
+                if (tmp.IsPointInRect(pTemp) == true) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer horncy
-                if (horncy.IsPointInRect (pTemp) == true)
-                {
+                if (horncy.IsPointInRect(pTemp) == true) {
                     pTemp = Phorncy;
                     nextActionID = 150;
                 }
 
                 // Ausreden fuer swaixtix
-                if (((swaixtix.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                    ((swaixtixGefallen.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == true)))
-                {
+                if (((swaixtix.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                        ((swaixtixGefallen.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == true))) {
                     pTemp = Pswaixtix;
                     nextActionID = 155;
                 }
 
                 // Ausreden fuer swaixtix's Arm
-                if ((swaixtixArm.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false))
-                {
-                    switch (mainFrame.whatItem)
-                    {
+                if ((swaixtixArm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) {
+                    switch (mainFrame.whatItem) {
                         case 60: // skla
                             nextActionID = 1000;
                             break;
                         case 63: // syno
-                            if (mainFrame.Actions[982] == false)
-                            {
+                            if (mainFrame.Actions[982] == false) {
                                 // Schale noch nicht drin
                                 nextActionID = 1010;
-                            }
-                            else
-                            {
+                            } else {
                                 // Schale schon drin, also reinlegen
                                 nextActionID = 1020;
                             }
                             break;
                         case 12: // kamuski
-                            if ((mainFrame.Actions[983] == false) || (mainFrame.Actions[984] == true))
-                            {
+                            if ((mainFrame.Actions[983] == false) || (mainFrame.Actions[984] == true)) {
                                 // entweder Stroh noch nicht drin oder brennt schon
                                 nextActionID = 1030;
-                            }
-                            else
-                            {
+                            } else {
                                 // Stroh drin in Swaixtix
                                 nextActionID = 1040;
                             }
@@ -1050,63 +1003,68 @@ public class Rowy extends Mainloc
                 }
 
                 // Ausreden fuer Syno, solange noch da
-                if (syno.IsPointInRect (pTemp) == true)
-                {
+                if (syno.IsPointInRect(pTemp) == true) {
                     pTemp = Psyno;
 
                     if (mainFrame.whatItem == 12) {
                         // bei Feuersteinen extra Reaktion
                         nextActionID = 170;
-                    }
-                    else {
+                    } else {
                         nextActionID = 160;
                     }
                 }
 
                 // Ausreden fuer alle Graeber
-                if ((brGrab1.IsPointInRect (pTemp) == true) || (brGrab2.IsPointInRect (pTemp) == true) ||
-                    (brGrab3.IsPointInRect (pTemp) == true) || (brGrab4.IsPointInRect (pTemp) == true))
-                {
+                if ((brGrab1.IsPointInRect(pTemp) == true) || (brGrab2.IsPointInRect(pTemp) == true) ||
+                        (brGrab3.IsPointInRect(pTemp) == true) || (brGrab4.IsPointInRect(pTemp) == true)) {
                     // zu welchem Grab gehen und wie drauf gucken ?
-                    if (brGrab1.IsPointInRect (pTemp) == true) 
-                        { pTemp = pGrab1; facingOnGraves = 12; }
-                    if (brGrab2.IsPointInRect (pTemp) == true)
-                        { pTemp = pGrab2; facingOnGraves = 12; }
-                    if (brGrab3.IsPointInRect (pTemp) == true)
-                        { pTemp = pGrab3; facingOnGraves = 3; }
-                    if (brGrab4.IsPointInRect (pTemp) == true)
-                        { pTemp = pGrab4; facingOnGraves = 3; }
+                    if (brGrab1.IsPointInRect(pTemp) == true) {
+                        pTemp = pGrab1;
+                        facingOnGraves = 12;
+                    }
+                    if (brGrab2.IsPointInRect(pTemp) == true) {
+                        pTemp = pGrab2;
+                        facingOnGraves = 12;
+                    }
+                    if (brGrab3.IsPointInRect(pTemp) == true) {
+                        pTemp = pGrab3;
+                        facingOnGraves = 3;
+                    }
+                    if (brGrab4.IsPointInRect(pTemp) == true) {
+                        pTemp = pGrab4;
+                        facingOnGraves = 3;
+                    }
                     nextActionID = 165;
                 }
 
                 // Ausreden fuer Mueller, solange er da ist
-                if ((brMueller.IsPointInRect (pTemp) == true) &&
-                    (muellerda == true))
-                {
+                if ((brMueller.IsPointInRect(pTemp) == true) &&
+                        (muellerda == true)) {
                     pTemp = pTouchMueller;
 
-                    switch (mainFrame.whatItem)
-                    {
+                    switch (mainFrame.whatItem) {
                         case 61: // Korraktor
-                            nextActionID = 176; break;
+                            nextActionID = 176;
+                            break;
                         case 62: // grosser Stein
-                            nextActionID = 175; break;
+                            nextActionID = 175;
+                            break;
                         default: // standardspruch
-                            nextActionID = 166; break;
+                            nextActionID = 166;
+                            break;
                     }
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg (pTemp);
+                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
-            else
-            {
+            else {
                 // grundsaetzlich Gegenstand wieder ablegen
                 mainFrame.invCursor = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -1115,168 +1073,171 @@ public class Rowy extends Mainloc
         }
 
         // normaler Cursor, normale Reaktion
-        else
-        {
-            if (e.getModifiers () != GenericInputEvent.BUTTON3_MASK)
-            {
+        else {
+            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 // linke Maustaste
                 nextActionID = 0;
 
                 // Anschauen horncy
-                if (horncy.IsPointInRect (pTemp) == true)
-                {
+                if (horncy.IsPointInRect(pTemp) == true) {
                     pTemp = Phorncy;
                     nextActionID = 1;
                 }
 
                 // Anschauen swaixtix
-                if (((swaixtix.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                    ((swaixtixGefallen.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == true)))
-                {
+                if (((swaixtix.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                        ((swaixtixGefallen.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == true))) {
                     pTemp = Pswaixtix;
                     nextActionID = 2;
                 }
 
                 // Anschauen Swaixtix's Arm
-                if ((swaixtixArm.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false))
-                {
+                if ((swaixtixArm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) {
                     pTemp = PswaixtixArm;
                     nextActionID = 7;        // Standardspruch
 
-                    if (mainFrame.Actions[983] == true)
+                    if (mainFrame.Actions[983] == true) {
                         nextActionID = 9;    // Spruch, wenn Stroh und Schaale draufliegen
-                    if (mainFrame.Actions[984] == true)
+                    }
+                    if (mainFrame.Actions[984] == true) {
                         nextActionID = 10;   // Spruch, wenn der Kunde brennt
+                    }
                 }
 
                 // anschauen Syno, solange noch da
-                if (syno.IsPointInRect (pTemp) == true)
-                {
+                if (syno.IsPointInRect(pTemp) == true) {
                     pTemp = Psyno;
                     nextActionID = 3;
                 }
 
                 // anschauen aller Graeber
-                if ((brGrab1.IsPointInRect (pTemp) == true) || (brGrab2.IsPointInRect (pTemp) == true) ||
-                    (brGrab3.IsPointInRect (pTemp) == true) || (brGrab4.IsPointInRect (pTemp) == true))
-                {
+                if ((brGrab1.IsPointInRect(pTemp) == true) || (brGrab2.IsPointInRect(pTemp) == true) ||
+                        (brGrab3.IsPointInRect(pTemp) == true) || (brGrab4.IsPointInRect(pTemp) == true)) {
                     // Swaixtix brennt noch nicht -> Standardspruch
                     nextActionID = 4;
 
                     // handelt es sich um das helle Grab (Swaixtix muss brennen) ?
-                    if ((brGrab3.IsPointInRect (pTemp) == true) && (mainFrame.Actions[984] == true)) {
+                    if ((brGrab3.IsPointInRect(pTemp) == true) && (mainFrame.Actions[984] == true)) {
                         // spruch ablassen, dass das Grab irgendwie heller ist
                         nextActionID = 5;
                         mainFrame.Actions[988] = true;
                     }
 
                     // Spruch, wenn das geoeffnete Grab angeschaut wird
-                    if ((brGrab3.IsPointInRect (pTemp) == true) && (mainFrame.Actions[985] == true)) {
+                    if ((brGrab3.IsPointInRect(pTemp) == true) && (mainFrame.Actions[985] == true)) {
                         nextActionID = 8;
                     }
                 }
 
                 // zu welchem Grab gehen und wie drauf gucken ?
-                if (brGrab1.IsPointInRect (pTemp) == true) 
-                    { pTemp = pGrab1; facingOnGraves = 12; }
-                if (brGrab2.IsPointInRect (pTemp) == true)
-                    { pTemp = pGrab2; facingOnGraves = 12; }
-                if (brGrab3.IsPointInRect (pTemp) == true)
-                    { pTemp = pGrab3; facingOnGraves = 3; }
-                if (brGrab4.IsPointInRect (pTemp) == true)
-                    { pTemp = pGrab4; facingOnGraves = 3; }
+                if (brGrab1.IsPointInRect(pTemp) == true) {
+                    pTemp = pGrab1;
+                    facingOnGraves = 12;
+                }
+                if (brGrab2.IsPointInRect(pTemp) == true) {
+                    pTemp = pGrab2;
+                    facingOnGraves = 12;
+                }
+                if (brGrab3.IsPointInRect(pTemp) == true) {
+                    pTemp = pGrab3;
+                    facingOnGraves = 3;
+                }
+                if (brGrab4.IsPointInRect(pTemp) == true) {
+                    pTemp = pGrab4;
+                    facingOnGraves = 3;
+                }
 
                 // anschauen Mueller, solange er da ist
-                if ((brMueller.IsPointInRect (pTemp) == true) &&
-                    (muellerda == true))
-                {
+                if ((brMueller.IsPointInRect(pTemp) == true) &&
+                        (muellerda == true)) {
                     pTemp = pTouchMueller;
                     nextActionID = 6;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg (pTemp);
+                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
-            }
-
-            else
-            {
+            } else {
                 // rechte Maustaste
 
                 // Horncy mitnehmen
-                if (horncy.IsPointInRect (pTemp) == true)
-                {
+                if (horncy.IsPointInRect(pTemp) == true) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg (Phorncy);
+                    mainFrame.wegGeher.SetzeNeuenWeg(Phorncy);
                     mainFrame.repaint();
                     return;
                 }
-                
+
                 // swaixtix mitnehmen
-                if (((swaixtix.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                    ((swaixtixGefallen.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == true)))
-                {
+                if (((swaixtix.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                        ((swaixtixGefallen.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == true))) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg (Pswaixtix);
+                    mainFrame.wegGeher.SetzeNeuenWeg(Pswaixtix);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Swaixtix's Arm mitnehmen
-                if ((swaixtixArm.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false))
-                {
+                if ((swaixtixArm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) {
                     nextActionID = 67;
-                    mainFrame.wegGeher.SetzeNeuenWeg (PswaixtixArm);
+                    mainFrame.wegGeher.SetzeNeuenWeg(PswaixtixArm);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Syno mitnehmen
-                if (syno.IsPointInRect (pTemp) == true)
-                {
+                if (syno.IsPointInRect(pTemp) == true) {
                     // Syno nur einmal mitnehmen -> ansonsten dummer Sprucher
-                    if (mainFrame.Actions[981] == false)
+                    if (mainFrame.Actions[981] == false) {
                         nextActionID = 60;
-                    else
+                    } else {
                         nextActionID = 61;
+                    }
 
-                    mainFrame.wegGeher.SetzeNeuenWeg (Psyno);
+                    mainFrame.wegGeher.SetzeNeuenWeg(Psyno);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Graeber (alle) mitnehmen
-                if ((brGrab1.IsPointInRect (pTemp) == true) || (brGrab2.IsPointInRect (pTemp) == true) ||
-                    (brGrab3.IsPointInRect (pTemp) == true) || (brGrab4.IsPointInRect (pTemp) == true))
-                {
+                if ((brGrab1.IsPointInRect(pTemp) == true) || (brGrab2.IsPointInRect(pTemp) == true) ||
+                        (brGrab3.IsPointInRect(pTemp) == true) || (brGrab4.IsPointInRect(pTemp) == true)) {
                     // Standardspruch
                     nextActionID = 65;
 
                     // handelt es sich um das helle Grab ? (Swaixtix muss brennen)
                     // -> Grab oeffnen -> Endanimation ankurbeln
-                    if ((brGrab3.IsPointInRect (pTemp) == true) && (mainFrame.Actions[984] == true))
+                    if ((brGrab3.IsPointInRect(pTemp) == true) && (mainFrame.Actions[984] == true)) {
                         nextActionID = 1100;
+                    }
 
                     // zu welchem Grab laufen und wie aufs Grab gucken ?
-                    GenericPoint pNewDest = new GenericPoint (0, 0);
-                    if (brGrab1.IsPointInRect (pTemp) == true) 
-                        { pNewDest = pGrab1; facingOnGraves = 12; }
-                    if (brGrab2.IsPointInRect (pTemp) == true)
-                        { pNewDest = pGrab2; facingOnGraves = 12; }
-                    if (brGrab3.IsPointInRect (pTemp) == true)
-                        { pNewDest = pGrab3; facingOnGraves = 3; }
-                    if (brGrab4.IsPointInRect (pTemp) == true)
-                        { pNewDest = pGrab4; facingOnGraves = 3; }
-                    mainFrame.wegGeher.SetzeNeuenWeg (pNewDest);
+                    GenericPoint pNewDest = new GenericPoint(0, 0);
+                    if (brGrab1.IsPointInRect(pTemp) == true) {
+                        pNewDest = pGrab1;
+                        facingOnGraves = 12;
+                    }
+                    if (brGrab2.IsPointInRect(pTemp) == true) {
+                        pNewDest = pGrab2;
+                        facingOnGraves = 12;
+                    }
+                    if (brGrab3.IsPointInRect(pTemp) == true) {
+                        pNewDest = pGrab3;
+                        facingOnGraves = 3;
+                    }
+                    if (brGrab4.IsPointInRect(pTemp) == true) {
+                        pNewDest = pGrab4;
+                        facingOnGraves = 3;
+                    }
+                    mainFrame.wegGeher.SetzeNeuenWeg(pNewDest);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Mueller mitnehmen (falls es da ist)
-                if ((brMueller.IsPointInRect (pTemp) == true) &&
-                    (muellerda == true))
-                {
+                if ((brMueller.IsPointInRect(pTemp) == true) &&
+                        (muellerda == true)) {
                     nextActionID = 66;
-                    mainFrame.wegGeher.SetzeNeuenWeg (pTouchMueller);
+                    mainFrame.wegGeher.SetzeNeuenWeg(pTouchMueller);
                     mainFrame.repaint();
                     return;
                 }
@@ -1285,122 +1246,111 @@ public class Rowy extends Mainloc
                 nextActionID = 123;
                 mainFrame.krabat.StopWalking();
                 mainFrame.Clipset = false;
-                ResetAnims ();
+                ResetAnims();
                 mainFrame.repaint();
             }
         }
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
-    public void evalMouseMoveEvent (GenericPoint pTemp)
-    {
+    public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if ((mainFrame.fPlayAnim == true) ||
-                (mainFrame.krabat.nAnimation != 0))
-        {
-            if (Cursorform != 20)
-            {
+                (mainFrame.krabat.nAnimation != 0)) {
+            if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor (mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.Nix);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true)
-        {
+        if (mainFrame.invCursor == true) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect (pTemp) == true) ||
-                (horncy.IsPointInRect (pTemp) == true) ||
-                (((swaixtix.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                 ((swaixtixGefallen.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == true))) ||
-                ((swaixtixArm.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                (syno.IsPointInRect (pTemp) == true) ||
-                ((brGrab1.IsPointInRect (pTemp) == true) ||
-                 (brGrab2.IsPointInRect (pTemp) == true) ||
-                 (brGrab3.IsPointInRect (pTemp) == true) ||
-                 (brGrab4.IsPointInRect (pTemp) == true)) ||
-                ((brMueller.IsPointInRect (pTemp) == true) &&
-                 (muellerda == true)))          
-            {
+            if ((tmp.IsPointInRect(pTemp) == true) ||
+                    (horncy.IsPointInRect(pTemp) == true) ||
+                    (((swaixtix.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                            ((swaixtixGefallen.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == true))) ||
+                    ((swaixtixArm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                    (syno.IsPointInRect(pTemp) == true) ||
+                    ((brGrab1.IsPointInRect(pTemp) == true) ||
+                            (brGrab2.IsPointInRect(pTemp) == true) ||
+                            (brGrab3.IsPointInRect(pTemp) == true) ||
+                            (brGrab4.IsPointInRect(pTemp) == true)) ||
+                    ((brMueller.IsPointInRect(pTemp) == true) &&
+                            (muellerda == true))) {
                 mainFrame.invHighCursor = true;
-            }
-            else
+            } else {
                 mainFrame.invHighCursor = false;
-
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false))
-            {
-                Cursorform = 10;
-                mainFrame.setCursor (mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true))
-            {
+            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+                Cursorform = 10;
+                mainFrame.setCursor(mainFrame.Cinventar);
+            }
+
+            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
                 Cursorform = 11;
-                mainFrame.setCursor (mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.CHinventar);
             }
         }
 
         // normaler Cursor, normale Reaktion
-        else
-        {
-            if ((horncy.IsPointInRect (pTemp) == true) ||
-                (((swaixtix.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                 ((swaixtixGefallen.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == true))) ||
-                ((swaixtixArm.IsPointInRect (pTemp) == true) && (mainFrame.Actions[986] == false)) ||
-                (syno.IsPointInRect (pTemp) == true) ||
-                ((brGrab1.IsPointInRect (pTemp) == true) ||
-                 (brGrab2.IsPointInRect (pTemp) == true) ||
-                 (brGrab3.IsPointInRect (pTemp) == true) ||
-                 (brGrab4.IsPointInRect (pTemp) == true)) ||
-                ((brMueller.IsPointInRect (pTemp) == true) &&
-                 (muellerda == true)))          
-            {
-                if (Cursorform != 1)
-                {
-                    mainFrame.setCursor (mainFrame.Kreuz);
+        else {
+            if ((horncy.IsPointInRect(pTemp) == true) ||
+                    (((swaixtix.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                            ((swaixtixGefallen.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == true))) ||
+                    ((swaixtixArm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[986] == false)) ||
+                    (syno.IsPointInRect(pTemp) == true) ||
+                    ((brGrab1.IsPointInRect(pTemp) == true) ||
+                            (brGrab2.IsPointInRect(pTemp) == true) ||
+                            (brGrab3.IsPointInRect(pTemp) == true) ||
+                            (brGrab4.IsPointInRect(pTemp) == true)) ||
+                    ((brMueller.IsPointInRect(pTemp) == true) &&
+                            (muellerda == true))) {
+                if (Cursorform != 1) {
+                    mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0)
-            {
-                mainFrame.setCursor (mainFrame.Normal);
+            if (Cursorform != 0) {
+                mainFrame.setCursor(mainFrame.Normal);
                 Cursorform = 0;
             }
         }
     }
 
     // dieses Event nicht beachten
-    public void evalMouseExitEvent (GenericMouseEvent e)
-    {
+    public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
-    public void evalKeyEvent (GenericKeyEvent e)
-    {
+    public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true)
+        if (mainFrame.invCursor == true) {
             return;
+        }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true)
+        if (mainFrame.fPlayAnim == true) {
             return;
+        }
 
         // Bei Krabat - Animation keine Keys
-        if (mainFrame.krabat.nAnimation != 0)
+        if (mainFrame.krabat.nAnimation != 0) {
             return;
+        }
 
         // Nur auf Funktionstasten reagieren
         int Taste = e.getKeyCode();
 
         // Hauptmenue aktivieren
-        if (Taste == GenericKeyEvent.VK_F1)
-        {
+        if (Taste == GenericKeyEvent.VK_F1) {
             Keyclear();
             nextActionID = 122;
             mainFrame.repaint();
@@ -1408,8 +1358,7 @@ public class Rowy extends Mainloc
         }
 
         // Save - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F2)
-        {
+        if (Taste == GenericKeyEvent.VK_F2) {
             Keyclear();
             nextActionID = 121;
             mainFrame.repaint();
@@ -1417,8 +1366,7 @@ public class Rowy extends Mainloc
         }
 
         // Load - Screen aktivieren
-        if (Taste == GenericKeyEvent.VK_F3)
-        {
+        if (Taste == GenericKeyEvent.VK_F3) {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
@@ -1427,14 +1375,14 @@ public class Rowy extends Mainloc
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear()
-    {
+    private void Keyclear() {
         outputText = "";
-        if (mainFrame.talkCount > 1)
+        if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
+        }
         mainFrame.Clipset = false;
         mainFrame.isAnim = false;
-        ResetAnims ();
+        ResetAnims();
         mainFrame.krabat.StopWalking();
     }
 
@@ -1455,12 +1403,12 @@ public class Rowy extends Mainloc
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction ()
-    {
+    private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true))
+                (mainFrame.krabat.isWalking == true)) {
             return;
+        }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
         if ((nextActionID > 499) && (nextActionID < 600) && (nextActionID != 561)) // Koraktor raussieben !!!
@@ -1468,160 +1416,158 @@ public class Rowy extends Mainloc
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent (mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.Mousepoint);
             return;
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129))
-        {
-            SwitchScreen ();
+        if ((nextActionID > 119) && (nextActionID < 129)) {
+            SwitchScreen();
             return;
         }
 
         // Was soll Krabat machen ?
-        switch (nextActionID)
-        {
+        switch (nextActionID) {
             case 1:
                 // horncy anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00021"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00022"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00023"), 
-			    fHorncy, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00021"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00022"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00023"),
+                        fHorncy, 3, 0, 0);
                 break;
 
             case 2:
                 // swaixtix anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00024"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00025"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00026"),
-			    fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00024"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00025"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00026"),
+                        fSwaixtix, 3, 0, 0);
                 break;
 
             case 3:
                 // syno anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00027"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00028"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00029"),
-			    fSyno, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00027"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00028"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00029"),
+                        fSyno, 3, 0, 0);
                 break;
 
             case 4:
                 // rowy anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00030"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00031"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00032"),
-			    facingOnGraves, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00030"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00031"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00032"),
+                        facingOnGraves, 3, 0, 0);
                 break;
 
             case 5:
                 // Grab mit Skellet nach swajxtix anbrennen anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00033"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00034"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00035"),
-                            facingOnGraves, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00033"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00034"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00035"),
+                        facingOnGraves, 3, 0, 0);
                 break;
 
             case 6:
                 // Mueller anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00036"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00037"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00038"),
-                            fMueller, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00036"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00037"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00038"),
+                        fMueller, 3, 0, 0);
                 break;
 
             case 7:
                 // Swaixtix's Arm anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00039"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00040"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00041"),
-			    fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00039"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00040"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00041"),
+                        fSwaixtix, 3, 0, 0);
                 break;
 
             case 8:
                 // das geoeffnete Grab anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00042"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00043"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00044"), 
-			    facingOnGraves, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00042"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00043"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00044"),
+                        facingOnGraves, 3, 0, 0);
                 break;
 
             case 9:
                 // Swaixtix's Arm (mit Lichtschaale und Stroh) anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00045"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00046"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00047"),
-			    fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00045"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00046"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00047"),
+                        fSwaixtix, 3, 0, 0);
                 break;
 
             case 10:
                 // Swaixtix's Arm (brennt) anschauen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00048"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00049"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00050"),
-			    fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00048"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00049"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00050"),
+                        fSwaixtix, 3, 0, 0);
                 break;
 
             case 50:
                 // horncy mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00051"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00052"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00053"), 
-			    fHorncy, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00051"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00052"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00053"),
+                        fHorncy, 3, 0, 0);
                 break;
 
             case 55:
                 // swaixtix mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00054"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00055"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00056"),
-			    fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00054"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00055"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00056"),
+                        fSwaixtix, 3, 0, 0);
                 break;
 
             case 60:
                 // syno mitnehmen
-                mainFrame.krabat.SetFacing (fSyno);
+                mainFrame.krabat.SetFacing(fSyno);
                 mainFrame.krabat.nAnimation = 94;
                 nextActionID = 0;
-                mainFrame.inventory.vInventory.addElement (new Integer (63));
+                mainFrame.inventory.vInventory.addElement(new Integer(63));
                 mainFrame.Actions[981] = true; // nur einmal Aufheben
                 break;
 
             case 61:
                 // syno nicht mehr mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00057"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00058"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00059"),
-			    fSyno, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00057"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00058"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00059"),
+                        fSyno, 3, 0, 0);
                 break;
 
             case 65:
                 // rowy mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00060"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00061"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00062"),
-			    facingOnGraves, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00060"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00061"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00062"),
+                        facingOnGraves, 3, 0, 0);
                 break;
 
             case 66:
                 // Mueller mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00063"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00064"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00065"),
-                            fMueller, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00063"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00064"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00065"),
+                        fMueller, 3, 0, 0);
                 break;
 
             case 67:
                 // swaixtix's Arm mitnehmen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00066"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00067"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00068"), fSwaixtix, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00066"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00067"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00068"), fSwaixtix, 3, 0, 0);
                 break;
 
             case 100:
                 // Krabat faellt in Grube rein (am Anfang)
                 mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 SonderAnim = 1; // extra-Images fuer Aufstehen und Rumgucken
                 sonderAnimCounter = 30;
                 nextActionID = 0;
@@ -1631,116 +1577,118 @@ public class Rowy extends Mainloc
                 // Spruch sagen
                 SonderAnim = 0;
                 // Kommentar nach Aufstehen schmeissen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00069"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00070"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00071"),
-			    fAufstehen, 3, 2, 102);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00069"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00070"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00071"),
+                        fAufstehen, 3, 2, 102);
                 break;
 
-	case 102:
-	    // Anim beenden
-	    mainFrame.fPlayAnim = false;
-	    evalMouseMoveEvent (mainFrame.Mousepoint);
-	    nextActionID = 0;
-	    mainFrame.repaint();
-	    KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00072"),
-			Start.stringManager.getTranslation("Loc4_Rowy_00073"),
-			Start.stringManager.getTranslation("Loc4_Rowy_00074"),
-			fAufstehen, 3, 0, 0);
-	    break;
+            case 102:
+                // Anim beenden
+                mainFrame.fPlayAnim = false;
+                evalMouseMoveEvent(mainFrame.Mousepoint);
+                nextActionID = 0;
+                mainFrame.repaint();
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00072"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00073"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00074"),
+                        fAufstehen, 3, 0, 0);
+                break;
 
 
             case 150:
                 // horncy - Ausreden
-                DingAusrede (fHorncy);
+                DingAusrede(fHorncy);
                 break;
 
             case 155:
                 // swaixtix - Ausreden
-                DingAusrede (fSwaixtix);
+                DingAusrede(fSwaixtix);
                 break;
 
             case 160:
                 // syno - ausreden
-                DingAusrede (fSyno);
+                DingAusrede(fSyno);
                 break;
 
             case 165:
                 // rowy - Ausreden
-                DingAusrede (facingOnGraves);
+                DingAusrede(facingOnGraves);
                 break;
 
             case 166:
                 // Mueller - Ausreden
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00075"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00076"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00077"),
-			    fMueller, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00075"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00076"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00077"),
+                        fMueller, 3, 0, 0);
                 break;
 
             case 167:
                 // swaixtix's Arm - Ausreden
-                DingAusrede (fSwaixtix);
+                DingAusrede(fSwaixtix);
                 break;
 
             case 170:
                 // Feuersteine mit Stroh benutzen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00078"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00079"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00080"),
-			    fSyno, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00078"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00079"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00080"),
+                        fSyno, 3, 0, 0);
                 break;
 
             case 175:
                 // grossen Stein mit Mueller benutzen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00081"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00082"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00083"),
-			    fMueller, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00081"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00082"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00083"),
+                        fMueller, 3, 0, 0);
                 break;
 
             case 176:
                 // Koraktor mit Mueller benutzen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00084"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00085"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00086"),
-			    fMueller, 3, 0, 0);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00084"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00085"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00086"),
+                        fMueller, 3, 0, 0);
                 break;
 
             //////////////DoActions fuer 1. Anim /////////////////////
 
             case 200:
                 // Mueller wird per Morphing hergezaubert
-                Borderrect tmp = mueller.MlynkRect ();
-                GenericPoint tt = new GenericPoint ( (tmp.lo_point.x + tmp.ru_point.x) / 2, tmp.ru_point.y);
-                muellerMorph.Init (tt, 100);  // 2. Argument ist die Groesse in Pixeln !!!
+                Borderrect tmp = mueller.MlynkRect();
+                GenericPoint tt = new GenericPoint((tmp.lo_point.x + tmp.ru_point.x) / 2, tmp.ru_point.y);
+                muellerMorph.Init(tt, 100);  // 2. Argument ist die Groesse in Pixeln !!!
                 isMuellerMorphing = true;
                 nextActionID = 205;
                 break;
-                
+
             case 205:
                 // Mueller spricht
                 if (muellerMorphCount < 8) {
                     // nach Morphing-Phase 3 Mueller zeichnen
-                    if (muellerMorphCount == 3) muellerda = true;
+                    if (muellerMorphCount == 3) {
+                        muellerda = true;
+                    }
                     break;
                 }
                 isMuellerMorphing = false;
                 mainFrame.Clipset = false;
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00087"), Start.stringManager.getTranslation("Loc4_Rowy_00088"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00087"), Start.stringManager.getTranslation("Loc4_Rowy_00088"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00089"), 0, 36,
                         2, 210, mueller.evalMlynkTalkPoint());
                 break;
 
             case 210:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00090"), Start.stringManager.getTranslation("Loc4_Rowy_00091"), Start.stringManager.getTranslation("Loc4_Rowy_00092"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00090"), Start.stringManager.getTranslation("Loc4_Rowy_00091"), Start.stringManager.getTranslation("Loc4_Rowy_00092"),
                         fMueller, 1, 2, 220);
                 break;
 
             case 220:
                 // Mueller spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00093"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00093"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00094"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00095"),
                         0, 36, 2, 230, mueller.evalMlynkTalkPoint());
@@ -1748,13 +1696,13 @@ public class Rowy extends Mainloc
 
             case 230:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00096"), Start.stringManager.getTranslation("Loc4_Rowy_00097"), Start.stringManager.getTranslation("Loc4_Rowy_00098"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00096"), Start.stringManager.getTranslation("Loc4_Rowy_00097"), Start.stringManager.getTranslation("Loc4_Rowy_00098"),
                         0, 1, 2, 240);
                 break;
 
             case 240:
                 // Mueller spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00099"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00099"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00100"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00101"),
                         0, 36, 2, 250, mueller.evalMlynkTalkPoint());
@@ -1762,27 +1710,27 @@ public class Rowy extends Mainloc
 
             case 250:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00102"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00102"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00103"), Start.stringManager.getTranslation("Loc4_Rowy_00104"),
                         0, 1, 2, 260);
                 break;
 
             case 260:
                 // Mueller spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00105"), Start.stringManager.getTranslation("Loc4_Rowy_00106"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00105"), Start.stringManager.getTranslation("Loc4_Rowy_00106"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00107"), 0, 36, 2,
                         261, mueller.evalMlynkTalkPoint());
                 break;
-                
+
             case 261:
                 // Start: Mueller wird per Morphing auf alten Mueller geswitcht
-                Borderrect tmp2 = mueller.MlynkRect ();
-                GenericPoint tt2 = new GenericPoint ( (tmp2.lo_point.x + tmp2.ru_point.x) / 2, tmp2.ru_point.y);
-                muellerMorph.Init (tt2, 100);  // 2. Argument ist die Groesse in Pixeln
+                Borderrect tmp2 = mueller.MlynkRect();
+                GenericPoint tt2 = new GenericPoint((tmp2.lo_point.x + tmp2.ru_point.x) / 2, tmp2.ru_point.y);
+                muellerMorph.Init(tt2, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
                 nextActionID = 263;
                 break;
-                
+
             case 263:
                 // Mueller wird per Morphing auf alten Mueller geswitcht
                 if (muellerMorphCount < 8) {
@@ -1802,20 +1750,21 @@ public class Rowy extends Mainloc
 
             case 266:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 268;
                 break;
-            
+
             case 268:
                 // Start: Alter Mueller wird per Morphing auf Fledermaus geswitcht
-                Borderrect tmp3 = mueller.MlynkRect ();
-                GenericPoint tt3 = new GenericPoint ( (tmp3.lo_point.x + tmp3.ru_point.x) / 2, tmp3.ru_point.y);
-                muellerMorph.Init (tt3, 100);  // 2. Argument ist die Groesse in Pixeln
+                Borderrect tmp3 = mueller.MlynkRect();
+                GenericPoint tt3 = new GenericPoint((tmp3.lo_point.x + tmp3.ru_point.x) / 2, tmp3.ru_point.y);
+                muellerMorph.Init(tt3, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
                 nextActionID = 270;
                 break;
-                
+
             case 270:
                 // Alter Mueller wird per Morphing auf Fledermaus geswitcht
                 if (muellerMorphCount < 8) {
@@ -1836,8 +1785,9 @@ public class Rowy extends Mainloc
 
             case 271:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 // zur decke losfliegen
                 fledermausActionID = 2;
                 nextActionID = 272;
@@ -1845,31 +1795,33 @@ public class Rowy extends Mainloc
 
             case 272:
                 // ist fledermaus an der decke angekommen ? (3 => sitzen)
-                if (fledermausActionID != 3)
+                if (fledermausActionID != 3) {
                     break;
+                }
                 nextActionID = 274;
                 Counter = 10;
                 break;
 
             case 274:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 276;
                 break;
 
             case 276:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00108"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00109"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00110"),
-                            0, 1, 2, 280);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00108"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00109"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00110"),
+                        0, 1, 2, 280);
                 break;
 
             case 280:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00111"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00111"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00112"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00113"),
                         0, 36, 2, 290, mueller.evalMlynkTalkPoint());
@@ -1878,7 +1830,7 @@ public class Rowy extends Mainloc
             case 290:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00114"), Start.stringManager.getTranslation("Loc4_Rowy_00115"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00114"), Start.stringManager.getTranslation("Loc4_Rowy_00115"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00116"), 0, 1,
                         2, 300);
                 break;
@@ -1886,7 +1838,7 @@ public class Rowy extends Mainloc
             case 300:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00117"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00117"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00118"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00119"),
                         0, 36, 2, 310, mueller.evalMlynkTalkPoint());
@@ -1895,7 +1847,7 @@ public class Rowy extends Mainloc
             case 310:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00120"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00120"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00121"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00122"),
                         0, 1, 2, 320);
@@ -1904,16 +1856,16 @@ public class Rowy extends Mainloc
             case 320:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00123"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00124"), 
-			    Start.stringManager.getTranslation("Loc4_Rowy_00125"),
-			    0, 36, 2, 330, mueller.evalMlynkTalkPoint());
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00123"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00124"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00125"),
+                        0, 36, 2, 330, mueller.evalMlynkTalkPoint());
                 break;
 
             case 330:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00126"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00126"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00127"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00128"),
                         0, 1, 2, 340);
@@ -1921,10 +1873,10 @@ public class Rowy extends Mainloc
 
             case 340:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00129"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00130"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00131"), 0,
-			    1, 2, 342);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00129"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00130"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00131"), 0,
+                        1, 2, 342);
                 break;
 
             case 342:
@@ -1934,24 +1886,24 @@ public class Rowy extends Mainloc
 
             case 344:
                 // ist fledermaus wieder unten angekommen ?
-                if (fledermausActionID != 6)
+                if (fledermausActionID != 6) {
                     break;
+                }
                 nextActionID = 346;
                 break;
 
             case 346:
                 // Start: Fledermaus wird per Morphing auf Mueller geswitcht
-                Borderrect tmp4 = mueller.MlynkRect ();
-                GenericPoint tt4 = new GenericPoint ( (tmp4.lo_point.x + tmp4.ru_point.x) / 2, tmp4.ru_point.y);
-                muellerMorph.Init (tt4, 100);  // 2. Argument ist die Groesse in Pixeln
+                Borderrect tmp4 = mueller.MlynkRect();
+                GenericPoint tt4 = new GenericPoint((tmp4.lo_point.x + tmp4.ru_point.x) / 2, tmp4.ru_point.y);
+                muellerMorph.Init(tt4, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
                 nextActionID = 347;
                 break;
-                
+
             case 347:
                 // Fledermaus wird per Morphing auf Mueller geswitcht
-                if (muellerMorphCount < 8) 
-                {
+                if (muellerMorphCount < 8) {
                     // nach Morphing-Phase 3 Mueller statt Fledermaus zeichnen
                     if (muellerMorphCount == 3) {
                         muellerda = true;
@@ -1967,14 +1919,14 @@ public class Rowy extends Mainloc
 
             case 350:
                 // Mueller spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00132"), Start.stringManager.getTranslation("Loc4_Rowy_00133"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00132"), Start.stringManager.getTranslation("Loc4_Rowy_00133"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00134"), 0, 36, 2, 360,
                         mueller.evalMlynkTalkPoint());
                 break;
 
             case 360:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00135"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00135"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00136"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00137"),
                         0, 1, 2, 370);
@@ -1983,21 +1935,21 @@ public class Rowy extends Mainloc
             case 370:
                 // Ende 1. Anim
                 mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 0;
                 animActive = true;
                 mainFrame.repaint();
                 break;
 
-                // Ende 1. Anims /////////////////////////////////////////
+            // Ende 1. Anims /////////////////////////////////////////
 
-                // DoActions 2. Anim ////////////////////////////////////
+            // DoActions 2. Anim ////////////////////////////////////
 
             case 400:
                 // Krabat spricht
-                mainFrame.krabat.SetFacing (3);
+                mainFrame.krabat.SetFacing(3);
                 mainFrame.krabat.nAnimation = 156; // aus Korraktor lesen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00138"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00138"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00139"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00140"),
                         0, 1, 2, 410);  // Next ID 410 ist richtig (695 ist Ende) !!!!!!
@@ -2006,7 +1958,7 @@ public class Rowy extends Mainloc
             case 410:
                 // Mueller spricht
                 mainFrame.krabat.nAnimation = 158; // Koraktor halten
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00141"), Start.stringManager.getTranslation("Loc4_Rowy_00142"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00141"), Start.stringManager.getTranslation("Loc4_Rowy_00142"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00143"), 0, 36, 2, 420,
                         mueller.evalMlynkTalkPoint());
                 break;
@@ -2014,7 +1966,7 @@ public class Rowy extends Mainloc
             case 420:
                 // Krabat spricht
                 mainFrame.krabat.nAnimation = 156; // aus Korraktor lesen
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00144"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00144"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00145"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00146"),
                         0, 1, 2, 430);
@@ -2022,7 +1974,7 @@ public class Rowy extends Mainloc
 
             case 430:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00147"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00147"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00148"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00149"),
                         0, 1, 2, 432);
@@ -2030,19 +1982,19 @@ public class Rowy extends Mainloc
 
             case 432:
                 // mit Lesen aufhoeren
-                mainFrame.krabat.StopAnim (); 
+                mainFrame.krabat.StopAnim();
                 Counter = 30;
                 nextActionID = 435;
                 break;
 
             case 435:
                 // Start: Schaf wird reingezaubert
-                GenericPoint ttS = new GenericPoint (schafPosLO.x + 60, schafPosLO.y + 75);
-                muellerMorph.Init (ttS, 120);  // 2. Argument ist die Groesse in Pixeln
+                GenericPoint ttS = new GenericPoint(schafPosLO.x + 60, schafPosLO.y + 75);
+                muellerMorph.Init(ttS, 120);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
                 nextActionID = 437;
                 break;
-                
+
             case 437:
                 // Morphing: Schaf wird reingezaubert
                 if (muellerMorphCount < 8) {
@@ -2060,14 +2012,15 @@ public class Rowy extends Mainloc
 
             case 438:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 470;
                 break;
 
             case 470:
                 // Mueller spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc4_Rowy_00150"),
+                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00150"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00151"), Start.stringManager.getTranslation("Loc4_Rowy_00152"),
                         0, 36, 2, 480, mueller.evalMlynkTalkPoint());
                 break;
@@ -2075,14 +2028,14 @@ public class Rowy extends Mainloc
             case 480:
                 // Krabat spricht
                 mainFrame.krabat.nAnimation = 156;
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00153"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00153"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00154"), Start.stringManager.getTranslation("Loc4_Rowy_00155"),
                         0, 1, 2, 490);
                 break;
 
             case 490:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00156"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00156"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00157"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00158"),
                         0, 1, 2, 492);
@@ -2090,30 +2043,32 @@ public class Rowy extends Mainloc
 
             case 492:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00159"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00160"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00161"),
-                            0, 1, 2, 495);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00159"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00160"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00161"),
+                        0, 1, 2, 495);
                 break;
 
             case 495:
                 // mit Lesen aufhoeren
-                mainFrame.krabat.StopAnim (); 
-		istMuellerSchonTot = true;  // mit Zwinkern aufhoeren
-		schnauzeSchaf = true; // Schafbloeken abschalten, ist eh bald weg
+                mainFrame.krabat.StopAnim();
+                istMuellerSchonTot = true;  // mit Zwinkern aufhoeren
+                schnauzeSchaf = true; // Schafbloeken abschalten, ist eh bald weg
                 Counter = 30;
                 nextActionID = 497;
                 break;
 
             case 497:
                 // Start: Schaf wird weggezaubert
-		if ((--Counter) > 1) break;
-                GenericPoint ttS2 = new GenericPoint (schafPosLO.x + 60, schafPosLO.y + 75);
-                muellerMorph.Init (ttS2, 100);  // 2. Argument ist die Groesse in Pixeln
+                if ((--Counter) > 1) {
+                    break;
+                }
+                GenericPoint ttS2 = new GenericPoint(schafPosLO.x + 60, schafPosLO.y + 75);
+                muellerMorph.Init(ttS2, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
                 nextActionID = 498;
                 break;
-                
+
             case 498:
                 // Morphing: Schaf wird weggezaubert
                 if (muellerMorphCount < 8) {
@@ -2131,8 +2086,9 @@ public class Rowy extends Mainloc
 
             case 499:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 670;
                 break;
 
@@ -2142,12 +2098,12 @@ public class Rowy extends Mainloc
                 // Krabat benutzt Koraktor -> erstmal zum Ausgangspunkt laufen
                 // und dann 2. Teil der Endanimation starten
                 mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 animActive = false;
-                ResetAnims ();
+                ResetAnims();
                 mainFrame.Clipset = false;
                 nextActionID = 400;
-                mainFrame.wegGeher.SetzeNeuenWeg (pTalkToMueller);
+                mainFrame.wegGeher.SetzeNeuenWeg(pTalkToMueller);
                 mainFrame.repaint();
                 return;
 
@@ -2155,7 +2111,7 @@ public class Rowy extends Mainloc
 
             case 670:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00162"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00162"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00163"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00164"),
                         0, 1, 2, 680);
@@ -2163,7 +2119,7 @@ public class Rowy extends Mainloc
 
             case 680:
                 // Krabat spricht
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00165"),
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00165"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00166"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00167"),
                         0, 1, 2, 681);
@@ -2172,24 +2128,26 @@ public class Rowy extends Mainloc
 
             case 681:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 682;
                 break;
 
             case 682:
                 // Krabat geht nah an Mueller ran
-                mainFrame.wegGeher.SetzeNeuenWeg (pTouchMueller);
+                mainFrame.wegGeher.SetzeNeuenWeg(pTouchMueller);
                 // mainFrame.repaint();
                 nextActionID = 684;
                 Counter = 5;
                 break;
- 
+
             case 684:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
-                BackgroundMusicPlayer.getInstance ().stop (); 
+                }
+                BackgroundMusicPlayer.getInstance().stop();
                 nextActionID = 688;
                 break;
 
@@ -2199,13 +2157,16 @@ public class Rowy extends Mainloc
                 nextActionID = 689;
                 Counter = 4;
                 mainFrame.repaint();
-                break;      
+                break;
 
             case 689:
                 // bisschen warten
-		if (Counter == 3) mainFrame.wave.PlayFile ("sfx/explosion.wav");
-                if ((--Counter) > 1)
+                if (Counter == 3) {
+                    mainFrame.wave.PlayFile("sfx/explosion.wav");
+                }
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 690;
                 break;
 
@@ -2215,27 +2176,31 @@ public class Rowy extends Mainloc
                 muellerda = false;
                 nextActionID = 692;
                 break;
-             
+
             case 692:
                 // Mueller explodiert
-                if (muellerExplodiert == true) break;
+                if (muellerExplodiert == true) {
+                    break;
+                }
                 nextActionID = 693;
                 Counter = 15;
                 break;
 
             case 693:
                 // bisschen warten
-                if (Counter == 8)
-                    mainFrame.krabat.SetFacing (6);
-                if ((--Counter) > 1)
+                if (Counter == 8) {
+                    mainFrame.krabat.SetFacing(6);
+                }
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 695;
                 break;
 
             case 695:
                 // Krabat spricht
-		mainFrame.wave.PlayFile ("sfx/mlynk-konc.wav");
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00168"),
+                mainFrame.wave.PlayFile("sfx/mlynk-konc.wav");
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00168"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00169"),
                         Start.stringManager.getTranslation("Loc4_Rowy_00170"),
                         0, 1, 2, 698);
@@ -2244,46 +2209,47 @@ public class Rowy extends Mainloc
 
             case 698:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 700;
                 break;
 
             case 700:
                 // Extro laden
-                NeuesBild (101, 202);
+                NeuesBild(101, 202);
                 break;
 
             case 1000:
                 // put Schuessel in Swaixtix
                 mainFrame.krabat.nAnimation = 123;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 mainFrame.Actions[982] = true;
-                mainFrame.inventory.vInventory.removeElement (new Integer (60));
+                mainFrame.inventory.vInventory.removeElement(new Integer(60));
                 mainFrame.repaint();
                 break;
 
             case 1010:
                 // Stroh zu zeitig -> geht nicht
-                DingAusrede (fSwaixtix);
+                DingAusrede(fSwaixtix);
                 break;
 
             case 1020:
                 // put Stroh in Schuessel
                 mainFrame.krabat.nAnimation = 123;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 mainFrame.Actions[983] = true;
-                mainFrame.inventory.vInventory.removeElement (new Integer (63));
+                mainFrame.inventory.vInventory.removeElement(new Integer(63));
                 mainFrame.repaint();
                 break;
 
             case 1030:
                 // Steine zu zeitig -> geht nicht
-                DingAusrede (fSwaixtix);
+                DingAusrede(fSwaixtix);
                 break;
 
             case 1040:
@@ -2291,11 +2257,11 @@ public class Rowy extends Mainloc
                 // Animation fuer Anzuenden abspielen
                 mainFrame.fPlayAnim = true;
                 mainFrame.invCursor = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 SonderAnim = 2; // extra-Images fuer Swaixtix anbrennen
                 sonderAnimCounter = 20;
                 nextActionID = 0;
-                mainFrame.wave.PlayFile ("sfx/kamjeny.wav");
+                mainFrame.wave.PlayFile("sfx/kamjeny.wav");
                 mainFrame.repaint();
                 break;
 
@@ -2304,35 +2270,31 @@ public class Rowy extends Mainloc
                 mainFrame.Actions[984] = true;
                 SonderAnim = 0;
                 mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 0;
                 // komplette Szene neuzeichnen (helles Hintergrundbild) !
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
                 break;
-                
+
             case 1100:
                 // der Beginn vom Ende
-                if (mainFrame.Actions[985] == false)
-                {
+                if (mainFrame.Actions[985] == false) {
                     // erstes Mal Grab sehen
                     mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent (mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.Mousepoint);
 
                     // Spruch bloss loslassen, wenn Krabat nach Anzuenden noch nicht Grab angesehen hat !
                     if (mainFrame.Actions[988] == false) {
-                        KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00171"),
-				    Start.stringManager.getTranslation("Loc4_Rowy_00172"),
-                                    Start.stringManager.getTranslation("Loc4_Rowy_00173"),
-                                    0, 1, 2, 1101);
-                    }
-                    else {
+                        KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00171"),
+                                Start.stringManager.getTranslation("Loc4_Rowy_00172"),
+                                Start.stringManager.getTranslation("Loc4_Rowy_00173"),
+                                0, 1, 2, 1101);
+                    } else {
                         nextActionID = 1101;
                     }
-                }
-                else
-                {
-                    KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00174"), Start.stringManager.getTranslation("Loc4_Rowy_00175"),
+                } else {
+                    KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00174"), Start.stringManager.getTranslation("Loc4_Rowy_00175"),
                             Start.stringManager.getTranslation("Loc4_Rowy_00176"),
                             0, 3, 0, 0);
                 }
@@ -2341,12 +2303,12 @@ public class Rowy extends Mainloc
             case 1101:
                 // Grabdeckel zur Seite schieben
                 mainFrame.invCursor = false;
-                evalMouseMoveEvent (mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.Mousepoint);
                 // Animation fuer Grab oeffnen abspielen
-                SonderAnim = 3; 
+                SonderAnim = 3;
                 sonderAnimCounter = 10;
                 nextActionID = 0;
-                mainFrame.wave.PlayFile ("sfx/grab.wav");
+                mainFrame.wave.PlayFile("sfx/grab.wav");
                 mainFrame.repaint();
                 break;
 
@@ -2360,8 +2322,9 @@ public class Rowy extends Mainloc
 
             case 1103:
                 // Grabanzeige beenden und Rueckwaerts-Laufanimation starten
-                if ((--sonderAnimCounter) > 1)
+                if ((--sonderAnimCounter) > 1) {
                     break;
+                }
                 zeigeGrab = false;
                 mainFrame.Clipset = false;
 
@@ -2374,16 +2337,16 @@ public class Rowy extends Mainloc
 
             case 1104:
                 // Swaixtix-Umschmeissen-Anim beginnen
-                mainFrame.krabat.SetFacing (9);
+                mainFrame.krabat.SetFacing(9);
                 SonderAnim = 5;
                 sonderAnimCounter = 13;
                 nextActionID = 0;
                 mainFrame.Actions[986] = true;
                 // WalkingRects neu initialisieren -> Treppe nicht mehr begehbar
-                this.initLocationWalkingRects ();
+                this.initLocationWalkingRects();
                 mainFrame.repaint();
                 break;
-                
+
             case 1105:
                 // Swaixtix-Umschmeissen-Anim beeenden
                 SonderAnim = 0;
@@ -2391,62 +2354,64 @@ public class Rowy extends Mainloc
                 mainFrame.repaint();
                 Counter = 10;
                 break;
-                
+
             case 1106:
                 // bisschen warten
-                if (Counter == 5)
-                    mainFrame.krabat.SetFacing (9);
-                if ((--Counter) > 1)
+                if (Counter == 5) {
+                    mainFrame.krabat.SetFacing(9);
+                }
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 1110;
                 break;
 
             case 1110:
                 // K findet Koraktor auf Swaixtix's Sockel
-                KrabatSagt (Start.stringManager.getTranslation("Loc4_Rowy_00177"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00178"),
-			    Start.stringManager.getTranslation("Loc4_Rowy_00179"),
-			    9, 3, 2, 1111);
+                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00177"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00178"),
+                        Start.stringManager.getTranslation("Loc4_Rowy_00179"),
+                        9, 3, 2, 1111);
                 break;
 
             case 1111:
                 // Korraktor-aufheben-Anim beginnen
                 mainFrame.krabat.nAnimation = 92;
                 nextActionID = 1112;
-		Counter = 5;
-                break;      
+                Counter = 5;
+                break;
 
             case 1112:
                 // Korraktor-aufheben-Anim beenden (& ins Inventar aufnehmen)
-		if ((--Counter) == 1)
-		    {
-			mainFrame.inventory.vInventory.addElement (new Integer (61));
-			mainFrame.Actions[985] = true;
-			mainFrame.Clipset = false;
-		    }
-		if ((Counter > 0) || (mainFrame.krabat.nAnimation != 0)) break;
+                if ((--Counter) == 1) {
+                    mainFrame.inventory.vInventory.addElement(new Integer(61));
+                    mainFrame.Actions[985] = true;
+                    mainFrame.Clipset = false;
+                }
+                if ((Counter > 0) || (mainFrame.krabat.nAnimation != 0)) {
+                    break;
+                }
                 nextActionID = 1113;
                 Counter = 10;
                 break;
-                
+
             case 1113:
                 // bisschen warten
-                if ((--Counter) > 1)
+                if ((--Counter) > 1) {
                     break;
+                }
                 nextActionID = 200;
                 break;
 
             default:
-                System.out.println ("Falsche Action-ID !");
+                System.out.println("Falsche Action-ID !");
         }
 
     }
 
     // Anim des Muellers ausfuehren
-    private void DoAnims ()
-    {
-        switch (AnimID)
-        {
+    private void DoAnims() {
+        switch (AnimID) {
 
             case 10:
                 // Warteschleife, damit Menu problemlos...
@@ -2456,22 +2421,26 @@ public class Rowy extends Mainloc
 
             case 20:
                 // warten...
-                if ((--AnimCounter) < 1)
+                if ((--AnimCounter) < 1) {
                     AnimID = 30;
+                }
                 break;
 
             case 30:
                 // Text ueber Mueller ausgeben
-                if (mainFrame.sprache == 1)
+                if (mainFrame.sprache == 1) {
                     AnimOutputText =
-                            HMuellerDrohen[(int)(Math.random () * 5.9)];
-                if (mainFrame.sprache == 2)
+                            HMuellerDrohen[(int) (Math.random() * 5.9)];
+                }
+                if (mainFrame.sprache == 2) {
                     AnimOutputText =
-                            DMuellerDrohen[(int)(Math.random () * 5.9)];
-                if (mainFrame.sprache == 3)
+                            DMuellerDrohen[(int) (Math.random() * 5.9)];
+                }
+                if (mainFrame.sprache == 3) {
                     AnimOutputText =
-                            NMuellerDrohen[(int)(Math.random () * 5.9)];
-                AnimOutputTextPos = mainFrame.ifont.CenterAnimText (
+                            NMuellerDrohen[(int) (Math.random() * 5.9)];
+                }
+                AnimOutputTextPos = mainFrame.ifont.CenterAnimText(
                         AnimOutputText, mueller.evalMlynkTalkPoint());
                 AnimCounter = 50;
                 AnimTalkPerson = 36;
@@ -2480,29 +2449,30 @@ public class Rowy extends Mainloc
 
             case 40:
                 // warten, bis zu Ende geschnarcht
-                if ((--AnimCounter) < 1)
+                if ((--AnimCounter) < 1) {
                     AnimID = 50;
+                }
                 break;
 
             case 50:
                 // variable Pause dazwischen
                 AnimOutputText = "";
                 mainFrame.Clipset = false;
-                AnimCounter = (int)((Math.random () * 70) + 50);
+                AnimCounter = (int) ((Math.random() * 70) + 50);
                 AnimID = 60;
                 break;
 
             case 60:
                 // Pause abwarten und von vorn...
-                if ((--AnimCounter) < 1)
+                if ((--AnimCounter) < 1) {
                     AnimID = 10;
+                }
                 break;
         }
     }
 
     // Anims zuruecksetzen, damit leerer Screen bei Menu usw...
-    private void ResetAnims ()
-    {
+    private void ResetAnims() {
         AnimOutputText = "";
         AnimCounter = 10;
         AnimID = 10;

@@ -25,35 +25,33 @@ import rapaki.krabat.platform.GenericDrawingContext;
 
 import java.util.Vector;
 
-public class Showrect
-{
-  
-  // private Start mainFrame;
-  
-  private boolean istDeaktiviert = false;
+public class Showrect {
 
-  public Showrect (Start caller)
-  {
-    // mainFrame = caller;
-  }  
+    // private Start mainFrame;
 
-  public void Zeichne(GenericDrawingContext g, Vector<Bordertrapez> Rechtecke)
-  {
-    if (istDeaktiviert == true) return;
-    
-    g.setColor (GenericColor.white);
-    GenericRectangle my;
-    my = g.getClipBounds();
-    g.setClip(0 , 0, 1280, 480);
-    int laenge = Rechtecke.size();
-    for (int i = 0; i < laenge; i++)
-    {
-      Bordertrapez di = (Bordertrapez) Rechtecke.elementAt (i);
-      g.drawLine (di.x1, di.y1, di.x3, di.y2);
-      g.drawLine (di.x3, di.y2, di.x4, di.y2);
-      g.drawLine (di.x4, di.y2, di.x2, di.y1);
-      g.drawLine (di.x2, di.y1, di.x1, di.y1);
+    private boolean istDeaktiviert = false;
+
+    public Showrect(Start caller) {
+        // mainFrame = caller;
     }
-    g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
-  }
+
+    public void Zeichne(GenericDrawingContext g, Vector<Bordertrapez> Rechtecke) {
+        if (istDeaktiviert == true) {
+            return;
+        }
+
+        g.setColor(GenericColor.white);
+        GenericRectangle my;
+        my = g.getClipBounds();
+        g.setClip(0, 0, 1280, 480);
+        int laenge = Rechtecke.size();
+        for (int i = 0; i < laenge; i++) {
+            Bordertrapez di = (Bordertrapez) Rechtecke.elementAt(i);
+            g.drawLine(di.x1, di.y1, di.x3, di.y2);
+            g.drawLine(di.x3, di.y2, di.x4, di.y2);
+            g.drawLine(di.x4, di.y2, di.x2, di.y1);
+            g.drawLine(di.x2, di.y1, di.x1, di.y1);
+        }
+        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+    }
 }  

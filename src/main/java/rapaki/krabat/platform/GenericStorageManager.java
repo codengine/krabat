@@ -25,30 +25,30 @@ import java.util.Properties;
 
 public abstract class GenericStorageManager {
 
-	protected static final int fileSize = 44100;
-	
-	public int getFileSize() {
-		return fileSize;
-	}
-	
-	public abstract boolean isLoadSaveSupported();
-	
-	public abstract boolean isSlownikSupported();
-	
-	public abstract boolean isPropertyStorageSupported();
-	
-	public abstract byte[] loadFromFile(int gameIndex);
-	
-	public abstract boolean saveToFile(byte[] data, int gameIndex);
-	
-	public abstract byte[] loadSlownik(String relativeFileName);
-	
-	public abstract void getGameProperties(Properties props);
-	
-	public abstract void saveGameProperties(Properties props);
+    protected static final int fileSize = 44100;
 
-	public abstract HashMap<String, String> loadTranslationsFile(String filename);
+    public int getFileSize() {
+        return fileSize;
+    }
 
-	public abstract void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix);
-	
+    public abstract boolean isLoadSaveSupported();
+
+    public abstract boolean isSlownikSupported();
+
+    public abstract boolean isPropertyStorageSupported();
+
+    public abstract byte[] loadFromFile(int gameIndex);
+
+    public abstract boolean saveToFile(byte[] data, int gameIndex);
+
+    public abstract byte[] loadSlownik(String relativeFileName);
+
+    public abstract void getGameProperties(Properties props);
+
+    public abstract void saveGameProperties(Properties props);
+
+    public abstract HashMap<String, String> loadTranslationsFile(String filename);
+
+    public abstract void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix);
+
 }

@@ -26,15 +26,14 @@ import rapaki.krabat.main.GenericRectangle;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Kutsche extends Mainanim
-{
+public class Kutsche extends Mainanim {
     private GenericImage kutsche, kutschentuer/*, pferdohr1, pferdohr2, hinterohr */;
     private GenericImage[] pferdschwanz;
     private GenericImage[] kleineWolke;
     private GenericImage[] grosseWolke;
     private GenericImage vorder, pohonc;
 
-    private static final GenericPoint kutscheLO = new GenericPoint (0, 252);
+    private static final GenericPoint kutscheLO = new GenericPoint(0, 252);
 
     // private int Auge = 0;
     // private int Ohr = 0;
@@ -53,26 +52,26 @@ public class Kutsche extends Mainanim
 
     private static final int MAX_VERHINDERKLWOLKE = 1;
     private static final int MAX_VERHINDERGRWOLKE = 1;
-  
+
     private int Kutschenzustand = 0;
 
-    private static final GenericPoint[] Anfangspunkte = 
-    {new GenericPoint (460, 230),
-     new GenericPoint (390, 350),
-     new GenericPoint (105, 479),
-     new GenericPoint (105, 479)};
+    private static final GenericPoint[] Anfangspunkte =
+            {new GenericPoint(460, 230),
+                    new GenericPoint(390, 350),
+                    new GenericPoint(105, 479),
+                    new GenericPoint(105, 479)};
 
     private static final GenericPoint[] Endpunkte =
-    {new GenericPoint (390, 333),
-     new GenericPoint (220, 500),
-     new GenericPoint (105, 479),
-     new GenericPoint (  0, 522)};
+            {new GenericPoint(390, 333),
+                    new GenericPoint(220, 500),
+                    new GenericPoint(105, 479),
+                    new GenericPoint(0, 522)};
 
-    private static final float[] Offsets = 
-    {0.7f, 3f, 0f, 3f};
+    private static final float[] Offsets =
+            {0.7f, 3f, 0f, 3f};
 
     private static final float[] Scalings =
-    {10f, 0.6f, 0f, 0f};
+            {10f, 0.6f, 0f, 0f};
 
     private float Xpos;
     private float Ypos;
@@ -89,10 +88,10 @@ public class Kutsche extends Mainanim
     private float scale;
 
     private static final int kBreite = 44;
-    private static final int kHoehe  = 38;
+    private static final int kHoehe = 38;
 
     private static final int gBreite = 200;
-    private static final int gHoehe  = 200;
+    private static final int gHoehe = 200;
 
     private float scaleVerhaeltnisKlein;
     private float scaleVerhaeltnisGross;
@@ -110,246 +109,245 @@ public class Kutsche extends Mainanim
     private boolean hintenMusik = true;  // fuer einmaliges Musikabspielen
     private boolean vornMusik = true;
 
-    public Kutsche (Start caller)
-    {
-        super (caller);
+    public Kutsche(Start caller) {
+        super(caller);
 
         pferdschwanz = new GenericImage[3];
-	kleineWolke = new GenericImage[6];
-	grosseWolke = new GenericImage[6];
-      
+        kleineWolke = new GenericImage[6];
+        grosseWolke = new GenericImage[6];
+
         InitImages();
 
         Verhinderschwanz = MAX_VERHINDERSCHWANZ;
 
-	Verhinderklwolke = MAX_VERHINDERKLWOLKE;
-	Verhindergrwolke = MAX_VERHINDERGRWOLKE;
+        Verhinderklwolke = MAX_VERHINDERKLWOLKE;
+        Verhindergrwolke = MAX_VERHINDERGRWOLKE;
 
-	float breit = kBreite;
-	float hoch  = kHoehe;
-	scaleVerhaeltnisKlein = breit / hoch;
+        float breit = kBreite;
+        float hoch = kHoehe;
+        scaleVerhaeltnisKlein = breit / hoch;
 
-	breit = gBreite;
-	hoch  = gHoehe;
-	scaleVerhaeltnisGross = breit / hoch;
+        breit = gBreite;
+        hoch = gHoehe;
+        scaleVerhaeltnisGross = breit / hoch;
 
-	Verhinderrauch = MAX_VERHINDERRAUCH;
-    } 
+        Verhinderrauch = MAX_VERHINDERRAUCH;
+    }
 
     // Initialisiert die Kutsche in den Zustaenden
-    public void InitKutsche (int Kutschenzustand)
-    {
-	// 0 = Hinten zu sehen
-	// 1 = Vorn heranfahrend
-	// 2 = Vorn stehend
-	// 3 = wieder abfahrend (bis Ende)
+    public void InitKutsche(int Kutschenzustand) {
+        // 0 = Hinten zu sehen
+        // 1 = Vorn heranfahrend
+        // 2 = Vorn stehend
+        // 3 = wieder abfahrend (bis Ende)
 
-	this.Kutschenzustand = Kutschenzustand;
+        this.Kutschenzustand = Kutschenzustand;
 
-	if (Kutschenzustand > 1) return; // Abbruch bei stehend, da dort die Daten 
-	// aus dem Zustand davor benoetigt werden
+        if (Kutschenzustand > 1) {
+            return; // Abbruch bei stehend, da dort die Daten
+        }
+        // aus dem Zustand davor benoetigt werden
 
-	klWolke = 0;
-	grWolke = 0;
+        klWolke = 0;
+        grWolke = 0;
 
-	Xpos = Anfangspunkte[Kutschenzustand].x;
-	Ypos = Anfangspunkte[Kutschenzustand].y;
+        Xpos = Anfangspunkte[Kutschenzustand].x;
+        Ypos = Anfangspunkte[Kutschenzustand].y;
 
-	// Xanfang = Xpos;
-	Yanfang = Ypos;
+        // Xanfang = Xpos;
+        Yanfang = Ypos;
 
-	Xende = Endpunkte[Kutschenzustand].x;
-	Yende = Endpunkte[Kutschenzustand].y;
+        Xende = Endpunkte[Kutschenzustand].x;
+        Yende = Endpunkte[Kutschenzustand].y;
 
-	scale = Scalings[Kutschenzustand];
+        scale = Scalings[Kutschenzustand];
 
-	Xoffset = Offsets[Kutschenzustand];
-	if (Xende != Xpos) Yoffset = (Yende - Ypos) / (Xende - Xpos) * Xoffset;
-	else Yoffset = 0f;
+        Xoffset = Offsets[Kutschenzustand];
+        if (Xende != Xpos) {
+            Yoffset = (Yende - Ypos) / (Xende - Xpos) * Xoffset;
+        } else {
+            Yoffset = 0f;
+        }
     }
-	 
-    private void InitImages()
-    {
-        kutsche      = getPicture ("gfx/most/kutse.gif");
-        kutschentuer = getPicture ("gfx/most/kudurje.gif");
+
+    private void InitImages() {
+        kutsche = getPicture("gfx/most/kutse.gif");
+        kutschentuer = getPicture("gfx/most/kudurje.gif");
 
         // pferdohr1    = getPicture ("gfx/most/kohr.gif");
         // pferdohr2    = getPicture ("gfx/most/kohr2.gif");
         // hinterohr    = getPicture ("gfx/most/kohr3.gif");
 
-        pferdschwanz[0] = getPicture ("gfx/most/ps1.gif");
-        pferdschwanz[1] = getPicture ("gfx/most/ps2.gif");
-        pferdschwanz[2] = getPicture ("gfx/most/ps3.gif");
+        pferdschwanz[0] = getPicture("gfx/most/ps1.gif");
+        pferdschwanz[1] = getPicture("gfx/most/ps2.gif");
+        pferdschwanz[2] = getPicture("gfx/most/ps3.gif");
 
-	kleineWolke[0] = getPicture ("gfx/most/wo1.gif");
-	kleineWolke[1] = getPicture ("gfx/most/wo2.gif");
-	kleineWolke[2] = getPicture ("gfx/most/wo3.gif");
-	kleineWolke[3] = getPicture ("gfx/most/wo4.gif");
-	kleineWolke[4] = getPicture ("gfx/most/wo5.gif");
-	kleineWolke[5] = getPicture ("gfx/most/wo6.gif");
+        kleineWolke[0] = getPicture("gfx/most/wo1.gif");
+        kleineWolke[1] = getPicture("gfx/most/wo2.gif");
+        kleineWolke[2] = getPicture("gfx/most/wo3.gif");
+        kleineWolke[3] = getPicture("gfx/most/wo4.gif");
+        kleineWolke[4] = getPicture("gfx/most/wo5.gif");
+        kleineWolke[5] = getPicture("gfx/most/wo6.gif");
 
-	grosseWolke[0] = getPicture ("gfx/most/gwo1.gif");
-	grosseWolke[1] = getPicture ("gfx/most/gwo2.gif");
-	grosseWolke[2] = getPicture ("gfx/most/gwo3.gif");
-	grosseWolke[3] = getPicture ("gfx/most/gwo4.gif");
-	grosseWolke[4] = getPicture ("gfx/most/gwo5.gif");
-	grosseWolke[5] = getPicture ("gfx/most/gwo6.gif");
+        grosseWolke[0] = getPicture("gfx/most/gwo1.gif");
+        grosseWolke[1] = getPicture("gfx/most/gwo2.gif");
+        grosseWolke[2] = getPicture("gfx/most/gwo3.gif");
+        grosseWolke[3] = getPicture("gfx/most/gwo4.gif");
+        grosseWolke[4] = getPicture("gfx/most/gwo5.gif");
+        grosseWolke[5] = getPicture("gfx/most/gwo6.gif");
 
-	vorder = getPicture ("gfx/most/most-3.gif");
+        vorder = getPicture("gfx/most/most-3.gif");
 
-	pohonc = getPicture ("gfx/most/kutscher.gif");
+        pohonc = getPicture("gfx/most/kutscher.gif");
     }
 
     // gibt Rectangle an Most zurueck, wo sich Kutsche befindet
-    public GenericRectangle kutscheRect ()
-    {
-	switch (Kutschenzustand)
-	    {
-	    case 0: 
-		// hinten fahrend
-		int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
-		int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
-		return (new GenericRectangle ((int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung));
-	    case 1:
-	    case 3:
-		// vorn fahrend
-		int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-		int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
-		return (new GenericRectangle ((int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung));
-	    case 2: 
-		// vorn stehend
-		if (isKutscheRauching == false)  // nur Kutsche an sich
-		    return (new GenericRectangle (kutscheLO.x, kutscheLO.y, kutscheLO.x + 267, kutscheLO.y + 228));
-		else
-		    {
-			// Kutsche + Rauch
-			int xxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-			int yyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
-			return (new GenericRectangle ((int) (Xpos - (xxxVeraenderung / 2)), (int) (Ypos - yyyVeraenderung), xxxVeraenderung, yyyVeraenderung));
-		    }
-	    }
+    public GenericRectangle kutscheRect() {
+        switch (Kutschenzustand) {
+            case 0:
+                // hinten fahrend
+                int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
+                int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                return (new GenericRectangle((int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung));
+            case 1:
+            case 3:
+                // vorn fahrend
+                int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
+                int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                return (new GenericRectangle((int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung));
+            case 2:
+                // vorn stehend
+                if (isKutscheRauching == false)  // nur Kutsche an sich
+                {
+                    return (new GenericRectangle(kutscheLO.x, kutscheLO.y, kutscheLO.x + 267, kutscheLO.y + 228));
+                } else {
+                    // Kutsche + Rauch
+                    int xxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
+                    int yyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                    return (new GenericRectangle((int) (Xpos - (xxxVeraenderung / 2)), (int) (Ypos - yyyVeraenderung), xxxVeraenderung, yyyVeraenderung));
+                }
+        }
 
-	// Compilerberuhigung...
-	return (new GenericRectangle (0, 0, 0, 0));
+        // Compilerberuhigung...
+        return (new GenericRectangle(0, 0, 0, 0));
     }
-  
+
     // Zeichne Kutsche mit allen Anims
-    public int drawKutsche (GenericDrawingContext g, boolean doorOpen)
-    {
-	// 0 = fertig; != 0 -> arbeitet noch, wird auch anderweitig benutzt
-       
-	switch (Kutschenzustand)
-	    {
-	    case 0:
-		// Kleine Wolke hinten (Vordergrund immer mitmalen)
+    public int drawKutsche(GenericDrawingContext g, boolean doorOpen) {
+        // 0 = fertig; != 0 -> arbeitet noch, wird auch anderweitig benutzt
 
-		// Sound eval.
-		if (hintenMusik == true)
-		    {
-			hintenMusik = false;
-			// mainFrame.wave.PlayFile ("sfx/fanfara.wav");
-		    }
+        switch (Kutschenzustand) {
+            case 0:
+                // Kleine Wolke hinten (Vordergrund immer mitmalen)
 
-		// GenericImage weiterschalten
-		if ((--Verhinderklwolke) < 1)
-		    {
-			Verhinderklwolke = MAX_VERHINDERKLWOLKE;
-			klWolke++;
-			if (klWolke == 6) klWolke = 3;
-		    }
+                // Sound eval.
+                if (hintenMusik == true) {
+                    hintenMusik = false;
+                    // mainFrame.wave.PlayFile ("sfx/fanfara.wav");
+                }
 
-		// Wolke bewegen
-		Xpos -= Xoffset;
-		Ypos -= Yoffset;
+                // GenericImage weiterschalten
+                if ((--Verhinderklwolke) < 1) {
+                    Verhinderklwolke = MAX_VERHINDERKLWOLKE;
+                    klWolke++;
+                    if (klWolke == 6) {
+                        klWolke = 3;
+                    }
+                }
 
-		g.setClip (kutscheRect ());
+                // Wolke bewegen
+                Xpos -= Xoffset;
+                Ypos -= Yoffset;
 
-		// Veraenderung der Groesse berechnen
-		int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
-		int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                g.setClip(kutscheRect());
 
-		// hier entweder 1 oder 2 Images malen
-		if (klWolke > 2)
-		    {
-			g.drawImage (kleineWolke[klWolke - 3], (int) (Xpos  - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
-			g.drawImage (kleineWolke[klWolke]    , (int) (Xpos  - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
-		    }
-		else
-		    {
-			g.drawImage (kleineWolke[klWolke]    , (int) (Xpos  - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
-		    }
-		// Vordergrund zeichnen (hier immer)
-		g.drawImage (vorder, 342, 270, null);
+                // Veraenderung der Groesse berechnen
+                int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
+                int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
 
-		// testen auf "ich habe fertig"
-		if (Xpos <= Xende) return 0;
-		else return 1;
+                // hier entweder 1 oder 2 Images malen
+                if (klWolke > 2) {
+                    g.drawImage(kleineWolke[klWolke - 3], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                } else {
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                }
+                // Vordergrund zeichnen (hier immer)
+                g.drawImage(vorder, 342, 270, null);
 
-	    case 1:
-		// grosse Wolke vorn
+                // testen auf "ich habe fertig"
+                if (Xpos <= Xende) {
+                    return 0;
+                } else {
+                    return 1;
+                }
 
-		// Sound eval.
-		if (vornMusik == true)
-		    {
-			vornMusik = false;
-			mainFrame.wave.PlayFile ("sfx/kutsa.wav");
-		    }
+            case 1:
+                // grosse Wolke vorn
 
-		// GenericImage weiterschalten
-		if ((--Verhindergrwolke) < 1)
-		    {
-			Verhindergrwolke = MAX_VERHINDERGRWOLKE;
-			grWolke++;
-			if (grWolke == 6) grWolke = 3;
-		    }
+                // Sound eval.
+                if (vornMusik == true) {
+                    vornMusik = false;
+                    mainFrame.wave.PlayFile("sfx/kutsa.wav");
+                }
 
-		// Wolke bewegen
-		Xpos -= Xoffset;
-		Ypos -= Yoffset;
+                // GenericImage weiterschalten
+                if ((--Verhindergrwolke) < 1) {
+                    Verhindergrwolke = MAX_VERHINDERGRWOLKE;
+                    grWolke++;
+                    if (grWolke == 6) {
+                        grWolke = 3;
+                    }
+                }
 
-		g.setClip (kutscheRect ());
+                // Wolke bewegen
+                Xpos -= Xoffset;
+                Ypos -= Yoffset;
 
-		// Groessenveraenderung berechnen
-		int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-		int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                g.setClip(kutscheRect());
 
-		// hier entweder 1 oder 2 Images malen
-		if (grWolke > 2)
-		    {
-			g.drawImage (grosseWolke[grWolke - 3], (int) (Xpos  - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
-			g.drawImage (grosseWolke[grWolke]    , (int) (Xpos  - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
-		    }
-		else
-		    {
-			g.drawImage (grosseWolke[grWolke]    , (int) (Xpos  - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
-		    }
+                // Groessenveraenderung berechnen
+                int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
+                int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
 
-		// testen auf "ich habe fertig"
-		
-		if (Xpos <= Xende) return 0; // wir sind da, Rauch muss sich noch lichten
-		else
-		    {
-			if (Math.abs(Xpos - Xende) <= 20) return 10; // Signal fuer erstes Talking
-			else return 1;   // noch voll im Gange
-		    }
+                // hier entweder 1 oder 2 Images malen
+                if (grWolke > 2) {
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                } else {
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                }
 
-	    case 2:
-		// Rumstehende Kutsche mit allerlei Nebenbeianims
+                // testen auf "ich habe fertig"
 
-		// zuerstmal die Kutsche zeichnen, das ist immer dran
-		g.drawImage (kutsche, kutscheLO.x, kutscheLO.y, null);
+                if (Xpos <= Xende) {
+                    return 0; // wir sind da, Rauch muss sich noch lichten
+                } else {
+                    if (Math.abs(Xpos - Xende) <= 20) {
+                        return 10; // Signal fuer erstes Talking
+                    } else {
+                        return 1;   // noch voll im Gange
+                    }
+                }
 
-		// solange es noch nicht von Aussen erledigt wird, hier den Kutscher zeichnen
-		if (isKutscheRauching == true)
-		    {
-			g.drawImage (pohonc, pohoncPoint.x, pohoncPoint.y, null);
-		    }
+            case 2:
+                // Rumstehende Kutsche mit allerlei Nebenbeianims
 
-		// hier die Tuer, wenn sie offen ist
-		if (doorOpen == true) g.drawImage (kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20, null);
+                // zuerstmal die Kutsche zeichnen, das ist immer dran
+                g.drawImage(kutsche, kutscheLO.x, kutscheLO.y, null);
 
-		// eval. ob das pferd mit den Augen zwinkert
-		// int zf = (int) (Math.random () * 50);
+                // solange es noch nicht von Aussen erledigt wird, hier den Kutscher zeichnen
+                if (isKutscheRauching == true) {
+                    g.drawImage(pohonc, pohoncPoint.x, pohoncPoint.y, null);
+                }
+
+                // hier die Tuer, wenn sie offen ist
+                if (doorOpen == true) {
+                    g.drawImage(kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20, null);
+                }
+
+                // eval. ob das pferd mit den Augen zwinkert
+                // int zf = (int) (Math.random () * 50);
 		/*  if (Auge == 1) 
 		  {
 		  Auge = 0;
@@ -360,7 +358,7 @@ public class Kutsche extends Mainanim
 		  if (zf > 45) Auge = 1;
 		  }*/
 
-		// eval, ob es mit den Ohren wackelt
+                // eval, ob es mit den Ohren wackelt
 		/*if (Ohr == 1)
 		    {
 			Ohr = 0;
@@ -374,77 +372,86 @@ public class Kutsche extends Mainanim
                         g.drawImage (pferdohr2, kutscheLO.x + 39, kutscheLO.y + 99, null);
 			}*/
 
-		// eval. ob es mit dem Schwanz wackelt
-		if ((--Verhinderschwanz) < 1)
-		    {
-			if (Schwanz < 2) Verhinderschwanz = MAX_VERHINDERSCHWANZWACKEL;
-			else Verhinderschwanz = MAX_VERHINDERSCHWANZ;
+                // eval. ob es mit dem Schwanz wackelt
+                if ((--Verhinderschwanz) < 1) {
+                    if (Schwanz < 2) {
+                        Verhinderschwanz = MAX_VERHINDERSCHWANZWACKEL;
+                    } else {
+                        Verhinderschwanz = MAX_VERHINDERSCHWANZ;
+                    }
 
-			Schwanz++;
-			if (Schwanz == 3) Schwanz = 0;
-		    }
-		g.drawImage (pferdschwanz[Schwanz], kutscheLO.x + 126, kutscheLO.y + 187, null);
+                    Schwanz++;
+                    if (Schwanz == 3) {
+                        Schwanz = 0;
+                    }
+                }
+                g.drawImage(pferdschwanz[Schwanz], kutscheLO.x + 126, kutscheLO.y + 187, null);
 
-		// wenns noch aktuell ist, dann die Kutsche "aus dem Rauch" aufsteigen lassen
-		if (isKutscheRauching == true)
-		    {
-			// GenericImage weiterschalten
-			if ((--Verhinderrauch) < 1)
-			    {
-				Verhinderrauch = MAX_VERHINDERRAUCH;
-				Rauch++;
-				if (Rauch == 3) isKutscheRauching = false;
-			    }
+                // wenns noch aktuell ist, dann die Kutsche "aus dem Rauch" aufsteigen lassen
+                if (isKutscheRauching == true) {
+                    // GenericImage weiterschalten
+                    if ((--Verhinderrauch) < 1) {
+                        Verhinderrauch = MAX_VERHINDERRAUCH;
+                        Rauch++;
+                        if (Rauch == 3) {
+                            isKutscheRauching = false;
+                        }
+                    }
 
 
-			// Groessenveraenderung berechnen
-			int xxxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-			int yyyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                    // Groessenveraenderung berechnen
+                    int xxxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
+                    int yyyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
 
-			// dazugehoeriges GenericImage malen
-			if (Rauch < 3)
-			    g.drawImage (grosseWolke[Rauch + 3]    , (int) (Xpos  - (xxxxVeraenderung / 2)), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
-			if (isKutscheRauching == false) return 0; // es wurde schon auf normal umgeschaltet
-			else return 1; // Signal, dass noch rauch drum ist
-		    }
+                    // dazugehoeriges GenericImage malen
+                    if (Rauch < 3) {
+                        g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - (xxxxVeraenderung / 2)), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
+                    }
+                    if (isKutscheRauching == false) {
+                        return 0; // es wurde schon auf normal umgeschaltet
+                    } else {
+                        return 1; // Signal, dass noch rauch drum ist
+                    }
+                }
 
-		return 0;  // alles wie gehabt, nur die Kutsche zu sehen..
+                return 0;  // alles wie gehabt, nur die Kutsche zu sehen..
 
-	    case 3:
-		// grosse Wolke, die das Bild verlaesst -> momentan unbenutzt!!!!!!!!!!!!!!! also egal ;-)
+            case 3:
+                // grosse Wolke, die das Bild verlaesst -> momentan unbenutzt!!!!!!!!!!!!!!! also egal ;-)
 
-		// GenericImage weiterschalten
-		if ((--Verhindergrwolke) < 1)
-		    {
-			Verhindergrwolke = MAX_VERHINDERGRWOLKE;
-			grWolke++;
-			if (grWolke == 6) grWolke = 3;
-		    }
+                // GenericImage weiterschalten
+                if ((--Verhindergrwolke) < 1) {
+                    Verhindergrwolke = MAX_VERHINDERGRWOLKE;
+                    grWolke++;
+                    if (grWolke == 6) {
+                        grWolke = 3;
+                    }
+                }
 
-		// Wolke bewegen
-		Xpos -= Xoffset;
-		Ypos -= Yoffset;
+                // Wolke bewegen
+                Xpos -= Xoffset;
+                Ypos -= Yoffset;
 
-		g.setClip (kutscheRect ());
+                g.setClip(kutscheRect());
 
-		// hier entweder 1 oder 2 Images malen
-		if (grWolke > 2)
-		    {
-			g.drawImage (grosseWolke[grWolke - 3], (int) (Xpos  - (gBreite / 2)), (int) (Ypos - gHoehe), null);
-			g.drawImage (grosseWolke[grWolke]    , (int) (Xpos  - (gBreite / 2)), (int) (Ypos - gHoehe), null);
-		    }
-		else
-		    {
-			g.drawImage (grosseWolke[grWolke]    , (int) (Xpos  - (gBreite / 2)), (int) (Ypos - gHoehe), null);
-		    }
+                // hier entweder 1 oder 2 Images malen
+                if (grWolke > 2) {
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
+                } else {
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
+                }
 
-		// testen auf "ich habe fertig"
-		if (Xpos <= Xende) return 0;
-		else return 1;
+                // testen auf "ich habe fertig"
+                if (Xpos <= Xende) {
+                    return 0;
+                } else {
+                    return 1;
+                }
 
-	    }
+        }
 
-	// is ja gut... brav sein ;-)
-	return 1;
+        // is ja gut... brav sein ;-)
+        return 1;
     }
 }    

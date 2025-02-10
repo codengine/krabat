@@ -34,85 +34,85 @@ import java.awt.image.*;
 
 public class JavaToolkitImpl extends GenericToolkitImpl {
 
-	private final Component comp;
-	
-	public JavaToolkitImpl(Component comp) {
-		this.comp = comp;
-	}
+    private final Component comp;
 
-	public void prepareImage(GenericImage genericImage,
-			GenericImageObserver observer) {
-		Image img = ((JavaImage) genericImage).getImage();
-		ImageObserver obs = ((JavaImageObserver) observer).getObserver();
-		comp.prepareImage(img, obs);
-	}
+    public JavaToolkitImpl(Component comp) {
+        this.comp = comp;
+    }
 
-	public int checkImage(GenericImage genericImage,
-			GenericImageObserver observer) {
-		Image img = ((JavaImage) genericImage).getImage();
-		ImageObserver obs = ((JavaImageObserver) observer).getObserver();
-		return comp.checkImage(img, obs);
-	}
+    public void prepareImage(GenericImage genericImage,
+                             GenericImageObserver observer) {
+        Image img = ((JavaImage) genericImage).getImage();
+        ImageObserver obs = ((JavaImageObserver) observer).getObserver();
+        comp.prepareImage(img, obs);
+    }
 
-	public GenericCursor createCustomCursor(GenericImage genericImage,
-			GenericPoint hotSpot, String name) {
-		Image img = ((JavaImage) genericImage).getImage();
-		Point point = new Point(hotSpot.x, hotSpot.y);
-		Cursor cursor = comp.getToolkit().createCustomCursor(img, point, name);
-		return new JavaCursor(cursor);
-	}
+    public int checkImage(GenericImage genericImage,
+                          GenericImageObserver observer) {
+        Image img = ((JavaImage) genericImage).getImage();
+        ImageObserver obs = ((JavaImageObserver) observer).getObserver();
+        return comp.checkImage(img, obs);
+    }
 
-	public GenericImage createImage(
-			GenericMemoryImageSource gen) {
-		MemoryImageSource src = new MemoryImageSource(
-				gen.getW(),
-				gen.getH(),
-				gen.getPix(),
-				gen.getOff(),
-				gen.getScan());
-		Image img = comp.getToolkit().createImage(src);
-		return new JavaImage(img);
-	}
+    public GenericCursor createCustomCursor(GenericImage genericImage,
+                                            GenericPoint hotSpot, String name) {
+        Image img = ((JavaImage) genericImage).getImage();
+        Point point = new Point(hotSpot.x, hotSpot.y);
+        Cursor cursor = comp.getToolkit().createCustomCursor(img, point, name);
+        return new JavaCursor(cursor);
+    }
 
-	public GenericImage createImage(
-			GenericFilteredImageSource gen) {
-		ImageProducer producer = ((JavaImageProducer) gen.getProducer()).getProducer();
-		FilteredImageSource src = new FilteredImageSource(producer, new ImageFilterImpl(gen.getFilter()));
-		Image img = comp.getToolkit().createImage(src);
-		return new JavaImage(img);
-	}
+    public GenericImage createImage(
+            GenericMemoryImageSource gen) {
+        MemoryImageSource src = new MemoryImageSource(
+                gen.getW(),
+                gen.getH(),
+                gen.getPix(),
+                gen.getOff(),
+                gen.getScan());
+        Image img = comp.getToolkit().createImage(src);
+        return new JavaImage(img);
+    }
 
-	public GenericImage createImage(int i, int j) {
-		Image img = comp.createImage(i, j);
-		return new JavaImage(img);
-	}
+    public GenericImage createImage(
+            GenericFilteredImageSource gen) {
+        ImageProducer producer = ((JavaImageProducer) gen.getProducer()).getProducer();
+        FilteredImageSource src = new FilteredImageSource(producer, new ImageFilterImpl(gen.getFilter()));
+        Image img = comp.getToolkit().createImage(src);
+        return new JavaImage(img);
+    }
 
-	public void grabPixelsFromImage(GenericImage actualImage, int x, int y,
-			int w, int h, int[] pix, int off, int scansize) {
-		Image img = ((JavaImage) actualImage).getImage();
-		PixelGrabber pg = new PixelGrabber(img, x, y, w, h, pix, off, scansize);
-		boolean success = false;
-		try {
-			success = pg.grabPixels();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		if (!success) {
-			System.err.println("Error grabbing pixels!");
-		}
-	}
-	
-	class ImageFilterImpl extends RGBImageFilter {
+    public GenericImage createImage(int i, int j) {
+        Image img = comp.createImage(i, j);
+        return new JavaImage(img);
+    }
 
-		private final GenericImageFilter impl;
-		
-		public ImageFilterImpl(GenericImageFilter impl) {
-			this.impl = impl;
-		}
-		
-		public int filterRGB(int x, int y, int rgb) {
-			return impl.filterRGB(x, y, rgb);
-		}
-		
-	}
+    public void grabPixelsFromImage(GenericImage actualImage, int x, int y,
+                                    int w, int h, int[] pix, int off, int scansize) {
+        Image img = ((JavaImage) actualImage).getImage();
+        PixelGrabber pg = new PixelGrabber(img, x, y, w, h, pix, off, scansize);
+        boolean success = false;
+        try {
+            success = pg.grabPixels();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (!success) {
+            System.err.println("Error grabbing pixels!");
+        }
+    }
+
+    class ImageFilterImpl extends RGBImageFilter {
+
+        private final GenericImageFilter impl;
+
+        public ImageFilterImpl(GenericImageFilter impl) {
+            this.impl = impl;
+        }
+
+        public int filterRGB(int x, int y, int rgb) {
+            return impl.filterRGB(x, y, rgb);
+        }
+
+    }
 }

@@ -25,45 +25,40 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Pjany extends Mainanim
-{
+public class Pjany extends Mainanim {
     private GenericImage[] hosc;
-    
+
     public static final int Breite = 97;
-    public static final int Hoehe  = 120;
-    
+    public static final int Hoehe = 120;
+
     private int Position = 0;
-    
+
     private int Verhinderposition;
     private static final int MAX_VERHINDERPOSITION = 10;
-    
-    public Pjany (Start caller)
-    {
-      super (caller);
 
-      hosc = new GenericImage [2];
-      
-      Verhinderposition = MAX_VERHINDERPOSITION;
-      
-      InitImages();
-    } 
-	 
-    private void InitImages()
-    {
-      hosc[0] = getPicture ("gfx/hoscenc/gast1-1.gif");
-      hosc[1] = getPicture ("gfx/hoscenc/gast1-2.gif");
+    public Pjany(Start caller) {
+        super(caller);
+
+        hosc = new GenericImage[2];
+
+        Verhinderposition = MAX_VERHINDERPOSITION;
+
+        InitImages();
     }
-  
+
+    private void InitImages() {
+        hosc[0] = getPicture("gfx/hoscenc/gast1-1.gif");
+        hosc[1] = getPicture("gfx/hoscenc/gast1-2.gif");
+    }
+
     // Zeichne Saeufer, wie er dasteht oder spricht
-    public void drawPjany (GenericDrawingContext g, int TalkPerson, GenericPoint Posit, int AnimTalkPerson)
-    {
-      // reden ist egal, er bewegt sich nur ab und zu
-      if ((--Verhinderposition) < 1)
-      {
-      	Verhinderposition = MAX_VERHINDERPOSITION;
-      	Position = (int) (Math.random () * 1.9);
-      }
-      
-      g.drawImage (hosc[Position], Posit.x, Posit.y, null);
+    public void drawPjany(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, int AnimTalkPerson) {
+        // reden ist egal, er bewegt sich nur ab und zu
+        if ((--Verhinderposition) < 1) {
+            Verhinderposition = MAX_VERHINDERPOSITION;
+            Position = (int) (Math.random() * 1.9);
+        }
+
+        g.drawImage(hosc[Position], Posit.x, Posit.y, null);
     }
 }    

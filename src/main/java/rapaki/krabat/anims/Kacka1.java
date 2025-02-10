@@ -26,8 +26,7 @@ import rapaki.krabat.main.GenericRectangle;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Kacka1 extends Mainanim
-{
+public class Kacka1 extends Mainanim {
 
     private GenericImage kacka_left[];
     private GenericImage kacka_front[];
@@ -40,19 +39,18 @@ public class Kacka1 extends Mainanim
 
     public GenericPoint Posit;
 
-    private static final GenericPoint Pstart = new GenericPoint (410, 210);
-    private static final GenericPoint Pstop  = new GenericPoint (300, 220);
+    private static final GenericPoint Pstart = new GenericPoint(410, 210);
+    private static final GenericPoint Pstop = new GenericPoint(300, 220);
 
     private static final float Xoffset = 1;
     private float Yoffset;
 
     private static final int Breite = 40;
-    private static final int Hoehe  = 17;
+    private static final int Hoehe = 17;
 
-    public Kacka1 (Start caller)
-    {
-        super (caller);
-	
+    public Kacka1(Start caller) {
+        super(caller);
+
         kacka_left = new GenericImage[2];
         kacka_front = new GenericImage[2];
 
@@ -64,76 +62,72 @@ public class Kacka1 extends Mainanim
         float Xdiff = (float) (Pstop.x - Pstart.x);
 
         Yoffset = (float) (Ydiff / Xdiff * Xoffset);
-        Posit = new GenericPoint (Pstart.x, Pstart.y);
-    } 
-	 
-    private void InitImages()
-    {
-        kacka_left[0] = getPicture ("gfx/mertens/kacka1.gif");
-        kacka_left[1] = getPicture ("gfx/mertens/kacka1a.gif");
-
-        kacka_front[0] = getPicture ("gfx/mertens/kacka1-t.gif");
-        kacka_front[1] = getPicture ("gfx/mertens/kacka1-ta.gif");
+        Posit = new GenericPoint(Pstart.x, Pstart.y);
     }
-  
-    public void cleanup()
-    {
+
+    private void InitImages() {
+        kacka_left[0] = getPicture("gfx/mertens/kacka1.gif");
+        kacka_left[1] = getPicture("gfx/mertens/kacka1a.gif");
+
+        kacka_front[0] = getPicture("gfx/mertens/kacka1-t.gif");
+        kacka_front[1] = getPicture("gfx/mertens/kacka1-ta.gif");
+    }
+
+    public void cleanup() {
         kacka_left[0] = null;
         kacka_left[1] = null;
 
         kacka_front[0] = null;
         kacka_front[1] = null;
     }
-  
+
     // evaluiere Rechteck zum Loeschen der Ente
-    public GenericRectangle kackaRect ()
-    {
+    public GenericRectangle kackaRect() {
         int x = Posit.x - (Breite / 2);
         int y = Posit.y - Hoehe;
-        return (new GenericRectangle (x, y, Breite, Hoehe));
+        return (new GenericRectangle(x, y, Breite, Hoehe));
     }
 
     // Zeichne Ente, wie sie dasteht oder spricht
-    public void drawKacka (GenericDrawingContext offGraph, int TalkPerson, boolean isLeft, boolean moveAllowed)
-    {
+    public void drawKacka(GenericDrawingContext offGraph, int TalkPerson, boolean isLeft, boolean moveAllowed) {
         // wenn noch erlaubt, dann Ente rumschwimmen lassen
-        int zf = (int) (Math.random () * 100);
+        int zf = (int) (Math.random() * 100);
         // nur mit bestimmter Wahrscheinlichkeit erlauben
-        if ((zf > 80) && (moveAllowed == true))
-            {
-                // nur, solange Endposition noch nicht erreicht ist
-                if (Posit.x > Pstop.x)
-                    {
-                        Posit.x -= Xoffset;
-                        Posit.y -= Yoffset;
-                    }
+        if ((zf > 80) && (moveAllowed == true)) {
+            // nur, solange Endposition noch nicht erreicht ist
+            if (Posit.x > Pstop.x) {
+                Posit.x -= Xoffset;
+                Posit.y -= Yoffset;
             }
+        }
 
         // Redende Kacka
-        if ((TalkPerson == 71) && (mainFrame.talkCount > 1))
-            {
-                if ((--Verhinderschnatter) < 1)
-                    {
-                        Verhinderschnatter = MAX_VERHINDERSCHNATTER;
-                        if (Schnatter == 0) Schnatter = 1;
-                        else Schnatter = 0;
-                    }
+        if ((TalkPerson == 71) && (mainFrame.talkCount > 1)) {
+            if ((--Verhinderschnatter) < 1) {
+                Verhinderschnatter = MAX_VERHINDERSCHNATTER;
+                if (Schnatter == 0) {
+                    Schnatter = 1;
+                } else {
+                    Schnatter = 0;
+                }
+            }
 
-                // Kacka zeichnen
-                if (isLeft == true) 
-                    offGraph.drawImage (kacka_left[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
-                else
-                    offGraph.drawImage (kacka_front[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+            // Kacka zeichnen
+            if (isLeft == true) {
+                offGraph.drawImage(kacka_left[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+            } else {
+                offGraph.drawImage(kacka_front[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
             }
-        
+        }
+
         // rumschwimmende Kacka
-        else
-            {
-                // Kacka zeichnen
-                if (isLeft == true) 
-                    offGraph.drawImage (kacka_left[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
-                else
-                    offGraph.drawImage (kacka_front[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+        else {
+            // Kacka zeichnen
+            if (isLeft == true) {
+                offGraph.drawImage(kacka_left[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+            } else {
+                offGraph.drawImage(kacka_front[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
             }
+        }
     }
 }    

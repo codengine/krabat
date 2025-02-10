@@ -25,82 +25,73 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Posol extends Mainanim
-{
-	private GenericImage bote_head[];
-	private GenericImage bote_body[];
-	
-	public static final int Breite = 40;
-	public static final int Hoehe = 95;
-	
-	private int Head = 0;
-	private int Body = 0;
-	
-	private int Verhinderhead;
-	private int Verhinderbody;
-	
-	private static final int MAX_VERHINDERHEAD = 2;
-	private static final int MAX_VERHINDERBODY = 10;
-	
-	private static final int BODYOFFSET = 23;
-	
-	
-	public Posol (Start caller)
-	{
-		super (caller);
-		
-		bote_head = new GenericImage[6];
-		bote_body = new GenericImage[2];
-	
-	  InitImages();
-	  
-	  Verhinderhead = MAX_VERHINDERHEAD;
-	  Verhinderbody = MAX_VERHINDERBODY;
-	} 
-	 
-	private void InitImages()
-	{
-		bote_head[0] = getPicture ("gfx/wjes/bote-h0.gif");
-		bote_head[1] = getPicture ("gfx/wjes/bote-h1.gif");
-		bote_head[2] = getPicture ("gfx/wjes/bote-h2.gif");
-		bote_head[3] = getPicture ("gfx/wjes/bote-h3.gif");
-		bote_head[4] = getPicture ("gfx/wjes/bote-h4.gif");
-		bote_head[5] = getPicture ("gfx/wjes/bote-h5.gif");
- 
-		bote_body[0] = getPicture ("gfx/wjes/bote-b1.gif");
-		bote_body[1] = getPicture ("gfx/wjes/bote-b2.gif");
-  }
-  
-  // Zeichne Mutter, wie sie dasteht oder spricht
-  public void drawPosol (GenericDrawingContext offGraph, int TalkPerson, GenericPoint posit)
-  {
-    if ((TalkPerson == 38) && (mainFrame.talkCount > 1))
-    {
-    	// Bote beim Reden
-    	
-    	// Head eval.
-    	if ((--Verhinderhead) < 1)
-    	{
-    		Verhinderhead = MAX_VERHINDERHEAD;
-    		Head = (int) (Math.random () * 5.9);	
-      }
-      
-      // Body eval
-      if ((--Verhinderbody) < 1)
-      {
-      	Verhinderbody = MAX_VERHINDERBODY;
-      	Body = (int) (Math.random () * 1.9);
-      }	
+public class Posol extends Mainanim {
+    private GenericImage bote_head[];
+    private GenericImage bote_body[];
+
+    public static final int Breite = 40;
+    public static final int Hoehe = 95;
+
+    private int Head = 0;
+    private int Body = 0;
+
+    private int Verhinderhead;
+    private int Verhinderbody;
+
+    private static final int MAX_VERHINDERHEAD = 2;
+    private static final int MAX_VERHINDERBODY = 10;
+
+    private static final int BODYOFFSET = 23;
+
+
+    public Posol(Start caller) {
+        super(caller);
+
+        bote_head = new GenericImage[6];
+        bote_body = new GenericImage[2];
+
+        InitImages();
+
+        Verhinderhead = MAX_VERHINDERHEAD;
+        Verhinderbody = MAX_VERHINDERBODY;
     }
-    else
-    {
-    	// Bote beim rumstehen
-    	Head = 0;
-    	Body = 0;
-    }	
-    
-    // Boten zeichnen
-    offGraph.drawImage (bote_head[Head], posit.x, posit.y, null);
-    offGraph.drawImage (bote_body[Body], posit.x, posit.y + BODYOFFSET, null);  
-  }
+
+    private void InitImages() {
+        bote_head[0] = getPicture("gfx/wjes/bote-h0.gif");
+        bote_head[1] = getPicture("gfx/wjes/bote-h1.gif");
+        bote_head[2] = getPicture("gfx/wjes/bote-h2.gif");
+        bote_head[3] = getPicture("gfx/wjes/bote-h3.gif");
+        bote_head[4] = getPicture("gfx/wjes/bote-h4.gif");
+        bote_head[5] = getPicture("gfx/wjes/bote-h5.gif");
+
+        bote_body[0] = getPicture("gfx/wjes/bote-b1.gif");
+        bote_body[1] = getPicture("gfx/wjes/bote-b2.gif");
+    }
+
+    // Zeichne Mutter, wie sie dasteht oder spricht
+    public void drawPosol(GenericDrawingContext offGraph, int TalkPerson, GenericPoint posit) {
+        if ((TalkPerson == 38) && (mainFrame.talkCount > 1)) {
+            // Bote beim Reden
+
+            // Head eval.
+            if ((--Verhinderhead) < 1) {
+                Verhinderhead = MAX_VERHINDERHEAD;
+                Head = (int) (Math.random() * 5.9);
+            }
+
+            // Body eval
+            if ((--Verhinderbody) < 1) {
+                Verhinderbody = MAX_VERHINDERBODY;
+                Body = (int) (Math.random() * 1.9);
+            }
+        } else {
+            // Bote beim rumstehen
+            Head = 0;
+            Body = 0;
+        }
+
+        // Boten zeichnen
+        offGraph.drawImage(bote_head[Head], posit.x, posit.y, null);
+        offGraph.drawImage(bote_body[Body], posit.x, posit.y + BODYOFFSET, null);
+    }
 }    

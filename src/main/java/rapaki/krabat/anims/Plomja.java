@@ -25,54 +25,49 @@ import rapaki.krabat.main.GenericPoint;
 import rapaki.krabat.platform.GenericDrawingContext;
 import rapaki.krabat.platform.GenericImage;
 
-public class Plomja extends Mainanim
-{
-	
-	private int Counter = 1;
-	private boolean isDrawing = false;
-	private static final int KONSTANTE = 70;
-	
-  public static final int Breite = 23;
-  public static final int Hoehe  = 11;
+public class Plomja extends Mainanim {
 
-	private GenericImage Feuer[];
-	
-	public Plomja (Start caller)
-	{
-		super (caller);
-		
-		Feuer = new GenericImage [8];
-	  InitImages();
-	}		
-	
-	private void InitImages ()
-	{
-		Feuer[1] = getPicture ("gfx/labyrinth/blink1.gif");
-		Feuer[2] = getPicture ("gfx/labyrinth/blink2.gif");
-		Feuer[3] = getPicture ("gfx/labyrinth/blink3.gif");
-		Feuer[4] = getPicture ("gfx/labyrinth/blink4.gif");
-		Feuer[5] = getPicture ("gfx/labyrinth/blink5.gif");
-		Feuer[6] = getPicture ("gfx/labyrinth/blink6.gif");
-		Feuer[7] = getPicture ("gfx/labyrinth/blink7.gif");
+    private int Counter = 1;
+    private boolean isDrawing = false;
+    private static final int KONSTANTE = 70;
 
-    // Bilder sind 23 x 11 Pixel gross
-	}
-	
-	public void drawPlomja (GenericDrawingContext g, GenericPoint posit)
-	{
-	  int zuffi = (int) Math.round (Math.random() * KONSTANTE);
-	  if ((zuffi < 5) || (isDrawing == true))
-	  {
-	  	g.drawImage (Feuer[Counter], posit.x, posit.y, null);
-	  	Counter++;
-	  	if (Counter == 8) 
-	    {
-	    	Counter = 1;
-	    	isDrawing = false;
-	    }
-	    else isDrawing = true;
-	  }
-	}
+    public static final int Breite = 23;
+    public static final int Hoehe = 11;
+
+    private GenericImage Feuer[];
+
+    public Plomja(Start caller) {
+        super(caller);
+
+        Feuer = new GenericImage[8];
+        InitImages();
+    }
+
+    private void InitImages() {
+        Feuer[1] = getPicture("gfx/labyrinth/blink1.gif");
+        Feuer[2] = getPicture("gfx/labyrinth/blink2.gif");
+        Feuer[3] = getPicture("gfx/labyrinth/blink3.gif");
+        Feuer[4] = getPicture("gfx/labyrinth/blink4.gif");
+        Feuer[5] = getPicture("gfx/labyrinth/blink5.gif");
+        Feuer[6] = getPicture("gfx/labyrinth/blink6.gif");
+        Feuer[7] = getPicture("gfx/labyrinth/blink7.gif");
+
+        // Bilder sind 23 x 11 Pixel gross
+    }
+
+    public void drawPlomja(GenericDrawingContext g, GenericPoint posit) {
+        int zuffi = (int) Math.round(Math.random() * KONSTANTE);
+        if ((zuffi < 5) || (isDrawing == true)) {
+            g.drawImage(Feuer[Counter], posit.x, posit.y, null);
+            Counter++;
+            if (Counter == 8) {
+                Counter = 1;
+                isDrawing = false;
+            } else {
+                isDrawing = true;
+            }
+        }
+    }
 }	    	
 	  	
 	  		

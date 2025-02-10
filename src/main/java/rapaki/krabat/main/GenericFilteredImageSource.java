@@ -24,21 +24,21 @@ import rapaki.krabat.platform.GenericImageProducer;
 
 public class GenericFilteredImageSource {
 
-	private final GenericImageProducer producer;
-	
-	private final GenericImageFilter filter;
-	
-	public GenericFilteredImageSource(GenericImageProducer producer, GenericImageFilter filter) {
-		this.producer = producer;
-		this.filter = filter;
-	}
-	
-	public GenericImageProducer getProducer() {
-		return producer;
-	}
-	
-	public GenericImageFilter getFilter() {
-		return filter;
-	}
+    private final GenericImageProducer producer;
+
+    private final GenericImageFilter filter;
+
+    public GenericFilteredImageSource(GenericImageProducer producer, GenericImageFilter filter) {
+        this.producer = producer;
+        this.filter = filter;
+    }
+
+    public GenericImageProducer getProducer() {
+        return producer;
+    }
+
+    public GenericImageFilter getFilter() {
+        return filter;
+    }
 
 }

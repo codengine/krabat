@@ -31,70 +31,70 @@ import java.awt.*;
 
 public class JavaDrawingContext extends GenericDrawingContext {
 
-	private final Graphics g;
-	
-	public JavaDrawingContext(Graphics g) {
-		this.g = g;
-	}
-	
-	public void clearRect(int x, int y, int width, int height) {
-		g.clearRect(x, y, width, height);
-	}
+    private final Graphics g;
 
-	public void drawImage(GenericImage genericImage, int x, int y,
-			int width, int height, GenericImageObserver observer) {
-		Image image = ((JavaImage) genericImage).getImage();
-		g.drawImage(image, x, y, width, height, null);
-	}
+    public JavaDrawingContext(Graphics g) {
+        this.g = g;
+    }
 
-	public void drawImage(GenericImage genericImage, int x, int y,
-			GenericImageObserver observer) {
-		Image image = ((JavaImage) genericImage).getImage();
-		g.drawImage(image, x, y, null);
-	}
+    public void clearRect(int x, int y, int width, int height) {
+        g.clearRect(x, y, width, height);
+    }
 
-	public void drawImage(GenericImage genericImage, int x, int y) {
-		drawImage(genericImage, x, y, null);
-	}
+    public void drawImage(GenericImage genericImage, int x, int y,
+                          int width, int height, GenericImageObserver observer) {
+        Image image = ((JavaImage) genericImage).getImage();
+        g.drawImage(image, x, y, width, height, null);
+    }
 
-	public void drawImage(GenericImage ktemp, int x, int y,
-			int width, int height) {
-		drawImage(ktemp, x, y, width, height, null);
-	}
+    public void drawImage(GenericImage genericImage, int x, int y,
+                          GenericImageObserver observer) {
+        Image image = ((JavaImage) genericImage).getImage();
+        g.drawImage(image, x, y, null);
+    }
 
-	public void drawLine(int x1, int y1, int x2, int y2) {
-		g.drawLine(x1, y1, x2, y2);
-	}
+    public void drawImage(GenericImage genericImage, int x, int y) {
+        drawImage(genericImage, x, y, null);
+    }
 
-	public void drawRect(int x1, int y1, int width, int height) {
-		g.drawRect(x1, y1, width, height);
-	}
+    public void drawImage(GenericImage ktemp, int x, int y,
+                          int width, int height) {
+        drawImage(ktemp, x, y, width, height, null);
+    }
 
-	public void fillRect(int x1, int y1, int width, int height) {
-		g.fillRect(x1, y1, width, height);
-	}
+    public void drawLine(int x1, int y1, int x2, int y2) {
+        g.drawLine(x1, y1, x2, y2);
+    }
 
-	public GenericRectangle getClipBounds() {
-		Rectangle rect = g.getClipBounds();
-		GenericRectangle gRect = new GenericRectangle(
-				rect.x, rect.y, rect.width, rect.height);
-		return gRect;
-	}
+    public void drawRect(int x1, int y1, int width, int height) {
+        g.drawRect(x1, y1, width, height);
+    }
 
-	public void setClip(int x, int y, int width, int height) {
-		g.setClip(x, y, width, height);
-	}
+    public void fillRect(int x1, int y1, int width, int height) {
+        g.fillRect(x1, y1, width, height);
+    }
 
-	public void setClip(GenericRectangle txx) {
-		setClip(txx.getX(), txx.getY(), txx.getWidth(), txx.getHeight());
-	}
+    public GenericRectangle getClipBounds() {
+        Rectangle rect = g.getClipBounds();
+        GenericRectangle gRect = new GenericRectangle(
+                rect.x, rect.y, rect.width, rect.height);
+        return gRect;
+    }
 
-	public void setColor(GenericColor inakt) {
-		g.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
-	}
+    public void setClip(int x, int y, int width, int height) {
+        g.setClip(x, y, width, height);
+    }
 
-	public GenericDrawingContext2D get2DContext() {
-		return new JavaDrawingContext2D(g);
-	}
+    public void setClip(GenericRectangle txx) {
+        setClip(txx.getX(), txx.getY(), txx.getWidth(), txx.getHeight());
+    }
+
+    public void setColor(GenericColor inakt) {
+        g.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
+    }
+
+    public GenericDrawingContext2D get2DContext() {
+        return new JavaDrawingContext2D(g);
+    }
 
 }

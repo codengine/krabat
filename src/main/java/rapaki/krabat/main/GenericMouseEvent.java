@@ -25,32 +25,32 @@ package rapaki.krabat.main;
 
 public class GenericMouseEvent {
 
-	private final int modifiers;
-	
-	private final GenericPoint point;
-	
-	private final boolean isDoubleClick;
-	
-	public GenericMouseEvent(int modifiers, GenericPoint point, boolean isDoubleClick) {
-		this.modifiers = modifiers;
-		this.point = point;
-		this.isDoubleClick = isDoubleClick;
-	}
-	
-	public int getModifiers() {
-		return modifiers;
-	}
+    private final int modifiers;
 
-	public GenericPoint getPoint() {
-		return point;
-	}
+    private final GenericPoint point;
 
-	public void consume() {
-		// dummy only
-	}
-	
-	public boolean getDoubleClick() {
-		return isDoubleClick;
-	}
+    private final boolean isDoubleClick;
+
+    public GenericMouseEvent(int modifiers, GenericPoint point, boolean isDoubleClick) {
+        this.modifiers = modifiers;
+        this.point = point;
+        this.isDoubleClick = isDoubleClick;
+    }
+
+    public int getModifiers() {
+        return modifiers;
+    }
+
+    public GenericPoint getPoint() {
+        return point;
+    }
+
+    public void consume() {
+        // dummy only
+    }
+
+    public boolean getDoubleClick() {
+        return isDoubleClick;
+    }
 
 }

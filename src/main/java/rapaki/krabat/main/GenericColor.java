@@ -24,31 +24,31 @@ package rapaki.krabat.main;
 
 public class GenericColor {
 
-	public static final GenericColor red = new GenericColor(255, 0, 0);
-	public static final GenericColor white = new GenericColor(255, 255, 255);
-	public static final GenericColor black = new GenericColor(0, 0, 0);
+    public static final GenericColor red = new GenericColor(255, 0, 0);
+    public static final GenericColor white = new GenericColor(255, 255, 255);
+    public static final GenericColor black = new GenericColor(0, 0, 0);
 
-	private final int r;
-	
-	private final int g;
-	
-	private final int b;
-	
-	public GenericColor(int r, int g, int b) {
-		this.r = r;
-		this.g = g;
-		this.b = b;
-	}
+    private final int r;
 
-	public int getR() {
-		return r;
-	}
-	
-	public int getG() {
-		return g;
-	}
-	
-	public int getB() {
-		return b;
-	}
+    private final int g;
+
+    private final int b;
+
+    public GenericColor(int r, int g, int b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+    }
+
+    public int getR() {
+        return r;
+    }
+
+    public int getG() {
+        return g;
+    }
+
+    public int getB() {
+        return b;
+    }
 }

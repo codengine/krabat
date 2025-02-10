@@ -26,20 +26,20 @@ import java.util.HashMap;
 
 public class StringManager {
 
-	private final HashMap<String, String> translations; 
-	
-	private final GenericStorageManager storageManager;
-	
-	public StringManager(GenericStorageManager storageManager) {
-		this.storageManager = storageManager;
-		translations = storageManager.loadTranslationsFile("stringtable_common.txt");
-	}
-	
-	public void defineThirdLanguage(String filename, boolean isFake, String fakePrefix) {
-		storageManager.mergeTranslationsFile(filename, translations, isFake, fakePrefix);
-	}
-	
-	public String getTranslation(String key) {
-		return translations.get(key);
-	}
+    private final HashMap<String, String> translations;
+
+    private final GenericStorageManager storageManager;
+
+    public StringManager(GenericStorageManager storageManager) {
+        this.storageManager = storageManager;
+        translations = storageManager.loadTranslationsFile("stringtable_common.txt");
+    }
+
+    public void defineThirdLanguage(String filename, boolean isFake, String fakePrefix) {
+        storageManager.mergeTranslationsFile(filename, translations, isFake, fakePrefix);
+    }
+
+    public String getTranslation(String key) {
+        return translations.get(key);
+    }
 }

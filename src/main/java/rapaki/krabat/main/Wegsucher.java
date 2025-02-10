@@ -22,91 +22,83 @@ package rapaki.krabat.main;
 
 import java.util.Vector;
 
-public class Wegsucher
-{  
-  private boolean[][] matrix;
-  private int numRects;
-  private int endPos;
-  private Vector<Integer> vBesterWeg;
+public class Wegsucher {
+    private boolean[][] matrix;
+    private int numRects;
+    private int endPos;
+    private Vector<Integer> vBesterWeg;
 
-  public Wegsucher ()
-  {
-  }
-
-  ///// Hier werden die Eintraege in den Wegsucher initialisiert ///////////////////
-  
-  public void ClearMatrix (int wieviel)
-  {
-    numRects = wieviel;
-    
-    matrix = new boolean[numRects][numRects];
-    
-    for (int i = 0; i < wieviel; i++)
-    {
-      for (int j = 0; j < wieviel; j++) matrix[i][j] = false;
-    }
-  }
-  
-  // Zwei Positionen in Matrix verbinden (in jede Richtung)
-  public void PosVerbinden (int p1, int p2) 
-  {
-    matrix[p1][p2] = true;
-    matrix[p2][p1] = true;
-  }
-
-  // Rekursive Funktion zum Zusammensetzen des Weges
-  private void RekursivSuche (int aktPos, Vector<Integer> vWeg)
-  {
-    // nicht an gleiche Instanz anhaengen, sonst Probleme beim Backtracking
-    Vector<Integer> vTemp = (Vector<Integer>) vWeg.clone ();
-
-    // aktuelle Position an Weg anhaengen
-    vTemp.addElement (new Integer (aktPos));
-     	  
-    if (aktPos == endPos) {
-      // Ende gefunden
-      EvalResult (vTemp);
-      return;
+    public Wegsucher() {
     }
 
-    // alle moeglichen Wege weitervefolgen
-    for (int i = 0; i < numRects; i++) 
-    {
-      if ((matrix[aktPos][i] == true) &&    // dieser Weg moeglich ?
-	  (vTemp.indexOf (new Integer (i)) == -1)) {
-	// noch nicht im Weg enthalten ? 
-	RekursivSuche (i, vTemp);	
-      }
-    }   
-  }
+    /// // Hier werden die Eintraege in den Wegsucher initialisiert ///////////////////
 
-  // Alle Loesungsvorschlaege entgegenehmen und den besten ermitteln
-  private void EvalResult (Vector<Integer> result)
-  {
-    if (vBesterWeg.isEmpty () == true) {
-      // der erste Weg
-      vBesterWeg = result;
-    }
-    else {
-      // nur uebernehmen, wenn Weg kuerzer
-      if (result.size () < vBesterWeg.size ()) {
-	vBesterWeg = result;
-      }
-    }
-  }
-  
-  // Suche von Start nach Ziel starten
-  public Vector<Integer> StartSuche (int st_pos, int end_pos)
-  {
-    endPos = end_pos;
-    vBesterWeg = new Vector<Integer> ();
-    RekursivSuche (st_pos, new Vector<Integer> ());
-    // System.out.println ("Bester Weg: ");
-    // TraceWeg (vBesterWeg);
-    return vBesterWeg;
-  }
+    public void ClearMatrix(int wieviel) {
+        numRects = wieviel;
 
-  // zum Debuggen: Ausgabe des Weges
+        matrix = new boolean[numRects][numRects];
+
+        for (int i = 0; i < wieviel; i++) {
+            for (int j = 0; j < wieviel; j++) {
+                matrix[i][j] = false;
+            }
+        }
+    }
+
+    // Zwei Positionen in Matrix verbinden (in jede Richtung)
+    public void PosVerbinden(int p1, int p2) {
+        matrix[p1][p2] = true;
+        matrix[p2][p1] = true;
+    }
+
+    // Rekursive Funktion zum Zusammensetzen des Weges
+    private void RekursivSuche(int aktPos, Vector<Integer> vWeg) {
+        // nicht an gleiche Instanz anhaengen, sonst Probleme beim Backtracking
+        Vector<Integer> vTemp = (Vector<Integer>) vWeg.clone();
+
+        // aktuelle Position an Weg anhaengen
+        vTemp.addElement(new Integer(aktPos));
+
+        if (aktPos == endPos) {
+            // Ende gefunden
+            EvalResult(vTemp);
+            return;
+        }
+
+        // alle moeglichen Wege weitervefolgen
+        for (int i = 0; i < numRects; i++) {
+            if ((matrix[aktPos][i] == true) &&    // dieser Weg moeglich ?
+                    (vTemp.indexOf(new Integer(i)) == -1)) {
+                // noch nicht im Weg enthalten ?
+                RekursivSuche(i, vTemp);
+            }
+        }
+    }
+
+    // Alle Loesungsvorschlaege entgegenehmen und den besten ermitteln
+    private void EvalResult(Vector<Integer> result) {
+        if (vBesterWeg.isEmpty() == true) {
+            // der erste Weg
+            vBesterWeg = result;
+        } else {
+            // nur uebernehmen, wenn Weg kuerzer
+            if (result.size() < vBesterWeg.size()) {
+                vBesterWeg = result;
+            }
+        }
+    }
+
+    // Suche von Start nach Ziel starten
+    public Vector<Integer> StartSuche(int st_pos, int end_pos) {
+        endPos = end_pos;
+        vBesterWeg = new Vector<Integer>();
+        RekursivSuche(st_pos, new Vector<Integer>());
+        // System.out.println ("Bester Weg: ");
+        // TraceWeg (vBesterWeg);
+        return vBesterWeg;
+    }
+
+    // zum Debuggen: Ausgabe des Weges
   /*
   private void TraceWeg (Vector<Integer> tWeg)
   {

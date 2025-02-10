@@ -21,25 +21,19 @@
 package rapaki.krabat.main;
 
 
-public class FontFilter extends GenericImageFilter
-{
+public class FontFilter extends GenericImageFilter {
 
-  public FontFilter (int whatColor)
-  {
-	  super(whatColor);
-  }
+    public FontFilter(int whatColor) {
+        super(whatColor);
+    }
 
-  public int filterRGB (int x, int y, int rgb)
-  {
-    // Unveraendert !!!
-    if (rgb != 0xff00ff00)
-    {
-    	// System.out.print ("X");
-    	return rgb;
-    }	
-    else
-    {
-    	return (whatColor);
-    }		
-  }
+    public int filterRGB(int x, int y, int rgb) {
+        // Unveraendert !!!
+        if (rgb != 0xff00ff00) {
+            // System.out.print ("X");
+            return rgb;
+        } else {
+            return (whatColor);
+        }
+    }
 }  

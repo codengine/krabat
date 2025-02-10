@@ -23,20 +23,20 @@ package rapaki.krabat.sound;
 public abstract class AbstractPlayer {
 
     protected final String urlBase;
-    
+
     public AbstractPlayer(String urlBase) {
         this.urlBase = urlBase;
     }
-    
-    public abstract void play (String filename, boolean repeat);
-    
+
+    public abstract void play(String filename, boolean repeat);
+
     public abstract void pause();
-    
+
     public abstract void resume();
-    
-    public abstract void stop ();
-    
+
+    public abstract void stop();
+
     public abstract String getMusicDir();
-    
+
     public abstract String getMusicSuffix();
 }

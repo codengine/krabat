@@ -27,20 +27,20 @@ import java.awt.*;
 
 public class JavaContainer extends GenericContainer {
 
-	private final Container container;
-	
-	public JavaContainer(Container container) {
-		this.container = container;
-	}
-	
-	public void repaint() {
-		// System.out.println("Container repaint!");
-		container.repaint();
-	}
+    private final Container container;
 
-	public void setCursor(GenericCursor gen) {
-		Cursor cursor = ((JavaCursor) gen).getCursor();
-		container.setCursor(cursor);
-	}
+    public JavaContainer(Container container) {
+        this.container = container;
+    }
+
+    public void repaint() {
+        // System.out.println("Container repaint!");
+        container.repaint();
+    }
+
+    public void setCursor(GenericCursor gen) {
+        Cursor cursor = ((JavaCursor) gen).getCursor();
+        container.setCursor(cursor);
+    }
 
 }

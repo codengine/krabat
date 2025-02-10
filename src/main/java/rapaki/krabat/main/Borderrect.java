@@ -21,20 +21,18 @@
 package rapaki.krabat.main;
 
 
-public class Borderrect 
-{
-  public GenericPoint lo_point;         // Punkt links oben
-  public GenericPoint ru_point;         // Punkt rechts unten
+public class Borderrect {
+    public GenericPoint lo_point;         // Punkt links oben
+    public GenericPoint ru_point;         // Punkt rechts unten
 
-  // Grenz-Rechteck anlegen
-  public Borderrect (int x1, int y1, int x2, int y2)
-  {
-    lo_point = new GenericPoint (x1, y1);
-    ru_point = new GenericPoint (x2, y2);
-  }
-  
-  // Ermittelt den naehesten Punkt im Rechteck, wenn Zielpunkt ausserhalb des
-  // Rechtecks
+    // Grenz-Rechteck anlegen
+    public Borderrect(int x1, int y1, int x2, int y2) {
+        lo_point = new GenericPoint(x1, y1);
+        ru_point = new GenericPoint(x2, y2);
+    }
+
+    // Ermittelt den naehesten Punkt im Rechteck, wenn Zielpunkt ausserhalb des
+    // Rechtecks
   /* public GenericPoint GetBestPoint (GenericPoint pnt)
   {
     GenericPoint best_point = new GenericPoint ();
@@ -55,9 +53,9 @@ public class Borderrect
     
     return best_point;
   } */
-  
-  // liefert den Kuerzesten Abstand eines Punktes vom Rechteck
-  // Rueckgabe = 0, falls Punkt im Rechteck enthalten
+
+    // liefert den Kuerzesten Abstand eines Punktes vom Rechteck
+    // Rueckgabe = 0, falls Punkt im Rechteck enthalten
   /* public float  MinDistanceToPoint (GenericPoint pt)
   {
     float distx = 0;
@@ -78,45 +76,43 @@ public class Borderrect
     float distance = (float) Math.sqrt ((distx * distx) + (disty * disty));
     return distance;
   } */
-  
-  // Befindet sich der Punkt in diesem BorderRect
-  public boolean IsPointInRect (GenericPoint pTemp)
-  { 
-    if ((lo_point.x <= pTemp.x) && (pTemp.x <= ru_point.x) &&
-	(lo_point.y <= pTemp.y) && (pTemp.y <= ru_point.y))
-      return true;
-    else
-    {
-      // System.out.println(" GenericPoint "+pTemp.x+" "+pTemp.y+" is not in lo "+lo_point.x+" "+
-      // lo_point.y+" ru "+ru_point.x+" "+ru_point.y);
-      return false;
-    }  
-  }
 
-  public GenericPoint getMiddlePoint() {
-	  return new GenericPoint(((lo_point.x + ru_point.x) / 2), ((lo_point.y + ru_point.y) / 2));
-  }
-  
-  public boolean equals(Object o) {
-	  if (o == this) {
-		  return true;
-	  }
-	  
-	  if (o instanceof Borderrect) {
-		  Borderrect inst = (Borderrect) o;
-		  if ((inst.lo_point.x == lo_point.x) &&
-				  (inst.lo_point.y == lo_point.y) &&
-				  (inst.ru_point.x == ru_point.x) &&
-				  (inst.ru_point.y == ru_point.y)) {
-			  return true;
-		  }
-	  }
-	  
-	  return false;
-  }
+    // Befindet sich der Punkt in diesem BorderRect
+    public boolean IsPointInRect(GenericPoint pTemp) {
+        if ((lo_point.x <= pTemp.x) && (pTemp.x <= ru_point.x) &&
+                (lo_point.y <= pTemp.y) && (pTemp.y <= ru_point.y)) {
+            return true;
+        } else {
+            // System.out.println(" GenericPoint "+pTemp.x+" "+pTemp.y+" is not in lo "+lo_point.x+" "+
+            // lo_point.y+" ru "+ru_point.x+" "+ru_point.y);
+            return false;
+        }
+    }
+
+    public GenericPoint getMiddlePoint() {
+        return new GenericPoint(((lo_point.x + ru_point.x) / 2), ((lo_point.y + ru_point.y) / 2));
+    }
+
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof Borderrect) {
+            Borderrect inst = (Borderrect) o;
+            if ((inst.lo_point.x == lo_point.x) &&
+                    (inst.lo_point.y == lo_point.y) &&
+                    (inst.ru_point.x == ru_point.x) &&
+                    (inst.ru_point.y == ru_point.y)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
-  // Rueckgabe einzelner Koordinaten eines BorderRects
+    // Rueckgabe einzelner Koordinaten eines BorderRects
  /* public int gtx()
   {
     return lo_point.x;
@@ -143,5 +139,5 @@ public class Borderrect
     int Mittey = Math.abs (feet.y - (((ru_point.y - lo_point.y) / 2) + lo_point.y));
     int Abstand = (int) Math.sqrt ((Mittex * Mittex) + (Mittey * Mittey));
     return Abstand;
-  }	*/	
+  }	*/
 }

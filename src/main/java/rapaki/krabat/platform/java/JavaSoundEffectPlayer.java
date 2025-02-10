@@ -30,21 +30,20 @@ import java.net.URL;
 
 public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
 
-	public JavaSoundEffectPlayer(String urlBase) {
+    public JavaSoundEffectPlayer(String urlBase) {
         super(urlBase);
     }
-    
-    public void PlayFile (String filename) {
+
+    public void PlayFile(String filename) {
         try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream (new URL (urlBase + filename));
-            DataLine.Info info = new DataLine.Info (Clip.class, stream.getFormat ());
-            Clip clip = (Clip) AudioSystem.getLine (info);
-            clip.open (stream);
-            clip.start ();
-        } 
-        catch (Exception e) {
-            System.err.println ("Fehler bei Wiedergabe der Datei '" + filename + "'!");
-            e.printStackTrace ();
+            AudioInputStream stream = AudioSystem.getAudioInputStream(new URL(urlBase + filename));
+            DataLine.Info info = new DataLine.Info(Clip.class, stream.getFormat());
+            Clip clip = (Clip) AudioSystem.getLine(info);
+            clip.open(stream);
+            clip.start();
+        } catch (Exception e) {
+            System.err.println("Fehler bei Wiedergabe der Datei '" + filename + "'!");
+            e.printStackTrace();
         }
-    }    
+    }
 }

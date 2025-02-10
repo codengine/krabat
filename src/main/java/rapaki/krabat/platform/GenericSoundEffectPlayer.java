@@ -22,18 +22,17 @@ package rapaki.krabat.platform;
 
 /**
  * Klasse Sound kuemmert sich um das Abspielen von WAV-Dateien und anderen Formaten.
- * 
+ *
  * @author Stefan Saring
  */
-public abstract class GenericSoundEffectPlayer
-{
+public abstract class GenericSoundEffectPlayer {
 
     protected final String urlBase;
-    
+
     public GenericSoundEffectPlayer(String urlBase) {
         this.urlBase = urlBase;
     }
-    
-    public abstract void PlayFile (String filename);
+
+    public abstract void PlayFile(String filename);
 
 }     
