@@ -93,14 +93,14 @@ public class Straze extends Mainloc {
         straza2 = new Straza2(mainFrame);
 
         // Inits fuer Straza1
-        pStraza1 = new GenericPoint(straza1Feet.x - (Straza1.Breite / 2), straza1Feet.y - Straza1.Hoehe);
+        pStraza1 = new GenericPoint(straza1Feet.x - Straza1.Breite / 2, straza1Feet.y - Straza1.Hoehe);
 
         talkPoint = new GenericPoint(straza1Feet.x, pStraza1.y - 50);
 
         reStraza1 = new Borderrect(pStraza1.x, pStraza1.y, pStraza1.x + Straza1.Breite, pStraza1.y + Straza1.Hoehe);
 
         // Inits fuer Straza2
-        pStraza2 = new GenericPoint(straza2Feet.x - (Straza2.Breite / 2), straza2Feet.y - Straza2.Hoehe);
+        pStraza2 = new GenericPoint(straza2Feet.x - Straza2.Breite / 2, straza2Feet.y - Straza2.Hoehe);
 
         talkPoint2 = new GenericPoint(straza2Feet.x, pStraza2.y - 50);
 
@@ -202,7 +202,7 @@ public class Straze extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -245,12 +245,12 @@ public class Straze extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -296,8 +296,8 @@ public class Straze extends Mainloc {
                 }
 
                 // Ausreden fuer Wache 1 und 2
-                if ((reStraza1.IsPointInRect(pTemp)) ||
-                        (reStraza2.IsPointInRect(pTemp))) {
+                if (reStraza1.IsPointInRect(pTemp) ||
+                        reStraza2.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pStrazy;
@@ -385,8 +385,8 @@ public class Straze extends Mainloc {
                 }
 
                 // Wache 1 oder 2 ansehen
-                if ((reStraza1.IsPointInRect(pTemp)) ||
-                        (reStraza2.IsPointInRect(pTemp))) {
+                if (reStraza1.IsPointInRect(pTemp) ||
+                        reStraza2.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pStrazy;
                 }
@@ -403,8 +403,8 @@ public class Straze extends Mainloc {
                 // rechte Maustaste
 
                 // Mit Wachen reden
-                if ((reStraza1.IsPointInRect(pTemp)) ||
-                        (reStraza2.IsPointInRect(pTemp))) {
+                if (reStraza1.IsPointInRect(pTemp) ||
+                        reStraza2.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pStrazy);
                     mainFrame.repaint();
@@ -420,8 +420,8 @@ public class Straze extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangHdwor.IsPointInRect(pTemp)) ||
-                        (ausgangTerassa.IsPointInRect(pTemp))) {
+                if (ausgangHdwor.IsPointInRect(pTemp) ||
+                        ausgangTerassa.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -437,7 +437,7 @@ public class Straze extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -449,15 +449,15 @@ public class Straze extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (reStraza1.IsPointInRect(pTemp)) ||
-                    (reStraza2.IsPointInRect(pTemp)) || (wappen.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || reStraza1.IsPointInRect(pTemp) ||
+                    reStraza2.IsPointInRect(pTemp) || wappen.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -481,9 +481,9 @@ public class Straze extends Mainloc {
                 return;
             }
 
-            if ((reStraza1.IsPointInRect(pTemp)) ||
-                    (reStraza2.IsPointInRect(pTemp)) ||
-                    (wappen.IsPointInRect(pTemp))) {
+            if (reStraza1.IsPointInRect(pTemp) ||
+                    reStraza2.IsPointInRect(pTemp) ||
+                    wappen.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -564,13 +564,13 @@ public class Straze extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600) && (nextActionID != 541)) {
+        if (nextActionID > 499 && nextActionID < 600 && nextActionID != 541) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -581,7 +581,7 @@ public class Straze extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

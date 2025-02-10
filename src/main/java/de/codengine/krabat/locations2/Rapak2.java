@@ -162,7 +162,7 @@ public class Rapak2 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -212,7 +212,7 @@ public class Rapak2 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -266,7 +266,7 @@ public class Rapak2 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -284,7 +284,7 @@ public class Rapak2 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -336,7 +336,7 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // Ausreden fuer Raben
-                if ((rapakRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[256])) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
                     nextActionID = 155;
                     pTemp = Prapak;
                 }
@@ -455,7 +455,7 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // Rapak ansehen
-                if ((rapakRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[256])) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
                     nextActionID = 2;
                     pTemp = Prapak;
                 }
@@ -500,7 +500,7 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // mit Raben reden
-                if ((rapakRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[256])) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
                     nextActionID = 615;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prapak);
                     mainFrame.repaint();
@@ -525,7 +525,7 @@ public class Rapak2 extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -537,16 +537,16 @@ public class Rapak2 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((rapakRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[256])) ||
-                    (brSchildOben.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256] ||
+                    brSchildOben.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -563,8 +563,8 @@ public class Rapak2 extends Mainloc {
                 return;
             }
 
-            if (((rapakRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[256])) ||
-                    (brSchildOben.IsPointInRect(pTemp))) {
+            if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256] ||
+                    brSchildOben.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -678,13 +678,13 @@ public class Rapak2 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -695,7 +695,7 @@ public class Rapak2 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

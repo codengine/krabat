@@ -197,7 +197,7 @@ public class Plokarka extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if (((walkto.x - (int) txps) * direction_x) <= 0) {
+            if ((walkto.x - (int) txps) * direction_x <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetPlokarkaPos(walkto);
                 anim_pos = 0;
@@ -213,7 +213,7 @@ public class Plokarka extends Mainanim {
 
             // Animationsphase weiterschalten
             anim_pos++;
-            if (anim_pos == ((direction_y == 1) ? 3 : 4)) {
+            if (anim_pos == (direction_y == 1 ? 3 : 4)) {
                 anim_pos = 0;
             }
 
@@ -221,7 +221,7 @@ public class Plokarka extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetPlokarkaPos(walkto);
                 anim_pos = 0;
@@ -234,10 +234,10 @@ public class Plokarka extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZ_DIST[anim_pos] - (scale / SLOWX);
+        float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
         if (horiz_dist < 1) {
             horiz_dist = 1;
         }
@@ -253,17 +253,17 @@ public class Plokarka extends Mainanim {
             typs += direction_y * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + (direction_x * horiz_dist);
+        txps = xps + direction_x * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST - (scale / SLOWY);
+        float vert_dist = CVERT_DIST - scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
@@ -278,7 +278,7 @@ public class Plokarka extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -303,27 +303,27 @@ public class Plokarka extends Mainanim {
 	  }*/
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
         }
 
         // Horizontal oder verikal laufen ?
-        if (aim.x == ((int) xps)) {
+        if (aim.x == (int) xps) {
             horiz = false;
         } else {
             // Winkel berechnen, den Krabat laufen soll
-            double yangle = Math.abs(aim.y - ((int) yps));
-            double xangle = Math.abs(aim.x - ((int) xps));
+            double yangle = Math.abs(aim.y - (int) yps);
+            double xangle = Math.abs(aim.x - (int) xps);
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            horiz = !(angle > (22 * Math.PI / 180));
+            horiz = !(angle > 22 * Math.PI / 180);
         }
 
         // Variablen an Move uebergeben
@@ -353,7 +353,7 @@ public class Plokarka extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetPlokarkaPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -364,7 +364,7 @@ public class Plokarka extends Mainanim {
         if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
-                MaleIhn(offGraph, (hasWaesche) ? krabatw_left[anim_pos] : krabat_left[anim_pos]);
+                MaleIhn(offGraph, hasWaesche ? krabatw_left[anim_pos] : krabat_left[anim_pos]);
             }
 
             // nach rechts laufen
@@ -381,7 +381,7 @@ public class Plokarka extends Mainanim {
 
                 // nach unten laufen
                 if (direction_y == 1) {
-                    MaleIhn(offGraph, (hasWaesche) ? krabatw_front[anim_pos] : krabat_front[anim_pos]);
+                    MaleIhn(offGraph, hasWaesche ? krabatw_front[anim_pos] : krabat_front[anim_pos]);
                 }
             } else {
                 // nach oben laufen
@@ -446,7 +446,7 @@ public class Plokarka extends Mainanim {
     // Lasse Plokarka Waeschestuecke abnehmen
     public boolean nimmWaescheAb(GenericDrawingContext g) {
         MaleIhn(g, krabatw_abnehm);
-        if ((Abnehmcount--) < 1) {
+        if (Abnehmcount-- < 1) {
             Abnehmcount = MAX_ABNEHMCOUNT;
             return false;
         }
@@ -455,7 +455,7 @@ public class Plokarka extends Mainanim {
 
     // Zeichne Plokarka normal Schimpfend
     public void talkPlokarka(GenericDrawingContext offGraph) {
-        if ((--Notalk) < 1) {
+        if (--Notalk < 1) {
             Notalk = MAX_NOTALK;
             TalkPic = (int) Math.round(Math.random() * 5);
             if (TalkPic == 5) {
@@ -467,10 +467,10 @@ public class Plokarka extends Mainanim {
 
     // Zeichne Plokarka mit Haende hoch
     public void haendePlokarka(GenericDrawingContext offGraph) {
-        if ((--Notalk) < 1) {
+        if (--Notalk < 1) {
             Notalk = MAX_NOTALK;
 
-            if ((--Nohaendefuchtel) < 1) {
+            if (--Nohaendefuchtel < 1) {
                 Nohaendefuchtel = MAX_NOHAENDEFUCHTEL;
 
                 TalkPic = (int) Math.round(Math.random() * 5);
@@ -480,7 +480,7 @@ public class Plokarka extends Mainanim {
             }
 
             // sind Haende schon oben ? dann nur switchen
-            if ((TalkPic == 1) || (TalkPic == 2)) {
+            if (TalkPic == 1 || TalkPic == 2) {
                 TalkPic = (int) Math.round(Math.random() * 2);
                 TalkPic++;
                 if (TalkPic == 3) {
@@ -492,7 +492,7 @@ public class Plokarka extends Mainanim {
                 do {
                     TalkPic = (int) Math.round(Math.random() * 5);
                 }
-                while ((TalkPic != 0) && (TalkPic != 3) && (TalkPic != 4));
+                while (TalkPic != 0 && TalkPic != 3 && TalkPic != 4);
             }
         }
         MaleIhn(offGraph, krabat_haende[TalkPic]);
@@ -504,14 +504,14 @@ public class Plokarka extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (pox - ((CWIDTH - (helper / 2)) / 2));
+        return pox - (CWIDTH - helper / 2) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -528,7 +528,7 @@ public class Plokarka extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -537,7 +537,7 @@ public class Plokarka extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -561,24 +561,24 @@ public class Plokarka extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect PlokarkaRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - (scale / 2), CHEIGHT - scale);
+        g.drawImage(ktemp, left, up, CWIDTH - scale / 2, CHEIGHT - scale);
     }
 }

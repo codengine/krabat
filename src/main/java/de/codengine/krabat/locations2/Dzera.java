@@ -70,7 +70,7 @@ public class Dzera extends Mainloc {
         mueller.SetMlynkPos(mlynkFeet);
         mueller.SetFacing(3);
 
-        Pkocka.x = kockaFeet.x - (Kocka.Breite / 2);
+        Pkocka.x = kockaFeet.x - Kocka.Breite / 2;
         Pkocka.y = kockaFeet.y - Kocka.Hoehe;
         kockaTalk.x = kockaFeet.x;
         kockaTalk.y = Pkocka.y - 50;
@@ -131,7 +131,7 @@ public class Dzera extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // Redet er etwa gerade ??
-        if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+        if (TalkPerson == 36 && mainFrame.talkCount > 0) {
             mueller.talkMlynk(g);
         }
 
@@ -165,7 +165,7 @@ public class Dzera extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -175,7 +175,7 @@ public class Dzera extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }

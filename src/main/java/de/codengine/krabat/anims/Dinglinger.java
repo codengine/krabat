@@ -142,15 +142,15 @@ public class Dinglinger extends Mainanim {
         }
 
         // Dinglinger redet, nur Head/Body switchen und gut
-        if ((TalkPerson == 47) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 47 && mainFrame.talkCount > 1) {
             // Head eval.
-            if ((--Verhindertalkhead) < 1) {
+            if (--Verhindertalkhead < 1) {
                 Verhindertalkhead = MAX_VERHINDERTALKHEAD;
                 Talkhead = (int) (Math.random() * 9.9);
             }
 
             // Body eval., dabei einen gueltigen einsetzen, wenn anderes in Variable steht
-            if (((--Verhindertalkbody) < 1) || (Talkbody > 1)) {
+            if (--Verhindertalkbody < 1 || Talkbody > 1) {
                 Verhindertalkbody = MAX_VERHINDERTALKBODY;
                 Talkbody = (int) (Math.random() * 1.9);
             }
@@ -159,7 +159,7 @@ public class Dinglinger extends Mainanim {
             offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
             offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
 
-            return (0); // keine Verlaufsanzeige zurueckgeben
+            return 0; // keine Verlaufsanzeige zurueckgeben
         }
 
         // AnimID 1 : Dinglinger hoert zu
@@ -181,11 +181,11 @@ public class Dinglinger extends Mainanim {
             offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
             offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
 
-            return (0); // keine Verlaufsanzeige zurueckgeben
+            return 0; // keine Verlaufsanzeige zurueckgeben
         }
 
         // 2 und 3 : Dinglinger nimmt allgemeine Sachen
-        if ((AnimID == 2) || (AnimID == 3)) {
+        if (AnimID == 2 || AnimID == 3) {
             // je nach AnimCounter einzelne Phasen zeichnen
             if (AnimCounter < 2) {
                 // erste Takephase
@@ -218,7 +218,7 @@ public class Dinglinger extends Mainanim {
             // damit die Anim auch vorwaertsgeht...
             AnimCounter++;
 
-            return (AnimCounter); // Verlaufsanzeige zurueckgeben, 100 = Ende
+            return AnimCounter; // Verlaufsanzeige zurueckgeben, 100 = Ende
         }
 
         // ID = 4 : lies den Brief
@@ -244,7 +244,7 @@ public class Dinglinger extends Mainanim {
             // damit die Anim auch vorwaertsgeht...
             AnimCounter++;
 
-            return (AnimCounter); // Verlaufsanzeige zurueckgeben, 100 = Ende
+            return AnimCounter; // Verlaufsanzeige zurueckgeben, 100 = Ende
         }
 
         // ID 5 : gib Dowolnosc an Krabat
@@ -269,7 +269,7 @@ public class Dinglinger extends Mainanim {
 
             AnimCounter++;
 
-            return (AnimCounter); // Verlaufsanzeige zurueckgeben, 100 = Ende
+            return AnimCounter; // Verlaufsanzeige zurueckgeben, 100 = Ende
         }
 
         // bis jetzt keine Anims, also sitzt er nur da und bewegt sich ab und zu
@@ -292,7 +292,7 @@ public class Dinglinger extends Mainanim {
 
         // hier umschalten, wie schnell er wieder nach unten bzw. nach oben schaut
         if (hatAugenNachUnten) {
-            if ((--Verhinderaugennachunten) < 1) {
+            if (--Verhinderaugennachunten < 1) {
                 Verhinderaugennachunten = MAX_VERHINDERAUGENNACHUNTEN;
                 int zz = (int) (Math.random() * 50);
                 if (zz > 25) {
@@ -300,22 +300,22 @@ public class Dinglinger extends Mainanim {
                 }
             }
         } else {
-            if ((--Verhinderaugennachoben) < 1) {
+            if (--Verhinderaugennachoben < 1) {
                 Verhinderaugennachoben = MAX_VERHINDERAUGENNACHOBEN;
                 hatAugenNachUnten = true;
             }
         }
 
         // Bodies
-        if (((--Verhinderwait) < 1) || ((Talkbody != 3) && (Talkbody != 4))) {
+        if (--Verhinderwait < 1 || Talkbody != 3 && Talkbody != 4) {
             Verhinderwait = MAX_VERHINDERWAIT;
-            Talkbody = (int) ((Math.random() * 1.9) + 3);
+            Talkbody = (int) (Math.random() * 1.9 + 3);
         }
 
         // hier zeichnen
         offGraph.drawImage(dingl_sit_waithead[Wait], Posit.x, Posit.y, null);
         offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
 
-        return (0); // keine Verlaufsanzeige
+        return 0; // keine Verlaufsanzeige
     }
 }    

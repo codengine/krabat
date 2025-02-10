@@ -34,7 +34,7 @@ public class FontFilter extends GenericImageFilter {
             // System.out.print ("X");
             return rgb;
         } else {
-            return (whatColor);
+            return whatColor;
         }
     }
 }  

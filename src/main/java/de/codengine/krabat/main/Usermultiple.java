@@ -84,11 +84,11 @@ public class Usermultiple {
 
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
-                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
+                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
                             Positionen[i].getX() + mainFrame.scrollx,
                             Positionen[i].getY() + mainFrame.scrolly + 10, 0xffff0000);
                 } else {
-                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
+                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
                             Positionen[i].getX() + mainFrame.scrollx,
                             Positionen[i].getY() + mainFrame.scrolly + 10, 0xffb00000);
                 }
@@ -99,7 +99,7 @@ public class Usermultiple {
         }
 
         if (oldsel != -1) {
-            mainFrame.ifont.drawString(g, ("$" + Fragen[oldsel]),
+            mainFrame.ifont.drawString(g, "$" + Fragen[oldsel],
                     Positionen[oldsel].getX() + mainFrame.scrollx,
                     Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xffb00000);
         }
@@ -108,7 +108,7 @@ public class Usermultiple {
         }
 
         if (selected != -1) {
-            mainFrame.ifont.drawString(g, ("$" + Fragen[selected]),
+            mainFrame.ifont.drawString(g, "$" + Fragen[selected],
                     Positionen[selected].getX() + mainFrame.scrollx,
                     Positionen[selected].getY() + mainFrame.scrolly + 10, 0xffff0000);
         }

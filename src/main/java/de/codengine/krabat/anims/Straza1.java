@@ -64,9 +64,9 @@ public class Straza1 extends Mainanim {
     // Zeichne Wache, wie er dasteht oder spricht
     public void drawStraza1(GenericDrawingContext offGraph, int TalkPerson, GenericPoint posit, boolean versperrtWeg) {
         // redende Straza
-        if ((TalkPerson == 43) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 43 && mainFrame.talkCount > 1) {
             // evaluieren
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 2.9);
             }

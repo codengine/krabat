@@ -124,7 +124,7 @@ public class PredKorejtow extends Mainanim {
     // Predawar beim rumstehen
     public void drawPredawar(GenericDrawingContext g) {
         // Head switchen, wenn es soweit ist
-        if ((--Verhinderwaithead) < 1) {
+        if (--Verhinderwaithead < 1) {
             Verhinderwaithead = MAX_VERHINDERWAITHEAD;
 
             int zuffi = (int) (Math.random() * 50);
@@ -146,7 +146,7 @@ public class PredKorejtow extends Mainanim {
         }
 
         // Body switchen ohne Extrawurst
-        if ((--Verhinderwaitbody) < 1) {
+        if (--Verhinderwaitbody < 1) {
             Verhinderwaitbody = MAX_VERHINDERWAITBODY;
             WaitBody = (int) (Math.random() * 1.9);
         }
@@ -164,7 +164,7 @@ public class PredKorejtow extends Mainanim {
         }
 
         // Head eval.
-        if ((--Verhindercallhead) < 1) {
+        if (--Verhindercallhead < 1) {
             Verhindercallhead = MAX_VERHINDERCALLHEAD;
 
             // schauen, ob auch Richtung gewechselt werden darf
@@ -175,13 +175,13 @@ public class PredKorejtow extends Mainanim {
                 if (CallHead < 4) {
                     CallHead = (int) (Math.random() * 3.9);
                 } else {
-                    CallHead = (int) ((Math.random() * 3.9) + 4);
+                    CallHead = (int) (Math.random() * 3.9 + 4);
                 }
             }
         }
 
         // Body eval.
-        if ((--Verhindercallbody) < 1) {
+        if (--Verhindercallbody < 1) {
             Verhindercallbody = MAX_VERHINDERCALLBODY;
             CallBody = (int) (Math.random() * 2.9);
         }
@@ -194,13 +194,13 @@ public class PredKorejtow extends Mainanim {
     // Predawar beim Reden
     public void talkPredawar(GenericDrawingContext g) {
         // Head eval.
-        if ((--Verhindertalkhead) < 1) {
+        if (--Verhindertalkhead < 1) {
             Verhindertalkhead = MAX_VERHINDERTALKHEAD;
             TalkHead = (int) (Math.random() * 7.9);
         }
 
         // Body eval.
-        if ((--Verhindertalkbody) < 1) {
+        if (--Verhindertalkbody < 1) {
             Verhindertalkbody = MAX_VERHINDERTALKBODY;
             TalkBody = (int) (Math.random() * 2.9);
         }

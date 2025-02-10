@@ -126,8 +126,8 @@ public class Spaniska extends Mainloc {
 
         dziwadzelnica = new Dziwadzelnica(mainFrame);
 
-        dziwPoint = new GenericPoint(dziwFeetRight.x - (Dziwadzelnica.Breite / 2), dziwFeetRight.y - Dziwadzelnica.Hoehe);
-        dziwLeftPoint = new GenericPoint(dziwFeetLeft.x - (Dziwadzelnica.Breite / 2), dziwFeetLeft.y - Dziwadzelnica.Hoehe);
+        dziwPoint = new GenericPoint(dziwFeetRight.x - Dziwadzelnica.Breite / 2, dziwFeetRight.y - Dziwadzelnica.Hoehe);
+        dziwLeftPoint = new GenericPoint(dziwFeetLeft.x - Dziwadzelnica.Breite / 2, dziwFeetLeft.y - Dziwadzelnica.Hoehe);
         talkPoint = new GenericPoint(dziwFeetLeft.x, dziwLeftPoint.y - 50);
 
         rectDziwadzelnica = new Borderrect(dziwPoint.x, dziwPoint.y, dziwPoint.x + Dziwadzelnica.Breite,
@@ -279,7 +279,7 @@ public class Spaniska extends Mainloc {
 
         // Krabat zeichnen
         if (krabatVisible) {
-            if ((krabatFaellt) || (klettertRein)) {
+            if (krabatFaellt || klettertRein) {
                 // hier das Hinfallen, Cliprect besorgt diese Routine selbst
                 if (krabatFaellt) {
                     fallRueckgabe = krabatFall.drawKrabat(g, mainFrame.krabat.GetKrabatPos());
@@ -296,10 +296,10 @@ public class Spaniska extends Mainloc {
                         scale = mainFrame.krabat.defScale;
                     }
 
-                    GenericPoint pLeftUp = new GenericPoint(pKletterFeet.x - ((50 - (scale / 2)) / 2), pKletterFeet.y - (100 - scale));
+                    GenericPoint pLeftUp = new GenericPoint(pKletterFeet.x - (50 - scale / 2) / 2, pKletterFeet.y - (100 - scale));
 
-                    g.setClip(pLeftUp.x, pLeftUp.y, 50 - (scale / 2), 100 - scale);
-                    g.drawImage(krabat_steigen, pLeftUp.x, pLeftUp.y, 50 - (scale / 2), 100 - scale, null);
+                    g.setClip(pLeftUp.x, pLeftUp.y, 50 - scale / 2, 100 - scale);
+                    g.drawImage(krabat_steigen, pLeftUp.x, pLeftUp.y, 50 - scale / 2, 100 - scale, null);
                 }
             } else {
                 // Animation??
@@ -311,7 +311,7 @@ public class Spaniska extends Mainloc {
                         evalMouseMoveEvent(mainFrame.Mousepoint);
                     }
                 } else {
-                    if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                    if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                         // beim Reden
                         switch (TalkPerson) {
                             case 1:
@@ -391,7 +391,7 @@ public class Spaniska extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -408,7 +408,7 @@ public class Spaniska extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -507,7 +507,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // Ausreden fuer 5 tolerow
-                if ((geld.IsPointInRect(pTemp)) && (!mainFrame.Actions[515])) {
+                if (geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
                     nextActionID = 175;
                     pTxxx = pGeld;
                 }
@@ -607,7 +607,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // 5 Tolerow ansehen
-                if ((geld.IsPointInRect(pTemp)) && (!mainFrame.Actions[515])) {
+                if (geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
                     nextActionID = 9;
                     pTxxx = pGeld;
                 }
@@ -700,8 +700,8 @@ public class Spaniska extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((untererAusgang.IsPointInRect(pTemp)) ||
-                        (obererAusgang.IsPointInRect(pTemp))) {
+                if (untererAusgang.IsPointInRect(pTemp) ||
+                        obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -719,7 +719,7 @@ public class Spaniska extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -731,21 +731,21 @@ public class Spaniska extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((rectLookDziwadzelnica.IsPointInRect(pTemp)) && (!mainFrame.Actions[515])) ||
-                    (papier.IsPointInRect(pTemp)) ||
-                    (spiegel.IsPointInRect(pTemp)) ||
-                    (blumen.IsPointInRect(pTemp)) ||
-                    (faltWand.IsPointInRect(pTemp)) ||
-                    (rectHaken.IsPointInRect(pTemp)) ||
-                    ((geld.IsPointInRect(pTemp)) && (!mainFrame.Actions[515]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.Actions[515] ||
+                    papier.IsPointInRect(pTemp) ||
+                    spiegel.IsPointInRect(pTemp) ||
+                    blumen.IsPointInRect(pTemp) ||
+                    faltWand.IsPointInRect(pTemp) ||
+                    rectHaken.IsPointInRect(pTemp) ||
+                    geld.IsPointInRect(pTemp) && !mainFrame.Actions[515];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -753,13 +753,13 @@ public class Spaniska extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((rectLookDziwadzelnica.IsPointInRect(pTemp)) && (!mainFrame.Actions[515])) ||
-                    (papier.IsPointInRect(pTemp)) ||
-                    (spiegel.IsPointInRect(pTemp)) ||
-                    (blumen.IsPointInRect(pTemp)) ||
-                    (faltWand.IsPointInRect(pTemp)) ||
-                    (rectHaken.IsPointInRect(pTemp)) ||
-                    ((geld.IsPointInRect(pTemp)) && (!mainFrame.Actions[515]))) {
+            if (rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.Actions[515] ||
+                    papier.IsPointInRect(pTemp) ||
+                    spiegel.IsPointInRect(pTemp) ||
+                    blumen.IsPointInRect(pTemp) ||
+                    faltWand.IsPointInRect(pTemp) ||
+                    rectHaken.IsPointInRect(pTemp) ||
+                    geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -857,13 +857,13 @@ public class Spaniska extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -874,7 +874,7 @@ public class Spaniska extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -964,7 +964,7 @@ public class Spaniska extends Mainloc {
 
             case 15:
                 // wirklich riechen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 mainFrame.krabat.nAnimation = 62;
@@ -1004,12 +1004,12 @@ public class Spaniska extends Mainloc {
 
             case 21:
                 // Auf Ende des Aufhebens warten
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(40);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[515] = true;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 nextActionID = 22;
@@ -1221,7 +1221,7 @@ public class Spaniska extends Mainloc {
 
             case 1010:
                 // warten, bis 1. Haken gezeigt wird
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 ersterHakenDa = true;
@@ -1232,7 +1232,7 @@ public class Spaniska extends Mainloc {
 
             case 1020:
                 // abwarten, bis 1. Haken time out
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 zweiterHakenDa = true;
@@ -1244,7 +1244,7 @@ public class Spaniska extends Mainloc {
 
             case 1030:
                 // warten, bis 2. Haken Timeout und dann back
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 NeuesBild(121, locationID);
@@ -1259,7 +1259,7 @@ public class Spaniska extends Mainloc {
 
             case 2010:
                 // warten bis Ende Counter
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 klettertRein = false;
@@ -1292,7 +1292,7 @@ public class Spaniska extends Mainloc {
 
             case 20:
                 // warten...
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 30;
                 }
                 break;
@@ -1301,7 +1301,7 @@ public class Spaniska extends Mainloc {
             case 30:
                 // zufaellige Antwort -> Zahl von 0 bis 3 generieren
                 int zuffZahl = (int) (Math.random() * 3.9);
-                if ((dziwSagtNurKurzeSaetze) && (zuffZahl > 1)) {
+                if (dziwSagtNurKurzeSaetze && zuffZahl > 1) {
                     zuffZahl = (int) (Math.random() * 1.9);
                 }
                 switch (zuffZahl) {
@@ -1364,7 +1364,7 @@ public class Spaniska extends Mainloc {
 
             case 40:
                 // warten, bis zu Ende geschnarcht
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 50;
                 }
                 break;
@@ -1374,13 +1374,13 @@ public class Spaniska extends Mainloc {
                 AnimOutputText = "";
                 AnimTalkPerson = 0;
                 mainFrame.Clipset = false;
-                AnimCounter = (int) ((Math.random() * 70) + 50);
+                AnimCounter = (int) (Math.random() * 70 + 50);
                 AnimID = 60;
                 break;
 
             case 60:
                 // Pause abwarten und von vorn...
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 10;
                 }
                 break;

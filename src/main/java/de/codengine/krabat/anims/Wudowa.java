@@ -88,19 +88,19 @@ public class Wudowa extends Mainanim {
 
         float fBodyOffset = BODYOFFSET;
 
-        int scaleBODYOFFSET = (int) (fBodyOffset - (fBodyOffset / yGroesse * zoomHinten));
+        int scaleBODYOFFSET = (int) (fBodyOffset - fBodyOffset / yGroesse * zoomHinten);
         int KopfGroesse = scaleBODYOFFSET;
         int KoerperGroesse = (int) (yGroesse - KopfGroesse);
 
         // Normales Reden wie immer
-        if ((TalkPerson == 56) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 56 && mainFrame.talkCount > 1) {
             int head = (int) Math.round(Math.random() * 6);
             head += 2;
             if (head == 8) {
                 head = 2;
             }
 
-            if ((--Verbody) < 1) {
+            if (--Verbody < 1) {
                 Verbody = MAX_VERBODY;
                 Body = (int) Math.round(Math.random() * 4);
                 Body++;
@@ -120,13 +120,13 @@ public class Wudowa extends Mainanim {
             drawVorder(g);
         } else {
             // Lachen der Alten
-            if ((TalkPerson == 57) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 57 && mainFrame.talkCount > 1) {
                 Lach++;
                 if (Lach == 3) {
                     Lach = 1;
                 }
 
-                if ((--Verbody) < 1) {
+                if (--Verbody < 1) {
                     Verbody = MAX_VERBODY;
                     Body = (int) Math.round(Math.random() * 4);
                     Body++;

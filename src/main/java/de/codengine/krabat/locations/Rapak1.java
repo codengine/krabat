@@ -41,7 +41,7 @@ public class Rapak1 extends Mainloc {
     private int Zaehl;
     private boolean forward = true;
     private double angle = 0;
-    private static final double Offset = (2 * Math.PI) / 15;
+    private static final double Offset = 2 * Math.PI / 15;
 
     private Rapak rabe;
     private KrabatShoot schiesser;
@@ -259,7 +259,7 @@ public class Rapak1 extends Mainloc {
 
         // beim Treffer
         if (animit) {
-            animit = !(rabe.fliegRapak(g));
+            animit = !rabe.fliegRapak(g);
         }
         // normale Backgroundanims
         else {
@@ -296,8 +296,8 @@ public class Rapak1 extends Mainloc {
 
             // X - Koordinate weiterschalten
             angle += Offset;
-            if (angle > (2 * Math.PI)) {
-                angle -= (2 * Math.PI);
+            if (angle > 2 * Math.PI) {
+                angle -= 2 * Math.PI;
             }
             xkoord = (int) Math.round(Math.sin(angle) * 5.1);
             xkoord += NORM_XKOORD;
@@ -309,7 +309,7 @@ public class Rapak1 extends Mainloc {
         }
 
         // wenn geschossen, dann Feder zeichnen
-        if ((mainFrame.Actions[210]) && (!mainFrame.Actions[919])) {
+        if (mainFrame.Actions[210] && !mainFrame.Actions[919]) {
             g.setClip(437, 390, 16, 16);
             g.drawImage(background, 0, 0, null);
             g.drawImage(Feder[1], 437, 394, null);
@@ -333,7 +333,7 @@ public class Rapak1 extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -387,12 +387,12 @@ public class Rapak1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -450,7 +450,7 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Ausreden fuer Schild unten, wenn noch da
-                if ((brSchild.IsPointInRect(pTemp)) && (!mainFrame.Actions[901])) {
+                if (brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901]) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 210;
@@ -466,8 +466,8 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Ausreden fuer Feder
-                if ((pjeroRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[919]) &&
-                        (mainFrame.Actions[210])) {
+                if (pjeroRect.IsPointInRect(pTemp) && !mainFrame.Actions[919] &&
+                        mainFrame.Actions[210]) {
                     // Standard - Sinnloszeug
                     nextActionID = 165;
                     pTemp = Ppjero;
@@ -602,7 +602,7 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Schild ansehen
-                if ((brSchild.IsPointInRect(pTemp)) && (!mainFrame.Actions[901])) {
+                if (brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901]) {
                     nextActionID = 1;
                     pTemp = Pschild;
                 }
@@ -620,8 +620,8 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Pjero ansehen
-                if ((pjeroRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[919]) &&
-                        (mainFrame.Actions[210])) {
+                if (pjeroRect.IsPointInRect(pTemp) && !mainFrame.Actions[919] &&
+                        mainFrame.Actions[210]) {
                     nextActionID = 3;
                     pTemp = Ppjero;
                 }
@@ -652,7 +652,7 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Schild mitnehmen
-                if ((brSchild.IsPointInRect(pTemp)) && (!mainFrame.Actions[901])) {
+                if (brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
@@ -676,8 +676,8 @@ public class Rapak1 extends Mainloc {
                 }
 
                 // Pjero fangen
-                if ((pjeroRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[919]) &&
-                        (mainFrame.Actions[210])) {
+                if (pjeroRect.IsPointInRect(pTemp) && !mainFrame.Actions[919] &&
+                        mainFrame.Actions[210]) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(PpjeroAufh);
                     mainFrame.repaint();
@@ -696,7 +696,7 @@ public class Rapak1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -708,17 +708,17 @@ public class Rapak1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = ((brSchild.IsPointInRect(pTemp)) && (!mainFrame.Actions[901]))
-                    || (tmp.IsPointInRect(pTemp)) || (rapakRect.IsPointInRect(pTemp)) ||
-                    ((!mainFrame.Actions[919]) && (!mainFrame.Actions[210]) && (pjeroRect.IsPointInRect(pTemp))) ||
-                    (brSchildOben.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901]
+                    || tmp.IsPointInRect(pTemp) || rapakRect.IsPointInRect(pTemp) ||
+                    !mainFrame.Actions[919] && !mainFrame.Actions[210] && pjeroRect.IsPointInRect(pTemp) ||
+                    brSchildOben.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -735,9 +735,9 @@ public class Rapak1 extends Mainloc {
                 return;
             }
 
-            if (((brSchild.IsPointInRect(pTemp)) && (!mainFrame.Actions[901])) ||
-                    (rapakRect.IsPointInRect(pTemp)) || (brSchildOben.IsPointInRect(pTemp)) ||
-                    ((!mainFrame.Actions[919]) && (mainFrame.Actions[210]) && (pjeroRect.IsPointInRect(pTemp)))) {
+            if (brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901] ||
+                    rapakRect.IsPointInRect(pTemp) || brSchildOben.IsPointInRect(pTemp) ||
+                    !mainFrame.Actions[919] && mainFrame.Actions[210] && pjeroRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -844,13 +844,13 @@ public class Rapak1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -861,7 +861,7 @@ public class Rapak1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -926,12 +926,12 @@ public class Rapak1 extends Mainloc {
 
             case 53:
                 // Ende Schild aufheben
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(3);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[901] = true;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;
@@ -985,12 +985,12 @@ public class Rapak1 extends Mainloc {
 
             case 63:
                 // Ende Feder aufheben
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(19);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[919] = true;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;
@@ -1070,7 +1070,7 @@ public class Rapak1 extends Mainloc {
 
             case 164:
                 // Auf Ende beider Anims warten und dann beenden
-                if ((animit) || (segeln)) {
+                if (animit || segeln) {
                     break;
                 }
                 mainFrame.Clipset = false;

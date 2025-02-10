@@ -89,14 +89,14 @@ public class KrabatShoot extends Mainanim {
         int tHelper = (int) helper;
 
         // Links-Oben-Pos berechnen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        int x = pos.x - ((CWIDTH - (tHelper / 2)) / 2);
+        int x = pos.x - (CWIDTH - tHelper / 2) / 2;
         int y = pos.y - (CHEIGHT - tHelper);
 
         // Krabat beim Schiessen zeichnen
-        if ((Counter < 2) || (Counter > 5)) {
-            g.drawImage(krabat_schiessen[0], x, y, CWIDTH - (tHelper / 2), CHEIGHT - tHelper, null);
+        if (Counter < 2 || Counter > 5) {
+            g.drawImage(krabat_schiessen[0], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper, null);
         } else {
-            g.drawImage(krabat_schiessen[1], x, y, CWIDTH - (tHelper / 2), CHEIGHT - tHelper, null);
+            g.drawImage(krabat_schiessen[1], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper, null);
         }
 
         // Counter eins hoch
@@ -104,7 +104,7 @@ public class KrabatShoot extends Mainanim {
 
         // Testen ob Ende und alles zuruecksetzen
         boolean zurueck;
-        if ((kamjenx > kamjenStop.x) || (kamjeny < kamjenStop.y)) {
+        if (kamjenx > kamjenStop.x || kamjeny < kamjenStop.y) {
             zurueck = false;
             kamjenx = kamjenStart.x;
             kamjeny = kamjenStart.y;
@@ -114,6 +114,6 @@ public class KrabatShoot extends Mainanim {
             zurueck = true;
         }
 
-        return (zurueck);
+        return zurueck;
     }
 }    

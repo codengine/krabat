@@ -186,7 +186,7 @@ public class Inmlyn extends Mainloc {
         }
 
         // hier am Anfang das Buecken einschalten, wenn aus Dzera zurueckkommend
-        if ((setAnim) && (mainFrame.Actions[310])) {
+        if (setAnim && mainFrame.Actions[310]) {
             mainFrame.krabat.nAnimation = 122;
             // System.out.println ("Habe aber doch die Anim eingeschaltet!");
         }
@@ -208,7 +208,7 @@ public class Inmlyn extends Mainloc {
         // Krabat zeichnen
 
         // Animation??
-        if ((mainFrame.Actions[310]) && (krabatVisible)) {
+        if (mainFrame.Actions[310] && krabatVisible) {
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
 
@@ -217,7 +217,7 @@ public class Inmlyn extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -264,7 +264,7 @@ public class Inmlyn extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -281,7 +281,7 @@ public class Inmlyn extends Mainloc {
 
         // System.out.println ("nAnimation ist " + mainFrame.krabat.nAnimation);
 
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -330,8 +330,8 @@ public class Inmlyn extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
@@ -387,7 +387,7 @@ public class Inmlyn extends Mainloc {
 
             case 160:
                 // Umschalten auf Dzera
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 mainFrame.krabat.StopAnim();
@@ -417,7 +417,7 @@ public class Inmlyn extends Mainloc {
 
             case 1030:
                 // Raben schon zeigen, bevor Scroller umgeschaltet wird
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 rabe = new PtackZaRapaka(mainFrame, 300, 270, -50);
@@ -437,7 +437,7 @@ public class Inmlyn extends Mainloc {
 
             case 1045:
                 // noch bestimmte Zeit den Scroller anhalten, dann normal weiter
-                if ((--scrollCounter) > 1) {
+                if (--scrollCounter > 1) {
                     break;
                 }
                 mainFrame.krabat.SetKrabatPos(tempPoint);
@@ -449,7 +449,7 @@ public class Inmlyn extends Mainloc {
             case 1050:
                 // Abwarten, bis Scroller zurueck
                 // System.out.println ("Rabe = " + showRapak + " Scroller = " + mainFrame.isScrolling);
-                if ((showRapak) || (mainFrame.isScrolling)) {
+                if (showRapak || mainFrame.isScrolling) {
                     break;
                 }
                 nextActionID = 1060;

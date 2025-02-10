@@ -159,22 +159,22 @@ public class Bludnicki extends Mainanim {
         int zuffi;
 
         // redender Blud
-        if ((TalkPerson == 35) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 35 && mainFrame.talkCount > 1) {
             VerhinderKopf++;
             VerhinderRumpf++;
 
-            if ((VerhinderTalk++) >= MAX_VERHINDERTALK) {
+            if (VerhinderTalk++ >= MAX_VERHINDERTALK) {
                 VerhinderTalk = 0;
                 // Kopfzufallsphasen reden (Headshake)
                 zuffi = (int) Math.round(Math.random() * 7);
-                if ((zuffi < 7) && (zuffi > 0)) {
+                if (zuffi < 7 && zuffi > 0) {
                     Kopf2 = zuffi;
                 }
             }
 
             // Kopf nach oben und unten schieben, aber kein uebelstes Strecken
             zuffi = (int) Math.round(Math.random() * 10);
-            if ((zuffi < 4) && (VerhinderKopf > 6)) {
+            if (zuffi < 4 && VerhinderKopf > 6) {
                 if (Kopf1 == 1) {
                     Kopf1 = 2;
                 } else {
@@ -194,7 +194,7 @@ public class Bludnicki extends Mainanim {
 
             // Rumpf bewegen
             zuffi = (int) Math.round(Math.random() * 20);
-            if ((zuffi < 6) && (zuffi > 0) && (VerhinderRumpf > 6)) {
+            if (zuffi < 6 && zuffi > 0 && VerhinderRumpf > 6) {
                 Rumpf = zuffi;
                 VerhinderRumpf = 0;
             }
@@ -256,7 +256,7 @@ public class Bludnicki extends Mainanim {
             }
 
             // ab und zu kratzen
-            if ((Kratz != 1) || ((VerhinderKratz++) >= MAX_VERHINDERKRATZ)) {
+            if (Kratz != 1 || VerhinderKratz++ >= MAX_VERHINDERKRATZ) {
                 VerhinderKratz = 0;
                 Kratz = (int) Math.round(Math.random() * 2);
                 Kratz += 2;
@@ -265,7 +265,7 @@ public class Bludnicki extends Mainanim {
                 }
 
                 // Kratzen irgendwann wieder aussschalten
-                if ((VerhinderAufhoer++) >= MAX_VERHINDERAUFHOER) {
+                if (VerhinderAufhoer++ >= MAX_VERHINDERAUFHOER) {
                     zuffi = (int) Math.round(Math.random() * 20);
                     if (zuffi > 17) {
                         Kratz = 1;
@@ -279,7 +279,7 @@ public class Bludnicki extends Mainanim {
             feuer.drawPlomja(offGraph, new GenericPoint(posit.x + FEUERKONSTANTE, posit.y));
             offGraph.drawImage(Stan[Stand], posit.x, posit.y + Offset, null);
             if (!isTaking) {
-                offGraph.drawImage(((Kratz == 1) ? Body[1] : Krat[Kratz - 1]), posit.x, posit.y + Offset, null);
+                offGraph.drawImage(Kratz == 1 ? Body[1] : Krat[Kratz - 1], posit.x, posit.y + Offset, null);
             } else {
                 offGraph.drawImage(take, posit.x - 6, posit.y + Offset, null);  // hier ist das take
             }

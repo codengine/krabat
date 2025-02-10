@@ -183,7 +183,7 @@ public class Haty1 extends Mainloc {
         Dialog = new Multiple2(mainFrame);
         kfischer = new KrabatAngeln(mainFrame);
 
-        int zf = (int) (Math.round(Math.random() * 50));
+        int zf = (int) Math.round(Math.random() * 50);
         if (zf > 25) {
             reh = new Reh(mainFrame, false, new GenericRectangle(215, 128, 33, 25), 103);
             clipIstLinks = true;
@@ -205,7 +205,7 @@ public class Haty1 extends Mainloc {
         InitImages();
 
         // wenn kein Load, dann die Moeglichkeit, dass mehr Muell da ist, berechnen
-        if ((oldLocation != 0) && (mainFrame.Actions[220])) {
+        if (oldLocation != 0 && mainFrame.Actions[220]) {
             // angler muessen auch links sein
             // Actions von 152 bis 155
 
@@ -358,7 +358,7 @@ public class Haty1 extends Mainloc {
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
 
             // Matrix loeschen, je nachdem, wie gross noch ist
-            mainFrame.wegSucher.ClearMatrix((mainFrame.Actions[152]) ? 8 : 9);
+            mainFrame.wegSucher.ClearMatrix(mainFrame.Actions[152] ? 8 : 9);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
             if (!mainFrame.Actions[152]) {
@@ -407,7 +407,7 @@ public class Haty1 extends Mainloc {
         int AnzahlStriche = 1;
 
         for (int i = 0; i < Blink.length; i++) {
-            if ((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) > AnzahlStriche) {
+            if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
                 AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
@@ -419,7 +419,7 @@ public class Haty1 extends Mainloc {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) < j) && (j > 0)) {
+                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
@@ -477,7 +477,7 @@ public class Haty1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -522,8 +522,8 @@ public class Haty1 extends Mainloc {
         // Boot ist im Hintergrund, aber vor Blinkern
         if (mainFrame.isAnim) {
             // Wellenbild berechnen und anzeigen
-            switchanim = !(switchanim);
-            if ((!switchanim) && (--Bootcount < 1)) {
+            switchanim = !switchanim;
+            if (!switchanim && --Bootcount < 1) {
                 if (vorw) {
                     Bootzaehl++;
                     if (Bootzaehl == 9) {
@@ -563,7 +563,7 @@ public class Haty1 extends Mainloc {
         if (anglerNimmtEimer) {
             angler1.takeBow(g, merkeEimer);
         } else {
-            if ((TalkPerson == 30) || (schautAnglerInDerGegendRum)) {
+            if (TalkPerson == 30 || schautAnglerInDerGegendRum) {
                 // angler 1 redet
                 angler1.talkWudzer1(g, schautAnglerInDerGegendRum);
             } else {
@@ -632,7 +632,7 @@ public class Haty1 extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -685,7 +685,7 @@ public class Haty1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -697,7 +697,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -749,8 +749,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz left
-                if ((rohodzLeft.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -772,8 +772,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz right
-                if ((rohodzRight.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -814,7 +814,7 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Muell
-                if ((muellRect.IsPointInRect(pTemp)) && (mainFrame.Actions[152])) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
                     nextActionID = 185;
                     pTemp = Pmuell;
                 }
@@ -833,8 +833,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wasser links
-                if (((wodaLeft1.PointInside(pTemp)) || (wodaLeft2.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 370;
@@ -867,8 +867,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wasser rechts
-                if (((wodaRight1.PointInside(pTemp)) || (wodaRight2.PointInside(pTemp)) || (wodaRight3.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 375;
@@ -880,7 +880,7 @@ public class Haty1 extends Mainloc {
                             if (!mainFrame.Actions[220]) {
                                 nextActionID = 1210;
                             } else {
-                                if ((!mainFrame.Actions[914]) && (!mainFrame.Actions[915])) {
+                                if (!mainFrame.Actions[914] && !mainFrame.Actions[915]) {
                                     nextActionID = 1220;
                                 } else {
                                     nextActionID = 1230;
@@ -905,7 +905,7 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Angler
-                if ((angler1.Wudzer1Rect().IsPointInRect(pTemp)) || (angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -1008,15 +1008,15 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz left anschauen
-                if ((rohodzLeft.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Prohodzl;
                 }
 
                 // Rohodz right anschauen
-                if ((rohodzRight.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Prohodzr;
                 }
@@ -1027,7 +1027,7 @@ public class Haty1 extends Mainloc {
                     pTemp = eimerPos;
                 }
 
-                if ((muellRect.IsPointInRect(pTemp)) && (mainFrame.Actions[152])) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
                     nextActionID = 10;
                     pTemp = Pmuell;
                 }
@@ -1039,21 +1039,21 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Wasser links anschauen
-                if (((wodaLeft1.PointInside(pTemp)) || (wodaLeft2.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = PwodaLeft;
                 }
 
                 // Wasser rechts anschauen
-                if (((wodaRight1.PointInside(pTemp)) || (wodaRight2.PointInside(pTemp)) || (wodaRight3.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = PwodaRight;
                 }
 
                 // Angler anschauen
-                if ((angler1.Wudzer1Rect().IsPointInRect(pTemp)) || (angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     if (!mainFrame.Actions[220]) {
                         nextActionID = 8;
                         pTemp = PwudzerRight;
@@ -1079,8 +1079,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz left mitnehmen
-                if ((rohodzLeft.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prohodzl);
                     mainFrame.repaint();
@@ -1088,8 +1088,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz right mitnehmen
-                if ((rohodzRight.IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp)) &&
-                        (!angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
+                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prohodzr);
                     mainFrame.repaint();
@@ -1105,7 +1105,7 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Muell mitnehmen
-                if ((muellRect.IsPointInRect(pTemp)) && (mainFrame.Actions[152])) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
                     nextActionID = 90;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pmuell);
                     mainFrame.repaint();
@@ -1121,8 +1121,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Wasser links use
-                if (((wodaLeft1.PointInside(pTemp)) || (wodaLeft2.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(PwodaLeft);
                     mainFrame.repaint();
@@ -1130,8 +1130,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Wasser rechts use
-                if (((wodaRight1.PointInside(pTemp)) || (wodaRight2.PointInside(pTemp)) || (wodaRight3.PointInside(pTemp))) &&
-                        ((!angler1.Wudzer1Rect().IsPointInRect(pTemp)) && (!angler2.Wudzer2Rect().IsPointInRect(pTemp)))) {
+                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
+                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     nextActionID = 75;
                     mainFrame.wegGeher.SetzeNeuenWeg(PwodaRight);
                     mainFrame.repaint();
@@ -1139,14 +1139,14 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Angler talk
-                if ((angler1.Wudzer1Rect().IsPointInRect(pTemp)) || (angler2.Wudzer2Rect().IsPointInRect(pTemp))) {
+                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
                     if (mainFrame.Actions[220]) {
                         nextActionID = 80;
                         mainFrame.wegGeher.SetzeNeuenWeg(PwudzerLeft);
                         mainFrame.repaint();
                         return;
                     } else {
-                        if ((angler2.Wudzer2Rect().IsPointInRect(pTemp)) && (!angler1.Wudzer1Rect().IsPointInRect(pTemp))) {
+                        if (angler2.Wudzer2Rect().IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp)) {
                             nextActionID = 85;
                         } else {
                             nextActionID = 87;
@@ -1175,7 +1175,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Krabat - Animation = transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -1187,21 +1187,21 @@ public class Haty1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (wodaRight1.PointInside(pTemp)) || (wodaRight2.PointInside(pTemp)) ||
-                    (wodaRight3.PointInside(pTemp)) || (wodaLeft1.PointInside(pTemp)) ||
-                    (wodaLeft2.PointInside(pTemp)) || (rohodzLeft.IsPointInRect(pTemp)) ||
-                    (rohodzRight.IsPointInRect(pTemp)) || (angler1.Wudzer1Rect().IsPointInRect(pTemp)) ||
-                    (angler2.Wudzer2Rect().IsPointInRect(pTemp)) || (colmik.IsPointInRect(pTemp)) ||
-                    (eimerRect.IsPointInRect(pTemp)) ||
-                    ((muellRect.IsPointInRect(pTemp)) && (mainFrame.Actions[152]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
+                    wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
+                    wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
+                    rohodzRight.IsPointInRect(pTemp) || angler1.Wudzer1Rect().IsPointInRect(pTemp) ||
+                    angler2.Wudzer2Rect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
+                    eimerRect.IsPointInRect(pTemp) ||
+                    muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -1210,13 +1210,13 @@ public class Haty1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((wodaRight1.PointInside(pTemp)) || (wodaRight2.PointInside(pTemp)) ||
-                    (wodaRight3.PointInside(pTemp)) || (wodaLeft1.PointInside(pTemp)) ||
-                    (wodaLeft2.PointInside(pTemp)) || (rohodzLeft.IsPointInRect(pTemp)) ||
-                    (rohodzRight.IsPointInRect(pTemp)) || (angler1.Wudzer1Rect().IsPointInRect(pTemp)) ||
-                    (angler2.Wudzer2Rect().IsPointInRect(pTemp)) || (colmik.IsPointInRect(pTemp)) ||
-                    (eimerRect.IsPointInRect(pTemp)) ||
-                    ((muellRect.IsPointInRect(pTemp)) && (mainFrame.Actions[152]))) {
+            if (wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
+                    wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
+                    wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
+                    rohodzRight.IsPointInRect(pTemp) || angler1.Wudzer1Rect().IsPointInRect(pTemp) ||
+                    angler2.Wudzer2Rect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
+                    eimerRect.IsPointInRect(pTemp) ||
+                    muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -1324,15 +1324,15 @@ public class Haty1 extends Mainloc {
                 // nur bearbeiten, falls der Eintrag nicht gesperrt ist
                 if (MerkArray[i][j][2] > -1) {
                     // ein leeres Feld bekommt einen neuen Eintrag zugewiesen
-                    if ((MerkArray[i][j][0] == 0) && (MerkArray[i][j][1] == 0)) {
+                    if (MerkArray[i][j][0] == 0 && MerkArray[i][j][1] == 0) {
                         // gewisse Haeufigkeit fuer Neubelegung festlegen
                         int zuffZahl = (int) Math.round(Math.random() * 50);
                         if (zuffZahl > 25) {
                             // Werte fuer Zufallsgenerator berechnen
-                            int xlaenge = ((Blink[i].x2 > Blink[i].x4) ? Blink[i].x2 : Blink[i].x4)
-                                    - ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+                            int xlaenge = (Blink[i].x2 > Blink[i].x4 ? Blink[i].x2 : Blink[i].x4)
+                                    - (Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3);
                             int ylaenge = Blink[i].y2 - Blink[i].y1;
-                            int xoffset = ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+                            int xoffset = Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3;
 
                             // ungueltige Werte nicht beachten
                             do {
@@ -1344,7 +1344,7 @@ public class Haty1 extends Mainloc {
                     }
 
                     // wenn der Eintrag gueltig ist, dann auch zeichnen
-                    if ((MerkArray[i][j][0] != 0) && (MerkArray[i][j][1] != 0)) {
+                    if (MerkArray[i][j][0] != 0 && MerkArray[i][j][1] != 0) {
                         // den Eintrag zeichnen
                         switch (MerkArray[i][j][2]) {
                             case 0: // Ein Punkt
@@ -1391,13 +1391,13 @@ public class Haty1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -1408,7 +1408,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -1792,7 +1792,7 @@ public class Haty1 extends Mainloc {
 
             case 220:
                 // angler 1 spaeter loslaufen lassen
-                if ((--Verzoegerung) > 0) {
+                if (--Verzoegerung > 0) {
                     break;
                 }
                 angler1.SetWudzer1Pos(wudzer1RightWalk);
@@ -1814,7 +1814,7 @@ public class Haty1 extends Mainloc {
 
             case 222:
                 // warten auf Ende Eimernehmen
-                if ((--Verzoegerung) > 0) {
+                if (--Verzoegerung > 0) {
                     break;
                 }
                 hatAnglerDenEimer = true;
@@ -1840,7 +1840,7 @@ public class Haty1 extends Mainloc {
 
             case 224:
                 // warten auf Ende
-                if ((--Verzoegerung) > 0) {
+                if (--Verzoegerung > 0) {
                     break;
                 }
                 anglerNimmtEimer = false;
@@ -1852,7 +1852,7 @@ public class Haty1 extends Mainloc {
 
             case 228:
                 // warten auf Ende Anglerlaufen
-                if ((!walkWudzer1) || (!walkWudzer2)) {
+                if (!walkWudzer1 || !walkWudzer2) {
                     break;
                 }
                 InitAngler();
@@ -2538,7 +2538,7 @@ public class Haty1 extends Mainloc {
 
             case 910:
                 // Angler 2  - Antworten
-                int zg = (int) (Math.round(Math.random() * 4));
+                int zg = (int) Math.round(Math.random() * 4);
                 PersonSagt(HWAnt[zg], DWAnt[zg], NWAnt[zg], 0, 30, 2, 900, angler1.Wudzer1TalkPoint());
                 break;
 

@@ -273,7 +273,7 @@ public class Hojnt extends Mainanim {
         direction_y = Tdirection_y;
 
         // Verzoegerung einbauen beim Laufen
-        if (((--Verhinderwalk) > 0) && (horizontal)) {
+        if (--Verhinderwalk > 0 && horizontal) {
             return false;
         }
 
@@ -297,7 +297,7 @@ public class Hojnt extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if (((walkto.x - (int) txps) * direction_x) <= 0) {
+            if ((walkto.x - (int) txps) * direction_x <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetHojntPos(walkto);
                 if (clearanimpos) {
@@ -323,7 +323,7 @@ public class Hojnt extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetHojntPos(walkto);
                 if (clearanimpos) {
@@ -338,10 +338,10 @@ public class Hojnt extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZ_DIST[anim_pos] - (scale / SLOWX);
+        float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
         if (horiz_dist < 1) {
             horiz_dist = 1;
         }
@@ -357,17 +357,17 @@ public class Hojnt extends Mainanim {
             typs += direction_y * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + (direction_x * horiz_dist);
+        txps = xps + direction_x * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST - (scale / SLOWY);
+        float vert_dist = CVERT_DIST - scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
@@ -382,7 +382,7 @@ public class Hojnt extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -407,27 +407,27 @@ public class Hojnt extends Mainanim {
 	  }*/
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
         }
 
         // Horizontal oder verikal laufen ?
-        if (aim.x == ((int) xps)) {
+        if (aim.x == (int) xps) {
             horiz = false;
         } else {
             // Winkel berechnen, den Krabat laufen soll
-            double yangle = Math.abs(aim.y - ((int) yps));
-            double xangle = Math.abs(aim.x - ((int) xps));
+            double yangle = Math.abs(aim.y - (int) yps);
+            double xangle = Math.abs(aim.x - (int) xps);
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            horiz = !(angle > (30 * Math.PI / 180));
+            horiz = !(angle > 30 * Math.PI / 180);
         }
 
         // Variablen an Move uebergeben
@@ -441,10 +441,10 @@ public class Hojnt extends Mainanim {
         } else {
             // bei fortgehendem Bewegen weiterschalten
             anim_pos++;
-            if ((horiz) && (anim_pos == 8)) {
+            if (horiz && anim_pos == 8) {
                 anim_pos = 2;
             }
-            if ((!horiz) && (anim_pos == 4)) {
+            if (!horiz && anim_pos == 4) {
                 anim_pos = 0;
             }
         }
@@ -466,7 +466,7 @@ public class Hojnt extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetHojntPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -561,13 +561,13 @@ public class Hojnt extends Mainanim {
     // Zeichne Hojnt beim Sprechen mit anderen Personen
     public void talkHojnt(GenericDrawingContext offGraph) {
         // Kopf veraendern
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
             talkHead = (int) (Math.random() * 5.9);
         }
 
         // Body switchen
-        if ((--Verhinderbody) < 1) {
+        if (--Verhinderbody < 1) {
             Verhinderbody = MAX_VERHINDERBODY;
             talkBody = (int) (Math.random() * 2.9);
         }
@@ -591,7 +591,7 @@ public class Hojnt extends Mainanim {
     // Hojnt beim Monolog (ohne Gestikulieren)
     public void describeHojnt(GenericDrawingContext offGraph) {
         // Kopf veraendern
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
             talkHead = (int) (Math.random() * 5.9);
         }
@@ -618,14 +618,14 @@ public class Hojnt extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (pox - ((CWIDTH - (helper / 2)) / 2));
+        return pox - (CWIDTH - helper / 2) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -642,7 +642,7 @@ public class Hojnt extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -651,7 +651,7 @@ public class Hojnt extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -675,22 +675,22 @@ public class Hojnt extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect HojntRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
         float fBreite = CWIDTH;
@@ -698,20 +698,20 @@ public class Hojnt extends Mainanim {
         float Verhaeltnis = fBreite / fHoehe;
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - ((int) (scale * Verhaeltnis)), CHEIGHT - scale);
+        g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * Verhaeltnis), CHEIGHT - scale);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage khead, GenericImage kbody) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Scalings und Offset fuer gesplittetes Kopf/Koerperzeichnen
-        float fScale = (CHEIGHT - scale);
+        float fScale = CHEIGHT - scale;
         float teilScaleHead = KOPFHOEHE / KOERPERHOEHE;
         int Kopfhoehe = (int) (fScale * teilScaleHead);
         int Koerperhoehe = CHEIGHT - scale - Kopfhoehe;
@@ -724,25 +724,25 @@ public class Hojnt extends Mainanim {
         float Verhaeltnis = fBreite / fHoehe;
 
         // Figur zeichnen
-        g.drawImage(khead, left, up, CWIDTH - ((int) (scale * Verhaeltnis)), Kopfhoehe);
-        g.drawImage(kbody, left, up + Kopfhoehe, CWIDTH - ((int) (scale * Verhaeltnis)), Koerperhoehe);
+        g.drawImage(khead, left, up, CWIDTH - (int) (scale * Verhaeltnis), Kopfhoehe);
+        g.drawImage(kbody, left, up + Kopfhoehe, CWIDTH - (int) (scale * Verhaeltnis), Koerperhoehe);
     }
 
     public boolean bueckeHojnt(GenericDrawingContext g) {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
-        int xd = (2 * (((int) xps) - left)) + 30;
-        int yd = ((int) yps) - up;
+        int xd = 2 * ((int) xps - left) + 30;
+        int yd = (int) yps - up;
         g.setClip(left, up, xd, yd);
 
 
         // Groesse und Position der Figur berechnen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
         float fBreite = 63.0f;
@@ -750,15 +750,15 @@ public class Hojnt extends Mainanim {
         float Verhaeltnis = fBreite / fHoehe;
 
         // Figur zeichnen
-        g.drawImage(krabat_buecken[((Bueckcounter > 8) || (Bueckcounter < 4)) ? 0 : 1], left, up, ((int) fBreite) - ((int) (scale * Verhaeltnis)), ((int) fHoehe) - scale);
+        g.drawImage(krabat_buecken[Bueckcounter > 8 || Bueckcounter < 4 ? 0 : 1], left, up, (int) fBreite - (int) (scale * Verhaeltnis), (int) fHoehe - scale);
 
         --Bueckcounter;
         if (Bueckcounter < 1) {
             Bueckcounter = MAX_BUECKCOUNTER;
-            return (false);
+            return false;
         }
 
-        return (true);
+        return true;
     }
 
 }

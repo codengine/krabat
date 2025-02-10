@@ -70,17 +70,17 @@ public class Posol extends Mainanim {
 
     // Zeichne Mutter, wie sie dasteht oder spricht
     public void drawPosol(GenericDrawingContext offGraph, int TalkPerson, GenericPoint posit) {
-        if ((TalkPerson == 38) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 38 && mainFrame.talkCount > 1) {
             // Bote beim Reden
 
             // Head eval.
-            if ((--Verhinderhead) < 1) {
+            if (--Verhinderhead < 1) {
                 Verhinderhead = MAX_VERHINDERHEAD;
                 Head = (int) (Math.random() * 5.9);
             }
 
             // Body eval
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) (Math.random() * 1.9);
             }

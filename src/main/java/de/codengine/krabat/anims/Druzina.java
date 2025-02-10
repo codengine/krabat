@@ -142,7 +142,7 @@ public class Druzina extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetDruzinaPos(walkto);
                 anim_pos = 0;
@@ -155,10 +155,10 @@ public class Druzina extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST[anim_pos] - (scale / SLOWY);
+        float vert_dist = CVERT_DIST[anim_pos] - scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
@@ -173,7 +173,7 @@ public class Druzina extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -184,12 +184,12 @@ public class Druzina extends Mainanim {
         boolean horiz;
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -224,7 +224,7 @@ public class Druzina extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetDruzinaPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -261,14 +261,14 @@ public class Druzina extends Mainanim {
         float fHelper = helper;
         fHelper *= scaleVerhaeltnisNormal;
 
-        return (pox - ((CWIDTH - ((int) (fHelper))) / 2));
+        return pox - (CWIDTH - (int) fHelper) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -285,7 +285,7 @@ public class Druzina extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -294,7 +294,7 @@ public class Druzina extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -318,29 +318,29 @@ public class Druzina extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect DruzinaRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnisNormal;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
+        int Koerperbreite = CWIDTH - (int) fScaleY;
         int Koerperhoehe = (int) (fHoehe - scale);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");

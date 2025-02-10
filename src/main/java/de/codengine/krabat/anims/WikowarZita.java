@@ -84,16 +84,16 @@ public class WikowarZita extends Mainanim {
     // Zeichne Mutter, wie sie dasteht oder spricht
     public void drawWikowar(GenericDrawingContext g, GenericPoint pos, int TalkPerson, boolean isListening) {
         // beim Reden
-        if ((TalkPerson == 32) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 32 && mainFrame.talkCount > 1) {
             // Kopf evaluieren
-            if ((--Verhinderhead) < 1) {
+            if (--Verhinderhead < 1) {
                 Verhinderhead = MAX_VERHINDERHEAD;
 
                 Head = (int) (Math.random() * 6.9);
             }
 
             // Body evaluieren
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
 
                 Body = (int) (Math.random() * 1.9);
@@ -115,13 +115,13 @@ public class WikowarZita extends Mainanim {
                 }
             } else {
                 // darf sich auch wegdrehen
-                if ((--Verhinderdreh) < 1) {
+                if (--Verhinderdreh < 1) {
                     // darf sich wegdrehen oder ist weggedreht
                     if (Wait == 2) {
                         Wait = 0;
                         Verhinderdreh = MAX_VERHINDERDREHWEG;
                     } else {
-                        if ((Wait == 0) || (Wait == 1)) {
+                        if (Wait == 0 || Wait == 1) {
                             Wait = 2;
                             Verhinderdreh = MAX_VERHINDERDREHHIN;
                         }
@@ -131,7 +131,7 @@ public class WikowarZita extends Mainanim {
                         Wait = 0;
                     } else {
                         int zuffi = (int) (Math.random() * 50);
-                        if ((zuffi > 45) && (Wait != 2)) {
+                        if (zuffi > 45 && Wait != 2) {
                             Wait = 1;
                         }
                     }

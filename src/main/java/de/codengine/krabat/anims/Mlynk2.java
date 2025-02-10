@@ -270,7 +270,7 @@ public class Mlynk2 extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetMlynkPos(walkto);
                 anim_pos = 0;
@@ -304,10 +304,10 @@ public class Mlynk2 extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST - (scale / SLOWY);
+        float vert_dist = CVERT_DIST - scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
@@ -322,7 +322,7 @@ public class Mlynk2 extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -347,12 +347,12 @@ public class Mlynk2 extends Mainanim {
 	  }*/
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -400,7 +400,7 @@ public class Mlynk2 extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetMlynkPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -535,7 +535,7 @@ public class Mlynk2 extends Mainanim {
 
     // Zeichne Mlynk beim Sprechen mit anderen Personen (normal)
     public void talkMlynk(GenericDrawingContext offGraph) {
-        if ((--Verhinderkopf) < 1) {
+        if (--Verhinderkopf < 1) {
             Verhinderkopf = MAX_VERHINDERKOPF;
 
             Head = (int) Math.round(Math.random() * 5);
@@ -548,7 +548,7 @@ public class Mlynk2 extends Mainanim {
             Body = 0;
         }
 
-        if ((--Verhinderbody) < 1) {
+        if (--Verhinderbody < 1) {
             Verhinderbody = MAX_VERHINDERBODY;
             Body = (int) Math.round(Math.random() * 3);
             if (Body == 3) {
@@ -563,7 +563,7 @@ public class Mlynk2 extends Mainanim {
         }
 
         // einen Kopf einsparen bei zur seite reden
-        if ((tFacing != 6) && (Head == 4)) {
+        if (tFacing != 6 && Head == 4) {
             Head = 0;
         }
 
@@ -575,7 +575,7 @@ public class Mlynk2 extends Mainanim {
     // hat Stock immer nach links erhoben fuers Verzaubern
     public void talkMlynkWithKij(GenericDrawingContext offGraph) {
         // Hier muss nur der Kopf bewegt werden, sonst ni#ko
-        if ((--Verhinderkopf) < 1) {
+        if (--Verhinderkopf < 1) {
             Verhinderkopf = MAX_VERHINDERKOPF;
 
             Head = (int) Math.round(Math.random() * 4);
@@ -589,13 +589,13 @@ public class Mlynk2 extends Mainanim {
 
     public void talkMlynkWithKijAndersrum(GenericDrawingContext offGraph, boolean stockIstImmerOben) {
         // Kopf verschieben
-        if ((--Verhinderkopf) < 1) {
+        if (--Verhinderkopf < 1) {
             Verhinderkopf = MAX_VERHINDERKOPF;
             Head = (int) (Math.random() * 3.9);
         }
 
         // Koerper verschieben
-        if ((--Verhinderbody) < 1) {
+        if (--Verhinderbody < 1) {
             Verhinderbody = MAX_VERHINDERBODY;
             Body = (int) (Math.random() * 3.9);
         }
@@ -640,7 +640,7 @@ public class Mlynk2 extends Mainanim {
         float fHelper = helper;
         fHelper *= scaleVerhaeltnisNormal;
 
-        return (pox - ((CWIDTH - ((int) (fHelper))) / 2));
+        return pox - (CWIDTH - (int) fHelper) / 2;
     }
 
     // hier beachten, dass er einen Stock in der Hand haelt !!!!!!
@@ -651,14 +651,14 @@ public class Mlynk2 extends Mainanim {
         float fHelper = helper;
         fHelper *= scaleVerhaeltnisStock;
 
-        return (pox - ((COFFSET_STOCK - ((int) (fHelper))) / 2));
+        return pox - (COFFSET_STOCK - (int) fHelper) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -675,7 +675,7 @@ public class Mlynk2 extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -684,7 +684,7 @@ public class Mlynk2 extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -738,7 +738,7 @@ public class Mlynk2 extends Mainanim {
         fHelper *= scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
-        int xd = x + (CWIDTH_STOCK - ((int) (fHelper)));
+        int xd = x + CWIDTH_STOCK - (int) fHelper;
         int yd = yy - y;
 
         g.setClip(x, y, xd, yd);
@@ -751,52 +751,52 @@ public class Mlynk2 extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect MlynkRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet, wenn er den Stock hat !!!
     public Borderrect MlynkRectMitStock() {
-        int x = getLeftPosWithKij(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPosWithKij((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     public Borderrect MlynkRectMitStockAndersrum() {
         // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
-        int helper = getScale(((int) xps), ((int) yps));
+        int helper = getScale((int) xps, (int) yps);
 
         float fHelper = helper;
         fHelper *= scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
-        int xd = x + (CWIDTH_STOCK - ((int) (fHelper)));
-        int yd = ((int) yps);
+        int xd = x + CWIDTH_STOCK - (int) fHelper;
+        int yd = (int) yps;
 
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     // ganz normales Darstellen
     private void MaleIhn(GenericDrawingContext g, int Richtung) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -804,8 +804,8 @@ public class Mlynk2 extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnisNormal;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
@@ -860,12 +860,12 @@ public class Mlynk2 extends Mainanim {
     // Stock nach links und immer oben
     private void MaleIhnMitStock(GenericDrawingContext g, int Richtung) {
         // Clipping - Region setzen
-        KrabatClipWithKij(g, ((int) xps), ((int) yps));
+        KrabatClipWithKij(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPosWithKij(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPosWithKij((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -873,13 +873,13 @@ public class Mlynk2 extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnisNormal;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // hier die Extrawurst, wenn er den Stock hat
         int KoerperbreiteMitStock = CWIDTH_STOCK - scale;
-        int OffsetMitStock = getLeftPos(((int) xps), ((int) yps)) - getLeftPosWithKij(((int) xps), ((int) yps));
+        int OffsetMitStock = getLeftPos((int) xps, (int) yps) - getLeftPosWithKij((int) xps, (int) yps);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
@@ -906,12 +906,12 @@ public class Mlynk2 extends Mainanim {
     // hier soll er den Stock nur ab und zu hochhalten
     private void MaleIhnMitStockAndersrum(GenericDrawingContext g) {
         // Clipping - Region setzen
-        KrabatClipWithKijAndersrum(g, ((int) xps), ((int) yps));
+        KrabatClipWithKijAndersrum(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -919,8 +919,8 @@ public class Mlynk2 extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnisNormal;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // hier die Extrawurst, wenn er den Stock hat

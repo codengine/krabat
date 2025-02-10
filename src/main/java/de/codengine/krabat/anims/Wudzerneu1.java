@@ -170,7 +170,7 @@ public class Wudzerneu1 extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if ((--Verhinderwalk) > 0) {
+        if (--Verhinderwalk > 0) {
             laeuftNicht = false;
             return false;
         }
@@ -202,7 +202,7 @@ public class Wudzerneu1 extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if (((walkto.x - (int) txps) * direction_x) <= 0) {
+            if ((walkto.x - (int) txps) * direction_x <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetWudzer1Pos(walkto);
                 anim_pos = 1;
@@ -234,7 +234,7 @@ public class Wudzerneu1 extends Mainanim {
             typs += direction_y * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + (direction_x * horiz_dist);
+        txps = xps + direction_x * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -245,12 +245,12 @@ public class Wudzerneu1 extends Mainanim {
         laeuftNicht = false;
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -288,13 +288,13 @@ public class Wudzerneu1 extends Mainanim {
         if (laeuftNicht) {
             // beim Sitzen aufrufen
             // Positionen umschalten bzw. Zwinkern berechnen
-            if ((--Verhinderstand) < 1) {
+            if (--Verhinderstand < 1) {
                 Verhinderstand = MAX_VERHINDERSTAND;
                 Stand = (int) (Math.random() * 5.9);
             }
 
             // Zwinkern evaluieren
-            if ((Stand % 2) != 0) {
+            if (Stand % 2 != 0) {
                 Stand--;
             } else {
                 int zuffi = (int) Math.round(Math.random() * 50);
@@ -314,7 +314,7 @@ public class Wudzerneu1 extends Mainanim {
             }
         } else {
             // hier wird gelaufen
-            MaleIhn(offGraph, (!hasEimer) ? angler_walk[anim_pos] : angler_walk_eimer[anim_pos]);
+            MaleIhn(offGraph, !hasEimer ? angler_walk[anim_pos] : angler_walk_eimer[anim_pos]);
         }
     }
 
@@ -346,30 +346,30 @@ public class Wudzerneu1 extends Mainanim {
     public void talkWudzer1(GenericDrawingContext g, boolean isLookingAround) {
         // beim Rumsitzen, selbe Bodyevaluation wie beim rumstehen/sitzen
         // Positionen umschalten
-        if ((--Verhinderstand) < 1) {
+        if (--Verhinderstand < 1) {
             Verhinderstand = MAX_VERHINDERSTAND;
             Stand = (int) (Math.random() * 5.9);
         }
 
         // Head evaluieren
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
             Head = (int) (Math.random() * 5.9);
         }
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
 
         // Figur zeichnen
         if (direction_x == 1) {
             // nach rechts angeln
             g.drawImage(angler_right_talk_body[Stand / 2], left, up);
-            g.drawImage(angler_right_talk_head[((isLookingAround) ? 6 : Head)], left + 22, up + 18);
+            g.drawImage(angler_right_talk_head[isLookingAround ? 6 : Head], left + 22, up + 18);
         } else {
             // nach links angeln
             g.drawImage(angler_left_talk_body[Stand / 2], left, up);
-            g.drawImage(angler_left_talk_head[((isLookingAround) ? 6 : Head)], left + 65, up + 18);
+            g.drawImage(angler_left_talk_head[isLookingAround ? 6 : Head], left + 65, up + 18);
         }
     }
 
@@ -384,30 +384,30 @@ public class Wudzerneu1 extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         if (laeuftNicht) {
-            return (pox - (CWIDTH / 2));
+            return pox - CWIDTH / 2;
         } else {
-            return (pox - (CWIDTH / 4));
+            return pox - CWIDTH / 4;
         }
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        return (poy - CHEIGHT);
+        return poy - CHEIGHT;
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect Wudzer1Rect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
 
         // hier Unterscheidung nach Richtung, da die Angler viel breitere Images haben
         if (direction_x == 1) {
             // schauen nach rechts
-            return (new Borderrect(x, y + 15, x + 49, y + 60));
+            return new Borderrect(x, y + 15, x + 49, y + 60);
         } else {
             // schauen nach links
-            return (new Borderrect(x + 52, y + 15, x + 100, y + 60));
+            return new Borderrect(x + 52, y + 15, x + 100, y + 60);
         }
     /*int xd = (2 * ( ((int) xps) - x)) + x;
     int yd = ((int) yps);
@@ -416,7 +416,7 @@ public class Wudzerneu1 extends Mainanim {
     }
 
     public GenericPoint Wudzer1TalkPoint() {
-        return (new GenericPoint(((int) xps), ((int) yps) - CHEIGHT - 50));
+        return new GenericPoint((int) xps, (int) yps - CHEIGHT - 50);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
@@ -424,17 +424,17 @@ public class Wudzerneu1 extends Mainanim {
         // KrabatClip(g, ((int) xps), ((int) yps));
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - ((!laeuftNicht) ? 50 : 0), CHEIGHT);
+        g.drawImage(ktemp, left, up, CWIDTH - (!laeuftNicht ? 50 : 0), CHEIGHT);
     }
 
     private void MaleIhnGebueckt(GenericDrawingContext g, GenericImage ktemp) {
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
 
         // Figur zeichnen
         g.drawImage(ktemp, left + 10, up, CWIDTH - 30, CHEIGHT);

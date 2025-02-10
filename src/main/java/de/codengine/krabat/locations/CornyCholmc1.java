@@ -89,7 +89,7 @@ public class CornyCholmc1 extends Mainloc {
         mainFrame.wegSucher.PosVerbinden(3, 4);
 
         InitImages();
-        if ((oldLocation > 50) && (oldLocation < 62)) {
+        if (oldLocation > 50 && oldLocation < 62) {
             // von Bludnickis teleportiert
             BackgroundMusicPlayer.getInstance().playTrack(26, true);
             mainFrame.krabat.SetKrabatPos(new GenericPoint(161, 276));
@@ -147,7 +147,7 @@ public class CornyCholmc1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -183,7 +183,7 @@ public class CornyCholmc1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -226,7 +226,7 @@ public class CornyCholmc1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -238,7 +238,7 @@ public class CornyCholmc1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -430,7 +430,7 @@ public class CornyCholmc1 extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -442,15 +442,15 @@ public class CornyCholmc1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (waldRect.IsPointInRect(pTemp)) ||
-                    (kolmcRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || waldRect.IsPointInRect(pTemp) ||
+                    kolmcRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -459,7 +459,7 @@ public class CornyCholmc1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((waldRect.IsPointInRect(pTemp)) || (kolmcRect.IsPointInRect(pTemp))) {
+            if (waldRect.IsPointInRect(pTemp) || kolmcRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -565,13 +565,13 @@ public class CornyCholmc1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -582,7 +582,7 @@ public class CornyCholmc1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -851,7 +851,7 @@ public class CornyCholmc1 extends Mainloc {
                         Start.stringManager.getTranslation("Loc1_CornyCholmc1_00053"),
                         0, 51, 2, 0, waldTalk);
                 // Test, ob Mueller auch kommen darf
-                if ((!mainFrame.Actions[226]) || ((mainFrame.Actions[226]) && (mainFrame.Actions[919]))) {
+                if (!mainFrame.Actions[226] || mainFrame.Actions[226] && mainFrame.Actions[919]) {
                     nextActionID = 1020;
                 } else {
                     nextActionID = 700;

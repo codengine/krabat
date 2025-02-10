@@ -239,7 +239,7 @@ public class Wocinic extends Mainanim {
             }
 
             // Laden, wenn auf wocinic gedrueckt und erlaubt
-            if ((brWoci.IsPointInRect(pTemp)) && (selected != -1)) {
+            if (brWoci.IsPointInRect(pTemp) && selected != -1) {
                 Dir[selected + 1].Load();
                 mainFrame.mainmenu.MMactive = false;
 
@@ -255,7 +255,7 @@ public class Wocinic extends Mainanim {
 
             // GenericImage erhellen, wenn draufgeklickt
             for (int i = 0; i <= 5; ++i) {
-                if ((GetCurrentRect(i).IsPointInRect(pTemp)) && (Dir[i + 1].Location != 0)) {
+                if (GetCurrentRect(i).IsPointInRect(pTemp) && Dir[i + 1].Location != 0) {
                     if (selected != i) {
                         selected = i;
                     }
@@ -288,7 +288,7 @@ public class Wocinic extends Mainanim {
         // Feld feststellen, wo roter Rahmen drumgemalt werden muss
         nFeldAktiv = -1;
         for (int i = 0; i < 6; i++) {
-            if ((GetCurrentRect(i).IsPointInRect(pTemp)) && (Dir[i + 1].Location != 0)) {
+            if (GetCurrentRect(i).IsPointInRect(pTemp) && Dir[i + 1].Location != 0) {
                 nFeldAktiv = i;
             }
         }
@@ -298,7 +298,7 @@ public class Wocinic extends Mainanim {
         if (brPfeil.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if ((brWoci.IsPointInRect(pTemp)) && (selected != -1)) {
+        if (brWoci.IsPointInRect(pTemp) && selected != -1) {
             menuitem = 2;
         }
 
@@ -308,7 +308,7 @@ public class Wocinic extends Mainanim {
             mainFrame.setCursor(mainFrame.Normal);
             return;
         }
-        if ((menuitem != olditem) || (oFeldAktiv != nFeldAktiv)) {
+        if (menuitem != olditem || oFeldAktiv != nFeldAktiv) {
             mainFrame.repaint();
         }
     }
@@ -351,13 +351,13 @@ public class Wocinic extends Mainanim {
     // Berechnungsroutine Spielstandsfensternummer - X/Y-Koordinaten//////////////
     private Borderrect GetCurrentRect(int Number) {
         GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return (new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90));
+        return new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
     }
 
     private GenericPoint GetCurrentXY(int Number) {
         GenericPoint Pleftup = new GenericPoint();
-        Pleftup.x = 117 + ((Number % 3) * 142);
-        Pleftup.y = 89 + ((Number / 3) * 112);
-        return (Pleftup);
+        Pleftup.x = 117 + Number % 3 * 142;
+        Pleftup.y = 89 + Number / 3 * 112;
+        return Pleftup;
     }
 }

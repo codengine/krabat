@@ -80,8 +80,8 @@ public class Ryby extends Mainanim {
         // zuerst Unterscheidung, ob Fisch schon da ist oder nicht...
         if (isFischJumping) {
             // Fisch weiterschalten, wenn noetig
-            if ((--Verhindercount) < 1) {
-                if ((Rybycount == 3) && (!noSound)) {
+            if (--Verhindercount < 1) {
+                if (Rybycount == 3 && !noSound) {
                     mainFrame.wave.PlayFile("sfx/woda1.wav");
                 }
 
@@ -109,7 +109,7 @@ public class Ryby extends Mainanim {
             }
         } else {
             // berechnen, ob ein Fisch wieder kommen darf
-            if ((--Verhinderanim) < 1) {
+            if (--Verhinderanim < 1) {
                 Verhinderanim = MAX_VERHINDERANIM;
 
                 // wahrscheinlichkeit von 75 %
@@ -120,11 +120,11 @@ public class Ryby extends Mainanim {
 
                     // zufaelligen Punkt innerhalb der 3 rects ermitteln
                     do {
-                        Position.x = (int) ((Math.random() * 293.9) + 346);
-                        Position.y = (int) ((Math.random() * 285.9) + 194);
+                        Position.x = (int) (Math.random() * 293.9 + 346);
+                        Position.y = (int) (Math.random() * 285.9 + 194);
                     }
-                    while ((!fisch1Rect.IsPointInRect(Position)) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
-                            (!fisch3Rect.IsPointInRect(Position)));
+                    while (!fisch1Rect.IsPointInRect(Position) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
+                            !fisch3Rect.IsPointInRect(Position));
 
                     Rybycount = 0;
                     isFischJumping = true;

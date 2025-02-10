@@ -353,7 +353,7 @@ public class KrabatDrasta extends Krabat {
     @Override
     public synchronized void Move() {
         // Wenn kein Laufen gewuenscht, dann auch nicht laufen!
-        if ((!isWalking) && (!isWandering)) {
+        if (!isWalking && !isWandering) {
             return;
         }
 
@@ -385,10 +385,10 @@ public class KrabatDrasta extends Krabat {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if (((walkto.x - (int) txps) * direction_x) <= 0) {
+            if ((walkto.x - (int) txps) * direction_x <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((!isWandering) && (clearanimpos)) {
+                if (!isWandering && clearanimpos) {
                     anim_pos = 0;
                 }
             }
@@ -413,16 +413,16 @@ public class KrabatDrasta extends Krabat {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((!isWandering) && (clearanimpos)) {
+                if (!isWandering && clearanimpos) {
                     anim_pos = 0;
                 }
             }
         }
 
-        if ((!isWalking) && (!isWandering)) {
+        if (!isWalking && !isWandering) {
             // System.out.println("Krabatpos korrigiert auf " + walkto.x + " " + walkto.y);
             SetKrabatPos(walkto);
             if (clearanimpos) {
@@ -444,7 +444,7 @@ public class KrabatDrasta extends Krabat {
     private void VerschiebeX() {
         // Verschieberoutine, die fuer normalen Krabat und Krabat in sl. drasta verwendet wird
         // Skalierungsfaktor holen
-        float scale = getScale(((int) xps), ((int) yps));
+        float scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         // muss nach Richtung getrennt vorgenommen werden
@@ -453,12 +453,12 @@ public class KrabatDrasta extends Krabat {
             // nach rechts laufen
             float helper = CRIGHT_DIST[anim_pos];
             // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
-            horiz_dist = helper * ((scale * xFaktor) + 1.0f);
+            horiz_dist = helper * (scale * xFaktor + 1.0f);
         } else {
             // nach links laufen
             float helper = CLEFT_DIST[anim_pos];
             // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
-            horiz_dist = helper * ((scale * xFaktor) + 1.0f);
+            horiz_dist = helper * (scale * xFaktor + 1.0f);
         }
 
         // System.out.println ("Horizontaler Abstand " + horiz_dist + " Pixel.");
@@ -486,7 +486,7 @@ public class KrabatDrasta extends Krabat {
 
         // System.out.println ("XOffset = " + z + " Yoffset = " + Math.abs (yps - walkto.y));
 
-        txps = xps + (direction_x * horiz_dist);
+        txps = xps + direction_x * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -494,7 +494,7 @@ public class KrabatDrasta extends Krabat {
     private void VerschiebeY() {
         // Verschieberoutine, die fuer normalen Krabat und Krabat in sl. drasta verwendet wird
         // Skalierungsfaktor holen
-        float scale = getScale(((int) xps), ((int) yps));
+        float scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y - Richtung
         // muss nach Richtung getrennt vorgenommen werden
@@ -503,12 +503,12 @@ public class KrabatDrasta extends Krabat {
             // nach unten laufen
             float helper = CDOWN_DIST[anim_pos];
             // vert_dist = helper * (float) Math.pow (yFaktor, scale);
-            vert_dist = helper * ((yFaktor * scale) + 1.0f);
+            vert_dist = helper * (yFaktor * scale + 1.0f);
         } else {
             // nach oben laufen
             float helper = CUP_DIST[anim_pos];
             // vert_dist = helper * (float) Math.pow (yFaktor, scale);
-            vert_dist = helper * ((yFaktor * scale) + 1.0f);
+            vert_dist = helper * (yFaktor * scale + 1.0f);
         }
 
         // System.out.println ("Vertikaler Abstand " + vert_dist + " Pixel.");
@@ -531,7 +531,7 @@ public class KrabatDrasta extends Krabat {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -547,12 +547,12 @@ public class KrabatDrasta extends Krabat {
         // System.out.println("X - Lohnen : " + lohnenx + "Y - Lohnen : " + lohneny);
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -562,15 +562,15 @@ public class KrabatDrasta extends Krabat {
         // Horizontal oder verikal laufen ?
 
         // Hier Default - Routine
-        if (aim.x == ((int) xps)) {
+        if (aim.x == (int) xps) {
             horiz = false;
         } else {
             // Winkel berechnen, den Krabat laufen soll
-            double yangle = Math.abs(aim.y - ((int) yps));
-            double xangle = Math.abs(aim.x - ((int) xps));
+            double yangle = Math.abs(aim.y - (int) yps);
+            double xangle = Math.abs(aim.x - (int) xps);
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            horiz = !(angle > (22 * Math.PI / 180));
+            horiz = !(angle > 22 * Math.PI / 180);
         }
 
         // Variablen an Move uebergeben
@@ -585,8 +585,8 @@ public class KrabatDrasta extends Krabat {
         int scale = getScale((int) xps, (int) yps);
 
         // Lohnen-Variablen dem Scaling anpassen
-        int lohnenx = (int) (((float) CLOHNENX) * ((xFaktor * scale) + 1.0f));
-        int lohneny = (int) (((float) CLOHNENY) * ((yFaktor * scale) + 1.0f));
+        int lohnenx = (int) ((float) CLOHNENX * (xFaktor * scale + 1.0f));
+        int lohneny = (int) ((float) CLOHNENY * (yFaktor * scale + 1.0f));
 
         // Abfangen, wenn zu klein
         if (lohnenx < 1) {
@@ -598,11 +598,11 @@ public class KrabatDrasta extends Krabat {
 
         // System.out.println ("Lohnen - Variablen x : " + lohnenx + " y : " + lohneny + " bei Scaling : " + scale);
 
-        if ((Math.abs(aim.x - ((int) xps)) < lohnenx) &&
-                (Math.abs(aim.y - ((int) yps)) < lohneny)) {
+        if (Math.abs(aim.x - (int) xps) < lohnenx &&
+                Math.abs(aim.y - (int) yps) < lohneny) {
             isWalking = false;
             System.out.println("Lohnt sich nicht !");
-            if ((!isWandering) && (clearanimpos)) {
+            if (!isWandering && clearanimpos) {
                 // System.out.println("Animpos wurde zurueckgesetzt !");
                 anim_pos = 0;
             }
@@ -626,7 +626,7 @@ public class KrabatDrasta extends Krabat {
         // Default - Routine
 
         // Berechnung des Zwinkerns, wenn Krabat steht
-        if ((!isWalking) && (!isWandering)) {
+        if (!isWalking && !isWandering) {
             int zuffi = (int) Math.round(Math.random() * 50);
             if (Zwinker == 1) {
                 Zwinker = 0;
@@ -758,7 +758,7 @@ public class KrabatDrasta extends Krabat {
                     if (nAnimStep == 0) {
                         mainFrame.wave.PlayFile("sfx-dd/wosusk.wav");
                     } ////////////Sound!!!!!!!!!!!!!!!!!!!!!!
-                    ZeigeBild(g, krabat_wosusk[(((nAnimStep % 4) < 2) ? 0 : 1)], 0);
+                    ZeigeBild(g, krabat_wosusk[nAnimStep % 4 < 2 ? 0 : 1], 0);
                     nAnimStep++;
                 } else {
                     StopAnim();
@@ -768,8 +768,8 @@ public class KrabatDrasta extends Krabat {
 
             case 147: // Haemmern in Terassa
                 if (nAnimStep < 24) {
-                    ZeigeBild(g, krabat_hammer[((nAnimStep % 12) < 6) ? 0 : 1], 0);
-                    if ((nAnimStep == 6) || (nAnimStep == 18)) {
+                    ZeigeBild(g, krabat_hammer[nAnimStep % 12 < 6 ? 0 : 1], 0);
+                    if (nAnimStep == 6 || nAnimStep == 18) {
                         mainFrame.wave.PlayFile("sfx-dd/schlag.wav");
                     }
                     nAnimStep++;
@@ -784,7 +784,7 @@ public class KrabatDrasta extends Krabat {
                     if (nAnimStep == 0) {
                         mainFrame.wave.PlayFile("sfx/kamjeny.wav");
                     } /////////////////// Sound !!!!!!!!!!!
-                    ZeigeBild(g, krabat_feuer[(nAnimStep % 6) / 2], 0);
+                    ZeigeBild(g, krabat_feuer[nAnimStep % 6 / 2], 0);
                     nAnimStep++;
                 } else {
                     StopAnim();
@@ -890,7 +890,7 @@ public class KrabatDrasta extends Krabat {
             Floetenwartezeit = Floetenwartezeitarray[zuffi];
         }
 
-        if ((--Floetenwartezeit) < 1) {
+        if (--Floetenwartezeit < 1) {
             // als letztes normal nach vorn sehend hinstellen
             StopAnim();
             SetFacing(6);
@@ -898,7 +898,7 @@ public class KrabatDrasta extends Krabat {
             return;
         }
 
-        int nFrame = (tCount % 8) / 2;
+        int nFrame = tCount % 8 / 2;
         MaleIhn(g, krabat_floete[nFrame]);
     }
 
@@ -909,7 +909,7 @@ public class KrabatDrasta extends Krabat {
             SetFacing(6);
         }
 
-        int nFrame = (tCount % 8) / 2;
+        int nFrame = tCount % 8 / 2;
         MaleIhn(g, krabat_rohodz[nFrame]);
     }
 
@@ -926,15 +926,15 @@ public class KrabatDrasta extends Krabat {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
         float fOffset = BODYOFFSET;
         float fScale = scale;
 
-        int Koerperbreite = CWIDTH - (scale / 2);
+        int Koerperbreite = CWIDTH - scale / 2;
         int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
         int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
 
@@ -959,7 +959,7 @@ public class KrabatDrasta extends Krabat {
 
 
         // neues Head-Image berechnen
-        if ((--Verhinderlieshead) < 1) {
+        if (--Verhinderlieshead < 1) {
             Verhinderlieshead = MAX_VERHINDERLIESHEAD;
             LiesHead = (int) (Math.random() * 4.9);
         }
@@ -983,15 +983,15 @@ public class KrabatDrasta extends Krabat {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
         float fOffset = BODYOFFSET;
         float fScale = scale;
 
-        int Koerperbreite = CWIDTH - (scale / 2);
+        int Koerperbreite = CWIDTH - scale / 2;
         int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
         int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
 
@@ -1019,14 +1019,14 @@ public class KrabatDrasta extends Krabat {
         // Default - Reden
 
         // Verschiedene Images fuer Head und Body berechnen
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
             TalkHead = (int) (Math.random() * 7.9);
             TalkHeadUp = (int) (Math.random() * 1.9);
             TalkHeadDown = (int) (Math.random() * 5.9);
         }
 
-        if ((--Verhinderkoerper) < 1) {
+        if (--Verhinderkoerper < 1) {
             Verhinderkoerper = MAX_VERHINDERKOERPER;
             TalkBody = (int) (Math.random() * 3.9);
             TalkBodyUp = (int) (Math.random() * 2.9);
@@ -1042,7 +1042,7 @@ public class KrabatDrasta extends Krabat {
         // Default - Reden
 
         // Verschiedene Images fuer Head und Body berechnen
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
             TalkHead = (int) (Math.random() * 7.9);
             TalkHeadUp = (int) (Math.random() * 1.9);
@@ -1056,18 +1056,18 @@ public class KrabatDrasta extends Krabat {
 
     private void Rede(GenericDrawingContext offGraph) {
         // Clipping - Region setzen
-        KrabatClip(offGraph, ((int) xps), ((int) yps));
+        KrabatClip(offGraph, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
         float fOffset = BODYOFFSET;
         float fScale = scale;
 
-        int Koerperbreite = CWIDTH - (scale / 2);
+        int Koerperbreite = CWIDTH - scale / 2;
         int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
         int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
 
@@ -1098,14 +1098,14 @@ public class KrabatDrasta extends Krabat {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (pox - ((CWIDTH - (helper / 2)) / 2));
+        return pox - (CWIDTH - helper / 2) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -1124,7 +1124,7 @@ public class KrabatDrasta extends Krabat {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -1133,7 +1133,7 @@ public class KrabatDrasta extends Krabat {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -1190,35 +1190,35 @@ public class KrabatDrasta extends Krabat {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
     public Borderrect KrabatRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - (scale / 2), CHEIGHT - scale);
+        g.drawImage(ktemp, left, up, CWIDTH - scale / 2, CHEIGHT - scale);
     }
 
     private void MaleLinksGross(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClipExtra(g, ((int) xps), ((int) yps), true);
+        KrabatClipExtra(g, (int) xps, (int) yps, true);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier muss GenericImage noch verschoben werden, da es breiter ist und K ganz rechts steht
         left -= (CHEIGHT - scale) / 2;
@@ -1229,12 +1229,12 @@ public class KrabatDrasta extends Krabat {
 
     private void MaleRechtsGross(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClipExtra(g, ((int) xps), ((int) yps), false);
+        KrabatClipExtra(g, (int) xps, (int) yps, false);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Figur zeichnen, in x - und y-Richtung gleichgross
         g.drawImage(ktemp, left, up, CHEIGHT - scale, CHEIGHT - scale);

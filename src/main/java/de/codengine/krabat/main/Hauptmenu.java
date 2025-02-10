@@ -407,14 +407,14 @@ public class Hauptmenu extends Mainanim {
         if (brNowostart.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if ((brWocinic.IsPointInRect(pTemp)) &&
-                (mainFrame.storageManager.isLoadSaveSupported())) {
+        if (brWocinic.IsPointInRect(pTemp) &&
+                mainFrame.storageManager.isLoadSaveSupported()) {
             menuitem = 2;
         }
 
         // Speichern nicht im Introscreen!!
-        if ((brSkladzic.IsPointInRect(pTemp)) && (!introcall) &&
-                (mainFrame.storageManager.isLoadSaveSupported())) {
+        if (brSkladzic.IsPointInRect(pTemp) && !introcall &&
+                mainFrame.storageManager.isLoadSaveSupported()) {
             menuitem = 3;
         }
         if (brRec.IsPointInRect(pTemp)) {

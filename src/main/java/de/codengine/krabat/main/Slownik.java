@@ -99,7 +99,7 @@ public class Slownik extends Mainanim {
         brPfeilOben = new Borderrect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
         brPfeilUnten = new Borderrect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
 
-        brGesamt = new Borderrect(LinksOben.x, LinksOben.y, LinksOben.x + (((mainFrame.sprache == 2) ? DXANZA : HXANZA) * XDIFF) - 1, LinksOben.y + (YANZA * YDIFF) - 1);
+        brGesamt = new Borderrect(LinksOben.x, LinksOben.y, LinksOben.x + (mainFrame.sprache == 2 ? DXANZA : HXANZA) * XDIFF - 1, LinksOben.y + YANZA * YDIFF - 1);
 
         InitImages();
 
@@ -196,7 +196,7 @@ public class Slownik extends Mainanim {
             GenericPoint ps = mainFrame.ifont.CenterAnimText("S#lownik", new GenericPoint(320, 35));
             mainFrame.ifont.drawString(g, "S#lownik", ps.x, ps.y, 0xffff0000);
 
-            for (int i = Index; i < (Index + 10); i++) {
+            for (int i = Index; i < Index + 10; i++) {
                 // System.out.println (Eintrag[i][0]);
                 mainFrame.ifont.drawString(g, Eintrag[i][0], X_SORB + mainFrame.scrollx, mainFrame.scrolly + Y_SORB + (i - Index) * 25, 0xffff0000);
                 mainFrame.ifont.drawString(g, Eintrag[i][1], X_DEUT + mainFrame.scrollx, mainFrame.scrolly + Y_DEUT + (i - Index) * 25, 0xffff0000);
@@ -208,18 +208,18 @@ public class Slownik extends Mainanim {
         }
 
         // Hier Unterscheidung HS-DS
-        int TempXANZA = (mainFrame.sprache == 2) ? DXANZA : HXANZA;
+        int TempXANZA = mainFrame.sprache == 2 ? DXANZA : HXANZA;
 
         // Auswahl anzeigen bzw. highlighten (wenn ihr dabeiseid, dann gibts 'n Highlight)
         for (int i = 0; i < TempXANZA; i++) {
-            GenericPoint px = mainFrame.ifont.CenterAnimText((mainFrame.sprache == 2) ? DAuswahl[i] : HAuswahl[i], new GenericPoint((mainFrame.scrollx + LinksOben.x + (i * XDIFF) + (XDIFF / 2)), (mainFrame.scrolly + LinksOben.y)));
-            mainFrame.ifont.drawString(g, (mainFrame.sprache == 2) ? DAuswahl[i] : HAuswahl[i], px.x, px.y, (i == Skip) ? 0xffff0000 : 0xff800000);
+            GenericPoint px = mainFrame.ifont.CenterAnimText(mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollx + LinksOben.x + i * XDIFF + XDIFF / 2, mainFrame.scrolly + LinksOben.y));
+            mainFrame.ifont.drawString(g, mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], px.x, px.y, i == Skip ? 0xffff0000 : 0xff800000);
         }
 
-        for (int i = TempXANZA; i < ((TempXANZA * 2) - ((mainFrame.sprache == 2) ? 0 : 1)); i++)  // HS hat ungerade Anzahl
+        for (int i = TempXANZA; i < TempXANZA * 2 - (mainFrame.sprache == 2 ? 0 : 1); i++)  // HS hat ungerade Anzahl
         {
-            GenericPoint py = mainFrame.ifont.CenterAnimText((mainFrame.sprache == 2) ? DAuswahl[i] : HAuswahl[i], new GenericPoint((mainFrame.scrollx + LinksOben.x + ((i - TempXANZA) * XDIFF) + (XDIFF / 2)), (mainFrame.scrolly + LinksOben.y + YDIFF)));
-            mainFrame.ifont.drawString(g, (mainFrame.sprache == 2) ? DAuswahl[i] : HAuswahl[i], py.x, py.y, (i == Skip) ? 0xffff0000 : 0xff800000);
+            GenericPoint py = mainFrame.ifont.CenterAnimText(mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollx + LinksOben.x + (i - TempXANZA) * XDIFF + XDIFF / 2, mainFrame.scrolly + LinksOben.y + YDIFF));
+            mainFrame.ifont.drawString(g, mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], py.x, py.y, i == Skip ? 0xffff0000 : 0xff800000);
         }
 
 
@@ -282,7 +282,7 @@ public class Slownik extends Mainanim {
             if (brPfeilUnten.IsPointInRect(pTemp)) {
                 Index += 10;
                 mainFrame.Clipset = false;
-                if (Index > (Nummer - 10)) {
+                if (Index > Nummer - 10) {
                     Index = Nummer - 10;
                 }
                 mainFrame.repaint();
@@ -293,14 +293,14 @@ public class Slownik extends Mainanim {
                 int adresse = 0;
 
                 // Y-Offset berechnen
-                adresse += ((pTemp.y - LinksOben.y) / YDIFF) * ((mainFrame.sprache == 2) ? DXANZA : HXANZA);
+                adresse += (pTemp.y - LinksOben.y) / YDIFF * (mainFrame.sprache == 2 ? DXANZA : HXANZA);
 
                 // X-Offset dazu
-                adresse += ((pTemp.x - LinksOben.x) / XDIFF);
+                adresse += (pTemp.x - LinksOben.x) / XDIFF;
 
                 // Index neu festlegen, nicht, wenn auf Leerfeld in HS gedrueckt
-                if ((mainFrame.sprache != 1) || (adresse < 25)) {
-                    Index = (mainFrame.sprache == 2) ? DSprung[adresse] : HSprung[adresse];
+                if (mainFrame.sprache != 1 || adresse < 25) {
+                    Index = mainFrame.sprache == 2 ? DSprung[adresse] : HSprung[adresse];
                     mainFrame.Clipset = false;
                     mainFrame.repaint();
                 }
@@ -338,10 +338,10 @@ public class Slownik extends Mainanim {
             Skip = 0;
 
             // Y-Offset berechnen
-            Skip += ((pTemp.y - LinksOben.y) / YDIFF) * ((mainFrame.sprache == 2) ? DXANZA : HXANZA);
+            Skip += (pTemp.y - LinksOben.y) / YDIFF * (mainFrame.sprache == 2 ? DXANZA : HXANZA);
 
             // X-Offset dazu
-            Skip += ((pTemp.x - LinksOben.x) / XDIFF);
+            Skip += (pTemp.x - LinksOben.x) / XDIFF;
         }
 
         // wenn noetig , dann Neuzeichnen!
@@ -349,7 +349,7 @@ public class Slownik extends Mainanim {
             Paintcall = false;
             return;
         }
-        if ((menuitem != olditem) || (Skip != oldskip)) {
+        if (menuitem != olditem || Skip != oldskip) {
             mainFrame.repaint();
         }
     }

@@ -67,8 +67,8 @@ public class Wegsucher {
 
         // alle moeglichen Wege weitervefolgen
         for (int i = 0; i < numRects; i++) {
-            if ((matrix[aktPos][i]) &&    // dieser Weg moeglich ?
-                    (!vTemp.contains(i))) {
+            if (matrix[aktPos][i] &&    // dieser Weg moeglich ?
+                    !vTemp.contains(i)) {
                 // noch nicht im Weg enthalten ?
                 RekursivSuche(i, vTemp);
             }

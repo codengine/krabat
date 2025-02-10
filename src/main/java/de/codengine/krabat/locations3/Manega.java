@@ -89,7 +89,7 @@ public class Manega extends Mainloc {
 
         loewe = new Law(mainFrame);
 
-        loewePoint = new GenericPoint(loeweFeet.x - (Law.Breite / 2), loeweFeet.y - Law.Hoehe);
+        loewePoint = new GenericPoint(loeweFeet.x - Law.Breite / 2, loeweFeet.y - Law.Hoehe);
         loeweTalk = new GenericPoint(loeweFeet.x, loewePoint.y - 50);
         loeweRect = new Borderrect(loewePoint.x, loewePoint.y, loewePoint.x + Law.Breite, loewePoint.y + Law.Hoehe);
 
@@ -186,7 +186,7 @@ public class Manega extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -248,7 +248,7 @@ public class Manega extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -258,7 +258,7 @@ public class Manega extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -350,8 +350,8 @@ public class Manega extends Mainloc {
                 }
 
                 // Helm ansehen
-                if ((helm.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[611])) {
+                if (helm.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[611]) {
                     nextActionID = 1;
                     pTemp = pHelm;
                 }
@@ -368,8 +368,8 @@ public class Manega extends Mainloc {
                 // rechte Maustaste
 
                 // Helm mitnehmen
-                if ((helm.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[611])) {
+                if (helm.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[611]) {
                     nextActionID = 4;
                     mainFrame.wegGeher.SetzeNeuenWeg(pHelm);
                     mainFrame.repaint();
@@ -403,7 +403,7 @@ public class Manega extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -415,16 +415,16 @@ public class Manega extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (loeweRect.IsPointInRect(pTemp)) ||
-                    ((helm.IsPointInRect(pTemp)) && (!mainFrame.Actions[611]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    loeweRect.IsPointInRect(pTemp) ||
+                    helm.IsPointInRect(pTemp) && !mainFrame.Actions[611];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -432,8 +432,8 @@ public class Manega extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((helm.IsPointInRect(pTemp)) && (!mainFrame.Actions[611])) ||
-                    (loeweRect.IsPointInRect(pTemp))) {
+            if (helm.IsPointInRect(pTemp) && !mainFrame.Actions[611] ||
+                    loeweRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -544,14 +544,14 @@ public class Manega extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, 
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600) && (nextActionID != 501)) {
+        if (nextActionID > 499 && nextActionID < 600 && nextActionID != 501) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -559,7 +559,7 @@ public class Manega extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -647,11 +647,11 @@ public class Manega extends Mainloc {
 
             case 10:
                 // Ende Helm nehmen
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.Actions[611] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;
@@ -862,7 +862,7 @@ public class Manega extends Mainloc {
 
             case 20:
                 // warten...
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 30;
                 }
                 break;
@@ -887,7 +887,7 @@ public class Manega extends Mainloc {
 
             case 40:
                 // warten, bis zu Ende geschnarcht
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 50;
                 }
                 break;
@@ -896,13 +896,13 @@ public class Manega extends Mainloc {
                 // variable Pause dazwischen
                 AnimOutputText = "";
                 mainFrame.Clipset = false;
-                AnimCounter = (int) ((Math.random() * 70) + 50);
+                AnimCounter = (int) (Math.random() * 70 + 50);
                 AnimID = 60;
                 break;
 
             case 60:
                 // Pause abwarten und von vorn...
-                if ((--AnimCounter) < 1) {
+                if (--AnimCounter < 1) {
                     AnimID = 10;
                 }
                 break;

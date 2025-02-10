@@ -122,7 +122,7 @@ public class Terassa extends Mainloc {
         schmied = new DDKowar(mainFrame);
 
         schmiedPoint = new GenericPoint();
-        schmiedPoint.x = schmiedFeet.x - (DDKowar.Breite / 2);
+        schmiedPoint.x = schmiedFeet.x - DDKowar.Breite / 2;
         schmiedPoint.y = schmiedFeet.y - DDKowar.Hoehe;
 
         schmiedTalk = new GenericPoint();
@@ -133,7 +133,7 @@ public class Terassa extends Mainloc {
         schmiedClickRect = new Borderrect(schmiedPoint.x + 7, schmiedPoint.y, schmiedPoint.x + DDKowar.Breite - 14, schmiedPoint.y + DDKowar.Hoehe);
 
         // hier evaluieren, ob Schmied ueberhaupt da ist
-        schmiedVisible = (mainFrame.Actions[529]) && (!mainFrame.Actions[701]);
+        schmiedVisible = mainFrame.Actions[529] && !mainFrame.Actions[701];
 
         InitLocation(oldLocation);
         mainFrame.Freeze(false);
@@ -251,7 +251,7 @@ public class Terassa extends Mainloc {
         }
 
         // Hammer zeichnen, solange noch da
-        if ((!mainFrame.Actions[953]) && (schmiedVisible)) {
+        if (!mainFrame.Actions[953] && schmiedVisible) {
             g.setClip(221, 463, 27, 20);
             g.drawImage(hammer, 221, 463, null);
         }
@@ -276,7 +276,7 @@ public class Terassa extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -309,7 +309,7 @@ public class Terassa extends Mainloc {
         if (!isVordergrund) {
             // steht hinter Gelander
             if (gelaenderRect.IsPointInRect(pKrTemp)) {
-                g.drawImage((!mainFrame.Actions[700]) ? gelaender : gelaender2, 0, 284, null);
+                g.drawImage(!mainFrame.Actions[700] ? gelaender : gelaender2, 0, 284, null);
             }
 
             // steht hinter Busch
@@ -347,12 +347,12 @@ public class Terassa extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -399,14 +399,14 @@ public class Terassa extends Mainloc {
                 }
 
                 // Ausreden Schmied
-                if ((schmiedClickRect.IsPointInRect(pTemp)) && (schmiedVisible)) {
+                if (schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible) {
                     nextActionID = 150;
                     pTxxx = pSchmied;
                 }
 
                 // Ausreden Hammer
-                if ((hammerRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[953]) &&
-                        (schmiedVisible)) {
+                if (hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
+                        schmiedVisible) {
                     nextActionID = 155;
                     pTxxx = pHammer;
                 }
@@ -514,14 +514,14 @@ public class Terassa extends Mainloc {
                 }
 
                 // Schmied ansehen
-                if ((schmiedClickRect.IsPointInRect(pTemp)) && (schmiedVisible)) {
+                if (schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible) {
                     nextActionID = 1;
                     pTxxx = pSchmied;
                 }
 
                 // Hammer ansehen
-                if ((hammerRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[953]) &&
-                        (schmiedVisible)) {
+                if (hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
+                        schmiedVisible) {
                     nextActionID = 2;
                     pTxxx = pHammer;
                 }
@@ -534,15 +534,15 @@ public class Terassa extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangMurja.IsPointInRect(pTemp)) ||
-                        (ausgangStraza.IsPointInRect(pTemp)) ||
-                        (ausgangCychi.IsPointInRect(pTemp)) ||
-                        (ausgangKarta.IsPointInRect(pTemp))) {
+                if (ausgangMurja.IsPointInRect(pTemp) ||
+                        ausgangStraza.IsPointInRect(pTemp) ||
+                        ausgangCychi.IsPointInRect(pTemp) ||
+                        ausgangKarta.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Schmied anreden
-                if ((schmiedClickRect.IsPointInRect(pTemp)) && (schmiedVisible)) {
+                if (schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible) {
                     nextActionID = 50;
                     if (!mussKrabatEbeneWechseln(pSchmied)) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pSchmied);
@@ -552,8 +552,8 @@ public class Terassa extends Mainloc {
                 }
 
                 // Hammer nehmen
-                if ((hammerRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[953]) &&
-                        (schmiedVisible)) {
+                if (hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
+                        schmiedVisible) {
                     nextActionID = 55;
                     if (!mussKrabatEbeneWechseln(pHammer)) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pHammer);
@@ -574,7 +574,7 @@ public class Terassa extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -586,17 +586,17 @@ public class Terassa extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((schmiedClickRect.IsPointInRect(pTemp)) && (schmiedVisible)) ||
-                    ((hammerRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[953]) &&
-                            (schmiedVisible));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible ||
+                    hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
+                            schmiedVisible;
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -604,9 +604,9 @@ public class Terassa extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((schmiedClickRect.IsPointInRect(pTemp)) && (schmiedVisible)) ||
-                    ((hammerRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[953]) &&
-                            (schmiedVisible))) {
+            if (schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible ||
+                    hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&
+                            schmiedVisible) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -614,8 +614,8 @@ public class Terassa extends Mainloc {
                 return;
             }
 
-            if ((ausgangMurja.IsPointInRect(pTemp)) ||
-                    (ausgangStraza.IsPointInRect(pTemp))) {
+            if (ausgangMurja.IsPointInRect(pTemp) ||
+                    ausgangStraza.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -656,9 +656,9 @@ public class Terassa extends Mainloc {
     private boolean mussKrabatEbeneWechseln(GenericPoint Zielpunkt) {
         // rects sind verschieden, je nach dem, ob er oben ist
         if (isVordergrund) {
-            if ((vorWennVor[0].PointInside(Zielpunkt)) ||
-                    (vorWennVor[1].PointInside(Zielpunkt)) ||
-                    (vorWennVor[2].PointInside(Zielpunkt))) {
+            if (vorWennVor[0].PointInside(Zielpunkt) ||
+                    vorWennVor[1].PointInside(Zielpunkt) ||
+                    vorWennVor[2].PointInside(Zielpunkt)) {
                 // der WegGeher kann normal wie immer angesprochen werden, nix wird veraendert
                 return false;
             } else {
@@ -674,8 +674,8 @@ public class Terassa extends Mainloc {
                 return true;
             }
         } else {
-            if ((!vorWennHinten[0].PointInside(Zielpunkt)) &&
-                    (!vorWennHinten[1].PointInside(Zielpunkt))) {
+            if (!vorWennHinten[0].PointInside(Zielpunkt) &&
+                    !vorWennHinten[1].PointInside(Zielpunkt)) {
                 // der WegGeher kann normal wie immer angesprochen werden, nix wird veraendert
                 return false;
             } else {
@@ -774,8 +774,8 @@ public class Terassa extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
@@ -783,7 +783,7 @@ public class Terassa extends Mainloc {
         // wenn noetig (in Superklasse)
 
         // Achtung, hier sind 2 Ausnahmen, weil diese Sachen in dieser Location behandelt werden muessen
-        if ((nextActionID > 499) && (nextActionID < 600) && (nextActionID != 541) && (nextActionID != 553)) {
+        if (nextActionID > 499 && nextActionID < 600 && nextActionID != 541 && nextActionID != 553) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -791,7 +791,7 @@ public class Terassa extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -826,7 +826,7 @@ public class Terassa extends Mainloc {
 
             case 52:
                 // nach bisschen Warten die Antwort bringen (Sound stoert hoffentlich nicht mehr)
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 int zuffZahl = (int) (Math.random() * 3.9);
@@ -882,13 +882,13 @@ public class Terassa extends Mainloc {
 
             case 60:
                 // Krabat sagt Spruch
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.Actions[953] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                     // Inventar hinzufuegen
                     mainFrame.inventory.vInventory.addElement(46);
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00018"),
@@ -913,11 +913,11 @@ public class Terassa extends Mainloc {
 
             case 70:
                 // Schmied regt sich auf
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.Actions[700] = true; // ab jetzt die Delle drin
                     mainFrame.Clipset = false;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00021"),
@@ -1123,7 +1123,7 @@ public class Terassa extends Mainloc {
 
             case 810:
                 // die Treppe runterlaufen, nur runterbeamen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 // mainFrame.wegGeher.SetzeGarantiertWegFalsch (walktoTreppe);
@@ -1163,7 +1163,7 @@ public class Terassa extends Mainloc {
 
             case 910:
                 // die Treppe hochlaufen, nur beamen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 // mainFrame.wegGeher.SetzeGarantiertWegFalsch (walktoTreppeOben);

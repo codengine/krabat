@@ -156,7 +156,7 @@ public class Extro extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // sonst noch was zu tun ?
-        if ((outputText != "") || (Scroller)) {
+        if (outputText != "" || Scroller) {
             int textColor = FarbenArray[TalkPerson];
             if (Scroller) {
                 textColor = FarbenArray[92];
@@ -196,7 +196,7 @@ public class Extro extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -221,7 +221,7 @@ public class Extro extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -294,8 +294,8 @@ public class Extro extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 

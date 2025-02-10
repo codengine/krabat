@@ -227,7 +227,7 @@ public class Gang extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -259,7 +259,7 @@ public class Gang extends Mainloc {
         }
 
         // hier dureberzeichnen, wenn er den Speer holen soll
-        if ((mainFrame.Actions[690]) && (rectVorderTuer.IsPointInRect(pKrTemp))) {
+        if (mainFrame.Actions[690] && rectVorderTuer.IsPointInRect(pKrTemp)) {
             g.drawImage(tuervorder, 1175, 249, null);
         }
 
@@ -284,12 +284,12 @@ public class Gang extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -377,7 +377,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Ausreden fuer Buch
-                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
+                if (buchRect.IsPointInRect(pTemp) && mainFrame.Actions[690]) {
                     nextActionID = 165;
                     pTxxx = pBuch;
                 }
@@ -464,7 +464,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Buch ansehen
-                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
+                if (buchRect.IsPointInRect(pTemp) && mainFrame.Actions[690]) {
                     nextActionID = 7;
                     pTxxx = pBuch;
                 }
@@ -475,7 +475,7 @@ public class Gang extends Mainloc {
                 // rechte Maustaste
 
                 // Buch mitnehmen
-                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
+                if (buchRect.IsPointInRect(pTemp) && mainFrame.Actions[690]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pBuch);
                     mainFrame.repaint();
@@ -507,7 +507,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangZachod.IsPointInRect(pTemp)) || (ausgangKapala.IsPointInRect(pTemp))) {
+                if (ausgangZachod.IsPointInRect(pTemp) || ausgangKapala.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -526,7 +526,7 @@ public class Gang extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -538,16 +538,16 @@ public class Gang extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (ring.IsPointInRect(pTemp)) ||
-                    (knochen.IsPointInRect(pTemp)) || (tuerUnten.IsPointInRect(pTemp)) ||
-                    ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || ring.IsPointInRect(pTemp) ||
+                    knochen.IsPointInRect(pTemp) || tuerUnten.IsPointInRect(pTemp) ||
+                    buchRect.IsPointInRect(pTemp) && mainFrame.Actions[690];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -555,10 +555,10 @@ public class Gang extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((tuerUnten.IsPointInRect(pTemp)) ||
-                    (ring.IsPointInRect(pTemp)) ||
-                    (knochen.IsPointInRect(pTemp)) ||
-                    ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690]))) {
+            if (tuerUnten.IsPointInRect(pTemp) ||
+                    ring.IsPointInRect(pTemp) ||
+                    knochen.IsPointInRect(pTemp) ||
+                    buchRect.IsPointInRect(pTemp) && mainFrame.Actions[690]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -566,8 +566,8 @@ public class Gang extends Mainloc {
                 return;
             }
 
-            if ((ausgangZachod.IsPointInRect(pTemp)) ||
-                    (ausgangKapala.IsPointInRect(pTemp))) {
+            if (ausgangZachod.IsPointInRect(pTemp) ||
+                    ausgangKapala.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -649,14 +649,14 @@ public class Gang extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, 
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -664,7 +664,7 @@ public class Gang extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -839,13 +839,13 @@ public class Gang extends Mainloc {
 
             case 53:
                 // Ende Buch mitnehmen
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(55);
                     mainFrame.Actions[690] = false; // Kein Buch mehr da zum aufheben
                     mainFrame.Clipset = false;
                     mainFrame.wave.PlayFile("sfx-dd/gdurjezu.wav");
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;

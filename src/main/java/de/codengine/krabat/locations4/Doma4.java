@@ -144,13 +144,13 @@ public class Doma4 extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(back, (mainFrame.scrollx / 10), 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
         g.drawImage(background1, 0, 0, null);
         g.drawImage(background2, 640, 0, null);
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
         // Rauch animieren
-        switchanim = !(switchanim);
+        switchanim = !switchanim;
         if (switchanim) {
             Rauchcount++;
             if (Rauchcount == 13) {
@@ -158,18 +158,18 @@ public class Doma4 extends Mainloc {
             }
         }
         g.setClip(985, 15, 30, 120);
-        g.drawImage(back, (mainFrame.scrollx / 10), 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
         g.drawImage(Rauchanim[Rauchcount], 985, 15, null);
         g.drawImage(background2, 640, 0, null);
 
         // Leute animieren
         g.setClip(923, 271, 127, 74);
-        g.drawImage(back, (mainFrame.scrollx / 10), 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
         g.drawImage(background1, 0, 0, null);
         g.drawImage(background2, 640, 0, null);
         g.drawImage(foreground2, 923, 271, null);
 
-        if ((--Verhinderleutelinks) < 1) {
+        if (--Verhinderleutelinks < 1) {
             Verhinderleutelinks = MAX_VERHINDERLEUTELINKS;
             LeutelinksCount = (int) (Math.random() * 5.9);
             LeutelinksCount++;
@@ -178,7 +178,7 @@ public class Doma4 extends Mainloc {
         g.drawImage(LeuteLinks[LeutelinksCount], 997, 285, null);
 
 
-        if ((--Verhinderleuterechts) < 1) {
+        if (--Verhinderleuterechts < 1) {
             Verhinderleuterechts = MAX_VERHINDERLEUTERECHTS;
             LeuterechtsCount = (int) (Math.random() * 4.9);
             LeuterechtsCount++;
@@ -232,13 +232,13 @@ public class Doma4 extends Mainloc {
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount == 0)) {
+        if (TalkPause > 0 && mainFrame.talkCount == 0) {
             TalkPause--;
         }
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
-        if ((nextActionID != 0) && (TalkPause == 0) && (mainFrame.talkCount == 0)) {
+        if (nextActionID != 0 && TalkPause == 0 && mainFrame.talkCount == 0) {
             DoAction();
         }
     }

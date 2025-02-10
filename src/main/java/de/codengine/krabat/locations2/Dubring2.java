@@ -118,7 +118,7 @@ public class Dubring2 extends Mainloc2 {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, (mainFrame.scrollx / 2), 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
         g.drawImage(backl, 0, 0, null);
         g.drawImage(backr, 640, 0, null);
 
@@ -129,7 +129,7 @@ public class Dubring2 extends Mainloc2 {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, (mainFrame.scrollx / 2), 0, null);
+            g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
             g.drawImage(backl, 0, 0, null);
             g.drawImage(backr, 640, 0, null);
         }
@@ -152,7 +152,7 @@ public class Dubring2 extends Mainloc2 {
             g.drawImage(backl, 0, 0, null);
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -182,7 +182,7 @@ public class Dubring2 extends Mainloc2 {
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+        if (mainFrame.talkCount < 1 && TalkPause > 0) {
             TalkPause--;
         }
 
@@ -196,7 +196,7 @@ public class Dubring2 extends Mainloc2 {
 
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
             DoAction();
         }
     }

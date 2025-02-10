@@ -74,7 +74,7 @@ public class Mlynkmurja extends Mainloc {
 
         nextActionID = 10;
 
-        float xtf = 900 - (((640 - 110) * 4) / 7);
+        float xtf = 900 - (640 - 110) * 4 / 7;
         laterneAdd = (int) (xtf - 640);
 
         // System.out.println ("Laterne wird auf Pos. " + laterneAdd + " gezeichnet.");
@@ -156,7 +156,7 @@ public class Mlynkmurja extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -212,12 +212,12 @@ public class Mlynkmurja extends Mainloc {
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount == 0)) {
+        if (TalkPause > 0 && mainFrame.talkCount == 0) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause == 0) && (mainFrame.talkCount == 0)) {
+        if (nextActionID != 0 && TalkPause == 0 && mainFrame.talkCount == 0) {
             DoAction();
         }
     }
@@ -264,14 +264,14 @@ public class Mlynkmurja extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt,
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -355,7 +355,7 @@ public class Mlynkmurja extends Mainloc {
 
             case 100:
                 // Mueller spricht
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00018"),

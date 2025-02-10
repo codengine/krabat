@@ -238,12 +238,12 @@ public class Zelen extends Mainloc {
             g.drawImage(background, 0, 0, null);
 
             // beide Figuren bewegen, wenn dies noetig ist
-            if ((--VerhinderwalkAwgust) < 1) {
+            if (--VerhinderwalkAwgust < 1) {
                 VerhinderwalkAwgust = MAX_VERHINDERWALKAWGUST;
                 walkReadyAwgust = awgust.Move();
             }
 
-            if ((--VerhinderwalkDruzina) < 1) {
+            if (--VerhinderwalkDruzina < 1) {
                 VerhinderwalkDruzina = MAX_VERHINDERWALKDRUZINA;
                 walkReadyDruzina = druzina.Move();
             }
@@ -260,7 +260,7 @@ public class Zelen extends Mainloc {
             temp = awgust.AwgustRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
-            if ((TalkPerson == 40) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 40 && mainFrame.talkCount > 1) {
                 awgust.talkAwgust(g, hatHandErhoben);
             } else {
                 awgust.drawAwgust(g);
@@ -276,11 +276,11 @@ public class Zelen extends Mainloc {
         }
 
         // Kerze zeichnen
-        if ((--Verhinderflacker) < 1) {
+        if (--Verhinderflacker < 1) {
             Verhinderflacker = MAX_VERHINDERFLACKER;
             Flacker = (int) (Math.random() * 4.9);
         }
-        if ((--Verhindertropf) < 1) {
+        if (--Verhindertropf < 1) {
             Verhindertropf = MAX_VERHINDERTROPF;
             Tropf++;
             if (Tropf == 3) {
@@ -318,7 +318,7 @@ public class Zelen extends Mainloc {
             int hoch = 100 - scale;
 
             // Breite abhaengig von Hoehe...
-            int weit = 50 - (scale / 2);
+            int weit = 50 - scale / 2;
 
             hier.x -= weit / 2;
             hier.y -= hoch;
@@ -327,7 +327,7 @@ public class Zelen extends Mainloc {
             g.setClip(hier.x, hier.y, weit + 1, hoch + 1);
 
             // Hier ab und zu umschalten...
-            if ((--Verhindersiegeln) < 1) {
+            if (--Verhindersiegeln < 1) {
                 Verhindersiegeln = MAX_VERHINDERSIEGELN;
                 if (Siegeln == 1) {
                     Siegeln = 0;
@@ -337,7 +337,7 @@ public class Zelen extends Mainloc {
             }
 
             // selbstbeendende Anim
-            if ((--Siegelzeit) < 0) {
+            if (--Siegelzeit < 0) {
                 SonderAnim = 0;
             }
 
@@ -353,7 +353,7 @@ public class Zelen extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -406,12 +406,12 @@ public class Zelen extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -463,7 +463,7 @@ public class Zelen extends Mainloc {
 //                             }
 
                 // Ausreden Prikaz
-                if ((prikaz.IsPointInRect(pTemp)) && (!mainFrame.Actions[640])) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
                     nextActionID = 155;
                     pTemp = pTisch;
                 }
@@ -534,7 +534,7 @@ public class Zelen extends Mainloc {
                 }
 
                 // Prikaz ansehen
-                if ((prikaz.IsPointInRect(pTemp)) && (!mainFrame.Actions[640])) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
                     nextActionID = 1;
                     pTemp = pTisch;
                 }
@@ -565,7 +565,7 @@ public class Zelen extends Mainloc {
                 // rechte Maustaste
 
                 // Prikaz mitnehmen
-                if ((prikaz.IsPointInRect(pTemp)) && (!mainFrame.Actions[640])) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pTisch);
                     mainFrame.repaint();
@@ -615,7 +615,7 @@ public class Zelen extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -627,18 +627,18 @@ public class Zelen extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
 // 		    (stuhl.IsPointInRect (pTemp) == true) ||
 //                     (klavier.IsPointInRect (pTemp) == true) ||
-                    ((prikaz.IsPointInRect(pTemp)) && (!mainFrame.Actions[640])) ||
-                    (kerzeRect.IsPointInRect(pTemp));
+                    prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640] ||
+                    kerzeRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -646,10 +646,10 @@ public class Zelen extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((kerzeRect.IsPointInRect(pTemp)) ||
+            if (kerzeRect.IsPointInRect(pTemp) ||
 // 		    (klavier.IsPointInRect (pTemp) == true) ||
 //                     (stuhl.IsPointInRect (pTemp) == true) ||
-                    ((prikaz.IsPointInRect(pTemp)) && (!mainFrame.Actions[640]))) {
+                    prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -739,14 +739,14 @@ public class Zelen extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, 
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -754,7 +754,7 @@ public class Zelen extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -812,7 +812,7 @@ public class Zelen extends Mainloc {
 
             case 53:
                 // auf Ende nehmen warten
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(49);
                     mainFrame.Actions[640] = true;
                     mainFrame.Clipset = false;
@@ -841,7 +841,7 @@ public class Zelen extends Mainloc {
 
             case 65:
                 // Ende nehmen
-                if ((mainFrame.Actions[640]) && (mainFrame.Actions[641])) {
+                if (mainFrame.Actions[640] && mainFrame.Actions[641]) {
                     nextActionID = 220;
                 } else {
                     nextActionID = 70;
@@ -881,8 +881,8 @@ public class Zelen extends Mainloc {
                         mainFrame.inventory.vInventory.addElement(32);
                     }
 
-                    if ((mainFrame.Actions[645]) && (mainFrame.Actions[647]) &&
-                            (mainFrame.Actions[648])) {
+                    if (mainFrame.Actions[645] && mainFrame.Actions[647] &&
+                            mainFrame.Actions[648]) {
                         // Dowol von PredMali zurueck, also unterschriebene austauschen
                         mainFrame.inventory.vInventory.removeElement(33);
                         mainFrame.inventory.vInventory.addElement(34);
@@ -920,7 +920,7 @@ public class Zelen extends Mainloc {
 
             case 86:
                 // Krabat spricht
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.wave.PlayFile("sfx/schildlegen.wav");
                 }
                 if (SonderAnim != 0) {
@@ -934,7 +934,7 @@ public class Zelen extends Mainloc {
 
             case 87:
                 // jetzt schauen, obs schon zu Ende ist oder noch nicht...
-                if ((mainFrame.Actions[640]) && (mainFrame.Actions[641])) {
+                if (mainFrame.Actions[640] && mainFrame.Actions[641]) {
                     nextActionID = 220;
                 } else {
                     nextActionID = 70;
@@ -997,7 +997,7 @@ public class Zelen extends Mainloc {
 
             case 225:
                 // warten, bis beide angekommen sind
-                if ((!walkReadyAwgust) || (!walkReadyDruzina)) {
+                if (!walkReadyAwgust || !walkReadyDruzina) {
                     break;
                 }
                 nextActionID = 230;

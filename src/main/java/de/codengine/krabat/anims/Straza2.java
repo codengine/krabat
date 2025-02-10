@@ -80,11 +80,11 @@ public class Straza2 extends Mainanim {
         }
 
         // redende Straza
-        if ((TalkPerson == 44) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 44 && mainFrame.talkCount > 1) {
             // Head eval.
-            if (((--Verhinderhead) < 1) || (Head < 2)) {
+            if (--Verhinderhead < 1 || Head < 2) {
                 Verhinderhead = MAX_VERHINDERHEAD;
-                Head = (int) ((Math.random() * 6.9) + 2);
+                Head = (int) (Math.random() * 6.9 + 2);
             }
         }
         // stehende Straza
@@ -107,14 +107,14 @@ public class Straza2 extends Mainanim {
 
         // Body eval., abh. von versperrtWeg
         if (versperrtWeg) {
-            if ((--Verhinderversperr) < 1) {
+            if (--Verhinderversperr < 1) {
                 Verhinderversperr = MAX_VERHINDERVERSPERR;
                 versperrtWeg = false;
             }
         }
 
         offGraph.drawImage(straza_head[Head], posit.x, posit.y, null);
-        offGraph.drawImage(straza_body[(versperrtWeg) ? 1 : 0], posit.x, posit.y + BODYOFFSET, null);
+        offGraph.drawImage(straza_body[versperrtWeg ? 1 : 0], posit.x, posit.y + BODYOFFSET, null);
 
     }
 }    

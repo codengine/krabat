@@ -120,7 +120,7 @@ public class Zachod extends Mainloc {
         float xe = EndPunkt.x;
         float ye = EndPunkt.y;
 
-        Yoffset = ((ye - ypos) / (xe - xpos)) * Xoffset;
+        Yoffset = (ye - ypos) / (xe - xpos) * Xoffset;
 
         // System.out.println ("Y - Offset = " + Yoffset);
 
@@ -274,8 +274,8 @@ public class Zachod extends Mainloc {
 
         // Kiste oben zeichnen, wenn keine Verschieberoutine und wenn Krabat davor ist
         if (!verschiebeKiste) {
-            if ((!mainFrame.Actions[516]) &&
-                    (!kistenRect.IsPointInRect(mainFrame.krabat.GetKrabatPos()))) {
+            if (!mainFrame.Actions[516] &&
+                    !kistenRect.IsPointInRect(mainFrame.krabat.GetKrabatPos())) {
                 // Kisten sind nicht verschoben und Krabat ist davor
                 g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
                 g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y, null);
@@ -312,7 +312,7 @@ public class Zachod extends Mainloc {
                 int hoch = 100 - scale;
 
                 // Breite
-                int weit = 50 - (scale / 2);
+                int weit = 50 - scale / 2;
 
                 // Punkt fuer LO-Evaluierung bereitstellen
                 GenericPoint hier = new GenericPoint(festnagelPoint.x, festnagelPoint.y);
@@ -326,7 +326,7 @@ public class Zachod extends Mainloc {
                 g.setClip(hier.x, hier.y, weit + 1, (hoch + 1) / 2);
 
                 // GenericImage weiterschalten
-                if ((++AnimCounter) > 4) {
+                if (++AnimCounter > 4) {
                     AnimCounter = 0;
                     if (AnimPosition == 1) {
                         AnimPosition = 0;
@@ -350,7 +350,7 @@ public class Zachod extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -388,8 +388,8 @@ public class Zachod extends Mainloc {
 
         // Kiste oben zeichnen, aber nur, wenn nicht gerade die Verschieberoutine aktiv ist
         // und nur, wenn Krabat dahinter ist
-        if ((!verschiebeKiste) && (kistenRect.IsPointInRect(pKrTemp)) &&
-                (!mainFrame.Actions[516])) {
+        if (!verschiebeKiste && kistenRect.IsPointInRect(pKrTemp) &&
+                !mainFrame.Actions[516]) {
             // Kisten sind nicht verschoben
             g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
             g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y, null);
@@ -403,11 +403,11 @@ public class Zachod extends Mainloc {
         }
 
         // verschobene Kisten sind auch immer vor Krabat
-        if ((mainFrame.Actions[516]) && (!verschiebeKiste)) {
+        if (mainFrame.Actions[516] && !verschiebeKiste) {
             // Kisten sind verschoben immer hier zeichnen
             g.setClip(EndPunkt.x, EndPunkt.y, 178, 183);
             g.drawImage(kista, EndPunkt.x, EndPunkt.y, null);
-            g.drawImage(kista2, EndPunkt.x + (AnfangsPunkt2.x - AnfangsPunkt.x), EndPunkt.y + (AnfangsPunkt2.y - AnfangsPunkt.y), null);
+            g.drawImage(kista2, EndPunkt.x + AnfangsPunkt2.x - AnfangsPunkt.x, EndPunkt.y + AnfangsPunkt2.y - AnfangsPunkt.y, null);
         }
 
         g.setClip(myx.getX(), myx.getY(), myx.getWidth(), myx.getHeight());
@@ -432,12 +432,12 @@ public class Zachod extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -482,26 +482,26 @@ public class Zachod extends Mainloc {
                 }
 
                 // Ausreden fuer Kiste, je nachdem, wo, hier oben
-                if ((kisty.IsPointInRect(pTemp)) && (!mainFrame.Actions[516])) {
+                if (kisty.IsPointInRect(pTemp) && !mainFrame.Actions[516]) {
                     nextActionID = 150;
                     pTemp = pKistyOben;
                 }
 
                 // Kiste unten
-                if ((kistyUnten.IsPointInRect(pTemp)) && (mainFrame.Actions[516])) {
+                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.Actions[516]) {
                     nextActionID = 155;
                     pTemp = pKistyUnten;
                 }
 
                 // Seil Ausreden, falls noch da
-                if ((rectSeil.IsPointInRect(pTemp)) && (!mainFrame.Actions[518])) {
+                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.Actions[518]) {
                     nextActionID = 160;
                     pTemp = pSeil;
                 }
 
                 // Brett Ausreden, falls noch da und Kiste verschoben
-                if ((nowaDeska.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[517]) && (mainFrame.Actions[516])) {
+                if (nowaDeska.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[517] && mainFrame.Actions[516]) {
                     switch (mainFrame.whatItem) {
                         case 46: // hamor
                             nextActionID = 180;
@@ -576,7 +576,7 @@ public class Zachod extends Mainloc {
                 }
 
                 // zu Gang gehen ?
-                if ((ausgangGang.IsPointInRect(pTemp)) && (mainFrame.Actions[517])) {
+                if (ausgangGang.IsPointInRect(pTemp) && mainFrame.Actions[517]) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
@@ -595,26 +595,26 @@ public class Zachod extends Mainloc {
                 }
 
                 // Seil ansehen, falls noch da
-                if ((rectSeil.IsPointInRect(pTemp)) && (!mainFrame.Actions[518])) {
+                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.Actions[518]) {
                     nextActionID = 1;
                     pTemp = pSeil;
                 }
 
                 // Kiste unverschoben ansehen
-                if ((kisty.IsPointInRect(pTemp)) && (!mainFrame.Actions[516])) {
+                if (kisty.IsPointInRect(pTemp) && !mainFrame.Actions[516]) {
                     nextActionID = 3;
                     pTemp = pKistyOben;
                 }
 
                 // Kiste verschoben ansehen
-                if ((kistyUnten.IsPointInRect(pTemp)) && (mainFrame.Actions[516])) {
+                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.Actions[516]) {
                     nextActionID = 8;
                     pTemp = pKistyUnten;
                 }
 
                 // Deska ansehen, wenn noch da, nur bei verschobener Kiste
-                if ((nowaDeska.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[517]) && (mainFrame.Actions[516])) {
+                if (nowaDeska.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[517] && mainFrame.Actions[516]) {
                     nextActionID = 4;
                     pTemp = pNowaDeska;
                 }
@@ -643,7 +643,7 @@ public class Zachod extends Mainloc {
                 // rechte Maustaste
 
                 // Seil mitnehmen
-                if ((rectSeil.IsPointInRect(pTemp)) && (!mainFrame.Actions[518])) {
+                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.Actions[518]) {
                     nextActionID = 20;
                     mainFrame.wegGeher.SetzeNeuenWeg(pSeil);
                     mainFrame.repaint();
@@ -651,7 +651,7 @@ public class Zachod extends Mainloc {
                 }
 
                 // Kiste verschieben
-                if ((kisty.IsPointInRect(pTemp)) && (!mainFrame.Actions[516])) {
+                if (kisty.IsPointInRect(pTemp) && !mainFrame.Actions[516]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pKistyOben);
                     mainFrame.repaint();
@@ -659,7 +659,7 @@ public class Zachod extends Mainloc {
                 }
 
                 // verschobene Kiste nicht nochmal verschieben
-                if ((kistyUnten.IsPointInRect(pTemp)) && (mainFrame.Actions[516])) {
+                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.Actions[516]) {
                     nextActionID = 80;
                     mainFrame.wegGeher.SetzeNeuenWeg(pKistyUnten);
                     mainFrame.repaint();
@@ -667,8 +667,8 @@ public class Zachod extends Mainloc {
                 }
 
                 // Brett mitnehmen, nur wenn da und sichtbar
-                if ((nowaDeska.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[517]) && (mainFrame.Actions[516])) {
+                if (nowaDeska.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[517] && mainFrame.Actions[516]) {
                     nextActionID = 85;
                     mainFrame.wegGeher.SetzeNeuenWeg(pNowaDeska);
                     mainFrame.repaint();
@@ -676,8 +676,8 @@ public class Zachod extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen, 2. Ausgang beachten, da nicht immer zu sehen !
-                if ((ausgangCychi.IsPointInRect(pTemp)) ||
-                        ((ausgangGang.IsPointInRect(pTemp)) && (mainFrame.Actions[517]))) {
+                if (ausgangCychi.IsPointInRect(pTemp) ||
+                        ausgangGang.IsPointInRect(pTemp) && mainFrame.Actions[517]) {
                     return;
                 }
 
@@ -717,7 +717,7 @@ public class Zachod extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -729,20 +729,20 @@ public class Zachod extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((rectSeil.IsPointInRect(pTemp)) && (!mainFrame.Actions[518])) ||
-                    ((kisty.IsPointInRect(pTemp)) && (!mainFrame.Actions[516])) ||
-                    ((kistyUnten.IsPointInRect(pTemp)) && (mainFrame.Actions[516])) ||
-                    ((nowaDeska.IsPointInRect(pTemp)) && (!mainFrame.Actions[517])) ||
-                    (staraDeska.IsPointInRect(pTemp)) || (blido.IsPointInRect(pTemp)) ||
-                    (korbik.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    rectSeil.IsPointInRect(pTemp) && !mainFrame.Actions[518] ||
+                    kisty.IsPointInRect(pTemp) && !mainFrame.Actions[516] ||
+                    kistyUnten.IsPointInRect(pTemp) && mainFrame.Actions[516] ||
+                    nowaDeska.IsPointInRect(pTemp) && !mainFrame.Actions[517] ||
+                    staraDeska.IsPointInRect(pTemp) || blido.IsPointInRect(pTemp) ||
+                    korbik.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -751,12 +751,12 @@ public class Zachod extends Mainloc {
         // normaler Cursor, normale Reaktion
         else {
             // Fenster und Seil, falls noch da und den ganzen Rest
-            if (((rectSeil.IsPointInRect(pTemp)) && (!mainFrame.Actions[518])) ||
-                    ((kisty.IsPointInRect(pTemp)) && (!mainFrame.Actions[516])) ||
-                    ((kistyUnten.IsPointInRect(pTemp)) && (mainFrame.Actions[516])) ||
-                    ((nowaDeska.IsPointInRect(pTemp)) && (!mainFrame.Actions[517])) ||
-                    (staraDeska.IsPointInRect(pTemp)) || (blido.IsPointInRect(pTemp)) ||
-                    (korbik.IsPointInRect(pTemp))) {
+            if (rectSeil.IsPointInRect(pTemp) && !mainFrame.Actions[518] ||
+                    kisty.IsPointInRect(pTemp) && !mainFrame.Actions[516] ||
+                    kistyUnten.IsPointInRect(pTemp) && mainFrame.Actions[516] ||
+                    nowaDeska.IsPointInRect(pTemp) && !mainFrame.Actions[517] ||
+                    staraDeska.IsPointInRect(pTemp) || blido.IsPointInRect(pTemp) ||
+                    korbik.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -772,7 +772,7 @@ public class Zachod extends Mainloc {
                 return;
             }
 
-            if ((ausgangGang.IsPointInRect(pTemp)) && (mainFrame.Actions[517])) {
+            if (ausgangGang.IsPointInRect(pTemp) && mainFrame.Actions[517]) {
                 if (Cursorform != 6) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 6;
@@ -870,23 +870,23 @@ public class Zachod extends Mainloc {
         mainFrame.krabat.SetKrabatPos(festnagelPoint);
 
         g.drawImage(kista, (int) xpos, (int) ypos, null);
-        g.drawImage(kista2, ((int) xpos) + (AnfangsPunkt2.x - AnfangsPunkt.x), ((int) ypos) + (AnfangsPunkt2.y - AnfangsPunkt.y), null);
+        g.drawImage(kista2, (int) xpos + AnfangsPunkt2.x - AnfangsPunkt.x, (int) ypos + AnfangsPunkt2.y - AnfangsPunkt.y, null);
 
-        return !(Math.abs(((int) xpos) - EndPunkt.x) < Xoffset);
+        return !(Math.abs((int) xpos - EndPunkt.x) < Xoffset);
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, 
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -894,7 +894,7 @@ public class Zachod extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -971,11 +971,11 @@ public class Zachod extends Mainloc {
 
             case 21:
                 // auf Ende Anim warten und Seil verschwinden lassen
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.Actions[518] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;
@@ -1028,12 +1028,12 @@ public class Zachod extends Mainloc {
 
             case 65:
                 // erfolgloser Versuch, die Kisten zu verschieben
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 SonderAnim = 0;
                 mainFrame.Clipset = false;
-                if ((!mainFrame.Actions[559]) || (!mainFrame.Actions[681])) {
+                if (!mainFrame.Actions[559] || !mainFrame.Actions[681]) {
                     // Noch keinen 1. Teil Stollen gegessen oder noch nie Kisten verschoben
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00021"),
                             Start.stringManager.getTranslation("Loc3_Zachod_00022"),

@@ -177,7 +177,7 @@ public class Awgust extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetAwgustPos(walkto);
                 anim_pos = 0;
@@ -190,10 +190,10 @@ public class Awgust extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST[anim_pos] - (scale / SLOWY);
+        float vert_dist = CVERT_DIST[anim_pos] - scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
@@ -208,7 +208,7 @@ public class Awgust extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -219,12 +219,12 @@ public class Awgust extends Mainanim {
         boolean horiz;
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -259,7 +259,7 @@ public class Awgust extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetAwgustPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -285,7 +285,7 @@ public class Awgust extends Mainanim {
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
     public void talkAwgust(GenericDrawingContext offGraph, boolean erhobeneHand) {
-        if ((--Verhinderkopf) < 1) {
+        if (--Verhinderkopf < 1) {
             Verhinderkopf = MAX_VERHINDERKOPF;
 
             Head = (int) (Math.random() * 7.9);
@@ -294,7 +294,7 @@ public class Awgust extends Mainanim {
             }
         }
 
-        if ((--Verhinderbody) < 1) {
+        if (--Verhinderbody < 1) {
             Verhinderbody = MAX_VERHINDERBODY;
             // Body wird leider nicht geswitcht (ooohhh..)
         }
@@ -318,14 +318,14 @@ public class Awgust extends Mainanim {
         float fHelper = helper;
         fHelper *= scaleVerhaeltnisNormal;
 
-        return (pox - ((CWIDTH - ((int) (fHelper))) / 2));
+        return pox - (CWIDTH - (int) fHelper) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -342,7 +342,7 @@ public class Awgust extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -351,7 +351,7 @@ public class Awgust extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -375,22 +375,22 @@ public class Awgust extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect AwgustRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, boolean hatHandErhoben, boolean redet) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -398,8 +398,8 @@ public class Awgust extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnisNormal;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
@@ -409,7 +409,7 @@ public class Awgust extends Mainanim {
             // beim Reden und ggf. mit erhobener Hand
             // System.out.println ("Head : " + Head + " Hand erhoben : " + hatHandErhoben);
             g.drawImage(kral_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-            g.drawImage(kral_body[(hatHandErhoben) ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+            g.drawImage(kral_body[hatHandErhoben ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
         } else {
             // beim Stehen oder Laufen
             if (anim_pos == 0) {

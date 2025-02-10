@@ -77,7 +77,7 @@ public class Reh extends Mainanim {
             this.Wieviele = 0;
         }
 
-        int MaximaleRehe = (Aufhaltebereich.getHeight() / 7) + 1;
+        int MaximaleRehe = Aufhaltebereich.getHeight() / 7 + 1;
         if (this.Wieviele > MaximaleRehe) {
             this.Wieviele = MaximaleRehe;
         }
@@ -126,13 +126,13 @@ public class Reh extends Mainanim {
             Verhinderlauf[i] = (int) (Math.random() * MAX_VERHINDERLAUF);
 
             // Hier die Position innerhalb des Rects berechnen
-            int xpos = (int) ((Math.random() * Aufhaltebereich.getWidth()) + Aufhaltebereich.getX());
+            int xpos = (int) (Math.random() * Aufhaltebereich.getWidth() + Aufhaltebereich.getX());
             int ypos;
 
             boolean PositionIstGut;
 
             do {
-                ypos = (int) ((Math.random() * Aufhaltebereich.getHeight()) + Aufhaltebereich.getY());
+                ypos = (int) (Math.random() * Aufhaltebereich.getHeight() + Aufhaltebereich.getY());
 
                 PositionIstGut = true;
 
@@ -185,7 +185,7 @@ public class Reh extends Mainanim {
         }
 
         // hier schauen, ob alle nicht besser wegrennen sollten
-        if (((--Verhinderwegrenn) < 1) && (!rennenNieWeg)) {
+        if (--Verhinderwegrenn < 1 && !rennenNieWeg) {
             int zuffi = (int) (Math.random() * 100);
             if (zuffi > 90) {
                 rennenAlleWeg = true;
@@ -196,7 +196,7 @@ public class Reh extends Mainanim {
         if (!rennenAlleWeg) {
             // hier malen, wenn sie nur grasen
             for (int i = 0; i < Wieviele; i++) {
-                if ((--Verhindergrasen[i]) < 1) {
+                if (--Verhindergrasen[i] < 1) {
                     Verhindergrasen[i] = MAX_VERHINDERGRASEN;
 
                     // mit bestimmter Wahrscheinlichkeit Anims wechseln, sonst zu mechanisch
@@ -243,7 +243,7 @@ public class Reh extends Mainanim {
             if (wegRennRichtung) {
                 // nach links, bis alles raus
                 for (int i = 0; i < Wieviele; i++) {
-                    if ((--Verhinderlauf[i]) < 1) {
+                    if (--Verhinderlauf[i] < 1) {
                         Verhinderlauf[i] = MAX_VERHINDERLAUF;
 
                         Positionen[i].x -= 4;
@@ -284,7 +284,7 @@ public class Reh extends Mainanim {
             } else {
                 // nach rechts, bis alle weg
                 for (int i = 0; i < Wieviele; i++) {
-                    if ((--Verhinderlauf[i]) < 1) {
+                    if (--Verhinderlauf[i] < 1) {
                         Verhinderlauf[i] = MAX_VERHINDERLAUF;
 
                         Positionen[i].x += 4;

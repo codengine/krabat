@@ -98,7 +98,7 @@ public class PredWosuskow extends Mainanim {
     // PredWosuskow beim Rumstehen
     public void drawPredawar(GenericDrawingContext g) {
         // Wenn der Zeit ist reif, dann mal Gesicht wechseln
-        if ((--Verhinderstand) < 1) {
+        if (--Verhinderstand < 1) {
             Verhinderstand = MAX_VERHINDERSTAND;
             if (Stand > 1) {
                 Stand = 0;
@@ -136,7 +136,7 @@ public class PredWosuskow extends Mainanim {
 
     // PredWosuskow beim Rumschreien
     public void callPredawar(GenericDrawingContext g) {
-        if ((--Verhindercall) < 1) {
+        if (--Verhindercall < 1) {
             Verhindercall = MAX_VERHINDERCALL;
             Call = (int) (Math.random() * 4.9);
         }
@@ -147,7 +147,7 @@ public class PredWosuskow extends Mainanim {
 
     // PredWosuskow beim Reden
     public void talkPredawar(GenericDrawingContext g) {
-        if ((--Verhindertalk) < 1) {
+        if (--Verhindertalk < 1) {
             Verhindertalk = MAX_VERHINDERTALK;
             Talk = (int) (Math.random() * 6.9);
         }
@@ -166,9 +166,9 @@ public class PredWosuskow extends Mainanim {
                 g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
                 if (Stollencounter > 5) {
                     Stollencounter = 0;
-                    return (false);
+                    return false;
                 } else {
-                    return (true);
+                    return true;
                 }
 
             case 2:
@@ -178,13 +178,13 @@ public class PredWosuskow extends Mainanim {
                 g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
                 if (Givecounter > 5) {
                     Givecounter = 0;
-                    return (false);
+                    return false;
                 } else {
-                    return (true);
+                    return true;
                 }
         }
 
         // Compilerberuhigung
-        return (false);
+        return false;
     }
 }    

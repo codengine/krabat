@@ -107,8 +107,8 @@ public class Zahrodnik extends Mainloc {
         Dialog = new Multiple2(mainFrame);
 
         talkPoint = new GenericPoint(handrijFeet.x, handrijFeet.y - Handrij.Hoehe - 50);
-        reZahrodnik = new Borderrect(handrijFeet.x - (Handrij.Breite / 2), handrijFeet.y - Handrij.Hoehe,
-                handrijFeet.x + (Handrij.Breite / 2), handrijFeet.y);
+        reZahrodnik = new Borderrect(handrijFeet.x - Handrij.Breite / 2, handrijFeet.y - Handrij.Hoehe,
+                handrijFeet.x + Handrij.Breite / 2, handrijFeet.y);
 
         InitLocation(oldLocation);
 
@@ -162,7 +162,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -206,7 +206,7 @@ public class Zahrodnik extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -257,7 +257,7 @@ public class Zahrodnik extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -269,7 +269,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -342,7 +342,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // Ausreden fuer budka
-                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
+                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 170;
                     pTemp = pBudka;
@@ -437,7 +437,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // budka ansehen
-                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
+                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = pBudka;
                 }
@@ -495,7 +495,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // budka ansehen
-                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
+                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 65;
                     mainFrame.wegGeher.SetzeNeuenWeg(pBudka);
                     mainFrame.repaint();
@@ -544,7 +544,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -556,17 +556,17 @@ public class Zahrodnik extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (skizze.IsPointInRect(pTemp)) ||
-                    (papier.IsPointInRect(pTemp)) || (reZahrodnik.IsPointInRect(pTemp)) ||
-                    (budka.IsPointInRect(pTemp)) || (pjerjo.IsPointInRect(pTemp)) ||
-                    (dokumenty.IsPointInRect(pTemp)) || (lookHrod.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || skizze.IsPointInRect(pTemp) ||
+                    papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
+                    budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
+                    dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -582,10 +582,10 @@ public class Zahrodnik extends Mainloc {
                 return;
             }
 
-            if ((skizze.IsPointInRect(pTemp)) ||
-                    (papier.IsPointInRect(pTemp)) || (reZahrodnik.IsPointInRect(pTemp)) ||
-                    (budka.IsPointInRect(pTemp)) || (pjerjo.IsPointInRect(pTemp)) ||
-                    (dokumenty.IsPointInRect(pTemp)) || (lookHrod.IsPointInRect(pTemp))) {
+            if (skizze.IsPointInRect(pTemp) ||
+                    papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
+                    budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
+                    dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -674,13 +674,13 @@ public class Zahrodnik extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -691,7 +691,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -1096,7 +1096,7 @@ public class Zahrodnik extends Mainloc {
                 if (tCounter == 48) {
                     mainFrame.wave.PlayFile("sfx-dd/pisac.wav");
                 }
-                if ((--tCounter) > 1) {
+                if (--tCounter > 1) {
                     break;
                 }
                 handrijSchreibt = false;
@@ -1110,7 +1110,7 @@ public class Zahrodnik extends Mainloc {
                 if (tCounter == 5) {
                     mainFrame.krabat.nAnimation = 93;
                 }
-                if ((--tCounter) > 1) {
+                if (--tCounter > 1) {
                     break;
                 }
                 nextActionID = 628;
@@ -1208,7 +1208,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // zu Anfang noch nicht abspielen
-        if ((--initCounter) > 0) {
+        if (--initCounter > 0) {
             return;
         }
 

@@ -391,7 +391,7 @@ public class Kuchnja extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -433,20 +433,20 @@ public class Kuchnja extends Mainloc {
         g.setClip(0, 335, 335, 479);
 
         // Feuer je nach Groesse animieren
-        if ((--Verhinderfeuer) < 1) {
+        if (--Verhinderfeuer < 1) {
             Verhinderfeuer = MAX_VERHINDERFEUER;
             Feuercount++;
             if (Feuercount == 11) {
                 Feuercount = 0;
             }
 
-            if ((mainFrame.Actions[625]) && (Feuerwidth < 32)) {
+            if (mainFrame.Actions[625] && Feuerwidth < 32) {
                 Feuerwidth++;
             }
-            if ((mainFrame.Actions[626]) && (Feuerwidth < 39)) {
+            if (mainFrame.Actions[626] && Feuerwidth < 39) {
                 Feuerwidth++;
             }
-            if ((mainFrame.Actions[627]) && (Feuerwidth < 46)) {
+            if (mainFrame.Actions[627] && Feuerwidth < 46) {
                 Feuerwidth++;
             }
         }
@@ -454,7 +454,7 @@ public class Kuchnja extends Mainloc {
         float feuerTemp = Feuerwidth;
         float Feueroffset = feuerTemp / 1.1f;
 
-        g.drawImage(Feuer[Feuercount], FeuerMitte.x - (Feuerwidth / 2), 481 - ((int) Feueroffset), Feuerwidth, Feuerwidth, null);
+        g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, 481 - (int) Feueroffset, Feuerwidth, Feuerwidth, null);
 
         // hier das fliegende Holzscheit animieren
         if (holzFliegt) {
@@ -476,22 +476,22 @@ public class Kuchnja extends Mainloc {
         // Wusmuz je nach Groesse animieren
         if (!isUeberkoching) {
             // nur Kochen, bis 3. Mal Holz angelegt
-            if ((--Verhinderwusmuz) < 1) {
+            if (--Verhinderwusmuz < 1) {
                 Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
                 Wusmuzcount++;
                 if (Wusmuzcount == 6) {
                     Wusmuzcount = 1;
                 }
 
-                if ((--Verhindersteigen) < 1) {
+                if (--Verhindersteigen < 1) {
                     Verhindersteigen = MAX_VERHINDERSTEIGEN;
-                    if ((mainFrame.Actions[625]) && (Wusmuzy > 395)) {
+                    if (mainFrame.Actions[625] && Wusmuzy > 395) {
                         Wusmuzy--;
                     }
-                    if ((mainFrame.Actions[626]) && (Wusmuzy > 393)) {
+                    if (mainFrame.Actions[626] && Wusmuzy > 393) {
                         Wusmuzy--;
                     }
-                    if ((mainFrame.Actions[627]) && (Wusmuzy > 391)) {
+                    if (mainFrame.Actions[627] && Wusmuzy > 391) {
                         Wusmuzy--;
                     }
                 }
@@ -511,14 +511,14 @@ public class Kuchnja extends Mainloc {
 
             evalSound(true, true); // einmaliges langes Blubb
 
-            if ((--Verhinderwusmuz) < 1) {
+            if (--Verhinderwusmuz < 1) {
                 Verhinderwusmuz = MAX_VERHINDERWUSMUZ;
                 Wusmuzcount++;
                 if (Wusmuzcount == 6) {
                     Wusmuzcount = 1;
                 }
 
-                if ((--Verhindersteigen) < 1) {
+                if (--Verhindersteigen < 1) {
                     Verhindersteigen = MAX_VERHINDERSTEIGEN;
                     if (Ueberkochcount < 3) {
                         Ueberkochcount++;
@@ -552,7 +552,7 @@ public class Kuchnja extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -564,7 +564,7 @@ public class Kuchnja extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -769,7 +769,7 @@ public class Kuchnja extends Mainloc {
                 }
 
                 // Kuchar ansehen
-                if ((kuchar.KucharRect().IsPointInRect(pTemp)) && (!rechterAusgang.IsPointInRect(pTemp))) {
+                if (kuchar.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTt = pKuchar;
                 }
@@ -780,7 +780,7 @@ public class Kuchnja extends Mainloc {
                 // rechte Maustaste
 
                 // Mit dem Kuchar reden
-                if ((kuchar.KucharRect().IsPointInRect(pTemp)) && (!rechterAusgang.IsPointInRect(pTemp))) {
+                if (kuchar.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pKuchar);
                     mainFrame.repaint();
@@ -866,7 +866,7 @@ public class Kuchnja extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -878,22 +878,22 @@ public class Kuchnja extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (kuchar.KucharRect().IsPointInRect(pTemp)) ||
-                    (kachle.IsPointInRect(pTemp)) ||
-                    (glocke.IsPointInRect(pTemp)) ||
-                    (drjewo.IsPointInRect(pTemp)) ||
-                    (durje.IsPointInRect(pTemp)) ||
-                    (wokno.IsPointInRect(pTemp)) ||
-                    (swinjo.IsPointInRect(pTemp)) ||
-                    (kochtopf.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    kuchar.KucharRect().IsPointInRect(pTemp) ||
+                    kachle.IsPointInRect(pTemp) ||
+                    glocke.IsPointInRect(pTemp) ||
+                    drjewo.IsPointInRect(pTemp) ||
+                    durje.IsPointInRect(pTemp) ||
+                    wokno.IsPointInRect(pTemp) ||
+                    swinjo.IsPointInRect(pTemp) ||
+                    kochtopf.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -909,14 +909,14 @@ public class Kuchnja extends Mainloc {
                 return;
             }
 
-            if ((glocke.IsPointInRect(pTemp)) ||
-                    (drjewo.IsPointInRect(pTemp)) ||
-                    (durje.IsPointInRect(pTemp)) ||
-                    (wokno.IsPointInRect(pTemp)) ||
-                    (kachle.IsPointInRect(pTemp)) ||
-                    (swinjo.IsPointInRect(pTemp)) ||
-                    (kochtopf.IsPointInRect(pTemp)) ||
-                    (kuchar.KucharRect().IsPointInRect(pTemp))) {
+            if (glocke.IsPointInRect(pTemp) ||
+                    drjewo.IsPointInRect(pTemp) ||
+                    durje.IsPointInRect(pTemp) ||
+                    wokno.IsPointInRect(pTemp) ||
+                    kachle.IsPointInRect(pTemp) ||
+                    swinjo.IsPointInRect(pTemp) ||
+                    kochtopf.IsPointInRect(pTemp) ||
+                    kuchar.KucharRect().IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -1017,7 +1017,7 @@ public class Kuchnja extends Mainloc {
             }
 
             int zfz = (int) (Math.random() * 100);
-            if (((zfz > 97) && (!erster)) || ((zfz > 95) && (erster))) {
+            if (zfz > 97 && !erster || zfz > 95 && erster) {
                 int zwzfz = (int) (Math.random() * 2.99);
                 zwzfz += 49;
                 mainFrame.wave.PlayFile("sfx-dd/blubb" + (char) zwzfz + ".wav");
@@ -1035,13 +1035,13 @@ public class Kuchnja extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -1052,7 +1052,7 @@ public class Kuchnja extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -1140,7 +1140,7 @@ public class Kuchnja extends Mainloc {
 
             case 7:
                 // Herd anschauen
-                if ((!mainFrame.Actions[625]) && (!mainFrame.Actions[626]) && (!mainFrame.Actions[627])) {
+                if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00027"),
                             Start.stringManager.getTranslation("Loc3_Kuchnja_00028"),
                             Start.stringManager.getTranslation("Loc3_Kuchnja_00029"),
@@ -1155,7 +1155,7 @@ public class Kuchnja extends Mainloc {
 
             case 8:
                 // Kochtopf anschauen
-                if ((!mainFrame.Actions[625]) && (!mainFrame.Actions[626]) && (!mainFrame.Actions[627])) {
+                if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00033"),
                             Start.stringManager.getTranslation("Loc3_Kuchnja_00034"),
                             Start.stringManager.getTranslation("Loc3_Kuchnja_00035"),

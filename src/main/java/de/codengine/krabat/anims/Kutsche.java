@@ -205,30 +205,30 @@ public class Kutsche extends Mainanim {
         switch (Kutschenzustand) {
             case 0:
                 // hinten fahrend
-                int xVeraenderung = kBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein));
-                int yVeraenderung = kHoehe + ((int) ((Ypos - Yanfang) / scale));
-                return (new GenericRectangle((int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung));
+                int xVeraenderung = kBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein);
+                int yVeraenderung = kHoehe + (int) ((Ypos - Yanfang) / scale);
+                return new GenericRectangle((int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung);
             case 1:
             case 3:
                 // vorn fahrend
-                int xxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
-                int yyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
-                return (new GenericRectangle((int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung));
+                int xxVeraenderung = gBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross);
+                int yyVeraenderung = gHoehe + (int) ((Ypos - Yanfang) / scale);
+                return new GenericRectangle((int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung);
             case 2:
                 // vorn stehend
                 if (!isKutscheRauching)  // nur Kutsche an sich
                 {
-                    return (new GenericRectangle(kutscheLO.x, kutscheLO.y, kutscheLO.x + 267, kutscheLO.y + 228));
+                    return new GenericRectangle(kutscheLO.x, kutscheLO.y, kutscheLO.x + 267, kutscheLO.y + 228);
                 } else {
                     // Kutsche + Rauch
-                    int xxxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
-                    int yyyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
-                    return (new GenericRectangle((int) (Xpos - (xxxVeraenderung / 2)), (int) (Ypos - yyyVeraenderung), xxxVeraenderung, yyyVeraenderung));
+                    int xxxVeraenderung = gBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross);
+                    int yyyVeraenderung = gHoehe + (int) ((Ypos - Yanfang) / scale);
+                    return new GenericRectangle((int) (Xpos - xxxVeraenderung / 2), (int) (Ypos - yyyVeraenderung), xxxVeraenderung, yyyVeraenderung);
                 }
         }
 
         // Compilerberuhigung...
-        return (new GenericRectangle(0, 0, 0, 0));
+        return new GenericRectangle(0, 0, 0, 0);
     }
 
     // Zeichne Kutsche mit allen Anims
@@ -246,7 +246,7 @@ public class Kutsche extends Mainanim {
                 }
 
                 // GenericImage weiterschalten
-                if ((--Verhinderklwolke) < 1) {
+                if (--Verhinderklwolke < 1) {
                     Verhinderklwolke = MAX_VERHINDERKLWOLKE;
                     klWolke++;
                     if (klWolke == 6) {
@@ -261,15 +261,15 @@ public class Kutsche extends Mainanim {
                 g.setClip(kutscheRect());
 
                 // Veraenderung der Groesse berechnen
-                int xVeraenderung = kBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein));
-                int yVeraenderung = kHoehe + ((int) ((Ypos - Yanfang) / scale));
+                int xVeraenderung = kBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein);
+                int yVeraenderung = kHoehe + (int) ((Ypos - Yanfang) / scale);
 
                 // hier entweder 1 oder 2 Images malen
                 if (klWolke > 2) {
-                    g.drawImage(kleineWolke[klWolke - 3], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
-                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke - 3], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
                 } else {
-                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
                 }
                 // Vordergrund zeichnen (hier immer)
                 g.drawImage(vorder, 342, 270, null);
@@ -291,7 +291,7 @@ public class Kutsche extends Mainanim {
                 }
 
                 // GenericImage weiterschalten
-                if ((--Verhindergrwolke) < 1) {
+                if (--Verhindergrwolke < 1) {
                     Verhindergrwolke = MAX_VERHINDERGRWOLKE;
                     grWolke++;
                     if (grWolke == 6) {
@@ -306,15 +306,15 @@ public class Kutsche extends Mainanim {
                 g.setClip(kutscheRect());
 
                 // Groessenveraenderung berechnen
-                int xxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
-                int yyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
+                int xxVeraenderung = gBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross);
+                int yyVeraenderung = gHoehe + (int) ((Ypos - Yanfang) / scale);
 
                 // hier entweder 1 oder 2 Images malen
                 if (grWolke > 2) {
-                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
                 } else {
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
                 }
 
                 // testen auf "ich habe fertig"
@@ -372,7 +372,7 @@ public class Kutsche extends Mainanim {
 			}*/
 
                 // eval. ob es mit dem Schwanz wackelt
-                if ((--Verhinderschwanz) < 1) {
+                if (--Verhinderschwanz < 1) {
                     if (Schwanz < 2) {
                         Verhinderschwanz = MAX_VERHINDERSCHWANZWACKEL;
                     } else {
@@ -389,7 +389,7 @@ public class Kutsche extends Mainanim {
                 // wenns noch aktuell ist, dann die Kutsche "aus dem Rauch" aufsteigen lassen
                 if (isKutscheRauching) {
                     // GenericImage weiterschalten
-                    if ((--Verhinderrauch) < 1) {
+                    if (--Verhinderrauch < 1) {
                         Verhinderrauch = MAX_VERHINDERRAUCH;
                         Rauch++;
                         if (Rauch == 3) {
@@ -399,12 +399,12 @@ public class Kutsche extends Mainanim {
 
 
                     // Groessenveraenderung berechnen
-                    int xxxxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
-                    int yyyyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
+                    int xxxxVeraenderung = gBreite + (int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross);
+                    int yyyyVeraenderung = gHoehe + (int) ((Ypos - Yanfang) / scale);
 
                     // dazugehoeriges GenericImage malen
                     if (Rauch < 3) {
-                        g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - (xxxxVeraenderung / 2)), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
+                        g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - xxxxVeraenderung / 2), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
                     }
                     if (!isKutscheRauching) {
                         return 0; // es wurde schon auf normal umgeschaltet
@@ -419,7 +419,7 @@ public class Kutsche extends Mainanim {
                 // grosse Wolke, die das Bild verlaesst -> momentan unbenutzt!!!!!!!!!!!!!!! also egal ;-)
 
                 // GenericImage weiterschalten
-                if ((--Verhindergrwolke) < 1) {
+                if (--Verhindergrwolke < 1) {
                     Verhindergrwolke = MAX_VERHINDERGRWOLKE;
                     grWolke++;
                     if (grWolke == 6) {
@@ -435,10 +435,10 @@ public class Kutsche extends Mainanim {
 
                 // hier entweder 1 oder 2 Images malen
                 if (grWolke > 2) {
-                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
                 } else {
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - (gBreite / 2)), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
                 }
 
                 // testen auf "ich habe fertig"

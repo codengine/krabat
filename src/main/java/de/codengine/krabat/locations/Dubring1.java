@@ -169,7 +169,7 @@ public class Dubring1 extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, (mainFrame.scrollx / 2), 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
         g.drawImage(backl, 0, 0, null);
         g.drawImage(backr, 640, 0, null);
 
@@ -180,7 +180,7 @@ public class Dubring1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, (mainFrame.scrollx / 2), 0, null);
+            g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
             g.drawImage(backl, 0, 0, null);
             g.drawImage(backr, 640, 0, null);
         }
@@ -202,7 +202,7 @@ public class Dubring1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -254,12 +254,12 @@ public class Dubring1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling fuer DoAction jeweils extra abfangen!
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -695,7 +695,7 @@ public class Dubring1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -711,19 +711,19 @@ public class Dubring1 extends Mainloc {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
             // (stomyRect.IsPointInRect (pTemp) == true))
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (schlamm1.IsPointInRect(pTemp)) ||
-                    (schlamm2.IsPointInRect(pTemp)) || (schlamm3.IsPointInRect(pTemp)) ||
-                    (schlamm4.IsPointInRect(pTemp)) || (schlamm5.PointInside(pTemp)) ||
-                    (schlamm6.IsPointInRect(pTemp)) || (schlamm7.IsPointInRect(pTemp)) ||
-                    (schlamm8.IsPointInRect(pTemp)) ||
-                    (halza1Rect.IsPointInRect(pTemp)) || (halza2Rect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || schlamm1.IsPointInRect(pTemp) ||
+                    schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||
+                    schlamm4.IsPointInRect(pTemp) || schlamm5.PointInside(pTemp) ||
+                    schlamm6.IsPointInRect(pTemp) || schlamm7.IsPointInRect(pTemp) ||
+                    schlamm8.IsPointInRect(pTemp) ||
+                    halza1Rect.IsPointInRect(pTemp) || halza2Rect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -731,12 +731,12 @@ public class Dubring1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((schlamm1.IsPointInRect(pTemp)) ||
-                    (schlamm2.IsPointInRect(pTemp)) || (schlamm3.IsPointInRect(pTemp)) ||
-                    (schlamm4.IsPointInRect(pTemp)) || (schlamm5.PointInside(pTemp)) ||
-                    (schlamm6.IsPointInRect(pTemp)) || (schlamm7.IsPointInRect(pTemp)) ||
-                    (schlamm8.IsPointInRect(pTemp)) ||
-                    (halza1Rect.IsPointInRect(pTemp)) || (halza2Rect.IsPointInRect(pTemp)))
+            if (schlamm1.IsPointInRect(pTemp) ||
+                    schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||
+                    schlamm4.IsPointInRect(pTemp) || schlamm5.PointInside(pTemp) ||
+                    schlamm6.IsPointInRect(pTemp) || schlamm7.IsPointInRect(pTemp) ||
+                    schlamm8.IsPointInRect(pTemp) ||
+                    halza1Rect.IsPointInRect(pTemp) || halza2Rect.IsPointInRect(pTemp))
             // (stomyRect.IsPointInRect (pTemp) == true))
             {
                 if (Cursorform != 1) {
@@ -837,13 +837,13 @@ public class Dubring1 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -854,7 +854,7 @@ public class Dubring1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

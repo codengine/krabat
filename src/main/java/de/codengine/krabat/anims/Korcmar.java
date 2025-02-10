@@ -202,15 +202,15 @@ public class Korcmar extends Mainanim {
 
             // Animationsphase weiterschalten
             anim_pos++;
-            if (anim_pos == ((direction_y == 1) ? 6 : 5)) {
-                anim_pos = ((direction_y == 1) ? 2 : 1);
+            if (anim_pos == (direction_y == 1 ? 6 : 5)) {
+                anim_pos = direction_y == 1 ? 2 : 1;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if (((walkto.y - (int) typs) * direction_y) <= 0) {
+            if ((walkto.y - (int) typs) * direction_y <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetKorcmarPos(walkto);
                 anim_pos = 0;
@@ -223,17 +223,17 @@ public class Korcmar extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         float vert_dist = 1;
         // Zooming - Faktor beruecksichtigen in y-Richtung
         if (direction_y == 1) {
-            vert_dist = CVERT_UNTEN[anim_pos] - (scale / SLOWY);
+            vert_dist = CVERT_UNTEN[anim_pos] - scale / SLOWY;
             if (vert_dist < 1) {
                 vert_dist = 1;
             }
         } else {
-            vert_dist = CVERT_OBEN[anim_pos] - (scale / SLOWY);
+            vert_dist = CVERT_OBEN[anim_pos] - scale / SLOWY;
             if (vert_dist < 1) {
                 vert_dist = 1;
             }
@@ -247,7 +247,7 @@ public class Korcmar extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -258,12 +258,12 @@ public class Korcmar extends Mainanim {
         boolean horiz;
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -279,7 +279,7 @@ public class Korcmar extends Mainanim {
         Tdirection_y = yricht;
 
         if (anim_pos == 0) {
-            anim_pos = ((yricht == 1) ? 2 : 1);       // Animationsimage bei Neubeginn initialis.
+            anim_pos = yricht == 1 ? 2 : 1;       // Animationsimage bei Neubeginn initialis.
         }
         // System.out.println("Animpos ist . " + anim_pos);
     }
@@ -360,13 +360,13 @@ public class Korcmar extends Mainanim {
         // Bodies 0..3
 
         // Heads evaluieren
-        if ((--Verhinderkopf) < 1) {
+        if (--Verhinderkopf < 1) {
             Verhinderkopf = MAX_VERHINDERKOPF;
             Kopf = (int) (Math.random() * 6.9);
         }
 
         // Bodies evaluieren
-        if ((--Verhinderbody) < 1) {
+        if (--Verhinderbody < 1) {
             Verhinderbody = MAX_VERHINDERBODY;
             Body = (int) (Math.random() * 3.9);
         }
@@ -377,12 +377,12 @@ public class Korcmar extends Mainanim {
     // Extraroutine fuers Reden
     private void Rede(GenericDrawingContext g) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Offsets berechnen
         float fScale = scale;
@@ -403,14 +403,14 @@ public class Korcmar extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (pox - ((CWIDTH - (helper / 2)) / 2));
+        return pox - (CWIDTH - helper / 2) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -427,7 +427,7 @@ public class Korcmar extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -436,7 +436,7 @@ public class Korcmar extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -460,28 +460,28 @@ public class Korcmar extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect KorcmarRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     // Routine, die TalkPoint zurueckgibt...
     public GenericPoint evalTalkPoint() {
-        int up = getUpPos(((int) xps), ((int) yps));
-        return (new GenericPoint(((int) xps), up - 50));
+        int up = getUpPos((int) xps, (int) yps);
+        return new GenericPoint((int) xps, up - 50);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // Offsets berechnen
         float fScale = scale;

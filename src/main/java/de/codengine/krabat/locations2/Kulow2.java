@@ -100,12 +100,12 @@ public class Kulow2 extends Mainloc {
         fischer = new WikowarRybow(mainFrame);
 
         rybowarTalk = new GenericPoint();
-        rybowarTalk.x = rybowarUp.x + (WikowarRybow.Breite / 2);
+        rybowarTalk.x = rybowarUp.x + WikowarRybow.Breite / 2;
         rybowarTalk.y = rybowarUp.y - 100;
 
         // rybowarRect = new borderrect (rybowarUp.x, rybowarUp.y, rybowarUp.x + WikowarRybow.Breite, rybowarUp.y + WikowarRybow.Hoehe);
 
-        wikowarTalk = new GenericPoint(PwikZita.x + (WikowarZita.Breite / 2), PwikZita.y - 50);
+        wikowarTalk = new GenericPoint(PwikZita.x + WikowarZita.Breite / 2, PwikZita.y - 50);
 
         wikowarRect = new Borderrect(PwikZita.x, PwikZita.y, PwikZita.x + WikowarZita.Breite, PwikZita.y + WikowarZita.Hoehe);
 
@@ -235,7 +235,7 @@ public class Kulow2 extends Mainloc {
 	  }*/
 
         // Hintergrund zeichnen
-        g.drawImage(himmel, (mainFrame.scrollx / 6), 0, null);
+        g.drawImage(himmel, mainFrame.scrollx / 6, 0, null);
         g.drawImage(backleft, 0, 0, null);
         g.drawImage(backright, 640, 0, null);
 
@@ -246,14 +246,14 @@ public class Kulow2 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 285);
-            g.drawImage(himmel, (mainFrame.scrollx / 6), 0, null);
+            g.drawImage(himmel, mainFrame.scrollx / 6, 0, null);
             g.drawImage(backleft, 0, 0, null);
             g.drawImage(backright, 640, 0, null);
         }
 
         // Parallaxer fuer Saeule, muss immer Hintergrund loeschen ?????
         float xtf = mainFrame.scrollx;
-        xtf = 1180 - ((mainFrame.scrollx * 3) / 8);
+        xtf = 1180 - mainFrame.scrollx * 3 / 8;
         int xt = (int) xtf;
         g.setClip(xt - 2, 208, xt + 90, 479);
         g.drawImage(backright, 640, 0, null);
@@ -288,7 +288,7 @@ public class Kulow2 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -359,7 +359,7 @@ public class Kulow2 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -371,7 +371,7 @@ public class Kulow2 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -705,7 +705,7 @@ public class Kulow2 extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -717,18 +717,18 @@ public class Kulow2 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (wikowarRect.IsPointInRect(pTemp)) ||
-                    (rybowarLookRect.IsPointInRect(pTemp)) ||
-                    (durjelRect.IsPointInRect(pTemp)) || (durjerRect.IsPointInRect(pTemp)) ||
-                    (synoRect.IsPointInRect(pTemp)) || (sudobjoRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    wikowarRect.IsPointInRect(pTemp) ||
+                    rybowarLookRect.IsPointInRect(pTemp) ||
+                    durjelRect.IsPointInRect(pTemp) || durjerRect.IsPointInRect(pTemp) ||
+                    synoRect.IsPointInRect(pTemp) || sudobjoRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -736,10 +736,10 @@ public class Kulow2 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((rybowarLookRect.IsPointInRect(pTemp)) ||
-                    (wikowarRect.IsPointInRect(pTemp)) ||
-                    (durjelRect.IsPointInRect(pTemp)) || (durjerRect.IsPointInRect(pTemp)) ||
-                    (synoRect.IsPointInRect(pTemp)) || (sudobjoRect.IsPointInRect(pTemp))) {
+            if (rybowarLookRect.IsPointInRect(pTemp) ||
+                    wikowarRect.IsPointInRect(pTemp) ||
+                    durjelRect.IsPointInRect(pTemp) || durjerRect.IsPointInRect(pTemp) ||
+                    synoRect.IsPointInRect(pTemp) || sudobjoRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -853,14 +853,14 @@ public class Kulow2 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -871,7 +871,7 @@ public class Kulow2 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

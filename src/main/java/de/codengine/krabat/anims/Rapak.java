@@ -83,22 +83,22 @@ public class Rapak extends Mainanim {
     // gibt das Clipping - Rect zurueck, wo der Rabe drin ist
     public GenericRectangle rapakRect() {
         if (!flyfront) {
-            return (sideptack.ptack2Rect());
+            return sideptack.ptack2Rect();
         }
-        return (new GenericRectangle(flyx - 10, flyy - 10, 35 + 20, 44 + 20));
+        return new GenericRectangle(flyx - 10, flyy - 10, 35 + 20, 44 + 20);
     }
 
     // Zeichne Raben bei Animationen oder reden
     public void drawRapak(GenericDrawingContext offGraph, int TalkPerson) {
-        if ((TalkPerson == 41) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 41 && mainFrame.talkCount > 1) {
             // Raben beim Reden (Anims kommen noch)
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
 
                 do {
                     Talk = (int) Math.round(Math.random() * 13);
                 }
-                while ((Talk > 11) || (Talk == 3) || (Talk == 5) || (Talk == 4) || (Talk < 1) || (Talk == 7));
+                while (Talk > 11 || Talk == 3 || Talk == 5 || Talk == 4 || Talk < 1 || Talk == 7);
             }
 
             offGraph.drawImage(Vogel[Talk], 412, 144, null);
@@ -231,7 +231,7 @@ public class Rapak extends Mainanim {
 
         offGraph.drawImage(Vogel[FlyArray[Fliegpos]], flyx, flyy, null);
 
-        return (rgabe);
+        return rgabe;
     }
 
     public boolean flyAway(GenericDrawingContext g) {
@@ -266,7 +266,7 @@ public class Rapak extends Mainanim {
                 mainFrame.wave.PlayFile("sfx/rapak1.wav");
             }
 
-            return (sideptack.Flieg(g));
+            return sideptack.Flieg(g);
         }
     }
 }    

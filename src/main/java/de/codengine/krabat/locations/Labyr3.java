@@ -81,7 +81,7 @@ public class Labyr3 extends Mainlaby {
         irrlicht = new Bludnicki(mainFrame);
 
         // Definitionen fuer Hauptklasse
-        int th = bludFeet.x - (irrlicht.breite / 2);
+        int th = bludFeet.x - irrlicht.breite / 2;
         bludRect = new Borderrect(th, bludFeet.y - irrlicht.hoehe, th + irrlicht.breite, bludFeet.y);
         bludTalk = new GenericPoint(bludFeet.x, bludFeet.y - irrlicht.hoehe - 50);
 
@@ -240,7 +240,7 @@ public class Labyr3 extends Mainlaby {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -296,7 +296,7 @@ public class Labyr3 extends Mainlaby {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -308,7 +308,7 @@ public class Labyr3 extends Mainlaby {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -360,7 +360,7 @@ public class Labyr3 extends Mainlaby {
                 }
 
                 // Ausreden fuer Irrlichter
-                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
+                if (bludRect.IsPointInRect(pTemp) && bludVisible) {
                     if (mainFrame.whatItem == 15) {
                         nextActionID = 155;
                     } else {
@@ -449,7 +449,7 @@ public class Labyr3 extends Mainlaby {
                 }
 
                 // Irrlichter ansehen
-                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
+                if (bludRect.IsPointInRect(pTemp) && bludVisible) {
                     nextActionID = 1;
                     pTemp = Pblud;
                 }
@@ -475,7 +475,7 @@ public class Labyr3 extends Mainlaby {
                 }
 
                 // Mit dem Irrlicht reden
-                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
+                if (bludRect.IsPointInRect(pTemp) && bludVisible) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pblud);
                     mainFrame.repaint();
@@ -500,7 +500,7 @@ public class Labyr3 extends Mainlaby {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -512,14 +512,14 @@ public class Labyr3 extends Mainlaby {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || ((bludRect.IsPointInRect(pTemp)) && (bludVisible));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || bludRect.IsPointInRect(pTemp) && bludVisible;
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -527,7 +527,7 @@ public class Labyr3 extends Mainlaby {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
+            if (bludRect.IsPointInRect(pTemp) && bludVisible) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -689,13 +689,13 @@ public class Labyr3 extends Mainlaby {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -706,7 +706,7 @@ public class Labyr3 extends Mainlaby {
         }
 
         // Hier Verzweigung zu Blud - Nextactions, wenn noetig
-        if ((nextActionID < 100) || (nextActionID > 130)) {
+        if (nextActionID < 100 || nextActionID > 130) {
             BludAction(nextActionID);
 
             // Manchmal neuer Cursor wegen MC
@@ -716,7 +716,7 @@ public class Labyr3 extends Mainlaby {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

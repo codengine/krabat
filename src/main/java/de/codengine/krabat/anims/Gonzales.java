@@ -95,15 +95,15 @@ public class Gonzales extends Mainanim {
     // Zeichne Hauptwachter, wie er dasteht oder spricht
     public void drawGonzales(GenericDrawingContext offGraph, int TalkPerson, GenericPoint Posit, boolean isGiving, boolean isListening) {
         // Pirat beim Reden
-        if ((TalkPerson == 61) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 61 && mainFrame.talkCount > 1) {
             // int nTemp;
 
-            if ((--VerhinderHead) < 1) {
+            if (--VerhinderHead < 1) {
                 VerhinderHead = MAX_VERHINDERHEAD;
                 Head = (int) Math.round(Math.random() * 3.9);
             }
 
-            if ((--VerhinderBody) < 1) {
+            if (--VerhinderBody < 1) {
                 VerhinderBody = MAX_VERHINDERBODY;
                 Body = (int) Math.round(Math.random() * 2.9);
             }
@@ -116,7 +116,7 @@ public class Gonzales extends Mainanim {
         else {
             Body = 0;
 
-            if ((--VerhinderStand) < 1) {
+            if (--VerhinderStand < 1) {
                 VerhinderStand = MAX_VERHINDERSTAND;
                 Head = 0;
                 int ttpp = (int) Math.round(Math.random() * 50);
@@ -133,7 +133,7 @@ public class Gonzales extends Mainanim {
             }
         }
 
-        offGraph.drawImage(((Stand == 2) ? pirat_blinker : pirat_head[Head]), Posit.x, Posit.y, null);
-        offGraph.drawImage(((isGiving) ? pirat_give : pirat_body[Body]), Posit.x, Posit.y + 14, null);
+        offGraph.drawImage(Stand == 2 ? pirat_blinker : pirat_head[Head], Posit.x, Posit.y, null);
+        offGraph.drawImage(isGiving ? pirat_give : pirat_body[Body], Posit.x, Posit.y + 14, null);
     }
 }    

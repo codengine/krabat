@@ -161,7 +161,7 @@ public class Most2 extends Mainloc2 {
         pohoncPoint = new GenericPoint(80, 267);
 
         pohoncTalk = new GenericPoint();
-        pohoncTalk.x = pohoncPoint.x + (Kutser.Breite / 2);
+        pohoncTalk.x = pohoncPoint.x + Kutser.Breite / 2;
         pohoncTalk.y = pohoncPoint.y - 50;
 
         kutsche = new Kutsche(mainFrame);
@@ -371,7 +371,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Animation abspielen
-        switchanim = !(switchanim);
+        switchanim = !switchanim;
         if (switchanim) {
             g.setClip(0, 0, 644, 484);
             g.drawImage(flussu[flusscount], 387, 380, null);
@@ -399,7 +399,7 @@ public class Most2 extends Mainloc2 {
             g.drawImage(background, 0, 0, null);
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -437,7 +437,7 @@ public class Most2 extends Mainloc2 {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -526,7 +526,7 @@ public class Most2 extends Mainloc2 {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -539,7 +539,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -819,7 +819,7 @@ public class Most2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -831,15 +831,15 @@ public class Most2 extends Mainloc2 {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (ralbitzSchild.IsPointInRect(pTemp)) || (tmp.IsPointInRect(pTemp)) ||
-                    (dresdenSchild.IsPointInRect(pTemp)) || (rekaRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = ralbitzSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
+                    dresdenSchild.IsPointInRect(pTemp) || rekaRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -856,8 +856,8 @@ public class Most2 extends Mainloc2 {
                 return;
             }
 
-            if ((ralbitzSchild.IsPointInRect(pTemp)) || (dresdenSchild.IsPointInRect(pTemp)) ||
-                    (rekaRect.IsPointInRect(pTemp))) {
+            if (ralbitzSchild.IsPointInRect(pTemp) || dresdenSchild.IsPointInRect(pTemp) ||
+                    rekaRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -893,7 +893,7 @@ public class Most2 extends Mainloc2 {
     private boolean TesteLauf(GenericPoint pTxxx, int Action) {
         // hier mit "false" zurueckspringen, wenn die Ausnahmeszene ist, da soll Krabat nicht runtergehen koennen
         if (setAusnahme) {
-            return (false);
+            return false;
         }
 
         GenericPoint kpos = mainFrame.krabat.GetKrabatPos();
@@ -904,7 +904,7 @@ public class Most2 extends Mainloc2 {
         System.out.println("Es wird getestet.");
 
         // vom Tal auf den Berg???
-        if ((isTal) && (pTemp.y > 277)) {
+        if (isTal && pTemp.y > 277) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 600;
@@ -924,8 +924,8 @@ public class Most2 extends Mainloc2 {
             System.out.println("Mittenfaktor " + teil);
 
             // Punkte waehrend Berglauf berechnen
-            Endpunkt = new GenericPoint((int) (BergTrapez.x1 + ((BergTrapez.x2 - BergTrapez.x1) * teil)), BergTrapez.y1);
-            Wendepunkt = new GenericPoint(((pTemp.x + Endpunkt.x) / 2), 380);
+            Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
+            Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
 
@@ -939,7 +939,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // vom Berg ins Tal ??
-        if ((!isTal) && (pTemp.y < 278)) {
+        if (!isTal && pTemp.y < 278) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 610;
@@ -963,15 +963,15 @@ public class Most2 extends Mainloc2 {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg
-                pTemp = new GenericPoint(((BergTrapez.x1 + BergTrapez.x2) / 2), BergTrapez.y1);
+                pTemp = new GenericPoint((BergTrapez.x1 + BergTrapez.x2) / 2, BergTrapez.y1);
                 teal = 0.5f;
             }
 
             System.out.println(" Mittenfaktor neu " + teal);
 
             // Punkte waehrend Berglauf berechnen
-            Endpunkt = new GenericPoint((int) (TalTrapez.x3 + ((TalTrapez.x4 - TalTrapez.x3) * teal)), TalTrapez.y2);
-            Wendepunkt = new GenericPoint(((pTemp.x + Endpunkt.x) / 2), 380);
+            Endpunkt = new GenericPoint((int) (TalTrapez.x3 + (TalTrapez.x4 - TalTrapez.x3) * teal), TalTrapez.y2);
+            Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
 
@@ -1067,13 +1067,13 @@ public class Most2 extends Mainloc2 {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600) && (nextActionID != 520)) {
+        if (nextActionID > 499 && nextActionID < 600 && nextActionID != 520) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -1084,7 +1084,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -1203,7 +1203,7 @@ public class Most2 extends Mainloc2 {
 
             case 520:
                 // Karten - Extraausrede
-                int zd = (int) (Math.round(Math.random() * TEXTKONSTANTE));
+                int zd = (int) Math.round(Math.random() * TEXTKONSTANTE);
                 if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zd = 0;
@@ -1255,7 +1255,7 @@ public class Most2 extends Mainloc2 {
                 Berglauf = false;
                 Cursorform = 200;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                isTal = !(isTal);
+                isTal = !isTal;
                 InitMatrix();
                 nextActionID = oldActionID;
                 mainFrame.wegGeher.SetzeNeuenWeg(Merkpunkt);
@@ -1298,7 +1298,7 @@ public class Most2 extends Mainloc2 {
 
             case 2000:
                 // Ausreden, wenn Verlassen versucht
-                int zr = (int) (Math.round(Math.random() * TEXTKONSTANTE));
+                int zr = (int) Math.round(Math.random() * TEXTKONSTANTE);
                 if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zr = 0;
@@ -1354,7 +1354,7 @@ public class Most2 extends Mainloc2 {
                 if (Counter < 20) {
                     schwein3Tanzt = true;
                 }
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 Counter = 190;
@@ -1368,7 +1368,7 @@ public class Most2 extends Mainloc2 {
                     kutscheda = true;
                     kutscheArbeitet = 1;
                 }
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 // System.out.println ("Floete gestoppt...");
@@ -1389,7 +1389,7 @@ public class Most2 extends Mainloc2 {
 
             case 2035:
                 // Warteschleife runterzaehlen und dann oben Kutsche zeigen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 kutscheda = true;

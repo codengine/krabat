@@ -112,7 +112,7 @@ public class Poklad extends Mainloc {
 
     private void evalPersonPoints(GenericPoint strazap) {
         strazaPoint = new GenericPoint();
-        strazaPoint.x = strazap.x - (StrazaPoklad.Breite / 2);
+        strazaPoint.x = strazap.x - StrazaPoklad.Breite / 2;
         strazaPoint.y = strazap.y - StrazaPoklad.Hoehe;
 
         talkPointStraza = new GenericPoint();
@@ -175,7 +175,7 @@ public class Poklad extends Mainloc {
         }
 
         // Skla auf komora zeichnen, wenn noetig
-        if ((whatPicture == 2) && (ausgewechselt)) {
+        if (whatPicture == 2 && ausgewechselt) {
             g.setClip(577, 269, 24, 15);
             g.drawImage(skla, 577, 269, null);
         }
@@ -193,11 +193,11 @@ public class Poklad extends Mainloc {
             }
 
             // Dinglinger zeichnen
-            if ((TalkPerson == 47) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 47 && mainFrame.talkCount > 1) {
                 dinglingerwalk.talkDinglinger(g, welcheAnim);
             } else {
                 // Sonderanims oder normal zeichnen
-                if ((welcheAnim == 3) || (welcheAnim == 2)) {
+                if (welcheAnim == 3 || welcheAnim == 2) {
                     animRueckgabe = dinglingerwalk.DoAnimation(g, welcheAnim);
                 } else {
                     dinglingerwalk.drawDinglinger(g, welcheAnim);
@@ -237,12 +237,12 @@ public class Poklad extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -350,7 +350,7 @@ public class Poklad extends Mainloc {
 
             case 60:
                 // Dingl spricht im Verborgenen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00012"),

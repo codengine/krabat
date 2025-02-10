@@ -138,7 +138,7 @@ public class KrabatAngeln extends Mainanim {
     public boolean AngleRechts(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
-        if ((--Verhinderangeln) < 1) {
+        if (--Verhinderangeln < 1) {
             Verhinderangeln = MAX_VERHINDERANGELN;
 
             // Head evaluieren (nach links schauend und zwinkern...)
@@ -168,7 +168,7 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((angeln == 18) || (angeln == 17) || (angeln == 12) || (angeln == 11) || (angeln == 6) || (angeln == 5)) {
+        if (angeln == 18 || angeln == 17 || angeln == 12 || angeln == 11 || angeln == 6 || angeln == 5) {
             g.drawImage(angle_rechts[1], leftUp.x, leftUp.y, null);
         } else {
             g.drawImage(angle_rechts[0], leftUp.x, leftUp.y, null);
@@ -181,7 +181,7 @@ public class KrabatAngeln extends Mainanim {
     public boolean AngleLinks(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
-        if ((--Verhinderangeln) < 1) {
+        if (--Verhinderangeln < 1) {
             Verhinderangeln = MAX_VERHINDERANGELN;
 
             // Head evaluieren (nach links schauend und zwinkern...)
@@ -211,7 +211,7 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((angeln == 18) || (angeln == 17) || (angeln == 12) || (angeln == 11) || (angeln == 6) || (angeln == 5)) {
+        if (angeln == 18 || angeln == 17 || angeln == 12 || angeln == 11 || angeln == 6 || angeln == 5) {
             g.drawImage(angle_links[1], leftUp.x, leftUp.y, null);
         } else {
             g.drawImage(angle_links[0], leftUp.x, leftUp.y, null);
@@ -224,11 +224,11 @@ public class KrabatAngeln extends Mainanim {
     public boolean FangeRechts(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
-        if ((fangen == 10) && (Verhinderangeln == MAX_VERHINDERANGELN)) {
+        if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
             mainFrame.wave.PlayFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
-        if ((--Verhinderangeln) < 1) {
+        if (--Verhinderangeln < 1) {
             Verhinderangeln = MAX_VERHINDERANGELN;
 
             // Head evaluieren (nach links schauend und zwinkern...)
@@ -258,11 +258,11 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((fangen > 10) && (rueckgabe)) // nur am Anfang und wenn KEIN Verlassen
+        if (fangen > 10 && rueckgabe) // nur am Anfang und wenn KEIN Verlassen
         {
             // hier noch rumangeln
-            if ((fangen == 42) || (fangen == 41) || (fangen == 36) || (fangen == 35) || (fangen == 30) || (fangen == 29) ||
-                    (fangen == 24) || (fangen == 23) || (fangen == 18) || (fangen == 17) || (fangen == 12) || (fangen == 11)) {
+            if (fangen == 42 || fangen == 41 || fangen == 36 || fangen == 35 || fangen == 30 || fangen == 29 ||
+                    fangen == 24 || fangen == 23 || fangen == 18 || fangen == 17 || fangen == 12 || fangen == 11) {
                 g.drawImage(angle_rechts[1], leftUp.x, leftUp.y, null);
             } else {
                 g.drawImage(angle_rechts[0], leftUp.x, leftUp.y, null);
@@ -306,15 +306,15 @@ public class KrabatAngeln extends Mainanim {
     public boolean FangeLinks(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
-        if ((fangen == MAXFANGEN) && (Verhinderangeln == MAX_VERHINDERANGELN)) {
+        if (fangen == MAXFANGEN && Verhinderangeln == MAX_VERHINDERANGELN) {
             mainFrame.wave.PlayFile("sfx/woda1.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
-        if ((fangen == 10) && (Verhinderangeln == MAX_VERHINDERANGELN)) {
+        if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
             mainFrame.wave.PlayFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
 
-        if ((--Verhinderangeln) < 1) {
+        if (--Verhinderangeln < 1) {
             Verhinderangeln = MAX_VERHINDERANGELN;
 
             // Head evaluieren (nach links schauend und zwinkern...)
@@ -344,10 +344,10 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((fangen > 10) && (rueckgabe)) {
+        if (fangen > 10 && rueckgabe) {
             // hier noch rumangeln
-            if ((fangen == 42) || (fangen == 41) || (fangen == 36) || (fangen == 35) || (fangen == 30) || (fangen == 29) ||
-                    (fangen == 24) || (fangen == 23) || (fangen == 18) || (fangen == 17) || (fangen == 12) || (fangen == 11)) {
+            if (fangen == 42 || fangen == 41 || fangen == 36 || fangen == 35 || fangen == 30 || fangen == 29 ||
+                    fangen == 24 || fangen == 23 || fangen == 18 || fangen == 17 || fangen == 12 || fangen == 11) {
                 g.drawImage(angle_links[1], leftUp.x, leftUp.y, null);
             } else {
                 g.drawImage(angle_links[0], leftUp.x, leftUp.y, null);
@@ -382,7 +382,7 @@ public class KrabatAngeln extends Mainanim {
 
     // reden mit Fisch an der Angel
     public boolean RedeLinks(GenericDrawingContext g, GenericPoint feetPos, int TalkPerson) {
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             // Head 0, 2...8
             Verhinderhead = MAX_VERHINDERHEAD;
             Head = (int) (Math.random() * 7.9);
@@ -393,7 +393,7 @@ public class KrabatAngeln extends Mainanim {
         }
 
         // wenn K nicht redet, dann auch kein Mundwackeln
-        if ((TalkPerson != 1) && (TalkPerson != 3)) {
+        if (TalkPerson != 1 && TalkPerson != 3) {
             Head = 0;
         }
 

@@ -78,25 +78,25 @@ public class Swinjo3 extends Mainanim {
 
     // gibt Rectangle zurueck, wo sich Schwein drin befindet
     public GenericRectangle swinoRect() {
-        return (new GenericRectangle(Posit.x - (untenBreite / 2), Posit.y - untenHoehe, untenBreite, untenHoehe));
+        return new GenericRectangle(Posit.x - untenBreite / 2, Posit.y - untenHoehe, untenBreite, untenHoehe);
     }
 
     // Zeichne Schwein, wie es dasteht oder tanzt
     public void drawSwino(GenericDrawingContext offGraph, boolean isDancing, boolean noSound) {
         // 3 Zustaende: Guck, Tanz, Uebergang
-        if ((!isDancing) && (!oldDance)) {
+        if (!isDancing && !oldDance) {
             // nur Umschauen
             switch (Look) {
                 case 0:
                     // verschiedene Varianten eval.
-                    if ((--Verhinderlook) < 1) {
+                    if (--Verhinderlook < 1) {
                         Verhinderlook = MAX_VERHINDERLOOK;
-                        if (((int) (Math.random() * 50)) > 25) {
+                        if ((int) (Math.random() * 50) > 25) {
                             Look = 2;
                         } else {
                             Look = 4;
                         }
-                    } else if (((int) (Math.random() * 50)) > 45) {
+                    } else if ((int) (Math.random() * 50) > 45) {
                         Look = 1;
                     }
                     break;
@@ -106,9 +106,9 @@ public class Swinjo3 extends Mainanim {
                     break;
                 case 2:
                     // entweder Schleife 3-2-3-2... oder 0
-                    if ((--Verhinderlook) < 1) {
+                    if (--Verhinderlook < 1) {
                         Verhinderlook = MAX_VERHINDERLOOK;
-                        if (((int) (Math.random() * 50)) > 25) {
+                        if ((int) (Math.random() * 50) > 25) {
                             Look = 3;
                         } else {
                             Look = 0;
@@ -117,14 +117,14 @@ public class Swinjo3 extends Mainanim {
                     break;
                 case 3:
                     // Schleife mit 2
-                    if ((--Verhinderlook) < 1) {
+                    if (--Verhinderlook < 1) {
                         Verhinderlook = MAX_VERHINDERLOOK;
                         Look = 2;
                     }
                     break;
                 case 4:
                     // zurueck zu 0
-                    if ((--Verhinderlook) < 1) {
+                    if (--Verhinderlook < 1) {
                         Verhinderlook = MAX_VERHINDERLOOK;
                         Look = 0;
                     }
@@ -138,12 +138,12 @@ public class Swinjo3 extends Mainanim {
 
             // zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_look[Look], Posit.x - (untenBreite / 2), Posit.y - untenHoehe, null);
+            offGraph.drawImage(swinjo_look[Look], Posit.x - untenBreite / 2, Posit.y - untenHoehe, null);
         }
 
-        if ((isDancing) && (oldDance)) {
+        if (isDancing && oldDance) {
             // rumhuepfen
-            if ((--Verhinderdance) < 1) {
+            if (--Verhinderdance < 1) {
                 Verhinderdance = MAX_VERHINDERDANCE;
                 Dance++;
                 if (Dance == 5) {
@@ -159,13 +159,13 @@ public class Swinjo3 extends Mainanim {
 
             // zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_dance[tempDance], Posit.x - (obenBreite / 2), Posit.y - obenHoehe, null);
+            offGraph.drawImage(swinjo_dance[tempDance], Posit.x - obenBreite / 2, Posit.y - obenHoehe, null);
         }
 
         if (isDancing != oldDance) {
             // Uebergangszustand, gleich zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_dance[0], Posit.x - (obenBreite / 2), Posit.y - obenHoehe, null);
+            offGraph.drawImage(swinjo_dance[0], Posit.x - obenBreite / 2, Posit.y - obenHoehe, null);
         }
 
         // merken, womit aufgerufen wurde

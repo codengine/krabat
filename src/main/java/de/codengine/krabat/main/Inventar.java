@@ -159,7 +159,7 @@ public class Inventar extends Mainanim {
 
         InventarStueck = getPicture(ImageDirectory + IconImages[nGegID] + Suffix);
 
-        return (InventarStueck);
+        return InventarStueck;
     }
 
     // Laderoutine fuer Cursors
@@ -174,7 +174,7 @@ public class Inventar extends Mainanim {
 
         Cursor = mainFrame.constructCursorImage(CursorDirectory + CursorImages[nGegID] + Suffix);
 
-        return (Cursor);
+        return Cursor;
     }
 
     // Laderoutine fuer HighlightCursors
@@ -189,7 +189,7 @@ public class Inventar extends Mainanim {
 
         CursorHigh = mainFrame.constructCursorImage(CursorDirectory + CursorHighImages[nGegID] + Suffix);
 
-        return (CursorHigh);
+        return CursorHigh;
     }
 
 
@@ -233,7 +233,7 @@ public class Inventar extends Mainanim {
             for (int i = f; i < nAnzahl; i++) {
                 int iTemp = vInventory.elementAt(i);
                 GenericPoint pTemp = new GenericPoint(GetCurrentXY(i));
-                if ((mainFrame.whatItem != iTemp) || (!mainFrame.invCursor)) {
+                if (mainFrame.whatItem != iTemp || !mainFrame.invCursor) {
                     g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollx, pTemp.y + 1 + mainFrame.scrolly, observer);
                 }
             }
@@ -334,7 +334,7 @@ public class Inventar extends Mainanim {
         // Suchen, ob Inventarstueck in Cache gespeichert
         for (int i = 1; i <= INVENTAR_CACHE; i++) {
             if (nGegID == InventarID[i]) {
-                return (InventarStuecke[i]);
+                return InventarStuecke[i];
             }
         }
 
@@ -346,7 +346,7 @@ public class Inventar extends Mainanim {
             CachePosition = 1;
         }
 
-        return (Temp);
+        return Temp;
     }
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
@@ -379,7 +379,7 @@ public class Inventar extends Mainanim {
                     return;
                 }
 
-                if ((brPfeilr.IsPointInRect(pTemp)) && (!secScreenActive) && (secScreenAvail)) {
+                if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     // bei Pfeil nach rechts 2. Screen anzeigen
                     secScreenActive = true;
                     mainFrame.Clipset = false;
@@ -567,8 +567,8 @@ public class Inventar extends Mainanim {
                     // Teil 3
 
                     // list + lajna, kotwica a lajna, sluz drasta, kotwica -> lassen wir so, sieht schlimm genug aus
-                    if (((mainFrame.whatItem == 30) && ((xx == 38) || (xx == 39) || (xx == 41) || (xx == 37))) ||
-                            (((mainFrame.whatItem == 38) || (mainFrame.whatItem == 39) || (mainFrame.whatItem == 41) || (mainFrame.whatItem == 37)) && (xx == 30))) {
+                    if (mainFrame.whatItem == 30 && (xx == 38 || xx == 39 || xx == 41 || xx == 37) ||
+                            (mainFrame.whatItem == 38 || mainFrame.whatItem == 39 || mainFrame.whatItem == 41 || mainFrame.whatItem == 37) && xx == 30) {
                         evalYPos(x);
                         nextActionID = 225;
                         mainFrame.repaint();
@@ -581,7 +581,7 @@ public class Inventar extends Mainanim {
                     }
 
                     // 5 tolerow + drasta / sluz drasta -> lassen
-                    if (((mainFrame.whatItem == 40) && ((xx == 53) || (xx == 41)) || (((mainFrame.whatItem == 53) || (mainFrame.whatItem == 41)) && (xx == 40)))) {
+                    if (mainFrame.whatItem == 40 && (xx == 53 || xx == 41) || (mainFrame.whatItem == 53 || mainFrame.whatItem == 41) && xx == 40) {
                         evalYPos(x);
                         nextActionID = 240;
                         mainFrame.repaint();
@@ -646,7 +646,7 @@ public class Inventar extends Mainanim {
                 }
 
                 // ins Hauptmenue verzweigen
-                if ((brMenu.IsPointInRect(pTemp)) && (!secScreenActive)) {
+                if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
                     Deactivate();
                     mainFrame.whatScreen = 2;
                     mainFrame.repaint();
@@ -670,7 +670,7 @@ public class Inventar extends Mainanim {
                 }
 
                 // 2. Screen bei rechtem Pfeil anzeigen
-                if ((brPfeilr.IsPointInRect(pTemp)) && (!secScreenActive) && (secScreenAvail)) {
+                if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     secScreenActive = true;
                     mainFrame.Clipset = false;
                     menuitem = 0;
@@ -711,8 +711,8 @@ public class Inventar extends Mainanim {
 
                     // hier fuer den Sound eine Unterscheidung, ob bei nativem Player
                     // der Soundbackground wegfallen soll oder nicht
-                    noBackgroundSound = (mainFrame.whatItem == 1) || (mainFrame.whatItem == 12) ||
-                            (mainFrame.whatItem == 17) || (mainFrame.whatItem == 51); // Floete, kamuski, Rohodz, halber Wosusk
+                    noBackgroundSound = mainFrame.whatItem == 1 || mainFrame.whatItem == 12 ||
+                            mainFrame.whatItem == 17 || mainFrame.whatItem == 51; // Floete, kamuski, Rohodz, halber Wosusk
 
                     mainFrame.Clipset = false;
                     mainFrame.repaint();
@@ -731,7 +731,7 @@ public class Inventar extends Mainanim {
 
     // Kombinationen erledigen
     private boolean evalKombination(int erstesItem, int zweitesItem, int neuesItem, int xx) {
-        if (((mainFrame.whatItem == erstesItem) && (xx == zweitesItem)) || ((mainFrame.whatItem == zweitesItem) && (xx == erstesItem))) {
+        if (mainFrame.whatItem == erstesItem && xx == zweitesItem || mainFrame.whatItem == zweitesItem && xx == erstesItem) {
             vInventory.insertElementAt(neuesItem, GetVektorPos(erstesItem, zweitesItem));
 
             // Extrawurst fuer die Steine, werden bei Kombination mit dem Schilf nicht geloescht
@@ -746,21 +746,21 @@ public class Inventar extends Mainanim {
             mainFrame.invHighCursor = false;
             mainFrame.Clipset = false;
             mainFrame.repaint();
-            return (true);
+            return true;
         } else {
-            return (false);
+            return false;
         }
     }
 
     // Ausreden anzeigen
     private boolean evalAusrede(int erstesItem, int zweitesItem, int AusredenID, int xx, int x) {
-        if (((mainFrame.whatItem == erstesItem) && (xx == zweitesItem)) || ((mainFrame.whatItem == zweitesItem) && (xx == erstesItem))) {
+        if (mainFrame.whatItem == erstesItem && xx == zweitesItem || mainFrame.whatItem == zweitesItem && xx == erstesItem) {
             evalYPos(x);
             nextActionID = AusredenID;
             mainFrame.repaint();
-            return (true);
+            return true;
         } else {
-            return (false);
+            return false;
         }
     }
 
@@ -780,7 +780,7 @@ public class Inventar extends Mainanim {
         }
 
         // Inventarstueck in mittlerer Reihe, also Text in 1. Reihe
-        if ((dies > 2) && (dies < 6)) {
+        if (dies > 2 && dies < 6) {
             ytemp = 88 + offsett;
         }
 
@@ -802,7 +802,7 @@ public class Inventar extends Mainanim {
             int invTemp = GetMouseRect(pTemp);
 
             if (invTemp > -1) {
-                if ((vInventory.elementAt(invTemp)) != mainFrame.whatItem) {
+                if (vInventory.elementAt(invTemp) != mainFrame.whatItem) {
                     mainFrame.invHighCursor = true;
                 }
             } else {
@@ -810,13 +810,13 @@ public class Inventar extends Mainanim {
             }
 
             // bei Inventarcursor diesen setzen
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
             // bei Inventarcursor mit Highlight diesen setzen
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -836,8 +836,8 @@ public class Inventar extends Mainanim {
             if (brPfeill.IsPointInRect(pTemp)) {
                 menuitem = 2;
             }
-            if ((brPfeilr.IsPointInRect(pTemp)) &&
-                    (secScreenAvail) && (!secScreenActive)) {
+            if (brPfeilr.IsPointInRect(pTemp) &&
+                    secScreenAvail && !secScreenActive) {
                 menuitem = 3;
             }
 
@@ -846,7 +846,7 @@ public class Inventar extends Mainanim {
                 Paintcall = false;
                 return;
             }
-            if ((olditem != menuitem) || (oFeldAktiv != nFeldAktiv)) {
+            if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
                 // Talkcount - Schleife beenden
                 mainFrame.talkCount = 0;
 
@@ -868,14 +868,14 @@ public class Inventar extends Mainanim {
             nFeldAktiv = GetMouseRect(pTemp);
 
             menuitem = 0;
-            if ((brMenu.IsPointInRect(pTemp)) && (!secScreenActive)) {
+            if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
                 menuitem = 1;
             }
             if (brPfeill.IsPointInRect(pTemp)) {
                 menuitem = 2;
             }
-            if ((brPfeilr.IsPointInRect(pTemp)) &&
-                    (secScreenAvail) && (!secScreenActive)) {
+            if (brPfeilr.IsPointInRect(pTemp) &&
+                    secScreenAvail && !secScreenActive) {
                 menuitem = 3;
             }
 
@@ -884,7 +884,7 @@ public class Inventar extends Mainanim {
                 Paintcall = false;
                 return;
             }
-            if ((olditem != menuitem) || (oFeldAktiv != nFeldAktiv)) {
+            if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
                 // Talkcount - Schleife beenden
                 mainFrame.talkCount = 0;
 
@@ -927,7 +927,7 @@ public class Inventar extends Mainanim {
     // Berechnungsroutine Inventarfensternummer - X/Y-Koordinaten//////////////
     private Borderrect GetCurrentRect(int Number) {
         GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return (new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 145, Pleftup.y + 75));
+        return new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 145, Pleftup.y + 75);
     }
 
     // 2.Screen wird beachtet - X/Y Koordinaten stimmen
@@ -937,9 +937,9 @@ public class Inventar extends Mainanim {
         if (secScreenActive) {
             Number = Numb - 9;
         }
-        Pleftup.x = 95 + ((Number % 3) * 151);
-        Pleftup.y = 76 + ((Number / 3) * 81);
-        return (Pleftup);
+        Pleftup.x = 95 + Number % 3 * 151;
+        Pleftup.y = 76 + Number / 3 * 81;
+        return Pleftup;
     }  
 
     /*  public boolean isInventory(int which)
@@ -980,11 +980,11 @@ public class Inventar extends Mainanim {
     // Routine, die feststellt, wo die beiden Objekte im Vektor liegen und kleineren zurueckgibt
     private int GetVektorPos(int first, int second) {
         for (int i = 0; i < vInventory.size(); i++) {
-            if ((vInventory.elementAt(i) == first) || (vInventory.elementAt(i) == second)) {
+            if (vInventory.elementAt(i) == first || vInventory.elementAt(i) == second) {
                 return i;
             }
         }
-        return (-1);
+        return -1;
     }
 
     // Routine, die die allgemeinen Sachen der Textausgabe regelt

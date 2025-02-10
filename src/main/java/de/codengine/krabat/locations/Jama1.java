@@ -188,7 +188,7 @@ public class Jama1 extends Mainloc {
         }
 
         // Jaeger bewegen
-        if ((showHojnt) && (!walkReady)) {
+        if (showHojnt && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = jaeger.Move();
         }
@@ -215,7 +215,7 @@ public class Jama1 extends Mainloc {
             // Zeichne sie jetzt
 
             // Redet sie etwa gerade ??
-            if ((TalkPerson == 26) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 26 && mainFrame.talkCount > 0) {
                 jaeger.talkHojnt(g);
             }
 
@@ -250,7 +250,7 @@ public class Jama1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -293,12 +293,12 @@ public class Jama1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -343,7 +343,7 @@ public class Jama1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wacki
-                if ((wackiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[908])) {
+                if (wackiRect.IsPointInRect(pTemp) && !mainFrame.Actions[908]) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                 }
@@ -371,7 +371,7 @@ public class Jama1 extends Mainloc {
                 nextActionID = 0;
 
                 // Wacki ansehen
-                if ((wackiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[908])) {
+                if (wackiRect.IsPointInRect(pTemp) && !mainFrame.Actions[908]) {
                     nextActionID = 1;
                 }
 
@@ -381,8 +381,8 @@ public class Jama1 extends Mainloc {
                 // rechte Maustaste
 
                 // Wacki mitnehmen ?
-                if ((wackiRect.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[908])) {
+                if (wackiRect.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[908]) {
                     nextActionID = 50;
                     mainFrame.repaint();
                     return;
@@ -400,7 +400,7 @@ public class Jama1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -412,15 +412,15 @@ public class Jama1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((wackiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[908]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    wackiRect.IsPointInRect(pTemp) && !mainFrame.Actions[908];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -429,8 +429,8 @@ public class Jama1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((wackiRect.IsPointInRect(pTemp)) &&
-                    (!mainFrame.Actions[908])) {
+            if (wackiRect.IsPointInRect(pTemp) &&
+                    !mainFrame.Actions[908]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -515,13 +515,13 @@ public class Jama1 extends Mainloc {
         GenericPoint tTlk = new GenericPoint(0, 0);
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -532,7 +532,7 @@ public class Jama1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -568,11 +568,11 @@ public class Jama1 extends Mainloc {
 
             case 53:
                 // Laufe zur Falle
-                if ((--TakeCounter) < 2) {
+                if (--TakeCounter < 2) {
                     mainFrame.Actions[908] = true;
                     mainFrame.Clipset = false;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (TakeCounter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || TakeCounter > 0) {
                     break;
                 }
                 showHojnt = true;
@@ -649,7 +649,7 @@ public class Jama1 extends Mainloc {
 
             case 100:
                 // Gehe zurueck zu Hojnt
-                if ((--TakeCounter) > 1) {
+                if (--TakeCounter > 1) {
                     break;
                 }
                 NeuesBild(14, 27);

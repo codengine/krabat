@@ -160,7 +160,7 @@ public class Jewisco extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -212,12 +212,12 @@ public class Jewisco extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -264,7 +264,7 @@ public class Jewisco extends Mainloc {
                 }
 
                 // Ausreden fuer Buch
-                if ((brBuch.IsPointInRect(pTemp)) && (!mainFrame.Actions[952])) {
+                if (brBuch.IsPointInRect(pTemp) && !mainFrame.Actions[952]) {
                     nextActionID = 150;
                     pTemp = pBuch;
                 }
@@ -317,7 +317,7 @@ public class Jewisco extends Mainloc {
                 }
 
                 // Buch anschauen
-                if ((brBuch.IsPointInRect(pTemp)) && (!mainFrame.Actions[952])) {
+                if (brBuch.IsPointInRect(pTemp) && !mainFrame.Actions[952]) {
                     nextActionID = 1;
                     pTemp = pBuch;
                 }
@@ -338,7 +338,7 @@ public class Jewisco extends Mainloc {
                 }
 
                 // Buch mitnehmen
-                if ((brBuch.IsPointInRect(pTemp)) && (!mainFrame.Actions[952])) {
+                if (brBuch.IsPointInRect(pTemp) && !mainFrame.Actions[952]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pBuch);
                     mainFrame.repaint();
@@ -368,7 +368,7 @@ public class Jewisco extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -380,16 +380,16 @@ public class Jewisco extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (zuschauer.IsPointInRect(pTemp)) ||
-                    ((brBuch.IsPointInRect(pTemp)) && (!mainFrame.Actions[952]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    zuschauer.IsPointInRect(pTemp) ||
+                    brBuch.IsPointInRect(pTemp) && !mainFrame.Actions[952];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -397,8 +397,8 @@ public class Jewisco extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((brBuch.IsPointInRect(pTemp)) && (!mainFrame.Actions[952])) ||
-                    (zuschauer.IsPointInRect(pTemp))) {
+            if (brBuch.IsPointInRect(pTemp) && !mainFrame.Actions[952] ||
+                    zuschauer.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -488,14 +488,14 @@ public class Jewisco extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt,
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -503,7 +503,7 @@ public class Jewisco extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -567,12 +567,12 @@ public class Jewisco extends Mainloc {
 
             case 55:
                 // Ende take book
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.Actions[952] = true;
                     mainFrame.inventory.vInventory.addElement(55);
                     mainFrame.Clipset = false;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00012"),

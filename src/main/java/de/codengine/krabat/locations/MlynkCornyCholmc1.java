@@ -242,7 +242,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 mueller.drawMlynkWithKarte(g);
             } else {
                 // Redet sie etwa gerade ??
-                if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+                if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                     mueller.talkMlynk(g);
                 }
 
@@ -269,7 +269,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -337,7 +337,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -353,7 +353,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1) && (!isFading)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1 && !isFading) {
             DoAction();
         }
     }
@@ -407,7 +407,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             g2.drawImage(himmel1, 0, 0, null);
 
             float helper = Fadecount;
-            ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, (helper / 40));
+            ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, helper / 40);
             g2.setComposite(ac);
             g2.drawImage(himmel2, 0, 0, null);
 
@@ -428,7 +428,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             g2.drawImage(himmel1, 0, 0, null);
 
             float helper = Fadecount;
-            ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, (helper / 40));
+            ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, helper / 40);
             g2.setComposite(ac);
             g2.drawImage(himmel2, 0, 0, null);
 
@@ -445,7 +445,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
     private void DoAction() {
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -475,7 +475,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1004:
                 // Morphsequenz zeichnen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 muellermorph.Init(mlynkFeet, 35);
@@ -574,7 +574,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 if (Warten == 4) {
                     mainFrame.krabat.nAnimation = 121;
                 }
-                if ((--Warten) < 1) {
+                if (--Warten < 1) {
                     nextActionID = 1063;
                     mlynkGibtKarte = false;
                 }
@@ -665,7 +665,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1120:
                 // Morphsequenz zeichnen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 muellermorph.Init(mlynkFeet, 35);
@@ -768,7 +768,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1346:
                 // Sound nach gewisser Zeit abspielen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 mainFrame.wave.PlayFile("sfx/rapak2.wav");

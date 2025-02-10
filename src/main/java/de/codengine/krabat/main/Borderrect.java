@@ -81,12 +81,12 @@ public class Borderrect {
     public boolean IsPointInRect(GenericPoint pTemp) {
         // System.out.println(" GenericPoint "+pTemp.x+" "+pTemp.y+" is not in lo "+lo_point.x+" "+
         // lo_point.y+" ru "+ru_point.x+" "+ru_point.y);
-        return (lo_point.x <= pTemp.x) && (pTemp.x <= ru_point.x) &&
-                (lo_point.y <= pTemp.y) && (pTemp.y <= ru_point.y);
+        return lo_point.x <= pTemp.x && pTemp.x <= ru_point.x &&
+                lo_point.y <= pTemp.y && pTemp.y <= ru_point.y;
     }
 
     public GenericPoint getMiddlePoint() {
-        return new GenericPoint(((lo_point.x + ru_point.x) / 2), ((lo_point.y + ru_point.y) / 2));
+        return new GenericPoint((lo_point.x + ru_point.x) / 2, (lo_point.y + ru_point.y) / 2);
     }
 
     public boolean equals(Object o) {
@@ -96,10 +96,10 @@ public class Borderrect {
 
         if (o instanceof Borderrect) {
             Borderrect inst = (Borderrect) o;
-            return (inst.lo_point.x == lo_point.x) &&
-                    (inst.lo_point.y == lo_point.y) &&
-                    (inst.ru_point.x == ru_point.x) &&
-                    (inst.ru_point.y == ru_point.y);
+            return inst.lo_point.x == lo_point.x &&
+                    inst.lo_point.y == lo_point.y &&
+                    inst.ru_point.x == ru_point.x &&
+                    inst.ru_point.y == ru_point.y;
         }
 
         return false;

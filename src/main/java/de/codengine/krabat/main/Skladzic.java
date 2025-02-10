@@ -278,7 +278,7 @@ public class Skladzic extends Mainanim {
             }
 
             // Bei Speichern und erlaubt speichern
-            if ((brSklad.IsPointInRect(pTemp)) && (selected != -1)) {
+            if (brSklad.IsPointInRect(pTemp) && selected != -1) {
                 if (Dir[selected + 1].Location != 0) {
                     // Sicherheitsabfrage aktivieren
                     mainFrame.exit.Activate(3);
@@ -330,7 +330,7 @@ public class Skladzic extends Mainanim {
         if (brPfeil.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if ((brSklad.IsPointInRect(pTemp)) && (selected != -1)) {
+        if (brSklad.IsPointInRect(pTemp) && selected != -1) {
             menuitem = 2;
         }
 
@@ -340,7 +340,7 @@ public class Skladzic extends Mainanim {
             mainFrame.setCursor(mainFrame.Normal);
             return;
         }
-        if ((menuitem != olditem) || (oFeldAktiv != nFeldAktiv)) {
+        if (menuitem != olditem || oFeldAktiv != nFeldAktiv) {
             mainFrame.repaint();
         }
     }
@@ -382,14 +382,14 @@ public class Skladzic extends Mainanim {
     // Berechnungsroutine Spielstandsfensternummer - X/Y-Koordinaten//////////////
     private Borderrect GetCurrentRect(int Number) {
         GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return (new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90));
+        return new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
     }
 
     private GenericPoint GetCurrentXY(int Number) {
         GenericPoint Pleftup = new GenericPoint();
-        Pleftup.x = 117 + ((Number % 3) * 142);
-        Pleftup.y = 89 + ((Number / 3) * 112);
-        return (Pleftup);
+        Pleftup.x = 117 + Number % 3 * 142;
+        Pleftup.y = 89 + Number / 3 * 112;
+        return Pleftup;
     }
 
     private void GetActualSpielstand() {
@@ -402,7 +402,7 @@ public class Skladzic extends Mainanim {
         GenericToolkit.getDefaultToolkit().grabPixelsFromImage(actualImage, 0, 0, 118, 88, tempp, 0, 118);
 
         // erzeugt den aktuellen Spielstand (nicht komplett!!)
-        Aktuell = new Spielstand(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), (Kal.get(Calendar.MONTH) + 1),
+        Aktuell = new Spielstand(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
                 Kal.get(Calendar.YEAR));
     }
 }

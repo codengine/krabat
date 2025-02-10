@@ -108,7 +108,7 @@ public class Swoboda extends Mainloc {
         mueller.SetFacing(9);
 
         mutterPoint = new GenericPoint();
-        mutterPoint.x = Pmutter.x - (mutter.Breites / 2);
+        mutterPoint.x = Pmutter.x - mutter.Breites / 2;
         mutterPoint.y = Pmutter.y - mutter.Hoehes;
 
         mutterTalk = new GenericPoint();
@@ -132,7 +132,7 @@ public class Swoboda extends Mainloc {
         rapakpos = new GenericPoint[13];
         for (int i = 1; i <= 12; i++) {
             // rapakpos[i] = new GenericPoint (((i - 1) * 23) + 142, ((i - 1) * 2) + 231);
-            rapakpos[i] = new GenericPoint(((i - 1) * 23) + 142, Rarray[i] - RapakWuswobodzic.Hoehe + 3);
+            rapakpos[i] = new GenericPoint((i - 1) * 23 + 142, Rarray[i] - RapakWuswobodzic.Hoehe + 3);
         }
 
         // Hier bekommt Krabat seine Inventargegenstaende wieder
@@ -234,7 +234,7 @@ public class Swoboda extends Mainloc {
         // Raben zeichnen
         if (!rapakiAchtung) {
             for (int i = 1; i <= 12; i++) {
-                if ((i == KRABATRABE) && (!rabeVisible)) {
+                if (i == KRABATRABE && !rabeVisible) {
                     continue;
                 }
                 g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
@@ -242,7 +242,7 @@ public class Swoboda extends Mainloc {
             }
         } else {
             for (int i = 1; i <= 12; i++) {
-                if ((i == KRABATRABE) && (!rabeVisible)) {
+                if (i == KRABATRABE && !rabeVisible) {
                     continue;
                 }
                 g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
@@ -278,7 +278,7 @@ public class Swoboda extends Mainloc {
         // Zeichne ihn jetzt
 
         // Redet er etwa gerade ??
-        if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+        if (TalkPerson == 36 && mainFrame.talkCount > 0) {
             if (!mlynkHatStock) {
                 mueller.talkMlynk(g);
             } else {
@@ -310,7 +310,7 @@ public class Swoboda extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -362,7 +362,7 @@ public class Swoboda extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -373,7 +373,7 @@ public class Swoboda extends Mainloc {
             nextActionID = 100;
         }
 
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -467,7 +467,7 @@ public class Swoboda extends Mainloc {
 
             case 150:
                 // Raben rausmorphen
-                GenericPoint pTe = new GenericPoint(rapakpos[KRABATRABE].x + (RapakWuswobodzic.Breite / 2),
+                GenericPoint pTe = new GenericPoint(rapakpos[KRABATRABE].x + RapakWuswobodzic.Breite / 2,
                         rapakpos[KRABATRABE].y + RapakWuswobodzic.Hoehe);
                 rabemorph.Init(pTe, 50);
                 israbemorphing = true;
@@ -496,7 +496,7 @@ public class Swoboda extends Mainloc {
 
             case 165:
                 // Krabats Morph beginnt verzoegert...
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 krabatmorph.Init(mainFrame.krabat.GetKrabatPos(), 240);

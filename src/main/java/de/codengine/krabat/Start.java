@@ -183,7 +183,7 @@ public class Start implements Runnable {
                     + gameProperties.getProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX) + "'.");
             tmpLangIndex = 0;
         }
-        if ((tmpLangIndex >= 1) && (tmpLangIndex <= 3)) {
+        if (tmpLangIndex >= 1 && tmpLangIndex <= 3) {
             sprache = tmpLangIndex;
         } else {
             sprache = 1; // fallback is HS
@@ -508,10 +508,10 @@ public class Start implements Runnable {
             }
 
             // um Krabat kuemmern, solange er was zu tun hat
-            if (((krabat.isWalking) || (krabat.isWandering) ||
-                    (krabat.nAnimation != 0) || (talkCount != 0) || (fPlayAnim)
-                    || (isScrolling) || (isAnim) || (tmpTrigger))
-                    && (isWindowactive) && (!StopPaint))
+            if ((krabat.isWalking || krabat.isWandering ||
+                    krabat.nAnimation != 0 || talkCount != 0 || fPlayAnim
+                    || isScrolling || isAnim || tmpTrigger)
+                    && isWindowactive && !StopPaint)
                 /*if (true)*/ {
 
                 // System.out.println("Paint counter: " + repaintCounter.get());
@@ -596,8 +596,8 @@ public class Start implements Runnable {
     }
 
     public synchronized final void mousePressed(GenericMouseEvent e) {
-        if ((!isMousevalid) || /*(isWindowactive == false) || */
-                (!isListenerActive)) {
+        if (!isMousevalid || /*(isWindowactive == false) || */
+                !isListenerActive) {
             // Versuch, Event zu loeschen, wenn nicht benoetigt
             return;
         }
@@ -658,7 +658,7 @@ public class Start implements Runnable {
 
     public synchronized final void mouseMoved(GenericMouseEvent e) {
         // System.out.print("M");
-        if (/*(isWindowactive == false) ||*/ (!isListenerActive)) {
+        if (/*(isWindowactive == false) ||*/ !isListenerActive) {
             return;
         }
         Mousepoint = e.getPoint();
@@ -750,9 +750,9 @@ public class Start implements Runnable {
 
         // to save memory a "cleanup" method is called here
         // the default implementation, however, is just an empty method
-        if ((newLocation <= 50) ||
-                ((newLocation >= 63) && (newLocation < 102)) ||
-                (newLocation > 110)) {
+        if (newLocation <= 50 ||
+                newLocation >= 63 && newLocation < 102 ||
+                newLocation > 110) {
             if (currentLocation != null) {
                 currentLocation.cleanup();
 
@@ -764,7 +764,7 @@ public class Start implements Runnable {
         }
 
         // Labyrinth - Load - Einspruenge umleiten und als Load kennzeichnen
-        if ((newLocation > 50) && (newLocation < 63)) {
+        if (newLocation > 50 && newLocation < 63) {
             ConstructLocation(newLocation, 0);
             return;
         }
@@ -1168,7 +1168,7 @@ public class Start implements Runnable {
     }
 
     public synchronized final void keyPressed(GenericKeyEvent e) {
-        if ((!isListenerActive) || (!isWindowactive)) {
+        if (!isListenerActive || !isWindowactive) {
             return;
         }
 
@@ -1294,7 +1294,7 @@ public class Start implements Runnable {
         int merkDef = krabat.defScale;
 
         // normales Aussehen
-        if ((!Actions[850]) && (!Actions[851])) {
+        if (!Actions[850] && !Actions[851]) {
             if (KrabatForm != 1) {
                 krabat = new KrabatNormal(this);
                 KrabatForm = 1;

@@ -136,17 +136,17 @@ public class BurRalbicy extends Mainanim {
         int zuffi;
 
         // Reden - Animationen
-        if ((TalkPerson == 21) && (mainFrame.talkCount > 1)) {
-            if ((--Bodypause) < 1) {
+        if (TalkPerson == 21 && mainFrame.talkCount > 1) {
+            if (--Bodypause < 1) {
                 Bodypause = MAX_BODYPAUSE;
                 // Neuen Body auswaehlen
                 zuffi = (int) Math.round(Math.random() * 60);
-                if ((zuffi > 9) && (zuffi < 16)) {
+                if (zuffi > 9 && zuffi < 16) {
                     Body = zuffi - 9;
                 }
             }
 
-            if ((--Redepause) < 1) {
+            if (--Redepause < 1) {
                 Redepause = MAX_REDEPAUSE;
                 // Neuen Kopf auswaehlen
                 zuffi = (int) Math.round(Math.random() * 7);
@@ -164,14 +164,14 @@ public class BurRalbicy extends Mainanim {
 
             switch (Work) {
                 case 1: // Arbeitsphase
-                    if ((--Arbeitspause) < 1) {
+                    if (--Arbeitspause < 1) {
                         Work = 2;
                         Arbeitspause = MAX_ARBEITSPAUSE;
                     }
                     break;
 
                 case 2: // Arbeitsphase
-                    if ((--Arbeitspause) < 1) {
+                    if (--Arbeitspause < 1) {
                         if (!noSoundFromBauer) {
                             evalSound(2);
                         }
@@ -181,9 +181,9 @@ public class BurRalbicy extends Mainanim {
                     break;
 
                 case 3: // Arbeitsphase, Entscheidung Weiterarbeiten oder Pause
-                    if (((--Arbeitspause) < 1) && ((--Verhinderarbeit) < 1)) {
+                    if (--Arbeitspause < 1 && --Verhinderarbeit < 1) {
                         zuffi = (int) Math.round(Math.random() * 20);
-                        if ((zuffi < 10) && (!Listenflag)) {
+                        if (zuffi < 10 && !Listenflag) {
                             Work = 1;
                             if (!noSoundFromBauer) {
                                 evalSound(1);
@@ -197,21 +197,21 @@ public class BurRalbicy extends Mainanim {
                     break;
 
                 case 4: // Irgendeine Pausenanim(1)
-                    if ((--Zwinkerpause) < 1) {
+                    if (--Zwinkerpause < 1) {
                         Work = 7;
                         Zwinkerpause = MAX_ZWINKERPAUSE;
                     }
                     break;
 
                 case 5: // noch eine Pausenanim(2)
-                    if ((--Kopfkratzpause) < 1) {
+                    if (--Kopfkratzpause < 1) {
                         Work = 8;
                         Kopfkratzpause = MAX_KOPFKRATZPAUSE;
                     }
                     break;
 
                 case 6: // Pausenanim(3), Entscheidung, wo weiter
-                    if ((--Halbzupause) < 1) {
+                    if (--Halbzupause < 1) {
                         zuffi = (int) Math.round(Math.random() * 20);
                         if (zuffi < 10) {
                             // Animfolge 4 - 7 einleiten
@@ -225,25 +225,25 @@ public class BurRalbicy extends Mainanim {
                     break;
 
                 case 7: // Pausenanim(1)
-                    if ((--Zwinkerpause) < 1) {
+                    if (--Zwinkerpause < 1) {
                         Work = 8;
                         Zwinkerpause = MAX_ZWINKERPAUSE;
                     }
                     break;
 
                 case 8: // Pausenanim (3), hier grosse Entscheidungen
-                    if ((--Pausenlaenge) < 1) {
+                    if (--Pausenlaenge < 1) {
                         zuffi = (int) Math.round(Math.random() * 100);
-                        if ((zuffi < 10) && (!Listenflag)) {
+                        if (zuffi < 10 && !Listenflag) {
                             Work = 1;
                             if (!noSoundFromBauer) {
                                 evalSound(1);
                             }
                         }
-                        if ((zuffi > 9) && (zuffi < 20) && (!Listenflag)) {
+                        if (zuffi > 9 && zuffi < 20 && !Listenflag) {
                             Work = 5;
                         }
-                        if ((zuffi > 19) && (zuffi < 30)) {
+                        if (zuffi > 19 && zuffi < 30) {
                             Work = 6;
                         }
                         Pausenlaenge = 1;
@@ -256,7 +256,7 @@ public class BurRalbicy extends Mainanim {
             }
             // System.out.println ("Phase " + Work);
 
-            g.drawImage(bur_work[Work], (Work == 2) ? 62 : 60, (Work == 2) ? 223 : 227, null);
+            g.drawImage(bur_work[Work], Work == 2 ? 62 : 60, Work == 2 ? 223 : 227, null);
         }
     }
 

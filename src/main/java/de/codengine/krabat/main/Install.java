@@ -230,14 +230,14 @@ public class Install extends Mainloc {
 
             // Hornjos
             col = FarbenArray[13];
-            if ((selected != 1) && (RecChosen != 1)) {
+            if (selected != 1 && RecChosen != 1) {
                 col = FarbenArray[14];
             }
             mainFrame.ifont.drawString(g, Texty[1], Rects[1].lo_point.x, Rects[1].lo_point.y, col);
 
             // Delnjos
             col = FarbenArray[13];
-            if ((selected != 2) && (RecChosen != 2)) {
+            if (selected != 2 && RecChosen != 2) {
                 col = FarbenArray[14];
             }
             mainFrame.ifont.drawString(g, Texty[2], Rects[2].lo_point.x, Rects[2].lo_point.y, col);
@@ -252,24 +252,24 @@ public class Install extends Mainloc {
 
                 // Win
                 col = FarbenArray[13];
-                if ((selected != 3) && (CdChosen != 3)) {
+                if (selected != 3 && CdChosen != 3) {
                     col = FarbenArray[14];
                 }
                 mainFrame.ifont.drawString(g, Texty[3], Rects[3].lo_point.x, Rects[3].lo_point.y, col);
 
                 // Lin
                 col = FarbenArray[13];
-                if ((selected != 4) && (CdChosen != 4)) {
+                if (selected != 4 && CdChosen != 4) {
                     col = FarbenArray[14];
                 }
                 mainFrame.ifont.drawString(g, Texty[4], Rects[4].lo_point.x, Rects[4].lo_point.y, col);
 
                 // Keiner
                 col = FarbenArray[13];
-                if ((selected != 5) && (CdChosen != 5)) {
+                if (selected != 5 && CdChosen != 5) {
                     col = FarbenArray[14];
                 }
-                mainFrame.ifont.drawString(g, Texty[(RecChosen == 1) ? 5 : 8], Rects[5].lo_point.x, Rects[5].lo_point.y, col);
+                mainFrame.ifont.drawString(g, Texty[RecChosen == 1 ? 5 : 8], Rects[5].lo_point.x, Rects[5].lo_point.y, col);
 
                 // Sound nur zeichnen, wenn CD ausgewaehlt
                 if (CdChosen != 0) {
@@ -281,17 +281,17 @@ public class Install extends Mainloc {
 
                     // Win
                     col = FarbenArray[13];
-                    if ((selected != 6) && (SoundChosen != 6)) {
+                    if (selected != 6 && SoundChosen != 6) {
                         col = FarbenArray[14];
                     }
                     mainFrame.ifont.drawString(g, Texty[6], Rects[6].lo_point.x, Rects[6].lo_point.y, col);
 
                     // Java
                     col = FarbenArray[13];
-                    if ((selected != 7) && (SoundChosen != 7)) {
+                    if (selected != 7 && SoundChosen != 7) {
                         col = FarbenArray[14];
                     }
-                    mainFrame.ifont.drawString(g, Texty[(RecChosen == 1) ? 7 : 9], Rects[7].lo_point.x, Rects[7].lo_point.y, col);
+                    mainFrame.ifont.drawString(g, Texty[RecChosen == 1 ? 7 : 9], Rects[7].lo_point.x, Rects[7].lo_point.y, col);
 
                     // "Done" nur zeichnen, wenn alles andere da
                     if (SoundChosen != 0) {
@@ -344,22 +344,22 @@ public class Install extends Mainloc {
                 if (Rects[2].IsPointInRect(pTemp)) {
                     RecChosen = 2;
                 }
-                if ((Rects[3].IsPointInRect(pTemp)) && (RecChosen != 0)) {
+                if (Rects[3].IsPointInRect(pTemp) && RecChosen != 0) {
                     CdChosen = 3;
                 }
-                if ((Rects[4].IsPointInRect(pTemp)) && (RecChosen != 0)) {
+                if (Rects[4].IsPointInRect(pTemp) && RecChosen != 0) {
                     CdChosen = 4;
                 }
-                if ((Rects[5].IsPointInRect(pTemp)) && (RecChosen != 0)) {
+                if (Rects[5].IsPointInRect(pTemp) && RecChosen != 0) {
                     CdChosen = 5;
                 }
-                if ((Rects[6].IsPointInRect(pTemp)) && (CdChosen != 0)) {
+                if (Rects[6].IsPointInRect(pTemp) && CdChosen != 0) {
                     SoundChosen = 6;
                 }
-                if ((Rects[7].IsPointInRect(pTemp)) && (CdChosen != 0)) {
+                if (Rects[7].IsPointInRect(pTemp) && CdChosen != 0) {
                     SoundChosen = 7;
                 }
-                if ((brPfeil.IsPointInRect(pTemp)) && (SoundChosen != 0)) {
+                if (brPfeil.IsPointInRect(pTemp) && SoundChosen != 0) {
                     Text2 = "";
                     if (RecChosen == 1) {
                         Text2 += Rec1;
@@ -392,11 +392,11 @@ public class Install extends Mainloc {
                 }
             } else {
                 // hier das	Lizenzabfragemenu
-                if ((LizenzRects[1].IsPointInRect(pTemp)) || (LizenzRects[2].IsPointInRect(pTemp))) {
+                if (LizenzRects[1].IsPointInRect(pTemp) || LizenzRects[2].IsPointInRect(pTemp)) {
                     licenseAccepted = true;
                 }
 
-                if ((LizenzRects[3].IsPointInRect(pTemp)) || (LizenzRects[4].IsPointInRect(pTemp))) {
+                if (LizenzRects[3].IsPointInRect(pTemp) || LizenzRects[4].IsPointInRect(pTemp)) {
                     System.exit(0);
                 }
             }
@@ -451,7 +451,7 @@ public class Install extends Mainloc {
             Paintcall = false;
             return;
         }
-        if ((menuitem != olditem) || (selected != oldsel) || (LicenseChosen != OldLicense)) {
+        if (menuitem != olditem || selected != oldsel || LicenseChosen != OldLicense) {
             mainFrame.repaint();
         }
     }
@@ -488,7 +488,7 @@ public class Install extends Mainloc {
     // Methode, die testet, ob Installer ueberhaupt noch noetig ist
     private boolean TestInstallFile() {
         // keine Datei gefunden, also Fehler !
-        if (!(LoadFile())) {
+        if (!LoadFile()) {
             return false;
         }
 
@@ -503,7 +503,7 @@ public class Install extends Mainloc {
     // Methode, die das komplette Aendern des Files uebernimmt
     private boolean ModifyInstallFile() {
         // zuerst Datei reinladen
-        if (!(LoadFile())) {
+        if (!LoadFile()) {
             return false;
         }
 
@@ -511,21 +511,21 @@ public class Install extends Mainloc {
         int erster = SearchStringInByte(Such1);
         int wieweit = SucheEnter(erster);
         System.out.println("Es steht was da von " + erster + " " + wieweit);
-        Loesche(erster, (wieweit - erster + 1));
+        Loesche(erster, wieweit - erster + 1);
         Einfuege(erster, Text1.length());
         Einsetze(Text1, erster);
 
         // die beiden "console" - Ausdruecke einfuegen
         int zweiter = SearchStringInByte(Such2);
         int wiefar = SucheEnter(zweiter);
-        Loesche(zweiter, (wiefar - zweiter + 1));
+        Loesche(zweiter, wiefar - zweiter + 1);
         Einfuege(zweiter, Text1.length());
         Einsetze(Text1, zweiter);
 
         // hier die Kommandozeilenargumente einfuegen
         int dritter = SearchStringInByte(Such3);
         int wiedale = SucheEnter(dritter);
-        Loesche(dritter, (wiedale - dritter + 1));
+        Loesche(dritter, wiedale - dritter + 1);
         Einfuege(dritter, Text2.length());
         Einsetze(Text2, dritter);
 
@@ -599,16 +599,16 @@ public class Install extends Mainloc {
                 }
                 j++;
             }
-            while ((!exit) && (j < which.length()));
+            while (!exit && j < which.length());
 
             if (!exit) {
                 System.out.println("String wurde gefunden !");
-                return (i + j);
+                return i + j;
             }
         }
 
         System.out.println("String nicht gefunden !");
-        return (0);
+        return 0;
     }
 
     // Kopiert Array "nach hinten", damit Buchstaben eingefuegt werden koennen  
@@ -620,7 +620,7 @@ public class Install extends Mainloc {
 
     // Kopiert Array "nach Vorn", um Text zu loeschen		
     private void Loesche(int Position, int Wieviel) {
-        for (int i = Position; i < (Feld.length - Wieviel - 1); i++) {
+        for (int i = Position; i < Feld.length - Wieviel - 1; i++) {
             // System.out.println ("Index " + i + "Maximal " + Feld.length + "Offset " + Wieviel);
             Feld[i] = Feld[i + Wieviel];
         }
@@ -636,10 +636,10 @@ public class Install extends Mainloc {
     // suche naechstes "Enter", entweder "0d" fuer win oder "0a" fuer andere
     private int SucheEnter(int Position) {
         for (int i = Position; i < Feld.length; i++) {
-            if ((Feld[i] == 13) || (Feld[i] == 10)) {
+            if (Feld[i] == 13 || Feld[i] == 10) {
                 return i;
             }
         }
-        return (0);
+        return 0;
     }
 }	

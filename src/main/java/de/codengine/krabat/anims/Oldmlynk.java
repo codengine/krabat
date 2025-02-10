@@ -96,13 +96,13 @@ public class Oldmlynk extends Mainanim {
 
     // uebermittelt Muellerzeichenpunkt an Mlynkmurja
     public GenericPoint getMuellerPoint(GenericPoint feet) {
-        return (new GenericPoint(feet.x - (Scalex / 2),
-                feet.y - Scaleyhead - Scaleybody));
+        return new GenericPoint(feet.x - Scalex / 2,
+                feet.y - Scaleyhead - Scaleybody);
     }
 
     // uebermittelt TalkPoint an Mlynkmurja
     public GenericPoint getTalkPoint(GenericPoint feet) {
-        return (new GenericPoint(feet.x, feet.y - Scaleyhead - Scaleybody - 50));
+        return new GenericPoint(feet.x, feet.y - Scaleyhead - Scaleybody - 50);
     }
 
     private void InitImages() {
@@ -137,7 +137,7 @@ public class Oldmlynk extends Mainanim {
         // folgendes ist nur fuer Teil 4
         // OldMlynk guckt links und blinzelt ab und zu
         if (fOnlyStandAndLookLeft) {
-            if ((mlnkLeftFrameCounter++) % 12 != 0) {
+            if (mlnkLeftFrameCounter++ % 12 != 0) {
                 offGraph.drawImage(mlynk_left[0], pos.x, pos.y, Scalex,
                         Scaleyhead + Scaleybody, null);
             } else {
@@ -150,9 +150,9 @@ public class Oldmlynk extends Mainanim {
         // ab hier normale Zeichenroutine
 
         // Mueller redet normal (nach rechts gucken) Talkperson = 36
-        if ((TalkPerson == 36) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 36 && mainFrame.talkCount > 1) {
             // Kopf aussuchen
-            if ((--Verhinderkopf) < 1) {
+            if (--Verhinderkopf < 1) {
                 Verhinderkopf = MAX_VERHINDERKOPF;
                 Head = (int) Math.round(Math.random() * 4);
                 if (Head == 4) {
@@ -163,7 +163,7 @@ public class Oldmlynk extends Mainanim {
             }
 
             // Body aussuchen
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) Math.round(Math.random() * 4);
                 if (Body == 4) {
@@ -178,12 +178,12 @@ public class Oldmlynk extends Mainanim {
         }
 
         // Mueller redet nach vorn hin , Talkperson = 66
-        if ((TalkPerson == 66) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 66 && mainFrame.talkCount > 1) {
             // Override ermoeglichen
             muellerHatSchonNachVornGeschaut = true;
 
             // Kopf aussuchen
-            if ((--Verhinderkopf) < 1) {
+            if (--Verhinderkopf < 1) {
                 Verhinderkopf = MAX_VERHINDERKOPF;
                 Head = (int) Math.round(Math.random() * 4);
                 if (Head == 4) {
@@ -194,7 +194,7 @@ public class Oldmlynk extends Mainanim {
             }
 
             // Body aussuchen
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) Math.round(Math.random() * 4);
                 if (Body == 4) {
@@ -209,7 +209,7 @@ public class Oldmlynk extends Mainanim {
         }
 
         // Mueller lacht nach vorn hin , Talkperson = 67
-        if ((TalkPerson == 67) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 67 && mainFrame.talkCount > 1) {
             // Override ermoeglichen
             muellerHatSchonNachVornGeschaut = true;
 

@@ -133,12 +133,12 @@ public class Jezba extends Mainloc2 {
             }
         }
 
-        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+        if (mainFrame.talkCount < 1 && TalkPause > 0) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
             DoAction();
         }
     }

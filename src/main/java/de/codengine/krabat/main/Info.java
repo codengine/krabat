@@ -294,7 +294,7 @@ public class Info extends Mainanim {
         }
 
         // wenn nicht im letzten Bild, dann auch den rechten Pfeil zeichnen
-        if ((brPfeilr.IsPointInRect(pTemp)) && (PictureCounter < 6)) {
+        if (brPfeilr.IsPointInRect(pTemp) && PictureCounter < 6) {
             menuitem = 2;
         }
 

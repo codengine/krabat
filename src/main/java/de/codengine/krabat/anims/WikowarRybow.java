@@ -119,9 +119,9 @@ public class WikowarRybow extends Mainanim {
         // Fischahendler steht normal da
         if (!isUmgedreht) {
             // beim Reden
-            if (((TalkPerson == 33) && (mainFrame.talkCount > 1)) || (AnimTalkPerson == 33)) {
+            if (TalkPerson == 33 && mainFrame.talkCount > 1 || AnimTalkPerson == 33) {
                 // neuen Kopf aussuchen
-                if ((--Verhinderhead) < 1) {
+                if (--Verhinderhead < 1) {
                     Verhinderhead = MAX_VERHINDERHEAD;
 
                     Head = (int) Math.round(Math.random() * 7);
@@ -131,7 +131,7 @@ public class WikowarRybow extends Mainanim {
                 }
 
                 // Neuen Body aussuchen
-                if ((--Verhinderbody) < 1) {
+                if (--Verhinderbody < 1) {
                     Verhinderbody = MAX_VERHINDERBODY;
 
                     Body = (int) Math.round(Math.random() * 3);
@@ -141,7 +141,7 @@ public class WikowarRybow extends Mainanim {
                 }
 
                 offGraph.drawImage(wik_head[Head], Posit.x, Posit.y, null);
-                offGraph.drawImage((!givekrosik) ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
+                offGraph.drawImage(!givekrosik ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
                 offGraph.drawImage(foreground, 688, 327, null);
                 return;
             }
@@ -149,9 +149,9 @@ public class WikowarRybow extends Mainanim {
             // wenn er nicht redet, dann kann er ja nur noch rumstehen
 
             // Kopf aussuchen
-            if ((--Verhinderstand) < 1) {
+            if (--Verhinderstand < 1) {
                 // Hat er gezwinkert ? Dann reset
-                if ((Stand == 6) || (Stand == 8)) {
+                if (Stand == 6 || Stand == 8) {
                     // Zwinkern zuruecksetzen
                     if (Stand == 6) {
                         Stand = 0;
@@ -183,7 +183,7 @@ public class WikowarRybow extends Mainanim {
 
             // Hier noch nachgucken, ob er nicht zwinkern sollte
             int zuffZahl = (int) Math.round(Math.random() * 50);
-            if ((zuffZahl > 48) && ((Stand == 0) || (Stand == 7))) {
+            if (zuffZahl > 48 && (Stand == 0 || Stand == 7)) {
                 if (Stand == 0) {
                     Stand = 6;
                 }
@@ -211,7 +211,7 @@ public class WikowarRybow extends Mainanim {
             // er hat sich umgedreht und kramt nach irgendwas...
             if (!isOctopussy) {
                 // nur normal hinten kramen
-                if ((--Verhinderkram) < 1) {
+                if (--Verhinderkram < 1) {
                     Verhinderkram = MAX_VERHINDERKRAM;
                     Kram = (int) (Math.random() * 1.9);
                 }
@@ -219,7 +219,7 @@ public class WikowarRybow extends Mainanim {
                 // der weisse Hai kommt...
                 Kram = 2; // haendler steht solange nur so da
 
-                if ((--Verhinderocto) < 1) {
+                if (--Verhinderocto < 1) {
                     Verhinderocto = MAX_VERHINDEROCTO;
                     if (forward) {
                         Octo++;

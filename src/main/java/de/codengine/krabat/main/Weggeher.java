@@ -208,7 +208,7 @@ public class Weggeher {
                                           GenericPoint pKrabatFeets) {
         // Testen, ob Mittenlauf sinnvoll!
         boolean mittenlauf = false;
-        if ((vBestWeg.size() - wegPosition) > 2) {
+        if (vBestWeg.size() - wegPosition > 2) {
             mittenlauf = true;
             System.out.println("Mittenlauf initiiert!");
         }
@@ -245,7 +245,7 @@ public class Weggeher {
                     pBest.x = pKrabatFeets.x;
                 }
             }
-            if ((mittenlauf) && (Math.abs(pKrabatFeets.y - quell.y1) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
+            if (mittenlauf && Math.abs(pKrabatFeets.y - quell.y1) > Math.abs(pKrabatFeets.x - (left + right) / 2)) {
                 pBest.x = (left + right) / 2;
             }
             return pBest;
@@ -276,7 +276,7 @@ public class Weggeher {
                     pBest.x = pKrabatFeets.x;
                 }
             }
-            if ((mittenlauf) && (Math.abs(pKrabatFeets.y - quell.y2) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
+            if (mittenlauf && Math.abs(pKrabatFeets.y - quell.y2) > Math.abs(pKrabatFeets.x - (left + right) / 2)) {
                 pBest.x = (left + right) / 2;
             }
             return pBest;
@@ -310,7 +310,7 @@ public class Weggeher {
                     pBest.y = pKrabatFeets.y;
                 }
             }
-            if ((mittenlauf) && (Math.abs(pKrabatFeets.x - quell.x2) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
+            if (mittenlauf && Math.abs(pKrabatFeets.x - quell.x2) > Math.abs(pKrabatFeets.y - (up + down) / 2)) {
                 pBest.y = (up + down) / 2;
             }
             return pBest;
@@ -341,7 +341,7 @@ public class Weggeher {
                     pBest.y = pKrabatFeets.y;
                 }
             }
-            if ((mittenlauf) && (Math.abs(pKrabatFeets.x - quell.x1) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
+            if (mittenlauf && Math.abs(pKrabatFeets.x - quell.x1) > Math.abs(pKrabatFeets.y - (up + down) / 2)) {
                 pBest.y = (up + down) / 2;
             }
             return pBest;

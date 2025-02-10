@@ -76,7 +76,7 @@ public class Bow extends Mainanim {
         switch (Bowcount) {
             case 1:
                 // evaluieren, ob eine Anim erfolgen darf
-                if ((--Verhinderanim) < 1) {
+                if (--Verhinderanim < 1) {
                     Verhinderanim = MAX_VERHINDERANIM;
 
                     // Wahrscheinlichkeit von 75 %
@@ -94,7 +94,7 @@ public class Bow extends Mainanim {
             case 2:
             case 3:
             case 4:     // Anim weiterzaehlen
-                if ((--Verhindercount) < 1) {
+                if (--Verhindercount < 1) {
                     Verhindercount = MAX_VERHINDERCOUNT;
                     Bowcount++;
                     if (Bowcount == 5) {
@@ -106,7 +106,7 @@ public class Bow extends Mainanim {
             case 5:
             case 6:
             case 7: // Anim weiterzaehlen
-                if ((--Verhindercount) < 1) {
+                if (--Verhindercount < 1) {
                     Verhindercount = MAX_VERHINDERCOUNT;
                     Bowcount++;
                     if (Bowcount == 8) {

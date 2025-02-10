@@ -84,9 +84,9 @@ public class Kacka1 extends Mainanim {
 
     // evaluiere Rechteck zum Loeschen der Ente
     public GenericRectangle kackaRect() {
-        int x = Posit.x - (Breite / 2);
+        int x = Posit.x - Breite / 2;
         int y = Posit.y - Hoehe;
-        return (new GenericRectangle(x, y, Breite, Hoehe));
+        return new GenericRectangle(x, y, Breite, Hoehe);
     }
 
     // Zeichne Ente, wie sie dasteht oder spricht
@@ -94,7 +94,7 @@ public class Kacka1 extends Mainanim {
         // wenn noch erlaubt, dann Ente rumschwimmen lassen
         int zf = (int) (Math.random() * 100);
         // nur mit bestimmter Wahrscheinlichkeit erlauben
-        if ((zf > 80) && (moveAllowed)) {
+        if (zf > 80 && moveAllowed) {
             // nur, solange Endposition noch nicht erreicht ist
             if (Posit.x > Pstop.x) {
                 Posit.x -= Xoffset;
@@ -103,8 +103,8 @@ public class Kacka1 extends Mainanim {
         }
 
         // Redende Kacka
-        if ((TalkPerson == 71) && (mainFrame.talkCount > 1)) {
-            if ((--Verhinderschnatter) < 1) {
+        if (TalkPerson == 71 && mainFrame.talkCount > 1) {
+            if (--Verhinderschnatter < 1) {
                 Verhinderschnatter = MAX_VERHINDERSCHNATTER;
                 if (Schnatter == 0) {
                     Schnatter = 1;
@@ -115,9 +115,9 @@ public class Kacka1 extends Mainanim {
 
             // Kacka zeichnen
             if (isLeft) {
-                offGraph.drawImage(kacka_left[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_left[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe, null);
             } else {
-                offGraph.drawImage(kacka_front[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_front[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe, null);
             }
         }
 
@@ -125,9 +125,9 @@ public class Kacka1 extends Mainanim {
         else {
             // Kacka zeichnen
             if (isLeft) {
-                offGraph.drawImage(kacka_left[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_left[0], Posit.x - Breite / 2, Posit.y - Hoehe, null);
             } else {
-                offGraph.drawImage(kacka_front[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_front[0], Posit.x - Breite / 2, Posit.y - Hoehe, null);
             }
         }
     }

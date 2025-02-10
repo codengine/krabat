@@ -250,7 +250,7 @@ public class Dinglingerwalk extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if ((--Verhinderwalk) < 1)
+        if (--Verhinderwalk < 1)
         // Horizontal laufen
         {
             Verhinderwalk = MAX_VERHINDERWALK;
@@ -270,7 +270,7 @@ public class Dinglingerwalk extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if (((walkto.x - (int) txps) * direction_x) <= 0) {
+            if ((walkto.x - (int) txps) * direction_x <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetDinglingerPos(walkto);
                 anim_pos = 0;
@@ -287,10 +287,10 @@ public class Dinglingerwalk extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale(((int) xps), ((int) yps));
+        int scale = getScale((int) xps, (int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZ_DIST[anim_pos] - (scale / SLOWX);
+        float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
         if (horiz_dist < 1) {
             horiz_dist = 1;
         }
@@ -306,7 +306,7 @@ public class Dinglingerwalk extends Mainanim {
             typs += direction_y * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + (direction_x * horiz_dist);
+        txps = xps + direction_x * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -317,12 +317,12 @@ public class Dinglingerwalk extends Mainanim {
         // boolean horiz;
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -355,7 +355,7 @@ public class Dinglingerwalk extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetDinglingerPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -446,9 +446,9 @@ public class Dinglingerwalk extends Mainanim {
         // 4 : Schuessel geben
 
         // Heads evaluieren
-        if ((--Verhinderhead) < 1) {
+        if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
-            Head = (int) (Math.random() * ((direction_x == -1) ? 9.9 : 8.9));
+            Head = (int) (Math.random() * (direction_x == -1 ? 9.9 : 8.9));
         }
 
         // Body je nach AnimID evaluieren
@@ -480,31 +480,31 @@ public class Dinglingerwalk extends Mainanim {
         // schaue Dich um
         if (AnimID == 2) {
             if (AnimCounter < 15) {
-                MaleIhn(g, krabat_left_talk_body[(AnimCounter / 5) + 3], false);
+                MaleIhn(g, krabat_left_talk_body[AnimCounter / 5 + 3], false);
             } else {
                 AnimCounter = 99;
                 MaleIhn(g, krabat_left_talk_body[5], false);
             }
 
             AnimCounter++;
-            return (AnimCounter);
+            return AnimCounter;
         }
 
         // nimm Schuessel
         if (AnimID == 3) {
             if (AnimCounter < 9) {
-                MaleIhn(g, krabat_skla[(AnimCounter / 3)], true);
+                MaleIhn(g, krabat_skla[AnimCounter / 3], true);
             } else {
                 AnimCounter = 99;
                 MaleIhn(g, krabat_skla[0], true);
             }
 
             AnimCounter++;
-            return (AnimCounter);
+            return AnimCounter;
         }
 
         // Compilerberuhigung
-        return (0);
+        return 0;
     }
 
     // Zooming-Variablen berechnen
@@ -516,8 +516,8 @@ public class Dinglingerwalk extends Mainanim {
         float fScale = helper;
 
         float fScaleY = fScale * scaleVerhaeltnis;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        return (pox - (Koerperbreite / 2));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        return pox - Koerperbreite / 2;
     }
 
     // Left-Pos bei Schuessel
@@ -525,14 +525,14 @@ public class Dinglingerwalk extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (pox - ((CEXTRAWIDTH - (helper / 2)) / 2));
+        return pox - (CEXTRAWIDTH - helper / 2) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(pox, poy);
-        return (poy - CHEIGHT + helper);
+        return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -549,7 +549,7 @@ public class Dinglingerwalk extends Mainanim {
                 helper = 0;
             }
             helper += defScale;
-            return ((int) helper);
+            return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
             float help2 = (poy - minx) / zoomf;
@@ -558,7 +558,7 @@ public class Dinglingerwalk extends Mainanim {
             }
             help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return ((int) help2);
+            return (int) help2;
         }
     }
 
@@ -584,34 +584,34 @@ public class Dinglingerwalk extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect DinglingerRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = ((int) yps);
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     // gib TalkPoint von Dinglinger zurueck
     public GenericPoint evalTalkPoint() {
         Borderrect temp = DinglingerRect();
-        return (new GenericPoint((temp.lo_point.x + temp.ru_point.x) / 2, temp.lo_point.y - 50));
+        return new GenericPoint((temp.lo_point.x + temp.ru_point.x) / 2, temp.lo_point.y - 50);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp, boolean isSkla) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         int left = 0;
 
         // Groesse und Position der Figur berechnen
         if (!isSkla) {
-            left = getLeftPos(((int) xps), ((int) yps));
+            left = getLeftPos((int) xps, (int) yps);
         } else {
-            left = getLeftPosSkla(((int) xps), ((int) yps));
+            left = getLeftPosSkla((int) xps, (int) yps);
         }
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -619,8 +619,8 @@ public class Dinglingerwalk extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnis;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // Figur zeichnen
@@ -629,12 +629,12 @@ public class Dinglingerwalk extends Mainanim {
 
     private void MaleIhn(GenericDrawingContext g) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
-        int scale = getScale(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
+        int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fScale = scale;
@@ -642,8 +642,8 @@ public class Dinglingerwalk extends Mainanim {
         float fHoehe = CHEIGHT;
 
         float fScaleY = fScale * scaleVerhaeltnis;
-        int Koerperbreite = CWIDTH - ((int) fScaleY);
-        int Kopfhoehe = (int) (fBodyoffset - (fScale * (fBodyoffset / fHoehe)));
+        int Koerperbreite = CWIDTH - (int) fScaleY;
+        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         if (direction_x == -1) {

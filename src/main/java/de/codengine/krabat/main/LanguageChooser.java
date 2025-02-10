@@ -234,13 +234,13 @@ public class LanguageChooser extends Mainloc {
             if (brPfeilUnten.IsPointInRect(pTemp)) {
                 Index += 10;
                 mainFrame.Clipset = false;
-                if (Index > (languages.length - 10)) {
+                if (Index > languages.length - 10) {
                     Index = languages.length - 10;
                 }
                 mainFrame.repaint();
             }
 
-            if ((brOk.IsPointInRect(pTemp)) && (currLang != 0)) {
+            if (brOk.IsPointInRect(pTemp) && currLang != 0) {
                 System.out.println("Selected language = " + currLang);
                 if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
                         || abbreviations[currLang - 1].equalsIgnoreCase("ds")
@@ -274,7 +274,7 @@ public class LanguageChooser extends Mainloc {
                     // System.out.println("Min y: " + (Y_UP + (i - Index) * 25));
                     // System.out.println("Max y: " + ((Y_UP + (i - Index) * 25) + 24));
 
-                    if ((pTemp.y >= (Y_UP + (i - Index) * 25)) && (pTemp.y < ((Y_UP + (i - Index) * 25) + 24))) {
+                    if (pTemp.y >= Y_UP + (i - Index) * 25 && pTemp.y < Y_UP + (i - Index) * 25 + 24) {
                         currLang = i + 1;
                         mainFrame.repaint();
                         System.out.println("Selected lang=" + abbreviations[i]);
@@ -302,7 +302,7 @@ public class LanguageChooser extends Mainloc {
         if (brPfeilUnten.IsPointInRect(pTemp)) {
             menuitem = 2;
         }
-        if ((brOk.IsPointInRect(pTemp)) && (currLang != 0)) {
+        if (brOk.IsPointInRect(pTemp) && currLang != 0) {
             menuitem = 3;
         }
 

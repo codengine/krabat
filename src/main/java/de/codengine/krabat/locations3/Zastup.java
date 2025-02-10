@@ -99,7 +99,7 @@ public class Zastup extends Mainloc {
         Dialog = new Multiple2(mainFrame);
 
         talkPoint = new GenericPoint();
-        talkPoint.x = matoPoint.x + (Mato.Breite / 2);
+        talkPoint.x = matoPoint.x + Mato.Breite / 2;
         talkPoint.y = matoPoint.y - 50;
 
         reMato = new Borderrect(matoPoint.x, matoPoint.y, matoPoint.x + Mato.Breite, matoPoint.y + Mato.Hoehe);
@@ -262,7 +262,7 @@ public class Zastup extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -316,7 +316,7 @@ public class Zastup extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -328,7 +328,7 @@ public class Zastup extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -380,8 +380,8 @@ public class Zastup extends Mainloc {
                 }
 
                 // Pelz oder Papier geben, oder Ausreden, falls Mato noch da
-                if ((reMato.IsPointInRect(pTemp)) && (!mainFrame.Actions[576])) {
-                    if ((mainFrame.whatItem == 40) && (!mainFrame.Actions[575])) {
+                if (reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576]) {
+                    if (mainFrame.whatItem == 40 && !mainFrame.Actions[575]) {
                         // Taler nur dann, wenn Schranke noch zu
                         nextActionID = 10;  // 5 Taler
                     } else {
@@ -402,7 +402,7 @@ public class Zastup extends Mainloc {
                 }
 
                 // Schranke Ausreden
-                if ((schranke.IsPointInRect(pTemp)) && (!mainFrame.Actions[575])) {
+                if (schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575]) {
                     nextActionID = 165;
                     pTemp = pSchranke;
                 }
@@ -501,7 +501,7 @@ public class Zastup extends Mainloc {
                 }
 
                 // Mato ansehen
-                if ((reMato.IsPointInRect(pTemp)) && (!mainFrame.Actions[576])) {
+                if (reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576]) {
                     nextActionID = 1;
                     pTemp = pMato;
                 }
@@ -513,7 +513,7 @@ public class Zastup extends Mainloc {
                 }
 
                 // Schranke ansehen
-                if ((schranke.IsPointInRect(pTemp)) && (!mainFrame.Actions[575])) {
+                if (schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575]) {
                     nextActionID = 4;
                     pTemp = pSchranke;
                 }
@@ -524,8 +524,8 @@ public class Zastup extends Mainloc {
                 // rechte Maustaste
 
                 // Mit dem Mato reden
-                if ((reMato.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[576])) {
+                if (reMato.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[576]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pMato);
                     mainFrame.repaint();
@@ -541,8 +541,8 @@ public class Zastup extends Mainloc {
                 }
 
                 // Schranke oeffnen
-                if ((schranke.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[575])) {
+                if (schranke.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[575]) {
                     nextActionID = 5;
                     mainFrame.wegGeher.SetzeNeuenWeg(pSchranke);
                     mainFrame.repaint();
@@ -550,9 +550,9 @@ public class Zastup extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangLinks.IsPointInRect(pTemp)) ||
+                if (ausgangLinks.IsPointInRect(pTemp) ||
                         //  (ausgangRechts.IsPointInRect (pTemp) == true) ||
-                        (ausgangManega.IsPointInRect(pTemp))) {
+                        ausgangManega.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -574,7 +574,7 @@ public class Zastup extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -586,17 +586,17 @@ public class Zastup extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((reMato.IsPointInRect(pTemp)) && (!mainFrame.Actions[576])) ||
-                    (tor.IsPointInRect(pTemp)) ||
-                    ((schranke.IsPointInRect(pTemp)) && (!mainFrame.Actions[575]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576] ||
+                    tor.IsPointInRect(pTemp) ||
+                    schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -628,11 +628,11 @@ public class Zastup extends Mainloc {
                 return;
             }
 
-            if ((tor.IsPointInRect(pTemp)) ||
-                    ((reMato.IsPointInRect(pTemp)) &&
-                            (!mainFrame.Actions[576])) ||
-                    ((schranke.IsPointInRect(pTemp)) &&
-                            (!mainFrame.Actions[575]))) {
+            if (tor.IsPointInRect(pTemp) ||
+                    reMato.IsPointInRect(pTemp) &&
+                            !mainFrame.Actions[576] ||
+                    schranke.IsPointInRect(pTemp) &&
+                            !mainFrame.Actions[575]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -736,13 +736,13 @@ public class Zastup extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -753,7 +753,7 @@ public class Zastup extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -836,7 +836,7 @@ public class Zastup extends Mainloc {
 
             case 13:
                 // Ende nehmen timen
-                if ((--TakeCount) < 2) {
+                if (--TakeCount < 2) {
                     isTaking = false;
                     mainFrame.Clipset = false;
                     nextActionID = 301;
@@ -912,7 +912,7 @@ public class Zastup extends Mainloc {
 
             case 310:
                 isOpening = true;
-                if ((--Verhinderschranke) < 1) {
+                if (--Verhinderschranke < 1) {
                     Verhinderschranke = MAX_VERHINDERSCHRANKE;
                     mainFrame.wave.PlayFile("sfx-dd/tack.wav");
                     SchrankCount++;

@@ -89,8 +89,8 @@ public class Farar extends Mainanim {
     // Zeichne Pfarrer, wie er dasteht oder spricht
     public void drawFarar(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
         // Redender Pfarrer
-        if ((TalkPerson == 37) && (mainFrame.talkCount > 1)) {
-            if ((--Nohead) < 1) {
+        if (TalkPerson == 37 && mainFrame.talkCount > 1) {
+            if (--Nohead < 1) {
                 Nohead = MAX_NOHEAD;
                 Head = (int) Math.round(Math.random() * 8);
                 Head++;
@@ -99,7 +99,7 @@ public class Farar extends Mainanim {
                 }
             }
 
-            if ((--Nobody) < 1) {
+            if (--Nobody < 1) {
                 Nobody = MAX_NOBODY;
                 Body = (int) Math.round(Math.random() * 4);
                 Body++;

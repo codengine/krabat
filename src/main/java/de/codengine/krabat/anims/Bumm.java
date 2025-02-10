@@ -114,7 +114,7 @@ public class Bumm extends Mainanim {
         // float Xabstand = xGroesse / 2;
 
         // aus Fussposition folgt x/y-Position
-        return (new GenericRectangle((int) (Posit.x - Xabstand), (int) (Posit.y - Yabstand), (int) xGroesse, (int) yGroesse));
+        return new GenericRectangle((int) (Posit.x - Xabstand), (int) (Posit.y - Yabstand), (int) xGroesse, (int) yGroesse);
     }
 
     // Zeichne Anim
@@ -127,7 +127,7 @@ public class Bumm extends Mainanim {
             mainFrame.wave.PlayFile("sfx/morph.wav");
         }
 
-        if ((--Verhinderbumm) < 1) {
+        if (--Verhinderbumm < 1) {
             Verhinderbumm = MAX_VERHINDERBUMM;
             Bummcount++;
         }
@@ -136,10 +136,10 @@ public class Bumm extends Mainanim {
         GenericRectangle tp = bummRect();
 
         // Zeichnen
-        offGraph.drawImage(bumm[(Bummcount > 7) ? 7 : Bummcount], tp.getX(), tp.getY(), tp.getWidth(), tp.getHeight(), null);
+        offGraph.drawImage(bumm[Bummcount > 7 ? 7 : Bummcount], tp.getX(), tp.getY(), tp.getWidth(), tp.getHeight(), null);
 
         // Rueckgabe des aktuellen Zaehlers
-        return (Bummcount);
+        return Bummcount;
 
         // Aufrufer sollte ab Bummcount = 8 diese Routine abschalten !!!
     }

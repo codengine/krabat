@@ -130,7 +130,7 @@ public class Imagefont {
                     int tlaeng = LineLength(teil);
 
                     // Teilstring zentrieren innerhalb gesamter Textbreite
-                    new_xpos = (textl / 2) - (tlaeng / 2) + xpos;
+                    new_xpos = textl / 2 - tlaeng / 2 + xpos;
                 }
             }
 
@@ -141,7 +141,7 @@ public class Imagefont {
                     String teil = "";
 
                     // String bis zum Ende bzw. zum naechsten Dollarzeichen umkopieren
-                    for (int j = (i + 1); j < laenge; j++) {
+                    for (int j = i + 1; j < laenge; j++) {
                         if (str.charAt(j) != 36) {
                             teil += str.charAt(j);
                         } else {
@@ -153,7 +153,7 @@ public class Imagefont {
                     int tlaeng = LineLength(teil);
 
                     // Teilstring zentrieren innerhalb gesamter Textbreite
-                    new_xpos = (textl / 2) - (tlaeng / 2) + xpos;
+                    new_xpos = textl / 2 - tlaeng / 2 + xpos;
                 } else {
                     // Linksbuendig, also sehr einfach :-)
                     new_xpos = xpos;
@@ -234,7 +234,7 @@ public class Imagefont {
 
                 // Bild im Cache suchen
                 for (int u = 1; u < GROESSE; u++) {
-                    if ((Inhalt[u][1] == ch) && (Inhalt[u][2] == Farbe)) {
+                    if (Inhalt[u][1] == ch && Inhalt[u][2] == Farbe) {
                         tmp = u;
                         break;
                     }
@@ -485,14 +485,14 @@ public class Imagefont {
         int laenge = LineLength(Text);
 
         // zentrierte x - Position ermitteln
-        int x = posit.x - (laenge / 2);
+        int x = posit.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
-        if (x < (mainFrame.scrollx + 15)) {
+        if (x < mainFrame.scrollx + 15) {
             x = mainFrame.scrollx + 15;
         }
 
-        if ((x + laenge) > (mainFrame.scrollx + 625)) {
+        if (x + laenge > mainFrame.scrollx + 625) {
             x = mainFrame.scrollx + 625 - laenge;
         }
 
@@ -502,7 +502,7 @@ public class Imagefont {
         // Redelaenge festlegen
         RedeLaenge(Text);
 
-        return (new GenericPoint(x, y));
+        return new GenericPoint(x, y);
     }
 
     // Routine zum Festlegen des TalkCount - Zaehlers
@@ -512,7 +512,7 @@ public class Imagefont {
 
         for (int i = 0; i < laenge; i++) {
             int ch = Text.charAt(i);
-            if ((ch != 36) && (ch != 32) && (ch != 35)) {
+            if (ch != 36 && ch != 32 && ch != 35) {
                 zaehle++;
             }
         }
@@ -543,7 +543,7 @@ public class Imagefont {
         Borderrect tmp = mainFrame.krabat.KrabatRect();
 
         // Default : Abstand der letzten Zeile ist 25 Pixel von Krabat
-        int ypos = tmp.lo_point.y - (2 * ABSTAND);
+        int ypos = tmp.lo_point.y - 2 * ABSTAND;
         int xpos = (tmp.lo_point.x + tmp.ru_point.x) / 2;
 
         GenericPoint KraPoint = CenterText(Text, new GenericPoint(xpos, ypos));
@@ -562,14 +562,14 @@ public class Imagefont {
         int laenge = LineLength(Text);
 
         // zentrierte x - Position ermitteln
-        int x = posit.x - (laenge / 2);
+        int x = posit.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
-        if (x < (mainFrame.scrollx + 15)) {
+        if (x < mainFrame.scrollx + 15) {
             x = mainFrame.scrollx + 15;
         }
 
-        if ((x + laenge) > (mainFrame.scrollx + 625)) {
+        if (x + laenge > mainFrame.scrollx + 625) {
             x = mainFrame.scrollx + 625 - laenge;
         }
 
@@ -579,7 +579,7 @@ public class Imagefont {
         // Redelaenge festlegen
         // RedeLaenge (Text);
 
-        return (new GenericPoint(x, y));
+        return new GenericPoint(x, y);
     }
 
     // Teile String in so viele Teile, dass die auf Bildschirm passen - moeglichst obere Zeile laenger...
@@ -633,7 +633,7 @@ public class Imagefont {
 
                         // nix veraendern, wenn Ausrufezeichen, Fragezeichen, Punkt oder so an naechster Stelle
                         int chtemp = Eingabe.charAt(i + 1);
-                        if ((chtemp == 33) || (chtemp == 63) || (chtemp == 46) || (chtemp == 45)) {
+                        if (chtemp == 33 || chtemp == 63 || chtemp == 46 || chtemp == 45) {
                             laenge += SPACE;
                             Teil = Teil + (char) ch;
                         } else {

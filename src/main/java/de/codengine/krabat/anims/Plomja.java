@@ -57,7 +57,7 @@ public class Plomja extends Mainanim {
 
     public void drawPlomja(GenericDrawingContext g, GenericPoint posit) {
         int zuffi = (int) Math.round(Math.random() * KONSTANTE);
-        if ((zuffi < 5) || (isDrawing)) {
+        if (zuffi < 5 || isDrawing) {
             g.drawImage(Feuer[Counter], posit.x, posit.y, null);
             Counter++;
             if (Counter == 8) {

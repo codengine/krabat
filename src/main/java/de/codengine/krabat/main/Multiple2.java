@@ -63,12 +63,12 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
     public void ExtendMC(String text, int Aktiv, int Gefragt, int[] Nachfolger, int nextActionID) {
         // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
-        if ((Aktiv < 1000) && (!mainFrame.Actions[Aktiv])) {
+        if (Aktiv < 1000 && !mainFrame.Actions[Aktiv]) {
             return;
         }
 
         // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
-        if ((Gefragt < 1000) && (mainFrame.Actions[Gefragt])) {
+        if (Gefragt < 1000 && mainFrame.Actions[Gefragt]) {
             return;
         }
 
@@ -81,11 +81,11 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         // Rectangle je nach Position des Textes festlegen
         // 1. Rectangle extra
         if (Anzahl == 0) {
-            Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
+            Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + (mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
         } else {
             // folgende Rects immer anschliessend
             int temp = Positionen[Anzahl - 1].getY() + Positionen[Anzahl - 1].getHeight();
-            Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
+            Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + (mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
         }
 
         // nextActionID merken (wird zurueckgegeben bei Erfolg)
@@ -122,11 +122,11 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
 
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
-                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
+                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
                             Positionen[i].getX() + mainFrame.scrollx + 30,
                             Positionen[i].getY() + mainFrame.scrolly + 10, 1);
                 } else {
-                    mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
+                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
                             Positionen[i].getX() + mainFrame.scrollx + 30,
                             Positionen[i].getY() + mainFrame.scrolly + 10, 0xff00b000);
                 }
@@ -137,7 +137,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         }
 
         if (oldsel != -1) {
-            mainFrame.ifont.drawString(g, ("$" + Fragen[oldsel]),
+            mainFrame.ifont.drawString(g, "$" + Fragen[oldsel],
                     Positionen[oldsel].getX() + mainFrame.scrollx + 30,
                     Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
         }
@@ -146,7 +146,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         }
 
         if (selected != -1) {
-            mainFrame.ifont.drawString(g, ("$" + Fragen[selected]),
+            mainFrame.ifont.drawString(g, "$" + Fragen[selected],
                     Positionen[selected].getX() + mainFrame.scrollx + 30,
                     Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
         }

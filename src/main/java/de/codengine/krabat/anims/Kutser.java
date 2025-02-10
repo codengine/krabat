@@ -72,9 +72,9 @@ public class Kutser extends Mainanim {
     // Zeichne Dundak, wie er dasteht oder spricht
     public void drawKutser(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, boolean isListening) {
         // beim Reden
-        if ((TalkPerson == 39) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 39 && mainFrame.talkCount > 1) {
             // Head evaluieren
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 6.9);
             }

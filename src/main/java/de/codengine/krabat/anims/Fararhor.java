@@ -82,8 +82,8 @@ public class Fararhor extends Mainanim {
     // Zeichne Mutter, wie sie dasteht oder spricht
     public void drawFarar(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
         // Farar beim Reden zeichnen
-        if ((TalkPerson == 37) && (mainFrame.talkCount > 1)) {
-            if ((--Notalk) < 1) {
+        if (TalkPerson == 37 && mainFrame.talkCount > 1) {
+            if (--Notalk < 1) {
                 Notalk = MAX_NOTALK;
                 nTemp = (int) Math.round(Math.random() * 7);
                 nTemp++;

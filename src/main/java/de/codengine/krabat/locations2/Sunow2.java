@@ -241,7 +241,7 @@ public class Sunow2 extends Mainloc2 {
             g.drawImage(background, 0, 0, null);
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -268,7 +268,7 @@ public class Sunow2 extends Mainloc2 {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -313,7 +313,7 @@ public class Sunow2 extends Mainloc2 {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -324,7 +324,7 @@ public class Sunow2 extends Mainloc2 {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -369,7 +369,7 @@ public class Sunow2 extends Mainloc2 {
                 }
 
                 // ausreden fuer Schoenau
-                if ((sunowRect.IsPointInRect(pTemp)) && (!obererAusgang.IsPointInRect(pTemp))) {
+                if (sunowRect.IsPointInRect(pTemp) && !obererAusgang.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                             nextActionID = 200;
@@ -446,7 +446,7 @@ public class Sunow2 extends Mainloc2 {
                     }
                 }
 
-                if ((sunowRect.IsPointInRect(pTemp)) && (!obererAusgang.IsPointInRect(pTemp))) {
+                if (sunowRect.IsPointInRect(pTemp) && !obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     mainFrame.repaint();
                     return;
@@ -493,7 +493,7 @@ public class Sunow2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -505,14 +505,14 @@ public class Sunow2 extends Mainloc2 {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (sunowRect.IsPointInRect(pTemp)) || (tmp.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = sunowRect.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -529,7 +529,7 @@ public class Sunow2 extends Mainloc2 {
                 return;
             }
 
-            if ((sunowRect.IsPointInRect(pTemp)) && (!obererAusgang.IsPointInRect(pTemp))) {
+            if (sunowRect.IsPointInRect(pTemp) && !obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -561,7 +561,7 @@ public class Sunow2 extends Mainloc2 {
         GenericPoint pTemp = new GenericPoint(pTxxx.x, pTxxx.y);
 
         // vom Tal auf den Berg???
-        if ((isTal) && (pTemp.y > 277)) {
+        if (isTal && pTemp.y > 277) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 600;
@@ -580,8 +580,8 @@ public class Sunow2 extends Mainloc2 {
             System.out.println(teil);
 
             // Punkte waehrend Berglauf berechnen
-            Endpunkt = new GenericPoint((int) (BergTrapez.x1 + ((BergTrapez.x2 - BergTrapez.x1) * teil)), BergTrapez.y1);
-            Wendepunkt = new GenericPoint(((pTemp.x + Endpunkt.x) / 2), 366);
+            Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
+            Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 366);
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
@@ -590,7 +590,7 @@ public class Sunow2 extends Mainloc2 {
         }
 
         // vom Berg ins Tal ??
-        if ((!isTal) && (pTemp.y < 278)) {
+        if (!isTal && pTemp.y < 278) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 610;
@@ -611,13 +611,13 @@ public class Sunow2 extends Mainloc2 {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg
-                pTemp = new GenericPoint(((BergTrapez.x1 + BergTrapez.x2) / 2), BergTrapez.y1);
+                pTemp = new GenericPoint((BergTrapez.x1 + BergTrapez.x2) / 2, BergTrapez.y1);
                 teal = 0.5f;
             }
 
             // Punkte waehrend Berglauf berechnen
-            Endpunkt = new GenericPoint((int) (TalTrapez.x3 + ((TalTrapez.x4 - TalTrapez.x3) * teal)), TalTrapez.y2);
-            Wendepunkt = new GenericPoint(((pTemp.x + Endpunkt.x) / 2), 366);
+            Endpunkt = new GenericPoint((int) (TalTrapez.x3 + (TalTrapez.x4 - TalTrapez.x3) * teal), TalTrapez.y2);
+            Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 366);
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
@@ -689,13 +689,13 @@ public class Sunow2 extends Mainloc2 {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -708,7 +708,7 @@ public class Sunow2 extends Mainloc2 {
         // System.out.println("NextAction : " + nextActionID);
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -798,7 +798,7 @@ public class Sunow2 extends Mainloc2 {
                 Berglauf = false;
                 Cursorform = 200;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                isTal = !(isTal);
+                isTal = !isTal;
                 InitMatrix();
                 nextActionID = oldActionID;
                 mainFrame.wegGeher.SetzeNeuenWeg(Merkpunkt);

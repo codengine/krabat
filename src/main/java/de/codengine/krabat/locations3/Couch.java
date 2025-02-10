@@ -162,7 +162,7 @@ public class Couch extends Mainloc {
             int hoch = 100 - scale;
 
             // Breite abhaengig von Hoehe...
-            int weit = 50 - (scale / 2);
+            int weit = 50 - scale / 2;
 
             hier.x -= weit / 2;
             hier.y -= hoch;
@@ -190,7 +190,7 @@ public class Couch extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -247,12 +247,12 @@ public class Couch extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -386,8 +386,8 @@ public class Couch extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((untererAusgang.IsPointInRect(pTemp)) ||
-                        (rechterAusgang.IsPointInRect(pTemp))) {
+                if (untererAusgang.IsPointInRect(pTemp) ||
+                        rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -419,7 +419,7 @@ public class Couch extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -431,16 +431,16 @@ public class Couch extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (durje.IsPointInRect(pTemp)) ||
-                    (couch.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    durje.IsPointInRect(pTemp) ||
+                    couch.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -448,8 +448,8 @@ public class Couch extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((durje.IsPointInRect(pTemp)) ||
-                    (couch.IsPointInRect(pTemp))) {
+            if (durje.IsPointInRect(pTemp) ||
+                    couch.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -547,14 +547,14 @@ public class Couch extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt,
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -562,7 +562,7 @@ public class Couch extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -656,7 +656,7 @@ public class Couch extends Mainloc {
 
             case 76:
                 // bisschen warten, bevor Sound
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 mainFrame.wave.PlayFile("sfx-dd/gebuesch.wav");
@@ -666,7 +666,7 @@ public class Couch extends Mainloc {
 
             case 77:
                 // warten und Locationswitch
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 NeuesBild(126, locationID);

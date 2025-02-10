@@ -274,7 +274,7 @@ public class Mlyn1 extends Mainloc {
 
         // Anim zeichnen, da stets im Hintergrund
         if (mainFrame.isAnim) {
-            if ((--Verhinderrad) < 1) {
+            if (--Verhinderrad < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
                 if (Radcount == 21) {
@@ -288,7 +288,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Mueller bewegen
-        if ((showPersonen) && (!walkReady)) {
+        if (showPersonen && !walkReady) {
             // Mueller um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = mueller.Move();
         }
@@ -305,7 +305,7 @@ public class Mlyn1 extends Mainloc {
             // Zeichne ihn jetzt
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -319,11 +319,11 @@ public class Mlyn1 extends Mainloc {
             }
 
             // redender Krabat
-            if ((mainFrame.talkCount > 0) && (TalkPerson == 1)) {
+            if (mainFrame.talkCount > 0 && TalkPerson == 1) {
                 mainFrame.krabat.talkKrabat(g);
             } else {
                 // beschreibender Krabat
-                if ((mainFrame.talkCount > 0) && (TalkPerson == 3)) {
+                if (mainFrame.talkCount > 0 && TalkPerson == 3) {
                     mainFrame.krabat.describeKrabat(g);
                 }
                 // rumstehender Krabat
@@ -382,7 +382,7 @@ public class Mlyn1 extends Mainloc {
             }
         }
 
-        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+        if (mainFrame.talkCount < 1 && TalkPause > 0) {
             TalkPause--;
         }
 
@@ -395,7 +395,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
             DoAction();
         }
     }
@@ -439,8 +439,8 @@ public class Mlyn1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 

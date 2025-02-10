@@ -201,7 +201,7 @@ public class Kupa1 extends Mainloc {
         int AnzahlStriche = 1;
 
         for (int i = 0; i < Blink.length; i++) {
-            if ((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) > AnzahlStriche) {
+            if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
                 AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
@@ -213,7 +213,7 @@ public class Kupa1 extends Mainloc {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (((Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE) < j) && (j > 0)) {
+                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
@@ -319,7 +319,7 @@ public class Kupa1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -370,12 +370,12 @@ public class Kupa1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -420,16 +420,16 @@ public class Kupa1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz
-                if ((rohodzRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[917]) &&
-                        (mainFrame.Actions[224])) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
+                        mainFrame.Actions[224]) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Prohodz;
                 }
 
                 // Ausreden fuer Schild
-                if ((schildRect.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[224])) {
+                if (schildRect.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[224]) {
                     if (mainFrame.whatItem == 3) {
                         nextActionID = 160;
                         pTemp = Pschild;
@@ -463,15 +463,15 @@ public class Kupa1 extends Mainloc {
                 nextActionID = 0;
 
                 // Rohodz ansehen
-                if ((rohodzRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[917]) &&
-                        (mainFrame.Actions[224])) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
+                        mainFrame.Actions[224]) {
                     nextActionID = 1;
                     pTemp = Prohodz;
                 }
 
                 // Schild ansehen
-                if ((schildRect.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[224])) {
+                if (schildRect.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[224]) {
                     nextActionID = 2;
                     pTemp = Pschild;
                 }
@@ -506,8 +506,8 @@ public class Kupa1 extends Mainloc {
                 }
 
                 // Rohodz nehmen
-                if ((rohodzRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[917]) &&
-                        (mainFrame.Actions[224])) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
+                        mainFrame.Actions[224]) {
                     nextActionID = 50;
                     SetzeNeuenWeg(Prohodz);
                     mainFrame.repaint();
@@ -515,8 +515,8 @@ public class Kupa1 extends Mainloc {
                 }
 
                 // Schild nehmen
-                if ((schildRect.IsPointInRect(pTemp)) &&
-                        (!mainFrame.Actions[224])) {
+                if (schildRect.IsPointInRect(pTemp) &&
+                        !mainFrame.Actions[224]) {
                     nextActionID = 55;
                     SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
@@ -535,7 +535,7 @@ public class Kupa1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -547,16 +547,16 @@ public class Kupa1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || ((rohodzRect.IsPointInRect(pTemp)) &&
-                    (!mainFrame.Actions[917]) && (mainFrame.Actions[224])) ||
-                    ((!mainFrame.Actions[224]) && (schildRect.IsPointInRect(pTemp)));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || rohodzRect.IsPointInRect(pTemp) &&
+                    !mainFrame.Actions[917] && mainFrame.Actions[224] ||
+                    !mainFrame.Actions[224] && schildRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -565,9 +565,9 @@ public class Kupa1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((rohodzRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[917]) &&
-                    (mainFrame.Actions[224])) || ((schildRect.IsPointInRect(pTemp)) &&
-                    (!mainFrame.Actions[224]))) {
+            if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
+                    mainFrame.Actions[224] || schildRect.IsPointInRect(pTemp) &&
+                    !mainFrame.Actions[224]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -606,7 +606,7 @@ public class Kupa1 extends Mainloc {
         if (dst.x < 262) {
             return dst;
         } else {
-            return (new GenericPoint(dst.x, Carray[dst.x - 262] + 2));
+            return new GenericPoint(dst.x, Carray[dst.x - 262] + 2);
         }
     }
 
@@ -616,25 +616,25 @@ public class Kupa1 extends Mainloc {
             return dst;
         }
         if (dst.x > 445) {
-            return (new GenericPoint(dst.x, 350));
+            return new GenericPoint(dst.x, 350);
         }
         if (dst.x > 424) {
-            return (new GenericPoint(dst.x, 352));
+            return new GenericPoint(dst.x, 352);
         }
         if (dst.x > 411) {
-            return (new GenericPoint(dst.x, 359));
+            return new GenericPoint(dst.x, 359);
         }
 
         // Hier Korrektur, wenn Schild noch nicht in Location
         if (!mainFrame.Actions[224]) {
             if (dst.x < 362) {
-                return (CorrectY(new GenericPoint(362, 300)));
+                return CorrectY(new GenericPoint(362, 300));
             }
         }
         if (dst.x < 262) {
             return dst; //(new GenericPoint (262, 363));
         }
-        return (new GenericPoint(dst.x, Carray[dst.x - 262] + 2));
+        return new GenericPoint(dst.x, Carray[dst.x - 262] + 2);
     }
 
     // dieses Event nicht beachten
@@ -710,15 +710,15 @@ public class Kupa1 extends Mainloc {
                 // nur bearbeiten, falls der Eintrag nicht gesperrt ist
                 if (MerkArray[i][j][2] > -1) {
                     // ein leeres Feld bekommt einen neuen Eintrag zugewiesen
-                    if ((MerkArray[i][j][0] == 0) && (MerkArray[i][j][1] == 0)) {
+                    if (MerkArray[i][j][0] == 0 && MerkArray[i][j][1] == 0) {
                         // gewisse Haeufigkeit fuer Neubelegung festlegen
                         int zuffZahl = (int) Math.round(Math.random() * 50);
                         if (zuffZahl > 25) {
                             // Werte fuer Zufallsgenerator berechnen
-                            int xlaenge = ((Blink[i].x2 > Blink[i].x4) ? Blink[i].x2 : Blink[i].x4)
-                                    - ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+                            int xlaenge = (Blink[i].x2 > Blink[i].x4 ? Blink[i].x2 : Blink[i].x4)
+                                    - (Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3);
                             int ylaenge = Blink[i].y2 - Blink[i].y1;
-                            int xoffset = ((Blink[i].x1 < Blink[i].x3) ? Blink[i].x1 : Blink[i].x3);
+                            int xoffset = Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3;
 
                             // ungueltige Werte nicht beachten
                             do {
@@ -730,7 +730,7 @@ public class Kupa1 extends Mainloc {
                     }
 
                     // wenn der Eintrag gueltig ist, dann auch zeichnen
-                    if ((MerkArray[i][j][0] != 0) && (MerkArray[i][j][1] != 0)) {
+                    if (MerkArray[i][j][0] != 0 && MerkArray[i][j][1] != 0) {
                         // den Eintrag zeichnen
                         switch (MerkArray[i][j][2]) {
                             case 0: // Ein Punkt
@@ -777,13 +777,13 @@ public class Kupa1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -794,7 +794,7 @@ public class Kupa1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

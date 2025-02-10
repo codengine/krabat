@@ -130,7 +130,7 @@ public class Hoscenc1 extends Mainloc {
         strolchPoint = new GenericPoint(529, 350);
 
         StrolchTalk = new GenericPoint();
-        StrolchTalk.x = strolchPoint.x + (Dundak.Breite / 2);
+        StrolchTalk.x = strolchPoint.x + Dundak.Breite / 2;
         StrolchTalk.y = strolchPoint.y - 50;
 
         brStrolch = new Borderrect(strolchPoint.x, strolchPoint.y, strolchPoint.x + Dundak.Breite, strolchPoint.y + Dundak.Hoehe);
@@ -140,7 +140,7 @@ public class Hoscenc1 extends Mainloc {
         saeuferPoint = new GenericPoint(265, 262);
 
         SaeuferTalk = new GenericPoint();
-        SaeuferTalk.x = saeuferPoint.x + (Pjany.Breite / 2);
+        SaeuferTalk.x = saeuferPoint.x + Pjany.Breite / 2;
         SaeuferTalk.y = saeuferPoint.y - 78;  // war 50, hat Strolchtext gestoert
 
         brSaeufer = new Borderrect(saeuferPoint.x, saeuferPoint.y, saeuferPoint.x + Pjany.Breite, saeuferPoint.y + Pjany.Hoehe);
@@ -300,7 +300,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Korcmar bewegen
-        if ((showKorcmar) && (!walkReady)) {
+        if (showKorcmar && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = wirt.Move();
         }
@@ -313,7 +313,7 @@ public class Hoscenc1 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Wirt neu
-            if ((TalkPerson == 25) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 25 && mainFrame.talkCount > 1) {
                 wirt.talkKorcmar(g);
             } else {
                 wirt.drawKorcmar(g);
@@ -336,7 +336,7 @@ public class Hoscenc1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -368,7 +368,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Ausgabe von AnimText, falls noetig
-        if ((AnimOutputText != "") && (!AnimMCLocked)) {
+        if (AnimOutputText != "" && !AnimMCLocked) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
@@ -397,7 +397,7 @@ public class Hoscenc1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -409,12 +409,12 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Die Anims muessen bedient werden
-        if ((AnimID != 0) && (!AnimMCLocked)) {
+        if (AnimID != 0 && !AnimMCLocked) {
             DoAnims();
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -539,7 +539,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Ausreden fuer Honck
-                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
+                if (honckRect.IsPointInRect(pTemp) && !mainFrame.Actions[902]) {
                     // Extra - Sinnloszeug
                     nextActionID = 165;
                     pTemp = Phonck;
@@ -580,7 +580,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Honck ansehen
-                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
+                if (honckRect.IsPointInRect(pTemp) && !mainFrame.Actions[902]) {
                     nextActionID = 4;
                     pTemp = Phonck;
                 }
@@ -655,7 +655,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Honck nehmen
-                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
+                if (honckRect.IsPointInRect(pTemp) && !mainFrame.Actions[902]) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Phonck);
                     mainFrame.repaint();
@@ -715,7 +715,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -727,18 +727,18 @@ public class Hoscenc1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (brSaeufer.IsPointInRect(pTemp)) || (brStrolch.IsPointInRect(pTemp)) ||
-                    ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) ||
-                    (wobraz1Rect.IsPointInRect(pTemp)) || (wobraz2Rect.IsPointInRect(pTemp)) ||
-                    (stolcRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    brSaeufer.IsPointInRect(pTemp) || brStrolch.IsPointInRect(pTemp) ||
+                    honckRect.IsPointInRect(pTemp) && !mainFrame.Actions[902] ||
+                    wobraz1Rect.IsPointInRect(pTemp) || wobraz2Rect.IsPointInRect(pTemp) ||
+                    stolcRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -747,11 +747,11 @@ public class Hoscenc1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((brSaeufer.IsPointInRect(pTemp)) ||
-                    (brStrolch.IsPointInRect(pTemp)) || ((honckRect.IsPointInRect(pTemp)) &&
-                    (!mainFrame.Actions[902])) ||
-                    (wobraz1Rect.IsPointInRect(pTemp)) || (wobraz2Rect.IsPointInRect(pTemp)) ||
-                    (stolcRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp))) {
+            if (brSaeufer.IsPointInRect(pTemp) ||
+                    brStrolch.IsPointInRect(pTemp) || honckRect.IsPointInRect(pTemp) &&
+                    !mainFrame.Actions[902] ||
+                    wobraz1Rect.IsPointInRect(pTemp) || wobraz2Rect.IsPointInRect(pTemp) ||
+                    stolcRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -849,13 +849,13 @@ public class Hoscenc1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -866,7 +866,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -961,12 +961,12 @@ public class Hoscenc1 extends Mainloc {
 
             case 58:
                 // Ende Honcktakeanim
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     // auf Gleichzeitigkeit Handwegnehmen und Gegenstand weg trimmen
                     mainFrame.Actions[902] = true;
                     mainFrame.Clipset = false;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 nextActionID = 0;

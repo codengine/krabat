@@ -97,14 +97,14 @@ public class BurMichal extends Mainanim {
     // Zeichne Michal, wie er dasteht oder spricht
     public void drawMichal(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos, boolean isListening) {
         // wenn Hanza spricht, schaut Michal auf sie
-        if ((TalkPerson == 29) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 29 && mainFrame.talkCount > 1) {
             offGraph.drawImage(bur_look, pos.x, pos.y, null);
             return;
         }
 
         // Michal spricht
-        if ((TalkPerson == 28) && (mainFrame.talkCount > 1)) {
-            if ((--Verhindertalk) < 1) {
+        if (TalkPerson == 28 && mainFrame.talkCount > 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 6.9);
             }
@@ -124,7 +124,7 @@ public class BurMichal extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(((Listen == 0) ? bur_talk[0] : bur_work[1]), pos.x, pos.y, null);
+            offGraph.drawImage(Listen == 0 ? bur_talk[0] : bur_work[1], pos.x, pos.y, null);
             return;
         }
 
@@ -134,7 +134,7 @@ public class BurMichal extends Mainanim {
             Work = 0;
         } else {
             // Weiterarbeiten
-            if ((--Verhinderwork) < 1) {
+            if (--Verhinderwork < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
 
                 switch (Work) {
@@ -154,7 +154,7 @@ public class BurMichal extends Mainanim {
                         }
                         break;
                     case 4: // letzter Arbeitsschritt
-                        if ((!mainFrame.inventory.noBackgroundSound) || (!mainFrame.invCursor)) {
+                        if (!mainFrame.inventory.noBackgroundSound || !mainFrame.invCursor) {
                             mainFrame.wave.PlayFile("sfx/nepl.wav");
                         }
                         Work = 5;
@@ -166,7 +166,7 @@ public class BurMichal extends Mainanim {
             } else {
                 // wenn erlaubt, dann Zwinkern evaluieren
                 int zuff = (int) (Math.random() * 50);
-                if ((zuff > 45) && (Work == 0)) {
+                if (zuff > 45 && Work == 0) {
                     Work = 1;
                 }
             }

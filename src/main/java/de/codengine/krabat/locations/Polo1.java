@@ -92,11 +92,11 @@ public class Polo1 extends Mainloc {
     private void evalPersons() {
         michalRect = new Borderrect(michalPoint.x, michalPoint.y, michalPoint.x + BurMichal.Breite, michalPoint.y + BurMichal.Hoehe);
 
-        michalTalk = new GenericPoint(michalPoint.x + (BurMichal.Breite / 2), michalPoint.y - 50);
+        michalTalk = new GenericPoint(michalPoint.x + BurMichal.Breite / 2, michalPoint.y - 50);
 
         hanzaRect = new Borderrect(hanzaPoint.x, hanzaPoint.y, hanzaPoint.x + BurHanza.Breite, hanzaPoint.y + BurHanza.Hoehe);
 
-        hanzaTalk = new GenericPoint(hanzaPoint.x + (BurHanza.Breite / 2), hanzaPoint.y - 50);
+        hanzaTalk = new GenericPoint(hanzaPoint.x + BurHanza.Breite / 2, hanzaPoint.y - 50);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -243,7 +243,7 @@ public class Polo1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -295,7 +295,7 @@ public class Polo1 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -307,7 +307,7 @@ public class Polo1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -359,7 +359,7 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Ausreden fuer Hanza
-                if ((hanzaRect.IsPointInRect(pTemp)) && (!michalRect.IsPointInRect(pTemp))) {
+                if (hanzaRect.IsPointInRect(pTemp) && !michalRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 200;
@@ -391,7 +391,7 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Ausreden fuer Kamuski
-                if ((kamuskiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[912])) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
                     switch (mainFrame.whatItem) {
                         case 17: // rohodz
                             nextActionID = 220;
@@ -426,7 +426,7 @@ public class Polo1 extends Mainloc {
                 nextActionID = 0;
 
                 // Kamuski ansehen
-                if ((kamuskiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[912])) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
                     nextActionID = 3;
                     pTemp = Pkamuski;
                 }
@@ -470,7 +470,7 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Hanza ansehen
-                if ((hanzaRect.IsPointInRect(pTemp)) || (michalRect.IsPointInRect(pTemp))) {
+                if (hanzaRect.IsPointInRect(pTemp) || michalRect.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pburja;
                 }
@@ -491,7 +491,7 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Mit den Bauern reden
-                if ((michalRect.IsPointInRect(pTemp)) || (hanzaRect.IsPointInRect(pTemp))) {
+                if (michalRect.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pburja);
                     mainFrame.repaint();
@@ -499,7 +499,7 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Kamuski nehmen
-                if ((kamuskiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[912])) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pkamuski);
                     mainFrame.repaint();
@@ -524,7 +524,7 @@ public class Polo1 extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -536,16 +536,16 @@ public class Polo1 extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (hanzaRect.IsPointInRect(pTemp)) ||
-                    (michalRect.IsPointInRect(pTemp)) || ((kamuskiRect.IsPointInRect(pTemp)) &&
-                    (!mainFrame.Actions[912]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp) ||
+                    michalRect.IsPointInRect(pTemp) || kamuskiRect.IsPointInRect(pTemp) &&
+                    !mainFrame.Actions[912];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -554,9 +554,9 @@ public class Polo1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((hanzaRect.IsPointInRect(pTemp)) ||
-                    (michalRect.IsPointInRect(pTemp)) ||
-                    ((kamuskiRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[912]))) {
+            if (hanzaRect.IsPointInRect(pTemp) ||
+                    michalRect.IsPointInRect(pTemp) ||
+                    kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -661,13 +661,13 @@ public class Polo1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -678,7 +678,7 @@ public class Polo1 extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

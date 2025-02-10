@@ -39,11 +39,11 @@ public class GenericRectangle {
     }
 
     public int getWidth() {
-        return (rectangleImpl.ru_point.x - rectangleImpl.lo_point.x);
+        return rectangleImpl.ru_point.x - rectangleImpl.lo_point.x;
     }
 
     public int getHeight() {
-        return (rectangleImpl.ru_point.y - rectangleImpl.lo_point.y);
+        return rectangleImpl.ru_point.y - rectangleImpl.lo_point.y;
     }
 
     public boolean contains(GenericPoint pTemp) {

@@ -79,8 +79,8 @@ public class Pinca2 extends Mainloc {
 
         pfarrer = new Farar(mainFrame);
         Pfarar = new GenericPoint();
-        Pfarar.x = Pfar.x - (Farar.Breite / 2);
-        Pfarar.y = Pfar.y - (Farar.Hoehe);
+        Pfarar.x = Pfar.x - Farar.Breite / 2;
+        Pfarar.y = Pfar.y - Farar.Hoehe;
 
         fararTalk = new GenericPoint();
         fararTalk.x = Pfar.x;
@@ -160,7 +160,7 @@ public class Pinca2 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -207,12 +207,12 @@ public class Pinca2 extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -255,8 +255,8 @@ public class Pinca2 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 

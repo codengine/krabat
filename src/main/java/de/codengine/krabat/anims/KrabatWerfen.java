@@ -71,7 +71,7 @@ public class KrabatWerfen extends Mainanim {
         int tHelper = (int) helper;
 
         // Links-Oben-Pos berechnen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        int x = pos.x - ((CWIDTH - tHelper) / 2);
+        int x = pos.x - (CWIDTH - tHelper) / 2;
         int y = pos.y - (CHEIGHT - tHelper);
 
         // Krabat beim Schiessen zeichnen
@@ -81,7 +81,7 @@ public class KrabatWerfen extends Mainanim {
         boolean zurueck = true;
 
         // Warteschleife fuer das Weiterschalten des Images
-        if ((--Verhinderwerfen) < 1) {
+        if (--Verhinderwerfen < 1) {
             Verhinderwerfen = MAX_VERHINDERWERFEN;
             BildIndex++;
 
@@ -99,12 +99,12 @@ public class KrabatWerfen extends Mainanim {
                                 zurueck = false;
                             }*/
             }
-            if ((Umlaeufe == 0) && (BildIndex == 3)) {
+            if (Umlaeufe == 0 && BildIndex == 3) {
                 zurueck = false;
             }
         }
 
         // Bei true = weitermachen / false = fertig
-        return (zurueck);
+        return zurueck;
     }
 }    

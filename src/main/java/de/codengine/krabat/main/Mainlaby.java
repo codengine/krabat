@@ -62,7 +62,7 @@ abstract public class Mainlaby extends Mainloc {
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitLeft.length; i++) {
-                if ((zuffi == BludExitLeft[i]) && (locIndex != zuffi)) {
+                if (zuffi == BludExitLeft[i] && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -77,7 +77,7 @@ abstract public class Mainlaby extends Mainloc {
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitRight.length; i++) {
-                if ((zuffi == BludExitRight[i]) && (locIndex != zuffi)) {
+                if (zuffi == BludExitRight[i] && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -92,7 +92,7 @@ abstract public class Mainlaby extends Mainloc {
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitUp.length; i++) {
-                if ((zuffi == BludExitUp[i]) && (locIndex != zuffi)) {
+                if (zuffi == BludExitUp[i] && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -107,7 +107,7 @@ abstract public class Mainlaby extends Mainloc {
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitDown.length; i++) {
-                if ((zuffi == BludExitDown[i]) && (locIndex != zuffi)) {
+                if (zuffi == BludExitDown[i] && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -128,17 +128,17 @@ abstract public class Mainlaby extends Mainloc {
     public int BerechneAusgang(boolean oben, boolean unten, boolean links, boolean rechts) {
         do {
             int zuffi = (int) Math.round(Math.random() * 120);
-            if ((zuffi < 30) && (oben)) {
-                return (12);
+            if (zuffi < 30 && oben) {
+                return 12;
             }
-            if ((zuffi >= 30) && (zuffi < 60) && (unten)) {
-                return (6);
+            if (zuffi >= 30 && zuffi < 60 && unten) {
+                return 6;
             }
-            if ((zuffi >= 60) && (zuffi < 90) && (links)) {
-                return (9);
+            if (zuffi >= 60 && zuffi < 90 && links) {
+                return 9;
             }
-            if ((zuffi >= 90) && (rechts)) {
-                return (3);
+            if (zuffi >= 90 && rechts) {
+                return 3;
             }
         }
         while (true);
@@ -151,7 +151,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if ((!mainFrame.Actions[236]) && (!mainFrame.Actions[235])) {
+        if (!mainFrame.Actions[236] && !mainFrame.Actions[235]) {
             // System.out.println ("Noch kein Blinkern da");
 
             int i = 240;
@@ -184,7 +184,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if ((!blink) && (mainFrame.Actions[236])) {
+        if (!blink && mainFrame.Actions[236]) {
             System.out.println("Es wurde der richtige Weg verlassen");
 
 
@@ -208,7 +208,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if ((blink) && (mainFrame.Actions[236])) {
+        if (blink && mainFrame.Actions[236]) {
             System.out.println("Der richtige Weg wurde befolgt");
 
             // wir sind ja jetzt auf dem richtigen Weg...
@@ -416,10 +416,10 @@ abstract public class Mainlaby extends Mainloc {
                 nextActionID = Dialog.ActionID;
 
                 // Fragen zurueckschalten, wegen loop "Pytam #Kertowski mlyn."
-                if ((mainFrame.Actions[183]) && (nextActionID == 630)) {
+                if (mainFrame.Actions[183] && nextActionID == 630) {
                     mainFrame.Actions[183] = false;
                 }
-                if ((mainFrame.Actions[196]) && (nextActionID == 640)) {
+                if (mainFrame.Actions[196] && nextActionID == 640) {
                     mainFrame.Actions[196] = false;
                 }
 
@@ -492,8 +492,8 @@ abstract public class Mainlaby extends Mainloc {
                 mainFrame.Actions[186] = false;
 
                 // hier testen, ob Fragen zurueckgestellt werden sollen
-                if ((!mainFrame.Actions[195]) || (!mainFrame.Actions[196]) ||
-                        (!mainFrame.Actions[182]) || (!mainFrame.Actions[183])) {
+                if (!mainFrame.Actions[195] || !mainFrame.Actions[196] ||
+                        !mainFrame.Actions[182] || !mainFrame.Actions[183]) {
                     mainFrame.Actions[196] = false;
                     mainFrame.Actions[182] = false;
                     mainFrame.Actions[183] = false;

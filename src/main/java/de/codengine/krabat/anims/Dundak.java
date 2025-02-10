@@ -105,15 +105,15 @@ public class Dundak extends Mainanim {
     // Zeichne Dundak, wie er dasteht oder spricht
     public void drawDundak(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, int noSound) {
         // beim Reden
-        if ((TalkPerson == 24) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 24 && mainFrame.talkCount > 1) {
             // Head evaluieren
-            if ((--Verhinderhead) < 1) {
+            if (--Verhinderhead < 1) {
                 Verhinderhead = MAX_VERHINDERHEAD;
                 Head = (int) (Math.random() * 6.9);
             }
 
             // Body evaluieren
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) (Math.random() * 3.9);
             }
@@ -126,7 +126,7 @@ public class Dundak extends Mainanim {
 
         } else {
             // beim Rumstehen
-            if ((--Verhinderstand) < 1) {
+            if (--Verhinderstand < 1) {
                 Verhinderstand = MAX_VERHINDERSTAND;
                 Stand++;
                 if (Stand == 4) {
@@ -141,7 +141,7 @@ public class Dundak extends Mainanim {
                     Verhinderstand = 2;
                 }
                 if (Stand == 3) {
-                    Verhinderstand = ((int) ((Math.random() * 30) + 10));
+                    Verhinderstand = (int) (Math.random() * 30 + 10);
                 }
             }
 
@@ -158,7 +158,7 @@ public class Dundak extends Mainanim {
 
         // wenn sonstige Blockaden noetig, dann mit wave.noBackground checken!!!
 
-        if ((mainFrame.inventory.noBackgroundSound) && (mainFrame.invCursor)) {
+        if (mainFrame.inventory.noBackgroundSound && mainFrame.invCursor) {
             return; // bei Problemen mit dem Soundsystem zurueckspringen
         }
 

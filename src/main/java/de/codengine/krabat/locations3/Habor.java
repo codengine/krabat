@@ -85,7 +85,7 @@ public class Habor extends Mainloc {
 
         // Berechnung der Position usw.
         gonzalesPoint = new GenericPoint();
-        gonzalesPoint.x = gonzalesFeet.x - (Gonzales.Breite / 2);
+        gonzalesPoint.x = gonzalesFeet.x - Gonzales.Breite / 2;
         gonzalesPoint.y = gonzalesFeet.y - Gonzales.Hoehe;
 
         talkPoint = new GenericPoint();
@@ -215,7 +215,7 @@ public class Habor extends Mainloc {
         if (whichShip == 2) {
             g.drawImage(boota, 175, 230, null);
         }
-        if ((whichShip == 1) || (whichShip == 2)) {
+        if (whichShip == 1 || whichShip == 2) {
             g.drawImage(steg, 146, 255, null);
         }
 
@@ -244,7 +244,7 @@ public class Habor extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -295,7 +295,7 @@ public class Habor extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -307,7 +307,7 @@ public class Habor extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -367,7 +367,7 @@ public class Habor extends Mainloc {
                 // }
 
                 // Ausreden fuer Gonzales, wenn Kotwica noch nicht da
-                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
+                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.Actions[568]) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pGonzales;
@@ -422,7 +422,7 @@ public class Habor extends Mainloc {
                 }
 
                 // zu Lodz gehen ?, falls noch da (wenn Gonzales weg ist)
-                if ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569])) {
+                if (ausgangLodz.IsPointInRect(pTemp) && mainFrame.Actions[568] && !mainFrame.Actions[569]) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
@@ -442,7 +442,7 @@ public class Habor extends Mainloc {
                 }
 
                 // Gonzales ansehen, falls da
-                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
+                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.Actions[568]) {
                     nextActionID = 1;
                     pTemp = pGonzales;
                 }
@@ -459,7 +459,7 @@ public class Habor extends Mainloc {
                 // rechte Maustaste
 
                 // Mit Gonzales reden
-                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
+                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.Actions[568]) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pGonzales);
                     mainFrame.repaint();
@@ -475,8 +475,8 @@ public class Habor extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangPanorama.IsPointInRect(pTemp)) ||
-                        ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569]))) {
+                if (ausgangPanorama.IsPointInRect(pTemp) ||
+                        ausgangLodz.IsPointInRect(pTemp) && mainFrame.Actions[568] && !mainFrame.Actions[569]) {
                     return;
                 }
 
@@ -498,7 +498,7 @@ public class Habor extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -510,16 +510,16 @@ public class Habor extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) ||
-                    (sudobjaRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    gonzalesRect.IsPointInRect(pTemp) && !mainFrame.Actions[568] ||
+                    sudobjaRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -535,7 +535,7 @@ public class Habor extends Mainloc {
                 return;
             }
 
-            if ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569])) {
+            if (ausgangLodz.IsPointInRect(pTemp) && mainFrame.Actions[568] && !mainFrame.Actions[569]) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 12;
@@ -543,8 +543,8 @@ public class Habor extends Mainloc {
                 return;
             }
 
-            if (((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) ||
-                    (sudobjaRect.IsPointInRect(pTemp))) {
+            if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.Actions[568] ||
+                    sudobjaRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -633,13 +633,13 @@ public class Habor extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -650,7 +650,7 @@ public class Habor extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -895,7 +895,7 @@ public class Habor extends Mainloc {
                 if (Hakencounter == 5) {
                     mainFrame.krabat.nAnimation = 91;
                 }
-                if ((--Hakencounter) > 1) {
+                if (--Hakencounter > 1) {
                     break;
                 }
                 giveHaken = false;

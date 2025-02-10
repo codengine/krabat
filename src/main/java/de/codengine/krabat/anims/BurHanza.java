@@ -80,15 +80,15 @@ public class BurHanza extends Mainanim {
     // Zeichne Hanza, wie er dasteht oder spricht
     public void drawHanza(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
         // Zona beim Reden
-        if ((TalkPerson == 29) && (mainFrame.talkCount > 1)) {
-            if ((--Verhindertalk) < 1) {
+        if (TalkPerson == 29 && mainFrame.talkCount > 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 3.9);
             }
 
             offGraph.drawImage(bur_talk[Talk], pos.x, pos.y, null);
         } else {
-            if ((--Verhinderwork) < 1) {
+            if (--Verhinderwork < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
 
                 Work++;
@@ -100,7 +100,7 @@ public class BurHanza extends Mainanim {
                     int zf = (int) (Math.random() * 50);
                     if (zf < 40) {
                         Work = 0;
-                    } else if ((!mainFrame.inventory.noBackgroundSound) || (!mainFrame.invCursor)) {
+                    } else if (!mainFrame.inventory.noBackgroundSound || !mainFrame.invCursor) {
                         mainFrame.wave.PlayFile("sfx/nepl.wav");
                     }
                 }

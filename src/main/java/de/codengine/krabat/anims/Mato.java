@@ -96,7 +96,7 @@ public class Mato extends Mainanim {
         // Schranke aufmachen
         if (isOpening) {
             // GenericImage evaluieren
-            if ((--Verhinderopen) < 1) {
+            if (--Verhinderopen < 1) {
                 Verhinderopen = MAX_VERHINDEROPEN;
                 if (Open == 0) {
                     Open = 1;
@@ -112,9 +112,9 @@ public class Mato extends Mainanim {
 
 
         // Mato redet
-        if ((TalkPerson == 49) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 49 && mainFrame.talkCount > 1) {
             // GenericImage evaluieren
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 6.9);
             }
@@ -126,7 +126,7 @@ public class Mato extends Mainanim {
         else {
             switch (Wait) {
                 case 0: // Zwinkern oder (selten) umschalten
-                    if ((--Verhinderwait) < 1) {
+                    if (--Verhinderwait < 1) {
                         // Umschalten
                         Verhinderwait = MAX_VERHINDERWAIT;
                         Wait = 2;
@@ -142,7 +142,7 @@ public class Mato extends Mainanim {
                     Wait = 0;
                     break;
                 case 2: // Zwinkern oder (selten) umschalten
-                    if ((--Verhinderwait) < 1) {
+                    if (--Verhinderwait < 1) {
                         // Umschalten
                         Verhinderwait = MAX_VERHINDERWAIT;
                         Wait = 0;
@@ -160,7 +160,7 @@ public class Mato extends Mainanim {
             }
 
             // wenn mit ihm geredet wird, dann nicht wegschauen
-            if ((isListening) && (Wait > 1)) {
+            if (isListening && Wait > 1) {
                 Wait = 0;
             }
 

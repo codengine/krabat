@@ -101,7 +101,7 @@ public class PredMalickow extends Mainanim {
     // PredMalickow beim Rumstehen
     public void drawPredawar(GenericDrawingContext g, boolean isListening) {
         // Wenn der Zeit ist reif, dann mal Gesicht wechseln
-        if ((--Verhinderstand) < 1) {
+        if (--Verhinderstand < 1) {
             Verhinderstand = MAX_VERHINDERSTAND;
             if (Stand > 1) {
                 Stand = 0;
@@ -133,7 +133,7 @@ public class PredMalickow extends Mainanim {
         }
 
         // bei "isListening" darf er nur nach vorn schauen
-        if ((isListening) && (Stand > 1)) {
+        if (isListening && Stand > 1) {
             Stand = 0;
         }
 
@@ -144,7 +144,7 @@ public class PredMalickow extends Mainanim {
 
     // PredMalickow beim Rumschreien
     public void callPredawar(GenericDrawingContext g) {
-        if ((--Verhindercall) < 1) {
+        if (--Verhindercall < 1) {
             Verhindercall = MAX_VERHINDERCALL;
             Call = (int) (Math.random() * 4.9);
         }
@@ -155,7 +155,7 @@ public class PredMalickow extends Mainanim {
 
     // Predmalickow beim Reden
     public void talkPredawar(GenericDrawingContext g) {
-        if ((--Verhindertalk) < 1) {
+        if (--Verhindertalk < 1) {
             Verhindertalk = MAX_VERHINDERTALK;
             Talk = (int) (Math.random() * 6.9);
         }
@@ -174,7 +174,7 @@ public class PredMalickow extends Mainanim {
                     // PredMalickow bewegen
                     Walkcounter++;
                     walkpunkt.x -= 2;
-                    if ((Walkcounter % 2) == 1) {
+                    if (Walkcounter % 2 == 1) {
                         walkpunkt.y -= 1;
                     } else {
                         walkpunkt.y += 1;
@@ -188,15 +188,15 @@ public class PredMalickow extends Mainanim {
                     if (Walkcounter == 20) {
                         Walkcounter = 0;
                         back = false;
-                        return (false);
+                        return false;
                     } else {
-                        return (true);
+                        return true;
                     }
                 } else {
                     // PredMalickow bewegen
                     Walkcounter++;
                     walkpunkt.x += 2;
-                    if ((Walkcounter % 2) == 1) {
+                    if (Walkcounter % 2 == 1) {
                         walkpunkt.y -= 1;
                     } else {
                         walkpunkt.y += 1;
@@ -210,9 +210,9 @@ public class PredMalickow extends Mainanim {
                     if (Walkcounter == 20) {
                         Walkcounter = 0;
                         back = false;
-                        return (false);
+                        return false;
                     } else {
-                        return (true);
+                        return true;
                     }
                 }
 
@@ -223,13 +223,13 @@ public class PredMalickow extends Mainanim {
                 g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
                 if (Givecounter > 5) {
                     Givecounter = 0;
-                    return (false);
+                    return false;
                 } else {
-                    return (true);
+                    return true;
                 }
         }
 
         // Compilerberuhigung
-        return (false);
+        return false;
     }
 }    

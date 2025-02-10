@@ -236,7 +236,7 @@ public class Zawod1 extends Mainloc {
                 g2.fillRect(0, 0, 250, 200);
 
                 float fuckhelp = Help;
-                ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, (fuckhelp / 40));
+                ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, fuckhelp / 40);
                 g2.setComposite(ac);
                 g2.drawImage(rapaki, 0, 0, null);
                 if (Help < 40) {
@@ -262,7 +262,7 @@ public class Zawod1 extends Mainloc {
                 }
 
                 // hier den Sound eval.
-                if ((++Counter) == 30) {
+                if (++Counter == 30) {
                     mainFrame.wave.PlayFile("sfx/rapak1.wav");
                 }
                 if (Counter == 60) {
@@ -279,7 +279,7 @@ public class Zawod1 extends Mainloc {
                 g3.fillRect(0, 0, 250, 200);
 
                 float fhelp = Help;
-                ad = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, (fhelp / 40));
+                ad = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, fhelp / 40);
                 g3.setComposite(ad);
                 g3.drawImage(rapaki, 0, 0, null);
                 if (Help > 0) {
@@ -294,7 +294,7 @@ public class Zawod1 extends Mainloc {
         }
 
         // Textausgabe auf leeren Screen (noch keine Bilder da), aber getrennt nach vorgesehenen Bildern
-        if ((IntroStep > 9) && (IntroStep < 20)) {
+        if (IntroStep > 9 && IntroStep < 20) {
             // Wiederherstellen ist zwar Quatsch, aber wer weiss
             if (!mainFrame.Clipset) {
                 g.setClip(0, 0, 644, 484);
@@ -356,7 +356,7 @@ public class Zawod1 extends Mainloc {
                     mainFrame.scrollx = Scrollwert;
                 }
                 g.setClip(0, 0, 1284, 484);
-                g.drawImage(sky, (mainFrame.scrollx / 10), 0);
+                g.drawImage(sky, mainFrame.scrollx / 10, 0);
                 g.drawImage(domal, 0, 0);
                 g.drawImage(domar, 640, 0);
                 g.drawImage(kij, 80, 325);
@@ -372,7 +372,7 @@ public class Zawod1 extends Mainloc {
                     xx = 0;
                 }
                 g.setClip(xx, 0, xx + 650, 285);
-                g.drawImage(sky, (mainFrame.scrollx / 10), 0);
+                g.drawImage(sky, mainFrame.scrollx / 10, 0);
                 g.drawImage(domal, 0, 0);
                 g.drawImage(domar, 640, 0);
                 g.drawImage(kij, 80, 325);
@@ -383,7 +383,7 @@ public class Zawod1 extends Mainloc {
                 if (mainFrame.scrollx < 0) {
                     mainFrame.scrollx = 0;
                 }
-                if ((!(ptack2.Flieg(g))) && (mainFrame.scrollx == 0)) {
+                if (!ptack2.Flieg(g) && mainFrame.scrollx == 0) {
                     IntroStep++;
                 }
                 evalSound();
@@ -392,7 +392,7 @@ public class Zawod1 extends Mainloc {
             // Gaense animieren
             if (true) {
                 g.setClip(120, 255, 230, 110);
-                g.drawImage(sky, (mainFrame.scrollx / 10), 0);
+                g.drawImage(sky, mainFrame.scrollx / 10, 0);
                 g.drawImage(domal, 0, 0);
                 g.drawImage(domar, 640, 0);
                 gans1.BewegeGans(g);
@@ -439,7 +439,7 @@ public class Zawod1 extends Mainloc {
             }
         }
 
-        if ((skipActionID != 0) || (nextActionID != 0)) {
+        if (skipActionID != 0 || nextActionID != 0) {
             DoAction();
         }
     }
@@ -451,11 +451,11 @@ public class Zawod1 extends Mainloc {
             case 101:
             case 102:
                 // Floeten - Routine, bis die Zeit um ist
-                if ((System.currentTimeMillis() - FloetenSpielZeit) <= 21000) {
+                if (System.currentTimeMillis() - FloetenSpielZeit <= 21000) {
 
                     g.setClip(103, 316, 27, 37);
                     g.drawImage(domal, 0, 0);
-                    if ((--Verhinderfloete) < 1) {
+                    if (--Verhinderfloete < 1) {
                         Verhinderfloete = MAX_VERHINDERFLOETE;
                         floetenIndex++;
                         if (floetenIndex == 4) {
@@ -473,12 +473,12 @@ public class Zawod1 extends Mainloc {
                 g.setClip(103, 316, 27, 37);
                 g.drawImage(domal, 0, 0);
                 int zuffi = (int) Math.random() * 50;
-                if ((zwinkerIndex == 0) && (zuffi > 45)) {
+                if (zwinkerIndex == 0 && zuffi > 45) {
                     zwinkerIndex = 1;
                 } else {
                     zwinkerIndex = 0;
                 }
-                g.drawImage((zwinkerIndex == 0) ? sitz1 : sitz2, 103, 316, null);
+                g.drawImage(zwinkerIndex == 0 ? sitz1 : sitz2, 103, 316, null);
                 break;
 
             case 105: // Reden und aufstehen
@@ -519,7 +519,7 @@ public class Zawod1 extends Mainloc {
         else {
             // bei Intro - Bildern Mainmenu erlauben
             // > 0 = alles, > 9 = nur nach Rapaki-Intro
-            if ((IntroStep > 9) && (IntroStep < 20)) {
+            if (IntroStep > 9 && IntroStep < 20) {
                 // Hauptmenue aufrufen
                 mainFrame.mainmenu.introcall = true;
                 skipActionID = 100;
@@ -569,7 +569,7 @@ public class Zawod1 extends Mainloc {
                   return;
                   }	*/
 
-            if ((IntroStep > 9) && (IntroStep < 100)) {
+            if (IntroStep > 9 && IntroStep < 100) {
                 mainFrame.talkCount = 1;
                 TalkPause = 0;
                 skipActionID = 20;
@@ -590,7 +590,7 @@ public class Zawod1 extends Mainloc {
 
         // Der Rest geht nur noch im Intro
 
-        if ((IntroStep > 9) && (IntroStep < 20)) {
+        if (IntroStep > 9 && IntroStep < 20) {
             // Hauptmenue aktivieren
             if (Taste == GenericKeyEvent.VK_F1) {
                 mainFrame.mainmenu.introcall = true;

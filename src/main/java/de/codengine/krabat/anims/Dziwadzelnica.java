@@ -91,7 +91,7 @@ public class Dziwadzelnica extends Mainanim {
         // Dziw beim Schlagen -> Extra
         if (isBeating) {
             // Weiterschalten
-            if ((--Verhinderbeat) < 1) {
+            if (--Verhinderbeat < 1) {
                 Verhinderbeat = MAX_VERHINDERBEAT;
                 Beat++;
                 if (Beat == 2) {
@@ -100,15 +100,15 @@ public class Dziwadzelnica extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(dziw_beat[(Beat > 2) ? 0 : Beat], pos.x, pos.y, null);
+            offGraph.drawImage(dziw_beat[Beat > 2 ? 0 : Beat], pos.x, pos.y, null);
 
             // rueckgabe = false, wenn sie fertig gehauen hat
             return Beat <= 2;
         } else {
             // Dziw beim Sprechen
-            if (((TalkPerson == 58) && (mainFrame.talkCount > 1)) || (AnimTalkPerson == 58)) {
+            if (TalkPerson == 58 && mainFrame.talkCount > 1 || AnimTalkPerson == 58) {
                 // Weiterschalten
-                if ((--Verhinderscream) < 1) {
+                if (--Verhinderscream < 1) {
                     Verhinderscream = MAX_VERHINDERSCREAM;
                     Scream = (int) (Math.random() * 8.9);
                 }
@@ -127,7 +127,7 @@ public class Dziwadzelnica extends Mainanim {
             // Zeichnen
             offGraph.drawImage(dziw_talk[Scream], pos.x, pos.y, null);
 
-            return (true); // hier bedeutungslos
+            return true; // hier bedeutungslos
         }
     }
 }    

@@ -131,20 +131,20 @@ public class Handrij extends Mainanim {
     public void drawHandrij(GenericDrawingContext offGraph, int TalkPerson, boolean isListening, boolean stelltErlaubnisAus,
                             boolean gibtErlaubnis) {
         // Zahrodnik redet
-        if ((TalkPerson == 50) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 50 && mainFrame.talkCount > 1) {
             // Flag fuer nachher setzen
             if (!hatSchonGeredet) {
                 hatSchonGeredet = true;
             }
 
             // Head eval.
-            if ((--Verhinderhead) < 1) {
+            if (--Verhinderhead < 1) {
                 Verhinderhead = MAX_VERHINDERHEAD;
                 Head = (int) (Math.random() * 7.9);
             }
 
             // Body eval.
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) (Math.random() * 3.9);
             }
@@ -158,9 +158,9 @@ public class Handrij extends Mainanim {
         // schreibt gerade ein Stueck Papier
         if (stelltErlaubnisAus) {
             // wie Arbeiten, nur nicht alle Images
-            if ((--Verhinderwork) < 1) {
+            if (--Verhinderwork < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
-                Work = (int) ((Math.random() * 3.9) + 1);
+                Work = (int) (Math.random() * 3.9 + 1);
             }
 
             offGraph.drawImage(hand_work[Work], workpos.x, workpos.y, null);
@@ -212,7 +212,7 @@ public class Handrij extends Mainanim {
             offGraph.drawImage(hand_down[Down], downpos.x, downpos.y, null);
         } else {
             // arbeitet nach hinten
-            if ((--Verhinderwork) < 1) {
+            if (--Verhinderwork < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
                 Work = (int) (Math.random() * 6.9);
             }

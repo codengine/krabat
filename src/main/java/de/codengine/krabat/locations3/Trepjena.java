@@ -105,7 +105,7 @@ public class Trepjena extends Mainloc {
         strazaPoklad = new StrazaPoklad(mainFrame);
 
         strazaPoint = new GenericPoint();
-        strazaPoint.x = strazaFeet.x - (StrazaPoklad.Breite / 2);
+        strazaPoint.x = strazaFeet.x - StrazaPoklad.Breite / 2;
         strazaPoint.y = strazaFeet.y - StrazaPoklad.Hoehe;
 
         talkPoint = new GenericPoint();
@@ -234,7 +234,7 @@ public class Trepjena extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -285,12 +285,12 @@ public class Trepjena extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -602,10 +602,10 @@ public class Trepjena extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangHof.IsPointInRect(pTemp)) ||
-                        (ausgangUnten.IsPointInRect(pTemp)) ||
-                        (ausgangMitte.IsPointInRect(pTemp)) ||
-                        (ausgangOben.IsPointInRect(pTemp))) {
+                if (ausgangHof.IsPointInRect(pTemp) ||
+                        ausgangUnten.IsPointInRect(pTemp) ||
+                        ausgangMitte.IsPointInRect(pTemp) ||
+                        ausgangOben.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -621,7 +621,7 @@ public class Trepjena extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -633,18 +633,18 @@ public class Trepjena extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (rectStraza.IsPointInRect(pTemp)) ||
-                    (durje.IsPointInRect(pTemp)) || (wokno1.IsPointInRect(pTemp)) ||
-                    (wokno2.IsPointInRect(pTemp)) || (wokno3.IsPointInRect(pTemp)) ||
-                    (wokno4.IsPointInRect(pTemp)) || (rectSchild.IsPointInRect(pTemp)) ||
-                    (rectBildUnten.IsPointInRect(pTemp)) || (rectBildOben.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || rectStraza.IsPointInRect(pTemp) ||
+                    durje.IsPointInRect(pTemp) || wokno1.IsPointInRect(pTemp) ||
+                    wokno2.IsPointInRect(pTemp) || wokno3.IsPointInRect(pTemp) ||
+                    wokno4.IsPointInRect(pTemp) || rectSchild.IsPointInRect(pTemp) ||
+                    rectBildUnten.IsPointInRect(pTemp) || rectBildOben.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -652,11 +652,11 @@ public class Trepjena extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((rectStraza.IsPointInRect(pTemp)) ||
-                    (durje.IsPointInRect(pTemp)) || (wokno1.IsPointInRect(pTemp)) ||
-                    (wokno2.IsPointInRect(pTemp)) || (wokno3.IsPointInRect(pTemp)) ||
-                    (wokno4.IsPointInRect(pTemp)) || (rectSchild.IsPointInRect(pTemp)) ||
-                    (rectBildUnten.IsPointInRect(pTemp)) || (rectBildOben.IsPointInRect(pTemp))) {
+            if (rectStraza.IsPointInRect(pTemp) ||
+                    durje.IsPointInRect(pTemp) || wokno1.IsPointInRect(pTemp) ||
+                    wokno2.IsPointInRect(pTemp) || wokno3.IsPointInRect(pTemp) ||
+                    wokno4.IsPointInRect(pTemp) || rectSchild.IsPointInRect(pTemp) ||
+                    rectBildUnten.IsPointInRect(pTemp) || rectBildOben.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -754,14 +754,14 @@ public class Trepjena extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt,
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -769,7 +769,7 @@ public class Trepjena extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

@@ -103,8 +103,8 @@ public class WodnyMuz extends Mainanim {
         int zuffi;
 
         // Rede, Wassermann !!!
-        if ((TalkPerson == 34) && (mainFrame.talkCount > 1)) {
-            if ((--Wait) < 1) {
+        if (TalkPerson == 34 && mainFrame.talkCount > 1) {
+            if (--Wait < 1) {
                 Wait = MAX_WAIT;
                 zuffi = (int) Math.round(Math.random() * 5);
                 zuffi++;
@@ -113,7 +113,7 @@ public class WodnyMuz extends Mainanim {
                 }
             }
 
-            if ((--Verhinderhead) < 1) {
+            if (--Verhinderhead < 1) {
                 Verhinderhead = MAX_VERHINDERHEAD;
                 zuffi = (int) Math.round(Math.random() * 7);
                 zuffi++;
@@ -146,10 +146,10 @@ public class WodnyMuz extends Mainanim {
 
         // Wippe im Wind wie ein Blatt vom Baum (Ok, ok, ich hoer schon auf...)
         angle += step;
-        if (angle > (2 * Math.PI)) {
-            angle -= (2 * Math.PI);
+        if (angle > 2 * Math.PI) {
+            angle -= 2 * Math.PI;
         }
-        Offset = (int) Math.round((Math.sin(angle) * 2.1) + 2);
+        Offset = (int) Math.round(Math.sin(angle) * 2.1 + 2);
     }
 
     public boolean Tauche(GenericDrawingContext g, GenericPoint posit) {
@@ -167,11 +167,11 @@ public class WodnyMuz extends Mainanim {
                 if (Offset == 8) {
                     mainFrame.wave.PlayFile("sfx/wmuz.wav");
                 }
-                g.drawImage((Offset > 30) ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
                 if (Offset < GRAFIK_HOEHE) {
                     return true;
                 } else {
-                    istOben = !(istOben);
+                    istOben = !istOben;
                     return false;
                 }
             }
@@ -181,10 +181,10 @@ public class WodnyMuz extends Mainanim {
         else {
             if (Offset > 0) {
                 Offset--;
-                if (Offset == (GRAFIK_HOEHE - 1)) {
+                if (Offset == GRAFIK_HOEHE - 1) {
                     mainFrame.wave.PlayFile("sfx/wmuz.wav");
                 }
-                g.drawImage((Offset > 30) ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
                 return true;
             } else {
                 if (!turn) {
@@ -193,7 +193,7 @@ public class WodnyMuz extends Mainanim {
                     return true;
                 } else {
                     g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
-                    istOben = !(istOben);
+                    istOben = !istOben;
                     return false;
                 }
             }

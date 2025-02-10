@@ -610,7 +610,7 @@ public class Karta extends Mainanim {
         switch (Ziel) {
             case 1:
                 // Ralbicy
-                if ((t > 2) && (t < 7)) {
+                if (t > 2 && t < 7) {
                     rueck = 3;
                 } else {
                     rueck = 2;
@@ -622,7 +622,7 @@ public class Karta extends Mainanim {
                 if (t == 6) {
                     rueck = 6;
                 } else {
-                    if ((t == 4) || (t == 5) || (t == 8) || (t == 19)) {
+                    if (t == 4 || t == 5 || t == 8 || t == 19) {
                         rueck = 5;
                     } else {
                         rueck = 1;
@@ -637,13 +637,13 @@ public class Karta extends Mainanim {
 
             case 13:
                 // Wjes
-                if (((t > 13) && (t < 19)) || (t == 27) || ((t > 50) && (t < 63))) {
+                if (t > 13 && t < 19 || t == 27 || t > 50 && t < 63) {
                     rueck = 14;
                 } else {
-                    if (((t > 9) && (t < 13)) || ((t > 19) && (t < 24))) {
+                    if (t > 9 && t < 13 || t > 19 && t < 24) {
                         rueck = 10;
                     } else {
-                        if ((t > 0) && (t < 8) && (t != 4)) {
+                        if (t > 0 && t < 8 && t != 4) {
                             rueck = 7;
                         } else {
                             if (t == 24) {
@@ -658,10 +658,10 @@ public class Karta extends Mainanim {
 
             case 16:
                 // Villa
-                if ((t == 11) || (t == 18) || ((t > 19) && (t < 23))) {
+                if (t == 11 || t == 18 || t > 19 && t < 23) {
                     rueck = 18;
                 } else {
-                    if ((t == 17) || ((t > 50) && (t < 63))) {
+                    if (t == 17 || t > 50 && t < 63) {
                         rueck = 17;
                     } else {
                         rueck = 15;
@@ -671,7 +671,7 @@ public class Karta extends Mainanim {
 
             case 17:
                 // Kolmc
-                if ((t > 50) && (t < 63)) {
+                if (t > 50 && t < 63) {
                     rueck = 62;
                 } else {
                     rueck = 16;
@@ -688,7 +688,7 @@ public class Karta extends Mainanim {
                 if (t == 20) {
                     rueck = 20;
                 } else {
-                    if (((t > 14) && (t < 19)) || (t == 22) || ((t > 50) && (t < 63))) {
+                    if (t > 14 && t < 19 || t == 22 || t > 50 && t < 63) {
                         rueck = 22;
                     } else {
                         rueck = 11;
@@ -740,7 +740,7 @@ public class Karta extends Mainanim {
 
             case 85:
                 // Villa
-                if ((t == 70) || (t == 76) || (t == 79) || (t == 93)) {
+                if (t == 70 || t == 76 || t == 79 || t == 93) {
                     rueck = 72; // Cyrkej2, Kulow2, Mertens2, Zdzary2 -> Dubring2
                 } else {
                     rueck = 80;  // ansonsten -> Njedz2
@@ -749,10 +749,10 @@ public class Karta extends Mainanim {
 
             case 87:
                 // Wjes
-                if ((t == 70) || (t == 76) || (t == 79)) {
+                if (t == 70 || t == 76 || t == 79) {
                     rueck = 76; // Cyrkej2, Kulow2, Mertens2 -> Kulow2
                 } else {
-                    if ((t == 83) || (t == 93)) {
+                    if (t == 83 || t == 93) {
                         rueck = 83;  // Rapak2, Zdzary2 -> Rapak2
                     } else {
                         if (t == 85) {

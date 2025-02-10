@@ -101,18 +101,18 @@ public class Kuchar extends Mainanim {
     // gib Borderrect fuer "inside" - Evaluierung an
     public Borderrect KucharRect() {
         if (!isAufgestanden) {
-            return (new Borderrect(327, 208, 327 + 140, 208 + 164));
+            return new Borderrect(327, 208, 327 + 140, 208 + 164);
         } else {
-            return (new Borderrect(337, 163, 337 + 101, 163 + 209));
+            return new Borderrect(337, 163, 337 + 101, 163 + 209);
         }
     }
 
     // gibt TalkPoint zurueck, je nach "Groesse" des Kochs
     public GenericPoint evalKucharTalkPoint() {
         if (!isAufgestanden) {
-            return (new GenericPoint(327 + (140 / 2), 208 - 50));
+            return new GenericPoint(327 + 140 / 2, 208 - 50);
         } else {
-            return (new GenericPoint(337 + (101 / 2), 163 - 50));
+            return new GenericPoint(337 + 101 / 2, 163 - 50);
         }
     }
 
@@ -120,19 +120,19 @@ public class Kuchar extends Mainanim {
     public void drawKuchar(GenericDrawingContext offGraph, int TalkPerson, boolean isListening,
                            boolean isAufgestanden, boolean noSound) {
         // oberste Prio hat das Reden
-        if ((TalkPerson == 42) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 42 && mainFrame.talkCount > 1) {
             // mal schauen, ob er unten oder oben ist
             if (this.isAufgestanden) {
-                if ((--Verhindertalkup) < 1) {
+                if (--Verhindertalkup < 1) {
                     Verhindertalkup = MAX_VERHINDERTALKUP;
-                    TalkUp = (int) ((Math.random() * 4.9) + 1);
+                    TalkUp = (int) (Math.random() * 4.9 + 1);
                 }
 
                 evalMouse(offGraph);
 
                 offGraph.drawImage(kuchar_up_talk[TalkUp], upPoint.x, upPoint.y, null);
             } else {
-                if ((--Verhindertalkdown) < 1) {
+                if (--Verhindertalkdown < 1) {
                     Verhindertalkdown = MAX_VERHINDERTALKDOWN;
                     TalkDown = (int) (Math.random() * 7.9);
                     if (TalkDown == 1) {
@@ -191,7 +191,7 @@ public class Kuchar extends Mainanim {
         if (Verhinderschlag < 1) {
             // hier weiterswitchen, ob nur streng geschaut oder Schlag
             Schlag = 2;
-            if ((--Verhinderstier) < 1) {
+            if (--Verhinderstier < 1) {
                 Verhinderstier = MAX_VERHINDERSTIER;
                 // int zf = (int) (Math.random () * 50);
                 // if (zf > 30) Schlag = 3;

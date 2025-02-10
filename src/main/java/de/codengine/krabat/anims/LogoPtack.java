@@ -61,7 +61,7 @@ public class LogoPtack extends Mainanim {
         switch (animpos) {
             case 1:
                 // Gleitphase
-                if ((Math.round(Math.random() * 30) < 20) && (y > 200)) {
+                if (Math.round(Math.random() * 30) < 20 && y > 200) {
                     if (last2) {
                         last2 = false;
                         animpos = 3;

@@ -136,39 +136,39 @@ public class HlownyStraznik extends Mainanim {
     // aktuelles (!!!) Rectangle zurueckgeben
     public Borderrect straznikRect(int TalkPerson) {
         // Hier unterscheiden, was gerade los ist
-        if ((TalkPerson == 48) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 48 && mainFrame.talkCount > 1) {
             // redet gerade, also RedeImages bearbeiten
-            return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
+            return new Borderrect(casnikPoint1.x, casnikPoint1.y,
                     casnikPoint1.x + straz_talk[Talk].getWidth(null),
-                    casnikPoint1.y + straz_talk[Talk].getHeight(null)));
+                    casnikPoint1.y + straz_talk[Talk].getHeight(null));
         }
 
         // trinkt
         if (drink) {
             // Trinkimages sind aktuell
-            return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
+            return new Borderrect(casnikPoint1.x, casnikPoint1.y,
                     casnikPoint1.x + straz_drink[Drink].getWidth(null),
-                    casnikPoint1.y + straz_drink[Drink].getHeight(null)));
+                    casnikPoint1.y + straz_drink[Drink].getHeight(null));
         }
 
         // setzt sich hin oder schlaeft
-        if ((sit) || (isSleeping)) {
+        if (sit || isSleeping) {
             // Hinsetzimages
             if (Sit == 0) {
-                return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
+                return new Borderrect(casnikPoint1.x, casnikPoint1.y,
                         casnikPoint1.x + straz_sit[Sit].getWidth(null),
-                        casnikPoint1.y + straz_sit[Sit].getHeight(null)));
+                        casnikPoint1.y + straz_sit[Sit].getHeight(null));
             } else {
-                return (new Borderrect(casnikPoint2.x, casnikPoint2.y,
+                return new Borderrect(casnikPoint2.x, casnikPoint2.y,
                         casnikPoint2.x + straz_sit[Sit].getWidth(null),
-                        casnikPoint2.y + straz_sit[Sit].getHeight(null)));
+                        casnikPoint2.y + straz_sit[Sit].getHeight(null));
             }
         }
 
         // nix, also nur rumstehen
-        return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
+        return new Borderrect(casnikPoint1.x, casnikPoint1.y,
                 casnikPoint1.x + straz_stand[Stand].getWidth(null),
-                casnikPoint1.y + straz_stand[Stand].getHeight(null)));
+                casnikPoint1.y + straz_stand[Stand].getHeight(null));
     }
 
     // Figur weiterschalten, je nachdem, was gerade los ist
@@ -183,13 +183,13 @@ public class HlownyStraznik extends Mainanim {
         boolean isDoing = true;
 
         // Reden
-        if ((TalkPerson == 48) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 48 && mainFrame.talkCount > 1) {
             // Reden weiterschalten
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Talk = (int) (Math.random() * 6.9);
             }
-            return (false);
+            return false;
         }
 
         // trinken
@@ -215,11 +215,11 @@ public class HlownyStraznik extends Mainanim {
                 drink = false;
                 isDoing = false;
             }
-            return (isDoing);
+            return isDoing;
         }
 
         // sitzen oder schlafen
-        if ((sit) || (isSleeping)) {
+        if (sit || isSleeping) {
             // wenn er schon schlaeft, dann nur so zeichnen
             if (isSleeping) {
                 if (!hasClock) {
@@ -227,7 +227,7 @@ public class HlownyStraznik extends Mainanim {
                 } else {
                     Sit = 3;
                 }
-                return (true);
+                return true;
             }
 
             // Hier die Hinsetzszene
@@ -245,13 +245,13 @@ public class HlownyStraznik extends Mainanim {
                 isSleeping = true;
                 isDoing = false;
             }
-            return (isDoing);
+            return isDoing;
         }
 
         // nur rumstehen
         switch (Stand) {
             case 0:
-                if ((--Verhinderstand) < 1) {
+                if (--Verhinderstand < 1) {
                     // Schwanken
                     Verhinderstand = MAX_VERHINDERSTAND;
                     int zuffi = (int) (Math.random() * 50);
@@ -274,7 +274,7 @@ public class HlownyStraznik extends Mainanim {
                 break;
 
             case 2:
-                if ((--Verhinderstand) < 1) {
+                if (--Verhinderstand < 1) {
                     // Schwanken
                     Verhinderstand = MAX_VERHINDERSTAND;
                     Stand = 0;
@@ -282,7 +282,7 @@ public class HlownyStraznik extends Mainanim {
                 break;
 
             case 3:
-                if ((--Verhinderstand) < 1) {
+                if (--Verhinderstand < 1) {
                     // Schwanken
                     Verhinderstand = MAX_VERHINDERSTAND;
                     Stand = 0;
@@ -290,7 +290,7 @@ public class HlownyStraznik extends Mainanim {
                 break;
         }
 
-        return (false);
+        return false;
     }
 
     // Zeichne Hauptwachter, wie er dasteht oder spricht
@@ -298,7 +298,7 @@ public class HlownyStraznik extends Mainanim {
         // Unterschied Kuchnja/Casnik
         if (istCasnik) {
             // reden extra
-            if ((TalkPerson == 48) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 48 && mainFrame.talkCount > 1) {
                 offGraph.drawImage(straz_talk[Talk], casnikPoint1.x, casnikPoint1.y, null);
                 offGraph.drawImage(vorder, 121, 308, null);
                 return;
@@ -312,7 +312,7 @@ public class HlownyStraznik extends Mainanim {
             }
 
             // hinsetzen
-            if ((sit) || (isSleeping)) {
+            if (sit || isSleeping) {
                 if (Sit == 0) {
                     offGraph.drawImage(straz_sit[Sit], casnikPoint1.x, casnikPoint1.y, null);
                 } else {
@@ -330,11 +330,11 @@ public class HlownyStraznik extends Mainanim {
 
     // Talkpoint zurueckgeben
     public GenericPoint evalTalkPoint() {
-        if (((sit) && (Sit == 0)) || (isSleeping)) // hier schlaeft er
+        if (sit && Sit == 0 || isSleeping) // hier schlaeft er
         {
-            return (new GenericPoint(casnikPoint2.x + 38, casnikPoint2.y - 120));
+            return new GenericPoint(casnikPoint2.x + 38, casnikPoint2.y - 120);
         } else {
-            return (new GenericPoint(casnikPoint1.x + 21, casnikPoint2.y - 50)); // hier steht er
+            return new GenericPoint(casnikPoint1.x + 21, casnikPoint2.y - 50); // hier steht er
         }
     }
 }    

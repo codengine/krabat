@@ -91,7 +91,7 @@ public class Dingl extends Mainloc {
         dinglinger = new Dinglinger(mainFrame);
 
         talkPoint = new GenericPoint();
-        talkPoint.x = dinglLO.x + (Dinglinger.Breite / 2);
+        talkPoint.x = dinglLO.x + Dinglinger.Breite / 2;
         talkPoint.y = dinglLO.y - 50;
 
         reDinglinger = new Borderrect(dinglLO.x, dinglLO.y, dinglLO.x + Dinglinger.Breite, dinglLO.y + Dinglinger.Hoehe);
@@ -185,7 +185,7 @@ public class Dingl extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -235,7 +235,7 @@ public class Dingl extends Mainloc {
             }
 
             // Dinglinger zeichnen
-            if ((TalkPerson == 47) && (mainFrame.talkCount > 1)) {
+            if (TalkPerson == 47 && mainFrame.talkCount > 1) {
                 dinglingerwalk.talkDinglinger(g, welcheAnim);
             } else {
                 dinglingerwalk.drawDinglinger(g, welcheAnim);
@@ -256,7 +256,7 @@ public class Dingl extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -331,7 +331,7 @@ public class Dingl extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -348,7 +348,7 @@ public class Dingl extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -556,7 +556,7 @@ public class Dingl extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((rechterAusgang.IsPointInRect(pTemp)) || (obererAusgang.IsPointInRect(pTemp))) {
+                if (rechterAusgang.IsPointInRect(pTemp) || obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -578,7 +578,7 @@ public class Dingl extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -590,17 +590,17 @@ public class Dingl extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (reDinglinger.IsPointInRect(pTemp)) ||
-                    (kunstwerk.IsPointInRect(pTemp)) ||
-                    (blidoRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    reDinglinger.IsPointInRect(pTemp) ||
+                    kunstwerk.IsPointInRect(pTemp) ||
+                    blidoRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -624,9 +624,9 @@ public class Dingl extends Mainloc {
                 return;
             }
 
-            if ((reDinglinger.IsPointInRect(pTemp)) ||
-                    (kunstwerk.IsPointInRect(pTemp)) ||
-                    (blidoRect.IsPointInRect(pTemp))) {
+            if (reDinglinger.IsPointInRect(pTemp) ||
+                    kunstwerk.IsPointInRect(pTemp) ||
+                    blidoRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -715,13 +715,13 @@ public class Dingl extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -732,7 +732,7 @@ public class Dingl extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -827,7 +827,7 @@ public class Dingl extends Mainloc {
                     NeuesBild(142, locationID);
                 } else {
                     // 3 mal darf Kr. versuchen rauszugehen
-                    if ((!mainFrame.Actions[650]) || (!mainFrame.Actions[651]) || (!mainFrame.Actions[652])) {
+                    if (!mainFrame.Actions[650] || !mainFrame.Actions[651] || !mainFrame.Actions[652]) {
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
                         nextActionID = 300;
@@ -1056,7 +1056,7 @@ public class Dingl extends Mainloc {
 
             case 195:
                 // kontrollieren, ob alles zusammen
-                if ((mainFrame.Actions[635]) && (mainFrame.Actions[636]) && (mainFrame.Actions[637]) && (mainFrame.Actions[638])) {
+                if (mainFrame.Actions[635] && mainFrame.Actions[636] && mainFrame.Actions[637] && mainFrame.Actions[638]) {
                     nextActionID = 1000;
                 } else {
                     nextActionID = 900;
@@ -1549,12 +1549,12 @@ public class Dingl extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00194"), 1000, 631, null, 830);
 
                     // 4. Frage
-                    if ((!mainFrame.Actions[602]) && (!mainFrame.Actions[951])) {
+                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00195"), 1000, 1000, null, 840);
                     }
 
                     // 5. Frage
-                    if ((!mainFrame.Actions[640]) && (!mainFrame.Actions[641])) {
+                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00196"), 1000, 1000, null, 850);
                     }
 
@@ -1575,12 +1575,12 @@ public class Dingl extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00201"), 1000, 631, null, 830);
 
                     // 4. Frage
-                    if ((!mainFrame.Actions[602]) && (!mainFrame.Actions[951])) {
+                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00202"), 1000, 1000, null, 840);
                     }
 
                     // 5. Frage
-                    if ((!mainFrame.Actions[640]) && (!mainFrame.Actions[641])) {
+                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00203"), 1000, 1000, null, 850);
                     }
 
@@ -1601,12 +1601,12 @@ public class Dingl extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00208"), 1000, 631, null, 830);
 
                     // 4. Frage
-                    if ((!mainFrame.Actions[602]) && (!mainFrame.Actions[951])) {
+                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00209"), 1000, 1000, null, 840);
                     }
 
                     // 5. Frage
-                    if ((!mainFrame.Actions[640]) && (!mainFrame.Actions[641])) {
+                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00210"), 1000, 1000, null, 850);
                     }
 
@@ -1640,7 +1640,7 @@ public class Dingl extends Mainloc {
             case 812:
             case 813:
                 // Reaktion Dinglinger
-                if ((nextActionID == 810) && (!mainFrame.Actions[635])) {
+                if (nextActionID == 810 && !mainFrame.Actions[635]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00213"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00214"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00215"),
@@ -1650,7 +1650,7 @@ public class Dingl extends Mainloc {
                 if (nextActionID == 810) {
                     nextActionID = 811;
                 }
-                if ((nextActionID == 811) && (!mainFrame.Actions[636])) {
+                if (nextActionID == 811 && !mainFrame.Actions[636]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00216"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00217"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00218"),
@@ -1660,7 +1660,7 @@ public class Dingl extends Mainloc {
                 if (nextActionID == 811) {
                     nextActionID = 812;
                 }
-                if ((nextActionID == 812) && (!mainFrame.Actions[637])) {
+                if (nextActionID == 812 && !mainFrame.Actions[637]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00219"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00220"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00221"),
@@ -1670,7 +1670,7 @@ public class Dingl extends Mainloc {
                 if (nextActionID == 812) {
                     nextActionID = 813;
                 }
-                if ((nextActionID == 813) && (!mainFrame.Actions[638])) {
+                if (nextActionID == 813 && !mainFrame.Actions[638]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00222"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00223"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00224"),
@@ -1770,7 +1770,7 @@ public class Dingl extends Mainloc {
                 if (animRueckgabe == 100) {
                     welcheAnim = 1;
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (welcheAnim != 1)) {
+                if (mainFrame.krabat.nAnimation != 0 || welcheAnim != 1) {
                     break;
                 }
                 nextActionID = 865;
@@ -1836,7 +1836,7 @@ public class Dingl extends Mainloc {
 
             case 1110:
                 // Krabat spricht
-                if ((--Counter) < 1) {
+                if (--Counter < 1) {
                     welcheAnim = 0;
                 }
                 if (mainFrame.krabat.nAnimation != 0) {

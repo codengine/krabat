@@ -93,7 +93,7 @@ public class HojntAuto extends Mainloc {
         // Unterscheidung nach DoActions, was zu tun ist
 
         // An Hoelzern gezogen Hinlauf
-        if ((!mainFrame.Actions[216]) && (!mainFrame.Actions[217]) && (!mainFrame.Actions[218])) {
+        if (!mainFrame.Actions[216] && !mainFrame.Actions[217] && !mainFrame.Actions[218]) {
             System.out.println("An den Hoelzern gezogen - Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
@@ -103,7 +103,7 @@ public class HojntAuto extends Mainloc {
         }
 
         // An Strick gezogen Hinlauf
-        if ((!mainFrame.Actions[216]) && (mainFrame.Actions[217]) && (!mainFrame.Actions[218])) {
+        if (!mainFrame.Actions[216] && mainFrame.Actions[217] && !mainFrame.Actions[218]) {
             System.out.println("Am Strick gezogen Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
@@ -113,7 +113,7 @@ public class HojntAuto extends Mainloc {
         }
 
         // Ruecklauf
-        if ((mainFrame.Actions[216]) && (!mainFrame.Actions[218])) {
+        if (mainFrame.Actions[216] && !mainFrame.Actions[218]) {
             System.out.println("Ruecklauf aus beiden Szenen !");
             isDoorOpen = true;
             jaeger.SetHojntPos(Pright);
@@ -240,8 +240,8 @@ public class HojntAuto extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(skyl, (mainFrame.scrollx / 10), 0, null);
-        g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
         g.drawImage(backl, 0, 0, null);
         g.drawImage(backr, 640, 0, null);
 
@@ -251,8 +251,8 @@ public class HojntAuto extends Mainloc {
             xtemp = 0;
         }
         g.setClip(xtemp, 0, 650, 325);
-        g.drawImage(skyl, (mainFrame.scrollx / 10), 0, null);
-        g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
         g.drawImage(backl, 0, 0, null);
         g.drawImage(backr, 640, 0, null);
 
@@ -264,8 +264,8 @@ public class HojntAuto extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(skyl, (mainFrame.scrollx / 10), 0, null);
-            g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
             g.drawImage(backl, 0, 0, null);
             g.drawImage(backr, 640, 0, null);
         }
@@ -304,7 +304,7 @@ public class HojntAuto extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Jaeger bewegen
-        if ((showHojnt) && (!walkReady)) {
+        if (showHojnt && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = jaeger.Move();
         }
@@ -373,12 +373,12 @@ public class HojntAuto extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling - Verriegelung in DoActions extra !!!
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -593,7 +593,7 @@ public class HojntAuto extends Mainloc {
 
             case 605:
                 // Klingelanim der Hoelzer
-                if ((--Counter) > 0) {
+                if (--Counter > 0) {
                     break;
                 }
                 klingeln = true;

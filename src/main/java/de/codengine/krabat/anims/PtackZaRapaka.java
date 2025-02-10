@@ -99,19 +99,19 @@ public class PtackZaRapaka extends Mainanim {
 
     // Gib mir das Rectangle zurueck, wo der Vogel drin ist (aktuell)
     public GenericRectangle ptack2Rect() {
-        return (new GenericRectangle(x - 15, y - 15, 51 + 30, 51 + 30));
+        return new GenericRectangle(x - 15, y - 15, 51 + 30, 51 + 30);
     }
 
     // rumfliegen
     public boolean Flieg(GenericDrawingContext g) {
         // wenn Fluegel in Mitte, dann schauen, ob weiterfliegen oder gleiten
-        if ((animpos == 1) || (animpos == 4)) {
+        if (animpos == 1 || animpos == 4) {
             int glei = (int) Math.round(Math.random() * 30);
-            if (((glei < 29) && (!Gleiten)) || (isNeverGleiting)) {
+            if (glei < 29 && !Gleiten || isNeverGleiting) {
                 // weiterfliegen
-                schalt = !(schalt);
+                schalt = !schalt;
                 if (schalt) {
-                    oben = !(oben);
+                    oben = !oben;
                     if (!oben) {
                         animpos = 3;
                     } else {
@@ -139,7 +139,7 @@ public class PtackZaRapaka extends Mainanim {
             }
         } else {
             // Fluegel in Extremposition, also wieder auf Mittelstellung setzen
-            schalt = !(schalt);
+            schalt = !schalt;
             if (schalt) {
                 animpos = 1;
             }
@@ -147,12 +147,12 @@ public class PtackZaRapaka extends Mainanim {
 
         // X- Offset fuer Fliegen ist 10 (ungezoomt)
         if (x > XEnde) {
-            x = x - 10 + (Zoomfaktor / 10);
+            x = x - 10 + Zoomfaktor / 10;
         }
 
         // Beim Gleiten y nach unten, beim Fliegen nach oben, ab bestimmem Zoomfaktor nicht mehr...
         int versch = (int) Math.round(Math.random() * 20);
-        if (((versch > 10) && (Zoomfaktor < 10))/* || (isNeverGleiting == true)*/) {
+        if (versch > 10 && Zoomfaktor < 10/* || (isNeverGleiting == true)*/) {
             if (Gleiten) {
                 y += 1;
             } else {

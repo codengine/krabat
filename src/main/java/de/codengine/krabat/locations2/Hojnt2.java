@@ -113,8 +113,8 @@ public class Hojnt2 extends Mainloc2 {
         mueller.SetMlynkPos(mlynkFeet);
         mueller.SetFacing(3);
 
-        xpos = (int) ((Math.random() * (MAX_SCHATTENX - MIN_SCHATTENX - 10)) + MIN_SCHATTENX + 5);
-        isLeft = ((int) (Math.random() * 50) > 25);
+        xpos = (int) (Math.random() * (MAX_SCHATTENX - MIN_SCHATTENX - 10) + MIN_SCHATTENX + 5);
+        isLeft = (int) (Math.random() * 50) > 25;
         Verhinderwandern = MAX_VERHINDERWANDERN;
 
         InitImages();
@@ -226,8 +226,8 @@ public class Hojnt2 extends Mainloc2 {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(skyl, (mainFrame.scrollx / 10), 0, null);
-        g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
         g.drawImage(backl, 0, 0, null);
         g.drawImage(backr, 640, 0, null);
 
@@ -238,8 +238,8 @@ public class Hojnt2 extends Mainloc2 {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 325);
-            g.drawImage(skyl, (mainFrame.scrollx / 10), 0, null);
-            g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
             g.drawImage(backl, 0, 0, null);
             g.drawImage(backr, 640, 0, null);
         }
@@ -253,7 +253,7 @@ public class Hojnt2 extends Mainloc2 {
 
 
         // wenn Jaeger in Huette, dann Schatten wandern lassen
-        if ((--Verhinderwandern) < 1) {
+        if (--Verhinderwandern < 1) {
             Verhinderwandern = MAX_VERHINDERWANDERN;
             if (!isLeft) {
                 xpos += MOVE;
@@ -278,7 +278,7 @@ public class Hojnt2 extends Mainloc2 {
 
         // kaputte Grube zeichnen, wenn noetig, sonst Strick einfuegen
         g.setClip(1122, 191, 6, 106);
-        g.drawImage(skyr, (mainFrame.scrollx / 10) + 540, 0, null);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
         g.drawImage(backr, 640, 0, null);
         g.drawImage(seil, 1122, 191, null);
 
@@ -301,7 +301,7 @@ public class Hojnt2 extends Mainloc2 {
             g.drawImage(backr, 640, 0, null);
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -329,7 +329,7 @@ public class Hojnt2 extends Mainloc2 {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -380,7 +380,7 @@ public class Hojnt2 extends Mainloc2 {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -391,7 +391,7 @@ public class Hojnt2 extends Mainloc2 {
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling - Verriegelung in DoActions extra !!!
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -754,7 +754,7 @@ public class Hojnt2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -769,20 +769,20 @@ public class Hojnt2 extends Mainloc2 {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (jamaRect.IsPointInRect(pTemp)) || (leineRect.IsPointInRect(pTemp)) ||
-                    (hoelzerRect.IsPointInRect(pTemp)) ||
-                    (kurotwy1Rect.IsPointInRect(pTemp)) || (kurotwy2Rect.IsPointInRect(pTemp)) ||
-                    (wokno1Rect.IsPointInRect(pTemp)) || (wokno2Rect.IsPointInRect(pTemp)) ||
-                    (sekeraRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp)) ||
-                    (drjewoRect.IsPointInRect(pTemp));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
+                    hoelzerRect.IsPointInRect(pTemp) ||
+                    kurotwy1Rect.IsPointInRect(pTemp) || kurotwy2Rect.IsPointInRect(pTemp) ||
+                    wokno1Rect.IsPointInRect(pTemp) || wokno2Rect.IsPointInRect(pTemp) ||
+                    sekeraRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp) ||
+                    drjewoRect.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -798,12 +798,12 @@ public class Hojnt2 extends Mainloc2 {
                 return;
             }
 
-            if ((jamaRect.IsPointInRect(pTemp)) || (leineRect.IsPointInRect(pTemp)) ||
-                    (hoelzerRect.IsPointInRect(pTemp)) ||
-                    (kurotwy1Rect.IsPointInRect(pTemp)) || (kurotwy2Rect.IsPointInRect(pTemp)) ||
-                    (wokno1Rect.IsPointInRect(pTemp)) || (wokno2Rect.IsPointInRect(pTemp)) ||
-                    (sekeraRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp)) ||
-                    (drjewoRect.IsPointInRect(pTemp))) {
+            if (jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
+                    hoelzerRect.IsPointInRect(pTemp) ||
+                    kurotwy1Rect.IsPointInRect(pTemp) || kurotwy2Rect.IsPointInRect(pTemp) ||
+                    wokno1Rect.IsPointInRect(pTemp) || wokno2Rect.IsPointInRect(pTemp) ||
+                    sekeraRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp) ||
+                    drjewoRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -894,15 +894,15 @@ public class Hojnt2 extends Mainloc2 {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // System.out.println("Nextaction " + nextActionID);
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }

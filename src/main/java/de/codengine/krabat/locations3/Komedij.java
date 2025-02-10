@@ -168,7 +168,7 @@ public class Komedij extends Mainloc {
         // flackernde Kerzen zeichnen
         g.setClip(170, 30, 60, 60);
         for (int i = 0; i <= 2; i++) {
-            if ((--Verhinderkerze[i]) < 1) {
+            if (--Verhinderkerze[i] < 1) {
                 Verhinderkerze[i] = MAX_VERHINDERKERZE[i];
                 kerzenBild[i] = (int) (Math.random() * 4.99);
             }
@@ -196,7 +196,7 @@ public class Komedij extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
             }
         } else {
-            if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                 // beim Reden
                 switch (TalkPerson) {
                     case 1:
@@ -251,12 +251,12 @@ public class Komedij extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -319,13 +319,13 @@ public class Komedij extends Mainloc {
                 }
 
                 // Ausreden fuer tesaki, wenn sluz dr. weg
-                if ((tesaki.IsPointInRect(pTemp)) && (mainFrame.Actions[512])) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
                     nextActionID = 165;
                     pTemp = pTesaki;
                 }
 
                 // Ausreden fuer sl. dr, wenn noch da
-                if ((rectSluzDrasta.IsPointInRect(pTemp)) && (!mainFrame.Actions[512])) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
                     nextActionID = 170;
                     pTemp = pSluzDrasta;
                 }
@@ -390,7 +390,7 @@ public class Komedij extends Mainloc {
                 }
 
                 // Dienstkleidung ansehen (falls noch da)
-                if ((rectSluzDrasta.IsPointInRect(pTemp)) && (!mainFrame.Actions[512])) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
                     nextActionID = 5;
                     pTemp = pSluzDrasta;
                 }
@@ -408,7 +408,7 @@ public class Komedij extends Mainloc {
                 }
 
                 // tesaki ansehen
-                if ((tesaki.IsPointInRect(pTemp)) && (mainFrame.Actions[512])) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
                     nextActionID = 12;
                     pTemp = pTesaki;
                 }
@@ -435,7 +435,7 @@ public class Komedij extends Mainloc {
                 }
 
                 // SluzDrasta mitnehmen (falls noch da)
-                if ((rectSluzDrasta.IsPointInRect(pTemp)) && (!mainFrame.Actions[512])) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
                     nextActionID = 6;
                     mainFrame.wegGeher.SetzeNeuenWeg(pSluzDrasta);
                     mainFrame.repaint();
@@ -459,7 +459,7 @@ public class Komedij extends Mainloc {
                 }
 
                 // tesaki benutzen
-                if ((tesaki.IsPointInRect(pTemp)) && (mainFrame.Actions[512])) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
                     nextActionID = 30;
                     mainFrame.wegGeher.SetzeNeuenWeg(pTesaki);
                     mainFrame.repaint();
@@ -483,7 +483,7 @@ public class Komedij extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -495,20 +495,20 @@ public class Komedij extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    (sekera.IsPointInRect(pTemp)) ||
-                    (rectGorilla.IsPointInRect(pTemp)) ||
-                    ((rectSluzDrasta.IsPointInRect(pTemp)) && (!mainFrame.Actions[512])) ||
-                    (postawa.IsPointInRect(pTemp)) ||
-                    (mjec.IsPointInRect(pTemp)) ||
-                    ((tesaki.IsPointInRect(pTemp)) && (mainFrame.Actions[512]));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    sekera.IsPointInRect(pTemp) ||
+                    rectGorilla.IsPointInRect(pTemp) ||
+                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512] ||
+                    postawa.IsPointInRect(pTemp) ||
+                    mjec.IsPointInRect(pTemp) ||
+                    tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512];
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -516,12 +516,12 @@ public class Komedij extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((sekera.IsPointInRect(pTemp)) ||
-                    (rectGorilla.IsPointInRect(pTemp)) ||
-                    ((rectSluzDrasta.IsPointInRect(pTemp)) && (!mainFrame.Actions[512])) ||
-                    (postawa.IsPointInRect(pTemp)) ||
-                    (mjec.IsPointInRect(pTemp)) ||
-                    ((tesaki.IsPointInRect(pTemp)) && (mainFrame.Actions[512]))) {
+            if (sekera.IsPointInRect(pTemp) ||
+                    rectGorilla.IsPointInRect(pTemp) ||
+                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512] ||
+                    postawa.IsPointInRect(pTemp) ||
+                    mjec.IsPointInRect(pTemp) ||
+                    tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -621,14 +621,14 @@ public class Komedij extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt,
         // wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -636,7 +636,7 @@ public class Komedij extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -696,12 +696,12 @@ public class Komedij extends Mainloc {
 
             case 7:
                 // Ende take sluz. drasta
-                if ((--Counter) == 1) {
+                if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(41);
                     mainFrame.Actions[512] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                 }
-                if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
+                if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;

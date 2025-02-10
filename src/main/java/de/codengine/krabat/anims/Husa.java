@@ -126,7 +126,7 @@ public class Husa extends Mainanim {
         }
 
         // die kleineren Anims, die oefter erfolgen duerfen
-        if ((zuffi < 20) || (ResetSchnatter == 4)) {
+        if (zuffi < 20 || ResetSchnatter == 4) {
             ResetSchnatter = 0;
             if ((Aktion & 1) == 0) {
                 // es ist eine Schnatteraktion, also zuruecksetzen
@@ -135,7 +135,7 @@ public class Husa extends Mainanim {
                 // das Schnattern darf beginnen
                 Aktion++;
             }
-        } else if ((zuffi > 80) && (ResetRichtung > 15)) {
+        } else if (zuffi > 80 && ResetRichtung > 15) {
             ResetRichtung = 0;
 
             // die groesseren Bewegungen, die nicht so oft erscheinen sollen
@@ -152,7 +152,7 @@ public class Husa extends Mainanim {
                             break;
                         case 2:
                             // kann groesser oder kleiner werden
-                            if (((int) Math.round(Math.random() * 10)) > 5) {
+                            if ((int) Math.round(Math.random() * 10) > 5) {
                                 Richtung--;
                             } else {
                                 Richtung++;
@@ -171,22 +171,22 @@ public class Husa extends Mainanim {
         ResetAktion++;
         EvalNewAction();
 
-        if ((Aktion == 7) || (Aktion == 8)) {
+        if (Aktion == 7 || Aktion == 8) {
             if (Richtung == 1) {
                 // System.out.println ("x + 1");
-                if ((Positx - Grenze.lo_point.x) > 1) {
+                if (Positx - Grenze.lo_point.x > 1) {
                     Positx -= 0.5;
                 } else {
-                    while ((Aktion == 7) || (Aktion == 8)) {
+                    while (Aktion == 7 || Aktion == 8) {
                         GetNewAction();
                     }
                 }
             } else {
                 // System.out.println ("x - 1");
-                if ((Grenze.ru_point.x - Positx) > 1) {
+                if (Grenze.ru_point.x - Positx > 1) {
                     Positx += 0.5;
                 } else {
-                    while ((Aktion == 7) || (Aktion == 8)) {
+                    while (Aktion == 7 || Aktion == 8) {
                         GetNewAction();
                     }
                 }
@@ -194,10 +194,10 @@ public class Husa extends Mainanim {
 
             int zi = (int) Math.round(Math.random() * 100);
 
-            if ((zi < 15) && ((Posity - Grenze.lo_point.y) > 1)) {
+            if (zi < 15 && Posity - Grenze.lo_point.y > 1) {
                 Posity -= 0.5;
             }
-            if ((zi > 85) && ((Grenze.ru_point.y - Posity) > 1)) {
+            if (zi > 85 && Grenze.ru_point.y - Posity > 1) {
                 Posity += 0.5;
             }
         }
@@ -210,7 +210,7 @@ public class Husa extends Mainanim {
     private void EvalNewAction() {
         // Hier nur zufaellig die Phasen einer Richtung berechnen
         int zuf = (int) Math.round(Math.random() * KONSTANTE3);
-        if ((zuf > 70) && ((Aktion & 1) != 0) && (ResetAktion > 10)) {
+        if (zuf > 70 && (Aktion & 1) != 0 && ResetAktion > 10) {
             ResetAktion = 0;
             GetNewAction();
         }
@@ -224,7 +224,7 @@ public class Husa extends Mainanim {
             zf = (int) Math.round(Math.random() * 90);
             zf = zf / 10;
         }
-        while (((zf & 1) == 0) || (zf > ((Richtung == 2) ? 5 : 7)) || (zf == Aktion));
+        while ((zf & 1) == 0 || zf > (Richtung == 2 ? 5 : 7) || zf == Aktion);
 
         // System.out.println ("Neue Aktion " + zf);
 
@@ -260,6 +260,6 @@ public class Husa extends Mainanim {
         c = a + 35;
         d = b + 40;
 
-        return (new Borderrect(a, b, c, d));
+        return new Borderrect(a, b, c, d);
     }
 }    		

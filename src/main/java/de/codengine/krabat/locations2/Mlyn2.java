@@ -221,7 +221,7 @@ public class Mlyn2 extends Mainloc {
 
         // Anim zeichnen, da stets im Hintergrund
         if (mainFrame.isAnim) {
-            if ((--Verhinderrad) < 1) {
+            if (--Verhinderrad < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
                 if (Radcount == 21) {
@@ -250,7 +250,7 @@ public class Mlyn2 extends Mainloc {
             // Zeichne ihn jetzt
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 if (!muellerSprichtMitStock) {
                     mueller.talkMlynk(g);
                 } else {
@@ -265,11 +265,11 @@ public class Mlyn2 extends Mainloc {
 
             if (showKrabat) {
                 // redender Krabat
-                if ((mainFrame.talkCount > 0) && (TalkPerson == 1)) {
+                if (mainFrame.talkCount > 0 && TalkPerson == 1) {
                     mainFrame.krabat.talkKrabat(g);
                 } else {
                     // beschreibender Krabat
-                    if ((mainFrame.talkCount > 0) && (TalkPerson == 3)) {
+                    if (mainFrame.talkCount > 0 && TalkPerson == 3) {
                         mainFrame.krabat.describeKrabat(g);
                     }
                     // rumstehender Krabat
@@ -290,7 +290,7 @@ public class Mlyn2 extends Mainloc {
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+        if (mainFrame.talkCount < 1 && TalkPause > 0) {
             TalkPause--;
         }
 
@@ -303,7 +303,7 @@ public class Mlyn2 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
             DoAction();
         }
     }
@@ -384,7 +384,7 @@ public class Mlyn2 extends Mainloc {
 
             case 500:
                 // Muellertext fuer Anmecker...
-                int zf = (int) (Math.round(Math.random() * KONSTANTE));
+                int zf = (int) Math.round(Math.random() * KONSTANTE);
                 PersonSagt(HAMecker[zf], DAMecker[zf], NAMecker[zf], 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
                 break;
 

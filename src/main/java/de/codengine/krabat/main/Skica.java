@@ -87,12 +87,12 @@ public class Skica extends Mainanim {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -150,7 +150,7 @@ public class Skica extends Mainanim {
 
             case 20:
                 // jetzt Text
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
 
@@ -181,7 +181,7 @@ public class Skica extends Mainanim {
 
             case 30:
                 // und schluss, wenn bis hierhin gekommen
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break; // warten, falls Counter gesetzt wurde
                 }
                 Deactivate();

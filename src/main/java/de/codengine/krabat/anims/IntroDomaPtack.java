@@ -57,12 +57,12 @@ public class IntroDomaPtack extends Mainanim {
     }
 
     public boolean Flieg(GenericDrawingContext g) {
-        if ((animpos == 1) || (animpos == 4)) {
+        if (animpos == 1 || animpos == 4) {
             int glei = (int) Math.round(Math.random() * 30);
-            if ((glei < 29) && (!Gleiten) && (!start)) {
-                schalt = !(schalt);
+            if (glei < 29 && !Gleiten && !start) {
+                schalt = !schalt;
                 if (schalt) {
-                    oben = !(oben);
+                    oben = !oben;
                     if (!oben) {
                         animpos = 3;
                     } else {
@@ -88,7 +88,7 @@ public class IntroDomaPtack extends Mainanim {
                 }
             }
         } else {
-            schalt = !(schalt);
+            schalt = !schalt;
             if (schalt) {
                 animpos = 1;
             }
@@ -97,7 +97,7 @@ public class IntroDomaPtack extends Mainanim {
         x -= 10;
 
         int versch = (int) Math.round(Math.random() * 20);
-        if ((versch > 10) && (!start)) {
+        if (versch > 10 && !start) {
             if (Gleiten) {
                 y += 1;
             } else {

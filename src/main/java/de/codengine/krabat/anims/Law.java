@@ -81,11 +81,11 @@ public class Law extends Mainanim {
         //                        70 grrrrr
 
         // oberste Prio hat das Reden, zuerst normal
-        if ((TalkPerson == 68) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 68 && mainFrame.talkCount > 1) {
             // weiterschalten
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
-                Talk = (int) ((Math.random() * 4.9) + 2);
+                Talk = (int) (Math.random() * 4.9 + 2);
             }
 
             // Zeichnen
@@ -95,7 +95,7 @@ public class Law extends Mainanim {
         }
 
         // hier das Reden grrr...
-        if ((TalkPerson == 70) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 70 && mainFrame.talkCount > 1) {
             // nur ein statisches Image
             offGraph.drawImage(law_grrr, Posit.x, Posit.y, null);
 
@@ -105,7 +105,7 @@ public class Law extends Mainanim {
         // nun das Reden in der AnimTalkPerson ( == schlafen)
         if (AnimTalkPerson == 68) {
             // Weiterschalten
-            if ((--Verhindersleep) < 1) {
+            if (--Verhindersleep < 1) {
                 Verhindersleep = MAX_VERHINDERSLEEP;
                 if (Sleep == 0) {
                     Sleep = 1;

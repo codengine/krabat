@@ -199,7 +199,7 @@ public class WikowarkaRudy extends Mainanim {
         VerschiebeY();
 
         // Ueberschreitung feststellen in Y - Richtung
-        if (((walkto.y - (int) typs) * direction_y) <= 0) {
+        if ((walkto.y - (int) typs) * direction_y <= 0) {
             // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
             SetZonaPos(walkto);
             anim_pos = 0;
@@ -254,7 +254,7 @@ public class WikowarkaRudy extends Mainanim {
             txps += direction_x * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + (direction_y * vert_dist);
+        typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -279,12 +279,12 @@ public class WikowarkaRudy extends Mainanim {
 	  }*/
 
         // Laufrichtung ermitteln
-        if (aim.x > ((int) xps)) {
+        if (aim.x > (int) xps) {
             xricht = 1;
         } else {
             xricht = -1;
         }
-        if (aim.y > ((int) yps)) {
+        if (aim.y > (int) yps) {
             yricht = 1;
         } else {
             yricht = -1;
@@ -332,7 +332,7 @@ public class WikowarkaRudy extends Mainanim {
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint GetZonaPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return (new GenericPoint(((int) xps), ((int) yps)));
+        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -366,9 +366,9 @@ public class WikowarkaRudy extends Mainanim {
         // this.isListening = isListening;
 
         // hier evaluieren, ob geguckt werden darf oder nicht
-        if ((!isMoving) && (!isListening)) {
+        if (!isMoving && !isListening) {
             // Weiterschalten
-            if ((--Verhinderguck) < 1) {
+            if (--Verhinderguck < 1) {
                 Verhinderguck = MAX_VERHINDERGUCK;
                 Guck = (int) (Math.random() * 1.9);
             }
@@ -451,7 +451,7 @@ public class WikowarkaRudy extends Mainanim {
         // schraeggucken deaktivieren
         Guck = 0;
 
-        if ((--VerhinderTalk) < 1) {
+        if (--VerhinderTalk < 1) {
             VerhinderTalk = MAX_VERHINDERTALK;
             TalkPos = (int) Math.round(Math.random() * 8);
 
@@ -466,7 +466,7 @@ public class WikowarkaRudy extends Mainanim {
     public void giveWosusk(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und die 2 Images fuer Give zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
         g.drawImage(krabat_extra[0], lo.x, lo.y, null);
         g.drawImage(hrajer_extra[0], lo.x, lo.y + CHEIGHT, null);
     }
@@ -474,7 +474,7 @@ public class WikowarkaRudy extends Mainanim {
     public void giveMetal(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und Images fuer Give zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
         g.drawImage(krabat_extra[1], lo.x, lo.y, null);
         g.drawImage(hrajer_extra[1], lo.x, lo.y + CHEIGHT, null);
     }
@@ -482,7 +482,7 @@ public class WikowarkaRudy extends Mainanim {
     public void Kiss(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und 1 Kiss-Image zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
-        g.setClip(lo.x, lo.y, lo.x + (CWIDTH * 2), lo.y + (CHEIGHT * 2));
+        g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
         g.drawImage(hrajer_extra[2], lo.x, lo.y, null);
     }
 
@@ -506,14 +506,14 @@ public class WikowarkaRudy extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         // int helper = getScale(pox, poy);
-        return (pox - (CWIDTH / 2));
+        return pox - CWIDTH / 2;
     }
 
     private int getUpPos(int pox, int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         // int helper = getScale(pox, poy);
-        return (poy - (CHEIGHT / 2));
+        return poy - CHEIGHT / 2;
     }
 
     // fuer Debugging public - wird wieder private !!!
@@ -563,21 +563,21 @@ public class WikowarkaRudy extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect ZonaRect() {
-        int x = getLeftPos(((int) xps), ((int) yps));
-        int y = getUpPos(((int) xps), ((int) yps));
-        int xd = (2 * (((int) xps) - x)) + x;
-        int yd = (2 * (((int) yps) - y)) + y;
+        int x = getLeftPos((int) xps, (int) yps);
+        int y = getUpPos((int) xps, (int) yps);
+        int xd = 2 * ((int) xps - x) + x;
+        int yd = 2 * ((int) yps - y) + y;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return (new Borderrect(x, y, xd, yd));
+        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, ((int) xps), ((int) yps));
+        KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos(((int) xps), ((int) yps));
-        int up = getUpPos(((int) xps), ((int) yps));
+        int left = getLeftPos((int) xps, (int) yps);
+        int up = getUpPos((int) xps, (int) yps);
         // int scale = getScale   ( ((int) xps), ((int) yps) );
 
         // Figur zeichnen

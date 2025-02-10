@@ -130,21 +130,21 @@ public class DDKowar extends Mainanim {
     // Zeichne Schmied, wie er dasteht oder spricht
     public void drawDDkowar(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, boolean isListening) {
         // Schmied beim Reden
-        if (((TalkPerson == 45) && (mainFrame.talkCount > 1)) || (isListening)) {
+        if (TalkPerson == 45 && mainFrame.talkCount > 1 || isListening) {
             // Head evaluieren
-            if ((--Verhindertalkhead) < 1) {
+            if (--Verhindertalkhead < 1) {
                 Verhindertalkhead = MAX_VERHINDERTALKHEAD;
                 Talkhead = (int) (Math.random() * 7.9);
             }
 
             // Body evaluieren
-            if ((--Verhindertalkbody) < 1) {
+            if (--Verhindertalkbody < 1) {
                 Verhindertalkbody = MAX_VERHINDERTALKBODY;
                 Talkbody = (int) (Math.random() * 2.9);
             }
 
             // alles falsch, wenn er nur zuhoeren soll
-            if ((isListening) && (TalkPerson != 45)) {
+            if (isListening && TalkPerson != 45) {
                 Talkbody = 0;
                 Talkhead = Zwinker;
 
@@ -169,13 +169,13 @@ public class DDKowar extends Mainanim {
         // Schmied beim Arbeiten
         else {
             // Head evaluieren
-            if ((--Verhinderworkhead) < 1) {
+            if (--Verhinderworkhead < 1) {
                 Verhinderworkhead = MAX_VERHINDERWORKHEAD;
                 Workhead = (int) (Math.random() * 2.9);
             }
 
             // Body evaluieren
-            if ((--Verhinderworkbody) < 1) {
+            if (--Verhinderworkbody < 1) {
                 Verhinderworkbody = MAX_VERHINDERWORKBODY;
                 Workbody = (int) (Math.random() * 4.9);
             }

@@ -194,7 +194,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         Warten = GenericToolkit.getDefaultToolkit().createCustomCursor(WWarten, new GenericPoint(xxx, yyy), "Warten");
         Nix = GenericToolkit.getDefaultToolkit().createCustomCursor(NNix, new GenericPoint(xxx, yyy), "Nix");
 
-        return (new GenericPoint(xxx, yyy));
+        return new GenericPoint(xxx, yyy);
     }
 
     @Override
@@ -217,9 +217,9 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     @Override
     public void mousePressed(MouseEvent e) {
         // Doppelclick (zeitlich begrenzt) erkennen
-        dClick = (Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit) &&
-                (Math.abs(Mousetemp.y - e.getPoint().y) < doubleClickPointLimit) &&
-                (!dClick) && ((System.currentTimeMillis() - timeskip) < doubleClickTimeLimit);
+        dClick = Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit &&
+                Math.abs(Mousetemp.y - e.getPoint().y) < doubleClickPointLimit &&
+                !dClick && System.currentTimeMillis() - timeskip < doubleClickTimeLimit;
         timeskip = System.currentTimeMillis();
         Mousetemp = e.getPoint();
 

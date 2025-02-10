@@ -68,7 +68,7 @@ public class Spielstand {
         Time += Integer.toString(Month);
         Time += ".";
         Time += Integer.toString(Year);
-        return (Time);
+        return Time;
     }
 
     public void GetSavedSpiel(int i) {
@@ -84,7 +84,7 @@ public class Spielstand {
         Pos = Feld.length;
 
         // System.out.println(Pos + "Datei wurde geladen");
-        if ((Pos > (mainFrame.storageManager.getFileSize() - 3)) && (Pos < (mainFrame.storageManager.getFileSize() + 3))) {
+        if (Pos > mainFrame.storageManager.getFileSize() - 3 && Pos < mainFrame.storageManager.getFileSize() + 3) {
             // wenn Datei geladen, dann Einlesen der Werte
 
             // Checksumme ueberpruefen
@@ -93,7 +93,7 @@ public class Spielstand {
                 //{
                 //System.out.print((int) Feld[d] + " ");
                 //}
-                if ((Feld[d + 1] != W) || (d < 43381)) {
+                if (Feld[d + 1] != W || d < 43381) {
                     Checksumme ^= (Feld[d] - W) % 256;
                 } else {
                     Where = d;
@@ -101,7 +101,7 @@ public class Spielstand {
                 }
             }
             // System.out.println("Checksumme : " + Checksumme + " Feld : " + (Feld[Where] - W) + " Pos : " + Where);
-            if (Checksumme == (Feld[Where] - W)) {
+            if (Checksumme == Feld[Where] - W) {
                 // System.out.println("Verified !");
             } else {
                 // System.out.println("Dieser Spielstand wurde manipuliert!");
@@ -113,8 +113,8 @@ public class Spielstand {
             Location = Feld[0] - W;
 
             // Krabats Position einlesen
-            Krabatpos = new GenericPoint(((Feld[1] - W) * 256) + (Feld[2] - W),
-                    ((Feld[3] - W) * 256) + (Feld[4] - W));
+            Krabatpos = new GenericPoint((Feld[1] - W) * 256 + Feld[2] - W,
+                    (Feld[3] - W) * 256 + Feld[4] - W);
 
             // Sprache einlesen
             isHornjos = Feld[5] - W;
@@ -122,22 +122,22 @@ public class Spielstand {
             // Datum einlesen
             Day = Feld[6] - W;
             Month = Feld[7] - W;
-            Year = ((Feld[8] - W) * 256) + (Feld[9] - W);
+            Year = (Feld[8] - W) * 256 + Feld[9] - W;
 
             // Bild einlesen
             int pxx = 0;
             for (int x = 10; x <= 42370; x += 4) {
-                Bild[pxx] = (Feld[x] - W) | ((Feld[x + 1] - W) << 8) | ((Feld[x + 2] - W) << 16) | ((Feld[x + 3] - W) << 24);
+                Bild[pxx] = Feld[x] - W | Feld[x + 1] - W << 8 | Feld[x + 2] - W << 16 | Feld[x + 3] - W << 24;
                 pxx++;
             }
 
             // Scrolling, Facing - Variablen
-            Scrolling = ((Feld[42374] - W) * 256) + (Feld[42375] - W);
-            Facing = (Feld[42376] - W);
+            Scrolling = (Feld[42374] - W) * 256 + Feld[42375] - W;
+            Facing = Feld[42376] - W;
 
             // Actions - Boolean - array
             for (int l = 42380; l <= 43379; l++) {
-                Aktionen[l - 42380] = (Feld[l] - W) != 0;
+                Aktionen[l - 42380] = Feld[l] - W != 0;
             }
 
             // Inventarvektor einlesen
@@ -195,10 +195,10 @@ public class Spielstand {
 
         // Krabats Position zuweisen
         GenericPoint Tep = mainFrame.krabat.GetKrabatPos();
-        Feld[1] = (byte) ((Tep.x / 256) + W);
-        Feld[2] = (byte) ((Tep.x % 256) + W);
-        Feld[3] = (byte) ((Tep.y / 256) + W);
-        Feld[4] = (byte) ((Tep.y % 256) + W);
+        Feld[1] = (byte) (Tep.x / 256 + W);
+        Feld[2] = (byte) (Tep.x % 256 + W);
+        Feld[3] = (byte) (Tep.y / 256 + W);
+        Feld[4] = (byte) (Tep.y % 256 + W);
 
         // Sprache zuweisen
         Feld[5] = (byte) (mainFrame.sprache + W);
@@ -206,25 +206,25 @@ public class Spielstand {
         // Datum zuweisen
         Feld[6] = (byte) (Day + W);
         Feld[7] = (byte) (Month + W);
-        Feld[8] = (byte) ((Year / 256) + W);
-        Feld[9] = (byte) ((Year % 256) + W);
+        Feld[8] = (byte) (Year / 256 + W);
+        Feld[9] = (byte) (Year % 256 + W);
 
         // Bild zerlegen und zuweisen
         int pxx = 0;
         for (int i = 0; i <= 42360; i += 4) {
             Feld[i + 10] = (byte) ((Bild[pxx] & 255) + W);
-            Feld[i + 11] = (byte) (((Bild[pxx] >> 8) & 255) + W);
-            Feld[i + 12] = (byte) (((Bild[pxx] >> 16) & 255) + W);
-            Feld[i + 13] = (byte) (((Bild[pxx] >> 24) & 255) + W);
+            Feld[i + 11] = (byte) ((Bild[pxx] >> 8 & 255) + W);
+            Feld[i + 12] = (byte) ((Bild[pxx] >> 16 & 255) + W);
+            Feld[i + 13] = (byte) ((Bild[pxx] >> 24 & 255) + W);
             pxx++;
         }
 
         // Scrolling - Variable zuweisen
-        Feld[42374] = (byte) ((mainFrame.scrollx / 256) + W);
-        Feld[42375] = (byte) ((mainFrame.scrollx % 256) + W);
+        Feld[42374] = (byte) (mainFrame.scrollx / 256 + W);
+        Feld[42375] = (byte) (mainFrame.scrollx % 256 + W);
 
         // Facing - Variable zuweisen
-        Feld[42376] = (byte) ((mainFrame.krabat.GetFacing()) + W);
+        Feld[42376] = (byte) (mainFrame.krabat.GetFacing() + W);
 
         // Boolean - Array Actions zuweisen
         for (int i = 42380; i <= 43379; i++) {
@@ -251,7 +251,7 @@ public class Spielstand {
             //{
             // System.out.print((int) Feld[e] + " ");
             //}
-            if ((Feld[e] != W) || (e < 43381)) {
+            if (Feld[e] != W || e < 43381) {
                 Checksum ^= (Feld[e] + W) % 256;
             } else {
                 undwo = e;

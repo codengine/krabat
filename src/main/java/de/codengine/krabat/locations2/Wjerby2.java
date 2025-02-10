@@ -140,7 +140,7 @@ public class Wjerby2 extends Mainloc2 {
             g.drawImage(background, 0, 0, null);
 
             // Redet er etwa gerade ??
-            if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -177,7 +177,7 @@ public class Wjerby2 extends Mainloc2 {
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
+        if (mainFrame.talkCount < 1 && TalkPause > 0) {
             TalkPause--;
         }
 
@@ -191,7 +191,7 @@ public class Wjerby2 extends Mainloc2 {
 
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (mainFrame.talkCount < 1) && (TalkPause < 1)) {
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
             DoAction();
         }
     }

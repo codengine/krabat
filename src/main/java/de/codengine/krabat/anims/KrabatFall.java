@@ -65,7 +65,7 @@ public class KrabatFall extends Mainanim {
         GenericPoint LeftUp = new GenericPoint();
 
         // GenericImage weiterschalten und Ende eval.
-        if ((--Verhinderfallen) < 1) {
+        if (--Verhinderfallen < 1) {
             Verhinderfallen = MAX_VERHINDERFALLEN;
             if (FallCount < 2) {
                 FallCount++;
@@ -87,7 +87,7 @@ public class KrabatFall extends Mainanim {
         int Hoehe = 100 - zoom;
         int Breite = 0;
         if (FallCount == 0) {
-            Breite = 50 - (zoom / 2);
+            Breite = 50 - zoom / 2;
         } else {
             Breite = 100 - zoom;
         }
@@ -96,7 +96,7 @@ public class KrabatFall extends Mainanim {
         LeftUp.y = pos.y - Hoehe;
 
         // X-Pos berechnen
-        LeftUp.x = pos.x - (Breite / 2);
+        LeftUp.x = pos.x - Breite / 2;
 
         // Cliprect setzen
         g.setClip(LeftUp.x, LeftUp.y, Breite + 1, Hoehe + 1);
@@ -104,7 +104,7 @@ public class KrabatFall extends Mainanim {
         // Hier Animphase zeichnen
         g.drawImage(krabat_fallen[FallCount], LeftUp.x, LeftUp.y, Breite, Hoehe, null);
 
-        return (rueckgabe);
+        return rueckgabe;
 
     }
 }    

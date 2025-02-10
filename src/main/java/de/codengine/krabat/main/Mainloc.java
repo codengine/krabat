@@ -632,7 +632,7 @@ abstract public class Mainloc {
 
             case 582:
                 // Erzaehlerspruch
-                if ((--Counter) > 1) {
+                if (--Counter > 1) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Main_Mainloc_00195"),

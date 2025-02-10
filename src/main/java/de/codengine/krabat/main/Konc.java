@@ -94,7 +94,7 @@ public class Konc extends Mainanim {
         evalMouseMoveEvent(mainFrame.Mousepoint);
         g.drawImage(backgr, 190 + mainFrame.scrollx, 190 + mainFrame.scrolly, observer);
         for (int i = 0; i <= Anzahl; ++i) {
-            if ((selected == i) || (i == 0)) {
+            if (selected == i || i == 0) {
                 mainFrame.ifont.drawString(g, Fragen[i],
                         Positionen[i].getX() + mainFrame.scrollx,
                         Positionen[i].getY() + mainFrame.scrolly, 0xffff0000);

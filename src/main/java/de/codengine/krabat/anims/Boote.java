@@ -119,7 +119,7 @@ public class Boote extends Mainanim {
                 helper = 1;
                 break;
             case 3: // panorama
-                helper = (int) ((Math.random() * 3.9) + 2);
+                helper = (int) (Math.random() * 3.9 + 2);
                 break;
         }
 
@@ -136,8 +136,8 @@ public class Boote extends Mainanim {
     private void InitPosition() {
         // innerhalb des umschliessenden Rects Zufallsschuss und auf innerhalb pruefen
         // erstmal die Grenzen
-        int xmin = (bootRect.x1 < bootRect.x3) ? bootRect.x1 : bootRect.x3;
-        int xmax = (bootRect.x2 > bootRect.x4) ? bootRect.x2 : bootRect.x4;
+        int xmin = bootRect.x1 < bootRect.x3 ? bootRect.x1 : bootRect.x3;
+        int xmax = bootRect.x2 > bootRect.x4 ? bootRect.x2 : bootRect.x4;
         int ymin = bootRect.y1;
         int ymax = bootRect.y2;
 
@@ -145,8 +145,8 @@ public class Boote extends Mainanim {
 
         // Punkt erzeugen und auf Gueltigkeit ueberpruefen
         do {
-            xt = (int) ((Math.random() * (xmax - xmin)) + xmin);
-            yt = (int) ((Math.random() * (ymax - ymin)) + ymin);
+            xt = (int) (Math.random() * (xmax - xmin) + xmin);
+            yt = (int) (Math.random() * (ymax - ymin) + ymin);
         }
         while (!bootRect.PointInside(new GenericPoint(xt, yt)));
 
@@ -164,7 +164,7 @@ public class Boote extends Mainanim {
 
     // Zeichne Boot
     public void drawBoot(GenericDrawingContext g) {
-        int x = bootPoint.x - (Breite / 2);
+        int x = bootPoint.x - Breite / 2;
         int y = bootPoint.y - Hoehe;
 
         g.drawImage(bootBild, x, y, null);
@@ -174,9 +174,9 @@ public class Boote extends Mainanim {
 
     // gibt das aktuelle Borderrect fuer das Boot an fuer Cliprect und Loeschen
     public Borderrect evalBootRect() {
-        int x = bootPoint.x - (Breite / 2);
+        int x = bootPoint.x - Breite / 2;
         int y = bootPoint.y - Hoehe;
-        return (new Borderrect(x - 2, y - 2, x + Breite + 4, y + Hoehe + 4));
+        return new Borderrect(x - 2, y - 2, x + Breite + 4, y + Hoehe + 4);
     }
 
 }    

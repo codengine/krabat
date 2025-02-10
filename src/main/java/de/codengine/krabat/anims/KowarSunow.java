@@ -152,8 +152,8 @@ public class KowarSunow extends Mainanim {
     // Zeichne Kolar, wie er dasteht oder spricht
     public void drawKowar(GenericDrawingContext g, int TalkPerson, boolean Listenflag, boolean noTalkSchmied) {
         // Schmied beim Reden
-        if ((TalkPerson == 22) && (mainFrame.talkCount > 1) && (TurnAnim > 49)) {
-            if ((--Verhindertalk) < 1) {
+        if (TalkPerson == 22 && mainFrame.talkCount > 1 && TurnAnim > 49) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 Head = (int) Math.round(Math.random() * 6);
                 Head++;
@@ -162,7 +162,7 @@ public class KowarSunow extends Mainanim {
                 }
             }
 
-            if ((--Verhinderbody) < 1) {
+            if (--Verhinderbody < 1) {
                 Verhinderbody = MAX_VERHINDERBODY;
                 Body = (int) Math.round(Math.random() * 5);
                 Body++;
@@ -174,7 +174,7 @@ public class KowarSunow extends Mainanim {
             g.drawImage(kowar_body[Body], (int) Walkx, (int) (Walky + 37), null);
             drawVorder(g);
         } else {
-            if ((Listenflag) || (TurnAnim > 1)) {
+            if (Listenflag || TurnAnim > 1) {
                 // zur Person hindrehen und rumstehen
                 if (TurnAnim > 49) {
                     // nur Rumstehen und Zwinkern
@@ -213,13 +213,13 @@ public class KowarSunow extends Mainanim {
                         case 2: // Umdrehen und zum Zielpunkt laufen
 
                             // Punkt bewegen
-                            Verhinderstrampeln = !(Verhinderstrampeln);
+                            Verhinderstrampeln = !Verhinderstrampeln;
                             if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - TalkPoint.y) / Math.abs(Walkx - TalkPoint.x);
 
                                 // System.out.println ("Verhaeltnis = " + Verhaeltnis);
 
-                                if ((WalklCount == 1) || (WalklCount == 3)) {
+                                if (WalklCount == 1 || WalklCount == 3) {
                                     // Grosser Schritt
                                     Walkx -= 8;
                                     Walky += 8.0f * Verhaeltnis;
@@ -236,7 +236,7 @@ public class KowarSunow extends Mainanim {
                             }
 
                             // Auf "ich habe fertig" kontrollieren
-                            if ((Walkx <= TalkPoint.x) || (Walky >= TalkPoint.y)) {
+                            if (Walkx <= TalkPoint.x || Walky >= TalkPoint.y) {
                                 TurnAnim++;
                             }
                             // if ((Math.abs (Walkx - TalkPoint.x) < 5) || (Math.abs (Walky - TalkPoint.y) < ((int) (5.0f * Verhaeltnis)))) TurnAnim++;
@@ -244,7 +244,7 @@ public class KowarSunow extends Mainanim {
                             // System.out.println ("Animphase : " + WalklCount + " Xkoord " + Walkx + " Ykoord " + Walky);
 
                             // Kolar malen
-                            g.drawImage(kowar_walkl[((WalklCount == 4) ? 2 : WalklCount)], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkl[WalklCount == 4 ? 2 : WalklCount], (int) Walkx, (int) Walky, null);
                             drawVorder(g);
                             break;
 
@@ -267,13 +267,13 @@ public class KowarSunow extends Mainanim {
                         case 11: // Umdrehen und zum Zielpunkt laufen
 
                             // Punkt bewegen
-                            Verhinderstrampeln = !(Verhinderstrampeln);
+                            Verhinderstrampeln = !Verhinderstrampeln;
                             if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - WorkPoint.y) / Math.abs(Walkx - WorkPoint.x);
 
                                 // System.out.println ("Verhaeltnis = " + Verhaeltnis);
 
-                                if ((WalkrCount == 1) || (WalkrCount == 3)) {
+                                if (WalkrCount == 1 || WalkrCount == 3) {
                                     // Grosser Schritt
                                     Walkx += 8;
                                     Walky -= 8.0f * Verhaeltnis;
@@ -290,7 +290,7 @@ public class KowarSunow extends Mainanim {
                             }
 
                             // Auf "ich habe fertig" kontrollieren
-                            if ((Walkx >= WorkPoint.x) || (Walky <= WorkPoint.y)) {
+                            if (Walkx >= WorkPoint.x || Walky <= WorkPoint.y) {
                                 TurnAnim++;
                             }
                             // if ((Math.abs (Walkx - WorkPoint.x) < 5) || (Math.abs (Walky - WorkPoint.y) < ((int) (5.0f * Verhaeltnis)))) TurnAnim++;
@@ -298,7 +298,7 @@ public class KowarSunow extends Mainanim {
                             // System.out.println ("Animphase : " + WalkrCount + " Xkoord " + Walkx + " Ykoord " + Walky);
 
                             // Kolar malen
-                            g.drawImage(kowar_walkr[((WalkrCount == 4) ? 2 : WalkrCount)], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkr[WalkrCount == 4 ? 2 : WalkrCount], (int) Walkx, (int) Walky, null);
                             drawVorder(g);
                             break;
 
@@ -315,14 +315,14 @@ public class KowarSunow extends Mainanim {
             else {
                 switch (Work) {
                     case 1: // Pause
-                        if ((--Verhinderpause) < 1) {
+                        if (--Verhinderpause < 1) {
                             Verhinderpause = MAX_VERHINDERPAUSE;
                             Work = 2;
                         }
                         break;
 
                     case 2: // 1. Arbeitsschritt
-                        if ((--Verhinderarbeit) < 1) {
+                        if (--Verhinderarbeit < 1) {
                             if (!noTalkSchmied) {
                                 evalSound();
                             }
@@ -332,7 +332,7 @@ public class KowarSunow extends Mainanim {
                         break;
 
                     case 3: // 2. Arbeitsschritt, Entscheidung weiter oder Pause
-                        if ((--Verhinderarbeit) < 1) {
+                        if (--Verhinderarbeit < 1) {
 
                             Verhinderarbeit = MAX_VERHINDERARBEIT;
                             int zf = (int) Math.round(Math.random() * 50);
@@ -367,6 +367,6 @@ public class KowarSunow extends Mainanim {
     }
 
     public Borderrect schmiedRect() {
-        return (new Borderrect((int) Walkx, (int) Walky, ((int) Walkx) + Breite, ((int) Walky + Hoehe)));
+        return new Borderrect((int) Walkx, (int) Walky, (int) Walkx + Breite, (int) Walky + Hoehe);
     }
 }    

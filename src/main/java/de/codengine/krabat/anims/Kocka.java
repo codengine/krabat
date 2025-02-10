@@ -102,15 +102,15 @@ public class Kocka extends Mainanim {
 
     // Zeichne Mutter, wie sie dasteht oder spricht
     public void drawKocka(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
-        if ((TalkPerson == 59) && (mainFrame.talkCount > 1)) {
+        if (TalkPerson == 59 && mainFrame.talkCount > 1) {
             // Katze beim Reden, einfach nur Switchen
             // evaluieren
-            if ((--Verhindertalk) < 1) {
+            if (--Verhindertalk < 1) {
                 Verhindertalk = MAX_VERHINDERTALK;
                 // Extrawurst, so dass die gehobene Pfote laenger oben bleibt
-                if ((Talk == 1) || (Talk == 3)) {
+                if (Talk == 1 || Talk == 3) {
                     // Testetn, ob die Pfote lange genug oben war
-                    if ((--Verhinderpfote) < 1) {
+                    if (--Verhinderpfote < 1) {
                         Verhinderpfote = MAX_VERHINDERPFOTE;
                         Talk = (int) (Math.random() * 5.9);
                     } else {
@@ -133,7 +133,7 @@ public class Kocka extends Mainanim {
 
             if (Look < 2) {
                 // normal, also schauen, ob eine Anim dran waere
-                if ((--Verhinderlook) < 1) {
+                if (--Verhinderlook < 1) {
                     Verhinderlook = MAX_VERHINDERLOOK;
 
                     // Jetzt eine Anim aussuchen
@@ -157,9 +157,9 @@ public class Kocka extends Mainanim {
             } else {
                 // es laeuft gerade eine Anim
                 // Leckanim testen
-                if ((Look == 2) || (Look == 3)) {
+                if (Look == 2 || Look == 3) {
                     // solange tun tun, bis Counter beendet
-                    if ((--Lecken) < 1) {
+                    if (--Lecken < 1) {
                         // reset und zurueck auf normal
                         Lecken = MAX_LECKEN;
                         Look = 0;
@@ -173,7 +173,7 @@ public class Kocka extends Mainanim {
                     }
                 } else {
                     // diese Anim zeitverzoegert
-                    if ((--Verhinderschwanzwedel) < 1) {
+                    if (--Verhinderschwanzwedel < 1) {
                         Verhinderschwanzwedel = MAX_VERHINDERSCHWANZWEDEL;
 
                         // Schwanzwackelanim
@@ -184,7 +184,7 @@ public class Kocka extends Mainanim {
                             } else {
                                 Look = 0;
                             }
-                            forward = !(forward);
+                            forward = !forward;
                         } else if (Look == 5) {
                             Look = 4;
                         }

@@ -82,14 +82,14 @@ public class Mac extends Mainanim {
         float ho = Hoehe;
         float br = Breite;
 
-        Scalex = (int) ((sc / ho) * br);
+        Scalex = (int) (sc / ho * br);
         // Scalex = (SCALEY / Hoehe) * Breite;
 
         float hy = KOPFY;
-        Scaleyh = (int) ((sc / ho) * hy);
+        Scaleyh = (int) (sc / ho * hy);
 
         hy = BODYY;
-        Scaleyb = (int) ((sc / ho) * hy);
+        Scaleyb = (int) (sc / ho * hy);
 
         Breites = Scalex;
         Hoehes = SCALEY;
@@ -130,9 +130,9 @@ public class Mac extends Mainanim {
         int zuffi;
 
         // Rede, Mutter !!!!!
-        if (((TalkPerson == 20) || (TalkPerson == 60)) && (mainFrame.talkCount > 1)) {
+        if ((TalkPerson == 20 || TalkPerson == 60) && mainFrame.talkCount > 1) {
             // Kopf evaluieren
-            if ((--Verhinderkopf) < 1) {
+            if (--Verhinderkopf < 1) {
                 Verhinderkopf = MAX_VERHINDERKOPF;
                 zuffi = (int) Math.round(Math.random() * 5);
                 zuffi++;
@@ -143,7 +143,7 @@ public class Mac extends Mainanim {
             }
 
             // Body evaluieren
-            if ((--Bodycount) < 1) {
+            if (--Bodycount < 1) {
                 Bodycount = MAX_BODYCOUNT;
                 zuffi = (int) Math.round(Math.random() * 6);
                 zuffi++;

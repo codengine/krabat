@@ -139,7 +139,7 @@ public class Lodz extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
+        if (mainFrame.isMultiple && mainFrame.Clipset) {
             Dialog.paintMultiple(g);
             return;
         }
@@ -183,13 +183,13 @@ public class Lodz extends Mainloc {
 
         // Redet sie etwa gerade ??
         if (zonaVisible) {
-            if ((TalkPerson == 65) && (mainFrame.talkCount > 0)) {
+            if (TalkPerson == 65 && mainFrame.talkCount > 0) {
                 wikowarka.talkZona(g, isListening);
             }
 
             // nur rumstehen oder laufen
             else {
-                if ((Stollen) || (Metall) || (Kiss)) {
+                if (Stollen || Metall || Kiss) {
                     Borderrect tp = wikowarka.ZonaRect();
                     if (Stollen) {
                         wikowarka.giveWosusk(g, tp.lo_point);
@@ -198,7 +198,7 @@ public class Lodz extends Mainloc {
                         wikowarka.giveMetal(g, tp.lo_point);
                     }
                     if (Kiss) {
-                        wikowarka.Kiss(g, new GenericPoint(tp.lo_point.x, (tp.lo_point.y + 21)));
+                        wikowarka.Kiss(g, new GenericPoint(tp.lo_point.x, tp.lo_point.y + 21));
                     }
                 } else {
                     wikowarka.drawZona(g, isListening);
@@ -229,7 +229,7 @@ public class Lodz extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 }
             } else {
-                if ((mainFrame.talkCount > 0) && (TalkPerson != 0)) {
+                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
                     // beim Reden
                     switch (TalkPerson) {
                         case 1:
@@ -280,7 +280,7 @@ public class Lodz extends Mainloc {
             }
         }
 
-        if ((TalkPause > 0) && (mainFrame.talkCount < 1)) {
+        if (TalkPause > 0 && mainFrame.talkCount < 1) {
             TalkPause--;
         }
 
@@ -292,7 +292,7 @@ public class Lodz extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1)) {
+        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
             DoAction();
         }
     }
@@ -352,7 +352,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Ausreden fuer Frau oder Stollen geben
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
+                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
                     if (mainFrame.whatItem == 52) {
                         nextActionID = 160;
                     } else {
@@ -412,7 +412,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Frau ansehen
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
+                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 1;
                     pTemp = pZona;
                 }
@@ -423,7 +423,7 @@ public class Lodz extends Mainloc {
                 // rechte Maustaste
 
                 // Mit der Frau reden
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
+                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pZona);
                     mainFrame.repaint();
@@ -453,7 +453,7 @@ public class Lodz extends Mainloc {
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
+        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -465,15 +465,15 @@ public class Lodz extends Mainloc {
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
-                    ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible));
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+                    wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible;
 
-            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
+            if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
+            if (Cursorform != 11 && mainFrame.invHighCursor) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -489,7 +489,7 @@ public class Lodz extends Mainloc {
                 return;
             }
 
-            if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
+            if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -585,13 +585,13 @@ public class Lodz extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering) ||
-                (mainFrame.krabat.isWalking)) {
+        if (mainFrame.krabat.isWandering ||
+                mainFrame.krabat.isWalking) {
             return;
         }
 
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
-        if ((nextActionID > 499) && (nextActionID < 600)) {
+        if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
 
             // manche Ausreden erfordern neuen Cursor !!!
@@ -602,7 +602,7 @@ public class Lodz extends Mainloc {
         }
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
-        if ((nextActionID > 119) && (nextActionID < 129)) {
+        if (nextActionID > 119 && nextActionID < 129) {
             SwitchScreen();
             return;
         }
@@ -667,7 +667,7 @@ public class Lodz extends Mainloc {
 
             case 170:
                 // kleine Weile geben
-                if ((GiveCounter++) < 5) {
+                if (GiveCounter++ < 5) {
                     break;
                 }
                 nextActionID = 175;
@@ -723,7 +723,7 @@ public class Lodz extends Mainloc {
 
             case 185:
                 // ErzaehlerText
-                if ((--GiveCounter) > 0) {
+                if (--GiveCounter > 0) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00012"), Start.stringManager.getTranslation("Loc3_Lodz_00013"), Start.stringManager.getTranslation("Loc3_Lodz_00014"), 0, 54, 2, 200, new GenericPoint(320, 200));
@@ -771,7 +771,7 @@ public class Lodz extends Mainloc {
 
             case 215:
                 // kleine Weile geben
-                if ((GiveCounter++) < 5) {
+                if (GiveCounter++ < 5) {
                     break;
                 }
                 nextActionID = 220;
@@ -812,7 +812,7 @@ public class Lodz extends Mainloc {
 
             case 240:
                 // wir lassen Ihnen ein bisschen Zeit
-                if ((GiveCounter++) < 5) {
+                if (GiveCounter++ < 5) {
                     break;
                 }
                 nextActionID = 245;
