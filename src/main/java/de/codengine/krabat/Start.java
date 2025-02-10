@@ -308,6 +308,9 @@ public class Start implements Runnable {
     public final synchronized GenericImage paint(GenericDrawingContext g) {
         // Interpolation aktivieren, somit werden gezoomte/verkleinerte Sprites
         // wesentlich besser dargestellt (besonders der Krabat)
+
+        //TODO: Add support for antialiasing and filtering
+
         /*
     	Graphics2D g2 = (Graphics2D) offGraphics;
         g2.setRenderingHint (RenderingHints.KEY_INTERPOLATION,
