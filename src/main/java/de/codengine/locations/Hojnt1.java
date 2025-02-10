@@ -245,7 +245,6 @@ public class Hojnt1 extends Mainloc {
 
         fallevor = getPicture("gfx/hojnt/hojnt-r4.gif");
 
-        loadPicture();
     }
 
     @Override

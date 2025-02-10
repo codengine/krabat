@@ -200,7 +200,6 @@ public class Zastup extends Mainloc {
         Schranke[10] = getPicture("gfx-dd/zastup/sr10.gif");
         Schranke[11] = getPicture("gfx-dd/zastup/sr11.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -662,7 +661,6 @@ public class Zastup extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

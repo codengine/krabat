@@ -114,7 +114,6 @@ public class Cychi extends Mainloc {
         background = getPicture("gfx-dd/cychi/cychi.gif");
         fachwerk = getPicture("gfx-dd/cychi/fachwerk.gif");
         pfosten = getPicture("gfx-dd/cychi/pfosten.gif");
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

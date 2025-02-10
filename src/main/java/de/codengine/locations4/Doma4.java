@@ -77,18 +77,12 @@ public class Doma4 extends Mainloc {
         scrollwert = 640;
         setScroll = true;
 
-        InitLocation();
-
         nextActionID = 10;
 
         Verhinderleutelinks = MAX_VERHINDERLEUTELINKS;
         Verhinderleuterechts = MAX_VERHINDERLEUTERECHTS;
 
         mainFrame.Freeze(false);
-    }
-
-    // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
     }
 
     // Bilder vorbereiten
@@ -128,7 +122,6 @@ public class Doma4 extends Mainloc {
         LeuteMitte[1] = getPicture("gfx/doma/lm1.gif");
         LeuteMitte[2] = getPicture("gfx/doma/lm2.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

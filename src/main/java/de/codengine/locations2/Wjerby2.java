@@ -89,7 +89,6 @@ public class Wjerby2 extends Mainloc2 {
         background = getPicture("gfx/weiden/weiden.gif");
         weiden2 = getPicture("gfx/weiden/weiden2.gif");
 
-        loadPicture();
     }
 
     @Override

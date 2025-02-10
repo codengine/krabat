@@ -128,7 +128,6 @@ public class Hdwor extends Mainloc {
         stOben = getPicture("gfx-dd/hdwor/st-oben.gif");
         stUnten = getPicture("gfx-dd/hdwor/st-unten.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

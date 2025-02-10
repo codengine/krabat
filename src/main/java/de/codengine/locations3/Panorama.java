@@ -130,7 +130,6 @@ public class Panorama extends Mainloc {
         background = getPicture("gfx-dd/panorama/panorama.gif");
         cychi = getPicture("gfx-dd/panorama/cychi.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

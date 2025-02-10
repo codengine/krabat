@@ -190,7 +190,6 @@ public class HojntAuto extends Mainloc {
 
         hoelzerback = getPicture("gfx/hojnt/kb.gif");
 
-        loadPicture();
     }
 
     @Override

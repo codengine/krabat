@@ -149,8 +149,6 @@ public class Zahrodnik extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx-dd/zahrod/zahrod.gif");
         hrod = getPicture("gfx-dd/zahrod/hrod.gif");
-
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -616,7 +614,6 @@ public class Zahrodnik extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

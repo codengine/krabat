@@ -112,7 +112,6 @@ public class Njedz1 extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/njedzichow/njedz.gif");
 
-        loadPicture();
     }
 
     private void InitBlinker() {

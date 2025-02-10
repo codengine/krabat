@@ -122,7 +122,6 @@ public class Jitk2 extends Mainloc2 {
         background = getPicture("gfx/jitk/jitk.gif");
         // strauch    = getPicture ("gfx/jitk/strauch.gif");
 
-        loadPicture();
     }
 
     @Override

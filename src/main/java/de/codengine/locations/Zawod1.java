@@ -157,7 +157,6 @@ public class Zawod1 extends Mainloc {
         floete[2] = getPicture("gfx/anims/ks-f3.gif");
         floete[3] = getPicture("gfx/anims/ks-f4.gif");
 
-        loadPicture();
     }
 
     @Override

@@ -187,7 +187,6 @@ public class StareWiki extends Mainloc {
         background = getPicture("gfx-dd/starewiki/starewiki.gif");
         koleso = getPicture("gfx-dd/starewiki/koleso.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -724,7 +723,6 @@ public class StareWiki extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

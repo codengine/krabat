@@ -100,8 +100,6 @@ public class Zdzary2 extends Mainloc {
     // Bilder vorbereiten
     private void InitImages() {
         background = getPicture("gfx/zdzary/zdzary.gif");
-
-        loadPicture();
     }
 
     @Override

@@ -85,7 +85,6 @@ public class Wonka extends Mainloc {
         background = getPicture("gfx-dd/wonka/wonka.gif");
         foreground = getPicture("gfx-dd/wonka/wokna.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

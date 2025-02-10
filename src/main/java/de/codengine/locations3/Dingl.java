@@ -177,7 +177,6 @@ public class Dingl extends Mainloc {
 
         kombinacija = getPicture("gfx-dd/dingl/kombinacija.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -656,7 +655,6 @@ public class Dingl extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

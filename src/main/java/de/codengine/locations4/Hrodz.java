@@ -142,7 +142,6 @@ public class Hrodz extends Mainloc {
         krabat_left = getPicture("gfx/anims/k-l-10.gif");
         krabat_right = getPicture("gfx/anims/k-r-10.gif");
 
-        loadPicture();
     }
 
 

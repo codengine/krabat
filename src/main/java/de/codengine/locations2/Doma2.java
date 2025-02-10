@@ -251,7 +251,6 @@ public class Doma2 extends Mainloc {
         Rauchanim[11] = getPicture("gfx/doma/ra11.gif");
         Rauchanim[12] = getPicture("gfx/doma/ra12.gif");
 
-        loadPicture();
     }
 
     @Override

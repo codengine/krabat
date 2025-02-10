@@ -98,8 +98,8 @@ public class Skica extends Mainanim {
     }
 
     public void evalMouseExitEvent(GenericMouseEvent e) {
+        //FIXME: Why no handling here?
     }
-
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 

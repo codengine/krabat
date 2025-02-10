@@ -102,7 +102,6 @@ public class Les1 extends Mainloc {
         background = getPicture("gfx/les1/wald.gif");
         strauch = getPicture("gfx/les1/grass2.gif");
 
-        loadPicture();
     }
 
     @Override

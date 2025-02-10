@@ -197,7 +197,6 @@ public class Zelen extends Mainloc {
         krabat_siegeln[0] = getPicture("gfx-dd/zelen/s-o-siegeln1.gif");
         krabat_siegeln[1] = getPicture("gfx-dd/zelen/s-o-siegeln2.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

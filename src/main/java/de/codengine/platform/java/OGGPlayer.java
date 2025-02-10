@@ -63,16 +63,6 @@ public class OGGPlayer extends AbstractPlayer {
     }
 
     @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
     public void stop() {
         synchronized (playerLock) {
             stopPlaying();

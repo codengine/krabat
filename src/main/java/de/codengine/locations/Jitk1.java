@@ -138,7 +138,6 @@ public class Jitk1 extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/jitk/jitk.gif");
 
-        loadPicture();
     }
 
     @Override

@@ -109,7 +109,6 @@ public class Jama1 extends Mainloc {
 
         vorder = getPicture("gfx/jama/jtrawa.gif");
 
-        loadPicture();
     }
 
     @Override

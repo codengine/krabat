@@ -193,7 +193,6 @@ public class Trepjena extends Mainloc {
         background = getPicture("gfx-dd/trepj/trepj.gif");
         trVorn = getPicture("gfx-dd/trepj/trepj-vorn.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

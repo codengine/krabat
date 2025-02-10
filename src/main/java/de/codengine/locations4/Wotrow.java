@@ -180,7 +180,6 @@ public class Wotrow extends Mainloc {
 
         mond = getPicture("gfx/wotrow/mesack.gif");
 
-        loadPicture();
     }
 
 

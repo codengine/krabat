@@ -167,7 +167,6 @@ public class Rapak1 extends Mainloc {
         Feder[2] = getPicture("gfx/rapak/pkp2.gif");
         Feder[3] = getPicture("gfx/rapak/pkp3.gif");
 
-        loadPicture();
     }
 
     @Override

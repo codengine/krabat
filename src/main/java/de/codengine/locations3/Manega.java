@@ -143,7 +143,6 @@ public class Manega extends Mainloc {
         background = getPicture("gfx-dd/manega/manega.gif");
         friedhelm = getPicture("gfx-dd/manega/friedhelm.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

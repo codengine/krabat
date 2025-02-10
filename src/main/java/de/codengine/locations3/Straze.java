@@ -152,7 +152,6 @@ public class Straze extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx-dd/straze/straze.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

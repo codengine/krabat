@@ -131,7 +131,6 @@ public class Lodz extends Mainloc {
         vor1 = getPicture("gfx-dd/lodz/woc1.gif");
         vor2 = getPicture("gfx-dd/lodz/woc2.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -519,7 +518,6 @@ public class Lodz extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

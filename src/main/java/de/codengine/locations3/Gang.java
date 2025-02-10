@@ -166,7 +166,6 @@ public class Gang extends Mainloc {
         tuer = getPicture("gfx-dd/gang/gdurje.gif");
         tuervorder = getPicture("gfx-dd/gang/gfground.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

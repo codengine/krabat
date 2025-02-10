@@ -158,7 +158,6 @@ public class Kuchnjaopen extends Mainloc {
         // herd2      = getPicture ("gfx-dd/kuchnja/herd2.gif");
         // herd3      = getPicture ("gfx-dd/kuchnja/herd3.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

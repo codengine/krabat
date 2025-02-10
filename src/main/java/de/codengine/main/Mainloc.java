@@ -193,9 +193,6 @@ abstract public class Mainloc {
         return mainFrame.imageFetcher.fetchImage(Filename);
     }
 
-    public void loadPicture() {
-    }
-
     // Hier werden die Ausreden "Benutze Krabat mit Gegenstand" initialisiert
     // Blickrichtung hier immer "nach aussen" Richtung User
 

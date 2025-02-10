@@ -148,7 +148,6 @@ public class Swoboda extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/mlyn/mlynn-r.gif");
 
-        loadPicture();
     }
 
     @Override

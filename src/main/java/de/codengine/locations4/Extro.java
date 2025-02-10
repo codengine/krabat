@@ -110,7 +110,6 @@ public class Extro extends Mainloc {
         Extropics[2] = getPicture("gfx/wotrow/endbild.gif");
 
         ludzo_vor_buehne = getPicture("gfx/wotrow/bludzo.gif");
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

@@ -118,8 +118,6 @@ public class Hala extends Mainloc {
         backr = getPicture("gfx-dd/hala/hala-r.gif");
         door = getPicture("gfx-dd/hala/hala-r2.gif");
 
-
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

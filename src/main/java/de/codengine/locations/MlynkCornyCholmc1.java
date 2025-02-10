@@ -136,7 +136,6 @@ public class MlynkCornyCholmc1 extends Mainloc {
         himmel2 = getPicture("gfx/kolmc/kcsky2.gif");
         vorder = getPicture("gfx/kolmc/kwald.gif");
 
-        loadPicture();
     }
 
     @Override

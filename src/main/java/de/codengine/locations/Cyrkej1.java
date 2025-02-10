@@ -108,7 +108,6 @@ public class Cyrkej1 extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/cyrkej/cyrkej2.gif");
 
-        loadPicture();
     }
 
     @Override

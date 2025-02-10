@@ -154,7 +154,6 @@ public class Wila2 extends Mainloc2 {
     private void InitImages() {
         background = getPicture("gfx/villa/villa.gif");
 
-        loadPicture();
     }
 
     @Override

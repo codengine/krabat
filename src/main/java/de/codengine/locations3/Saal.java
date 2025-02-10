@@ -104,7 +104,6 @@ public class Saal extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx-dd/saal/saal.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

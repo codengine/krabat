@@ -133,7 +133,6 @@ public class Kapala extends Mainloc {
         Feuer[9] = getPicture("gfx/wjes/wn9.gif");
         Feuer[10] = getPicture("gfx/wjes/wn10.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

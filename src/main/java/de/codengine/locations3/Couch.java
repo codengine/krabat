@@ -115,7 +115,6 @@ public class Couch extends Mainloc {
         vordertuer = getPicture("gfx-dd/couch/couch2.gif");
         fallen = getPicture("gfx-dd/couch/s-o-fallen.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

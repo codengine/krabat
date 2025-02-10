@@ -95,7 +95,6 @@ public class Labyr122 extends Mainloc2 {
         lab122 = getPicture("gfx/labyrinth/lab12-2.gif");
         lab123 = getPicture("gfx/labyrinth/lab12-3.gif");
 
-        loadPicture();
     }
 
     @Override

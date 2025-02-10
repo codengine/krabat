@@ -141,7 +141,6 @@ public class Most1 extends Mainloc {
         flussu[6] = getPicture("gfx/most/flu-6.gif");
         flussu[7] = getPicture("gfx/most/flu-7.gif");
 
-        loadPicture();
     }
 
     private void InitMatrix() {

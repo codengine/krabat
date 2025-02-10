@@ -108,7 +108,6 @@ public class Wobzor2 extends Mainloc2 {
         Wasser[7] = getPicture("gfx/horiz/hw5.gif");
         Wasser[8] = getPicture("gfx/horiz/hw6.gif");
 
-        loadPicture();
     }
 
     @Override

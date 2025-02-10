@@ -299,7 +299,6 @@ public class Doma1 extends Mainloc {
 
         logo = getPicture("gfx/intro/titul.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -914,7 +913,6 @@ public class Doma1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

@@ -139,7 +139,6 @@ public class Sunow2 extends Mainloc2 {
         background = getPicture("gfx/sunow/sunow.gif");
         wegstueck = getPicture("gfx/sunow/sunow-2.gif");
 
-        loadPicture();
     }
 
     private void InitMatrix() {

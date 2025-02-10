@@ -596,7 +596,6 @@ public class Start implements Runnable {
         if ((!isMousevalid) || /*(isWindowactive == false) || */
                 (!isListenerActive)) {
             // Versuch, Event zu loeschen, wenn nicht benoetigt
-            e.consume();
             return;
         }
 

@@ -142,7 +142,6 @@ public class Polo1 extends Mainloc {
         polo4 = getPicture("gfx/polo/polo4.gif");
         polo5 = getPicture("gfx/polo/polo5.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -602,7 +601,6 @@ public class Polo1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

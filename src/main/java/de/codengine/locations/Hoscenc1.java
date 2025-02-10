@@ -193,7 +193,6 @@ public class Hoscenc1 extends Mainloc {
         durje = getPicture("gfx/hoscenc/hdurje.gif");
         vorderdurje = getPicture("gfx/hoscenc/hdurje2.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -789,7 +788,6 @@ public class Hoscenc1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

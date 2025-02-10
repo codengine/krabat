@@ -227,8 +227,6 @@ public class Wjes1 extends Mainloc {
         Feuer[8] = getPicture("gfx/wjes/wn8.gif");
         Feuer[9] = getPicture("gfx/wjes/wn9.gif");
         Feuer[10] = getPicture("gfx/wjes/wn10.gif");
-
-        loadPicture();
     }
 
     @Override
@@ -903,7 +901,6 @@ public class Wjes1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

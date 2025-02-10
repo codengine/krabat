@@ -172,7 +172,6 @@ public class Mlyn1 extends Mainloc {
         Rad[19] = getPicture("gfx/mlyn/r19.gif");
         Rad[20] = getPicture("gfx/mlyn/r20.gif");
 
-        loadPicture();
     }
 
     @Override

@@ -132,8 +132,6 @@ public class Murja extends Mainloc {
         openDoor = getPicture("gfx-dd/murja/mdurje2.gif");
         closedDoor = getPicture("gfx-dd/murja/mdurje.gif");
         busch = getPicture("gfx-dd/murja/mbusch.gif");
-
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

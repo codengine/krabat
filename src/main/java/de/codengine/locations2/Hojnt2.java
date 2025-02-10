@@ -183,7 +183,6 @@ public class Hojnt2 extends Mainloc2 {
         rightschatten = getPicture("gfx/hojnt/ho-rschatten.gif");
         vorder = getPicture("gfx/hojnt/jwokna.gif");
 
-        loadPicture();
     }
 
     @Override

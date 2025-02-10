@@ -160,7 +160,6 @@ public class Labyr8 extends Mainlaby {
         background = getPicture("gfx/labyrinth/laby8.gif");
         lab82 = getPicture("gfx/labyrinth/lab8-2.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -564,7 +563,6 @@ public class Labyr8 extends Mainlaby {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

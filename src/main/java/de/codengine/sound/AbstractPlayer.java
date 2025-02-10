@@ -32,10 +32,6 @@ public abstract class AbstractPlayer {
 
     public abstract void play(String filename, boolean repeat);
 
-    public abstract void pause();
-
-    public abstract void resume();
-
     public abstract void stop();
 
     public abstract String getMusicSuffix();

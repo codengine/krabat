@@ -95,7 +95,6 @@ public class Chodba extends Mainloc {
     // Bilder vorbereiten
     private void InitImages() {
         background = getPicture("gfx-dd/chodba/chodba.gif");
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

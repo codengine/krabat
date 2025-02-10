@@ -149,7 +149,6 @@ public class Haska extends Mainloc {
         tropfen[7] = getPicture("gfx-dd/haska/wino7.gif");
         tropfen[8] = getPicture("gfx-dd/haska/wino8.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

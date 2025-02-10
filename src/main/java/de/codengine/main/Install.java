@@ -165,7 +165,6 @@ public class Install extends Mainloc {
         DPfeil = getPicture("gfx/inventar/d-p-l-i.gif");
         Pfeil = getPicture("gfx/inventar/r-p-l.gif");
 
-        loadPicture();
     }
 
     @Override

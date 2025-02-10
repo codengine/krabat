@@ -136,7 +136,6 @@ public class Cyrkej2 extends Mainloc {
         background = getPicture("gfx/cyrkej/cyrkej2.gif");
         durje = getPicture("gfx/cyrkej/cdurje.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -497,7 +496,6 @@ public class Cyrkej2 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

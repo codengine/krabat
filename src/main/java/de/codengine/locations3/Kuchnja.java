@@ -297,7 +297,6 @@ public class Kuchnja extends Mainloc {
         Ueberkoch[2] = getPicture("gfx-dd/kuchnja/herd5.gif");
         Ueberkoch[3] = getPicture("gfx-dd/kuchnja/herd4.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -946,7 +945,6 @@ public class Kuchnja extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

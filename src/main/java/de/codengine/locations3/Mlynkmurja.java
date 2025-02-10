@@ -109,7 +109,6 @@ public class Mlynkmurja extends Mainloc {
         backr = getPicture("gfx-dd/murja/murja-r.gif");
         laterne = getPicture("gfx-dd/murja/laterna.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

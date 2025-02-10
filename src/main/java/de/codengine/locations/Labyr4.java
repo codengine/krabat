@@ -139,7 +139,6 @@ public class Labyr4 extends Mainlaby {
         background = getPicture("gfx/labyrinth/laby4.gif");
         lab42 = getPicture("gfx/labyrinth/lab4-2.gif");
 
-        loadPicture();
     }
 
     @Override

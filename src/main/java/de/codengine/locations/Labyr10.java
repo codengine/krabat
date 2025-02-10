@@ -159,8 +159,6 @@ public class Labyr10 extends Mainlaby {
     private void InitImages() {
         background = getPicture("gfx/labyrinth/laby10.gif");
         lab102 = getPicture("gfx/labyrinth/lab10-2.gif");
-
-        loadPicture();
     }
 
     @Override
@@ -564,7 +562,6 @@ public class Labyr10 extends Mainlaby {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

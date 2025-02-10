@@ -225,7 +225,6 @@ public class Mertens2 extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/mertens/mertens.gif");
 
-        loadPicture();
     }
 
     private void InitBlinker() {
@@ -675,7 +674,6 @@ public class Mertens2 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

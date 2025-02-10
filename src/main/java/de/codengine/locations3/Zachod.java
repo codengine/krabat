@@ -167,7 +167,6 @@ public class Zachod extends Mainloc {
         krabat_schieb[0] = getPicture("gfx-dd/zachod/k-u-kiste1.gif");
         krabat_schieb[1] = getPicture("gfx-dd/zachod/k-u-kiste2.gif");
 
-        loadPicture();
     }
 
     // Laufrectangles aendern, je nachdem, wo Kisten sind

@@ -293,7 +293,6 @@ public class Haty1 extends Mainloc {
         muell[2] = getPicture("gfx/haty/muell3.gif");
         muell[3] = getPicture("gfx/haty/muell4.gif");
 
-        loadPicture();
     }
 
     // Anglerpositionen definieren
@@ -1260,7 +1259,6 @@ public class Haty1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

@@ -76,7 +76,6 @@ public class Jezba extends Mainloc2 {
         background = getPicture("gfx/most/trip.gif");
         zweitesBild = getPicture("gfx-dd/terassa/terassa.gif");
 
-        loadPicture();
     }
 
     @Override

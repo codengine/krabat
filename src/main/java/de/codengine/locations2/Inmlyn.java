@@ -125,7 +125,6 @@ public class Inmlyn extends Mainloc {
 
         rabeVorder = getPicture("gfx/mlyn/mwokno.gif");
 
-        loadPicture();
     }
 
     @Override

@@ -143,7 +143,6 @@ public class Komedij extends Mainloc {
         kerzen[3] = getPicture("gfx-dd/komedij/kerze4.gif");
         kerzen[4] = getPicture("gfx-dd/komedij/kerze5.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

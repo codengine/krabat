@@ -202,7 +202,6 @@ public class Kulow1 extends Mainloc {
         kulow2 = getPicture("gfx/kulow/kulow2.gif");
         ryba = getPicture("gfx/kulow/ddryba2a.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -870,7 +869,6 @@ public class Kulow1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

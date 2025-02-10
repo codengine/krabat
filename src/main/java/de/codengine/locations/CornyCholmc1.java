@@ -132,7 +132,6 @@ public class CornyCholmc1 extends Mainloc {
         himmel = getPicture("gfx/kolmc/kcsky1.gif");
         vorder = getPicture("gfx/kolmc/kwald.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -506,7 +505,6 @@ public class CornyCholmc1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

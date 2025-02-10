@@ -133,7 +133,6 @@ public class Labyr6 extends Mainlaby {
         lab62 = getPicture("gfx/labyrinth/lab6-2.gif");
         lab63 = getPicture("gfx/labyrinth/lab6-3.gif");
 
-        loadPicture();
     }
 
     @Override

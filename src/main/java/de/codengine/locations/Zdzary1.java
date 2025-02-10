@@ -127,7 +127,6 @@ public class Zdzary1 extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/zdzary/zdzary.gif");
 
-        loadPicture();
     }
 
     private void DefineAlte() {
@@ -581,13 +580,11 @@ public class Zdzary1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Usermultiple Choice eigene Keyroutine
         if (Userdialog.user) {
-            Userdialog.evalKeyEvent(e);
             return;
         }
 
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

@@ -108,7 +108,6 @@ public class Poklad extends Mainloc {
 
         vorderschody = getPicture("gfx-dd/trepj/trepj-vorn.gif");
 
-        loadPicture();
     }
 
     private void evalPersonPoints(GenericPoint strazap) {

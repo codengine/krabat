@@ -186,7 +186,6 @@ public class Terassa extends Mainloc {
         gelaender2 = getPicture("gfx-dd/terassa/gelaender2.gif");
         delle = getPicture("gfx-dd/terassa/delle.gif");
 
-        loadPicture();
     }
 
     private void InitBorders() {

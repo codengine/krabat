@@ -140,7 +140,6 @@ public class Dubring1 extends Mainloc {
         sky = getPicture("gfx/dubring/dubrsky.gif");
         vorder = getPicture("gfx/dubring/dtrawa.gif");
 
-        loadPicture();
     }
 
     @Override

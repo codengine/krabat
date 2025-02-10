@@ -214,7 +214,6 @@ public class Spaniska extends Mainloc {
 
         krabat_steigen = getPicture("gfx-dd/spaniska/k-u-steigen.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

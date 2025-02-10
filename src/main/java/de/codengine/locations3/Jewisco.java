@@ -116,7 +116,6 @@ public class Jewisco extends Mainloc {
         backr = getPicture("gfx-dd/jewi/jew-r.gif");
         buch = getPicture("gfx-dd/jewi/jkniha.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

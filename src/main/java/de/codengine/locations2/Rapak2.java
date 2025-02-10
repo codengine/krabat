@@ -145,7 +145,6 @@ public class Rapak2 extends Mainloc {
         blumen2 = getPicture("gfx/rapak/rap3.gif");
         // schild     = getPicture ("gfx/rapak/rap2.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -619,7 +618,6 @@ public class Rapak2 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

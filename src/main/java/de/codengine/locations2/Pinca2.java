@@ -103,7 +103,6 @@ public class Pinca2 extends Mainloc {
         background = getPicture("gfx/pinca/pinca.gif");
         kniha = getPicture("gfx/pinca/kniha.gif");
 
-        loadPicture();
     }
 
     @Override

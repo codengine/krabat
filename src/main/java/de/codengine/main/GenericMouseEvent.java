@@ -45,10 +45,6 @@ public class GenericMouseEvent {
         return point;
     }
 
-    public void consume() {
-        // dummy only
-    }
-
     public boolean getDoubleClick() {
         return isDoubleClick;
     }

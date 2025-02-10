@@ -186,7 +186,6 @@ public class Kulow2 extends Mainloc {
         saeule = getPicture("gfx/kulow/postsaeule.gif");
         kulow2 = getPicture("gfx/kulow/kulow2.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -787,7 +786,6 @@ public class Kulow2 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

@@ -192,7 +192,6 @@ public class Wila1 extends Mainloc {
         krabat_waesche[0] = getPicture("gfx/villa/k-l-bloto1.gif");
         krabat_waesche[1] = getPicture("gfx/villa/k-l-bloto2.gif");
 
-        loadPicture();
     }
 
     @Override

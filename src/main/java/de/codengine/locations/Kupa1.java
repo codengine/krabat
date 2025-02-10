@@ -129,7 +129,6 @@ public class Kupa1 extends Mainloc {
         kupa2a = getPicture("gfx/kupa/kupa2a.gif");
         rohodz = getPicture("gfx/kupa/krohodz.gif");
 
-        loadPicture();
     }
 
     private void InitMatrix() {

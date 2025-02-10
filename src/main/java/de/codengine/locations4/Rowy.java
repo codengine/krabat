@@ -330,7 +330,6 @@ public class Rowy extends Mainloc {
         muellerExplosion[9] = getPicture("gfx/wotrow/rml10.gif");
         muellerExplosion[10] = getPicture("gfx/wotrow/rml11.gif");
 
-        loadPicture();
     }
 
 

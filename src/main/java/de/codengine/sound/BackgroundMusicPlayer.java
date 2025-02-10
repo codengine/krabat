@@ -69,14 +69,6 @@ public class BackgroundMusicPlayer {
         player.play(getFilename(trackNumber - 1), repeat);
     }
 
-    public void pause() {
-        player.pause();
-    }
-
-    public void resume() {
-        player.resume();
-    }
-
     /**
      * Beendet eine evtl. laufende Wiedergabe.
      */

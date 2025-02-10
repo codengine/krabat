@@ -176,7 +176,6 @@ public class DDKarta extends Mainloc {
         vor3 = getPicture("gfx-dd/ddkarta/kar3.gif");
         vor4 = getPicture("gfx-dd/ddkarta/kar4.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

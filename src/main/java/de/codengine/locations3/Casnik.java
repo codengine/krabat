@@ -222,7 +222,6 @@ public class Casnik extends Mainloc {
         pendel[1] = getPicture("gfx-dd/casnik/pendel1.gif");
         pendel[2] = getPicture("gfx-dd/casnik/pendel3.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -886,7 +885,6 @@ public class Casnik extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

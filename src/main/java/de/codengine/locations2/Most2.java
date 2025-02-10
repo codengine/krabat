@@ -241,7 +241,6 @@ public class Most2 extends Mainloc2 {
         flussu[6] = getPicture("gfx/most/flu-6.gif");
         flussu[7] = getPicture("gfx/most/flu-7.gif");
 
-        loadPicture();
     }
 
     @Override

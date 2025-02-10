@@ -89,7 +89,6 @@ public class Dzera extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/mlyn/guck.gif");
 
-        loadPicture();
     }
 
     @Override

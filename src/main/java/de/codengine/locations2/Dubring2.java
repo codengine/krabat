@@ -85,7 +85,6 @@ public class Dubring2 extends Mainloc2 {
         backr = getPicture("gfx/dubring/dubr-r3.gif");
         sky = getPicture("gfx/dubring/dubrsky.gif");
 
-        loadPicture();
     }
 
     @Override

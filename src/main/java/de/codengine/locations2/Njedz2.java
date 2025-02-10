@@ -136,7 +136,6 @@ public class Njedz2 extends Mainloc2 {
     private void InitImages() {
         background = getPicture("gfx/njedzichow/njedz.gif");
 
-        loadPicture();
     }
 
     @Override

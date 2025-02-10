@@ -174,10 +174,4 @@ public class Usermultiple {
         selected = -1;
         mainFrame.repaint();
     }
-
-    // Key - Auswertung dieser Location /////////////////////////////////
-
-    public void evalKeyEvent(GenericKeyEvent e) {
-        // Key - Events werden hier nicht ausgewertet !!!!!!!!!!!!!!!!!!!!!!!!!!
-    }
 }

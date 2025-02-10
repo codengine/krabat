@@ -82,7 +82,6 @@ public class Stwa extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx-dd/stwa/stwa.gif");
         lzica = getPicture("gfx-dd/stwa/lzica.gif");
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////

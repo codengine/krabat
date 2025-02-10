@@ -125,7 +125,6 @@ public class Ralbicy1 extends Mainloc {
         holz = getPicture("gfx/ralbicy/holz2.gif");
         kreuz = getPicture("gfx/ralbicy/kreuz.gif");
 
-        loadPicture();
     }
 
     @Override
@@ -524,7 +523,6 @@ public class Ralbicy1 extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 

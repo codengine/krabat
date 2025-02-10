@@ -180,7 +180,6 @@ public class Habor extends Mainloc {
         boota = getPicture("gfx-dd/habor/boot-a.gif");
         bootb = getPicture("gfx-dd/habor/boot-b.gif");
 
-        loadPicture();
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -574,7 +573,6 @@ public class Habor extends Mainloc {
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple) {
-            Dialog.evalKeyEvent(e);
             return;
         }
 
