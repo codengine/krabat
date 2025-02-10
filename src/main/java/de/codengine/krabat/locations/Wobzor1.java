@@ -354,14 +354,8 @@ public class Wobzor1 extends Mainloc {
 
                 // Ausreden fuer Woda
                 if (wodaRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 10: // wuda + wacka
-                            nextActionID = 155;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // wuda + wacka
+                    nextActionID = mainFrame.whatItem == 10 ? 155 : 150;
                     pTemp = CorrectY(Pwoda);
                 }
 

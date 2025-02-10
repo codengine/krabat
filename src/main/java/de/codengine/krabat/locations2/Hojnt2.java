@@ -515,14 +515,8 @@ public class Hojnt2 extends Mainloc2 {
 
                 // Ausrede fuer Drjewo
                 if (drjewoRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 680;
-                            break;
-                        default:
-                            nextActionID = 460;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 680 : 460;
                     pTemp = Pdrjewo;
                 }
 

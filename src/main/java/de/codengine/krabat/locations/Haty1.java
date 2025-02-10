@@ -816,14 +816,8 @@ public class Haty1 extends Mainloc {
 
                 // Ausreden fuer colmik
                 if (colmik.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 6: // lajna
-                            nextActionID = 360;
-                            break;
-                        default:
-                            nextActionID = 165;
-                            break;
-                    }
+                    // lajna
+                    nextActionID = mainFrame.whatItem == 6 ? 360 : 165;
                     pTemp = Pcolmik;
                 }
 

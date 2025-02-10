@@ -426,14 +426,8 @@ public class Mertens1 extends Mainloc {
 
                 // Ausreden fuer Wasser, kein Punkt
                 if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 10: // wuda + wacka
-                            nextActionID = 170;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // wuda + wacka
+                    nextActionID = mainFrame.whatItem == 10 ? 170 : 160;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen

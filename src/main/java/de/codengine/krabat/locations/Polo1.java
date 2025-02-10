@@ -392,14 +392,8 @@ public class Polo1 extends Mainloc {
 
                 // Ausreden fuer Kamuski
                 if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
-                    switch (mainFrame.whatItem) {
-                        case 17: // rohodz
-                            nextActionID = 220;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // rohodz
+                    nextActionID = mainFrame.whatItem == 17 ? 220 : 160;
                     pTemp = Pkamuski;
                 }
 

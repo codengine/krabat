@@ -325,14 +325,8 @@ public class Haska extends Mainloc {
 
                 // Enterhaken mit Fenster benutzen
                 if (fenster.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 39: // kotwica + lajna
-                            nextActionID = 20;
-                            break;
-                        default:
-                            nextActionID = 155;
-                            break;
-                    }
+                    // kotwica + lajna
+                    nextActionID = mainFrame.whatItem == 39 ? 20 : 155;
                     pTemp = pFenster;
                 }
 

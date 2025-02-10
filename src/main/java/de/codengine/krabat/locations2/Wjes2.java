@@ -628,27 +628,14 @@ public class Wjes2 extends Mainloc2 {
 
                 // Ausreden fuer Schild
                 if (schildRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 2: // kij
-                            nextActionID = 220;
-                            break;
-                        default:
-                            nextActionID = 165;
-                            break;
-                    }
+                    // kij
+                    nextActionID = mainFrame.whatItem == 2 ? 220 : 165;
                     pTxxx = Pschild;
                 }
 
                 // Ausreden fuer Wohen
                 if (wohenRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-// 				    case 12: // kamuski
-// 					nextActionID = 230;
-// 					break;
-                        default:
-                            nextActionID = 170;
-                            break;
-                    }
+                    nextActionID = 170;
                     pTxxx = Pwohen;
                 }
 

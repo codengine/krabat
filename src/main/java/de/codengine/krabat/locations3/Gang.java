@@ -340,14 +340,8 @@ public class Gang extends Mainloc {
 
                 // Ausreden fuer kette
                 if (ring.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 55: // schweres Buch
-                            nextActionID = 230;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // schweres Buch
+                    nextActionID = mainFrame.whatItem == 55 ? 230 : 150;
                     pTxxx = pRing;
                 }
 

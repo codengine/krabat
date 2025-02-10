@@ -336,14 +336,8 @@ public class Trepjena extends Mainloc {
 
                 // Ausreden Tuer
                 if (durje.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 47: // kluc
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // kluc
+                    nextActionID = mainFrame.whatItem == 47 ? 200 : 150;
                     pTemp = pDurje;
                 }
 

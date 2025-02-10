@@ -88,65 +88,60 @@ public class Hauptmenu extends Mainanim {
 
     // hier der Init je nach Sprache
     public void InitRec() {
-        switch (mainFrame.sprache) {
-            case 2: // Delnjos
-                brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
-                        pLO.x + 513, pLO.y + 380);
-                brNowostart = new Borderrect(pLO.x + 287, pLO.y + 275,
-                        pLO.x + 485, pLO.y + 297);
-                brWocinic = new Borderrect(pLO.x + 352, pLO.y + 147,
-                        pLO.x + 485, pLO.y + 175);
-                brSkladzic = new Borderrect(pLO.x + 302, pLO.y + 186,
-                        pLO.x + 485, pLO.y + 214);
-                brInfo = new Borderrect(pLO.x + 89, pLO.y + 314,
-                        pLO.x + 159, pLO.y + 336);
-                brDalehrac = new Borderrect(pLO.x + 297, pLO.y + 65,
-                        pLO.x + 486, pLO.y + 93);
-                brKonc = new Borderrect(pLO.x + 291, pLO.y + 308,
-                        pLO.x + 485, pLO.y + 336);
-                brRec = new Borderrect(pLO.x + 89, pLO.y + 221,
-                        pLO.x + 227, pLO.y + 267);
-                // Bilder rein
-                Screen = getPicture("gfx/mainmenu/d-screen.gif");
-                Nowostart = getPicture("gfx/mainmenu/m-nowo.gif");
-                Wocinic = getPicture("gfx/mainmenu/d-woci.gif");
-                Skladzic = getPicture("gfx/mainmenu/d-sklad.gif");
-                Info = getPicture("gfx/mainmenu/m-info.gif");
-                Dalehrac = getPicture("gfx/mainmenu/d-dale.gif");
-                Konc = getPicture("gfx/mainmenu/d-konc.gif");
-                Rec = getPicture("gfx/mainmenu/d-hs.gif");
-                break;
-
-            default: // Hornjos
-                // hier temporaer die deutsche Version -> bekommt Hornjos
-                // alle Rects definieren
-                brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
-                        pLO.x + 513, pLO.y + 380);
-                brNowostart = new Borderrect(pLO.x + 287, pLO.y + 275,
-                        pLO.x + 485, pLO.y + 297);
-                brWocinic = new Borderrect(pLO.x + 365, pLO.y + 147,
-                        pLO.x + 485, pLO.y + 175);
-                brSkladzic = new Borderrect(pLO.x + 306, pLO.y + 186,
-                        pLO.x + 485, pLO.y + 214);
-                brInfo = new Borderrect(pLO.x + 89, pLO.y + 314,
-                        pLO.x + 159, pLO.y + 336);
-                brDalehrac = new Borderrect(pLO.x + 320, pLO.y + 65,
-                        pLO.x + 485, pLO.y + 93);
-                brKonc = new Borderrect(pLO.x + 334, pLO.y + 308,
-                        pLO.x + 485, pLO.y + 336);
-                brRec = new Borderrect(pLO.x + 89, pLO.y + 222,
-                        pLO.x + 220, pLO.y + 267);
-                // Bilder rein
-                Screen = getPicture("gfx/mainmenu/m-screen.gif");
-                Nowostart = getPicture("gfx/mainmenu/m-nowo.gif");
-                Wocinic = getPicture("gfx/mainmenu/m-woci.gif");
-                Skladzic = getPicture("gfx/mainmenu/m-sklad.gif");
-                Info = getPicture("gfx/mainmenu/m-info.gif");
-                Dalehrac = getPicture("gfx/mainmenu/m-dale.gif");
-                Konc = getPicture("gfx/mainmenu/m-konc.gif");
-                Rec = getPicture("gfx/mainmenu/m-hs.gif");
-                break;
-
+        // Hornjos
+        if (mainFrame.sprache == 2) { // Delnjos
+            brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
+                    pLO.x + 513, pLO.y + 380);
+            brNowostart = new Borderrect(pLO.x + 287, pLO.y + 275,
+                    pLO.x + 485, pLO.y + 297);
+            brWocinic = new Borderrect(pLO.x + 352, pLO.y + 147,
+                    pLO.x + 485, pLO.y + 175);
+            brSkladzic = new Borderrect(pLO.x + 302, pLO.y + 186,
+                    pLO.x + 485, pLO.y + 214);
+            brInfo = new Borderrect(pLO.x + 89, pLO.y + 314,
+                    pLO.x + 159, pLO.y + 336);
+            brDalehrac = new Borderrect(pLO.x + 297, pLO.y + 65,
+                    pLO.x + 486, pLO.y + 93);
+            brKonc = new Borderrect(pLO.x + 291, pLO.y + 308,
+                    pLO.x + 485, pLO.y + 336);
+            brRec = new Borderrect(pLO.x + 89, pLO.y + 221,
+                    pLO.x + 227, pLO.y + 267);
+            // Bilder rein
+            Screen = getPicture("gfx/mainmenu/d-screen.gif");
+            Nowostart = getPicture("gfx/mainmenu/m-nowo.gif");
+            Wocinic = getPicture("gfx/mainmenu/d-woci.gif");
+            Skladzic = getPicture("gfx/mainmenu/d-sklad.gif");
+            Info = getPicture("gfx/mainmenu/m-info.gif");
+            Dalehrac = getPicture("gfx/mainmenu/d-dale.gif");
+            Konc = getPicture("gfx/mainmenu/d-konc.gif");
+            Rec = getPicture("gfx/mainmenu/d-hs.gif");
+        } else {// hier temporaer die deutsche Version -> bekommt Hornjos
+            // alle Rects definieren
+            brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
+                    pLO.x + 513, pLO.y + 380);
+            brNowostart = new Borderrect(pLO.x + 287, pLO.y + 275,
+                    pLO.x + 485, pLO.y + 297);
+            brWocinic = new Borderrect(pLO.x + 365, pLO.y + 147,
+                    pLO.x + 485, pLO.y + 175);
+            brSkladzic = new Borderrect(pLO.x + 306, pLO.y + 186,
+                    pLO.x + 485, pLO.y + 214);
+            brInfo = new Borderrect(pLO.x + 89, pLO.y + 314,
+                    pLO.x + 159, pLO.y + 336);
+            brDalehrac = new Borderrect(pLO.x + 320, pLO.y + 65,
+                    pLO.x + 485, pLO.y + 93);
+            brKonc = new Borderrect(pLO.x + 334, pLO.y + 308,
+                    pLO.x + 485, pLO.y + 336);
+            brRec = new Borderrect(pLO.x + 89, pLO.y + 222,
+                    pLO.x + 220, pLO.y + 267);
+            // Bilder rein
+            Screen = getPicture("gfx/mainmenu/m-screen.gif");
+            Nowostart = getPicture("gfx/mainmenu/m-nowo.gif");
+            Wocinic = getPicture("gfx/mainmenu/m-woci.gif");
+            Skladzic = getPicture("gfx/mainmenu/m-sklad.gif");
+            Info = getPicture("gfx/mainmenu/m-info.gif");
+            Dalehrac = getPicture("gfx/mainmenu/m-dale.gif");
+            Konc = getPicture("gfx/mainmenu/m-konc.gif");
+            Rec = getPicture("gfx/mainmenu/m-hs.gif");
         }
     }
 

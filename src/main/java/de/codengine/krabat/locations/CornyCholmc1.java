@@ -291,14 +291,8 @@ public class CornyCholmc1 extends Mainloc {
 
                 // Ausreden fuer Wald
                 if (waldRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // Kamuski
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // Kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 200 : 150;
                     pTemp = Pwald;
                 }
 

@@ -474,27 +474,15 @@ public class Kulow2 extends Mainloc {
 
                 // Ausreden fuer Stroh
                 if (synoRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 230;
-                            break;
-                        default:
-                            nextActionID = 180;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 230 : 180;
                     pTemp = Psyno;
                 }
 
                 // Ausreden fuer Gefaess
                 if (sudobjoRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 14: // ryba
-                            nextActionID = 240;
-                            break;
-                        default:
-                            nextActionID = 185;
-                            break;
-                    }
+                    // ryba
+                    nextActionID = mainFrame.whatItem == 14 ? 240 : 185;
                     pTemp = Psudobjo;
                 }
 

@@ -83,11 +83,9 @@ public class Swoboda extends Mainloc {
         InitLocation();
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
-        switch (oldLocation) {
-            case 71: // Aus Doma kommend
-                mainFrame.krabat.SetKrabatPos(krabatPoint);
-                mainFrame.krabat.SetFacing(9);
-                break;
+        if (oldLocation == 71) { // Aus Doma kommend
+            mainFrame.krabat.SetKrabatPos(krabatPoint);
+            mainFrame.krabat.SetFacing(9);
         }
 
         setAnim = true;

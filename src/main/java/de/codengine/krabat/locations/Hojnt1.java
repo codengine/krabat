@@ -639,14 +639,8 @@ public class Hojnt1 extends Mainloc {
 
                 // Ausreden fuer Haken
                 if (hakenRect.IsPointInRect(pTemp) && !mainFrame.Actions[905]) {
-                    switch (mainFrame.whatItem) {
-                        case 2: // kij
-                            nextActionID = 650;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // kij
+                    nextActionID = mainFrame.whatItem == 2 ? 650 : 150;
                     pTemp = Phaken;
                 }
 
@@ -751,14 +745,8 @@ public class Hojnt1 extends Mainloc {
 
                 // Ausrede fuer Drjewo
                 if (drjewoRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 680;
-                            break;
-                        default:
-                            nextActionID = 460;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 680 : 460;
                     pTemp = Pdrjewo;
                 }
 

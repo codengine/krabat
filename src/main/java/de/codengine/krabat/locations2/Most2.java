@@ -596,40 +596,22 @@ public class Most2 extends Mainloc2 {
 
                 // Ausreden fuer Schild Ralbitz
                 if (ralbitzSchild.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 16: // kamuski
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 16 ? 200 : 150;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Schild Dresden
                 if (dresdenSchild.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 16: // kamuski
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 155;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 16 ? 200 : 155;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Reka
                 if (rekaRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 10: // wuda + wacki
-                            nextActionID = 210;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // wuda + wacki
+                    nextActionID = mainFrame.whatItem == 10 ? 210 : 160;
                     pTemp = Preka;
                 }
 

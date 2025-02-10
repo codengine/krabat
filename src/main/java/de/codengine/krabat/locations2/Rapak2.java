@@ -343,14 +343,8 @@ public class Rapak2 extends Mainloc {
 
                 // Ausreden fuer Schild oben
                 if (brSchildOben.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 170;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 200 : 170;
                     pTemp = Pschild;
                 }
 

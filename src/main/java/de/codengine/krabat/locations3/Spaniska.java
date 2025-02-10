@@ -474,14 +474,8 @@ public class Spaniska extends Mainloc {
 
                 // Ausreden fuer roze
                 if (blumen.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 42: // hlebija
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // hlebija
+                    nextActionID = mainFrame.whatItem == 42 ? 200 : 160;
                     pTxxx = pBlumen;
                 }
 

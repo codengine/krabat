@@ -524,28 +524,19 @@ public class Wila1 extends Mainloc {
 
                 // Ausreden fuer Kleider
                 if (kleiderRect.IsPointInRect(pTemp) && !mainFrame.Actions[175]) {
-                    switch (mainFrame.whatItem) {
-                        case 16: // Honck z blotom
-                            nextActionID = 155;
-                            pTemp = pVollspritz;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            pTemp = Pkleider;
-                            break;
+                    if (mainFrame.whatItem == 16) { // Honck z blotom
+                        nextActionID = 155;
+                        pTemp = pVollspritz;
+                    } else {
+                        nextActionID = 150;
+                        pTemp = Pkleider;
                     }
                 }
 
                 // Ausreden fuer Tuer
                 if (durjeRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 250;
-                            break;
-                        default:
-                            nextActionID = 270;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 250 : 270;
                     pTemp = Pdurje;
                 }
 

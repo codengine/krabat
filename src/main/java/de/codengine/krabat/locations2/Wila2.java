@@ -339,14 +339,8 @@ public class Wila2 extends Mainloc2 {
 
                 // Ausreden fuer Tuer
                 if (durjeRect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 250;
-                            break;
-                        default:
-                            nextActionID = 270;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 250 : 270;
                     pTemp = Pdurje;
                 }
 

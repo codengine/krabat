@@ -469,19 +469,14 @@ public class Install extends Mainloc {
     }
 
     private void DoAction() {
-        switch (nextActionID) {
-            case 100:
-                // Installer ist schon gelaufen, wir koennen Krabat starten
-                mainFrame.Clipset = false;
-                nextActionID = 0;
-                mainFrame.ConstructLocation(100);
-                mainFrame.DestructLocation(105);
-                mainFrame.repaint();
-                break;
-
-            default:
-                System.out.println("Wrong ID in Installer !!");
-                break;
+        if (nextActionID == 100) {// Installer ist schon gelaufen, wir koennen Krabat starten
+            mainFrame.Clipset = false;
+            nextActionID = 0;
+            mainFrame.ConstructLocation(100);
+            mainFrame.DestructLocation(105);
+            mainFrame.repaint();
+        } else {
+            System.out.println("Wrong ID in Installer !!");
         }
     }
 

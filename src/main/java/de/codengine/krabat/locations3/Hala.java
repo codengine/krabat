@@ -279,14 +279,8 @@ public class Hala extends Mainloc {
 
                 // Ausreden fuer Bild
                 if (wobraz.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 42: // hlebija
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 155;
-                            break;
-                    }
+                    // hlebija
+                    nextActionID = mainFrame.whatItem == 42 ? 200 : 155;
                     pTemp = pWobraz;
                 }
 

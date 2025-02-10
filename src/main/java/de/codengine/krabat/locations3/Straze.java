@@ -305,14 +305,8 @@ public class Straze extends Mainloc {
 
                 // Ausreden fuer Wappen
                 if (wappen.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 42: // hlebija
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // hlebija
+                    nextActionID = mainFrame.whatItem == 42 ? 200 : 160;
                     pTemp = pWappen;
                 }
 

@@ -500,27 +500,15 @@ public class Hoscenc1 extends Mainloc {
 
                 // Ausreden fuer Wobraz1
                 if (wobraz1Rect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 16: // honck z blotom
-                            nextActionID = 202;
-                            break;
-                        default:
-                            nextActionID = 172;
-                            break;
-                    }
+                    // honck z blotom
+                    nextActionID = mainFrame.whatItem == 16 ? 202 : 172;
                     pTemp = Pwobraz1;
                 }
 
                 // Ausreden fuer Wobraz2
                 if (wobraz2Rect.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 16: // honck z blotom
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 170;
-                            break;
-                    }
+                    // honck z blotom
+                    nextActionID = mainFrame.whatItem == 16 ? 200 : 170;
                     pTemp = Pwobraz2;
                 }
 

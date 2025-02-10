@@ -370,14 +370,8 @@ public class Sunow2 extends Mainloc2 {
 
                 // ausreden fuer Schoenau
                 if (sunowRect.IsPointInRect(pTemp) && !obererAusgang.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 12: // kamuski
-                            nextActionID = 200;
-                            break;
-                        default:
-                            nextActionID = 150;
-                            break;
-                    }
+                    // kamuski
+                    nextActionID = mainFrame.whatItem == 12 ? 200 : 150;
                     mainFrame.repaint();
                     return;
                 }

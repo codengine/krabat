@@ -316,14 +316,8 @@ public class Kuchnjaopen extends Mainloc {
 
                 // Schwein Ausreden
                 if (swinjo.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 37: // kotwica
-                            nextActionID = 195;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
+                    // kotwica
+                    nextActionID = mainFrame.whatItem == 37 ? 195 : 160;
                     pTemp = pSwinjo;
                 }
 
@@ -335,21 +329,13 @@ public class Kuchnjaopen extends Mainloc {
 
                 // Tuer Ausreden
                 if (durje.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        default:
-                            nextActionID = 170;
-                            break;
-                    }
+                    nextActionID = 170;
                     pTemp = pDurje;
                 }
 
                 // Glocke Ausreden
                 if (glocke.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        default:
-                            nextActionID = 175;
-                            break;
-                    }
+                    nextActionID = 175;
                     pTemp = pGlocke;
                 }
 
