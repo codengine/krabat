@@ -27,7 +27,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hrodz extends Mainloc {
-    private GenericImage background, steinpic, gruftauf, gruftzu, vordergruft;
+    private GenericImage background;
+    private GenericImage steinpic;
+    private GenericImage gruftzu;
+    private GenericImage vordergruft;
     private GenericImage krabat_left, krabat_right, krabat_wippen_left,
             krabat_wippen_right, krabat_fallen;
 
@@ -130,7 +133,6 @@ public class Hrodz extends Mainloc {
     private void InitImages() {
         background = getPicture("gfx/wotrow/hrodzi.gif");
         steinpic = getPicture("gfx/wotrow/hkamjen.gif");
-        gruftauf = getPicture("gfx/wotrow/gruftauf.gif");
         gruftzu = getPicture("gfx/wotrow/gruftzu.gif");
         vordergruft = getPicture("gfx/wotrow/hgruft.gif");
 
@@ -140,7 +142,6 @@ public class Hrodz extends Mainloc {
         krabat_fallen = getPicture("gfx/wotrow/k-r-fallen.gif");
         krabat_left = getPicture("gfx/anims/k-l-10.gif");
         krabat_right = getPicture("gfx/anims/k-r-10.gif");
-
     }
 
 
