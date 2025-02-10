@@ -123,7 +123,7 @@ public class Usermultiple {
     // Mouse - Listener fuer Multiple Choice
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
-        if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+        if (e.isRightClick()) {
             // Linke Maustaste
             for (int i = 0; i <= Anzahl; ++i) {
                 if (Positionen[i].contains(pTemp)) {

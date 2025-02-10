@@ -110,7 +110,7 @@ public class Konc extends Mainanim {
     // Mouse - Listener fuer Multiple Choice
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
-        if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+        if (e.isRightClick()) {
             // Linke Maustaste
             if (Positionen[1].contains(pTemp)) {
                 // Es wurde HAJ gewaehlt

@@ -443,7 +443,7 @@ public class Zelen extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // linker Maustaste
-            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+            if (e.isRightClick()) {
                 nextActionID = 0;
 
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
@@ -510,7 +510,7 @@ public class Zelen extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+            if (e.isRightClick()) {
                 // linke Maustaste
                 nextActionID = 0;
 

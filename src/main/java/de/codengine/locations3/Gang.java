@@ -326,7 +326,7 @@ public class Gang extends Mainloc {
             GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
             // linker Maustaste
-            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+            if (e.isRightClick()) {
                 nextActionID = 0;
 
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
@@ -400,7 +400,7 @@ public class Gang extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+            if (e.isRightClick()) {
                 // linke Maustaste
                 nextActionID = 0;
 

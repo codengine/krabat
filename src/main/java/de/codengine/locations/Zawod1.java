@@ -512,7 +512,7 @@ public class Zawod1 extends Mainloc {
         }
 
         // linke Maustaste
-        if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+        if (e.isRightClick()) {
         }
 
         // rechte Maustaste

@@ -335,7 +335,7 @@ public class Install extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
-        if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
+        if (e.isRightClick()) {
             if (licenseAccepted) {
                 // linke Maustaste waehlt aus, hier im richtigen Menue
                 if (Rects[1].IsPointInRect(pTemp)) {

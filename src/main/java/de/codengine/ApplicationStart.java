@@ -210,8 +210,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     @Override
     public void mouseExited(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
-        GenericMouseEvent ge = new GenericMouseEvent(
-                e.getModifiers(), point, false);
+        GenericMouseEvent ge = new GenericMouseEvent(e.getButton(), e.getModifiersEx(), point, false);
         appInstance.mouseExited(ge);
     }
 
@@ -226,7 +225,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
-                e.getModifiers(), point, dClick);
+                e.getButton(), e.getModifiersEx(), point, dClick);
         appInstance.mousePressed(ge);
     }
 
@@ -239,7 +238,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     public void mouseDragged(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
-                e.getModifiers(), point, false);
+                e.getButton(), e.getModifiersEx(), point, false);
         appInstance.mouseDragged(ge);
     }
 
@@ -247,7 +246,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     public void mouseMoved(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
-                e.getModifiers(), point, false);
+                e.getButton(), e.getModifiersEx(), point, false);
         appInstance.mouseMoved(ge);
     }
 

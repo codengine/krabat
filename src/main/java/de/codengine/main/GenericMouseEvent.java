@@ -23,22 +23,22 @@ package de.codengine.main;
 
 // ok
 
-public class GenericMouseEvent {
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
-    private final int modifiers;
+public class GenericMouseEvent {
+    private final int button;
+    private final int modifiersEx;
 
     private final GenericPoint point;
 
     private final boolean isDoubleClick;
 
-    public GenericMouseEvent(int modifiers, GenericPoint point, boolean isDoubleClick) {
-        this.modifiers = modifiers;
+    public GenericMouseEvent(int button, int modifiersEx, GenericPoint point, boolean isDoubleClick) {
+        this.button = button;
+        this.modifiersEx = modifiersEx;
         this.point = point;
         this.isDoubleClick = isDoubleClick;
-    }
-
-    public int getModifiers() {
-        return modifiers;
     }
 
     public GenericPoint getPoint() {
@@ -49,4 +49,7 @@ public class GenericMouseEvent {
         return isDoubleClick;
     }
 
+    public boolean isRightClick() {
+        return button == MouseEvent.BUTTON3 && (modifiersEx & InputEvent.BUTTON3_DOWN_MASK) != 0;
+    }
 }
