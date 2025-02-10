@@ -102,7 +102,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         try {
             success = pg.grabPixels();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
         if (!success) {
             System.err.println("Error grabbing pixels!");

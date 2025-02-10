@@ -21,6 +21,8 @@
 package de.codengine.platform.java;
 
 import de.codengine.platform.GenericSoundEffectPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -29,6 +31,8 @@ import javax.sound.sampled.DataLine;
 import java.nio.file.Path;
 
 public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
+
+    private static final Logger log = LoggerFactory.getLogger(JavaSoundEffectPlayer.class);
 
     public JavaSoundEffectPlayer(Path path) {
         super(path);
@@ -43,8 +47,7 @@ public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
             clip.open(stream);
             clip.start();
         } catch (Exception e) {
-            System.err.println("Fehler bei Wiedergabe der Datei '" + filename + "'!");
-            e.printStackTrace();
+            log.error("Fehler bei Wiedergabe der Datei '{}'!", filename, e);
         }
     }
 }

@@ -54,7 +54,7 @@ public class JavaImageFetcher extends GenericImageFetcher {
             tracker.addImage(img, 0);
             tracker.waitForAll();
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
 
         JavaImage retImage = new JavaImage(img);

@@ -21,6 +21,8 @@
 package de.codengine.platform.java;
 
 import de.codengine.platform.GenericStorageManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.nio.file.Path;
@@ -30,6 +32,7 @@ import java.util.Properties;
 
 public class JavaStorageManager extends GenericStorageManager {
 
+    private static final Logger log = LoggerFactory.getLogger(JavaStorageManager.class);
     private final boolean loadSaveSupported;
 
     private final Path loadSaveRootPath;
@@ -104,7 +107,7 @@ public class JavaStorageManager extends GenericStorageManager {
             stream.close();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Could not save data to {}", file.getAbsolutePath(), e);
             return false;
         }
     }
@@ -131,10 +134,8 @@ public class JavaStorageManager extends GenericStorageManager {
                 }
             }
             stream.close();
-
-
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Could not load slownik from {}", file.getAbsolutePath(), e);
             return new byte[]{};
         }
 
@@ -200,7 +201,7 @@ public class JavaStorageManager extends GenericStorageManager {
             }
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Could not load translations from {}", file.getAbsolutePath(), e);
             throw new Error("Translations file not found!");
         }
 
@@ -227,7 +228,7 @@ public class JavaStorageManager extends GenericStorageManager {
             }
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Could not load translations from {}", file.getAbsolutePath(), e);
             throw new Error("Translations file not found!");
         }
     }
