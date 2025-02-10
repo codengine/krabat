@@ -23,8 +23,7 @@ package rapaki.krabat.platform.java;
 import rapaki.krabat.platform.GenericStorageManager;
 
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Properties;
 
@@ -33,7 +32,7 @@ public class JavaStorageManager extends GenericStorageManager {
 
     private final boolean loadSaveSupported;
 
-    private final String loadSaveRootPath;
+    private final Path loadSaveRootPath;
 
     private final String loadSavePrefix;
 
@@ -41,17 +40,17 @@ public class JavaStorageManager extends GenericStorageManager {
 
     private final boolean slownikSupported;
 
-    private final String slownikRootPath;
+    private final Path slownikRootPath;
 
     private final boolean propertyStorageSupported;
 
-    private final String propertyRootPath;
+    private final Path propertyRootPath;
 
-    private final String translationsRootPath;
+    private final Path translationsRootPath;
 
-    public JavaStorageManager(boolean loadSaveSupported, String loadSaveRootPath, String loadSavePrefix, String loadSaveSuffix,
-                              boolean slownikSupported, String slownikRootPath, boolean propertyStorageSupported, String propertyRootPath,
-                              String translationsRootPath) {
+    public JavaStorageManager(boolean loadSaveSupported, Path loadSaveRootPath, String loadSavePrefix, String loadSaveSuffix,
+                              boolean slownikSupported, Path slownikRootPath, boolean propertyStorageSupported, Path propertyRootPath,
+                              Path translationsRootPath) {
         this.loadSaveSupported = loadSaveSupported;
         this.loadSaveRootPath = loadSaveRootPath;
         this.loadSavePrefix = loadSavePrefix;
@@ -68,10 +67,10 @@ public class JavaStorageManager extends GenericStorageManager {
     }
 
     public byte[] loadFromFile(int gameIndex) {
-        String filename = loadSaveRootPath + File.separator + loadSavePrefix + Integer.toString(gameIndex) + loadSaveSuffix;
+        File file = loadSaveRootPath.resolve(loadSavePrefix + gameIndex + loadSaveSuffix).toFile();
         byte[] ret;
         try {
-            BufferedInputStream stream = new BufferedInputStream(new FileInputStream(new File(new URI(filename))));
+            BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
             ret = new byte[fileSize];
             int ptr = 0;
             int status;
@@ -88,26 +87,20 @@ public class JavaStorageManager extends GenericStorageManager {
 
         } catch (IOException e) {
             return new byte[]{};
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return new byte[]{};
         }
 
         return ret;
     }
 
     public boolean saveToFile(byte[] data, int gameIndex) {
-        String filename = loadSaveRootPath + File.separator + loadSavePrefix + Integer.toString(gameIndex) + loadSaveSuffix;
+        File file = loadSaveRootPath.resolve(loadSavePrefix + gameIndex + loadSaveSuffix).toFile();
         try {
-            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(new URI(filename))));
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(file));
             stream.write(data);
             stream.flush();
             stream.close();
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        } catch (URISyntaxException e) {
             e.printStackTrace();
             return false;
         }
@@ -120,9 +113,9 @@ public class JavaStorageManager extends GenericStorageManager {
     public byte[] loadSlownik(String relativeFileName) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
+        File file = slownikRootPath.resolve(relativeFileName).toFile();
         try {
-            BufferedInputStream stream = new BufferedInputStream(
-                    new FileInputStream(new File(new URI(slownikRootPath + File.separator + relativeFileName))));
+            BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
             byte[] tmp = new byte[1024];
             int status = 0;
             while (status != -1) {
@@ -138,9 +131,6 @@ public class JavaStorageManager extends GenericStorageManager {
         } catch (IOException e) {
             e.printStackTrace();
             return new byte[]{};
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            return new byte[]{};
         }
 
         return baos.toByteArray();
@@ -150,39 +140,45 @@ public class JavaStorageManager extends GenericStorageManager {
         return propertyStorageSupported;
     }
 
+    private Path getPropertyPath() {
+        return propertyRootPath.resolve("game.properties");
+    }
+
     public void getGameProperties(Properties props) {
+        File file = getPropertyPath().toFile();
         try {
-            BufferedInputStream stream = new BufferedInputStream(
-                    new FileInputStream(new File(new URI(propertyRootPath + File.separator + "game.properties"))));
+            BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
             props.load(stream);
         } catch (IOException e) {
             System.out.println("---- Warning: Game properties could not be loaded ----");
             // intentionally empty
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
     }
 
     public void saveGameProperties(Properties props) {
+        File file = getPropertyPath().toFile();
         try {
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(new File(new URI(propertyRootPath + File.separator + "game.properties"))));
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(file));
             props.store(stream, "Game properties");
             stream.flush();
             stream.close();
         } catch (IOException e) {
             // intentionally empty
             System.out.println("---- ERROR: Game properties could not be saved ----");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
+    }
+
+    private Path getTranslationPath(String filename) {
+        return translationsRootPath.resolve(filename);
     }
 
     public HashMap<String, String> loadTranslationsFile(String filename) {
         HashMap<String, String> translations = new HashMap<String, String>();
 
+        File file = getTranslationPath(filename).toFile();
+
         try {
-            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(new File(new URI(translationsRootPath + File.separator + filename)))));
+            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
             String line = "";
             String key;
             String value;
@@ -197,18 +193,15 @@ public class JavaStorageManager extends GenericStorageManager {
         } catch (IOException e) {
             e.printStackTrace();
             throw new Error("Translations file not found!");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            throw new Error("Translations file not found!");
         }
 
         return translations;
     }
 
     public void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix) {
-
+        File file = getTranslationPath(filename).toFile();
         try {
-            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(new File(new URI(translationsRootPath + File.separator + filename)))));
+            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
             String line = "";
             String key;
             String value;
@@ -224,9 +217,6 @@ public class JavaStorageManager extends GenericStorageManager {
             }
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
-            throw new Error("Translations file not found!");
-        } catch (URISyntaxException e) {
             e.printStackTrace();
             throw new Error("Translations file not found!");
         }

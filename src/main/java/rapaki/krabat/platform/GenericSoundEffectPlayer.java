@@ -20,6 +20,8 @@
 
 package rapaki.krabat.platform;
 
+import java.nio.file.Path;
+
 /**
  * Klasse Sound kuemmert sich um das Abspielen von WAV-Dateien und anderen Formaten.
  *
@@ -27,10 +29,10 @@ package rapaki.krabat.platform;
  */
 public abstract class GenericSoundEffectPlayer {
 
-    protected final String urlBase;
+    protected final Path path;
 
-    public GenericSoundEffectPlayer(String urlBase) {
-        this.urlBase = urlBase;
+    public GenericSoundEffectPlayer(Path path) {
+        this.path = path;
     }
 
     public abstract void PlayFile(String filename);

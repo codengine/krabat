@@ -30,7 +30,8 @@ import rapaki.krabat.sound.AbstractPlayer;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class ApplicationStart extends Frame implements WindowListener, MouseListener, MouseMotionListener, KeyListener {
     private final Start appInstance;
@@ -54,19 +55,20 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         appInstance = new Start();
         startGame(fullScreen);
 
-        String urlPrefix = "file:///" + System.getProperty("user.dir");
+        Path workingDir = Paths.get(System.getProperty("user.dir"));
 
-        GenericImageFetcher imageFetcher = new JavaImageFetcher(urlPrefix, this);
+        GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, this);
         GenericImageObserver observer = new JavaImageObserver(this);
         GenericContainer container = new JavaContainer(this);
-        GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(urlPrefix + "/sound/");
+        GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(workingDir.resolve("sound"));
         GenericToolkit.impl = new JavaToolkitImpl(this);
-        AbstractPlayer musicPlayer = new OGGPlayer(urlPrefix + "/");
+        AbstractPlayer musicPlayer = new OGGPlayer(workingDir);
+        Path resourcePath = workingDir.resolve("resource");
         GenericStorageManager storageManager = new JavaStorageManager(
-                true, urlPrefix + File.separator + "hry", "krabat", ".hra",
-                true, urlPrefix + File.separator + "resource",
-                true, urlPrefix + File.separator + "resource",
-                urlPrefix + File.separator + "resource");
+                true, workingDir.resolve("hry"), "krabat", ".hra",
+                true, resourcePath,
+                true, resourcePath,
+                resourcePath);
 
         appInstance.runGamePt1(defaultLanguageIndex, imageFetcher, observer, container, player, musicPlayer, storageManager);
         GenericPoint pt = InitImages(imageFetcher);
@@ -88,7 +90,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     // Programmstart
     public static void main(String[] args) {
         int rec = 1;        // Default ist Obersorbisch (hs, ds oder de)
-        boolean fullScreen = true;  // Default is Vollbild (im Fenster, wenn 2. Parameter = "win")
+        boolean fullScreen = false;  // Default is Vollbild (im Fenster, wenn 2. Parameter = "win")
 
         if (args.length >= 1) {
             int tmp = 0;

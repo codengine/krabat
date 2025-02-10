@@ -20,12 +20,14 @@
 
 package rapaki.krabat.sound;
 
+import java.nio.file.Path;
+
 public abstract class AbstractPlayer {
 
-    protected final String urlBase;
+    protected final Path workingDir;
 
-    public AbstractPlayer(String urlBase) {
-        this.urlBase = urlBase;
+    public AbstractPlayer(Path workingDir) {
+        this.workingDir = workingDir;
     }
 
     public abstract void play(String filename, boolean repeat);
@@ -35,8 +37,6 @@ public abstract class AbstractPlayer {
     public abstract void resume();
 
     public abstract void stop();
-
-    public abstract String getMusicDir();
 
     public abstract String getMusicSuffix();
 }

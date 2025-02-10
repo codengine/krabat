@@ -28,55 +28,72 @@ import com.jcraft.jorbis.Block;
 import com.jcraft.jorbis.Comment;
 import com.jcraft.jorbis.DspState;
 import com.jcraft.jorbis.Info;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import rapaki.krabat.sound.AbstractPlayer;
 
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
+import java.nio.file.Path;
 
 public class OGGPlayer extends AbstractPlayer {
+    private static final Logger log = LoggerFactory.getLogger(OGGPlayer.class);
+    public static final String MUSIC_DIR = "music/ogg/";
+    public static final String MUSIC_SUFFIX = ".ogg";
 
-    public OGGPlayer(String urlBase) {
-        super(urlBase);
+    public OGGPlayer(Path workingDir) {
+        super(workingDir);
     }
 
-    private PlayThread pThread = new PlayThread("dummy", false);
+    private volatile PlayThread pThread;
+    private final Object playerLock = new Object();
 
     public void play(final String filename, final boolean repeat) {
-        synchronized (pThread) {
+        synchronized (playerLock) {
             stopPlaying();
 
-            pThread = new PlayThread(filename, repeat);
+            pThread = new PlayThread(workingDir.resolve(MUSIC_DIR).resolve(filename), repeat);
             pThread.setDaemon(true);
             pThread.start();
         }
     }
 
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
     public void stop() {
-        synchronized (pThread) {
+        synchronized (playerLock) {
             stopPlaying();
         }
     }
 
-    public String getMusicDir() {
-        return "sound/music/ogg/";
-    }
-
     public String getMusicSuffix() {
-        return ".ogg";
+        return MUSIC_SUFFIX;
     }
 
     private void stopPlaying() {
         if (pThread != null) {
-            pThread.terminate();
+            synchronized (playerLock) {
+                if(pThread != null) {
+                    pThread.terminate();
 
-            // waiting for termination might be optional...
-            try {
-                pThread.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                    // waiting for termination might be optional...
+                    try {
+                        pThread.join();
+                    } catch (InterruptedException e) {
+                        log.warn("Playback thread interrupted", e);
+                    }
+                }
             }
         }
     }
@@ -88,20 +105,18 @@ public class OGGPlayer extends AbstractPlayer {
      */
     class PlayThread extends Thread {
 
-        private final String filename;
+        private final Path filepath;
 
         private final boolean repeat;
 
         private boolean isRunning;
 
-        private boolean oneRoundFinished;
-
         private int convsize = 4096 * 2;
 
-        private byte[] convbuffer = new byte[convsize]; // take 8k out of the data segment, not the stack
+        private final byte[] convbuffer = new byte[convsize]; // take 8k out of the data segment, not the stack
 
-        public PlayThread(String filename, boolean repeat) {
-            this.filename = filename;
+        public PlayThread(Path filepath, boolean repeat) {
+            this.filepath = filepath;
             this.repeat = repeat;
         }
 
@@ -109,16 +124,12 @@ public class OGGPlayer extends AbstractPlayer {
 
             isRunning = true;
 
-            System.out.println("Playing " + filename + " starts.");
+            System.out.println("Playing " + filepath + " starts.");
 
             try {
                 outer_endless:
                 do {
-
-                    oneRoundFinished = false;
-
-                    URL url = new URL(urlBase + filename);
-                    BufferedInputStream inStream = new BufferedInputStream(url.openStream());
+                    BufferedInputStream inStream = new BufferedInputStream(new FileInputStream(filepath.toFile()));
 
                     SyncState oy = new SyncState(); // sync and verify incoming physical bitstream
                     StreamState os = new StreamState(); // take physical pages, weld into a logical stream of packets
@@ -131,12 +142,11 @@ public class OGGPlayer extends AbstractPlayer {
                     Block vb = new Block(vd); // local working space for packet->PCM decode
 
                     byte[] buffer;
-                    int bytes = 0;
+                    int bytes;
 
                     oy.init(); // Now we can read pages
 
-                    inner_endless:
-                    while ((isRunning == true) && (oneRoundFinished == false)) { // we repeat if the bitstream is chained
+                    while (isRunning) { // we repeat if the bitstream is chained
                         boolean eos = false;
 
                         // submit a 4k block to libvorbis' Ogg layer
@@ -149,13 +159,12 @@ public class OGGPlayer extends AbstractPlayer {
                         if (oy.pageout(og) != 1) {
                             // have we simply run out of data?  If so, we're done.
                             if (bytes < 4096) {
-                                oneRoundFinished = false;
-                                break inner_endless;
+                                break;
                             }
 
                             System.err.println("Input does not appear to be an Ogg bitstream.");
                             isRunning = false;
-                            break inner_endless;
+                            break;
                         }
 
                         os.init(og.serialno());
@@ -166,14 +175,14 @@ public class OGGPlayer extends AbstractPlayer {
                             // error; stream version mismatch perhaps
                             System.err.println("Error reading first page of Ogg bitstream data.");
                             isRunning = false;
-                            break inner_endless;
+                            break;
                         }
 
                         if (os.packetout(op) != 1) {
                             // no page? must not be vorbis
                             System.err.println("Error reading initial header packet.");
                             isRunning = false;
-                            break inner_endless;
+                            break;
                         }
 
                         if (vi.synthesis_headerin(vc, op) < 0) {
@@ -181,7 +190,7 @@ public class OGGPlayer extends AbstractPlayer {
                             System.err
                                     .println("This Ogg bitstream does not contain Vorbis audio data.");
                             isRunning = false;
-                            break inner_endless;
+                            break;
                         }
 
                         int i = 0;
@@ -263,8 +272,8 @@ public class OGGPlayer extends AbstractPlayer {
                         float[][][] _pcm = new float[1][][];
                         int[] _index = new int[vi.channels];
                         // The rest is just a straight decode loop until end of stream
-                        while ((eos == false) && (isRunning == true) && (oneRoundFinished == false)) {
-                            while ((eos == false) && (isRunning == true) && (oneRoundFinished == false)) {
+                        while (!eos && isRunning) {
+                            while (!eos && isRunning) {
 
                                 int result = oy.pageout(og);
                                 if (result == 0) {
@@ -282,9 +291,8 @@ public class OGGPlayer extends AbstractPlayer {
                                         if (result == 0) {
                                             break; // need more data
                                         }
-                                        if (result == -1) { // missing or corrupt data at this page position
-                                            // no reason to complain; already complained above
-                                        } else {
+
+                                        if (result != -1) {
                                             // we have a packet.  Decode it
                                             int samples;
                                             if (vb.synthesis(op) == 0) { // test for success!
@@ -298,7 +306,7 @@ public class OGGPlayer extends AbstractPlayer {
 
                                             while ((samples = vd.synthesis_pcmout(_pcm, _index)) > 0) {
                                                 float[][] pcm = _pcm[0];
-                                                int bout = (samples < convsize ? samples : convsize);
+                                                int bout = Math.min(samples, convsize);
 
                                                 // convert floats to 16 bit signed ints (host order) and
                                                 // interleave
@@ -320,9 +328,9 @@ public class OGGPlayer extends AbstractPlayer {
                                                         if (val < 0) {
                                                             val = val | 0x8000;
                                                         }
-                                                        convbuffer[ptr] = (byte) (val);
+                                                        convbuffer[ptr] = (byte) val;
                                                         convbuffer[ptr + 1] = (byte) (val >>> 8);
-                                                        ptr += 2 * (vi.channels);
+                                                        ptr += 2 * vi.channels;
                                                     }
                                                 }
 
@@ -341,7 +349,7 @@ public class OGGPlayer extends AbstractPlayer {
                                     }
                                 }
                             }
-                            if (eos == false) {
+                            if (!eos) {
                                 index = oy.buffer(4096);
                                 buffer = oy.data;
                                 bytes = inStream.read(buffer, index, 4096);
@@ -370,30 +378,20 @@ public class OGGPlayer extends AbstractPlayer {
 
                     // OK, clean up the framer
                     oy.clear();
-                } while ((isRunning == true) && (repeat == true));
+                } while (isRunning && repeat);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                log.error("File not found.", e);
             } catch (IOException e) {
-                e.printStackTrace();
+                log.error("I/O error.", e);
             } catch (LineUnavailableException e) {
-                e.printStackTrace();
+                log.error("Line unavailable.", e);
             }
 
-            System.out.println("Playing " + filename + " stops.");
+            System.out.println("Playing " + filepath + " stops.");
         }
 
         public void terminate() {
             isRunning = false;
         }
-    }
-
-    public void pause() {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void resume() {
-        // TODO Auto-generated method stub
-
     }
 }

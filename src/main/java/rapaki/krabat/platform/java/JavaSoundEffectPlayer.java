@@ -26,17 +26,17 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import java.net.URL;
+import java.nio.file.Path;
 
 public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
 
-    public JavaSoundEffectPlayer(String urlBase) {
-        super(urlBase);
+    public JavaSoundEffectPlayer(Path path) {
+        super(path);
     }
 
     public void PlayFile(String filename) {
         try {
-            AudioInputStream stream = AudioSystem.getAudioInputStream(new URL(urlBase + filename));
+            AudioInputStream stream = AudioSystem.getAudioInputStream(path.resolve(filename).toFile());
             DataLine.Info info = new DataLine.Info(Clip.class, stream.getFormat());
             Clip clip = (Clip) AudioSystem.getLine(info);
             clip.open(stream);

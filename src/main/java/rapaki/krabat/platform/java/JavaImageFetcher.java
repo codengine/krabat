@@ -24,17 +24,16 @@ import rapaki.krabat.platform.GenericImage;
 import rapaki.krabat.platform.GenericImageFetcher;
 
 import java.awt.*;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.nio.file.Path;
 
 public class JavaImageFetcher extends GenericImageFetcher {
 
-    private final String urlBase;
+    private final Path workingDir;
 
     private final Component comp;
 
-    public JavaImageFetcher(String urlBase, Component comp) {
-        this.urlBase = urlBase;
+    public JavaImageFetcher(Path workingDir, Component comp) {
+        this.workingDir = workingDir;
         this.comp = comp;
     }
 
@@ -44,19 +43,13 @@ public class JavaImageFetcher extends GenericImageFetcher {
 
         Image img = null;
 
-        URL url = null;
-        try {
-            url = new URL(urlBase + "/" + relativePath.substring(0, relativePath.length() - 3) + "png");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            return null;
-        }
+        String filePath = workingDir.resolve(relativePath.substring(0, relativePath.length() - 3) + "png").toFile().toString();
 
         // For the application, the URL will typically start with "file:///" and the user.dir
         // files from a .jar might look like this
         // ReturnImage = getToolkit().getImage ("jar:file:///" + System.getProperty("user.dir") + "!" + Filename);
         try {
-            img = comp.getToolkit().getImage(url);
+            img = comp.getToolkit().getImage(filePath);
             tracker.addImage(img, 0);
             tracker.waitForAll();
         } catch (InterruptedException e) {

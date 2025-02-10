@@ -85,8 +85,7 @@ public class BackgroundMusicPlayer {
     }
 
     private String getFilename(int trackNumber) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(player.getMusicDir()).append(FILE_PREFIX);
+        StringBuilder sb = new StringBuilder(FILE_PREFIX);
         if (trackNumber < 10) {
             sb.append("0");
         }
