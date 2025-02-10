@@ -492,25 +492,7 @@ public class KrabatNormal extends Krabat {
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         // muss nach Richtung getrennt vorgenommen werden
-        float horiz_dist = 1;
-        if (direction_x == 1) {
-            // nach rechts laufen
-            float helper = CRIGHT_DIST[anim_pos];
-            // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
-            horiz_dist = helper * (scale * xFaktor + 1.0f);
-        } else {
-            // nach links laufen
-            float helper = CLEFT_DIST[anim_pos];
-            // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
-            horiz_dist = helper * (scale * xFaktor + 1.0f);
-        }
-
-        // System.out.println ("Horizontaler Abstand " + horiz_dist + " Pixel.");
-
-        // nicht kleiner 1
-        if (horiz_dist < 1) {
-            horiz_dist = 1;
-        }
+        float horiz_dist = getHorizDist(scale);
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
         float z = 0;
@@ -532,6 +514,25 @@ public class KrabatNormal extends Krabat {
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
+    private float getHorizDist(float scale) {
+        float helper;
+        if (direction_x == 1) {
+            // nach rechts laufen
+            helper = CRIGHT_DIST[anim_pos];
+            // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
+        } else {
+            // nach links laufen
+            helper = CLEFT_DIST[anim_pos];
+            // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
+        }
+        float horiz_dist = helper * (scale * xFaktor + 1.0f);
+
+        // System.out.println ("Horizontaler Abstand " + horiz_dist + " Pixel.");
+
+        // nicht kleiner 1
+        return horiz_dist < 1 ? 1 : horiz_dist;
+    }
+
     // Vertikal - Positions - Verschieberoutine, je nach Krabat - Aussehen
     private void VerschiebeY() {
         // System.out.println ("Y-Verschiebung !");
@@ -542,25 +543,7 @@ public class KrabatNormal extends Krabat {
 
         // Zooming - Faktor beruecksichtigen in y - Richtung
         // muss nach Richtung getrennt vorgenommen werden
-        float vert_dist = 1;
-        if (direction_y == 1) {
-            // nach unten laufen
-            float helper = CDOWN_DIST[anim_pos];
-            // vert_dist = helper * (float) Math.pow (yFaktor, scale);
-            vert_dist = helper * (yFaktor * scale + 1.0f);
-        } else {
-            // nach oben laufen
-            float helper = CUP_DIST[anim_pos];
-            // vert_dist = helper * (float) Math.pow (yFaktor, scale);
-            vert_dist = helper * (yFaktor * scale + 1.0f);
-        }
-
-        // System.out.println ("Vertikaler Abstand " + vert_dist + " Pixel.");
-
-        // ist mal besser nicht kleiner als 1
-        if (vert_dist < 1) {
-            vert_dist = 1;
-        }
+        float vert_dist = getVertDist(scale);
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
         float z = Math.abs(yps - walkto.y) / vert_dist;
@@ -580,6 +563,25 @@ public class KrabatNormal extends Krabat {
 
         typs = yps + direction_y * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+    }
+
+    private float getVertDist(float scale) {
+        float helper;
+        if (direction_y == 1) {
+            // nach unten laufen
+            helper = CDOWN_DIST[anim_pos];
+            // vert_dist = helper * (float) Math.pow (yFaktor, scale);
+        } else {
+            // nach oben laufen
+            helper = CUP_DIST[anim_pos];
+            // vert_dist = helper * (float) Math.pow (yFaktor, scale);
+        }
+        float vert_dist = helper * (yFaktor * scale + 1.0f);
+
+        // System.out.println ("Vertikaler Abstand " + vert_dist + " Pixel.");
+
+        // ist mal besser nicht kleiner als 1
+        return vert_dist < 1 ? 1 : vert_dist;
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
