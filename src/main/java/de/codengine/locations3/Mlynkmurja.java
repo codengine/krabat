@@ -127,9 +127,7 @@ public class Mlynkmurja extends Mainloc {
             evalMouseMoveEvent(mainFrame.Mousepoint);
             g.setClip(0, 0, 644, 484);
             mainFrame.isAnim = true;
-            if (mainFrame.fPlayAnim = true) {
-                mainFrame.fPlayAnim = true;
-            }
+            mainFrame.fPlayAnim = true;
         }
 
         // Hintergrund und Krabat zeichnen
