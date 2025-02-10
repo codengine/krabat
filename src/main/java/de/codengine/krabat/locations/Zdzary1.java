@@ -336,7 +336,7 @@ public class Zdzary1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // linker Maustaste
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 nextActionID = 0;
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
@@ -390,7 +390,7 @@ public class Zdzary1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // linke Maustaste
                 nextActionID = 0;
 

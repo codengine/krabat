@@ -361,7 +361,7 @@ public class Inventar extends Mainanim {
 
         // Kursor = Sprite -> anders auf MouseEvents reagieren
         if (mainFrame.invCursor) {
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // linke Maustaste gedrueckt
                 if (brPfeill.IsPointInRect(pTemp)) {
                     // bei Pfeil links verlassen bzw auf 1. Screen zurueck
@@ -635,7 +635,7 @@ public class Inventar extends Mainanim {
             // ActionID initialisieren
             nextActionID = 0;
 
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // linke Maustaste
 
                 // Click ausserhalb Inventarfenster beendet Inventar

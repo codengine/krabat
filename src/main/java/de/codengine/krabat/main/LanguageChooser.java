@@ -218,7 +218,7 @@ public class LanguageChooser extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             // linke Maustaste
             // Pfeil-Oben gedrueckt
             if (brPfeilOben.IsPointInRect(pTemp)) {

@@ -485,7 +485,7 @@ public class Casnik extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // linker Maustaste
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 nextActionID = 0;
 
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
@@ -594,7 +594,7 @@ public class Casnik extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // linke Maustaste
                 nextActionID = 0;
 

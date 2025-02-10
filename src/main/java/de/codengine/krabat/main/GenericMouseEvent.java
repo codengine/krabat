@@ -49,7 +49,7 @@ public class GenericMouseEvent {
         return isDoubleClick;
     }
 
-    public boolean isRightClick() {
-        return button == MouseEvent.BUTTON3 && (modifiersEx & InputEvent.BUTTON3_DOWN_MASK) != 0;
+    public boolean isLeftClick() {
+        return button == MouseEvent.BUTTON1 && (modifiersEx & InputEvent.BUTTON1_DOWN_MASK) != 0;
     }
 }

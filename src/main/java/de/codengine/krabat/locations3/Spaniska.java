@@ -441,7 +441,7 @@ public class Spaniska extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // linker Maustaste
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // Extra-Punkt fuer Walkto wegen Ueberschneidungen
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -538,7 +538,7 @@ public class Spaniska extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
                 // linke Maustaste

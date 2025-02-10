@@ -106,7 +106,7 @@ public class Skica extends Mainanim {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
 
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             Deactivate();
         } else {
             Deactivate();

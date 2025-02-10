@@ -161,7 +161,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     // Mouse - Listener fuer Multiple Choice
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             // Linke Maustaste
             for (int i = 0; i <= Anzahl; ++i) {
                 if (Positionen[i].contains(pTemp)) {

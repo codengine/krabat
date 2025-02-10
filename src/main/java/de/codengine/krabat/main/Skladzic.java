@@ -262,7 +262,7 @@ public class Skladzic extends Mainanim {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             // linke Maustaste
             // bei Click Ausserhalb zurueck ins Spiel
             if (!brGesamt.IsPointInRect(pTemp)) {

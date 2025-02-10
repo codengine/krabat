@@ -598,7 +598,7 @@ public class Wjes2 extends Mainloc2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // linke Maustaste
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 nextActionID = 0;
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
@@ -687,7 +687,7 @@ public class Wjes2 extends Mainloc2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (e.isRightClick()) {
+            if (e.isLeftClick()) {
                 // linke Maustaste
                 nextActionID = 0;
 

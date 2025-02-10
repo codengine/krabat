@@ -126,7 +126,7 @@ public class Karta extends Mainanim {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             // Hier Entscheidung nach Teilen
 
             // wenn ausserhalb der Karte, dann weg

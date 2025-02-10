@@ -266,7 +266,7 @@ public class Slownik extends Mainanim {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isRightClick()) {
+        if (e.isLeftClick()) {
             // linke Maustaste
             // Pfeil-Oben gedrueckt
             if (brPfeilOben.IsPointInRect(pTemp)) {
