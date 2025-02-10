@@ -158,6 +158,7 @@ public class Zawod1 extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         rapaki = null;
         domal = null;
@@ -196,6 +197,7 @@ public class Zawod1 extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // System.out.println("repaint!");
 
@@ -496,6 +498,7 @@ public class Zawod1 extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
 
@@ -526,6 +529,7 @@ public class Zawod1 extends Mainloc {
 
     // MouseMove - Auswertung + Cursorformen
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (mainFrame.fPlayAnim == true) {
             if (Cursorform != 20) {
@@ -543,11 +547,13 @@ public class Zawod1 extends Mainloc {
     }
 
     // dieses Event nicht beachten
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Tasten - Auswertung
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Escape soll immer gehen...
 

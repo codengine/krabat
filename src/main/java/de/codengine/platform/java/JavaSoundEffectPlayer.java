@@ -34,6 +34,7 @@ public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
         super(path);
     }
 
+    @Override
     public void PlayFile(String filename) {
         try {
             AudioInputStream stream = AudioSystem.getAudioInputStream(path.resolve(filename).toFile());

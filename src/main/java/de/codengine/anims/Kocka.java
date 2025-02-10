@@ -83,6 +83,7 @@ public class Kocka extends Mainanim {
         kocka_talk[5] = getPicture("gfx/mlyn/kocka-t6.gif");
     }
 
+    @Override
     public void cleanup() {
         kocka_look[0] = null;
         kocka_look[1] = null;

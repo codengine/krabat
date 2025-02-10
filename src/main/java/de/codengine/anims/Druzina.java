@@ -99,6 +99,7 @@ public class Druzina extends Mainanim {
         druzina_walk[5] = getPicture("gfx-dd/zelen/gefolge1-l8.gif");
     }
 
+    @Override
     public void cleanup() {
         druzina_walk[0] = null;
         druzina_walk[1] = null;

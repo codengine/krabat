@@ -101,6 +101,7 @@ public class Dinglinger extends Mainanim {
         dingl_sit_talkhead[9] = getPicture("gfx-dd/dingl/dingl-st9.gif");
     }
 
+    @Override
     public void cleanup() {
         dingl_sit_body[0] = null;
         dingl_sit_body[1] = null;

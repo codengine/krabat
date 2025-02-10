@@ -168,6 +168,7 @@ public class Install extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         if (drawMe == false) {
@@ -335,6 +336,7 @@ public class Install extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
@@ -411,6 +413,7 @@ public class Install extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // sonst normal-Cursor
         if (Cursorform != 0) {
@@ -459,12 +462,14 @@ public class Install extends Mainloc {
     }
 
     // dieses Event nicht beachten
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
         selected = 0;
         mainFrame.repaint();
     }
 
     // keine Keys im Installer
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

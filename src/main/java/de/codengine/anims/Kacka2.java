@@ -97,6 +97,7 @@ public class Kacka2 extends Mainanim {
         kacka_rede[1] = getPicture("gfx/mertens/kacka2a.gif");
     }
 
+    @Override
     public void cleanup() {
         kacka_flieg[0] = null;
         kacka_flieg[1] = null;

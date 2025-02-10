@@ -92,6 +92,7 @@ public class Dzera extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         background = null;
 
@@ -104,6 +105,7 @@ public class Dzera extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
         if (mainFrame.Clipset == false) {
@@ -182,6 +184,7 @@ public class Dzera extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
@@ -196,6 +199,7 @@ public class Dzera extends Mainloc {
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
@@ -204,11 +208,13 @@ public class Dzera extends Mainloc {
         return;
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

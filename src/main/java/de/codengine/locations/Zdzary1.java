@@ -172,6 +172,7 @@ public class Zdzary1 extends Mainloc {
         alteTalk.y = altePoint.y - 50;
     }
 
+    @Override
     public void cleanup() {
         background = null;
         alte.cleanup();
@@ -180,6 +181,7 @@ public class Zdzary1 extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         // bei UserMultiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
@@ -298,6 +300,7 @@ public class Zdzary1 extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Usermultiple Choice extra Mouseroutine
         if (Userdialog.user == true) {
@@ -487,6 +490,7 @@ public class Zdzary1 extends Mainloc {
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Usermultiple Choice eigene Routine aufrufen
         if (Userdialog.user == true) {
@@ -566,6 +570,7 @@ public class Zdzary1 extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
         if (Userdialog.user == true) {
             Userdialog.evalMouseExitEvent(e);
@@ -577,6 +582,7 @@ public class Zdzary1 extends Mainloc {
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Usermultiple Choice eigene Keyroutine
         if (Userdialog.user == true) {

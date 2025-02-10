@@ -125,6 +125,7 @@ public class Poklad extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
@@ -250,6 +251,7 @@ public class Poklad extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         if (mainFrame.talkCount != 0) {
             mainFrame.Clipset = false;
@@ -263,6 +265,7 @@ public class Poklad extends Mainloc {
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (Cursorform != 20) {
@@ -272,11 +275,13 @@ public class Poklad extends Mainloc {
         return;
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

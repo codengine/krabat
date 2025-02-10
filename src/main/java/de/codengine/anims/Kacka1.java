@@ -73,6 +73,7 @@ public class Kacka1 extends Mainanim {
         kacka_front[1] = getPicture("gfx/mertens/kacka1-ta.gif");
     }
 
+    @Override
     public void cleanup() {
         kacka_left[0] = null;
         kacka_left[1] = null;

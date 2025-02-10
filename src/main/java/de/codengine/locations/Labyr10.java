@@ -163,6 +163,7 @@ public class Labyr10 extends Mainlaby {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         background = null;
         lab102 = null;
@@ -175,6 +176,7 @@ public class Labyr10 extends Mainlaby {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
     /*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
@@ -298,6 +300,7 @@ public class Labyr10 extends Mainlaby {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
         if (mainFrame.isMultiple == true) {
@@ -473,6 +476,7 @@ public class Labyr10 extends Mainlaby {
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
         if (mainFrame.isMultiple == true) {
@@ -552,6 +556,7 @@ public class Labyr10 extends Mainlaby {
         }
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
         if (mainFrame.isMultiple == true) {
             Dialog.evalMouseExitEvent(e);
@@ -560,6 +565,7 @@ public class Labyr10 extends Mainlaby {
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple == true) {

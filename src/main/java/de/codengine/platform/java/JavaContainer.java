@@ -33,11 +33,13 @@ public class JavaContainer extends GenericContainer {
         this.container = container;
     }
 
+    @Override
     public void repaint() {
         // System.out.println("Container repaint!");
         container.repaint();
     }
 
+    @Override
     public void setCursor(GenericCursor gen) {
         Cursor cursor = ((JavaCursor) gen).getCursor();
         container.setCursor(cursor);

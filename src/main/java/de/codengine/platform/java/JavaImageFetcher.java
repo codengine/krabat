@@ -37,6 +37,7 @@ public class JavaImageFetcher extends GenericImageFetcher {
         this.comp = comp;
     }
 
+    @Override
     public GenericImage fetchImage(String relativePath) {
 
         MediaTracker tracker = new MediaTracker(comp);

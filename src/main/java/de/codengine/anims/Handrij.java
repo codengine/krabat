@@ -98,6 +98,7 @@ public class Handrij extends Mainanim {
         hand_body[4] = getPicture("gfx-dd/zahrod/zahrod-rb5.gif");
     }
 
+    @Override
     public void cleanup() {
         hand_work[0] = null;
         hand_work[1] = null;

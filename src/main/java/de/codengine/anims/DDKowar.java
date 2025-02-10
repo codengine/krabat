@@ -101,6 +101,7 @@ public class DDKowar extends Mainanim {
         kowar_talk_body[2] = getPicture("gfx-dd/terassa/schmied-tb3.gif");
     }
 
+    @Override
     public void cleanup() {
         kowar_work_head[0] = null;
         kowar_work_head[1] = null;

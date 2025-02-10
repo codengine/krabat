@@ -104,6 +104,7 @@ public class KrabatAngeln extends Mainanim {
         schaue_links[1] = getPicture("gfx/anims/k-l-h0a.gif");
     }
 
+    @Override
     public void cleanup() {
         angle_rechts[0] = null;
         angle_rechts[1] = null;

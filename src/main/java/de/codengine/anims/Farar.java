@@ -69,6 +69,7 @@ public class Farar extends Mainanim {
         farar_body[4] = getPicture("gfx/pinca/f-b-4.gif");
     }
 
+    @Override
     public void cleanup() {
         farar_head[1] = null;
         farar_head[2] = null;

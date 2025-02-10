@@ -75,6 +75,7 @@ public class Gonzales extends Mainanim {
         pirat_give = getPicture("gfx-dd/habor/pb2.gif");
     }
 
+    @Override
     public void cleanup() {
         pirat_head[0] = null;
         pirat_head[1] = null;

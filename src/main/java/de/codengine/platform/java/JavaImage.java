@@ -40,24 +40,29 @@ public class JavaImage extends GenericImage {
         return image;
     }
 
+    @Override
     public GenericDrawingContext getGraphics() {
         return new JavaDrawingContext(image.getGraphics());
     }
 
+    @Override
     public int getHeight(GenericImageObserver object) {
         return image.getHeight(((JavaImageObserver) object).getObserver());
     }
 
+    @Override
     public GenericImage getScaledInstance(int width, int height, int hints) {
         Image scaled = image.getScaledInstance(width, height, hints);
         return new JavaImage(scaled);
     }
 
+    @Override
     public GenericImageProducer getSource() {
         ImageProducer producer = image.getSource();
         return new JavaImageProducer(producer);
     }
 
+    @Override
     public int getWidth(GenericImageObserver object) {
         return image.getWidth(((JavaImageObserver) object).getObserver());
     }

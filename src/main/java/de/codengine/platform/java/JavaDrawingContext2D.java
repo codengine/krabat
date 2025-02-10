@@ -36,21 +36,25 @@ public class JavaDrawingContext2D extends GenericDrawingContext2D {
         this.g = (Graphics2D) g;
     }
 
+    @Override
     public void setComposite(GenericAlphaComposite ad) {
         AlphaComposite ac = AlphaComposite.getInstance(ad.getRule(), ad.getAplha());
         g.setComposite(ac);
     }
 
+    @Override
     public void drawImage(GenericImage genericImage, int x, int y,
                           GenericImageObserver observer) {
         Image image = ((JavaImage) genericImage).getImage();
         g.drawImage(image, x, y, null);
     }
 
+    @Override
     public void fillRect(int x1, int y1, int width, int height) {
         g.fillRect(x1, y1, width, height);
     }
 
+    @Override
     public void setColor(GenericColor inakt) {
         g.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
     }

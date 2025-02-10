@@ -51,6 +51,7 @@ public class OGGPlayer extends AbstractPlayer {
     private volatile PlayThread pThread;
     private final Object playerLock = new Object();
 
+    @Override
     public void play(final String filename, final boolean repeat) {
         synchronized (playerLock) {
             stopPlaying();
@@ -71,12 +72,14 @@ public class OGGPlayer extends AbstractPlayer {
 
     }
 
+    @Override
     public void stop() {
         synchronized (playerLock) {
             stopPlaying();
         }
     }
 
+    @Override
     public String getMusicSuffix() {
         return MUSIC_SUFFIX;
     }
@@ -120,6 +123,7 @@ public class OGGPlayer extends AbstractPlayer {
             this.repeat = repeat;
         }
 
+        @Override
         public void run() {
 
             isRunning = true;

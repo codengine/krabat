@@ -74,6 +74,7 @@ public class BurMichal extends Mainanim {
         bur_look = getPicture("gfx/polo/dmuz-b.gif");
     }
 
+    @Override
     public void cleanup() {
         bur_work[0] = null;
         bur_work[1] = null;

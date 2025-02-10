@@ -97,6 +97,7 @@ public class Boote extends Mainanim {
         boots[5] = getPicture("gfx-dd/panorama/boot4.gif");
     }
 
+    @Override
     public void cleanup() {
         boots[0] = null;
         boots[1] = null;

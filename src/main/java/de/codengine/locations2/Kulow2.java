@@ -189,6 +189,7 @@ public class Kulow2 extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         backleft = null;
         backright = null;
@@ -204,6 +205,7 @@ public class Kulow2 extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
 	/*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
@@ -379,6 +381,7 @@ public class Kulow2 extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
         if (mainFrame.isMultiple == true) {
@@ -693,6 +696,7 @@ public class Kulow2 extends Mainloc {
     }
 
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // bei Multiple Choice eigene Routine aufrufen
         if (mainFrame.isMultiple == true) {
@@ -784,6 +788,7 @@ public class Kulow2 extends Mainloc {
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
         if (mainFrame.isMultiple == true) {
@@ -845,6 +850,7 @@ public class Kulow2 extends Mainloc {
         mainFrame.krabat.StopWalking();
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
         if (mainFrame.isMultiple == true) {
             Dialog.evalMouseExitEvent(e);

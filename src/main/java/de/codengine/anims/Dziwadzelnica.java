@@ -69,6 +69,7 @@ public class Dziwadzelnica extends Mainanim {
         dziw_beat[2] = getPicture("gfx-dd/spaniska/dziwa1b.gif");
     }
 
+    @Override
     public void cleanup() {
         dziw_talk[0] = null;
         dziw_talk[1] = null;

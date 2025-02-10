@@ -106,6 +106,7 @@ public class HlownyStraznik extends Mainanim {
         }
     }
 
+    @Override
     public void cleanup() {
         straz_stand[0] = null;
         straz_stand[1] = null;

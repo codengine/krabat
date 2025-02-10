@@ -40,6 +40,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         this.comp = comp;
     }
 
+    @Override
     public void prepareImage(GenericImage genericImage,
                              GenericImageObserver observer) {
         Image img = ((JavaImage) genericImage).getImage();
@@ -47,6 +48,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         comp.prepareImage(img, obs);
     }
 
+    @Override
     public int checkImage(GenericImage genericImage,
                           GenericImageObserver observer) {
         Image img = ((JavaImage) genericImage).getImage();
@@ -54,6 +56,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         return comp.checkImage(img, obs);
     }
 
+    @Override
     public GenericCursor createCustomCursor(GenericImage genericImage,
                                             GenericPoint hotSpot, String name) {
         Image img = ((JavaImage) genericImage).getImage();
@@ -62,6 +65,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         return new JavaCursor(cursor);
     }
 
+    @Override
     public GenericImage createImage(
             GenericMemoryImageSource gen) {
         MemoryImageSource src = new MemoryImageSource(
@@ -74,6 +78,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         return new JavaImage(img);
     }
 
+    @Override
     public GenericImage createImage(
             GenericFilteredImageSource gen) {
         ImageProducer producer = ((JavaImageProducer) gen.getProducer()).getProducer();
@@ -82,11 +87,13 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         return new JavaImage(img);
     }
 
+    @Override
     public GenericImage createImage(int i, int j) {
         Image img = comp.createImage(i, j);
         return new JavaImage(img);
     }
 
+    @Override
     public void grabPixelsFromImage(GenericImage actualImage, int x, int y,
                                     int w, int h, int[] pix, int off, int scansize) {
         Image img = ((JavaImage) actualImage).getImage();
@@ -110,6 +117,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
             this.impl = impl;
         }
 
+        @Override
         public int filterRGB(int x, int y, int rgb) {
             return impl.filterRGB(x, y, rgb);
         }

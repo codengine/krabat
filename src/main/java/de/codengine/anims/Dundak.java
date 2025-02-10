@@ -81,6 +81,7 @@ public class Dundak extends Mainanim {
         hosc_body[3] = getPicture("gfx/hoscenc/gast2-b4.gif");
     }
 
+    @Override
     public void cleanup() {
         hosc_stand[0] = null;
         hosc_stand[1] = null;

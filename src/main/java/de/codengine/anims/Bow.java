@@ -60,6 +60,7 @@ public class Bow extends Mainanim {
         bow[7] = getPicture("gfx/haty/bow7.gif");
     }
 
+    @Override
     public void cleanup() {
         bow[1] = null;
         bow[2] = null;

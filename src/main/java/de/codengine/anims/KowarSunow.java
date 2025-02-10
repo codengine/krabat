@@ -117,6 +117,7 @@ public class KowarSunow extends Mainanim {
         Vorder = getPicture("gfx/wjes/kowarnja.gif");
     }
 
+    @Override
     public void cleanup() {
         kowar_head[1] = null;
         kowar_head[2] = null;

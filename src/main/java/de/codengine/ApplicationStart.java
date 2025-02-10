@@ -137,10 +137,12 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         }
     }
 
+    @Override
     public void update(Graphics g) {
         paint(g);
     }
 
+    @Override
     public final synchronized void paint(Graphics g) {
         GenericImage img = appInstance.paint(null);
         if (img != null) {
@@ -195,14 +197,17 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         return (new GenericPoint(xxx, yyy));
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
 
     }
 
+    @Override
     public void mouseEntered(MouseEvent e) {
         appInstance.mouseEntered();
     }
 
+    @Override
     public void mouseExited(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
@@ -210,6 +215,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         appInstance.mouseExited(ge);
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
         // Doppelclick (zeitlich begrenzt) erkennen
         if ((Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit) &&
@@ -228,10 +234,12 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         appInstance.mousePressed(ge);
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
 
     }
 
+    @Override
     public void mouseDragged(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
@@ -239,6 +247,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         appInstance.mouseDragged(ge);
     }
 
+    @Override
     public void mouseMoved(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
@@ -246,41 +255,51 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         appInstance.mouseMoved(ge);
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
         appInstance.keyPressed(new GenericKeyEvent(e.getKeyCode()));
     }
 
+    @Override
     public void keyReleased(KeyEvent e) {
 
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {
 
     }
 
     // Window-Events abfangen
+    @Override
     public void windowClosed(WindowEvent event) {
     }
 
+    @Override
     public void windowDeiconified(WindowEvent event) {
         appInstance.isWindowactive = true;
     }
 
+    @Override
     public void windowIconified(WindowEvent event) {
         appInstance.isWindowactive = false;
     }
 
+    @Override
     public void windowActivated(WindowEvent event) {
         appInstance.isWindowactive = true;
     }
 
+    @Override
     public void windowDeactivated(WindowEvent event) {
         appInstance.isWindowactive = false;
     }
 
+    @Override
     public void windowOpened(WindowEvent event) {
     }
 
+    @Override
     public void windowClosing(WindowEvent event) {
         appInstance.windowClosing();
     }

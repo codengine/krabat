@@ -64,6 +64,7 @@ public class BurHanza extends Mainanim {
         bur_talk[3] = getPicture("gfx/polo/dzona-r4.gif");
     }
 
+    @Override
     public void cleanup() {
         bur_work[0] = null;
         bur_work[1] = null;

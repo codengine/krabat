@@ -197,6 +197,7 @@ public class Hojnt extends Mainanim {
         krabat_buecken[1] = getPicture("gfx/hojnt/ho-rbuecken2.gif");
     }
 
+    @Override
     public void cleanup() {
         krabat_left[0] = null;
         krabat_left[1] = null;

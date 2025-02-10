@@ -116,6 +116,7 @@ public class LanguageChooser extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         System.out.println("LanguageChooser repaint with clipset=" + mainFrame.Clipset);
@@ -211,6 +212,7 @@ public class LanguageChooser extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
 
@@ -283,6 +285,7 @@ public class LanguageChooser extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 0) {
             Cursorform = 0;
@@ -312,6 +315,7 @@ public class LanguageChooser extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
         menuitem = 0;
         mainFrame.repaint();
@@ -319,6 +323,7 @@ public class LanguageChooser extends Mainloc {
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // currently no keys
     }

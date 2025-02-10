@@ -106,6 +106,7 @@ public class Pinca2 extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         background = null;
         kniha = null;
@@ -117,6 +118,7 @@ public class Pinca2 extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
         if (mainFrame.Clipset == false) {
@@ -219,6 +221,7 @@ public class Pinca2 extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         if (mainFrame.talkCount != 0) {
             mainFrame.Clipset = false;
@@ -230,6 +233,7 @@ public class Pinca2 extends Mainloc {
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
@@ -239,11 +243,13 @@ public class Pinca2 extends Mainloc {
     }
 
     // dieses Event nicht beachten
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         return;
     }

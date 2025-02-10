@@ -65,6 +65,7 @@ public class Fararhor extends Mainanim {
         foreground = getPicture("gfx/cyrkej/cdurje2.gif");
     }
 
+    @Override
     public void cleanup() {
         farar_talk[1] = null;
         farar_talk[2] = null;

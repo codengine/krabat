@@ -193,6 +193,7 @@ public class HojntAuto extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         backl = null;
         backr = null;
@@ -222,6 +223,7 @@ public class HojntAuto extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping - Region initialisieren und Rauchthread aktivieren
         if (mainFrame.Clipset == false) {
@@ -385,6 +387,7 @@ public class HojntAuto extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // Auszugebenden Text abbrechen
         if (mainFrame.talkCount != 0) {
@@ -398,6 +401,7 @@ public class HojntAuto extends Mainloc {
     }
 
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         if (Cursorform != 20) {
             Cursorform = 20;
@@ -406,11 +410,13 @@ public class HojntAuto extends Mainloc {
     }
 
     // dieses Event nicht beachten
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

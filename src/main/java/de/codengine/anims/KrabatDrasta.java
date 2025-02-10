@@ -350,6 +350,7 @@ public class KrabatDrasta extends Krabat {
     // als auch im "Paint" - Event angesprungen...
 
     // Diese Routine bleibt unveraendert, unabhaengig davon, wie Krabat gerade aussieht
+    @Override
     public synchronized void Move() {
         // Wenn kein Laufen gewuenscht, dann auch nicht laufen!
         if ((isWalking == false) && (isWandering == false)) {
@@ -536,6 +537,7 @@ public class KrabatDrasta extends Krabat {
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
+    @Override
     public synchronized void MoveTo(GenericPoint aim) {
         int xricht, yricht;
         boolean horiz = true;
@@ -623,6 +625,7 @@ public class KrabatDrasta extends Krabat {
     // Krabat - Animationen /////////////////////////////////////////////////////////////
 
     // je nach Laufrichtung Krabat zeichnen
+    @Override
     public void drawKrabat(GenericDrawingContext offGraph) {
         // Default - Routine
 
@@ -678,6 +681,7 @@ public class KrabatDrasta extends Krabat {
 
 
     // Abspielen einer Animation
+    @Override
     public void DoAnimation(GenericDrawingContext g) {
         switch (nAnimation) {
             case 2:    // Floete spielen
@@ -1014,6 +1018,7 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Zeichne Krabat beim Sprechen mit anderen Personen
+    @Override
     public void talkKrabat(GenericDrawingContext offGraph) {
         // Default - Reden
 
@@ -1036,6 +1041,7 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Krabat beim Monolog (ohne Gestikulieren)
+    @Override
     public void describeKrabat(GenericDrawingContext offGraph) {
         // Default - Reden
 
@@ -1108,6 +1114,7 @@ public class KrabatDrasta extends Krabat {
 
     // fuer Debugging public - wird wieder private !!!
     // wird nur bei Default angesprungen
+    @Override
     public int getScale(int pox, int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
@@ -1185,6 +1192,7 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
+    @Override
     public Borderrect KrabatRect() {
         int x = getLeftPos(((int) xps), ((int) yps));
         int y = getUpPos(((int) xps), ((int) yps));

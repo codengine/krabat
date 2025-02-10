@@ -53,13 +53,18 @@ abstract public class Mainloc2 extends Mainloc {
     }
 
     // Diese Methoden werden erst in den einzelnen Labyrinths implementiert.
+    @Override
     abstract public void paintLocation(GenericDrawingContext g);
 
+    @Override
     abstract public void evalMouseEvent(GenericMouseEvent e);
 
+    @Override
     abstract public void evalMouseExitEvent(GenericMouseEvent e);
 
+    @Override
     abstract public void evalMouseMoveEvent(GenericPoint mousePoint);
 
+    @Override
     abstract public void evalKeyEvent(GenericKeyEvent e);
 }      	

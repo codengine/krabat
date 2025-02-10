@@ -50,6 +50,7 @@ public class LogoPtack extends Mainanim {
         vogel[3] = getPicture("gfx/intro/iv3.gif");
     }
 
+    @Override
     public void cleanup() {
         vogel[1] = null;
         vogel[2] = null;

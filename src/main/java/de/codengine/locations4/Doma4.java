@@ -133,6 +133,7 @@ public class Doma4 extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
@@ -252,6 +253,7 @@ public class Doma4 extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // Auszugebenden Text abbrechen
         outputText = "";
@@ -266,6 +268,7 @@ public class Doma4 extends Mainloc {
     }
 
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         if (Cursorform != 20) {
             Cursorform = 20;
@@ -274,11 +277,13 @@ public class Doma4 extends Mainloc {
         return;
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

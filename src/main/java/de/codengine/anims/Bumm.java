@@ -71,6 +71,7 @@ public class Bumm extends Mainanim {
         bumm[7] = getPicture("gfx/anims/mo8.gif");
     }
 
+    @Override
     public void cleanup() {
         bumm[0] = null;
         bumm[1] = null;

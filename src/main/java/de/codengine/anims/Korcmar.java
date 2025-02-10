@@ -148,6 +148,7 @@ public class Korcmar extends Mainanim {
         krabat_talk_body[3] = getPicture("gfx/hoscenc/wirt-b3.gif");
     }
 
+    @Override
     public void cleanup() {
         krabat_back[0] = null;
         krabat_back[1] = null;

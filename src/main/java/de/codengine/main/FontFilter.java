@@ -27,6 +27,7 @@ public class FontFilter extends GenericImageFilter {
         super(whatColor);
     }
 
+    @Override
     public int filterRGB(int x, int y, int rgb) {
         // Unveraendert !!!
         if (rgb != 0xff00ff00) {

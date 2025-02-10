@@ -151,6 +151,7 @@ public class Swoboda extends Mainloc {
         loadPicture();
     }
 
+    @Override
     public void cleanup() {
         background = null;
 
@@ -172,6 +173,7 @@ public class Swoboda extends Mainloc {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
+    @Override
     public void paintLocation(GenericDrawingContext g) {
 
         // System.out.print("g");
@@ -383,6 +385,7 @@ public class Swoboda extends Mainloc {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
+    @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // Auszugebenden Text abbrechen
         outputText = "";
@@ -396,6 +399,7 @@ public class Swoboda extends Mainloc {
     }
 
 
+    @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.fPlayAnim == true) {
@@ -407,11 +411,13 @@ public class Swoboda extends Mainloc {
         }
     }
 
+    @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
 
+    @Override
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 

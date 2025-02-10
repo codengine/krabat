@@ -89,6 +89,7 @@ public class Husa extends Mainanim {
         Gaense[3][8] = getPicture("gfx/doma/g3d2.gif");
     }
 
+    @Override
     public void cleanup() {
         Gaense[1][1] = null;
         Gaense[1][2] = null;

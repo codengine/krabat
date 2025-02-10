@@ -189,6 +189,7 @@ public class Dinglingerwalk extends Mainanim {
         krabat_skla[2] = getPicture("gfx-dd/dingl/dingl-skla3.gif");
     }
 
+    @Override
     public void cleanup() {
         krabat_left_talk_head[0] = null;
         krabat_left_talk_head[1] = null;

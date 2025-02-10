@@ -62,10 +62,12 @@ public class JavaStorageManager extends GenericStorageManager {
         this.translationsRootPath = translationsRootPath;
     }
 
+    @Override
     public boolean isLoadSaveSupported() {
         return loadSaveSupported;
     }
 
+    @Override
     public byte[] loadFromFile(int gameIndex) {
         File file = loadSaveRootPath.resolve(loadSavePrefix + gameIndex + loadSaveSuffix).toFile();
         byte[] ret;
@@ -92,6 +94,7 @@ public class JavaStorageManager extends GenericStorageManager {
         return ret;
     }
 
+    @Override
     public boolean saveToFile(byte[] data, int gameIndex) {
         File file = loadSaveRootPath.resolve(loadSavePrefix + gameIndex + loadSaveSuffix).toFile();
         try {
@@ -106,10 +109,12 @@ public class JavaStorageManager extends GenericStorageManager {
         }
     }
 
+    @Override
     public boolean isSlownikSupported() {
         return slownikSupported;
     }
 
+    @Override
     public byte[] loadSlownik(String relativeFileName) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
@@ -136,6 +141,7 @@ public class JavaStorageManager extends GenericStorageManager {
         return baos.toByteArray();
     }
 
+    @Override
     public boolean isPropertyStorageSupported() {
         return propertyStorageSupported;
     }
@@ -144,6 +150,7 @@ public class JavaStorageManager extends GenericStorageManager {
         return propertyRootPath.resolve("game.properties");
     }
 
+    @Override
     public void getGameProperties(Properties props) {
         File file = getPropertyPath().toFile();
         try {
@@ -155,6 +162,7 @@ public class JavaStorageManager extends GenericStorageManager {
         }
     }
 
+    @Override
     public void saveGameProperties(Properties props) {
         File file = getPropertyPath().toFile();
         try {
@@ -172,6 +180,7 @@ public class JavaStorageManager extends GenericStorageManager {
         return translationsRootPath.resolve(filename);
     }
 
+    @Override
     public HashMap<String, String> loadTranslationsFile(String filename) {
         HashMap<String, String> translations = new HashMap<String, String>();
 
@@ -198,6 +207,7 @@ public class JavaStorageManager extends GenericStorageManager {
         return translations;
     }
 
+    @Override
     public void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix) {
         File file = getTranslationPath(filename).toFile();
         try {

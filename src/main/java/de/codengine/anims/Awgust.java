@@ -125,6 +125,7 @@ public class Awgust extends Mainanim {
         kral_body[1] = getPicture("gfx-dd/zelen/kral-ub2.gif");
     }
 
+    @Override
     public void cleanup() {
         kral_walk[0] = null;
         kral_walk[1] = null;

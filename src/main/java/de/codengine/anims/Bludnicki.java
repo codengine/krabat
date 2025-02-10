@@ -113,6 +113,7 @@ public class Bludnicki extends Mainanim {
         take = getPicture("gfx/labyrinth/bb-take.gif");
     }
 
+    @Override
     public void cleanup() {
         Head[1][1] = null;
         Head[1][2] = null;

@@ -495,6 +495,7 @@ public class Start implements Runnable {
         animator.start();
     }
 
+    @Override
     public void run() {
         boolean tmpTrigger;
 

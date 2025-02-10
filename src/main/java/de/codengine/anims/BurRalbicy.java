@@ -104,6 +104,7 @@ public class BurRalbicy extends Mainanim {
         bur_work[8] = getPicture("gfx/ralbicy/b-8.gif");
     }
 
+    @Override
     public void cleanup() {
         bur_head[1] = null;
         bur_head[2] = null;
