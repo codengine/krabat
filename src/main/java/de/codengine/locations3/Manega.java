@@ -628,7 +628,7 @@ public class Manega extends Mainloc {
                     nextActionID = 10;
                     Counter = 5;
                     // Inventar hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(43));
+                    mainFrame.inventory.vInventory.addElement(43);
                     mainFrame.krabat.nAnimation = 94;
                 } else {
                     // Loewe wehrt sich noch

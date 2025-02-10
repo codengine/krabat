@@ -137,8 +137,8 @@ public class Swoboda extends Mainloc {
         }
 
         // Hier bekommt Krabat seine Inventargegenstaende wieder
-        mainFrame.inventory.vInventory.addElement(Integer.valueOf(12));
-        mainFrame.inventory.vInventory.addElement(Integer.valueOf(20));
+        mainFrame.inventory.vInventory.addElement(12);
+        mainFrame.inventory.vInventory.addElement(20);
 
         // Hier Zeichen an Karte, dass Teil 2 begonnen hat
         mainFrame.Actions[305] = true;

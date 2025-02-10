@@ -57,8 +57,8 @@ public class Jezba extends Mainloc2 {
 
         // Hier Inventarvektor reduzieren (Karte austauschen)
         mainFrame.inventory.ResetInventory();
-        mainFrame.inventory.vInventory.addElement(Integer.valueOf(12)); // Feuersteine behaelt K
-        mainFrame.inventory.vInventory.addElement(Integer.valueOf(54)); // "Dresdener Karte" der Lausitz
+        mainFrame.inventory.vInventory.addElement(12); // Feuersteine behaelt K
+        mainFrame.inventory.vInventory.addElement(54); // "Dresdener Karte" der Lausitz
 
         InitLocation(oldLocation);
         mainFrame.Freeze(false);

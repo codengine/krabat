@@ -920,8 +920,8 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00011"),
                         fWosu, 63, 0, 167, talkPointWosuski);
                 // Taler aus Inventar raus und Stollen rein
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(40));
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(52));
+                mainFrame.inventory.vInventory.removeElement(40);
+                mainFrame.inventory.vInventory.addElement(52);
                 mainFrame.Actions[956] = true;
                 break;
 
@@ -1567,11 +1567,11 @@ public class StareWiki extends Mainloc {
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
+                    mainFrame.inventory.vInventory.removeElement(31);
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
+                    mainFrame.inventory.vInventory.removeElement(32);
                 }
                 break;
 
@@ -1616,7 +1616,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
+                mainFrame.inventory.vInventory.removeElement(49);
                 break;
 
             case 1020:
@@ -1660,7 +1660,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
+                mainFrame.inventory.vInventory.removeElement(45);
                 break;
 
             case 1030:
@@ -1692,7 +1692,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
+                mainFrame.inventory.vInventory.removeElement(49);
                 break;
 
             case 1040:
@@ -1726,11 +1726,11 @@ public class StareWiki extends Mainloc {
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
+                    mainFrame.inventory.vInventory.removeElement(31);
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
+                    mainFrame.inventory.vInventory.removeElement(32);
                 }
                 break;
 
@@ -1763,7 +1763,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
+                mainFrame.inventory.vInventory.removeElement(45);
                 break;
 
             case 1060:
@@ -1795,7 +1795,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
+                mainFrame.inventory.vInventory.removeElement(45);
                 break;
 
             case 1070:
@@ -1829,11 +1829,11 @@ public class StareWiki extends Mainloc {
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
+                    mainFrame.inventory.vInventory.removeElement(31);
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
+                    mainFrame.inventory.vInventory.removeElement(32);
                 }
                 break;
 
@@ -1866,7 +1866,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
+                mainFrame.inventory.vInventory.removeElement(49);
                 break;
 
             // Ab hier ist alles komplett und die Unterschrift kann gefaelscht werden //////////////////////////////////////
@@ -1921,19 +1921,19 @@ public class StareWiki extends Mainloc {
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
+                    mainFrame.inventory.vInventory.removeElement(31);
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
+                    mainFrame.inventory.vInventory.removeElement(32);
                 }
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
+                    mainFrame.inventory.vInventory.addElement(33);
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
+                    mainFrame.inventory.vInventory.addElement(34);
                 }
                 break;
 
@@ -1999,14 +1999,14 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 1106, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
+                mainFrame.inventory.vInventory.removeElement(49);
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
+                    mainFrame.inventory.vInventory.addElement(33);
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
+                    mainFrame.inventory.vInventory.addElement(34);
                 }
                 break;
 
@@ -2055,14 +2055,14 @@ public class StareWiki extends Mainloc {
                         0, 64, 2, 1113, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
+                mainFrame.inventory.vInventory.removeElement(45);
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
+                    mainFrame.inventory.vInventory.addElement(33);
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
+                    mainFrame.inventory.vInventory.addElement(34);
                 }
                 break;
 

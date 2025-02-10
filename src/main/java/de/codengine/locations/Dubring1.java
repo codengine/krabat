@@ -933,8 +933,8 @@ public class Dubring1 extends Mainloc {
                 mainFrame.invCursor = false;
                 mainFrame.krabat.SetFacing(fSchlammHinten);
                 mainFrame.krabat.nAnimation = 143;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(16));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(4));
+                mainFrame.inventory.vInventory.addElement(16);
+                mainFrame.inventory.vInventory.removeElement(4);
                 mainFrame.Actions[916] = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 break;
@@ -946,8 +946,8 @@ public class Dubring1 extends Mainloc {
                 mainFrame.invCursor = false;
                 mainFrame.krabat.SetFacing(fSchlammVorn);
                 mainFrame.krabat.nAnimation = 144;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(16));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(4));
+                mainFrame.inventory.vInventory.addElement(16);
+                mainFrame.inventory.vInventory.removeElement(4);
                 mainFrame.Actions[916] = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 break;

@@ -698,7 +698,7 @@ public class Komedij extends Mainloc {
             case 7:
                 // Ende take sluz. drasta
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                    mainFrame.inventory.vInventory.addElement(41);
                     mainFrame.Actions[512] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                 }

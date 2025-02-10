@@ -668,7 +668,7 @@ public class Kapala extends Mainloc {
             case 65:
                 // wenn genommen, dann Spruch und behalten
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(50));
+                    mainFrame.inventory.vInventory.addElement(50);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[630] = true;
                 }

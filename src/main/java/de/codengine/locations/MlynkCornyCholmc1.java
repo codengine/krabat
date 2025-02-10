@@ -605,7 +605,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             case 1065:
                 // Mueller zurueckfaden lassen
                 // Hier Karte uebergeben
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(20));
+                mainFrame.inventory.vInventory.addElement(20);
                 muellermorph.Init(mlynkFeet, 35);
                 ismuellermorphing = true;
                 nextActionID = 1066;

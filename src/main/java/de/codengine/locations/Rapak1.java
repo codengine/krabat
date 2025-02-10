@@ -928,7 +928,7 @@ public class Rapak1 extends Mainloc {
             case 53:
                 // Ende Schild aufheben
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(3));
+                    mainFrame.inventory.vInventory.addElement(3);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[901] = true;
                 }
@@ -987,7 +987,7 @@ public class Rapak1 extends Mainloc {
             case 63:
                 // Ende Feder aufheben
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(19));
+                    mainFrame.inventory.vInventory.addElement(19);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[919] = true;
                 }
@@ -1046,8 +1046,8 @@ public class Rapak1 extends Mainloc {
                 mainFrame.krabat.SetFacing(fSchiessen);
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(17));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(18)); // Waffe wieder entladen
+                mainFrame.inventory.vInventory.addElement(17);
+                mainFrame.inventory.vInventory.removeElement(18); // Waffe wieder entladen
                 mainFrame.invCursor = false;
                 Sonderstatus = 1;
                 nextActionID = 161;

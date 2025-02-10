@@ -154,9 +154,9 @@ public class Weggeher {
             // diese und naechste Station (Borders) ermitteln
 
             Integer tInteger = vBestWeg.elementAt(wegPosition);
-            int thisRect = tInteger.intValue();
+            int thisRect = tInteger;
             tInteger = vBestWeg.elementAt(wegPosition + 1);
-            int nextRect = tInteger.intValue();
+            int nextRect = tInteger;
 
             // System.out.println("Start : " + thisRect + "Ziel : " + nextRect);
 

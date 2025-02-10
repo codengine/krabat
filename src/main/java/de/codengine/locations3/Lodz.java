@@ -659,9 +659,9 @@ public class Lodz extends Mainloc {
 
             case 165:
                 // Stollen geben und aus Inventar entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(52));
+                mainFrame.inventory.vInventory.removeElement(52);
                 // Halben Stollen rein, ist nachher uebrig
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(51));
+                mainFrame.inventory.vInventory.addElement(51);
                 Stollen = true;
                 krabatVisible = false;
                 nextActionID = 170;
@@ -764,7 +764,7 @@ public class Lodz extends Mainloc {
             case 210:
                 // Eisen geben und dem Inventar hinzufuegen
                 schnauzeWasser = true;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(48));
+                mainFrame.inventory.vInventory.addElement(48);
                 Metall = true;
                 krabatVisible = false;
                 GiveCounter = 0;

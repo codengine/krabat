@@ -965,7 +965,7 @@ public class Zachod extends Mainloc {
                 mainFrame.krabat.SetFacing(fSeil);
                 nextActionID = 21;
                 // zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(38));
+                mainFrame.inventory.vInventory.addElement(38);
                 mainFrame.krabat.nAnimation = 31;
                 Counter = 5;
                 break;

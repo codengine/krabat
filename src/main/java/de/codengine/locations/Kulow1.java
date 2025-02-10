@@ -1072,7 +1072,7 @@ public class Kulow1 extends Mainloc {
                 if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
                     break;
                 }
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(13));
+                mainFrame.inventory.vInventory.addElement(13);
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.repaint();
@@ -1206,8 +1206,8 @@ public class Kulow1 extends Mainloc {
                         Start.stringManager.getTranslation("Loc1_Kulow1_00049"),
                         Start.stringManager.getTranslation("Loc1_Kulow1_00050"),
                         fRybowar, 33, 0, 168, rybowarTalk);
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(14));
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(15));
+                mainFrame.inventory.vInventory.removeElement(14);
+                mainFrame.inventory.vInventory.addElement(15);
                 // Zeichen fuer habe keinen Fisch, aber Groschen -> faengt noch nichts in Haty
                 mainFrame.Actions[914] = false;
                 mainFrame.Actions[915] = true;

@@ -691,7 +691,7 @@ public class Hrodz extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.krabat.SetFacing(fStein);
                 mainFrame.krabat.nAnimation = 94;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(62));
+                mainFrame.inventory.vInventory.addElement(62);
                 // mainFrame.Actions[980] = true; // Flag setzen, es gibt keine 2 Steine !!!
                 Counter = 5;
                 nextActionID = 55;

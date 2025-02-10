@@ -2575,7 +2575,7 @@ public class Haty1 extends Mainloc {
                 schnauzeFische = true;
                 mainFrame.invCursor = false;
                 Sonderstatus = 4;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(14));
+                mainFrame.inventory.vInventory.addElement(14);
                 mainFrame.Actions[914] = true;
                 nextActionID = 1222;
                 break;

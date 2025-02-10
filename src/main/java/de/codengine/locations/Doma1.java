@@ -353,7 +353,7 @@ public class Doma1 extends Mainloc {
 
         // Stock wurde aufgehoben!!!!!!!!!
         if (mainFrame.krabat.fAnimHelper) {
-            mainFrame.inventory.vInventory.addElement(Integer.valueOf(2));
+            mainFrame.inventory.vInventory.addElement(2);
             mainFrame.Clipset = false;
             mainFrame.krabat.fAnimHelper = false;
             mainFrame.Actions[900] = true;

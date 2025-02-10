@@ -57,7 +57,7 @@ public class Wegsucher {
         Vector<Integer> vTemp = (Vector<Integer>) vWeg.clone();
 
         // aktuelle Position an Weg anhaengen
-        vTemp.addElement(Integer.valueOf(aktPos));
+        vTemp.addElement(aktPos);
 
         if (aktPos == endPos) {
             // Ende gefunden
@@ -68,7 +68,7 @@ public class Wegsucher {
         // alle moeglichen Wege weitervefolgen
         for (int i = 0; i < numRects; i++) {
             if ((matrix[aktPos][i]) &&    // dieser Weg moeglich ?
-                    (!vTemp.contains(Integer.valueOf(i)))) {
+                    (!vTemp.contains(i))) {
                 // noch nicht im Weg enthalten ?
                 RekursivSuche(i, vTemp);
             }

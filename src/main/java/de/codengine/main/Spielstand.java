@@ -145,7 +145,7 @@ public class Spielstand {
                 if (Feld[r] == W) {
                     break;
                 }
-                Inventar.addElement(Integer.valueOf((Feld[r] - W)));
+                Inventar.addElement(Feld[r] - W);
             }
 
             // verkleinerte Bilder fuer Screen erzeugen
@@ -238,7 +238,7 @@ public class Spielstand {
         // Inventar zuweisen
         int nAnzahl = mainFrame.inventory.vInventory.size();
         for (int x = 0; x < nAnzahl; x++) {
-            int iTemp = mainFrame.inventory.vInventory.elementAt(x).intValue();
+            int iTemp = mainFrame.inventory.vInventory.elementAt(x);
             Feld[x + 43381] = (byte) (iTemp + W);
             Feld[x + 43382] = W;
         }

@@ -702,7 +702,7 @@ public class Gang extends Mainloc {
                     if (!mainFrame.Actions[954]) {
                         // wenn noch kein Speer, dann diesen finden
                         // Inventar hinzufuegen
-                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(42));
+                        mainFrame.inventory.vInventory.addElement(42);
                         mainFrame.Actions[954] = true;        // Flag setzen
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -759,7 +759,7 @@ public class Gang extends Mainloc {
                         // Inventar hinzufuegen
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
-                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(42));
+                        mainFrame.inventory.vInventory.addElement(42);
                         mainFrame.Actions[954] = true;        // Flag setzen
                         nextActionID = 20;
                     } else {
@@ -841,7 +841,7 @@ public class Gang extends Mainloc {
             case 53:
                 // Ende Buch mitnehmen
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(55));
+                    mainFrame.inventory.vInventory.addElement(55);
                     mainFrame.Actions[690] = false; // Kein Buch mehr da zum aufheben
                     mainFrame.Clipset = false;
                     mainFrame.wave.PlayFile("sfx-dd/gdurjezu.wav");
@@ -955,7 +955,7 @@ public class Gang extends Mainloc {
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 // Buch raus aus Inventar
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(55));
+                mainFrame.inventory.vInventory.removeElement(55);
                 mainFrame.Actions[690] = true; // Buch da zum aufheben
                 mainFrame.wave.PlayFile("sfx-dd/gdurjeauf.wav");
                 mainFrame.Clipset = false;

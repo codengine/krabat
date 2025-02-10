@@ -1006,7 +1006,7 @@ public class Spaniska extends Mainloc {
             case 21:
                 // Auf Ende des Aufhebens warten
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(40));
+                    mainFrame.inventory.vInventory.addElement(40);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[515] = true;
                 }

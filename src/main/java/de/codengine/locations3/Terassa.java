@@ -887,7 +887,7 @@ public class Terassa extends Mainloc {
                     mainFrame.Actions[953] = true;        // Flag setzen
                     mainFrame.Clipset = false;  // alles neu zeichnen
                     // Inventar hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(46));
+                    mainFrame.inventory.vInventory.addElement(46);
                 }
                 if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
                     break;
@@ -1031,8 +1031,8 @@ public class Terassa extends Mainloc {
                 mainFrame.Actions[511] = true;
                 mainFrame.Actions[850] = true;
                 mainFrame.CheckKrabat();
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(53));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.addElement(53);
+                mainFrame.inventory.vInventory.removeElement(41);
                 nextActionID = 720;
                 break;
 
@@ -1078,8 +1078,8 @@ public class Terassa extends Mainloc {
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
                 mainFrame.CheckKrabat();
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.addElement(41);
+                mainFrame.inventory.vInventory.removeElement(53);
                 nextActionID = 770;
                 break;
 

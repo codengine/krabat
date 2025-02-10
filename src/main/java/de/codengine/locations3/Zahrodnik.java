@@ -1130,7 +1130,7 @@ public class Zahrodnik extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Zahrodnik_00119"),
                         0, 1, 2, 800);
                 // Empfehlungsschreiben zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(30));
+                mainFrame.inventory.vInventory.addElement(30);
                 // Flag - setzen ! Krabat bekommt Empfehl.schreiben
                 mainFrame.Actions[542] = true;
                 break;

@@ -541,7 +541,7 @@ abstract public class Mainloc {
                 mainFrame.krabat.nAnimation = 146;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.invCursor = false;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(51));
+                mainFrame.inventory.vInventory.removeElement(51);
                 mainFrame.Actions[680] = true;
                 nextActionID = 590;
                 break;

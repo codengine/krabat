@@ -322,7 +322,7 @@ abstract public class Mainlaby extends Mainloc {
             case 158:
                 // Krabat wird rausgebeamt
                 mainFrame.invCursor = false;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(15));
+                mainFrame.inventory.vInventory.removeElement(15);
                 NeuesBild(17, locIndex);
                 break;
 

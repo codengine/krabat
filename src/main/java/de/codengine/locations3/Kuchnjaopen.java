@@ -135,9 +135,9 @@ public class Kuchnjaopen extends Mainloc {
             case 145:
                 // von August reingesteckt worden - STRAFE !
                 // Dienstkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.addElement(41);
                 // Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.removeElement(53);
                 // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;

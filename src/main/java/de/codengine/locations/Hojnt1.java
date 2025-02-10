@@ -293,7 +293,7 @@ public class Hojnt1 extends Mainloc {
         // Haken wurde aufgehoben!!!!!!!!!
         if (mainFrame.krabat.fAnimHelper) {
             if (WhichItem == 5) {
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(5));
+                mainFrame.inventory.vInventory.addElement(5);
                 mainFrame.Clipset = false;
                 mainFrame.krabat.fAnimHelper = false;
                 mainFrame.Actions[905] = true;

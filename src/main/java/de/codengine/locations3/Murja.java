@@ -603,8 +603,8 @@ public class Murja extends Mainloc {
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
                 mainFrame.CheckKrabat();
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.addElement(41);
+                mainFrame.inventory.vInventory.removeElement(53);
                 nextActionID = 640;
                 break;
 

@@ -725,7 +725,7 @@ public class Haska extends Mainloc {
                 }
                 mainFrame.invCursor = false;
                 // Enterhaken-Kombi aus Inventory entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(39));
+                mainFrame.inventory.vInventory.removeElement(39);
                 nextActionID = 22;
                 krabatWirft = true;
                 break;
@@ -761,8 +761,8 @@ public class Haska extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.krabat.SetFacing(12);
                 mainFrame.invCursor = false;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(43));
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(44));
+                mainFrame.inventory.vInventory.removeElement(43);
+                mainFrame.inventory.vInventory.addElement(44);
                 nextActionID = 35;
                 Counter = 20;
                 schnauzeWein = true;

@@ -725,7 +725,7 @@ public class Polo1 extends Mainloc {
             case 60:
                 // Kamuski benutzen
                 mainFrame.krabat.SetFacing(9);
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(12));
+                mainFrame.inventory.vInventory.addElement(12);
                 mainFrame.wegGeher.SetzeNeuenWeg(pStein1);
                 nextActionID = 62;
                 break;

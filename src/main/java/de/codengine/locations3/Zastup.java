@@ -931,7 +931,7 @@ public class Zastup extends Mainloc {
                 // Krabat darf dann zur Manega raus
                 mainFrame.Actions[575] = true;
                 // Pelz aus Inventory entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(36));
+                mainFrame.inventory.vInventory.removeElement(36);
                 // Bewegungsgrenzen neu setzen
                 InitBorders();
                 break;

@@ -918,7 +918,7 @@ public class Wila1 extends Mainloc {
             case 51:
                 // Ende Leine nehmen
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(6));
+                    mainFrame.inventory.vInventory.addElement(6);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[906] = true;
                 }
@@ -1107,8 +1107,8 @@ public class Wila1 extends Mainloc {
             case 165:
                 // Krabat versteckt sich
                 hide = true;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(4));
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(16)); // honck wieder leer machen
+                mainFrame.inventory.vInventory.addElement(4);
+                mainFrame.inventory.vInventory.removeElement(16); // honck wieder leer machen
                 mainFrame.wegGeher.SetzeNeuenWeg(pVorBaum);
                 nextActionID = 168;
                 break;

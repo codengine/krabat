@@ -888,7 +888,7 @@ public class Habor extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Habor_00068"),
                         0, 61, 2, 617, talkPoint);
                 // Enterhaken zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(37));
+                mainFrame.inventory.vInventory.addElement(37);
                 Hakencounter = 10;
                 break;
 

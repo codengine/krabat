@@ -225,9 +225,9 @@ public class Kuchnja extends Mainloc {
                 // von Dinglinger reingesteckt worden - STRAFE !
                 BackgroundMusicPlayer.getInstance().playTrack(25, true);
                 // Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.addElement(41);
                 // Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.removeElement(53);
                 // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
@@ -238,9 +238,9 @@ public class Kuchnja extends Mainloc {
                 // von Hauptwaechter reingesteckt worden - STRAFE !
                 BackgroundMusicPlayer.getInstance().playTrack(25, true);
                 // Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.addElement(41);
                 // Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.removeElement(53);
                 // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
@@ -250,9 +250,9 @@ public class Kuchnja extends Mainloc {
             case 145:
                 // von August reingesteckt worden - STRAFE !  geht nicht !!! (?)
                 // Diesntkleidung zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.addElement(41);
                 // Eigene Kleidung entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
+                mainFrame.inventory.vInventory.removeElement(53);
                 // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
@@ -1176,7 +1176,7 @@ public class Kuchnja extends Mainloc {
                 if (!mainFrame.Actions[950]) {
                     nextActionID = 0;
                     // zu Inventar hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(35));
+                    mainFrame.inventory.vInventory.addElement(35);
                     mainFrame.Actions[950] = true;
                     mainFrame.krabat.nAnimation = 122;
                     mainFrame.krabat.SetFacing(fDrjewo);
@@ -1197,7 +1197,7 @@ public class Kuchnja extends Mainloc {
                 mainFrame.invCursor = false;
                 // Holz aus Inventory entfernen
                 mainFrame.krabat.nAnimation = 149;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(35));
+                mainFrame.inventory.vInventory.removeElement(35);
                 // bei 3. Stufe die Kuchar-Sound abschalten
                 if (mainFrame.Actions[626]) {
                     schnauzeKuchar = true;

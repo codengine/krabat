@@ -1524,7 +1524,7 @@ public class Rowy extends Mainloc {
                 mainFrame.krabat.SetFacing(fSyno);
                 mainFrame.krabat.nAnimation = 94;
                 nextActionID = 0;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(63));
+                mainFrame.inventory.vInventory.addElement(63);
                 mainFrame.Actions[981] = true; // nur einmal Aufheben
                 break;
 
@@ -2222,7 +2222,7 @@ public class Rowy extends Mainloc {
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 mainFrame.Actions[982] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(60));
+                mainFrame.inventory.vInventory.removeElement(60);
                 mainFrame.repaint();
                 break;
 
@@ -2238,7 +2238,7 @@ public class Rowy extends Mainloc {
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 mainFrame.Actions[983] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(63));
+                mainFrame.inventory.vInventory.removeElement(63);
                 mainFrame.repaint();
                 break;
 
@@ -2379,7 +2379,7 @@ public class Rowy extends Mainloc {
             case 1112:
                 // Korraktor-aufheben-Anim beenden (& ins Inventar aufnehmen)
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(61));
+                    mainFrame.inventory.vInventory.addElement(61);
                     mainFrame.Actions[985] = true;
                     mainFrame.Clipset = false;
                 }

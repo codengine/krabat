@@ -561,7 +561,7 @@ public class Jama1 extends Mainloc {
             case 52:
                 // Wuermer mitnehmen
                 // Wuermer dem Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(8));
+                mainFrame.inventory.vInventory.addElement(8);
                 mainFrame.krabat.nAnimation = 92;
                 nextActionID = 53;
                 TakeCounter = 5;

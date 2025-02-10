@@ -252,14 +252,14 @@ public class Kupa1 extends Mainloc {
         // Gegenstaende in Location veraendert
         if (mainFrame.krabat.fAnimHelper) {
             if (WhichItem == 17) {
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(17));
+                mainFrame.inventory.vInventory.addElement(17);
                 mainFrame.Clipset = false;
                 mainFrame.krabat.fAnimHelper = false;
                 mainFrame.Actions[917] = true;
                 WhichItem = 0;
             }
             if (WhichItem == 500) {
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(3));
+                mainFrame.inventory.vInventory.removeElement(3);
                 mainFrame.Clipset = false;
                 mainFrame.krabat.fAnimHelper = false;
                 mainFrame.Actions[224] = true;

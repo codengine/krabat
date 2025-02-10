@@ -899,7 +899,7 @@ public class Dingl extends Mainloc {
                             0, 47, 5, 163, talkPoint);
                 }
                 // Brief aus Inventory entfernen
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(30));
+                mainFrame.inventory.vInventory.removeElement(30);
                 break;
 
             case 163:
@@ -944,7 +944,7 @@ public class Dingl extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Dingl_00026"),
                         0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[635] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(48));
+                mainFrame.inventory.vInventory.removeElement(48);
                 break;
 
             case 170: // Gib Skizze an Dingl
@@ -974,7 +974,7 @@ public class Dingl extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Dingl_00029"),
                         0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[636] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(50));
+                mainFrame.inventory.vInventory.removeElement(50);
                 break;
 
             case 175: // Gib Dowolnosc an Dingl
@@ -1004,7 +1004,7 @@ public class Dingl extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Dingl_00032"),
                         0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[637] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(34));
+                mainFrame.inventory.vInventory.removeElement(34);
                 break;
 
             case 180: // Gib Kluc an Dingl
@@ -1035,7 +1035,7 @@ public class Dingl extends Mainloc {
                         0, 47, 0, 195, talkPoint);
                 mainFrame.invCursor = false;
                 mainFrame.Actions[638] = true;
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(47));
+                mainFrame.inventory.vInventory.removeElement(47);
                 break;
 
             case 185:
@@ -1785,7 +1785,7 @@ public class Dingl extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Dingl_00251"),
                         0, 47, 2, 900, talkPoint);
                 // Erlaubnisschreiben zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(31));
+                mainFrame.inventory.vInventory.addElement(31);
                 break;
 
 
@@ -1823,10 +1823,10 @@ public class Dingl extends Mainloc {
                 // altes unbenoetigtes Inevntar loeschen
                 mainFrame.inventory.vInventory.removeAllElements();
                 // Schuessel auch wirklich geben
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(60));
+                mainFrame.inventory.vInventory.addElement(60);
                 // Inventar neu anlegen, brauch nur Floete, Feuersteine und Schuessel
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(1));
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(12));
+                mainFrame.inventory.vInventory.addElement(1);
+                mainFrame.inventory.vInventory.addElement(12);
                 break;
 
             case 1105:

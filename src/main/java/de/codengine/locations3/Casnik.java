@@ -1107,7 +1107,7 @@ public class Casnik extends Mainloc {
             case 43:
                 // Ende take Kozuch
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(36));
+                    mainFrame.inventory.vInventory.addElement(36);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[600] = true;
                 }
@@ -1155,7 +1155,7 @@ public class Casnik extends Mainloc {
             case 48:
                 // Ende take Schluessel
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(47));
+                    mainFrame.inventory.vInventory.addElement(47);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[951] = true;
                 }
@@ -1234,7 +1234,7 @@ public class Casnik extends Mainloc {
             case 93:
                 // Ende take Sonnenuhr
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(45));
+                    mainFrame.inventory.vInventory.addElement(45);
                     mainFrame.Clipset = false;
                     mainFrame.Actions[706] = true;
                 }
@@ -1407,7 +1407,7 @@ public class Casnik extends Mainloc {
                 }
                 mainFrame.krabat.StopAnim();
                 mainFrame.wave.PlayFile("sfx-dd/pic.wav");
-                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(44)); // Wein rausnehmen
+                mainFrame.inventory.vInventory.removeElement(44); // Wein rausnehmen
                 nextActionID = 230;
                 break;
 

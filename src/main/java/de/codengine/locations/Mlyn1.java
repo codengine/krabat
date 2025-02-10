@@ -139,7 +139,7 @@ public class Mlyn1 extends Mainloc {
 
         // Hier Inventar komplett loeschen und nur noch das Wichtige drinlassen
         mainFrame.inventory.vInventory.removeAllElements();
-        mainFrame.inventory.vInventory.addElement(Integer.valueOf(1));
+        mainFrame.inventory.vInventory.addElement(1);
 
         mainFrame.krabat.SetKrabatPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);

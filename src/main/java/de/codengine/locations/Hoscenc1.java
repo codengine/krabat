@@ -955,7 +955,7 @@ public class Hoscenc1 extends Mainloc {
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 58;
-                mainFrame.inventory.vInventory.addElement(Integer.valueOf(4));
+                mainFrame.inventory.vInventory.addElement(4);
                 mainFrame.krabat.SetFacing(fHonck);
                 mainFrame.krabat.nAnimation = 31;
                 Counter = 5;

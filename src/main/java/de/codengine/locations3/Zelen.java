@@ -814,7 +814,7 @@ public class Zelen extends Mainloc {
             case 53:
                 // auf Ende nehmen warten
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(49));
+                    mainFrame.inventory.vInventory.addElement(49);
                     mainFrame.Actions[640] = true;
                     mainFrame.Clipset = false;
                 }
@@ -878,15 +878,15 @@ public class Zelen extends Mainloc {
                     // Dowol noch nicht gesiegelt, also testen, ob da, dann kann gesiegelt werden
                     if (!mainFrame.Actions[645]) {
                         // Dowol noch nicht an PredMali gegeben, also ununterschriebene austauschen
-                        mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
-                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(32));
+                        mainFrame.inventory.vInventory.removeElement(31);
+                        mainFrame.inventory.vInventory.addElement(32);
                     }
 
                     if ((mainFrame.Actions[645]) && (mainFrame.Actions[647]) &&
                             (mainFrame.Actions[648])) {
                         // Dowol von PredMali zurueck, also unterschriebene austauschen
-                        mainFrame.inventory.vInventory.removeElement(Integer.valueOf(33));
-                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
+                        mainFrame.inventory.vInventory.removeElement(33);
+                        mainFrame.inventory.vInventory.addElement(34);
                     }
 
                     mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pKerze);

@@ -139,7 +139,7 @@ public class Inventar extends Mainanim {
 
     public void ResetInventory() {
         vInventory.removeAllElements();
-        vInventory.addElement(Integer.valueOf(1)); // hier wird Floete addiert
+        vInventory.addElement(1); // hier wird Floete addiert
     }
 
     // Bilder vorbereiten
@@ -231,7 +231,7 @@ public class Inventar extends Mainanim {
             }
             // System.out.println("Inventarstuecke : " + nAnzahl);
             for (int i = f; i < nAnzahl; i++) {
-                int iTemp = vInventory.elementAt(i).intValue();
+                int iTemp = vInventory.elementAt(i);
                 GenericPoint pTemp = new GenericPoint(GetCurrentXY(i));
                 if ((mainFrame.whatItem != iTemp) || (!mainFrame.invCursor)) {
                     g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollx, pTemp.y + 1 + mainFrame.scrolly, observer);
@@ -394,7 +394,7 @@ public class Inventar extends Mainanim {
                 // Kombinationen abfragen und erledigen
                 int x = GetMouseRect(pTemp);
                 if (x != -1) {
-                    int xx = vInventory.elementAt(x).intValue();
+                    int xx = vInventory.elementAt(x);
 
                     // Kombination Kij + Lajna = Wuda
                     if (evalKombination(2, 6, 7, xx)) {
@@ -413,7 +413,7 @@ public class Inventar extends Mainanim {
 
                     // Kombination W + H + W + Dryba = W + H + D + Wacki extra !!!!
                     if (evalKombination(10, 13, 11, xx)) {
-                        vInventory.addElement(Integer.valueOf(8));
+                        vInventory.addElement(8);
                         return;
                     }
 
@@ -424,7 +424,7 @@ public class Inventar extends Mainanim {
 
                     // Kombination W + H + D + Wacki = W + H + W + Dryba extra
                     if (evalKombination(11, 8, 10, xx)) {
-                        vInventory.addElement(Integer.valueOf(13));
+                        vInventory.addElement(13);
                         return;
                     }
 
@@ -688,7 +688,7 @@ public class Inventar extends Mainanim {
                     evalYPos(x);
 
                     // NextActionID des jeweiligen Gegenstandes initialisieren
-                    nextActionID = vInventory.elementAt(x).intValue();
+                    nextActionID = vInventory.elementAt(x);
                     mainFrame.repaint();
                 }
             } else {
@@ -699,13 +699,13 @@ public class Inventar extends Mainanim {
                 int x = GetMouseRect(pTemp);
                 if (x > -1) {
                     mainFrame.Cinventar = GenericToolkit.getDefaultToolkit().createCustomCursor
-                            (GetCursorImage(vInventory.elementAt(x).intValue()),
+                            (GetCursorImage(vInventory.elementAt(x)),
                                     HotSpot, "Inv");
                     mainFrame.CHinventar = GenericToolkit.getDefaultToolkit().createCustomCursor
-                            (GetCursorHighImage(vInventory.elementAt(x).intValue()),
+                            (GetCursorHighImage(vInventory.elementAt(x)),
                                     HotSpot, "HInv");
                     mainFrame.invCursor = true;
-                    mainFrame.whatItem = vInventory.elementAt(x).intValue();
+                    mainFrame.whatItem = vInventory.elementAt(x);
 
                     // ----PARSER_ENABLE----
 
@@ -732,14 +732,14 @@ public class Inventar extends Mainanim {
     // Kombinationen erledigen
     private boolean evalKombination(int erstesItem, int zweitesItem, int neuesItem, int xx) {
         if (((mainFrame.whatItem == erstesItem) && (xx == zweitesItem)) || ((mainFrame.whatItem == zweitesItem) && (xx == erstesItem))) {
-            vInventory.insertElementAt(Integer.valueOf(neuesItem), GetVektorPos(erstesItem, zweitesItem));
+            vInventory.insertElementAt(neuesItem, GetVektorPos(erstesItem, zweitesItem));
 
             // Extrawurst fuer die Steine, werden bei Kombination mit dem Schilf nicht geloescht
             if (erstesItem != 12) {
-                vInventory.removeElement(Integer.valueOf(erstesItem));
+                vInventory.removeElement(erstesItem);
             }
             if (zweitesItem != 12) {
-                vInventory.removeElement(Integer.valueOf(zweitesItem));
+                vInventory.removeElement(zweitesItem);
             }
 
             mainFrame.invCursor = false;
@@ -802,7 +802,7 @@ public class Inventar extends Mainanim {
             int invTemp = GetMouseRect(pTemp);
 
             if (invTemp > -1) {
-                if ((vInventory.elementAt(invTemp).intValue()) != mainFrame.whatItem) {
+                if ((vInventory.elementAt(invTemp)) != mainFrame.whatItem) {
                     mainFrame.invHighCursor = true;
                 }
             } else {
@@ -980,7 +980,7 @@ public class Inventar extends Mainanim {
     // Routine, die feststellt, wo die beiden Objekte im Vektor liegen und kleineren zurueckgibt
     private int GetVektorPos(int first, int second) {
         for (int i = 0; i < vInventory.size(); i++) {
-            if ((vInventory.elementAt(i).intValue() == first) || (vInventory.elementAt(i).intValue() == second)) {
+            if ((vInventory.elementAt(i) == first) || (vInventory.elementAt(i) == second)) {
                 return i;
             }
         }

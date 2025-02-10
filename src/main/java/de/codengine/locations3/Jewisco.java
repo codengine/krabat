@@ -570,7 +570,7 @@ public class Jewisco extends Mainloc {
                 // Ende take book
                 if ((--Counter) == 1) {
                     mainFrame.Actions[952] = true;
-                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(55));
+                    mainFrame.inventory.vInventory.addElement(55);
                     mainFrame.Clipset = false;
                 }
                 if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
