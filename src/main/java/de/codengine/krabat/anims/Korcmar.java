@@ -228,15 +228,13 @@ public class Korcmar extends Mainanim {
         float vert_dist = 1;
         // Zooming - Faktor beruecksichtigen in y-Richtung
         if (direction_y == 1) {
-            vert_dist = CVERT_UNTEN[anim_pos] - scale / SLOWY;
-            if (vert_dist < 1) {
-                vert_dist = 1;
-            }
+            vert_dist = CVERT_UNTEN[anim_pos] - (float) scale / SLOWY;
         } else {
-            vert_dist = CVERT_OBEN[anim_pos] - scale / SLOWY;
-            if (vert_dist < 1) {
-                vert_dist = 1;
-            }
+            vert_dist = CVERT_OBEN[anim_pos] - (float) scale / SLOWY;
+        }
+
+        if (vert_dist < 1) {
+            vert_dist = 1;
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)

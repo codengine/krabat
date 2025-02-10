@@ -159,11 +159,6 @@ public class WikowarRybow extends Mainanim {
                         Stand = 7;
                     }
 
-                    Verhinderstand = MAX_VERHINDERSTAND;
-
-                    if (islistening) {
-                        Stand = 0;
-                    }
                 } else {
                     // Hier auswaehlen, welcher Kopf gezeigt wird, entweder 0 oder 7
                     int zuffi = (int) (Math.random() * 50);
@@ -173,11 +168,10 @@ public class WikowarRybow extends Mainanim {
                         Stand = 7;
                     }
 
-                    Verhinderstand = MAX_VERHINDERSTAND;
-
-                    if (islistening) {
-                        Stand = 0;
-                    }
+                }
+                Verhinderstand = MAX_VERHINDERSTAND;
+                if (islistening) {
+                    Stand = 0;
                 }
             }
 

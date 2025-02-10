@@ -312,14 +312,12 @@ public class Inventar extends Mainanim {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             // System.out.println(mainFrame.talkCount);
-            if (mainFrame.talkCount != 0) {
-                return;
-            } else {
+            if (mainFrame.talkCount == 0) {
                 mainFrame.Clipset = false;
                 outputText = "";
                 mainFrame.repaint();
-                return;
             }
+            return;
         }
 
         // Gibt es was zu tun ?
@@ -796,6 +794,9 @@ public class Inventar extends Mainanim {
     /// ///////////////////////////////Mousemove ///////////////////////////////////////
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Kursor = Sprite -> andere Reaktion!!
+        // Talkcount - Schleife beenden
+        // ist wegen Text loeschen noetig !!!!!
+        // System.out.println(olditem + " " + menuitem + " " + oFeldAktiv + " " + nFeldAktiv);
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die erkennt, ob gehighlighted wird
 
@@ -833,27 +834,8 @@ public class Inventar extends Mainanim {
 
             // Menu - Hilight berechnen
             menuitem = 0;
-            if (brPfeill.IsPointInRect(pTemp)) {
-                menuitem = 2;
-            }
-            if (brPfeilr.IsPointInRect(pTemp) &&
-                    secScreenAvail && !secScreenActive) {
-                menuitem = 3;
-            }
 
             // Nur Neuzeichnen, wenn sich etwas geaendert hat
-            if (Paintcall) {
-                Paintcall = false;
-                return;
-            }
-            if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
-                // Talkcount - Schleife beenden
-                mainFrame.talkCount = 0;
-
-                mainFrame.Clipset = false; // ist wegen Text loeschen n�tig !!!!!
-                outputText = "";
-                mainFrame.repaint();
-            }
         }
 
         // Kursor normal, default - Reaktion
@@ -871,28 +853,27 @@ public class Inventar extends Mainanim {
             if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
                 menuitem = 1;
             }
-            if (brPfeill.IsPointInRect(pTemp)) {
-                menuitem = 2;
-            }
-            if (brPfeilr.IsPointInRect(pTemp) &&
-                    secScreenAvail && !secScreenActive) {
-                menuitem = 3;
-            }
 
             // wenn noetig, dann repaint
-            if (Paintcall) {
-                Paintcall = false;
-                return;
-            }
-            if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
-                // Talkcount - Schleife beenden
-                mainFrame.talkCount = 0;
+        }
+        if (brPfeill.IsPointInRect(pTemp)) {
+            menuitem = 2;
+        }
+        if (brPfeilr.IsPointInRect(pTemp) &&
+                secScreenAvail && !secScreenActive) {
+            menuitem = 3;
+        }
+        if (Paintcall) {
+            Paintcall = false;
+            return;
+        }
+        if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
+            // Talkcount - Schleife beenden
+            mainFrame.talkCount = 0;
 
-                mainFrame.Clipset = false; // ist wegen Text loeschen noetig !!!!!
-                outputText = "";
-                // System.out.println(olditem + " " + menuitem + " " + oFeldAktiv + " " + nFeldAktiv);
-                mainFrame.repaint();
-            }
+            mainFrame.Clipset = false; // ist wegen Text loeschen n�tig !!!!!
+            outputText = "";
+            mainFrame.repaint();
         }
     }
 

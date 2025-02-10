@@ -384,13 +384,8 @@ public class Haty1 extends Mainloc {
 
     private void InitEimer() {
         // Hier berechnen, auf welcher Seite der Eimer steht...
-        if (!mainFrame.Actions[220]) {
-            eimerPos = eimerRechts;
-            eimerRect = new Borderrect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
-        } else {
-            eimerPos = eimerLinks;
-            eimerRect = new Borderrect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
-        }
+        eimerPos = !mainFrame.Actions[220] ? eimerRechts : eimerLinks;
+        eimerRect = new Borderrect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
     }
 
     private void InitBlinker() {
@@ -1143,8 +1138,6 @@ public class Haty1 extends Mainloc {
                     if (mainFrame.Actions[220]) {
                         nextActionID = 80;
                         mainFrame.wegGeher.SetzeNeuenWeg(PwudzerLeft);
-                        mainFrame.repaint();
-                        return;
                     } else {
                         if (angler2.Wudzer2Rect().IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp)) {
                             nextActionID = 85;
@@ -1152,9 +1145,9 @@ public class Haty1 extends Mainloc {
                             nextActionID = 87;
                         }
                         mainFrame.wegGeher.SetzeNeuenWeg(PwudzerRight);
-                        mainFrame.repaint();
-                        return;
                     }
+                    mainFrame.repaint();
+                    return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist

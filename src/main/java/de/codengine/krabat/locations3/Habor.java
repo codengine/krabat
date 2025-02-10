@@ -118,24 +118,18 @@ public class Habor extends Mainloc {
         // Grenzen setzen
         mainFrame.wegGeher.vBorders.removeAllElements();
 
+        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(370, 397, 578, 630, 377, 428));
         // Hier unterscheiden, ob Gonzales dasteht, damit man nicht durchrennt
         if (!mainFrame.Actions[568]) {
             // Gonzales ist da
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(370, 397, 578, 630, 377, 428));
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(345, 347, 390, 395, 364, 376));
 
-            mainFrame.wegSucher.ClearMatrix(2);
-
-            mainFrame.wegSucher.PosVerbinden(0, 1);
         } else {
             // Gonzales ist weg
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(370, 397, 578, 630, 377, 428));
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(285, 290, 390, 395, 347, 376));
-
-            mainFrame.wegSucher.ClearMatrix(2);
-
-            mainFrame.wegSucher.PosVerbinden(0, 1);
         }
+        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.wegSucher.PosVerbinden(0, 1);
     		
         /*    mainFrame.wegGeher.vBorders.addElement 
               (new bordertrapez (578, 630, 578, 630, 423, 428));

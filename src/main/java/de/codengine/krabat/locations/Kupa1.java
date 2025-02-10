@@ -432,12 +432,11 @@ public class Kupa1 extends Mainloc {
                         !mainFrame.Actions[224]) {
                     if (mainFrame.whatItem == 3) {
                         nextActionID = 160;
-                        pTemp = Pschild;
                     } else {
                         // Extra - Sinnloszeug
                         nextActionID = 155;
-                        pTemp = Pschild;
                     }
+                    pTemp = Pschild;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen

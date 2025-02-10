@@ -91,16 +91,14 @@ public class Fararhor extends Mainanim {
                     nTemp = 1;
                 }
             }
-            offGraph.drawImage(farar_talk[nTemp], pos.x, pos.y);
-            offGraph.drawImage(foreground, 332, 300);
         }
 
         // Farar beim Rumstehen zeichnen
         else {
             nTemp = 1;
-            offGraph.drawImage(farar_talk[nTemp], pos.x, pos.y);
-            offGraph.drawImage(foreground, 332, 300);
         }
+        offGraph.drawImage(farar_talk[nTemp], pos.x, pos.y);
+        offGraph.drawImage(foreground, 332, 300);
     }
 
     public boolean moveDoor(GenericDrawingContext offGraph) {

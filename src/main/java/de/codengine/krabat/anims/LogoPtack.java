@@ -65,12 +65,11 @@ public class LogoPtack extends Mainanim {
                     if (last2) {
                         last2 = false;
                         animpos = 3;
-                        animlock = true;
                     } else {
                         last2 = true;
                         animpos = 2;
-                        animlock = true;
                     }
+                    animlock = true;
                 }
                 break;
             case 2:

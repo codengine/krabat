@@ -171,7 +171,6 @@ public class Weggeher {
 
             // bis zur naechsten Station marschieren
             mainFrame.krabat.MoveTo(pUeber);
-            wegPosition++;
         } else {
             // die letzte Station; Wanderung beenden und direkt zum Ziel gehen
             vBestWeg.removeAllElements();
@@ -179,8 +178,8 @@ public class Weggeher {
             mainFrame.krabat.isWandering = false;
             mainFrame.krabat.MoveTo(destinationPlace);
             //      System.out.print ("Letzte Station !");
-            wegPosition++;
         }
+        wegPosition++;
         // schliesslich einen Schritt setzen
         mainFrame.krabat.Move();
     }

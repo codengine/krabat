@@ -73,9 +73,6 @@ public class StrazaPoklad extends Mainanim {
                 Verhinderhead = MAX_VERHINDERHEAD;
                 Head = (int) (Math.random() * 7.9);
             }
-
-            offGraph.drawImage(straza_head[Head], Posit.x, Posit.y, null);
-            offGraph.drawImage(weistzurueck ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
         }
         // Hauptwaechter steht rum
         else {
@@ -90,8 +87,8 @@ public class StrazaPoklad extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(straza_head[Head], Posit.x, Posit.y, null);
-            offGraph.drawImage(weistzurueck ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
         }
+        offGraph.drawImage(straza_head[Head], Posit.x, Posit.y, null);
+        offGraph.drawImage(weistzurueck ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
     }
 }    
