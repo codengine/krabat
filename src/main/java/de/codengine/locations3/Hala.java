@@ -128,9 +128,9 @@ public class Hala extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -145,7 +145,7 @@ public class Hala extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // offene Tuer zeichnen, sobald da
-        if (mainFrame.Actions[675] == true) {
+        if (mainFrame.Actions[675]) {
             g.setClip(883, 112, 84, 292);
             g.drawImage(door, 883, 112, null);
         }
@@ -203,7 +203,7 @@ public class Hala extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -243,7 +243,7 @@ public class Hala extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -253,7 +253,7 @@ public class Hala extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -261,26 +261,26 @@ public class Hala extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Tuer, wenn noch anwaehlbar
-                if ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == false)) {
+                if ((dritteTuer.IsPointInRect(pTemp)) && (!mainFrame.Actions[675])) {
                     nextActionID = 150;
                     pTemp = pExitKomedij;
                 }
 
                 // Ausreden fuer 2. Tuer
-                if (zweiteTuer.IsPointInRect(pTemp) == true) {
+                if (zweiteTuer.IsPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = pZweiteTuer;
                 }
 
                 // Ausreden fuer Bild
-                if (wobraz.IsPointInRect(pTemp) == true) {
+                if (wobraz.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 42: // hlebija
                             nextActionID = 200;
@@ -305,7 +305,6 @@ public class Hala extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -316,18 +315,18 @@ public class Hala extends Mainloc {
                 nextActionID = 0;
 
                 // zu Spaniska gehen ?
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = pExitLinks;
                     } else {
                         pTemp = new GenericPoint(pExitLinks.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -335,26 +334,26 @@ public class Hala extends Mainloc {
                 }
 
                 // zu Komedij gehen , wenn schon geoeffnet
-                if (mainFrame.Actions[675] == true) {
-                    if (dritteTuer.IsPointInRect(pTemp) == true) {
+                if (mainFrame.Actions[675]) {
+                    if (dritteTuer.IsPointInRect(pTemp)) {
                         nextActionID = 101;
                         GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (dritteTuer.IsPointInRect(kt) == false) {
+                        if (!dritteTuer.IsPointInRect(kt)) {
                             pTemp = pExitKomedij;
                         } else {
                             pTemp = new GenericPoint(pExitKomedij.x, kt.y);
                         }
 
-                        if (mainFrame.dClick == true) {
+                        if (mainFrame.dClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
                         }
                     }
                 } else {
-                    if (dritteTuer.IsPointInRect(pTemp) == true) {
+                    if (dritteTuer.IsPointInRect(pTemp)) {
                         // Tuer ist noch nicht geoeffnet
                         nextActionID = 5;
                         pTemp = pExitKomedij;
@@ -362,18 +361,18 @@ public class Hala extends Mainloc {
                 }
 
                 // zu Jewisco gehen ?
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = pExitRechts;
                     } else {
                         pTemp = new GenericPoint(pExitRechts.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -381,13 +380,13 @@ public class Hala extends Mainloc {
                 }
 
                 // 2. Tuer ansehen
-                if (zweiteTuer.IsPointInRect(pTemp) == true) {
+                if (zweiteTuer.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pZweiteTuer;
                 }
 
                 // Bild ansehen
-                if (wobraz.IsPointInRect(pTemp) == true) {
+                if (wobraz.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pWobraz;
                 }
@@ -398,14 +397,14 @@ public class Hala extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((linkerAusgang.IsPointInRect(pTemp) == true) ||
-                        (rechterAusgang.IsPointInRect(pTemp) == true) ||
-                        ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == true))) {
+                if ((linkerAusgang.IsPointInRect(pTemp)) ||
+                        (rechterAusgang.IsPointInRect(pTemp)) ||
+                        ((dritteTuer.IsPointInRect(pTemp)) && (mainFrame.Actions[675]))) {
                     return;
                 }
 
                 // verschlossene Tuer oeffnen (erfolglos)
-                if (zweiteTuer.IsPointInRect(pTemp) == true) {
+                if (zweiteTuer.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     mainFrame.wegGeher.SetzeNeuenWeg(pZweiteTuer);
                     mainFrame.repaint();
@@ -413,7 +412,7 @@ public class Hala extends Mainloc {
                 }
 
                 // offene Tuer oeffnen
-                if ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == false)) {
+                if ((dritteTuer.IsPointInRect(pTemp)) && (!mainFrame.Actions[675])) {
                     nextActionID = 10;
                     mainFrame.wegGeher.SetzeNeuenWeg(pExitKomedij);
                     mainFrame.repaint();
@@ -421,7 +420,7 @@ public class Hala extends Mainloc {
                 }
 
                 // Bild mitnehmen
-                if (wobraz.IsPointInRect(pTemp) == true) {
+                if (wobraz.IsPointInRect(pTemp)) {
                     nextActionID = 15;
                     mainFrame.wegGeher.SetzeNeuenWeg(pWobraz);
                     mainFrame.repaint();
@@ -443,7 +442,7 @@ public class Hala extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -452,24 +451,20 @@ public class Hala extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (wobraz.IsPointInRect(pTemp) == true) ||
-                    ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == false)) ||
-                    (zweiteTuer.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (wobraz.IsPointInRect(pTemp)) ||
+                    ((dritteTuer.IsPointInRect(pTemp)) && (!mainFrame.Actions[675])) ||
+                    (zweiteTuer.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -477,9 +472,9 @@ public class Hala extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((wobraz.IsPointInRect(pTemp) == true) ||
-                    ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == false)) ||
-                    (zweiteTuer.IsPointInRect(pTemp) == true)) {
+            if ((wobraz.IsPointInRect(pTemp)) ||
+                    ((dritteTuer.IsPointInRect(pTemp)) && (!mainFrame.Actions[675])) ||
+                    (zweiteTuer.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -487,7 +482,7 @@ public class Hala extends Mainloc {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -495,7 +490,7 @@ public class Hala extends Mainloc {
                 return;
             }
 
-            if ((dritteTuer.IsPointInRect(pTemp) == true) && (mainFrame.Actions[675] == true)) {
+            if ((dritteTuer.IsPointInRect(pTemp)) && (mainFrame.Actions[675])) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -503,7 +498,7 @@ public class Hala extends Mainloc {
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -529,12 +524,12 @@ public class Hala extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -567,7 +562,6 @@ public class Hala extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -586,8 +580,8 @@ public class Hala extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

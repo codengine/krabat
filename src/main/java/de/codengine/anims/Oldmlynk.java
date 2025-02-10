@@ -107,7 +107,7 @@ public class Oldmlynk extends Mainanim {
 
     private void InitImages() {
         // Wenn OldMlynk fuer Teil 4 -> nur Grafiken fuer Links-Stehen laden
-        if (fOnlyStandAndLookLeft == false) {
+        if (!fOnlyStandAndLookLeft) {
             mlynk_body[0] = getPicture("gfx-dd/murja/dml-b.gif");
             mlynk_body[1] = getPicture("gfx-dd/murja/dml-b1.gif");
             mlynk_body[2] = getPicture("gfx-dd/murja/dml-b2.gif");
@@ -136,7 +136,7 @@ public class Oldmlynk extends Mainanim {
     public void drawOldmlynk(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos) {
         // folgendes ist nur fuer Teil 4
         // OldMlynk guckt links und blinzelt ab und zu
-        if (fOnlyStandAndLookLeft == true) {
+        if (fOnlyStandAndLookLeft) {
             if ((mlnkLeftFrameCounter++) % 12 != 0) {
                 offGraph.drawImage(mlynk_left[0], pos.x, pos.y, Scalex,
                         Scaleyhead + Scaleybody, null);
@@ -241,7 +241,7 @@ public class Oldmlynk extends Mainanim {
             }
         }
 
-        if (muellerHatSchonNachVornGeschaut == true) {
+        if (muellerHatSchonNachVornGeschaut) {
             Head = 7; // hier override, wenn er sich schon nach vorn gedreht hat
         }
 

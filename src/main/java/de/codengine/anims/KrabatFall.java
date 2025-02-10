@@ -26,10 +26,10 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class KrabatFall extends Mainanim {
-    private GenericImage[] krabat_fallen;
+    private final GenericImage[] krabat_fallen;
 
     private int FallCount = 0;
-    private int zoom;
+    private final int zoom;
 
     private int Verhinderfallen;
 
@@ -75,7 +75,7 @@ public class KrabatFall extends Mainanim {
 
             if (FallCount == 2) {
 
-                if (fallSound == false) {
+                if (!fallSound) {
 
                     fallSound = true;
                     mainFrame.wave.PlayFile("sfx-dd/fallen.wav");

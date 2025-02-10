@@ -28,10 +28,10 @@ import de.codengine.platform.GenericImage;
 
 public class Korcmar extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_front;
-    private GenericImage[] krabat_back;
-    private GenericImage[] krabat_talk_head;
-    private GenericImage[] krabat_talk_body;
+    private final GenericImage[] krabat_front;
+    private final GenericImage[] krabat_back;
+    private final GenericImage[] krabat_talk_head;
+    private final GenericImage[] krabat_talk_body;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -96,7 +96,7 @@ public class Korcmar extends Mainanim {
     // private static final int BODYOFFSET = 34;
     private static final int HEADHEIGHT = 33;
 
-    private float scalefaktor;
+    private final float scalefaktor;
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
@@ -189,7 +189,7 @@ public class Korcmar extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
         } else
@@ -420,7 +420,7 @@ public class Korcmar extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {

@@ -26,15 +26,15 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Mac extends Mainanim {
-    private GenericImage[] mac_head_left;
-    private GenericImage[] mac_head_right;
-    private GenericImage[] mac_body_left;
-    private GenericImage[] mac_body_right;
-    private GenericImage[] mac;
-    private GenericImage[] mac_r;
+    private final GenericImage[] mac_head_left;
+    private final GenericImage[] mac_head_right;
+    private final GenericImage[] mac_body_left;
+    private final GenericImage[] mac_body_right;
+    private final GenericImage[] mac;
+    private final GenericImage[] mac_r;
 
 
-    private int links;
+    private final int links;
 
     public static final int Breite = 46;
     public static final int Hoehe = 85;
@@ -49,9 +49,9 @@ public class Mac extends Mainanim {
     private int Steh = 1;
 
     private static final int SCALEY = 253;
-    private int Scalex;
-    private int Scaleyh;
-    private int Scaleyb;
+    private final int Scalex;
+    private final int Scaleyh;
+    private final int Scaleyb;
 
     private int Bodycount;
     private static final int MAX_BODYCOUNT = 8;
@@ -71,7 +71,7 @@ public class Mac extends Mainanim {
 
         InitImages();
 
-        if (isLeft == true) {
+        if (isLeft) {
             links = 1;
         } else {
             links = 2;

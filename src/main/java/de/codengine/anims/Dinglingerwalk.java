@@ -28,16 +28,16 @@ import de.codengine.platform.GenericImage;
 
 public class Dinglingerwalk extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_left_talk_head;
-    private GenericImage[] krabat_right_talk_head;
+    private final GenericImage[] krabat_left_talk_head;
+    private final GenericImage[] krabat_right_talk_head;
 
-    private GenericImage[] krabat_left_talk_body;
-    private GenericImage[] krabat_right_talk_body;
+    private final GenericImage[] krabat_left_talk_body;
+    private final GenericImage[] krabat_right_talk_body;
 
-    private GenericImage[] krabat_left_walk;
-    private GenericImage[] krabat_right_walk;
+    private final GenericImage[] krabat_left_walk;
+    private final GenericImage[] krabat_right_walk;
 
-    private GenericImage[] krabat_skla;
+    private final GenericImage[] krabat_skla;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -104,7 +104,7 @@ public class Dinglingerwalk extends Mainanim {
 
     private static final int BODYOFFSET = 47;
 
-    private float scaleVerhaeltnis;
+    private final float scaleVerhaeltnis;
 
     private int Verhinderwalk;
 
@@ -367,7 +367,7 @@ public class Dinglingerwalk extends Mainanim {
         // 4 : Schuessel geben
 
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (isStanding == false) {
+        if (!isStanding) {
             // nach links laufen
             if (direction_x == -1) {
                 MaleIhn(offGraph, krabat_left_walk[anim_pos], false);
@@ -542,7 +542,7 @@ public class Dinglingerwalk extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {
@@ -605,7 +605,7 @@ public class Dinglingerwalk extends Mainanim {
         int left = 0;
 
         // Groesse und Position der Figur berechnen
-        if (isSkla == false) {
+        if (!isSkla) {
             left = getLeftPos(((int) xps), ((int) yps));
         } else {
             left = getLeftPosSkla(((int) xps), ((int) yps));

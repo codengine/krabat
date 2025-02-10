@@ -101,7 +101,7 @@ public class Jitk1 extends Mainloc {
                 break;
             case 5:
                 // von Les1 aus
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -116,7 +116,7 @@ public class Jitk1 extends Mainloc {
                 break;
             case 1:
                 // von Ralbicy aus
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -153,7 +153,7 @@ public class Jitk1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -219,7 +219,7 @@ public class Jitk1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -257,7 +257,7 @@ public class Jitk1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -267,7 +267,7 @@ public class Jitk1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -275,21 +275,21 @@ public class Jitk1 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Eingang
-                if (brEingang.IsPointInRect(pTemp) == true) {
+                if (brEingang.IsPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Peingang;
                 }
 
                 // Ausreden fuer Wagen
-                if (brWagen.IsPointInRect(pTemp) == true) {
+                if (brWagen.IsPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 155;
                     pTemp = Pwagen;
@@ -309,7 +309,6 @@ public class Jitk1 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -320,18 +319,18 @@ public class Jitk1 extends Mainloc {
                 nextActionID = 0;
 
                 // zu Doma gehen ?
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (untererAusgang.IsPointInRect(kt) == false) {
+                    if (!untererAusgang.IsPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -339,19 +338,19 @@ public class Jitk1 extends Mainloc {
                 }
 
                 // zu Ralbicy gehen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         // Wegen nach oben gehen hier diese Variante
                         pTemp = new GenericPoint(kt.x, Pleft.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -359,18 +358,18 @@ public class Jitk1 extends Mainloc {
                 }
 
                 // zu Les1 gehen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -378,13 +377,13 @@ public class Jitk1 extends Mainloc {
                 }
 
                 // Tuer ansehen
-                if (brEingang.IsPointInRect(pTemp) == true) {
+                if (brEingang.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Peingang;
                 }
 
                 // Wagen ansehen
-                if (brWagen.IsPointInRect(pTemp) == true) {
+                if (brWagen.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pwagen;
                 }
@@ -395,22 +394,22 @@ public class Jitk1 extends Mainloc {
                 // rechte Maustaste
 
                 // Doma Anschauen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ralbitz anschauen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Les1 anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Tuer mitnehmen
-                if (brEingang.IsPointInRect(pTemp) == true) {
+                if (brEingang.IsPointInRect(pTemp)) {
                     nextActionID = 51;
                     mainFrame.wegGeher.SetzeNeuenWeg(Peingang);
                     mainFrame.repaint();
@@ -418,7 +417,7 @@ public class Jitk1 extends Mainloc {
                 }
 
                 // Wagen mitnehmen
-                if (brWagen.IsPointInRect(pTemp) == true) {
+                if (brWagen.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwagen);
                     mainFrame.repaint();
@@ -437,7 +436,7 @@ public class Jitk1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -446,22 +445,18 @@ public class Jitk1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((brEingang.IsPointInRect(pTemp) == true) || (brWagen.IsPointInRect(pTemp) == true) ||
-                    (tmp.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (brEingang.IsPointInRect(pTemp)) || (brWagen.IsPointInRect(pTemp)) ||
+                    (tmp.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -469,7 +464,7 @@ public class Jitk1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 2;
@@ -477,8 +472,8 @@ public class Jitk1 extends Mainloc {
                 return;
             }
 
-            if ((brEingang.IsPointInRect(pTemp) == true) ||
-                    (brWagen.IsPointInRect(pTemp) == true)) {
+            if ((brEingang.IsPointInRect(pTemp)) ||
+                    (brWagen.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -486,7 +481,7 @@ public class Jitk1 extends Mainloc {
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -494,7 +489,7 @@ public class Jitk1 extends Mainloc {
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp) == true) {
+            if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 5;
@@ -520,12 +515,12 @@ public class Jitk1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -558,7 +553,6 @@ public class Jitk1 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -577,8 +571,8 @@ public class Jitk1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

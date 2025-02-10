@@ -29,10 +29,10 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Doma4 extends Mainloc {
     private GenericImage background1, background2, back, foreground, foreground2;
 
-    private GenericImage[] Rauchanim;
-    private GenericImage[] LeuteRechts;
-    private GenericImage[] LeuteMitte;
-    private GenericImage[] LeuteLinks;
+    private final GenericImage[] Rauchanim;
+    private final GenericImage[] LeuteRechts;
+    private final GenericImage[] LeuteMitte;
+    private final GenericImage[] LeuteLinks;
 
     private int LeutelinksCount = 1;
     private int LeuterechtsCount = 1;
@@ -47,7 +47,7 @@ public class Doma4 extends Mainloc {
 
     private boolean switchanim = true;
     private boolean setScroll = false;
-    private int scrollwert;
+    private final int scrollwert;
 
     // Konstante Points
     private static final GenericPoint mittelPunkt = new GenericPoint(960, 250);
@@ -137,9 +137,9 @@ public class Doma4 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -158,7 +158,7 @@ public class Doma4 extends Mainloc {
         // Ab hier ist Retten des ClipRect sinnlos!!!
         // Rauch animieren
         switchanim = !(switchanim);
-        if (switchanim == true) {
+        if (switchanim) {
             Rauchcount++;
             if (Rauchcount == 13) {
                 Rauchcount = 1;
@@ -236,7 +236,7 @@ public class Doma4 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if ((TalkPause > 0) && (mainFrame.talkCount == 0)) {
@@ -264,7 +264,6 @@ public class Doma4 extends Mainloc {
             mainFrame.talkCount = 1;
             TalkPerson = 0;
         }
-        return;
     }
 
 
@@ -274,7 +273,6 @@ public class Doma4 extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     @Override

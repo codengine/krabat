@@ -35,10 +35,10 @@ public class Kulow1 extends Mainloc {
 
     private WikowarZita haendler;
     private WikowarRybow fischer;
-    private Multiple2 Dialog;
+    private final Multiple2 Dialog;
 
-    private boolean showRybowar = true;
-    private GenericPoint rybowarTalk;
+    private final boolean showRybowar = true;
+    private final GenericPoint rybowarTalk;
     // private borderrect rybowarRect;
     private boolean rybowarhoertzu = false;
     private boolean rybowargibtkrosik = false;
@@ -47,8 +47,8 @@ public class Kulow1 extends Mainloc {
     private boolean rybowarnimmtfisch = false;
 
     private boolean wikowarhoertzu = false;
-    private Borderrect wikowarRect;
-    private GenericPoint wikowarTalk;
+    private final Borderrect wikowarRect;
+    private final GenericPoint wikowarTalk;
 
     private String AnimOutputText = "";
     private GenericPoint AnimOutputTextPos;
@@ -57,7 +57,7 @@ public class Kulow1 extends Mainloc {
     private int AnimCounter = 0;
     private boolean AnimActive = false;
     private boolean AnimLocked = false;
-    private boolean AnimMCLocked = false;
+    private final boolean AnimMCLocked = false;
 
     private int Counter = 0;
 
@@ -232,9 +232,9 @@ public class Kulow1 extends Mainloc {
 	  } */
 
         // Clipping - Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -251,7 +251,7 @@ public class Kulow1 extends Mainloc {
         g.drawImage(backright, 640, 0, null);
 
         // Parallax - Scrolling ausfuehren
-        if (mainFrame.isScrolling == true) {
+        if (mainFrame.isScrolling) {
             int xtemp = mainFrame.scrollx - 5;
             if (xtemp < 0) {
                 xtemp = 0;
@@ -283,26 +283,26 @@ public class Kulow1 extends Mainloc {
         // Rybowar
         g.setClip(rybowarUp.x, rybowarUp.y, WikowarRybow.Breite + 50, WikowarRybow.Hoehe);
         g.drawImage(backright, 640, 0, null);
-        if ((AnimLocked == false) && (AnimMCLocked == false)) {
-            if (showRybowar == true) {
+        if ((!AnimLocked) && (!AnimMCLocked)) {
+            if (showRybowar) {
                 fischer.drawRybowar(g, TalkPerson, AnimTalkPerson, rybowarUp,
                         rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
                         octopussyerscheint, rybowarnimmtfisch);
             }
         } else {
-            if (showRybowar == true) {
+            if (showRybowar) {
                 fischer.drawRybowar(g, TalkPerson, 0, rybowarUp,
                         rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
                         octopussyerscheint, rybowarnimmtfisch);
             }
         }
 
-        if (octopussyerscheint == true) {
+        if (octopussyerscheint) {
             octopussyerscheint = false;
         }
 
         // Wenn Holzfisch noch da, dann auch zeichnen
-        if (mainFrame.Actions[913] == false) {
+        if (!mainFrame.Actions[913]) {
             g.setClip(721, 338, 62, 34);
             g.drawImage(ryba, 721, 338, null);
         }
@@ -348,7 +348,7 @@ public class Kulow1 extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (kulow2Rect.IsPointInRect(pKrTemp) == true) {
+        if (kulow2Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(kulow2, 338, 321, null);
         }
 
@@ -359,7 +359,7 @@ public class Kulow1 extends Mainloc {
         mx = g.getClipBounds();
         g.setClip(PwikZita.x, PwikZita.y, WikowarZita.Breite, WikowarZita.Hoehe);
         haendler.drawWikowar(g, PwikZita, TalkPerson, wikowarhoertzu);
-        g.setClip((int) mx.getX(), (int) mx.getY(), (int) mx.getWidth(), (int) mx.getHeight());
+        g.setClip(mx.getX(), mx.getY(), mx.getWidth(), mx.getHeight());
 
         // Postsaeule zeichnen, wenn im Bild
         // System.out.println (mainFrame.scrollx);
@@ -369,17 +369,17 @@ public class Kulow1 extends Mainloc {
             may = g.getClipBounds();
             g.setClip(xt - 2, 208, xt + 90, 479);
             g.drawImage(saeule, xt, 208, null);
-            g.setClip((int) may.getX(), (int) may.getY(), (int) may.getWidth(), (int) may.getHeight());
+            g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
         // Ausgabe von AnimText, falls noetig
-        if ((AnimOutputText != "") && (AnimActive == true) && (AnimLocked == false)) {
+        if ((AnimOutputText != "") && (AnimActive) && (!AnimLocked)) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // sonst noch was zu tun ?
@@ -389,7 +389,7 @@ public class Kulow1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -407,14 +407,14 @@ public class Kulow1 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
         }
 
         // Die Anims muessen bedient werden
-        if ((AnimID != 0) && (AnimActive == true) && (AnimLocked == false)) {
+        if ((AnimID != 0) && (AnimActive) && (!AnimLocked)) {
             DoAnims();
         }
 
@@ -430,7 +430,7 @@ public class Kulow1 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -449,7 +449,7 @@ public class Kulow1 extends Mainloc {
         pTemp.x += mainFrame.scrollx;
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -459,7 +459,7 @@ public class Kulow1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linke Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -467,14 +467,14 @@ public class Kulow1 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Wikowar
-                if (wikowarRect.IsPointInRect(pTemp) == true) {
+                if (wikowarRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 200;
@@ -490,7 +490,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rybowar
-                if ((rybowarLookRect.IsPointInRect(pTemp) == true) && (AnimActive == false))
+                if ((rybowarLookRect.IsPointInRect(pTemp)) && (!AnimActive))
                     /*((drybaRect.IsPointInRect (pTemp) == false) || (mainFrame.Actions[913] == true)))*/ {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
@@ -510,8 +510,8 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Ausreden fuer Dryba
-                if (((drybaLookRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[913] == false)) &&
-                        ((rybowarLookRect.IsPointInRect(pTemp) == false) || (AnimActive == true))) {
+                if (((drybaLookRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[913])) &&
+                        ((!rybowarLookRect.IsPointInRect(pTemp)) || (AnimActive))) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                             nextActionID = 220;
@@ -524,19 +524,19 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Ausreden fuer tuer links
-                if (durjelRect.IsPointInRect(pTemp) == true) {
+                if (durjelRect.IsPointInRect(pTemp)) {
                     nextActionID = 170;
                     pTemp = Pdurjel;
                 }
 
                 // Ausreden fuer tuer rechts
-                if (durjerRect.IsPointInRect(pTemp) == true) {
+                if (durjerRect.IsPointInRect(pTemp)) {
                     nextActionID = 175;
                     pTemp = Pdurjer;
                 }
 
                 // Ausreden fuer Stroh
-                if (synoRect.IsPointInRect(pTemp) == true) {
+                if (synoRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                             nextActionID = 230;
@@ -549,7 +549,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Ausreden fuer Gefaess
-                if (sudobjoRect.IsPointInRect(pTemp) == true) {
+                if (sudobjoRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 14: // ryba
                             nextActionID = 240;
@@ -574,7 +574,6 @@ public class Kulow1 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -585,18 +584,18 @@ public class Kulow1 extends Mainloc {
                 nextActionID = 0;
 
                 // nach Polo gehen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (untererAusgang.IsPointInRect(kt) == false) {
+                    if (!untererAusgang.IsPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -604,18 +603,18 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // nach Mertens gehen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -623,19 +622,19 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // nach Cyrkej gehen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         // Hier "up"
                         pTemp = new GenericPoint(kt.x, Pleft.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -643,45 +642,45 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Wikowar ansehen
-                if (wikowarRect.IsPointInRect(pTemp) == true) {
+                if (wikowarRect.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pwikowar;
                 }
 
                 // Rybowar ansehen
-                if ((rybowarLookRect.IsPointInRect(pTemp) == true) && (AnimActive == false))
+                if ((rybowarLookRect.IsPointInRect(pTemp)) && (!AnimActive))
                     /*((drybaRect.IsPointInRect (pTemp) == false) || (mainFrame.Actions[913] == true)))*/ {
                     nextActionID = 2;
                     pTemp = Prybowar;
                 }
 
                 // Dryba ansehen
-                if (((drybaLookRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[913] == false)) &&
-                        ((rybowarLookRect.IsPointInRect(pTemp) == false) || (AnimActive == true))) {
+                if (((drybaLookRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[913])) &&
+                        ((!rybowarLookRect.IsPointInRect(pTemp)) || (AnimActive))) {
                     nextActionID = 3;
                     pTemp = Pdryba;
                 }
 
                 // tuer links ansehen
-                if (durjelRect.IsPointInRect(pTemp) == true) {
+                if (durjelRect.IsPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = Pdurjel;
                 }
 
                 // tuer rechts ansehen
-                if (durjerRect.IsPointInRect(pTemp) == true) {
+                if (durjerRect.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pdurjer;
                 }
 
                 // Stroh ansehen
-                if (synoRect.IsPointInRect(pTemp) == true) {
+                if (synoRect.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Psyno;
                 }
 
                 // Gefaess ansehen
-                if (sudobjoRect.IsPointInRect(pTemp) == true) {
+                if (sudobjoRect.IsPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = Psudobjo;
                 }
@@ -692,22 +691,22 @@ public class Kulow1 extends Mainloc {
                 // rechte Maustaste
 
                 // Weg nach Polo anschauen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Mertens anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Cyrkej anschauen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit dem Wikowar reden, nicht bei Backgroundanim
-                if (wikowarRect.IsPointInRect(pTemp) == true) {
+                if (wikowarRect.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwikowar);
                     mainFrame.repaint();
@@ -715,7 +714,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Mit dem Rybowar reden, nicht bei Backgroundanim
-                if ((rybowarLookRect.IsPointInRect(pTemp) == true) && (AnimActive == false))
+                if ((rybowarLookRect.IsPointInRect(pTemp)) && (!AnimActive))
                     /* drybaRect.IsPointInRect (pTemp) == false) || (mainFrame.Actions[913] == true)))*/ {
                     nextActionID = 51;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prybowar);
@@ -724,8 +723,8 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Dryba nehmen
-                if (((drybaLookRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[913] == false)) &&
-                        ((rybowarLookRect.IsPointInRect(pTemp) == false) || (AnimActive == true))) {
+                if (((drybaLookRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[913])) &&
+                        ((!rybowarLookRect.IsPointInRect(pTemp)) || (AnimActive))) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdryba);
                     mainFrame.repaint();
@@ -733,7 +732,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Tuer links nehmen
-                if (durjelRect.IsPointInRect(pTemp) == true) {
+                if (durjelRect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdurjel);
                     mainFrame.repaint();
@@ -741,7 +740,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Tuer rechts nehmen
-                if (durjerRect.IsPointInRect(pTemp) == true) {
+                if (durjerRect.IsPointInRect(pTemp)) {
                     nextActionID = 65;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdurjer);
                     mainFrame.repaint();
@@ -749,7 +748,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Stroh nehmen
-                if (synoRect.IsPointInRect(pTemp) == true) {
+                if (synoRect.IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(Psyno);
                     mainFrame.repaint();
@@ -757,7 +756,7 @@ public class Kulow1 extends Mainloc {
                 }
 
                 // Gefaess nehmen
-                if (sudobjoRect.IsPointInRect(pTemp) == true) {
+                if (sudobjoRect.IsPointInRect(pTemp)) {
                     nextActionID = 75;
                     mainFrame.wegGeher.SetzeNeuenWeg(Psudobjo);
                     mainFrame.repaint();
@@ -780,7 +779,7 @@ public class Kulow1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTxxx);
             return;
         }
@@ -789,7 +788,7 @@ public class Kulow1 extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -798,26 +797,22 @@ public class Kulow1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (wikowarRect.IsPointInRect(pTemp) == true) ||
-                    ((rybowarLookRect.IsPointInRect(pTemp) == true) && (AnimActive == false)) ||
-                    ((drybaLookRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[913] == false)) ||
-                    (durjelRect.IsPointInRect(pTemp) == true) || (durjerRect.IsPointInRect(pTemp) == true) ||
-                    (synoRect.IsPointInRect(pTemp) == true) || (sudobjoRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (wikowarRect.IsPointInRect(pTemp)) ||
+                    ((rybowarLookRect.IsPointInRect(pTemp)) && (!AnimActive)) ||
+                    ((drybaLookRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[913])) ||
+                    (durjelRect.IsPointInRect(pTemp)) || (durjerRect.IsPointInRect(pTemp)) ||
+                    (synoRect.IsPointInRect(pTemp)) || (sudobjoRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -825,11 +820,11 @@ public class Kulow1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((rybowarLookRect.IsPointInRect(pTemp) == true) && (AnimActive == false)) ||
-                    (wikowarRect.IsPointInRect(pTemp) == true) ||
-                    ((drybaLookRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[913] == false)) ||
-                    (durjelRect.IsPointInRect(pTemp) == true) || (durjerRect.IsPointInRect(pTemp) == true) ||
-                    (synoRect.IsPointInRect(pTemp) == true) || (sudobjoRect.IsPointInRect(pTemp) == true)) {
+            if (((rybowarLookRect.IsPointInRect(pTemp)) && (!AnimActive)) ||
+                    (wikowarRect.IsPointInRect(pTemp)) ||
+                    ((drybaLookRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[913])) ||
+                    (durjelRect.IsPointInRect(pTemp)) || (durjerRect.IsPointInRect(pTemp)) ||
+                    (synoRect.IsPointInRect(pTemp)) || (sudobjoRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -837,7 +832,7 @@ public class Kulow1 extends Mainloc {
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp) == true) {
+            if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 5;
@@ -845,7 +840,7 @@ public class Kulow1 extends Mainloc {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -853,7 +848,7 @@ public class Kulow1 extends Mainloc {
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -874,18 +869,18 @@ public class Kulow1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -918,7 +913,6 @@ public class Kulow1 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -936,7 +930,7 @@ public class Kulow1 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -946,8 +940,8 @@ public class Kulow1 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -1029,7 +1023,7 @@ public class Kulow1 extends Mainloc {
             case 50:
                 // Krabat beginnt MC (Wikowar benutzen)
                 mainFrame.krabat.SetFacing(fWikowar);
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     return;
                 }
                 wikowarhoertzu = true;
@@ -1041,7 +1035,7 @@ public class Kulow1 extends Mainloc {
             case 51:
                 // Krabat beginnt MC (Rybowar benutzen)
                 mainFrame.krabat.SetFacing(fRybowar);
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     return;
                 }
                 rybowarhoertzu = true;
@@ -1052,7 +1046,7 @@ public class Kulow1 extends Mainloc {
 
             case 55:
                 // Dryba benutzen
-                if (AnimActive == true) {
+                if (AnimActive) {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     nextActionID = 56;
@@ -1078,7 +1072,7 @@ public class Kulow1 extends Mainloc {
                 if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) {
                     break;
                 }
-                mainFrame.inventory.vInventory.addElement(new Integer(13));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(13));
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.repaint();
@@ -1212,8 +1206,8 @@ public class Kulow1 extends Mainloc {
                         Start.stringManager.getTranslation("Loc1_Kulow1_00049"),
                         Start.stringManager.getTranslation("Loc1_Kulow1_00050"),
                         fRybowar, 33, 0, 168, rybowarTalk);
-                mainFrame.inventory.vInventory.removeElement(new Integer(14));
-                mainFrame.inventory.vInventory.addElement(new Integer(15));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(14));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(15));
                 // Zeichen fuer habe keinen Fisch, aber Groschen -> faengt noch nichts in Haty
                 mainFrame.Actions[914] = false;
                 mainFrame.Actions[915] = true;
@@ -1458,7 +1452,7 @@ public class Kulow1 extends Mainloc {
                 if (mainFrame.sprache == 1) {
                     // 1. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00117"), 1000, 130, new int[]{130}, 910);
-                    if (mainFrame.Actions[150] == false) {
+                    if (!mainFrame.Actions[150]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00118"), 130, 1000, null, 920);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00119"), 130, 1000, null, 930);
@@ -1477,7 +1471,7 @@ public class Kulow1 extends Mainloc {
                 if (mainFrame.sprache == 2) {
                     // 1. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00124"), 1000, 130, new int[]{130}, 910);
-                    if (mainFrame.Actions[150] == false) {
+                    if (!mainFrame.Actions[150]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00125"), 130, 1000, null, 920);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00126"), 130, 1000, null, 930);
@@ -1496,7 +1490,7 @@ public class Kulow1 extends Mainloc {
                 if (mainFrame.sprache == 3) {
                     // 1. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00131"), 1000, 130, new int[]{130}, 910);
-                    if (mainFrame.Actions[150] == false) {
+                    if (!mainFrame.Actions[150]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00132"), 130, 1000, null, 920);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00133"), 130, 1000, null, 930);
@@ -1852,7 +1846,7 @@ public class Kulow1 extends Mainloc {
             case 502:
                 // 1. Textausgabe
                 int zuffi = 1;
-                if (mainFrame.Actions[138] == false) {
+                if (!mainFrame.Actions[138]) {
                     mainFrame.Actions[138] = true;
                     zuffi = 0;
                 }

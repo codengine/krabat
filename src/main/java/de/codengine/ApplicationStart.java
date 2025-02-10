@@ -218,13 +218,9 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     @Override
     public void mousePressed(MouseEvent e) {
         // Doppelclick (zeitlich begrenzt) erkennen
-        if ((Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit) &&
+        dClick = (Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit) &&
                 (Math.abs(Mousetemp.y - e.getPoint().y) < doubleClickPointLimit) &&
-                (dClick == false) && ((System.currentTimeMillis() - timeskip) < doubleClickTimeLimit)) {
-            dClick = true;
-        } else {
-            dClick = false;
-        }
+                (!dClick) && ((System.currentTimeMillis() - timeskip) < doubleClickTimeLimit);
         timeskip = System.currentTimeMillis();
         Mousetemp = e.getPoint();
 

@@ -27,8 +27,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Swinjo1 extends Mainanim {
-    private GenericImage[] swinjo_look;
-    private GenericImage[] swinjo_dance;
+    private final GenericImage[] swinjo_look;
+    private final GenericImage[] swinjo_dance;
 
     private int Look = 0;
     private int Dance = 1;
@@ -44,7 +44,7 @@ public class Swinjo1 extends Mainanim {
 
     private boolean oldDance = false;
 
-    private GenericPoint Posit;
+    private final GenericPoint Posit;
 
     public Swinjo1(Start caller, GenericPoint Posit) {
         super(caller);
@@ -81,7 +81,7 @@ public class Swinjo1 extends Mainanim {
     // Zeichne Schwein, wie es dasteht oder tanzt
     public void drawSwino(GenericDrawingContext offGraph, boolean isDancing, boolean noSound) {
         // 3 Zustaende: Guck, Tanz, Uebergang
-        if ((isDancing == false) && (oldDance == false)) {
+        if ((!isDancing) && (!oldDance)) {
             // nur Umschauen
             switch (Look) {
                 case 0:
@@ -129,7 +129,7 @@ public class Swinjo1 extends Mainanim {
             }
 
             // hier darf der Sound rein
-            if (noSound == false) {
+            if (!noSound) {
                 evalSound();
             }
 
@@ -138,7 +138,7 @@ public class Swinjo1 extends Mainanim {
             offGraph.drawImage(swinjo_look[Look], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
         }
 
-        if ((isDancing == true) && (oldDance == true)) {
+        if ((isDancing) && (oldDance)) {
             // rumhuepfen
             if ((--Verhinderdance) < 1) {
                 Verhinderdance = MAX_VERHINDERDANCE;

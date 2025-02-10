@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class WikowarZita extends Mainanim {
-    private GenericImage[] wik_head;
-    private GenericImage[] wik_body;
-    private GenericImage[] wik_wait;
+    private final GenericImage[] wik_head;
+    private final GenericImage[] wik_body;
+    private final GenericImage[] wik_wait;
     private GenericImage vorder;
 
     public static final int Breite = 49;
@@ -103,7 +103,7 @@ public class WikowarZita extends Mainanim {
             g.drawImage(wik_body[Body], pos.x, pos.y + BODYOFFSET, null);
             g.drawImage(vorder, Pvorder.x, Pvorder.y, null);
         } else {
-            if (isListening == true) {
+            if (isListening) {
                 // kein Wegdrehen beim Zuhoeren
                 if (Wait != 0) {
                     Wait = 0;

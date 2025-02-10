@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Dziwadzelnica extends Mainanim {
-    private GenericImage dziw_talk[];
-    private GenericImage dziw_beat[];
+    private final GenericImage[] dziw_talk;
+    private final GenericImage[] dziw_beat;
 
     public static final int Breite = 110;
     public static final int Hoehe = 238;
@@ -89,7 +89,7 @@ public class Dziwadzelnica extends Mainanim {
     // Zeichne Schauspielerin, wie er dasteht oder spricht
     public boolean drawDziwadzelnica(GenericDrawingContext offGraph, int TalkPerson, boolean isBeating, int AnimTalkPerson, GenericPoint pos) {
         // Dziw beim Schlagen -> Extra
-        if (isBeating == true) {
+        if (isBeating) {
             // Weiterschalten
             if ((--Verhinderbeat) < 1) {
                 Verhinderbeat = MAX_VERHINDERBEAT;
@@ -103,11 +103,7 @@ public class Dziwadzelnica extends Mainanim {
             offGraph.drawImage(dziw_beat[(Beat > 2) ? 0 : Beat], pos.x, pos.y, null);
 
             // rueckgabe = false, wenn sie fertig gehauen hat
-            if (Beat > 2) {
-                return (false);
-            } else {
-                return (true);
-            }
+            return Beat <= 2;
         } else {
             // Dziw beim Sprechen
             if (((TalkPerson == 58) && (mainFrame.talkCount > 1)) || (AnimTalkPerson == 58)) {

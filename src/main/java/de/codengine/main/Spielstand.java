@@ -36,7 +36,7 @@ public class Spielstand {
     private boolean[] Aktionen;
     private int[] Bild;
     public GenericImage Picture, DarkPicture;
-    private Start mainFrame;
+    private final Start mainFrame;
     // private int Groesse = 44100;
     private static final byte W = -128;
 
@@ -48,9 +48,7 @@ public class Spielstand {
     public Spielstand(Start caller, int[] Data, int Tag, int Monat, int Jahr) {
         mainFrame = caller;
         Bild = new int[10593];
-        for (int i = 0; i <= 10592; i++) {
-            Bild[i] = Data[i];
-        }
+        System.arraycopy(Data, 0, Bild, 0, 10593);
         Day = Tag;
         Month = Monat;
         Year = Jahr;
@@ -139,11 +137,7 @@ public class Spielstand {
 
             // Actions - Boolean - array
             for (int l = 42380; l <= 43379; l++) {
-                if ((Feld[l] - W) == 0) {
-                    Aktionen[l - 42380] = false;
-                } else {
-                    Aktionen[l - 42380] = true;
-                }
+                Aktionen[l - 42380] = (Feld[l] - W) != 0;
             }
 
             // Inventarvektor einlesen
@@ -151,7 +145,7 @@ public class Spielstand {
                 if (Feld[r] == W) {
                     break;
                 }
-                Inventar.addElement(new Integer((Feld[r] - W)));
+                Inventar.addElement(Integer.valueOf((Feld[r] - W)));
             }
 
             // verkleinerte Bilder fuer Screen erzeugen
@@ -167,9 +161,7 @@ public class Spielstand {
     private void DoImages() {
         // normales GenericImage erzeugen
         int[] tempx = new int[10592];
-        for (int f = 0; f <= 10591; ++f) {
-            tempx[f] = Bild[f];
-        }
+        System.arraycopy(Bild, 0, tempx, 0, 10592);
         Picture = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource
                 (118, 89, tempx, 0, 118));
 
@@ -236,8 +228,8 @@ public class Spielstand {
 
         // Boolean - Array Actions zuweisen
         for (int i = 42380; i <= 43379; i++) {
-            if (mainFrame.Actions[i - 42380] == false) {
-                Feld[i] = (byte) W;
+            if (!mainFrame.Actions[i - 42380]) {
+                Feld[i] = W;
             } else {
                 Feld[i] = (byte) (1 + W);
             }
@@ -246,9 +238,9 @@ public class Spielstand {
         // Inventar zuweisen
         int nAnzahl = mainFrame.inventory.vInventory.size();
         for (int x = 0; x < nAnzahl; x++) {
-            int iTemp = ((Integer) mainFrame.inventory.vInventory.elementAt(x)).intValue();
+            int iTemp = mainFrame.inventory.vInventory.elementAt(x).intValue();
             Feld[x + 43381] = (byte) (iTemp + W);
-            Feld[x + 43382] = (byte) W;
+            Feld[x + 43382] = W;
         }
 
         // Checksumme erzeugen und hinzufuegen
@@ -267,11 +259,11 @@ public class Spielstand {
             }
         }
         Feld[undwo] = (byte) (Checksum + W);
-        Feld[undwo + 1] = (byte) W;
+        Feld[undwo + 1] = W;
         // System.out.println("Checksumme : " + Checksum + " Feld : " + (Feld[undwo] + W) + " Pos : " + (undwo));
 
         boolean success = mainFrame.storageManager.saveToFile(Feld, Stand);
-        if (success == false) {
+        if (!success) {
             System.out.println("File save error!");
         }
 

@@ -62,7 +62,7 @@ public class Skica extends Mainanim {
     public void paintSkizze(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);
             Cursorform = 200;
@@ -108,10 +108,8 @@ public class Skica extends Mainanim {
 
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             Deactivate();
-            return;
         } else {
             Deactivate();
-            return;
         }
     }
 
@@ -129,7 +127,6 @@ public class Skica extends Mainanim {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             Deactivate();
-            return;
         }
     }
 
@@ -157,7 +154,7 @@ public class Skica extends Mainanim {
                     break;
                 }
 
-                if (mainFrame.Actions[633] == false) // Text nur 1x sagen, wenn gefunden
+                if (!mainFrame.Actions[633]) // Text nur 1x sagen, wenn gefunden
                 {
                     switch (mainFrame.sprache) {
                         case 1: // Obersorbisch

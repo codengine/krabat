@@ -27,31 +27,31 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Reh extends Mainanim {
-    private GenericImage[] reh;
+    private final GenericImage[] reh;
 
-    private boolean isHirsch[];
+    private final boolean[] isHirsch;
 
     private boolean istErNochDa;
 
-    private boolean wegRennRichtung; // true = nach links
+    private final boolean wegRennRichtung; // true = nach links
     private boolean rennenAlleWeg = false;
     private boolean rennenNieWeg = false;
-    private GenericRectangle Aufhaltebereich;
+    private final GenericRectangle Aufhaltebereich;
 
     private int Verhinderwegrenn;
     private static final int MAX_VERHINDERWEGRENN = 500;
 
-    private int Verhindergrasen[];
+    private final int[] Verhindergrasen;
     private static final int MAX_VERHINDERGRASEN = 40;
 
-    private int Verhinderlauf[];
+    private final int[] Verhinderlauf;
     private static final int MAX_VERHINDERLAUF = 1;
 
-    private int Animpos[];
+    private final int[] Animpos;
 
     private int Wieviele;
 
-    private GenericPoint[] Positionen;
+    private final GenericPoint[] Positionen;
 
     private static final int HOEHE = 15;
 
@@ -79,7 +79,7 @@ public class Reh extends Mainanim {
             this.Wieviele = 0;
         }
 
-        int MaximaleRehe = (int) ((Aufhaltebereich.getHeight() / 7) + 1);
+        int MaximaleRehe = (Aufhaltebereich.getHeight() / 7) + 1;
         if (this.Wieviele > MaximaleRehe) {
             this.Wieviele = MaximaleRehe;
         }
@@ -103,22 +103,18 @@ public class Reh extends Mainanim {
         for (int i = 0; i < this.Wieviele; i++) {
             // Berechnen, ob Hirsch oder Reh erscheint
             int zuffi = (int) (Math.random() * 50);
-            if (zuffi > 25) {
-                isHirsch[i] = true;
-            } else {
-                isHirsch[i] = false;
-            }
+            isHirsch[i] = zuffi > 25;
 
             // Berechnen, ob nach links oder rechts grasend
             zuffi = (int) (Math.random() * 50);
             if (zuffi > 25) {
-                if (isHirsch[i] == true) {
+                if (isHirsch[i]) {
                     Animpos[i] = 0;
                 } else {
                     Animpos[i] = 8;
                 }
             } else {
-                if (isHirsch[i] == true) {
+                if (isHirsch[i]) {
                     Animpos[i] = 2;
                 } else {
                     Animpos[i] = 10;
@@ -132,13 +128,13 @@ public class Reh extends Mainanim {
             Verhinderlauf[i] = (int) (Math.random() * MAX_VERHINDERLAUF);
 
             // Hier die Position innerhalb des Rects berechnen
-            int xpos = (int) ((Math.random() * ((int) Aufhaltebereich.getWidth())) + Aufhaltebereich.getX());
+            int xpos = (int) ((Math.random() * Aufhaltebereich.getWidth()) + Aufhaltebereich.getX());
             int ypos;
 
             boolean PositionIstGut;
 
             do {
-                ypos = (int) ((Math.random() * ((int) Aufhaltebereich.getHeight())) + Aufhaltebereich.getY());
+                ypos = (int) ((Math.random() * Aufhaltebereich.getHeight()) + Aufhaltebereich.getY());
 
                 PositionIstGut = true;
 
@@ -146,11 +142,12 @@ public class Reh extends Mainanim {
                     for (int j = 0; j < i; j++) {
                         if (Math.abs(ypos - Positionen[j].y) < 3) {
                             PositionIstGut = false;
+                            break;
                         }
                     }
                 }
             }
-            while (PositionIstGut == false);
+            while (!PositionIstGut);
 
             Positionen[i] = new GenericPoint(xpos, ypos);
         }
@@ -180,7 +177,7 @@ public class Reh extends Mainanim {
     // Reh zeichnen, wenn noch da (Routine entscheidet alles selber)
     public void drawReh(GenericDrawingContext g) {
         // wenn weggerannt, dann nix mehr tun
-        if (istErNochDa == false) {
+        if (!istErNochDa) {
             return;
         }
 
@@ -190,7 +187,7 @@ public class Reh extends Mainanim {
         }
 
         // hier schauen, ob alle nicht besser wegrennen sollten
-        if (((--Verhinderwegrenn) < 1) && (rennenNieWeg == false)) {
+        if (((--Verhinderwegrenn) < 1) && (!rennenNieWeg)) {
             int zuffi = (int) (Math.random() * 100);
             if (zuffi > 90) {
                 rennenAlleWeg = true;
@@ -198,7 +195,7 @@ public class Reh extends Mainanim {
         }
 
         // hier nur weiterschalten, nix zeichnen
-        if (rennenAlleWeg == false) {
+        if (!rennenAlleWeg) {
             // hier malen, wenn sie nur grasen
             for (int i = 0; i < Wieviele; i++) {
                 if ((--Verhindergrasen[i]) < 1) {
@@ -245,7 +242,7 @@ public class Reh extends Mainanim {
             istErNochDa = false;
 
             // testen, welche Richtung
-            if (wegRennRichtung == true) {
+            if (wegRennRichtung) {
                 // nach links, bis alles raus
                 for (int i = 0; i < Wieviele; i++) {
                     if ((--Verhinderlauf[i]) < 1) {
@@ -331,8 +328,8 @@ public class Reh extends Mainanim {
         }
 
         // hier alle malen, die vorderste Figur zuletzt
-        int Anfang = (int) (Aufhaltebereich.getY());
-        int Ende = (int) (Anfang + Aufhaltebereich.getHeight());
+        int Anfang = Aufhaltebereich.getY();
+        int Ende = Anfang + Aufhaltebereich.getHeight();
 
         for (int i = Anfang; i <= Ende; i++) {
             // hier kann der Reihenfolge nach gezeichnet werden

@@ -28,41 +28,41 @@ import de.codengine.platform.GenericImage;
 
 public class KrabatNormal extends Krabat {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_left;
-    private GenericImage[] krabat_right;
-    private GenericImage[] krabat_front;
-    private GenericImage[] krabat_back;
+    private final GenericImage[] krabat_left;
+    private final GenericImage[] krabat_right;
+    private final GenericImage[] krabat_front;
+    private final GenericImage[] krabat_back;
 
-    private GenericImage[] krabat_floete;
-    private GenericImage[] krabat_rohodz;
+    private final GenericImage[] krabat_floete;
+    private final GenericImage[] krabat_rohodz;
 
-    private GenericImage[] krabat_left_talk_head;
-    private GenericImage[] krabat_left_talk_body;
-    private GenericImage[] krabat_right_talk_head;
-    private GenericImage[] krabat_right_talk_body;
-    private GenericImage[] krabat_up_talk_head;
-    private GenericImage[] krabat_up_talk_body;
-    private GenericImage[] krabat_down_talk_head;
-    private GenericImage[] krabat_down_talk_body;
+    private final GenericImage[] krabat_left_talk_head;
+    private final GenericImage[] krabat_left_talk_body;
+    private final GenericImage[] krabat_right_talk_head;
+    private final GenericImage[] krabat_right_talk_body;
+    private final GenericImage[] krabat_up_talk_head;
+    private final GenericImage[] krabat_up_talk_body;
+    private final GenericImage[] krabat_down_talk_head;
+    private final GenericImage[] krabat_down_talk_body;
 
-    private GenericImage[] krabat_left_take_oben;
-    private GenericImage[] krabat_up_take_oben2;
-    private GenericImage[] krabat_left_take_mitte;
-    private GenericImage[] krabat_left_take_mitte_verdeckt;
-    private GenericImage[] krabat_left_take_unten;
-    private GenericImage[] krabat_left_take_unten2; // fuer Teil 4 !!!
+    private final GenericImage[] krabat_left_take_oben;
+    private final GenericImage[] krabat_up_take_oben2;
+    private final GenericImage[] krabat_left_take_mitte;
+    private final GenericImage[] krabat_left_take_mitte_verdeckt;
+    private final GenericImage[] krabat_left_take_unten;
+    private final GenericImage[] krabat_left_take_unten2; // fuer Teil 4 !!!
 
-    private GenericImage[] krabat_up_take_oben;
-    private GenericImage[] krabat_up_take_mitte;
-    private GenericImage[] krabat_up_take_unten;
+    private final GenericImage[] krabat_up_take_oben;
+    private final GenericImage[] krabat_up_take_mitte;
+    private final GenericImage[] krabat_up_take_unten;
 
-    private GenericImage[] krabat_right_take_oben;
-    private GenericImage[] krabat_right_take_mitte;
-    private GenericImage[] krabat_right_take_unten;
-    private GenericImage[] krabat_right_take_unten2;
+    private final GenericImage[] krabat_right_take_oben;
+    private final GenericImage[] krabat_right_take_mitte;
+    private final GenericImage[] krabat_right_take_unten;
+    private final GenericImage[] krabat_right_take_unten2;
 
-    private GenericImage[] krabat_down_take_mitte;
-    private GenericImage[] krabat_down_take_unten;
+    private final GenericImage[] krabat_down_take_mitte;
+    private final GenericImage[] krabat_down_take_unten;
 
     private GenericImage krabat_legeschild;
     private GenericImage krabat_gibkrosik;
@@ -71,26 +71,26 @@ public class KrabatNormal extends Krabat {
     private GenericImage krabat_gibtolery;
     private GenericImage krabat_gibprikaz;
     private GenericImage krabat_gibwop;
-    private GenericImage[] krabat_takeblotooben;
-    private GenericImage[] krabat_takeblotounten;
+    private final GenericImage[] krabat_takeblotooben;
+    private final GenericImage[] krabat_takeblotounten;
     private GenericImage krabat_fallen;
     private GenericImage krabat_gibryba;
     private GenericImage krabat_wirfholz;
     private GenericImage krabat_wino;
 
-    private GenericImage[] krabat_stock;
-    private GenericImage[] krabat_wosusk;
-    private GenericImage[] krabat_hammer;
-    private GenericImage[] krabat_fangraben;
-    private GenericImage[] krabat_bretter;
-    private GenericImage[] krabat_feuer;
+    private final GenericImage[] krabat_stock;
+    private final GenericImage[] krabat_wosusk;
+    private final GenericImage[] krabat_hammer;
+    private final GenericImage[] krabat_fangraben;
+    private final GenericImage[] krabat_bretter;
+    private final GenericImage[] krabat_feuer;
 
-    private GenericImage[] krabat_left_liesbuch_head;
-    private GenericImage[] krabat_right_liesbuch_head;
+    private final GenericImage[] krabat_left_liesbuch_head;
+    private final GenericImage[] krabat_right_liesbuch_head;
     private GenericImage krabat_left_liesbuch_body;
     private GenericImage krabat_right_liesbuch_body;
 
-    private GenericImage[] krabat_lies_koraktor;
+    private final GenericImage[] krabat_lies_koraktor;
 
 
     // Spritevariablen
@@ -113,8 +113,8 @@ public class KrabatNormal extends Krabat {
     private static final int CLOHNENX = 10;  // Werte fuer Entscheidung, ob sich
     private static final int CLOHNENY = 7;  // Laufen ueberhaupt lohnt (halber Schritt)
 
-    private float xFaktor; // geben an, wie gross die Basis der Exponentialfunktion ist
-    private float yFaktor; // mit dem die Zoomingmultiplikatoren berechnet werden
+    private final float xFaktor; // geben an, wie gross die Basis der Exponentialfunktion ist
+    private final float yFaktor; // mit dem die Zoomingmultiplikatoren berechnet werden
 
     private int TalkHead = 0;
     private int TalkBody = 0;
@@ -400,7 +400,7 @@ public class KrabatNormal extends Krabat {
         // System.out.println ("K-Feetpos vorher : " + xps + " " + yps);
 
         // Wenn kein Laufen gewuenscht, dann auch nicht laufen!
-        if ((isWalking == false) && (isWandering == false)) {
+        if ((!isWalking) && (!isWandering)) {
             return;
         }
 
@@ -410,7 +410,7 @@ public class KrabatNormal extends Krabat {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen, es gelten die Images left und right, gehen von 2 bis 11, von oben 1 bis 9
         {
             // Animationsphase weiterschalten,
@@ -432,7 +432,7 @@ public class KrabatNormal extends Krabat {
             if (((walkto.x - (int) txps) * direction_x) <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((isWandering == false) && (clearanimpos == true)) {
+                if ((!isWandering) && (clearanimpos)) {
                     anim_pos = 0;
                 }
             }
@@ -459,16 +459,16 @@ public class KrabatNormal extends Krabat {
             if (((walkto.y - (int) typs) * direction_y) <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((isWandering == false) && (clearanimpos == true)) {
+                if ((!isWandering) && (clearanimpos)) {
                     anim_pos = 0;
                 }
             }
         }
 
-        if ((isWalking == false) && (isWandering == false)) {
+        if ((!isWalking) && (!isWandering)) {
             // System.out.println("Krabatpos korrigiert!");
             SetKrabatPos(walkto);
-            if (clearanimpos == true) {
+            if (clearanimpos) {
                 anim_pos = 0;
             }
         }
@@ -617,11 +617,7 @@ public class KrabatNormal extends Krabat {
             double xangle = Math.abs(aim.x - ((int) xps));
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            if (angle > (22 * Math.PI / 180)) {
-                horiz = false;
-            } else {
-                horiz = true;
-            }
+            horiz = !(angle > (22 * Math.PI / 180));
         }
 
         // Variablen an Move uebergeben
@@ -651,7 +647,7 @@ public class KrabatNormal extends Krabat {
                 (Math.abs(aim.y - ((int) yps)) < lohneny)) {
             isWalking = false;
             System.out.println("Lohnt sich nicht !");
-            if ((isWandering == false) && (clearanimpos == true)) {
+            if ((!isWandering) && (clearanimpos)) {
                 // System.out.println("Animpos wurde zurueckgesetzt !");
                 anim_pos = 0;
             }
@@ -677,7 +673,7 @@ public class KrabatNormal extends Krabat {
         // Default - Routine
 
         // Berechnung des Zwinkerns, wenn Krabat steht
-        if ((isWalking == false) && (isWandering == false)) {
+        if ((!isWalking) && (!isWandering)) {
             int zuffi = (int) Math.round(Math.random() * 50);
             if (Zwinker == 1) {
                 Zwinker = 0;
@@ -690,7 +686,7 @@ public class KrabatNormal extends Krabat {
         }
 
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal == true) {
+        if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
                 MaleIhn(offGraph, krabat_left[anim_pos]);
@@ -702,7 +698,7 @@ public class KrabatNormal extends Krabat {
             }
         } else {
             // Bei normaler Darstellung
-            if (upsidedown == false) {
+            if (!upsidedown) {
                 // nach oben laufen
                 if (direction_y == -1) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
@@ -1400,7 +1396,7 @@ public class KrabatNormal extends Krabat {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {
@@ -1448,7 +1444,7 @@ public class KrabatNormal extends Krabat {
         // Breite und Hoehe ermitteln
         int xd, yd;
 
-        if (isLeft == true) {
+        if (isLeft) {
             // nach links Cliprectangle auch nach links vergroessern !!!
             // GenericImage ist in Beide Richtungen gleichgross !!
             yd = yy - y;

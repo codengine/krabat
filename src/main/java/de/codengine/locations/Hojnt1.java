@@ -34,7 +34,7 @@ public class Hojnt1 extends Mainloc {
     private boolean setScroll = false;
     private int scrollwert;
 
-    private GenericImage[] hoelzer;
+    private final GenericImage[] hoelzer;
     private int HolzCount = 0;
     private boolean klingeln = false;
     private int Mehrmals;
@@ -127,7 +127,7 @@ public class Hojnt1 extends Mainloc {
         Mehrmals = MAX_MEHRMALS;
         Zaehl = MAX_ZAEHL;
         xpos = (int) ((Math.random() * (MAX_SCHATTENX - MIN_SCHATTENX - 10)) + MIN_SCHATTENX + 5);
-        isLeft = (((int) (Math.random() * 50) > 25) ? true : false);
+        isLeft = ((int) (Math.random() * 50) > 25);
         Verhinderwandern = MAX_VERHINDERWANDERN;
 
         InitImages();
@@ -135,7 +135,7 @@ public class Hojnt1 extends Mainloc {
 
         switch (oldLocation) {
             case 0: // Einsprung von Load
-                if (mainFrame.Actions[231] == true) {
+                if (mainFrame.Actions[231]) {
                     Zaehl = 50;
                     // isDoorOpen = true;
                 }
@@ -176,7 +176,7 @@ public class Hojnt1 extends Mainloc {
                 scrollwert = 417;
                 setAnim = true;
                 setScroll = true;
-                if (mainFrame.Actions[216] == true) {
+                if (mainFrame.Actions[216]) {
                     AnimFlag = 30;
                 } else {
                     AnimFlag = 20;
@@ -291,9 +291,9 @@ public class Hojnt1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Haken wurde aufgehoben!!!!!!!!!
-        if (mainFrame.krabat.fAnimHelper == true) {
+        if (mainFrame.krabat.fAnimHelper) {
             if (WhichItem == 5) {
-                mainFrame.inventory.vInventory.addElement(new Integer(5));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(5));
                 mainFrame.Clipset = false;
                 mainFrame.krabat.fAnimHelper = false;
                 mainFrame.Actions[905] = true;
@@ -302,14 +302,14 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
             Cursorform = 200;
-            if (setAnim == true) {
+            if (setAnim) {
                 mainFrame.fPlayAnim = true;
             }
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -318,7 +318,7 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Counter fuer Take Haken
-        if (mainFrame.Actions[231] == true) {
+        if (mainFrame.Actions[231]) {
             Zaehl--;
             if (Zaehl < 1) {
                 Zaehl = MAX_ZAEHL;
@@ -337,12 +337,12 @@ public class Hojnt1 extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // Jaeger Hintergrund loeschen
-        if (showHojnt == true) {
+        if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = jaeger.HojntRect();
 
             // normales Cliprectloeschen
-            if (istJaegerGebueckt == false) {
+            if (!istJaegerGebueckt) {
                 g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
                         temp.ru_point.x - temp.lo_point.x + 20,
                         temp.ru_point.y - temp.lo_point.y + 20);
@@ -363,7 +363,7 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Parallaxer ausfuehren
-        if (mainFrame.isScrolling == true) {
+        if (mainFrame.isScrolling) {
             int xtemp = mainFrame.scrollx - 5;
             if (xtemp < 0) {
                 xtemp = 0;
@@ -376,10 +376,10 @@ public class Hojnt1 extends Mainloc {
         }
 
         // wenn Jaeger in Huette, dann Schatten wandern lassen
-        if ((mainFrame.Actions[231] == false) && (mainFrame.Actions[232] == false)) {
+        if ((!mainFrame.Actions[231]) && (!mainFrame.Actions[232])) {
             if ((--Verhinderwandern) < 1) {
                 Verhinderwandern = MAX_VERHINDERWANDERN;
-                if (isLeft == false) {
+                if (!isLeft) {
                     xpos += MOVE;
                     if (xpos > MAX_SCHATTENX) {
                         isLeft = true;
@@ -393,22 +393,22 @@ public class Hojnt1 extends Mainloc {
             }
             g.setClip(340, 246, 273, 83);
             g.drawImage(backl, 0, 0, null);
-            if (isLeft == true) {
+            if (isLeft) {
                 g.drawImage(leftschatten, xpos, 280, null);
             } else {
                 g.drawImage(rightschatten, xpos, 280, null);
             }
-            g.drawImage((mainFrame.Actions[905] == false) ? vorder2 : vorder, 340, 246, null);
+            g.drawImage((!mainFrame.Actions[905]) ? vorder2 : vorder, 340, 246, null);
         }
 
         // wenn noetig, dann offene Tuer zeichnen
-        if (isDoorOpen == true) {
+        if (isDoorOpen) {
             g.setClip(272, 265, 81, 80);
             g.drawImage(offeneTuer, 272, 265, null);
         }
 
         // kaputte Grube zeichnen, wenn noetig, sonst Strick einfuegen
-        if (mainFrame.Actions[230] == true) {
+        if (mainFrame.Actions[230]) {
             g.setClip(1092, 189, 71, 227);
             g.drawImage(hojnt4, 1092, 189, null);
         } else {
@@ -419,13 +419,13 @@ public class Hojnt1 extends Mainloc {
         }
 
         // leeren Haken zeichnen, wenn noetig
-        if (mainFrame.Actions[905] == true) {
+        if (mainFrame.Actions[905]) {
             g.setClip(425, 257, 25, 25);
             g.drawImage(vorder, 340, 246, null);
         }
 
         // Klingelanim der Hoelzer wenn noetig
-        if (klingeln == true) {
+        if (klingeln) {
             HolzCount++;
             if (HolzCount == 11) {
                 HolzCount = 1;
@@ -446,18 +446,18 @@ public class Hojnt1 extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Jaeger bewegen
-        if ((showHojnt == true) && (walkReady == false)) {
+        if ((showHojnt) && (!walkReady)) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = jaeger.Move();
         }
 
         // Jaeger zeichnen
-        if (showHojnt == true) {
+        if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = jaeger.HojntRect();
 
             // normales Cliprectloeschen
-            if (istJaegerGebueckt == false) {
+            if (!istJaegerGebueckt) {
                 g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
                         temp.ru_point.x - temp.lo_point.x + 20,
                         temp.ru_point.y - temp.lo_point.y + 20);
@@ -480,7 +480,7 @@ public class Hojnt1 extends Mainloc {
             // nur rumstehen oder laufen
             else {
                 // normal zeichnen
-                if (istJaegerGebueckt == false) {
+                if (!istJaegerGebueckt) {
                     jaeger.drawHojnt(g);
                 }
 
@@ -535,12 +535,12 @@ public class Hojnt1 extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
-        if (strauchRect.IsPointInRect(pKrTemp) == true) {
+        if (strauchRect.IsPointInRect(pKrTemp)) {
             g.drawImage(hojnt2, 143, 262, null);
         }
 
         // hinter Baum, wenn Verstecken aktiv
-        if (baumActive == true) {
+        if (baumActive) {
             g.drawImage(baum, 652, 186, null);
         }
 
@@ -551,7 +551,7 @@ public class Hojnt1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -568,7 +568,7 @@ public class Hojnt1 extends Mainloc {
             TalkPause--;
         }
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             mainFrame.krabat.StopWalking();
             if (AnimFlag == 10) {
@@ -611,7 +611,7 @@ public class Hojnt1 extends Mainloc {
         pTemp.x += mainFrame.scrollx;
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -621,7 +621,7 @@ public class Hojnt1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linke Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -629,7 +629,7 @@ public class Hojnt1 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -639,7 +639,7 @@ public class Hojnt1 extends Mainloc {
                 // in Location, damit Textposition bekannt ist!!!
 
                 // Ausreden fuer Haken
-                if ((hakenRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[905] == false)) {
+                if ((hakenRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[905])) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 650;
@@ -652,9 +652,9 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Ausreden fuer Grube
-                if (jamaRect.IsPointInRect(pTemp) == true) {
+                if (jamaRect.IsPointInRect(pTemp)) {
                     // beim 1. Mal reinfallen
-                    if (mainFrame.Actions[908] == false) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 700;
                     } else {
                         // nur Ausreden
@@ -664,9 +664,9 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // an Leine ziehen mit Stock oder sowas
-                if (leineRect.IsPointInRect(pTemp) == true) {
+                if (leineRect.IsPointInRect(pTemp)) {
                     // beim 1. Mal immer reinfallen
-                    if (mainFrame.Actions[908] == false) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 700;
                     } else {
                         switch (mainFrame.whatItem) {
@@ -675,7 +675,7 @@ public class Hojnt1 extends Mainloc {
                             case 9: // wuda+hocka
                             case 10: // wuda + wacka
                             case 11: // wuda + dryba
-                                if (mainFrame.Actions[905] == false) {
+                                if (!mainFrame.Actions[905]) {
                                     mainFrame.Actions[216] = false;
                                     mainFrame.Actions[217] = true;
                                     mainFrame.Actions[218] = false;
@@ -693,25 +693,25 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // an Hoelzern mit Gegenstand, immer Ausrede
-                if (hoelzerRect.IsPointInRect(pTemp) == true) {
+                if (hoelzerRect.IsPointInRect(pTemp)) {
                     nextActionID = 166;
                     pTemp = Phoelzer;
                 }
 
                 // Ausrede fuer Rebhuehner1
-                if (kurotwy1Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 420;
                     pTemp = Pkurotwy1;
                 }
 
                 // Ausrede fuer Rebhuehner2
-                if (kurotwy2Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 420;
                     pTemp = Pkurotwy2;
                 }
 
                 // Ausrede fuer Schatten (Fenster1)
-                if (wokno1Rect.IsPointInRect(pTemp) == true) {
+                if (wokno1Rect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                         case 18: // bron
@@ -725,7 +725,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Ausrede fuer Schatten (Fenster2)
-                if (wokno2Rect.IsPointInRect(pTemp) == true) {
+                if (wokno2Rect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                         case 18: // bron
@@ -739,19 +739,19 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Ausrede fuer Axt
-                if (sekeraRect.IsPointInRect(pTemp) == true) {
+                if (sekeraRect.IsPointInRect(pTemp)) {
                     nextActionID = 440;
                     pTemp = Psekera;
                 }
 
                 // Ausrede fuer Tuer
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     nextActionID = 450;
                     pTemp = Pdurje;
                 }
 
                 // Ausrede fuer Drjewo
-                if (drjewoRect.IsPointInRect(pTemp) == true) {
+                if (drjewoRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                             nextActionID = 680;
@@ -765,7 +765,7 @@ public class Hojnt1 extends Mainloc {
 
                 // hier K abfangen, wenn bei Anim und will zum Jaeger gehen
                 // muss als letztes in der Liste stehen !!!!
-                if ((mainFrame.Actions[231] == true) && (brMega.IsPointInRect(pTemp) == true)) {
+                if ((mainFrame.Actions[231]) && (brMega.IsPointInRect(pTemp))) {
                     nextActionID = 320;
                     pTemp = Pmega;
                 }
@@ -783,7 +783,6 @@ public class Hojnt1 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -794,18 +793,18 @@ public class Hojnt1 extends Mainloc {
                 nextActionID = 0;
 
                 // nach Njedz gehen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (obererAusgang.IsPointInRect(kt) == false) {
+                    if (!obererAusgang.IsPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -813,18 +812,18 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // nach Wjes gehen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -832,14 +831,14 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Haken ansehen
-                if ((hakenRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[905] == false)) {
+                if ((hakenRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[905])) {
                     nextActionID = 1;
                     pTemp = Phaken;
                 }
 
                 // Jama ansehen
-                if (jamaRect.IsPointInRect(pTemp) == true) {
-                    if (mainFrame.Actions[908] == false) {
+                if (jamaRect.IsPointInRect(pTemp)) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 700;
                     } else {
                         nextActionID = 2;
@@ -848,8 +847,8 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Leine ansehen
-                if (leineRect.IsPointInRect(pTemp) == true) {
-                    if (mainFrame.Actions[908] == false) {
+                if (leineRect.IsPointInRect(pTemp)) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 690;
                     } else {
                         nextActionID = 3;
@@ -858,56 +857,56 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Hoelzer ansehen
-                if (hoelzerRect.IsPointInRect(pTemp) == true) {
+                if (hoelzerRect.IsPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = Phoelzer;
                 }
 
                 // Rebhuehner1 ansehen
-                if (kurotwy1Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pkurotwy1;
                 }
 
                 // Rebhuehner2 ansehen
-                if (kurotwy2Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pkurotwy2;
                 }
 
                 // Schatten (Fenster1) ansehen
-                if (wokno1Rect.IsPointInRect(pTemp) == true) {
+                if (wokno1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwokno1;
                 }
 
                 // Schatten (Fenster2) ansehen
-                if (wokno2Rect.IsPointInRect(pTemp) == true) {
+                if (wokno2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwokno2;
                 }
 
                 // Axt ansehen
-                if (sekeraRect.IsPointInRect(pTemp) == true) {
+                if (sekeraRect.IsPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = Psekera;
                 }
 
                 // Tuer ansehen
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     nextActionID = 8;
                     pTemp = Pdurje;
                 }
 
                 // Drjewo ansehen
-                if (drjewoRect.IsPointInRect(pTemp) == true) {
+                if (drjewoRect.IsPointInRect(pTemp)) {
                     nextActionID = 9;
                     pTemp = Pdrjewo;
                 }
 
                 // hier K abfangen, wenn bei Anim und will zum Jaeger gehen
                 // muss als letztes in der Liste stehen !!!
-                if ((mainFrame.Actions[231] == true) && (brMega.IsPointInRect(pTemp) == true)) {
+                if ((mainFrame.Actions[231]) && (brMega.IsPointInRect(pTemp))) {
                     nextActionID = 320;
                     pTemp = Pmega;
                 }
@@ -918,18 +917,18 @@ public class Hojnt1 extends Mainloc {
                 // rechte Maustaste
 
                 // Weg nach Wjes anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Njedz anschauen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Haken mitnehmen ?
-                if ((hakenRect.IsPointInRect(pTemp) == true) &&
-                        (mainFrame.Actions[905] == false)) {
+                if ((hakenRect.IsPointInRect(pTemp)) &&
+                        (!mainFrame.Actions[905])) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Phaken);
                     mainFrame.repaint();
@@ -937,8 +936,8 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Jama mitnehmen ?
-                if (jamaRect.IsPointInRect(pTemp) == true) {
-                    if (mainFrame.Actions[908] == false) {
+                if (jamaRect.IsPointInRect(pTemp)) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 700;
                     } else {
                         nextActionID = 55;
@@ -949,9 +948,9 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Leine benutzen geht nicht !
-                if (leineRect.IsPointInRect(pTemp) == true) {
+                if (leineRect.IsPointInRect(pTemp)) {
                     // beim 1. Mal reinfallen
-                    if (mainFrame.Actions[908] == false) {
+                    if (!mainFrame.Actions[908]) {
                         nextActionID = 690;
                     } else {
                         nextActionID = 53;
@@ -962,9 +961,9 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Hoelzer benutzen endet in Ausrede
-                if (hoelzerRect.IsPointInRect(pTemp) == true) {
+                if (hoelzerRect.IsPointInRect(pTemp)) {
                     // wenn in Animszene, dann kommt Jaeger zurueck
-                    if (mainFrame.Actions[231] == true) {
+                    if (mainFrame.Actions[231]) {
                         nextActionID = 320;
                     } else {
                         nextActionID = 190;
@@ -975,7 +974,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Kurotwy1 mitnehmen
-                if (kurotwy1Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 600;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pkurotwy1);
                     mainFrame.repaint();
@@ -983,7 +982,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Kurotwy2 mitnehmen
-                if (kurotwy2Rect.IsPointInRect(pTemp) == true) {
+                if (kurotwy2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 600;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pkurotwy2);
                     mainFrame.repaint();
@@ -991,7 +990,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Wokno1 mitnehmen
-                if (wokno1Rect.IsPointInRect(pTemp) == true) {
+                if (wokno1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 610;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwokno1);
                     mainFrame.repaint();
@@ -999,7 +998,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Wokno2 mitnehmen
-                if (wokno2Rect.IsPointInRect(pTemp) == true) {
+                if (wokno2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 610;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwokno2);
                     mainFrame.repaint();
@@ -1007,9 +1006,9 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Sekera mitnehmen
-                if (sekeraRect.IsPointInRect(pTemp) == true) {
+                if (sekeraRect.IsPointInRect(pTemp)) {
                     // wenn in Animszene, dann kommt Jaeger zurueck
-                    if (mainFrame.Actions[231] == true) {
+                    if (mainFrame.Actions[231]) {
                         nextActionID = 320;
                     } else {
                         nextActionID = 620;
@@ -1020,7 +1019,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Durje mitnehmen
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     nextActionID = 630;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdurje);
                     mainFrame.repaint();
@@ -1028,7 +1027,7 @@ public class Hojnt1 extends Mainloc {
                 }
 
                 // Drjewo mitnehmen
-                if (drjewoRect.IsPointInRect(pTemp) == true) {
+                if (drjewoRect.IsPointInRect(pTemp)) {
                     nextActionID = 640;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdrjewo);
                     mainFrame.repaint();
@@ -1048,7 +1047,7 @@ public class Hojnt1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -1060,28 +1059,24 @@ public class Hojnt1 extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    ((hakenRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[905] == false)) ||
-                    (jamaRect.IsPointInRect(pTemp) == true) || (leineRect.IsPointInRect(pTemp) == true) ||
-                    (hoelzerRect.IsPointInRect(pTemp) == true) ||
-                    (kurotwy1Rect.IsPointInRect(pTemp) == true) || (kurotwy2Rect.IsPointInRect(pTemp) == true) ||
-                    (wokno1Rect.IsPointInRect(pTemp) == true) || (wokno2Rect.IsPointInRect(pTemp) == true) ||
-                    (sekeraRect.IsPointInRect(pTemp) == true) || (durjeRect.IsPointInRect(pTemp) == true) ||
-                    (drjewoRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    ((hakenRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[905])) ||
+                    (jamaRect.IsPointInRect(pTemp)) || (leineRect.IsPointInRect(pTemp)) ||
+                    (hoelzerRect.IsPointInRect(pTemp)) ||
+                    (kurotwy1Rect.IsPointInRect(pTemp)) || (kurotwy2Rect.IsPointInRect(pTemp)) ||
+                    (wokno1Rect.IsPointInRect(pTemp)) || (wokno2Rect.IsPointInRect(pTemp)) ||
+                    (sekeraRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp)) ||
+                    (drjewoRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -1089,7 +1084,7 @@ public class Hojnt1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -1097,13 +1092,13 @@ public class Hojnt1 extends Mainloc {
                 return;
             }
 
-            if ((hakenRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[905] == false) ||
-                    (jamaRect.IsPointInRect(pTemp) == true) || (leineRect.IsPointInRect(pTemp) == true) ||
-                    (hoelzerRect.IsPointInRect(pTemp) == true) ||
-                    (kurotwy1Rect.IsPointInRect(pTemp) == true) || (kurotwy2Rect.IsPointInRect(pTemp) == true) ||
-                    (wokno1Rect.IsPointInRect(pTemp) == true) || (wokno2Rect.IsPointInRect(pTemp) == true) ||
-                    (sekeraRect.IsPointInRect(pTemp) == true) || (durjeRect.IsPointInRect(pTemp) == true) ||
-                    (drjewoRect.IsPointInRect(pTemp) == true)) {
+            if ((hakenRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[905]) ||
+                    (jamaRect.IsPointInRect(pTemp)) || (leineRect.IsPointInRect(pTemp)) ||
+                    (hoelzerRect.IsPointInRect(pTemp)) ||
+                    (kurotwy1Rect.IsPointInRect(pTemp)) || (kurotwy2Rect.IsPointInRect(pTemp)) ||
+                    (wokno1Rect.IsPointInRect(pTemp)) || (wokno2Rect.IsPointInRect(pTemp)) ||
+                    (sekeraRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp)) ||
+                    (drjewoRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -1111,7 +1106,7 @@ public class Hojnt1 extends Mainloc {
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp) == true) {
+            if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -1137,12 +1132,12 @@ public class Hojnt1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -1175,7 +1170,6 @@ public class Hojnt1 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -1195,8 +1189,8 @@ public class Hojnt1 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -1261,7 +1255,7 @@ public class Hojnt1 extends Mainloc {
 
             case 6:
                 // Wokno anschauen
-                if (mainFrame.Actions[231] == false) {
+                if (!mainFrame.Actions[231]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00015"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00016"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00017"),
@@ -1300,7 +1294,7 @@ public class Hojnt1 extends Mainloc {
 
             case 50:
                 // Haken mitnehmen
-                if (mainFrame.Actions[231] == true) {
+                if (mainFrame.Actions[231]) {
                     mainFrame.krabat.SetFacing(fHaken);
                     mainFrame.krabat.nAnimation = 120;
                     WhichItem = 5;
@@ -1375,7 +1369,7 @@ public class Hojnt1 extends Mainloc {
 
             case 162:
                 // warten Ende anim
-                if (mainFrame.krabat.fAnimHelper == true) {
+                if (mainFrame.krabat.fAnimHelper) {
                     nextActionID = 163;
                 }
                 break;
@@ -1410,7 +1404,7 @@ public class Hojnt1 extends Mainloc {
 
             case 171:
                 // Warten auf Ende Klingeln
-                if (klingeln == false) {
+                if (!klingeln) {
                     nextActionID = 175;
                 }
                 break;
@@ -1425,7 +1419,7 @@ public class Hojnt1 extends Mainloc {
             // Hier Actions fuer Beginn LeineZiehAnim
             case 180:
                 // Anim "Ziehe mit Stock an Leine"
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     break;
                 }
                 mainFrame.fPlayAnim = true;
@@ -1485,7 +1479,7 @@ public class Hojnt1 extends Mainloc {
 
             case 220:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 225;
                 }
                 break;
@@ -1498,7 +1492,7 @@ public class Hojnt1 extends Mainloc {
 
             case 227:
                 // Falle wieder in Ordnung bringen
-                if (istJaegerGebueckt == true) {
+                if (istJaegerGebueckt) {
                     break;
                 }
                 mainFrame.wave.PlayFile("sfx/pasle2.wav");
@@ -1517,7 +1511,7 @@ public class Hojnt1 extends Mainloc {
 
             case 235:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 240;
                 }
                 break;
@@ -1532,7 +1526,7 @@ public class Hojnt1 extends Mainloc {
 
             case 245:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 250;
                 }
                 break;
@@ -1597,7 +1591,7 @@ public class Hojnt1 extends Mainloc {
 
             case 370:
                 // Skip zur Anim
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     break;
                 }
                 mainFrame.fPlayAnim = false;
@@ -1653,7 +1647,7 @@ public class Hojnt1 extends Mainloc {
 
             case 600:
                 // Kurotwy mitnehmen
-                if (mainFrame.Actions[231] == false) {
+                if (!mainFrame.Actions[231]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00051"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00052"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00053"),
@@ -1668,7 +1662,7 @@ public class Hojnt1 extends Mainloc {
 
             case 610:
                 // Wokno mitnehmen
-                if (mainFrame.Actions[231] == false) {
+                if (!mainFrame.Actions[231]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00057"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00058"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00059"),
@@ -1691,7 +1685,7 @@ public class Hojnt1 extends Mainloc {
 
             case 630:
                 // Durje mitnehmen
-                if (mainFrame.Actions[231] == false) {
+                if (!mainFrame.Actions[231]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00066"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00067"),
                             Start.stringManager.getTranslation("Loc1_Hojnt1_00068"),

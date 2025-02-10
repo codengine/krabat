@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Bow extends Mainanim {
-    private GenericImage[] bow;
+    private final GenericImage[] bow;
 
     private int Bowcount = 1;
 

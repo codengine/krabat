@@ -32,8 +32,8 @@ import java.io.IOException;
 
 public class Install extends Mainloc {
     private GenericImage background, Pfeil, DPfeil;
-    private GenericPoint pLO;
-    private Borderrect brPfeil;
+    private final GenericPoint pLO;
+    private final Borderrect brPfeil;
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -64,11 +64,11 @@ public class Install extends Mainloc {
 
     private static final int OffsetY = 30;
 
-    private Borderrect[] Rects;
-    private String[] Texty;
+    private final Borderrect[] Rects;
+    private final String[] Texty;
 
-    private Borderrect[] LizenzRects;
-    private String LizenzTexty[];
+    private final Borderrect[] LizenzRects;
+    private final String[] LizenzTexty;
 
     private static final String Datei = "Krabat.lax";
 
@@ -95,9 +95,9 @@ public class Install extends Mainloc {
     private String TempString = "";
     private GenericPoint TempPoint = new GenericPoint(0, 0);
 
-    private File name;
+    private final File name;
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     // "richtiger" Konstruktor nachher
     public Install(Start caller) {
@@ -149,7 +149,7 @@ public class Install extends Mainloc {
         LizenzRects[3] = new Borderrect(200, 160, 200 + mainFrame.ifont.LineLength(LizenzTexty[3]), 160 + OffsetY);
         LizenzRects[4] = new Borderrect(200, 260, 200 + mainFrame.ifont.LineLength(LizenzTexty[4]), 260 + OffsetY);
 
-        if (TestInstallFile() == true) {
+        if (TestInstallFile()) {
             nextActionID = 100;
         } else {
             drawMe = true;
@@ -171,13 +171,13 @@ public class Install extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
 
-        if (drawMe == false) {
+        if (!drawMe) {
             DoAction();
             return;
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -227,7 +227,7 @@ public class Install extends Mainloc {
         mainFrame.ifont.drawString(g, TempString, TempPoint.x, TempPoint.y, FarbenArray[13]);
 
         // hier die Unterscheidung, ob Lizenz angenommen wurde oder nicht
-        if (licenseAccepted == true) {
+        if (licenseAccepted) {
             // Sprachenchooser immer anzeigen
             mainFrame.ifont.drawString(g, "Pro#su r#e#k wuzwoli#c", 93, 100, FarbenArray[13]);
 
@@ -341,30 +341,30 @@ public class Install extends Mainloc {
         GenericPoint pTemp = e.getPoint();
 
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
-            if (licenseAccepted == true) {
+            if (licenseAccepted) {
                 // linke Maustaste waehlt aus, hier im richtigen Menue
-                if (Rects[1].IsPointInRect(pTemp) == true) {
+                if (Rects[1].IsPointInRect(pTemp)) {
                     RecChosen = 1;
                 }
-                if (Rects[2].IsPointInRect(pTemp) == true) {
+                if (Rects[2].IsPointInRect(pTemp)) {
                     RecChosen = 2;
                 }
-                if ((Rects[3].IsPointInRect(pTemp) == true) && (RecChosen != 0)) {
+                if ((Rects[3].IsPointInRect(pTemp)) && (RecChosen != 0)) {
                     CdChosen = 3;
                 }
-                if ((Rects[4].IsPointInRect(pTemp) == true) && (RecChosen != 0)) {
+                if ((Rects[4].IsPointInRect(pTemp)) && (RecChosen != 0)) {
                     CdChosen = 4;
                 }
-                if ((Rects[5].IsPointInRect(pTemp) == true) && (RecChosen != 0)) {
+                if ((Rects[5].IsPointInRect(pTemp)) && (RecChosen != 0)) {
                     CdChosen = 5;
                 }
-                if ((Rects[6].IsPointInRect(pTemp) == true) && (CdChosen != 0)) {
+                if ((Rects[6].IsPointInRect(pTemp)) && (CdChosen != 0)) {
                     SoundChosen = 6;
                 }
-                if ((Rects[7].IsPointInRect(pTemp) == true) && (CdChosen != 0)) {
+                if ((Rects[7].IsPointInRect(pTemp)) && (CdChosen != 0)) {
                     SoundChosen = 7;
                 }
-                if ((brPfeil.IsPointInRect(pTemp) == true) && (SoundChosen != 0)) {
+                if ((brPfeil.IsPointInRect(pTemp)) && (SoundChosen != 0)) {
                     Text2 = "";
                     if (RecChosen == 1) {
                         Text2 += Rec1;
@@ -397,11 +397,11 @@ public class Install extends Mainloc {
                 }
             } else {
                 // hier das	Lizenzabfragemenu
-                if ((LizenzRects[1].IsPointInRect(pTemp) == true) || (LizenzRects[2].IsPointInRect(pTemp) == true)) {
+                if ((LizenzRects[1].IsPointInRect(pTemp)) || (LizenzRects[2].IsPointInRect(pTemp))) {
                     licenseAccepted = true;
                 }
 
-                if ((LizenzRects[3].IsPointInRect(pTemp) == true) || (LizenzRects[4].IsPointInRect(pTemp) == true)) {
+                if ((LizenzRects[3].IsPointInRect(pTemp)) || (LizenzRects[4].IsPointInRect(pTemp))) {
                     System.exit(0);
                 }
             }
@@ -427,7 +427,7 @@ public class Install extends Mainloc {
         // Move Highlighted
 
         for (int i = 1; i < Rects.length; i++) {
-            if (Rects[i].IsPointInRect(pTemp) == true) {
+            if (Rects[i].IsPointInRect(pTemp)) {
                 selected = i;
             }
         }
@@ -436,7 +436,7 @@ public class Install extends Mainloc {
         LicenseChosen = 0;
 
         for (int i = 1; i < LizenzRects.length; i++) {
-            if (LizenzRects[i].IsPointInRect(pTemp) == true) {
+            if (LizenzRects[i].IsPointInRect(pTemp)) {
                 LicenseChosen = i;
             }
         }
@@ -448,11 +448,11 @@ public class Install extends Mainloc {
         }
 
         menuitem = 0;
-        if (brPfeil.IsPointInRect(pTemp) == true) {
+        if (brPfeil.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }
@@ -493,26 +493,22 @@ public class Install extends Mainloc {
     // Methode, die testet, ob Installer ueberhaupt noch noetig ist
     private boolean TestInstallFile() {
         // keine Datei gefunden, also Fehler !
-        if ((LoadFile()) == false) {
+        if (!(LoadFile())) {
             return false;
         }
 
         if (SearchStringInByte(Such10) == 0) {
             return false;
         }
-        if (SearchStringInByte(Such11) == 0) {
-            return false;
-        }
+        return SearchStringInByte(Such11) != 0;
 
         // beides gefunden, also Installer schon Mal gelaufen...
-
-        return true;
     }
 
     // Methode, die das komplette Aendern des Files uebernimmt
     private boolean ModifyInstallFile() {
         // zuerst Datei reinladen
-        if ((LoadFile()) == false) {
+        if (!(LoadFile())) {
             return false;
         }
 
@@ -538,21 +534,17 @@ public class Install extends Mainloc {
         Einfuege(dritter, Text2.length());
         Einsetze(Text2, dritter);
 
-        if ((SaveFile()) == false) {
-            return false;
-        }
-
-        return true;
+        return SaveFile();
     }
 
     // File wird gesucht und geladen
     private boolean LoadFile() {
-        if (name.exists() == false) {
+        if (!name.exists()) {
             System.out.println("Fehlerhafte Installation - Krabat.lax fehlt !");
             return false;
         }
 
-        if (name.canWrite() == false) {
+        if (!name.canWrite()) {
             System.out.println("Kann Krabat.lax nicht veraendern !");
             return false;
         }
@@ -570,7 +562,7 @@ public class Install extends Mainloc {
             // Position = Data.read (Feld);
             Data.close();
         } catch (IOException e) {
-            System.out.println("File read error " + e.toString());
+            System.out.println("File read error " + e);
             // Data.close();
             return false;
         }
@@ -586,7 +578,7 @@ public class Install extends Mainloc {
             Data.write(Feld);
             Data.close();
         } catch (IOException e) {
-            System.out.println("File write error " + e.toString());
+            System.out.println("File write error " + e);
             // Data.close();
             return false;
         }
@@ -612,9 +604,9 @@ public class Install extends Mainloc {
                 }
                 j++;
             }
-            while ((exit == false) && (j < which.length()));
+            while ((!exit) && (j < which.length()));
 
-            if (exit == false) {
+            if (!exit) {
                 System.out.println("String wurde gefunden !");
                 return (i + j);
             }

@@ -28,12 +28,12 @@ import de.codengine.platform.GenericImage;
 
 public class Wudzerneu2 extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] angler_left_stand;
-    private GenericImage[] angler_right_stand;
-    private GenericImage[] angler_walk;
-    private GenericImage[] angler_left_talk_body;
-    private GenericImage[] angler_right_talk_body;
-    private GenericImage[] angler_talk_head;
+    private final GenericImage[] angler_left_stand;
+    private final GenericImage[] angler_right_stand;
+    private final GenericImage[] angler_walk;
+    private final GenericImage[] angler_left_talk_body;
+    private final GenericImage[] angler_right_talk_body;
+    private final GenericImage[] angler_talk_head;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -264,7 +264,7 @@ public class Wudzerneu2 extends Mainanim {
     // je nach Laufrichtung Krabat zeichnen
     public void drawWudzer2(GenericDrawingContext offGraph, boolean schautSichUm) {
         // Extrawurst fuer stehen und sich umschauen
-        if (schautSichUm == true) {
+        if (schautSichUm) {
             // beim Rumsitzen, selbe Bodyevaluation wie beim rumstehen/sitzen
             // Positionen umschalten
             if ((--Verhinderstand) < 1) {
@@ -290,7 +290,7 @@ public class Wudzerneu2 extends Mainanim {
             return; // und tschuess
         }
 
-        if (laeuftNicht == true) {
+        if (laeuftNicht) {
             // beim Rumsitzen
             // Positionen umschalten bzw. Zwinkern berechnen
             if ((--Verhinderstand) < 1) {
@@ -383,7 +383,7 @@ public class Wudzerneu2 extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        if (laeuftNicht == true) {
+        if (laeuftNicht) {
             return (pox - (CWIDTH / 2));
         } else {
             return (pox - (CWIDTH / 4) - LAUFPUNKTVERSCHIEBUNG);
@@ -428,6 +428,6 @@ public class Wudzerneu2 extends Mainanim {
         int up = getUpPos(((int) xps), ((int) yps));
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - ((laeuftNicht == false) ? 50 : 0), CHEIGHT);
+        g.drawImage(ktemp, left, up, CWIDTH - ((!laeuftNicht) ? 50 : 0), CHEIGHT);
     }
 }

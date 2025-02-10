@@ -25,9 +25,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class BurRalbicy extends Mainanim {
-    private GenericImage[] bur_head;
-    private GenericImage[] bur_body;
-    private GenericImage[] bur_work;
+    private final GenericImage[] bur_head;
+    private final GenericImage[] bur_body;
+    private final GenericImage[] bur_work;
 
     private int Head = 1;
     private int Body = 1;
@@ -172,7 +172,7 @@ public class BurRalbicy extends Mainanim {
 
                 case 2: // Arbeitsphase
                     if ((--Arbeitspause) < 1) {
-                        if (noSoundFromBauer == false) {
+                        if (!noSoundFromBauer) {
                             evalSound(2);
                         }
                         Work = 3;
@@ -183,9 +183,9 @@ public class BurRalbicy extends Mainanim {
                 case 3: // Arbeitsphase, Entscheidung Weiterarbeiten oder Pause
                     if (((--Arbeitspause) < 1) && ((--Verhinderarbeit) < 1)) {
                         zuffi = (int) Math.round(Math.random() * 20);
-                        if ((zuffi < 10) && (Listenflag == false)) {
+                        if ((zuffi < 10) && (!Listenflag)) {
                             Work = 1;
-                            if (noSoundFromBauer == false) {
+                            if (!noSoundFromBauer) {
                                 evalSound(1);
                             }
                         } else {
@@ -234,13 +234,13 @@ public class BurRalbicy extends Mainanim {
                 case 8: // Pausenanim (3), hier grosse Entscheidungen
                     if ((--Pausenlaenge) < 1) {
                         zuffi = (int) Math.round(Math.random() * 100);
-                        if ((zuffi < 10) && (Listenflag == false)) {
+                        if ((zuffi < 10) && (!Listenflag)) {
                             Work = 1;
-                            if (noSoundFromBauer == false) {
+                            if (!noSoundFromBauer) {
                                 evalSound(1);
                             }
                         }
-                        if ((zuffi > 9) && (zuffi < 20) && (Listenflag == false)) {
+                        if ((zuffi > 9) && (zuffi < 20) && (!Listenflag)) {
                             Work = 5;
                         }
                         if ((zuffi > 19) && (zuffi < 30)) {

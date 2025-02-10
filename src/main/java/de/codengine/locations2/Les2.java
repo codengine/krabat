@@ -113,7 +113,7 @@ public class Les2 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -128,12 +128,12 @@ public class Les2 extends Mainloc2 {
         g.drawImage(background, 0, 0, null);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
-        if (muellerVisible == true) {
+        if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
@@ -155,7 +155,7 @@ public class Les2 extends Mainloc2 {
         }
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
@@ -166,7 +166,7 @@ public class Les2 extends Mainloc2 {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // Krabat hinterm Gras ??
-        if (strauchRect.IsPointInRect(pKrTemp) == true) {
+        if (strauchRect.IsPointInRect(pKrTemp)) {
             g.drawImage(strauch, 0, 381, null);
         }
 
@@ -177,7 +177,7 @@ public class Les2 extends Mainloc2 {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
@@ -211,7 +211,6 @@ public class Les2 extends Mainloc2 {
             mainFrame.talkCount = 1;
         }
         outputText = "";
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -221,7 +220,6 @@ public class Les2 extends Mainloc2 {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -233,7 +231,6 @@ public class Les2 extends Mainloc2 {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////

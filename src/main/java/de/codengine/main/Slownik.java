@@ -35,14 +35,15 @@ public class Slownik extends Mainanim {
     private static final int BREITE = 35; // dto.
     private static final int HOEHE = 53;
 
-    private Borderrect brPfeilOben, brPfeilUnten;
+    private final Borderrect brPfeilOben;
+    private final Borderrect brPfeilUnten;
 
     private int Cursorform = 200;
 
     // private String outputText = "";
     // private GenericPoint outputTextPos;
 
-    private String[][] Eintrag;
+    private final String[][] Eintrag;
 
     private int Index = 0;
 
@@ -68,7 +69,7 @@ public class Slownik extends Mainanim {
     private static final int HXANZA = 13;
     private static final int YANZA = 2;
 
-    private Borderrect brGesamt;   // Gesamtrect fuer Auswahlleiste
+    private final Borderrect brGesamt;   // Gesamtrect fuer Auswahlleiste
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -84,7 +85,7 @@ public class Slownik extends Mainanim {
 
     // Initialisierung ////////////////////////////////////////////////////////
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     // Instanz von dieser Location erzeugen
     public Slownik(Start caller) {
@@ -128,7 +129,7 @@ public class Slownik extends Mainanim {
 
         byte[] Feld = new byte[]{};
 
-        if (mainFrame.storageManager.isSlownikSupported() == true) {
+        if (mainFrame.storageManager.isSlownikSupported()) {
             Feld = mainFrame.storageManager.loadSlownik(File);
         }
 
@@ -183,7 +184,7 @@ public class Slownik extends Mainanim {
     public void paintSlownik(GenericDrawingContext g) {
 
         // Credits-Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1280, 480);
             Cursorform = 200;
@@ -268,7 +269,7 @@ public class Slownik extends Mainanim {
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // linke Maustaste
             // Pfeil-Oben gedrueckt
-            if (brPfeilOben.IsPointInRect(pTemp) == true) {
+            if (brPfeilOben.IsPointInRect(pTemp)) {
                 Index -= 10;
                 mainFrame.Clipset = false;
                 if (Index < 0) {
@@ -278,7 +279,7 @@ public class Slownik extends Mainanim {
             }
 
             // Pfeil-Unten gedrueckt
-            if (brPfeilUnten.IsPointInRect(pTemp) == true) {
+            if (brPfeilUnten.IsPointInRect(pTemp)) {
                 Index += 10;
                 mainFrame.Clipset = false;
                 if (Index > (Nummer - 10)) {
@@ -288,7 +289,7 @@ public class Slownik extends Mainanim {
             }
 
             // Buckstabe wurde ausgewaehlt
-            if (brGesamt.IsPointInRect(pTemp) == true) {
+            if (brGesamt.IsPointInRect(pTemp)) {
                 int adresse = 0;
 
                 // Y-Offset berechnen
@@ -307,7 +308,6 @@ public class Slownik extends Mainanim {
         } else {
             // rechte Maustaste, sofort raus (immer)
             Deactivate();
-            return;
         }
 
     }
@@ -324,15 +324,15 @@ public class Slownik extends Mainanim {
 
         // Highlight im Menue festlegen
         menuitem = 0;
-        if (brPfeilOben.IsPointInRect(pTemp) == true) {
+        if (brPfeilOben.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if (brPfeilUnten.IsPointInRect(pTemp) == true) {
+        if (brPfeilUnten.IsPointInRect(pTemp)) {
             menuitem = 2;
         }
 
         int oldskip = Skip;
-        if (brGesamt.IsPointInRect(pTemp) == false) {
+        if (!brGesamt.IsPointInRect(pTemp)) {
             Skip = -1;
         } else {
             Skip = 0;
@@ -345,7 +345,7 @@ public class Slownik extends Mainanim {
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }
@@ -367,7 +367,6 @@ public class Slownik extends Mainanim {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             Deactivate();
-            return;
         }
     }
 

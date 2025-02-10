@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class BurHanza extends Mainanim {
-    private GenericImage[] bur_work;
-    private GenericImage[] bur_talk;
+    private final GenericImage[] bur_work;
+    private final GenericImage[] bur_talk;
 
     public static final int Breite = 53;
     public static final int Hoehe = 54;
@@ -100,7 +100,7 @@ public class BurHanza extends Mainanim {
                     int zf = (int) (Math.random() * 50);
                     if (zf < 40) {
                         Work = 0;
-                    } else if ((mainFrame.inventory.noBackgroundSound == false) || (mainFrame.invCursor == false)) {
+                    } else if ((!mainFrame.inventory.noBackgroundSound) || (!mainFrame.invCursor)) {
                         mainFrame.wave.PlayFile("sfx/nepl.wav");
                     }
                 }

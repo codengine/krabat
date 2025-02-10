@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class KrabatShoot extends Mainanim {
-    private GenericImage[] krabat_schiessen;
+    private final GenericImage[] krabat_schiessen;
     private GenericImage stein;
 
     private int Counter = 0;
@@ -34,13 +34,13 @@ public class KrabatShoot extends Mainanim {
     private static final int CWIDTH = 50;
     private static final int CHEIGHT = 100;
 
-    private GenericPoint kamjenStart = new GenericPoint(275, 268);
-    private GenericPoint kamjenStop = new GenericPoint(428, 162);
+    private final GenericPoint kamjenStart = new GenericPoint(275, 268);
+    private final GenericPoint kamjenStop = new GenericPoint(428, 162);
     private float kamjenx;
     private float kamjeny;
 
     private static final float XOFFSET = 10;
-    private float Yoffset;
+    private final float Yoffset;
 
     public int maxx = 0;
     public float zoomf = 0.0f;

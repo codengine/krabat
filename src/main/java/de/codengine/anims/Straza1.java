@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Straza1 extends Mainanim {
-    private GenericImage straza_stand[];
-    private GenericImage straza_talk[];
+    private final GenericImage[] straza_stand;
+    private final GenericImage[] straza_talk;
 
     public static final int Breite = 100;
     public static final int Hoehe = 135;
@@ -81,7 +81,7 @@ public class Straza1 extends Mainanim {
             int zuffi = (int) (Math.random() * 50);
 
             // hat ausgestreckten Arm
-            if (versperrtWeg == true) {
+            if (versperrtWeg) {
                 // Reset
                 if (Stand < 2) {
                     Stand = 2;

@@ -57,8 +57,8 @@ public class Jezba extends Mainloc2 {
 
         // Hier Inventarvektor reduzieren (Karte austauschen)
         mainFrame.inventory.ResetInventory();
-        mainFrame.inventory.vInventory.addElement(new Integer(12)); // Feuersteine behaelt K
-        mainFrame.inventory.vInventory.addElement(new Integer(54)); // "Dresdener Karte" der Lausitz
+        mainFrame.inventory.vInventory.addElement(Integer.valueOf(12)); // Feuersteine behaelt K
+        mainFrame.inventory.vInventory.addElement(Integer.valueOf(54)); // "Dresdener Karte" der Lausitz
 
         InitLocation(oldLocation);
         mainFrame.Freeze(false);
@@ -91,14 +91,14 @@ public class Jezba extends Mainloc2 {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Fanfare 1x abspielen
-        if (playFanfare == false) {
+        if (!playFanfare) {
             playFanfare = true;
             mainFrame.wave.PlayFile("sfx/fanfara.wav");
         }
 
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -110,7 +110,7 @@ public class Jezba extends Mainloc2 {
         }
 
         // Hintergrund und Krabat zeichnen
-        if (showSecondPicture == false) {
+        if (!showSecondPicture) {
             g.drawImage(background, 0, 0, null);
         } else {
             g.drawImage(zweitesBild, 0, 0, null);
@@ -123,7 +123,7 @@ public class Jezba extends Mainloc2 {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if (mainFrame.talkCount > 0) {
@@ -157,7 +157,6 @@ public class Jezba extends Mainloc2 {
             mainFrame.talkCount = 1;
         }
         outputText = "";
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -167,7 +166,6 @@ public class Jezba extends Mainloc2 {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
 
     }
 
@@ -180,7 +178,6 @@ public class Jezba extends Mainloc2 {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////

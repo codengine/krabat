@@ -25,7 +25,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class IntroDomaPtack extends Mainanim {
-    private GenericImage[] vogel;
+    private final GenericImage[] vogel;
     private int x, y;
     private int animpos = 1;
     private boolean Gleiten = false;
@@ -59,11 +59,11 @@ public class IntroDomaPtack extends Mainanim {
     public boolean Flieg(GenericDrawingContext g) {
         if ((animpos == 1) || (animpos == 4)) {
             int glei = (int) Math.round(Math.random() * 30);
-            if ((glei < 29) && (Gleiten == false) && (start == false)) {
+            if ((glei < 29) && (!Gleiten) && (!start)) {
                 schalt = !(schalt);
-                if (schalt == true) {
+                if (schalt) {
                     oben = !(oben);
-                    if (oben == false) {
+                    if (!oben) {
                         animpos = 3;
                     } else {
                         animpos = 2;
@@ -89,7 +89,7 @@ public class IntroDomaPtack extends Mainanim {
             }
         } else {
             schalt = !(schalt);
-            if (schalt == true) {
+            if (schalt) {
                 animpos = 1;
             }
         }
@@ -97,8 +97,8 @@ public class IntroDomaPtack extends Mainanim {
         x -= 10;
 
         int versch = (int) Math.round(Math.random() * 20);
-        if ((versch > 10) && (start == false)) {
-            if (Gleiten == true) {
+        if ((versch > 10) && (!start)) {
+            if (Gleiten) {
                 y += 1;
             } else {
                 y -= 1;
@@ -113,7 +113,7 @@ public class IntroDomaPtack extends Mainanim {
                 gleitcount = MAXGLEIT;
             }
         } else {
-            if (start == true) {
+            if (start) {
                 y += 1;
             }
             if (y >= 60) {
@@ -132,11 +132,7 @@ public class IntroDomaPtack extends Mainanim {
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, null);
-        if (x < -50) {
-            return false;
-        } else {
-            return true;
-        }
+        return x >= -50;
     }
 }    						
     						

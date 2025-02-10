@@ -26,10 +26,10 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Handrij extends Mainanim {
-    private GenericImage hand_work[];
-    private GenericImage hand_down[];
-    private GenericImage hand_head[];
-    private GenericImage hand_body[];
+    private final GenericImage[] hand_work;
+    private final GenericImage[] hand_down;
+    private final GenericImage[] hand_head;
+    private final GenericImage[] hand_body;
 
     public static final int Breite = 97;
     public static final int Hoehe = 165;
@@ -133,7 +133,7 @@ public class Handrij extends Mainanim {
         // Zahrodnik redet
         if ((TalkPerson == 50) && (mainFrame.talkCount > 1)) {
             // Flag fuer nachher setzen
-            if (hatSchonGeredet == false) {
+            if (!hatSchonGeredet) {
                 hatSchonGeredet = true;
             }
 
@@ -156,7 +156,7 @@ public class Handrij extends Mainanim {
         }
 
         // schreibt gerade ein Stueck Papier
-        if (stelltErlaubnisAus == true) {
+        if (stelltErlaubnisAus) {
             // wie Arbeiten, nur nicht alle Images
             if ((--Verhinderwork) < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
@@ -169,16 +169,16 @@ public class Handrij extends Mainanim {
         }
 
         // Gibt Erlaubnis an Krabat
-        if (gibtErlaubnis == true) {
+        if (gibtErlaubnis) {
             offGraph.drawImage(hand_head[0], talkpos.x, talkpos.y, null);
             offGraph.drawImage(hand_body[4], talkpos.x, talkpos.y + BODYOFFSET, null);
             return;
         }
 
         // Zahrod hoert zu, ist also nach links gedreht
-        if (isListening == true) {
+        if (isListening) {
             // Flag fuer nachher setzen
-            if (hatSchonGeredet == false) {
+            if (!hatSchonGeredet) {
                 hatSchonGeredet = true;
             }
 
@@ -198,7 +198,7 @@ public class Handrij extends Mainanim {
         }
 
         // nix von alledem, also entweder arbeiten oder nach vorn schauen
-        if (hatSchonGeredet == true) {
+        if (hatSchonGeredet) {
             // schaut nach vorn
             if (Down == 1) {
                 Down = 0;

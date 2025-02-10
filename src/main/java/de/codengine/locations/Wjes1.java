@@ -30,12 +30,12 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Wjes1 extends Mainloc {
     private GenericImage backl, backr, sky, wjes2, wjes3, wjes4, wjes5;
-    private GenericImage[] Schild;
-    private GenericImage[] Feuer;
+    private final GenericImage[] Schild;
+    private final GenericImage[] Feuer;
     private boolean setScroll = false;
     private int scrollwert;
     private KowarSunow schmied;
-    private Multiple2 Dialog;
+    private final Multiple2 Dialog;
     private boolean ListenSchmied = false;
 
     private int animcount = 1;
@@ -110,7 +110,7 @@ public class Wjes1 extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 break;
             case 7: // Aus Sunow kommend
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -120,7 +120,7 @@ public class Wjes1 extends Mainloc {
                 setScroll = true;
                 break;
             case 9: // Von Horiz aus
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -130,7 +130,7 @@ public class Wjes1 extends Mainloc {
                 setScroll = true;
                 break;
             case 14: // Von Jaeger aus
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -140,7 +140,7 @@ public class Wjes1 extends Mainloc {
                 setScroll = true;
                 break;
             case 10: // Von Weiden aus
-                if (mainFrame.komme_von_karte == true) {
+                if (mainFrame.komme_von_karte) {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -272,9 +272,9 @@ public class Wjes1 extends Mainloc {
         // Hier faellt das MC-Abkuerzen raus, weil Anims noch im Hintergrund laufen muessen !!!!!!!!!!!!!
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -290,7 +290,7 @@ public class Wjes1 extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // Parallaxer ausfuehren
-        if (mainFrame.isScrolling == true) {
+        if (mainFrame.isScrolling) {
             int xtemp = mainFrame.scrollx - 5;
             if (xtemp < 0) {
                 xtemp = 0;
@@ -327,7 +327,7 @@ public class Wjes1 extends Mainloc {
         // Feuer animieren
         if (mainFrame.scrollx > 320) {
             switchanim = !(switchanim);
-            if (switchanim == true) {
+            if (switchanim) {
                 Feuercount++;
                 if (Feuercount == 11) {
                     Feuercount = 0;
@@ -384,22 +384,22 @@ public class Wjes1 extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm wjes2 (nur Clipping - Region wird neugezeichnet)
-        if (wjes2Rect.IsPointInRect(pKrTemp) == true) {
+        if (wjes2Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(wjes2, 215, 339, null);
         }
 
         // hinterm wjes3 (nur Clipping - Region wird neugezeichnet)
-        if (wjes3Rect.IsPointInRect(pKrTemp) == true) {
+        if (wjes3Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(wjes3, 911, 205, null);
         }
 
         // hinterm wjes4 (nur Clipping - Region wird neugezeichnet)
-        if (wjes4Rect.IsPointInRect(pKrTemp) == true) {
+        if (wjes4Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(wjes4, 736, 367, null);
         }
 
         // hinterm wjes5 (nur Clipping - Region wird neugezeichnet)
-        if (wjes5Rect.IsPointInRect(pKrTemp) == true) {
+        if (wjes5Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(wjes5, 1191, 247, null);
         }
 
@@ -408,7 +408,7 @@ public class Wjes1 extends Mainloc {
             wartezeit--;
             // System.out.print (wartezeit + " ");
             if (wartezeit == 0) {
-                if (animfor == true) {
+                if (animfor) {
                     animcount++;
                     if (animcount == 6) {
                         animcount = 4;
@@ -428,7 +428,7 @@ public class Wjes1 extends Mainloc {
             mi = g.getClipBounds();
             g.setClip(903, 259, 71, 51);
             g.drawImage(Schild[animcount], 903, 259, null);
-            g.setClip((int) mi.getX(), (int) mi.getY(), (int) mi.getWidth(), (int) mi.getHeight());
+            g.setClip(mi.getX(), mi.getY(), mi.getWidth(), mi.getHeight());
         }
 
         // sonst noch was zu tun ?
@@ -438,7 +438,7 @@ public class Wjes1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -456,7 +456,7 @@ public class Wjes1 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
@@ -474,7 +474,7 @@ public class Wjes1 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -494,7 +494,7 @@ public class Wjes1 extends Mainloc {
         pTemp.x += mainFrame.scrollx;
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -504,7 +504,7 @@ public class Wjes1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linke Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -512,28 +512,28 @@ public class Wjes1 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Sudobja
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = Psudobja;
                 }
 
                 // Ausreden fuer Wokno
-                if (woknoRect.IsPointInRect(pTemp) == true) {
+                if (woknoRect.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = Pwokno;
                 }
 
                 // Ausreden fuer Schild
-                if (schildRect.IsPointInRect(pTemp) == true) {
+                if (schildRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 220;
@@ -546,7 +546,7 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wohen
-                if (wohenRect.IsPointInRect(pTemp) == true) {
+                if (wohenRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         //         		case 12: // kamuski
                         //         		  nextActionID = 230;
@@ -560,7 +560,7 @@ public class Wjes1 extends Mainloc {
 
                 // Ausreden fuer Schmied
                 // Schmied nach Feuer, da er vor dem feuer sein kann !!!!!
-                if (schmied.schmiedRect().IsPointInRect(pTemp) == true) {
+                if (schmied.schmiedRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 200;
@@ -588,7 +588,6 @@ public class Wjes1 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -602,18 +601,18 @@ public class Wjes1 extends Mainloc {
                 GenericPoint pTTemp = new GenericPoint(pTemp.x, pTemp.y);
 
                 // nach Weiden gehen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 103;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (obererAusgang.IsPointInRect(kt) == false) {
+                    if (!obererAusgang.IsPointInRect(kt)) {
                         pTTemp = Pup;
                     } else {
                         pTTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -621,18 +620,18 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // nach Sunow gehen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (untererAusgang.IsPointInRect(kt) == false) {
+                    if (!untererAusgang.IsPointInRect(kt)) {
                         pTTemp = Pdown;
                     } else {
                         pTTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -640,18 +639,18 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // nach Horiz gehen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTTemp = Pright;
                     } else {
                         pTTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -659,18 +658,18 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // nach Jaeger gehen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTTemp = Pleft;
                     } else {
                         pTTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -678,10 +677,10 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // nach Hoscenc gehen
-                if (brTuer.IsPointInRect(pTemp) == true) {
+                if (brTuer.IsPointInRect(pTemp)) {
                     nextActionID = 104;
                     pTTemp = new GenericPoint(854, 362);
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -689,32 +688,32 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Sudobja ansehen
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTTemp = Psudobja;
                 }
 
                 // Wokno ansehen
-                if (woknoRect.IsPointInRect(pTemp) == true) {
+                if (woknoRect.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTTemp = Pwokno;
                 }
 
                 // Schild ansehen
-                if (schildRect.IsPointInRect(pTemp) == true) {
+                if (schildRect.IsPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTTemp = Pschild;
                 }
 
                 // Wohen ansehen
-                if (wohenRect.IsPointInRect(pTemp) == true) {
+                if (wohenRect.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTTemp = Pwohen;
                 }
 
                 // Schmied ansehen
                 // Schmied nach Feuer, da er davor laufen kann !!!!!!!!!
-                if (schmied.schmiedRect().IsPointInRect(pTemp) == true) {
+                if (schmied.schmiedRect().IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTTemp = Pschmied;
                 }
@@ -725,33 +724,33 @@ public class Wjes1 extends Mainloc {
                 // rechte Maustaste
 
                 // Weg nach Weiden anschauen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Sunow anschauen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Horiz anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Jaeger anschauen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Hoscenc anschauen
-                if (brTuer.IsPointInRect(pTemp) == true) {
+                if (brTuer.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // mit dem Schmied reden
                 // hier Schmied als erstes, da Routine terminiert !
-                if (schmied.schmiedRect().IsPointInRect(pTemp) == true) {
+                if (schmied.schmiedRect().IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pschmied);
                     mainFrame.repaint();
@@ -759,7 +758,7 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Sudobja mitnehmen
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Psudobja);
                     mainFrame.repaint();
@@ -767,7 +766,7 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Wokno mitnehmen
-                if (woknoRect.IsPointInRect(pTemp) == true) {
+                if (woknoRect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwokno);
                     mainFrame.repaint();
@@ -775,7 +774,7 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Schild mitnehmen
-                if (schildRect.IsPointInRect(pTemp) == true) {
+                if (schildRect.IsPointInRect(pTemp)) {
                     nextActionID = 65;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
@@ -783,7 +782,7 @@ public class Wjes1 extends Mainloc {
                 }
 
                 // Wohen mitnehmen
-                if (wohenRect.IsPointInRect(pTemp) == true) {
+                if (wohenRect.IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwohen);
                     mainFrame.repaint();
@@ -803,7 +802,7 @@ public class Wjes1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTxxx);
             return;
         }
@@ -812,7 +811,7 @@ public class Wjes1 extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -821,23 +820,19 @@ public class Wjes1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) || (schmied.schmiedRect().IsPointInRect(pTemp) == true) ||
-                    (sudobjaRect.IsPointInRect(pTemp) == true) || (woknoRect.IsPointInRect(pTemp) == true) ||
-                    (schildRect.IsPointInRect(pTemp) == true) || (wohenRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (schmied.schmiedRect().IsPointInRect(pTemp)) ||
+                    (sudobjaRect.IsPointInRect(pTemp)) || (woknoRect.IsPointInRect(pTemp)) ||
+                    (schildRect.IsPointInRect(pTemp)) || (wohenRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -845,9 +840,9 @@ public class Wjes1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((schmied.schmiedRect().IsPointInRect(pTemp) == true) ||
-                    (sudobjaRect.IsPointInRect(pTemp) == true) || (woknoRect.IsPointInRect(pTemp) == true) ||
-                    (schildRect.IsPointInRect(pTemp) == true) || (wohenRect.IsPointInRect(pTemp) == true)) {
+            if ((schmied.schmiedRect().IsPointInRect(pTemp)) ||
+                    (sudobjaRect.IsPointInRect(pTemp)) || (woknoRect.IsPointInRect(pTemp)) ||
+                    (schildRect.IsPointInRect(pTemp)) || (wohenRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -855,7 +850,7 @@ public class Wjes1 extends Mainloc {
                 return;
             }
 
-            if ((obererAusgang.IsPointInRect(pTemp) == true) || (brTuer.IsPointInRect(pTemp) == true)) {
+            if ((obererAusgang.IsPointInRect(pTemp)) || (brTuer.IsPointInRect(pTemp))) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -863,7 +858,7 @@ public class Wjes1 extends Mainloc {
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp) == true) {
+            if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 5;
@@ -871,7 +866,7 @@ public class Wjes1 extends Mainloc {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 2;
@@ -879,7 +874,7 @@ public class Wjes1 extends Mainloc {
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -897,7 +892,7 @@ public class Wjes1 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -907,18 +902,18 @@ public class Wjes1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -951,7 +946,6 @@ public class Wjes1 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -971,8 +965,8 @@ public class Wjes1 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

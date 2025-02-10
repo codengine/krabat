@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Rapak extends Mainanim {
-    private GenericImage[] Vogel;
+    private final GenericImage[] Vogel;
     private int whichanim = 0;
     private int Animcount = 0;
     private int Fliegcount = 0;
@@ -38,19 +38,19 @@ public class Rapak extends Mainanim {
 
     private int Talk = 1;
 
-    private int flyx;
+    private final int flyx;
     private int flyy;
     // private int flycount = 1;
     private boolean fliegehoch = true;
     private boolean flyfront = true;
 
-    private static final int FlyArray[] = {1, 6, 5, 6};
-    private static final int PosArray[] = {0, 2, 4, 2};
+    private static final int[] FlyArray = {1, 6, 5, 6};
+    private static final int[] PosArray = {0, 2, 4, 2};
 
     private static final int MAX_FLYX = 412;
     private static final int MAX_FLYY = 144;
 
-    private PtackZaRapaka sideptack;
+    private final PtackZaRapaka sideptack;
 
     private boolean flyawaySound = false;
 
@@ -82,7 +82,7 @@ public class Rapak extends Mainanim {
 
     // gibt das Clipping - Rect zurueck, wo der Rabe drin ist
     public GenericRectangle rapakRect() {
-        if (flyfront == false) {
+        if (!flyfront) {
             return (sideptack.ptack2Rect());
         }
         return (new GenericRectangle(flyx - 10, flyy - 10, 35 + 20, 44 + 20));
@@ -198,7 +198,7 @@ public class Rapak extends Mainanim {
         // Rueckgabevariable
         boolean rgabe = false;
 
-        if (fliegehoch == true) {
+        if (fliegehoch) {
             // Rabe erhebt sich
             Fliegpos++;
             if (Fliegpos == 4) {
@@ -239,7 +239,7 @@ public class Rapak extends Mainanim {
         // Clipping - Region muss in Aufrufer richtig gesetzt werden !!!
 
         // hier von vorn aus hochfliegen
-        if (flyfront == true) {
+        if (flyfront) {
             // Rabe erhebt sich
             Fliegpos++;
             if (Fliegpos == 4) {
@@ -261,7 +261,7 @@ public class Rapak extends Mainanim {
 
         // hier zur Seite wegfliegen
         else {
-            if (flyawaySound == false) {
+            if (!flyawaySound) {
                 flyawaySound = true;
                 mainFrame.wave.PlayFile("sfx/rapak1.wav");
             }

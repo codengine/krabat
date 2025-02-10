@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Mlynkptack extends Mainanim {
-    private GenericImage[] vogel;
+    private final GenericImage[] vogel;
     private int x, y;
     private int animpos = 1;
     private boolean Gleiten = false;
@@ -34,11 +34,11 @@ public class Mlynkptack extends Mainanim {
     // private boolean up = false;
     private int gleitcount;
     private boolean schalt = false;
-    private int XEnde;
-    private boolean isLeft;
+    private final int XEnde;
+    private final boolean isLeft;
     private static final int MAXGLEIT = 10;
 
-    private int Zoomfaktor;
+    private final int Zoomfaktor;
 
     // GenericImage ist 50 Breit und 50 Hoch
 
@@ -60,7 +60,7 @@ public class Mlynkptack extends Mainanim {
 
     // Bilder laden
     private void InitImages() {
-        if (isLeft == true) {
+        if (isLeft) {
             vogel[1] = getPicture("gfx/kolmc/iv1a.gif");
             vogel[2] = getPicture("gfx/kolmc/iv2a.gif");
             vogel[3] = getPicture("gfx/kolmc/iv3a.gif");
@@ -81,12 +81,12 @@ public class Mlynkptack extends Mainanim {
         // wenn Fluegel in Mitte, dann schauen, ob weiterfliegen oder gleiten
         if ((animpos == 1) || (animpos == 4)) {
             int glei = (int) Math.round(Math.random() * 30);
-            if ((glei < 29) && (Gleiten == false)) {
+            if ((glei < 29) && (!Gleiten)) {
                 // weiterfliegen
                 schalt = !(schalt);
-                if (schalt == true) {
+                if (schalt) {
                     oben = !(oben);
-                    if (oben == false) {
+                    if (!oben) {
                         animpos = 3;
                     } else {
                         animpos = 2;
@@ -108,30 +108,30 @@ public class Mlynkptack extends Mainanim {
         } else {
             // Fluegel in Extremposition, also wieder auf Mittelstellung setzen
             schalt = !(schalt);
-            if (schalt == true) {
+            if (schalt) {
                 animpos = 1;
             }
         }
 
         // X- Offset fuer Fliegen ist 10 (ungezoomt)
-        if (isLeft == true) {
+        if (isLeft) {
             x = x - 10 + (Zoomfaktor / 10);
         } else {
             x = x + 10 - (Zoomfaktor / 10);
         }
 
         // keine Ueberschreitung zulassen
-        if ((isLeft == true) && (x < XEnde)) {
+        if ((isLeft) && (x < XEnde)) {
             x = XEnde;
         }
-        if ((isLeft == false) && (x > XEnde)) {
+        if ((!isLeft) && (x > XEnde)) {
             x = XEnde;
         }
 
         // Beim Gleiten y nach unten, beim Fliegen nach oben, ab bestimmem Zoomfaktor nicht mehr...
         int versch = (int) Math.round(Math.random() * 20);
         if ((versch > 10) && (Zoomfaktor < 10)) {
-            if (Gleiten == true) {
+            if (Gleiten) {
                 y += 1;
             } else {
                 y -= 1;
@@ -145,18 +145,10 @@ public class Mlynkptack extends Mainanim {
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor, null);
-        if (isLeft == true) {
-            if (x <= XEnde) {
-                return false; // wenn aus dem Bild, dann das der Routine sagen !
-            } else {
-                return true;
-            }
+        if (isLeft) {
+            return x > XEnde; // wenn aus dem Bild, dann das der Routine sagen !
         } else {
-            if (x >= XEnde) {
-                return false;
-            } else {
-                return true;
-            }
+            return x < XEnde;
         }
     }
 }    						

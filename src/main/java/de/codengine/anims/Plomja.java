@@ -34,7 +34,7 @@ public class Plomja extends Mainanim {
     public static final int Breite = 23;
     public static final int Hoehe = 11;
 
-    private GenericImage Feuer[];
+    private final GenericImage[] Feuer;
 
     public Plomja(Start caller) {
         super(caller);
@@ -57,7 +57,7 @@ public class Plomja extends Mainanim {
 
     public void drawPlomja(GenericDrawingContext g, GenericPoint posit) {
         int zuffi = (int) Math.round(Math.random() * KONSTANTE);
-        if ((zuffi < 5) || (isDrawing == true)) {
+        if ((zuffi < 5) || (isDrawing)) {
             g.drawImage(Feuer[Counter], posit.x, posit.y, null);
             Counter++;
             if (Counter == 8) {

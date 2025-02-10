@@ -27,8 +27,8 @@ import de.codengine.platform.GenericImage;
 
 public class Husa extends Mainanim {
 
-    private GenericImage Gaense[][];
-    private Borderrect Grenze;
+    private final GenericImage[][] Gaense;
+    private final Borderrect Grenze;
     private float Positx;
     private float Posity;
 
@@ -234,7 +234,7 @@ public class Husa extends Mainanim {
     private void EvalSound() {
         // zufaellig wavs fuer Geschnatter abspielen...
 
-        if (lautloseGaense == true) {
+        if (lautloseGaense) {
             return; // kein Sound, wenn vom Programm aus abgeschaltet
         }
 

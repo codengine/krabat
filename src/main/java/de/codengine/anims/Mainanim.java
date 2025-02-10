@@ -29,7 +29,7 @@ public class Mainanim {
     // Objekt auf "start" - sollte das hier rein (Geschwindigkeit ???)
     public Start mainFrame;
 
-    private GenericImageFetcher imageFetcher;
+    private final GenericImageFetcher imageFetcher;
 
     // Konstruktor
     public Mainanim(Start caller) {

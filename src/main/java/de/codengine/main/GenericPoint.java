@@ -50,9 +50,7 @@ public class GenericPoint {
 
         if (o instanceof GenericPoint) {
             GenericPoint inst = (GenericPoint) o;
-            if ((inst.x == x) && (inst.y == y)) {
-                return true;
-            }
+            return (inst.x == x) && (inst.y == y);
         }
 
         return false;

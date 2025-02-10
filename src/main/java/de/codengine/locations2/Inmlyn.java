@@ -28,7 +28,7 @@ import de.codengine.platform.GenericImage;
 
 public class Inmlyn extends Mainloc {
     private GenericImage background1, background2, fenster, rabeVorder;
-    private GenericImage[] krabatKopf;
+    private final GenericImage[] krabatKopf;
 
     private boolean setScroll = false;
     private int scrollwert;
@@ -153,9 +153,9 @@ public class Inmlyn extends Mainloc {
         // System.out.print("g");
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -167,7 +167,7 @@ public class Inmlyn extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        if (mainFrame.Actions[310] == true) {
+        if (mainFrame.Actions[310]) {
             g.drawImage(background1, 0, 0, null);
             g.drawImage(background2, 640, 0, null);
         } else {
@@ -187,13 +187,13 @@ public class Inmlyn extends Mainloc {
         }
 
         // hier am Anfang das Buecken einschalten, wenn aus Dzera zurueckkommend
-        if ((setAnim == true) && (mainFrame.Actions[310] == true)) {
+        if ((setAnim) && (mainFrame.Actions[310])) {
             mainFrame.krabat.nAnimation = 122;
             // System.out.println ("Habe aber doch die Anim eingeschaltet!");
         }
 
         // Hier Raben zeichnen, solange noetig
-        if (showRapak == true) {
+        if (showRapak) {
             g.setClip(0, 200, 500, 280);
             g.drawImage(background1, 0, 0, null);
             showRapak = rabe.Flieg(g);
@@ -209,7 +209,7 @@ public class Inmlyn extends Mainloc {
         // Krabat zeichnen
 
         // Animation??
-        if ((mainFrame.Actions[310] == true) && (krabatVisible == true)) {
+        if ((mainFrame.Actions[310]) && (krabatVisible)) {
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
 
@@ -252,7 +252,7 @@ public class Inmlyn extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -271,9 +271,9 @@ public class Inmlyn extends Mainloc {
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
-            if (mainFrame.Actions[310] == false) {
+            if (!mainFrame.Actions[310]) {
                 nextActionID = 100;
             } else {
                 nextActionID = 1000;
@@ -308,12 +308,11 @@ public class Inmlyn extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
             }
-            return;
         }
 
     }
@@ -332,8 +331,8 @@ public class Inmlyn extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -368,7 +367,7 @@ public class Inmlyn extends Mainloc {
 
             case 130:
                 // Auf Ende warten
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     break;
                 }
                 mainFrame.krabat.SetFacing(12);
@@ -451,7 +450,7 @@ public class Inmlyn extends Mainloc {
             case 1050:
                 // Abwarten, bis Scroller zurueck
                 // System.out.println ("Rabe = " + showRapak + " Scroller = " + mainFrame.isScrolling);
-                if ((showRapak == true) || (mainFrame.isScrolling == true)) {
+                if ((showRapak) || (mainFrame.isScrolling)) {
                     break;
                 }
                 nextActionID = 1060;

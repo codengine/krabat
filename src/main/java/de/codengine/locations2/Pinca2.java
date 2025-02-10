@@ -31,8 +31,8 @@ public class Pinca2 extends Mainloc {
     private GenericImage background, kniha;
     private Farar pfarrer;
 
-    private GenericPoint Pfarar;
-    private GenericPoint fararTalk;
+    private final GenericPoint Pfarar;
+    private final GenericPoint fararTalk;
 
     private boolean showBuch = false;
 
@@ -121,7 +121,7 @@ public class Pinca2 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -134,7 +134,7 @@ public class Pinca2 extends Mainloc {
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0, null);
-        if (showBuch == true) {
+        if (showBuch) {
             g.drawImage(kniha, 0, 0, null);
         }
 
@@ -144,7 +144,7 @@ public class Pinca2 extends Mainloc {
         g.setClip(Pfarar.x, Pfarar.y, Farar.Breite, Farar.Hoehe);
         g.drawImage(background, 0, 0, null);
         pfarrer.drawFarar(g, TalkPerson, Pfarar);
-        if (showBuch == true) {
+        if (showBuch) {
             g.drawImage(kniha, 0, 0, null);
         }
 
@@ -184,7 +184,7 @@ public class Pinca2 extends Mainloc {
             }
         }
 
-        if (showBuch == true) {
+        if (showBuch) {
             g.drawImage(kniha, 0, 0, null);
         }
 
@@ -195,7 +195,7 @@ public class Pinca2 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -239,7 +239,6 @@ public class Pinca2 extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -251,15 +250,14 @@ public class Pinca2 extends Mainloc {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

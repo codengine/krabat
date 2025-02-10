@@ -25,12 +25,12 @@ import de.codengine.platform.GenericImageObserver;
 import de.codengine.platform.GenericToolkitImpl;
 
 public class Imagehelperstatic {
-    private int char_height = 21;  // Hoehe eines Zeichens in Pixeln
+    private final int char_height = 21;  // Hoehe eines Zeichens in Pixeln
     // private GenericImage Fontbild;
-    private int ftable[][];
+    private int[][] ftable;
     private int stat;
-    private GenericImage Error;
-    private static final int SPACEBITS[] = {0, 0, 0, 0, 0, 0, 0, 0,
+    private final GenericImage Error;
+    private static final int[] SPACEBITS = {0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
@@ -54,7 +54,7 @@ public class Imagehelperstatic {
 
     private static final int MAXGR = 240;
 
-    private byte[][] fontdata;
+    private final byte[][] fontdata;
 
     private final GenericImageObserver observer;
 
@@ -85,7 +85,6 @@ public class Imagehelperstatic {
             }
             // System.out.println (i);
         }
-        return;
     }
 
     // Zuordnung aller ASCII-Zeichen einem Bildausschnitt
@@ -564,7 +563,7 @@ public class Imagehelperstatic {
 
     // Zeichen aus Font-Bild ausschneiden
     private synchronized GenericImage cutChar(int code) {
-        int pixels[] = ConvertArray(fontdata[code]);
+        int[] pixels = ConvertArray(fontdata[code]);
 
         // System.out.print (".");
 

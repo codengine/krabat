@@ -28,21 +28,21 @@ import de.codengine.platform.GenericImage;
 
 public class Mlynk2 extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_back;
+    private final GenericImage[] krabat_back;
 
-    private GenericImage[] krabat_stand_front_head;
-    private GenericImage[] krabat_stand_front_body;
-    private GenericImage[] krabat_stand_left_head;
-    private GenericImage[] krabat_stand_left_body;
-    private GenericImage[] krabat_stand_right_head;
-    private GenericImage[] krabat_stand_right_body;
+    private final GenericImage[] krabat_stand_front_head;
+    private final GenericImage[] krabat_stand_front_body;
+    private final GenericImage[] krabat_stand_left_head;
+    private final GenericImage[] krabat_stand_left_body;
+    private final GenericImage[] krabat_stand_right_head;
+    private final GenericImage[] krabat_stand_right_body;
 
-    private GenericImage[] krabat_talk_front_head;
-    private GenericImage[] krabat_talk_front_body;
-    private GenericImage[] krabat_talk_left_head;
-    private GenericImage[] krabat_talk_left_body;
-    private GenericImage[] krabat_talk_right_head;
-    private GenericImage[] krabat_talk_right_body;
+    private final GenericImage[] krabat_talk_front_head;
+    private final GenericImage[] krabat_talk_front_body;
+    private final GenericImage[] krabat_talk_left_head;
+    private final GenericImage[] krabat_talk_left_body;
+    private final GenericImage[] krabat_talk_right_head;
+    private final GenericImage[] krabat_talk_right_body;
 
     private GenericImage krabat_hat_stock;
     private GenericImage krabat_gib_karte;
@@ -90,8 +90,8 @@ public class Mlynk2 extends Mainanim {
     private static final int COFFSET_STOCK = 132;  // so weit ist das ungezoomte GenericImage nach links verschoben (* 2) = virtuelle Breite
     // wenn man beachtet, dass die Fussposition so bleiben soll
 
-    private float scaleVerhaeltnisNormal;
-    private float scaleVerhaeltnisStock;
+    private final float scaleVerhaeltnisNormal;
+    private final float scaleVerhaeltnisStock;
 
     // Abstaende default
     // private static final int[] CHORIZ_DIST = {6, 10, 11, 9, 10, 10, 10, 11, 11, 10};
@@ -227,7 +227,7 @@ public class Mlynk2 extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
 		/*
@@ -421,12 +421,12 @@ public class Mlynk2 extends Mainanim {
         }
 
         // Override, wenn der Mueller gestorben ist
-        if (istMuellerSchonTot == true) {
+        if (istMuellerSchonTot) {
             Zwinker = 0;
         }
 
         // fuer MaleIhn nur Richtung angeben, restlichen Variablen koennen dort ausgewertet werden
-        if (horizontal == true) {
+        if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
                 MaleIhn(offGraph, 9);
@@ -438,7 +438,7 @@ public class Mlynk2 extends Mainanim {
             }
         } else {
             // Bei normaler Darstellung
-            if (upsidedown == false) {
+            if (!upsidedown) {
                 // nach oben laufen
                 if (direction_y == -1) {
                     MaleIhn(offGraph, 12);
@@ -513,7 +513,7 @@ public class Mlynk2 extends Mainanim {
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
         int rgabe = 0;
-        if (horizontal == true) {
+        if (horizontal) {
             if (direction_x == 1) {
                 rgabe = 3;
             } else {
@@ -600,7 +600,7 @@ public class Mlynk2 extends Mainanim {
             Body = (int) (Math.random() * 3.9);
         }
 
-        if (stockIstImmerOben == true) {
+        if (stockIstImmerOben) {
             Body = 3;
         }
 
@@ -668,7 +668,7 @@ public class Mlynk2 extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {

@@ -28,35 +28,35 @@ import de.codengine.platform.GenericImage;
 
 public class KrabatOben extends Krabat {
     // Alle "von - oben" Images
-    private GenericImage[] krabato_left;
-    private GenericImage[] krabato_right;
-    private GenericImage[] krabato_front;
-    private GenericImage[] krabato_back;
+    private final GenericImage[] krabato_left;
+    private final GenericImage[] krabato_right;
+    private final GenericImage[] krabato_front;
+    private final GenericImage[] krabato_back;
 
-    private GenericImage[] krabato_talkl;
-    private GenericImage[] krabato_talkr;
-    private GenericImage[] krabato_talkm;
-    private GenericImage[] krabato_klopf;
+    private final GenericImage[] krabato_talkl;
+    private final GenericImage[] krabato_talkr;
+    private final GenericImage[] krabato_talkm;
+    private final GenericImage[] krabato_klopf;
 
-    private GenericImage[] krabato_floetel;
-    private GenericImage[] krabato_floeter;
-    private GenericImage[] krabato_floetef;
-    private GenericImage[] krabato_floeteb;
+    private final GenericImage[] krabato_floetel;
+    private final GenericImage[] krabato_floeter;
+    private final GenericImage[] krabato_floetef;
+    private final GenericImage[] krabato_floeteb;
 
-    private GenericImage[] krabato_rfloetel;
-    private GenericImage[] krabato_rfloeter;
-    private GenericImage[] krabato_rfloetef;
-    private GenericImage[] krabato_rfloeteb;
+    private final GenericImage[] krabato_rfloetel;
+    private final GenericImage[] krabato_rfloeter;
+    private final GenericImage[] krabato_rfloetef;
+    private final GenericImage[] krabato_rfloeteb;
 
-    private GenericImage[] krabato_wosuskl;
-    private GenericImage[] krabato_wosuskr;
-    private GenericImage[] krabato_wosuskf;
-    private GenericImage[] krabato_wosuskb;
+    private final GenericImage[] krabato_wosuskl;
+    private final GenericImage[] krabato_wosuskr;
+    private final GenericImage[] krabato_wosuskf;
+    private final GenericImage[] krabato_wosuskb;
 
-    private GenericImage[] krabato_feuerl;
-    private GenericImage[] krabato_feuerr;
-    private GenericImage[] krabato_feuerf;
-    private GenericImage[] krabato_feuerb;
+    private final GenericImage[] krabato_feuerl;
+    private final GenericImage[] krabato_feuerr;
+    private final GenericImage[] krabato_feuerf;
+    private final GenericImage[] krabato_feuerb;
 
     private GenericImage krabato_liesl;
     private GenericImage krabato_liesr;
@@ -281,7 +281,7 @@ public class KrabatOben extends Krabat {
     @Override
     public synchronized void Move() {
         // Wenn kein Laufen gewuenscht, dann auch nicht laufen!
-        if ((isWalking == false) && (isWandering == false)) {
+        if ((!isWalking) && (!isWandering)) {
             return;
         }
 
@@ -291,7 +291,7 @@ public class KrabatOben extends Krabat {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen, es gelten die Images left und right, gehen von 2 bis 11, von oben 1 bis 9
         {
             // Animationsphase weiterschalten,
@@ -314,7 +314,7 @@ public class KrabatOben extends Krabat {
             if (((walkto.x - (int) txps) * direction_x) <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((isWandering == false) && (clearanimpos == true)) {
+                if ((!isWandering) && (clearanimpos)) {
                     anim_pos = 0;
                 }
             }
@@ -341,16 +341,16 @@ public class KrabatOben extends Krabat {
             if (((walkto.y - (int) typs) * direction_y) <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
-                if ((isWandering == false) && (clearanimpos == true)) {
+                if ((!isWandering) && (clearanimpos)) {
                     anim_pos = 0;
                 }
             }
         }
 
-        if ((isWalking == false) && (isWandering == false)) {
+        if ((!isWalking) && (!isWandering)) {
             // System.out.println("Krabatpos korrigiert!");
             SetKrabatPos(walkto);
-            if (clearanimpos == true) {
+            if (clearanimpos) {
                 anim_pos = 0;
             }
         }
@@ -458,11 +458,7 @@ public class KrabatOben extends Krabat {
             double xangle = Math.abs(aim.x - ((int) xps));
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            if (angle > (45 * Math.PI / 180)) {
-                horiz = false;
-            } else {
-                horiz = true;
-            }
+            horiz = !(angle > (45 * Math.PI / 180));
         }
 
         // Variablen an Move uebergeben
@@ -484,7 +480,7 @@ public class KrabatOben extends Krabat {
                 (Math.abs(aim.y - ((int) yps)) < lohny)) {
             isWalking = false;
             System.out.println("Nicht gerade lohnend !!");
-            if ((isWandering == false) && (clearanimpos == true)) {
+            if ((!isWandering) && (clearanimpos)) {
                 anim_pos = 0;
             }
             return;
@@ -508,7 +504,7 @@ public class KrabatOben extends Krabat {
     public void drawKrabat(GenericDrawingContext offGraph) {
         // Malen von oben
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal == true) {
+        if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
                 MaleIhn(offGraph, krabato_left[anim_pos]);

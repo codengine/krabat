@@ -30,7 +30,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Wobzor2 extends Mainloc2 {
     private GenericImage background, horiz3, horiz4;
-    private GenericImage[] Wasser;
+    private final GenericImage[] Wasser;
     private boolean switchanim = false;
     private int wassercount = 1;
     private boolean forward = true;
@@ -139,7 +139,7 @@ public class Wobzor2 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -153,10 +153,10 @@ public class Wobzor2 extends Mainloc2 {
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0, null);
 
-        if (mainFrame.isAnim == true) {
+        if (mainFrame.isAnim) {
             switchanim = !(switchanim);
-            if (switchanim == true) {
-                if (forward == true) {
+            if (switchanim) {
+                if (forward) {
                     wassercount++;
                     if (wassercount == 9) {
                         wassercount = 7;
@@ -175,12 +175,12 @@ public class Wobzor2 extends Mainloc2 {
         }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
-        if (muellerVisible == true) {
+        if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
@@ -205,7 +205,7 @@ public class Wobzor2 extends Mainloc2 {
         mainFrame.krabat.drawKrabat(g);
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
@@ -214,12 +214,12 @@ public class Wobzor2 extends Mainloc2 {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (horiz3Rect.IsPointInRect(pKrTemp) == true) {
+        if (horiz3Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(horiz3, 197, 186, null);
         }
 
         // hinterm horiz4 (nur Clipping - Region wird neugezeichnet)
-        if (horiz4Rect.IsPointInRect(pKrTemp) == true) {
+        if (horiz4Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(horiz4, 543, 186, null);
         }
 
@@ -230,7 +230,7 @@ public class Wobzor2 extends Mainloc2 {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
@@ -266,7 +266,6 @@ public class Wobzor2 extends Mainloc2 {
         }
         outputText = "";
 
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -276,7 +275,6 @@ public class Wobzor2 extends Mainloc2 {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -288,7 +286,6 @@ public class Wobzor2 extends Mainloc2 {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////

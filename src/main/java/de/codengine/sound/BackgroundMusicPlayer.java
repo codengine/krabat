@@ -35,7 +35,7 @@ public class BackgroundMusicPlayer {
     private static final String FILE_PREFIX = "titel";
 
     private static BackgroundMusicPlayer instance;
-    private AbstractPlayer player;
+    private final AbstractPlayer player;
 
     private BackgroundMusicPlayer(AbstractPlayer player) {
         // player = new MP3Player (urlBase);

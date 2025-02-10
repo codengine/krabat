@@ -59,11 +59,12 @@ abstract public class Mainlaby extends Mainloc {
     public void BludLocationLeft() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitLeft.length; i++) {
                 if ((zuffi == BludExitLeft[i]) && (locIndex != zuffi)) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -73,11 +74,12 @@ abstract public class Mainlaby extends Mainloc {
     public void BludLocationRight() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitRight.length; i++) {
                 if ((zuffi == BludExitRight[i]) && (locIndex != zuffi)) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -87,11 +89,12 @@ abstract public class Mainlaby extends Mainloc {
     public void BludLocationUp() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitUp.length; i++) {
                 if ((zuffi == BludExitUp[i]) && (locIndex != zuffi)) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -101,11 +104,12 @@ abstract public class Mainlaby extends Mainloc {
     public void BludLocationDown() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < BludExitDown.length; i++) {
                 if ((zuffi == BludExitDown[i]) && (locIndex != zuffi)) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -124,16 +128,16 @@ abstract public class Mainlaby extends Mainloc {
     public int BerechneAusgang(boolean oben, boolean unten, boolean links, boolean rechts) {
         do {
             int zuffi = (int) Math.round(Math.random() * 120);
-            if ((zuffi < 30) && (oben == true)) {
+            if ((zuffi < 30) && (oben)) {
                 return (12);
             }
-            if ((zuffi >= 30) && (zuffi < 60) && (unten == true)) {
+            if ((zuffi >= 30) && (zuffi < 60) && (unten)) {
                 return (6);
             }
-            if ((zuffi >= 60) && (zuffi < 90) && (links == true)) {
+            if ((zuffi >= 60) && (zuffi < 90) && (links)) {
                 return (9);
             }
-            if ((zuffi >= 90) && (rechts == true)) {
+            if ((zuffi >= 90) && (rechts)) {
                 return (3);
             }
         }
@@ -141,19 +145,19 @@ abstract public class Mainlaby extends Mainloc {
     }
 
     public void Erscheinen(boolean blink) {
-        if (mainFrame.Actions[235] == true) {
+        if (mainFrame.Actions[235]) {
             // System.out.println ("Jetzt wieder alles deaktivieren...");
             ClearErscheinen();
             return;
         }
 
-        if ((mainFrame.Actions[236] == false) && (mainFrame.Actions[235] == false)) {
+        if ((!mainFrame.Actions[236]) && (!mainFrame.Actions[235])) {
             // System.out.println ("Noch kein Blinkern da");
 
             int i = 240;
 
             // es wurde normal gelaufen, kein Blinkern erscheinen, also kann keinem gefolgt werden
-            while (mainFrame.Actions[i] == true) {
+            while (mainFrame.Actions[i]) {
                 i++;
             }
 
@@ -180,7 +184,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if ((blink == false) && (mainFrame.Actions[236] == true)) {
+        if ((!blink) && (mainFrame.Actions[236])) {
             System.out.println("Es wurde der richtige Weg verlassen");
 
 
@@ -204,13 +208,13 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if ((blink == true) && (mainFrame.Actions[236] == true)) {
+        if ((blink) && (mainFrame.Actions[236])) {
             System.out.println("Der richtige Weg wurde befolgt");
 
             // wir sind ja jetzt auf dem richtigen Weg...
             int x = 237;
 
-            while (mainFrame.Actions[x] == true) {
+            while (mainFrame.Actions[x]) {
                 x++;
             }
 
@@ -233,7 +237,6 @@ abstract public class Mainlaby extends Mainloc {
                 mainFrame.Actions[x] = true;
             }
 
-            return;
         }
     }
 
@@ -290,7 +293,7 @@ abstract public class Mainlaby extends Mainloc {
             case 157:
                 // Entscheidung, ob nur raus oder auch Spruch
                 bludNimmt = false;
-                if (mainFrame.Actions[197] == false) {
+                if (!mainFrame.Actions[197]) {
                     // nur raus, kein Spruch
                     PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00003"),
                             Start.stringManager.getTranslation("Main_Mainlaby_00004"),
@@ -319,7 +322,7 @@ abstract public class Mainlaby extends Mainloc {
             case 158:
                 // Krabat wird rausgebeamt
                 mainFrame.invCursor = false;
-                mainFrame.inventory.vInventory.removeElement(new Integer(15));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(15));
                 NeuesBild(17, locIndex);
                 break;
 
@@ -340,7 +343,7 @@ abstract public class Mainlaby extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00013"), 180, 181, new int[]{181}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00014"), 181, 182, new int[]{182, 197}, 630);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00015"), 195, 196, new int[]{182, 196}, 630);
-                    if (mainFrame.Actions[184] == false) {
+                    if (!mainFrame.Actions[184]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00016"), 182, 183, new int[]{183, 195}, 640);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00017"), 182, 183, new int[]{183, 195}, 640);
@@ -360,7 +363,7 @@ abstract public class Mainlaby extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00023"), 180, 181, new int[]{181}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00024"), 181, 182, new int[]{182, 197}, 630);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00025"), 195, 196, new int[]{182, 196}, 630);
-                    if (mainFrame.Actions[184] == false) {
+                    if (!mainFrame.Actions[184]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00026"), 182, 183, new int[]{183, 195}, 640);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00027"), 182, 183, new int[]{183, 195}, 640);
@@ -380,7 +383,7 @@ abstract public class Mainlaby extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00033"), 180, 181, new int[]{181}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00034"), 181, 182, new int[]{182, 197}, 630);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00035"), 195, 196, new int[]{182, 196}, 630);
-                    if (mainFrame.Actions[184] == false) {
+                    if (!mainFrame.Actions[184]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00036"), 182, 183, new int[]{183, 195}, 640);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00037"), 182, 183, new int[]{183, 195}, 640);
@@ -413,10 +416,10 @@ abstract public class Mainlaby extends Mainloc {
                 nextActionID = Dialog.ActionID;
 
                 // Fragen zurueckschalten, wegen loop "Pytam #Kertowski mlyn."
-                if ((mainFrame.Actions[183] == true) && (nextActionID == 630)) {
+                if ((mainFrame.Actions[183]) && (nextActionID == 630)) {
                     mainFrame.Actions[183] = false;
                 }
-                if ((mainFrame.Actions[196] == true) && (nextActionID == 640)) {
+                if ((mainFrame.Actions[196]) && (nextActionID == 640)) {
                     mainFrame.Actions[196] = false;
                 }
 
@@ -489,8 +492,8 @@ abstract public class Mainlaby extends Mainloc {
                 mainFrame.Actions[186] = false;
 
                 // hier testen, ob Fragen zurueckgestellt werden sollen
-                if ((mainFrame.Actions[195] == false) || (mainFrame.Actions[196] == false) ||
-                        (mainFrame.Actions[182] == false) || (mainFrame.Actions[183] == false)) {
+                if ((!mainFrame.Actions[195]) || (!mainFrame.Actions[196]) ||
+                        (!mainFrame.Actions[182]) || (!mainFrame.Actions[183])) {
                     mainFrame.Actions[196] = false;
                     mainFrame.Actions[182] = false;
                     mainFrame.Actions[183] = false;

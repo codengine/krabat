@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class RapakWuswobodzic extends Mainanim {
-    private GenericImage[] Vogel;
+    private final GenericImage[] Vogel;
     private int whichanim = 0;
     private int Animcount = 0;
 
@@ -191,6 +191,5 @@ public class RapakWuswobodzic extends Mainanim {
 
     private void DrawIt(GenericDrawingContext offGraph, int which, GenericPoint ps) {
         offGraph.drawImage(Vogel[which], ps.x, ps.y, null);
-        return;
     }
 }    

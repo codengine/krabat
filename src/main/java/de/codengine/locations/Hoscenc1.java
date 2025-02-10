@@ -34,11 +34,14 @@ public class Hoscenc1 extends Mainloc {
     private Korcmar wirt;
     private Dundak strolch;
     private Pjany saeufer;
-    private Multiple2 Dialog;
+    private final Multiple2 Dialog;
 
-    private Borderrect brStrolch, brSaeufer;
-    private GenericPoint strolchPoint, saeuferPoint;
-    private GenericPoint StrolchTalk, SaeuferTalk;
+    private final Borderrect brStrolch;
+    private final Borderrect brSaeufer;
+    private final GenericPoint strolchPoint;
+    private final GenericPoint saeuferPoint;
+    private final GenericPoint StrolchTalk;
+    private final GenericPoint SaeuferTalk;
 
     private String AnimOutputText = "";
     private GenericPoint AnimOutputTextPos;
@@ -230,13 +233,13 @@ public class Hoscenc1 extends Mainloc {
           mainFrame.Actions [902] = true;
           }*/
 
-        if (initSound == true) {
+        if (initSound) {
             initSound = false;
             mainFrame.wave.PlayFile("sfx/wdurjezu.wav");
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -250,13 +253,13 @@ public class Hoscenc1 extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // offene Tuer zeichnen, wenn noetig
-        if (doorOpen == true) {
+        if (doorOpen) {
             g.setClip(390, 105, 77, 169);
             g.drawImage(durje, 390, 105, null);
         }
 
         // Wirt Hintergrund loeschen
-        if (showKorcmar == true) {
+        if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = wirt.KorcmarRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -264,7 +267,7 @@ public class Hoscenc1 extends Mainloc {
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0, null);
-            if (doorOpen == true) {
+            if (doorOpen) {
                 g.drawImage(durje, 390, 105, null);
             }
         }
@@ -273,7 +276,7 @@ public class Hoscenc1 extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Honck zeichnen, da im Hintergrund !!!
-        if (mainFrame.Actions[902] == false) {
+        if (!mainFrame.Actions[902]) {
             g.setClip(219, 271, 49, 44);
             g.drawImage(honck, 219, 271, null);
         }
@@ -283,7 +286,7 @@ public class Hoscenc1 extends Mainloc {
         g.setClip(saeuferPoint.x, saeuferPoint.y, Pjany.Breite, Pjany.Hoehe);
         g.drawImage(background, 0, 0, null);
         // Saeufer darf nur reden, wenn die Anims nicht gesperrt sind
-        if (AnimMCLocked == false) {
+        if (!AnimMCLocked) {
             saeufer.drawPjany(g, TalkPerson, saeuferPoint, AnimTalkPerson);
         } else {
             saeufer.drawPjany(g, TalkPerson, saeuferPoint, 0);
@@ -298,13 +301,13 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Korcmar bewegen
-        if ((showKorcmar == true) && (walkReady == false)) {
+        if ((showKorcmar) && (!walkReady)) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = wirt.Move();
         }
 
         // Wirt zeichnen
-        if (showKorcmar == true) {
+        if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = wirt.KorcmarRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -361,18 +364,18 @@ public class Hoscenc1 extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm Balken (nur Clipping - Region wird neugezeichnet)
-        if (hosc6Rect.IsPointInRect(pKrTemp) == true) {
+        if (hosc6Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(hosc6, 51, 185, null);
         }
 
         // Ausgabe von AnimText, falls noetig
-        if ((AnimOutputText != "") && (AnimMCLocked == false)) {
+        if ((AnimOutputText != "") && (!AnimMCLocked)) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // sonst noch was zu tun ?
@@ -382,7 +385,7 @@ public class Hoscenc1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -400,14 +403,14 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
         }
 
         // Die Anims muessen bedient werden
-        if ((AnimID != 0) && (AnimMCLocked == false)) {
+        if ((AnimID != 0) && (!AnimMCLocked)) {
             DoAnims();
         }
 
@@ -423,7 +426,7 @@ public class Hoscenc1 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -439,7 +442,7 @@ public class Hoscenc1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -449,7 +452,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -457,14 +460,14 @@ public class Hoscenc1 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Saeufer
-                if (brSaeufer.IsPointInRect(pTemp) == true) {
+                if (brSaeufer.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 19: // pjero
                             nextActionID = 210;
@@ -480,7 +483,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Ausreden fuer Strolch
-                if (brStrolch.IsPointInRect(pTemp) == true) {
+                if (brStrolch.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 230;
@@ -497,7 +500,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wobraz1
-                if (wobraz1Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz1Rect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 16: // honck z blotom
                             nextActionID = 202;
@@ -510,7 +513,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Ausreden fuer Wobraz2
-                if (wobraz2Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz2Rect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 16: // honck z blotom
                             nextActionID = 200;
@@ -523,21 +526,21 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Ausreden fuer Stolc
-                if (stolcRect.IsPointInRect(pTemp) == true) {
+                if (stolcRect.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 175;
                     pTemp = Pstolc;
                 }
 
                 // Ausreden fuer Durje
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 180;
                     pTemp = Pdurje;
                 }
 
                 // Ausreden fuer Honck
-                if ((honckRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[902] == false)) {
+                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
                     // Extra - Sinnloszeug
                     nextActionID = 165;
                     pTemp = Phonck;
@@ -556,7 +559,6 @@ public class Hoscenc1 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -567,36 +569,36 @@ public class Hoscenc1 extends Mainloc {
                 nextActionID = 0;
 
                 // Saeufer ansehen
-                if (brSaeufer.IsPointInRect(pTemp) == true) {
+                if (brSaeufer.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Psaeufer;
                 }
 
                 // Strolch ansehen
-                if (brStrolch.IsPointInRect(pTemp) == true) {
+                if (brStrolch.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Pstrolch;
                 }
 
                 // Honck ansehen
-                if ((honckRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[902] == false)) {
+                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
                     nextActionID = 4;
                     pTemp = Phonck;
                 }
 
                 // zu Wjes gehen ?
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -604,25 +606,25 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // wobraz1 ansehen
-                if (wobraz1Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pwobraz1;
                 }
 
                 // wobraz2 ansehen
-                if (wobraz2Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwobraz2;
                 }
 
                 // stolc ansehen
-                if (stolcRect.IsPointInRect(pTemp) == true) {
+                if (stolcRect.IsPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = Pstolc;
                 }
 
                 // durje ansehen
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     nextActionID = 8;
                     pTemp = Pdurje;
                 }
@@ -633,12 +635,12 @@ public class Hoscenc1 extends Mainloc {
                 // rechte Maustaste
 
                 // Ausgang zu Wjes abfangen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit dem Saeufer reden
-                if (brSaeufer.IsPointInRect(pTemp) == true) {
+                if (brSaeufer.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Psaeufer);
                     mainFrame.repaint();
@@ -646,7 +648,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Mit dem Strolch reden
-                if (brStrolch.IsPointInRect(pTemp) == true) {
+                if (brStrolch.IsPointInRect(pTemp)) {
                     nextActionID = 51;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pstrolch);
                     mainFrame.repaint();
@@ -654,7 +656,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Honck nehmen
-                if ((honckRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[902] == false)) {
+                if ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Phonck);
                     mainFrame.repaint();
@@ -662,7 +664,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Wobraz1 nehmen
-                if (wobraz1Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 62;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwobraz1);
                     mainFrame.repaint();
@@ -670,7 +672,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Wobraz2 nehmen
-                if (wobraz2Rect.IsPointInRect(pTemp) == true) {
+                if (wobraz2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pwobraz2);
                     mainFrame.repaint();
@@ -678,7 +680,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Stolc nehmen
-                if (stolcRect.IsPointInRect(pTemp) == true) {
+                if (stolcRect.IsPointInRect(pTemp)) {
                     nextActionID = 65;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pstolc);
                     mainFrame.repaint();
@@ -686,7 +688,7 @@ public class Hoscenc1 extends Mainloc {
                 }
 
                 // Durje nehmen
-                if (durjeRect.IsPointInRect(pTemp) == true) {
+                if (durjeRect.IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pdurje);
                     mainFrame.repaint();
@@ -708,13 +710,13 @@ public class Hoscenc1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -723,25 +725,21 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (brSaeufer.IsPointInRect(pTemp) == true) || (brStrolch.IsPointInRect(pTemp) == true) ||
-                    ((honckRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[902] == false)) ||
-                    (wobraz1Rect.IsPointInRect(pTemp) == true) || (wobraz2Rect.IsPointInRect(pTemp) == true) ||
-                    (stolcRect.IsPointInRect(pTemp) == true) || (durjeRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (brSaeufer.IsPointInRect(pTemp)) || (brStrolch.IsPointInRect(pTemp)) ||
+                    ((honckRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[902])) ||
+                    (wobraz1Rect.IsPointInRect(pTemp)) || (wobraz2Rect.IsPointInRect(pTemp)) ||
+                    (stolcRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -750,11 +748,11 @@ public class Hoscenc1 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((brSaeufer.IsPointInRect(pTemp) == true) ||
-                    (brStrolch.IsPointInRect(pTemp) == true) || ((honckRect.IsPointInRect(pTemp) == true) &&
-                    (mainFrame.Actions[902] == false)) ||
-                    (wobraz1Rect.IsPointInRect(pTemp) == true) || (wobraz2Rect.IsPointInRect(pTemp) == true) ||
-                    (stolcRect.IsPointInRect(pTemp) == true) || (durjeRect.IsPointInRect(pTemp) == true)) {
+            if ((brSaeufer.IsPointInRect(pTemp)) ||
+                    (brStrolch.IsPointInRect(pTemp)) || ((honckRect.IsPointInRect(pTemp)) &&
+                    (!mainFrame.Actions[902])) ||
+                    (wobraz1Rect.IsPointInRect(pTemp)) || (wobraz2Rect.IsPointInRect(pTemp)) ||
+                    (stolcRect.IsPointInRect(pTemp)) || (durjeRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -762,7 +760,7 @@ public class Hoscenc1 extends Mainloc {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 4;
@@ -780,7 +778,7 @@ public class Hoscenc1 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -790,18 +788,18 @@ public class Hoscenc1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -834,7 +832,6 @@ public class Hoscenc1 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -854,8 +851,8 @@ public class Hoscenc1 extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -958,7 +955,7 @@ public class Hoscenc1 extends Mainloc {
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 58;
-                mainFrame.inventory.vInventory.addElement(new Integer(4));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(4));
                 mainFrame.krabat.SetFacing(fHonck);
                 mainFrame.krabat.nAnimation = 31;
                 Counter = 5;
@@ -1112,7 +1109,7 @@ public class Hoscenc1 extends Mainloc {
                 Dialog.InitMC(20);
                 if (mainFrame.sprache == 1) {
                     // Test, ob Saeufer oder Wirt gefragt wird
-                    if (mainFrame.Actions[30] == false) {
+                    if (!mainFrame.Actions[30]) {
                         // Dialog mit Saeufer...
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00060"), 1000, 1000, null, 0);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00061"), 1000, 1000, null, 0);
@@ -1149,7 +1146,7 @@ public class Hoscenc1 extends Mainloc {
                 }
                 if (mainFrame.sprache == 2) {
                     // Test, ob Saeufer oder Wirt gefragt wird
-                    if (mainFrame.Actions[30] == false) {
+                    if (!mainFrame.Actions[30]) {
                         // Dialog mit Saeufer...
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00078"), 1000, 1000, null, 0);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00079"), 1000, 1000, null, 0);
@@ -1186,7 +1183,7 @@ public class Hoscenc1 extends Mainloc {
                 }
                 if (mainFrame.sprache == 3) {
                     // Test, ob Saeufer oder Wirt gefragt wird
-                    if (mainFrame.Actions[30] == false) {
+                    if (!mainFrame.Actions[30]) {
                         // Dialog mit Saeufer...
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00096"), 1000, 1000, null, 0);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00097"), 1000, 1000, null, 0);
@@ -1238,9 +1235,9 @@ public class Hoscenc1 extends Mainloc {
                 TalkPause = 2;
 
                 // Je nach ausgewaehlter Frage Action ausfuehren
-                if (mainFrame.Actions[30] == false) {
+                if (!mainFrame.Actions[30]) {
                     // Saeufer aergern, bis Wirt kommt...
-                    if (mainFrame.Actions[46] == false) {
+                    if (!mainFrame.Actions[46]) {
                         mainFrame.Actions[46] = true;
                         nextActionID = 750;
                     } else {
@@ -1468,7 +1465,7 @@ public class Hoscenc1 extends Mainloc {
 
             case 770:
                 // warten bis ausgelaufen
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 773;
                 }
                 break;
@@ -1482,7 +1479,7 @@ public class Hoscenc1 extends Mainloc {
 
             case 777:
                 // warten bis ausgelaufen
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 780;
                 }
                 break;
@@ -1502,7 +1499,7 @@ public class Hoscenc1 extends Mainloc {
 
             case 790:
                 // warten bis ausgelaufen
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 791;
                 }
                 break;
@@ -1517,7 +1514,7 @@ public class Hoscenc1 extends Mainloc {
 
             case 793:
                 // warten bis ausgelaufen
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 795;
                 }
                 break;

@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class BurMichal extends Mainanim {
-    private GenericImage[] bur_work;
-    private GenericImage[] bur_talk;
+    private final GenericImage[] bur_work;
+    private final GenericImage[] bur_talk;
     private GenericImage bur_look;
 
     public static final int Breite = 100;
@@ -114,7 +114,7 @@ public class BurMichal extends Mainanim {
         }
 
         // Michal hoert zu
-        if (isListening == true) {
+        if (isListening) {
             if (Listen == 1) {
                 Listen = 0;
             } else {
@@ -154,7 +154,7 @@ public class BurMichal extends Mainanim {
                         }
                         break;
                     case 4: // letzter Arbeitsschritt
-                        if ((mainFrame.inventory.noBackgroundSound == false) || (mainFrame.invCursor == false)) {
+                        if ((!mainFrame.inventory.noBackgroundSound) || (!mainFrame.invCursor)) {
                             mainFrame.wave.PlayFile("sfx/nepl.wav");
                         }
                         Work = 5;

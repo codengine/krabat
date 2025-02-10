@@ -27,10 +27,10 @@ import de.codengine.platform.GenericImage;
 
 public class KrabatAngeln extends Mainanim {
     // Szene Haty: Angeln, Fisch rausholen und sprechen
-    private GenericImage[] angle_rechts;
-    private GenericImage[] angle_links;
-    private GenericImage[] rede_rechts;
-    private GenericImage[] schaue_links;
+    private final GenericImage[] angle_rechts;
+    private final GenericImage[] angle_links;
+    private final GenericImage[] rede_rechts;
+    private final GenericImage[] schaue_links;
 
     private int angeln;
     private int fangen;
@@ -258,7 +258,7 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((fangen > 10) && (rueckgabe == true)) // nur am Anfang und wenn KEIN Verlassen
+        if ((fangen > 10) && (rueckgabe)) // nur am Anfang und wenn KEIN Verlassen
         {
             // hier noch rumangeln
             if ((fangen == 42) || (fangen == 41) || (fangen == 36) || (fangen == 35) || (fangen == 30) || (fangen == 29) ||
@@ -344,7 +344,7 @@ public class KrabatAngeln extends Mainanim {
         g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
 
         // Body evaluieren
-        if ((fangen > 10) && (rueckgabe == true)) {
+        if ((fangen > 10) && (rueckgabe)) {
             // hier noch rumangeln
             if ((fangen == 42) || (fangen == 41) || (fangen == 36) || (fangen == 35) || (fangen == 30) || (fangen == 29) ||
                     (fangen == 24) || (fangen == 23) || (fangen == 18) || (fangen == 17) || (fangen == 12) || (fangen == 11)) {

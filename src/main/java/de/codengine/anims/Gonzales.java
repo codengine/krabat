@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Gonzales extends Mainanim {
-    private GenericImage[] pirat_head;
-    private GenericImage[] pirat_body;
+    private final GenericImage[] pirat_head;
+    private final GenericImage[] pirat_body;
     private GenericImage pirat_blinker;
     private GenericImage pirat_give;
 
@@ -128,12 +128,12 @@ public class Gonzales extends Mainanim {
             }
 
             // Wenn er bei MC zuhoert, darf er sich nicht wegdrehen
-            if (isListening == true) {
+            if (isListening) {
                 Stand = 1;
             }
         }
 
         offGraph.drawImage(((Stand == 2) ? pirat_blinker : pirat_head[Head]), Posit.x, Posit.y, null);
-        offGraph.drawImage(((isGiving == true) ? pirat_give : pirat_body[Body]), Posit.x, Posit.y + 14, null);
+        offGraph.drawImage(((isGiving) ? pirat_give : pirat_body[Body]), Posit.x, Posit.y + 14, null);
     }
 }    

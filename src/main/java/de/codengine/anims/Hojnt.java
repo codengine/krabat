@@ -28,18 +28,18 @@ import de.codengine.platform.GenericImage;
 
 public class Hojnt extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_left;
-    private GenericImage[] krabat_right;
-    private GenericImage[] krabat_front;
-    private GenericImage[] krabat_back;
+    private final GenericImage[] krabat_left;
+    private final GenericImage[] krabat_right;
+    private final GenericImage[] krabat_front;
+    private final GenericImage[] krabat_back;
 
-    private GenericImage[] krabat_left_talk_head;
-    private GenericImage[] krabat_left_talk_body;
-    private GenericImage[] krabat_right_talk_head;
-    private GenericImage[] krabat_right_talk_body;
-    private GenericImage[] krabat_down_talk;
+    private final GenericImage[] krabat_left_talk_head;
+    private final GenericImage[] krabat_left_talk_body;
+    private final GenericImage[] krabat_right_talk_head;
+    private final GenericImage[] krabat_right_talk_body;
+    private final GenericImage[] krabat_down_talk;
 
-    private GenericImage[] krabat_buecken;
+    private final GenericImage[] krabat_buecken;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -273,13 +273,13 @@ public class Hojnt extends Mainanim {
         direction_y = Tdirection_y;
 
         // Verzoegerung einbauen beim Laufen
-        if (((--Verhinderwalk) > 0) && (horizontal == true)) {
+        if (((--Verhinderwalk) > 0) && (horizontal)) {
             return false;
         }
 
         Verhinderwalk = MAX_VERHINDERWALK;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
             // neuen Punkt ermitteln und setzen
@@ -300,7 +300,7 @@ public class Hojnt extends Mainanim {
             if (((walkto.x - (int) txps) * direction_x) <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetHojntPos(walkto);
-                if (clearanimpos == true) {
+                if (clearanimpos) {
                     anim_pos = 0;
                 }
                 return true;
@@ -326,7 +326,7 @@ public class Hojnt extends Mainanim {
             if (((walkto.y - (int) typs) * direction_y) <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetHojntPos(walkto);
-                if (clearanimpos == true) {
+                if (clearanimpos) {
                     anim_pos = 0;
                 }
                 return true;
@@ -427,11 +427,7 @@ public class Hojnt extends Mainanim {
             double xangle = Math.abs(aim.x - ((int) xps));
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            if (angle > (30 * Math.PI / 180)) {
-                horiz = false;
-            } else {
-                horiz = true;
-            }
+            horiz = !(angle > (30 * Math.PI / 180));
         }
 
         // Variablen an Move uebergeben
@@ -445,10 +441,10 @@ public class Hojnt extends Mainanim {
         } else {
             // bei fortgehendem Bewegen weiterschalten
             anim_pos++;
-            if ((horiz == true) && (anim_pos == 8)) {
+            if ((horiz) && (anim_pos == 8)) {
                 anim_pos = 2;
             }
-            if ((horiz == false) && (anim_pos == 4)) {
+            if ((!horiz) && (anim_pos == 4)) {
                 anim_pos = 0;
             }
         }
@@ -478,7 +474,7 @@ public class Hojnt extends Mainanim {
     // je nach Laufrichtung Krabat zeichnen
     public void drawHojnt(GenericDrawingContext offGraph) {
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal == true) {
+        if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
                 MaleIhn(offGraph, krabat_left[anim_pos]);
@@ -490,7 +486,7 @@ public class Hojnt extends Mainanim {
             }
         } else {
             // Bei normaler Darstellung
-            if (upsidedown == false) {
+            if (!upsidedown) {
                 // nach oben laufen
                 if (direction_y == -1) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
@@ -542,7 +538,7 @@ public class Hojnt extends Mainanim {
     // nur private, da nur in dieser Klasse benoetigt
     private int GetFacing() {
         int rgabe = 0;
-        if (horizontal == true) {
+        if (horizontal) {
             if (direction_x == 1) {
                 rgabe = 3;
             } else {
@@ -639,7 +635,7 @@ public class Hojnt extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {
@@ -718,7 +714,7 @@ public class Hojnt extends Mainanim {
         float fScale = (CHEIGHT - scale);
         float teilScaleHead = KOPFHOEHE / KOERPERHOEHE;
         int Kopfhoehe = (int) (fScale * teilScaleHead);
-        int Koerperhoehe = (int) (CHEIGHT - scale - Kopfhoehe);
+        int Koerperhoehe = CHEIGHT - scale - Kopfhoehe;
 
         // System.out.println ("Kopfhoehe : " + Kopfhoehe + " Bodyhoehe : " + Koerperhoehe);
 

@@ -59,7 +59,7 @@ public class Murja extends Mainloc {
         mainFrame.Freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
-        if (mainFrame.Actions[953] == true) {
+        if (mainFrame.Actions[953]) {
             mainFrame.Actions[701] = true;
         }
 
@@ -142,14 +142,14 @@ public class Murja extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
             Cursorform = 200;
-            if (setAnim == true) {
+            if (setAnim) {
                 mainFrame.fPlayAnim = true;
             }
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -163,7 +163,7 @@ public class Murja extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // Parallax - Scrolling ausfuehren  ??????????????????????
-        if (mainFrame.isScrolling == true) {
+        if (mainFrame.isScrolling) {
             int xtemp = mainFrame.scrollx - 5;
             if (xtemp < 0) {
                 xtemp = 0;
@@ -176,7 +176,7 @@ public class Murja extends Mainloc {
 
         // Tuer offen oder geschlossen zeichnen
         g.setClip(103, 184, 26, 56);
-        g.drawImage(((isDoorOpen == true) ? openDoor : closedDoor), 103, 184, null);
+        g.drawImage(((isDoorOpen) ? openDoor : closedDoor), 103, 184, null);
 
         // Parallaxer fuer Laterne, muss immer Hintergrund loeschen ?????
         float xtf = mainFrame.scrollx;
@@ -230,7 +230,7 @@ public class Murja extends Mainloc {
             may = g.getClipBounds();
             g.setClip(laterneAdd - 10, 0, 200, 479);
             g.drawImage(laterne, laterneAdd, 0, null);
-            g.setClip((int) may.getX(), (int) may.getY(), (int) may.getWidth(), (int) may.getHeight());
+            g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
@@ -242,7 +242,7 @@ public class Murja extends Mainloc {
 	  g.drawImage (weiden2, 84, 221, null);
 	  }*/
 
-        if (isBuschVisible == true) {
+        if (isBuschVisible) {
             g.drawImage(busch, 51, 393, null);
         }
 
@@ -253,10 +253,10 @@ public class Murja extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             mainFrame.krabat.StopWalking();
             nextActionID = 600;
@@ -299,7 +299,7 @@ public class Murja extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -309,7 +309,7 @@ public class Murja extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -317,7 +317,7 @@ public class Murja extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -336,7 +336,6 @@ public class Murja extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -347,18 +346,18 @@ public class Murja extends Mainloc {
                 nextActionID = 0;
 
                 // zu Haska gehen ?
-                if (ausgangHaska.IsPointInRect(pTemp) == true) {
+                if (ausgangHaska.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangHaska.IsPointInRect(kt) == false) {
+                    if (!ausgangHaska.IsPointInRect(kt)) {
                         pTemp = pExitHaska;
                     } else {
                         pTemp = new GenericPoint(pExitHaska.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -366,18 +365,18 @@ public class Murja extends Mainloc {
                 }
 
                 // zu Terassa gehen
-                if (ausgangTerassa.IsPointInRect(pTemp) == true) {
+                if (ausgangTerassa.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangTerassa.IsPointInRect(kt) == false) {
+                    if (!ausgangTerassa.IsPointInRect(kt)) {
                         pTemp = pExitTerassa;
                     } else {
                         pTemp = new GenericPoint(pExitTerassa.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -390,8 +389,8 @@ public class Murja extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangHaska.IsPointInRect(pTemp) == true) ||
-                        (ausgangTerassa.IsPointInRect(pTemp) == true)) {
+                if ((ausgangHaska.IsPointInRect(pTemp)) ||
+                        (ausgangTerassa.IsPointInRect(pTemp))) {
                     return;
                 }
 
@@ -410,7 +409,7 @@ public class Murja extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -419,21 +418,17 @@ public class Murja extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if (tmp.IsPointInRect(pTemp) == true) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -452,7 +447,7 @@ public class Murja extends Mainloc {
             //   return;
             // }
 
-            if (ausgangHaska.IsPointInRect(pTemp) == true) {
+            if (ausgangHaska.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -460,7 +455,7 @@ public class Murja extends Mainloc {
                 return;
             }
 
-            if (ausgangTerassa.IsPointInRect(pTemp) == true) {
+            if (ausgangTerassa.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 9;
@@ -486,12 +481,12 @@ public class Murja extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -524,7 +519,6 @@ public class Murja extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -543,8 +537,8 @@ public class Murja extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -609,8 +603,8 @@ public class Murja extends Mainloc {
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
                 mainFrame.CheckKrabat();
-                mainFrame.inventory.vInventory.addElement(new Integer(41));
-                mainFrame.inventory.vInventory.removeElement(new Integer(53));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(41));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(53));
                 nextActionID = 640;
                 break;
 

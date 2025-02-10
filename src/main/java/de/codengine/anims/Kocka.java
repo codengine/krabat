@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Kocka extends Mainanim {
-    private GenericImage kocka_look[];
-    private GenericImage kocka_talk[];
+    private final GenericImage[] kocka_look;
+    private final GenericImage[] kocka_talk;
 
     public static final int Breite = 63;
     public static final int Hoehe = 47;
@@ -179,7 +179,7 @@ public class Kocka extends Mainanim {
                         // Schwanzwackelanim
                         if (Look == 4) {
                             // schauen, ob vor oder Ende
-                            if (forward == true) {
+                            if (forward) {
                                 Look = 5;
                             } else {
                                 Look = 0;

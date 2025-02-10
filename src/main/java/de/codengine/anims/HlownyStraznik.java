@@ -27,15 +27,15 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class HlownyStraznik extends Mainanim {
-    private GenericImage straz_stand[];
-    private GenericImage straz_talk[];
-    private GenericImage straz_drink[];
-    private GenericImage straz_sit[];
+    private final GenericImage[] straz_stand;
+    private final GenericImage[] straz_talk;
+    private final GenericImage[] straz_drink;
+    private final GenericImage[] straz_sit;
 
     private GenericImage vorder;
 
     // generelle Flags
-    private boolean istCasnik;             // Flag, ob in Casnik oder in Kuchnja
+    private final boolean istCasnik;             // Flag, ob in Casnik oder in Kuchnja
     private boolean isSleeping;            // Flag, ob er schon schlaeft
 
     private boolean drink = false;
@@ -79,7 +79,7 @@ public class HlownyStraznik extends Mainanim {
     }
 
     private void InitImages() {
-        if (istCasnik == true) {
+        if (istCasnik) {
             straz_stand[0] = getPicture("gfx-dd/casnik/straznik1.gif");
             straz_stand[1] = getPicture("gfx-dd/casnik/straznik1z.gif");
             straz_stand[2] = getPicture("gfx-dd/casnik/straznik1a.gif");
@@ -144,7 +144,7 @@ public class HlownyStraznik extends Mainanim {
         }
 
         // trinkt
-        if (drink == true) {
+        if (drink) {
             // Trinkimages sind aktuell
             return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
                     casnikPoint1.x + straz_drink[Drink].getWidth(null),
@@ -152,7 +152,7 @@ public class HlownyStraznik extends Mainanim {
         }
 
         // setzt sich hin oder schlaeft
-        if ((sit == true) || (isSleeping == true)) {
+        if ((sit) || (isSleeping)) {
             // Hinsetzimages
             if (Sit == 0) {
                 return (new Borderrect(casnikPoint1.x, casnikPoint1.y,
@@ -174,10 +174,10 @@ public class HlownyStraznik extends Mainanim {
     // Figur weiterschalten, je nachdem, was gerade los ist
     public boolean evalStraznik(int TalkPerson, boolean trink, boolean schlafein, boolean hasClock) {
         // Variablen setzen
-        if (trink == true) {
+        if (trink) {
             drink = true;
         }
-        if (schlafein == true) {
+        if (schlafein) {
             sit = true;
         }
         boolean isDoing = true;
@@ -193,7 +193,7 @@ public class HlownyStraznik extends Mainanim {
         }
 
         // trinken
-        if (drink == true) {
+        if (drink) {
             if (Drinkcount < 7) // hier wird angegeben, wielange Straznik Wein nimmt
             {
                 // am Anfang Wein nehmen
@@ -219,10 +219,10 @@ public class HlownyStraznik extends Mainanim {
         }
 
         // sitzen oder schlafen
-        if ((sit == true) || (isSleeping == true)) {
+        if ((sit) || (isSleeping)) {
             // wenn er schon schlaeft, dann nur so zeichnen
-            if (isSleeping == true) {
-                if (hasClock == false) {
+            if (isSleeping) {
+                if (!hasClock) {
                     Sit = 2;
                 } else {
                     Sit = 3;
@@ -296,7 +296,7 @@ public class HlownyStraznik extends Mainanim {
     // Zeichne Hauptwachter, wie er dasteht oder spricht
     public void drawStraznik(GenericDrawingContext offGraph, int TalkPerson) {
         // Unterschied Kuchnja/Casnik
-        if (istCasnik == true) {
+        if (istCasnik) {
             // reden extra
             if ((TalkPerson == 48) && (mainFrame.talkCount > 1)) {
                 offGraph.drawImage(straz_talk[Talk], casnikPoint1.x, casnikPoint1.y, null);
@@ -305,14 +305,14 @@ public class HlownyStraznik extends Mainanim {
             }
 
             // trinken
-            if (drink == true) {
+            if (drink) {
                 offGraph.drawImage(straz_drink[Drink], casnikPoint1.x, casnikPoint1.y, null);
                 offGraph.drawImage(vorder, 121, 308, null);
                 return;
             }
 
             // hinsetzen
-            if ((sit == true) || (isSleeping == true)) {
+            if ((sit) || (isSleeping)) {
                 if (Sit == 0) {
                     offGraph.drawImage(straz_sit[Sit], casnikPoint1.x, casnikPoint1.y, null);
                 } else {
@@ -330,7 +330,7 @@ public class HlownyStraznik extends Mainanim {
 
     // Talkpoint zurueckgeben
     public GenericPoint evalTalkPoint() {
-        if (((sit == true) && (Sit == 0)) || (isSleeping == true)) // hier schlaeft er
+        if (((sit) && (Sit == 0)) || (isSleeping)) // hier schlaeft er
         {
             return (new GenericPoint(casnikPoint2.x + 38, casnikPoint2.y - 120));
         } else {

@@ -24,7 +24,7 @@ import de.codengine.Start;
 import de.codengine.platform.GenericDrawingContext;
 
 public class Usermultiple {
-    private Start mainFrame;
+    private final Start mainFrame;
 
     // fuer Anzeige
     private int selected = -1;
@@ -60,12 +60,12 @@ public class Usermultiple {
         Anzahl++;
         Fragen[Anzahl] = text;
         if (Anzahl == 0) {
-            Positionen[Anzahl] = new GenericRectangle((int) posit.getX(), (int) posit.getY() + yoff,
-                    (int) posit.getWidth(), (int) posit.getHeight());
+            Positionen[Anzahl] = new GenericRectangle(posit.getX(), posit.getY() + yoff,
+                    posit.getWidth(), posit.getHeight());
         } else {
-            int temp = (int) Positionen[Anzahl - 1].getY() + (int) Positionen[Anzahl - 1].getHeight();
-            Positionen[Anzahl] = new GenericRectangle((int) posit.getX(), temp, (int) posit.getWidth(),
-                    (int) posit.getHeight());
+            int temp = Positionen[Anzahl - 1].getY() + Positionen[Anzahl - 1].getHeight();
+            Positionen[Anzahl] = new GenericRectangle(posit.getX(), temp, posit.getWidth(),
+                    posit.getHeight());
         }
         Ident[Anzahl] = index;
     }
@@ -77,7 +77,7 @@ public class Usermultiple {
         g.setClip(0, 0, 1284, 964);
 
         // 1.Aufruf, zuerst alles Zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -85,23 +85,23 @@ public class Usermultiple {
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
                     mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
-                            (int) Positionen[i].getX() + mainFrame.scrollx,
-                            (int) Positionen[i].getY() + mainFrame.scrolly + 10, 0xffff0000);
+                            Positionen[i].getX() + mainFrame.scrollx,
+                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xffff0000);
                 } else {
                     mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
-                            (int) Positionen[i].getX() + mainFrame.scrollx,
-                            (int) Positionen[i].getY() + mainFrame.scrolly + 10, 0xffb00000);
+                            Positionen[i].getX() + mainFrame.scrollx,
+                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xffb00000);
                 }
             }
             oldsel = selected;
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
             return;
         }
 
         if (oldsel != -1) {
             mainFrame.ifont.drawString(g, ("$" + Fragen[oldsel]),
-                    (int) Positionen[oldsel].getX() + mainFrame.scrollx,
-                    (int) Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xffb00000);
+                    Positionen[oldsel].getX() + mainFrame.scrollx,
+                    Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xffb00000);
         }
         if (oldsel != -1) {
             oldsel = -1;
@@ -109,15 +109,15 @@ public class Usermultiple {
 
         if (selected != -1) {
             mainFrame.ifont.drawString(g, ("$" + Fragen[selected]),
-                    (int) Positionen[selected].getX() + mainFrame.scrollx,
-                    (int) Positionen[selected].getY() + mainFrame.scrolly + 10, 0xffff0000);
+                    Positionen[selected].getX() + mainFrame.scrollx,
+                    Positionen[selected].getY() + mainFrame.scrolly + 10, 0xffff0000);
         }
 
         if (selected != -1) {
             oldsel = selected;
         }
         // System.out.println ("Paint : " + selected);
-        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
     // Mouse - Listener fuer Multiple Choice
@@ -126,7 +126,7 @@ public class Usermultiple {
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // Linke Maustaste
             for (int i = 0; i <= Anzahl; ++i) {
-                if (Positionen[i].contains(pTemp) == true) {
+                if (Positionen[i].contains(pTemp)) {
                     Antwort = i;
                     selected = -1;
                     oldsel = -1;
@@ -150,7 +150,7 @@ public class Usermultiple {
         // System.out.println("Move Thrown !");
         selected = -1;
         for (int i = 0; i <= Anzahl; ++i) {
-            if (Positionen[i].contains(pTemp) == true) {
+            if (Positionen[i].contains(pTemp)) {
                 selected = i;
                 // System.out.println("Over an Item!");
                 break;
@@ -159,7 +159,7 @@ public class Usermultiple {
 
         // System.out.println("Move : " + selected);
 
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }

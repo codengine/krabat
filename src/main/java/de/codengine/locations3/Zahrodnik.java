@@ -29,15 +29,15 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Zahrodnik extends Mainloc {
     private GenericImage background, hrod;
-    private Handrij handrij;
-    private Multiple2 Dialog;
+    private final Handrij handrij;
+    private final Multiple2 Dialog;
 
     private boolean handrijHoertZu = false;
     private boolean handrijSchreibt = false;
     private boolean handrijGibt = false;
 
-    private Borderrect reZahrodnik;
-    private GenericPoint talkPoint;
+    private final Borderrect reZahrodnik;
+    private final GenericPoint talkPoint;
 
     private int tCounter = 0;
 
@@ -158,19 +158,19 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Tuereintrittssound abspielen
-        if (initSound == false) {
+        if (!initSound) {
             initSound = true;
             mainFrame.wave.PlayFile("sfx/vdurjezu.wav");
         }
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true)) {
+        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -235,7 +235,7 @@ public class Zahrodnik extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter Schloss ? (nur Clipping - Region wird neugezeichnet)
-        if (rectHrod.IsPointInRect(pKrTemp) == true) {
+        if (rectHrod.IsPointInRect(pKrTemp)) {
             g.drawImage(hrod, 0, 354, null);
         }
 
@@ -246,7 +246,7 @@ public class Zahrodnik extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -264,7 +264,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
@@ -282,7 +282,7 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -298,7 +298,7 @@ public class Zahrodnik extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -308,7 +308,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -316,56 +316,56 @@ public class Zahrodnik extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Zahrodnik
-                if (reZahrodnik.IsPointInRect(pTemp) == true) {
+                if (reZahrodnik.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pZahrUnten;
                 }
 
                 // Ausreden fuer hrod
-                if (lookHrod.IsPointInRect(pTemp) == true) {
+                if (lookHrod.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = pHrod;
                 }
 
                 // Ausreden fuer blatt
-                if (papier.IsPointInRect(pTemp) == true) {
+                if (papier.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 165;
                     pTemp = pPapier;
                 }
 
                 // Ausreden fuer budka
-                if ((budka.IsPointInRect(pTemp) == true) && (reZahrodnik.IsPointInRect(pTemp) == false)) {
+                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
                     // Extra - Sinnloszeug
                     nextActionID = 170;
                     pTemp = pBudka;
                 }
 
                 // Ausreden fuer skizze
-                if (skizze.IsPointInRect(pTemp) == true) {
+                if (skizze.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 175;
                     pTemp = pSkizze;
                 }
 
                 // Ausreden fuer pjerjo
-                if (pjerjo.IsPointInRect(pTemp) == true) {
+                if (pjerjo.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 180;
                     pTemp = pPjerjo;
                 }
 
                 // Ausreden fuer dokumenty
-                if (dokumenty.IsPointInRect(pTemp) == true) {
+                if (dokumenty.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 185;
                     pTemp = pDokumenty;
@@ -384,7 +384,6 @@ public class Zahrodnik extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -395,19 +394,19 @@ public class Zahrodnik extends Mainloc {
                 nextActionID = 0;
 
                 // zu Panorama gehen ?
-                if (ausgangUnten.IsPointInRect(pTemp) == true) {
+                if (ausgangUnten.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen, Achtung: ist jetzt nach rechts!!!
-                    if (ausgangUnten.IsPointInRect(kt) == false) {
+                    if (!ausgangUnten.IsPointInRect(kt)) {
                         pTemp = pExitUnten;
                     } else {
                         // es wird nach rechts! verlassen
                         pTemp = new GenericPoint(pExitUnten.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -422,43 +421,43 @@ public class Zahrodnik extends Mainloc {
                 // }
 
                 // Handrij ansehen
-                if (reZahrodnik.IsPointInRect(pTemp) == true) {
+                if (reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pZahrUnten;
                 }
 
                 // hrod ansehen
-                if (lookHrod.IsPointInRect(pTemp) == true) {
+                if (lookHrod.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pHrod;
                 }
 
                 // blatt ansehen
-                if (papier.IsPointInRect(pTemp) == true) {
+                if (papier.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = pPapier;
                 }
 
                 // budka ansehen
-                if ((budka.IsPointInRect(pTemp) == true) && (reZahrodnik.IsPointInRect(pTemp) == false)) {
+                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
                     nextActionID = 4;
                     pTemp = pBudka;
                 }
 
                 // skizze ansehen
-                if (skizze.IsPointInRect(pTemp) == true) {
+                if (skizze.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = pSkizze;
                 }
 
                 // pjerjo ansehen
-                if (pjerjo.IsPointInRect(pTemp) == true) {
+                if (pjerjo.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = pPjerjo;
                 }
 
                 // dokumenty ansehen
-                if (dokumenty.IsPointInRect(pTemp) == true) {
+                if (dokumenty.IsPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = pDokumenty;
                 }
@@ -469,7 +468,7 @@ public class Zahrodnik extends Mainloc {
                 // rechte Maustaste
 
                 // Mit dem Zahrodnik reden
-                if (reZahrodnik.IsPointInRect(pTemp) == true) {
+                if (reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pZahrUnten);
                     mainFrame.repaint();
@@ -477,12 +476,12 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangUnten.IsPointInRect(pTemp) == true) {
+                if (ausgangUnten.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // hrod mitnehmen
-                if (lookHrod.IsPointInRect(pTemp) == true) {
+                if (lookHrod.IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(pHrod);
                     mainFrame.repaint();
@@ -490,7 +489,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // blatt mitnehmen
-                if (papier.IsPointInRect(pTemp) == true) {
+                if (papier.IsPointInRect(pTemp)) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(pPapier);
                     mainFrame.repaint();
@@ -498,7 +497,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // budka ansehen
-                if ((budka.IsPointInRect(pTemp) == true) && (reZahrodnik.IsPointInRect(pTemp) == false)) {
+                if ((budka.IsPointInRect(pTemp)) && (!reZahrodnik.IsPointInRect(pTemp))) {
                     nextActionID = 65;
                     mainFrame.wegGeher.SetzeNeuenWeg(pBudka);
                     mainFrame.repaint();
@@ -506,7 +505,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // skizze ansehen
-                if (skizze.IsPointInRect(pTemp) == true) {
+                if (skizze.IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(pSkizze);
                     mainFrame.repaint();
@@ -514,7 +513,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // pjerjo ansehen
-                if (pjerjo.IsPointInRect(pTemp) == true) {
+                if (pjerjo.IsPointInRect(pTemp)) {
                     nextActionID = 75;
                     mainFrame.wegGeher.SetzeNeuenWeg(pPjerjo);
                     mainFrame.repaint();
@@ -522,7 +521,7 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // dokumenty ansehen
-                if (dokumenty.IsPointInRect(pTemp) == true) {
+                if (dokumenty.IsPointInRect(pTemp)) {
                     nextActionID = 80;
                     mainFrame.wegGeher.SetzeNeuenWeg(pDokumenty);
                     mainFrame.repaint();
@@ -541,13 +540,13 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -556,24 +555,20 @@ public class Zahrodnik extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) || (skizze.IsPointInRect(pTemp) == true) ||
-                    (papier.IsPointInRect(pTemp) == true) || (reZahrodnik.IsPointInRect(pTemp) == true) ||
-                    (budka.IsPointInRect(pTemp) == true) || (pjerjo.IsPointInRect(pTemp) == true) ||
-                    (dokumenty.IsPointInRect(pTemp) == true) || (lookHrod.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (skizze.IsPointInRect(pTemp)) ||
+                    (papier.IsPointInRect(pTemp)) || (reZahrodnik.IsPointInRect(pTemp)) ||
+                    (budka.IsPointInRect(pTemp)) || (pjerjo.IsPointInRect(pTemp)) ||
+                    (dokumenty.IsPointInRect(pTemp)) || (lookHrod.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -581,7 +576,7 @@ public class Zahrodnik extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangUnten.IsPointInRect(pTemp) == true) {
+            if (ausgangUnten.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
                     mainFrame.setCursor(mainFrame.Cright);  // Ausgang jetzt rechts!!!
                     Cursorform = 6;
@@ -589,10 +584,10 @@ public class Zahrodnik extends Mainloc {
                 return;
             }
 
-            if ((skizze.IsPointInRect(pTemp) == true) ||
-                    (papier.IsPointInRect(pTemp) == true) || (reZahrodnik.IsPointInRect(pTemp) == true) ||
-                    (budka.IsPointInRect(pTemp) == true) || (pjerjo.IsPointInRect(pTemp) == true) ||
-                    (dokumenty.IsPointInRect(pTemp) == true) || (lookHrod.IsPointInRect(pTemp) == true)) {
+            if ((skizze.IsPointInRect(pTemp)) ||
+                    (papier.IsPointInRect(pTemp)) || (reZahrodnik.IsPointInRect(pTemp)) ||
+                    (budka.IsPointInRect(pTemp)) || (pjerjo.IsPointInRect(pTemp)) ||
+                    (dokumenty.IsPointInRect(pTemp)) || (lookHrod.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -610,7 +605,7 @@ public class Zahrodnik extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -620,18 +615,18 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -664,7 +659,6 @@ public class Zahrodnik extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -683,8 +677,8 @@ public class Zahrodnik extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -776,7 +770,7 @@ public class Zahrodnik extends Mainloc {
                 schnauzeZahrod = true;  // Sound schon hier abschalten
                 mainFrame.krabat.SetFacing(fZahrod);
                 // Sequenz vor MC ? (beim ersten Ansprechen)
-                if (mainFrame.Actions[530] == true) {
+                if (mainFrame.Actions[530]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 608;
@@ -880,14 +874,14 @@ public class Zahrodnik extends Mainloc {
                 // Obersorbische Fragen /////////////////////////////////
                 if (mainFrame.sprache == 1) {
                     // 1. Frage nur, wenn noch kein Liscik
-                    if (mainFrame.Actions[542] == false) {
+                    if (!mainFrame.Actions[542]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00039"), 1000, 537, new int[]{537}, 610);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00040"), 537, 536, new int[]{536}, 611);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00041"), 536, 535, new int[]{535}, 612);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00042"), 535, 534, new int[]{534}, 613);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00043"), 534, 533, new int[]{533}, 614);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00044"), 533, 532, new int[]{532}, 615);
-                        if (mainFrame.Actions[520] == false) {
+                        if (!mainFrame.Actions[520]) {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00045"), 532, 1000, null, 618);
                         } else {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00046"), 532, 1000, null, 620);
@@ -906,14 +900,14 @@ public class Zahrodnik extends Mainloc {
                 // Niedersorbische Fragen /////////////////////////////////
                 if (mainFrame.sprache == 2) {
                     // 1. Frage nur, wenn noch kein Liscik
-                    if (mainFrame.Actions[542] == false) {
+                    if (!mainFrame.Actions[542]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00051"), 1000, 537, new int[]{537}, 610);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00052"), 537, 536, new int[]{536}, 611);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00053"), 536, 535, new int[]{535}, 612);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00054"), 535, 534, new int[]{534}, 613);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00055"), 534, 533, new int[]{533}, 614);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00056"), 533, 532, new int[]{532}, 615);
-                        if (mainFrame.Actions[520] == false) {
+                        if (!mainFrame.Actions[520]) {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00057"), 532, 1000, null, 618);
                         } else {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00058"), 532, 1000, null, 620);
@@ -932,14 +926,14 @@ public class Zahrodnik extends Mainloc {
                 // Deutsche Fragen /////////////////////////////////
                 if (mainFrame.sprache == 3) {
                     // 1. Frage nur, wenn noch kein Liscik
-                    if (mainFrame.Actions[542] == false) {
+                    if (!mainFrame.Actions[542]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00063"), 1000, 537, new int[]{537}, 610);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00064"), 537, 536, new int[]{536}, 611);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00065"), 536, 535, new int[]{535}, 612);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00066"), 535, 534, new int[]{534}, 613);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00067"), 534, 533, new int[]{533}, 614);
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00068"), 533, 532, new int[]{532}, 615);
-                        if (mainFrame.Actions[520] == false) {
+                        if (!mainFrame.Actions[520]) {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00069"), 532, 1000, null, 618);
                         } else {
                             Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00070"), 532, 1000, null, 620);
@@ -1136,7 +1130,7 @@ public class Zahrodnik extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Zahrodnik_00119"),
                         0, 1, 2, 800);
                 // Empfehlungsschreiben zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(new Integer(30));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(30));
                 // Flag - setzen ! Krabat bekommt Empfehl.schreiben
                 mainFrame.Actions[542] = true;
                 break;
@@ -1212,7 +1206,7 @@ public class Zahrodnik extends Mainloc {
         // 3. invCursor -> soll nur dann abschalten
 
         // wenn anderes wichtiger ist, dann hier verhindern
-        if (schnauzeZahrod == true) {
+        if (schnauzeZahrod) {
             return;
         }
 

@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Wudowa extends Mainanim {
-    private GenericImage[] alte_head;
-    private GenericImage[] alte_body;
-    private GenericImage[] alte_lach;
+    private final GenericImage[] alte_head;
+    private final GenericImage[] alte_body;
+    private final GenericImage[] alte_lach;
 
     private GenericImage wokno1;
     private GenericImage wokno2;
@@ -110,7 +110,7 @@ public class Wudowa extends Mainanim {
                 }
             }
 
-            if (isZoomed == false)  // ungezoomte Variante
+            if (!isZoomed)  // ungezoomte Variante
             {
                 g.drawImage(alte_head[Head], drawPoint.x, drawPoint.y, null);
                 g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
@@ -136,7 +136,7 @@ public class Wudowa extends Mainanim {
                     }
                 }
 
-                if (isZoomed == false) {
+                if (!isZoomed) {
                     g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, null);
                     g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
                 } else {
@@ -157,7 +157,7 @@ public class Wudowa extends Mainanim {
                     }
                 }
 
-                if (isZoomed == false) {
+                if (!isZoomed) {
                     g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, null);
                     g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + BODYOFFSET, null);
                 } else {

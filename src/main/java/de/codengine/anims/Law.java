@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Law extends Mainanim {
-    private GenericImage[] law;
-    private GenericImage[] law_talk;
-    private GenericImage[] law_sleep;
+    private final GenericImage[] law;
+    private final GenericImage[] law_talk;
+    private final GenericImage[] law_sleep;
     private GenericImage law_grrr;
 
     public static final int Breite = 60;
@@ -122,7 +122,7 @@ public class Law extends Mainanim {
         }
 
         // zuhoeren, wenn Flag gesetzt
-        if (isListening == true) {
+        if (isListening) {
             // Zwinkern eval.
             if (Talk > 0) {
                 Talk = 0;

@@ -30,11 +30,11 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Manega extends Mainloc {
     private GenericImage background, friedhelm;
 
-    private Law loewe;
+    private final Law loewe;
 
-    private GenericPoint loewePoint;
-    private GenericPoint loeweTalk;
-    private Borderrect loeweRect;
+    private final GenericPoint loewePoint;
+    private final GenericPoint loeweTalk;
+    private final Borderrect loeweRect;
 
     private boolean loeweSchnarcht = false;
     private boolean hoertZu = false;
@@ -132,7 +132,7 @@ public class Manega extends Mainloc {
 
         // beim Init festlegen, ob schon geschnarcht wird oder nicht
         loeweSchnarcht = mainFrame.Actions[613];
-        if (loeweSchnarcht == true) {
+        if (loeweSchnarcht) {
             AnimTalkPerson = 68;
         }
 
@@ -152,7 +152,7 @@ public class Manega extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -164,7 +164,7 @@ public class Manega extends Mainloc {
 
         // Hintergrund, Zeug (falls noch da) und Krabat zeichnen
         g.drawImage(background, 0, 0, null);
-        if (mainFrame.Actions[611] == false) {
+        if (!mainFrame.Actions[611]) {
             g.drawImage(friedhelm, 365, 380, null);
         }
 
@@ -226,7 +226,7 @@ public class Manega extends Mainloc {
             may = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
-            g.setClip((int) may.getX(), (int) may.getY(), (int) may.getWidth(), (int) may.getHeight());
+            g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
         // sonst noch was zu tun ?
@@ -236,7 +236,7 @@ public class Manega extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -254,7 +254,7 @@ public class Manega extends Mainloc {
         }
 
         // Anims bedienen
-        if (loeweSchnarcht == true) {
+        if (loeweSchnarcht) {
             DoAnims();
         }
 
@@ -279,7 +279,7 @@ public class Manega extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -289,7 +289,7 @@ public class Manega extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -297,14 +297,14 @@ public class Manega extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Zeugs an loewen geben
-                if (loeweRect.IsPointInRect(pTemp) == true) {
+                if (loeweRect.IsPointInRect(pTemp)) {
                     nextActionID = 150;
                     pTemp = pLoewe;
                 }
@@ -322,7 +322,6 @@ public class Manega extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -333,18 +332,18 @@ public class Manega extends Mainloc {
                 nextActionID = 0;
 
                 // zu Zastup gehen ?
-                if (ausgangZastup.IsPointInRect(pTemp) == true) {
+                if (ausgangZastup.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangZastup.IsPointInRect(kt) == false) {
+                    if (!ausgangZastup.IsPointInRect(kt)) {
                         pTemp = pExitZastup;
                     } else {
                         pTemp = new GenericPoint(pExitZastup.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -352,14 +351,14 @@ public class Manega extends Mainloc {
                 }
 
                 // Helm ansehen
-                if ((helm.IsPointInRect(pTemp) == true) &&
-                        (mainFrame.Actions[611] == false)) {
+                if ((helm.IsPointInRect(pTemp)) &&
+                        (!mainFrame.Actions[611])) {
                     nextActionID = 1;
                     pTemp = pHelm;
                 }
 
                 // Loewen anschauen
-                if (loeweRect.IsPointInRect(pTemp) == true) {
+                if (loeweRect.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pLoewe;
                 }
@@ -370,8 +369,8 @@ public class Manega extends Mainloc {
                 // rechte Maustaste
 
                 // Helm mitnehmen
-                if ((helm.IsPointInRect(pTemp) == true) &&
-                        (mainFrame.Actions[611] == false)) {
+                if ((helm.IsPointInRect(pTemp)) &&
+                        (!mainFrame.Actions[611])) {
                     nextActionID = 4;
                     mainFrame.wegGeher.SetzeNeuenWeg(pHelm);
                     mainFrame.repaint();
@@ -379,7 +378,7 @@ public class Manega extends Mainloc {
                 }
 
                 // mit Loewen reden
-                if (loeweRect.IsPointInRect(pTemp) == true) {
+                if (loeweRect.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     mainFrame.wegGeher.SetzeNeuenWeg(pLoewe);
                     mainFrame.repaint();
@@ -387,7 +386,7 @@ public class Manega extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangZastup.IsPointInRect(pTemp) == true) {
+                if (ausgangZastup.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -405,7 +404,7 @@ public class Manega extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -414,23 +413,19 @@ public class Manega extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (loeweRect.IsPointInRect(pTemp) == true) ||
-                    ((helm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[611] == false))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (loeweRect.IsPointInRect(pTemp)) ||
+                    ((helm.IsPointInRect(pTemp)) && (!mainFrame.Actions[611]));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -438,8 +433,8 @@ public class Manega extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((helm.IsPointInRect(pTemp) == true) && (mainFrame.Actions[611] == false)) ||
-                    (loeweRect.IsPointInRect(pTemp) == true)) {
+            if (((helm.IsPointInRect(pTemp)) && (!mainFrame.Actions[611])) ||
+                    (loeweRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -447,7 +442,7 @@ public class Manega extends Mainloc {
                 return;
             }
 
-            if (ausgangZastup.IsPointInRect(pTemp) == true) {
+            if (ausgangZastup.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 9;
@@ -473,12 +468,12 @@ public class Manega extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -511,7 +506,6 @@ public class Manega extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -534,7 +528,7 @@ public class Manega extends Mainloc {
         // 2. wave gibt an, dass die nativen Soundroutinen benutzt werden
         // 3. invCursor -> soll nur dann abschalten
 
-        if (schnarchen == true) // wird hier nicht benutzt
+        if (schnarchen) // wird hier nicht benutzt
         {
             // immer spielen, kommt eh nur selten
             mainFrame.wave.PlayFile("sfx-dd/lawspi.wav");
@@ -551,8 +545,8 @@ public class Manega extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -583,7 +577,7 @@ public class Manega extends Mainloc {
 
             case 2:
                 // Loewen anschauen, wenn er noch wach ist oder schon schlaeft
-                if (mainFrame.Actions[613] == false) {
+                if (!mainFrame.Actions[613]) {
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00021"), Start.stringManager.getTranslation("Loc3_Manega_00022"), Start.stringManager.getTranslation("Loc3_Manega_00023"),
                             fLoewe, 3, 0, 0);
                 } else {
@@ -595,7 +589,7 @@ public class Manega extends Mainloc {
             case 3:
                 // Versuch, mit Loewen zu reden
                 // Hier Entscheidung, ob schon Buch gelesen
-                if (mainFrame.Actions[955] == false) {
+                if (!mainFrame.Actions[955]) {
                     // noch nicht gelesen
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00027"),
                             Start.stringManager.getTranslation("Loc3_Manega_00028"),
@@ -603,13 +597,13 @@ public class Manega extends Mainloc {
                             fLoewe, 3, 0, 0);
                 } else {
                     // Animszene mit Loewe
-                    if (mainFrame.Actions[610] == false) {
+                    if (!mainFrame.Actions[610]) {
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
                         nextActionID = 200;
                     } else {
                         // Loewe ist sauer, oder wenn er schon schlaeft, will K ihn auch in Ruhe lassen
-                        if (mainFrame.Actions[613] == false) {
+                        if (!mainFrame.Actions[613]) {
                             PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00030"),
                                     Start.stringManager.getTranslation("Loc3_Manega_00031"),
                                     Start.stringManager.getTranslation("Loc3_Manega_00032"),
@@ -626,7 +620,7 @@ public class Manega extends Mainloc {
 
             case 4:
                 // Helm mitnehmen (wenn noch da)
-                if (mainFrame.Actions[613] == true) {
+                if (mainFrame.Actions[613]) {
                     // darf mitnehmen
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -634,13 +628,13 @@ public class Manega extends Mainloc {
                     nextActionID = 10;
                     Counter = 5;
                     // Inventar hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(43));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(43));
                     mainFrame.krabat.nAnimation = 94;
                 } else {
                     // Loewe wehrt sich noch
                     int zuffZahl = (int) (Math.random() * 2.9);
                     evalSound(false);
-                    if (mainFrame.Actions[955] == true) {
+                    if (mainFrame.Actions[955]) {
                         // Krabat hat Buch gelesen, versteht Loewen also
                         PersonSagt(HLoewe[zuffZahl], DLoewe[zuffZahl], NLoewe[zuffZahl],
                                 0, 68, 0, 0, loeweTalk);
@@ -795,19 +789,19 @@ public class Manega extends Mainloc {
             case 600:
                 // hier Loewenreaktion...
                 // wenn noch nicht im Buch gelesen, dann passiert auch nichts...
-                if (mainFrame.Actions[955] == false) {
+                if (!mainFrame.Actions[955]) {
                     nextActionID = 615;
                 } else {
                     // schon gelesen, also jetzt reagiert Loewe
                     if (mainFrame.krabat.nAnimation != 0) {
                         break;
                     }
-                    if (mainFrame.Actions[612] == false) {
+                    if (!mainFrame.Actions[612]) {
                         // erstes Floetenspiel
                         mainFrame.Actions[612] = true;
                         nextActionID = 610;
                     } else {
-                        if (mainFrame.Actions[613] == false) {
+                        if (!mainFrame.Actions[613]) {
                             // zweites Floetetnspiel
                             mainFrame.Actions[613] = true;
                             nextActionID = 620;

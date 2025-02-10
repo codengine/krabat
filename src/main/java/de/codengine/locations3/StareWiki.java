@@ -31,24 +31,24 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class StareWiki extends Mainloc {
     private GenericImage background, koleso;
-    private PredKorejtow predKorejtow;
-    private PredWosuskow predWosuskow;
-    private PredMalickow predMalickow;
-    private Multiple2 Dialog;
+    private final PredKorejtow predKorejtow;
+    private final PredWosuskow predWosuskow;
+    private final PredMalickow predMalickow;
+    private final Multiple2 Dialog;
 
-    private GenericPoint korejtowPoint;
-    private GenericPoint talkPointKorejty;
-    private Borderrect rePredKorejtow;
+    private final GenericPoint korejtowPoint;
+    private final GenericPoint talkPointKorejty;
+    private final Borderrect rePredKorejtow;
 
-    private GenericPoint wosuskowPoint;
-    private GenericPoint talkPointWosuski;
-    private Borderrect rePredWosuskow;
+    private final GenericPoint wosuskowPoint;
+    private final GenericPoint talkPointWosuski;
+    private final Borderrect rePredWosuskow;
     private boolean wosIsLooking = false;
     private boolean wosIsGiving = false;
 
-    private GenericPoint malickowPoint;
-    private GenericPoint talkPointMalicki;
-    private Borderrect rePredMalickow;
+    private final GenericPoint malickowPoint;
+    private final GenericPoint talkPointMalicki;
+    private final Borderrect rePredMalickow;
     private boolean malIsWalking = false;
     private boolean malIsGiving = false;
     private boolean malIsInvisible = false;
@@ -196,13 +196,13 @@ public class StareWiki extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true)) {
+        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -227,7 +227,7 @@ public class StareWiki extends Mainloc {
         // Predawar Korejtow zeichnen
         g.setClip(korejtowPoint.x, korejtowPoint.y, PredKorejtow.Breite, PredKorejtow.Hoehe);
         g.drawImage(background, 0, 0, null);
-        if ((AnimTalkPerson == 62) && (AnimMCLocked == false)) {
+        if ((AnimTalkPerson == 62) && (!AnimMCLocked)) {
             // bei einer Anim rumschreien lassen
             predKorejtow.callPredawar(g);
         } else {
@@ -242,7 +242,7 @@ public class StareWiki extends Mainloc {
 
         // Predawar Wosuskow zeichnen
         g.setClip(wosuskowPoint.x, wosuskowPoint.y, PredWosuskow.Breite, PredWosuskow.Hoehe);
-        if ((AnimTalkPerson == 63) && (AnimMCLocked == false)) {
+        if ((AnimTalkPerson == 63) && (!AnimMCLocked)) {
             // bei einer Anim rumschreien lassen
             predWosuskow.callPredawar(g);
         } else {
@@ -250,12 +250,12 @@ public class StareWiki extends Mainloc {
                 // beim Reden
                 predWosuskow.talkPredawar(g);
             } else {
-                if ((wosIsGiving == true) || (wosIsLooking == true)) {
+                if ((wosIsGiving) || (wosIsLooking)) {
                     // bei irgendwelchen Anims
-                    if (wosIsGiving == true) {
+                    if (wosIsGiving) {
                         wosIsGiving = predWosuskow.animPredawar(g, 2);
                     }
-                    if (wosIsLooking == true) {
+                    if (wosIsLooking) {
                         wosIsLooking = predWosuskow.animPredawar(g, 1);
                     }
                 } else {
@@ -267,29 +267,29 @@ public class StareWiki extends Mainloc {
 
         // Predawar Malickoscow zeichnen
         g.setClip(malickowPoint.x - 5, malickowPoint.y - 3, PredMalickow.Breite + 10, PredMalickow.Hoehe + 6);
-        if ((AnimTalkPerson == 64) && (AnimMCLocked == false)) {
+        if ((AnimTalkPerson == 64) && (!AnimMCLocked)) {
             // bei einer Anim rumschreien lassen
-            if (malIsInvisible == false) {
+            if (!malIsInvisible) {
                 predMalickow.callPredawar(g);
             }
         } else {
             if (TalkPerson == 64) {
                 // beim Reden
-                if (malIsInvisible == false) {
+                if (!malIsInvisible) {
                     predMalickow.talkPredawar(g);
                 }
             } else {
-                if ((malIsWalking == true) || (malIsGiving == true)) {
+                if ((malIsWalking) || (malIsGiving)) {
                     // bei irgendwelchen Anims
-                    if (malIsWalking == true) {
+                    if (malIsWalking) {
                         malIsWalking = predMalickow.animPredawar(g, 1);
                     }
-                    if ((malIsGiving == true) && (malIsInvisible == false)) {
+                    if ((malIsGiving) && (!malIsInvisible)) {
                         malIsGiving = predMalickow.animPredawar(g, 2);
                     }
                 } else {
                     // beim Rumstehen
-                    if (malIsInvisible == false) {
+                    if (!malIsInvisible) {
                         predMalickow.drawPredawar(g, malIsListening);
                     }
                 }
@@ -337,18 +337,18 @@ public class StareWiki extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter Rad ? (nur Clipping - Region wird neugezeichnet)
-        if (rectKoleso.IsPointInRect(pKrTemp) == true) {
+        if (rectKoleso.IsPointInRect(pKrTemp)) {
             g.drawImage(koleso, 337, 271, null);
         }
 
         // Ausgabe von AnimText, falls noetig
-        if ((AnimOutputText != "") && (AnimMCLocked == false)) {
+        if ((AnimOutputText != "") && (!AnimMCLocked)) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // sonst noch was zu tun ?
@@ -358,7 +358,7 @@ public class StareWiki extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -376,14 +376,14 @@ public class StareWiki extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
         }
 
         // Die Anims muessen bedient werden
-        if ((AnimID != 0) && (AnimMCLocked == false)) {
+        if ((AnimID != 0) && (!AnimMCLocked)) {
             DoAnims();
         }
 
@@ -399,7 +399,7 @@ public class StareWiki extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -415,7 +415,7 @@ public class StareWiki extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -425,7 +425,7 @@ public class StareWiki extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -433,7 +433,7 @@ public class StareWiki extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -448,7 +448,7 @@ public class StareWiki extends Mainloc {
                 // }
 
                 // Ausreden fuer predWosuskow oder Stollen kaufen
-                if (rePredWosuskow.IsPointInRect(pTemp) == true) {
+                if (rePredWosuskow.IsPointInRect(pTemp)) {
                     if (mainFrame.whatItem == 40) {
                         nextActionID = 160;
                     } else {
@@ -458,7 +458,7 @@ public class StareWiki extends Mainloc {
                 }
 
                 // Ausreden fuer PredKorejtow
-                if (rePredKorejtow.IsPointInRect(pTemp) == true) {
+                if (rePredKorejtow.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pPredKorejtow;
@@ -466,63 +466,63 @@ public class StareWiki extends Mainloc {
 
                 // Ausreden fuer PredMalickow bzw. Sachen zum Faelschen geben
                 // Hier darf kein Inventory geaendert oder Actions gesetzt werden, da K noch laeuft (Abbruch mgl.)
-                if (rePredMalickow.IsPointInRect(pTemp) == true) {
+                if (rePredMalickow.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 31: // Dowol ohne alles
-                            if ((mainFrame.Actions[647] == false) && (mainFrame.Actions[648] == false)) {
+                            if ((!mainFrame.Actions[647]) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1000;
                             }
-                            if ((mainFrame.Actions[647] == false) && (mainFrame.Actions[648] == true)) {
+                            if ((!mainFrame.Actions[647]) && (mainFrame.Actions[648])) {
                                 nextActionID = 1070;
                             }
-                            if ((mainFrame.Actions[647] == true) && (mainFrame.Actions[648] == false)) {
+                            if ((mainFrame.Actions[647]) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1040;
                             }
-                            if ((mainFrame.Actions[647] == true) && (mainFrame.Actions[648] == true)) {
+                            if ((mainFrame.Actions[647]) && (mainFrame.Actions[648])) {
                                 nextActionID = 1090;
                             }
                             mainFrame.Actions[649] = false;
                             break;
                         case 32: // Dowol zygl.
-                            if ((mainFrame.Actions[647] == false) && (mainFrame.Actions[648] == false)) {
+                            if ((!mainFrame.Actions[647]) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1000;
                             }
-                            if ((mainFrame.Actions[647] == false) && (mainFrame.Actions[648] == true)) {
+                            if ((!mainFrame.Actions[647]) && (mainFrame.Actions[648])) {
                                 nextActionID = 1070;
                             }
-                            if ((mainFrame.Actions[647] == true) && (mainFrame.Actions[648] == false)) {
+                            if ((mainFrame.Actions[647]) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1040;
                             }
-                            if ((mainFrame.Actions[647] == true) && (mainFrame.Actions[648] == true)) {
+                            if ((mainFrame.Actions[647]) && (mainFrame.Actions[648])) {
                                 nextActionID = 1090;
                             }
                             mainFrame.Actions[649] = true;
                             break;
                         case 45: // Casnik
-                            if (((mainFrame.Actions[645] == false) && (mainFrame.Actions[646] == false)) && (mainFrame.Actions[647] == false)) {
+                            if (((!mainFrame.Actions[645]) && (!mainFrame.Actions[646])) && (!mainFrame.Actions[647])) {
                                 nextActionID = 1020;
                             }
-                            if (((mainFrame.Actions[645] == false) && (mainFrame.Actions[646] == false)) && (mainFrame.Actions[647] == true)) {
+                            if (((!mainFrame.Actions[645]) && (!mainFrame.Actions[646])) && (mainFrame.Actions[647])) {
                                 nextActionID = 1060;
                             }
-                            if (((mainFrame.Actions[645] == true) || (mainFrame.Actions[646] == true)) && (mainFrame.Actions[647] == false)) {
+                            if (((mainFrame.Actions[645]) || (mainFrame.Actions[646])) && (!mainFrame.Actions[647])) {
                                 nextActionID = 1050;
                             }
-                            if (((mainFrame.Actions[645] == true) || (mainFrame.Actions[646] == true)) && (mainFrame.Actions[647] == true)) {
+                            if (((mainFrame.Actions[645]) || (mainFrame.Actions[646])) && (mainFrame.Actions[647])) {
                                 nextActionID = 1110;
                             }
                             break;
                         case 49: // Prikaz
-                            if (((mainFrame.Actions[645] == false) && (mainFrame.Actions[646] == false)) && (mainFrame.Actions[648] == false)) {
+                            if (((!mainFrame.Actions[645]) && (!mainFrame.Actions[646])) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1010;
                             }
-                            if (((mainFrame.Actions[645] == false) && (mainFrame.Actions[646] == false)) && (mainFrame.Actions[648] == true)) {
+                            if (((!mainFrame.Actions[645]) && (!mainFrame.Actions[646])) && (mainFrame.Actions[648])) {
                                 nextActionID = 1080;
                             }
-                            if (((mainFrame.Actions[645] == true) || (mainFrame.Actions[646] == true)) && (mainFrame.Actions[648] == false)) {
+                            if (((mainFrame.Actions[645]) || (mainFrame.Actions[646])) && (!mainFrame.Actions[648])) {
                                 nextActionID = 1030;
                             }
-                            if (((mainFrame.Actions[645] == true) || (mainFrame.Actions[646] == true)) && (mainFrame.Actions[648] == true)) {
+                            if (((mainFrame.Actions[645]) || (mainFrame.Actions[646])) && (mainFrame.Actions[648])) {
                                 nextActionID = 1100;
                             }
                             break;
@@ -546,7 +546,6 @@ public class StareWiki extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -557,19 +556,19 @@ public class StareWiki extends Mainloc {
                 nextActionID = 0;
 
                 // zu Karta gehen ?
-                if (ausgangKarta.IsPointInRect(pTemp) == true) {
+                if (ausgangKarta.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangKarta.IsPointInRect(kt) == false) {
+                    if (!ausgangKarta.IsPointInRect(kt)) {
                         pTemp = pExitKarta;
                     } else {
                         // es wird nach unten verlassen
                         pTemp = new GenericPoint(kt.x, pExitKarta.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -584,19 +583,19 @@ public class StareWiki extends Mainloc {
                 // }
 
                 // PredKorejtow ansehen
-                if (rePredKorejtow.IsPointInRect(pTemp) == true) {
+                if (rePredKorejtow.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pPredKorejtow;
                 }
 
                 // PredWosuskow ansehen
-                if (rePredWosuskow.IsPointInRect(pTemp) == true) {
+                if (rePredWosuskow.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pPredWosuskow;
                 }
 
                 // PredMalickow ansehen
-                if (rePredMalickow.IsPointInRect(pTemp) == true) {
+                if (rePredMalickow.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = pPredMalickow;
                 }
@@ -607,7 +606,7 @@ public class StareWiki extends Mainloc {
                 // rechte Maustaste
 
                 // Mit dem PredKorejtow reden
-                if (rePredKorejtow.IsPointInRect(pTemp) == true) {
+                if (rePredKorejtow.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pPredKorejtow);
                     mainFrame.repaint();
@@ -615,7 +614,7 @@ public class StareWiki extends Mainloc {
                 }
 
                 // Mit dem PredWosuskow reden
-                if (rePredWosuskow.IsPointInRect(pTemp) == true) {
+                if (rePredWosuskow.IsPointInRect(pTemp)) {
                     nextActionID = 51;
                     mainFrame.wegGeher.SetzeNeuenWeg(pPredWosuskow);
                     mainFrame.repaint();
@@ -623,7 +622,7 @@ public class StareWiki extends Mainloc {
                 }
 
                 // Mit dem PredMalickow reden
-                if (rePredMalickow.IsPointInRect(pTemp) == true) {
+                if (rePredMalickow.IsPointInRect(pTemp)) {
                     nextActionID = 52;
                     mainFrame.wegGeher.SetzeNeuenWeg(pPredMalickow);
                     mainFrame.repaint();
@@ -631,7 +630,7 @@ public class StareWiki extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangKarta.IsPointInRect(pTemp) == true) {
+                if (ausgangKarta.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -650,13 +649,13 @@ public class StareWiki extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -665,24 +664,20 @@ public class StareWiki extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (rePredKorejtow.IsPointInRect(pTemp) == true) ||
-                    (rePredMalickow.IsPointInRect(pTemp) == true) ||
-                    (rePredWosuskow.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (rePredKorejtow.IsPointInRect(pTemp)) ||
+                    (rePredMalickow.IsPointInRect(pTemp)) ||
+                    (rePredWosuskow.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -690,7 +685,7 @@ public class StareWiki extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangKarta.IsPointInRect(pTemp) == true) {
+            if (ausgangKarta.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 6;
@@ -698,9 +693,9 @@ public class StareWiki extends Mainloc {
                 return;
             }
 
-            if ((rePredKorejtow.IsPointInRect(pTemp) == true) ||
-                    (rePredWosuskow.IsPointInRect(pTemp) == true) ||
-                    (rePredMalickow.IsPointInRect(pTemp) == true)) {
+            if ((rePredKorejtow.IsPointInRect(pTemp)) ||
+                    (rePredWosuskow.IsPointInRect(pTemp)) ||
+                    (rePredMalickow.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -718,7 +713,7 @@ public class StareWiki extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -728,18 +723,18 @@ public class StareWiki extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -772,7 +767,6 @@ public class StareWiki extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -792,8 +786,8 @@ public class StareWiki extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -849,7 +843,7 @@ public class StareWiki extends Mainloc {
                 AnimMCLocked = true;
                 ResetAnims();
                 // Sequenz vor MC ? (beim ersten Ansprechen)
-                if (mainFrame.Actions[580] == true) {
+                if (mainFrame.Actions[580]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 608;
@@ -914,7 +908,7 @@ public class StareWiki extends Mainloc {
 
             case 164:
                 // Auf Ende Suchen warten
-                if (wosIsLooking == false) {
+                if (!wosIsLooking) {
                     nextActionID = 165;
                 }
                 break;
@@ -926,8 +920,8 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00011"),
                         fWosu, 63, 0, 167, talkPointWosuski);
                 // Taler aus Inventar raus und Stollen rein
-                mainFrame.inventory.vInventory.removeElement(new Integer(40));
-                mainFrame.inventory.vInventory.addElement(new Integer(52));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(40));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(52));
                 mainFrame.Actions[956] = true;
                 break;
 
@@ -939,7 +933,7 @@ public class StareWiki extends Mainloc {
 
             case 168:
                 // Warten auf Ende Geben
-                if (wosIsGiving == false) {
+                if (!wosIsGiving) {
                     nextActionID = 170;
                 }
                 break;
@@ -992,7 +986,7 @@ public class StareWiki extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00016"), 581, 1000, null, 611);
 
                     // 2. Frage
-                    if (mainFrame.Actions[604] == false) {
+                    if (!mainFrame.Actions[604]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00017"), 581, 1000, null, 620);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00018"), 581, 1000, null, 620);
@@ -1014,7 +1008,7 @@ public class StareWiki extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00024"), 581, 1000, null, 611);
 
                     // 2. Frage
-                    if (mainFrame.Actions[604] == false) {
+                    if (!mainFrame.Actions[604]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00025"), 581, 1000, null, 620);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00026"), 581, 1000, null, 620);
@@ -1036,7 +1030,7 @@ public class StareWiki extends Mainloc {
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00032"), 581, 1000, null, 611);
 
                     // 2. Frage
-                    if (mainFrame.Actions[604] == false) {
+                    if (!mainFrame.Actions[604]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00033"), 581, 1000, null, 620);
                     } else {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00034"), 581, 1000, null, 620);
@@ -1263,7 +1257,7 @@ public class StareWiki extends Mainloc {
                 nextActionID = Dialog.ActionID;
 
                 // eine Extrawurst: Dialog 1. Frage zurueckschalten, wenn gefragt
-                if ((mainFrame.Actions[585] == true) && (nextActionID == 711)) {
+                if ((mainFrame.Actions[585]) && (nextActionID == 711)) {
                     mainFrame.Actions[585] = false;
                 }
 
@@ -1417,7 +1411,7 @@ public class StareWiki extends Mainloc {
                 nextActionID = Dialog.ActionID;
 
                 // eine Extrawurst: Dialog 1. Frage zurueckschalten, wenn gefragt
-                if ((mainFrame.Actions[590] == true) && (nextActionID == 812)) {
+                if ((mainFrame.Actions[590]) && (nextActionID == 812)) {
                     mainFrame.Actions[590] = false;
                 }
 
@@ -1532,7 +1526,7 @@ public class StareWiki extends Mainloc {
 
             case 1000:
                 // Dowolnosc zuerst
-                if (mainFrame.Actions[592] == false) // noch kein Dialog gelaufen
+                if (!mainFrame.Actions[592]) // noch kein Dialog gelaufen
                 {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1562,7 +1556,7 @@ public class StareWiki extends Mainloc {
 
             case 1005:
                 // Dowolnosc zuerst
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00189"),
@@ -1570,20 +1564,20 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00191"),
                         0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(31));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(32));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
                 }
                 break;
 
             case 1010:
                 // Prikaz zuerst
-                if (mainFrame.Actions[592] == false) // noch kein Dialog gelaufen
+                if (!mainFrame.Actions[592]) // noch kein Dialog gelaufen
                 {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1613,7 +1607,7 @@ public class StareWiki extends Mainloc {
 
             case 1015:
                 // Prikaz zuerst
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00195"),
@@ -1622,12 +1616,12 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(49));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
                 break;
 
             case 1020:
                 // Casnik zuerst
-                if (mainFrame.Actions[592] == false) // noch kein Dialog gelaufen
+                if (!mainFrame.Actions[592]) // noch kein Dialog gelaufen
                 {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1657,7 +1651,7 @@ public class StareWiki extends Mainloc {
 
             case 1025:
                 // Casnik zuerst
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00201"),
@@ -1666,7 +1660,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(45));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
                 break;
 
             case 1030:
@@ -1689,7 +1683,7 @@ public class StareWiki extends Mainloc {
 
             case 1035:
                 // Dowolnosc schon gegeben und Prikaz drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00204"),
@@ -1698,7 +1692,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(49));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
                 break;
 
             case 1040:
@@ -1721,7 +1715,7 @@ public class StareWiki extends Mainloc {
 
             case 1045:
                 // Prikaz schon gegeben und Dowolnosc drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00207"),
@@ -1729,14 +1723,14 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00209"),
                         0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(31));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(32));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
                 }
                 break;
 
@@ -1760,7 +1754,7 @@ public class StareWiki extends Mainloc {
 
             case 1055:
                 // Dowolnosc schon gegeben und Casnik drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00210"),
@@ -1769,7 +1763,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(45));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
                 break;
 
             case 1060:
@@ -1792,7 +1786,7 @@ public class StareWiki extends Mainloc {
 
             case 1065:
                 // Prikaz schon gegeben und Casnik drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00213"),
@@ -1801,7 +1795,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(45));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
                 break;
 
             case 1070:
@@ -1824,7 +1818,7 @@ public class StareWiki extends Mainloc {
 
             case 1075:
                 // Casnik schon da und Dowolnosc drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00216"),
@@ -1832,14 +1826,14 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00218"),
                         0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(31));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(32));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
                 }
                 break;
 
@@ -1863,7 +1857,7 @@ public class StareWiki extends Mainloc {
 
             case 1085:
                 // Casnik schon da und Prikaz drauf
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00219"),
@@ -1872,7 +1866,7 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(49));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
                 break;
 
             // Ab hier ist alles komplett und die Unterschrift kann gefaelscht werden //////////////////////////////////////
@@ -1898,7 +1892,7 @@ public class StareWiki extends Mainloc {
 
             case 1093:
                 // Ende geben/nehmen
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 Counter = FAELSCHER_WARTEZEIT;
@@ -1916,7 +1910,7 @@ public class StareWiki extends Mainloc {
 
             case 1095:
                 // Casnik Prikaz da, Dowolnosc drauf
-                if (malIsGiving == true) {
+                if (malIsGiving) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00222"),
@@ -1924,22 +1918,22 @@ public class StareWiki extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_StareWiki_00224"),
                         0, 64, 0, 1096, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
                     mainFrame.Actions[645] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(31));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(31));
                 } else {
                     // gesiegelte Dowolnosc
                     mainFrame.Actions[646] = true;
-                    mainFrame.inventory.vInventory.removeElement(new Integer(32));
+                    mainFrame.inventory.vInventory.removeElement(Integer.valueOf(32));
                 }
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(33));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(34));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
                 }
                 break;
 
@@ -1979,7 +1973,7 @@ public class StareWiki extends Mainloc {
 
             case 1103:
                 // waren auf Ende fertig geben, dann Warteschleife
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 Counter = FAELSCHER_WARTEZEIT;
@@ -1996,7 +1990,7 @@ public class StareWiki extends Mainloc {
 
             case 1105:
                 // Casnik Dowolnosc da, Prikaz drauf
-                if (malIsGiving == true) {
+                if (malIsGiving) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00225"),
@@ -2005,14 +1999,14 @@ public class StareWiki extends Mainloc {
                         0, 64, 0, 1106, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(49));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(49));
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(33));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(34));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
                 }
                 break;
 
@@ -2052,7 +2046,7 @@ public class StareWiki extends Mainloc {
 
             case 1112:
                 // Prikaz Dowolnosc da, Casnik drauf, kurze Anim
-                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving == true)) {
+                if ((mainFrame.krabat.nAnimation != 0) || (malIsGiving)) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00228"),
@@ -2061,14 +2055,14 @@ public class StareWiki extends Mainloc {
                         0, 64, 2, 1113, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
-                mainFrame.inventory.vInventory.removeElement(new Integer(45));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(45));
                 // nun die unterschriebene Dowolnosc zurueck ins Inventar
-                if (mainFrame.Actions[649] == false) {
+                if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(33));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(33));
                 } else {
                     // gesiegelte Dowolnosc hinzufuegen
-                    mainFrame.inventory.vInventory.addElement(new Integer(34));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(34));
                 }
                 break;
 
@@ -2080,7 +2074,7 @@ public class StareWiki extends Mainloc {
 
             case 1114:
                 // predMal nach hinten laufen lassen
-                if (malIsWalking == false) {
+                if (!malIsWalking) {
                     nextActionID = 1115;
                     malIsInvisible = true;
                 }
@@ -2099,7 +2093,7 @@ public class StareWiki extends Mainloc {
                 break;
 
             case 1117:
-                if (malIsWalking == false) {
+                if (!malIsWalking) {
                     nextActionID = 1118;
                     malIsInvisible = false;
                     Counter = FAELSCHER_WARTEZEIT;
@@ -2116,7 +2110,7 @@ public class StareWiki extends Mainloc {
                 break;
 
             case 1119:
-                if (malIsGiving == false) {
+                if (!malIsGiving) {
                     nextActionID = 1120;
                 }
                 break;

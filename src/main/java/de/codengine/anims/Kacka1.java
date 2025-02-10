@@ -28,8 +28,8 @@ import de.codengine.platform.GenericImage;
 
 public class Kacka1 extends Mainanim {
 
-    private GenericImage kacka_left[];
-    private GenericImage kacka_front[];
+    private final GenericImage[] kacka_left;
+    private final GenericImage[] kacka_front;
 
     private int Schnatter = 0;
 
@@ -43,7 +43,7 @@ public class Kacka1 extends Mainanim {
     private static final GenericPoint Pstop = new GenericPoint(300, 220);
 
     private static final float Xoffset = 1;
-    private float Yoffset;
+    private final float Yoffset;
 
     private static final int Breite = 40;
     private static final int Hoehe = 17;
@@ -61,7 +61,7 @@ public class Kacka1 extends Mainanim {
         float Ydiff = (float) (Pstop.y - Pstart.y);
         float Xdiff = (float) (Pstop.x - Pstart.x);
 
-        Yoffset = (float) (Ydiff / Xdiff * Xoffset);
+        Yoffset = Ydiff / Xdiff * Xoffset;
         Posit = new GenericPoint(Pstart.x, Pstart.y);
     }
 
@@ -94,7 +94,7 @@ public class Kacka1 extends Mainanim {
         // wenn noch erlaubt, dann Ente rumschwimmen lassen
         int zf = (int) (Math.random() * 100);
         // nur mit bestimmter Wahrscheinlichkeit erlauben
-        if ((zf > 80) && (moveAllowed == true)) {
+        if ((zf > 80) && (moveAllowed)) {
             // nur, solange Endposition noch nicht erreicht ist
             if (Posit.x > Pstop.x) {
                 Posit.x -= Xoffset;
@@ -114,7 +114,7 @@ public class Kacka1 extends Mainanim {
             }
 
             // Kacka zeichnen
-            if (isLeft == true) {
+            if (isLeft) {
                 offGraph.drawImage(kacka_left[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
             } else {
                 offGraph.drawImage(kacka_front[Schnatter], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
@@ -124,7 +124,7 @@ public class Kacka1 extends Mainanim {
         // rumschwimmende Kacka
         else {
             // Kacka zeichnen
-            if (isLeft == true) {
+            if (isLeft) {
                 offGraph.drawImage(kacka_left[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);
             } else {
                 offGraph.drawImage(kacka_front[0], Posit.x - (Breite / 2), Posit.y - Hoehe, null);

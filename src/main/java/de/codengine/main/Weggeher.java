@@ -25,7 +25,7 @@ import de.codengine.Start;
 import java.util.Vector;
 
 public class Weggeher {
-    private Start mainFrame;
+    private final Start mainFrame;
     public Vector<Bordertrapez> vBorders;
     public GenericPoint destinationPlace;
     private Vector<Integer> vBestWeg;
@@ -65,7 +65,7 @@ public class Weggeher {
 
         // alle Grenzrechtecke dursuchen, welches der Beste als Ziel
         for (int i = 0; i < nAnzahlRect; i++) {
-            Bordertrapez tBRect = (Bordertrapez) vBorders.elementAt(i);
+            Bordertrapez tBRect = vBorders.elementAt(i);
             float t_dist = tBRect.CenterDistance(feetPoint);
             if (t_dist < minDistance) {
                 // dieses Rechteck ist besser
@@ -75,11 +75,11 @@ public class Weggeher {
         }
 
         // liegt Ziel innerhalb des optimalen GrenzRectangle ?
-        tBestRect = (Bordertrapez) vBorders.elementAt(bestRect);
+        tBestRect = vBorders.elementAt(bestRect);
 
         System.out.println("BestRect : " + bestRect);
 
-        if (tBestRect.PointInside(feetPoint) == false) {
+        if (!tBestRect.PointInside(feetPoint)) {
             // optimales Ziel im Rectangle suchen
             destinationPlace = tBestRect.RandPunkt(feetPoint);
             // System.out.println("Best GenericPoint " + destinationPlace.x + " " + destinationPlace.y + " of " + feetPoint.x + " " + feetPoint.y);
@@ -136,13 +136,13 @@ public class Weggeher {
 
     // Krabat auf seinem Weg weiterbewegen
     public void GeheWeg() {
-        if (mainFrame.krabat.isWalking == true) {
+        if (mainFrame.krabat.isWalking) {
             // erst zur naechten Station gehen lassen
             mainFrame.krabat.Move();
             return;
         }
 
-        if (mainFrame.krabat.isWandering == false) {
+        if (!mainFrame.krabat.isWandering) {
             // bereits am Ziel
             return;
         }
@@ -153,17 +153,17 @@ public class Weggeher {
 
             // diese und naechste Station (Borders) ermitteln
 
-            Integer tInteger = (Integer) vBestWeg.elementAt(wegPosition);
+            Integer tInteger = vBestWeg.elementAt(wegPosition);
             int thisRect = tInteger.intValue();
-            tInteger = (Integer) vBestWeg.elementAt(wegPosition + 1);
+            tInteger = vBestWeg.elementAt(wegPosition + 1);
             int nextRect = tInteger.intValue();
 
             // System.out.println("Start : " + thisRect + "Ziel : " + nextRect);
 
             // Optimalen Uebergang zwischen den beiden Grenzen finden
             GenericPoint pKrFeetPos = mainFrame.krabat.GetKrabatPos();
-            Bordertrapez thisBRect = (Bordertrapez) vBorders.elementAt(thisRect);
-            Bordertrapez nextBRect = (Bordertrapez) vBorders.elementAt(nextRect);
+            Bordertrapez thisBRect = vBorders.elementAt(thisRect);
+            Bordertrapez nextBRect = vBorders.elementAt(nextRect);
             GenericPoint pUeber = OptimalUebergang(thisBRect, nextBRect, pKrFeetPos);
 
             //      System.out.print ("Schritt: ");
@@ -191,8 +191,8 @@ public class Weggeher {
         int nBRAnzahl = vBorders.size();
         GenericPoint pKrabat = mainFrame.krabat.GetKrabatPos();
         for (int i = 0; i < nBRAnzahl; i++) {
-            Bordertrapez tBRect = (Bordertrapez) vBorders.elementAt(i);
-            if (tBRect.PointInside(pKrabat) == true) {
+            Bordertrapez tBRect = vBorders.elementAt(i);
+            if (tBRect.PointInside(pKrabat)) {
                 nTemp = i;
                 break;
             }
@@ -245,7 +245,7 @@ public class Weggeher {
                     pBest.x = pKrabatFeets.x;
                 }
             }
-            if ((mittenlauf == true) && (Math.abs(pKrabatFeets.y - quell.y1) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
+            if ((mittenlauf) && (Math.abs(pKrabatFeets.y - quell.y1) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
                 pBest.x = (left + right) / 2;
             }
             return pBest;
@@ -276,7 +276,7 @@ public class Weggeher {
                     pBest.x = pKrabatFeets.x;
                 }
             }
-            if ((mittenlauf == true) && (Math.abs(pKrabatFeets.y - quell.y2) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
+            if ((mittenlauf) && (Math.abs(pKrabatFeets.y - quell.y2) > Math.abs(pKrabatFeets.x - ((left + right) / 2)))) {
                 pBest.x = (left + right) / 2;
             }
             return pBest;
@@ -310,7 +310,7 @@ public class Weggeher {
                     pBest.y = pKrabatFeets.y;
                 }
             }
-            if ((mittenlauf == true) && (Math.abs(pKrabatFeets.x - quell.x2) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
+            if ((mittenlauf) && (Math.abs(pKrabatFeets.x - quell.x2) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
                 pBest.y = (up + down) / 2;
             }
             return pBest;
@@ -341,7 +341,7 @@ public class Weggeher {
                     pBest.y = pKrabatFeets.y;
                 }
             }
-            if ((mittenlauf == true) && (Math.abs(pKrabatFeets.x - quell.x1) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
+            if ((mittenlauf) && (Math.abs(pKrabatFeets.x - quell.x1) > Math.abs(pKrabatFeets.y - ((up + down) / 2)))) {
                 pBest.y = (up + down) / 2;
             }
             return pBest;
@@ -358,7 +358,7 @@ public class Weggeher {
         GenericPoint Fussp = mainFrame.krabat.GetKrabatPos();
         int tAbstand = 20000;
         for (int fuck = 0; fuck < wieviele; fuck++) {
-            Bordertrapez temprect = (Bordertrapez) vBorders.elementAt(fuck);
+            Bordertrapez temprect = vBorders.elementAt(fuck);
             if (temprect.CenterDistance(Fussp) < tAbstand) {
                 tAbstand = temprect.CenterDistance(Fussp);
                 rgbe = fuck;

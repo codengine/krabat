@@ -28,7 +28,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Kapala extends Mainloc {
     private GenericImage background, rolle1, rolle2;
-    private GenericImage Feuer[];
+    private final GenericImage[] Feuer;
 
     // Konstanten - Rects
     private static final Borderrect ausgangGang
@@ -141,7 +141,7 @@ public class Kapala extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -157,10 +157,10 @@ public class Kapala extends Mainloc {
         // 1. Papierrolle immer zeichnen, 2. nur, wenn noch da
         g.setClip(434, 363, 42, 23);
         g.drawImage(background, 0, 0, null);
-        if (mainFrame.Actions[632] == false) {
+        if (!mainFrame.Actions[632]) {
             g.drawImage(rolle1, 434, 363, null);
         }
-        if (mainFrame.Actions[630] == false) {
+        if (!mainFrame.Actions[630]) {
             g.drawImage(rolle2, 458, 368, null);
         }
 
@@ -241,7 +241,7 @@ public class Kapala extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -279,7 +279,7 @@ public class Kapala extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -289,7 +289,7 @@ public class Kapala extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -297,28 +297,28 @@ public class Kapala extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Papierrollen unten
-                if (papierRollen.IsPointInRect(pTemp) == true) {
+                if (papierRollen.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
                     pTemp = pRollen;
                 }
 
                 // Ausreden fuer Papierrolle 1
-                if (papierRolle1.IsPointInRect(pTemp) == true) {
+                if (papierRolle1.IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pRolle1;
                 }
 
                 // Ausreden fuer Papierrolle 2
-                if ((papierRolle2.IsPointInRect(pTemp) == true) && (mainFrame.Actions[630] == false)) {
+                if ((papierRolle2.IsPointInRect(pTemp)) && (!mainFrame.Actions[630])) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = pRolle2;
@@ -337,7 +337,6 @@ public class Kapala extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -348,18 +347,18 @@ public class Kapala extends Mainloc {
                 nextActionID = 0;
 
                 // zu Gang gehen ?
-                if (ausgangGang.IsPointInRect(pTemp) == true) {
+                if (ausgangGang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangGang.IsPointInRect(kt) == false) {
+                    if (!ausgangGang.IsPointInRect(kt)) {
                         pTemp = pExitGang;
                     } else {
                         pTemp = new GenericPoint(pExitGang.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -367,19 +366,19 @@ public class Kapala extends Mainloc {
                 }
 
                 // Rollen unten
-                if (papierRollen.IsPointInRect(pTemp) == true) {
+                if (papierRollen.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pRollen;
                 }
 
                 // Rolle1 ansehen
-                if (papierRolle1.IsPointInRect(pTemp) == true) {
+                if (papierRolle1.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pRolle1;
                 }
 
                 // Rolle2 ansehen
-                if ((papierRolle2.IsPointInRect(pTemp) == true) && (mainFrame.Actions[630] == false)) {
+                if ((papierRolle2.IsPointInRect(pTemp)) && (!mainFrame.Actions[630])) {
                     nextActionID = 3;
                     pTemp = pRolle2;
                 }
@@ -390,7 +389,7 @@ public class Kapala extends Mainloc {
                 // rechte Maustaste
 
                 // Papierrollen unten mitnehmen
-                if (papierRollen.IsPointInRect(pTemp) == true) {
+                if (papierRollen.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pRollen);
                     mainFrame.repaint();
@@ -398,7 +397,7 @@ public class Kapala extends Mainloc {
                 }
 
                 // Papierrolle1 mitnehmen
-                if (papierRolle1.IsPointInRect(pTemp) == true) {
+                if (papierRolle1.IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(pRolle1);
                     mainFrame.repaint();
@@ -406,7 +405,7 @@ public class Kapala extends Mainloc {
                 }
 
                 // Papierrolle2 mitnehmen
-                if ((papierRolle2.IsPointInRect(pTemp) == true) && (mainFrame.Actions[630] == false)) {
+                if ((papierRolle2.IsPointInRect(pTemp)) && (!mainFrame.Actions[630])) {
                     nextActionID = 60;
                     mainFrame.wegGeher.SetzeNeuenWeg(pRolle2);
                     mainFrame.repaint();
@@ -414,7 +413,7 @@ public class Kapala extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangGang.IsPointInRect(pTemp) == true) {
+                if (ausgangGang.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -430,7 +429,7 @@ public class Kapala extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -439,24 +438,20 @@ public class Kapala extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    (papierRollen.IsPointInRect(pTemp) == true) ||
-                    (papierRolle1.IsPointInRect(pTemp) == true) ||
-                    ((papierRolle2.IsPointInRect(pTemp) == true) && (mainFrame.Actions[630] == false))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    (papierRollen.IsPointInRect(pTemp)) ||
+                    (papierRolle1.IsPointInRect(pTemp)) ||
+                    ((papierRolle2.IsPointInRect(pTemp)) && (!mainFrame.Actions[630]));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -464,9 +459,9 @@ public class Kapala extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((papierRollen.IsPointInRect(pTemp) == true) ||
-                    (papierRolle1.IsPointInRect(pTemp) == true) ||
-                    ((papierRolle2.IsPointInRect(pTemp) == true) && (mainFrame.Actions[630] == false))) {
+            if ((papierRollen.IsPointInRect(pTemp)) ||
+                    (papierRolle1.IsPointInRect(pTemp)) ||
+                    ((papierRolle2.IsPointInRect(pTemp)) && (!mainFrame.Actions[630]))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -474,7 +469,7 @@ public class Kapala extends Mainloc {
                 return;
             }
 
-            if (ausgangGang.IsPointInRect(pTemp) == true) {
+            if (ausgangGang.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 6;
@@ -500,12 +495,12 @@ public class Kapala extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -538,7 +533,6 @@ public class Kapala extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -557,8 +551,8 @@ public class Kapala extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -674,7 +668,7 @@ public class Kapala extends Mainloc {
             case 65:
                 // wenn genommen, dann Spruch und behalten
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(new Integer(50));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(50));
                     mainFrame.Clipset = false;
                     mainFrame.Actions[630] = true;
                 }

@@ -26,10 +26,10 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Bludnicki extends Mainanim {
-    private GenericImage Head[][];
-    private GenericImage Body[];
-    private GenericImage Krat[];
-    private GenericImage Stan[];
+    private final GenericImage[][] Head;
+    private final GenericImage[] Body;
+    private final GenericImage[] Krat;
+    private final GenericImage[] Stan;
 
     private GenericImage take;
 
@@ -200,7 +200,7 @@ public class Bludnicki extends Mainanim {
             }
             feuer.drawPlomja(offGraph, new GenericPoint(posit.x + FEUERKONSTANTE, posit.y));
             offGraph.drawImage(Head[Kopf1][Kopf2], posit.x, posit.y + Offset, null);
-            if (isTaking == false) {
+            if (!isTaking) {
                 offGraph.drawImage(Body[Rumpf], posit.x, posit.y + Offset, null);
             } else {
                 offGraph.drawImage(take, posit.x + 6, posit.y + Offset, null);
@@ -225,7 +225,7 @@ public class Bludnicki extends Mainanim {
             }
 
             // wenn er zuhoert, dann besser nicht umdrehen !!
-            if (islistening == true) {
+            if (islistening) {
                 if (Stand > 2) {
                     Stand -= 2;
                 }
@@ -278,7 +278,7 @@ public class Bludnicki extends Mainanim {
 
             feuer.drawPlomja(offGraph, new GenericPoint(posit.x + FEUERKONSTANTE, posit.y));
             offGraph.drawImage(Stan[Stand], posit.x, posit.y + Offset, null);
-            if (isTaking == false) {
+            if (!isTaking) {
                 offGraph.drawImage(((Kratz == 1) ? Body[1] : Krat[Kratz - 1]), posit.x, posit.y + Offset, null);
             } else {
                 offGraph.drawImage(take, posit.x - 6, posit.y + Offset, null);  // hier ist das take

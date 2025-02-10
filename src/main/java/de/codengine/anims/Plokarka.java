@@ -28,15 +28,15 @@ import de.codengine.platform.GenericImage;
 
 public class Plokarka extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_left;
-    private GenericImage[] krabat_right;
-    private GenericImage[] krabat_front;
-    private GenericImage[] krabat_back;
-    private GenericImage[] krabat_talk;
-    private GenericImage[] krabat_haende;
+    private final GenericImage[] krabat_left;
+    private final GenericImage[] krabat_right;
+    private final GenericImage[] krabat_front;
+    private final GenericImage[] krabat_back;
+    private final GenericImage[] krabat_talk;
+    private final GenericImage[] krabat_haende;
 
-    private GenericImage[] krabatw_front;
-    private GenericImage[] krabatw_left;
+    private final GenericImage[] krabatw_front;
+    private final GenericImage[] krabatw_left;
     private GenericImage krabatw_abnehm;
 
     public boolean hasWaesche = false;
@@ -179,7 +179,7 @@ public class Plokarka extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
             // neuen Punkt ermitteln und setzen
@@ -323,11 +323,7 @@ public class Plokarka extends Mainanim {
             double xangle = Math.abs(aim.x - ((int) xps));
             double angle = Math.atan(yangle / xangle);
             // System.out.println ((angle * 180 / Math.PI) + " Grad");
-            if (angle > (22 * Math.PI / 180)) {
-                horiz = false;
-            } else {
-                horiz = true;
-            }
+            horiz = !(angle > (22 * Math.PI / 180));
         }
 
         // Variablen an Move uebergeben
@@ -365,10 +361,10 @@ public class Plokarka extends Mainanim {
     // je nach Laufrichtung Krabat zeichnen
     public void drawPlokarka(GenericDrawingContext offGraph) {
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal == true) {
+        if (horizontal) {
             // nach links laufen
             if (direction_x == -1) {
-                MaleIhn(offGraph, (hasWaesche == true) ? krabatw_left[anim_pos] : krabat_left[anim_pos]);
+                MaleIhn(offGraph, (hasWaesche) ? krabatw_left[anim_pos] : krabat_left[anim_pos]);
             }
 
             // nach rechts laufen
@@ -377,7 +373,7 @@ public class Plokarka extends Mainanim {
             }
         } else {
             // Bei normaler Darstellung
-            if (upsidedown == false) {
+            if (!upsidedown) {
                 // nach oben laufen
                 if (direction_y == -1) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
@@ -385,7 +381,7 @@ public class Plokarka extends Mainanim {
 
                 // nach unten laufen
                 if (direction_y == 1) {
-                    MaleIhn(offGraph, (hasWaesche == true) ? krabatw_front[anim_pos] : krabat_front[anim_pos]);
+                    MaleIhn(offGraph, (hasWaesche) ? krabatw_front[anim_pos] : krabat_front[anim_pos]);
                 }
             } else {
                 // nach oben laufen
@@ -525,7 +521,7 @@ public class Plokarka extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {

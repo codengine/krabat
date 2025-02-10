@@ -31,7 +31,7 @@ public class HojntAuto extends Mainloc {
             hojnt3, /* hojnt4, seil, baum, */
             hoelzerback, offeneTuer;
 
-    private GenericImage[] hoelzer;
+    private final GenericImage[] hoelzer;
     private int HolzCount = 0;
     private boolean klingeln = false;
     private int Mehrmals;
@@ -93,7 +93,7 @@ public class HojntAuto extends Mainloc {
         // Unterscheidung nach DoActions, was zu tun ist
 
         // An Hoelzern gezogen Hinlauf
-        if ((mainFrame.Actions[216] == false) && (mainFrame.Actions[217] == false) && (mainFrame.Actions[218] == false)) {
+        if ((!mainFrame.Actions[216]) && (!mainFrame.Actions[217]) && (!mainFrame.Actions[218])) {
             System.out.println("An den Hoelzern gezogen - Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
@@ -103,7 +103,7 @@ public class HojntAuto extends Mainloc {
         }
 
         // An Strick gezogen Hinlauf
-        if ((mainFrame.Actions[216] == false) && (mainFrame.Actions[217] == true) && (mainFrame.Actions[218] == false)) {
+        if ((!mainFrame.Actions[216]) && (mainFrame.Actions[217]) && (!mainFrame.Actions[218])) {
             System.out.println("Am Strick gezogen Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
@@ -113,7 +113,7 @@ public class HojntAuto extends Mainloc {
         }
 
         // Ruecklauf
-        if ((mainFrame.Actions[216] == true) && (mainFrame.Actions[218] == false)) {
+        if ((mainFrame.Actions[216]) && (!mainFrame.Actions[218])) {
             System.out.println("Ruecklauf aus beiden Szenen !");
             isDoorOpen = true;
             jaeger.SetHojntPos(Pright);
@@ -125,7 +125,7 @@ public class HojntAuto extends Mainloc {
         }
 
         // Szene, wenn Krabat in die Grube faellt
-        if (mainFrame.Actions[218] == true) {
+        if (mainFrame.Actions[218]) {
             System.out.println("Szene : K in Grube.");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
@@ -226,10 +226,10 @@ public class HojntAuto extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             mainFrame.scrolly = 0;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollPosition;
             }
@@ -258,7 +258,7 @@ public class HojntAuto extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // Jaeger Hintergrund loeschen
-        if (showHojnt == true) {
+        if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = jaeger.HojntRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -272,19 +272,19 @@ public class HojntAuto extends Mainloc {
         }
 
         // wenn noetig, dann offene Tuer zeichnen
-        if (isDoorOpen == true) {
+        if (isDoorOpen) {
             g.setClip(272, 265, 81, 80);
             g.drawImage(offeneTuer, 272, 265, null);
         }
 
         // leeren Haken zeichnen, wenn noetig
-        if (mainFrame.Actions[905] == true) {
+        if (mainFrame.Actions[905]) {
             g.setClip(426, 258, 20, 19);
             g.drawImage(hojnt3, 426, 258, null);
         }
 
         // Klingelanim der Hoelzer wenn noetig
-        if (klingeln == true) {
+        if (klingeln) {
             HolzCount++;
             if (HolzCount == 11) {
                 HolzCount = 1;
@@ -305,13 +305,13 @@ public class HojntAuto extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Jaeger bewegen
-        if ((showHojnt == true) && (walkReady == false)) {
+        if ((showHojnt) && (!walkReady)) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = jaeger.Move();
         }
 
         // Jaeger zeichnen
-        if (showHojnt == true) {
+        if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = jaeger.HojntRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -332,7 +332,7 @@ public class HojntAuto extends Mainloc {
 
         // Scroller mitschieben, wenn Hojnt bewegt wird
         // Hier allgemeine Scrollingroutine, nur wenn man darf...
-        if (isScrollAnim == true) {
+        if (isScrollAnim) {
             Borderrect temprect = jaeger.HojntRect();
             int temp = (temprect.lo_point.x + temprect.ru_point.x) / 2;
             temp -= mainFrame.scrollx;
@@ -361,7 +361,7 @@ public class HojntAuto extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -435,7 +435,7 @@ public class HojntAuto extends Mainloc {
 
             case 110:
                 // Warten auf Ende Klingeln
-                if (klingeln == false) {
+                if (!klingeln) {
                     nextActionID = 150;
                 }
                 break;
@@ -452,7 +452,7 @@ public class HojntAuto extends Mainloc {
 
             case 155:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 159;
                 }
                 break;
@@ -486,7 +486,7 @@ public class HojntAuto extends Mainloc {
 
             case 170:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 173;
                 }
                 break;
@@ -501,7 +501,7 @@ public class HojntAuto extends Mainloc {
 
             case 176:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 180;
                 }
                 break;
@@ -521,7 +521,7 @@ public class HojntAuto extends Mainloc {
 
             case 510:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 513;
                 }
                 break;
@@ -536,7 +536,7 @@ public class HojntAuto extends Mainloc {
 
             case 516:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 520;
                 }
                 break;
@@ -569,7 +569,7 @@ public class HojntAuto extends Mainloc {
 
             case 533:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 536;
                 }
                 break;
@@ -604,7 +604,7 @@ public class HojntAuto extends Mainloc {
 
             case 610:
                 // Warten auf Ende Klingeln
-                if (klingeln == false) {
+                if (!klingeln) {
                     nextActionID = 620;
                 }
                 break;
@@ -620,7 +620,7 @@ public class HojntAuto extends Mainloc {
 
             case 625:
                 // Warten, bis er ausgelaufen ist
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 650;
                 }
                 break;

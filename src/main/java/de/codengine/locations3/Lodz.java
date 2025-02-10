@@ -29,8 +29,8 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Lodz extends Mainloc {
     private GenericImage background, vor1, vor2;
-    private WikowarkaRudy wikowarka;
-    private Multiple2 Dialog;
+    private final WikowarkaRudy wikowarka;
+    private final Multiple2 Dialog;
 
     private int GiveCounter = 0;
 
@@ -83,7 +83,7 @@ public class Lodz extends Mainloc {
         wikowarka.SetZonaPos(zonaPoint);
         wikowarka.SetFacing(6);
 
-        if (mainFrame.Actions[559] == true) {
+        if (mainFrame.Actions[559]) {
             zonaVisible = false;  // nachdem Anim gelaufen, ist sie nicht mehr da
         }
 
@@ -140,13 +140,13 @@ public class Lodz extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true)) {
+        if ((mainFrame.isMultiple) && (mainFrame.Clipset)) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -169,7 +169,7 @@ public class Lodz extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // Kuchar bewegen
-        if (walkReady == false) {
+        if (!walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = wikowarka.Move();
         }
@@ -183,22 +183,22 @@ public class Lodz extends Mainloc {
         // Zeichne sie jetzt
 
         // Redet sie etwa gerade ??
-        if (zonaVisible == true) {
+        if (zonaVisible) {
             if ((TalkPerson == 65) && (mainFrame.talkCount > 0)) {
                 wikowarka.talkZona(g, isListening);
             }
 
             // nur rumstehen oder laufen
             else {
-                if ((Stollen == true) || (Metall == true) || (Kiss == true)) {
+                if ((Stollen) || (Metall) || (Kiss)) {
                     Borderrect tp = wikowarka.ZonaRect();
-                    if (Stollen == true) {
+                    if (Stollen) {
                         wikowarka.giveWosusk(g, tp.lo_point);
                     }
-                    if (Metall == true) {
+                    if (Metall) {
                         wikowarka.giveMetal(g, tp.lo_point);
                     }
-                    if (Kiss == true) {
+                    if (Kiss) {
                         wikowarka.Kiss(g, new GenericPoint(tp.lo_point.x, (tp.lo_point.y + 21)));
                     }
                 } else {
@@ -221,7 +221,7 @@ public class Lodz extends Mainloc {
         // Krabat zeichnen
 
         // Animation??
-        if (krabatVisible == true) {
+        if (krabatVisible) {
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
 
@@ -268,7 +268,7 @@ public class Lodz extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -286,7 +286,7 @@ public class Lodz extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
@@ -304,7 +304,7 @@ public class Lodz extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -320,7 +320,7 @@ public class Lodz extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -330,7 +330,7 @@ public class Lodz extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -338,7 +338,7 @@ public class Lodz extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -353,7 +353,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Ausreden fuer Frau oder Stollen geben
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp) == true) && (zonaVisible == true)) {
+                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
                     if (mainFrame.whatItem == 52) {
                         nextActionID = 160;
                     } else {
@@ -376,7 +376,6 @@ public class Lodz extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -387,19 +386,19 @@ public class Lodz extends Mainloc {
                 nextActionID = 0;
 
                 // zu Habor gehen ?
-                if (ausgangHabor.IsPointInRect(pTemp) == true) {
+                if (ausgangHabor.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangHabor.IsPointInRect(kt) == false) {
+                    if (!ausgangHabor.IsPointInRect(kt)) {
                         pTemp = pExitHabor;
                     } else {
                         // es wird nach unten verlassen
                         pTemp = new GenericPoint(kt.x, pExitHabor.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -414,7 +413,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Frau ansehen
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp) == true) && (zonaVisible == true)) {
+                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
                     nextActionID = 1;
                     pTemp = pZona;
                 }
@@ -425,7 +424,7 @@ public class Lodz extends Mainloc {
                 // rechte Maustaste
 
                 // Mit der Frau reden
-                if ((wikowarka.ZonaRect().IsPointInRect(pTemp) == true) && (zonaVisible == true)) {
+                if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pZona);
                     mainFrame.repaint();
@@ -433,7 +432,7 @@ public class Lodz extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangHabor.IsPointInRect(pTemp) == true) {
+                if (ausgangHabor.IsPointInRect(pTemp)) {
                     return;
                 }
 
@@ -449,13 +448,13 @@ public class Lodz extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -464,22 +463,18 @@ public class Lodz extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    ((wikowarka.ZonaRect().IsPointInRect(pTemp) == true) && (zonaVisible == true))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -487,7 +482,7 @@ public class Lodz extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangHabor.IsPointInRect(pTemp) == true) {
+            if (ausgangHabor.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 9;
@@ -495,7 +490,7 @@ public class Lodz extends Mainloc {
                 return;
             }
 
-            if ((wikowarka.ZonaRect().IsPointInRect(pTemp) == true) && (zonaVisible == true)) {
+            if ((wikowarka.ZonaRect().IsPointInRect(pTemp)) && (zonaVisible)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -513,7 +508,7 @@ public class Lodz extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -523,18 +518,18 @@ public class Lodz extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -567,7 +562,6 @@ public class Lodz extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -593,8 +587,8 @@ public class Lodz extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -647,7 +641,7 @@ public class Lodz extends Mainloc {
 
             case 160:
                 // grosse Animszene, weil Stollen gegeben - aber nur, wenn er es auch weiss !!!
-                if (mainFrame.Actions[552] == false) {
+                if (!mainFrame.Actions[552]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00003"),
                             Start.stringManager.getTranslation("Loc3_Lodz_00004"),
                             Start.stringManager.getTranslation("Loc3_Lodz_00005"),
@@ -665,9 +659,9 @@ public class Lodz extends Mainloc {
 
             case 165:
                 // Stollen geben und aus Inventar entfernen
-                mainFrame.inventory.vInventory.removeElement(new Integer(52));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(52));
                 // Halben Stollen rein, ist nachher uebrig
-                mainFrame.inventory.vInventory.addElement(new Integer(51));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(51));
                 Stollen = true;
                 krabatVisible = false;
                 nextActionID = 170;
@@ -692,7 +686,7 @@ public class Lodz extends Mainloc {
             case 180:
                 // Zona sagt Spruch
                 isListening = true;
-                if (mainFrame.Actions[710] == false) // Krabat ist vor der Uebergabe nochmal weggegangen
+                if (!mainFrame.Actions[710]) // Krabat ist vor der Uebergabe nochmal weggegangen
                 {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00006"),
                             Start.stringManager.getTranslation("Loc3_Lodz_00007"),
@@ -716,7 +710,7 @@ public class Lodz extends Mainloc {
 
             case 182:
                 // Warten, bis beide ausgelaufen sind (das ist, wenn DoAction erreicht und Frau - Variable = false)
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 183;
                 }
                 break;
@@ -754,7 +748,7 @@ public class Lodz extends Mainloc {
 
             case 202:
                 // Warten, bis beide ausgelaufen sind (das ist, wenn DoAction erreicht und Frau - Variable = false)
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 205;
                 }
                 break;
@@ -770,7 +764,7 @@ public class Lodz extends Mainloc {
             case 210:
                 // Eisen geben und dem Inventar hinzufuegen
                 schnauzeWasser = true;
-                mainFrame.inventory.vInventory.addElement(new Integer(48));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(48));
                 Metall = true;
                 krabatVisible = false;
                 GiveCounter = 0;
@@ -861,7 +855,7 @@ public class Lodz extends Mainloc {
             case 305:
                 // Warten, bis sie ausgelaufen ist
                 isListening = false;
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 310;
                 }
                 break;
@@ -892,7 +886,7 @@ public class Lodz extends Mainloc {
                     // 2. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00032"), 550, 553, new int[]{553}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00033"), 553, 552, new int[]{552}, 622);
-                    if (mainFrame.Actions[956] == false) {
+                    if (!mainFrame.Actions[956]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00034"), 552, 1000, null, 623);
                     }
 
@@ -916,7 +910,7 @@ public class Lodz extends Mainloc {
                     // 2. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00043"), 550, 553, new int[]{553}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00044"), 553, 552, new int[]{552}, 622);
-                    if (mainFrame.Actions[956] == false) {
+                    if (!mainFrame.Actions[956]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00045"), 552, 1000, null, 623);
                     }
 
@@ -940,7 +934,7 @@ public class Lodz extends Mainloc {
                     // 2. Frage
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00054"), 550, 553, new int[]{553}, 620);
                     Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00055"), 553, 552, new int[]{552}, 622);
-                    if (mainFrame.Actions[956] == false) {
+                    if (!mainFrame.Actions[956]) {
                         Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00056"), 552, 1000, null, 623);
                     }
 
@@ -1090,7 +1084,7 @@ public class Lodz extends Mainloc {
         // 3. invCursor -> soll nur dann abschalten
 
         // wenn anderes wichtiger ist, dann hier verhindern
-        if (schnauzeWasser == true) {
+        if (schnauzeWasser) {
             return;
         }
 

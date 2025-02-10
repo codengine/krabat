@@ -27,11 +27,11 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class KowarSunow extends Mainanim {
-    private GenericImage[] kowar_head;
-    private GenericImage[] kowar_body;
-    private GenericImage[] kowar_work;
-    private GenericImage[] kowar_walkl;
-    private GenericImage[] kowar_walkr;
+    private final GenericImage[] kowar_head;
+    private final GenericImage[] kowar_body;
+    private final GenericImage[] kowar_work;
+    private final GenericImage[] kowar_walkl;
+    private final GenericImage[] kowar_walkr;
     private GenericImage Vorder, kowar_zwinker;
 
     private int Head = 1;
@@ -174,7 +174,7 @@ public class KowarSunow extends Mainanim {
             g.drawImage(kowar_body[Body], (int) Walkx, (int) (Walky + 37), null);
             drawVorder(g);
         } else {
-            if ((Listenflag == true) || (TurnAnim > 1)) {
+            if ((Listenflag) || (TurnAnim > 1)) {
                 // zur Person hindrehen und rumstehen
                 if (TurnAnim > 49) {
                     // nur Rumstehen und Zwinkern
@@ -195,7 +195,7 @@ public class KowarSunow extends Mainanim {
                     drawVorder(g);
 
                     // Hier zurueckschalten auf Zuruecklaufen
-                    if (Listenflag == false) {
+                    if (!Listenflag) {
                         TurnAnim = 10;
                     }
                 } else {
@@ -214,7 +214,7 @@ public class KowarSunow extends Mainanim {
 
                             // Punkt bewegen
                             Verhinderstrampeln = !(Verhinderstrampeln);
-                            if (Verhinderstrampeln == false) {
+                            if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - TalkPoint.y) / Math.abs(Walkx - TalkPoint.x);
 
                                 // System.out.println ("Verhaeltnis = " + Verhaeltnis);
@@ -268,7 +268,7 @@ public class KowarSunow extends Mainanim {
 
                             // Punkt bewegen
                             Verhinderstrampeln = !(Verhinderstrampeln);
-                            if (Verhinderstrampeln == false) {
+                            if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - WorkPoint.y) / Math.abs(Walkx - WorkPoint.x);
 
                                 // System.out.println ("Verhaeltnis = " + Verhaeltnis);
@@ -323,7 +323,7 @@ public class KowarSunow extends Mainanim {
 
                     case 2: // 1. Arbeitsschritt
                         if ((--Verhinderarbeit) < 1) {
-                            if (noTalkSchmied == false) {
+                            if (!noTalkSchmied) {
                                 evalSound();
                             }
                             Verhinderarbeit = MAX_VERHINDERARBEIT / 2;

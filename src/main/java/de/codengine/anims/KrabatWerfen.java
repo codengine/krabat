@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class KrabatWerfen extends Mainanim {
-    private GenericImage[] krabat_werfen;
+    private final GenericImage[] krabat_werfen;
 
     private static final int CWIDTH = 100;
     private static final int CHEIGHT = 100;

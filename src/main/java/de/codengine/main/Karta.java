@@ -38,23 +38,23 @@ public class Karta extends Mainanim {
 
     private static final int Offset = 25;
 
-    private GenericPoint Pkulow;
-    private GenericPoint Pnjedz;
-    private GenericPoint Psunow;
-    private GenericPoint Pralbicy;
-    private GenericPoint Pjitk;
-    private GenericPoint Pzdzary;
-    private GenericPoint Pkolmc;
+    private final GenericPoint Pkulow;
+    private final GenericPoint Pnjedz;
+    private final GenericPoint Psunow;
+    private final GenericPoint Pralbicy;
+    private final GenericPoint Pjitk;
+    private final GenericPoint Pzdzary;
+    private final GenericPoint Pkolmc;
 
-    private Borderrect kulowRect;
-    private Borderrect njedzRect;
-    private Borderrect sunowRect;
-    private Borderrect ralbicyRect;
-    private Borderrect jitkRect;
-    private Borderrect zdzaryRect;
-    private Borderrect kolmcRect;
+    private final Borderrect kulowRect;
+    private final Borderrect njedzRect;
+    private final Borderrect sunowRect;
+    private final Borderrect ralbicyRect;
+    private final Borderrect jitkRect;
+    private final Borderrect zdzaryRect;
+    private final Borderrect kolmcRect;
 
-    private Borderrect brGesamt;
+    private final Borderrect brGesamt;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -99,7 +99,7 @@ public class Karta extends Mainanim {
     public void paintKarte(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             g.setClip(0, 0, 1280, 480);
             g.drawImage(karta, mainFrame.scrollx + Plo.x, mainFrame.scrolly + Plo.y, null);
             Cursorform = 200;
@@ -130,13 +130,13 @@ public class Karta extends Mainanim {
             // Hier Entscheidung nach Teilen
 
             // wenn ausserhalb der Karte, dann weg
-            if (brGesamt.IsPointInRect(pTemp) == false) {
+            if (!brGesamt.IsPointInRect(pTemp)) {
                 Deactivate();
                 return;
             }
 
             // Teil 1
-            if (mainFrame.Actions[305] == false) {
+            if (!mainFrame.Actions[305]) {
 
                 int tloc = 0;
 
@@ -150,7 +150,7 @@ public class Karta extends Mainanim {
                 // 7 = kolmc
                 // 8 = doma
 
-                if (kulowRect.IsPointInRect(pTemp) == true) {
+                if (kulowRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(21);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -164,7 +164,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (njedzRect.IsPointInRect(pTemp) == true) {
+                if (njedzRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(16);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -178,7 +178,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (sunowRect.IsPointInRect(pTemp) == true) {
+                if (sunowRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(13);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -192,7 +192,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (ralbicyRect.IsPointInRect(pTemp) == true) {
+                if (ralbicyRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(1);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -206,7 +206,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (jitkRect.IsPointInRect(pTemp) == true) {
+                if (jitkRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(3);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -220,7 +220,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (zdzaryRect.IsPointInRect(pTemp) == true) {
+                if (zdzaryRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(19);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -234,7 +234,7 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (kolmcRect.IsPointInRect(pTemp) == true) {
+                if (kolmcRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(17);
                     if (tloc != 0) {
                         mainFrame.komme_von_karte = true;
@@ -245,14 +245,13 @@ public class Karta extends Mainanim {
                     mainFrame.Clipset = false;
                     Deactivate();
                     mainFrame.repaint();
-                    return;
                 }
             } else {
                 // Hier moeglicherweise noch dritter Teil rein...
-                if (mainFrame.Actions[499] == false) {
+                if (!mainFrame.Actions[499]) {
                     int tloc = 0;
 
-                    if (kulowRect.IsPointInRect(pTemp) == true) {
+                    if (kulowRect.IsPointInRect(pTemp)) {
                         tloc = evalCurrLocation(76);
                         if (tloc != 0) {
                             mainFrame.currLocation = tloc;
@@ -265,7 +264,7 @@ public class Karta extends Mainanim {
                         return;
                     }
 
-                    if (sunowRect.IsPointInRect(pTemp) == true) {
+                    if (sunowRect.IsPointInRect(pTemp)) {
                         tloc = evalCurrLocation(87);
                         if (tloc != 0) {
                             mainFrame.currLocation = tloc;
@@ -278,7 +277,7 @@ public class Karta extends Mainanim {
                         return;
                     }
 
-                    if (jitkRect.IsPointInRect(pTemp) == true) {
+                    if (jitkRect.IsPointInRect(pTemp)) {
                         tloc = evalCurrLocation(71);
                         if (tloc != 0) {
                             mainFrame.currLocation = tloc;
@@ -291,7 +290,7 @@ public class Karta extends Mainanim {
                         return;
                     }
 
-                    if (zdzaryRect.IsPointInRect(pTemp) == true) {
+                    if (zdzaryRect.IsPointInRect(pTemp)) {
                         tloc = evalCurrLocation(93);
                         if (tloc != 0) {
                             mainFrame.currLocation = tloc;
@@ -304,7 +303,7 @@ public class Karta extends Mainanim {
                         return;
                     }
 
-                    if (njedzRect.IsPointInRect(pTemp) == true) {
+                    if (njedzRect.IsPointInRect(pTemp)) {
                         tloc = evalCurrLocation(85);
                         if (tloc != 0) {
                             mainFrame.currLocation = tloc;
@@ -314,7 +313,6 @@ public class Karta extends Mainanim {
                         mainFrame.Clipset = false;
                         Deactivate();
                         mainFrame.repaint();
-                        return;
                     }
                 }
 			/*else
@@ -378,44 +376,44 @@ public class Karta extends Mainanim {
         newort = 0;
 
         // Hier Aufteilung nach Teil
-        if (mainFrame.Actions[305] == false) {
-            if (kulowRect.IsPointInRect(pTemp) == true) {
+        if (!mainFrame.Actions[305]) {
+            if (kulowRect.IsPointInRect(pTemp)) {
                 newort = 1;
             }
-            if (njedzRect.IsPointInRect(pTemp) == true) {
+            if (njedzRect.IsPointInRect(pTemp)) {
                 newort = 2;
             }
-            if (sunowRect.IsPointInRect(pTemp) == true) {
+            if (sunowRect.IsPointInRect(pTemp)) {
                 newort = 3;
             }
-            if (ralbicyRect.IsPointInRect(pTemp) == true) {
+            if (ralbicyRect.IsPointInRect(pTemp)) {
                 newort = 4;
             }
-            if (jitkRect.IsPointInRect(pTemp) == true) {
+            if (jitkRect.IsPointInRect(pTemp)) {
                 newort = 5;
             }
-            if (zdzaryRect.IsPointInRect(pTemp) == true) {
+            if (zdzaryRect.IsPointInRect(pTemp)) {
                 newort = 6;
             }
-            if (kolmcRect.IsPointInRect(pTemp) == true) {
+            if (kolmcRect.IsPointInRect(pTemp)) {
                 newort = 7;
             }
         } else {
             // Hier zur Not 3. Teil noch drin
-            if (mainFrame.Actions[499] == false) {
-                if (kulowRect.IsPointInRect(pTemp) == true) {
+            if (!mainFrame.Actions[499]) {
+                if (kulowRect.IsPointInRect(pTemp)) {
                     newort = 1;
                 }
-                if (sunowRect.IsPointInRect(pTemp) == true) {
+                if (sunowRect.IsPointInRect(pTemp)) {
                     newort = 3;
                 }
-                if (jitkRect.IsPointInRect(pTemp) == true) {
+                if (jitkRect.IsPointInRect(pTemp)) {
                     newort = 5;
                 }
-                if (zdzaryRect.IsPointInRect(pTemp) == true) {
+                if (zdzaryRect.IsPointInRect(pTemp)) {
                     newort = 6;
                 }
-                if (njedzRect.IsPointInRect(pTemp) == true) {
+                if (njedzRect.IsPointInRect(pTemp)) {
                     newort = 2;
                 }
             }
@@ -448,7 +446,7 @@ public class Karta extends Mainanim {
         evalString(newort);
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }
@@ -786,7 +784,6 @@ public class Karta extends Mainanim {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             Deactivate();
-            return;
         }
     }
 

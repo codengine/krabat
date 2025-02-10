@@ -29,11 +29,13 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Most2 extends Mainloc2 {
     private GenericImage background, gelaend, wegstueck, gras;
-    private GenericImage[] flussu;
+    private final GenericImage[] flussu;
     private int oldActionID = 0;
     private boolean switchanim = false;
     private int flusscount = 1;
-    private GenericPoint Endpunkt, Wendepunkt, Merkpunkt;
+    private GenericPoint Endpunkt;
+    private GenericPoint Wendepunkt;
+    private final GenericPoint Merkpunkt;
     private boolean Berglauf = false;
     private boolean isTal;
 
@@ -47,8 +49,8 @@ public class Most2 extends Mainloc2 {
     private boolean ismuellermorphing = false;
 
     private boolean showPohonc = false;
-    private GenericPoint pohoncPoint;
-    private GenericPoint pohoncTalk;
+    private final GenericPoint pohoncPoint;
+    private final GenericPoint pohoncTalk;
     private Kutser kutscher;
     private boolean pohoncHoertZu = false;
 
@@ -178,18 +180,14 @@ public class Most2 extends Mainloc2 {
         InitImages();
         switch (oldLocation) {
             case 0: // Einsprung fuer Load
-                if (mainFrame.Actions[300] == true) {
+                if (mainFrame.Actions[300]) {
                     BackgroundMusicPlayer.getInstance().playTrack(20, true);
                 } else {
                     BackgroundMusicPlayer.getInstance().stop();
                 }
                 GenericPoint tp = mainFrame.krabat.GetKrabatPos();
                 Borderrect TalRect = new Borderrect(400, 220, 460, 290);
-                if (TalRect.IsPointInRect(tp) == true) {
-                    isTal = true;
-                } else {
-                    isTal = false;
-                }
+                isTal = TalRect.IsPointInRect(tp);
                 break;
             case 71:
                 // von Doma aus - Sonderstellung, soll nix spielen
@@ -218,7 +216,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Schweinehueteszene
-        if (mainFrame.Actions[303] == true) {
+        if (mainFrame.Actions[303]) {
             setAusnahme = true;
             schweineDa = true;
         }
@@ -281,7 +279,7 @@ public class Most2 extends Mainloc2 {
     private void InitMatrix() {
         mainFrame.wegGeher.vBorders.removeAllElements();
 
-        if (isTal == true) {
+        if (isTal) {
             // Grenzen setzen im Tal
             // Taltrapez
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(457, 459, 407, 419, 225, 284));
@@ -329,13 +327,13 @@ public class Most2 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             mainFrame.Clipset = true;
             mainFrame.isAnim = true;
             g.setClip(0, 0, 644, 484);
-            if (setAnim == true) {
+            if (setAnim) {
                 mainFrame.fPlayAnim = true;
             }
             Cursorform = 200;
@@ -346,25 +344,25 @@ public class Most2 extends Mainloc2 {
         g.drawImage(background, 0, 0, null);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // Pohonc Hintergrund loeschen
-        if (showPohonc == true) {
+        if (showPohonc) {
             g.setClip(pohoncPoint.x, pohoncPoint.y, Kutser.Breite, Kutser.Hoehe);
             g.drawImage(background, 0, 0, null);
         }
 
         // Kutsche Hintergrund loeschen
-        if (kutscheda == true) {
+        if (kutscheda) {
             g.setClip(kutsche.kutscheRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // Schweine Hintergrund loeschen
-        if (schweineDa == true) {
+        if (schweineDa) {
             g.setClip(schwein1.swinoRect());
             g.drawImage(background, 0, 0, null);
             g.setClip(schwein2.swinoRect());
@@ -375,7 +373,7 @@ public class Most2 extends Mainloc2 {
 
         // Animation abspielen
         switchanim = !(switchanim);
-        if (switchanim == true) {
+        if (switchanim) {
             g.setClip(0, 0, 644, 484);
             g.drawImage(flussu[flusscount], 387, 380, null);
             flusscount++;
@@ -391,7 +389,7 @@ public class Most2 extends Mainloc2 {
         evalSound();
 
         // Mueller zeichnen
-        if (muellerda == true) {
+        if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
@@ -413,7 +411,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Schweine zeichnen, wenn da
-        if (schweineDa == true) {
+        if (schweineDa) {
             g.setClip(schwein1.swinoRect());
             schwein1.drawSwino(g, schwein1Tanzt, backgroundSoundAus);
             g.setClip(schwein2.swinoRect());
@@ -424,7 +422,7 @@ public class Most2 extends Mainloc2 {
 
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
@@ -462,18 +460,18 @@ public class Most2 extends Mainloc2 {
                 mainFrame.krabat.drawKrabat(g);
             }
         }
-        if (Berglauf == true) {
+        if (Berglauf) {
             g.drawImage(wegstueck, 342, 270, null);
         }
 
         GenericPoint tem = mainFrame.krabat.GetKrabatPos();
 
-        if (BergTrapez.PointInside(tem) == true) {
+        if (BergTrapez.PointInside(tem)) {
             g.drawImage(gelaend, 379, 273, null);
         }
 
         // Gras zeichnen, wenn K auf die Wiese geht
-        if (zeigeGras == true) {
+        if (zeigeGras) {
             g.drawImage(gras, 188, 290, null);
         }
 
@@ -481,13 +479,13 @@ public class Most2 extends Mainloc2 {
         GenericRectangle rct = g.getClipBounds();
 
         // Kutsche zeichnen, hat Vorrang vor K
-        if (kutscheda == true) {
+        if (kutscheda) {
             g.setClip(kutsche.kutscheRect());
             kutscheArbeitet = kutsche.drawKutsche(g, kutscheOpen);
         }
 
         // Pohonc zeichnen, auch Vorrang, weil auf Kutsche, aber nicht, wenn sie aus dem Rauch aufsteigt.
-        if (showPohonc == true) {
+        if (showPohonc) {
             g.setClip(pohoncPoint.x, pohoncPoint.y, Kutser.Breite, Kutser.Hoehe);
             kutscher.drawKutser(g, TalkPerson, pohoncPoint, pohoncHoertZu);
         }
@@ -502,7 +500,7 @@ public class Most2 extends Mainloc2 {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Hier das FadeToBlack, wenn noetig
@@ -516,7 +514,7 @@ public class Most2 extends Mainloc2 {
             g.clearRect(0, 0, 639, FadeToBlack);
             g.clearRect(0, 479 - FadeToBlack, 639, 479);
 
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -533,10 +531,10 @@ public class Most2 extends Mainloc2 {
             TalkPause--;
         }
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             mainFrame.krabat.StopWalking();
-            if (mainFrame.Actions[300] == true) {
+            if (mainFrame.Actions[300]) {
                 nextActionID = 1000;
             }
         }
@@ -562,7 +560,7 @@ public class Most2 extends Mainloc2 {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -572,7 +570,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -580,8 +578,8 @@ public class Most2 extends Mainloc2 {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
-                    if (setAusnahme == false) {
+                if (tmp.IsPointInRect(pTemp)) {
+                    if (!setAusnahme) {
                         nextActionID = 500 + mainFrame.whatItem;
                     } else {
                         if (mainFrame.whatItem == 20) {
@@ -598,7 +596,7 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Ausreden fuer Schild Ralbitz
-                if (ralbitzSchild.IsPointInRect(pTemp) == true) {
+                if (ralbitzSchild.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 16: // kamuski
                             nextActionID = 200;
@@ -611,7 +609,7 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Ausreden fuer Schild Dresden
-                if (dresdenSchild.IsPointInRect(pTemp) == true) {
+                if (dresdenSchild.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 16: // kamuski
                             nextActionID = 200;
@@ -624,7 +622,7 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Ausreden fuer Reka
-                if (rekaRect.IsPointInRect(pTemp) == true) {
+                if (rekaRect.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 10: // wuda + wacki
                             nextActionID = 210;
@@ -639,7 +637,7 @@ public class Most2 extends Mainloc2 {
                 boolean tp = TesteLauf(pTemp, nextActionID);
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                if (tp == false) {
+                if (!tp) {
                     mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                 }
                 mainFrame.repaint();
@@ -653,7 +651,6 @@ public class Most2 extends Mainloc2 {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -664,13 +661,13 @@ public class Most2 extends Mainloc2 {
                 nextActionID = 0;
 
                 // zu Dresden gehen ?
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
-                    if (setAusnahme == false) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
+                    if (!setAusnahme) {
                         nextActionID = 60;
                         GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (untererAusgang.IsPointInRect(kt) == false) {
+                        if (!untererAusgang.IsPointInRect(kt)) {
                             pTemp = Pdown;
                         } else {
                             pTemp = new GenericPoint(kt.x, Pdown.y);
@@ -682,19 +679,19 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // nach Sunow gehen?
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
-                    if (setAusnahme == false) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
+                    if (!setAusnahme) {
                         nextActionID = 102;
                         GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (obererAusgang.IsPointInRect(kt) == false) {
+                        if (!obererAusgang.IsPointInRect(kt)) {
                             pTemp = Pup;
                         } else {
                             pTemp = new GenericPoint(kt.x, Pup.y);
                         }
 
-                        if (mainFrame.dClick == true) {
+                        if (mainFrame.dClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
@@ -706,19 +703,19 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // rechter Ausgang zu Ralbicy
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
-                    if (setAusnahme == false) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
+                    if (!setAusnahme) {
                         nextActionID = 100;
                         GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (rechterAusgang.IsPointInRect(kt) == false) {
+                        if (!rechterAusgang.IsPointInRect(kt)) {
                             pTemp = Pright;
                         } else {
                             pTemp = new GenericPoint(Pright.x, kt.y);
                         }
 
-                        if (mainFrame.dClick == true) {
+                        if (mainFrame.dClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
@@ -730,19 +727,19 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Schild Ralbitz ansehen
-                if (ralbitzSchild.IsPointInRect(pTemp) == true) {
+                if (ralbitzSchild.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pschild;
                 }
 
                 // Schild Dresden ansehen
-                if (dresdenSchild.IsPointInRect(pTemp) == true) {
+                if (dresdenSchild.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschild;
                 }
 
                 // Reka ansehen
-                if (rekaRect.IsPointInRect(pTemp) == true) {
+                if (rekaRect.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Preka;
                 }
@@ -751,7 +748,7 @@ public class Most2 extends Mainloc2 {
 
                 System.out.println("Lauftest ergab : " + tz);
 
-                if (tz == false) {
+                if (!tz) {
                     mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                 }
                 mainFrame.repaint();
@@ -761,26 +758,26 @@ public class Most2 extends Mainloc2 {
                 nextActionID = 0;
 
                 // ??? Anschauen
-                if (untererAusgang.IsPointInRect(pTemp) == true) {
+                if (untererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Sunow anschauen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ralbitz anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Schild Ralbitz mitnehmen
-                if (ralbitzSchild.IsPointInRect(pTemp) == true) {
+                if (ralbitzSchild.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     pTemp = Pschild;
                     boolean tu = TesteLauf(pTemp, nextActionID);
-                    if (tu == false) {
+                    if (!tu) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                     }
                     mainFrame.repaint();
@@ -788,11 +785,11 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Schild Ralbitz mitnehmen
-                if (dresdenSchild.IsPointInRect(pTemp) == true) {
+                if (dresdenSchild.IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     pTemp = Pschild;
                     boolean tu = TesteLauf(pTemp, nextActionID);
-                    if (tu == false) {
+                    if (!tu) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                     }
                     mainFrame.repaint();
@@ -800,11 +797,11 @@ public class Most2 extends Mainloc2 {
                 }
 
                 // Reka mitnehmen
-                if (rekaRect.IsPointInRect(pTemp) == true) {
+                if (rekaRect.IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     pTemp = Preka;
                     boolean tu = TesteLauf(pTemp, nextActionID);
-                    if (tu == false) {
+                    if (!tu) {
                         mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
                     }
                     mainFrame.repaint();
@@ -823,7 +820,7 @@ public class Most2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -832,22 +829,18 @@ public class Most2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((ralbitzSchild.IsPointInRect(pTemp) == true) || (tmp.IsPointInRect(pTemp) == true) ||
-                    (dresdenSchild.IsPointInRect(pTemp) == true) || (rekaRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (ralbitzSchild.IsPointInRect(pTemp)) || (tmp.IsPointInRect(pTemp)) ||
+                    (dresdenSchild.IsPointInRect(pTemp)) || (rekaRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -856,7 +849,7 @@ public class Most2 extends Mainloc2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -864,8 +857,8 @@ public class Most2 extends Mainloc2 {
                 return;
             }
 
-            if ((ralbitzSchild.IsPointInRect(pTemp) == true) || (dresdenSchild.IsPointInRect(pTemp) == true) ||
-                    (rekaRect.IsPointInRect(pTemp) == true)) {
+            if ((ralbitzSchild.IsPointInRect(pTemp)) || (dresdenSchild.IsPointInRect(pTemp)) ||
+                    (rekaRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -873,7 +866,7 @@ public class Most2 extends Mainloc2 {
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp) == true) {
+            if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -881,7 +874,7 @@ public class Most2 extends Mainloc2 {
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp) == true) {
+            if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 5;
@@ -900,7 +893,7 @@ public class Most2 extends Mainloc2 {
     // Erkennungsroutine, ob Animationsmodus eingeschaltet werden muss
     private boolean TesteLauf(GenericPoint pTxxx, int Action) {
         // hier mit "false" zurueckspringen, wenn die Ausnahmeszene ist, da soll Krabat nicht runtergehen koennen
-        if (setAusnahme == true) {
+        if (setAusnahme) {
             return (false);
         }
 
@@ -912,7 +905,7 @@ public class Most2 extends Mainloc2 {
         System.out.println("Es wird getestet.");
 
         // vom Tal auf den Berg???
-        if ((isTal == true) && (pTemp.y > 277)) {
+        if ((isTal) && (pTemp.y > 277)) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 600;
@@ -927,7 +920,7 @@ public class Most2 extends Mainloc2 {
             float t1 = kpos.x - rand.x;
             float t2 = rand.y - rand.x;
             float teil = t1 / t2;
-            pTemp.x = (int) TalTrapez.x3 + (int) ((TalTrapez.x4 - TalTrapez.x3) * teil);
+            pTemp.x = TalTrapez.x3 + (int) ((TalTrapez.x4 - TalTrapez.x3) * teil);
 
             System.out.println("Mittenfaktor " + teil);
 
@@ -947,7 +940,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // vom Berg ins Tal ??
-        if ((isTal == false) && (pTemp.y < 278)) {
+        if ((!isTal) && (pTemp.y < 278)) {
             // Alte Position retten
             oldActionID = Action;
             nextActionID = 610;
@@ -967,8 +960,8 @@ public class Most2 extends Mainloc2 {
 
             System.out.println(" Mittenfaktor " + teal);
 
-            if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos()) == true) {
-                pTemp.x = (int) BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
+            if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
+                pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg
                 pTemp = new GenericPoint(((BergTrapez.x1 + BergTrapez.x2) / 2), BergTrapez.y1);
@@ -1004,12 +997,12 @@ public class Most2 extends Mainloc2 {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -1042,7 +1035,6 @@ public class Most2 extends Mainloc2 {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -1058,7 +1050,7 @@ public class Most2 extends Mainloc2 {
     }
 
     private void evalSound() {
-        if (wasserAus == true) {
+        if (wasserAus) {
             return; // wenn nix mehr gespielt werden soll, dann exit
         }
 
@@ -1076,8 +1068,8 @@ public class Most2 extends Mainloc2 {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -1213,7 +1205,7 @@ public class Most2 extends Mainloc2 {
             case 520:
                 // Karten - Extraausrede
                 int zd = (int) (Math.round(Math.random() * TEXTKONSTANTE));
-                if (ersteAusredeGesagt == false) {
+                if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zd = 0;
                 }
@@ -1308,7 +1300,7 @@ public class Most2 extends Mainloc2 {
             case 2000:
                 // Ausreden, wenn Verlassen versucht
                 int zr = (int) (Math.round(Math.random() * TEXTKONSTANTE));
-                if (ersteAusredeGesagt == false) {
+                if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zr = 0;
                 }

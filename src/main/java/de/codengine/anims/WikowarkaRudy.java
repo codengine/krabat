@@ -28,11 +28,11 @@ import de.codengine.platform.GenericImage;
 
 public class WikowarkaRudy extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] krabat_front;
-    private GenericImage[] krabat_back;
-    private GenericImage[] krabat_talk;
-    private GenericImage[] krabat_extra;
-    private GenericImage[] hrajer_extra;
+    private final GenericImage[] krabat_front;
+    private final GenericImage[] krabat_back;
+    private final GenericImage[] krabat_talk;
+    private final GenericImage[] krabat_extra;
+    private final GenericImage[] hrajer_extra;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -366,7 +366,7 @@ public class WikowarkaRudy extends Mainanim {
         // this.isListening = isListening;
 
         // hier evaluieren, ob geguckt werden darf oder nicht
-        if ((isMoving == false) && (isListening == false)) {
+        if ((!isMoving) && (!isListening)) {
             // Weiterschalten
             if ((--Verhinderguck) < 1) {
                 Verhinderguck = MAX_VERHINDERGUCK;

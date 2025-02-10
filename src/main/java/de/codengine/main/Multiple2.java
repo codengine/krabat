@@ -25,7 +25,7 @@ import de.codengine.platform.GenericDrawingContext;
 
 public class Multiple2  // Turrican II laesst gruessen!!!!!!
 {
-    private Start mainFrame;
+    private final Start mainFrame;
 
     // fuer Anzeige
     private int selected = -1;
@@ -40,9 +40,9 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     // Variablen fuer Fragen
     private int Anzahl;
     public String[] Fragen = new String[MCGROESSE];
-    private GenericRectangle[] Positionen = new GenericRectangle[MCGROESSE];
-    private int[] Nextactionids = new int[MCGROESSE];
-    private int[][] Actionvariablen = new int[MCGROESSE][10];
+    private final GenericRectangle[] Positionen = new GenericRectangle[MCGROESSE];
+    private final int[] Nextactionids = new int[MCGROESSE];
+    private final int[][] Actionvariablen = new int[MCGROESSE][10];
 
     public int Antwort = 0;
     public int ActionID = 0;
@@ -63,12 +63,12 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
     public void ExtendMC(String text, int Aktiv, int Gefragt, int[] Nachfolger, int nextActionID) {
         // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
-        if ((Aktiv < 1000) && (mainFrame.Actions[Aktiv] == false)) {
+        if ((Aktiv < 1000) && (!mainFrame.Actions[Aktiv])) {
             return;
         }
 
         // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
-        if ((Gefragt < 1000) && (mainFrame.Actions[Gefragt] == true)) {
+        if ((Gefragt < 1000) && (mainFrame.Actions[Gefragt])) {
             return;
         }
 
@@ -84,7 +84,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
             Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
         } else {
             // folgende Rects immer anschliessend
-            int temp = (int) Positionen[Anzahl - 1].getY() + (int) Positionen[Anzahl - 1].getHeight();
+            int temp = Positionen[Anzahl - 1].getY() + Positionen[Anzahl - 1].getHeight();
             Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + ((mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27));
         }
 
@@ -115,7 +115,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         g.setClip(0, 0, 1284, 964);
 
         // 1.Aufruf, zuerst alles Zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -123,23 +123,23 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
                     mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
-                            (int) Positionen[i].getX() + mainFrame.scrollx + 30,
-                            (int) Positionen[i].getY() + mainFrame.scrolly + 10, 1);
+                            Positionen[i].getX() + mainFrame.scrollx + 30,
+                            Positionen[i].getY() + mainFrame.scrolly + 10, 1);
                 } else {
                     mainFrame.ifont.drawString(g, ("$" + Fragen[i]),
-                            (int) Positionen[i].getX() + mainFrame.scrollx + 30,
-                            (int) Positionen[i].getY() + mainFrame.scrolly + 10, 0xff00b000);
+                            Positionen[i].getX() + mainFrame.scrollx + 30,
+                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xff00b000);
                 }
             }
             oldsel = selected;
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
             return;
         }
 
         if (oldsel != -1) {
             mainFrame.ifont.drawString(g, ("$" + Fragen[oldsel]),
-                    (int) Positionen[oldsel].getX() + mainFrame.scrollx + 30,
-                    (int) Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
+                    Positionen[oldsel].getX() + mainFrame.scrollx + 30,
+                    Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
         }
         if (oldsel != -1) {
             oldsel = -1;
@@ -147,15 +147,15 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
 
         if (selected != -1) {
             mainFrame.ifont.drawString(g, ("$" + Fragen[selected]),
-                    (int) Positionen[selected].getX() + mainFrame.scrollx + 30,
-                    (int) Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
+                    Positionen[selected].getX() + mainFrame.scrollx + 30,
+                    Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
         }
 
         if (selected != -1) {
             oldsel = selected;
         }
         // System.out.println ("Paint : " + selected);
-        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
     // Mouse - Listener fuer Multiple Choice
@@ -164,7 +164,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // Linke Maustaste
             for (int i = 0; i <= Anzahl; ++i) {
-                if (Positionen[i].contains(pTemp) == true) {
+                if (Positionen[i].contains(pTemp)) {
                     // Antwort angeben fuer die Location
                     Antwort = i;
                     ActionID = Nextactionids[i];
@@ -200,7 +200,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         // System.out.println("Move Thrown !");
         selected = -1;
         for (int i = 0; i <= Anzahl; ++i) {
-            if (Positionen[i].contains(pTemp) == true) {
+            if (Positionen[i].contains(pTemp)) {
                 selected = i;
                 // System.out.println("Over an Item!");
                 break;
@@ -209,7 +209,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
 
         // System.out.println("Move : " + selected);
 
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }

@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Dinglinger extends Mainanim {
-    private GenericImage[] dingl_sit_body;
-    private GenericImage[] dingl_sit_waithead;
-    private GenericImage[] dingl_sit_talkhead;
+    private final GenericImage[] dingl_sit_body;
+    private final GenericImage[] dingl_sit_waithead;
+    private final GenericImage[] dingl_sit_talkhead;
 
     private int Wait = 0;
     private int Talkhead = 0;
@@ -275,7 +275,7 @@ public class Dinglinger extends Mainanim {
         // bis jetzt keine Anims, also sitzt er nur da und bewegt sich ab und zu
 
         // entweder schaut er nach unten oder er schaut hoch und zwinkert
-        if (hatAugenNachUnten == true) {
+        if (hatAugenNachUnten) {
             // schaut immer runter
             Wait = 1;
         } else {
@@ -291,7 +291,7 @@ public class Dinglinger extends Mainanim {
         }
 
         // hier umschalten, wie schnell er wieder nach unten bzw. nach oben schaut
-        if (hatAugenNachUnten == true) {
+        if (hatAugenNachUnten) {
             if ((--Verhinderaugennachunten) < 1) {
                 Verhinderaugennachunten = MAX_VERHINDERAUGENNACHUNTEN;
                 int zz = (int) (Math.random() * 50);

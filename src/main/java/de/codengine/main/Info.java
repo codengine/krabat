@@ -28,12 +28,16 @@ import de.codengine.platform.GenericImageObserver;
 
 public class Info extends Mainanim {
     private GenericImage Bild, Jan, Jiri, Daniel, Eddie, Hanus, Mic;
-    private GenericImage Pfeill, DPfeill, Pfeilr, /* DPfeilr, */
-            Abdecken;
+    private final GenericImage Pfeill;
+    private final GenericImage DPfeill;
+    private final GenericImage Pfeilr; /* DPfeilr, */
+            private GenericImage Abdecken;
 
-    private GenericPoint pLO;
+    private final GenericPoint pLO;
 
-    private Borderrect brGesamt, brPfeill, brPfeilr;
+    private final Borderrect brGesamt;
+    private final Borderrect brPfeill;
+    private final Borderrect brPfeilr;
 
     private String outputText = "";
     private GenericPoint outputTextPos;
@@ -45,7 +49,7 @@ public class Info extends Mainanim {
 
     private int PictureCounter;
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     // Hier die Texte
     private static final String[][][] BildText =
@@ -147,7 +151,7 @@ public class Info extends Mainanim {
     public void paintCredits(GenericDrawingContext g) {
 
         // Credits-Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1280, 480);
 
@@ -252,14 +256,14 @@ public class Info extends Mainanim {
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // linke Maustaste
             // bei Click Ausserhalb zurueck ins Spiel
-            if (brGesamt.IsPointInRect(pTemp) == false) {
+            if (!brGesamt.IsPointInRect(pTemp)) {
                 Deactivate();
                 mainFrame.whatScreen = 0;
                 return;
             }
 
             // bei Click auf Pfeil links zurueck ins vorherige Bild oder verlassen
-            if (brPfeill.IsPointInRect(pTemp) == true) {
+            if (brPfeill.IsPointInRect(pTemp)) {
                 PictureCounter--;
                 if (PictureCounter < 0) {
                     Deactivate();
@@ -271,7 +275,7 @@ public class Info extends Mainanim {
             }
 
             // bei Click auf Pfeil rechts ein Bild weiter
-            if (brPfeilr.IsPointInRect(pTemp) == true) {
+            if (brPfeilr.IsPointInRect(pTemp)) {
                 if (PictureCounter < 6) {
                     PictureCounter++;
                     mainFrame.Clipset = false;
@@ -288,17 +292,17 @@ public class Info extends Mainanim {
 
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         menuitem = 0;
-        if (brPfeill.IsPointInRect(pTemp) == true) {
+        if (brPfeill.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
 
         // wenn nicht im letzten Bild, dann auch den rechten Pfeil zeichnen
-        if ((brPfeilr.IsPointInRect(pTemp) == true) && (PictureCounter < 6)) {
+        if ((brPfeilr.IsPointInRect(pTemp)) && (PictureCounter < 6)) {
             menuitem = 2;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }
@@ -315,7 +319,6 @@ public class Info extends Mainanim {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             Deactivate();
-            return;
         }
     }
 
@@ -325,7 +328,7 @@ public class Info extends Mainanim {
         menuitem = 0;
         mainFrame.Clipset = false;
         mainFrame.DestructLocation(104);
-        if (mainFrame.mainmenu.MMactive == true) {
+        if (mainFrame.mainmenu.MMactive) {
             mainFrame.whatScreen = 2;
         } else {
             mainFrame.whatScreen = 0;

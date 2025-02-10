@@ -69,13 +69,9 @@ public class Bordertrapez {
         GenericPoint temp = Punkte(der.y);
 
         // Abfrage, ob Punkt innerhalb
-        if ((temp.x > der.x) || (temp.y < der.x)) {
-            // System.out.println("No Trapez !");
-            return false;
-        } else {
-            // System.out.println("Inside !");
-            return true;
-        }
+        // System.out.println("No Trapez !");
+        // System.out.println("Inside !");
+        return (temp.x <= der.x) && (temp.y >= der.x);
     }
 
     // Hier wird der kuerzeste Abstand des Punktes zum Trapez ueberhaupt ermittelt
@@ -155,7 +151,7 @@ public class Bordertrapez {
 
     public synchronized GenericPoint RandPunkt(GenericPoint dieser) {
         // Zuerst testen, ob nicht doch innerhalb gelegen
-        if (PointInside(dieser) == true) {
+        if (PointInside(dieser)) {
             // System.out.println("Dieser Punkt ist innerhalb!!!");
             return (new GenericPoint(dieser.x, dieser.y));
         }
@@ -209,16 +205,12 @@ public class Bordertrapez {
                 // System.out.println("X1 : " + xx1 + "X3 : " + xx3 + "Geradenpunkt : " + aktx);
 
                 // Punkt links von Trapez
-                if (aktx > dieser.x) {
-                    isLeft = true;
-                } else {
-                    isLeft = false;
-                }
+                isLeft = aktx > dieser.x;
                 // System.out.println("Berechnung notwendig !");
             }
         }
 
-        if (isLeft == true) {
+        if (isLeft) {
             // System.out.print("Punkt ist links vom Trapez!");
 
             // Anstiege der linken Schraege berechnen
@@ -270,7 +262,7 @@ public class Bordertrapez {
                 GenericPoint tmp = new GenericPoint((int) xl, (int) yl);
 
                 // Solange testen, bis sich Punkt innerhalb ergibt
-                while ((PointInside(tmp) == false) && (tmp.x < 1300)) {
+                while ((!PointInside(tmp)) && (tmp.x < 1300)) {
                     // System.out.println("Searching...");
                     tmp.x++;
                 }
@@ -346,7 +338,7 @@ public class Bordertrapez {
                 GenericPoint tmp = new GenericPoint((int) xr, (int) yr);
 
                 // Solange testen, bis sich Punkt innerhalb ergibt
-                while ((PointInside(tmp) == false) && (tmp.x > -1)) {
+                while ((!PointInside(tmp)) && (tmp.x > -1)) {
                     // System.out.println("Searching!");
                     tmp.x--;
                 }

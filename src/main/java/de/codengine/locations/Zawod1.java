@@ -33,11 +33,13 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Zawod1 extends Mainloc {
     private GenericImage domal, domar, sky, kij, rapaki, intro1, intro2, budysin, budysky;
     private GenericImage sitz1, sitz2;
-    private GenericImage[] floete;
+    private final GenericImage[] floete;
     private int IntroStep = 1;
     private int nextActionID = 0;
     private IntroDomaPtack ptack1, ptack2;
-    private Husa gans1, gans2, gans3;
+    private final Husa gans1;
+    private final Husa gans2;
+    private final Husa gans3;
 
     private GenericImage offImage;
     private GenericDrawingContext offGraphics;
@@ -210,7 +212,7 @@ public class Zawod1 extends Mainloc {
         // Logo ein- und ausfaden ///////////////////////////////////////////////
         if (IntroStep < 10) {
             // Wiederherstellen, wenn Mainmenu aufgerufen
-            if (mainFrame.Clipset == false) {
+            if (!mainFrame.Clipset) {
                 mainFrame.Clipset = true;
                 Cursorform = 200;
                 mainFrame.fPlayAnim = true;
@@ -219,7 +221,7 @@ public class Zawod1 extends Mainloc {
                 g.setClip(0, 0, 644, 484);
                 g.clearRect(0, 0, 640, 480);
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                if (playing == false) {
+                if (!playing) {
                     playing = true;
                     mainFrame.wave.PlayFile("gamesound.wav"); // passiert nicht mehr,nur Gag
                 }
@@ -256,7 +258,7 @@ public class Zawod1 extends Mainloc {
                 vogel1.Flieg(g);
                 vogel2.Flieg(g);
                 boolean ende = vogel3.Flieg(g);
-                if (ende == false) {
+                if (!ende) {
                     nextActionID = 1;
                 }
 
@@ -295,7 +297,7 @@ public class Zawod1 extends Mainloc {
         // Textausgabe auf leeren Screen (noch keine Bilder da), aber getrennt nach vorgesehenen Bildern
         if ((IntroStep > 9) && (IntroStep < 20)) {
             // Wiederherstellen ist zwar Quatsch, aber wer weiss
-            if (mainFrame.Clipset == false) {
+            if (!mainFrame.Clipset) {
                 g.setClip(0, 0, 644, 484);
                 mainFrame.Clipset = true;
                 Cursorform = 200;
@@ -346,11 +348,11 @@ public class Zawod1 extends Mainloc {
         // Vogelflug und Scrolling in Doma ////////////////////////////////////////////////////
         if (IntroStep > 99) {
             // Wiederherstellen, wenn Exit aufgerufen
-            if (mainFrame.Clipset == false) {
+            if (!mainFrame.Clipset) {
                 mainFrame.Clipset = true;
                 Cursorform = 200;
                 mainFrame.fPlayAnim = true;
-                if (setScroll == true) {
+                if (setScroll) {
                     setScroll = false;
                     mainFrame.scrollx = Scrollwert;
                 }
@@ -382,7 +384,7 @@ public class Zawod1 extends Mainloc {
                 if (mainFrame.scrollx < 0) {
                     mainFrame.scrollx = 0;
                 }
-                if (((ptack2.Flieg(g)) == false) && (mainFrame.scrollx == 0)) {
+                if ((!(ptack2.Flieg(g))) && (mainFrame.scrollx == 0)) {
                     IntroStep++;
                 }
                 evalSound();
@@ -531,18 +533,16 @@ public class Zawod1 extends Mainloc {
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
             }
-            return;
         } else {
             if (Cursorform != 0) {
                 Cursorform = 0;
                 mainFrame.setCursor(mainFrame.Normal);
             }
-            return;
         }
     }
 
@@ -605,7 +605,6 @@ public class Zawod1 extends Mainloc {
                 System.out.println("----- Enable open screen in intro! -----");
                 skipActionID = 120;
                 mainFrame.repaint();
-                return;
             }
         }
     }

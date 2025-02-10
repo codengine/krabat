@@ -36,13 +36,15 @@ public class LanguageChooser extends Mainloc {
     private static final int BREITE = 35; // dto.
     private static final int HOEHE = 53;
 
-    private Borderrect brPfeilOben, brPfeilUnten, brOk;
+    private final Borderrect brPfeilOben;
+    private final Borderrect brPfeilUnten;
+    private final Borderrect brOk;
 
     private int Cursorform = 200;
 
     private int Index;
 
-    private Borderrect brGesamt;   // Gesamtrect fuer Auswahlleiste
+    private final Borderrect brGesamt;   // Gesamtrect fuer Auswahlleiste
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -61,7 +63,7 @@ public class LanguageChooser extends Mainloc {
 
     // Initialisierung ////////////////////////////////////////////////////////
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     private final GameProperties properties;
 
@@ -122,7 +124,7 @@ public class LanguageChooser extends Mainloc {
         System.out.println("LanguageChooser repaint with clipset=" + mainFrame.Clipset);
 
         // Credits-Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1280, 480);
             Cursorform = 200;
@@ -219,7 +221,7 @@ public class LanguageChooser extends Mainloc {
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // linke Maustaste
             // Pfeil-Oben gedrueckt
-            if (brPfeilOben.IsPointInRect(pTemp) == true) {
+            if (brPfeilOben.IsPointInRect(pTemp)) {
                 Index -= 10;
                 mainFrame.Clipset = false;
                 if (Index < 0) {
@@ -229,7 +231,7 @@ public class LanguageChooser extends Mainloc {
             }
 
             // Pfeil-Unten gedrueckt
-            if (brPfeilUnten.IsPointInRect(pTemp) == true) {
+            if (brPfeilUnten.IsPointInRect(pTemp)) {
                 Index += 10;
                 mainFrame.Clipset = false;
                 if (Index > (languages.length - 10)) {
@@ -238,7 +240,7 @@ public class LanguageChooser extends Mainloc {
                 mainFrame.repaint();
             }
 
-            if ((brOk.IsPointInRect(pTemp) == true) && (currLang != 0)) {
+            if ((brOk.IsPointInRect(pTemp)) && (currLang != 0)) {
                 System.out.println("Selected language = " + currLang);
                 if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
                         || abbreviations[currLang - 1].equalsIgnoreCase("ds")
@@ -265,7 +267,7 @@ public class LanguageChooser extends Mainloc {
             }
 
             // Sprache wurde ausgewaehlt
-            if (brGesamt.IsPointInRect(pTemp) == true) {
+            if (brGesamt.IsPointInRect(pTemp)) {
                 for (int i = 0; i < languages.length; i++) {
 
                     // System.out.println("Curr Y: " + pTemp.y);
@@ -294,19 +296,19 @@ public class LanguageChooser extends Mainloc {
 
         // Highlight im Menue festlegen
         menuitem = 0;
-        if (brPfeilOben.IsPointInRect(pTemp) == true) {
+        if (brPfeilOben.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if (brPfeilUnten.IsPointInRect(pTemp) == true) {
+        if (brPfeilUnten.IsPointInRect(pTemp)) {
             menuitem = 2;
         }
-        if ((brOk.IsPointInRect(pTemp) == true) && (currLang != 0)) {
+        if ((brOk.IsPointInRect(pTemp)) && (currLang != 0)) {
             menuitem = 3;
         }
 
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }

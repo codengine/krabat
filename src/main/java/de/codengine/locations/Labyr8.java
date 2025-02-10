@@ -80,7 +80,7 @@ public class Labyr8 extends Mainlaby {
         feuer = new Plomja(mainFrame);
 
         // Definitionen fuer Hauptklasse
-        int th = (int) (bludFeet.x - (irrlicht.breite / 2));
+        int th = bludFeet.x - (irrlicht.breite / 2);
         bludRect = new Borderrect(th, bludFeet.y - irrlicht.hoehe, th + irrlicht.breite, bludFeet.y);
         bludTalk = new GenericPoint(bludFeet.x, bludFeet.y - irrlicht.hoehe - 50);
 
@@ -91,7 +91,7 @@ public class Labyr8 extends Mainlaby {
         InitLocation(oldLocation);
 
         // hier Entscheidung, ob Blud da ist oder nicht
-        if (mainFrame.Actions[235] == true) {
+        if (mainFrame.Actions[235]) {
             bludVisible = true;
         }
 
@@ -150,7 +150,7 @@ public class Labyr8 extends Mainlaby {
             AusPoint = Aoben;
         }
 
-        if (mainFrame.Actions[236] == true) {
+        if (mainFrame.Actions[236]) {
             isBlinker = true;
         }
     }
@@ -186,7 +186,7 @@ public class Labyr8 extends Mainlaby {
     } */
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -203,14 +203,14 @@ public class Labyr8 extends Mainlaby {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Irrlichter zeichnen
-        if (bludVisible == true) {
+        if (bludVisible) {
             g.setClip(bludRect.lo_point.x, bludRect.lo_point.y, irrlicht.breite, irrlicht.hoehe);
             g.drawImage(background, 0, 0, null);
             irrlicht.drawBludnicki(g, TalkPerson, bludRect.lo_point, hoerterzu, bludNimmt);
         }
 
         // Blinkern zeichnen
-        if (isBlinker == true) {
+        if (isBlinker) {
             g.setClip(AusPoint.x, AusPoint.y, Plomja.Breite, Plomja.Hoehe);
             g.drawImage(background, 0, 0, null);
             feuer.drawPlomja(g, AusPoint);
@@ -256,7 +256,7 @@ public class Labyr8 extends Mainlaby {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (lab82Rect.IsPointInRect(pKrTemp) == true) {
+        if (lab82Rect.IsPointInRect(pKrTemp)) {
             g.drawImage(lab82, 0, 366, null);
         }
 
@@ -267,7 +267,7 @@ public class Labyr8 extends Mainlaby {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -285,7 +285,7 @@ public class Labyr8 extends Mainlaby {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
@@ -303,7 +303,7 @@ public class Labyr8 extends Mainlaby {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -319,7 +319,7 @@ public class Labyr8 extends Mainlaby {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -329,7 +329,7 @@ public class Labyr8 extends Mainlaby {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -337,14 +337,14 @@ public class Labyr8 extends Mainlaby {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Irrlichter
-                if ((bludRect.IsPointInRect(pTemp) == true) && (bludVisible == true)) {
+                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
                     if (mainFrame.whatItem == 15) {
                         nextActionID = 155;
                     } else {
@@ -366,7 +366,6 @@ public class Labyr8 extends Mainlaby {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -377,18 +376,18 @@ public class Labyr8 extends Mainlaby {
                 nextActionID = 0;
 
                 // zu naechstem Laby gehen links
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -396,18 +395,18 @@ public class Labyr8 extends Mainlaby {
                 }
 
                 // zu naechstem Laby gehen rechts
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -415,18 +414,18 @@ public class Labyr8 extends Mainlaby {
                 }
 
                 // zu naechstem Laby gehen oben
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (obererAusgang.IsPointInRect(kt) == false) {
+                    if (!obererAusgang.IsPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -434,7 +433,7 @@ public class Labyr8 extends Mainlaby {
                 }
 
                 // Irrlichter ansehen
-                if ((bludRect.IsPointInRect(pTemp) == true) && (bludVisible == true)) {
+                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
                     nextActionID = 1;
                     pTemp = Pblud;
                 }
@@ -445,22 +444,22 @@ public class Labyr8 extends Mainlaby {
                 // rechte Maustaste
 
                 // Naechstes Laby anschauen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Naechstes Laby anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Naechstes Laby anschauen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit dem Irrlicht reden
-                if ((bludRect.IsPointInRect(pTemp) == true) && (bludVisible == true)) {
+                if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pblud);
                     mainFrame.repaint();
@@ -479,13 +478,13 @@ public class Labyr8 extends Mainlaby {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -494,21 +493,17 @@ public class Labyr8 extends Mainlaby {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) || ((bludRect.IsPointInRect(pTemp) == true) && (bludVisible == true))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || ((bludRect.IsPointInRect(pTemp)) && (bludVisible));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -516,7 +511,7 @@ public class Labyr8 extends Mainlaby {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((bludRect.IsPointInRect(pTemp) == true) && (bludVisible == true)) {
+            if ((bludRect.IsPointInRect(pTemp)) && (bludVisible)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -524,7 +519,7 @@ public class Labyr8 extends Mainlaby {
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -532,7 +527,7 @@ public class Labyr8 extends Mainlaby {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 2;
@@ -540,7 +535,7 @@ public class Labyr8 extends Mainlaby {
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp) == true) {
+            if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -558,7 +553,7 @@ public class Labyr8 extends Mainlaby {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -568,18 +563,18 @@ public class Labyr8 extends Mainlaby {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -612,7 +607,6 @@ public class Labyr8 extends Mainlaby {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -630,7 +624,7 @@ public class Labyr8 extends Mainlaby {
     private void evalNewLocationLeft() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * Start.LabyHelp) + 50;
             while (zuffi > 62) {
                 zuffi--;
@@ -638,6 +632,7 @@ public class Labyr8 extends Mainlaby {
             for (int i = 0; i < Exitleft.length; i++) {
                 if (zuffi == Exitleft[i]) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -647,11 +642,12 @@ public class Labyr8 extends Mainlaby {
     private void evalNewLocationRight() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < Exitright.length; i++) {
                 if (zuffi == Exitright[i]) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -661,11 +657,12 @@ public class Labyr8 extends Mainlaby {
     private void evalNewLocationUp() {
         boolean exit = false;
         int zuffi = 0;
-        while (exit == false) {
+        while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
             for (int i = 0; i < Exitup.length; i++) {
                 if (zuffi == Exitup[i]) {
                     exit = true;
+                    break;
                 }
             }
         }
@@ -677,8 +674,8 @@ public class Labyr8 extends Mainlaby {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -716,12 +713,8 @@ public class Labyr8 extends Mainlaby {
                 mainFrame.Clipset = false;
                 mainFrame.isAnim = false;
                 nextActionID = 0;
-                if (Ausgang == 9) {
-                    Erscheinen(true);
-                } else {
-                    Erscheinen(false);
-                }
-                if (mainFrame.Actions[235] == true) {
+                Erscheinen(Ausgang == 9);
+                if (mainFrame.Actions[235]) {
                     BludLocationLeft();
                 } else {
                     evalNewLocationLeft();
@@ -736,12 +729,8 @@ public class Labyr8 extends Mainlaby {
                 mainFrame.Clipset = false;
                 mainFrame.isAnim = false;
                 nextActionID = 0;
-                if (Ausgang == 3) {
-                    Erscheinen(true);
-                } else {
-                    Erscheinen(false);
-                }
-                if (mainFrame.Actions[235] == true) {
+                Erscheinen(Ausgang == 3);
+                if (mainFrame.Actions[235]) {
                     BludLocationRight();
                 } else {
                     evalNewLocationRight();
@@ -756,12 +745,8 @@ public class Labyr8 extends Mainlaby {
                 mainFrame.Clipset = false;
                 mainFrame.isAnim = false;
                 nextActionID = 0;
-                if (Ausgang == 12) {
-                    Erscheinen(true);
-                } else {
-                    Erscheinen(false);
-                }
-                if (mainFrame.Actions[235] == true) {
+                Erscheinen(Ausgang == 12);
+                if (mainFrame.Actions[235]) {
                     BludLocationUp();
                 } else {
                     evalNewLocationUp();

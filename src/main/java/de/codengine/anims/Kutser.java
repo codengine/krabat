@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Kutser extends Mainanim {
-    private GenericImage[] kutser_look;
-    private GenericImage[] kutser_listen;
-    private GenericImage[] kutser_talk;
+    private final GenericImage[] kutser_look;
+    private final GenericImage[] kutser_listen;
+    private final GenericImage[] kutser_talk;
 
     public static final int Breite = 65;
     public static final int Hoehe = 81;
@@ -84,7 +84,7 @@ public class Kutser extends Mainanim {
             // hier unterscheiden, ob er zuhoert oder nicht
             int zf = (int) (Math.random() * 50);
 
-            if (isListening == true) {
+            if (isListening) {
                 // zuhoeren
                 if (Listen == 1) {
                     Listen = 0;

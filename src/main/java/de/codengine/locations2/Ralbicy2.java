@@ -32,7 +32,7 @@ public class Ralbicy2 extends Mainloc2 {
     private GenericImage background, holz, kreuz;
     // private bur1 bauer;
     private Mlynk2 mueller;
-    private Multiple2 Dialog;
+    private final Multiple2 Dialog;
     private boolean setAnim = false;
     private boolean muellerda = false;
     // private boolean isListening = false;
@@ -173,13 +173,13 @@ public class Ralbicy2 extends Mainloc2 {
 		}  */
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             mainFrame.Clipset = true;
             g.setClip(0, 0, 644, 484);
             mainFrame.isAnim = true;
-            if (setAnim == true) {
+            if (setAnim) {
                 mainFrame.fPlayAnim = true;
             }
             Cursorform = 200;
@@ -196,7 +196,7 @@ public class Ralbicy2 extends Mainloc2 {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
             g.drawImage(holz, 0, 365, null);
@@ -212,7 +212,7 @@ public class Ralbicy2 extends Mainloc2 {
 //	    }
 
         // Mueller zeichnen
-        if (muellerda == true) {
+        if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
@@ -236,7 +236,7 @@ public class Ralbicy2 extends Mainloc2 {
         }
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
@@ -289,7 +289,7 @@ public class Ralbicy2 extends Mainloc2 {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -307,13 +307,13 @@ public class Ralbicy2 extends Mainloc2 {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
         }
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             mainFrame.krabat.StopWalking();
             nextActionID = 1000;
@@ -331,7 +331,7 @@ public class Ralbicy2 extends Mainloc2 {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -347,7 +347,7 @@ public class Ralbicy2 extends Mainloc2 {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -357,7 +357,7 @@ public class Ralbicy2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -365,14 +365,14 @@ public class Ralbicy2 extends Mainloc2 {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Kirche
-                if (brKirche.IsPointInRect(pTemp) == true) {
+                if (brKirche.IsPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Pkirche;
@@ -399,7 +399,6 @@ public class Ralbicy2 extends Mainloc2 {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -410,19 +409,19 @@ public class Ralbicy2 extends Mainloc2 {
                 nextActionID = 0;
 
                 // zu Jitk gehen ?
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (rechterAusgang.IsPointInRect(kt) == false) {
+                    if (!rechterAusgang.IsPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         // es wird nach unten verlassen
                         pTemp = new GenericPoint(kt.x, Pright.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -430,18 +429,18 @@ public class Ralbicy2 extends Mainloc2 {
                 }
 
                 // zu Most gehen?
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (linkerAusgang.IsPointInRect(kt) == false) {
+                    if (!linkerAusgang.IsPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -449,7 +448,7 @@ public class Ralbicy2 extends Mainloc2 {
                 }
 
                 // Kirche ansehen
-                if (brKirche.IsPointInRect(pTemp) == true) {
+                if (brKirche.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pkirche;
                 }
@@ -467,17 +466,17 @@ public class Ralbicy2 extends Mainloc2 {
                 // rechte Maustaste
 
                 // Jitk anschauen
-                if (rechterAusgang.IsPointInRect(pTemp) == true) {
+                if (rechterAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ausgang zu Most abfangen
-                if (linkerAusgang.IsPointInRect(pTemp) == true) {
+                if (linkerAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // Kirche mitnehmen
-                if (brKirche.IsPointInRect(pTemp) == true) {
+                if (brKirche.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pkirche);
                     mainFrame.repaint();
@@ -505,13 +504,13 @@ public class Ralbicy2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -520,23 +519,19 @@ public class Ralbicy2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((brKirche.IsPointInRect(pTemp) == true) ||
-                    (tmp.IsPointInRect(pTemp) == true) ||
-                    ((brBauer.IsPointInRect(pTemp) == true) && (bauerda == true))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (brKirche.IsPointInRect(pTemp)) ||
+                    (tmp.IsPointInRect(pTemp)) ||
+                    ((brBauer.IsPointInRect(pTemp)) && (bauerda));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -545,7 +540,7 @@ public class Ralbicy2 extends Mainloc2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp) == true) {
+            if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 3;
@@ -553,8 +548,8 @@ public class Ralbicy2 extends Mainloc2 {
                 return;
             }
 
-            if ((brKirche.IsPointInRect(pTemp) == true) ||
-                    ((brBauer.IsPointInRect(pTemp) == true) && (bauerda == true))) {
+            if ((brKirche.IsPointInRect(pTemp)) ||
+                    ((brBauer.IsPointInRect(pTemp)) && (bauerda))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -562,7 +557,7 @@ public class Ralbicy2 extends Mainloc2 {
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp) == true) {
+            if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 2;
@@ -580,7 +575,7 @@ public class Ralbicy2 extends Mainloc2 {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -590,18 +585,18 @@ public class Ralbicy2 extends Mainloc2 {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -634,7 +629,6 @@ public class Ralbicy2 extends Mainloc2 {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -653,8 +647,8 @@ public class Ralbicy2 extends Mainloc2 {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

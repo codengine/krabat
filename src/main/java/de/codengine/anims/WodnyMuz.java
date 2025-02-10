@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class WodnyMuz extends Mainanim {
-    private GenericImage[] wmuz_head;
-    private GenericImage[] wmuz_body;
-    private GenericImage[] wmuz_tauch;
+    private final GenericImage[] wmuz_head;
+    private final GenericImage[] wmuz_body;
+    private final GenericImage[] wmuz_tauch;
     // private GenericImage woda;
 
     private int Head = 1;
@@ -68,7 +68,7 @@ public class WodnyMuz extends Mainanim {
         Verhinderhead = MAX_VERHINDERHEAD;
         this.istOben = istOben;
 
-        if (istOben == true) {
+        if (istOben) {
             Offset = 0;
             turn = true;
         } else {
@@ -157,8 +157,8 @@ public class WodnyMuz extends Mainanim {
         // Methode gibt false zurueck, wenn sie nicht mehr aufgerufen werden soll (ich habe fertig)
 
         // Abtauchen hier
-        if (istOben == true) {
-            if (turn == true) {
+        if (istOben) {
+            if (turn) {
                 turn = false;
                 g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
                 return true;
@@ -187,7 +187,7 @@ public class WodnyMuz extends Mainanim {
                 g.drawImage((Offset > 30) ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
                 return true;
             } else {
-                if (turn == false) {
+                if (!turn) {
                     turn = true;
                     g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
                     return true;

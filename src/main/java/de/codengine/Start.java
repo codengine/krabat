@@ -228,7 +228,7 @@ public class Start implements Runnable {
         mainmenu = new Hauptmenu(this, gameProperties);  // Hauptmenue
         exit = new Konc(this, gameProperties);       // Sicherheitsabfragen
         // showrect  = new showrect1 (this);  // Debugging - Anzeige der Laufrectangles
-        krabat = (Krabat) new KrabatNormal(this);
+        krabat = new KrabatNormal(this);
 
         CheckKrabat();
 
@@ -315,7 +315,7 @@ public class Start implements Runnable {
 		*/
 
         // no paint, until it make sense (othwerwise exceptions in full screen mode)
-        if (fPaintAllowed == false) {
+        if (!fPaintAllowed) {
             return null;
         }
 
@@ -325,7 +325,7 @@ public class Start implements Runnable {
         // paintzeit = System.currentTimeMillis();
 
         // bei aktivem Exit (Sicherheitsabfragen) Paint umleiten - Prioritaet 1 - kein Scrolling
-        if (exit.active == true) {
+        if (exit.active) {
             exit.paintExit(offGraphics);
             // g.drawImage(offImage, -scrollx, -scrolly, observer);
             return offImage;
@@ -505,10 +505,10 @@ public class Start implements Runnable {
             }
 
             // um Krabat kuemmern, solange er was zu tun hat
-            if (((krabat.isWalking == true) || (krabat.isWandering == true) ||
-                    (krabat.nAnimation != 0) || (talkCount != 0) || (fPlayAnim == true)
-                    || (isScrolling == true) || (isAnim == true) || (tmpTrigger == true))
-                    && (isWindowactive == true) && (StopPaint == false))
+            if (((krabat.isWalking) || (krabat.isWandering) ||
+                    (krabat.nAnimation != 0) || (talkCount != 0) || (fPlayAnim)
+                    || (isScrolling) || (isAnim) || (tmpTrigger))
+                    && (isWindowactive) && (!StopPaint))
                 /*if (true)*/ {
 
                 // System.out.println("Paint counter: " + repaintCounter.get());
@@ -593,8 +593,8 @@ public class Start implements Runnable {
     }
 
     public synchronized final void mousePressed(GenericMouseEvent e) {
-        if ((isMousevalid == false) || /*(isWindowactive == false) || */
-                (isListenerActive == false)) {
+        if ((!isMousevalid) || /*(isWindowactive == false) || */
+                (!isListenerActive)) {
             // Versuch, Event zu loeschen, wenn nicht benoetigt
             e.consume();
             return;
@@ -604,7 +604,7 @@ public class Start implements Runnable {
         dClick = e.getDoubleClick();
 
         // Wenn Exit aktiv, dorthin - Prio 1
-        if (exit.active == true) {
+        if (exit.active) {
             exit.evalMouseEvent(e);
             return;
         }
@@ -656,13 +656,13 @@ public class Start implements Runnable {
 
     public synchronized final void mouseMoved(GenericMouseEvent e) {
         // System.out.print("M");
-        if (/*(isWindowactive == false) ||*/ (isListenerActive == false)) {
+        if (/*(isWindowactive == false) ||*/ (!isListenerActive)) {
             return;
         }
         Mousepoint = e.getPoint();
 
         // Bei aktivem Exit dorthin - Prio 1
-        if (exit.active == true) {
+        if (exit.active) {
             exit.evalMouseMoveEvent(Mousepoint);
             return;
         }
@@ -707,7 +707,7 @@ public class Start implements Runnable {
     }
 
     public void windowClosing() {
-        if (isListenerActive == false) {
+        if (!isListenerActive) {
             return;
         }
         Clipset = false;
@@ -771,171 +771,171 @@ public class Start implements Runnable {
             case 0:
                 break;
             case 1:
-                currentLocation = (Mainloc) new Ralbicy1(this, currLocation);
+                currentLocation = new Ralbicy1(this, currLocation);
                 break;
             case 2:
-                currentLocation = (Mainloc) new Most1(this, currLocation);
+                currentLocation = new Most1(this, currLocation);
                 break;
             case 3:
-                currentLocation = (Mainloc) new Jitk1(this, currLocation);
+                currentLocation = new Jitk1(this, currLocation);
                 break;
             case 4:
-                currentLocation = (Mainloc) new Haty1(this, currLocation);
+                currentLocation = new Haty1(this, currLocation);
                 break;
             case 5:
-                currentLocation = (Mainloc) new Les1(this, currLocation);
+                currentLocation = new Les1(this, currLocation);
                 break;
             case 6:
-                currentLocation = (Mainloc) new Doma1(this, currLocation);
+                currentLocation = new Doma1(this, currLocation);
                 break;
             case 7:
-                currentLocation = (Mainloc) new Sunow1(this, currLocation);
+                currentLocation = new Sunow1(this, currLocation);
                 break;
             case 8:
-                currentLocation = (Mainloc) new Rapak1(this, currLocation);
+                currentLocation = new Rapak1(this, currLocation);
                 break;
             case 9:
-                currentLocation = (Mainloc) new Wobzor1(this, currLocation);
+                currentLocation = new Wobzor1(this, currLocation);
                 break;
             case 10:
-                currentLocation = (Mainloc) new Wjerby1(this, currLocation);
+                currentLocation = new Wjerby1(this, currLocation);
                 break;
             case 11:
-                currentLocation = (Mainloc) new Polo1(this, currLocation);
+                currentLocation = new Polo1(this, currLocation);
                 break;
             case 12:
-                currentLocation = (Mainloc) new Kupa1(this, currLocation);
+                currentLocation = new Kupa1(this, currLocation);
                 break;
             case 13:
-                currentLocation = (Mainloc) new Wjes1(this, currLocation);
+                currentLocation = new Wjes1(this, currLocation);
                 break;
             case 14:
-                currentLocation = (Mainloc) new Hojnt1(this, currLocation);
+                currentLocation = new Hojnt1(this, currLocation);
                 break;
             case 15:
-                currentLocation = (Mainloc) new Njedz1(this, currLocation);
+                currentLocation = new Njedz1(this, currLocation);
                 break;
             case 16:
-                currentLocation = (Mainloc) new Wila1(this, currLocation);
+                currentLocation = new Wila1(this, currLocation);
                 break;
             case 17:
-                currentLocation = (Mainloc) new CornyCholmc1(this, currLocation);
+                currentLocation = new CornyCholmc1(this, currLocation);
                 break;
             case 18:
-                currentLocation = (Mainloc) new Dubring1(this, currLocation);
+                currentLocation = new Dubring1(this, currLocation);
                 break;
             case 19:
-                currentLocation = (Mainloc) new Zdzary1(this, currLocation);
+                currentLocation = new Zdzary1(this, currLocation);
                 break;
             case 20:
-                currentLocation = (Mainloc) new Mertens1(this, currLocation);
+                currentLocation = new Mertens1(this, currLocation);
                 break;
             case 21:
-                currentLocation = (Mainloc) new Kulow1(this, currLocation);
+                currentLocation = new Kulow1(this, currLocation);
                 break;
             case 22:
-                currentLocation = (Mainloc) new Cyrkej1(this, currLocation);
+                currentLocation = new Cyrkej1(this, currLocation);
                 break;
             //    case 23: currentLocation = (Mainloc) new pinca1 (this, currLocation);
             //             break;
             case 24:
-                currentLocation = (Mainloc) new Hoscenc1(this, currLocation);
+                currentLocation = new Hoscenc1(this, currLocation);
                 break;
             case 25:
-                currentLocation = (Mainloc) new Mlyn1(this, currLocation);
+                currentLocation = new Mlyn1(this, currLocation);
                 break;
             case 26:
-                currentLocation = (Mainloc) new MlynkCornyCholmc1(this, currLocation);
+                currentLocation = new MlynkCornyCholmc1(this, currLocation);
                 break;
             case 27:
-                currentLocation = (Mainloc) new Jama1(this, currLocation);
+                currentLocation = new Jama1(this, currLocation);
                 break;
             case 28:
-                currentLocation = (Mainloc) new Dzera(this, currLocation);
+                currentLocation = new Dzera(this, currLocation);
                 break;
             case 29:
-                currentLocation = (Mainloc) new HojntAuto(this, currLocation);
+                currentLocation = new HojntAuto(this, currLocation);
                 break;
             case 70:
-                currentLocation = (Mainloc) new Cyrkej2(this, currLocation);
+                currentLocation = new Cyrkej2(this, currLocation);
                 break;
             case 71:
-                currentLocation = (Mainloc) new Doma2(this, currLocation);
+                currentLocation = new Doma2(this, currLocation);
                 break;
             case 72:
-                currentLocation = (Mainloc) new Dubring2(this, currLocation);
+                currentLocation = new Dubring2(this, currLocation);
                 break;
             case 73:
-                currentLocation = (Mainloc) new Hojnt2(this, currLocation);
+                currentLocation = new Hojnt2(this, currLocation);
                 break;
             case 74:
-                currentLocation = (Mainloc) new Jitk2(this, currLocation);
+                currentLocation = new Jitk2(this, currLocation);
                 break;
             case 75:
-                currentLocation = (Mainloc) new CornyCholmc2(this, currLocation);
+                currentLocation = new CornyCholmc2(this, currLocation);
                 break;
             case 76:
-                currentLocation = (Mainloc) new Kulow2(this, currLocation);
+                currentLocation = new Kulow2(this, currLocation);
                 break;
             case 77:
-                currentLocation = (Mainloc) new Labyr122(this, currLocation);
+                currentLocation = new Labyr122(this, currLocation);
                 break;
             case 78:
-                currentLocation = (Mainloc) new Les2(this, currLocation);
+                currentLocation = new Les2(this, currLocation);
                 break;
             case 79:
-                currentLocation = (Mainloc) new Mertens2(this, currLocation);
+                currentLocation = new Mertens2(this, currLocation);
                 break;
             case 80:
-                currentLocation = (Mainloc) new Njedz2(this, currLocation);
+                currentLocation = new Njedz2(this, currLocation);
                 break;
             case 81:
-                currentLocation = (Mainloc) new Pinca2(this, currLocation);
+                currentLocation = new Pinca2(this, currLocation);
                 break;
             case 82:
-                currentLocation = (Mainloc) new Ralbicy2(this, currLocation);
+                currentLocation = new Ralbicy2(this, currLocation);
                 break;
             case 83:
-                currentLocation = (Mainloc) new Rapak2(this, currLocation);
+                currentLocation = new Rapak2(this, currLocation);
                 break;
             case 84:
-                currentLocation = (Mainloc) new Sunow2(this, currLocation);
+                currentLocation = new Sunow2(this, currLocation);
                 break;
             case 85:
-                currentLocation = (Mainloc) new Wila2(this, currLocation);
+                currentLocation = new Wila2(this, currLocation);
                 break;
             case 86:
-                currentLocation = (Mainloc) new Wjerby2(this, currLocation);
+                currentLocation = new Wjerby2(this, currLocation);
                 break;
             case 87:
-                currentLocation = (Mainloc) new Wjes2(this, currLocation);
+                currentLocation = new Wjes2(this, currLocation);
                 break;
             case 88:
-                currentLocation = (Mainloc) new Wobzor2(this, currLocation);
+                currentLocation = new Wobzor2(this, currLocation);
                 break;
             case 89:
-                currentLocation = (Mainloc) new Most2(this, currLocation);
+                currentLocation = new Most2(this, currLocation);
                 break;
             case 90:
-                currentLocation = (Mainloc) new Mlyn2(this, currLocation);
+                currentLocation = new Mlyn2(this, currLocation);
                 break;
             case 91:
-                currentLocation = (Mainloc) new Inmlyn(this, currLocation);
+                currentLocation = new Inmlyn(this, currLocation);
                 break;
             case 92:
-                currentLocation = (Mainloc) new Swoboda(this, currLocation);
+                currentLocation = new Swoboda(this, currLocation);
                 break;
             case 93:
-                currentLocation = (Mainloc) new Zdzary2(this, currLocation);
+                currentLocation = new Zdzary2(this, currLocation);
                 break;
             case 94:
-                currentLocation = (Mainloc) new Jezba(this, currLocation);
+                currentLocation = new Jezba(this, currLocation);
                 break;
             case 100:
-                currentLocation = (Mainloc) new Zawod1(this);
+                currentLocation = new Zawod1(this);
                 break;
             case 101:
-                currentLocation = (Mainloc) new Extro(this);
+                currentLocation = new Extro(this);
                 break;
             case 102:
                 laden = new Wocinic(this);
@@ -950,7 +950,7 @@ public class Start implements Runnable {
                 newLocation = currLocation;
                 break;
             case 105:
-                currentLocation = (Mainloc) new Install(this);
+                currentLocation = new Install(this);
                 break;
             case 106:
                 karte = new Karta(this);
@@ -966,122 +966,122 @@ public class Start implements Runnable {
                 newLocation = currLocation; // alte Location bleibt bestehen
                 break;
             case 109:
-                currentLocation = (Mainloc) new LanguageChooser(this, gameProperties);
+                currentLocation = new LanguageChooser(this, gameProperties);
                 break;
             // Dresdener Locations
             case 120:
-                currentLocation = (Mainloc) new Kuchnja(this, currLocation);
+                currentLocation = new Kuchnja(this, currLocation);
                 break;
             case 121:
-                currentLocation = (Mainloc) new Haska(this, currLocation);
+                currentLocation = new Haska(this, currLocation);
                 break;
             case 122:
-                currentLocation = (Mainloc) new Spaniska(this, currLocation);
+                currentLocation = new Spaniska(this, currLocation);
                 break;
             case 123:
-                currentLocation = (Mainloc) new Hala(this, currLocation);
+                currentLocation = new Hala(this, currLocation);
                 break;
             case 124:
-                currentLocation = (Mainloc) new Komedij(this, currLocation);
+                currentLocation = new Komedij(this, currLocation);
                 break;
             case 125:
-                currentLocation = (Mainloc) new Jewisco(this, currLocation);
+                currentLocation = new Jewisco(this, currLocation);
                 break;
             case 126:
-                currentLocation = (Mainloc) new Murja(this, currLocation);
+                currentLocation = new Murja(this, currLocation);
                 break;
             case 127:
-                currentLocation = (Mainloc) new Terassa(this, currLocation);
+                currentLocation = new Terassa(this, currLocation);
                 break;
             case 128:
-                currentLocation = (Mainloc) new Straze(this, currLocation);
+                currentLocation = new Straze(this, currLocation);
                 break;
             case 129:
-                currentLocation = (Mainloc) new Mlynkmurja(this, currLocation);
+                currentLocation = new Mlynkmurja(this, currLocation);
                 break;
             case 130:
-                currentLocation = (Mainloc) new Hdwor(this, currLocation);
+                currentLocation = new Hdwor(this, currLocation);
                 break;
             case 131:
-                currentLocation = (Mainloc) new Trepjena(this, currLocation);
+                currentLocation = new Trepjena(this, currLocation);
                 break;
             case 132:
-                currentLocation = (Mainloc) new Kuchnjaopen(this, currLocation);
+                currentLocation = new Kuchnjaopen(this, currLocation);
                 break;
             case 140:
-                currentLocation = (Mainloc) new Saal(this, currLocation);
+                currentLocation = new Saal(this, currLocation);
                 break;
             case 141:
-                currentLocation = (Mainloc) new Dingl(this, currLocation);
+                currentLocation = new Dingl(this, currLocation);
                 break;
             case 142:
-                currentLocation = (Mainloc) new Chodba(this, currLocation);
+                currentLocation = new Chodba(this, currLocation);
                 break;
             case 143:
-                currentLocation = (Mainloc) new Casnik(this, currLocation);
+                currentLocation = new Casnik(this, currLocation);
                 break;
             case 144:
-                currentLocation = (Mainloc) new Couch(this, currLocation);
+                currentLocation = new Couch(this, currLocation);
                 break;
             case 145:
-                currentLocation = (Mainloc) new Zelen(this, currLocation);
+                currentLocation = new Zelen(this, currLocation);
                 break;
             case 146:
-                currentLocation = (Mainloc) new Wonka(this, currLocation);
+                currentLocation = new Wonka(this, currLocation);
                 break;
             case 150:
-                currentLocation = (Mainloc) new Cychi(this, currLocation);
+                currentLocation = new Cychi(this, currLocation);
                 break;
             case 151:
-                currentLocation = (Mainloc) new Zachod(this, currLocation);
+                currentLocation = new Zachod(this, currLocation);
                 break;
             case 152:
-                currentLocation = (Mainloc) new Gang(this, currLocation);
+                currentLocation = new Gang(this, currLocation);
                 break;
             case 153:
-                currentLocation = (Mainloc) new Kapala(this, currLocation);
+                currentLocation = new Kapala(this, currLocation);
                 break;
             case 160:
-                currentLocation = (Mainloc) new Panorama(this, currLocation);
+                currentLocation = new Panorama(this, currLocation);
                 break;
             case 161:
-                currentLocation = (Mainloc) new Stwa(this, currLocation);
+                currentLocation = new Stwa(this, currLocation);
                 break;
             case 162:
-                currentLocation = (Mainloc) new Zahrodnik(this, currLocation);
+                currentLocation = new Zahrodnik(this, currLocation);
                 break;
             case 163:
-                currentLocation = (Mainloc) new Habor(this, currLocation);
+                currentLocation = new Habor(this, currLocation);
                 break;
             case 164:
-                currentLocation = (Mainloc) new Lodz(this, currLocation);
+                currentLocation = new Lodz(this, currLocation);
                 break;
             case 170:
-                currentLocation = (Mainloc) new Zastup(this, currLocation);
+                currentLocation = new Zastup(this, currLocation);
                 break;
             case 171:
-                currentLocation = (Mainloc) new Manega(this, currLocation);
+                currentLocation = new Manega(this, currLocation);
                 break;
             case 175:
-                currentLocation = (Mainloc) new StareWiki(this, currLocation);
+                currentLocation = new StareWiki(this, currLocation);
                 break;
             case 180:
-                currentLocation = (Mainloc) new DDKarta(this, currLocation);
+                currentLocation = new DDKarta(this, currLocation);
                 break;
             case 181:
-                currentLocation = (Mainloc) new Poklad(this, currLocation);
+                currentLocation = new Poklad(this, currLocation);
                 break;
             case 200:
-                currentLocation = (Mainloc) new Wotrow(this, currLocation);
+                currentLocation = new Wotrow(this, currLocation);
                 break;
             case 201:
-                currentLocation = (Mainloc) new Hrodz(this, currLocation);
+                currentLocation = new Hrodz(this, currLocation);
                 break;
             case 202:
-                currentLocation = (Mainloc) new Rowy(this, currLocation);
+                currentLocation = new Rowy(this, currLocation);
                 break;
             case 203:
-                currentLocation = (Mainloc) new Doma4(this, currLocation);
+                currentLocation = new Doma4(this, currLocation);
                 break;
             default:
                 System.out.println("Falsche Location-ID fuer Konstruktor !");
@@ -1102,40 +1102,40 @@ public class Start implements Runnable {
         switch (newLocation) {
 
             case 51:
-                currentLocation = (Mainloc) new Labyr1(this, Richtung);
+                currentLocation = new Labyr1(this, Richtung);
                 break;
             case 52:
-                currentLocation = (Mainloc) new Labyr2(this, Richtung);
+                currentLocation = new Labyr2(this, Richtung);
                 break;
             case 53:
-                currentLocation = (Mainloc) new Labyr3(this, Richtung);
+                currentLocation = new Labyr3(this, Richtung);
                 break;
             case 54:
-                currentLocation = (Mainloc) new Labyr4(this, Richtung);
+                currentLocation = new Labyr4(this, Richtung);
                 break;
             case 55:
-                currentLocation = (Mainloc) new Labyr5(this, Richtung);
+                currentLocation = new Labyr5(this, Richtung);
                 break;
             case 56:
-                currentLocation = (Mainloc) new Labyr6(this, Richtung);
+                currentLocation = new Labyr6(this, Richtung);
                 break;
             case 57:
-                currentLocation = (Mainloc) new Labyr7(this, Richtung);
+                currentLocation = new Labyr7(this, Richtung);
                 break;
             case 58:
-                currentLocation = (Mainloc) new Labyr8(this, Richtung);
+                currentLocation = new Labyr8(this, Richtung);
                 break;
             case 59:
-                currentLocation = (Mainloc) new Labyr9(this, Richtung);
+                currentLocation = new Labyr9(this, Richtung);
                 break;
             case 60:
-                currentLocation = (Mainloc) new Labyr10(this, Richtung);
+                currentLocation = new Labyr10(this, Richtung);
                 break;
             case 61:
-                currentLocation = (Mainloc) new Labyr11(this, Richtung);
+                currentLocation = new Labyr11(this, Richtung);
                 break;
             case 62:
-                currentLocation = (Mainloc) new Labyr12(this, Richtung);
+                currentLocation = new Labyr12(this, Richtung);
                 break;
             default:
                 System.out.println("Nott awajlebbl!!");
@@ -1158,7 +1158,7 @@ public class Start implements Runnable {
             System.gc();
         }
 
-        currentLocation = (Mainloc) new Doma1(this, currLocation, gans1, gans2, gans3);
+        currentLocation = new Doma1(this, currLocation, gans1, gans2, gans3);
 
         currLocation = newLocation;
 
@@ -1166,7 +1166,7 @@ public class Start implements Runnable {
     }
 
     public synchronized final void keyPressed(GenericKeyEvent e) {
-        if ((isListenerActive == false) || (isWindowactive == false)) {
+        if ((!isListenerActive) || (!isWindowactive)) {
             return;
         }
 
@@ -1191,7 +1191,7 @@ public class Start implements Runnable {
         }*/
 
         // Bei aktivem Exit dorthin - Prio 1
-        if (exit.active == true) {
+        if (exit.active) {
             exit.evalKeyEvent(e);
             return;
         }
@@ -1264,7 +1264,7 @@ public class Start implements Runnable {
 
     // Alle relevanten Listener fuer Mousepress und Mousemove deaktivieren
     public void Freeze(boolean cold) {
-        if (cold == true) {
+        if (cold) {
             setCursor(Warten);
             isListenerActive = false;
         } else {
@@ -1292,25 +1292,25 @@ public class Start implements Runnable {
         int merkDef = krabat.defScale;
 
         // normales Aussehen
-        if ((Actions[850] == false) && (Actions[851] == false)) {
+        if ((!Actions[850]) && (!Actions[851])) {
             if (KrabatForm != 1) {
-                krabat = (Krabat) new KrabatNormal(this);
+                krabat = new KrabatNormal(this);
                 KrabatForm = 1;
             }
         }
 
         // hat sich Drasta angezogen
-        if (Actions[850] == true) {
+        if (Actions[850]) {
             if (KrabatForm != 2) {
-                krabat = (Krabat) new KrabatDrasta(this);
+                krabat = new KrabatDrasta(this);
                 KrabatForm = 2;
             }
         }
 
         // ist von oben zu sehen
-        if (Actions[851] == true) {
+        if (Actions[851]) {
             if (KrabatForm != 3) {
-                krabat = (Krabat) new KrabatOben(this);
+                krabat = new KrabatOben(this);
                 KrabatForm = 3;
             }
         }

@@ -28,9 +28,9 @@ import de.codengine.platform.GenericImage;
 
 public class Awgust extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage kral_head[];
-    private GenericImage kral_body[];
-    private GenericImage kral_walk[];
+    private final GenericImage[] kral_head;
+    private final GenericImage[] kral_body;
+    private final GenericImage[] kral_walk;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -70,10 +70,10 @@ public class Awgust extends Mainanim {
     private static final int CWIDTH = 81;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 155;
 
-    private float scaleVerhaeltnisNormal;
+    private final float scaleVerhaeltnisNormal;
 
     // Abstaende default
-    private static final int CVERT_DIST[] = {6, 2, 6, 2, 6};
+    private static final int[] CVERT_DIST = {6, 2, 6, 2, 6};
 
     // Variablen fuer Zooming
     public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
@@ -157,7 +157,7 @@ public class Awgust extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
         } else
@@ -336,7 +336,7 @@ public class Awgust extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {
@@ -406,11 +406,11 @@ public class Awgust extends Mainanim {
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
         // Figur zeichnen
-        if (redet == true) {
+        if (redet) {
             // beim Reden und ggf. mit erhobener Hand
             // System.out.println ("Head : " + Head + " Hand erhoben : " + hatHandErhoben);
             g.drawImage(kral_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-            g.drawImage(kral_body[(hatHandErhoben == true) ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+            g.drawImage(kral_body[(hatHandErhoben) ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
         } else {
             // beim Stehen oder Laufen
             if (anim_pos == 0) {

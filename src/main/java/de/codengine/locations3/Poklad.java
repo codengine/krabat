@@ -30,8 +30,8 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Poklad extends Mainloc {
     private GenericImage schody, komora, vorderschody, skla;
-    private Dinglingerwalk dinglingerwalk;
-    private StrazaPoklad straza;
+    private final Dinglingerwalk dinglingerwalk;
+    private final StrazaPoklad straza;
 
     private GenericPoint talkPointStraza;
     private GenericPoint strazaPoint;
@@ -129,7 +129,7 @@ public class Poklad extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -152,7 +152,7 @@ public class Poklad extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // straza und Dinglinger Hintergrund loeschen
-        if (showStraza == true) {
+        if (showStraza) {
             g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
             if (whatPicture == 1) {
                 g.drawImage(schody, 0, 0, null);
@@ -162,7 +162,7 @@ public class Poklad extends Mainloc {
             }
         }
 
-        if (showDingl == true) {
+        if (showDingl) {
             // Hintergrund loeschen
             Borderrect temp = dinglingerwalk.DinglingerRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
@@ -176,20 +176,20 @@ public class Poklad extends Mainloc {
         }
 
         // Skla auf komora zeichnen, wenn noetig
-        if ((whatPicture == 2) && (ausgewechselt == true)) {
+        if ((whatPicture == 2) && (ausgewechselt)) {
             g.setClip(577, 269, 24, 15);
             g.drawImage(skla, 577, 269, null);
         }
 
         // Dinglinger zeichnen
-        if (showDingl == true) {
+        if (showDingl) {
             // Hintergrund loeschen
             Borderrect temp = dinglingerwalk.DinglingerRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
 
             // Dinglinger weiterbewegen, wenn noetig
-            if (walkReady == false) {
+            if (!walkReady) {
                 walkReady = dinglingerwalk.Move();
             }
 
@@ -212,7 +212,7 @@ public class Poklad extends Mainloc {
         }
 
         // Straza zeichnen
-        if (showStraza == true) {
+        if (showStraza) {
             g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
             straza.drawStraza(g, TalkPerson, strazaPoint, false);
             g.drawImage(vorderschody, 147, 0, null);
@@ -225,7 +225,7 @@ public class Poklad extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -272,7 +272,6 @@ public class Poklad extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     @Override
@@ -331,7 +330,7 @@ public class Poklad extends Mainloc {
 
             case 50:
                 // Bild umschalten und Personen weg
-                if (walkReady == false) {
+                if (!walkReady) {
                     break;
                 }
                 mainFrame.Clipset = false;
@@ -371,7 +370,7 @@ public class Poklad extends Mainloc {
 
             case 80:
                 // Dingl spricht
-                if (walkReady == false) {
+                if (!walkReady) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00015"),
@@ -399,7 +398,7 @@ public class Poklad extends Mainloc {
 
             case 85:
                 // Dinglinger spricht
-                if (walkReady == false) {
+                if (!walkReady) {
                     break;
                 }
                 PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00018"),
@@ -426,7 +425,7 @@ public class Poklad extends Mainloc {
                 // Dinglinger laeuft raus
                 if (animRueckgabe == 6) {
                     ausgewechselt = true;
-                    if (schalenSound == false) {
+                    if (!schalenSound) {
                         schalenSound = true;
                         mainFrame.wave.PlayFile("sfx/becher.wav");
                     }
@@ -442,7 +441,7 @@ public class Poklad extends Mainloc {
 
             case 105:
                 // Auf 1. Bild zurueckschalten und Personen zeigen
-                if (walkReady == false) {
+                if (!walkReady) {
                     break;
                 }
                 mainFrame.Clipset = false;
@@ -459,7 +458,7 @@ public class Poklad extends Mainloc {
 
             case 110:
                 // Straza spricht
-                if (walkReady == false) {
+                if (!walkReady) {
                     break;
                 }
                 dinglingerwalk.SetFacing(9);

@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Pjany extends Mainanim {
-    private GenericImage[] hosc;
+    private final GenericImage[] hosc;
 
     public static final int Breite = 97;
     public static final int Hoehe = 120;

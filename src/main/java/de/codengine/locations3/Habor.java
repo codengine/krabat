@@ -29,12 +29,12 @@ import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Habor extends Mainloc {
     private GenericImage background, murja, steg, boota, bootb;
-    private Multiple2 Dialog;
-    private Gonzales gonzales;
+    private final Multiple2 Dialog;
+    private final Gonzales gonzales;
 
-    private Borderrect gonzalesRect;
-    private GenericPoint gonzalesPoint;
-    private GenericPoint talkPoint;
+    private final Borderrect gonzalesRect;
+    private final GenericPoint gonzalesPoint;
+    private final GenericPoint talkPoint;
 
     private int whichShip = 0;
 
@@ -95,10 +95,10 @@ public class Habor extends Mainloc {
         gonzalesRect = new Borderrect(gonzalesPoint.x, gonzalesPoint.y, gonzalesPoint.x + Gonzales.Breite, gonzalesPoint.y + Gonzales.Hoehe);
 
         // Hier rauskriegen, welches Schiff gezeichnet werden muss
-        if (mainFrame.Actions[568] == false) {
+        if (!mainFrame.Actions[568]) {
             whichShip = 1;
         } else {
-            if (mainFrame.Actions[569] == false) {
+            if (!mainFrame.Actions[569]) {
                 whichShip = 2;
             } else {
                 whichShip = 0;
@@ -119,7 +119,7 @@ public class Habor extends Mainloc {
         mainFrame.wegGeher.vBorders.removeAllElements();
 
         // Hier unterscheiden, ob Gonzales dasteht, damit man nicht durchrennt
-        if (mainFrame.Actions[568] == false) {
+        if (!mainFrame.Actions[568]) {
             // Gonzales ist da
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(370, 397, 578, 630, 377, 428));
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(345, 347, 390, 395, 364, 376));
@@ -196,7 +196,7 @@ public class Habor extends Mainloc {
 //             }  
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -224,7 +224,7 @@ public class Habor extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Gonzales nur, wenn noch nicht Kotwica gegeben
-        if (mainFrame.Actions[568] == false) {
+        if (!mainFrame.Actions[568]) {
             // Gonzales zeichnen
             g.setClip(gonzalesPoint.x, gonzalesPoint.y, Gonzales.Breite, Gonzales.Hoehe);
             g.drawImage(background, 0, 0, null);
@@ -272,7 +272,7 @@ public class Habor extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter Mauer ? (nur Clipping - Region wird neugezeichnet)
-        if (rectMurja.IsPointInRect(pKrTemp) == true) {
+        if (rectMurja.IsPointInRect(pKrTemp)) {
             g.drawImage(murja, 380, 387, null);
         }
 
@@ -283,7 +283,7 @@ public class Habor extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -301,7 +301,7 @@ public class Habor extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             mainFrame.Clipset = false;
             Dialog.paintMultiple(g);
             return;
@@ -319,7 +319,7 @@ public class Habor extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseEvent(e);
             return;
         }
@@ -335,7 +335,7 @@ public class Habor extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -345,7 +345,7 @@ public class Habor extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -353,7 +353,7 @@ public class Habor extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -368,14 +368,14 @@ public class Habor extends Mainloc {
                 // }
 
                 // Ausreden fuer Gonzales, wenn Kotwica noch nicht da
-                if ((gonzalesRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == false)) {
+                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pGonzales;
                 }
 
                 // Sudobja ausreden
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = pSudobja;
                 }
@@ -393,7 +393,6 @@ public class Habor extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -404,19 +403,19 @@ public class Habor extends Mainloc {
                 nextActionID = 0;
 
                 // zu Panorama gehen ?
-                if (ausgangPanorama.IsPointInRect(pTemp) == true) {
+                if (ausgangPanorama.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangPanorama.IsPointInRect(kt) == false) {
+                    if (!ausgangPanorama.IsPointInRect(kt)) {
                         pTemp = pExitPanorama;
                     } else {
                         // es wird nach unten verlassen
                         pTemp = new GenericPoint(kt.x, pExitPanorama.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -424,19 +423,19 @@ public class Habor extends Mainloc {
                 }
 
                 // zu Lodz gehen ?, falls noch da (wenn Gonzales weg ist)
-                if ((ausgangLodz.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == true) && (mainFrame.Actions[569] == false)) {
+                if ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569])) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangLodz.IsPointInRect(kt) == false) {
+                    if (!ausgangLodz.IsPointInRect(kt)) {
                         pTemp = pExitLodz;
                     } else {
                         // es wird nach unten verlassen
                         pTemp = new GenericPoint(kt.x, pExitLodz.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -444,13 +443,13 @@ public class Habor extends Mainloc {
                 }
 
                 // Gonzales ansehen, falls da
-                if ((gonzalesRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == false)) {
+                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
                     nextActionID = 1;
                     pTemp = pGonzales;
                 }
 
                 // Subobja ansehen
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pSudobja;
                 }
@@ -461,7 +460,7 @@ public class Habor extends Mainloc {
                 // rechte Maustaste
 
                 // Mit Gonzales reden
-                if ((gonzalesRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == false)) {
+                if ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pGonzales);
                     mainFrame.repaint();
@@ -469,7 +468,7 @@ public class Habor extends Mainloc {
                 }
 
                 // Sudobja mitnehmen
-                if (sudobjaRect.IsPointInRect(pTemp) == true) {
+                if (sudobjaRect.IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(pSudobja);
                     mainFrame.repaint();
@@ -477,8 +476,8 @@ public class Habor extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangPanorama.IsPointInRect(pTemp) == true) ||
-                        ((ausgangLodz.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == true) && (mainFrame.Actions[569] == false))) {
+                if ((ausgangPanorama.IsPointInRect(pTemp)) ||
+                        ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569]))) {
                     return;
                 }
 
@@ -494,13 +493,13 @@ public class Habor extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -509,23 +508,19 @@ public class Habor extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) ||
-                    ((gonzalesRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == false)) ||
-                    (sudobjaRect.IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) ||
+                    ((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) ||
+                    (sudobjaRect.IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -533,7 +528,7 @@ public class Habor extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangPanorama.IsPointInRect(pTemp) == true) {
+            if (ausgangPanorama.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cright);
                     Cursorform = 3;
@@ -541,7 +536,7 @@ public class Habor extends Mainloc {
                 return;
             }
 
-            if ((ausgangLodz.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == true) && (mainFrame.Actions[569] == false)) {
+            if ((ausgangLodz.IsPointInRect(pTemp)) && (mainFrame.Actions[568]) && (!mainFrame.Actions[569])) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cleft);
                     Cursorform = 12;
@@ -549,8 +544,8 @@ public class Habor extends Mainloc {
                 return;
             }
 
-            if (((gonzalesRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[568] == false)) ||
-                    (sudobjaRect.IsPointInRect(pTemp) == true)) {
+            if (((gonzalesRect.IsPointInRect(pTemp)) && (!mainFrame.Actions[568])) ||
+                    (sudobjaRect.IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -568,7 +563,7 @@ public class Habor extends Mainloc {
 
     @Override
     public void evalMouseExitEvent(GenericMouseEvent e) {
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalMouseExitEvent(e);
         }
     }
@@ -578,18 +573,18 @@ public class Habor extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple == true) {
+        if (mainFrame.isMultiple) {
             Dialog.evalKeyEvent(e);
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -622,7 +617,6 @@ public class Habor extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -641,8 +635,8 @@ public class Habor extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -701,7 +695,7 @@ public class Habor extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 isListening = true;
                 // Sequenz vor MC ? (beim ersten Ansprechen)
-                if (mainFrame.Actions[560] == true) {
+                if (mainFrame.Actions[560]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 608;
@@ -894,7 +888,7 @@ public class Habor extends Mainloc {
                         Start.stringManager.getTranslation("Loc3_Habor_00068"),
                         0, 61, 2, 617, talkPoint);
                 // Enterhaken zu Inventar hinzufuegen
-                mainFrame.inventory.vInventory.addElement(new Integer(37));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(37));
                 Hakencounter = 10;
                 break;
 

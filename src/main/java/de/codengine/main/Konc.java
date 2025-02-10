@@ -30,14 +30,14 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Konc extends Mainanim {
     private int selected = -1;
     private int Anzahl;
-    private String[] Fragen = new String[4];
-    private GenericRectangle[] Positionen = new GenericRectangle[4];
+    private final String[] Fragen = new String[4];
+    private final GenericRectangle[] Positionen = new GenericRectangle[4];
     public boolean active = false;
     private boolean Paintcall = false;
     private GenericImage backgr;
     private int WhatAction;
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     private final GameProperties gameProperties;
 
@@ -96,15 +96,15 @@ public class Konc extends Mainanim {
         for (int i = 0; i <= Anzahl; ++i) {
             if ((selected == i) || (i == 0)) {
                 mainFrame.ifont.drawString(g, Fragen[i],
-                        (int) Positionen[i].getX() + mainFrame.scrollx,
-                        (int) Positionen[i].getY() + mainFrame.scrolly, 0xffff0000);
+                        Positionen[i].getX() + mainFrame.scrollx,
+                        Positionen[i].getY() + mainFrame.scrolly, 0xffff0000);
             } else {
                 mainFrame.ifont.drawString(g, Fragen[i],
-                        (int) Positionen[i].getX() + mainFrame.scrollx,
-                        (int) Positionen[i].getY() + mainFrame.scrolly, 0xffb00000);
+                        Positionen[i].getX() + mainFrame.scrollx,
+                        Positionen[i].getY() + mainFrame.scrolly, 0xffb00000);
             }
         }
-        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
     // Mouse - Listener fuer Multiple Choice
@@ -112,7 +112,7 @@ public class Konc extends Mainanim {
         GenericPoint pTemp = e.getPoint();
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // Linke Maustaste
-            if (Positionen[1].contains(pTemp) == true) {
+            if (Positionen[1].contains(pTemp)) {
                 // Es wurde HAJ gewaehlt
                 switch (WhatAction) {
                     case 1: // Beenden
@@ -139,7 +139,7 @@ public class Konc extends Mainanim {
                         break;
                 }
             }
-            if (Positionen[2].contains(pTemp) == true) {
+            if (Positionen[2].contains(pTemp)) {
                 // Es wurde NE gewaehlt
                 mainFrame.Clipset = false;
                 backgr = null;
@@ -153,12 +153,12 @@ public class Konc extends Mainanim {
         int oldsel = selected;
         selected = -1;
         for (int i = 1; i <= Anzahl; ++i) {
-            if (Positionen[i].contains(pTemp) == true) {
+            if (Positionen[i].contains(pTemp)) {
                 selected = i;
                 break;
             }
         }
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             return;
         }

@@ -27,7 +27,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Bumm extends Mainanim {
-    private GenericImage bumm[];
+    private final GenericImage[] bumm;
 
     private int Bummcount;
 
@@ -43,7 +43,7 @@ public class Bumm extends Mainanim {
 
     private static final float Xmitte = 95f;
 
-    private float xScale;
+    private final float xScale;
 
     private int Groesse;
     private GenericPoint Posit;
@@ -122,7 +122,7 @@ public class Bumm extends Mainanim {
         // GenericPoint Posit bezeichnet Fussposition des jeweiligen Dings / Mensches
         // Groesse gibt reale Groesse des TeilImages an, welches den Hintergrund verdeckt
 
-        if (playBumm == true) {
+        if (playBumm) {
             playBumm = false;
             mainFrame.wave.PlayFile("sfx/morph.wav");
         }
@@ -136,7 +136,7 @@ public class Bumm extends Mainanim {
         GenericRectangle tp = bummRect();
 
         // Zeichnen
-        offGraph.drawImage(bumm[(Bummcount > 7) ? 7 : Bummcount], (int) tp.getX(), (int) tp.getY(), (int) tp.getWidth(), (int) tp.getHeight(), null);
+        offGraph.drawImage(bumm[(Bummcount > 7) ? 7 : Bummcount], tp.getX(), tp.getY(), tp.getWidth(), tp.getHeight(), null);
 
         // Rueckgabe des aktuellen Zaehlers
         return (Bummcount);

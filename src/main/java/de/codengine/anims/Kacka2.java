@@ -28,9 +28,9 @@ import de.codengine.platform.GenericImage;
 
 public class Kacka2 extends Mainanim {
 
-    private GenericImage kacka_flieg[];
-    private GenericImage kacka_lande[];
-    private GenericImage kacka_rede[];
+    private final GenericImage[] kacka_flieg;
+    private final GenericImage[] kacka_lande;
+    private final GenericImage[] kacka_rede;
 
     private int Schnatter = 0;
     private int Flieg = 0;
@@ -120,14 +120,14 @@ public class Kacka2 extends Mainanim {
         float Ydiff = (float) (Pstop.y - Pstart.y);
         float Xdiff = (float) (Pstop.x - Pstart.x - 40);
 
-        Yoffset = (float) (Ydiff / Xdiff * Xoffset);
+        Yoffset = Ydiff / Xdiff * Xoffset;
 
         System.out.println("Yoffset = " + Yoffset);
     }
 
     // evaluiere Rechteck zum Loeschen der Ente
     public GenericRectangle kackaRect() {
-        if (isFlying == true) {
+        if (isFlying) {
             // Berechnung beim Fliegen
             int x = (int) (Positx - (Flugbreite / 2));
             int y = (int) (Posity - Flughoehe + FLUGOFFSET);
@@ -157,15 +157,15 @@ public class Kacka2 extends Mainanim {
             // Kacka zeichnen
             offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
         } else {
-            if (isFlying == false) {
+            if (!isFlying) {
                 // wenn sie nicht mehr fliegt, dann nur noch so zeichnen
                 offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (Redebreite / 2)), (int) (Posity - Redehoehe), null);
             } else {
                 // gleitet schon ?
-                if (isGleiting == true) {
+                if (isGleiting) {
                     // landet schon
-                    if (isLanding == true) {
-                        if (landeSoundPlayed == false)  // hier Sound 1x abspielen
+                    if (isLanding) {
+                        if (!landeSoundPlayed)  // hier Sound 1x abspielen
                         {
                             landeSoundPlayed = true;
                             mainFrame.wave.PlayFile("sfx/woda3.wav");
@@ -188,7 +188,7 @@ public class Kacka2 extends Mainanim {
                     // fliegt noch
                     if ((--Verhinderflieg) < 1) {
                         Verhinderflieg = MAX_VERHINDERFLIEG;
-                        if (forward == true) {
+                        if (forward) {
                             Flieg++;
                             if (Flieg == 3) {
                                 Flieg = 1;
@@ -216,7 +216,7 @@ public class Kacka2 extends Mainanim {
         }
         // hier das Umschalten fliegen -> gleiten -> landen -> ich habe fertig
         if ((Pstop.x - Positx) < 180) {
-            if (flugSoundPlayed == false) {
+            if (!flugSoundPlayed) {
                 flugSoundPlayed = true;
                 mainFrame.wave.PlayFile("sfx/quack.wav");
             }

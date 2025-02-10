@@ -33,10 +33,16 @@ import java.util.TimeZone;
 public class Skladzic extends Mainanim {
     private boolean Paintcall = false;
 
-    private GenericPoint pLO;
-    private GenericImage LScreen, Pfeil, DPfeil, Sklad, Empty;
-    private Borderrect brGesamt, brPfeil, brSklad;
-    private GenericColor inakt = new GenericColor(156, 132, 107);
+    private final GenericPoint pLO;
+    private GenericImage LScreen;
+    private final GenericImage Pfeil;
+    private final GenericImage DPfeil;
+    private GenericImage Sklad;
+    private GenericImage Empty;
+    private final Borderrect brGesamt;
+    private final Borderrect brPfeil;
+    private Borderrect brSklad;
+    private final GenericColor inakt = new GenericColor(156, 132, 107);
 
     private String outputText = "";
     private GenericPoint outputTextPos;
@@ -48,13 +54,13 @@ public class Skladzic extends Mainanim {
     private int selected = -1;
     private int unselected = -1;
 
-    private Spielstand[] Dir;
+    private final Spielstand[] Dir;
     private Spielstand Aktuell;
     private GenericImage actualImage;
 
     public boolean saveIsValid = false;
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -123,7 +129,7 @@ public class Skladzic extends Mainanim {
     public void paintSpeichern(GenericDrawingContext g) {
 
         // Speichern - Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);
             g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
@@ -149,7 +155,7 @@ public class Skladzic extends Mainanim {
         }
 
         // Testen, ob nach Save over Existing gespeichert werden darf
-        if (saveIsValid == true) {
+        if (saveIsValid) {
             saveIsValid = false;
             Aktuell.Save(selected + 1);
             Deactivate();
@@ -261,20 +267,20 @@ public class Skladzic extends Mainanim {
         if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
             // linke Maustaste
             // bei Click Ausserhalb zurueck ins Spiel
-            if (brGesamt.IsPointInRect(pTemp) == false) {
+            if (!brGesamt.IsPointInRect(pTemp)) {
                 Deactivate();
                 mainFrame.whatScreen = 0;
                 return;
             }
 
             // bei Pfeil links verlassen
-            if (brPfeil.IsPointInRect(pTemp) == true) {
+            if (brPfeil.IsPointInRect(pTemp)) {
                 Deactivate();
                 return;
             }
 
             // Bei Speichern und erlaubt speichern
-            if ((brSklad.IsPointInRect(pTemp) == true) && (selected != -1)) {
+            if ((brSklad.IsPointInRect(pTemp)) && (selected != -1)) {
                 if (Dir[selected + 1].Location != 0) {
                     // Sicherheitsabfrage aktivieren
                     mainFrame.exit.Activate(3);
@@ -287,11 +293,11 @@ public class Skladzic extends Mainanim {
 
             // bei Klick auf Spielstand aktuellen Spielstand darueberzeichnen
             for (int i = 0; i <= 5; ++i) {
-                if (GetCurrentRect(i).IsPointInRect(pTemp) == true) {
+                if (GetCurrentRect(i).IsPointInRect(pTemp)) {
                     if (selected != i) {
                         selected = i;
                     }
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
 
                         // Bei Doppelklick sofort speichern
                         if (Dir[selected + 1].Location != 0) {
@@ -316,22 +322,22 @@ public class Skladzic extends Mainanim {
         // roten Rahmen zum Umranden festlegen
         nFeldAktiv = -1;
         for (int i = 0; i < 6; i++) {
-            if (GetCurrentRect(i).IsPointInRect(pTemp) == true) {
+            if (GetCurrentRect(i).IsPointInRect(pTemp)) {
                 nFeldAktiv = i;
             }
         }
 
         // Menueitems fuer Highlight festlegen
         menuitem = 0;
-        if (brPfeil.IsPointInRect(pTemp) == true) {
+        if (brPfeil.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if ((brSklad.IsPointInRect(pTemp) == true) && (selected != -1)) {
+        if ((brSklad.IsPointInRect(pTemp)) && (selected != -1)) {
             menuitem = 2;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             mainFrame.setCursor(mainFrame.Normal);
             return;
@@ -357,7 +363,6 @@ public class Skladzic extends Mainanim {
         // Bei ESCAPE verlassen
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             Deactivate();
-            return;
         }
     }
 
@@ -368,7 +373,7 @@ public class Skladzic extends Mainanim {
         nFeldAktiv = -1;
         mainFrame.Clipset = false;
         mainFrame.DestructLocation(103);
-        if (mainFrame.mainmenu.MMactive == true) {
+        if (mainFrame.mainmenu.MMactive) {
             mainFrame.whatScreen = 2;
         } else {
             mainFrame.whatScreen = 0;
@@ -384,8 +389,8 @@ public class Skladzic extends Mainanim {
 
     private GenericPoint GetCurrentXY(int Number) {
         GenericPoint Pleftup = new GenericPoint();
-        Pleftup.x = (int) (117 + ((Number % 3) * 142));
-        Pleftup.y = (int) (89 + ((Number / 3) * 112));
+        Pleftup.x = 117 + ((Number % 3) * 142);
+        Pleftup.y = 89 + ((Number / 3) * 112);
         return (Pleftup);
     }
 

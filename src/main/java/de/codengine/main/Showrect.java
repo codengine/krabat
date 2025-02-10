@@ -29,14 +29,14 @@ public class Showrect {
 
     // private Start mainFrame;
 
-    private boolean istDeaktiviert = false;
+    private final boolean istDeaktiviert = false;
 
     public Showrect(Start caller) {
         // mainFrame = caller;
     }
 
     public void Zeichne(GenericDrawingContext g, Vector<Bordertrapez> Rechtecke) {
-        if (istDeaktiviert == true) {
+        if (istDeaktiviert) {
             return;
         }
 
@@ -46,12 +46,12 @@ public class Showrect {
         g.setClip(0, 0, 1280, 480);
         int laenge = Rechtecke.size();
         for (int i = 0; i < laenge; i++) {
-            Bordertrapez di = (Bordertrapez) Rechtecke.elementAt(i);
+            Bordertrapez di = Rechtecke.elementAt(i);
             g.drawLine(di.x1, di.y1, di.x3, di.y2);
             g.drawLine(di.x3, di.y2, di.x4, di.y2);
             g.drawLine(di.x4, di.y2, di.x2, di.y1);
             g.drawLine(di.x2, di.y1, di.x1, di.y1);
         }
-        g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+        g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 }  

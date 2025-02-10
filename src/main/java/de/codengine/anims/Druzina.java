@@ -28,7 +28,7 @@ import de.codengine.platform.GenericImage;
 
 public class Druzina extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage druzina_walk[];
+    private final GenericImage[] druzina_walk;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -59,10 +59,10 @@ public class Druzina extends Mainanim {
     private static final int CWIDTH = 65;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 154;
 
-    private float scaleVerhaeltnisNormal;
+    private final float scaleVerhaeltnisNormal;
 
     // Abstaende default
-    private static final int CVERT_DIST[] = {3, 3, 1, 3, 1, 3};
+    private static final int[] CVERT_DIST = {3, 3, 1, 3, 1, 3};
 
     // Variablen fuer Zooming
     public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
@@ -121,7 +121,7 @@ public class Druzina extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal == true)
+        if (horizontal)
         // Horizontal laufen
         {
         } else
@@ -278,7 +278,7 @@ public class Druzina extends Mainanim {
         // return mainFrame.override;
 
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (upsidedown == false) {
+        if (!upsidedown) {
             // normale Berechnung
             float helper = (maxx - poy) / zoomf;
             if (helper < 0) {

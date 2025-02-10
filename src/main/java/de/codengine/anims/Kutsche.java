@@ -28,9 +28,9 @@ import de.codengine.platform.GenericImage;
 
 public class Kutsche extends Mainanim {
     private GenericImage kutsche, kutschentuer/*, pferdohr1, pferdohr2, hinterohr */;
-    private GenericImage[] pferdschwanz;
-    private GenericImage[] kleineWolke;
-    private GenericImage[] grosseWolke;
+    private final GenericImage[] pferdschwanz;
+    private final GenericImage[] kleineWolke;
+    private final GenericImage[] grosseWolke;
     private GenericImage vorder, pohonc;
 
     private static final GenericPoint kutscheLO = new GenericPoint(0, 252);
@@ -93,8 +93,8 @@ public class Kutsche extends Mainanim {
     private static final int gBreite = 200;
     private static final int gHoehe = 200;
 
-    private float scaleVerhaeltnisKlein;
-    private float scaleVerhaeltnisGross;
+    private final float scaleVerhaeltnisKlein;
+    private final float scaleVerhaeltnisGross;
 
     private int Rauch = 0;
 
@@ -206,24 +206,24 @@ public class Kutsche extends Mainanim {
         switch (Kutschenzustand) {
             case 0:
                 // hinten fahrend
-                int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
-                int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                int xVeraenderung = kBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein));
+                int yVeraenderung = kHoehe + ((int) ((Ypos - Yanfang) / scale));
                 return (new GenericRectangle((int) (Xpos - (xVeraenderung / 2)), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung));
             case 1:
             case 3:
                 // vorn fahrend
-                int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-                int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                int xxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
+                int yyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
                 return (new GenericRectangle((int) (Xpos - (xxVeraenderung / 2)), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung));
             case 2:
                 // vorn stehend
-                if (isKutscheRauching == false)  // nur Kutsche an sich
+                if (!isKutscheRauching)  // nur Kutsche an sich
                 {
                     return (new GenericRectangle(kutscheLO.x, kutscheLO.y, kutscheLO.x + 267, kutscheLO.y + 228));
                 } else {
                     // Kutsche + Rauch
-                    int xxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-                    int yyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                    int xxxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
+                    int yyyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
                     return (new GenericRectangle((int) (Xpos - (xxxVeraenderung / 2)), (int) (Ypos - yyyVeraenderung), xxxVeraenderung, yyyVeraenderung));
                 }
         }
@@ -241,7 +241,7 @@ public class Kutsche extends Mainanim {
                 // Kleine Wolke hinten (Vordergrund immer mitmalen)
 
                 // Sound eval.
-                if (hintenMusik == true) {
+                if (hintenMusik) {
                     hintenMusik = false;
                     // mainFrame.wave.PlayFile ("sfx/fanfara.wav");
                 }
@@ -262,8 +262,8 @@ public class Kutsche extends Mainanim {
                 g.setClip(kutscheRect());
 
                 // Veraenderung der Groesse berechnen
-                int xVeraenderung = kBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisKlein));
-                int yVeraenderung = kHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                int xVeraenderung = kBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisKlein));
+                int yVeraenderung = kHoehe + ((int) ((Ypos - Yanfang) / scale));
 
                 // hier entweder 1 oder 2 Images malen
                 if (klWolke > 2) {
@@ -286,7 +286,7 @@ public class Kutsche extends Mainanim {
                 // grosse Wolke vorn
 
                 // Sound eval.
-                if (vornMusik == true) {
+                if (vornMusik) {
                     vornMusik = false;
                     mainFrame.wave.PlayFile("sfx/kutsa.wav");
                 }
@@ -307,8 +307,8 @@ public class Kutsche extends Mainanim {
                 g.setClip(kutscheRect());
 
                 // Groessenveraenderung berechnen
-                int xxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-                int yyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                int xxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
+                int yyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
 
                 // hier entweder 1 oder 2 Images malen
                 if (grWolke > 2) {
@@ -337,12 +337,12 @@ public class Kutsche extends Mainanim {
                 g.drawImage(kutsche, kutscheLO.x, kutscheLO.y, null);
 
                 // solange es noch nicht von Aussen erledigt wird, hier den Kutscher zeichnen
-                if (isKutscheRauching == true) {
+                if (isKutscheRauching) {
                     g.drawImage(pohonc, pohoncPoint.x, pohoncPoint.y, null);
                 }
 
                 // hier die Tuer, wenn sie offen ist
-                if (doorOpen == true) {
+                if (doorOpen) {
                     g.drawImage(kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20, null);
                 }
 
@@ -388,7 +388,7 @@ public class Kutsche extends Mainanim {
                 g.drawImage(pferdschwanz[Schwanz], kutscheLO.x + 126, kutscheLO.y + 187, null);
 
                 // wenns noch aktuell ist, dann die Kutsche "aus dem Rauch" aufsteigen lassen
-                if (isKutscheRauching == true) {
+                if (isKutscheRauching) {
                     // GenericImage weiterschalten
                     if ((--Verhinderrauch) < 1) {
                         Verhinderrauch = MAX_VERHINDERRAUCH;
@@ -400,14 +400,14 @@ public class Kutsche extends Mainanim {
 
 
                     // Groessenveraenderung berechnen
-                    int xxxxVeraenderung = gBreite + ((int) (((float) (Ypos - Yanfang)) / scale * scaleVerhaeltnisGross));
-                    int yyyyVeraenderung = gHoehe + ((int) (((float) (Ypos - Yanfang)) / scale));
+                    int xxxxVeraenderung = gBreite + ((int) ((Ypos - Yanfang) / scale * scaleVerhaeltnisGross));
+                    int yyyyVeraenderung = gHoehe + ((int) ((Ypos - Yanfang) / scale));
 
                     // dazugehoeriges GenericImage malen
                     if (Rauch < 3) {
                         g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - (xxxxVeraenderung / 2)), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
                     }
-                    if (isKutscheRauching == false) {
+                    if (!isKutscheRauching) {
                         return 0; // es wurde schon auf normal umgeschaltet
                     } else {
                         return 1; // Signal, dass noch rauch drum ist

@@ -27,10 +27,10 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Kuchar extends Mainanim {
-    private GenericImage kuchar_down_schlag[];
-    private GenericImage kuchar_down_talk[];
-    private GenericImage kuchar_up_talk[];
-    private GenericImage maus[];
+    private final GenericImage[] kuchar_down_schlag;
+    private final GenericImage[] kuchar_down_talk;
+    private final GenericImage[] kuchar_up_talk;
+    private final GenericImage[] maus;
 
     private static final GenericPoint downPoint = new GenericPoint(327, 208);
     private static final GenericPoint upPoint = new GenericPoint(337, 163);
@@ -100,7 +100,7 @@ public class Kuchar extends Mainanim {
 
     // gib Borderrect fuer "inside" - Evaluierung an
     public Borderrect KucharRect() {
-        if (isAufgestanden == false) {
+        if (!isAufgestanden) {
             return (new Borderrect(327, 208, 327 + 140, 208 + 164));
         } else {
             return (new Borderrect(337, 163, 337 + 101, 163 + 209));
@@ -109,7 +109,7 @@ public class Kuchar extends Mainanim {
 
     // gibt TalkPoint zurueck, je nach "Groesse" des Kochs
     public GenericPoint evalKucharTalkPoint() {
-        if (isAufgestanden == false) {
+        if (!isAufgestanden) {
             return (new GenericPoint(327 + (140 / 2), 208 - 50));
         } else {
             return (new GenericPoint(337 + (101 / 2), 163 - 50));
@@ -122,7 +122,7 @@ public class Kuchar extends Mainanim {
         // oberste Prio hat das Reden
         if ((TalkPerson == 42) && (mainFrame.talkCount > 1)) {
             // mal schauen, ob er unten oder oben ist
-            if (this.isAufgestanden == true) {
+            if (this.isAufgestanden) {
                 if ((--Verhindertalkup) < 1) {
                     Verhindertalkup = MAX_VERHINDERTALKUP;
                     TalkUp = (int) ((Math.random() * 4.9) + 1);
@@ -151,7 +151,7 @@ public class Kuchar extends Mainanim {
         }
 
         // beim Zuhoeren
-        if (isListening == true) {
+        if (isListening) {
             if (TalkDown > 0) {
                 TalkDown = 0;
             } else {
@@ -172,7 +172,7 @@ public class Kuchar extends Mainanim {
         }
 
         // wenn aufgestanden, dann nur dastehen (wenn er fertig mit meckern ist)
-        if (this.isAufgestanden == true) {
+        if (this.isAufgestanden) {
             evalMouse(offGraph);
 
             offGraph.drawImage(kuchar_up_talk[0], upPoint.x, upPoint.y, null);
@@ -196,7 +196,7 @@ public class Kuchar extends Mainanim {
                 // int zf = (int) (Math.random () * 50);
                 // if (zf > 30) Schlag = 3;
                 Schlag = 3;
-                if (noSound == false) {
+                if (!noSound) {
                     evalSound();
                 }
                 Verhinderschlag = MAX_VERHINDERSCHLAG;
@@ -224,7 +224,6 @@ public class Kuchar extends Mainanim {
         // aufgesteht merken wg. Rect und TalkPos
         this.isAufgestanden = isAufgestanden;
 
-        return;
     }
 
     // Maus zeichnen, wenn sie nicht rausguckt

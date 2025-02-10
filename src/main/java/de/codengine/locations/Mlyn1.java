@@ -33,7 +33,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Mlyn1 extends Mainloc {
     private GenericImage background, offeneTuer, foreground;
 
-    private GenericImage Rad[];
+    private final GenericImage[] Rad;
     private int Radcount = 1;
     private int Verhinderrad;
     private static final int MAX_VERHINDERRAD = 3;
@@ -139,7 +139,7 @@ public class Mlyn1 extends Mainloc {
 
         // Hier Inventar komplett loeschen und nur noch das Wichtige drinlassen
         mainFrame.inventory.vInventory.removeAllElements();
-        mainFrame.inventory.vInventory.addElement(new Integer(1));
+        mainFrame.inventory.vInventory.addElement(Integer.valueOf(1));
 
         mainFrame.krabat.SetKrabatPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);
@@ -221,7 +221,7 @@ public class Mlyn1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -237,7 +237,7 @@ public class Mlyn1 extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // Mueller Hintergrund loeschen
-        if (showPersonen == true) {
+        if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -248,13 +248,13 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Hintergrund fuer Tuer loeschen, wenn auf
-        if (openDoor == true) {
+        if (openDoor) {
             g.setClip(72, 325, 14, 70);
             g.drawImage(offeneTuer, 72, 325, null);
         }
 
         // Hintergrund Loeschen, wenn Voegel da (muss vor erster Anim erfolgen)
-        if (showVoegel == true) {
+        if (showVoegel) {
             g.setClip(muellervogel.mlynkPtackRect());
             g.drawImage(background, 0, 0, null);
             g.setClip(krabatvogel.ptack2Rect());
@@ -262,19 +262,19 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Hintergrund fuer "Bumm" loeschen beim Mueller
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // Hier Hintergrund fuer Krabat"bumm"
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // Anim zeichnen, da stets im Hintergrund
-        if (mainFrame.isAnim == true) {
+        if (mainFrame.isAnim) {
             if ((--Verhinderrad) < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
@@ -289,7 +289,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Mueller bewegen
-        if ((showPersonen == true) && (walkReady == false)) {
+        if ((showPersonen) && (!walkReady)) {
             // Mueller um 1 Schritt weiterbewegen (nur virtuell)
             walkReady = mueller.Move();
         }
@@ -297,7 +297,7 @@ public class Mlyn1 extends Mainloc {
         mainFrame.wegGeher.GeheWeg();
 
         // Mueller zeichnen
-        if (showPersonen == true) {
+        if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -315,7 +315,7 @@ public class Mlyn1 extends Mainloc {
                 mueller.drawMlynk(g);
             }
 
-            if (openDoor == true) {
+            if (openDoor) {
                 g.drawImage(foreground, 77, 306, null);
             }
 
@@ -333,7 +333,7 @@ public class Mlyn1 extends Mainloc {
                 }
             }
 
-            if (krabatBehindDoor == true) {
+            if (krabatBehindDoor) {
                 g.drawImage(foreground, 77, 306, null);
             }
         }
@@ -342,7 +342,7 @@ public class Mlyn1 extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Voegel in Bild reinfliegen lassen
-        if (showVoegel == true) {
+        if (showVoegel) {
             g.setClip(muellervogel.mlynkPtackRect());
             voegelFliegen = muellervogel.Flieg(g);
             g.setClip(krabatvogel.ptack2Rect());
@@ -350,13 +350,13 @@ public class Mlyn1 extends Mainloc {
         }
 
         // hier die Morphanim zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
 
         // dsgl. fuer Krabat
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             /* krabatmorphcount = */
             krabatmorph.drawBumm(g);
@@ -367,19 +367,19 @@ public class Mlyn1 extends Mainloc {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
-            if (setClipForText == false) {
+            if (!setClipForText) {
                 g.setClip(0, 0, 644, 484);
             } else {
                 g.setClip(120, 260, 135, 145);
             }
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            if (allowTextClipset == true) {
-                if (setClipForText == false) {
+            if (allowTextClipset) {
+                if (!setClipForText) {
                     setClipForText = true;
                 }
                 g.setClip(120, 260, 135, 145);
             } else {
-                g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+                g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
             }
         }
 
@@ -423,7 +423,6 @@ public class Mlyn1 extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -435,15 +434,14 @@ public class Mlyn1 extends Mainloc {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -451,7 +449,7 @@ public class Mlyn1 extends Mainloc {
         switch (nextActionID) {
             case 10:
                 // Auf Ende des Fliegens warten
-                if (voegelFliegen == false) {
+                if (!voegelFliegen) {
                     nextActionID = 11;
                 }
                 break;
@@ -541,7 +539,7 @@ public class Mlyn1 extends Mainloc {
             case 70:
                 // warten auf ich habe fertig
                 mainFrame.krabat.SetFacing(12);
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 71;
                 }
                 break;
@@ -558,7 +556,7 @@ public class Mlyn1 extends Mainloc {
 
             case 72:
                 // warten auf ich habe fertig
-                if (walkReady == true) {
+                if (walkReady) {
                     nextActionID = 73;
                 }
                 break;
@@ -599,7 +597,7 @@ public class Mlyn1 extends Mainloc {
     }
 
     private void evalSound() {
-        if (schnauzeRad == true) {
+        if (schnauzeRad) {
             return;
         }
 

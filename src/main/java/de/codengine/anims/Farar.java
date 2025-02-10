@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Farar extends Mainanim {
-    private GenericImage[] farar_head;
-    private GenericImage[] farar_body;
+    private final GenericImage[] farar_head;
+    private final GenericImage[] farar_body;
 
     public static final int Breite = 94;
     public static final int Hoehe = 207;

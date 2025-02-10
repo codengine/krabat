@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class PredWosuskow extends Mainanim {
-    private GenericImage pred_stand[];
-    private GenericImage pred_call[];
-    private GenericImage pred_talk[];
+    private final GenericImage[] pred_stand;
+    private final GenericImage[] pred_call;
+    private final GenericImage[] pred_talk;
     private GenericImage pred_stollen;
     private GenericImage pred_take;
     private GenericImage vorder;

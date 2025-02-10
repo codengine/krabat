@@ -26,10 +26,10 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class WikowarRybow extends Mainanim {
-    private GenericImage wik_head[];
-    private GenericImage wik_body[];
-    private GenericImage wik_kram[];
-    private GenericImage octopussy[];
+    private final GenericImage[] wik_head;
+    private final GenericImage[] wik_body;
+    private final GenericImage[] wik_kram;
+    private final GenericImage[] octopussy;
     private GenericImage foreground;
 
     public static final int Breite = 50;
@@ -112,12 +112,12 @@ public class WikowarRybow extends Mainanim {
     public void drawRybowar(GenericDrawingContext offGraph, int TalkPerson, int AnimTalkPerson,
                             GenericPoint Posit, boolean islistening, boolean givekrosik,
                             boolean isUmgedreht, boolean showOctopussy, boolean isTaking) {
-        if (showOctopussy == true) {
+        if (showOctopussy) {
             isOctopussy = true;
         }
 
         // Fischahendler steht normal da
-        if (isUmgedreht == false) {
+        if (!isUmgedreht) {
             // beim Reden
             if (((TalkPerson == 33) && (mainFrame.talkCount > 1)) || (AnimTalkPerson == 33)) {
                 // neuen Kopf aussuchen
@@ -141,7 +141,7 @@ public class WikowarRybow extends Mainanim {
                 }
 
                 offGraph.drawImage(wik_head[Head], Posit.x, Posit.y, null);
-                offGraph.drawImage((givekrosik == false) ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
+                offGraph.drawImage((!givekrosik) ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
                 offGraph.drawImage(foreground, 688, 327, null);
                 return;
             }
@@ -161,7 +161,7 @@ public class WikowarRybow extends Mainanim {
 
                     Verhinderstand = MAX_VERHINDERSTAND;
 
-                    if (islistening == true) {
+                    if (islistening) {
                         Stand = 0;
                     }
                 } else {
@@ -175,7 +175,7 @@ public class WikowarRybow extends Mainanim {
 
                     Verhinderstand = MAX_VERHINDERSTAND;
 
-                    if (islistening == true) {
+                    if (islistening) {
                         Stand = 0;
                     }
                 }
@@ -196,10 +196,10 @@ public class WikowarRybow extends Mainanim {
             offGraph.drawImage(wik_head[Stand], Posit.x, Posit.y, null);
 
             // verschiedene Bodies eval.
-            if (givekrosik == true) {
+            if (givekrosik) {
                 offGraph.drawImage(wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
             } else {
-                if (isTaking == true) {
+                if (isTaking) {
                     offGraph.drawImage(wik_body[4], Posit.x, Posit.y + BODYOFFSET, null);
                 } else {
                     offGraph.drawImage(wik_body[0], Posit.x, Posit.y + BODYOFFSET, null);
@@ -209,7 +209,7 @@ public class WikowarRybow extends Mainanim {
             offGraph.drawImage(foreground, 688, 327, null);
         } else {
             // er hat sich umgedreht und kramt nach irgendwas...
-            if (isOctopussy == false) {
+            if (!isOctopussy) {
                 // nur normal hinten kramen
                 if ((--Verhinderkram) < 1) {
                     Verhinderkram = MAX_VERHINDERKRAM;
@@ -221,7 +221,7 @@ public class WikowarRybow extends Mainanim {
 
                 if ((--Verhinderocto) < 1) {
                     Verhinderocto = MAX_VERHINDEROCTO;
-                    if (forward == true) {
+                    if (forward) {
                         Octo++;
                         if (Octo == 3) {
                             Octo = 1;

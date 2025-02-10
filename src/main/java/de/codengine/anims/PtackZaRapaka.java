@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class PtackZaRapaka extends Mainanim {
-    private GenericImage[] vogel;
+    private final GenericImage[] vogel;
     private int x, y;
     private int animpos = 1;
     private boolean Gleiten = false;
@@ -34,10 +34,10 @@ public class PtackZaRapaka extends Mainanim {
     // private boolean up = false;
     private int gleitcount;
     private boolean schalt = false;
-    private int XEnde;
+    private final int XEnde;
     private static final int MAXGLEIT = 10;
 
-    private int Zoomfaktor;
+    private final int Zoomfaktor;
 
     private boolean isNeverGleiting = false;
 
@@ -107,12 +107,12 @@ public class PtackZaRapaka extends Mainanim {
         // wenn Fluegel in Mitte, dann schauen, ob weiterfliegen oder gleiten
         if ((animpos == 1) || (animpos == 4)) {
             int glei = (int) Math.round(Math.random() * 30);
-            if (((glei < 29) && (Gleiten == false)) || (isNeverGleiting == true)) {
+            if (((glei < 29) && (!Gleiten)) || (isNeverGleiting)) {
                 // weiterfliegen
                 schalt = !(schalt);
-                if (schalt == true) {
+                if (schalt) {
                     oben = !(oben);
-                    if (oben == false) {
+                    if (!oben) {
                         animpos = 3;
                     } else {
                         animpos = 2;
@@ -140,7 +140,7 @@ public class PtackZaRapaka extends Mainanim {
         } else {
             // Fluegel in Extremposition, also wieder auf Mittelstellung setzen
             schalt = !(schalt);
-            if (schalt == true) {
+            if (schalt) {
                 animpos = 1;
             }
         }
@@ -153,7 +153,7 @@ public class PtackZaRapaka extends Mainanim {
         // Beim Gleiten y nach unten, beim Fliegen nach oben, ab bestimmem Zoomfaktor nicht mehr...
         int versch = (int) Math.round(Math.random() * 20);
         if (((versch > 10) && (Zoomfaktor < 10))/* || (isNeverGleiting == true)*/) {
-            if (Gleiten == true) {
+            if (Gleiten) {
                 y += 1;
             } else {
                 y -= 1;
@@ -167,10 +167,6 @@ public class PtackZaRapaka extends Mainanim {
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor, null);
-        if (x <= XEnde) {
-            return false; // wenn aus dem Bild, dann das der Routine sagen !
-        } else {
-            return true;
-        }
+        return x > XEnde; // wenn aus dem Bild, dann das der Routine sagen !
     }
 }    						

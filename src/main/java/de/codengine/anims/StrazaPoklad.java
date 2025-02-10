@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class StrazaPoklad extends Mainanim {
-    private GenericImage[] straza_head;
-    private GenericImage[] straza_body;
+    private final GenericImage[] straza_head;
+    private final GenericImage[] straza_body;
 
     public static final int Breite = 34;
     public static final int Hoehe = 89;
@@ -75,7 +75,7 @@ public class StrazaPoklad extends Mainanim {
             }
 
             offGraph.drawImage(straza_head[Head], Posit.x, Posit.y, null);
-            offGraph.drawImage((weistzurueck == true) ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage((weistzurueck) ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
         }
         // Hauptwaechter steht rum
         else {
@@ -91,7 +91,7 @@ public class StrazaPoklad extends Mainanim {
             }
 
             offGraph.drawImage(straza_head[Head], Posit.x, Posit.y, null);
-            offGraph.drawImage((weistzurueck == true) ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage((weistzurueck) ? straza_body[1] : straza_body[0], Posit.x, Posit.y + BODYOFFSET, null);
         }
     }
 }    

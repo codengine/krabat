@@ -26,12 +26,12 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class PredKorejtow extends Mainanim {
-    private GenericImage pred_wait_head[];
-    private GenericImage pred_wait_body[];
-    private GenericImage pred_call_head[];
-    private GenericImage pred_call_body[];
-    private GenericImage pred_talk_head[];
-    private GenericImage pred_talk_body[];
+    private final GenericImage[] pred_wait_head;
+    private final GenericImage[] pred_wait_body;
+    private final GenericImage[] pred_call_head;
+    private final GenericImage[] pred_call_body;
+    private final GenericImage[] pred_talk_head;
+    private final GenericImage[] pred_talk_body;
 
     public static final int Breite = 112;
     public static final int Hoehe = 194;
@@ -59,7 +59,7 @@ public class PredKorejtow extends Mainanim {
     private static final int MAX_VERHINDERTALKHEAD = 2;
     private static final int MAX_VERHINDERTALKBODY = 10;
 
-    private GenericPoint posit;
+    private final GenericPoint posit;
 
     private static final int BODYOFFSET = 45;
 

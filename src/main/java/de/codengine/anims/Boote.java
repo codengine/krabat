@@ -28,7 +28,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Boote extends Mainanim {
-    private GenericImage[] boots;
+    private final GenericImage[] boots;
 
     public int Breite = 0;
     public int Hoehe = 0;
@@ -148,7 +148,7 @@ public class Boote extends Mainanim {
             xt = (int) ((Math.random() * (xmax - xmin)) + xmin);
             yt = (int) ((Math.random() * (ymax - ymin)) + ymin);
         }
-        while (bootRect.PointInside(new GenericPoint(xt, yt)) == false);
+        while (!bootRect.PointInside(new GenericPoint(xt, yt)));
 
         // tu es mal auch wirklich einsetzen tun tun tun
         bootPoint = new GenericPoint(xt, yt);

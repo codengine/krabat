@@ -26,7 +26,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Fararhor extends Mainanim {
-    private GenericImage[] farar_talk;
+    private final GenericImage[] farar_talk;
     private GenericImage farar_open, foreground;
 
     public static final int Breite = 20;

@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Straza2 extends Mainanim {
-    private GenericImage straza_head[];
-    private GenericImage straza_body[];
+    private final GenericImage[] straza_head;
+    private final GenericImage[] straza_body;
 
     public static final int Breite = 73;
     public static final int Hoehe = 135;
@@ -75,7 +75,7 @@ public class Straza2 extends Mainanim {
     // Zeichne Wache, wie er dasteht oder spricht
     public void drawStraza2(GenericDrawingContext offGraph, int TalkPerson, GenericPoint posit, boolean sperrt) {
         // Weg versperren uebernehmen
-        if (sperrt == true) {
+        if (sperrt) {
             versperrtWeg = true;
         }
 
@@ -106,7 +106,7 @@ public class Straza2 extends Mainanim {
         }
 
         // Body eval., abh. von versperrtWeg
-        if (versperrtWeg == true) {
+        if (versperrtWeg) {
             if ((--Verhinderversperr) < 1) {
                 Verhinderversperr = MAX_VERHINDERVERSPERR;
                 versperrtWeg = false;
@@ -114,7 +114,7 @@ public class Straza2 extends Mainanim {
         }
 
         offGraph.drawImage(straza_head[Head], posit.x, posit.y, null);
-        offGraph.drawImage(straza_body[(versperrtWeg == true) ? 1 : 0], posit.x, posit.y + BODYOFFSET, null);
+        offGraph.drawImage(straza_body[(versperrtWeg) ? 1 : 0], posit.x, posit.y + BODYOFFSET, null);
 
     }
 }    

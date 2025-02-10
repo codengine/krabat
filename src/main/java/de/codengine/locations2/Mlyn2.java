@@ -30,7 +30,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Mlyn2 extends Mainloc {
     private GenericImage background;
 
-    private GenericImage Rad[];
+    private final GenericImage[] Rad;
     private int Radcount = 1;
     private int Verhinderrad;
     private static final int MAX_VERHINDERRAD = 3;
@@ -41,7 +41,7 @@ public class Mlyn2 extends Mainloc {
 
     private boolean muellerSprichtMitStock = false;
 
-    private boolean schnauzeRad = false;
+    private final boolean schnauzeRad = false;
 
     // Texte
     private static final String H1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00000");
@@ -191,7 +191,7 @@ public class Mlyn2 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -206,10 +206,10 @@ public class Mlyn2 extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // Mueller Hintergrund loeschen
-        if (showPersonen == true) {
+        if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp;
-            if (muellerSprichtMitStock == false) {
+            if (!muellerSprichtMitStock) {
                 temp = mueller.MlynkRect();
             } else {
                 temp = mueller.MlynkRectMitStockAndersrum();
@@ -223,7 +223,7 @@ public class Mlyn2 extends Mainloc {
         }
 
         // Anim zeichnen, da stets im Hintergrund
-        if (mainFrame.isAnim == true) {
+        if (mainFrame.isAnim) {
             if ((--Verhinderrad) < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
@@ -238,10 +238,10 @@ public class Mlyn2 extends Mainloc {
         }
 
         // Mueller zeichnen
-        if (showPersonen == true) {
+        if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp;
-            if (muellerSprichtMitStock == false) {
+            if (!muellerSprichtMitStock) {
                 temp = mueller.MlynkRect();
             } else {
                 temp = mueller.MlynkRectMitStockAndersrum();
@@ -254,7 +254,7 @@ public class Mlyn2 extends Mainloc {
 
             // Redet er etwa gerade ??
             if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
-                if (muellerSprichtMitStock == false) {
+                if (!muellerSprichtMitStock) {
                     mueller.talkMlynk(g);
                 } else {
                     mueller.talkMlynkWithKijAndersrum(g, false);  // Stock nur ab und zu heben
@@ -266,7 +266,7 @@ public class Mlyn2 extends Mainloc {
                 mueller.drawMlynk(g);
             }
 
-            if (showKrabat == true) {
+            if (showKrabat) {
                 // redender Krabat
                 if ((mainFrame.talkCount > 0) && (TalkPerson == 1)) {
                     mainFrame.krabat.talkKrabat(g);
@@ -290,7 +290,7 @@ public class Mlyn2 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if ((mainFrame.talkCount < 1) && (TalkPause > 0)) {
@@ -333,7 +333,6 @@ public class Mlyn2 extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -345,7 +344,6 @@ public class Mlyn2 extends Mainloc {
 
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
@@ -433,7 +431,7 @@ public class Mlyn2 extends Mainloc {
     }
 
     private void evalSound() {
-        if (schnauzeRad == true) {
+        if (schnauzeRad) {
             return;
         }
 

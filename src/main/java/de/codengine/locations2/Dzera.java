@@ -36,8 +36,8 @@ public class Dzera extends Mainloc {
     private boolean setAnim = false;
 
     // Points
-    private GenericPoint kockaTalk = new GenericPoint(0, 0);
-    private GenericPoint Pkocka = new GenericPoint(0, 0);
+    private final GenericPoint kockaTalk = new GenericPoint(0, 0);
+    private final GenericPoint Pkocka = new GenericPoint(0, 0);
 
     // Konstante Points
     private static final GenericPoint mlynkFeet = new GenericPoint(195, 363);
@@ -108,7 +108,7 @@ public class Dzera extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             mainFrame.Clipset = true;
@@ -153,7 +153,7 @@ public class Dzera extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -170,7 +170,7 @@ public class Dzera extends Mainloc {
             TalkPause--;
         }
 
-        if (setAnim == false) {
+        if (!setAnim) {
             setAnim = true;
             nextActionID = 100;
         }
@@ -195,7 +195,6 @@ public class Dzera extends Mainloc {
             TalkPerson = 0;
         }
         outputText = "";
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -205,7 +204,6 @@ public class Dzera extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     @Override

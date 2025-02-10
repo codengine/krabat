@@ -31,7 +31,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Doma2 extends Mainloc {
     private GenericImage background1, background2, back, brunnen, blatt;
 
-    private GenericImage[] Rauchanim;
+    private final GenericImage[] Rauchanim;
     private int Rauchcount = 1;
 
     private int FadeToBlack = 0;
@@ -44,8 +44,8 @@ public class Doma2 extends Mainloc {
 
     private Husa gans1, gans2, gans3;
 
-    private GenericPoint MacTalk;
-    private GenericPoint Pmac;
+    private final GenericPoint MacTalk;
+    private final GenericPoint Pmac;
     // private borderrect brMac;
     private boolean istMutterZuSehen = true;
 
@@ -144,7 +144,7 @@ public class Doma2 extends Mainloc {
                 break;
 
             case 87: // von Wjes aus (ueber Karte) oder Bote-Anim
-                if (mainFrame.Actions[303] == false) {
+                if (!mainFrame.Actions[303]) {
                     mainFrame.krabat.SetKrabatPos(new GenericPoint(413, 275));
                     mainFrame.krabat.SetFacing(6);
                     scrollwert = 88;
@@ -184,7 +184,7 @@ public class Doma2 extends Mainloc {
 
         // Grenzen setzen
         // je nach dem, ob Mutter da ist oder nicht
-        if (istMutterZuSehen == false) {
+        if (!istMutterZuSehen) {
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(411, 423, 396, 420, 281, 329));
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(396, 420, 382, 470, 330, 364));
             mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(135, 158, 187, 218, 351, 364));
@@ -290,9 +290,9 @@ public class Doma2 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -300,7 +300,7 @@ public class Doma2 extends Mainloc {
             evalMouseMoveEvent(mainFrame.Mousepoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isAnim = true;
-            if (Animation == true) {
+            if (Animation) {
                 mainFrame.fPlayAnim = true;
             }
         }
@@ -311,7 +311,7 @@ public class Doma2 extends Mainloc {
         g.drawImage(background2, 640, 0, null);
 
         // Parallax - Scrolling ausfuehren
-        if (mainFrame.isScrolling == true) {
+        if (mainFrame.isScrolling) {
             int xtemp = mainFrame.scrollx - 5;
             if (xtemp < 0) {
                 xtemp = 0;
@@ -324,9 +324,9 @@ public class Doma2 extends Mainloc {
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
         // Rauch animieren
-        if ((mainFrame.isAnim == true) && (mainFrame.scrollx > 300)) {
+        if ((mainFrame.isAnim) && (mainFrame.scrollx > 300)) {
             switchanim = !(switchanim);
-            if (switchanim == true) {
+            if (switchanim) {
                 Rauchcount++;
                 if (Rauchcount == 13) {
                     Rauchcount = 1;
@@ -339,7 +339,7 @@ public class Doma2 extends Mainloc {
         }
 
         // Gaense animieren
-        if ((mainFrame.isAnim == true) && (mainFrame.scrollx < 350)) {
+        if ((mainFrame.isAnim) && (mainFrame.scrollx < 350)) {
             g.setClip(120, 255, 230, 110);
             g.drawImage(back, (mainFrame.scrollx / 10), 0, null);
             g.drawImage(background1, 0, 0, null);
@@ -356,7 +356,7 @@ public class Doma2 extends Mainloc {
         mainFrame.wegGeher.GeheWeg();
 
         // Mac zeichnen bei Reden und Herumstehen, vorher Hintergrund wiederherstellen
-        if ((mainFrame.scrollx > 130) && (istMutterZuSehen == true)) {
+        if ((mainFrame.scrollx > 130) && (istMutterZuSehen)) {
             g.setClip(Pmac.x, Pmac.y, Mac.Breite, Mac.Hoehe);
             g.drawImage(background2, 640, 0, null);
             mutter.drawMac(g, Pmac, TalkPerson);
@@ -401,12 +401,12 @@ public class Doma2 extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
-        if (brunnenRect.IsPointInRect(pKrTemp) == true) {
+        if (brunnenRect.IsPointInRect(pKrTemp)) {
             g.drawImage(brunnen, 1055, 251, null);
         }
 
         //hinterm Blatt
-        if (blattRect.IsPointInRect(pKrTemp) == true) {
+        if (blattRect.IsPointInRect(pKrTemp)) {
             g.drawImage(blatt, 764, 393, null);
         }
 
@@ -425,7 +425,7 @@ public class Doma2 extends Mainloc {
             g.clearRect(mainFrame.scrollx, mainFrame.scrolly + 479 - FadeToBlack,
                     639, 479);
 
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Textausgabe, falls noetig
@@ -434,7 +434,7 @@ public class Doma2 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -454,14 +454,14 @@ public class Doma2 extends Mainloc {
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
         // Anims einschalten, wenn noetig
-        if (Animation == true) {
+        if (Animation) {
             Animation = false;
             mainFrame.krabat.StopWalking();
-            if (mainFrame.Actions[300] == true) {
+            if (mainFrame.Actions[300]) {
                 mainFrame.Actions[300] = false;
                 nextActionID = 600;
             } else {
-                if (mainFrame.Actions[303] == true) {
+                if (mainFrame.Actions[303]) {
                     nextActionID = 1000;
                 } else {
                     nextActionID = 800;
@@ -494,7 +494,7 @@ public class Doma2 extends Mainloc {
         pTemp.x += mainFrame.scrollx;
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -504,7 +504,7 @@ public class Doma2 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linke Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -512,7 +512,7 @@ public class Doma2 extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -532,7 +532,7 @@ public class Doma2 extends Mainloc {
 			  }*/
 
                 // Ausreden fuer Brunnen
-                if ((brBrunnen.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brBrunnen.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     switch (mainFrame.whatItem) {
                         case 9: // wuda + hocka
                             nextActionID = 200;
@@ -552,22 +552,22 @@ public class Doma2 extends Mainloc {
                 }
 
                 // Ausreden fuer Tuer
-                if ((brTuer.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brTuer.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     // nur Standard
                     nextActionID = 165;
                     pTemp = Ptuer;
                 }
 
                 // Ausreden fuer Schild
-                if (brSchild.IsPointInRect(pTemp) == true) {
+                if (brSchild.IsPointInRect(pTemp)) {
                     // nur Standard
                     nextActionID = 170;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Gaense
-                if ((gans1.GetHusaRect().IsPointInRect(pTemp) == true) || (gans2.GetHusaRect().IsPointInRect(pTemp) == true) ||
-                        (gans3.GetHusaRect().IsPointInRect(pTemp) == true)) {
+                if ((gans1.GetHusaRect().IsPointInRect(pTemp)) || (gans2.GetHusaRect().IsPointInRect(pTemp)) ||
+                        (gans3.GetHusaRect().IsPointInRect(pTemp))) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 18: // roh + kam
@@ -600,7 +600,6 @@ public class Doma2 extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -611,38 +610,38 @@ public class Doma2 extends Mainloc {
                 nextActionID = 0;
 
                 // Brunnen ansehen
-                if ((brBrunnen.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brBrunnen.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     nextActionID = 1;
                     pTemp = Pbrunnen;
                 }
 
                 // Tuer ansehen
-                if ((brTuer.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brTuer.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     nextActionID = 2;
                     pTemp = Ptuer;
                 }
 
                 // Schild ansehen
-                if (brSchild.IsPointInRect(pTemp) == true) {
+                if (brSchild.IsPointInRect(pTemp)) {
                     pTemp = Pschild;
                     nextActionID = 4;
                 }
 
                 // nach Jitk gehen oder zurueckgepfiffen werden
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
 
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (obererAusgang.IsPointInRect(kt) == false) {
+                    if (!obererAusgang.IsPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     // Bei Doppelklick sofort springen
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -657,8 +656,8 @@ public class Doma2 extends Mainloc {
 			  }*/
 
                 // Gaense ansehen
-                if ((gans1.GetHusaRect().IsPointInRect(pTemp) == true) || (gans2.GetHusaRect().IsPointInRect(pTemp) == true) ||
-                        (gans3.GetHusaRect().IsPointInRect(pTemp) == true)) {
+                if ((gans1.GetHusaRect().IsPointInRect(pTemp)) || (gans2.GetHusaRect().IsPointInRect(pTemp)) ||
+                        (gans3.GetHusaRect().IsPointInRect(pTemp))) {
                     pTemp = Pgaense;
                     nextActionID = 6;
                 }
@@ -669,7 +668,7 @@ public class Doma2 extends Mainloc {
                 // rechte Maustaste
 
                 // Brunnen benutzen ?
-                if ((brBrunnen.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brBrunnen.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     nextActionID = 52;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pbrunnen);
                     mainFrame.repaint();
@@ -686,12 +685,12 @@ public class Doma2 extends Mainloc {
 			  } */
 
                 // Weg nach Jitk anschauen
-                if (obererAusgang.IsPointInRect(pTemp) == true) {
+                if (obererAusgang.IsPointInRect(pTemp)) {
                     return;
                 }
 
                 // ins Haus gehen
-                if ((brTuer.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) {
+                if ((brTuer.IsPointInRect(pTemp)) && (!istMutterZuSehen)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Ptuer);
                     mainFrame.repaint();
@@ -699,7 +698,7 @@ public class Doma2 extends Mainloc {
                 }
 
                 // Schild mitnehmen
-                if (brSchild.IsPointInRect(pTemp) == true) {
+                if (brSchild.IsPointInRect(pTemp)) {
                     nextActionID = 51;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
@@ -707,8 +706,8 @@ public class Doma2 extends Mainloc {
                 }
 
                 // Gaense mitnehmen
-                if ((gans1.GetHusaRect().IsPointInRect(pTemp) == true) || (gans2.GetHusaRect().IsPointInRect(pTemp) == true) ||
-                        (gans3.GetHusaRect().IsPointInRect(pTemp) == true)) {
+                if ((gans1.GetHusaRect().IsPointInRect(pTemp)) || (gans2.GetHusaRect().IsPointInRect(pTemp)) ||
+                        (gans3.GetHusaRect().IsPointInRect(pTemp))) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(Pgaense);
                     mainFrame.repaint();
@@ -728,7 +727,7 @@ public class Doma2 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -740,25 +739,21 @@ public class Doma2 extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if (((brBrunnen.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) ||
-                    ((brTuer.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) ||
-                    (brSchild.IsPointInRect(pTemp) == true) || (tmp.IsPointInRect(pTemp) == true) ||
-                    (gans1.GetHusaRect().IsPointInRect(pTemp) == true) || (gans2.GetHusaRect().IsPointInRect(pTemp) == true) ||
-                    (gans3.GetHusaRect().IsPointInRect(pTemp) == true)) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = ((brBrunnen.IsPointInRect(pTemp)) && (!istMutterZuSehen)) ||
+                    ((brTuer.IsPointInRect(pTemp)) && (!istMutterZuSehen)) ||
+                    (brSchild.IsPointInRect(pTemp)) || (tmp.IsPointInRect(pTemp)) ||
+                    (gans1.GetHusaRect().IsPointInRect(pTemp)) || (gans2.GetHusaRect().IsPointInRect(pTemp)) ||
+                    (gans3.GetHusaRect().IsPointInRect(pTemp));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -766,12 +761,12 @@ public class Doma2 extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (((brBrunnen.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) ||
-                    ((brTuer.IsPointInRect(pTemp) == true) && (istMutterZuSehen == false)) ||
-                    (brSchild.IsPointInRect(pTemp) == true) ||
+            if (((brBrunnen.IsPointInRect(pTemp)) && (!istMutterZuSehen)) ||
+                    ((brTuer.IsPointInRect(pTemp)) && (!istMutterZuSehen)) ||
+                    (brSchild.IsPointInRect(pTemp)) ||
                     /*(brMac.IsPointInRect (pTemp) == true))*/
-                    (gans1.GetHusaRect().IsPointInRect(pTemp) == true) || (gans2.GetHusaRect().IsPointInRect(pTemp) == true) ||
-                    (gans3.GetHusaRect().IsPointInRect(pTemp) == true)) {
+                    (gans1.GetHusaRect().IsPointInRect(pTemp)) || (gans2.GetHusaRect().IsPointInRect(pTemp)) ||
+                    (gans3.GetHusaRect().IsPointInRect(pTemp))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -779,7 +774,7 @@ public class Doma2 extends Mainloc {
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp) == true) {
+            if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 4;
@@ -804,12 +799,12 @@ public class Doma2 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -842,7 +837,6 @@ public class Doma2 extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -863,7 +857,7 @@ public class Doma2 extends Mainloc {
     private void DoAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
-        if (((mainFrame.krabat.isWandering == true) || (mainFrame.krabat.isWalking == true)) && (nextActionID != 400)) {
+        if (((mainFrame.krabat.isWandering) || (mainFrame.krabat.isWalking)) && (nextActionID != 400)) {
             return;
         }
 
@@ -1038,7 +1032,7 @@ public class Doma2 extends Mainloc {
 
             case 601:
                 // Krabat steht vor Mutter
-                if (mainFrame.isScrolling == true) {
+                if (mainFrame.isScrolling) {
                     break;
                 }
                 mainFrame.krabat.SetFacing(3);

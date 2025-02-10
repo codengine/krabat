@@ -26,11 +26,11 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class DDKowar extends Mainanim {
-    private GenericImage kowar_work_head[];
-    private GenericImage kowar_work_body[];
+    private final GenericImage[] kowar_work_head;
+    private final GenericImage[] kowar_work_body;
 
-    private GenericImage kowar_talk_head[];
-    private GenericImage kowar_talk_body[];
+    private final GenericImage[] kowar_talk_head;
+    private final GenericImage[] kowar_talk_body;
 
     public static final int Breite = 94;
     public static final int Hoehe = 175;
@@ -130,7 +130,7 @@ public class DDKowar extends Mainanim {
     // Zeichne Schmied, wie er dasteht oder spricht
     public void drawDDkowar(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, boolean isListening) {
         // Schmied beim Reden
-        if (((TalkPerson == 45) && (mainFrame.talkCount > 1)) || (isListening == true)) {
+        if (((TalkPerson == 45) && (mainFrame.talkCount > 1)) || (isListening)) {
             // Head evaluieren
             if ((--Verhindertalkhead) < 1) {
                 Verhindertalkhead = MAX_VERHINDERTALKHEAD;
@@ -144,7 +144,7 @@ public class DDKowar extends Mainanim {
             }
 
             // alles falsch, wenn er nur zuhoeren soll
-            if ((isListening == true) && (TalkPerson != 45)) {
+            if ((isListening) && (TalkPerson != 45)) {
                 Talkbody = 0;
                 Talkhead = Zwinker;
 

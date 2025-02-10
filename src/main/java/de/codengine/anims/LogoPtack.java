@@ -25,7 +25,7 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class LogoPtack extends Mainanim {
-    private GenericImage[] vogel;
+    private final GenericImage[] vogel;
     private int x, y;
     private int animpos = 1;
     private boolean last2 = false;
@@ -62,7 +62,7 @@ public class LogoPtack extends Mainanim {
             case 1:
                 // Gleitphase
                 if ((Math.round(Math.random() * 30) < 20) && (y > 200)) {
-                    if (last2 == true) {
+                    if (last2) {
                         last2 = false;
                         animpos = 3;
                         animlock = true;
@@ -75,7 +75,7 @@ public class LogoPtack extends Mainanim {
                 break;
             case 2:
                 // Fluegelschlag 1. Richtung
-                if (animlock == false) {
+                if (!animlock) {
                     animpos = 1;
                 } else {
                     animlock = false;
@@ -83,7 +83,7 @@ public class LogoPtack extends Mainanim {
                 break;
             case 3:
                 // Fluegelschlag 2. Richtung
-                if (animlock == false) {
+                if (!animlock) {
                     animpos = 1;
                 } else {
                     animlock = false;
@@ -100,11 +100,7 @@ public class LogoPtack extends Mainanim {
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, null);
-        if (x < -50) {
-            return false;
-        } else {
-            return true;
-        }
+        return x >= -50;
     }
 }    						
     						

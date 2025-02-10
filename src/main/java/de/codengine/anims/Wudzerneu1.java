@@ -28,14 +28,14 @@ import de.codengine.platform.GenericImage;
 
 public class Wudzerneu1 extends Mainanim {
     // Alle GenericImage - Objekte
-    private GenericImage[] angler_left_stand;
-    private GenericImage[] angler_right_stand;
-    private GenericImage[] angler_walk;
-    private GenericImage[] angler_walk_eimer;
-    private GenericImage[] angler_left_talk_head;
-    private GenericImage[] angler_left_talk_body;
-    private GenericImage[] angler_right_talk_head;
-    private GenericImage[] angler_right_talk_body;
+    private final GenericImage[] angler_left_stand;
+    private final GenericImage[] angler_right_stand;
+    private final GenericImage[] angler_walk;
+    private final GenericImage[] angler_walk_eimer;
+    private final GenericImage[] angler_left_talk_head;
+    private final GenericImage[] angler_left_talk_body;
+    private final GenericImage[] angler_right_talk_head;
+    private final GenericImage[] angler_right_talk_body;
 
     // Grundlegende Variablen
     private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
@@ -261,7 +261,7 @@ public class Wudzerneu1 extends Mainanim {
         Tdirection_x = xricht;
         Tdirection_y = yricht;
 
-        if (clearAnimPos == true) {
+        if (clearAnimPos) {
             anim_pos = 0;       // Animationsimage bei Neubeginn initialis.
         } else {
             anim_pos = 1;
@@ -285,7 +285,7 @@ public class Wudzerneu1 extends Mainanim {
 
     // je nach Laufrichtung Krabat zeichnen
     public void drawWudzer1(GenericDrawingContext offGraph) {
-        if (laeuftNicht == true) {
+        if (laeuftNicht) {
             // beim Sitzen aufrufen
             // Positionen umschalten bzw. Zwinkern berechnen
             if ((--Verhinderstand) < 1) {
@@ -314,7 +314,7 @@ public class Wudzerneu1 extends Mainanim {
             }
         } else {
             // hier wird gelaufen
-            MaleIhn(offGraph, (hasEimer == false) ? angler_walk[anim_pos] : angler_walk_eimer[anim_pos]);
+            MaleIhn(offGraph, (!hasEimer) ? angler_walk[anim_pos] : angler_walk_eimer[anim_pos]);
         }
     }
 
@@ -365,11 +365,11 @@ public class Wudzerneu1 extends Mainanim {
         if (direction_x == 1) {
             // nach rechts angeln
             g.drawImage(angler_right_talk_body[Stand / 2], left, up);
-            g.drawImage(angler_right_talk_head[((isLookingAround == true) ? 6 : Head)], left + 22, up + 18);
+            g.drawImage(angler_right_talk_head[((isLookingAround) ? 6 : Head)], left + 22, up + 18);
         } else {
             // nach links angeln
             g.drawImage(angler_left_talk_body[Stand / 2], left, up);
-            g.drawImage(angler_left_talk_head[((isLookingAround == true) ? 6 : Head)], left + 65, up + 18);
+            g.drawImage(angler_left_talk_head[((isLookingAround) ? 6 : Head)], left + 65, up + 18);
         }
     }
 
@@ -383,7 +383,7 @@ public class Wudzerneu1 extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        if (laeuftNicht == true) {
+        if (laeuftNicht) {
             return (pox - (CWIDTH / 2));
         } else {
             return (pox - (CWIDTH / 4));
@@ -428,7 +428,7 @@ public class Wudzerneu1 extends Mainanim {
         int up = getUpPos(((int) xps), ((int) yps));
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - ((laeuftNicht == false) ? 50 : 0), CHEIGHT);
+        g.drawImage(ktemp, left, up, CWIDTH - ((!laeuftNicht) ? 50 : 0), CHEIGHT);
     }
 
     private void MaleIhnGebueckt(GenericDrawingContext g, GenericImage ktemp) {

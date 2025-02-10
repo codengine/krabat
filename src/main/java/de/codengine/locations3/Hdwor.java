@@ -30,7 +30,7 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Hdwor extends Mainloc {
     private GenericImage background, stOben, stUnten;
 
-    private Boote boot;
+    private final Boote boot;
 
     // Konstanten - Rects
     private static final Borderrect ausgangStraza
@@ -137,7 +137,7 @@ public class Hdwor extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -200,10 +200,10 @@ public class Hdwor extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter den Staeben ? (nur Clipping - Region wird neugezeichnet)
-        if (stObenRect.IsPointInRect(pKrTemp) == true) {
+        if (stObenRect.IsPointInRect(pKrTemp)) {
             g.drawImage(stOben, 296, 245, null);
         }
-        if (stUntenRect.IsPointInRect(pKrTemp) == true) {
+        if (stUntenRect.IsPointInRect(pKrTemp)) {
             g.drawImage(stUnten, 315, 383, null);
         }
 
@@ -214,7 +214,7 @@ public class Hdwor extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -252,7 +252,7 @@ public class Hdwor extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -262,7 +262,7 @@ public class Hdwor extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -270,7 +270,7 @@ public class Hdwor extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -289,7 +289,6 @@ public class Hdwor extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -300,18 +299,18 @@ public class Hdwor extends Mainloc {
                 nextActionID = 0;
 
                 // zu Trjepjena gehen ?
-                if (ausgangTreppe.IsPointInRect(pTemp) == true) {
+                if (ausgangTreppe.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangTreppe.IsPointInRect(kt) == false) {
+                    if (!ausgangTreppe.IsPointInRect(kt)) {
                         pTemp = pExitTreppe;
                     } else {
                         pTemp = new GenericPoint(pExitTreppe.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -319,18 +318,18 @@ public class Hdwor extends Mainloc {
                 }
 
                 // zu Straza gehen ?
-                if (ausgangStraza.IsPointInRect(pTemp) == true) {
+                if (ausgangStraza.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangStraza.IsPointInRect(kt) == false) {
+                    if (!ausgangStraza.IsPointInRect(kt)) {
                         pTemp = pExitStraza;
                     } else {
                         pTemp = new GenericPoint(pExitStraza.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -343,7 +342,7 @@ public class Hdwor extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangStraza.IsPointInRect(pTemp) == true) ||
+                if ((ausgangStraza.IsPointInRect(pTemp)) ||
                         (ausgangTreppe.IsPointInRect(pTemp))) {
                     return;
                 }
@@ -360,7 +359,7 @@ public class Hdwor extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -369,21 +368,17 @@ public class Hdwor extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if (tmp.IsPointInRect(pTemp) == true) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -402,8 +397,8 @@ public class Hdwor extends Mainloc {
             //    return;
             //}
 
-            if ((ausgangStraza.IsPointInRect(pTemp) == true) ||
-                    (ausgangTreppe.IsPointInRect(pTemp) == true)) {
+            if ((ausgangStraza.IsPointInRect(pTemp)) ||
+                    (ausgangTreppe.IsPointInRect(pTemp))) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -429,12 +424,12 @@ public class Hdwor extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -467,7 +462,6 @@ public class Hdwor extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -486,8 +480,8 @@ public class Hdwor extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

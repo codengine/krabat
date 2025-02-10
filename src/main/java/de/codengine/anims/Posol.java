@@ -26,8 +26,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Posol extends Mainanim {
-    private GenericImage bote_head[];
-    private GenericImage bote_body[];
+    private final GenericImage[] bote_head;
+    private final GenericImage[] bote_body;
 
     public static final int Breite = 40;
     public static final int Hoehe = 95;

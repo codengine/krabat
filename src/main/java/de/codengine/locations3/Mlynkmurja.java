@@ -30,13 +30,13 @@ import de.codengine.sound.BackgroundMusicPlayer;
 public class Mlynkmurja extends Mainloc {
     private GenericImage backr, laterne;
 
-    private Oldmlynk mueller;
-    private GenericPoint muellerPoint;
-    private GenericPoint muellerTalk;
+    private final Oldmlynk mueller;
+    private final GenericPoint muellerPoint;
+    private final GenericPoint muellerTalk;
 
     private boolean krabatVisible = true;
 
-    private int laterneAdd;
+    private final int laterneAdd;
 
     private boolean initplay = true;
 
@@ -116,13 +116,13 @@ public class Mlynkmurja extends Mainloc {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-        if (initplay == true) {
+        if (initplay) {
             initplay = false;
             mainFrame.wave.PlayFile("sfx-dd/mlynk-dd.wav");
         }
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             Cursorform = 200;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -149,7 +149,7 @@ public class Mlynkmurja extends Mainloc {
 
         // Krabat zeichnen
 
-        if (krabatVisible == true) {
+        if (krabatVisible) {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
@@ -212,7 +212,7 @@ public class Mlynkmurja extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if ((TalkPause > 0) && (mainFrame.talkCount == 0)) {
@@ -250,7 +250,6 @@ public class Mlynkmurja extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -268,8 +267,8 @@ public class Mlynkmurja extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

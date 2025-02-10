@@ -27,8 +27,8 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Ryby extends Mainanim {
-    private GenericImage[] ryby_left;
-    private GenericImage[] ryby_right;
+    private final GenericImage[] ryby_left;
+    private final GenericImage[] ryby_right;
 
     private static final Borderrect fisch1Rect = new Borderrect(364, 266, 639, 300);
     // private static final borderrect fisch2Rect = new borderrect (559, 300, 639, 399);
@@ -39,7 +39,7 @@ public class Ryby extends Mainanim {
     private boolean isFischJumping = false;
     private boolean isLeftFish = false;
 
-    private GenericPoint Position;
+    private final GenericPoint Position;
 
     private int Verhinderanim;
     private static final int MAX_VERHINDERANIM = 30;
@@ -78,10 +78,10 @@ public class Ryby extends Mainanim {
     // Zeichne Hauptwachter, wie er dasteht oder spricht
     public void drawRyby(GenericDrawingContext offGraph, boolean noSound) {
         // zuerst Unterscheidung, ob Fisch schon da ist oder nicht...
-        if (isFischJumping == true) {
+        if (isFischJumping) {
             // Fisch weiterschalten, wenn noetig
             if ((--Verhindercount) < 1) {
-                if ((Rybycount == 3) && (noSound == false)) {
+                if ((Rybycount == 3) && (!noSound)) {
                     mainFrame.wave.PlayFile("sfx/woda1.wav");
                 }
 
@@ -89,7 +89,7 @@ public class Ryby extends Mainanim {
                 Rybycount++;
                 if (Rybycount < 5) {
                     // Fisch zeichnen, je nach Richtung
-                    if (isLeftFish == true) {
+                    if (isLeftFish) {
                         offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
                     } else {
                         offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
@@ -101,7 +101,7 @@ public class Ryby extends Mainanim {
             } else {
                 // wenn warten, dann aktuellen Fisch zeichnen
                 // Fisch zeichnen, je nach Richtung
-                if (isLeftFish == true) {
+                if (isLeftFish) {
                     offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
                 } else {
                     offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
@@ -116,19 +116,15 @@ public class Ryby extends Mainanim {
                 int zuffi = (int) Math.round(Math.random() * 100);
                 if (zuffi < 75) {
                     // entscheiden, ob Fisch nach links oder rechts
-                    if (zuffi < 37) {
-                        isLeftFish = true;
-                    } else {
-                        isLeftFish = false;
-                    }
+                    isLeftFish = zuffi < 37;
 
                     // zufaelligen Punkt innerhalb der 3 rects ermitteln
                     do {
                         Position.x = (int) ((Math.random() * 293.9) + 346);
                         Position.y = (int) ((Math.random() * 285.9) + 194);
                     }
-                    while ((fisch1Rect.IsPointInRect(Position) == false) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
-                            (fisch3Rect.IsPointInRect(Position) == false));
+                    while ((!fisch1Rect.IsPointInRect(Position)) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
+                            (!fisch3Rect.IsPointInRect(Position)));
 
                     Rybycount = 0;
                     isFischJumping = true;

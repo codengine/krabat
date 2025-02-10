@@ -168,7 +168,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             mainFrame.Clipset = true;
@@ -184,7 +184,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0, null);
         g.setClip(vorderWaldRect);
-        g.drawImage(vorder, (int) vorderWaldRect.getX(), (int) vorderWaldRect.getY(), null);
+        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
 
 
         // Himmel - Fading ermoeglichen
@@ -193,7 +193,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         g.drawImage(background, 0, 0, null);
 
         // Mlynk Hintergrund loeschen
-        if (muellerda == true) {
+        if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -204,23 +204,23 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // Voegel Hintergrund loeschen
-        if (voegelda == true) {
+        if (voegelda) {
             g.setClip(muellervogel.mlynkPtackRect());
             g.drawImage(background, 0, 0, null);
 
-            if (muellerFliegtAllein == false) {
+            if (!muellerFliegtAllein) {
                 g.setClip(krabatvogel.ptack2Rect());
                 g.drawImage(background, 0, 0, null);
             }
@@ -230,7 +230,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // Mueller zeichnen
-        if (muellerda == true) {
+        if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp = mueller.MlynkRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
@@ -239,7 +239,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             // Zeichne sie jetzt
 
             // Extrawurst Karte geben
-            if (mlynkGibtKarte == true) {
+            if (mlynkGibtKarte) {
                 mueller.drawMlynkWithKarte(g);
             } else {
                 // Redet sie etwa gerade ??
@@ -255,12 +255,12 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (ismuellermorphing == true) {
+        if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
             muellermorphcount = muellermorph.drawBumm(g);
         }
 
-        if (krabatda == true) {
+        if (krabatda) {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
@@ -296,25 +296,25 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // bei gemorphtem Mueller nun das Bumm zeichnen
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             /* krabatmorphcount = */
             krabatmorph.drawBumm(g);
         }
 
         // Voegel aus Bild rausfliegen lassen
-        if (voegelda == true) {
-            if (muellerFliegtAllein == true) {
+        if (voegelda) {
+            if (muellerFliegtAllein) {
                 g.setClip(muellervogel.mlynkPtackRect());
                 voegelfertig = muellervogel.Flieg(g);
-                g.drawImage(vorder, (int) vorderWaldRect.getX(), (int) vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
             } else {
                 g.setClip(muellervogel.mlynkPtackRect());
                 muellervogel.Flieg(g);
-                g.drawImage(vorder, (int) vorderWaldRect.getX(), (int) vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
                 g.setClip(krabatvogel.ptack2Rect());
                 voegelfertig = krabatvogel.Flieg(g);
-                g.drawImage(vorder, (int) vorderWaldRect.getX(), (int) vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
             }
         }
 
@@ -325,7 +325,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -342,11 +342,11 @@ public class MlynkCornyCholmc1 extends Mainloc {
             TalkPause--;
         }
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
 
             // Hier Art der Animation festlegen
-            if (mainFrame.Actions[226] == false) {
+            if (!mainFrame.Actions[226]) {
                 nextActionID = 1000;
             } else {
                 nextActionID = 1100;
@@ -354,7 +354,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // Gibt es was zu tun ?
-        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1) && (isFading == false)) {
+        if ((nextActionID != 0) && (TalkPause < 1) && (mainFrame.talkCount < 1) && (!isFading)) {
             DoAction();
         }
     }
@@ -373,7 +373,6 @@ public class MlynkCornyCholmc1 extends Mainloc {
             TalkPerson = 0;
         }
         outputText = "";
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -383,7 +382,6 @@ public class MlynkCornyCholmc1 extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     @Override
@@ -397,11 +395,11 @@ public class MlynkCornyCholmc1 extends Mainloc {
     }
 
     private void FadeBackground() {
-        if (isFading == false) {
+        if (!isFading) {
             return;
         }
 
-        if (darker == true) {
+        if (darker) {
             // nach Richtung dunkel faden
             GenericDrawingContext2D g2 = offGraphics.get2DContext();
 
@@ -442,7 +440,6 @@ public class MlynkCornyCholmc1 extends Mainloc {
             }
         }
 
-        return;
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
@@ -471,7 +468,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1003:
                 // Warten ,bis da
-                if (voegelfertig == false) {
+                if (!voegelfertig) {
                     nextActionID = 1004;
                 }
                 Counter = 20;
@@ -598,7 +595,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             case 1064:
                 // hier Unterscheidung,. ob er Feder schon hat oder noch nicht
                 InitMuellerRueckflug();
-                if (mainFrame.Actions[919] == false) {
+                if (!mainFrame.Actions[919]) {
                     nextActionID = 1065;
                 } else {
                     nextActionID = 1290;
@@ -608,7 +605,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             case 1065:
                 // Mueller zurueckfaden lassen
                 // Hier Karte uebergeben
-                mainFrame.inventory.vInventory.addElement(new Integer(20));
+                mainFrame.inventory.vInventory.addElement(Integer.valueOf(20));
                 muellermorph.Init(mlynkFeet, 35);
                 ismuellermorphing = true;
                 nextActionID = 1066;
@@ -661,7 +658,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1110:
                 // Warten ,bis da
-                if (voegelfertig == false) {
+                if (!voegelfertig) {
                     nextActionID = 1120;
                 }
                 Counter = 20;
@@ -781,7 +778,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1348:
                 // warten auf Ende fliegen
-                if (voegelfertig == false) {
+                if (!voegelfertig) {
                     nextActionID = 1350;
                 }
                 break;

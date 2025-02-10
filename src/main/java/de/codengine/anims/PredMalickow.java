@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class PredMalickow extends Mainanim {
-    private GenericImage pred_stand[];
-    private GenericImage pred_call[];
-    private GenericImage pred_talk[];
+    private final GenericImage[] pred_stand;
+    private final GenericImage[] pred_call;
+    private final GenericImage[] pred_talk;
     private GenericImage pred_walkback;
     private GenericImage pred_take;
     private GenericImage vorder;
@@ -53,7 +53,7 @@ public class PredMalickow extends Mainanim {
 
     private static final GenericPoint punkt = new GenericPoint(173, 350); // x+1, y+1 wegen verringerter Breite/Hoehe
     private static final GenericPoint vorderpunkt = new GenericPoint(136, 341);
-    private GenericPoint walkpunkt;
+    private final GenericPoint walkpunkt;
     private boolean back = true;
 
     public PredMalickow(Start caller) {
@@ -133,7 +133,7 @@ public class PredMalickow extends Mainanim {
         }
 
         // bei "isListening" darf er nur nach vorn schauen
-        if ((isListening == true) && (Stand > 1)) {
+        if ((isListening) && (Stand > 1)) {
             Stand = 0;
         }
 
@@ -170,7 +170,7 @@ public class PredMalickow extends Mainanim {
             case 1:
                 // Laufanim
                 // wohin laufen
-                if (back == true) {
+                if (back) {
                     // PredMalickow bewegen
                     Walkcounter++;
                     walkpunkt.x -= 2;

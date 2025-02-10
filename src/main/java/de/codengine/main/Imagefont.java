@@ -28,8 +28,8 @@ import de.codengine.platform.GenericImageObserver;
 public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
-    public GenericImage redFont[];
-    private Start mainFrame;
+    public GenericImage[] redFont;
+    private final Start mainFrame;
     private Imagehelperstatic im;
     // private imagehelpercutandsave im2;
     private static final int ZEIT = 3;  // entspricht 0.3 Sekunden
@@ -37,8 +37,8 @@ public class Imagefont {
 
     // Variablen fuer das Cacheing
     private static final int GROESSE = 150;
-    private GenericImage[] cache;
-    private int Inhalt[][];
+    private final GenericImage[] cache;
+    private final int[][] Inhalt;
     private int Counter = 1; // Rotationsprinzip
 
     // Hier Vars fuer Background-Verdunkelung
@@ -139,7 +139,7 @@ public class Imagefont {
             // Zeilenumbruch realisieren
             if (ch == 36) {
                 // Hier verzweigen fuer zentriert oder linksbuendig
-                if (zentriert == true) {
+                if (zentriert) {
                     String teil = "";
 
                     // String bis zum Ende bzw. zum naechsten Dollarzeichen umkopieren
@@ -518,7 +518,7 @@ public class Imagefont {
                 zaehle++;
             }
         }
-        int zwiwert = (int) zaehle * ZEIT;
+        int zwiwert = zaehle * ZEIT;
         if (zwiwert < 30) {
             zwiwert = 30;
         }

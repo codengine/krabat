@@ -57,7 +57,7 @@ public class Wegsucher {
         Vector<Integer> vTemp = (Vector<Integer>) vWeg.clone();
 
         // aktuelle Position an Weg anhaengen
-        vTemp.addElement(new Integer(aktPos));
+        vTemp.addElement(Integer.valueOf(aktPos));
 
         if (aktPos == endPos) {
             // Ende gefunden
@@ -67,8 +67,8 @@ public class Wegsucher {
 
         // alle moeglichen Wege weitervefolgen
         for (int i = 0; i < numRects; i++) {
-            if ((matrix[aktPos][i] == true) &&    // dieser Weg moeglich ?
-                    (vTemp.indexOf(new Integer(i)) == -1)) {
+            if ((matrix[aktPos][i]) &&    // dieser Weg moeglich ?
+                    (!vTemp.contains(Integer.valueOf(i)))) {
                 // noch nicht im Weg enthalten ?
                 RekursivSuche(i, vTemp);
             }
@@ -77,7 +77,7 @@ public class Wegsucher {
 
     // Alle Loesungsvorschlaege entgegenehmen und den besten ermitteln
     private void EvalResult(Vector<Integer> result) {
-        if (vBesterWeg.isEmpty() == true) {
+        if (vBesterWeg.isEmpty()) {
             // der erste Weg
             vBesterWeg = result;
         } else {

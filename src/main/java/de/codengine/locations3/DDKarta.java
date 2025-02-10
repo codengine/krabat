@@ -54,7 +54,7 @@ public class DDKarta extends Mainloc {
         mainFrame.Freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
-        if (mainFrame.Actions[953] == true) {
+        if (mainFrame.Actions[953]) {
             mainFrame.Actions[701] = true;
         }
 
@@ -68,12 +68,12 @@ public class DDKarta extends Mainloc {
         InitLocation(oldLocation);
 
         // Kr. hat Enterhaken bekommen -> Schiff kann wegfahren -> anderes kommt, sobald mit Dinglinger geredet
-        if ((mainFrame.Actions[561] == true) && (mainFrame.Actions[529] == true)) {
+        if ((mainFrame.Actions[561]) && (mainFrame.Actions[529])) {
             mainFrame.Actions[568] = true;
         }
 
         // Kr. hat Metall bekommen -> Schiff kann wegfahren -> nun is leer
-        if (mainFrame.Actions[559] == true) {
+        if (mainFrame.Actions[559]) {
             mainFrame.Actions[569] = true;
         }
 
@@ -185,7 +185,7 @@ public class DDKarta extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -251,7 +251,7 @@ public class DDKarta extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -289,7 +289,7 @@ public class DDKarta extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -299,7 +299,7 @@ public class DDKarta extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // linker Maustaste
             if (e.getModifiers() != GenericInputEvent.BUTTON3_MASK) {
                 nextActionID = 0;
@@ -307,7 +307,7 @@ public class DDKarta extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -326,7 +326,6 @@ public class DDKarta extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -338,12 +337,12 @@ public class DDKarta extends Mainloc {
 
                 // zu Panorama gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brPanorama.IsPointInRect(pTemp) == true) {
+                if (brPanorama.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (brPanorama.IsPointInRect(kt) == false) {
+                    if (!brPanorama.IsPointInRect(kt)) {
                         pTemp = pPanorama;
                     } else {
                         mainFrame.krabat.StopWalking();
@@ -351,7 +350,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -360,12 +359,12 @@ public class DDKarta extends Mainloc {
 
                 // zu Zastup gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brZastup.IsPointInRect(pTemp) == true) {
+                if (brZastup.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (brZastup.IsPointInRect(kt) == false) {
+                    if (!brZastup.IsPointInRect(kt)) {
                         pTemp = pZastup;
                     } else {
                         mainFrame.krabat.StopWalking();
@@ -373,7 +372,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -382,12 +381,12 @@ public class DDKarta extends Mainloc {
 
                 // zu Hrod gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brHrod.IsPointInRect(pTemp) == true) {
+                if (brHrod.IsPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (brHrod.IsPointInRect(kt) == false) {
+                    if (!brHrod.IsPointInRect(kt)) {
                         pTemp = pHrodmost;
                     } else {
                         mainFrame.krabat.StopWalking();
@@ -395,7 +394,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -404,12 +403,12 @@ public class DDKarta extends Mainloc {
 
                 // zu Starewiki gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brStarewiki.IsPointInRect(pTemp) == true) {
+                if (brStarewiki.IsPointInRect(pTemp)) {
                     nextActionID = 103;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (brStarewiki.IsPointInRect(kt) == false) {
+                    if (!brStarewiki.IsPointInRect(kt)) {
                         pTemp = pStarewiki;
                     } else {
                         mainFrame.krabat.StopWalking();
@@ -417,7 +416,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -430,10 +429,10 @@ public class DDKarta extends Mainloc {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((brPanorama.IsPointInRect(pTemp) == true) ||
-                        (brZastup.IsPointInRect(pTemp) == true) ||
-                        (brHrod.IsPointInRect(pTemp) == true) ||
-                        (brStarewiki.IsPointInRect(pTemp) == true)) {
+                if ((brPanorama.IsPointInRect(pTemp)) ||
+                        (brZastup.IsPointInRect(pTemp)) ||
+                        (brHrod.IsPointInRect(pTemp)) ||
+                        (brStarewiki.IsPointInRect(pTemp))) {
                     return;
                 }
 
@@ -449,7 +448,7 @@ public class DDKarta extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -458,21 +457,17 @@ public class DDKarta extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if (tmp.IsPointInRect(pTemp) == true) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -481,7 +476,7 @@ public class DDKarta extends Mainloc {
         // normaler Cursor, normale Reaktion
         else {
             // bei Hrod und Starewiki nach unten
-            if ((brHrod.IsPointInRect(pTemp) == true) || (brStarewiki.IsPointInRect(pTemp) == true)) {
+            if ((brHrod.IsPointInRect(pTemp)) || (brStarewiki.IsPointInRect(pTemp))) {
                 if (Cursorform != 3) {
                     mainFrame.setCursor(mainFrame.Cdown);
                     Cursorform = 3;
@@ -490,7 +485,7 @@ public class DDKarta extends Mainloc {
             }
 
             // Zastup und Panorama nach Oben
-            if ((brZastup.IsPointInRect(pTemp) == true) || (brPanorama.IsPointInRect(pTemp) == true)) {
+            if ((brZastup.IsPointInRect(pTemp)) || (brPanorama.IsPointInRect(pTemp))) {
                 if (Cursorform != 2) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 2;
@@ -527,12 +522,12 @@ public class DDKarta extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -565,7 +560,6 @@ public class DDKarta extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -584,8 +578,8 @@ public class DDKarta extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 

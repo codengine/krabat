@@ -67,7 +67,7 @@ abstract public class Krabat extends Mainanim {
     boolean Thorizontal = true;
 
     int Floetenwartezeit;
-    static final int Floetenwartezeitarray[] = new int[]{78, 78, 95, 112, 54};
+    static final int[] Floetenwartezeitarray = new int[]{78, 78, 95, 112, 54};
     static final int rohodzWartezeit = 28;
 
 
@@ -132,7 +132,7 @@ abstract public class Krabat extends Mainanim {
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
         int rgabe = 0;
-        if (horizontal == true) {
+        if (horizontal) {
             if (direction_x == 1) {
                 rgabe = 3;
             } else {

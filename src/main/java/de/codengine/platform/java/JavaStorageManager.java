@@ -193,7 +193,7 @@ public class JavaStorageManager extends GenericStorageManager {
             String value;
             int separatorPos;
             while ((line = reader.readLine()) != null) {
-                separatorPos = line.indexOf("\t");
+                separatorPos = line.indexOf('\t');
                 key = line.substring(0, separatorPos).trim();
                 value = line.substring(separatorPos + 1); // do not trim, the spaces may be wanted!!!
                 translations.put(key, value);
@@ -217,10 +217,10 @@ public class JavaStorageManager extends GenericStorageManager {
             String value;
             int separatorPos;
             while ((line = reader.readLine()) != null) {
-                separatorPos = line.indexOf("\t");
+                separatorPos = line.indexOf('\t');
                 key = line.substring(0, separatorPos).trim();
                 value = line.substring(separatorPos + 1); // do not trim, the spaces may be wanted!!!
-                if (isFake == true) {
+                if (isFake) {
                     value = fakePrefix + " " + value;
                 }
                 translations.put(key, value);

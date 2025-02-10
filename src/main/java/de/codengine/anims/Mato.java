@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Mato extends Mainanim {
-    private GenericImage mato_look[];
-    private GenericImage mato_talk[];
-    private GenericImage mato_open[];
+    private final GenericImage[] mato_look;
+    private final GenericImage[] mato_talk;
+    private final GenericImage[] mato_open;
     private GenericImage mato_take;
     private GenericImage vorder;
 
@@ -86,7 +86,7 @@ public class Mato extends Mainanim {
     // Zeichne Mato, wie er dasteht oder spricht
     public void drawMato(GenericDrawingContext offGraph, int TalkPerson, GenericPoint Posit, boolean isOpening, boolean isGiving, boolean isListening) {
         // irgendwas entgegennehmen
-        if (isGiving == true) {
+        if (isGiving) {
             offGraph.drawImage(mato_look[0], Posit.x, Posit.y, null);
             offGraph.drawImage(vorder, 353, 343, null);
             offGraph.drawImage(mato_take, Posit.x, Posit.y, null);
@@ -94,7 +94,7 @@ public class Mato extends Mainanim {
         }
 
         // Schranke aufmachen
-        if (isOpening == true) {
+        if (isOpening) {
             // GenericImage evaluieren
             if ((--Verhinderopen) < 1) {
                 Verhinderopen = MAX_VERHINDEROPEN;
@@ -121,7 +121,6 @@ public class Mato extends Mainanim {
 
             offGraph.drawImage(mato_talk[Talk], Posit.x, Posit.y, null);
             offGraph.drawImage(vorder, 353, 343, null);
-            return;
         }
         // Mato guckt in der Weltgeschichte rum
         else {
@@ -161,13 +160,12 @@ public class Mato extends Mainanim {
             }
 
             // wenn mit ihm geredet wird, dann nicht wegschauen
-            if ((isListening == true) && (Wait > 1)) {
+            if ((isListening) && (Wait > 1)) {
                 Wait = 0;
             }
 
             offGraph.drawImage(mato_look[Wait], Posit.x, Posit.y, null);
             offGraph.drawImage(vorder, 353, 343, null);
-            return;
         }
     }
 }    

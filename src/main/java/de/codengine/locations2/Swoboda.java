@@ -33,13 +33,13 @@ public class Swoboda extends Mainloc {
     private GenericImage background;
     private Mac mutter;
     private Mlynk2 mueller;
-    private RapakWuswobodzic raben[];
-    private GenericPoint rapakpos[];
+    private RapakWuswobodzic[] raben;
+    private GenericPoint[] rapakpos;
 
     private boolean setAnim = false;
     private boolean krabatHere = false;
     private boolean rapakiAchtung = false;
-    private boolean macHere = true;
+    private final boolean macHere = true;
     private boolean mlynkHatStock = false;
 
     private static final int KRABATRABE = 3;
@@ -137,8 +137,8 @@ public class Swoboda extends Mainloc {
         }
 
         // Hier bekommt Krabat seine Inventargegenstaende wieder
-        mainFrame.inventory.vInventory.addElement(new Integer(12));
-        mainFrame.inventory.vInventory.addElement(new Integer(20));
+        mainFrame.inventory.vInventory.addElement(Integer.valueOf(12));
+        mainFrame.inventory.vInventory.addElement(Integer.valueOf(20));
 
         // Hier Zeichen an Karte, dass Teil 2 begonnen hat
         mainFrame.Actions[305] = true;
@@ -179,7 +179,7 @@ public class Swoboda extends Mainloc {
         // System.out.print("g");
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             mainFrame.Clipset = true;
@@ -197,13 +197,13 @@ public class Swoboda extends Mainloc {
         // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
 
         // wenn Rabe morpht, dann diesen Hintergrund loeschen
-        if (israbemorphing == true) {
+        if (israbemorphing) {
             g.setClip(rabemorph.bummRect());
             g.drawImage(background, 0, 0, null);
         }
@@ -216,7 +216,7 @@ public class Swoboda extends Mainloc {
         // Mueller Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
         Borderrect temp;
-        if (mlynkHatStock == false) {
+        if (!mlynkHatStock) {
             temp = mueller.MlynkRect();
         } else {
             temp = mueller.MlynkRectMitStock();
@@ -234,9 +234,9 @@ public class Swoboda extends Mainloc {
         }
 
         // Raben zeichnen
-        if (rapakiAchtung == false) {
+        if (!rapakiAchtung) {
             for (int i = 1; i <= 12; i++) {
-                if ((i == KRABATRABE) && (rabeVisible == false)) {
+                if ((i == KRABATRABE) && (!rabeVisible)) {
                     continue;
                 }
                 g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
@@ -244,7 +244,7 @@ public class Swoboda extends Mainloc {
             }
         } else {
             for (int i = 1; i <= 12; i++) {
-                if ((i == KRABATRABE) && (rabeVisible == false)) {
+                if ((i == KRABATRABE) && (!rabeVisible)) {
                     continue;
                 }
                 g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
@@ -257,13 +257,13 @@ public class Swoboda extends Mainloc {
         }
 
         // morphenden Raben zeichnen
-        if (israbemorphing == true) {
+        if (israbemorphing) {
             g.setClip(rabemorph.bummRect());
             rabemorphcount = rabemorph.drawBumm(g);
         }
 
         // Mac zeichnen bei Reden und Herumstehen,
-        if (macHere == true) {
+        if (macHere) {
             g.setClip(mutterPoint.x, mutterPoint.y, mutter.Breites, mutter.Hoehes);
             mutter.drawMac(g, mutterPoint, TalkPerson);
         }
@@ -271,7 +271,7 @@ public class Swoboda extends Mainloc {
         // Mueller zeichnen
         // Clipping - Rectangle feststellen und setzen
         Borderrect tmp;
-        if (mlynkHatStock == false) {
+        if (!mlynkHatStock) {
             tmp = mueller.MlynkRect();
         } else {
             tmp = mueller.MlynkRectMitStock();
@@ -283,7 +283,7 @@ public class Swoboda extends Mainloc {
 
         // Redet er etwa gerade ??
         if ((TalkPerson == 36) && (mainFrame.talkCount > 0)) {
-            if (mlynkHatStock == false) {
+            if (!mlynkHatStock) {
                 mueller.talkMlynk(g);
             } else {
                 mueller.talkMlynkWithKij(g);
@@ -292,7 +292,7 @@ public class Swoboda extends Mainloc {
 
         // nur rumstehen oder laufen
         else {
-            if (mlynkHatStock == false) {
+            if (!mlynkHatStock) {
                 mueller.drawMlynk(g);
             } else {
                 mueller.drawMlynkWithKij(g);
@@ -305,7 +305,7 @@ public class Swoboda extends Mainloc {
         // Krabat zeichnen
 
         // Animation??
-        if (krabatHere == true) {
+        if (krabatHere) {
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
 
@@ -338,7 +338,7 @@ public class Swoboda extends Mainloc {
             }
         }
 
-        if (iskrabatmorphing == true) {
+        if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
             krabatmorphcount = krabatmorph.drawBumm(g);
         }
@@ -353,7 +353,7 @@ public class Swoboda extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -372,7 +372,7 @@ public class Swoboda extends Mainloc {
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             nextActionID = 100;
         }
@@ -402,12 +402,11 @@ public class Swoboda extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
             }
-            return;
         }
     }
 

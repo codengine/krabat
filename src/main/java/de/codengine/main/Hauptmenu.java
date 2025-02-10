@@ -32,7 +32,7 @@ public class Hauptmenu extends Mainanim {
     private Borderrect brGesamt, brNowostart, brWocinic, brSkladzic, brInfo,
             brDalehrac, brKonc, brRec;
 
-    private GenericPoint pLO;
+    private final GenericPoint pLO;
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -41,7 +41,7 @@ public class Hauptmenu extends Mainanim {
     public boolean MMactive;
     public boolean introcall = false;
 
-    private GenericImageObserver observer = null;
+    private final GenericImageObserver observer = null;
 
     private final GameProperties gameProperties;
 
@@ -154,7 +154,7 @@ public class Hauptmenu extends Mainanim {
 
     public void paintMainmenu(GenericDrawingContext g) {
         // Mainmenu-Background zeichnen
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 964);
             g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
@@ -307,7 +307,7 @@ public class Hauptmenu extends Mainanim {
             // linke Maustaste
 
             // bei Click Ausserhalb zurueck ins Spiel
-            if (brGesamt.IsPointInRect(pTemp) == false) {
+            if (!brGesamt.IsPointInRect(pTemp)) {
                 Deactivate();
                 mainFrame.whatScreen = 0;
                 mainFrame.repaint();
@@ -315,20 +315,20 @@ public class Hauptmenu extends Mainanim {
             }
 
             // Dalehrac
-            if (brDalehrac.IsPointInRect(pTemp) == true) {
+            if (brDalehrac.IsPointInRect(pTemp)) {
                 Deactivate();
                 mainFrame.repaint();
             }
 
             // Konc hry
-            if (brKonc.IsPointInRect(pTemp) == true) {
+            if (brKonc.IsPointInRect(pTemp)) {
                 mainFrame.exit.Activate(1);
                 return;
             }
 
             // Wocinic
-            if (brWocinic.IsPointInRect(pTemp) == true) {
-                if (mainFrame.storageManager.isLoadSaveSupported() == false) {
+            if (brWocinic.IsPointInRect(pTemp)) {
+                if (!mainFrame.storageManager.isLoadSaveSupported()) {
                     return;
                 }
                 Deactivate();
@@ -340,12 +340,12 @@ public class Hauptmenu extends Mainanim {
             }
 
             // Skladzic
-            if (brSkladzic.IsPointInRect(pTemp) == true) {
+            if (brSkladzic.IsPointInRect(pTemp)) {
                 // vom Intro aus darf nicht gespeichert werden
-                if (introcall == true) {
+                if (introcall) {
                     return;
                 }
-                if (mainFrame.storageManager.isLoadSaveSupported() == false) {
+                if (!mainFrame.storageManager.isLoadSaveSupported()) {
                     return;
                 }
                 Deactivate();
@@ -357,7 +357,7 @@ public class Hauptmenu extends Mainanim {
             }
 
             // Info
-            if (brInfo.IsPointInRect(pTemp) == true) {
+            if (brInfo.IsPointInRect(pTemp)) {
                 Deactivate();
                 mainFrame.ConstructLocation(104);
                 mainFrame.whatScreen = 5;
@@ -367,7 +367,7 @@ public class Hauptmenu extends Mainanim {
             }
 
             // Hornjoserbsce - Delnoserbsce
-            if (brRec.IsPointInRect(pTemp) == true) {
+            if (brRec.IsPointInRect(pTemp)) {
                 mainFrame.sprache++;
                 // erlaube umschalten auf deutsch
                 if (mainFrame.sprache == 4) {
@@ -392,9 +392,8 @@ public class Hauptmenu extends Mainanim {
             }
 
             // Nowostart
-            if (brNowostart.IsPointInRect(pTemp) == true) {
+            if (brNowostart.IsPointInRect(pTemp)) {
                 mainFrame.exit.Activate(2);
-                return;
             }
         } else {
             // rechte Maustaste
@@ -405,35 +404,35 @@ public class Hauptmenu extends Mainanim {
 
         // Highlight im Menue festlegen
         menuitem = 0;
-        if (brNowostart.IsPointInRect(pTemp) == true) {
+        if (brNowostart.IsPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if ((brWocinic.IsPointInRect(pTemp) == true) &&
-                (mainFrame.storageManager.isLoadSaveSupported() == true)) {
+        if ((brWocinic.IsPointInRect(pTemp)) &&
+                (mainFrame.storageManager.isLoadSaveSupported())) {
             menuitem = 2;
         }
 
         // Speichern nicht im Introscreen!!
-        if ((brSkladzic.IsPointInRect(pTemp) == true) && (introcall == false) &&
-                (mainFrame.storageManager.isLoadSaveSupported() == true)) {
+        if ((brSkladzic.IsPointInRect(pTemp)) && (!introcall) &&
+                (mainFrame.storageManager.isLoadSaveSupported())) {
             menuitem = 3;
         }
-        if (brRec.IsPointInRect(pTemp) == true) {
+        if (brRec.IsPointInRect(pTemp)) {
             menuitem = 4;
         }
         // if (brNieders.IsPointInRect   (pTemp) == true) menuitem = 5;
-        if (brInfo.IsPointInRect(pTemp) == true) {
+        if (brInfo.IsPointInRect(pTemp)) {
             menuitem = 6;
         }
-        if (brDalehrac.IsPointInRect(pTemp) == true) {
+        if (brDalehrac.IsPointInRect(pTemp)) {
             menuitem = 7;
         }
-        if (brKonc.IsPointInRect(pTemp) == true) {
+        if (brKonc.IsPointInRect(pTemp)) {
             menuitem = 8;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall == true) {
+        if (Paintcall) {
             Paintcall = false;
             mainFrame.setCursor(mainFrame.Normal);
             return;

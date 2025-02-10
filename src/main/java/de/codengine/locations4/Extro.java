@@ -28,19 +28,19 @@ import de.codengine.platform.GenericImage;
 import de.codengine.sound.BackgroundMusicPlayer;
 
 public class Extro extends Mainloc {
-    private GenericImage[] Extropics;
+    private final GenericImage[] Extropics;
     private GenericImage ludzo_vor_buehne;
     private int PicIndex = 0;
 
-    private PtackZaRapaka rapak;
+    private final PtackZaRapaka rapak;
 
     private boolean setAnim = true;
 
-    private boolean krabatVisible = false;
+    private final boolean krabatVisible = false;
     private boolean rapakVisible = true;
     private boolean isWotrowLocation = true;
 
-    private GenericPoint scrollPoint = new GenericPoint(320, 1300);
+    private final GenericPoint scrollPoint = new GenericPoint(320, 1300);
 
     private String scrollerOutputText;
     private boolean Scroller = false;
@@ -118,7 +118,7 @@ public class Extro extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.scrollx = 0;
             mainFrame.scrolly = 0;
             Cursorform = 200;
@@ -126,13 +126,13 @@ public class Extro extends Mainloc {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 644, 484);
             mainFrame.isAnim = true;
-            if (setAnim == true) {
+            if (setAnim) {
                 mainFrame.fPlayAnim = true;
             }
         }
 
         // Beim Scroller Extrawurst
-        if (Scroller == true) {
+        if (Scroller) {
             g.setClip(kleinesRect);
         }
 
@@ -140,7 +140,7 @@ public class Extro extends Mainloc {
         g.drawImage(Extropics[PicIndex], 0, 0, null);
 
         // Raben zeichnen, solange da
-        if (rapakVisible == true) {
+        if (rapakVisible) {
             g.setClip(rapak.ptack2Rect());
             g.drawImage(Extropics[PicIndex], 0, 0, null);
             rapakVisible = rapak.Flieg(g);
@@ -155,7 +155,7 @@ public class Extro extends Mainloc {
         // Krabat einen Schritt gehen lassen
         mainFrame.wegGeher.GeheWeg();
 
-        if (krabatVisible == true) {
+        if (krabatVisible) {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
@@ -192,29 +192,29 @@ public class Extro extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // sonst noch was zu tun ?
-        if ((outputText != "") || (Scroller == true)) {
+        if ((outputText != "") || (Scroller)) {
             int textColor = FarbenArray[TalkPerson];
-            if (Scroller == true) {
+            if (Scroller) {
                 textColor = FarbenArray[92];
             }
 
             // welchen Text ausgeben
             String tempText = outputText;
-            if (Scroller == true) {
+            if (Scroller) {
                 tempText = scrollerOutputText;
             }
 
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
-            if (Scroller == false) {
+            if (!Scroller) {
                 g.setClip(0, 0, 644, 484);
             }
             mainFrame.ifont.drawString(g, tempText, outputTextPos.x, outputTextPos.y, textColor);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (Scroller == true) {
+        if (Scroller) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 176, 644, 176 + 154);
@@ -237,7 +237,7 @@ public class Extro extends Mainloc {
         }
 
         // Anim starten
-        if (setAnim == true) {
+        if (setAnim) {
             setAnim = false;
             nextActionID = 10;
         }
@@ -253,7 +253,7 @@ public class Extro extends Mainloc {
             g.clearRect(0, 0, 639, FadeToBlack);
             g.clearRect(0, 479 - FadeToBlack, 639, 479);
 
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Gibt es was zu tun ?
@@ -275,7 +275,6 @@ public class Extro extends Mainloc {
         }
         outputText = "";
 
-        return;
     }
 
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
@@ -285,7 +284,6 @@ public class Extro extends Mainloc {
             Cursorform = 20;
             mainFrame.setCursor(mainFrame.Nix);
         }
-        return;
     }
 
     // dieses Event nicht beachten
@@ -302,7 +300,7 @@ public class Extro extends Mainloc {
     // Umgebungs-Sounds abspielen
     private void evalSound() {
         // Ambient-Sounds fuer Wotrow (1.Teil des Extros)
-        if (isWotrowLocation == true) {
+        if (isWotrowLocation) {
             int zfz = (int) (Math.random() * 100);
 
             if (zfz > 92) {
@@ -320,7 +318,7 @@ public class Extro extends Mainloc {
             }
 
             // Rapak-Gekreische (wenn er da ist)
-            if (rapakVisible == true) {
+            if (rapakVisible) {
                 if (zfz > 97) {
                     mainFrame.wave.PlayFile("sfx/rapak1.wav");
                 }
@@ -332,8 +330,8 @@ public class Extro extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -341,7 +339,7 @@ public class Extro extends Mainloc {
 
             case 10:
                 // warten, bis Rabe rausgeflogen ist
-                if (rapakVisible == false) {
+                if (!rapakVisible) {
                     nextActionID = 1000;
                 }
                 break;

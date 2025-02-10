@@ -26,9 +26,9 @@ import de.codengine.platform.GenericDrawingContext;
 import de.codengine.platform.GenericImage;
 
 public class Dundak extends Mainanim {
-    private GenericImage[] hosc_stand;
-    private GenericImage[] hosc_head;
-    private GenericImage[] hosc_body;
+    private final GenericImage[] hosc_stand;
+    private final GenericImage[] hosc_head;
+    private final GenericImage[] hosc_body;
 
     public static final int Breite = 107;
     public static final int Hoehe = 110;
@@ -158,7 +158,7 @@ public class Dundak extends Mainanim {
 
         // wenn sonstige Blockaden noetig, dann mit wave.noBackground checken!!!
 
-        if ((mainFrame.inventory.noBackgroundSound == true) && (mainFrame.invCursor == true)) {
+        if ((mainFrame.inventory.noBackgroundSound) && (mainFrame.invCursor)) {
             return; // bei Problemen mit dem Soundsystem zurueckspringen
         }
 

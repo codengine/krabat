@@ -175,9 +175,9 @@ public class Gang extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (mainFrame.Clipset == false) {
+        if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
-            if (setScroll == true) {
+            if (setScroll) {
                 setScroll = false;
                 mainFrame.scrollx = scrollwert;
             }
@@ -192,7 +192,7 @@ public class Gang extends Mainloc {
         g.drawImage(backr, 640, 0, null);
 
         // Buch zeichnen, wenn es auf der Kette liegt
-        if (mainFrame.Actions[690] == true) {
+        if (mainFrame.Actions[690]) {
             g.setClip(390, 280, 38, 76);
             // vorher die untere Kette zeichnen
             g.drawImage(kette2, 390, 280, null);
@@ -204,7 +204,7 @@ public class Gang extends Mainloc {
         }
 
         // hier die Kette unten zeichnen, wenn K dran zieht
-        if (ziehtKrabatAnKette == true) {
+        if (ziehtKrabatAnKette) {
             g.setClip(390, 280, 38, 76);
             g.drawImage(kette2, 390, 280, null);
 
@@ -255,12 +255,12 @@ public class Gang extends Mainloc {
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // hinter baumstamm (nur Clipping - Region wird neugezeichnet)
-        if (rectStamm.IsPointInRect(pKrTemp) == true) {
+        if (rectStamm.IsPointInRect(pKrTemp)) {
             g.drawImage(stamm, 977, 67, null);
         }
 
         // hier dureberzeichnen, wenn er den Speer holen soll
-        if ((mainFrame.Actions[690] == true) && (rectVorderTuer.IsPointInRect(pKrTemp) == true)) {
+        if ((mainFrame.Actions[690]) && (rectVorderTuer.IsPointInRect(pKrTemp))) {
             g.drawImage(tuervorder, 1175, 249, null);
         }
 
@@ -272,7 +272,7 @@ public class Gang extends Mainloc {
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);  // Sobe hat 964 als y-wert ??????????
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
-            g.setClip((int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight());
+            g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
@@ -312,7 +312,7 @@ public class Gang extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -322,7 +322,7 @@ public class Gang extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // unser ach so beliebter Ueberschneidungsbug...
             GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -333,14 +333,14 @@ public class Gang extends Mainloc {
                 Borderrect tmp = mainFrame.krabat.KrabatRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp) == true) {
+                if (tmp.IsPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer kette
-                if (ring.IsPointInRect(pTemp) == true) {
+                if (ring.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 55: // schweres Buch
                             nextActionID = 230;
@@ -353,13 +353,13 @@ public class Gang extends Mainloc {
                 }
 
                 // Ausreden fuer Knochen
-                if (knochen.IsPointInRect(pTemp) == true) {
+                if (knochen.IsPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTxxx = pKnochen;
                 }
 
                 // Ausreden fuer Tuer
-                if (tuerUnten.IsPointInRect(pTemp) == true) {
+                if (tuerUnten.IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 42: // Hlebija
                             nextActionID = 200;
@@ -378,7 +378,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Ausreden fuer Buch
-                if ((buchRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[690] == true)) {
+                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
                     nextActionID = 165;
                     pTxxx = pBuch;
                 }
@@ -396,7 +396,6 @@ public class Gang extends Mainloc {
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
-                return;
             }
         }
 
@@ -410,18 +409,18 @@ public class Gang extends Mainloc {
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
                 // zu Zachod gehen ?
-                if (ausgangZachod.IsPointInRect(pTemp) == true) {
+                if (ausgangZachod.IsPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangZachod.IsPointInRect(kt) == false) {
+                    if (!ausgangZachod.IsPointInRect(kt)) {
                         pTxxx = pExitZachod;
                     } else {
                         pTxxx = new GenericPoint(pExitZachod.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -429,18 +428,18 @@ public class Gang extends Mainloc {
                 }
 
                 // zu Kapala gehen ?
-                if (ausgangKapala.IsPointInRect(pTemp) == true) {
+                if (ausgangKapala.IsPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.GetKrabatPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (ausgangKapala.IsPointInRect(kt) == false) {
+                    if (!ausgangKapala.IsPointInRect(kt)) {
                         pTxxx = pExitKapala;
                     } else {
                         pTxxx = new GenericPoint(pExitKapala.x, kt.y);
                     }
 
-                    if (mainFrame.dClick == true) {
+                    if (mainFrame.dClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -448,25 +447,25 @@ public class Gang extends Mainloc {
                 }
 
                 // Ring ansehen
-                if (ring.IsPointInRect(pTemp) == true) {
+                if (ring.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTxxx = pRing;
                 }
 
                 // Knochen ansehen
-                if (knochen.IsPointInRect(pTemp) == true) {
+                if (knochen.IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTxxx = pKnochen;
                 }
 
                 // Tuer ansehen
-                if (tuerUnten.IsPointInRect(pTemp) == true) {
+                if (tuerUnten.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTxxx = pTuerUnten;
                 }
 
                 // Buch ansehen
-                if ((buchRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[690] == true)) {
+                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
                     nextActionID = 7;
                     pTxxx = pBuch;
                 }
@@ -477,7 +476,7 @@ public class Gang extends Mainloc {
                 // rechte Maustaste
 
                 // Buch mitnehmen
-                if ((buchRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[690] == true)) {
+                if ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690])) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pBuch);
                     mainFrame.repaint();
@@ -485,7 +484,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Ring benutzen
-                if (ring.IsPointInRect(pTemp) == true) {
+                if (ring.IsPointInRect(pTemp)) {
                     nextActionID = 4;
                     mainFrame.wegGeher.SetzeNeuenWeg(pRingZieh);
                     mainFrame.repaint();
@@ -493,7 +492,7 @@ public class Gang extends Mainloc {
                 }
 
                 // knochen benutzen
-                if (knochen.IsPointInRect(pTemp) == true) {
+                if (knochen.IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     mainFrame.wegGeher.SetzeNeuenWeg(pKnochen);
                     mainFrame.repaint();
@@ -501,7 +500,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Tuer benutzen
-                if (tuerUnten.IsPointInRect(pTemp) == true) {
+                if (tuerUnten.IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     mainFrame.wegGeher.SetzeNeuenWeg(pTuerUnten);
                     mainFrame.repaint();
@@ -509,7 +508,7 @@ public class Gang extends Mainloc {
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if ((ausgangZachod.IsPointInRect(pTemp) == true) || (ausgangKapala.IsPointInRect(pTemp) == true)) {
+                if ((ausgangZachod.IsPointInRect(pTemp)) || (ausgangKapala.IsPointInRect(pTemp))) {
                     return;
                 }
 
@@ -528,7 +527,7 @@ public class Gang extends Mainloc {
         GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if ((mainFrame.fPlayAnim == true) || (mainFrame.krabat.nAnimation != 0)) {
+        if ((mainFrame.fPlayAnim) || (mainFrame.krabat.nAnimation != 0)) {
             if (Cursorform != 20) {
                 Cursorform = 20;
                 mainFrame.setCursor(mainFrame.Nix);
@@ -537,23 +536,19 @@ public class Gang extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.KrabatRect();
-            if ((tmp.IsPointInRect(pTemp) == true) || (ring.IsPointInRect(pTemp) == true) ||
-                    (knochen.IsPointInRect(pTemp) == true) || (tuerUnten.IsPointInRect(pTemp) == true) ||
-                    ((buchRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[690] == true))) {
-                mainFrame.invHighCursor = true;
-            } else {
-                mainFrame.invHighCursor = false;
-            }
+            mainFrame.invHighCursor = (tmp.IsPointInRect(pTemp)) || (ring.IsPointInRect(pTemp)) ||
+                    (knochen.IsPointInRect(pTemp)) || (tuerUnten.IsPointInRect(pTemp)) ||
+                    ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690]));
 
-            if ((Cursorform != 10) && (mainFrame.invHighCursor == false)) {
+            if ((Cursorform != 10) && (!mainFrame.invHighCursor)) {
                 Cursorform = 10;
                 mainFrame.setCursor(mainFrame.Cinventar);
             }
 
-            if ((Cursorform != 11) && (mainFrame.invHighCursor == true)) {
+            if ((Cursorform != 11) && (mainFrame.invHighCursor)) {
                 Cursorform = 11;
                 mainFrame.setCursor(mainFrame.CHinventar);
             }
@@ -561,10 +556,10 @@ public class Gang extends Mainloc {
 
         // normaler Cursor, normale Reaktion
         else {
-            if ((tuerUnten.IsPointInRect(pTemp) == true) ||
-                    (ring.IsPointInRect(pTemp) == true) ||
-                    (knochen.IsPointInRect(pTemp) == true) ||
-                    ((buchRect.IsPointInRect(pTemp) == true) && (mainFrame.Actions[690] == true))) {
+            if ((tuerUnten.IsPointInRect(pTemp)) ||
+                    (ring.IsPointInRect(pTemp)) ||
+                    (knochen.IsPointInRect(pTemp)) ||
+                    ((buchRect.IsPointInRect(pTemp)) && (mainFrame.Actions[690]))) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -572,8 +567,8 @@ public class Gang extends Mainloc {
                 return;
             }
 
-            if ((ausgangZachod.IsPointInRect(pTemp) == true) ||
-                    (ausgangKapala.IsPointInRect(pTemp) == true)) {
+            if ((ausgangZachod.IsPointInRect(pTemp)) ||
+                    (ausgangKapala.IsPointInRect(pTemp))) {
                 if (Cursorform != 12) {
                     mainFrame.setCursor(mainFrame.Cup);
                     Cursorform = 12;
@@ -599,12 +594,12 @@ public class Gang extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor == true) {
+        if (mainFrame.invCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim == true) {
+        if (mainFrame.fPlayAnim) {
             return;
         }
 
@@ -637,7 +632,6 @@ public class Gang extends Mainloc {
             Keyclear();
             nextActionID = 120;
             mainFrame.repaint();
-            return;
         }
     }
 
@@ -656,8 +650,8 @@ public class Gang extends Mainloc {
 
     private void DoAction() {
         // nichts zu tun, oder Krabat laeuft noch
-        if ((mainFrame.krabat.isWandering == true) ||
-                (mainFrame.krabat.isWalking == true)) {
+        if ((mainFrame.krabat.isWandering) ||
+                (mainFrame.krabat.isWalking)) {
             return;
         }
 
@@ -696,7 +690,7 @@ public class Gang extends Mainloc {
 
             case 3:
                 // Tuer ansehen
-                if (mainFrame.Actions[690] == false) {
+                if (!mainFrame.Actions[690]) {
                     // Tuer ist zu
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00006"),
                             Start.stringManager.getTranslation("Loc3_Gang_00007"),
@@ -705,10 +699,10 @@ public class Gang extends Mainloc {
                 } else {
                     // Tuer ist auf...
                     mainFrame.krabat.SetFacing(fTuer);
-                    if (mainFrame.Actions[954] == false) {
+                    if (!mainFrame.Actions[954]) {
                         // wenn noch kein Speer, dann diesen finden
                         // Inventar hinzufuegen
-                        mainFrame.inventory.vInventory.addElement(new Integer(42));
+                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(42));
                         mainFrame.Actions[954] = true;        // Flag setzen
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -723,7 +717,7 @@ public class Gang extends Mainloc {
 
             case 4:
                 // Ring benutzen
-                if (mainFrame.Actions[690] == false) // Buch liegt nicht drauf
+                if (!mainFrame.Actions[690]) // Buch liegt nicht drauf
                 {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -751,7 +745,7 @@ public class Gang extends Mainloc {
 
             case 6:
                 // Tuer benutzen
-                if (mainFrame.Actions[690] == false) {
+                if (!mainFrame.Actions[690]) {
                     // Tuer ist zu
                     KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00018"),
                             Start.stringManager.getTranslation("Loc3_Gang_00019"),
@@ -760,12 +754,12 @@ public class Gang extends Mainloc {
                 } else {
                     // Tuer ist auf...
                     mainFrame.krabat.SetFacing(fTuer);
-                    if (mainFrame.Actions[954] == false) {
+                    if (!mainFrame.Actions[954]) {
                         // wenn noch kein Speer, dann diesen finden
                         // Inventar hinzufuegen
                         mainFrame.fPlayAnim = true;
                         evalMouseMoveEvent(mainFrame.Mousepoint);
-                        mainFrame.inventory.vInventory.addElement(new Integer(42));
+                        mainFrame.inventory.vInventory.addElement(Integer.valueOf(42));
                         mainFrame.Actions[954] = true;        // Flag setzen
                         nextActionID = 20;
                     } else {
@@ -847,7 +841,7 @@ public class Gang extends Mainloc {
             case 53:
                 // Ende Buch mitnehmen
                 if ((--Counter) == 1) {
-                    mainFrame.inventory.vInventory.addElement(new Integer(55));
+                    mainFrame.inventory.vInventory.addElement(Integer.valueOf(55));
                     mainFrame.Actions[690] = false; // Kein Buch mehr da zum aufheben
                     mainFrame.Clipset = false;
                     mainFrame.wave.PlayFile("sfx-dd/gdurjezu.wav");
@@ -961,7 +955,7 @@ public class Gang extends Mainloc {
                 mainFrame.invCursor = false;
                 nextActionID = 0;
                 // Buch raus aus Inventar
-                mainFrame.inventory.vInventory.removeElement(new Integer(55));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(55));
                 mainFrame.Actions[690] = true; // Buch da zum aufheben
                 mainFrame.wave.PlayFile("sfx-dd/gdurjeauf.wav");
                 mainFrame.Clipset = false;

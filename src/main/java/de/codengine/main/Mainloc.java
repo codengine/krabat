@@ -541,7 +541,7 @@ abstract public class Mainloc {
                 mainFrame.krabat.nAnimation = 146;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.invCursor = false;
-                mainFrame.inventory.vInventory.removeElement(new Integer(51));
+                mainFrame.inventory.vInventory.removeElement(Integer.valueOf(51));
                 mainFrame.Actions[680] = true;
                 nextActionID = 590;
                 break;
@@ -572,7 +572,7 @@ abstract public class Mainloc {
 
             case 555:
                 // Krabat liest Buch oder hat schon gelesen
-                if (mainFrame.Actions[955] == true) {
+                if (mainFrame.Actions[955]) {
                     KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00177"),
                             Start.stringManager.getTranslation("Main_Mainloc_00178"),
                             Start.stringManager.getTranslation("Main_Mainloc_00179"),
