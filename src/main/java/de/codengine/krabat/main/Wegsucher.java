@@ -91,8 +91,8 @@ public class Wegsucher {
     // Suche von Start nach Ziel starten
     public Vector<Integer> StartSuche(int st_pos, int end_pos) {
         endPos = end_pos;
-        vBesterWeg = new Vector<Integer>();
-        RekursivSuche(st_pos, new Vector<Integer>());
+        vBesterWeg = new Vector<>();
+        RekursivSuche(st_pos, new Vector<>());
         // System.out.println ("Bester Weg: ");
         // TraceWeg (vBesterWeg);
         return vBesterWeg;

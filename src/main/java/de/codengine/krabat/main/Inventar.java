@@ -136,7 +136,7 @@ public class Inventar extends Mainanim {
                 pLO.x + 180, pLO.y + 358);
         brPfeilr = new Borderrect(pLO.x + 249, pLO.y + 319,
                 pLO.x + 339, pLO.y + 358);
-        vInventory = new Vector<Integer>();
+        vInventory = new Vector<>();
         ResetInventory();
     }
 

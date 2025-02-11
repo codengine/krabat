@@ -78,7 +78,7 @@ public class Spielstand {
         // String File = "hry/krabat"+ (char) i +".hra";
         byte[] Feld;
         int Pos = 0;
-        Inventar = new Vector<Integer>();
+        Inventar = new Vector<>();
         Aktionen = new boolean[1002];
         Bild = new int[10593];
         int Checksumme = 0;

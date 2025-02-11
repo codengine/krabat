@@ -160,7 +160,7 @@ public class Start implements Runnable {
         // Variablen fuer Mausdoppelklick festlegen
         Mousepoint = new GenericPoint(0, 0);
 
-        Hashtable<String, String> defaults = new Hashtable<String, String>();
+        Hashtable<String, String> defaults = new Hashtable<>();
         defaults.put(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(currentLanguageIndex));
         defaults.put(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, "none");
         gameProperties = new GameProperties(storageManager, defaults);

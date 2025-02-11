@@ -183,7 +183,7 @@ public class JavaStorageManager extends GenericStorageManager {
 
     @Override
     public HashMap<String, String> loadTranslationsFile(String filename) {
-        HashMap<String, String> translations = new HashMap<String, String>();
+        HashMap<String, String> translations = new HashMap<>();
 
         File file = getTranslationPath(filename).toFile();
 

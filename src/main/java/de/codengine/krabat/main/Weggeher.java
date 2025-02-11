@@ -33,7 +33,7 @@ public class Weggeher {
 
     public Weggeher(Start caller) {
         mainFrame = caller;
-        vBorders = new Vector<Bordertrapez>();
+        vBorders = new Vector<>();
     }
 
     // normale Laufroutine ohne irgendwelche Extras
