@@ -49,8 +49,8 @@ public class Husa extends Mainanim {
 
         Gaense = new GenericImage[4][9];
         Grenze = gr;
-        Positx = (Grenze.ru_point.x + Grenze.lo_point.x) / 2;
-        Posity = (Grenze.ru_point.y + Grenze.lo_point.y) / 2;
+        Positx = (float) (Grenze.ru_point.x + Grenze.lo_point.x) / 2;
+        Posity = (float) (Grenze.ru_point.y + Grenze.lo_point.y) / 2;
 
         // System.out.println (Position);
 
@@ -175,7 +175,7 @@ public class Husa extends Mainanim {
             if (Richtung == 1) {
                 // System.out.println ("x + 1");
                 if (Positx - Grenze.lo_point.x > 1) {
-                    Positx -= 0.5;
+                    Positx -= 0.5F;
                 } else {
                     while (Aktion == 7 || Aktion == 8) {
                         GetNewAction();
@@ -184,7 +184,7 @@ public class Husa extends Mainanim {
             } else {
                 // System.out.println ("x - 1");
                 if (Grenze.ru_point.x - Positx > 1) {
-                    Positx += 0.5;
+                    Positx += 0.5F;
                 } else {
                     while (Aktion == 7 || Aktion == 8) {
                         GetNewAction();
@@ -195,10 +195,10 @@ public class Husa extends Mainanim {
             int zi = (int) Math.round(Math.random() * 100);
 
             if (zi < 15 && Posity - Grenze.lo_point.y > 1) {
-                Posity -= 0.5;
+                Posity -= 0.5F;
             }
             if (zi > 85 && Grenze.ru_point.y - Posity > 1) {
-                Posity += 0.5;
+                Posity += 0.5F;
             }
         }
 

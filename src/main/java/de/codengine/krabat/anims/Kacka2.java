@@ -129,12 +129,12 @@ public class Kacka2 extends Mainanim {
     public GenericRectangle kackaRect() {
         if (isFlying) {
             // Berechnung beim Fliegen
-            int x = (int) (Positx - Flugbreite / 2);
+            int x = (int) (Positx - (float) Flugbreite / 2);
             int y = (int) (Posity - Flughoehe + FLUGOFFSET);
             return new GenericRectangle(x, y, Flugbreite, Flughoehe);
         } else {
             // Berechnung beim Reden
-            int x = (int) (Positx - Redebreite / 2);
+            int x = (int) (Positx - (float) Redebreite / 2);
             int y = (int) (Posity - Redehoehe);
             // System.out.println ("Rectangle Ente 2 : " + x + " " + y + " " + Redebreite + " " + Redehoehe);
             return new GenericRectangle(x, y, Redebreite, Redehoehe);
@@ -155,11 +155,11 @@ public class Kacka2 extends Mainanim {
             }
 
             // Kacka zeichnen
-            offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe));
+            offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (float) Redebreite / 2), (int) (Posity - Redehoehe));
         } else {
             if (!isFlying) {
                 // wenn sie nicht mehr fliegt, dann nur noch so zeichnen
-                offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe));
+                offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - (float) Redebreite / 2), (int) (Posity - Redehoehe));
             } else {
                 // gleitet schon ?
                 if (isGleiting) {
@@ -178,11 +178,11 @@ public class Kacka2 extends Mainanim {
                             }
                         }
 
-                        offGraph.drawImage(kacka_lande[Land], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
+                        offGraph.drawImage(kacka_lande[Land], (int) (Positx - (float) Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                     }
                     // gleitet noch
                     else {
-                        offGraph.drawImage(kacka_flieg[1], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
+                        offGraph.drawImage(kacka_flieg[1], (int) (Positx - (float) Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                     }
                 } else {
                     // fliegt noch
@@ -202,7 +202,7 @@ public class Kacka2 extends Mainanim {
                             }
                         }
                     }
-                    offGraph.drawImage(kacka_flieg[Flieg], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
+                    offGraph.drawImage(kacka_flieg[Flieg], (int) (Positx - (float) Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                 }
 
                 // die Position muss noch weitergeschaltet werden

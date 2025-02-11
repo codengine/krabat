@@ -238,7 +238,7 @@ public class Plokarka extends Mainanim {
         int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
+        float horiz_dist = CHORIZ_DIST[anim_pos] - (float) scale / SLOWX;
         if (horiz_dist < 1) {
             horiz_dist = 1;
         }
@@ -264,7 +264,7 @@ public class Plokarka extends Mainanim {
         int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST - scale / SLOWY;
+        float vert_dist = CVERT_DIST - (float) scale / SLOWY;
         if (vert_dist < 1) {
             vert_dist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase

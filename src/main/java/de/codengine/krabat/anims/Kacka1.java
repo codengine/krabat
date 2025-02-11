@@ -97,8 +97,8 @@ public class Kacka1 extends Mainanim {
         if (zf > 80 && moveAllowed) {
             // nur, solange Endposition noch nicht erreicht ist
             if (Posit.x > Pstop.x) {
-                Posit.x -= Xoffset;
-                Posit.y -= Yoffset;
+                Posit.x -= (int) Xoffset;
+                Posit.y -= (int) Yoffset;
             }
         }
 

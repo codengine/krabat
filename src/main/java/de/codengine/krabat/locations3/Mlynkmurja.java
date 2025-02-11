@@ -75,7 +75,7 @@ public class Mlynkmurja extends Mainloc {
 
         nextActionID = 10;
 
-        float xtf = 900 - (640 - 110) * 4 / 7;
+        float xtf = 900 - (float) ((640 - 110) * 4) / 7;
         laterneAdd = (int) (xtf - 640);
 
         // System.out.println ("Laterne wird auf Pos. " + laterneAdd + " gezeichnet.");

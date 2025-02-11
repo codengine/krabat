@@ -83,7 +83,7 @@ public class Wudowa extends Mainanim {
     // Zeichne Mutter, wie sie dasteht oder spricht
     public void drawWudowa(GenericDrawingContext g, int TalkPerson, GenericPoint drawPoint, boolean isZoomed) {
         // Zooming-Variablen berechnen, wir wissen ja hier (besser) nicht, ob gezoomt wird (Hallo Compiler!)
-        float xGroesse = Breite - zoomHinten / 2;
+        float xGroesse = Breite - (float) zoomHinten / 2;
         float yGroesse = Breite - zoomHinten;
 
         float fBodyOffset = BODYOFFSET;

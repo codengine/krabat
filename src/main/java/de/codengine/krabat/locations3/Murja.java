@@ -183,7 +183,7 @@ public class Murja extends Mainloc {
 
         // Parallaxer fuer Laterne, muss immer Hintergrund loeschen ?????
         float xtf = mainFrame.scrollx;
-        xtf = 900 - (mainFrame.scrollx - 110) * 4 / scrollLaterne;
+        xtf = 900 - (float) ((mainFrame.scrollx - 110) * 4) / scrollLaterne;
         int laterneAdd = (int) xtf;
         g.setClip(laterneAdd - 10, 0, 190 + 20, 479);
         g.drawImage(backl, 0, 0);
