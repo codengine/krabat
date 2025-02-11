@@ -342,10 +342,10 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
@@ -367,10 +367,10 @@ public class Hojnt1 extends Mainloc {
             }
 
             // Zeichne Hintergrund neu
-            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // Parallaxer ausfuehren
@@ -380,10 +380,10 @@ public class Hojnt1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 325);
-            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // wenn Jaeger in Huette, dann Schatten wandern lassen
@@ -403,36 +403,36 @@ public class Hojnt1 extends Mainloc {
                 }
             }
             g.setClip(340, 246, 273, 83);
-            g.drawImage(backl, 0, 0, null);
+            g.drawImage(backl, 0, 0);
             if (isLeft) {
-                g.drawImage(leftschatten, xpos, 280, null);
+                g.drawImage(leftschatten, xpos, 280);
             } else {
-                g.drawImage(rightschatten, xpos, 280, null);
+                g.drawImage(rightschatten, xpos, 280);
             }
-            g.drawImage(!mainFrame.Actions[905] ? vorder2 : vorder, 340, 246, null);
+            g.drawImage(!mainFrame.Actions[905] ? vorder2 : vorder, 340, 246);
         }
 
         // wenn noetig, dann offene Tuer zeichnen
         if (isDoorOpen) {
             g.setClip(272, 265, 81, 80);
-            g.drawImage(offeneTuer, 272, 265, null);
+            g.drawImage(offeneTuer, 272, 265);
         }
 
         // kaputte Grube zeichnen, wenn noetig, sonst Strick einfuegen
         if (mainFrame.Actions[230]) {
             g.setClip(1092, 189, 71, 227);
-            g.drawImage(hojnt4, 1092, 189, null);
+            g.drawImage(hojnt4, 1092, 189);
         } else {
             g.setClip(1122, 191, 6, 106);
-            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-            g.drawImage(backr, 640, 0, null);
-            g.drawImage(seil, 1122, 191, null);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+            g.drawImage(backr, 640, 0);
+            g.drawImage(seil, 1122, 191);
         }
 
         // leeren Haken zeichnen, wenn noetig
         if (mainFrame.Actions[905]) {
             g.setClip(425, 257, 25, 25);
-            g.drawImage(vorder, 340, 246, null);
+            g.drawImage(vorder, 340, 246);
         }
 
         // Klingelanim der Hoelzer wenn noetig
@@ -449,12 +449,12 @@ public class Hojnt1 extends Mainloc {
             }
 
             g.setClip(608, 239, 25, 48);
-            g.drawImage(hoelzerback, 613, 263, null);
-            g.drawImage(hoelzer[HolzCount], 608, 239, null);
+            g.drawImage(hoelzerback, 613, 263);
+            g.drawImage(hoelzer[HolzCount], 608, 239);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {
@@ -511,7 +511,7 @@ public class Hojnt1 extends Mainloc {
 
             // Extrawurst - Vordergrund vor in die Grube reinfallen
             if (mainFrame.krabat.nAnimation == 145) {
-                g.drawImage(fallevor, 1098, 401, null);
+                g.drawImage(fallevor, 1098, 401);
             }
 
             // Cursorruecksetzung nach Animationsende
@@ -547,12 +547,12 @@ public class Hojnt1 extends Mainloc {
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (strauchRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(hojnt2, 143, 262, null);
+            g.drawImage(hojnt2, 143, 262);
         }
 
         // hinter Baum, wenn Verstecken aktiv
         if (baumActive) {
-            g.drawImage(baum, 652, 186, null);
+            g.drawImage(baum, 652, 186);
         }
 
         // sonst noch was zu tun ?
@@ -1123,7 +1123,7 @@ public class Hojnt1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

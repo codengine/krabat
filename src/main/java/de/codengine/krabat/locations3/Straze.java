@@ -170,19 +170,19 @@ public class Straze extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Wache 1 + 2 zeichnen
         g.setClip(pStraza1.x, pStraza1.y, Straza1.Breite, Straza1.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         straza1.drawStraza1(g, TalkPerson, pStraza1, straza1VersperrtWeg);
 
         // hier Wache2 (rechts)
         g.setClip(pStraza2.x, pStraza2.y, Straza2.Breite, Straza2.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         straza2.drawStraza2(g, TalkPerson, pStraza2, straza2VersperrtWeg);
 
         // Wache 2 entscheidet selber, wann "Stop" zurueckgenommen
@@ -494,7 +494,7 @@ public class Straze extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -343,41 +343,41 @@ public class Most2 extends Mainloc2 {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Pohonc Hintergrund loeschen
         if (showPohonc) {
             g.setClip(pohoncPoint.x, pohoncPoint.y, Kutser.Breite, Kutser.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Kutsche Hintergrund loeschen
         if (kutscheda) {
             g.setClip(kutsche.kutscheRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Schweine Hintergrund loeschen
         if (schweineDa) {
             g.setClip(schwein1.swinoRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             g.setClip(schwein2.swinoRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             g.setClip(schwein3.swinoRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Animation abspielen
         switchanim = !switchanim;
         if (switchanim) {
             g.setClip(0, 0, 644, 484);
-            g.drawImage(flussu[flusscount], 387, 380, null);
+            g.drawImage(flussu[flusscount], 387, 380);
             flusscount++;
             if (flusscount == 8) {
                 flusscount = 1;
@@ -385,7 +385,7 @@ public class Most2 extends Mainloc2 {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // hier ist der Sound...
         evalSound();
@@ -399,7 +399,7 @@ public class Most2 extends Mainloc2 {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
             if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -463,18 +463,18 @@ public class Most2 extends Mainloc2 {
             }
         }
         if (Berglauf) {
-            g.drawImage(wegstueck, 342, 270, null);
+            g.drawImage(wegstueck, 342, 270);
         }
 
         GenericPoint tem = mainFrame.krabat.GetKrabatPos();
 
         if (BergTrapez.PointInside(tem)) {
-            g.drawImage(gelaend, 379, 273, null);
+            g.drawImage(gelaend, 379, 273);
         }
 
         // Gras zeichnen, wenn K auf die Wiese geht
         if (zeigeGras) {
-            g.drawImage(gras, 188, 290, null);
+            g.drawImage(gras, 188, 290);
         }
 
         // altes Rect retten, wird nachfolgend veraendert
@@ -973,7 +973,7 @@ public class Most2 extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -334,7 +334,7 @@ public class Reh extends Mainanim {
             for (int j = 0; j < Wieviele; j++) {
                 if (Positionen[j].y == i) {
                     // dieses Reh zeichnen
-                    g.drawImage(reh[Animpos[j]], Positionen[j].x, Positionen[j].y - HOEHE, null);
+                    g.drawImage(reh[Animpos[j]], Positionen[j].x, Positionen[j].y - HOEHE);
 
                     // System.out.println ("Zeichne Reh!");
                 }

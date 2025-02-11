@@ -48,7 +48,7 @@ public class Jezba extends Mainloc2 {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Jezba(Start caller, int oldLocation) {
+    public Jezba(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -61,14 +61,14 @@ public class Jezba extends Mainloc2 {
         mainFrame.inventory.vInventory.addElement(12); // Feuersteine behaelt K
         mainFrame.inventory.vInventory.addElement(54); // "Dresdener Karte" der Lausitz
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
 
         nextActionID = 10;
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
     }
 
@@ -111,9 +111,9 @@ public class Jezba extends Mainloc2 {
 
         // Hintergrund und Krabat zeichnen
         if (!showSecondPicture) {
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         } else {
-            g.drawImage(zweitesBild, 0, 0, null);
+            g.drawImage(zweitesBild, 0, 0);
         }
 
         // sonst noch was zu tun ?
@@ -171,7 +171,7 @@ public class Jezba extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

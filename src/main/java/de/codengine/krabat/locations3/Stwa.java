@@ -102,10 +102,10 @@ public class Stwa extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -145,7 +145,7 @@ public class Stwa extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // hinter Loeffel (nur Clipping - Region wird neugezeichnet)
-        g.drawImage(lzica, 335, 427, null);
+        g.drawImage(lzica, 335, 427);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -353,7 +353,7 @@ public class Stwa extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

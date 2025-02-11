@@ -202,7 +202,7 @@ public class Husa extends Mainanim {
             }
         }
 
-        offGraph.drawImage(Gaense[Richtung][Aktion], (int) Positx, (int) Posity, null);
+        offGraph.drawImage(Gaense[Richtung][Aktion], (int) Positx, (int) Posity);
 
         EvalSound();
     }

@@ -85,7 +85,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public MlynkCornyCholmc1(Start caller, int oldLocation) {
+    public MlynkCornyCholmc1(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -116,7 +116,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         offImage = GenericToolkit.getDefaultToolkit().createImage(640, 90);
         offGraphics = offImage.getGraphics();
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
     }
 
@@ -126,7 +126,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
         setAnim = true;
     }
@@ -183,15 +183,15 @@ public class MlynkCornyCholmc1 extends Mainloc {
         FadeBackground();
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         g.setClip(vorderWaldRect);
-        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
 
         // Himmel - Fading ermoeglichen
         g.setClip(0, 0, 640, 80);
-        g.drawImage(offImage, 0, 0, null);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(offImage, 0, 0);
+        g.drawImage(background, 0, 0);
 
         // Mlynk Hintergrund loeschen
         if (muellerda) {
@@ -201,34 +201,34 @@ public class MlynkCornyCholmc1 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
         if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Voegel Hintergrund loeschen
         if (voegelda) {
             g.setClip(muellervogel.mlynkPtackRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             if (!muellerFliegtAllein) {
                 g.setClip(krabatvogel.ptack2Rect());
-                g.drawImage(background, 0, 0, null);
+                g.drawImage(background, 0, 0);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Mueller zeichnen
         if (muellerda) {
@@ -308,14 +308,14 @@ public class MlynkCornyCholmc1 extends Mainloc {
             if (muellerFliegtAllein) {
                 g.setClip(muellervogel.mlynkPtackRect());
                 voegelfertig = muellervogel.Flieg(g);
-                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
             } else {
                 g.setClip(muellervogel.mlynkPtackRect());
                 muellervogel.Flieg(g);
-                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
                 g.setClip(krabatvogel.ptack2Rect());
                 voegelfertig = krabatvogel.Flieg(g);
-                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+                g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
             }
         }
 
@@ -386,7 +386,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
@@ -406,12 +406,12 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             GenericAlphaComposite ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, 1);
             g2.setComposite(ac);
-            g2.drawImage(himmel1, 0, 0, null);
+            g2.drawImage(himmel1, 0, 0);
 
             float helper = Fadecount;
             ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, helper / 40);
             g2.setComposite(ac);
-            g2.drawImage(himmel2, 0, 0, null);
+            g2.drawImage(himmel2, 0, 0);
 
             if (Fadecount < 40) {
                 if (Fadecount == 1) {
@@ -427,12 +427,12 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             GenericAlphaComposite ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, 1);
             g2.setComposite(ac);
-            g2.drawImage(himmel1, 0, 0, null);
+            g2.drawImage(himmel1, 0, 0);
 
             float helper = Fadecount;
             ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, helper / 40);
             g2.setComposite(ac);
-            g2.drawImage(himmel2, 0, 0, null);
+            g2.drawImage(himmel2, 0, 0);
 
             if (Fadecount > 0) {
                 Fadecount--;

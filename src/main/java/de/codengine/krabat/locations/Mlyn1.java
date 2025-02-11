@@ -84,7 +84,7 @@ public class Mlyn1 extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Mlyn1(Start caller, int oldLocation) {
+    public Mlyn1(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -112,7 +112,7 @@ public class Mlyn1 extends Mainloc {
         muellermorph = new Bumm(mainFrame);
         krabatmorph = new Bumm(mainFrame);
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
 
         nextActionID = 10;
@@ -122,7 +122,7 @@ public class Mlyn1 extends Mainloc {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         // Grenzen setzen
         mainFrame.wegGeher.vBorders.removeAllElements();
         mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(154, 639, 242, 639, 442, 479));
@@ -235,7 +235,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Mueller Hintergrund loeschen
         if (showPersonen) {
@@ -245,33 +245,33 @@ public class Mlyn1 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Hintergrund fuer Tuer loeschen, wenn auf
         if (openDoor) {
             g.setClip(72, 325, 14, 70);
-            g.drawImage(offeneTuer, 72, 325, null);
+            g.drawImage(offeneTuer, 72, 325);
         }
 
         // Hintergrund Loeschen, wenn Voegel da (muss vor erster Anim erfolgen)
         if (showVoegel) {
             g.setClip(muellervogel.mlynkPtackRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             g.setClip(krabatvogel.ptack2Rect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Hintergrund fuer "Bumm" loeschen beim Mueller
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Hier Hintergrund fuer Krabat"bumm"
         if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Anim zeichnen, da stets im Hintergrund
@@ -284,7 +284,7 @@ public class Mlyn1 extends Mainloc {
                 }
             }
             g.setClip(120, 260, 135, 145);
-            g.drawImage(Rad[Radcount], 120, 260, null);
+            g.drawImage(Rad[Radcount], 120, 260);
 
             evalSound();
         }
@@ -317,7 +317,7 @@ public class Mlyn1 extends Mainloc {
             }
 
             if (openDoor) {
-                g.drawImage(foreground, 77, 306, null);
+                g.drawImage(foreground, 77, 306);
             }
 
             // redender Krabat
@@ -335,12 +335,12 @@ public class Mlyn1 extends Mainloc {
             }
 
             if (krabatBehindDoor) {
-                g.drawImage(foreground, 77, 306, null);
+                g.drawImage(foreground, 77, 306);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Voegel in Bild reinfliegen lassen
         if (showVoegel) {
@@ -428,7 +428,7 @@ public class Mlyn1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

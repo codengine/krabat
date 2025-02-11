@@ -172,11 +172,11 @@ public class Haska extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Seil uebermalen, falls noch keins da
         if (!mainFrame.Actions[519]) {
-            g.drawImage(ohneSeil, 53, 111, null);
+            g.drawImage(ohneSeil, 53, 111);
         }
 
         // Anim (Weintropfen) zeichnen, da stets im Hintergrund
@@ -191,14 +191,14 @@ public class Haska extends Mainloc {
             }
             g.setClip(447, 436, 11, 15);
             if (weinCount < 9) {
-                g.drawImage(tropfen[weinCount], 448, 437, null);
+                g.drawImage(tropfen[weinCount], 448, 437);
             } else {
-                g.drawImage(tropfen[0], 448, 437, null);
+                g.drawImage(tropfen[0], 448, 437);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -552,7 +552,7 @@ public class Haska extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

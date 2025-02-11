@@ -137,10 +137,10 @@ public class Oldmlynk extends Mainanim {
         if (fOnlyStandAndLookLeft) {
             if (mlnkLeftFrameCounter++ % 12 != 0) {
                 offGraph.drawImage(mlynk_left[0], pos.x, pos.y, Scalex,
-                        Scaleyhead + Scaleybody, null);
+                        Scaleyhead + Scaleybody);
             } else {
                 offGraph.drawImage(mlynk_left[1], pos.x, pos.y, Scalex,
-                        Scaleyhead + Scaleybody, null);
+                        Scaleyhead + Scaleybody);
             }
             return;
         }
@@ -169,9 +169,9 @@ public class Oldmlynk extends Mainanim {
                 }
             }
             offGraph.drawImage(mlynk_head[Head], pos.x, pos.y, Scalex,
-                    Scaleyhead, null);
+                    Scaleyhead);
             offGraph.drawImage(mlynk_body[Body], pos.x,
-                    pos.y + Scaleyhead, Scalex, Scaleybody, null);
+                    pos.y + Scaleyhead, Scalex, Scaleybody);
             return;
         }
 
@@ -200,9 +200,9 @@ public class Oldmlynk extends Mainanim {
                 }
             }
             offGraph.drawImage(mlynk_head[Head], pos.x, pos.y, Scalex,
-                    Scaleyhead, null);
+                    Scaleyhead);
             offGraph.drawImage(mlynk_body[Body], pos.x,
-                    pos.y + Scaleyhead, Scalex, Scaleybody, null);
+                    pos.y + Scaleyhead, Scalex, Scaleybody);
             return;
         }
 
@@ -223,9 +223,9 @@ public class Oldmlynk extends Mainanim {
             Body = 0;
 
             offGraph.drawImage(mlynk_head[Head], pos.x, pos.y, Scalex,
-                    Scaleyhead, null);
+                    Scaleyhead);
             offGraph.drawImage(mlynk_body[Body], pos.x,
-                    pos.y + Scaleyhead, Scalex, Scaleybody, null);
+                    pos.y + Scaleyhead, Scalex, Scaleybody);
             return;
         }
 
@@ -245,8 +245,8 @@ public class Oldmlynk extends Mainanim {
 
         Body = 0;
         offGraph.drawImage(mlynk_head[Head], pos.x, pos.y, Scalex,
-                Scaleyhead, null);
+                Scaleyhead);
         offGraph.drawImage(mlynk_body[Body], pos.x,
-                pos.y + Scaleyhead, Scalex, Scaleybody, null);
+                pos.y + Scaleyhead, Scalex, Scaleybody);
     }
 }

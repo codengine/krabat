@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 import java.util.Vector;
 
@@ -66,8 +65,6 @@ public class Inventar extends Mainanim {
     private final GenericPoint HotSpot;
 
     public boolean noBackgroundSound = false;       // Anzeige, ob Backgroundwavs deaktiviert werden sollen
-
-    private final GenericImageObserver observer = null;
 
     // Texte fuer Standardausreden
     private static final String[] HAusreden = {"Main_Inventar_00000", "Main_Inventar_00001", "Main_Inventar_00002", "Main_Inventar_00003"};
@@ -209,22 +206,22 @@ public class Inventar extends Mainanim {
 
             // Inventarhintergrund zeichnen und Clipping - Region einengen
             g.setClip(0, 0, 1284, 964);
-            g.drawImage(iInventar, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(iInventar, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
 
             // Menuitems zeichnen
             if (!secScreenActive) {
                 g.drawImage
-                        (inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly, null);
+                        (inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly);
             }
-            g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly, null);
+            g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
 
             // Gegenstand-Icons zeichnen
             int nAnzahl = vInventory.size();
             if (nAnzahl > 9) {
                 secScreenAvail = true;
                 if (!secScreenActive) {
-                    g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly, null);
+                    g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly);
                 }
             } else {
                 secScreenAvail = false;
@@ -240,7 +237,7 @@ public class Inventar extends Mainanim {
                 int iTemp = vInventory.elementAt(i);
                 GenericPoint pTemp = new GenericPoint(GetCurrentXY(i));
                 if (mainFrame.whatItem != iTemp || !mainFrame.invCursor) {
-                    g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollx, pTemp.y + 1 + mainFrame.scrolly, observer);
+                    g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollx, pTemp.y + 1 + mainFrame.scrolly);
                 }
             }
 
@@ -274,13 +271,13 @@ public class Inventar extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly, null);
+                g.drawImage(inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly, null);
+                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
                 break;
             case 3:
-                g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly, null);
+                g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Wrong inv - menuitem to clear!");
@@ -293,13 +290,13 @@ public class Inventar extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(activeMenu, pLO.x + 416 + mainFrame.scrollx, pLO.y + 333 + mainFrame.scrolly, observer);
+                g.drawImage(activeMenu, pLO.x + 416 + mainFrame.scrollx, pLO.y + 333 + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             case 3:
-                g.drawImage(Pfeilr, 280 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeilr, 280 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Wrong inventar-menuitem!!!");
@@ -883,7 +880,7 @@ public class Inventar extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         nFeldAktiv = -1;
         mainFrame.repaint();

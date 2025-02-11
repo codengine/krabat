@@ -85,10 +85,6 @@ public class Borderrect {
                 lo_point.y <= pTemp.y && pTemp.y <= ru_point.y;
     }
 
-    public GenericPoint getMiddlePoint() {
-        return new GenericPoint((lo_point.x + ru_point.x) / 2, (lo_point.y + ru_point.y) / 2);
-    }
-
     public boolean equals(Object o) {
         if (o == this) {
             return true;

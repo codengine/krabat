@@ -134,10 +134,10 @@ public class Wjerby1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -178,7 +178,7 @@ public class Wjerby1 extends Mainloc {
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
         if (weiden2Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(weiden2, 71, 187, null);
+            g.drawImage(weiden2, 71, 187);
         }
 
         // sonst noch was zu tun ?
@@ -435,7 +435,7 @@ public class Wjerby1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

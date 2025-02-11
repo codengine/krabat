@@ -250,7 +250,7 @@ public class Zawod1 extends Mainloc {
                 float fuckhelp = Help;
                 ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, fuckhelp / 40);
                 g2.setComposite(ac);
-                g2.drawImage(rapaki, 0, 0, null);
+                g2.drawImage(rapaki, 0, 0);
                 if (Help < 40) {
                     Help++;
                     mainFrame.fPlayAnim = true;
@@ -258,14 +258,14 @@ public class Zawod1 extends Mainloc {
                 } else {
                     nextActionID = 1;
                 }
-                g.drawImage(offImage, 205, 150, null);
+                g.drawImage(offImage, 205, 150);
             }
 
             // Voegel durch das Bild fliegen lassen
             if (IntroStep == 2) {
                 g.setClip(0, 0, 644, 484);
                 g.clearRect(0, 170, 640, 180);
-                g.drawImage(rapaki, 205, 150, null);
+                g.drawImage(rapaki, 205, 150);
                 vogel1.Flieg(g);
                 vogel2.Flieg(g);
                 boolean ende = vogel3.Flieg(g);
@@ -293,7 +293,7 @@ public class Zawod1 extends Mainloc {
                 float fhelp = Help;
                 ad = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, fhelp / 40);
                 g3.setComposite(ad);
-                g3.drawImage(rapaki, 0, 0, null);
+                g3.drawImage(rapaki, 0, 0);
                 if (Help > 0) {
                     Help--;
                     mainFrame.fPlayAnim = true;
@@ -301,7 +301,7 @@ public class Zawod1 extends Mainloc {
                 } else {
                     nextActionID = 3;
                 }
-                g.drawImage(offImage, 205, 150, null);
+                g.drawImage(offImage, 205, 150);
             }
         }
 
@@ -318,18 +318,18 @@ public class Zawod1 extends Mainloc {
 
             if (BildIndex == 1) {
                 rapaki = null;
-                g.drawImage(budysky, 0, 0, null);
-                g.drawImage(budysin, 0, 0, null);
+                g.drawImage(budysky, 0, 0);
+                g.drawImage(budysin, 0, 0);
             }
             if (BildIndex == 2) {
                 budysky = null;
                 budysin = null;
-                g.drawImage(intro1, 0, 0, null);
+                g.drawImage(intro1, 0, 0);
             }
 
             if (BildIndex == 3) {
                 intro1 = null;
-                g.drawImage(intro2, 0, 0, null);
+                g.drawImage(intro2, 0, 0);
             }
 
             // Textausgabe
@@ -474,7 +474,7 @@ public class Zawod1 extends Mainloc {
                             floetenIndex = 0;
                         }
                     }
-                    g.drawImage(floete[floetenIndex], 103, 316, null);
+                    g.drawImage(floete[floetenIndex], 103, 316);
                     // System.out.print (FloetenSpielZeit + " ");
                     break;
                 }  // ansonsten gehts jetzt mit diesen cases weiter (denken)
@@ -490,7 +490,7 @@ public class Zawod1 extends Mainloc {
                 } else {
                     zwinkerIndex = 0;
                 }
-                g.drawImage(zwinkerIndex == 0 ? sitz1 : sitz2, 103, 316, null);
+                g.drawImage(zwinkerIndex == 0 ? sitz1 : sitz2, 103, 316);
                 break;
 
             case 105: // Reden und aufstehen
@@ -559,7 +559,7 @@ public class Zawod1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Tasten - Auswertung

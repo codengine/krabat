@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Info extends Mainanim {
     private GenericImage Bild;
@@ -51,8 +50,6 @@ public class Info extends Mainanim {
     private boolean Paintcall = false;
 
     private int PictureCounter;
-
-    private final GenericImageObserver observer = null;
 
     // Hier die Texte
     private static final String[][][] BildText =
@@ -158,32 +155,32 @@ public class Info extends Mainanim {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1280, 480);
 
-            g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             switch (PictureCounter) {
                 case 0:  // Jan und Joerg
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly, null);
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
                     break;
                 case 1: // Daniel und Eddie
-                    g.drawImage(Daniel, 186 + pLO.x + mainFrame.scrollx, 87 + pLO.y + mainFrame.scrolly, null);
-                    g.drawImage(Eddie, 338 + pLO.x + mainFrame.scrollx, 40 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Daniel, 186 + pLO.x + mainFrame.scrollx, 87 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Eddie, 338 + pLO.x + mainFrame.scrollx, 40 + pLO.y + mainFrame.scrolly);
                     break;
                 case 2: // Hanus
-                    g.drawImage(Hanus, 314 + pLO.x + mainFrame.scrollx, 31 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Hanus, 314 + pLO.x + mainFrame.scrollx, 31 + pLO.y + mainFrame.scrolly);
                     break;
                 case 3: // Jan
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly);
                     break;
                 case 4: // Mic
-                    g.drawImage(Mic, 174 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Mic, 174 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
                     break;
                 case 5: // Jiri
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly, null);
+                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
                     break;
             }
 
             if (PictureCounter == 6) {
-                g.drawImage(Abdecken, pLO.x + mainFrame.scrollx + 380, pLO.y + mainFrame.scrolly + 307, null);
+                g.drawImage(Abdecken, pLO.x + mainFrame.scrollx + 380, pLO.y + mainFrame.scrolly + 307);
             }
 
             g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
@@ -206,7 +203,7 @@ public class Info extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly, observer);
+                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
                 break;
             case 2:
                 if (PictureCounter != 6) {
@@ -214,7 +211,7 @@ public class Info extends Mainanim {
                     g.setClip(422 + mainFrame.scrollx, 348 + mainFrame.scrolly, 100, 50);
                     // BUG!!!
                     //		    g.setClip (422, 348, 100, 50);
-                    g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, observer);
+                    g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                     g.setClip(txx);
                 }
                 break;
@@ -231,10 +228,10 @@ public class Info extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(Pfeilr, 423 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeilr, 423 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Falsches Menu-Item fuers Highlight!!!");
@@ -245,11 +242,10 @@ public class Info extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         mainFrame.repaint();
     }
-
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 

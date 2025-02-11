@@ -156,8 +156,8 @@ public class Dinglinger extends Mainanim {
             }
 
             // hier zeichnen
-            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
-            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y);
+            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
             return 0; // keine Verlaufsanzeige zurueckgeben
         }
@@ -178,8 +178,8 @@ public class Dinglinger extends Mainanim {
             Talkbody = 0;
 
             // hier zeichnen
-            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
-            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y);
+            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
             return 0; // keine Verlaufsanzeige zurueckgeben
         }
@@ -212,8 +212,8 @@ public class Dinglinger extends Mainanim {
             }
 
             // nun noch alles zeichnen
-            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
-            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y);
+            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
             // damit die Anim auch vorwaertsgeht...
             AnimCounter++;
@@ -238,8 +238,8 @@ public class Dinglinger extends Mainanim {
             }
 
             // hier zeichnen
-            offGraph.drawImage(dingl_sit_waithead[Wait], Posit.x, Posit.y, null);
-            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage(dingl_sit_waithead[Wait], Posit.x, Posit.y);
+            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
             // damit die Anim auch vorwaertsgeht...
             AnimCounter++;
@@ -264,8 +264,8 @@ public class Dinglinger extends Mainanim {
             }
 
             // nun noch alles zeichnen
-            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y, null);
-            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+            offGraph.drawImage(dingl_sit_talkhead[Talkhead], Posit.x, Posit.y);
+            offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
             AnimCounter++;
 
@@ -313,8 +313,8 @@ public class Dinglinger extends Mainanim {
         }
 
         // hier zeichnen
-        offGraph.drawImage(dingl_sit_waithead[Wait], Posit.x, Posit.y, null);
-        offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET, null);
+        offGraph.drawImage(dingl_sit_waithead[Wait], Posit.x, Posit.y);
+        offGraph.drawImage(dingl_sit_body[Talkbody], Posit.x, Posit.y + BODYOFFSET);
 
         return 0; // keine Verlaufsanzeige
     }

@@ -245,7 +245,7 @@ public class Wila1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Waschfrau Hintergrund loeschen
         if (showPlokarka) {
@@ -255,7 +255,7 @@ public class Wila1 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Hier Entscheidung, was wann gezeichnet wird
@@ -263,7 +263,7 @@ public class Wila1 extends Mainloc {
         // Offene Tuer  zeichnen
         if (showPlokarka) {
             g.setClip(294, 340, 52, 82);
-            g.drawImage(dooropen, 294, 340, null);
+            g.drawImage(dooropen, 294, 340);
         }
 
         // nur, wenn Leine nicht aufgehoben, muss gemalt werden
@@ -271,29 +271,29 @@ public class Wila1 extends Mainloc {
             if (!mainFrame.Actions[177]) {
                 // Waesche haengt normal da
                 g.setClip(370, 228, 83, 78);
-                g.drawImage(clean, 370, 228, null);
+                g.drawImage(clean, 370, 228);
             } else {
                 if (!mainFrame.Actions[175]) {
                     g.setClip(370, 227, 84, 80);
                     switch (waescheFehlt) {
                         case 0:
                             // schmutzige Waesche zeichnen, alle Stuecke dran
-                            g.drawImage(dirty, 370, 228, null);
+                            g.drawImage(dirty, 370, 228);
                             break;
 
                         case 1:
                             // 1. Stueck weg
-                            g.drawImage(onelost, 370, 227, null);
+                            g.drawImage(onelost, 370, 227);
                             break;
 
                         case 2:
                             // 2. Stueck weg
-                            g.drawImage(twolost, 370, 227, null);
+                            g.drawImage(twolost, 370, 227);
                             break;
 
                         case 3:
                             // 3. Stueck weg
-                            g.drawImage(threelost, 370, 227, null);
+                            g.drawImage(threelost, 370, 227);
                             break;
 
                         default:
@@ -303,13 +303,13 @@ public class Wila1 extends Mainloc {
                 } else {
                     // leere Leine zeichnen
                     g.setClip(370, 227, 83, 78);
-                    g.drawImage(leineleer, 370, 227, null);
+                    g.drawImage(leineleer, 370, 227);
                 }
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Waschfrau bewegen
         if (showPlokarka && !walkReady) {
@@ -349,12 +349,12 @@ public class Wila1 extends Mainloc {
             }
 
             // Tuer - Vordergrund ins Clipping - Rect zeichnen
-            g.drawImage(vdoor, 285, 330, null);
+            g.drawImage(vdoor, 285, 330);
         }
 
         // Hier Vordergrund fuer Waschfrau zeichnen
         if (waschClip) {
-            g.drawImage(foreground, 340, 292, null);
+            g.drawImage(foreground, 340, 292);
         }
 
         mainFrame.wegGeher.GeheWeg();
@@ -395,7 +395,7 @@ public class Wila1 extends Mainloc {
                 }
 
                 // Krabat zeichnen
-                g.drawImage(krabat_waesche[AnimPosition], hier.x, hier.y, weit, hoch, null);
+                g.drawImage(krabat_waesche[AnimPosition], hier.x, hier.y, weit, hoch);
 
                 // eal. Ob die Anim zu Ende ist
                 if (AnimCounter > 8) {
@@ -442,17 +442,17 @@ public class Wila1 extends Mainloc {
 
         // Hier Vordergruende waehrend der Anim zeichnen
         if (hide) {
-            g.drawImage(stom, 485, 143, null);
+            g.drawImage(stom, 485, 143);
         }
 
         // Hier Krabat - Vordergruende zeichnen
         if (dachRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(vdoor, 285, 330, null);
+            g.drawImage(vdoor, 285, 330);
         }
 
         // Hier Krabat - Vordergruende zeichnen
         if (stangeRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(stange, 444, 273, null);
+            g.drawImage(stange, 444, 273);
         }
 
         // sonst noch was zu tun ?
@@ -780,7 +780,7 @@ public class Wila1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

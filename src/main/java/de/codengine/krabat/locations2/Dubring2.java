@@ -33,7 +33,6 @@ public class Dubring2 extends Mainloc2 {
     private GenericImage backr;
     private GenericImage sky;
     private boolean setScroll = false;
-    private int scrollwert;
     private Mlynk2 mueller;
 
     private boolean muellerVisible = false;
@@ -46,7 +45,7 @@ public class Dubring2 extends Mainloc2 {
     private static final GenericPoint Pkrabat = new GenericPoint(28, 372);
     private static final GenericPoint mlynkFeet = new GenericPoint(104, 374);
 
-    public Dubring2(Start caller, int oldLocation) {
+    public Dubring2(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -110,7 +109,7 @@ public class Dubring2 extends Mainloc2 {
             mainFrame.Clipset = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollx = 0;
             }
             Cursorform = 200;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -120,9 +119,9 @@ public class Dubring2 extends Mainloc2 {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 2, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
@@ -131,16 +130,16 @@ public class Dubring2 extends Mainloc2 {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(sky, mainFrame.scrollx / 2, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         if (muellerVisible) {
@@ -151,7 +150,7 @@ public class Dubring2 extends Mainloc2 {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(backl, 0, 0, null);
+            g.drawImage(backl, 0, 0);
 
             // Redet er etwa gerade ??
             if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -229,7 +228,7 @@ public class Dubring2 extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

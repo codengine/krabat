@@ -54,7 +54,7 @@ public class Labyr122 extends Mainloc2 {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Labyr122(Start caller, int Richtung) {
+    public Labyr122(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -130,12 +130,12 @@ public class Labyr122 extends Mainloc2 {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         if (muellerVisible) {
@@ -173,12 +173,12 @@ public class Labyr122 extends Mainloc2 {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab122Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab122, 338, 192, null);
+            g.drawImage(lab122, 338, 192);
         }
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab123Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab123, 211, 354, null);
+            g.drawImage(lab123, 211, 354);
         }
 
         // sonst noch was zu tun ?
@@ -240,7 +240,7 @@ public class Labyr122 extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -192,25 +192,25 @@ public class Gang extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Buch zeichnen, wenn es auf der Kette liegt
         if (mainFrame.Actions[690]) {
             g.setClip(390, 280, 38, 76);
             // vorher die untere Kette zeichnen
-            g.drawImage(kette2, 390, 280, null);
-            g.drawImage(buch, 390, 280, null);
+            g.drawImage(kette2, 390, 280);
+            g.drawImage(buch, 390, 280);
 
             // wenn Tuer offen, dann diese offen zeichnen, und das muss sie ja sein ;-)
             g.setClip(1103, 246, 85, 109);
-            g.drawImage(tuer, 1103, 246, null);
+            g.drawImage(tuer, 1103, 246);
         }
 
         // hier die Kette unten zeichnen, wenn K dran zieht
         if (ziehtKrabatAnKette) {
             g.setClip(390, 280, 38, 76);
-            g.drawImage(kette2, 390, 280, null);
+            g.drawImage(kette2, 390, 280);
 
             --Counter;
             if (Counter < 1) {
@@ -219,7 +219,7 @@ public class Gang extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -260,12 +260,12 @@ public class Gang extends Mainloc {
 
         // hinter baumstamm (nur Clipping - Region wird neugezeichnet)
         if (rectStamm.IsPointInRect(pKrTemp)) {
-            g.drawImage(stamm, 977, 67, null);
+            g.drawImage(stamm, 977, 67);
         }
 
         // hier dureberzeichnen, wenn er den Speer holen soll
         if (mainFrame.Actions[690] && rectVorderTuer.IsPointInRect(pKrTemp)) {
-            g.drawImage(tuervorder, 1175, 249, null);
+            g.drawImage(tuervorder, 1175, 249);
         }
 
 
@@ -584,7 +584,7 @@ public class Gang extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

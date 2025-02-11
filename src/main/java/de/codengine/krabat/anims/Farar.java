@@ -122,7 +122,7 @@ public class Farar extends Mainanim {
             Body = 1;
         }
 
-        offGraph.drawImage(farar_head[Head], pos.x, pos.y, null);
-        offGraph.drawImage(farar_body[Body], pos.x, pos.y + 50, null);
+        offGraph.drawImage(farar_head[Head], pos.x, pos.y);
+        offGraph.drawImage(farar_body[Body], pos.x, pos.y + 50);
     }
 }    

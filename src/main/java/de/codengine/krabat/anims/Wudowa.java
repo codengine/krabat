@@ -110,11 +110,11 @@ public class Wudowa extends Mainanim {
 
             if (!isZoomed)  // ungezoomte Variante
             {
-                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, null);
-                g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
+                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y);
+                g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET);
             } else {
-                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
-                g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
+                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET);
+                g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse);
             }
             drawVorder(g);
         } else {
@@ -135,11 +135,11 @@ public class Wudowa extends Mainanim {
                 }
 
                 if (!isZoomed) {
-                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, null);
-                    g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
+                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y);
+                    g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET);
                 } else {
-                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
-                    g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
+                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET);
+                    g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse);
                 }
                 drawVorder(g);
             }
@@ -156,11 +156,11 @@ public class Wudowa extends Mainanim {
                 }
 
                 if (!isZoomed) {
-                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, null);
-                    g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + BODYOFFSET, null);
+                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y);
+                    g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + BODYOFFSET);
                 } else {
-                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
-                    g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
+                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET);
+                    g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse);
                 }
                 drawVorder(g);
             }
@@ -168,7 +168,7 @@ public class Wudowa extends Mainanim {
     }
 
     private void drawVorder(GenericDrawingContext g) {
-        g.drawImage(wokno1, 176, 295, null);
-        g.drawImage(wokno2, 531, 218, null);
+        g.drawImage(wokno1, 176, 295);
+        g.drawImage(wokno2, 531, 218);
     }
 }    

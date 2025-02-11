@@ -171,16 +171,16 @@ public class Cyrkej2 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Tuer zeichnen, wenn offen
         if (doorOpen) {
             g.setClip(314, 299, 25, 34);
-            g.drawImage(durje, 314, 299, null);
+            g.drawImage(durje, 314, 299);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Pfarrer zeichnen
         if (showPfarrer) {
@@ -189,7 +189,7 @@ public class Cyrkej2 extends Mainloc {
                 openDoorAnim = pfarrer.moveDoor(g);
             } else {
                 g.setClip(pfPoint.x, pfPoint.y, Fararhor.Breite, Fararhor.Hoehe);
-                g.drawImage(background, 0, 0, null);
+                g.drawImage(background, 0, 0);
                 pfarrer.drawFarar(g, TalkPerson, pfPoint);
             }
         }
@@ -488,7 +488,7 @@ public class Cyrkej2 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

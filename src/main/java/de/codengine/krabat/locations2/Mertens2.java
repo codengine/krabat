@@ -312,7 +312,7 @@ public class Mertens2 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         /*if (mainFrame.isAnim == true)
           {
@@ -344,25 +344,25 @@ public class Mertens2 extends Mainloc {
 
         // fuers Blinkern rein
         g.setClip(0, 157, 639, 276);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // erste Ente zeichnen, wenn da
         if (kacka1Visible) {
             g.setClip(kacka1.kackaRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             kacka1.drawKacka(g, TalkPerson, kacka1IsLeft, kacka1IsMoving);
         }
 
         // zweite Ente zeichnen, wenn da
         if (kacka2Visible) {
             g.setClip(kacka2.kackaRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             kacka2FliegtNoch = kacka2.drawKacka(g, TalkPerson);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Counter runterzaehlen fuer Wassermannerscheinen, nur so lange, bis Zeichnung gezeigt
         if (Counter > 0 && !mainFrame.Actions[302] && !noCounter) {
@@ -378,14 +378,14 @@ public class Mertens2 extends Mainloc {
         // Wassermann zeichnen beim Schwimmen und Reden
         if (isShowing) {
             g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             wmann.drawWmuz(g, TalkPerson, wmannRect.lo_point);
         }
 
         // Wassermann zeichnen beim Auf / Abtauchen
         if (isTauching) {
             g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             isTauching = wmann.Tauche(g, wmannRect.lo_point);
         }
 
@@ -656,9 +656,9 @@ public class Mertens2 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

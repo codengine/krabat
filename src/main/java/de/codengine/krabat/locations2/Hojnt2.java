@@ -233,10 +233,10 @@ public class Hojnt2 extends Mainloc2 {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
@@ -245,17 +245,17 @@ public class Hojnt2 extends Mainloc2 {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 325);
-            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
 
@@ -275,26 +275,26 @@ public class Hojnt2 extends Mainloc2 {
             }
         }
         g.setClip(340, 246, 273, 83);
-        g.drawImage(backl, 0, 0, null);
+        g.drawImage(backl, 0, 0);
         if (isLeft) {
-            g.drawImage(leftschatten, xpos, 280, null);
+            g.drawImage(leftschatten, xpos, 280);
         } else {
-            g.drawImage(rightschatten, xpos, 280, null);
+            g.drawImage(rightschatten, xpos, 280);
         }
-        g.drawImage(vorder, 340, 246, null);
+        g.drawImage(vorder, 340, 246);
 
         // kaputte Grube zeichnen, wenn noetig, sonst Strick einfuegen
         g.setClip(1122, 191, 6, 106);
-        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-        g.drawImage(backr, 640, 0, null);
-        g.drawImage(seil, 1122, 191, null);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+        g.drawImage(backr, 640, 0);
+        g.drawImage(seil, 1122, 191);
 
         // leeren Haken zeichnen, wenn noetig
         g.setClip(426, 258, 20, 19);
-        g.drawImage(hojnt3, 426, 258, null);
+        g.drawImage(hojnt3, 426, 258);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Mueller zeichnen
         if (muellerda) {
@@ -305,7 +305,7 @@ public class Hojnt2 extends Mainloc2 {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(backr, 640, 0);
 
             // Redet er etwa gerade ??
             if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -364,7 +364,7 @@ public class Hojnt2 extends Mainloc2 {
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (strauchRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(hojnt2, 143, 262, null);
+            g.drawImage(hojnt2, 143, 262);
         }
 
         // Ab hier muss Cliprect wieder gerettet werden
@@ -830,7 +830,7 @@ public class Hojnt2 extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

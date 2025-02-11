@@ -29,8 +29,8 @@ public abstract class GenericDrawingContext2D {
 
     public abstract void setColor(GenericColor color);
 
-    public abstract void drawImage(GenericImage himmel1, int i, int j, GenericImageObserver observer);
+    public abstract void drawImage(GenericImage genericImage, int x, int y);
 
-    public abstract void fillRect(int i, int j, int k, int l);
+    public abstract void fillRect(int x1, int y1, int width, int height);
 
 }

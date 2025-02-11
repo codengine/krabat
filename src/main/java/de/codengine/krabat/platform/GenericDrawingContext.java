@@ -27,11 +27,6 @@ public abstract class GenericDrawingContext {
 
     public abstract void setClip(int x, int y, int xd, int yd);
 
-    public abstract void drawImage(GenericImage genericImage, int left, int up,
-                                   int koerperbreite, int kopfhoehe, GenericImageObserver observer);
-
-    public abstract void drawImage(GenericImage genericImage, int x, int i, GenericImageObserver observer);
-
     public abstract GenericRectangle getClipBounds();
 
     public abstract void clearRect(int k, int j, int i, int k2);
@@ -43,8 +38,6 @@ public abstract class GenericDrawingContext {
     public abstract void drawRect(int i, int j, int k, int l);
 
     public abstract void drawLine(int i, int j, int k, int l);
-
-    public abstract void fillRect(int i, int j, int k, int l);
 
     public abstract void drawImage(GenericImage genericImage, int x, int y);
 

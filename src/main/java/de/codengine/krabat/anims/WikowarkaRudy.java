@@ -331,12 +331,6 @@ public class WikowarkaRudy extends Mainanim {
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
     }
 
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetZonaPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
-    }
-
     // Krabat - Animationen /////////////////////////////////////////////////////////////
 
     // je nach Laufrichtung Krabat zeichnen
@@ -443,7 +437,7 @@ public class WikowarkaRudy extends Mainanim {
 
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
-    public void talkZona(GenericDrawingContext offGraph, boolean isListening) {
+    public void talkZona(GenericDrawingContext offGraph) {
         // isListening wird nur bei "draw" ausgewertet
         // d.h. aktiviert -> Gucken gesperrt
         // deaktiviert -> Guckt nach Ende Talk wieder
@@ -469,23 +463,23 @@ public class WikowarkaRudy extends Mainanim {
         // alles "overriden" und die 2 Images fuer Give zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
         g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
-        g.drawImage(krabat_extra[0], lo.x, lo.y, null);
-        g.drawImage(hrajer_extra[0], lo.x, lo.y + CHEIGHT, null);
+        g.drawImage(krabat_extra[0], lo.x, lo.y);
+        g.drawImage(hrajer_extra[0], lo.x, lo.y + CHEIGHT);
     }
 
     public void giveMetal(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und Images fuer Give zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
         g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
-        g.drawImage(krabat_extra[1], lo.x, lo.y, null);
-        g.drawImage(hrajer_extra[1], lo.x, lo.y + CHEIGHT, null);
+        g.drawImage(krabat_extra[1], lo.x, lo.y);
+        g.drawImage(hrajer_extra[1], lo.x, lo.y + CHEIGHT);
     }
 
     public void Kiss(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und 1 Kiss-Image zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
         g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
-        g.drawImage(hrajer_extra[2], lo.x, lo.y, null);
+        g.drawImage(hrajer_extra[2], lo.x, lo.y);
     }
 
     // Hojnt beim Monolog (ohne Gestikulieren)
@@ -504,14 +498,14 @@ public class WikowarkaRudy extends Mainanim {
 
     // Zooming-Variablen berechnen
 
-    private int getLeftPos(int pox, int poy) {
+    private int getLeftPos(int pox) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         // int helper = getScale(pox, poy);
         return pox - CWIDTH / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         // int helper = getScale(pox, poy);
@@ -548,8 +542,8 @@ public class WikowarkaRudy extends Mainanim {
     // Clipping - Region vor Zeichnen von Krabat setzen
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int x = getLeftPos(xx);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -565,8 +559,8 @@ public class WikowarkaRudy extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect ZonaRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int x = getLeftPos((int) xps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = 2 * ((int) yps - y) + y;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -578,8 +572,8 @@ public class WikowarkaRudy extends Mainanim {
         KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int left = getLeftPos((int) xps);
+        int up = getUpPos((int) yps);
         // int scale = getScale   ( ((int) xps), ((int) yps) );
 
         // Figur zeichnen

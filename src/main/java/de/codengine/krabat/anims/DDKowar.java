@@ -161,9 +161,9 @@ public class DDKowar extends Mainanim {
 
             // Kowar zeichnen
             g.drawImage(kowar_talk_head[Talkhead], Posit.x + XTALKVERSCHIEB,
-                    Posit.y + YTALKVERSCHIEB, null);
+                    Posit.y + YTALKVERSCHIEB);
             g.drawImage(kowar_talk_body[Talkbody], Posit.x + XTALKVERSCHIEB,
-                    Posit.y + TALKBODYOFFSET + YTALKVERSCHIEB, null);
+                    Posit.y + TALKBODYOFFSET + YTALKVERSCHIEB);
         }
 
         // Schmied beim Arbeiten
@@ -181,8 +181,8 @@ public class DDKowar extends Mainanim {
             }
 
             // Kowar zeichnen
-            g.drawImage(kowar_work_head[Workhead], Posit.x, Posit.y, null);
-            g.drawImage(kowar_work_body[Workbody], Posit.x, Posit.y + WORKBODYOFFSET, null);
+            g.drawImage(kowar_work_head[Workhead], Posit.x, Posit.y);
+            g.drawImage(kowar_work_body[Workbody], Posit.x, Posit.y + WORKBODYOFFSET);
         }
     }
 }    

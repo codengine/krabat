@@ -60,7 +60,7 @@ abstract public class Mainloc2 extends Mainloc {
     abstract public void evalMouseEvent(GenericMouseEvent e);
 
     @Override
-    abstract public void evalMouseExitEvent(GenericMouseEvent e);
+    abstract public void evalMouseExitEvent();
 
     @Override
     abstract public void evalMouseMoveEvent(GenericPoint mousePoint);

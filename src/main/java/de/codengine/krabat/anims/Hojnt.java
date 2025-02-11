@@ -93,7 +93,6 @@ public class Hojnt extends Mainanim {
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     private int talkHead = 0;
     private int talkBody = 0;
@@ -341,7 +340,7 @@ public class Hojnt extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
@@ -367,7 +366,7 @@ public class Hojnt extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
         float vert_dist = CVERT_DIST - scale / SLOWY;
@@ -464,12 +463,6 @@ public class Hojnt extends Mainanim {
         yps = aim.y;
 
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetHojntPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -591,48 +584,24 @@ public class Hojnt extends Mainanim {
         }
     }
 
-    // Hojnt beim Monolog (ohne Gestikulieren)
-    public void describeHojnt(GenericDrawingContext offGraph) {
-        // Kopf veraendern
-        if (--Verhinderhead < 1) {
-            Verhinderhead = MAX_VERHINDERHEAD;
-            talkHead = (int) (Math.random() * 5.9);
-        }
-
-        // reden nach unten ist nur 1 Image, keine Wahl beim mit/ohne Haendefuchteln
-        if (GetFacing() == 6) {
-            MaleIhn(offGraph, krabat_down_talk[talkHead]);
-        } else {
-            // reden nach rechts
-            if (GetFacing() == 3) {
-                MaleIhn(offGraph, krabat_right_talk_head[talkHead], krabat_right_talk_body[0]);
-            }
-
-            // reden nach links
-            if (GetFacing() == 9) {
-                MaleIhn(offGraph, krabat_left_talk_head[talkHead], krabat_left_talk_body[0]);
-            }
-        }
-    }
-
     // Zooming-Variablen berechnen
 
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -648,7 +617,7 @@ public class Hojnt extends Mainanim {
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
@@ -662,7 +631,7 @@ public class Hojnt extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -679,7 +648,7 @@ public class Hojnt extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect HojntRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -692,8 +661,8 @@ public class Hojnt extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
 
@@ -707,8 +676,8 @@ public class Hojnt extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Scalings und Offset fuer gesplittetes Kopf/Koerperzeichnen
         float fScale = CHEIGHT - scale;
@@ -730,7 +699,7 @@ public class Hojnt extends Mainanim {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -740,7 +709,7 @@ public class Hojnt extends Mainanim {
 
 
         // Groesse und Position der Figur berechnen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
         float fBreite = 63.0f;

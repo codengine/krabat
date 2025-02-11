@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Hauptmenu extends Mainanim {
     private GenericImage Screen;
@@ -52,8 +51,6 @@ public class Hauptmenu extends Mainanim {
     private boolean Paintcall = false;
     public boolean MMactive;
     public boolean introcall = false;
-
-    private final GenericImageObserver observer = null;
 
     private final GameProperties gameProperties;
 
@@ -164,7 +161,7 @@ public class Hauptmenu extends Mainanim {
         if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 964);
-            g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -203,43 +200,43 @@ public class Hauptmenu extends Mainanim {
                 g.setClip(brNowostart.lo_point.x + mainFrame.scrollx, brNowostart.lo_point.y + mainFrame.scrolly,
                         brNowostart.ru_point.x - brNowostart.lo_point.x + mainFrame.scrollx,
                         brNowostart.ru_point.y - brNowostart.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 2: // Wocinic
                 g.setClip(brWocinic.lo_point.x + mainFrame.scrollx, brWocinic.lo_point.y + mainFrame.scrolly,
                         brWocinic.ru_point.x - brWocinic.lo_point.x + mainFrame.scrollx,
                         brWocinic.ru_point.y - brWocinic.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 3: // Skladzic
                 g.setClip(brSkladzic.lo_point.x + mainFrame.scrollx, brSkladzic.lo_point.y + mainFrame.scrolly,
                         brSkladzic.ru_point.x - brSkladzic.lo_point.x + mainFrame.scrollx,
                         brSkladzic.ru_point.y - brSkladzic.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 4: // Rec
                 g.setClip(brRec.lo_point.x + mainFrame.scrollx, brRec.lo_point.y + mainFrame.scrolly,
                         brRec.ru_point.x - brRec.lo_point.x + mainFrame.scrollx,
                         brRec.ru_point.y - brRec.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 6: // Info
                 g.setClip(brInfo.lo_point.x + mainFrame.scrollx, brInfo.lo_point.y + mainFrame.scrolly,
                         brInfo.ru_point.x - brInfo.lo_point.x + mainFrame.scrollx,
                         brInfo.ru_point.y - brInfo.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 7: // Dalehrac
                 g.setClip(brDalehrac.lo_point.x + mainFrame.scrollx, brDalehrac.lo_point.y + mainFrame.scrolly,
                         brDalehrac.ru_point.x - brDalehrac.lo_point.x + mainFrame.scrollx,
                         brDalehrac.ru_point.y - brDalehrac.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             case 8: // Konc
                 g.setClip(brKonc.lo_point.x + mainFrame.scrollx, brKonc.lo_point.y + mainFrame.scrolly,
                         brKonc.ru_point.x - brKonc.lo_point.x + mainFrame.scrollx,
                         brKonc.ru_point.y - brKonc.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+                g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Falsches Menu-Item zum abdunkeln!!!");
@@ -257,43 +254,43 @@ public class Hauptmenu extends Mainanim {
                 g.setClip(brNowostart.lo_point.x + mainFrame.scrollx, brNowostart.lo_point.y + mainFrame.scrolly,
                         brNowostart.ru_point.x - brNowostart.lo_point.x + mainFrame.scrollx,
                         brNowostart.ru_point.y - brNowostart.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Nowostart, brNowostart.lo_point.x + mainFrame.scrollx, brNowostart.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Nowostart, brNowostart.lo_point.x + mainFrame.scrollx, brNowostart.lo_point.y + mainFrame.scrolly);
                 break;
             case 2: // Wocinic
                 g.setClip(brWocinic.lo_point.x + mainFrame.scrollx, brWocinic.lo_point.y + mainFrame.scrolly,
                         brWocinic.ru_point.x - brWocinic.lo_point.x + mainFrame.scrollx,
                         brWocinic.ru_point.y - brWocinic.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Wocinic, brWocinic.lo_point.x + mainFrame.scrollx, brWocinic.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Wocinic, brWocinic.lo_point.x + mainFrame.scrollx, brWocinic.lo_point.y + mainFrame.scrolly);
                 break;
             case 3: // Skladzic
                 g.setClip(brSkladzic.lo_point.x + mainFrame.scrollx, brSkladzic.lo_point.y + mainFrame.scrolly,
                         brSkladzic.ru_point.x - brSkladzic.lo_point.x + mainFrame.scrollx,
                         brSkladzic.ru_point.y - brSkladzic.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Skladzic, brSkladzic.lo_point.x + mainFrame.scrollx, brSkladzic.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Skladzic, brSkladzic.lo_point.x + mainFrame.scrollx, brSkladzic.lo_point.y + mainFrame.scrolly);
                 break;
             case 4: // Rec
                 g.setClip(brRec.lo_point.x + mainFrame.scrollx, brRec.lo_point.y + mainFrame.scrolly,
                         brRec.ru_point.x - brRec.lo_point.x + mainFrame.scrollx,
                         brRec.ru_point.y - brRec.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Rec, brRec.lo_point.x + mainFrame.scrollx, brRec.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Rec, brRec.lo_point.x + mainFrame.scrollx, brRec.lo_point.y + mainFrame.scrolly);
                 break;
             case 6: // Info
                 g.setClip(brInfo.lo_point.x + mainFrame.scrollx, brInfo.lo_point.y + mainFrame.scrolly,
                         brInfo.ru_point.x - brInfo.lo_point.x + mainFrame.scrollx,
                         brInfo.ru_point.y - brInfo.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Info, brInfo.lo_point.x + mainFrame.scrollx, brInfo.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Info, brInfo.lo_point.x + mainFrame.scrollx, brInfo.lo_point.y + mainFrame.scrolly);
                 break;
             case 7: // Dalehrac
                 g.setClip(brDalehrac.lo_point.x + mainFrame.scrollx, brDalehrac.lo_point.y + mainFrame.scrolly,
                         brDalehrac.ru_point.x - brDalehrac.lo_point.x + mainFrame.scrollx,
                         brDalehrac.ru_point.y - brDalehrac.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Dalehrac, brDalehrac.lo_point.x + mainFrame.scrollx, brDalehrac.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Dalehrac, brDalehrac.lo_point.x + mainFrame.scrollx, brDalehrac.lo_point.y + mainFrame.scrolly);
                 break;
             case 8:
                 g.setClip(brKonc.lo_point.x + mainFrame.scrollx, brKonc.lo_point.y + mainFrame.scrolly,
                         brKonc.ru_point.x - brKonc.lo_point.x + mainFrame.scrollx,
                         brKonc.ru_point.y - brKonc.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Konc, brKonc.lo_point.x + mainFrame.scrollx, brKonc.lo_point.y + mainFrame.scrolly, observer);
+                g.drawImage(Konc, brKonc.lo_point.x + mainFrame.scrollx, brKonc.lo_point.y + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Falsches Menu-Item!!!");
@@ -449,11 +446,10 @@ public class Hauptmenu extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         mainFrame.repaint();
     }
-
 
     // Key - Auswertung dieser Location /////////////////////////////////
 

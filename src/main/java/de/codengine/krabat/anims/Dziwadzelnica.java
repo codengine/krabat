@@ -100,7 +100,7 @@ public class Dziwadzelnica extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(dziw_beat[Beat > 2 ? 0 : Beat], pos.x, pos.y, null);
+            offGraph.drawImage(dziw_beat[Beat > 2 ? 0 : Beat], pos.x, pos.y);
 
             // rueckgabe = false, wenn sie fertig gehauen hat
             return Beat <= 2;
@@ -125,7 +125,7 @@ public class Dziwadzelnica extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(dziw_talk[Scream], pos.x, pos.y, null);
+            offGraph.drawImage(dziw_talk[Scream], pos.x, pos.y);
 
             return true; // hier bedeutungslos
         }

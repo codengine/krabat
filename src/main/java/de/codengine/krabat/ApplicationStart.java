@@ -20,10 +20,7 @@
 
 package de.codengine.krabat;
 
-import de.codengine.krabat.main.GenericKeyEvent;
-import de.codengine.krabat.main.GenericMouseEvent;
-import de.codengine.krabat.main.GenericPoint;
-import de.codengine.krabat.main.GenericToolkit;
+import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.*;
 import de.codengine.krabat.platform.java.*;
 import de.codengine.krabat.sound.AbstractPlayer;
@@ -40,8 +37,6 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     private GenericCursor Cdown;
     private GenericCursor Cleft;
     private GenericCursor Cright;
-    private GenericCursor Cinventar;
-    private GenericCursor CHinventar;
     private GenericCursor Normal;
     private GenericCursor Kreuz;
     private GenericCursor Warten;
@@ -67,7 +62,6 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         Path workingDir = Paths.get(System.getProperty("user.dir"));
 
         GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, this);
-        GenericImageObserver observer = new JavaImageObserver(this);
         GenericContainer container = new JavaContainer(this);
         GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(workingDir.resolve("sound"));
         GenericToolkit.impl = new JavaToolkitImpl(this);
@@ -79,10 +73,10 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
                 true, resourcePath,
                 resourcePath);
 
-        appInstance.runGamePt1(defaultLanguageIndex, imageFetcher, observer, container, player, musicPlayer, storageManager);
+        appInstance.runGamePt1(defaultLanguageIndex, imageFetcher, container, player, musicPlayer, storageManager);
         GenericPoint pt = InitImages(imageFetcher);
         setIconImage(iconImage);
-        appInstance.runGamePt2(pt, new GenericCursor[]{Cup, Cdown, Cleft, Cright, Cinventar, CHinventar, Normal, Kreuz, Warten, Nix});
+        appInstance.runGamePt2(pt, new GenericCursor[]{Cup, Cdown, Cleft, Cright, Normal, Kreuz, Warten, Nix});
 
         Mousetemp = new Point(0, 0);
         dClick = false;
@@ -98,6 +92,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     // Programmstart
     public static void main(String[] args) {
+        Debug.setEnabled(false); //TODO: Make configurable
         int rec = 1;        // Default ist Obersorbisch (hs, ds oder de)
         boolean fullScreen = false;  // Default is Vollbild (im Fenster, wenn 2. Parameter = "win")
 
@@ -220,7 +215,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     public void mouseExited(MouseEvent e) {
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(e.getButton(), e.getModifiersEx(), point, false);
-        appInstance.mouseExited(ge);
+        appInstance.mouseExited();
     }
 
     @Override

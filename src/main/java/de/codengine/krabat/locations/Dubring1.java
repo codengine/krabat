@@ -172,9 +172,9 @@ public class Dubring1 extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 2, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
@@ -183,13 +183,13 @@ public class Dubring1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, mainFrame.scrollx / 2, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(sky, mainFrame.scrollx / 2, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabats neue Position festlegen wenn noetig
         mainFrame.wegGeher.GeheWeg();
@@ -233,7 +233,7 @@ public class Dubring1 extends Mainloc {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (trawaRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(vorder, 1061, 377, null);
+            g.drawImage(vorder, 1061, 377);
         }
 
         // Ab hier muss Cliprect wieder gerettet werden
@@ -775,7 +775,7 @@ public class Dubring1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

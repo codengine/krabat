@@ -249,19 +249,19 @@ public class Wotrow extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Mond zeichnen
-        g.drawImage(mond, 399, 26, null);
+        g.drawImage(mond, 399, 26);
 
         // Blinkern ermoeglichen
         // g.setClip (392, 246, 248, 107);
         g.setClip(0, 0, 644, 484);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // hier ist der Sound...
         evalSound();
@@ -305,7 +305,7 @@ public class Wotrow extends Mainloc {
         }
 
         // Vordergrund vor Krabat zeichnen
-        g.drawImage(foreground, 335, 64, null);
+        g.drawImage(foreground, 335, 64);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -607,7 +607,7 @@ public class Wotrow extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -117,7 +117,6 @@ public class Mlynk2 extends Mainanim {
     // beim Zoomen veraendern
     private static final int SLOWY = 10;  // dsgl. fuer y - Richtung                                      
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     private boolean istMuellerSchonTot = false;
 
@@ -306,7 +305,7 @@ public class Mlynk2 extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
         float vert_dist = CVERT_DIST - scale / SLOWY;
@@ -397,12 +396,6 @@ public class Mlynk2 extends Mainanim {
         yps = aim.y;
 
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetMlynkPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -637,7 +630,7 @@ public class Mlynk2 extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
 
-        float fScaleY = getScale(pox, poy) * scaleVerhaeltnisNormal;
+        float fScaleY = getScale(poy) * scaleVerhaeltnisNormal;
 
         return pox - (CWIDTH - (int) fScaleY) / 2;
     }
@@ -646,20 +639,20 @@ public class Mlynk2 extends Mainanim {
     private int getLeftPosWithKij(int pox, int poy) {
         // Skalierungsfaktor holen
 
-        float fScaleY = getScale(pox, poy) * scaleVerhaeltnisStock;
+        float fScaleY = getScale(poy) * scaleVerhaeltnisStock;
 
         return pox - (COFFSET_STOCK - (int) fScaleY) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -675,7 +668,7 @@ public class Mlynk2 extends Mainanim {
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
@@ -689,7 +682,7 @@ public class Mlynk2 extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -707,7 +700,7 @@ public class Mlynk2 extends Mainanim {
     private void KrabatClipWithKij(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPosWithKij(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -725,12 +718,12 @@ public class Mlynk2 extends Mainanim {
     private void KrabatClipWithKijAndersrum(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
 
-        float fScaleY = getScale(xx, yy) * scaleVerhaeltnisStock;
+        float fScaleY = getScale(yy) * scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
         int xd = x + CWIDTH_STOCK - (int) fScaleY;
@@ -747,7 +740,7 @@ public class Mlynk2 extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect MlynkRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -757,7 +750,7 @@ public class Mlynk2 extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet, wenn er den Stock hat !!!
     public Borderrect MlynkRectMitStock() {
         int x = getLeftPosWithKij((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -767,12 +760,12 @@ public class Mlynk2 extends Mainanim {
     public Borderrect MlynkRectMitStockAndersrum() {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
 
-        float fScaleY = getScale((int) xps, (int) yps) * scaleVerhaeltnisStock;
+        float fScaleY = getScale((int) yps) * scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
         int xd = x + CWIDTH_STOCK - (int) fScaleY;
@@ -788,8 +781,8 @@ public class Mlynk2 extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -805,42 +798,42 @@ public class Mlynk2 extends Mainanim {
         // Figur zeichnen
         switch (Richtung) {
             case 3: // nach rechts gehen
-                g.drawImage(krabat_stand_right_head[Zwinker], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_stand_right_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_stand_right_head[Zwinker], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_stand_right_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 6: // nach vorn gehen
-                g.drawImage(krabat_stand_front_head[Zwinker], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_stand_front_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_stand_front_head[Zwinker], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_stand_front_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 9: // nach links gehen
-                g.drawImage(krabat_stand_left_head[Zwinker], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_stand_left_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_stand_left_head[Zwinker], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_stand_left_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 12: // nach hinten gehen
-                g.drawImage(krabat_back[anim_pos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe, null);
+                g.drawImage(krabat_back[anim_pos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
                 break;
 
             case 20: // Karte geben, nach vorn schauen
-                g.drawImage(krabat_stand_front_head[Zwinker], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_gib_karte, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_stand_front_head[Zwinker], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_gib_karte, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 30: // nach rechts reden
-                g.drawImage(krabat_talk_right_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_talk_right_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_talk_right_head[Head], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_talk_right_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 60: // nach vorn reden
-                g.drawImage(krabat_talk_front_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_talk_front_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_talk_front_head[Head], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_talk_front_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             case 90: // nach links reden
-                g.drawImage(krabat_talk_left_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_talk_left_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                g.drawImage(krabat_talk_left_head[Head], left, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_talk_left_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
 
             default:
@@ -856,8 +849,8 @@ public class Mlynk2 extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPosWithKij((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -879,13 +872,13 @@ public class Mlynk2 extends Mainanim {
         // Figur zeichnen
         switch (Richtung) {
             case 150: // nach links schauen mit erhobenem Stock
-                g.drawImage(krabat_stand_left_head[Zwinker], left + OffsetMitStock, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_hat_stock, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe, null);
+                g.drawImage(krabat_stand_left_head[Zwinker], left + OffsetMitStock, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_hat_stock, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe);
                 break;
 
             case 180: // nach links reden mit erhobenem Stock
-                g.drawImage(krabat_talk_left_head[Head], left + OffsetMitStock, up, Koerperbreite, Kopfhoehe, null);
-                g.drawImage(krabat_hat_stock, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe, null);
+                g.drawImage(krabat_talk_left_head[Head], left + OffsetMitStock, up, Koerperbreite, Kopfhoehe);
+                g.drawImage(krabat_hat_stock, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe);
                 break;
 
             default:
@@ -901,8 +894,8 @@ public class Mlynk2 extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -922,12 +915,12 @@ public class Mlynk2 extends Mainanim {
         // System.out.println ("Zoomfaktor : " + scale + " Offset : " + OffsetMitStock);
 
         // Figur zeichnen
-        g.drawImage(krabat_talk_right_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
+        g.drawImage(krabat_talk_right_head[Head], left, up, Koerperbreite, Kopfhoehe);
 
         if (Body == 3) {
-            g.drawImage(krabat_hat_stock_andersrum, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe, null);
+            g.drawImage(krabat_hat_stock_andersrum, left, up + Kopfhoehe, KoerperbreiteMitStock, Koerperhoehe);
         } else {
-            g.drawImage(krabat_talk_right_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+            g.drawImage(krabat_talk_right_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
         }
 
     }

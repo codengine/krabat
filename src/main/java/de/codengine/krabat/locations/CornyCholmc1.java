@@ -166,13 +166,13 @@ public class CornyCholmc1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(himmel, 0, 0, null);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(himmel, 0, 0);
+        g.drawImage(background, 0, 0);
         g.setClip(vorderWaldRect);
-        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -488,9 +488,9 @@ public class CornyCholmc1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

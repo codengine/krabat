@@ -101,7 +101,7 @@ public class Karta extends Mainanim {
         // Karte - Background zeichnen
         if (!mainFrame.Clipset) {
             g.setClip(0, 0, 1280, 480);
-            g.drawImage(karta, mainFrame.scrollx + Plo.x, mainFrame.scrolly + Plo.y, null);
+            g.drawImage(karta, mainFrame.scrollx + Plo.x, mainFrame.scrolly + Plo.y);
             Cursorform = 200;
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -115,7 +115,7 @@ public class Karta extends Mainanim {
         oldort = newort;
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         outputText = "";
         mainFrame.repaint();
     }

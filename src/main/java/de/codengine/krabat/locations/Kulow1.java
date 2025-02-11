@@ -248,9 +248,9 @@ public class Kulow1 extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(himmel, mainFrame.scrollx / 6, 0, null);
-        g.drawImage(backleft, 0, 0, null);
-        g.drawImage(backright, 640, 0, null);
+        g.drawImage(himmel, mainFrame.scrollx / 6, 0);
+        g.drawImage(backleft, 0, 0);
+        g.drawImage(backright, 640, 0);
 
         // Parallax - Scrolling ausfuehren
         if (mainFrame.isScrolling) {
@@ -259,9 +259,9 @@ public class Kulow1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 285);
-            g.drawImage(himmel, mainFrame.scrollx / 6, 0, null);
-            g.drawImage(backleft, 0, 0, null);
-            g.drawImage(backright, 640, 0, null);
+            g.drawImage(himmel, mainFrame.scrollx / 6, 0);
+            g.drawImage(backleft, 0, 0);
+            g.drawImage(backright, 640, 0);
         }
 
         // Parallaxer fuer Saeule, muss immer Hintergrund loeschen ?????
@@ -269,22 +269,22 @@ public class Kulow1 extends Mainloc {
         xtf = 1180 - mainFrame.scrollx * 3 / 8;
         int xt = (int) xtf;
         g.setClip(xt - 2, 208, xt + 90, 479);
-        g.drawImage(backright, 640, 0, null);
+        g.drawImage(backright, 640, 0);
 
         // Hintergrund fuer Wikowar loeschen -> sonst loescht der Krabat
         g.setClip(PwikZita.x, PwikZita.y, WikowarZita.Breite, WikowarZita.Hoehe);
-        g.drawImage(backleft, 0, 0, null);
+        g.drawImage(backleft, 0, 0);
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Andere Personen zeichnen
 
         // Rybowar
         g.setClip(rybowarUp.x, rybowarUp.y, WikowarRybow.Breite + 50, WikowarRybow.Hoehe);
-        g.drawImage(backright, 640, 0, null);
+        g.drawImage(backright, 640, 0);
         if (!AnimLocked) {
             fischer.drawRybowar(g, TalkPerson, AnimTalkPerson, rybowarUp,
                     rybowarhoertzu, rybowargibtkrosik, rybowarsuchtzrawc,
@@ -302,7 +302,7 @@ public class Kulow1 extends Mainloc {
         // Wenn Holzfisch noch da, dann auch zeichnen
         if (!mainFrame.Actions[913]) {
             g.setClip(721, 338, 62, 34);
-            g.drawImage(ryba, 721, 338, null);
+            g.drawImage(ryba, 721, 338);
         }
 
         // Krabats neue Position festlegen wenn noetig
@@ -347,7 +347,7 @@ public class Kulow1 extends Mainloc {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (kulow2Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(kulow2, 338, 321, null);
+            g.drawImage(kulow2, 338, 321);
         }
 
         // Ab hier muss Cliprect wieder gerettet werden
@@ -366,7 +366,7 @@ public class Kulow1 extends Mainloc {
             GenericRectangle may;
             may = g.getClipBounds();
             g.setClip(xt - 2, 208, xt + 90, 479);
-            g.drawImage(saeule, xt, 208, null);
+            g.drawImage(saeule, xt, 208);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
@@ -908,9 +908,9 @@ public class Kulow1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

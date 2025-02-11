@@ -75,18 +75,6 @@ abstract public class Mainloc {
     private static final String[] NAAus = {Start.stringManager.getTranslation("Main_Mainloc_00039"), Start.stringManager.getTranslation("Main_Mainloc_00040"), Start.stringManager.getTranslation("Main_Mainloc_00041")};
     private static final int AAUS_KONSTANTE = 2;
 
-    // 2 mit maennlicher Dominanz
-    private static final String[] HMMAus = {Start.stringManager.getTranslation("Main_Mainloc_00042"), Start.stringManager.getTranslation("Main_Mainloc_00043"), Start.stringManager.getTranslation("Main_Mainloc_00044")};
-    private static final String[] DMMAus = {Start.stringManager.getTranslation("Main_Mainloc_00045"), Start.stringManager.getTranslation("Main_Mainloc_00046"), Start.stringManager.getTranslation("Main_Mainloc_00047")};
-    private static final String[] NMMAus = {Start.stringManager.getTranslation("Main_Mainloc_00048"), Start.stringManager.getTranslation("Main_Mainloc_00049"), Start.stringManager.getTranslation("Main_Mainloc_00050")};
-    private static final int MMAUS_KONSTANTE = 2;
-
-    // 2 weibliche
-    private static final String[] HWWAus = {Start.stringManager.getTranslation("Main_Mainloc_00051"), Start.stringManager.getTranslation("Main_Mainloc_00052"), Start.stringManager.getTranslation("Main_Mainloc_00053")};
-    private static final String[] DWWAus = {Start.stringManager.getTranslation("Main_Mainloc_00054"), Start.stringManager.getTranslation("Main_Mainloc_00055"), Start.stringManager.getTranslation("Main_Mainloc_00056")};
-    private static final String[] NWWAus = {Start.stringManager.getTranslation("Main_Mainloc_00057"), Start.stringManager.getTranslation("Main_Mainloc_00058"), Start.stringManager.getTranslation("Main_Mainloc_00059")};
-    private static final int WWAUS_KONSTANTE = 2;
-
     // Hier das Farbenarray nach Talkpersons geordnet
     public static final int[] FarbenArray = {0x00000000, 0x00000001, 0x00000000, 0x00000001, 0x00000000,
             0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
@@ -712,18 +700,6 @@ abstract public class Mainloc {
         KrabatSagt(HAAus[zuffAusrede], DAAus[zuffAusrede], NAAus[zuffAusrede], Facing, 3, 0, 0);
     }
 
-    // Dual fuer mindestens 1 maennliche Person
-    public void MMPersonAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * MMAUS_KONSTANTE);
-        KrabatSagt(HMMAus[zuffAusrede], DMMAus[zuffAusrede], NMMAus[zuffAusrede], Facing, 3, 0, 0);
-    }
-
-    // Dual fuer 2 weibliche Personen  				
-    public void WWPersonAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * WWAUS_KONSTANTE);
-        KrabatSagt(HWWAus[zuffAusrede], DWWAus[zuffAusrede], NWWAus[zuffAusrede], Facing, 3, 0, 0);
-    }
-
     // allgemeine Methoden, die den Quelltext deutlich reduzieren und Fehlern vorbeugen
 
     // Krabat spricht, entweder allein oder zu jemandem
@@ -843,7 +819,7 @@ abstract public class Mainloc {
 
     abstract public void evalMouseEvent(GenericMouseEvent e);
 
-    abstract public void evalMouseExitEvent(GenericMouseEvent e);
+    abstract public void evalMouseExitEvent();
 
     abstract public void evalMouseMoveEvent(GenericPoint mousePoint);
 

@@ -488,7 +488,7 @@ public class KrabatNormal extends Krabat {
 
         // Verschieberoutine, die fuer normalen Krabat und Krabat in sl. drasta verwendet wird
         // Skalierungsfaktor holen
-        float scale = getScale((int) xps, (int) yps);
+        float scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         // muss nach Richtung getrennt vorgenommen werden
@@ -539,7 +539,7 @@ public class KrabatNormal extends Krabat {
 
         // Verschieberoutine, die fuer normalen Krabat und Krabat in sl. drasta verwendet wird
         // Skalierungsfaktor holen
-        float scale = getScale((int) xps, (int) yps);
+        float scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y - Richtung
         // muss nach Richtung getrennt vorgenommen werden
@@ -629,7 +629,7 @@ public class KrabatNormal extends Krabat {
         Tdirection_y = yricht;
 
         // Hier Ueberpruefen, ob es sich auch lohnt, zuerst Scaling holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Lohnen-Variablen dem Scaling anpassen
         int lohnenx = (int) ((float) CLOHNENX * (xFaktor * scale + 1.0f));
@@ -982,7 +982,8 @@ public class KrabatNormal extends Krabat {
                 break;
 
             case 158: // lies aus Koraktor
-                LiesKoraktorOhneReden(g, nAnimStep++);
+                LiesKoraktorOhneReden(g);
+                nAnimStep++;
                 break;
 
             // Hier kommt eine grosse Kollektion von statisch angezeigten Bildern
@@ -1169,8 +1170,8 @@ public class KrabatNormal extends Krabat {
         // Links - oben - Korrdinaten ermitteln
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         float fHeight = CHEIGHT;
 
@@ -1207,12 +1208,12 @@ public class KrabatNormal extends Krabat {
         // je nach Richtung malen
         switch (GetFacing()) {
             case 3: // von rechts
-                offGraph.drawImage(krabat_right_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_right_liesbuch_body, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_right_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_right_liesbuch_body, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
             case 9: // von links
-                offGraph.drawImage(krabat_left_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_left_liesbuch_body, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_left_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_left_liesbuch_body, left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
         }
 
@@ -1223,8 +1224,8 @@ public class KrabatNormal extends Krabat {
         // Groesse und Position der Figur berechnen
         // Update SS: 10 Pixel Offset, da Krabat im Bild weiter links steht
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         float fHeight = CHEIGHT;
 
@@ -1252,17 +1253,17 @@ public class KrabatNormal extends Krabat {
 
         int unten = tCount > 10 ? 0 : 1;
 
-        offGraph.drawImage(krabat_right_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe, null);
-        offGraph.drawImage(krabat_lies_koraktor[unten], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+        offGraph.drawImage(krabat_right_liesbuch_head[LiesHead], left, up, Koerperbreite, Kopfhoehe);
+        offGraph.drawImage(krabat_lies_koraktor[unten], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
     }
 
     // Krabat liest aus dem Buch
-    private void LiesKoraktorOhneReden(GenericDrawingContext offGraph, int tCount) {
+    private void LiesKoraktorOhneReden(GenericDrawingContext offGraph) {
         // Groesse und Position der Figur berechnen
         // Update SS: 10 Pixel Offset, da Krabat im Bild weiter links steht
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         float fHeight = CHEIGHT;
 
@@ -1282,8 +1283,8 @@ public class KrabatNormal extends Krabat {
         // Clipping-Region setzen
         offGraph.setClip(left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
 
-        offGraph.drawImage(krabat_right_liesbuch_head[0], left, up, Koerperbreite, Kopfhoehe, null);
-        offGraph.drawImage(krabat_lies_koraktor[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+        offGraph.drawImage(krabat_right_liesbuch_head[0], left, up, Koerperbreite, Kopfhoehe);
+        offGraph.drawImage(krabat_lies_koraktor[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
     }
 
     // Zeichne Krabat beim Sprechen mit anderen Personen
@@ -1335,8 +1336,8 @@ public class KrabatNormal extends Krabat {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         float fHeight = CHEIGHT;
 
@@ -1347,20 +1348,20 @@ public class KrabatNormal extends Krabat {
         // je nach Richtung malen
         switch (GetFacing()) {
             case 3: // von rechts
-                offGraph.drawImage(krabat_right_talk_head[TalkHead], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_right_talk_body[TalkBody], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_right_talk_head[TalkHead], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_right_talk_body[TalkBody], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
             case 6: // von vorn
-                offGraph.drawImage(krabat_down_talk_head[TalkHeadDown], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_down_talk_body[TalkBodyDown], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_down_talk_head[TalkHeadDown], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_down_talk_body[TalkBodyDown], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
             case 9: // von links
-                offGraph.drawImage(krabat_left_talk_head[TalkHead], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_left_talk_body[TalkBody], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_left_talk_head[TalkHead], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_left_talk_body[TalkBody], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
             case 12: // von hinten
-                offGraph.drawImage(krabat_up_talk_head[TalkHeadUp], left, up, Koerperbreite, Kopfhoehe, null);
-                offGraph.drawImage(krabat_up_talk_body[TalkBodyUp], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+                offGraph.drawImage(krabat_up_talk_head[TalkHeadUp], left, up, Koerperbreite, Kopfhoehe);
+                offGraph.drawImage(krabat_up_talk_body[TalkBodyUp], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
                 break;
         }
     }
@@ -1370,21 +1371,20 @@ public class KrabatNormal extends Krabat {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
     // wird nur bei Default angesprungen
-    @Override
-    public int getScale(int pox, int poy) {
+    private int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -1414,7 +1414,7 @@ public class KrabatNormal extends Krabat {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -1432,7 +1432,7 @@ public class KrabatNormal extends Krabat {
     private void KrabatClipExtra(GenericDrawingContext g, int xx, int yy, boolean isLeft) {
         // Links - oben - Korrdinaten ermitteln, wie sie eigentlich waeren
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -1464,7 +1464,7 @@ public class KrabatNormal extends Krabat {
     @Override
     public Borderrect KrabatRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -1477,8 +1477,8 @@ public class KrabatNormal extends Krabat {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTH - scale / 2, CHEIGHT - scale);
@@ -1490,8 +1490,8 @@ public class KrabatNormal extends Krabat {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier muss GenericImage noch verschoben werden, da es breiter ist und K ganz rechts steht
         left -= (CHEIGHT - scale) / 2;
@@ -1506,8 +1506,8 @@ public class KrabatNormal extends Krabat {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Figur zeichnen, in x - und y-Richtung gleichgross
         g.drawImage(ktemp, left, up, CHEIGHT - scale, CHEIGHT - scale);

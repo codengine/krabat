@@ -24,9 +24,9 @@ public abstract class GenericImage {
 
     public static final int SCALE_DEFAULT = 1;
 
-    public abstract int getHeight(GenericImageObserver object);
+    public abstract int getHeight();
 
-    public abstract int getWidth(GenericImageObserver object);
+    public abstract int getWidth();
 
     public abstract GenericImageProducer getSource();
 

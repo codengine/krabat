@@ -125,13 +125,6 @@ public class Jitk1 extends Mainloc {
                 break;
         }
         mainFrame.komme_von_karte = false;
-
-        mainFrame.clearHotspots();
-        mainFrame.addHotspot(rechterAusgang);
-        mainFrame.addHotspot(linkerAusgang);
-        mainFrame.addHotspot(untererAusgang);
-        mainFrame.addHotspot(brEingang);
-        mainFrame.addHotspot(brWagen);
     }
 
     // Bilder vorbereiten
@@ -163,10 +156,10 @@ public class Jitk1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabat einen Schritt gehen lassen
         mainFrame.wegGeher.GeheWeg();
@@ -506,7 +499,7 @@ public class Jitk1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -155,11 +155,11 @@ public class Kacka2 extends Mainanim {
             }
 
             // Kacka zeichnen
-            offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe), null);
+            offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe));
         } else {
             if (!isFlying) {
                 // wenn sie nicht mehr fliegt, dann nur noch so zeichnen
-                offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe), null);
+                offGraph.drawImage(kacka_rede[Schnatter], (int) (Positx - Redebreite / 2), (int) (Posity - Redehoehe));
             } else {
                 // gleitet schon ?
                 if (isGleiting) {
@@ -178,11 +178,11 @@ public class Kacka2 extends Mainanim {
                             }
                         }
 
-                        offGraph.drawImage(kacka_lande[Land], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET), null);
+                        offGraph.drawImage(kacka_lande[Land], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                     }
                     // gleitet noch
                     else {
-                        offGraph.drawImage(kacka_flieg[1], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET), null);
+                        offGraph.drawImage(kacka_flieg[1], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                     }
                 } else {
                     // fliegt noch
@@ -202,7 +202,7 @@ public class Kacka2 extends Mainanim {
                             }
                         }
                     }
-                    offGraph.drawImage(kacka_flieg[Flieg], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET), null);
+                    offGraph.drawImage(kacka_flieg[Flieg], (int) (Positx - Flugbreite / 2), (int) (Posity - Flughoehe + FLUGOFFSET));
                 }
 
                 // die Position muss noch weitergeschaltet werden

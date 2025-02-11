@@ -157,8 +157,8 @@ public class BurRalbicy extends Mainanim {
             }
 
             // Beim Reden wird anderer Bur gezeichnet als beim Zuhoeren und Arbeiten
-            g.drawImage(bur_head[Head], 60, 227, null);
-            g.drawImage(bur_body[Body], 60, 241, null);
+            g.drawImage(bur_head[Head], 60, 227);
+            g.drawImage(bur_body[Body], 60, 241);
         } else {
             // Arbeiten oder zuhoeren
 
@@ -256,7 +256,7 @@ public class BurRalbicy extends Mainanim {
             }
             // System.out.println ("Phase " + Work);
 
-            g.drawImage(bur_work[Work], Work == 2 ? 62 : 60, Work == 2 ? 223 : 227, null);
+            g.drawImage(bur_work[Work], Work == 2 ? 62 : 60, Work == 2 ? 223 : 227);
         }
     }
 

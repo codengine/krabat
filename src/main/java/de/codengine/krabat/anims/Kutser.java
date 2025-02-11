@@ -79,7 +79,7 @@ public class Kutser extends Mainanim {
                 Talk = (int) (Math.random() * 6.9);
             }
 
-            g.drawImage(kutser_talk[Talk], Posit.x, Posit.y, null);
+            g.drawImage(kutser_talk[Talk], Posit.x, Posit.y);
         } else {
             // hier unterscheiden, ob er zuhoert oder nicht
             int zf = (int) (Math.random() * 50);
@@ -92,7 +92,7 @@ public class Kutser extends Mainanim {
                     Listen = 1;
                 }
 
-                g.drawImage(kutser_listen[Listen], Posit.x, Posit.y, null);
+                g.drawImage(kutser_listen[Listen], Posit.x, Posit.y);
             } else {
                 // rumschauen
                 if (Look == 1) {
@@ -101,7 +101,7 @@ public class Kutser extends Mainanim {
                     Look = 1;
                 }
 
-                g.drawImage(kutser_look[Look], Posit.x, Posit.y, null);
+                g.drawImage(kutser_look[Look], Posit.x, Posit.y);
             }
         }
     }

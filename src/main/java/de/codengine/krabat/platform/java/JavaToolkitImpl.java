@@ -26,7 +26,6 @@ import de.codengine.krabat.main.GenericMemoryImageSource;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericCursor;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 import de.codengine.krabat.platform.GenericToolkitImpl;
 
 import java.awt.*;
@@ -41,19 +40,15 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
     }
 
     @Override
-    public void prepareImage(GenericImage genericImage,
-                             GenericImageObserver observer) {
+    public void prepareImage(GenericImage genericImage) {
         Image img = ((JavaImage) genericImage).getImage();
-        ImageObserver obs = ((JavaImageObserver) observer).getObserver();
-        comp.prepareImage(img, obs);
+        comp.prepareImage(img, null);
     }
 
     @Override
-    public int checkImage(GenericImage genericImage,
-                          GenericImageObserver observer) {
+    public int checkImage(GenericImage genericImage) {
         Image img = ((JavaImage) genericImage).getImage();
-        ImageObserver obs = ((JavaImageObserver) observer).getObserver();
-        return comp.checkImage(img, obs);
+        return comp.checkImage(img, null);
     }
 
     @Override
@@ -109,7 +104,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
         }
     }
 
-    class ImageFilterImpl extends RGBImageFilter {
+    static class ImageFilterImpl extends RGBImageFilter {
 
         private final GenericImageFilter impl;
 
@@ -119,8 +114,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
 
         @Override
         public int filterRGB(int x, int y, int rgb) {
-            return impl.filterRGB(x, y, rgb);
+            return impl.filterRGB(rgb);
         }
-
     }
 }

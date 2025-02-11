@@ -34,11 +34,9 @@ public abstract class GenericToolkitImpl {
     public abstract GenericCursor createCustomCursor(GenericImage getCursorImage,
                                                      GenericPoint hotSpot, String string);
 
-    public abstract void prepareImage(GenericImage genericImage,
-                                      GenericImageObserver observer);
+    public abstract void prepareImage(GenericImage genericImage);
 
-    public abstract int checkImage(GenericImage genericImage,
-                                   GenericImageObserver observer);
+    public abstract int checkImage(GenericImage genericImage);
 
     public abstract GenericImage createImage(
             GenericFilteredImageSource genericFilteredImageSource);

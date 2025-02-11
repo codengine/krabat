@@ -25,7 +25,6 @@ import de.codengine.krabat.main.GenericRectangle;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericDrawingContext2D;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 import java.awt.*;
 
@@ -44,27 +43,15 @@ public class JavaDrawingContext extends GenericDrawingContext {
 
     @Override
     public void drawImage(GenericImage genericImage, int x, int y,
-                          int width, int height, GenericImageObserver observer) {
+                          int width, int height) {
         Image image = ((JavaImage) genericImage).getImage();
         g.drawImage(image, x, y, width, height, null);
     }
 
     @Override
-    public void drawImage(GenericImage genericImage, int x, int y,
-                          GenericImageObserver observer) {
+    public void drawImage(GenericImage genericImage, int x, int y) {
         Image image = ((JavaImage) genericImage).getImage();
         g.drawImage(image, x, y, null);
-    }
-
-    @Override
-    public void drawImage(GenericImage genericImage, int x, int y) {
-        drawImage(genericImage, x, y, null);
-    }
-
-    @Override
-    public void drawImage(GenericImage ktemp, int x, int y,
-                          int width, int height) {
-        drawImage(ktemp, x, y, width, height, null);
     }
 
     @Override
@@ -75,11 +62,6 @@ public class JavaDrawingContext extends GenericDrawingContext {
     @Override
     public void drawRect(int x1, int y1, int width, int height) {
         g.drawRect(x1, y1, width, height);
-    }
-
-    @Override
-    public void fillRect(int x1, int y1, int width, int height) {
-        g.fillRect(x1, y1, width, height);
     }
 
     @Override

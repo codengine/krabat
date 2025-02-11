@@ -139,16 +139,16 @@ public class HlownyStraznik extends Mainanim {
         if (TalkPerson == 48 && mainFrame.talkCount > 1) {
             // redet gerade, also RedeImages bearbeiten
             return new Borderrect(casnikPoint1.x, casnikPoint1.y,
-                    casnikPoint1.x + straz_talk[Talk].getWidth(null),
-                    casnikPoint1.y + straz_talk[Talk].getHeight(null));
+                    casnikPoint1.x + straz_talk[Talk].getWidth(),
+                    casnikPoint1.y + straz_talk[Talk].getHeight());
         }
 
         // trinkt
         if (drink) {
             // Trinkimages sind aktuell
             return new Borderrect(casnikPoint1.x, casnikPoint1.y,
-                    casnikPoint1.x + straz_drink[Drink].getWidth(null),
-                    casnikPoint1.y + straz_drink[Drink].getHeight(null));
+                    casnikPoint1.x + straz_drink[Drink].getWidth(),
+                    casnikPoint1.y + straz_drink[Drink].getHeight());
         }
 
         // setzt sich hin oder schlaeft
@@ -156,19 +156,19 @@ public class HlownyStraznik extends Mainanim {
             // Hinsetzimages
             if (Sit == 0) {
                 return new Borderrect(casnikPoint1.x, casnikPoint1.y,
-                        casnikPoint1.x + straz_sit[Sit].getWidth(null),
-                        casnikPoint1.y + straz_sit[Sit].getHeight(null));
+                        casnikPoint1.x + straz_sit[Sit].getWidth(),
+                        casnikPoint1.y + straz_sit[Sit].getHeight());
             } else {
                 return new Borderrect(casnikPoint2.x, casnikPoint2.y,
-                        casnikPoint2.x + straz_sit[Sit].getWidth(null),
-                        casnikPoint2.y + straz_sit[Sit].getHeight(null));
+                        casnikPoint2.x + straz_sit[Sit].getWidth(),
+                        casnikPoint2.y + straz_sit[Sit].getHeight());
             }
         }
 
         // nix, also nur rumstehen
         return new Borderrect(casnikPoint1.x, casnikPoint1.y,
-                casnikPoint1.x + straz_stand[Stand].getWidth(null),
-                casnikPoint1.y + straz_stand[Stand].getHeight(null));
+                casnikPoint1.x + straz_stand[Stand].getWidth(),
+                casnikPoint1.y + straz_stand[Stand].getHeight());
     }
 
     // Figur weiterschalten, je nachdem, was gerade los ist
@@ -299,32 +299,32 @@ public class HlownyStraznik extends Mainanim {
         if (istCasnik) {
             // reden extra
             if (TalkPerson == 48 && mainFrame.talkCount > 1) {
-                offGraph.drawImage(straz_talk[Talk], casnikPoint1.x, casnikPoint1.y, null);
-                offGraph.drawImage(vorder, 121, 308, null);
+                offGraph.drawImage(straz_talk[Talk], casnikPoint1.x, casnikPoint1.y);
+                offGraph.drawImage(vorder, 121, 308);
                 return;
             }
 
             // trinken
             if (drink) {
-                offGraph.drawImage(straz_drink[Drink], casnikPoint1.x, casnikPoint1.y, null);
-                offGraph.drawImage(vorder, 121, 308, null);
+                offGraph.drawImage(straz_drink[Drink], casnikPoint1.x, casnikPoint1.y);
+                offGraph.drawImage(vorder, 121, 308);
                 return;
             }
 
             // hinsetzen
             if (sit || isSleeping) {
                 if (Sit == 0) {
-                    offGraph.drawImage(straz_sit[Sit], casnikPoint1.x, casnikPoint1.y, null);
+                    offGraph.drawImage(straz_sit[Sit], casnikPoint1.x, casnikPoint1.y);
                 } else {
-                    offGraph.drawImage(straz_sit[Sit], casnikPoint2.x, casnikPoint2.y, null);
+                    offGraph.drawImage(straz_sit[Sit], casnikPoint2.x, casnikPoint2.y);
                 }
-                offGraph.drawImage(vorder, 121, 308, null);
+                offGraph.drawImage(vorder, 121, 308);
                 return;
             }
 
             // nix von alledem, also steht er nur rum
-            offGraph.drawImage(straz_stand[Stand], casnikPoint1.x, casnikPoint1.y, null);
-            offGraph.drawImage(vorder, 121, 308, null);
+            offGraph.drawImage(straz_stand[Stand], casnikPoint1.x, casnikPoint1.y);
+            offGraph.drawImage(vorder, 121, 308);
         }
     }
 

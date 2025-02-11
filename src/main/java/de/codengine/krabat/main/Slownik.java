@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Slownik extends Mainanim {
     private GenericImage background;
@@ -88,8 +87,6 @@ public class Slownik extends Mainanim {
     private static final int Y_DEUT = 80;
 
     // Initialisierung ////////////////////////////////////////////////////////
-
-    private final GenericImageObserver observer = null;
 
     // Instanz von dieser Location erzeugen
     public Slownik(Start caller) {
@@ -196,7 +193,7 @@ public class Slownik extends Mainanim {
             evalMouseMoveEvent(mainFrame.Mousepoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
-            g.drawImage(background, mainFrame.scrollx, 0, null);
+            g.drawImage(background, mainFrame.scrollx, 0);
             GenericPoint ps = mainFrame.ifont.CenterAnimText("S#lownik", new GenericPoint(320, 35));
             mainFrame.ifont.drawString(g, "S#lownik", ps.x, ps.y, 0xffff0000);
 
@@ -207,8 +204,8 @@ public class Slownik extends Mainanim {
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
         }
 
         // Hier Unterscheidung HS-DS
@@ -232,10 +229,10 @@ public class Slownik extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
+                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Falsches Menu-Item zum abdunkeln!!!");
@@ -250,10 +247,10 @@ public class Slownik extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
+                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             default:
                 System.out.println("Falsches Menu-Item!!!");
@@ -358,7 +355,7 @@ public class Slownik extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         Skip = -1;
         mainFrame.repaint();

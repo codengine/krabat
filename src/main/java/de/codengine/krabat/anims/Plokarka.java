@@ -92,7 +92,6 @@ public class Plokarka extends Mainanim {
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     // Redevariablen
     private int TalkPic = 0;
@@ -236,7 +235,7 @@ public class Plokarka extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
@@ -262,7 +261,7 @@ public class Plokarka extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
         float vert_dist = CVERT_DIST - scale / SLOWY;
@@ -350,12 +349,6 @@ public class Plokarka extends Mainanim {
         yps = aim.y;
 
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetPlokarkaPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -505,19 +498,19 @@ public class Plokarka extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -533,7 +526,7 @@ public class Plokarka extends Mainanim {
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
@@ -547,7 +540,7 @@ public class Plokarka extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -564,7 +557,7 @@ public class Plokarka extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect PlokarkaRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -577,8 +570,8 @@ public class Plokarka extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTH - scale / 2, CHEIGHT - scale);

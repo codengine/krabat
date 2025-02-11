@@ -54,7 +54,7 @@ public class Dzera extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Dzera(Start caller, int oldLocation) {
+    public Dzera(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -75,20 +75,19 @@ public class Dzera extends Mainloc {
         kockaTalk.x = kockaFeet.x;
         kockaTalk.y = Pkocka.y - 50;
 
-        InitLocation(oldLocation);
+        InitLocation();
 
         mainFrame.Freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
     }
 
     // Bilder vorbereiten
     private void InitImages() {
         background = getPicture("gfx/mlyn/guck.gif");
-
     }
 
     @Override
@@ -119,7 +118,7 @@ public class Dzera extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Hintergrund fuer Mueller loeschen
         // Clipping - Rectangle feststellen und setzen
@@ -128,7 +127,7 @@ public class Dzera extends Mainloc {
                 temp.ru_point.y - temp.lo_point.y + 20);
 
         // Zeichne Hintergrund neu
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Redet er etwa gerade ??
         if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -142,7 +141,7 @@ public class Dzera extends Mainloc {
 
         // Katze zeichnen
         g.setClip(Pkocka.x, Pkocka.y, Kocka.Breite, Kocka.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         katze.drawKocka(g, TalkPerson, Pkocka);
 
         // sonst noch was zu tun ?
@@ -206,7 +205,7 @@ public class Dzera extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

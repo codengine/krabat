@@ -254,31 +254,6 @@ public class Doma1 extends Mainloc {
             mainFrame.wegSucher.PosVerbinden(3, 4);
             mainFrame.wegSucher.PosVerbinden(4, 5);
         }
-
-        mainFrame.clearHotspots();
-        if (macIsVisible) {
-            mainFrame.addHotspot(brMac);
-        } else {
-            mainFrame.addHotspot(brTuer);
-            mainFrame.addHotspot(brBrunnen);
-        }
-        if (!mainFrame.Actions[900]) {
-            mainFrame.addHotspot(brStock);
-        }
-        mainFrame.addHotspot(brSchild);
-        mainFrame.addHotspot(obererAusgang);
-
-        // einen gemeinsamen punkt für die gänse berechnen
-        Borderrect r1 = gans1.GetHusaRect();
-        Borderrect r2 = gans2.GetHusaRect();
-        Borderrect r3 = gans3.GetHusaRect();
-
-        int x1 = Math.min(Math.min(r1.lo_point.x, r2.lo_point.x), r3.lo_point.x);
-        int y1 = Math.min(Math.min(r1.lo_point.y, r2.lo_point.y), r3.lo_point.y);
-        int x2 = Math.max(Math.max(r1.ru_point.x, r2.ru_point.x), r3.ru_point.x);
-        int y2 = Math.max(Math.max(r1.ru_point.y, r2.ru_point.y), r3.ru_point.y);
-
-        mainFrame.addHotspot(new Borderrect(x1, y1, x2, y2));
     }
 
     // Bilder vorbereiten
@@ -383,9 +358,9 @@ public class Doma1 extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(background1, 0, 0, null);
-        g.drawImage(background2, 640, 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(background1, 0, 0);
+        g.drawImage(background2, 640, 0);
 
         // Parallax - Scrolling ausfuehren
         if (mainFrame.isScrolling) {
@@ -394,9 +369,9 @@ public class Doma1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 285);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(background1, 0, 0, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(background1, 0, 0);
+            g.drawImage(background2, 640, 0);
 
         }
 
@@ -408,7 +383,7 @@ public class Doma1 extends Mainloc {
 // 			mainFrame.player.Play ("24", -17700);
 // 		    }
             g.setClip(195 + mainFrame.scrollx, 150, 250, 100);
-            g.drawImage(logo, 205 + mainFrame.scrollx, 150, null);
+            g.drawImage(logo, 205 + mainFrame.scrollx, 150);
         }
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
@@ -422,24 +397,24 @@ public class Doma1 extends Mainloc {
                 }
             }
             g.setClip(985, 15, 30, 120);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(Rauchanim[Rauchcount], 985, 15, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(Rauchanim[Rauchcount], 985, 15);
+            g.drawImage(background2, 640, 0);
         }
 
         // Gaense animieren
         if (mainFrame.isAnim && mainFrame.scrollx < 350) {
             g.setClip(120, 255, 230, 110);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(background1, 0, 0, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(background1, 0, 0);
+            g.drawImage(background2, 640, 0);
             gans1.BewegeGans(g);
             gans2.BewegeGans(g);
             gans3.BewegeGans(g);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabats neue Position festlegen wenn noetig
         mainFrame.wegGeher.GeheWeg();
@@ -447,14 +422,14 @@ public class Doma1 extends Mainloc {
         // Mac zeichnen bei Reden und Herumstehen, vorher Hintergrund wiederherstellen
         if (macIsVisible && mainFrame.scrollx > 130) {
             g.setClip(Pmac.x, Pmac.y, Mac.Breite, Mac.Hoehe);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(background2, 640, 0);
             mutter.drawMac(g, Pmac, TalkPerson);
         }
 
         //hinterm Stock
         if (!mainFrame.Actions[900]) {
             g.setClip(80, 325, 29, 38);
-            g.drawImage(stock, 80, 325, null);
+            g.drawImage(stock, 80, 325);
         }
 
         // Krabat zeichnen
@@ -497,12 +472,12 @@ public class Doma1 extends Mainloc {
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (brunnenRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(brunnen, 1055, 251, null);
+            g.drawImage(brunnen, 1055, 251);
         }
 
         //hinterm Blatt
         if (blattRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(blatt, 764, 393, null);
+            g.drawImage(blatt, 764, 393);
         }
 
         // Stock wurde testweise mal hinter Krabat gelegt
@@ -909,9 +884,9 @@ public class Doma1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 
@@ -1134,7 +1109,6 @@ public class Doma1 extends Mainloc {
                 mainFrame.fPlayAnim = false;
                 mainFrame.krabat.SetFacing(3); // nach rechts schauen, nachdeem der Stock genommen wurde
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.removeHotspot(brStock);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;

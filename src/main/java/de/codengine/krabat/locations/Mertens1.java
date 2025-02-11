@@ -227,7 +227,7 @@ public class Mertens1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         /*if (mainFrame.isAnim == true)
           {
@@ -259,11 +259,11 @@ public class Mertens1 extends Mainloc {
 
         // fuers Blinkern rein
         g.setClip(0, 157, 639, 276);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Counter runterzaehlen fuer Wassermannerscheinen
         if (Counter > 0 && !mainFrame.Actions[206]) {
@@ -278,14 +278,14 @@ public class Mertens1 extends Mainloc {
         // Wassermann zeichnen beim Schwimmen und Reden
         if (isShowing) {
             g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             wmann.drawWmuz(g, TalkPerson, wmannRect.lo_point);
         }
 
         // Wassermann zeichnen beim Auf / Abtauchen
         if (isTauching) {
             g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             isTauching = wmann.Tauche(g, wmannRect.lo_point);
         }
 
@@ -581,9 +581,9 @@ public class Mertens1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

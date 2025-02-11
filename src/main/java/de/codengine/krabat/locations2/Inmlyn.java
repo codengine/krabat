@@ -170,10 +170,10 @@ public class Inmlyn extends Mainloc {
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
         if (mainFrame.Actions[310]) {
-            g.drawImage(background1, 0, 0, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(background1, 0, 0);
+            g.drawImage(background2, 640, 0);
         } else {
-            g.drawImage(fenster, 0, 0, null);
+            g.drawImage(fenster, 0, 0);
 
             // hier Krabatkopf draufzeichnen
             if (Zwinker == 1) {
@@ -185,7 +185,7 @@ public class Inmlyn extends Mainloc {
                 }
             }
 
-            g.drawImage(krabatKopf[Zwinker], 55, 53, null);
+            g.drawImage(krabatKopf[Zwinker], 55, 53);
         }
 
         // hier am Anfang das Buecken einschalten, wenn aus Dzera zurueckkommend
@@ -197,13 +197,13 @@ public class Inmlyn extends Mainloc {
         // Hier Raben zeichnen, solange noetig
         if (showRapak) {
             g.setClip(0, 200, 500, 280);
-            g.drawImage(background1, 0, 0, null);
+            g.drawImage(background1, 0, 0);
             showRapak = rabe.Flieg(g);
-            g.drawImage(rabeVorder, 0, 242, null);
+            g.drawImage(rabeVorder, 0, 242);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabats neue Position festlegen wenn noetig
         mainFrame.wegGeher.GeheWeg();
@@ -320,7 +320,7 @@ public class Inmlyn extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

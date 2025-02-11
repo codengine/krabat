@@ -184,16 +184,16 @@ public class Rapak2 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // wenn Rabe noch da, dann auch zeichnen
         if (!mainFrame.Actions[256]) {
             // Raben zeichnen
             g.setClip(rabe.rapakRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // normale Backgroundanims
             if (wegFliegen) {
@@ -241,11 +241,11 @@ public class Rapak2 extends Mainloc {
 
         // Krabat hinter Gestruepp
         if (blRect1.IsPointInRect(pKrTemp)) {
-            g.drawImage(blumen1, 0, 374, null);
+            g.drawImage(blumen1, 0, 374);
         }
 
         if (blRect2.IsPointInRect(pKrTemp)) {
-            g.drawImage(blumen2, 241, 417, null);
+            g.drawImage(blumen2, 241, 417);
         }
 
         // sonst noch was zu tun ?
@@ -602,9 +602,9 @@ public class Rapak2 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

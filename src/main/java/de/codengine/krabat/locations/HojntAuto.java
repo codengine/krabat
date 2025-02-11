@@ -73,7 +73,7 @@ public class HojntAuto extends Mainloc {
 
     private int Counter = 0;
 
-    public HojntAuto(Start caller, int oldLocation) {
+    public HojntAuto(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -244,10 +244,10 @@ public class HojntAuto extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         int xtemp = mainFrame.scrollx - 5;
@@ -255,10 +255,10 @@ public class HojntAuto extends Mainloc {
             xtemp = 0;
         }
         g.setClip(xtemp, 0, 650, 325);
-        g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+        g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
@@ -268,22 +268,22 @@ public class HojntAuto extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(skyl, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(skyl, mainFrame.scrollx / 10, 0);
+            g.drawImage(skyr, mainFrame.scrollx / 10 + 540, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // wenn noetig, dann offene Tuer zeichnen
         if (isDoorOpen) {
             g.setClip(272, 265, 81, 80);
-            g.drawImage(offeneTuer, 272, 265, null);
+            g.drawImage(offeneTuer, 272, 265);
         }
 
         // leeren Haken zeichnen, wenn noetig
         if (mainFrame.Actions[905]) {
             g.setClip(426, 258, 20, 19);
-            g.drawImage(hojnt3, 426, 258, null);
+            g.drawImage(hojnt3, 426, 258);
         }
 
         // Klingelanim der Hoelzer wenn noetig
@@ -300,12 +300,12 @@ public class HojntAuto extends Mainloc {
             }
 
             g.setClip(608, 239, 25, 48);
-            g.drawImage(hoelzerback, 613, 263, null);
-            g.drawImage(hoelzer[HolzCount], 608, 239, null);
+            g.drawImage(hoelzerback, 613, 263);
+            g.drawImage(hoelzer[HolzCount], 608, 239);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {
@@ -414,7 +414,7 @@ public class HojntAuto extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

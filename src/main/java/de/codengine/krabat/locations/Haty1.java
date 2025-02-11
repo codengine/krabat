@@ -489,7 +489,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe Hintergrund loeschen (Extrawurst ggue. allen anderen Anims hier)
         if (clipIstLinks) {
@@ -497,21 +497,21 @@ public class Haty1 extends Mainloc {
         } else {
             g.setClip(460, 80, 100, 100);
         }
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
         reh.drawReh(g);
 
         // Blinkern ermoeglichen, dieses ist am Hintergruendigsten
         g.setClip(0, 181, 639, 298);  // dieses Clipping muss die kompletten Anims loeschen, alles inclusive !!!
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // jetzt ist ALLES !!! Hintergrundanimmaessiges geloescht, also keine extra Clipsets und loeschen
 
         // hier testweise den Muell rein
         if (whichMuell > -1) {
-            g.drawImage(muell[whichMuell], 77, 287, null);
+            g.drawImage(muell[whichMuell], 77, 287);
         }
 
         // Boot ist im Hintergrund, aber vor Blinkern
@@ -534,14 +534,14 @@ public class Haty1 extends Mainloc {
                 }
                 Bootcount = ZEIT[Bootzaehl];
             }
-            g.drawImage(Boot[Bootzaehl], 376, 367, null);
+            g.drawImage(Boot[Bootzaehl], 376, 367);
         }
 
         // Fische im Hintergrund, aber vor boot
         fische.drawRyby(g, schnauzeFische);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         if (TalkPerson == 31) {
             // angler 2 redet
@@ -1237,7 +1237,7 @@ public class Haty1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -23,7 +23,6 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
@@ -48,15 +47,12 @@ public class Imagefont {
 
 	*/
 
-    private final GenericImageObserver observer;
-
     // TODO image observer handling might not be correct!!!!
 
     // Konstruktor
-    public Imagefont(Start caller, GenericImageObserver observer) {
+    public Imagefont(Start caller) {
         mainFrame = caller;
 
-        this.observer = observer;
         redFont = new GenericImage[240];
         cache = new GenericImage[GROESSE];
         Inhalt = new int[GROESSE][3];
@@ -65,7 +61,7 @@ public class Imagefont {
         //  im2.CutFont (redFont);
         //im2 = null;
 
-        Imagehelperstatic im = new Imagehelperstatic(observer);
+        Imagehelperstatic im = new Imagehelperstatic();
         im.CutFont(redFont);
         im = null;
 
@@ -259,7 +255,7 @@ public class Imagefont {
 //					    }
 //				    }
 
-                    g.drawImage(cache[tmp], new_xpos, ypos + offset, null);
+                    g.drawImage(cache[tmp], new_xpos, ypos + offset);
                 } else {
                     // Bild ist nicht im Cache, also neu erzeugen und im Cache ablegen
                     GenericImage TempIm = GenericToolkit.getDefaultToolkit().createImage(new GenericFilteredImageSource(redFont[ch].getSource(), change));
@@ -281,7 +277,7 @@ public class Imagefont {
 //					    }
 //				    }
 
-                    g.drawImage(TempIm, new_xpos, ypos + offset, null);
+                    g.drawImage(TempIm, new_xpos, ypos + offset);
                     cache[Counter] = TempIm;
                     Inhalt[Counter][1] = ch;
                     Inhalt[Counter][2] = Farbe;
@@ -309,9 +305,9 @@ public class Imagefont {
 //				    }
 //			    }
 
-                g.drawImage(redFont[ch], new_xpos, ypos + offset, null);
+                g.drawImage(redFont[ch], new_xpos, ypos + offset);
             }
-            new_xpos += redFont[ch].getWidth(observer);
+            new_xpos += redFont[ch].getWidth();
         }
     }
 
@@ -466,9 +462,9 @@ public class Imagefont {
                     if (ch == 35) {
                         i++;
                         ch = Text.charAt(i);
-                        tLaenge += redFont[evalSpecialChar(ch)].getWidth(observer);
+                        tLaenge += redFont[evalSpecialChar(ch)].getWidth();
                     } else {
-                        tLaenge += redFont[ch].getWidth(observer);
+                        tLaenge += redFont[ch].getWidth();
                     }
                 }
             }
@@ -666,9 +662,9 @@ public class Imagefont {
                             i++;
                             ch = Eingabe.charAt(i);
                             Teil = Teil + (char) ch;
-                            laenge += redFont[evalSpecialChar(ch)].getWidth(observer);
+                            laenge += redFont[evalSpecialChar(ch)].getWidth();
                         } else {
-                            laenge += redFont[ch].getWidth(observer);
+                            laenge += redFont[ch].getWidth();
                         }
                     }
                 }

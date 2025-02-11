@@ -228,21 +228,21 @@ public class Zastup extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Schranke zeichnen
         g.setClip(433, 264, 120, 121);
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(Schranke[SchrankCount], 438, 264, null);
-        g.drawImage(Loch, 433, 352, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(Schranke[SchrankCount], 438, 264);
+        g.drawImage(Loch, 433, 352);
 
         // Mato zeichnen, falls noch da
         if (!mainFrame.Actions[576]) {
             g.setClip(matoPoint.x, matoPoint.y, Mato.Breite, Mato.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             mato.drawMato(g, TalkPerson, matoPoint, isOpening, isTaking, isListening);
         }
 
@@ -292,10 +292,10 @@ public class Zastup extends Mainloc {
 
         // hinter Gras ? (nur Clipping - Region wird neugezeichnet)
         if (rectGrasLinks.IsPointInRect(pKrTemp)) {
-            g.drawImage(grasLinks, 0, 434, null);
+            g.drawImage(grasLinks, 0, 434);
         }
         if (rectGrasRechts.IsPointInRect(pKrTemp)) {
-            g.drawImage(grasRechts, 436, 456, null);
+            g.drawImage(grasRechts, 436, 456);
         }
 
         // sonst noch was zu tun ?
@@ -651,9 +651,9 @@ public class Zastup extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

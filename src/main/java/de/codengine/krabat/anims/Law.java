@@ -89,7 +89,7 @@ public class Law extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(law_talk[Talk], Posit.x, Posit.y, null);
+            offGraph.drawImage(law_talk[Talk], Posit.x, Posit.y);
 
             return;
         }
@@ -97,7 +97,7 @@ public class Law extends Mainanim {
         // hier das Reden grrr...
         if (TalkPerson == 70 && mainFrame.talkCount > 1) {
             // nur ein statisches Image
-            offGraph.drawImage(law_grrr, Posit.x, Posit.y, null);
+            offGraph.drawImage(law_grrr, Posit.x, Posit.y);
 
             return;
         }
@@ -116,7 +116,7 @@ public class Law extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(law_sleep[Sleep], Posit.x, Posit.y, null);
+            offGraph.drawImage(law_sleep[Sleep], Posit.x, Posit.y);
 
             return;
         }
@@ -134,7 +134,7 @@ public class Law extends Mainanim {
             }
 
             // Zeichnen
-            offGraph.drawImage(law_talk[Talk], Posit.x, Posit.y, null);
+            offGraph.drawImage(law_talk[Talk], Posit.x, Posit.y);
 
             return;
         }
@@ -150,7 +150,7 @@ public class Law extends Mainanim {
         }
 
         // Zeichnen und ende
-        offGraph.drawImage(law[Zwinker], Posit.x, Posit.y, null);
+        offGraph.drawImage(law[Zwinker], Posit.x, Posit.y);
 
     }
 

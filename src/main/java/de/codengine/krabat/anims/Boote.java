@@ -167,7 +167,7 @@ public class Boote extends Mainanim {
         int x = bootPoint.x - Breite / 2;
         int y = bootPoint.y - Hoehe;
 
-        g.drawImage(bootBild, x, y, null);
+        g.drawImage(bootBild, x, y);
 
         // moveBoot ();
     }

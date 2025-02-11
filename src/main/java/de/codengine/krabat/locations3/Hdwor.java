@@ -149,17 +149,17 @@ public class Hdwor extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Boot-Routine
         // Hintergrund loeschen
         Borderrect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         // Boot zeichnen
         boot.drawBoot(g);
 
@@ -202,10 +202,10 @@ public class Hdwor extends Mainloc {
 
         // hinter den Staeben ? (nur Clipping - Region wird neugezeichnet)
         if (stObenRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(stOben, 296, 245, null);
+            g.drawImage(stOben, 296, 245);
         }
         if (stUntenRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(stUnten, 315, 383, null);
+            g.drawImage(stUnten, 315, 383);
         }
 
         // sonst noch was zu tun ?
@@ -417,7 +417,7 @@ public class Hdwor extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

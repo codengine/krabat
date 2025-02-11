@@ -77,7 +77,7 @@ public class KrabatShoot extends Mainanim {
         kamjeny += Yoffset;
 
         // Stein zeichnen
-        g.drawImage(stein, (int) kamjenx, (int) kamjeny, null);
+        g.drawImage(stein, (int) kamjenx, (int) kamjeny);
 
         // Ermittlung der Hoehendifferenz beim Zooming
         float helper = (maxx - pos.y) / zoomf;
@@ -94,9 +94,9 @@ public class KrabatShoot extends Mainanim {
 
         // Krabat beim Schiessen zeichnen
         if (Counter < 2 || Counter > 5) {
-            g.drawImage(krabat_schiessen[0], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper, null);
+            g.drawImage(krabat_schiessen[0], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper);
         } else {
-            g.drawImage(krabat_schiessen[1], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper, null);
+            g.drawImage(krabat_schiessen[1], x, y, CWIDTH - tHelper / 2, CHEIGHT - tHelper);
         }
 
         // Counter eins hoch

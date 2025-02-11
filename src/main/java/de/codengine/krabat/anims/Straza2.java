@@ -113,8 +113,8 @@ public class Straza2 extends Mainanim {
             }
         }
 
-        offGraph.drawImage(straza_head[Head], posit.x, posit.y, null);
-        offGraph.drawImage(straza_body[versperrtWeg ? 1 : 0], posit.x, posit.y + BODYOFFSET, null);
+        offGraph.drawImage(straza_head[Head], posit.x, posit.y);
+        offGraph.drawImage(straza_body[versperrtWeg ? 1 : 0], posit.x, posit.y + BODYOFFSET);
 
     }
 }    

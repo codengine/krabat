@@ -311,9 +311,9 @@ public class Doma2 extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(background1, 0, 0, null);
-        g.drawImage(background2, 640, 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(background1, 0, 0);
+        g.drawImage(background2, 640, 0);
 
         // Parallax - Scrolling ausfuehren
         if (mainFrame.isScrolling) {
@@ -322,9 +322,9 @@ public class Doma2 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 285);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(background1, 0, 0, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(background1, 0, 0);
+            g.drawImage(background2, 640, 0);
         }
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
@@ -338,24 +338,24 @@ public class Doma2 extends Mainloc {
                 }
             }
             g.setClip(985, 15, 30, 120);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(Rauchanim[Rauchcount], 985, 15, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(Rauchanim[Rauchcount], 985, 15);
+            g.drawImage(background2, 640, 0);
         }
 
         // Gaense animieren
         if (mainFrame.isAnim && mainFrame.scrollx < 350) {
             g.setClip(120, 255, 230, 110);
-            g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(background1, 0, 0, null);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(back, mainFrame.scrollx / 10, 0);
+            g.drawImage(background1, 0, 0);
+            g.drawImage(background2, 640, 0);
             gans1.BewegeGans(g);
             gans2.BewegeGans(g);
             gans3.BewegeGans(g);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabats neue Position festlegen wenn noetig
         mainFrame.wegGeher.GeheWeg();
@@ -363,7 +363,7 @@ public class Doma2 extends Mainloc {
         // Mac zeichnen bei Reden und Herumstehen, vorher Hintergrund wiederherstellen
         if (mainFrame.scrollx > 130 && istMutterZuSehen) {
             g.setClip(Pmac.x, Pmac.y, Mac.Breite, Mac.Hoehe);
-            g.drawImage(background2, 640, 0, null);
+            g.drawImage(background2, 640, 0);
             mutter.drawMac(g, Pmac, TalkPerson);
         }
 
@@ -407,12 +407,12 @@ public class Doma2 extends Mainloc {
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (brunnenRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(brunnen, 1055, 251, null);
+            g.drawImage(brunnen, 1055, 251);
         }
 
         //hinterm Blatt
         if (blattRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(blatt, 764, 393, null);
+            g.drawImage(blatt, 764, 393);
         }
 
         // Hier das FadeToBlack, wenn noetig
@@ -796,7 +796,7 @@ public class Doma2 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

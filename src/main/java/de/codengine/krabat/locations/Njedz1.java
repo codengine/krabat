@@ -185,16 +185,16 @@ public class Njedz1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Blinkern ermoeglichen
         // g.setClip (392, 246, 248, 107);
         g.setClip(0, 0, 644, 484);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -477,7 +477,7 @@ public class Njedz1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

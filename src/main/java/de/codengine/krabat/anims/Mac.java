@@ -153,16 +153,16 @@ public class Mac extends Mainanim {
 
             // Mutter redet nach links , nur normal
             if (links == 1) {
-                g.drawImage(mac_head_left[Kopf], Pmac.x, Pmac.y, null);
-                g.drawImage(mac_body_left[Body], Pmac.x, Pmac.y + KOPFY, null);
+                g.drawImage(mac_head_left[Kopf], Pmac.x, Pmac.y);
+                g.drawImage(mac_body_left[Body], Pmac.x, Pmac.y + KOPFY);
             }
             // Mutter redet nach rechts oder zeigt dazu (Talkperson = 60)
             else {
-                g.drawImage(mac_head_right[Kopf], Pmac.x, Pmac.y, Scalex, Scaleyh, null);
+                g.drawImage(mac_head_right[Kopf], Pmac.x, Pmac.y, Scalex, Scaleyh);
                 if (TalkPerson == 60) {
-                    g.drawImage(mac_body_right[1], Pmac.x, Pmac.y, Scalex, SCALEY, null);
+                    g.drawImage(mac_body_right[1], Pmac.x, Pmac.y, Scalex, SCALEY);
                 } else {
-                    g.drawImage(mac_body_right[2], Pmac.x, Pmac.y + Scaleyh, Scalex, Scaleyb, null);
+                    g.drawImage(mac_body_right[2], Pmac.x, Pmac.y + Scaleyh, Scalex, Scaleyb);
                 }
             }
         }
@@ -178,9 +178,9 @@ public class Mac extends Mainanim {
                 }
             }
             if (links == 1) {
-                g.drawImage(mac[Steh], Pmac.x, Pmac.y, null);
+                g.drawImage(mac[Steh], Pmac.x, Pmac.y);
             } else {
-                g.drawImage(mac_r[Steh], Pmac.x, Pmac.y, Scalex, SCALEY, null);
+                g.drawImage(mac_r[Steh], Pmac.x, Pmac.y, Scalex, SCALEY);
             }
         }
     }

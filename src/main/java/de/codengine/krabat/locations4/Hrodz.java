@@ -165,15 +165,15 @@ public class Hrodz extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // offene oder geschlossene Gruft zeichnen
         // Gruft geschlossen, muss so sein, man kann bei offener nicht mehr Speichern
         g.setClip(462, 416, 100, 49);
-        g.drawImage(gruftzu, 462, 416, null);
+        g.drawImage(gruftzu, 462, 416);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // hier ist der Sound...
         evalSound();
@@ -223,7 +223,7 @@ public class Hrodz extends Mainloc {
                     }
                     g.drawImage(Wippen % 2 != 0 ?
                                     krabat_wippen_left : krabat_left, hier.x,
-                            hier.y, weit, hoch, null);
+                            hier.y, weit, hoch);
                     break;
 
                 case 2:
@@ -238,13 +238,13 @@ public class Hrodz extends Mainloc {
                     }
                     g.drawImage(Wippen % 2 != 0 ?
                                     krabat_wippen_right : krabat_right,
-                            hier.x, hier.y, weit, hoch, null);
+                            hier.x, hier.y, weit, hoch);
                     break;
 
                 case 3:
                     // Lauf mit Stein nach rechts -> Falle rein
                     g.drawImage(krabat_fallen, hier.x, hier.y, weit,
-                            hoch, null);
+                            hoch);
                     Fallgeschwindigkeit++;
                     if (Fallgeschwindigkeit == MAX_FALLGESCHWINDIGKEIT) {
                         mainFrame.talkCount = 0; // schreien aufhoeren
@@ -293,7 +293,7 @@ public class Hrodz extends Mainloc {
 
         // Vordergrund vor Gruft zeichnen, wenn K reinfaellt
         if (krabatFaelltRunter) {
-            g.drawImage(vordergruft, 461, 432, null);
+            g.drawImage(vordergruft, 461, 432);
         }
 
         // Stein zeichnen, solange noch da
@@ -302,7 +302,7 @@ public class Hrodz extends Mainloc {
             my = g.getClipBounds();
 
             g.setClip(152, 415, 52, 66);
-            g.drawImage(steinpic, 153, 416, null);
+            g.drawImage(steinpic, 153, 416);
 
             g.setClip(my.getX(), my.getY(),
                     my.getWidth(), my.getHeight());
@@ -571,7 +571,7 @@ public class Hrodz extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

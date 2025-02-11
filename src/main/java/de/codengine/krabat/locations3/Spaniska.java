@@ -241,17 +241,17 @@ public class Spaniska extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         if (ersterHakenDa) {
             if (zweiterHakenDa) {
-                g.drawImage(haken, 460, 288, null);
+                g.drawImage(haken, 460, 288);
             } else {
-                g.drawImage(haken2, 452, 278, null);
+                g.drawImage(haken2, 452, 278);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // ist Schauspielerin da ?
         if (!mainFrame.Actions[514]) {
@@ -261,14 +261,14 @@ public class Spaniska extends Mainloc {
                 g.setClip(rectDziwadzelnica.lo_point.x, rectDziwadzelnica.lo_point.y,
                         rectDziwadzelnica.ru_point.x - rectDziwadzelnica.lo_point.x,
                         rectDziwadzelnica.ru_point.y - rectDziwadzelnica.lo_point.y);
-                g.drawImage(background, 0, 0, null);
+                g.drawImage(background, 0, 0);
                 beatRueckgabe = dziwadzelnica.drawDziwadzelnica(g, TalkPerson, schlaegtZu, AnimTalkPerson, dziwPoint);
             } else {
                 // Cliprect fuer nach links
                 g.setClip(rectLeftDziwadzelnica.lo_point.x, rectLeftDziwadzelnica.lo_point.y,
                         rectLeftDziwadzelnica.ru_point.x - rectLeftDziwadzelnica.lo_point.x,
                         rectLeftDziwadzelnica.ru_point.y - rectLeftDziwadzelnica.lo_point.y);
-                g.drawImage(background, 0, 0, null);
+                g.drawImage(background, 0, 0);
                 beatRueckgabe = dziwadzelnica.drawDziwadzelnica(g, TalkPerson, schlaegtZu, AnimTalkPerson, dziwLeftPoint);
             }
         }
@@ -276,8 +276,8 @@ public class Spaniska extends Mainloc {
         if (!mainFrame.Actions[515]) {
             // geld zeichnen, da es noch aufm Tisch liegt
             g.setClip(144, 355, 28, 21);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(pjenjezy, 144, 355, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(pjenjezy, 144, 355);
         }
 
         // Krabat einen Schritt laufen lassen
@@ -305,7 +305,7 @@ public class Spaniska extends Mainloc {
                     GenericPoint pLeftUp = new GenericPoint(pKletterFeet.x - (50 - scale / 2) / 2, pKletterFeet.y - (100 - scale));
 
                     g.setClip(pLeftUp.x, pLeftUp.y, 50 - scale / 2, 100 - scale);
-                    g.drawImage(krabat_steigen, pLeftUp.x, pLeftUp.y, 50 - scale / 2, 100 - scale, null);
+                    g.drawImage(krabat_steigen, pLeftUp.x, pLeftUp.y, 50 - scale / 2, 100 - scale);
                 }
             } else {
                 // Animation??
@@ -347,10 +347,10 @@ public class Spaniska extends Mainloc {
 
         // hinter Stuhl oder Rosen ? (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.x < 310) {
-            g.drawImage(stolc, 147, 419, null);
+            g.drawImage(stolc, 147, 419);
         }
         if (pKrTemp.x > 490) {
-            g.drawImage(roze, 543, 309, null);
+            g.drawImage(roze, 543, 309);
         }
 
         // Hier das FadeToBlack, wenn noetig
@@ -792,7 +792,7 @@ public class Spaniska extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

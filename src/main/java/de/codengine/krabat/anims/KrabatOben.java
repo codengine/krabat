@@ -562,7 +562,8 @@ public class KrabatOben extends Krabat {
                     if (nAnimStep == 0) {
                         mainFrame.wave.PlayFile("sfx-dd/wosusk.wav");
                     } ////////////Sound!!!!!!!!!!!!!!!!!!!!!!
-                    IssWosusk(g, nAnimStep++);
+                    IssWosusk(g);
+                    nAnimStep++;
                 } else {
                     StopAnim();
                     drawKrabat(g);
@@ -574,7 +575,8 @@ public class KrabatOben extends Krabat {
                     if (nAnimStep == 0) {
                         mainFrame.wave.PlayFile("sfx/kamjeny.wav");
                     } /////////////////// Sound !!!!!!!!!!!
-                    MacheFeuer(g, nAnimStep++);
+                    MacheFeuer(g);
+                    nAnimStep++;
                 } else {
                     StopAnim();
                     drawKrabat(g);
@@ -649,7 +651,7 @@ public class KrabatOben extends Krabat {
 
 
     // Lasse K wosusk essen
-    private void IssWosusk(GenericDrawingContext g, int tCount) {
+    private void IssWosusk(GenericDrawingContext g) {
         int tempvar = nAnimStep % 4 < 2 ? 0 : 1;
 
         if (GetFacing() == 3) {
@@ -668,7 +670,7 @@ public class KrabatOben extends Krabat {
     }
 
     // Lasse K mit Feuersteinen spielen
-    private void MacheFeuer(GenericDrawingContext g, int tCount) {
+    private void MacheFeuer(GenericDrawingContext g) {
         int tempvar = nAnimStep % 4 < 2 ? 0 : 1;
 
         if (GetFacing() == 3) {
@@ -766,8 +768,8 @@ public class KrabatOben extends Krabat {
         KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int left = getLeftPos((int) xps);
+        int up = getUpPos((int) yps);
         int scale = (int) zoomf;
 
         // linken Teil der Figur zeichnen
@@ -784,25 +786,19 @@ public class KrabatOben extends Krabat {
 
     // Zooming-Variablen berechnen
 
-    private int getLeftPos(int pox, int poy) {
+    private int getLeftPos(int pox) {
         return pox - (CWIDTHO - (int) zoomf) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         return poy - (CHEIGHTO - (int) zoomf) / 2;
-    }
-
-    // Leere Def. - kann ab getScale = private entfallen !!
-    @Override
-    public int getScale(int pox, int poy) {
-        return 0;
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int x = getLeftPos(xx);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -819,8 +815,8 @@ public class KrabatOben extends Krabat {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
     public Borderrect KrabatRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int x = getLeftPos((int) xps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = 2 * ((int) yps - y) + y;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -832,8 +828,8 @@ public class KrabatOben extends Krabat {
         KrabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int left = getLeftPos((int) xps);
+        int up = getUpPos((int) yps);
         int scale = (int) zoomf;
 
         // Figur zeichnen

@@ -102,7 +102,7 @@ public class KrabatFall extends Mainanim {
         g.setClip(LeftUp.x, LeftUp.y, Breite + 1, Hoehe + 1);
 
         // Hier Animphase zeichnen
-        g.drawImage(krabat_fallen[FallCount], LeftUp.x, LeftUp.y, Breite, Hoehe, null);
+        g.drawImage(krabat_fallen[FallCount], LeftUp.x, LeftUp.y, Breite, Hoehe);
 
         return rueckgabe;
 

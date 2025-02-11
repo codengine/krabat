@@ -90,9 +90,9 @@ public class Ryby extends Mainanim {
                 if (Rybycount < 5) {
                     // Fisch zeichnen, je nach Richtung
                     if (isLeftFish) {
-                        offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
+                        offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y);
                     } else {
-                        offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
+                        offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y);
                     }
                 } else {
                     // Fisch wieder ausschalten
@@ -102,9 +102,9 @@ public class Ryby extends Mainanim {
                 // wenn warten, dann aktuellen Fisch zeichnen
                 // Fisch zeichnen, je nach Richtung
                 if (isLeftFish) {
-                    offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y, null);
+                    offGraph.drawImage(ryby_left[Rybycount], Position.x, Position.y);
                 } else {
-                    offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y, null);
+                    offGraph.drawImage(ryby_right[Rybycount], Position.x, Position.y);
                 }
             }
         } else {

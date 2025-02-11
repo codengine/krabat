@@ -329,7 +329,7 @@ public class Kuchnja extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Kuchar Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
@@ -338,12 +338,12 @@ public class Kuchnja extends Mainloc {
                 temp.ru_point.y - temp.lo_point.y);
 
         // Zeichne Hintergrund neu
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Hintergrund fuer fliegendes Holz wiederherstellen
         if (holzFliegt) {
             g.setClip(154, 410, 90, 70);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Kuchar bewegen
@@ -381,7 +381,7 @@ public class Kuchnja extends Mainloc {
         kuchar.drawKuchar(g, TalkPerson, kucharHoertZu, kucharIstAufgestanden, schnauzeKuchar);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabat einen Schritt laufen lassen
         mainFrame.wegGeher.GeheWeg();
@@ -425,10 +425,10 @@ public class Kuchnja extends Mainloc {
 
         // hinter Herd oder Schwein ? (nur Clipping - Region wird neugezeichnet)
         if (herdRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(herd, 25, 387, null);
+            g.drawImage(herd, 25, 387);
         }
         if (schweinRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(schwein, 427, 337, null);
+            g.drawImage(schwein, 427, 337);
         }
 
         // Herd - Anims sind im Vordergrund, deshalb hier
@@ -460,7 +460,7 @@ public class Kuchnja extends Mainloc {
         float feuerTemp = Feuerwidth;
         float Feueroffset = feuerTemp / 1.1f;
 
-        g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, 481 - (int) Feueroffset, Feuerwidth, Feuerwidth, null);
+        g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, 481 - (int) Feueroffset, Feuerwidth, Feuerwidth);
 
         // hier das fliegende Holzscheit animieren
         if (holzFliegt) {
@@ -472,12 +472,12 @@ public class Kuchnja extends Mainloc {
                 Xpos = flugStart.x;
                 Ypos = flugStart.y;
             } else {
-                g.drawImage(holz, (int) Xpos, (int) Ypos, null);
+                g.drawImage(holz, (int) Xpos, (int) Ypos);
             }
         }
 
         // Herd davorzeichnen
-        g.drawImage(herd2, 149, 461, null);
+        g.drawImage(herd2, 149, 461);
 
         // Wusmuz je nach Groesse animieren
         if (!isUeberkoching) {
@@ -510,8 +510,8 @@ public class Kuchnja extends Mainloc {
                 isUeberkoching = true;
             }
 
-            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
-            g.drawImage(herd3, 48, 406, null);
+            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy);
+            g.drawImage(herd3, 48, 406);
         } else {
             // hier geht es dann mit dem richtigen Ueberkochen los...
 
@@ -531,8 +531,8 @@ public class Kuchnja extends Mainloc {
                     }
                 }
             }
-            g.drawImage(Ueberkoch[Ueberkochcount], 41, 387, null);
-            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy, null);
+            g.drawImage(Ueberkoch[Ueberkochcount], 41, 387);
+            g.drawImage(Wusmuz[Wusmuzcount], 52, Wusmuzy);
         }
 
         // Clipping - Region wiederherstellen
@@ -919,9 +919,9 @@ public class Kuchnja extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

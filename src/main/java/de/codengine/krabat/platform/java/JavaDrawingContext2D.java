@@ -24,7 +24,6 @@ import de.codengine.krabat.main.GenericAlphaComposite;
 import de.codengine.krabat.main.GenericColor;
 import de.codengine.krabat.platform.GenericDrawingContext2D;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 import java.awt.*;
 
@@ -43,8 +42,7 @@ public class JavaDrawingContext2D extends GenericDrawingContext2D {
     }
 
     @Override
-    public void drawImage(GenericImage genericImage, int x, int y,
-                          GenericImageObserver observer) {
+    public void drawImage(GenericImage genericImage, int x, int y) {
         Image image = ((JavaImage) genericImage).getImage();
         g.drawImage(image, x, y, null);
     }

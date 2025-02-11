@@ -130,8 +130,8 @@ public class PredWosuskow extends Mainanim {
         }
 
         // Predawar auch malen
-        g.drawImage(pred_stand[Stand], punkt.x, punkt.y, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_stand[Stand], punkt.x, punkt.y);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // PredWosuskow beim Rumschreien
@@ -141,8 +141,8 @@ public class PredWosuskow extends Mainanim {
             Call = (int) (Math.random() * 4.9);
         }
 
-        g.drawImage(pred_call[Call], punkt.x, punkt.y, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_call[Call], punkt.x, punkt.y);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // PredWosuskow beim Reden
@@ -152,8 +152,8 @@ public class PredWosuskow extends Mainanim {
             Talk = (int) (Math.random() * 6.9);
         }
 
-        g.drawImage(pred_talk[Talk], punkt.x, punkt.y, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_talk[Talk], punkt.x, punkt.y);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // PredWosuskow bei Anims (selbstkillend)
@@ -162,8 +162,8 @@ public class PredWosuskow extends Mainanim {
             case 1:
                 // Stollennimmanim
                 Stollencounter++;
-                g.drawImage(pred_stollen, punkt.x, punkt.y, null);
-                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+                g.drawImage(pred_stollen, punkt.x, punkt.y);
+                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
                 if (Stollencounter > 5) {
                     Stollencounter = 0;
                     return false;
@@ -174,8 +174,8 @@ public class PredWosuskow extends Mainanim {
             case 2:
                 // Gebeanim
                 Givecounter++;
-                g.drawImage(pred_take, punkt.x, punkt.y, null);
-                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+                g.drawImage(pred_take, punkt.x, punkt.y);
+                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
                 if (Givecounter > 5) {
                     Givecounter = 0;
                     return false;

@@ -224,11 +224,11 @@ public class Most1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe Hintergrund loeschen
         g.setClip(586, 200, 100, 100);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
         reh.drawReh(g);
@@ -237,7 +237,7 @@ public class Most1 extends Mainloc {
         switchanim = !switchanim;
         if (switchanim) {
             g.setClip(0, 0, 644, 484);
-            g.drawImage(flussu[flusscount], 387, 380, null);
+            g.drawImage(flussu[flusscount], 387, 380);
             flusscount++;
             if (flusscount == 8) {
                 flusscount = 1;
@@ -245,7 +245,7 @@ public class Most1 extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // hier ist der Sound...
         evalSound();
@@ -284,13 +284,13 @@ public class Most1 extends Mainloc {
             }
         }
         if (Berglauf) {
-            g.drawImage(wegstueck, 342, 270, null);
+            g.drawImage(wegstueck, 342, 270);
         }
 
         GenericPoint tem = mainFrame.krabat.GetKrabatPos();
 
         if (BergTrapez.PointInside(tem)) {
-            g.drawImage(gelaend, 379, 273, null);
+            g.drawImage(gelaend, 379, 273);
         }
 
         // sonst noch was zu tun ?
@@ -719,7 +719,7 @@ public class Most1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

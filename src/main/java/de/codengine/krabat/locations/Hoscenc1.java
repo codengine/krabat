@@ -253,12 +253,12 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // offene Tuer zeichnen, wenn noetig
         if (doorOpen) {
             g.setClip(390, 105, 77, 169);
-            g.drawImage(durje, 390, 105, null);
+            g.drawImage(durje, 390, 105);
         }
 
         // Wirt Hintergrund loeschen
@@ -269,35 +269,31 @@ public class Hoscenc1 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             if (doorOpen) {
-                g.drawImage(durje, 390, 105, null);
+                g.drawImage(durje, 390, 105);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Honck zeichnen, da im Hintergrund !!!
         if (!mainFrame.Actions[902]) {
             g.setClip(219, 271, 49, 44);
-            g.drawImage(honck, 219, 271, null);
+            g.drawImage(honck, 219, 271);
         }
 
         // Andere Personen zeichnen
         // Pjany
         g.setClip(saeuferPoint.x, saeuferPoint.y, Pjany.Breite, Pjany.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         // Saeufer darf nur reden, wenn die Anims nicht gesperrt sind
-        if (!AnimMCLocked) {
-            saeufer.drawPjany(g, TalkPerson, saeuferPoint, AnimTalkPerson);
-        } else {
-            saeufer.drawPjany(g, TalkPerson, saeuferPoint, 0);
-        }
+        saeufer.drawPjany(g, saeuferPoint);
 
         // Dundak
         g.setClip(strolchPoint.x, strolchPoint.y, Dundak.Breite, Dundak.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         strolch.drawDundak(g, TalkPerson, strolchPoint, SoundCountdown);
         if (SoundCountdown > 0) {
             SoundCountdown--;
@@ -324,7 +320,7 @@ public class Hoscenc1 extends Mainloc {
             }
 
             // Vordergrund draufzeichnen
-            g.drawImage(vorderdurje, 294, 63, null);
+            g.drawImage(vorderdurje, 294, 63);
         }
 
         mainFrame.wegGeher.GeheWeg();
@@ -368,7 +364,7 @@ public class Hoscenc1 extends Mainloc {
 
         // hinterm Balken (nur Clipping - Region wird neugezeichnet)
         if (hosc6Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(hosc6, 51, 185, null);
+            g.drawImage(hosc6, 51, 185);
         }
 
         // Ausgabe von AnimText, falls noetig
@@ -768,9 +764,9 @@ public class Hoscenc1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

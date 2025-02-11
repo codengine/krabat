@@ -140,9 +140,9 @@ public class WikowarRybow extends Mainanim {
                     }
                 }
 
-                offGraph.drawImage(wik_head[Head], Posit.x, Posit.y, null);
-                offGraph.drawImage(!givekrosik ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
-                offGraph.drawImage(foreground, 688, 327, null);
+                offGraph.drawImage(wik_head[Head], Posit.x, Posit.y);
+                offGraph.drawImage(!givekrosik ? wik_body[Body] : wik_body[3], Posit.x, Posit.y + BODYOFFSET);
+                offGraph.drawImage(foreground, 688, 327);
                 return;
             }
 
@@ -187,20 +187,20 @@ public class WikowarRybow extends Mainanim {
                 Verhinderstand = AUGENZWINKERN;
             }
 
-            offGraph.drawImage(wik_head[Stand], Posit.x, Posit.y, null);
+            offGraph.drawImage(wik_head[Stand], Posit.x, Posit.y);
 
             // verschiedene Bodies eval.
             if (givekrosik) {
-                offGraph.drawImage(wik_body[3], Posit.x, Posit.y + BODYOFFSET, null);
+                offGraph.drawImage(wik_body[3], Posit.x, Posit.y + BODYOFFSET);
             } else {
                 if (isTaking) {
-                    offGraph.drawImage(wik_body[4], Posit.x, Posit.y + BODYOFFSET, null);
+                    offGraph.drawImage(wik_body[4], Posit.x, Posit.y + BODYOFFSET);
                 } else {
-                    offGraph.drawImage(wik_body[0], Posit.x, Posit.y + BODYOFFSET, null);
+                    offGraph.drawImage(wik_body[0], Posit.x, Posit.y + BODYOFFSET);
                 }
             }
 
-            offGraph.drawImage(foreground, 688, 327, null);
+            offGraph.drawImage(foreground, 688, 327);
         } else {
             // er hat sich umgedreht und kramt nach irgendwas...
             if (!isOctopussy) {
@@ -230,10 +230,10 @@ public class WikowarRybow extends Mainanim {
                         }
                     }
                 }
-                offGraph.drawImage(octopussy[Octo], 732, 343, null);
+                offGraph.drawImage(octopussy[Octo], 732, 343);
             }
-            offGraph.drawImage(wik_kram[Kram], 697, 360, null);
-            offGraph.drawImage(foreground, 688, 327, null);
+            offGraph.drawImage(wik_kram[Kram], 697, 360);
+            offGraph.drawImage(foreground, 688, 327);
         }
     }
 }    

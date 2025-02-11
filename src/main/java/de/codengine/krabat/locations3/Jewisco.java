@@ -139,17 +139,17 @@ public class Jewisco extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         //  Buch zeichnen, solange noch da
         if (!mainFrame.Actions[952]) {
             g.setClip(213, 346, 45, 17);
-            g.drawImage(buch, 213, 346, null);
+            g.drawImage(buch, 213, 346);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -426,7 +426,7 @@ public class Jewisco extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

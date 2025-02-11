@@ -91,7 +91,7 @@ public class Posol extends Mainanim {
         }
 
         // Boten zeichnen
-        offGraph.drawImage(bote_head[Head], posit.x, posit.y, null);
-        offGraph.drawImage(bote_body[Body], posit.x, posit.y + BODYOFFSET, null);
+        offGraph.drawImage(bote_head[Head], posit.x, posit.y);
+        offGraph.drawImage(bote_body[Body], posit.x, posit.y + BODYOFFSET);
     }
 }    

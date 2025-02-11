@@ -200,7 +200,7 @@ public class Mlyn2 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Mueller Hintergrund loeschen
         if (showPersonen) {
@@ -216,7 +216,7 @@ public class Mlyn2 extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Anim zeichnen, da stets im Hintergrund
@@ -229,7 +229,7 @@ public class Mlyn2 extends Mainloc {
                 }
             }
             g.setClip(120, 260, 135, 145);
-            g.drawImage(Rad[Radcount], 120, 260, null);
+            g.drawImage(Rad[Radcount], 120, 260);
 
             evalSound();
         }
@@ -334,7 +334,7 @@ public class Mlyn2 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

@@ -93,7 +93,6 @@ public class Dinglingerwalk extends Mainanim {
     // beim Zoomen veraendern
     // private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     private boolean isStanding = true;
 
@@ -283,7 +282,7 @@ public class Dinglingerwalk extends Mainanim {
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
         float horiz_dist = CHORIZ_DIST[anim_pos] - scale / SLOWX;
@@ -346,12 +345,6 @@ public class Dinglingerwalk extends Mainanim {
         yps = aim.y;
 
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetDinglingerPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -508,7 +501,7 @@ public class Dinglingerwalk extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        float fScaleY = getScale(pox, poy) * scaleFactor;
+        float fScaleY = getScale(poy) * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         return pox - Koerperbreite / 2;
     }
@@ -517,19 +510,19 @@ public class Dinglingerwalk extends Mainanim {
     private int getLeftPosSkla(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return pox - (CEXTRAWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -545,7 +538,7 @@ public class Dinglingerwalk extends Mainanim {
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
@@ -559,7 +552,7 @@ public class Dinglingerwalk extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -578,7 +571,7 @@ public class Dinglingerwalk extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect DinglingerRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -603,8 +596,8 @@ public class Dinglingerwalk extends Mainanim {
         } else {
             left = getLeftPosSkla((int) xps, (int) yps);
         }
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -625,8 +618,8 @@ public class Dinglingerwalk extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -639,12 +632,12 @@ public class Dinglingerwalk extends Mainanim {
 
         if (direction_x == -1) {
             // nach links zeichnen
-            g.drawImage(krabat_left_talk_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-            g.drawImage(krabat_left_talk_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+            g.drawImage(krabat_left_talk_head[Head], left, up, Koerperbreite, Kopfhoehe);
+            g.drawImage(krabat_left_talk_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
         } else {
             // nach rechts zeichnen
-            g.drawImage(krabat_right_talk_head[Head], left, up, Koerperbreite, Kopfhoehe, null);
-            g.drawImage(krabat_right_talk_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe, null);
+            g.drawImage(krabat_right_talk_head[Head], left, up, Koerperbreite, Kopfhoehe);
+            g.drawImage(krabat_right_talk_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
         }
     }
 }

@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -56,8 +55,6 @@ public class Skladzic extends Mainanim {
     private GenericImage actualImage;
 
     public boolean saveIsValid = false;
-
-    private final GenericImageObserver observer = null;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -130,7 +127,7 @@ public class Skladzic extends Mainanim {
         if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -141,13 +138,13 @@ public class Skladzic extends Mainanim {
                 if (Dir[i].Location != 0) {
                     outputText = Dir[i].ConvertTime();
                     g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1, null);
+                            outputTextPos.y + mainFrame.scrolly + 1);
                     outputTextPos.y += 87;
                     mainFrame.ifont.drawString(g, outputText, outputTextPos.x + mainFrame.scrollx,
                             outputTextPos.y + mainFrame.scrolly, 0xffff0000);
                 } else {
                     g.drawImage(Empty, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1, null);
+                            outputTextPos.y + mainFrame.scrolly + 1);
                 }
             }
         }
@@ -181,13 +178,13 @@ public class Skladzic extends Mainanim {
             GenericPoint pTemp = GetCurrentXY(unselected);
             if (Dir[unselected + 1].Location != 0) {
                 g.drawImage(Dir[unselected + 1].DarkPicture,
-                        pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1, null);
+                        pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
             } else {
-                g.drawImage(Empty, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1, null);
+                g.drawImage(Empty, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
             }
             pTemp.y += 87;
             g.setClip(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly + 4, 110, 20);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             if (Dir[unselected + 1].Location != 0) {
                 outputText = Dir[unselected + 1].ConvertTime();
                 mainFrame.ifont.drawString(g, outputText, pTemp.x + mainFrame.scrollx,
@@ -200,10 +197,10 @@ public class Skladzic extends Mainanim {
         // Markiertes Feld mit richtigem GenericImage �berpinseln und neues Datum hinzufuegen!
         if (selected != -1) {
             GenericPoint pTemp = GetCurrentXY(selected);
-            g.drawImage(Aktuell.Picture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1, null);
+            g.drawImage(Aktuell.Picture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
             pTemp.y += 87;
             g.setClip(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly + 4, 110, 20);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             outputText = Aktuell.ConvertTime();
             mainFrame.ifont.drawString(g, outputText, pTemp.x + mainFrame.scrollx,
                     pTemp.y + mainFrame.scrolly, 0xffff0000);
@@ -216,14 +213,14 @@ public class Skladzic extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeil, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly, observer);
+                g.drawImage(DPfeil, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
                 break;
             case 2:
                 GenericRectangle tep = g.getClipBounds();
                 g.setClip(brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly,
                         brSklad.ru_point.x - brSklad.lo_point.x + mainFrame.scrollx,
                         brSklad.ru_point.y - brSklad.lo_point.y + mainFrame.scrolly);
-                g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, observer);
+                g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 g.setClip(tep);
                 break;
             default:
@@ -238,14 +235,14 @@ public class Skladzic extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             case 2:
                 GenericRectangle tepm = g.getClipBounds();
                 g.setClip(brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly,
                         brSklad.ru_point.x - brSklad.lo_point.x + mainFrame.scrollx,
                         brSklad.ru_point.y - brSklad.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Sklad, brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly, null);
+                g.drawImage(Sklad, brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly);
                 g.setClip(tepm);
                 break;
             default:
@@ -345,7 +342,7 @@ public class Skladzic extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         nFeldAktiv = -1;
         mainFrame.repaint();

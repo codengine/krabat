@@ -180,14 +180,14 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Handrij zeichnen
         g.setClip(reZahrodnik.lo_point.x, reZahrodnik.lo_point.y, Handrij.Breite, Handrij.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         handrij.drawHandrij(g, TalkPerson, handrijHoertZu, handrijSchreibt, handrijGibt);
 
         // Krabat einen Schritt laufen lassen
@@ -235,7 +235,7 @@ public class Zahrodnik extends Mainloc {
 
         // hinter Schloss ? (nur Clipping - Region wird neugezeichnet)
         if (rectHrod.IsPointInRect(pKrTemp)) {
-            g.drawImage(hrod, 0, 354, null);
+            g.drawImage(hrod, 0, 354);
         }
 
         // sonst noch was zu tun ?
@@ -603,9 +603,9 @@ public class Zahrodnik extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

@@ -54,7 +54,7 @@ public class Mlynkmurja extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Mlynkmurja(Start caller, int oldLocation) {
+    public Mlynkmurja(Start caller) {
         super(caller, 129);
         mainFrame.Freeze(true);
 
@@ -65,7 +65,7 @@ public class Mlynkmurja extends Mainloc {
         mainFrame.krabat.zoomf = 1f;
         mainFrame.krabat.defScale = 35;
 
-        InitLocation(oldLocation);
+        InitLocation();
 
         // Mueller initialisieren
         mueller = new Oldmlynk(mainFrame, Muellerzooming);
@@ -84,7 +84,7 @@ public class Mlynkmurja extends Mainloc {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         // Grenzen setzen
         mainFrame.wegGeher.vBorders.removeAllElements();
         mainFrame.wegGeher.vBorders.addElement
@@ -132,16 +132,16 @@ public class Mlynkmurja extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(backr, 0, 0, null);
-        g.drawImage(laterne, laterneAdd, 0, null);
+        g.drawImage(backr, 0, 0);
+        g.drawImage(laterne, laterneAdd, 0);
 
         // Mueller zeichnen
         g.setClip(muellerPoint.x, muellerPoint.y, Oldmlynk.Breite, Oldmlynk.Hoehe);
-        g.drawImage(backr, 0, 0, null);
+        g.drawImage(backr, 0, 0);
         mueller.drawOldmlynk(g, TalkPerson, muellerPoint);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -195,7 +195,7 @@ public class Mlynkmurja extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // Laterne zeichnen, wenn im Bild
-        g.drawImage(laterne, laterneAdd, 0, null);
+        g.drawImage(laterne, laterneAdd, 0);
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
 	/*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
@@ -252,7 +252,7 @@ public class Mlynkmurja extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

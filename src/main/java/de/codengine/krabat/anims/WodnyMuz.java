@@ -125,8 +125,8 @@ public class WodnyMuz extends Mainanim {
                 }
             }
 
-            g.drawImage(wmuz_head[Head], posit.x, posit.y + Offset, null);
-            g.drawImage(wmuz_body[Body], posit.x, posit.y + Offset + 34, null);
+            g.drawImage(wmuz_head[Head], posit.x, posit.y + Offset);
+            g.drawImage(wmuz_body[Body], posit.x, posit.y + Offset + 34);
         }
 
         // Schwimme, Wassermann !!!
@@ -140,8 +140,8 @@ public class WodnyMuz extends Mainanim {
                 }
             }
 
-            g.drawImage(wmuz_head[Norm], posit.x, posit.y + Offset, null);
-            g.drawImage(wmuz_body[1], posit.x, posit.y + Offset + 34, null);
+            g.drawImage(wmuz_head[Norm], posit.x, posit.y + Offset);
+            g.drawImage(wmuz_body[1], posit.x, posit.y + Offset + 34);
         }
 
         // Wippe im Wind wie ein Blatt vom Baum (Ok, ok, ich hoer schon auf...)
@@ -160,14 +160,14 @@ public class WodnyMuz extends Mainanim {
         if (istOben) {
             if (turn) {
                 turn = false;
-                g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset);
                 return true;
             } else {
                 Offset++;
                 if (Offset == 8) {
                     mainFrame.wave.PlayFile("sfx/wmuz.wav");
                 }
-                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 if (Offset < GRAFIK_HOEHE) {
                     return true;
                 } else {
@@ -184,15 +184,15 @@ public class WodnyMuz extends Mainanim {
                 if (Offset == GRAFIK_HOEHE - 1) {
                     mainFrame.wave.PlayFile("sfx/wmuz.wav");
                 }
-                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 return true;
             } else {
                 if (!turn) {
                     turn = true;
-                    g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                    g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset);
                     return true;
                 } else {
-                    g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset, null);
+                    g.drawImage(wmuz_tauch[1], posit.x, posit.y + Offset);
                     istOben = !istOben;
                     return false;
                 }

@@ -22,7 +22,6 @@ package de.codengine.krabat.platform.java;
 
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 import de.codengine.krabat.platform.GenericImageProducer;
 
 import java.awt.*;
@@ -46,8 +45,8 @@ public class JavaImage extends GenericImage {
     }
 
     @Override
-    public int getHeight(GenericImageObserver object) {
-        return image.getHeight(((JavaImageObserver) object).getObserver());
+    public int getHeight() {
+        return image.getHeight(null);
     }
 
     @Override
@@ -63,8 +62,8 @@ public class JavaImage extends GenericImage {
     }
 
     @Override
-    public int getWidth(GenericImageObserver object) {
-        return image.getWidth(((JavaImageObserver) object).getObserver());
+    public int getWidth() {
+        return image.getWidth(null);
     }
 
 }

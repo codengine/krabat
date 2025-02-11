@@ -107,15 +107,6 @@ public class Kuchar extends Mainanim {
         }
     }
 
-    // gibt TalkPoint zurueck, je nach "Groesse" des Kochs
-    public GenericPoint evalKucharTalkPoint() {
-        if (!isAufgestanden) {
-            return new GenericPoint(327 + 140 / 2, 208 - 50);
-        } else {
-            return new GenericPoint(337 + 101 / 2, 163 - 50);
-        }
-    }
-
     // Zeichne Kuchar, wie er dasteht oder spricht
     public void drawKuchar(GenericDrawingContext offGraph, int TalkPerson, boolean isListening,
                            boolean isAufgestanden, boolean noSound) {
@@ -130,7 +121,7 @@ public class Kuchar extends Mainanim {
 
                 evalMouse(offGraph);
 
-                offGraph.drawImage(kuchar_up_talk[TalkUp], upPoint.x, upPoint.y, null);
+                offGraph.drawImage(kuchar_up_talk[TalkUp], upPoint.x, upPoint.y);
             } else {
                 if (--Verhindertalkdown < 1) {
                     Verhindertalkdown = MAX_VERHINDERTALKDOWN;
@@ -142,7 +133,7 @@ public class Kuchar extends Mainanim {
 
                 evalMouse(offGraph);
 
-                offGraph.drawImage(kuchar_down_talk[TalkDown], downPoint.x, downPoint.y, null);
+                offGraph.drawImage(kuchar_down_talk[TalkDown], downPoint.x, downPoint.y);
             }
             // aufgesteht merken wg. Rect und TalkPos
             this.isAufgestanden = isAufgestanden;
@@ -163,7 +154,7 @@ public class Kuchar extends Mainanim {
 
             evalMouse(offGraph);
 
-            offGraph.drawImage(kuchar_down_talk[TalkDown], downPoint.x, downPoint.y, null);
+            offGraph.drawImage(kuchar_down_talk[TalkDown], downPoint.x, downPoint.y);
 
             // aufgesteht merken wg. Rect und TalkPos
             this.isAufgestanden = isAufgestanden;
@@ -175,7 +166,7 @@ public class Kuchar extends Mainanim {
         if (this.isAufgestanden) {
             evalMouse(offGraph);
 
-            offGraph.drawImage(kuchar_up_talk[0], upPoint.x, upPoint.y, null);
+            offGraph.drawImage(kuchar_up_talk[0], upPoint.x, upPoint.y);
 
             // aufgesteht merken wg. Rect und TalkPos
             this.isAufgestanden = isAufgestanden;
@@ -202,9 +193,9 @@ public class Kuchar extends Mainanim {
                 Verhinderschlag = MAX_VERHINDERSCHLAG;
             }
 
-            offGraph.drawImage(maus[2], mauspos.x, mauspos.y, null);
+            offGraph.drawImage(maus[2], mauspos.x, mauspos.y);
 
-            offGraph.drawImage(kuchar_down_schlag[Schlag], downPoint.x, downPoint.y, null);
+            offGraph.drawImage(kuchar_down_schlag[Schlag], downPoint.x, downPoint.y);
         } else {
             // Zwinkern
             if (Schlag > 0) {
@@ -218,7 +209,7 @@ public class Kuchar extends Mainanim {
 
             evalMouse(offGraph);
 
-            offGraph.drawImage(kuchar_down_schlag[Schlag], downPoint.x, downPoint.y, null);
+            offGraph.drawImage(kuchar_down_schlag[Schlag], downPoint.x, downPoint.y);
         }
 
         // aufgesteht merken wg. Rect und TalkPos
@@ -239,7 +230,7 @@ public class Kuchar extends Mainanim {
         }
 
         // Maus zeichnen
-        g.drawImage(maus[Maus], mauspos.x, mauspos.y, null);
+        g.drawImage(maus[Maus], mauspos.x, mauspos.y);
     }
 
     private void evalSound() {

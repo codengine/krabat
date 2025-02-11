@@ -101,7 +101,7 @@ public class Rapak extends Mainanim {
                 while (Talk > 11 || Talk == 3 || Talk == 5 || Talk == 4 || Talk < 1 || Talk == 7);
             }
 
-            offGraph.drawImage(Vogel[Talk], 412, 144, null);
+            offGraph.drawImage(Vogel[Talk], 412, 144);
         } else {
             // Raben beim Herumhaengen (normale Anims)
             if (whichanim == 0) {
@@ -117,16 +117,16 @@ public class Rapak extends Mainanim {
             switch (whichanim) {
                 case 0:
                     // normalen Raben zeichnen
-                    offGraph.drawImage(Vogel[1], 412, 144, null);
+                    offGraph.drawImage(Vogel[1], 412, 144);
                     break;
 
                 case 1:
                     // Zwinkern
                     if (Animcount == 0) {
-                        offGraph.drawImage(Vogel[2], 412, 144, null);
+                        offGraph.drawImage(Vogel[2], 412, 144);
                     }
                     if (Animcount == 1) {
-                        offGraph.drawImage(Vogel[2], 412, 144, null);
+                        offGraph.drawImage(Vogel[2], 412, 144);
                     }
                     Animcount++;
                     if (Animcount == 2) {
@@ -138,22 +138,22 @@ public class Rapak extends Mainanim {
                 case 2:
                     // unter Fluegel kratzen
                     if (Animcount == 0) {
-                        offGraph.drawImage(Vogel[3], 412, 144, null);
+                        offGraph.drawImage(Vogel[3], 412, 144);
                     }
                     if (Animcount == 1) {
-                        offGraph.drawImage(Vogel[3], 412, 144, null);
+                        offGraph.drawImage(Vogel[3], 412, 144);
                     }
                     if (Animcount == 2) {
-                        offGraph.drawImage(Vogel[1], 412, 144, null);
+                        offGraph.drawImage(Vogel[1], 412, 144);
                     }
                     if (Animcount == 3) {
-                        offGraph.drawImage(Vogel[1], 412, 144, null);
+                        offGraph.drawImage(Vogel[1], 412, 144);
                     }
                     if (Animcount == 4) {
-                        offGraph.drawImage(Vogel[3], 412, 144, null);
+                        offGraph.drawImage(Vogel[3], 412, 144);
                     }
                     if (Animcount == 5) {
-                        offGraph.drawImage(Vogel[3], 412, 144, null);
+                        offGraph.drawImage(Vogel[3], 412, 144);
                     }
                     Animcount++;
                     if (Animcount == 6) {
@@ -165,22 +165,22 @@ public class Rapak extends Mainanim {
                 case 3:
                     // unter Fluegel kratzen andere Seite
                     if (Animcount == 0) {
-                        offGraph.drawImage(Vogel[4], 412, 144, null);
+                        offGraph.drawImage(Vogel[4], 412, 144);
                     }
                     if (Animcount == 1) {
-                        offGraph.drawImage(Vogel[4], 412, 144, null);
+                        offGraph.drawImage(Vogel[4], 412, 144);
                     }
                     if (Animcount == 2) {
-                        offGraph.drawImage(Vogel[1], 412, 144, null);
+                        offGraph.drawImage(Vogel[1], 412, 144);
                     }
                     if (Animcount == 3) {
-                        offGraph.drawImage(Vogel[1], 412, 144, null);
+                        offGraph.drawImage(Vogel[1], 412, 144);
                     }
                     if (Animcount == 4) {
-                        offGraph.drawImage(Vogel[4], 412, 144, null);
+                        offGraph.drawImage(Vogel[4], 412, 144);
                     }
                     if (Animcount == 5) {
-                        offGraph.drawImage(Vogel[4], 412, 144, null);
+                        offGraph.drawImage(Vogel[4], 412, 144);
                     }
                     Animcount++;
                     if (Animcount == 6) {
@@ -229,7 +229,7 @@ public class Rapak extends Mainanim {
             }
         }
 
-        offGraph.drawImage(Vogel[FlyArray[Fliegpos]], flyx, flyy, null);
+        offGraph.drawImage(Vogel[FlyArray[Fliegpos]], flyx, flyy);
 
         return rgabe;
     }
@@ -254,7 +254,7 @@ public class Rapak extends Mainanim {
 
 
             // Vogel zeichnen
-            g.drawImage(Vogel[FlyArray[Fliegpos]], flyx, flyy, null);
+            g.drawImage(Vogel[FlyArray[Fliegpos]], flyx, flyy);
 
             return true;
         }

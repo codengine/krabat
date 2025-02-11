@@ -213,16 +213,16 @@ public class Trepjena extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Straza zeichnen
         g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         strazaPoklad.drawStraza(g, TalkPerson, strazaPoint, weistzurueck);
-        g.drawImage(trVorn, 147, 0, null);
+        g.drawImage(trVorn, 147, 0);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -263,7 +263,7 @@ public class Trepjena extends Mainloc {
 
         // Vordergrund zeichnen (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.y <= 415) {
-            g.drawImage(trVorn, 147, 0, null);
+            g.drawImage(trVorn, 147, 0);
         }
 
         // sonst noch was zu tun ?
@@ -685,7 +685,7 @@ public class Trepjena extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

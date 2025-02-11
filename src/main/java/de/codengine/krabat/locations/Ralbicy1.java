@@ -164,17 +164,17 @@ public class Ralbicy1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(holz, 0, 365, null);
-        g.drawImage(kreuz, 118, 194, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(holz, 0, 365);
+        g.drawImage(kreuz, 118, 194);
 
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Bauern zeichnen
         g.setClip(60, 223, 35, 32);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         bauer.drawBur(g, TalkPerson, isListening, false); // macht immer Geraeusche
 
         // Krabat einen Schritt laufen lassen
@@ -215,8 +215,8 @@ public class Ralbicy1 extends Mainloc {
         }
 
         // muss noch mit Abfrage versehen werden (sonst unnuetz!)
-        g.drawImage(holz, 0, 365, null);
-        g.drawImage(kreuz, 118, 194, null);
+        g.drawImage(holz, 0, 365);
+        g.drawImage(kreuz, 118, 194);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -513,9 +513,9 @@ public class Ralbicy1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

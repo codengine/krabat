@@ -207,14 +207,14 @@ public class Zdzary1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Alte Schachtel zeichnen
         g.setClip(alteRect.lo_point.x, alteRect.lo_point.y, alteRect.ru_point.x - alteRect.lo_point.x, alteRect.ru_point.y - alteRect.lo_point.y);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         alte.drawWudowa(g, TalkPerson, altePoint, whereIsAlte == 0);
 
         mainFrame.wegGeher.GeheWeg();
@@ -565,12 +565,12 @@ public class Zdzary1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (Userdialog.user) {
-            Userdialog.evalMouseExitEvent(e);
+            Userdialog.evalMouseExitEvent();
         }
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

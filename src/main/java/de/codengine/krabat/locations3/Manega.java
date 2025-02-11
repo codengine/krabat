@@ -163,18 +163,18 @@ public class Manega extends Mainloc {
         }
 
         // Hintergrund, Zeug (falls noch da) und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         if (!mainFrame.Actions[611]) {
-            g.drawImage(friedhelm, 365, 380, null);
+            g.drawImage(friedhelm, 365, 380);
         }
 
         // Loewen zeichnen
         g.setClip(loewePoint.x, loewePoint.y, Law.Breite, Law.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         loewe.drawLaw(g, TalkPerson, loewePoint, AnimTalkPerson, hoertZu);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -460,7 +460,7 @@ public class Manega extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

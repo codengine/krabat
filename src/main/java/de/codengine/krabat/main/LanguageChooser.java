@@ -23,7 +23,6 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class LanguageChooser extends Mainloc {
     private GenericImage background;
@@ -66,8 +65,6 @@ public class LanguageChooser extends Mainloc {
     private String[] abbreviations;
 
     // Initialisierung ////////////////////////////////////////////////////////
-
-    private final GenericImageObserver observer = null;
 
     private final GameProperties properties;
 
@@ -136,7 +133,7 @@ public class LanguageChooser extends Mainloc {
             evalMouseMoveEvent(mainFrame.Mousepoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
-            g.drawImage(background, mainFrame.scrollx, 0, null);
+            g.drawImage(background, mainFrame.scrollx, 0);
             GenericPoint ps = mainFrame.ifont.CenterAnimText("Select language", new GenericPoint(320, 35));
             mainFrame.ifont.drawString(g, "Select language", ps.x, ps.y, 0xffff0000);
 
@@ -145,8 +142,8 @@ public class LanguageChooser extends Mainloc {
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
 
             mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xff800000);
         }
@@ -178,10 +175,10 @@ public class LanguageChooser extends Mainloc {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
+                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             case 3:
                 mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xff800000);
@@ -199,10 +196,10 @@ public class LanguageChooser extends Mainloc {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly, observer);
+                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly, observer);
+                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             case 3:
                 mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xffff0000);
@@ -322,7 +319,7 @@ public class LanguageChooser extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         mainFrame.repaint();
     }

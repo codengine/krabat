@@ -103,8 +103,8 @@ public class Fararhor extends Mainanim {
     }
 
     public boolean moveDoor(GenericDrawingContext offGraph) {
-        offGraph.drawImage(farar_open, 322, 307, null);
-        offGraph.drawImage(foreground, 332, 300, null);
+        offGraph.drawImage(farar_open, 322, 307);
+        offGraph.drawImage(foreground, 332, 300);
         --Doorcount;
         if (Doorcount == 0) {
             Doorcount = MAX_DOORCOUNT;

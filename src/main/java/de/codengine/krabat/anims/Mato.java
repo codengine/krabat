@@ -87,9 +87,9 @@ public class Mato extends Mainanim {
     public void drawMato(GenericDrawingContext offGraph, int TalkPerson, GenericPoint Posit, boolean isOpening, boolean isGiving, boolean isListening) {
         // irgendwas entgegennehmen
         if (isGiving) {
-            offGraph.drawImage(mato_look[0], Posit.x, Posit.y, null);
-            offGraph.drawImage(vorder, 353, 343, null);
-            offGraph.drawImage(mato_take, Posit.x, Posit.y, null);
+            offGraph.drawImage(mato_look[0], Posit.x, Posit.y);
+            offGraph.drawImage(vorder, 353, 343);
+            offGraph.drawImage(mato_take, Posit.x, Posit.y);
             return;
         }
 
@@ -105,8 +105,8 @@ public class Mato extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(mato_open[Open], Posit.x, Posit.y, null);
-            offGraph.drawImage(vorder, 353, 343, null);
+            offGraph.drawImage(mato_open[Open], Posit.x, Posit.y);
+            offGraph.drawImage(vorder, 353, 343);
             return;
         }
 
@@ -119,8 +119,8 @@ public class Mato extends Mainanim {
                 Talk = (int) (Math.random() * 6.9);
             }
 
-            offGraph.drawImage(mato_talk[Talk], Posit.x, Posit.y, null);
-            offGraph.drawImage(vorder, 353, 343, null);
+            offGraph.drawImage(mato_talk[Talk], Posit.x, Posit.y);
+            offGraph.drawImage(vorder, 353, 343);
         }
         // Mato guckt in der Weltgeschichte rum
         else {
@@ -164,8 +164,8 @@ public class Mato extends Mainanim {
                 Wait = 0;
             }
 
-            offGraph.drawImage(mato_look[Wait], Posit.x, Posit.y, null);
-            offGraph.drawImage(vorder, 353, 343, null);
+            offGraph.drawImage(mato_look[Wait], Posit.x, Posit.y);
+            offGraph.drawImage(vorder, 353, 343);
         }
     }
 }    

@@ -152,8 +152,8 @@ public class PredKorejtow extends Mainanim {
         }
 
         // Predawar malen
-        g.drawImage(pred_wait_head[WaitHead], posit.x, posit.y, null);
-        g.drawImage(pred_wait_body[WaitBody], posit.x, posit.y + BODYOFFSET, null);
+        g.drawImage(pred_wait_head[WaitHead], posit.x, posit.y);
+        g.drawImage(pred_wait_body[WaitBody], posit.x, posit.y + BODYOFFSET);
     }
 
     // Predawar beim Rufen
@@ -187,8 +187,8 @@ public class PredKorejtow extends Mainanim {
         }
 
         // Predawar zeichnen
-        g.drawImage(pred_call_head[CallHead], posit.x, posit.y, null);
-        g.drawImage(pred_call_body[CallBody], posit.x, posit.y + BODYOFFSET, null);
+        g.drawImage(pred_call_head[CallHead], posit.x, posit.y);
+        g.drawImage(pred_call_body[CallBody], posit.x, posit.y + BODYOFFSET);
     }
 
     // Predawar beim Reden
@@ -206,7 +206,7 @@ public class PredKorejtow extends Mainanim {
         }
 
         // Predawar zeichnen
-        g.drawImage(pred_talk_head[TalkHead], posit.x, posit.y, null);
-        g.drawImage(pred_talk_body[TalkBody], posit.x, posit.y + BODYOFFSET, null);
+        g.drawImage(pred_talk_head[TalkHead], posit.x, posit.y);
+        g.drawImage(pred_talk_body[TalkBody], posit.x, posit.y + BODYOFFSET);
     }
 }    

@@ -208,16 +208,16 @@ public class Dingl extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Dinglinger Hintergrund loeschen
         if (sitzenderDinglinger) {
             // sitzender Dinglinger
             g.setClip(dinglLO.x, dinglLO.y, Dinglinger.Breite, Dinglinger.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         } else {
             // stehender Dinglinger
 
@@ -225,7 +225,7 @@ public class Dingl extends Mainloc {
             Borderrect temp = dinglingerwalk.DinglingerRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Dinglinger zeichnen
@@ -287,11 +287,11 @@ public class Dingl extends Mainloc {
 
         // hinter blido (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.x < 370) {
-            g.drawImage(blido, 0, 126, null);
+            g.drawImage(blido, 0, 126);
         }
         // hinter tworba (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.x > 330) {
-            g.drawImage(tworba, 381, 336, null);
+            g.drawImage(tworba, 381, 336);
         }
 
         // sitzenden Dinglinger hier zeichnen, da er im Vordergrund ist
@@ -309,7 +309,7 @@ public class Dingl extends Mainloc {
             GenericRectangle mx;
             mx = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            g.drawImage(kombinacija, 0, 0, null);
+            g.drawImage(kombinacija, 0, 0);
             g.setClip(mx);
         }
 
@@ -646,9 +646,9 @@ public class Dingl extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

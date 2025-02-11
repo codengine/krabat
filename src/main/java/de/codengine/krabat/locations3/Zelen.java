@@ -217,7 +217,7 @@ public class Zelen extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Awgust zeichnen, wenn da...
         if (awgustVisible) {
@@ -229,7 +229,7 @@ public class Zelen extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // Hier dasselbe fuer den August
             temp = awgust.AwgustRect();
@@ -237,7 +237,7 @@ public class Zelen extends Mainloc {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // beide Figuren bewegen, wenn dies noetig ist
             if (--VerhinderwalkAwgust < 1) {
@@ -256,7 +256,7 @@ public class Zelen extends Mainloc {
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
             druzina.drawDruzina(g);
-            g.drawImage(vorder, 82, 210, null);
+            g.drawImage(vorder, 82, 210);
 
             // fuer Awgust ein paar Unterscheidungen
             temp = awgust.AwgustRect();
@@ -267,14 +267,14 @@ public class Zelen extends Mainloc {
             } else {
                 awgust.drawAwgust(g);
             }
-            g.drawImage(vorder, 82, 210, null);
+            g.drawImage(vorder, 82, 210);
         }
 
         // prikaz zeichnen, solange noch da
         if (!mainFrame.Actions[640]) {
             g.setClip(412, 404, 24, 10);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(iprikaz, 412, 404, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(iprikaz, 412, 404);
         }
 
         // Kerze zeichnen
@@ -290,16 +290,16 @@ public class Zelen extends Mainloc {
             }
         }
         g.setClip(378, 382, 15, 20);
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(kerze[Flacker], 378, 382, null);
-        g.drawImage(kerze[Tropf + 5], 378, 382, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(kerze[Flacker], 378, 382);
+        g.drawImage(kerze[Tropf + 5], 378, 382);
 
         // Stempel zeichnen
         g.setClip(370, 397, 9, 10);
-        g.drawImage(siegel, 370, 397, null);
+        g.drawImage(siegel, 370, 397);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -344,7 +344,7 @@ public class Zelen extends Mainloc {
             }
 
             // zeichnen und gut
-            g.drawImage(krabat_siegeln[Siegeln], hier.x, hier.y, weit, hoch, null);
+            g.drawImage(krabat_siegeln[Siegeln], hier.x, hier.y, weit, hoch);
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
@@ -677,7 +677,7 @@ public class Zelen extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

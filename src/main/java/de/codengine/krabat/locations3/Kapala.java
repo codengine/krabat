@@ -153,16 +153,16 @@ public class Kapala extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // 1. Papierrolle immer zeichnen, 2. nur, wenn noch da
         g.setClip(434, 363, 42, 23);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         if (!mainFrame.Actions[632]) {
-            g.drawImage(rolle1, 434, 363, null);
+            g.drawImage(rolle1, 434, 363);
         }
         if (!mainFrame.Actions[630]) {
-            g.drawImage(rolle2, 458, 368, null);
+            g.drawImage(rolle2, 458, 368);
         }
 
         // Feuer animieren
@@ -176,11 +176,11 @@ public class Kapala extends Mainloc {
         }
 
         g.setClip(520, 230, 50, 50);
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, FeuerMitte.y - Feuerwidth, Feuerwidth, Feuerwidth, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, FeuerMitte.y - Feuerwidth, Feuerwidth, Feuerwidth);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -488,7 +488,7 @@ public class Kapala extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

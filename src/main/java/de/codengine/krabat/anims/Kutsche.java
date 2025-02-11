@@ -268,13 +268,13 @@ public class Kutsche extends Mainanim {
 
                 // hier entweder 1 oder 2 Images malen
                 if (klWolke > 2) {
-                    g.drawImage(kleineWolke[klWolke - 3], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
-                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke - 3], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung);
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung);
                 } else {
-                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung, null);
+                    g.drawImage(kleineWolke[klWolke], (int) (Xpos - xVeraenderung / 2), (int) (Ypos - yVeraenderung), xVeraenderung, yVeraenderung);
                 }
                 // Vordergrund zeichnen (hier immer)
-                g.drawImage(vorder, 342, 270, null);
+                g.drawImage(vorder, 342, 270);
 
                 // testen auf "ich habe fertig"
                 if (Xpos <= Xende) {
@@ -313,10 +313,10 @@ public class Kutsche extends Mainanim {
 
                 // hier entweder 1 oder 2 Images malen
                 if (grWolke > 2) {
-                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung);
                 } else {
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung, null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - xxVeraenderung / 2), (int) (Ypos - yyVeraenderung), xxVeraenderung, yyVeraenderung);
                 }
 
                 // testen auf "ich habe fertig"
@@ -335,16 +335,16 @@ public class Kutsche extends Mainanim {
                 // Rumstehende Kutsche mit allerlei Nebenbeianims
 
                 // zuerstmal die Kutsche zeichnen, das ist immer dran
-                g.drawImage(kutsche, kutscheLO.x, kutscheLO.y, null);
+                g.drawImage(kutsche, kutscheLO.x, kutscheLO.y);
 
                 // solange es noch nicht von Aussen erledigt wird, hier den Kutscher zeichnen
                 if (isKutscheRauching) {
-                    g.drawImage(pohonc, pohoncPoint.x, pohoncPoint.y, null);
+                    g.drawImage(pohonc, pohoncPoint.x, pohoncPoint.y);
                 }
 
                 // hier die Tuer, wenn sie offen ist
                 if (doorOpen) {
-                    g.drawImage(kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20, null);
+                    g.drawImage(kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20);
                 }
 
                 // eval. ob das pferd mit den Augen zwinkert
@@ -386,7 +386,7 @@ public class Kutsche extends Mainanim {
                         Schwanz = 0;
                     }
                 }
-                g.drawImage(pferdschwanz[Schwanz], kutscheLO.x + 126, kutscheLO.y + 187, null);
+                g.drawImage(pferdschwanz[Schwanz], kutscheLO.x + 126, kutscheLO.y + 187);
 
                 // wenns noch aktuell ist, dann die Kutsche "aus dem Rauch" aufsteigen lassen
                 if (isKutscheRauching) {
@@ -406,7 +406,7 @@ public class Kutsche extends Mainanim {
 
                     // dazugehoeriges GenericImage malen
                     if (Rauch < 3) {
-                        g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - xxxxVeraenderung / 2), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung, null);
+                        g.drawImage(grosseWolke[Rauch + 3], (int) (Xpos - xxxxVeraenderung / 2), (int) (Ypos - yyyyVeraenderung), xxxxVeraenderung, yyyyVeraenderung);
                     }
                     if (!isKutscheRauching) {
                         return 0; // es wurde schon auf normal umgeschaltet
@@ -437,10 +437,10 @@ public class Kutsche extends Mainanim {
 
                 // hier entweder 1 oder 2 Images malen
                 if (grWolke > 2) {
-                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke - 3], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe));
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe));
                 } else {
-                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe), null);
+                    g.drawImage(grosseWolke[grWolke], (int) (Xpos - gBreite / 2), (int) (Ypos - gHoehe));
                 }
 
                 // testen auf "ich habe fertig"

@@ -84,7 +84,6 @@ public class Korcmar extends Mainanim {
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     // Redevariablen
     private int Kopf = 0;
@@ -221,7 +220,7 @@ public class Korcmar extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         float vert_dist = 1;
         // Zooming - Faktor beruecksichtigen in y-Richtung
@@ -377,10 +376,10 @@ public class Korcmar extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
 
         // Offsets berechnen
-        float fScale = getScale((int) xps, (int) yps);
+        float fScale = getScale((int) yps);
         int scalewidth = (int) (fScale * scalefaktor);
 
         float fHeight = CHEIGHT;
@@ -397,19 +396,19 @@ public class Korcmar extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -425,7 +424,7 @@ public class Korcmar extends Mainanim {
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
@@ -439,7 +438,7 @@ public class Korcmar extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -456,7 +455,7 @@ public class Korcmar extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect KorcmarRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -465,7 +464,7 @@ public class Korcmar extends Mainanim {
 
     // Routine, die TalkPoint zurueckgibt...
     public GenericPoint evalTalkPoint() {
-        int up = getUpPos((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
         return new GenericPoint((int) xps, up - 50);
     }
 
@@ -475,8 +474,8 @@ public class Korcmar extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // Offsets berechnen
         int scalewidth = (int) ((float) scale * scalefaktor);

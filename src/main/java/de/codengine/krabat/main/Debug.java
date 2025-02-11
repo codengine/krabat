@@ -20,32 +20,40 @@
 
 package de.codengine.krabat.main;
 
-import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 
-import java.util.Vector;
+public class Debug {
+    private static volatile boolean enabled = false;
 
-public class Showrect {
-
-    // private Start mainFrame;
-
-    public Showrect(Start caller) {
-        // mainFrame = caller;
+    private Debug() {
     }
 
-    public void Zeichne(GenericDrawingContext g, Vector<Bordertrapez> Rechtecke) {
+    public static void setEnabled(boolean enabled) {
+        Debug.enabled = enabled;
+    }
+
+    public static boolean isEnabled() {
+        return enabled;
+    }
+
+    // private Start mainFrame;
+    public static void DrawRect(GenericDrawingContext g, Iterable<Bordertrapez> rectangles) {
+        if(!isEnabled()) {
+            return;
+        }
+
         g.setColor(GenericColor.white);
         GenericRectangle my;
         my = g.getClipBounds();
         g.setClip(0, 0, 1280, 480);
-        int laenge = Rechtecke.size();
-        for (int i = 0; i < laenge; i++) {
-            Bordertrapez di = Rechtecke.elementAt(i);
+
+        for (Bordertrapez di : rectangles) {
             g.drawLine(di.x1, di.y1, di.x3, di.y2);
             g.drawLine(di.x3, di.y2, di.x4, di.y2);
             g.drawLine(di.x4, di.y2, di.x2, di.y1);
             g.drawLine(di.x2, di.y1, di.x1, di.y1);
         }
+
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 }  

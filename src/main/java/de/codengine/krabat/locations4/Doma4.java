@@ -60,7 +60,7 @@ public class Doma4 extends Mainloc {
     private int leuteMitteActionID = 0;
     private int leuteMitteCounter = 0;
 
-    public Doma4(Start caller, int oldLocation) {
+    public Doma4(Start caller) {
         super(caller);
 
         mainFrame.Freeze(true);
@@ -148,9 +148,9 @@ public class Doma4 extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(background1, 0, 0, null);
-        g.drawImage(background2, 640, 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(background1, 0, 0);
+        g.drawImage(background2, 640, 0);
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
         // Rauch animieren
@@ -162,16 +162,16 @@ public class Doma4 extends Mainloc {
             }
         }
         g.setClip(985, 15, 30, 120);
-        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(Rauchanim[Rauchcount], 985, 15, null);
-        g.drawImage(background2, 640, 0, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(Rauchanim[Rauchcount], 985, 15);
+        g.drawImage(background2, 640, 0);
 
         // Leute animieren
         g.setClip(923, 271, 127, 74);
-        g.drawImage(back, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(background1, 0, 0, null);
-        g.drawImage(background2, 640, 0, null);
-        g.drawImage(foreground2, 923, 271, null);
+        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(background1, 0, 0);
+        g.drawImage(background2, 640, 0);
+        g.drawImage(foreground2, 923, 271);
 
         if (--Verhinderleutelinks < 1) {
             Verhinderleutelinks = MAX_VERHINDERLEUTELINKS;
@@ -179,7 +179,7 @@ public class Doma4 extends Mainloc {
             LeutelinksCount++;
         }
 
-        g.drawImage(LeuteLinks[LeutelinksCount], 997, 285, null);
+        g.drawImage(LeuteLinks[LeutelinksCount], 997, 285);
 
 
         if (--Verhinderleuterechts < 1) {
@@ -188,7 +188,7 @@ public class Doma4 extends Mainloc {
             LeuterechtsCount++;
         }
 
-        g.drawImage(LeuteRechts[LeuterechtsCount], 1007, 299, null);
+        g.drawImage(LeuteRechts[LeuterechtsCount], 1007, 299);
 
         // wenn derzeitge Animation vor dem linken Fenster abgelaufen ist (40 Frames)
         // -> per Zufall eine neue Animation waehlen
@@ -205,17 +205,17 @@ public class Doma4 extends Mainloc {
         switch (leuteMitteActionID) {
             // es laeft jemand von links nach rechts durchs Fenster
             case 0:
-                g.drawImage(LeuteMitte[2], 904 + leuteMitteCounter, 296 + yOffset, null);
+                g.drawImage(LeuteMitte[2], 904 + leuteMitteCounter, 296 + yOffset);
                 break;
 
             // es laeft jemand von rechts nach links durchs Fenster
             case 1:
-                g.drawImage(LeuteMitte[1], 944 /*988*/ - leuteMitteCounter, 296 + yOffset, null);
+                g.drawImage(LeuteMitte[1], 944 /*988*/ - leuteMitteCounter, 296 + yOffset);
                 break;
         }
 
         // Vordergrund draufzeichnen
-        g.drawImage(foreground, 923, 271, null);
+        g.drawImage(foreground, 923, 271);
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
         if (mainFrame.talkCount > 0) {
@@ -273,7 +273,7 @@ public class Doma4 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

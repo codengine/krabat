@@ -197,36 +197,36 @@ public class Polo1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Wenn die Steine weg, dann anderes GenericImage drueber
         if (mainFrame.Actions[912]) {
             g.setClip(180, 339, 102, 35);
-            g.drawImage(polo3, 180, 339, null);
-            g.drawImage(polo4, 211, 339, null);
-            g.drawImage(polo5, 231, 339, null);
+            g.drawImage(polo3, 180, 339);
+            g.drawImage(polo4, 211, 339);
+            g.drawImage(polo5, 231, 339);
         } else // teilweise Auflesen ermoeglichen
         {
             g.setClip(180, 339, 102, 35);
             if (stein1verdeckt) {
-                g.drawImage(polo3, 180, 339, null);
+                g.drawImage(polo3, 180, 339);
             }
             if (stein2verdeckt) {
-                g.drawImage(polo4, 211, 339, null);
+                g.drawImage(polo4, 211, 339);
             }
             if (stein3verdeckt) {
-                g.drawImage(polo5, 231, 339, null);
+                g.drawImage(polo5, 231, 339);
             }
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Andere Personen zeichnen (zuerst Background loeschen)
         g.setClip(michalPoint.x, michalPoint.y, BurMichal.Breite, BurMichal.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         g.setClip(hanzaPoint.x, hanzaPoint.y, BurHanza.Breite, BurHanza.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Michal
         g.setClip(michalPoint.x, michalPoint.y, BurMichal.Breite, BurMichal.Hoehe);
@@ -278,7 +278,7 @@ public class Polo1 extends Mainloc {
         // hinterm polo2 (nur Clipping - Region wird neugezeichnet)
         if (polo2Rect.IsPointInRect(pKrTemp)) {
             // System.out.println("drawing");
-            g.drawImage(polo2, 510, 240, null); //orig 510, 336
+            g.drawImage(polo2, 510, 240); //orig 510, 336
         }
 
         // sonst noch was zu tun ?
@@ -589,9 +589,9 @@ public class Polo1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

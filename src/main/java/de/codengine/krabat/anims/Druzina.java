@@ -71,8 +71,6 @@ public class Druzina extends Mainanim {
     public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
     // den Hintergrund geht (bildabhaengig)
     private static final int SLOWY = 10;  // dsgl. fuer y - Richtung aller wieviel Pix. die Schritte kleiner werden
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
@@ -151,7 +149,7 @@ public class Druzina extends Mainanim {
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
-        int scale = getScale((int) xps, (int) yps);
+        int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
         float vert_dist = CVERT_DIST[anim_pos] - scale / SLOWY;
@@ -217,12 +215,6 @@ public class Druzina extends Mainanim {
         //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
     }
 
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetDruzinaPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
-    }
-
     // Krabat - Animationen /////////////////////////////////////////////////////////////
 
     // je nach Laufrichtung Krabat zeichnen
@@ -253,20 +245,20 @@ public class Druzina extends Mainanim {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
 
-        float fHelper = getScale(pox, poy) * scaleFactorNormal;
+        float fHelper = getScale(poy) * scaleFactorNormal;
 
         return pox - (CWIDTH - (int) fHelper) / 2;
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int helper = getScale(pox, poy);
+        int helper = getScale(poy);
         return poy - CHEIGHT + helper;
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int pox, int poy) {
+    public int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
@@ -278,15 +270,13 @@ public class Druzina extends Mainanim {
             if (helper < 0) {
                 helper = 0;
             }
-            helper += defScale;
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = poy / zoomf;
             if (help2 < 0) {
                 help2 = 0;
             }
-            help2 += defScale;
             // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
             return (int) help2;
         }
@@ -296,7 +286,7 @@ public class Druzina extends Mainanim {
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
-        int y = getUpPos(xx, yy);
+        int y = getUpPos(yy);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
@@ -313,7 +303,7 @@ public class Druzina extends Mainanim {
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect DruzinaRect() {
         int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         // System.out.println(x + " " + y + " " + xd + " " + yd);
@@ -326,8 +316,8 @@ public class Druzina extends Mainanim {
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
+        int up = getUpPos((int) yps);
+        int scale = getScale((int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
 
@@ -338,6 +328,6 @@ public class Druzina extends Mainanim {
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
         // Figur zeichnen
-        g.drawImage(druzina_walk[anim_pos], left, up, Koerperbreite, Koerperhoehe, null);
+        g.drawImage(druzina_walk[anim_pos], left, up, Koerperbreite, Koerperhoehe);
     }
 }

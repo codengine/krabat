@@ -174,18 +174,18 @@ public class CornyCholmc2 extends Mainloc2 {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(himmel, 0, 0, null);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(himmel, 0, 0);
+        g.drawImage(background, 0, 0);
         g.setClip(vorderWaldRect);
-        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY(), null);
+        g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Mueller zeichnen
@@ -197,7 +197,7 @@ public class CornyCholmc2 extends Mainloc2 {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
             if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -517,7 +517,7 @@ public class CornyCholmc2 extends Mainloc2 {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

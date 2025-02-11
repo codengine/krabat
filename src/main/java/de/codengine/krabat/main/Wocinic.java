@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Wocinic extends Mainanim {
     private boolean Paintcall = false;
@@ -48,8 +47,6 @@ public class Wocinic extends Mainanim {
     private int unselected = -1;
 
     private final Spielstand[] Dir;
-
-    private final GenericImageObserver observer = null;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -119,7 +116,7 @@ public class Wocinic extends Mainanim {
         if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 964);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, null);
+            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
             g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
             Paintcall = true;
             evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -130,13 +127,13 @@ public class Wocinic extends Mainanim {
                 if (Dir[i].Location != 0) {
                     String outputText = Dir[i].ConvertTime();
                     g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1, null);
+                            outputTextPos.y + mainFrame.scrolly + 1);
                     outputTextPos.y += 87;
                     mainFrame.ifont.drawString(g, outputText, outputTextPos.x + mainFrame.scrollx,
                             outputTextPos.y + mainFrame.scrolly, 0xffff0000);
                 } else {
                     g.drawImage(Empty, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1, null);
+                            outputTextPos.y + mainFrame.scrolly + 1);
                 }
             }
         }
@@ -160,14 +157,14 @@ public class Wocinic extends Mainanim {
         // Demarkiertes Feld mit richtigem Geisterimage ueberpinseln
         if (unselected != -1) {
             GenericPoint pTemp = GetCurrentXY(unselected);
-            g.drawImage(Dir[unselected + 1].DarkPicture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1, null);
+            g.drawImage(Dir[unselected + 1].DarkPicture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
             unselected = -1;
         }
 
         // Markiertes Feld mit richtigem GenericImage ueberpinseln
         if (selected != -1) {
             GenericPoint pTemp = GetCurrentXY(selected);
-            g.drawImage(Dir[selected + 1].Picture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1, null);
+            g.drawImage(Dir[selected + 1].Picture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
             unselected = selected;
         }
 
@@ -176,14 +173,14 @@ public class Wocinic extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeil, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly, observer);
+                g.drawImage(DPfeil, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
                 break;
             case 2:
                 GenericRectangle tep = g.getClipBounds();
                 g.setClip(brWoci.lo_point.x + mainFrame.scrollx, brWoci.lo_point.y + mainFrame.scrolly,
                         brWoci.ru_point.x - brWoci.lo_point.x + mainFrame.scrollx,
                         brWoci.ru_point.y - brWoci.lo_point.y + mainFrame.scrolly);
-                g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly, observer);
+                g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 g.setClip(tep);
                 break;
             default:
@@ -198,14 +195,14 @@ public class Wocinic extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             case 2:
                 GenericRectangle tepm = g.getClipBounds();
                 g.setClip(brWoci.lo_point.x + mainFrame.scrollx, brWoci.lo_point.y + mainFrame.scrolly,
                         brWoci.ru_point.x - brWoci.lo_point.x + mainFrame.scrollx,
                         brWoci.ru_point.y - brWoci.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Woci, brWoci.lo_point.x + mainFrame.scrollx, brWoci.lo_point.y + mainFrame.scrolly, null);
+                g.drawImage(Woci, brWoci.lo_point.x + mainFrame.scrollx, brWoci.lo_point.y + mainFrame.scrolly);
                 g.setClip(tepm);
                 break;
             default:
@@ -313,7 +310,7 @@ public class Wocinic extends Mainanim {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         menuitem = 0;
         nFeldAktiv = -1;
         mainFrame.repaint();

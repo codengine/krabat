@@ -171,8 +171,8 @@ public class KowarSunow extends Mainanim {
                     Body = 1;
                 }
             }
-            g.drawImage(kowar_head[Head], (int) Walkx, (int) Walky, null);
-            g.drawImage(kowar_body[Body], (int) Walkx, (int) (Walky + 37), null);
+            g.drawImage(kowar_head[Head], (int) Walkx, (int) Walky);
+            g.drawImage(kowar_body[Body], (int) Walkx, (int) (Walky + 37));
             drawVorder(g);
         } else {
             if (Listenflag || TurnAnim > 1) {
@@ -188,10 +188,10 @@ public class KowarSunow extends Mainanim {
                         }
                     }
                     if (Stand == 1) {
-                        g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky, null);
+                        g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky);
                     }
                     if (Stand == 2) {
-                        g.drawImage(kowar_zwinker, (int) Walkx, (int) Walky, null);
+                        g.drawImage(kowar_zwinker, (int) Walkx, (int) Walky);
                     }
                     drawVorder(g);
 
@@ -204,7 +204,7 @@ public class KowarSunow extends Mainanim {
                     switch (TurnAnim) {
                         case 1: // Pausenbild zeichnen
                             TurnAnim++;
-                            g.drawImage(kowar_work[1], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_work[1], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             WalklCount = 1;
                             Walkx -= 12;
@@ -245,20 +245,20 @@ public class KowarSunow extends Mainanim {
                             // System.out.println ("Animphase : " + WalklCount + " Xkoord " + Walkx + " Ykoord " + Walky);
 
                             // Kolar malen
-                            g.drawImage(kowar_walkl[WalklCount == 4 ? 2 : WalklCount], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkl[WalklCount == 4 ? 2 : WalklCount], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             break;
 
                         case 3: // als Umgedreht markieren und Skip ermoeglichen
                             TurnAnim = 50;
-                            g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             break;
 
                         case 10: // Zurueck umdrehen
                             TurnAnim++;
                             // Korrektur des gespiegelten Images
-                            g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkl[2], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             Walkx += 12;
                             WalkrCount = 1;
@@ -299,13 +299,13 @@ public class KowarSunow extends Mainanim {
                             // System.out.println ("Animphase : " + WalkrCount + " Xkoord " + Walkx + " Ykoord " + Walky);
 
                             // Kolar malen
-                            g.drawImage(kowar_walkr[WalkrCount == 4 ? 2 : WalkrCount], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_walkr[WalkrCount == 4 ? 2 : WalkrCount], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             break;
 
                         case 12: // als Umgedreht markieren und Skip ermoeglichen
                             TurnAnim = 1;
-                            g.drawImage(kowar_work[1], (int) Walkx, (int) Walky, null);
+                            g.drawImage(kowar_work[1], (int) Walkx, (int) Walky);
                             drawVorder(g);
                             break;
                     }
@@ -346,7 +346,7 @@ public class KowarSunow extends Mainanim {
                         }
                         break;
                 }
-                g.drawImage(kowar_work[Work], (int) Walkx, (int) Walky, null);
+                g.drawImage(kowar_work[Work], (int) Walkx, (int) Walky);
                 drawVorder(g);
             }
         }
@@ -364,7 +364,7 @@ public class KowarSunow extends Mainanim {
     }
 
     private void drawVorder(GenericDrawingContext g) {
-        g.drawImage(Vorder, 1083, 193, null);
+        g.drawImage(Vorder, 1083, 193);
     }
 
     public Borderrect schmiedRect() {

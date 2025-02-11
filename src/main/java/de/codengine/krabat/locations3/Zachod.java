@@ -250,27 +250,27 @@ public class Zachod extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Hintergrund fuer Kiste und Brett loeschen (nur 1 Mal, dafuer richtig !)
         g.setClip(55, 343, 220, 137);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Seil zeichnen, solange noch da
         if (!mainFrame.Actions[518]) {
             g.setClip(574, 268, 29, 51);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(seil, 574, 268, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(seil, 574, 268);
         }
 
         // Kiste bzw. Deska zeichnen
         // Deska zuerst, da im Hintergrund
         if (!mainFrame.Actions[517]) {
             g.setClip(115, 367, 95, 56);
-            g.drawImage(deska, 115, 367, null);
+            g.drawImage(deska, 115, 367);
         } else {
             g.setClip(67, 358, 95, 56);
-            g.drawImage(deska, 67, 358, null);
+            g.drawImage(deska, 67, 358);
         }
 
         // Krabats neue Position hier bestimmen, damit beide Kistenzeichenroutinen
@@ -283,8 +283,8 @@ public class Zachod extends Mainloc {
                     !kistenRect.IsPointInRect(mainFrame.krabat.GetKrabatPos())) {
                 // Kisten sind nicht verschoben und Krabat ist davor
                 g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
-                g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y, null);
-                g.drawImage(kista2, AnfangsPunkt2.x, AnfangsPunkt2.y, null);
+                g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y);
+                g.drawImage(kista2, AnfangsPunkt2.x, AnfangsPunkt2.y);
             }
       
                 /*if (mainFrame.Actions[516] == true)
@@ -297,7 +297,7 @@ public class Zachod extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         if (SonderAnim != 0) {
             // Sonderanims ausfuehren
@@ -341,7 +341,7 @@ public class Zachod extends Mainloc {
                 }
 
                 // Krabat zeichnen
-                g.drawImage(krabat_schieb[AnimPosition], hier.x, hier.y, weit, hoch, null);
+                g.drawImage(krabat_schieb[AnimPosition], hier.x, hier.y, weit, hoch);
 
                 // System.out.println ("Krabats Pos ist: " + festnagelPoint.x + " " + festnagelPoint.y);
             }
@@ -397,8 +397,8 @@ public class Zachod extends Mainloc {
                 !mainFrame.Actions[516]) {
             // Kisten sind nicht verschoben
             g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
-            g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y, null);
-            g.drawImage(kista2, AnfangsPunkt2.x, AnfangsPunkt2.y, null);
+            g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y);
+            g.drawImage(kista2, AnfangsPunkt2.x, AnfangsPunkt2.y);
         }
 
         // Hier Routine fuer Kiste verschieben aufrufen, Krabat ist immer dahinter
@@ -411,8 +411,8 @@ public class Zachod extends Mainloc {
         if (mainFrame.Actions[516] && !verschiebeKiste) {
             // Kisten sind verschoben immer hier zeichnen
             g.setClip(EndPunkt.x, EndPunkt.y, 178, 183);
-            g.drawImage(kista, EndPunkt.x, EndPunkt.y, null);
-            g.drawImage(kista2, EndPunkt.x + AnfangsPunkt2.x - AnfangsPunkt.x, EndPunkt.y + AnfangsPunkt2.y - AnfangsPunkt.y, null);
+            g.drawImage(kista, EndPunkt.x, EndPunkt.y);
+            g.drawImage(kista2, EndPunkt.x + AnfangsPunkt2.x - AnfangsPunkt.x, EndPunkt.y + AnfangsPunkt2.y - AnfangsPunkt.y);
         }
 
         g.setClip(myx.getX(), myx.getY(), myx.getWidth(), myx.getHeight());
@@ -795,7 +795,7 @@ public class Zachod extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
@@ -874,8 +874,8 @@ public class Zachod extends Mainloc {
         // und auch setzen, fuer spaeter
         mainFrame.krabat.SetKrabatPos(festnagelPoint);
 
-        g.drawImage(kista, (int) xpos, (int) ypos, null);
-        g.drawImage(kista2, (int) xpos + AnfangsPunkt2.x - AnfangsPunkt.x, (int) ypos + AnfangsPunkt2.y - AnfangsPunkt.y, null);
+        g.drawImage(kista, (int) xpos, (int) ypos);
+        g.drawImage(kista2, (int) xpos + AnfangsPunkt2.x - AnfangsPunkt.x, (int) ypos + AnfangsPunkt2.y - AnfangsPunkt.y);
 
         return !(Math.abs((int) xpos - EndPunkt.x) < Xoffset);
     }

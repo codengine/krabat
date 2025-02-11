@@ -49,7 +49,7 @@ public class Wjerby2 extends Mainloc2 {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Wjerby2(Start caller, int oldLocation) {
+    public Wjerby2(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -71,7 +71,7 @@ public class Wjerby2 extends Mainloc2 {
         mueller.SetMlynkPos(mlynkFeet);
         mueller.SetFacing(6);
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
 
         nextActionID = 10;
@@ -79,7 +79,7 @@ public class Wjerby2 extends Mainloc2 {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
         mainFrame.krabat.SetKrabatPos(Pkrabat);
         mainFrame.krabat.SetFacing(12);
@@ -122,12 +122,12 @@ public class Wjerby2 extends Mainloc2 {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {
             g.setClip(muellermorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         if (muellerVisible) {
@@ -138,7 +138,7 @@ public class Wjerby2 extends Mainloc2 {
                     temp.ru_point.y - temp.lo_point.y + 20);
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
             if (TalkPerson == 36 && mainFrame.talkCount > 0) {
@@ -165,7 +165,7 @@ public class Wjerby2 extends Mainloc2 {
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
         if (weiden2Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(weiden2, 71, 187, null);
+            g.drawImage(weiden2, 71, 187);
         }
 
         // sonst noch was zu tun ?
@@ -224,7 +224,7 @@ public class Wjerby2 extends Mainloc2 {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

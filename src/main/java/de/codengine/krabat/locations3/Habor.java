@@ -204,27 +204,27 @@ public class Habor extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Hier entscheiden, welches Schiff erscheint
         if (whichShip == 1) {
-            g.drawImage(bootb, 166, 251, null);
+            g.drawImage(bootb, 166, 251);
         }
         if (whichShip == 2) {
-            g.drawImage(boota, 175, 230, null);
+            g.drawImage(boota, 175, 230);
         }
         if (whichShip == 1 || whichShip == 2) {
-            g.drawImage(steg, 146, 255, null);
+            g.drawImage(steg, 146, 255);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Gonzales nur, wenn noch nicht Kotwica gegeben
         if (!mainFrame.Actions[568]) {
             // Gonzales zeichnen
             g.setClip(gonzalesPoint.x, gonzalesPoint.y, Gonzales.Breite, Gonzales.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             gonzales.drawGonzales(g, TalkPerson, gonzalesPoint, giveHaken, isListening);
         }
 
@@ -270,7 +270,7 @@ public class Habor extends Mainloc {
 
         // hinter Mauer ? (nur Clipping - Region wird neugezeichnet)
         if (rectMurja.IsPointInRect(pKrTemp)) {
-            g.drawImage(murja, 380, 387, null);
+            g.drawImage(murja, 380, 387);
         }
 
         // sonst noch was zu tun ?
@@ -559,9 +559,9 @@ public class Habor extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

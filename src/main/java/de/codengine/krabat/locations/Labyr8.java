@@ -197,22 +197,22 @@ public class Labyr8 extends Mainlaby {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Irrlichter zeichnen
         if (bludVisible) {
             g.setClip(bludRect.lo_point.x, bludRect.lo_point.y, irrlicht.breite, irrlicht.hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             irrlicht.drawBludnicki(g, TalkPerson, bludRect.lo_point, hoerterzu, bludNimmt);
         }
 
         // Blinkern zeichnen
         if (isBlinker) {
             g.setClip(AusPoint.x, AusPoint.y, Plomja.Breite, Plomja.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             feuer.drawPlomja(g, AusPoint);
         }
 
@@ -257,7 +257,7 @@ public class Labyr8 extends Mainlaby {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab82Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab82, 0, 366, null);
+            g.drawImage(lab82, 0, 366);
         }
 
         // sonst noch was zu tun ?
@@ -552,9 +552,9 @@ public class Labyr8 extends Mainlaby {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

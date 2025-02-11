@@ -132,17 +132,17 @@ public class Les1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Hintergrund fuer Rehe loeschen
         g.setClip(0, 135, 100, 45);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
         reh.drawReh(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -182,7 +182,7 @@ public class Les1 extends Mainloc {
 
         // Krabat hinterm Gras ??
         if (strauchRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(strauch, 0, 381, null);
+            g.drawImage(strauch, 0, 381);
         }
 
         // sonst noch was zu tun ?
@@ -407,7 +407,7 @@ public class Les1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

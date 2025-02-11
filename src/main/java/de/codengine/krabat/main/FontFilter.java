@@ -28,7 +28,7 @@ public class FontFilter extends GenericImageFilter {
     }
 
     @Override
-    public int filterRGB(int x, int y, int rgb) {
+    public int filterRGB(int rgb) {
         // Unveraendert !!!
         if (rgb != 0xff00ff00) {
             // System.out.print ("X");

@@ -213,20 +213,20 @@ public class StareWiki extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // PredWos und PredMal Hintergrund loeschen (sind uebereinanader)
         g.setClip(wosuskowPoint.x, wosuskowPoint.y, PredWosuskow.Breite, PredWosuskow.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         g.setClip(malickowPoint.x - 5, malickowPoint.y - 3, PredMalickow.Breite + 10, PredMalickow.Hoehe + 6);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Predawar Korejtow zeichnen
         g.setClip(korejtowPoint.x, korejtowPoint.y, PredKorejtow.Breite, PredKorejtow.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         if (AnimTalkPerson == 62 && !AnimMCLocked) {
             // bei einer Anim rumschreien lassen
             predKorejtow.callPredawar(g);
@@ -338,7 +338,7 @@ public class StareWiki extends Mainloc {
 
         // hinter Rad ? (nur Clipping - Region wird neugezeichnet)
         if (rectKoleso.IsPointInRect(pKrTemp)) {
-            g.drawImage(koleso, 337, 271, null);
+            g.drawImage(koleso, 337, 271);
         }
 
         // Ausgabe von AnimText, falls noetig
@@ -712,9 +712,9 @@ public class StareWiki extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

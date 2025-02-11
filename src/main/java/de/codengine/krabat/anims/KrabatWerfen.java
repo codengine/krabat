@@ -76,7 +76,7 @@ public class KrabatWerfen extends Mainanim {
 
         // Krabat beim Schiessen zeichnen
         g.setClip(x, y, CWIDTH - tHelper, CHEIGHT - tHelper);
-        g.drawImage(krabat_werfen[BildIndex], x, y, CWIDTH - tHelper, CHEIGHT - tHelper, null);
+        g.drawImage(krabat_werfen[BildIndex], x, y, CWIDTH - tHelper, CHEIGHT - tHelper);
 
         boolean zurueck = true;
 

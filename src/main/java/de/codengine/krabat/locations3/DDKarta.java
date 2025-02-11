@@ -199,10 +199,10 @@ public class DDKarta extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -242,10 +242,10 @@ public class DDKarta extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // wegen geringen Aufwandes (kleine Images) zeichnen wir immer neu
-        g.drawImage(vor1, 343, 79, null);
-        g.drawImage(vor2, 307, 151, null);
-        g.drawImage(vor3, 279, 215, null);
-        g.drawImage(vor4, 231, 214, null);
+        g.drawImage(vor1, 343, 79);
+        g.drawImage(vor2, 307, 151);
+        g.drawImage(vor3, 279, 215);
+        g.drawImage(vor4, 231, 214);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -517,7 +517,7 @@ public class DDKarta extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

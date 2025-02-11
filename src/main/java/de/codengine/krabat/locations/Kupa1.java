@@ -284,32 +284,32 @@ public class Kupa1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Blinkern ermoeglichen
         g.setClip(0, 323, 639, 479);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         Blink(g);
 
         // fehlendes Stueck Bruecke zeichnen
         if (!mainFrame.Actions[224]) {
             g.setClip(324, 361, 37, 28);
-            g.drawImage(kupa5, 324, 361, null);
+            g.drawImage(kupa5, 324, 361);
         } else {
             g.setClip(324, 361, 37, 28);
-            g.drawImage(kupa2a, 324, 361, null);
+            g.drawImage(kupa2a, 324, 361);
         }
 
         // Hier Rohodz zeichnen, wenn noch nicht aufgehoben
         g.setClip(48, 388, 44, 61);
-        g.drawImage(kupa4, 48, 388, null); // dieses Stueck immer, da jetzt der andere kommt
+        g.drawImage(kupa4, 48, 388); // dieses Stueck immer, da jetzt der andere kommt
         if (!mainFrame.Actions[917]) {
             g.setClip(50, 415, 49, 37);
-            g.drawImage(rohodz, 50, 415, null);
+            g.drawImage(rohodz, 50, 415);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -352,7 +352,7 @@ public class Kupa1 extends Mainloc {
 
         // hinter kupa3 (nur Clipping - Region wird neugezeichnet)
         if (kupa3Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(kupa3, 138, 281, null);
+            g.drawImage(kupa3, 138, 281);
         }
 
         // sonst noch was zu tun ?
@@ -643,7 +643,7 @@ public class Kupa1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

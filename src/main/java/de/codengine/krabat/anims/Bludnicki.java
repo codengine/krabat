@@ -199,11 +199,11 @@ public class Bludnicki extends Mainanim {
                 VerhinderRumpf = 0;
             }
             feuer.drawPlomja(offGraph, new GenericPoint(posit.x + FEUERKONSTANTE, posit.y));
-            offGraph.drawImage(Head[Kopf1][Kopf2], posit.x, posit.y + Offset, null);
+            offGraph.drawImage(Head[Kopf1][Kopf2], posit.x, posit.y + Offset);
             if (!isTaking) {
-                offGraph.drawImage(Body[Rumpf], posit.x, posit.y + Offset, null);
+                offGraph.drawImage(Body[Rumpf], posit.x, posit.y + Offset);
             } else {
-                offGraph.drawImage(take, posit.x + 6, posit.y + Offset, null);
+                offGraph.drawImage(take, posit.x + 6, posit.y + Offset);
             }
         }
 
@@ -277,11 +277,11 @@ public class Bludnicki extends Mainanim {
             }
 
             feuer.drawPlomja(offGraph, new GenericPoint(posit.x + FEUERKONSTANTE, posit.y));
-            offGraph.drawImage(Stan[Stand], posit.x, posit.y + Offset, null);
+            offGraph.drawImage(Stan[Stand], posit.x, posit.y + Offset);
             if (!isTaking) {
-                offGraph.drawImage(Kratz == 1 ? Body[1] : Krat[Kratz - 1], posit.x, posit.y + Offset, null);
+                offGraph.drawImage(Kratz == 1 ? Body[1] : Krat[Kratz - 1], posit.x, posit.y + Offset);
             } else {
-                offGraph.drawImage(take, posit.x - 6, posit.y + Offset, null);  // hier ist das take
+                offGraph.drawImage(take, posit.x - 6, posit.y + Offset);  // hier ist das take
             }
         }
     }

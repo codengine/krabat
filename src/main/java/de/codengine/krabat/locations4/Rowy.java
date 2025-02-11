@@ -358,7 +358,7 @@ public class Rowy extends Mainloc {
 
         // Sonderbild "Grab" oder normale Location malen ?
         if (zeigeGrab) {
-            g.drawImage(grab, 0, 0, null);
+            g.drawImage(grab, 0, 0);
 
             // Schrei des Schreckens zeigen ?
             if (sonderAnimCounter < 24) {
@@ -369,62 +369,62 @@ public class Rowy extends Mainloc {
 
             // wenn Swaixtix brennt -> hellen Hintergrund zeichnen
             if (!mainFrame.Actions[984]) {
-                g.drawImage(background, 0, 0, null);
+                g.drawImage(background, 0, 0);
             } else {
-                g.drawImage(backgroundBright, 0, 0, null);
+                g.drawImage(backgroundBright, 0, 0);
             }
 
             // hat Kabat schon Schaale (982) und Stroh (983) hingelegt ?
             if (mainFrame.Actions[982] || mainFrame.Actions[983]) {
                 g.setClip(122, 260, 22, 20);
                 if (mainFrame.Actions[982]) {
-                    g.drawImage(imSchaale, 123, 261, null);
+                    g.drawImage(imSchaale, 123, 261);
                 }
                 if (mainFrame.Actions[983]) {
-                    g.drawImage(imStroh, 123, 261, null);
+                    g.drawImage(imStroh, 123, 261);
                 }
             }
 
             // ist 3.Grab bereits offen ?
             if (mainFrame.Actions[987]) {
                 g.setClip(312, 376, 117, 54);
-                g.drawImage(imSargOffen, 313, 377, null);
+                g.drawImage(imSargOffen, 313, 377);
             }
 
             // ist Swaixtix umgefallen -> mit Hintergrund ueberpinseln !
             if (mainFrame.Actions[986]) {
                 g.setClip(0, 244, 251, 177);
-                g.drawImage(imOhneSwaixtix, 0, 244, null);
+                g.drawImage(imOhneSwaixtix, 0, 244);
 
                 // liegt der Korraktor noch auf dem Swaixtix-Sockel ? 
                 if (!mainFrame.Actions[985]) {
-                    g.drawImage(imKorraktor, 145, 387, null);
+                    g.drawImage(imKorraktor, 145, 387);
                 }
 
                 // Umfall-Animation abspielen ???
                 if (SonderAnim == 5) {
                     if (sonderAnimCounter > 10) {
-                        g.drawImage(imSwaixtixKippen[0], 103, 248, null);
-                        g.drawImage(imFeuer[0], 101, 252, null);
+                        g.drawImage(imSwaixtixKippen[0], 103, 248);
+                        g.drawImage(imFeuer[0], 101, 252);
                     } else {
                         if (sonderAnimCounter > 8) {
-                            g.drawImage(imSwaixtixKippen[1], 81, 250, null);
-                            g.drawImage(imFeuer[0], 78, 257, null);
+                            g.drawImage(imSwaixtixKippen[1], 81, 250);
+                            g.drawImage(imFeuer[0], 78, 257);
                         } else {
                             if (sonderAnimCounter > 6) {
-                                g.drawImage(imSwaixtixKippen[2], 62, 260, null);
-                                g.drawImage(imFeuer[0], 60, 267, null);
+                                g.drawImage(imSwaixtixKippen[2], 62, 260);
+                                g.drawImage(imFeuer[0], 60, 267);
                             } else {
                                 if (sonderAnimCounter > 4) {
-                                    g.drawImage(imSwaixtixKippen[3], 41, 270, null);
-                                    g.drawImage(imFeuer[0], 38, 283, null);
+                                    g.drawImage(imSwaixtixKippen[3], 41, 270);
+                                    g.drawImage(imFeuer[0], 38, 283);
                                 } else {
                                     if (sonderAnimCounter > 2) {
-                                        g.drawImage(imSwaixtixKippen[4], 22, 282, null);
-                                        g.drawImage(imFeuer[0], 23, 300, null);
+                                        g.drawImage(imSwaixtixKippen[4], 22, 282);
+                                        g.drawImage(imFeuer[0], 23, 300);
                                     } else {
-                                        g.drawImage(imSwaixtixKippen[5], 7, 286, null);
-                                        g.drawImage(imFeuer[0], 8, 331, null);
+                                        g.drawImage(imSwaixtixKippen[5], 7, 286);
+                                        g.drawImage(imFeuer[0], 8, 331);
                                         if (!swaixtixSound) {
                                             swaixtixSound = true;
                                             mainFrame.wave.PlayFile("sfx-dd/schlag.wav");
@@ -435,7 +435,7 @@ public class Rowy extends Mainloc {
                         }
                     }
                 } else {
-                    g.drawImage(imSwaixtixKippen[5], 7, 286, null);
+                    g.drawImage(imSwaixtixKippen[5], 7, 286);
                 }
             }
 
@@ -451,10 +451,10 @@ public class Rowy extends Mainloc {
                 // Feuer an welcher Position (steht/liegt Swaixtix ?) ?
                 if (!mainFrame.Actions[986]) {
                     g.setClip(120, 248, 26, 26);
-                    g.drawImage(imFeuer[feuerAnimCount], 120, 248, null);
+                    g.drawImage(imFeuer[feuerAnimCount], 120, 248);
                 } else {
                     g.setClip(8, 331, 26, 26);
-                    g.drawImage(imFeuer[feuerAnimCount], 8, 331, null);
+                    g.drawImage(imFeuer[feuerAnimCount], 8, 331);
                 }
             }
 
@@ -556,7 +556,7 @@ public class Rowy extends Mainloc {
                 if (muellerExplosionCounter < muellerExplosion.length * 2) {
                     g.drawImage(muellerExplosion[muellerExplosionCounter++ / 2],
                             muellerPoint.x, muellerPoint.y,
-                            Oldmlynk.Breite, Oldmlynk.Hoehe, null);
+                            Oldmlynk.Breite, Oldmlynk.Hoehe);
                 } else {
                     muellerExplodiert = false;
                 }
@@ -566,13 +566,13 @@ public class Rowy extends Mainloc {
             if (fledermausActionID > 0) {
                 // clip setzen und hintergrund ueberpinseln
                 g.setClip(fledermausCurrentPos.x - 2, fledermausCurrentPos.y - 2, 44, 34);
-                g.drawImage(backgroundBright, 0, 0, 640, 480, null);
+                g.drawImage(backgroundBright, 0, 0, 640, 480);
 
                 switch (fledermausActionID) {
                     case 1:
                         // auf Kopfehoehe des Muellers flattern (vor Hochfliegen)
                         g.drawImage(fledermaus[fledermausCounter++ % 2],
-                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                                fledermausCurrentPos.x, fledermausCurrentPos.y);
                         break;
 
                     case 2: // zur Decke hinauffliegen
@@ -583,7 +583,7 @@ public class Rowy extends Mainloc {
                         fledermausCurrentPos.x = fledermausStartPos.x + tempXDistHoch;
 
                         g.drawImage(fledermaus[fledermausCounter++ % 2],
-                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                                fledermausCurrentPos.x, fledermausCurrentPos.y);
 
                         if (fledermausCurrentPos.y >= fledermausSitzPos.y) {
                             fledermausCurrentPos.y -= 2;
@@ -593,11 +593,11 @@ public class Rowy extends Mainloc {
                         break;
 
                     case 3: // an Decke haengen
-                        g.drawImage(fledermausSitzen[0], fledermausSitzPos.x, fledermausSitzPos.y, null);
+                        g.drawImage(fledermausSitzen[0], fledermausSitzPos.x, fledermausSitzPos.y);
                         break;
 
                     case 4: // an Decke haengen und reden (1 von den 3 QuasselFrames zeigen)
-                        g.drawImage(fledermausSitzen[fledermausQuasselFrame], fledermausSitzPos.x, fledermausSitzPos.y, null);
+                        g.drawImage(fledermausSitzen[fledermausQuasselFrame], fledermausSitzPos.x, fledermausSitzPos.y);
                         if (fledermausCounter++ % 3 == 0) {
                             fledermausQuasselFrame = (int) (Math.random() * 3);
                         }
@@ -611,7 +611,7 @@ public class Rowy extends Mainloc {
                         fledermausCurrentPos.x = fledermausEndPos.x + tempXDistRunter;
 
                         g.drawImage(fledermaus[fledermausCounter++ % 2 + 2],
-                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                                fledermausCurrentPos.x, fledermausCurrentPos.y);
 
                         if (fledermausCurrentPos.y <= fledermausEndPos.y) {
                             fledermausCurrentPos.y += 2;
@@ -623,7 +623,7 @@ public class Rowy extends Mainloc {
                     case 6:
                         // auf Kopfehoehe des Muellers flattern (nach Hochfliegen)
                         g.drawImage(fledermaus[fledermausCounter++ % 2 + 2],
-                                fledermausCurrentPos.x, fledermausCurrentPos.y, null);
+                                fledermausCurrentPos.x, fledermausCurrentPos.y);
                         break;
                 }
             }
@@ -632,9 +632,9 @@ public class Rowy extends Mainloc {
             if (isSchafDa) {
                 // clip setzen und hintergrund ueberpinseln
                 g.setClip(schafPosLO.x - 1, schafPosLO.y - 1, 120 + 2, 75 + 2);
-                g.drawImage(backgroundBright, 0, 0, 640, 480, null);
+                g.drawImage(backgroundBright, 0, 0, 640, 480);
                 // Schaf malen
-                g.drawImage(schaf[schafMeckerFrame], schafPosLO.x, schafPosLO.y, null);
+                g.drawImage(schaf[schafMeckerFrame], schafPosLO.x, schafPosLO.y);
                 // aller 4 Frames soll Schaf was anderes machen
                 if (schafCounter++ % 30 == 0) {
                     schafCounter = 1;
@@ -656,7 +656,7 @@ public class Rowy extends Mainloc {
             }
 
             // Debugging - Zeichnen der Laufrechtecke
-            // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
             // hier ist der Sound...
             // evalSound ();    
@@ -699,19 +699,19 @@ public class Rowy extends Mainloc {
                         // Krabat sthet nach runterfallen wieder auf
                         if (sonderAnimCounter > 20) {
                             g.drawImage(krabat_aufstehen[0],
-                                    hier.x, hier.y, weit, hoch, null);
+                                    hier.x, hier.y, weit, hoch);
                         } else {
                             if (sonderAnimCounter > 14) {
                                 g.drawImage(krabat_aufstehen[1],
-                                        hier.x, hier.y, weit, hoch, null);
+                                        hier.x, hier.y, weit, hoch);
                             } else {
                                 if (sonderAnimCounter > 7) {
                                     g.drawImage(krabat_aufstehen[2],
-                                            hier.x, hier.y, weit, hoch, null);
+                                            hier.x, hier.y, weit, hoch);
                                 } else {
                                     if (sonderAnimCounter > 0) {
                                         g.drawImage(krabat_aufstehen[3],
-                                                hier.x, hier.y, weit, hoch, null);
+                                                hier.x, hier.y, weit, hoch);
                                     }
                                 }
                             }
@@ -729,15 +729,15 @@ public class Rowy extends Mainloc {
                         // Krabat zeundet Stroh bei Swaixtix an
                         if (sonderAnimCounter > 14) {
                             g.drawImage(krabat_anzuenden[0],
-                                    hier.x, hier.y, weit, hoch, null);
+                                    hier.x, hier.y, weit, hoch);
                         } else {
                             if (sonderAnimCounter > 7) {
                                 g.drawImage(krabat_anzuenden[1],
-                                        hier.x, hier.y, weit, hoch, null);
+                                        hier.x, hier.y, weit, hoch);
                             } else {
                                 if (sonderAnimCounter > 0) {
                                     g.drawImage(krabat_anzuenden[2],
-                                            hier.x, hier.y, weit, hoch, null);
+                                            hier.x, hier.y, weit, hoch);
                                 }
                             }
                         }
@@ -755,7 +755,7 @@ public class Rowy extends Mainloc {
                         // Cliprect setzen
                         g.setClip(hier.x, hier.y, weit * 2 + 1, hoch + 1);
                         g.drawImage(krabat_grab_oeffnen,
-                                hier.x, hier.y, weit * 2, hoch, null);
+                                hier.x, hier.y, weit * 2, hoch);
 
                         if (sonderAnimCounter == 3) {
                             mainFrame.Actions[987] = true; // Flag fuer Grab offen
@@ -773,7 +773,7 @@ public class Rowy extends Mainloc {
                         // --> Krabat im aktuellen Schritt zeichnen
                         int nrStep = sonderAnimCounter++ % 4;
                         g.drawImage(krabat_links_back[nrStep],
-                                hier.x, hier.y, weit, hoch, null);
+                                hier.x, hier.y, weit, hoch);
 
                         // X-Position von Krabat um einen Schritt vermindern
                         GenericPoint pCurrent = mainFrame.krabat.GetKrabatPos();
@@ -796,10 +796,10 @@ public class Rowy extends Mainloc {
 
                         if (sonderAnimCounter > 9) {
                             g.drawImage(krabat_links_zucken,
-                                    hier.x, hier.y, weit, hoch, null);
+                                    hier.x, hier.y, weit, hoch);
                         } else {
                             g.drawImage(krabat_links_stehen,
-                                    hier.x, hier.y, weit, hoch, null);
+                                    hier.x, hier.y, weit, hoch);
                         }
 
                         // Umschmeiss-Aktion beenden ?
@@ -905,17 +905,17 @@ public class Rowy extends Mainloc {
     // abweichen (z.B. offenes Grab bei Rauchanimation).
     public void drawSpecialBackgrounds(GenericDrawingContext g) {
         // Zeichne Hintergrund neu
-        g.drawImage(backgroundBright, 0, 0, null);
+        g.drawImage(backgroundBright, 0, 0);
 
         // gekippte Saeule (+ sauberen Hintergrund) zeichnen, falls umgefallen
         if (mainFrame.Actions[986]) {
-            g.drawImage(imOhneSwaixtix, 0, 244, null);
-            g.drawImage(imSwaixtixKippen[5], 7, 286, null);
+            g.drawImage(imOhneSwaixtix, 0, 244);
+            g.drawImage(imSwaixtixKippen[5], 7, 286);
         }
 
         // wenn 3.Grab bereits offen ist, auch neu zeichnen
         if (mainFrame.Actions[987]) {
-            g.drawImage(imSargOffen, 313, 377, null);
+            g.drawImage(imSargOffen, 313, 377);
         }
     }
 
@@ -1321,7 +1321,7 @@ public class Rowy extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

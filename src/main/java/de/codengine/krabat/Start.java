@@ -29,7 +29,6 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.*;
 import de.codengine.krabat.sound.AbstractPlayer;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -74,8 +73,6 @@ public class Start implements Runnable {
     public Skica skica;
     // public Slownikcreate woerterbuch;
 
-    // public showrect1 showrect;  // nur fuer Debugging
-
     // wichtige Sachen fuer Hauptklasse
     private GenericImage offImage;
     public GenericImage saveImage;
@@ -95,7 +92,6 @@ public class Start implements Runnable {
     public int whatScreen;
 
     public int sprache; // Sprache
-    private int thirdLangIndex;
 
     // Variablen fuer Mousemove und Doppelklick
     public GenericPoint Mousepoint = new GenericPoint(0, 0);
@@ -110,16 +106,8 @@ public class Start implements Runnable {
     public boolean[] Actions = new boolean[1002];
     public boolean Clipset;
 
-    // Fuer Debugging manuelles Skalieren
-    public int override = 0;
-
     // Konstante fuer Labyrinth - Schwierigkeit
     public static final int LabyHelp = 15;
-
-
-    // Redefarben, die sich ueber mehrere Locations erstrecken
-    public static final int Muellerfarbe = 21;
-    public static final int ErzaehlerFarbe = 13;
 
     private int KrabatForm = 0; // gibt an, welche KrabatKlasse aktiv ist (default ist von der Seite)
 
@@ -136,15 +124,11 @@ public class Start implements Runnable {
 
     public static AbstractPlayer player;
 
-    private GenericImageObserver observer;
-
     private GenericContainer container;
 
     private AtomicInteger repaintCounter;
 
     public GenericStorageManager storageManager;
-
-    private ArrayList<GenericPoint> hotspots;
 
     private GameProperties gameProperties;
 
@@ -155,7 +139,6 @@ public class Start implements Runnable {
     protected void runGamePt1(
             int currentLanguageIndex,
             GenericImageFetcher imageFetcher,
-            GenericImageObserver observer,
             GenericContainer container,
             GenericSoundEffectPlayer player,
             AbstractPlayer musicPlayer,
@@ -164,7 +147,6 @@ public class Start implements Runnable {
         // Start.urlBase = urlBase + "/";
 
         this.imageFetcher = imageFetcher;
-        this.observer = observer;
         this.container = container;
         this.storageManager = storageManager;
         // Alle wichtigen Variablen zuruecksetzen
@@ -212,13 +194,10 @@ public class Start implements Runnable {
         wave = player;
 
         // Stets vorhandene Klassen laden
-        ifont = new Imagefont(this, observer); // Schrift
+        ifont = new Imagefont(this); // Schrift
         wegSucher = new Wegsucher();      // Laufroutinen
         wegGeher = new Weggeher(this);   // Laufroutinen
         // inventory = new inventar (this, InitImages());   // Inventar
-
-        hotspots = new ArrayList<GenericPoint>();
-
     }
 
     protected void runGamePt2(GenericPoint hotSpot, GenericCursor[] cursors) {
@@ -228,16 +207,13 @@ public class Start implements Runnable {
         Cdown = cursors[1];
         Cleft = cursors[2];
         Cright = cursors[3];
-        Cinventar = cursors[4];
-        CHinventar = cursors[5];
-        Normal = cursors[6];
-        Kreuz = cursors[7];
-        Warten = cursors[8];
-        Nix = cursors[9];
+        Normal = cursors[4];
+        Kreuz = cursors[5];
+        Warten = cursors[6];
+        Nix = cursors[7];
 
         mainmenu = new Hauptmenu(this, gameProperties);  // Hauptmenue
         exit = new Konc(this, gameProperties);       // Sicherheitsabfragen
-        // showrect  = new showrect1 (this);  // Debugging - Anzeige der Laufrectangles
         krabat = new KrabatNormal(this);
 
         CheckKrabat();
@@ -315,7 +291,7 @@ public class Start implements Runnable {
         container.setCursor(cursor);
     }
 
-    public final synchronized GenericImage paint(GenericDrawingContext g) {
+    public final synchronized GenericImage paint(@SuppressWarnings("unused") GenericDrawingContext g) {
         // Interpolation aktivieren, somit werden gezoomte/verkleinerte Sprites
         // wesentlich besser dargestellt (besonders der Krabat)
 
@@ -563,35 +539,35 @@ public class Start implements Runnable {
         isMousevalid = true;
     }
 
-    public void mouseExited(GenericMouseEvent e) {
+    public void mouseExited() {
         isMousevalid = false;
 
         //Signal an Menuelocations, dass HiLight abgeschaltet werden soll
         if (whatScreen != 0) {
             switch (whatScreen) {
                 case 1:
-                    inventory.evalMouseExitEvent(e);
+                    inventory.evalMouseExitEvent();
                     break;
                 case 2:
-                    mainmenu.evalMouseExitEvent(e);
+                    mainmenu.evalMouseExitEvent();
                     break;
                 case 3:
-                    laden.evalMouseExitEvent(e);
+                    laden.evalMouseExitEvent();
                     break;
                 case 4:
-                    speichern.evalMouseExitEvent(e);
+                    speichern.evalMouseExitEvent();
                     break;
                 case 5:
-                    credits.evalMouseExitEvent(e);
+                    credits.evalMouseExitEvent();
                     break;
                 case 6:
-                    karte.evalMouseExitEvent(e);
+                    karte.evalMouseExitEvent();
                     break;
                 case 7:
-                    woerterbuch.evalMouseExitEvent(e);
+                    woerterbuch.evalMouseExitEvent();
                     break;
                 case 8:
-                    skica.evalMouseExitEvent(e);
+                    skica.evalMouseExitEvent();
                     break;
                 default:
                     System.out.println("Wrong Exitevent !");
@@ -601,7 +577,7 @@ public class Start implements Runnable {
 
         // hier wird Erigenis an die ggw. Location weitergegeben
         if (currentLocation != null) {
-            currentLocation.evalMouseExitEvent(e);
+            currentLocation.evalMouseExitEvent();
         }
     }
 
@@ -704,7 +680,7 @@ public class Start implements Runnable {
                     woerterbuch.evalMouseMoveEvent(Mousepoint);
                     break;
                 case 8:
-                    skica.evalMouseMoveEvent(Mousepoint);
+                    skica.evalMouseMoveEvent();
                     break;
                 default:
                     System.out.println("Wrong Moveevent Prio 2");
@@ -854,19 +830,19 @@ public class Start implements Runnable {
                 currentLocation = new Hoscenc1(this, currLocation);
                 break;
             case 25:
-                currentLocation = new Mlyn1(this, currLocation);
+                currentLocation = new Mlyn1(this);
                 break;
             case 26:
-                currentLocation = new MlynkCornyCholmc1(this, currLocation);
+                currentLocation = new MlynkCornyCholmc1(this);
                 break;
             case 27:
-                currentLocation = new Jama1(this, currLocation);
+                currentLocation = new Jama1(this);
                 break;
             case 28:
-                currentLocation = new Dzera(this, currLocation);
+                currentLocation = new Dzera(this);
                 break;
             case 29:
-                currentLocation = new HojntAuto(this, currLocation);
+                currentLocation = new HojntAuto(this);
                 break;
             case 70:
                 currentLocation = new Cyrkej2(this, currLocation);
@@ -875,7 +851,7 @@ public class Start implements Runnable {
                 currentLocation = new Doma2(this, currLocation);
                 break;
             case 72:
-                currentLocation = new Dubring2(this, currLocation);
+                currentLocation = new Dubring2(this);
                 break;
             case 73:
                 currentLocation = new Hojnt2(this, currLocation);
@@ -890,10 +866,10 @@ public class Start implements Runnable {
                 currentLocation = new Kulow2(this, currLocation);
                 break;
             case 77:
-                currentLocation = new Labyr122(this, currLocation);
+                currentLocation = new Labyr122(this);
                 break;
             case 78:
-                currentLocation = new Les2(this, currLocation);
+                currentLocation = new Les2(this);
                 break;
             case 79:
                 currentLocation = new Mertens2(this, currLocation);
@@ -902,7 +878,7 @@ public class Start implements Runnable {
                 currentLocation = new Njedz2(this, currLocation);
                 break;
             case 81:
-                currentLocation = new Pinca2(this, currLocation);
+                currentLocation = new Pinca2(this);
                 break;
             case 82:
                 currentLocation = new Ralbicy2(this, currLocation);
@@ -917,13 +893,13 @@ public class Start implements Runnable {
                 currentLocation = new Wila2(this, currLocation);
                 break;
             case 86:
-                currentLocation = new Wjerby2(this, currLocation);
+                currentLocation = new Wjerby2(this);
                 break;
             case 87:
                 currentLocation = new Wjes2(this, currLocation);
                 break;
             case 88:
-                currentLocation = new Wobzor2(this, currLocation);
+                currentLocation = new Wobzor2(this);
                 break;
             case 89:
                 currentLocation = new Most2(this, currLocation);
@@ -941,7 +917,7 @@ public class Start implements Runnable {
                 currentLocation = new Zdzary2(this, currLocation);
                 break;
             case 94:
-                currentLocation = new Jezba(this, currLocation);
+                currentLocation = new Jezba(this);
                 break;
             case 100:
                 currentLocation = new Zawod1(this);
@@ -1009,7 +985,7 @@ public class Start implements Runnable {
                 currentLocation = new Straze(this, currLocation);
                 break;
             case 129:
-                currentLocation = new Mlynkmurja(this, currLocation);
+                currentLocation = new Mlynkmurja(this);
                 break;
             case 130:
                 currentLocation = new Hdwor(this, currLocation);
@@ -1081,7 +1057,7 @@ public class Start implements Runnable {
                 currentLocation = new DDKarta(this, currLocation);
                 break;
             case 181:
-                currentLocation = new Poklad(this, currLocation);
+                currentLocation = new Poklad(this);
                 break;
             case 200:
                 currentLocation = new Wotrow(this, currLocation);
@@ -1093,7 +1069,7 @@ public class Start implements Runnable {
                 currentLocation = new Rowy(this, currLocation);
                 break;
             case 203:
-                currentLocation = new Doma4(this, currLocation);
+                currentLocation = new Doma4(this);
                 break;
             default:
                 System.out.println("Falsche Location-ID fuer Konstruktor !");
@@ -1186,22 +1162,6 @@ public class Start implements Runnable {
         // Nur auf Funktionstasten reagieren
         int Taste = e.getKeyCode();
 
-        // Verkleinerung
-        /*    if (Taste == KeyEvent.VK_F7)
-        {
-        override++;
-        repaint();
-        return;
-        }    
-
-        // Vegroesserung
-        if (Taste == KeyEvent.VK_F8)
-        {
-        override--;
-        repaint();
-        return;
-        }*/
-
         // Bei aktivem Exit dorthin - Prio 1
         if (exit.active) {
             exit.evalKeyEvent(e);
@@ -1261,7 +1221,7 @@ public class Start implements Runnable {
     public void StoreImage() {
         GenericImage tempImage = GenericToolkit.getDefaultToolkit().createImage(640, 480);
         GenericDrawingContext tempGraphics = tempImage.getGraphics();
-        tempGraphics.drawImage(offImage, -scrollx, -scrolly, observer);
+        tempGraphics.drawImage(offImage, -scrollx, -scrolly);
         saveImage = tempImage.getScaledInstance(119, 89, GenericImage.SCALE_DEFAULT);
     }
 
@@ -1338,25 +1298,5 @@ public class Start implements Runnable {
 
     public GenericImage constructCursorImage(String Pathname) {
         return imageFetcher.fetchImage(Pathname);
-    }
-
-    public void clearHotspots() {
-        hotspots.clear();
-    }
-
-    public void addHotspot(GenericPoint pt) {
-        hotspots.add(pt);
-    }
-
-    public void addHotspot(Borderrect rect) {
-        hotspots.add(rect.getMiddlePoint());
-    }
-
-    public void removeHotspot(Borderrect rect) {
-        hotspots.remove(rect.getMiddlePoint());
-    }
-
-    public ArrayList<GenericPoint> getHotspots() {
-        return hotspots;
     }
 }

@@ -289,9 +289,9 @@ public class Wjes1 extends Mainloc {
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 10, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
@@ -300,15 +300,15 @@ public class Wjes1 extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 91);
-            g.drawImage(sky, mainFrame.scrollx / 10, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(sky, mainFrame.scrollx / 10, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // Rehe Hintergrund loeschen
         g.setClip(0, 80, 100, 100);
-        g.drawImage(sky, mainFrame.scrollx / 10, 0, null);
-        g.drawImage(backl, 0, 0, null);
+        g.drawImage(sky, mainFrame.scrollx / 10, 0);
+        g.drawImage(backl, 0, 0);
 
         // Rehe zeichnen
         reh.drawReh(g);
@@ -316,17 +316,17 @@ public class Wjes1 extends Mainloc {
         // Ab hier ist Retten des ClipRect sinnlos!!!
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Hintergrund fuer Schild loeschen, wenn noetig
         if (mainFrame.scrollx > 255) {
             g.setClip(903, 259, 71, 51);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(backr, 640, 0);
         }
 
         // Hintergrund fuer Schmied und Feuer loeschen
         g.setClip(1047, 177, 100, 103);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(backr, 640, 0);
 
         // Feuer animieren
         if (mainFrame.scrollx > 320) {
@@ -338,7 +338,7 @@ public class Wjes1 extends Mainloc {
                 }
             }
             g.setClip(1068, 219, 26, 26);
-            g.drawImage(Feuer[Feuercount], 1068, 219, null);
+            g.drawImage(Feuer[Feuercount], 1068, 219);
         }
 
         // Schmied zeichnen
@@ -389,22 +389,22 @@ public class Wjes1 extends Mainloc {
 
         // hinterm wjes2 (nur Clipping - Region wird neugezeichnet)
         if (wjes2Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(wjes2, 215, 339, null);
+            g.drawImage(wjes2, 215, 339);
         }
 
         // hinterm wjes3 (nur Clipping - Region wird neugezeichnet)
         if (wjes3Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(wjes3, 911, 205, null);
+            g.drawImage(wjes3, 911, 205);
         }
 
         // hinterm wjes4 (nur Clipping - Region wird neugezeichnet)
         if (wjes4Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(wjes4, 736, 367, null);
+            g.drawImage(wjes4, 736, 367);
         }
 
         // hinterm wjes5 (nur Clipping - Region wird neugezeichnet)
         if (wjes5Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(wjes5, 1191, 247, null);
+            g.drawImage(wjes5, 1191, 247);
         }
 
         // wackelndes Schild - Animation
@@ -431,7 +431,7 @@ public class Wjes1 extends Mainloc {
             GenericRectangle mi;
             mi = g.getClipBounds();
             g.setClip(903, 259, 71, 51);
-            g.drawImage(Schild[animcount], 903, 259, null);
+            g.drawImage(Schild[animcount], 903, 259);
             g.setClip(mi.getX(), mi.getY(), mi.getWidth(), mi.getHeight());
         }
 
@@ -882,9 +882,9 @@ public class Wjes1 extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

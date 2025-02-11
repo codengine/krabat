@@ -98,7 +98,7 @@ public class BurMichal extends Mainanim {
     public void drawMichal(GenericDrawingContext offGraph, int TalkPerson, GenericPoint pos, boolean isListening) {
         // wenn Hanza spricht, schaut Michal auf sie
         if (TalkPerson == 29 && mainFrame.talkCount > 1) {
-            offGraph.drawImage(bur_look, pos.x, pos.y, null);
+            offGraph.drawImage(bur_look, pos.x, pos.y);
             return;
         }
 
@@ -109,7 +109,7 @@ public class BurMichal extends Mainanim {
                 Talk = (int) (Math.random() * 6.9);
             }
 
-            offGraph.drawImage(bur_talk[Talk], pos.x, pos.y, null);
+            offGraph.drawImage(bur_talk[Talk], pos.x, pos.y);
             return;
         }
 
@@ -124,7 +124,7 @@ public class BurMichal extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(Listen == 0 ? bur_talk[0] : bur_work[1], pos.x, pos.y, null);
+            offGraph.drawImage(Listen == 0 ? bur_talk[0] : bur_work[1], pos.x, pos.y);
             return;
         }
 
@@ -172,7 +172,7 @@ public class BurMichal extends Mainanim {
             }
         }
 
-        offGraph.drawImage(bur_work[Work], pos.x, pos.y, null);
+        offGraph.drawImage(bur_work[Work], pos.x, pos.y);
 
     }
 }    

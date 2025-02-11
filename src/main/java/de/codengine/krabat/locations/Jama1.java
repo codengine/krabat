@@ -56,7 +56,7 @@ public class Jama1 extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Jama1(Start caller, int oldLocation) {
+    public Jama1(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -78,12 +78,12 @@ public class Jama1 extends Mainloc {
 
         Wuermer = new GenericImage[8];
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         // Grenzen setzen
         mainFrame.wegGeher.vBorders.removeAllElements();
         mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(310, 390, 330, 396));
@@ -149,7 +149,7 @@ public class Jama1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
 
         // Jaeger Hintergrund loeschen
@@ -171,7 +171,7 @@ public class Jama1 extends Mainloc {
             }
 
             // Zeichne Hintergrund neu
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Wacki zeichnen, solange noch da
@@ -185,8 +185,8 @@ public class Jama1 extends Mainloc {
                 }
             }
             g.setClip(wackiRect.lo_point.x, wackiRect.lo_point.y, 15, 14);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(Wuermer[Animcount], wackiRect.lo_point.x, wackiRect.lo_point.y, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(Wuermer[Animcount], wackiRect.lo_point.x, wackiRect.lo_point.y);
         }
 
         // Jaeger bewegen
@@ -234,12 +234,12 @@ public class Jama1 extends Mainloc {
                 }
             }
 
-            g.drawImage(foreground, 0, 71, null);
-            g.drawImage(vorder, 151, 158, null);
+            g.drawImage(foreground, 0, 71);
+            g.drawImage(vorder, 151, 158);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -450,7 +450,7 @@ public class Jama1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

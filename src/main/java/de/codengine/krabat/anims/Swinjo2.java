@@ -135,7 +135,7 @@ public class Swinjo2 extends Mainanim {
 
             // zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_look[Look], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+            offGraph.drawImage(swinjo_look[Look], Posit.x - Breite / 2, Posit.y - Hoehe);
         }
 
         if (isDancing && oldDance) {
@@ -159,13 +159,13 @@ public class Swinjo2 extends Mainanim {
 
             // zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_dance[tempDance], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+            offGraph.drawImage(swinjo_dance[tempDance], Posit.x - Breite / 2, Posit.y - Hoehe);
         }
 
         if (isDancing != oldDance) {
             // Uebergangszustand, gleich zeichnen
             offGraph.setClip(swinoRect());
-            offGraph.drawImage(swinjo_dance[0], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+            offGraph.drawImage(swinjo_dance[0], Posit.x - Breite / 2, Posit.y - Hoehe);
         }
 
         // merken, womit aufgerufen wurde

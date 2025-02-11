@@ -120,7 +120,7 @@ public class Bow extends Mainanim {
                 break;
         }
 
-        offGraph.drawImage(bow[Bowcount], Posit.x, Posit.y, null);
+        offGraph.drawImage(bow[Bowcount], Posit.x, Posit.y);
 
     }
 }    

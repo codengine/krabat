@@ -121,8 +121,8 @@ public class Dundak extends Mainanim {
             // Rumsitz-anims ruecksetzen
             Stand = 0;
 
-            g.drawImage(hosc_head[Head], Posit.x, Posit.y, null);
-            g.drawImage(hosc_body[Body], Posit.x, Posit.y + BODYOFFSET, null);
+            g.drawImage(hosc_head[Head], Posit.x, Posit.y);
+            g.drawImage(hosc_body[Body], Posit.x, Posit.y + BODYOFFSET);
 
         } else {
             // beim Rumstehen
@@ -145,7 +145,7 @@ public class Dundak extends Mainanim {
                 }
             }
 
-            g.drawImage(hosc_stand[Stand], Posit.x, Posit.y, null);
+            g.drawImage(hosc_stand[Stand], Posit.x, Posit.y);
         }
     }
 

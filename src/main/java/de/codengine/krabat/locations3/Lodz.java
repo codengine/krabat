@@ -158,7 +158,7 @@ public class Lodz extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Zona Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
@@ -167,7 +167,7 @@ public class Lodz extends Mainloc {
                 temp.ru_point.y - temp.lo_point.y + 10);
 
         // Zeichne Hintergrund neu
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Kuchar bewegen
         if (!walkReady) {
@@ -186,7 +186,7 @@ public class Lodz extends Mainloc {
         // Redet sie etwa gerade ??
         if (zonaVisible) {
             if (TalkPerson == 65 && mainFrame.talkCount > 0) {
-                wikowarka.talkZona(g, isListening);
+                wikowarka.talkZona(g);
             }
 
             // nur rumstehen oder laufen
@@ -207,11 +207,11 @@ public class Lodz extends Mainloc {
                 }
             }
             // Vordergrund zeichnen wg. reingehen
-            g.drawImage(vor2, 419, 100, null);
+            g.drawImage(vor2, 419, 100);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabat einen Schritt laufen lassen
         mainFrame.wegGeher.GeheWeg();
@@ -259,8 +259,8 @@ public class Lodz extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // da es hier nicht wehtut, wird der Vordergrund immer neu gezeichnet
-        g.drawImage(vor1, 291, 204, null);
-        g.drawImage(vor2, 419, 100, null);
+        g.drawImage(vor1, 291, 204);
+        g.drawImage(vor2, 419, 100);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -508,9 +508,9 @@ public class Lodz extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

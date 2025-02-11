@@ -132,7 +132,7 @@ public class IntroDomaPtack extends Mainanim {
         }
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
-        g.drawImage(vogel[animpos], x, y, null);
+        g.drawImage(vogel[animpos], x, y);
         return x >= -50;
     }
 }    						

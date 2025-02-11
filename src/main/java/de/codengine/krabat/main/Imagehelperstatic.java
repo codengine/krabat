@@ -21,7 +21,6 @@
 package de.codengine.krabat.main;
 
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 import de.codengine.krabat.platform.GenericToolkitImpl;
 
 public class Imagehelperstatic {
@@ -55,13 +54,9 @@ public class Imagehelperstatic {
 
     private final byte[][] fontdata;
 
-    private final GenericImageObserver observer;
-
     // Konstruktor
-    public Imagehelperstatic(GenericImageObserver observer) {
+    public Imagehelperstatic() {
         Error = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource(8, char_height, SPACEBITS, 0, 8));
-
-        this.observer = observer;
 
         fontdata = new byte[255][];
     }
@@ -74,10 +69,10 @@ public class Imagehelperstatic {
                 allFont[i] = Error;
             } else {
                 allFont[i] = cutChar(i);
-                GenericToolkit.getDefaultToolkit().prepareImage(allFont[i], observer);
+                GenericToolkit.getDefaultToolkit().prepareImage(allFont[i]);
                 int stat = 0;
                 while ((stat & GenericToolkitImpl.ALLBITS) == 0) {
-                    stat = GenericToolkit.getDefaultToolkit().checkImage(allFont[i], observer);
+                    stat = GenericToolkit.getDefaultToolkit().checkImage(allFont[i]);
                     // update (stat);
                     // System.out.println("CheckImage returned: " + stat);
                 }

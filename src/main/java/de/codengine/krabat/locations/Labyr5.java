@@ -165,15 +165,15 @@ public class Labyr5 extends Mainlaby {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Blinkern zeichnen
         if (isBlinker) {
             g.setClip(AusPoint.x, AusPoint.y, Plomja.Breite, Plomja.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             feuer.drawPlomja(g, AusPoint);
         }
 
@@ -216,17 +216,17 @@ public class Labyr5 extends Mainlaby {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab52Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab52, 309, 295, null);
+            g.drawImage(lab52, 309, 295);
         }
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab53Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab53, 243, 383, null);
+            g.drawImage(lab53, 243, 383);
         }
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab54Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(lab54, 204, 145, null);
+            g.drawImage(lab54, 204, 145);
         }
 
         // sonst noch was zu tun ?
@@ -449,7 +449,7 @@ public class Labyr5 extends Mainlaby {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

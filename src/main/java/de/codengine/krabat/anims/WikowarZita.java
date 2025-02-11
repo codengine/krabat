@@ -99,9 +99,9 @@ public class WikowarZita extends Mainanim {
                 Body = (int) (Math.random() * 1.9);
             }
 
-            g.drawImage(wik_head[Head], pos.x, pos.y, null);
-            g.drawImage(wik_body[Body], pos.x, pos.y + BODYOFFSET, null);
-            g.drawImage(vorder, Pvorder.x, Pvorder.y, null);
+            g.drawImage(wik_head[Head], pos.x, pos.y);
+            g.drawImage(wik_body[Body], pos.x, pos.y + BODYOFFSET);
+            g.drawImage(vorder, Pvorder.x, Pvorder.y);
         } else {
             if (isListening) {
                 // kein Wegdrehen beim Zuhoeren
@@ -138,8 +138,8 @@ public class WikowarZita extends Mainanim {
                 }
             }
 
-            g.drawImage(wik_wait[Wait], pos.x, pos.y, null);
-            g.drawImage(vorder, Pvorder.x, Pvorder.y, null);
+            g.drawImage(wik_wait[Wait], pos.x, pos.y);
+            g.drawImage(vorder, Pvorder.x, Pvorder.y);
         }
     }
 }    

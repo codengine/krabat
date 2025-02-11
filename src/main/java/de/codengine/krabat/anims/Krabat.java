@@ -173,8 +173,6 @@ abstract public class Krabat extends Mainanim {
 
     abstract public void describeKrabat(GenericDrawingContext g);
 
-    abstract public int getScale(int xpos, int ypos); // sollte wieder private werden nach den Scalings...
-
     abstract public void drawKrabat(GenericDrawingContext g);
 
     abstract public void DoAnimation(GenericDrawingContext g);

@@ -161,9 +161,9 @@ public class Murja extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen  ?????????????????????
-        g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0, null);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Parallax - Scrolling ausfuehren  ??????????????????????
         if (mainFrame.isScrolling) {
@@ -172,25 +172,25 @@ public class Murja extends Mainloc {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 500, 105);
-            g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0, null);
-            g.drawImage(backl, 0, 0, null);
-            g.drawImage(backr, 640, 0, null);
+            g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0);
+            g.drawImage(backl, 0, 0);
+            g.drawImage(backr, 640, 0);
         }
 
         // Tuer offen oder geschlossen zeichnen
         g.setClip(103, 184, 26, 56);
-        g.drawImage(isDoorOpen ? openDoor : closedDoor, 103, 184, null);
+        g.drawImage(isDoorOpen ? openDoor : closedDoor, 103, 184);
 
         // Parallaxer fuer Laterne, muss immer Hintergrund loeschen ?????
         float xtf = mainFrame.scrollx;
         xtf = 900 - (mainFrame.scrollx - 110) * 4 / scrollLaterne;
         int laterneAdd = (int) xtf;
         g.setClip(laterneAdd - 10, 0, 190 + 20, 479);
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -232,7 +232,7 @@ public class Murja extends Mainloc {
             GenericRectangle may;
             may = g.getClipBounds();
             g.setClip(laterneAdd - 10, 0, 200, 479);
-            g.drawImage(laterne, laterneAdd, 0, null);
+            g.drawImage(laterne, laterneAdd, 0);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
@@ -246,7 +246,7 @@ public class Murja extends Mainloc {
 	  }*/
 
         if (isBuschVisible) {
-            g.drawImage(busch, 51, 393, null);
+            g.drawImage(busch, 51, 393);
         }
 
         // sonst noch was zu tun ?
@@ -476,7 +476,7 @@ public class Murja extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

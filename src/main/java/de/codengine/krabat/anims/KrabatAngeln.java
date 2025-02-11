@@ -165,13 +165,13 @@ public class KrabatAngeln extends Mainanim {
         GenericPoint leftUp = new GenericPoint(feetPos.x - OFFSETRIGHTX, feetPos.y - OFFSETRIGHTY);
 
         // alles Zeichnen
-        g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY, null);
+        g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY);
 
         // Body evaluieren
         if (angeln == 18 || angeln == 17 || angeln == 12 || angeln == 11 || angeln == 6 || angeln == 5) {
-            g.drawImage(angle_rechts[1], leftUp.x, leftUp.y, null);
+            g.drawImage(angle_rechts[1], leftUp.x, leftUp.y);
         } else {
-            g.drawImage(angle_rechts[0], leftUp.x, leftUp.y, null);
+            g.drawImage(angle_rechts[0], leftUp.x, leftUp.y);
         }
 
         return rueckgabe;
@@ -208,13 +208,13 @@ public class KrabatAngeln extends Mainanim {
         GenericPoint leftUp = new GenericPoint(feetPos.x - OFFSETLEFTX, feetPos.y - OFFSETLEFTY);
 
         // alles Zeichnen
-        g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
+        g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY);
 
         // Body evaluieren
         if (angeln == 18 || angeln == 17 || angeln == 12 || angeln == 11 || angeln == 6 || angeln == 5) {
-            g.drawImage(angle_links[1], leftUp.x, leftUp.y, null);
+            g.drawImage(angle_links[1], leftUp.x, leftUp.y);
         } else {
-            g.drawImage(angle_links[0], leftUp.x, leftUp.y, null);
+            g.drawImage(angle_links[0], leftUp.x, leftUp.y);
         }
 
         return rueckgabe;
@@ -255,7 +255,7 @@ public class KrabatAngeln extends Mainanim {
         GenericPoint leftUp = new GenericPoint(feetPos.x - OFFSETRIGHTX, feetPos.y - OFFSETRIGHTY);
 
         // alles Zeichnen
-        g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY, null);
+        g.drawImage(rede_rechts[Zwinkern], leftUp.x - OFFSETRIGHTHEADX, leftUp.y - OFFSETHEADY);
 
         // Body evaluieren
         if (fangen > 10 && rueckgabe) // nur am Anfang und wenn KEIN Verlassen
@@ -263,9 +263,9 @@ public class KrabatAngeln extends Mainanim {
             // hier noch rumangeln
             if (fangen == 42 || fangen == 41 || fangen == 36 || fangen == 35 || fangen == 30 || fangen == 29 ||
                     fangen == 24 || fangen == 23 || fangen == 18 || fangen == 17 || fangen == 12 || fangen == 11) {
-                g.drawImage(angle_rechts[1], leftUp.x, leftUp.y, null);
+                g.drawImage(angle_rechts[1], leftUp.x, leftUp.y);
             } else {
-                g.drawImage(angle_rechts[0], leftUp.x, leftUp.y, null);
+                g.drawImage(angle_rechts[0], leftUp.x, leftUp.y);
             }
         } else {
             // gefangen
@@ -274,26 +274,26 @@ public class KrabatAngeln extends Mainanim {
                 case 1:
                 case 2:
                 case 3:
-                    g.drawImage(angle_rechts[5], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_rechts[5], leftUp.x, leftUp.y);
                     break;
 
                 case 4: // letzte Zappelphase
                 case 5:
                 case 6:
-                    g.drawImage(angle_rechts[4], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_rechts[4], leftUp.x, leftUp.y);
                     break;
 
                 case 7: // mittlere Zappelphase
                 case 8:
-                    g.drawImage(angle_rechts[3], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_rechts[3], leftUp.x, leftUp.y);
                     break;
 
                 case 9: // erste Zappelphase
                 case 10:
-                    g.drawImage(angle_rechts[2], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_rechts[2], leftUp.x, leftUp.y);
                     break;
                 default: // fuers Reset (letzte Phase) rein
-                    g.drawImage(angle_rechts[5], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_rechts[5], leftUp.x, leftUp.y);
                     break;
 
             }
@@ -341,16 +341,16 @@ public class KrabatAngeln extends Mainanim {
         GenericPoint leftUp = new GenericPoint(feetPos.x - OFFSETLEFTX, feetPos.y - OFFSETLEFTY);
 
         // alles Zeichnen
-        g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
+        g.drawImage(schaue_links[Zwinkern], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY);
 
         // Body evaluieren
         if (fangen > 10 && rueckgabe) {
             // hier noch rumangeln
             if (fangen == 42 || fangen == 41 || fangen == 36 || fangen == 35 || fangen == 30 || fangen == 29 ||
                     fangen == 24 || fangen == 23 || fangen == 18 || fangen == 17 || fangen == 12 || fangen == 11) {
-                g.drawImage(angle_links[1], leftUp.x, leftUp.y, null);
+                g.drawImage(angle_links[1], leftUp.x, leftUp.y);
             } else {
-                g.drawImage(angle_links[0], leftUp.x, leftUp.y, null);
+                g.drawImage(angle_links[0], leftUp.x, leftUp.y);
             }
         } else {
             // gefangen
@@ -358,21 +358,21 @@ public class KrabatAngeln extends Mainanim {
                 case 4: // letzte Zappelphase
                 case 5:
                 case 6:
-                    g.drawImage(angle_links[4], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_links[4], leftUp.x, leftUp.y);
                     break;
 
                 case 7: // mittlere Zappelphase
                 case 8:
-                    g.drawImage(angle_links[3], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_links[3], leftUp.x, leftUp.y);
                     break;
 
                 case 9: // erste Zappelphase
                 case 10:
-                    g.drawImage(angle_links[2], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_links[2], leftUp.x, leftUp.y);
                     break;
 
                 default: // fisch hochhalten
-                    g.drawImage(angle_links[5], leftUp.x, leftUp.y, null);
+                    g.drawImage(angle_links[5], leftUp.x, leftUp.y);
                     break;
             }
         }
@@ -399,7 +399,7 @@ public class KrabatAngeln extends Mainanim {
 
         GenericPoint leftUp = new GenericPoint(feetPos.x - OFFSETLEFTX, feetPos.y - OFFSETLEFTY);
 
-        g.drawImage(rede_rechts[Head], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
-        g.drawImage(angle_links[5], leftUp.x, leftUp.y, null);
+        g.drawImage(rede_rechts[Head], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY);
+        g.drawImage(angle_links[5], leftUp.x, leftUp.y);
     }
 }    

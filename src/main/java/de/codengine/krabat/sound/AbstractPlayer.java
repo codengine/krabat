@@ -34,5 +34,6 @@ public abstract class AbstractPlayer {
 
     public abstract void stop();
 
+    @SuppressWarnings("SameReturnValue")
     public abstract String getMusicSuffix();
 }

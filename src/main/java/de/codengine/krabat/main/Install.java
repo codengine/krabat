@@ -23,7 +23,6 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -93,8 +92,6 @@ public class Install extends Mainloc {
     private static final String Such11 = "lax.stderr.redirect=console";
 
     private final File name;
-
-    private final GenericImageObserver observer = null;
 
     // "richtiger" Konstruktor nachher
     public Install(Start caller) {
@@ -182,7 +179,7 @@ public class Install extends Mainloc {
             g.setClip(0, 0, 644, 484);
         }
 
-        g.drawImage(background, pLO.x, pLO.y, null);
+        g.drawImage(background, pLO.x, pLO.y);
 
         // Wenn noetig dann Pfeil zeichnen
         if (SoundChosen != 0) {
@@ -191,7 +188,7 @@ public class Install extends Mainloc {
                 case 0:
                     break;
                 case 1:
-                    g.drawImage(DPfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                    g.drawImage(DPfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                     break;
                 default:
                     System.out.println("Falsches Menu-Item!!!");
@@ -206,7 +203,7 @@ public class Install extends Mainloc {
                 case 0:
                     break;
                 case 1:
-                    g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly, observer);
+                    g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                     break;
                 default:
                     System.out.println("Falsches Menu-Item!!!");
@@ -460,7 +457,7 @@ public class Install extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         selected = 0;
         mainFrame.repaint();
     }
@@ -564,7 +561,7 @@ public class Install extends Mainloc {
     }
 
     // File wird zurueckgeschrieben
-    private boolean SaveFile() {
+    private void SaveFile() {
         // File speichern
         try {
             FileOutputStream Data = new FileOutputStream(name);
@@ -573,9 +570,7 @@ public class Install extends Mainloc {
         } catch (IOException e) {
             System.out.println("File write error " + e);
             // Data.close();
-            return false;
         }
-        return true;
     }
 
     // sucht die Stelle, wo String vorkommt (1. Treffer wird gezaehlt) 

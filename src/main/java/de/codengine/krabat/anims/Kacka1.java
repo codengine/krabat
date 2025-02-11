@@ -115,9 +115,9 @@ public class Kacka1 extends Mainanim {
 
             // Kacka zeichnen
             if (isLeft) {
-                offGraph.drawImage(kacka_left[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_left[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe);
             } else {
-                offGraph.drawImage(kacka_front[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_front[Schnatter], Posit.x - Breite / 2, Posit.y - Hoehe);
             }
         }
 
@@ -125,9 +125,9 @@ public class Kacka1 extends Mainanim {
         else {
             // Kacka zeichnen
             if (isLeft) {
-                offGraph.drawImage(kacka_left[0], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_left[0], Posit.x - Breite / 2, Posit.y - Hoehe);
             } else {
-                offGraph.drawImage(kacka_front[0], Posit.x - Breite / 2, Posit.y - Hoehe, null);
+                offGraph.drawImage(kacka_front[0], Posit.x - Breite / 2, Posit.y - Hoehe);
             }
         }
     }

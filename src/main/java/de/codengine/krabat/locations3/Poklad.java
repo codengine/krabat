@@ -66,7 +66,7 @@ public class Poklad extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Poklad(Start caller, int oldLocation) {
+    public Poklad(Start caller) {
         super(caller, 181);
 
         mainFrame.Freeze(true);
@@ -86,7 +86,7 @@ public class Poklad extends Mainloc {
 
         straza = new StrazaPoklad(mainFrame);
 
-        InitLocation(oldLocation);
+        InitLocation();
 
         whatPicture = 1;
         nextActionID = 10;
@@ -99,7 +99,7 @@ public class Poklad extends Mainloc {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
     }
 
@@ -144,23 +144,23 @@ public class Poklad extends Mainloc {
 
         // Hintergrund und Krabat zeichnen
         if (whatPicture == 1) {
-            g.drawImage(schody, 0, 0, null);
+            g.drawImage(schody, 0, 0);
         }
         if (whatPicture == 2) {
-            g.drawImage(komora, 0, 0, null);
+            g.drawImage(komora, 0, 0);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // straza und Dinglinger Hintergrund loeschen
         if (showStraza) {
             g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
             if (whatPicture == 1) {
-                g.drawImage(schody, 0, 0, null);
+                g.drawImage(schody, 0, 0);
             }
             if (whatPicture == 2) {
-                g.drawImage(komora, 0, 0, null);
+                g.drawImage(komora, 0, 0);
             }
         }
 
@@ -170,17 +170,17 @@ public class Poklad extends Mainloc {
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
             if (whatPicture == 1) {
-                g.drawImage(schody, 0, 0, null);
+                g.drawImage(schody, 0, 0);
             }
             if (whatPicture == 2) {
-                g.drawImage(komora, 0, 0, null);
+                g.drawImage(komora, 0, 0);
             }
         }
 
         // Skla auf komora zeichnen, wenn noetig
         if (whatPicture == 2 && ausgewechselt) {
             g.setClip(577, 269, 24, 15);
-            g.drawImage(skla, 577, 269, null);
+            g.drawImage(skla, 577, 269);
         }
 
         // Dinglinger zeichnen
@@ -209,7 +209,7 @@ public class Poklad extends Mainloc {
 
             // Vordergrund zeichnen
             if (whatPicture == 1) {
-                g.drawImage(vorderschody, 147, 0, null);
+                g.drawImage(vorderschody, 147, 0);
             }
         }
 
@@ -217,7 +217,7 @@ public class Poklad extends Mainloc {
         if (showStraza) {
             g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
             straza.drawStraza(g, TalkPerson, strazaPoint, false);
-            g.drawImage(vorderschody, 147, 0, null);
+            g.drawImage(vorderschody, 147, 0);
         }
 
         // sonst noch was zu tun ?
@@ -277,7 +277,7 @@ public class Poklad extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

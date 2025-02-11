@@ -166,8 +166,8 @@ public class Komedij extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(gorilla, 424, 190, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(gorilla, 424, 190);
 
         // flackernde Kerzen zeichnen
         g.setClip(170, 30, 60, 60);
@@ -177,17 +177,17 @@ public class Komedij extends Mainloc {
                 kerzenBild[i] = (int) (Math.random() * 4.99);
             }
 
-            g.drawImage(kerzen[kerzenBild[i]], kerzenPunkte[i].x, kerzenPunkte[i].y, null);
+            g.drawImage(kerzen[kerzenBild[i]], kerzenPunkte[i].x, kerzenPunkte[i].y);
         }
 
         // Ist Dienstkleidung noch da
         if (!mainFrame.Actions[512]) {
             g.setClip(502, 209, 70, 152);
-            g.drawImage(sluzDrasta, 502, 209, null);
+            g.drawImage(sluzDrasta, 502, 209);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -228,11 +228,11 @@ public class Komedij extends Mainloc {
 
         // hinter Jacke (nur Clipping - Region wird neugezeichnet)
         if (rectJacke.IsPointInRect(pKrTemp)) {
-            g.drawImage(jacke, 63, 163, null);
+            g.drawImage(jacke, 63, 163);
         }
         // hinter Schwert (nur Clipping - Region wird neugezeichnet)
         if (rectSchwert.IsPointInRect(pKrTemp)) {
-            g.drawImage(schwert, 249, 216, null);
+            g.drawImage(schwert, 249, 216);
         }
 
         // sonst noch was zu tun ?
@@ -561,7 +561,7 @@ public class Komedij extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

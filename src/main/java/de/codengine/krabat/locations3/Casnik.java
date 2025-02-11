@@ -259,23 +259,23 @@ public class Casnik extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // liegt Tigerfell noch da ?
         if (!mainFrame.Actions[600]) {
             g.setClip(355, 412, 145, 75);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(kozuch, 355, 412, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(kozuch, 355, 412);
         }
 
         // Uhr richtig zeichnen
         g.setClip(311, 154, 25, 24);
-        g.drawImage(background, 0, 0, null);
-        g.drawImage(!mainFrame.Actions[606] ? umdrei : umvier, 311, 154, null);
+        g.drawImage(background, 0, 0);
+        g.drawImage(!mainFrame.Actions[606] ? umdrei : umvier, 311, 154);
 
         // Hier das Uhrpendel rein
         g.setClip(309, 190, 32, 59);
-        g.drawImage(pendel[Pendelpos], 309, 190, null);
+        g.drawImage(pendel[Pendelpos], 309, 190);
         if (--Verhinderpendel < 1) {
             if (pendelForward) {
                 evalSound(true); // tick
@@ -300,18 +300,18 @@ public class Casnik extends Mainloc {
         // Hintergrund loeschen
         g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
                 temp.ru_point.y - temp.lo_point.y);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
 
         // Schluessel zeichnen, wenn noch da
         if (!mainFrame.Actions[951]) {
             g.setClip(129, 235, 6, 16);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(kluc, 129, 235, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(kluc, 129, 235);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Straznik weiterbewegen
         readyFlag = hlStraznik.evalStraznik(TalkPerson, trink, schlafein, mainFrame.Actions[706]);
@@ -361,7 +361,7 @@ public class Casnik extends Mainloc {
             g.setClip(hier.x, hier.y, weit + 1, hoch + 1);
 
             // Krabat zeichnen
-            g.drawImage(zeitumstell, hier.x, hier.y, weit, hoch, null);
+            g.drawImage(zeitumstell, hier.x, hier.y, weit, hoch);
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
@@ -878,9 +878,9 @@ public class Casnik extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         if (mainFrame.isMultiple) {
-            Dialog.evalMouseExitEvent(e);
+            Dialog.evalMouseExitEvent();
         }
     }
 

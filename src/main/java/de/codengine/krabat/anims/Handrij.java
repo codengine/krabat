@@ -149,8 +149,8 @@ public class Handrij extends Mainanim {
                 Body = (int) (Math.random() * 3.9);
             }
 
-            offGraph.drawImage(hand_head[Head], talkpos.x, talkpos.y, null);
-            offGraph.drawImage(hand_body[Body], talkpos.x, talkpos.y + BODYOFFSET, null);
+            offGraph.drawImage(hand_head[Head], talkpos.x, talkpos.y);
+            offGraph.drawImage(hand_body[Body], talkpos.x, talkpos.y + BODYOFFSET);
 
             return;
         }
@@ -163,15 +163,15 @@ public class Handrij extends Mainanim {
                 Work = (int) (Math.random() * 3.9 + 1);
             }
 
-            offGraph.drawImage(hand_work[Work], workpos.x, workpos.y, null);
+            offGraph.drawImage(hand_work[Work], workpos.x, workpos.y);
 
             return;
         }
 
         // Gibt Erlaubnis an Krabat
         if (gibtErlaubnis) {
-            offGraph.drawImage(hand_head[0], talkpos.x, talkpos.y, null);
-            offGraph.drawImage(hand_body[4], talkpos.x, talkpos.y + BODYOFFSET, null);
+            offGraph.drawImage(hand_head[0], talkpos.x, talkpos.y);
+            offGraph.drawImage(hand_body[4], talkpos.x, talkpos.y + BODYOFFSET);
             return;
         }
 
@@ -191,8 +191,8 @@ public class Handrij extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(hand_head[Head], talkpos.x, talkpos.y, null);
-            offGraph.drawImage(hand_body[0], talkpos.x, talkpos.y + BODYOFFSET, null);
+            offGraph.drawImage(hand_head[Head], talkpos.x, talkpos.y);
+            offGraph.drawImage(hand_body[0], talkpos.x, talkpos.y + BODYOFFSET);
 
             return;
         }
@@ -209,7 +209,7 @@ public class Handrij extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(hand_down[Down], downpos.x, downpos.y, null);
+            offGraph.drawImage(hand_down[Down], downpos.x, downpos.y);
         } else {
             // arbeitet nach hinten
             if (--Verhinderwork < 1) {
@@ -217,7 +217,7 @@ public class Handrij extends Mainanim {
                 Work = (int) (Math.random() * 6.9);
             }
 
-            offGraph.drawImage(hand_work[Work], workpos.x, workpos.y, null);
+            offGraph.drawImage(hand_work[Work], workpos.x, workpos.y);
         }
     }
 }    

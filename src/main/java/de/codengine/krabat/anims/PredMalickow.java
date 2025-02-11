@@ -138,8 +138,8 @@ public class PredMalickow extends Mainanim {
         }
 
         // Predawar auch malen
-        g.drawImage(pred_stand[Stand], punkt.x, punkt.y, Breite, Hoehe, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_stand[Stand], punkt.x, punkt.y, Breite, Hoehe);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // PredMalickow beim Rumschreien
@@ -149,8 +149,8 @@ public class PredMalickow extends Mainanim {
             Call = (int) (Math.random() * 4.9);
         }
 
-        g.drawImage(pred_call[Call], punkt.x, punkt.y, Breite, Hoehe, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_call[Call], punkt.x, punkt.y, Breite, Hoehe);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // Predmalickow beim Reden
@@ -160,8 +160,8 @@ public class PredMalickow extends Mainanim {
             Talk = (int) (Math.random() * 6.9);
         }
 
-        g.drawImage(pred_talk[Talk], punkt.x, punkt.y, Breite, Hoehe, null);
-        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+        g.drawImage(pred_talk[Talk], punkt.x, punkt.y, Breite, Hoehe);
+        g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
     }
 
     // PredMalickow bei Anims (selbstkillend)
@@ -182,8 +182,8 @@ public class PredMalickow extends Mainanim {
                     }
 
                     // PredMalickow zeichnen
-                    g.drawImage(pred_walkback, walkpunkt.x, walkpunkt.y, Breite, Hoehe, null);
-                    g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+                    g.drawImage(pred_walkback, walkpunkt.x, walkpunkt.y, Breite, Hoehe);
+                    g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
 
                     // Auf Ende der Anim testen
                     if (Walkcounter == 20) {
@@ -204,8 +204,8 @@ public class PredMalickow extends Mainanim {
                     }
 
                     // PredMalickow zeichnen
-                    g.drawImage(pred_stand[0], walkpunkt.x, walkpunkt.y, Breite, Hoehe, null);
-                    g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+                    g.drawImage(pred_stand[0], walkpunkt.x, walkpunkt.y, Breite, Hoehe);
+                    g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
 
                     // Auf Ende der Anim testen
                     if (Walkcounter == 20) {
@@ -220,8 +220,8 @@ public class PredMalickow extends Mainanim {
             case 2:
                 // Gebeanim
                 Givecounter++;
-                g.drawImage(pred_take, punkt.x, punkt.y, Breite, Hoehe, null);
-                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y, null);
+                g.drawImage(pred_take, punkt.x, punkt.y, Breite, Hoehe);
+                g.drawImage(vorder, vorderpunkt.x, vorderpunkt.y);
                 if (Givecounter > 5) {
                     Givecounter = 0;
                     return false;

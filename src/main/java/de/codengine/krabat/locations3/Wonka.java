@@ -105,10 +105,10 @@ public class Wonka extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -148,7 +148,7 @@ public class Wonka extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // hinter Wokna (nur Clipping - Region wird neugezeichnet)
-        g.drawImage(foreground, 0, 297, null);
+        g.drawImage(foreground, 0, 297);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -366,7 +366,7 @@ public class Wonka extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

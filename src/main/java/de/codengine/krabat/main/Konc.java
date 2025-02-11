@@ -24,7 +24,6 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
-import de.codengine.krabat.platform.GenericImageObserver;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Konc extends Mainanim {
@@ -36,8 +35,6 @@ public class Konc extends Mainanim {
     private boolean Paintcall = false;
     private GenericImage backgr;
     private int WhatAction;
-
-    private final GenericImageObserver observer = null;
 
     private final GameProperties gameProperties;
 
@@ -92,7 +89,7 @@ public class Konc extends Mainanim {
         g.setClip(0, 0, 1280, 960);
         Paintcall = true;
         evalMouseMoveEvent(mainFrame.Mousepoint);
-        g.drawImage(backgr, 190 + mainFrame.scrollx, 190 + mainFrame.scrolly, observer);
+        g.drawImage(backgr, 190 + mainFrame.scrollx, 190 + mainFrame.scrolly);
         for (int i = 0; i <= Anzahl; ++i) {
             if (selected == i || i == 0) {
                 mainFrame.ifont.drawString(g, Fragen[i],

@@ -133,7 +133,7 @@ public class Gonzales extends Mainanim {
             }
         }
 
-        offGraph.drawImage(Stand == 2 ? pirat_blinker : pirat_head[Head], Posit.x, Posit.y, null);
-        offGraph.drawImage(isGiving ? pirat_give : pirat_body[Body], Posit.x, Posit.y + 14, null);
+        offGraph.drawImage(Stand == 2 ? pirat_blinker : pirat_head[Head], Posit.x, Posit.y);
+        offGraph.drawImage(isGiving ? pirat_give : pirat_body[Body], Posit.x, Posit.y + 14);
     }
 }    

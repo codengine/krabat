@@ -219,7 +219,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         // System.out.println("ExitEvent erhalten !");
         selected = -1;
         mainFrame.repaint();

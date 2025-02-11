@@ -127,7 +127,7 @@ public class Kocka extends Mainanim {
             }
 
             // Zeichnen und gut
-            offGraph.drawImage(kocka_talk[Talk], pos.x, pos.y, null);
+            offGraph.drawImage(kocka_talk[Talk], pos.x, pos.y);
         } else {
             // Katze haengt rum, also Zwinkern, Pfote lecken und Schwanz wedeln berechnen
 
@@ -193,7 +193,7 @@ public class Kocka extends Mainanim {
             }
 
             // Katze nun auch zeichnen
-            offGraph.drawImage(kocka_look[Look], pos.x, pos.y, null);
+            offGraph.drawImage(kocka_look[Look], pos.x, pos.y);
         }
     }
 }    

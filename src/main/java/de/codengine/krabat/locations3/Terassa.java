@@ -243,13 +243,13 @@ public class Terassa extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Kowar Hintergrund loeschen (sonst vielleicht K geloescht)
         if (schmiedVisible) {
             g.setClip(schmiedPoint.x, schmiedPoint.y, DDKowar.Breite, DDKowar.Hoehe);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(gelaender, 0, 284, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(gelaender, 0, 284);
 
             evalSound(); // Schmied macht Geraeusche
         }
@@ -257,17 +257,17 @@ public class Terassa extends Mainloc {
         // Hammer zeichnen, solange noch da
         if (!mainFrame.Actions[953] && schmiedVisible) {
             g.setClip(221, 463, 27, 20);
-            g.drawImage(hammer, 221, 463, null);
+            g.drawImage(hammer, 221, 463);
         }
 
         // Hier die Delle reinzeichnen, sobald sie drin ist (muss dann immer gezeichnet werden !!!)
         if (mainFrame.Actions[700]) {
             g.setClip(203, 358, 15, 10);
-            g.drawImage(delle, 203, 358, null);
+            g.drawImage(delle, 203, 358);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -313,12 +313,12 @@ public class Terassa extends Mainloc {
         if (!isVordergrund) {
             // steht hinter Gelander
             if (gelaenderRect.IsPointInRect(pKrTemp)) {
-                g.drawImage(!mainFrame.Actions[700] ? gelaender : gelaender2, 0, 284, null);
+                g.drawImage(!mainFrame.Actions[700] ? gelaender : gelaender2, 0, 284);
             }
 
             // steht hinter Busch
             if (buschRect.IsPointInRect(pKrTemp)) {
-                g.drawImage(busch, 512, 284, null);
+                g.drawImage(busch, 512, 284);
             }
         }
 
@@ -653,7 +653,7 @@ public class Terassa extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // hier wird festgestellt, ob Krabat den Vorder/Hintergrundwechsel durchfuehren muss

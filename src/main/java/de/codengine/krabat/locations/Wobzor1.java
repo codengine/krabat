@@ -206,10 +206,10 @@ public class Wobzor1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Wellenimages schunkeln...
         if (mainFrame.isAnim) {
@@ -230,7 +230,7 @@ public class Wobzor1 extends Mainloc {
                 }
             }
             g.setClip(303, 356, 338, 125);
-            g.drawImage(Wasser[wassercount], 303, 356, null);
+            g.drawImage(Wasser[wassercount], 303, 356);
         }
 
         // hier ist der Sound...
@@ -277,12 +277,12 @@ public class Wobzor1 extends Mainloc {
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (horiz3Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(horiz3, 197, 186, null);
+            g.drawImage(horiz3, 197, 186);
         }
 
         // hinterm horiz4 (nur Clipping - Region wird neugezeichnet)
         if (horiz4Rect.IsPointInRect(pKrTemp)) {
-            g.drawImage(horiz4, 543, 186, null);
+            g.drawImage(horiz4, 543, 186);
         }
 
         // sonst noch was zu tun ?
@@ -522,7 +522,7 @@ public class Wobzor1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

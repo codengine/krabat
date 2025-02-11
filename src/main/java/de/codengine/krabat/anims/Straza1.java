@@ -72,7 +72,7 @@ public class Straza1 extends Mainanim {
             }
 
             // Straza zeichnen
-            offGraph.drawImage(straza_talk[Talk], posit.x, posit.y, null);
+            offGraph.drawImage(straza_talk[Talk], posit.x, posit.y);
         }
 
         // rumstehende Straza
@@ -110,7 +110,7 @@ public class Straza1 extends Mainanim {
             }
 
             // zeichnen
-            offGraph.drawImage(straza_stand[Stand], posit.x, posit.y, null);
+            offGraph.drawImage(straza_stand[Stand], posit.x, posit.y);
         }
     }
 }    

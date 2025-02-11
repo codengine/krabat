@@ -135,17 +135,17 @@ public class Extro extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(Extropics[PicIndex], 0, 0, null);
+        g.drawImage(Extropics[PicIndex], 0, 0);
 
         // Raben zeichnen, solange da
         if (rapakVisible) {
             g.setClip(rapak.ptack2Rect());
-            g.drawImage(Extropics[PicIndex], 0, 0, null);
+            g.drawImage(Extropics[PicIndex], 0, 0);
             rapakVisible = rapak.Flieg(g);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // hier ist der Sound...
         evalSound();
@@ -182,7 +182,7 @@ public class Extro extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 176, 644, 176 + 154);
-            g.drawImage(ludzo_vor_buehne, 0, 176, null);
+            g.drawImage(ludzo_vor_buehne, 0, 176);
             g.setClip(my);
         }
 
@@ -252,7 +252,7 @@ public class Extro extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

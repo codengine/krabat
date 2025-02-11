@@ -231,10 +231,10 @@ public class Rapak1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
@@ -248,12 +248,12 @@ public class Rapak1 extends Mainloc {
         // Raben Hintergrund loeschen
         GenericRectangle raRect = rabe.rapakRect();
         g.setClip(raRect.getX(), raRect.getY(), raRect.getWidth(), raRect.getHeight());
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Schild zeichnen, da im Hintergrund !!!
         if (!mainFrame.Actions[901]) {
             g.setClip(399, 230, 70, 81);
-            g.drawImage(schild, 399, 230, null);
+            g.drawImage(schild, 399, 230);
         }
 
         // Raben zeichnen
@@ -288,11 +288,11 @@ public class Rapak1 extends Mainloc {
 
             // Feder zeichnen
             g.setClip(xkoord - 5, ykoord - 4, 21, 16);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
             if (!mainFrame.Actions[901]) {
-                g.drawImage(schild, 399, 230, null);
+                g.drawImage(schild, 399, 230);
             }
-            g.drawImage(Feder[Zaehl], xkoord, ykoord, null);
+            g.drawImage(Feder[Zaehl], xkoord, ykoord);
 
             // Y - Koordinate weiterschalten
             ykoord += 3;
@@ -314,8 +314,8 @@ public class Rapak1 extends Mainloc {
         // wenn geschossen, dann Feder zeichnen
         if (mainFrame.Actions[210] && !mainFrame.Actions[919]) {
             g.setClip(437, 390, 16, 16);
-            g.drawImage(background, 0, 0, null);
-            g.drawImage(Feder[1], 437, 394, null);
+            g.drawImage(background, 0, 0);
+            g.drawImage(Feder[1], 437, 394);
         }
 
         mainFrame.wegGeher.GeheWeg();
@@ -362,11 +362,11 @@ public class Rapak1 extends Mainloc {
 
         // Krabat hinter Gestruepp
         if (blRect1.IsPointInRect(pKrTemp)) {
-            g.drawImage(blumen1, 0, 374, null);
+            g.drawImage(blumen1, 0, 374);
         }
 
         if (blRect2.IsPointInRect(pKrTemp)) {
-            g.drawImage(blumen2, 241, 417, null);
+            g.drawImage(blumen2, 241, 417);
         }
 
         // sonst noch was zu tun ?
@@ -777,7 +777,7 @@ public class Rapak1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

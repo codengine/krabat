@@ -178,7 +178,7 @@ public class Kuchnjaopen extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // HlStraznik zeichnen
 	/*borderrect temp = hlStraznik.straznikRect (TalkPerson);
@@ -196,7 +196,7 @@ public class Kuchnjaopen extends Mainloc {
 	  hlStraznik.drawStraznik (g, TalkPerson);*/
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Krabat einen Schritt laufen lassen
         mainFrame.wegGeher.GeheWeg();
@@ -240,10 +240,10 @@ public class Kuchnjaopen extends Mainloc {
 
         // hinter Herd oder Schwein ? (nur Clipping - Region wird neugezeichnet)
         if (herdRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(herd, 25, 387, null);
+            g.drawImage(herd, 25, 387);
         }
         if (schweinRect.IsPointInRect(pKrTemp)) {
-            g.drawImage(schwein, 427, 337, null);
+            g.drawImage(schwein, 427, 337);
         }
 
         // sonst noch was zu tun ?
@@ -538,7 +538,7 @@ public class Kuchnjaopen extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         // if (mainFrame.isMultiple == true) Dialog.evalMouseExitEvent (e);
     }
 

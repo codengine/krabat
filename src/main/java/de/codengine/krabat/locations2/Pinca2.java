@@ -66,7 +66,7 @@ public class Pinca2 extends Mainloc {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Pinca2(Start caller, int oldLocation) {
+    public Pinca2(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -87,12 +87,12 @@ public class Pinca2 extends Mainloc {
         fararTalk.x = Pfar.x;
         fararTalk.y = Pfarar.y - 50;
 
-        InitLocation(oldLocation);
+        InitLocation();
         mainFrame.Freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void InitLocation() {
         InitImages();
         mainFrame.krabat.SetKrabatPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);
@@ -133,19 +133,19 @@ public class Pinca2 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         if (showBuch) {
-            g.drawImage(kniha, 0, 0, null);
+            g.drawImage(kniha, 0, 0);
         }
 
         // Andere Personen zeichnen, nur wenn das Buch nicht gezeigt wird
 
         // Pfarrer
         g.setClip(Pfarar.x, Pfarar.y, Farar.Breite, Farar.Hoehe);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         pfarrer.drawFarar(g, TalkPerson, Pfarar);
         if (showBuch) {
-            g.drawImage(kniha, 0, 0, null);
+            g.drawImage(kniha, 0, 0);
         }
 
         mainFrame.wegGeher.GeheWeg();
@@ -185,7 +185,7 @@ public class Pinca2 extends Mainloc {
         }
 
         if (showBuch) {
-            g.drawImage(kniha, 0, 0, null);
+            g.drawImage(kniha, 0, 0);
         }
 
         // sonst noch was zu tun ?
@@ -243,7 +243,7 @@ public class Pinca2 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

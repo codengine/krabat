@@ -181,17 +181,17 @@ public class Sunow1 extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe Hintergrund loeschen
         g.setClip(260, 150, 100, 100);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
         reh.drawReh(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -227,7 +227,7 @@ public class Sunow1 extends Mainloc {
             }
         }
         if (Berglauf) {
-            g.drawImage(wegstueck, 253, 268, null);
+            g.drawImage(wegstueck, 253, 268);
         }
 
         // sonst noch was zu tun ?
@@ -554,7 +554,7 @@ public class Sunow1 extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

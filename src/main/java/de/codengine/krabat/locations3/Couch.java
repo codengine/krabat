@@ -136,17 +136,17 @@ public class Couch extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Tuer zeichnen, wenn geoeffnet
         if (istTuerOffen) {
             g.setClip(253, 211, 54, 171);
-            g.drawImage(offeneTuer, 253, 211, null);
-            g.drawImage(vordertuer, 219, 233, null);
+            g.drawImage(offeneTuer, 253, 211);
+            g.drawImage(vordertuer, 219, 233);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -172,7 +172,7 @@ public class Couch extends Mainloc {
             // Cliprect setzen
             g.setClip(hier.x, hier.y, weit + 1, hoch + 1);
 
-            g.drawImage(fallen, hier.x, hier.y, weit, hoch, null);
+            g.drawImage(fallen, hier.x, hier.y, weit, hoch);
 
             Fallgeschwindigkeit++;
             if (Fallgeschwindigkeit == MAX_FALLGESCHWINDIGKEIT) {
@@ -226,7 +226,7 @@ public class Couch extends Mainloc {
 	  }*/
 
         if (istTuerOffen) {
-            g.drawImage(vordertuer, 219, 233, null);
+            g.drawImage(vordertuer, 219, 233);
         }
 
         // sonst noch was zu tun ?
@@ -485,7 +485,7 @@ public class Couch extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

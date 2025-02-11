@@ -135,17 +135,17 @@ public class Cychi extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Boot-Routine
         // Hintergrund loeschen
         Borderrect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         // Boot zeichnen
         boot.drawBoot(g);
 
@@ -188,11 +188,11 @@ public class Cychi extends Mainloc {
 
         // hinter dach vom Fachwerk (nur Clipping - Region wird neugezeichnet)
         if (rectFachwerk.IsPointInRect(pKrTemp)) {
-            g.drawImage(fachwerk, 220, 224, null);
+            g.drawImage(fachwerk, 220, 224);
         }
         // hinter Pfosten (nur Clipping - Region wird neugezeichnet)
         if (rectPfosten.IsPointInRect(pKrTemp)) {
-            g.drawImage(pfosten, 270, 391, null);
+            g.drawImage(pfosten, 270, 391);
         }
 
         // sonst noch was zu tun ?
@@ -404,7 +404,7 @@ public class Cychi extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

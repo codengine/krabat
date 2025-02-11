@@ -136,7 +136,7 @@ public class Bumm extends Mainanim {
         GenericRectangle tp = bummRect();
 
         // Zeichnen
-        offGraph.drawImage(bumm[Bummcount > 7 ? 7 : Bummcount], tp.getX(), tp.getY(), tp.getWidth(), tp.getHeight(), null);
+        offGraph.drawImage(bumm[Bummcount > 7 ? 7 : Bummcount], tp.getX(), tp.getY(), tp.getWidth(), tp.getHeight());
 
         // Rueckgabe des aktuellen Zaehlers
         return Bummcount;

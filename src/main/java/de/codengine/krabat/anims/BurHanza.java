@@ -86,7 +86,7 @@ public class BurHanza extends Mainanim {
                 Talk = (int) (Math.random() * 3.9);
             }
 
-            offGraph.drawImage(bur_talk[Talk], pos.x, pos.y, null);
+            offGraph.drawImage(bur_talk[Talk], pos.x, pos.y);
         } else {
             if (--Verhinderwork < 1) {
                 Verhinderwork = MAX_VERHINDERWORK;
@@ -106,7 +106,7 @@ public class BurHanza extends Mainanim {
                 }
             }
 
-            offGraph.drawImage(bur_work[Work], pos.x, pos.y, null);
+            offGraph.drawImage(bur_work[Work], pos.x, pos.y);
         }
     }
 }    

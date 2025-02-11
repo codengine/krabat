@@ -52,13 +52,13 @@ public class Pjany extends Mainanim {
     }
 
     // Zeichne Saeufer, wie er dasteht oder spricht
-    public void drawPjany(GenericDrawingContext g, int TalkPerson, GenericPoint Posit, int AnimTalkPerson) {
+    public void drawPjany(GenericDrawingContext g, GenericPoint Posit) {
         // reden ist egal, er bewegt sich nur ab und zu
         if (--Verhinderposition < 1) {
             Verhinderposition = MAX_VERHINDERPOSITION;
             Position = (int) (Math.random() * 1.9);
         }
 
-        g.drawImage(hosc[Position], Posit.x, Posit.y, null);
+        g.drawImage(hosc[Position], Posit.x, Posit.y);
     }
 }    

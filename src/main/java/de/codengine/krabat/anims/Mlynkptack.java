@@ -145,7 +145,7 @@ public class Mlynkptack extends Mainanim {
 	  if (yy < 0) yy = 0; */
 
         // g.setClip (xx, yy, xx + 50, yy + 50);
-        g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor, null);
+        g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor);
         if (isLeft) {
             return x > XEnde; // wenn aus dem Bild, dann das der Routine sagen !
         } else {

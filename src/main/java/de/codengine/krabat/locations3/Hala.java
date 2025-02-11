@@ -141,17 +141,17 @@ public class Hala extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(backl, 0, 0, null);
-        g.drawImage(backr, 640, 0, null);
+        g.drawImage(backl, 0, 0);
+        g.drawImage(backr, 640, 0);
 
         // offene Tuer zeichnen, sobald da
         if (mainFrame.Actions[675]) {
             g.setClip(883, 112, 84, 292);
-            g.drawImage(door, 883, 112, null);
+            g.drawImage(door, 883, 112);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         mainFrame.wegGeher.GeheWeg();
 
@@ -510,7 +510,7 @@ public class Hala extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

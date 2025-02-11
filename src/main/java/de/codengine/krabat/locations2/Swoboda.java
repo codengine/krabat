@@ -187,27 +187,27 @@ public class Swoboda extends Mainloc {
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
         if (iskrabatmorphing) {
             g.setClip(krabatmorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // wenn Rabe morpht, dann diesen Hintergrund loeschen
         if (israbemorphing) {
             g.setClip(rabemorph.bummRect());
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // alle Hintergruende loeschen wegen Ueberdecken
         // Mutter
         g.setClip(mutterPoint.x, mutterPoint.y, mutter.Breites, mutter.Hoehes);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Mueller Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
@@ -221,12 +221,12 @@ public class Swoboda extends Mainloc {
                 temp.ru_point.y - temp.lo_point.y + 20);
 
         // Zeichne Hintergrund neu
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Raben
         for (int i = 1; i <= 12; i++) {
             g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 0, 0);
         }
 
         // Raben zeichnen
@@ -405,7 +405,7 @@ public class Swoboda extends Mainloc {
     }
 
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

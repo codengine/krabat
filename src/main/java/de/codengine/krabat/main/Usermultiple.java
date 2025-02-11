@@ -169,7 +169,7 @@ public class Usermultiple {
         }
     }
 
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         // System.out.println("ExitEvent erhalten !");
         selected = -1;
         mainFrame.repaint();

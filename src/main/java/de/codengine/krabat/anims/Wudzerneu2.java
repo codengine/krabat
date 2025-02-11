@@ -58,8 +58,6 @@ public class Wudzerneu2 extends Mainanim {
     // private boolean horizontal = true;    // Animationen in x oder y Richtung
     // private boolean Thorizontal = true;
 
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-
     // Spritevariablen
     private static final int CWIDTH = 100;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 100;
@@ -281,8 +279,8 @@ public class Wudzerneu2 extends Mainanim {
             }
 
             // Groesse und Position der Figur berechnen
-            int left = getLeftPos((int) xps, (int) yps);
-            int up = getUpPos((int) xps, (int) yps);
+            int left = getLeftPos((int) xps);
+            int up = getUpPos((int) yps);
 
             // Figur zeichnen
             // nach rechts angeln, andere Seite hier nicht moeglich
@@ -365,8 +363,8 @@ public class Wudzerneu2 extends Mainanim {
         }
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int left = getLeftPos((int) xps);
+        int up = getUpPos((int) yps);
 
         // Figur zeichnen
         if (direction_x == 1) {
@@ -382,7 +380,7 @@ public class Wudzerneu2 extends Mainanim {
 
     // Zooming-Variablen berechnen
 
-    private int getLeftPos(int pox, int poy) {
+    private int getLeftPos(int pox) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         if (laeuftNicht) {
@@ -392,7 +390,7 @@ public class Wudzerneu2 extends Mainanim {
         }
     }
 
-    private int getUpPos(int pox, int poy) {
+    private int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         return poy - CHEIGHT;
@@ -400,8 +398,8 @@ public class Wudzerneu2 extends Mainanim {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect Wudzer2Rect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) xps, (int) yps);
+        int x = getLeftPos((int) xps);
+        int y = getUpPos((int) yps);
 
         // hier Unterscheidung nach Richtung, da die Angler viel breitere Images haben
         if (direction_x == 1) {
@@ -426,8 +424,8 @@ public class Wudzerneu2 extends Mainanim {
         // KrabatClip(g, ((int) xps), ((int) yps));
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) xps, (int) yps);
+        int left = getLeftPos((int) xps);
+        int up = getUpPos((int) yps);
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTH - (!laeuftNicht ? 50 : 0), CHEIGHT);

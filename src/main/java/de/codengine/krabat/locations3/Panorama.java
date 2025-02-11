@@ -150,17 +150,17 @@ public class Panorama extends Mainloc {
         }
 
         // Hintergrund und Krabat zeichnen
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        // mainFrame.showrect.Zeichne(g, mainFrame.wegGeher.vBorders);
+        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
 
         // Boot-Routine
         // Hintergrund loeschen
         Borderrect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
-        g.drawImage(background, 0, 0, null);
+        g.drawImage(background, 0, 0);
         // Boot zeichnen
         boot.drawBoot(g);
 
@@ -200,7 +200,7 @@ public class Panorama extends Mainloc {
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-        g.drawImage(cychi, 0, 329, null);
+        g.drawImage(cychi, 0, 329);
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
     /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
@@ -493,7 +493,7 @@ public class Panorama extends Mainloc {
 
     // dieses Event nicht beachten
     @Override
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////

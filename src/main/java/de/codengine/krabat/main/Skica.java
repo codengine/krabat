@@ -66,10 +66,10 @@ public class Skica extends Mainanim {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent();
         }
 
-        g.drawImage(skizze, mainFrame.scrollx, mainFrame.scrolly, null);
+        g.drawImage(skizze, mainFrame.scrollx, mainFrame.scrolly);
 
         // sonst noch was zu tun ?
         if (outputText != "") {
@@ -98,7 +98,7 @@ public class Skica extends Mainanim {
     }
 
     @SuppressWarnings("EmptyMethod")
-    public void evalMouseExitEvent(GenericMouseEvent e) {
+    public void evalMouseExitEvent() {
         //FIXME: Why no handling here?
     }
 
@@ -114,11 +114,12 @@ public class Skica extends Mainanim {
         }
     }
 
-    public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+    public void evalMouseMoveEvent() {
+        if (Cursorform == 20) {
+            return;
         }
+        Cursorform = 20;
+        mainFrame.setCursor(mainFrame.Nix);
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
