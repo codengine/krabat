@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Panorama extends Mainloc {
-    private GenericImage background, cychi;
+    private GenericImage background;
+    private GenericImage cychi;
 
     private final Boote boot;
 

@@ -27,7 +27,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Info extends Mainanim {
-    private GenericImage Bild, Jan, Jiri, Daniel, Eddie, Hanus, Mic;
+    private GenericImage Bild;
+    private GenericImage Jan;
+    private GenericImage Jiri;
+    private GenericImage Daniel;
+    private GenericImage Eddie;
+    private GenericImage Hanus;
+    private GenericImage Mic;
     private final GenericImage Pfeill;
     private final GenericImage DPfeill;
     private final GenericImage Pfeilr; /* DPfeilr, */

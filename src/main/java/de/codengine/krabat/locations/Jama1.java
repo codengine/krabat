@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Jama1 extends Mainloc {
-    private GenericImage background, foreground, vorder;
+    private GenericImage background;
+    private GenericImage foreground;
+    private GenericImage vorder;
     private int Animcount = 1;
     private static final int MAXCOUNT = 5;
     private int Counter = 0;

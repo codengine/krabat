@@ -28,7 +28,12 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Casnik extends Mainloc {
-    private GenericImage background, kozuch, umdrei, umvier, kluc, zeitumstell;
+    private GenericImage background;
+    private GenericImage kozuch;
+    private GenericImage umdrei;
+    private GenericImage umvier;
+    private GenericImage kluc;
+    private GenericImage zeitumstell;
     private final GenericImage[] pendel;
     private final HlownyStraznik hlStraznik;
     private final Multiple2 Dialog;

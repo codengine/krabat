@@ -26,7 +26,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericImageObserver;
 
 public class LanguageChooser extends Mainloc {
-    private GenericImage background, pfeiloben, pfeilunten, dpfeiloben, dpfeilunten;
+    private GenericImage background;
+    private GenericImage pfeiloben;
+    private GenericImage pfeilunten;
+    private GenericImage dpfeiloben;
+    private GenericImage dpfeilunten;
 
     private static final GenericPoint pPfeilOben = new GenericPoint(210, 80);  // allgemeine Pfeildeklarationen
     private static final GenericPoint pPfeilUnten = new GenericPoint(210, 277);

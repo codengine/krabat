@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Haska extends Mainloc {
-    private GenericImage background, ohneSeil;
+    private GenericImage background;
+    private GenericImage ohneSeil;
     private final GenericImage[] tropfen;
     private boolean switchanim = false;
     private int weinCount = 0;

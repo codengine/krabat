@@ -30,16 +30,23 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Rowy extends Mainloc {
-    private GenericImage background, backgroundBright, grab, imSargOffen;
+    private GenericImage background;
+    private GenericImage backgroundBright;
+    private GenericImage grab;
+    private GenericImage imSargOffen;
     private final GenericImage[] krabat_aufstehen = new GenericImage[4];
     private final GenericImage[] krabat_anzuenden = new GenericImage[3];
-    private GenericImage krabat_grab_oeffnen, krabat_links_zucken, krabat_links_stehen;
+    private GenericImage krabat_grab_oeffnen;
+    private GenericImage krabat_links_zucken;
+    private GenericImage krabat_links_stehen;
     private final GenericImage[] krabat_links_back = new GenericImage[4];
     private final GenericImage[] alter_mueller = new GenericImage[2];
     private final GenericImage[] fledermaus = new GenericImage[4];
     private final GenericImage[] fledermausSitzen = new GenericImage[3];
     private final GenericImage[] schaf = new GenericImage[3];
-    private GenericImage imSchaale, imStroh, imKorraktor;
+    private GenericImage imSchaale;
+    private GenericImage imStroh;
+    private GenericImage imKorraktor;
     private final GenericImage[] imFeuer = new GenericImage[11];
     private final GenericImage[] imSwaixtixKippen = new GenericImage[6];
     private GenericImage imOhneSwaixtix;

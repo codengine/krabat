@@ -27,7 +27,12 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Murja extends Mainloc {
-    private GenericImage backl, backr, himmel, laterne, openDoor, closedDoor;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage himmel;
+    private GenericImage laterne;
+    private GenericImage openDoor;
+    private GenericImage closedDoor;
     private GenericImage busch;
     private boolean setScroll = false;
     private int scrollwert;

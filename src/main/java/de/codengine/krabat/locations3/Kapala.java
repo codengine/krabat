@@ -27,7 +27,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Kapala extends Mainloc {
-    private GenericImage background, rolle1, rolle2;
+    private GenericImage background;
+    private GenericImage rolle1;
+    private GenericImage rolle2;
     private final GenericImage[] Feuer;
 
     // Konstanten - Rects

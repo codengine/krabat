@@ -30,7 +30,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class StareWiki extends Mainloc {
-    private GenericImage background, koleso;
+    private GenericImage background;
+    private GenericImage koleso;
     private final PredKorejtow predKorejtow;
     private final PredWosuskow predWosuskow;
     private final PredMalickow predMalickow;

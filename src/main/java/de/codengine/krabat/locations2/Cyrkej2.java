@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Cyrkej2 extends Mainloc {
-    private GenericImage background, durje;
+    private GenericImage background;
+    private GenericImage durje;
     private Fararhor pfarrer;
     private final Multiple2 Dialog;
     // private borderrect pfarrerRect;

@@ -27,7 +27,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class CornyCholmc1 extends Mainloc {
-    private GenericImage background, himmel, vorder;
+    private GenericImage background;
+    private GenericImage himmel;
+    private GenericImage vorder;
     private final Multiple2 Dialog;
 
     // Konstanten - Rects deklarieren

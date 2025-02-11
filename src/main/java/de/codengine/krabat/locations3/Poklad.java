@@ -29,7 +29,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Poklad extends Mainloc {
-    private GenericImage schody, komora, vorderschody, skla;
+    private GenericImage schody;
+    private GenericImage komora;
+    private GenericImage vorderschody;
+    private GenericImage skla;
     private final Dinglingerwalk dinglingerwalk;
     private final StrazaPoklad straza;
 

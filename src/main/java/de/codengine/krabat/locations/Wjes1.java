@@ -29,7 +29,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wjes1 extends Mainloc {
-    private GenericImage backl, backr, sky, wjes2, wjes3, wjes4, wjes5;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage sky;
+    private GenericImage wjes2;
+    private GenericImage wjes3;
+    private GenericImage wjes4;
+    private GenericImage wjes5;
     private final GenericImage[] Schild;
     private final GenericImage[] Feuer;
     private boolean setScroll = false;

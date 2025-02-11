@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Labyr122 extends Mainloc2 {
-    private GenericImage background, lab122, lab123;
+    private GenericImage background;
+    private GenericImage lab122;
+    private GenericImage lab123;
     private Mlynk2 mueller;
     private boolean setAnim = true;
 

@@ -30,7 +30,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hoscenc1 extends Mainloc {
-    private GenericImage background, hosc6, honck, durje, vorderdurje;
+    private GenericImage background;
+    private GenericImage hosc6;
+    private GenericImage honck;
+    private GenericImage durje;
+    private GenericImage vorderdurje;
     private Korcmar wirt;
     private Dundak strolch;
     private Pjany saeufer;

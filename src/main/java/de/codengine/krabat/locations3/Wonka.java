@@ -27,7 +27,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wonka extends Mainloc {
-    private GenericImage background, foreground;
+    private GenericImage background;
+    private GenericImage foreground;
 
     private static final Borderrect rechterAusgang
             = new Borderrect(188, 316, 293, 479);

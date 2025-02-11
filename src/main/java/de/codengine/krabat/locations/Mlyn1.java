@@ -31,7 +31,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Mlyn1 extends Mainloc {
-    private GenericImage background, offeneTuer, foreground;
+    private GenericImage background;
+    private GenericImage offeneTuer;
+    private GenericImage foreground;
 
     private final GenericImage[] Rad;
     private int Radcount = 1;

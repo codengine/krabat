@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImageObserver;
 import java.util.Vector;
 
 public class Inventar extends Mainanim {
-    private GenericImage iInventar, inactiveMenu, activeMenu;
+    private GenericImage iInventar;
+    private GenericImage inactiveMenu;
+    private GenericImage activeMenu;
 
     private final GenericImage[] InventarStuecke;
     private final int[] InventarID;
@@ -37,7 +39,10 @@ public class Inventar extends Mainanim {
     private static final int INVENTAR_CACHE = 10;
     private int CachePosition = 1;
 
-    public GenericImage Pfeill, DPfeill, Pfeilr, DPfeilr;  // damit man das auch woanders nutzen kann
+    public GenericImage Pfeill;
+    public GenericImage DPfeill;
+    public GenericImage Pfeilr;
+    public GenericImage DPfeilr;  // damit man das auch woanders nutzen kann
     public Vector<Integer> vInventory;                       // Vektor , der alle Inventarstuecke beinhaltet
     private int nextActionID;                       // zur Textausgabe der Inventarstuecke
     private final GenericPoint pLO;                              // Offset der Linken oberen Ecke

@@ -29,7 +29,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Doma1 extends Mainloc {
-    private GenericImage background1, background2, back, brunnen, blatt, stock, logo;
+    private GenericImage background1;
+    private GenericImage background2;
+    private GenericImage back;
+    private GenericImage brunnen;
+    private GenericImage blatt;
+    private GenericImage stock;
+    private GenericImage logo;
     private GenericImage[] Rauchanim;
     private int Rauchcount = 1;
     private boolean showRauch = false;
@@ -41,7 +47,9 @@ public class Doma1 extends Mainloc {
     private int scrollwert;
 
     private boolean showLogo = false;
-    private Husa gans1, gans2, gans3;
+    private Husa gans1;
+    private Husa gans2;
+    private Husa gans3;
     private boolean setAnim = false;
 
     private final GenericPoint MacTalk;

@@ -29,7 +29,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Dingl extends Mainloc {
-    private GenericImage background, blido, tworba, kombinacija;
+    private GenericImage background;
+    private GenericImage blido;
+    private GenericImage tworba;
+    private GenericImage kombinacija;
     private final Dinglinger dinglinger;
     private final Dinglingerwalk dinglingerwalk;
     private final Multiple2 Dialog;

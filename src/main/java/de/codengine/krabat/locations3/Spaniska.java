@@ -29,7 +29,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Spaniska extends Mainloc {
-    private GenericImage background, stolc, roze, haken, pjenjezy, haken2, krabat_steigen;
+    private GenericImage background;
+    private GenericImage stolc;
+    private GenericImage roze;
+    private GenericImage haken;
+    private GenericImage pjenjezy;
+    private GenericImage haken2;
+    private GenericImage krabat_steigen;
     private final Dziwadzelnica dziwadzelnica;
     private final GenericPoint talkPoint;
     private final Borderrect rectDziwadzelnica;

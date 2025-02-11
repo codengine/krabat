@@ -29,8 +29,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hojnt2 extends Mainloc2 {
-    private GenericImage backl, backr, skyl, skyr, hojnt2, hojnt3, /* hojnt4, */
-            seil;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage skyl;
+    private GenericImage skyr;
+    private GenericImage hojnt2;
+    private GenericImage hojnt3; /* hojnt4, */
+            private GenericImage seil;
     private boolean setScroll = false;
     private int scrollwert;
     private boolean muellerda = false;
@@ -43,7 +48,9 @@ public class Hojnt2 extends Mainloc2 {
     // private boolean AnimActive = false;
     private Mlynk2 mueller;
 
-    private GenericImage leftschatten, rightschatten, vorder;
+    private GenericImage leftschatten;
+    private GenericImage rightschatten;
+    private GenericImage vorder;
     private boolean isLeft;
     private int xpos;
     private static final int MIN_SCHATTENX = 340;

@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Les1 extends Mainloc {
-    private GenericImage background, strauch;
+    private GenericImage background;
+    private GenericImage strauch;
 
     private Reh reh;
 

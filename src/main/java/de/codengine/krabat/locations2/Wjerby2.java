@@ -29,7 +29,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wjerby2 extends Mainloc2 {
-    private GenericImage background, weiden2;
+    private GenericImage background;
+    private GenericImage weiden2;
     private Mlynk2 mueller;
 
     private boolean muellerVisible = false;

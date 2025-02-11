@@ -27,7 +27,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class DDKarta extends Mainloc {
-    private GenericImage background, vor1, vor2, vor3, vor4;
+    private GenericImage background;
+    private GenericImage vor1;
+    private GenericImage vor2;
+    private GenericImage vor3;
+    private GenericImage vor4;
 
     // Konstanten - Rects
     private static final Borderrect brPanorama

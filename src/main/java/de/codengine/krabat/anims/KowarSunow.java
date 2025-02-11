@@ -32,7 +32,8 @@ public class KowarSunow extends Mainanim {
     private final GenericImage[] kowar_work;
     private final GenericImage[] kowar_walkl;
     private final GenericImage[] kowar_walkr;
-    private GenericImage Vorder, kowar_zwinker;
+    private GenericImage Vorder;
+    private GenericImage kowar_zwinker;
 
     private int Head = 1;
     private int Body = 1;

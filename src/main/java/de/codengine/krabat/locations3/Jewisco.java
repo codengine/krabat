@@ -27,7 +27,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Jewisco extends Mainloc {
-    private GenericImage backl, backr, buch;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage buch;
     private boolean setScroll = false;
     private int scrollwert;
 

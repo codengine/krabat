@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Pinca2 extends Mainloc {
-    private GenericImage background, kniha;
+    private GenericImage background;
+    private GenericImage kniha;
     private Farar pfarrer;
 
     private final GenericPoint Pfarar;

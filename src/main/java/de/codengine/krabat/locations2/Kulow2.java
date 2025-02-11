@@ -29,7 +29,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Kulow2 extends Mainloc {
-    private GenericImage backleft, backright, himmel, saeule, kulow2;
+    private GenericImage backleft;
+    private GenericImage backright;
+    private GenericImage himmel;
+    private GenericImage saeule;
+    private GenericImage kulow2;
     private boolean setScroll = false;
     private int scrollwert;
 

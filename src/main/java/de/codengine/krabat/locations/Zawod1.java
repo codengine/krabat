@@ -31,12 +31,22 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Zawod1 extends Mainloc {
-    private GenericImage domal, domar, sky, kij, rapaki, intro1, intro2, budysin, budysky;
-    private GenericImage sitz1, sitz2;
+    private GenericImage domal;
+    private GenericImage domar;
+    private GenericImage sky;
+    private GenericImage kij;
+    private GenericImage rapaki;
+    private GenericImage intro1;
+    private GenericImage intro2;
+    private GenericImage budysin;
+    private GenericImage budysky;
+    private GenericImage sitz1;
+    private GenericImage sitz2;
     private final GenericImage[] floete;
     private int IntroStep = 1;
     private int nextActionID = 0;
-    private IntroDomaPtack ptack1, ptack2;
+    private IntroDomaPtack ptack1;
+    private IntroDomaPtack ptack2;
     private final Husa gans1;
     private final Husa gans2;
     private final Husa gans3;
@@ -52,7 +62,9 @@ public class Zawod1 extends Mainloc {
 
     private boolean playing = true;  // so lassen, ist nur ein Gag...
 
-    private LogoPtack vogel1, vogel2, vogel3;
+    private LogoPtack vogel1;
+    private LogoPtack vogel2;
+    private LogoPtack vogel3;
 
     private int skipActionID = 0;
 

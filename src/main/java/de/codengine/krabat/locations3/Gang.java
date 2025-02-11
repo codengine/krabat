@@ -27,8 +27,13 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Gang extends Mainloc {
-    private GenericImage backl, backr, stamm, buch;
-    private GenericImage /* kette1 , */ kette2, tuer, tuervorder;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage stamm;
+    private GenericImage buch;
+    private GenericImage /* kette1 , */ kette2;
+    private GenericImage tuer;
+    private GenericImage tuervorder;
     private boolean setScroll = false;
     private int scrollwert;
     private boolean ziehtKrabatAnKette = false;

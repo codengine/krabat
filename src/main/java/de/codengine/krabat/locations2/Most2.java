@@ -28,7 +28,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Most2 extends Mainloc2 {
-    private GenericImage background, gelaend, wegstueck, gras;
+    private GenericImage background;
+    private GenericImage gelaend;
+    private GenericImage wegstueck;
+    private GenericImage gras;
     private final GenericImage[] flussu;
     private int oldActionID = 0;
     private boolean switchanim = false;

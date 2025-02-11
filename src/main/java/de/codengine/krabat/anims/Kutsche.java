@@ -27,11 +27,13 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
 public class Kutsche extends Mainanim {
-    private GenericImage kutsche, kutschentuer/*, pferdohr1, pferdohr2, hinterohr */;
+    private GenericImage kutsche;
+    private GenericImage kutschentuer/*, pferdohr1, pferdohr2, hinterohr */;
     private final GenericImage[] pferdschwanz;
     private final GenericImage[] kleineWolke;
     private final GenericImage[] grosseWolke;
-    private GenericImage vorder, pohonc;
+    private GenericImage vorder;
+    private GenericImage pohonc;
 
     private static final GenericPoint kutscheLO = new GenericPoint(0, 252);
 

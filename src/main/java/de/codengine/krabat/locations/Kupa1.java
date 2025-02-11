@@ -27,7 +27,12 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Kupa1 extends Mainloc {
-    private GenericImage background, kupa3, kupa4, kupa5, kupa2a, rohodz;
+    private GenericImage background;
+    private GenericImage kupa3;
+    private GenericImage kupa4;
+    private GenericImage kupa5;
+    private GenericImage kupa2a;
+    private GenericImage rohodz;
 
     private int WhichItem = 0;
 

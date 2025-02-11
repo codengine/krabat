@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Zahrodnik extends Mainloc {
-    private GenericImage background, hrod;
+    private GenericImage background;
+    private GenericImage hrod;
     private final Handrij handrij;
     private final Multiple2 Dialog;
 

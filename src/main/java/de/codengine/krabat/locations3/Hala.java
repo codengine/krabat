@@ -27,7 +27,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hala extends Mainloc {
-    private GenericImage backl, backr, door;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage door;
     private boolean setScroll = false;
     private int scrollwert;
 

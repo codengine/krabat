@@ -27,7 +27,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Komedij extends Mainloc {
-    private GenericImage background, jacke, schwert, sluzDrasta, gorilla;
+    private GenericImage background;
+    private GenericImage jacke;
+    private GenericImage schwert;
+    private GenericImage sluzDrasta;
+    private GenericImage gorilla;
     private final GenericImage[] kerzen;
 
     private static final GenericPoint[] kerzenPunkte =

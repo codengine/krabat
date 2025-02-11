@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Cychi extends Mainloc {
-    private GenericImage background, fachwerk, pfosten;
+    private GenericImage background;
+    private GenericImage fachwerk;
+    private GenericImage pfosten;
 
     private final Boote boot;
 

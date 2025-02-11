@@ -34,8 +34,10 @@ public class Korcmar extends Mainanim {
     private final GenericImage[] krabat_talk_body;
 
     // Grundlegende Variablen
-    private float xps, yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps, typs;             // temporaere Variablen fuer genaue Position
+    private float xps;
+    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
+    private float txps;
+    private float typs;             // temporaere Variablen fuer genaue Position
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild

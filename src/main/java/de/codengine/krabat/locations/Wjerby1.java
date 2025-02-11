@@ -27,7 +27,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wjerby1 extends Mainloc {
-    private GenericImage background, weiden2;
+    private GenericImage background;
+    private GenericImage weiden2;
 
     // Konstanten - Rects
     private static final Borderrect obererAusgang = new Borderrect(591, 201, 639, 286);

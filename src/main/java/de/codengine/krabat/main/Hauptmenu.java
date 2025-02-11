@@ -27,10 +27,22 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericImageObserver;
 
 public class Hauptmenu extends Mainanim {
-    private GenericImage Screen, Nowostart, Wocinic, Skladzic,
-            Info, Dalehrac, Konc, Rec;
-    private Borderrect brGesamt, brNowostart, brWocinic, brSkladzic, brInfo,
-            brDalehrac, brKonc, brRec;
+    private GenericImage Screen;
+    private GenericImage Nowostart;
+    private GenericImage Wocinic;
+    private GenericImage Skladzic;
+    private GenericImage Info;
+    private GenericImage Dalehrac;
+    private GenericImage Konc;
+    private GenericImage Rec;
+    private Borderrect brGesamt;
+    private Borderrect brNowostart;
+    private Borderrect brWocinic;
+    private Borderrect brSkladzic;
+    private Borderrect brInfo;
+    private Borderrect brDalehrac;
+    private Borderrect brKonc;
+    private Borderrect brRec;
 
     private final GenericPoint pLO;
 

@@ -28,8 +28,12 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Terassa extends Mainloc {
-    private GenericImage background, gelaender, busch, hammer;
-    private GenericImage gelaender2, delle;
+    private GenericImage background;
+    private GenericImage gelaender;
+    private GenericImage busch;
+    private GenericImage hammer;
+    private GenericImage gelaender2;
+    private GenericImage delle;
     private final DDKowar schmied;
 
     // private borderrect schmiedRect;

@@ -29,7 +29,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Labyr2 extends Mainlaby {
-    private GenericImage background, lab22;
+    private GenericImage background;
+    private GenericImage lab22;
 
     private boolean isBlinker = false;
     private boolean bludVisible = false;

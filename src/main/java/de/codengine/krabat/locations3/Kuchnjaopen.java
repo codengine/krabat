@@ -27,7 +27,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Kuchnjaopen extends Mainloc {
-    private GenericImage background, herd, schwein/* , herd2, herd3 */;
+    private GenericImage background;
+    private GenericImage herd;
+    private GenericImage schwein/* , herd2, herd3 */;
 
     // private HlownyStraznik hlStraznik;
 

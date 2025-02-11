@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wobzor2 extends Mainloc2 {
-    private GenericImage background, horiz3, horiz4;
+    private GenericImage background;
+    private GenericImage horiz3;
+    private GenericImage horiz4;
     private final GenericImage[] Wasser;
     private boolean switchanim = false;
     private int wassercount = 1;

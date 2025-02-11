@@ -28,8 +28,20 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hojnt1 extends Mainloc {
-    private GenericImage backl, backr, skyl, skyr, hojnt2, hojnt4, seil, baum, hoelzerback, offeneTuer;
-    private GenericImage leftschatten, rightschatten, vorder, vorder2;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage skyl;
+    private GenericImage skyr;
+    private GenericImage hojnt2;
+    private GenericImage hojnt4;
+    private GenericImage seil;
+    private GenericImage baum;
+    private GenericImage hoelzerback;
+    private GenericImage offeneTuer;
+    private GenericImage leftschatten;
+    private GenericImage rightschatten;
+    private GenericImage vorder;
+    private GenericImage vorder2;
     private GenericImage fallevor;
     private boolean setScroll = false;
     private int scrollwert;

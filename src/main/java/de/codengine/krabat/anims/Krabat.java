@@ -50,7 +50,8 @@ abstract public class Krabat extends Mainanim {
     // Variablen, die nur innerhalb Krabat sichtbar sein sollen
 
     int nAnimStep = 0;                    // ggw. Pos in Animation
-    float xps, yps;                       // genaue Position der Fuesse fuer Offsetberechnung
+    float xps;
+    float yps;                       // genaue Position der Fuesse fuer Offsetberechnung
 
     boolean horizontal = true;            // Animationen in x oder y Richtung
     int direction_x = 1;                  // Laufrichtung x
@@ -59,7 +60,8 @@ abstract public class Krabat extends Mainanim {
     int anim_pos = 0;                     // Animationsbild
     GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
 
-    float txps, typs;                     // temporaere Variablen fuer genaue Position
+    float txps;
+    float typs;                     // temporaere Variablen fuer genaue Position
     GenericPoint Twalkto = new GenericPoint(0, 0);     // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
     int Tdirection_x = 1;

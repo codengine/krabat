@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class CornyCholmc2 extends Mainloc2 {
-    private GenericImage background, himmel, vorder;
+    private GenericImage background;
+    private GenericImage himmel;
+    private GenericImage vorder;
     private boolean setAnim = false;
     private boolean muellerda = false;
     private Mlynk2 mueller;

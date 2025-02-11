@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Lodz extends Mainloc {
-    private GenericImage background, vor1, vor2;
+    private GenericImage background;
+    private GenericImage vor1;
+    private GenericImage vor2;
     private final WikowarkaRudy wikowarka;
     private final Multiple2 Dialog;
 

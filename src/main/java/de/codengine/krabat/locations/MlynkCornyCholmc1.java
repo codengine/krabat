@@ -32,8 +32,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class MlynkCornyCholmc1 extends Mainloc {
-    private GenericImage background, /* background2, */
-            himmel1, himmel2, vorder;
+    private GenericImage background; /* background2, */
+            private GenericImage himmel1;
+    private GenericImage himmel2;
+    private GenericImage vorder;
 
     private Mlynk2 mueller;
     private boolean muellerda = false;

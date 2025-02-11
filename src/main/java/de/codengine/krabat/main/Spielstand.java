@@ -29,13 +29,16 @@ public class Spielstand {
     public int Location;
     private GenericPoint Krabatpos;
     private int isHornjos;
-    private int Day, Month, Year;
+    private int Day;
+    private int Month;
+    private int Year;
     private Vector<Integer> Inventar;
     private int Scrolling;
     private int Facing;
     private boolean[] Aktionen;
     private int[] Bild;
-    public GenericImage Picture, DarkPicture;
+    public GenericImage Picture;
+    public GenericImage DarkPicture;
     private final Start mainFrame;
     // private int Groesse = 44100;
     private static final byte W = -128;

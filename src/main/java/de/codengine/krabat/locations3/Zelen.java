@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Zelen extends Mainloc {
-    private GenericImage background, iprikaz, vorder;
+    private GenericImage background;
+    private GenericImage iprikaz;
+    private GenericImage vorder;
     private final GenericImage[] kerze;
     private GenericImage siegel;
     private final GenericImage[] krabat_siegeln;

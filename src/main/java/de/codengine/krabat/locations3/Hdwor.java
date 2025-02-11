@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Hdwor extends Mainloc {
-    private GenericImage background, stOben, stUnten;
+    private GenericImage background;
+    private GenericImage stOben;
+    private GenericImage stUnten;
 
     private final Boote boot;
 

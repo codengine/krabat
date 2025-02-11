@@ -27,7 +27,10 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
 public class Inmlyn extends Mainloc {
-    private GenericImage background1, background2, fenster, rabeVorder;
+    private GenericImage background1;
+    private GenericImage background2;
+    private GenericImage fenster;
+    private GenericImage rabeVorder;
     private final GenericImage[] krabatKopf;
 
     private boolean setScroll = false;

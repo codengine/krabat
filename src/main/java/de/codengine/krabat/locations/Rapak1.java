@@ -29,7 +29,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Rapak1 extends Mainloc {
-    private GenericImage background, blumen1, blumen2, schild;
+    private GenericImage background;
+    private GenericImage blumen1;
+    private GenericImage blumen2;
+    private GenericImage schild;
 
     private final GenericImage[] Feder;
     private boolean animit = false;

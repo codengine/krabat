@@ -28,7 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Habor extends Mainloc {
-    private GenericImage background, murja, steg, boota, bootb;
+    private GenericImage background;
+    private GenericImage murja;
+    private GenericImage steg;
+    private GenericImage boota;
+    private GenericImage bootb;
     private final Multiple2 Dialog;
     private final Gonzales gonzales;
 

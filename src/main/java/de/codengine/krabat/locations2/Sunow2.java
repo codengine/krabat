@@ -30,7 +30,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Sunow2 extends Mainloc2 {
-    private GenericImage background, wegstueck;
+    private GenericImage background;
+    private GenericImage wegstueck;
     private int oldActionID = 0;
     private boolean Berglauf = false;
     private GenericPoint Endpunkt;

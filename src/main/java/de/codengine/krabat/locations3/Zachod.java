@@ -27,7 +27,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Zachod extends Mainloc {
-    private GenericImage background, seil, deska, kista, kista2;
+    private GenericImage background;
+    private GenericImage seil;
+    private GenericImage deska;
+    private GenericImage kista;
+    private GenericImage kista2;
     private final GenericImage[] krabat_schieb;
 
     // Konstanten - Rects
@@ -59,7 +63,8 @@ public class Zachod extends Mainloc {
     private static final float Xoffset = 3f;
     private final float Yoffset;
 
-    private float xpos, ypos;
+    private float xpos;
+    private float ypos;
     private GenericPoint festnagelPoint = new GenericPoint(0, 0); // Krabat darf sich beim schieben nicht relativ zu den Kisten bewegen
     private GenericPoint bezugsPunkt = new GenericPoint(0, 0);
 

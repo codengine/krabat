@@ -28,7 +28,12 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Kuchnja extends Mainloc {
-    private GenericImage background, herd, schwein, herd2, herd3, holz;
+    private GenericImage background;
+    private GenericImage herd;
+    private GenericImage schwein;
+    private GenericImage herd2;
+    private GenericImage herd3;
+    private GenericImage holz;
     private final GenericImage[] Feuer;
     private final GenericImage[] Wusmuz;
     private final GenericImage[] Ueberkoch;
@@ -72,7 +77,8 @@ public class Kuchnja extends Mainloc {
     private static final GenericPoint flugEnde = new GenericPoint(140, 479);
     private static final float XOFFSET = 8;
     private final float Yoffset;
-    private float Xpos, Ypos;
+    private float Xpos;
+    private float Ypos;
 
     // Konstanten - Rects
     private static final Borderrect rechterAusgang

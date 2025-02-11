@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Dubring2 extends Mainloc2 {
-    private GenericImage backl, backr, sky;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage sky;
     private boolean setScroll = false;
     private int scrollwert;
     private Mlynk2 mueller;

@@ -27,9 +27,13 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
 public class HojntAuto extends Mainloc {
-    private GenericImage backl, backr, skyl, skyr, /*hojnt2, */
-            hojnt3, /* hojnt4, seil, baum, */
-            hoelzerback, offeneTuer;
+    private GenericImage backl;
+    private GenericImage backr;
+    private GenericImage skyl;
+    private GenericImage skyr; /*hojnt2, */
+            private GenericImage hojnt3; /* hojnt4, seil, baum, */
+            private GenericImage hoelzerback;
+    private GenericImage offeneTuer;
 
     private final GenericImage[] hoelzer;
     private int HolzCount = 0;

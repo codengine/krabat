@@ -31,8 +31,11 @@ public class Hrodz extends Mainloc {
     private GenericImage steinpic;
     private GenericImage gruftzu;
     private GenericImage vordergruft;
-    private GenericImage krabat_left, krabat_right, krabat_wippen_left,
-            krabat_wippen_right, krabat_fallen;
+    private GenericImage krabat_left;
+    private GenericImage krabat_right;
+    private GenericImage krabat_wippen_left;
+    private GenericImage krabat_wippen_right;
+    private GenericImage krabat_fallen;
 
     private int Wippen = 0;
 

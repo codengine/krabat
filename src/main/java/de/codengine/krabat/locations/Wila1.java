@@ -28,8 +28,18 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Wila1 extends Mainloc {
-    private GenericImage background, foreground, leineleer, clean, dirty, stom, dooropen, vdoor, stange;
-    private GenericImage onelost, twolost, threelost;
+    private GenericImage background;
+    private GenericImage foreground;
+    private GenericImage leineleer;
+    private GenericImage clean;
+    private GenericImage dirty;
+    private GenericImage stom;
+    private GenericImage dooropen;
+    private GenericImage vdoor;
+    private GenericImage stange;
+    private GenericImage onelost;
+    private GenericImage twolost;
+    private GenericImage threelost;
     private final GenericImage[] krabat_waesche;
 
     private Plokarka waschfrau;

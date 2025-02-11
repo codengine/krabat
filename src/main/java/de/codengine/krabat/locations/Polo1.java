@@ -29,14 +29,20 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Polo1 extends Mainloc {
-    private GenericImage background, polo2, polo3, polo4, polo5;
+    private GenericImage background;
+    private GenericImage polo2;
+    private GenericImage polo3;
+    private GenericImage polo4;
+    private GenericImage polo5;
 
     private BurMichal michael;
     private BurHanza agnes;
     private final Multiple2 Dialog;
 
-    private Borderrect hanzaRect, michalRect;
-    private GenericPoint hanzaTalk, michalTalk;
+    private Borderrect hanzaRect;
+    private Borderrect michalRect;
+    private GenericPoint hanzaTalk;
+    private GenericPoint michalTalk;
 
     private boolean hoertkrabatzu = false;
 

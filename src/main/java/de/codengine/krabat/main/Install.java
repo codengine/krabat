@@ -31,7 +31,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Install extends Mainloc {
-    private GenericImage background, Pfeil, DPfeil;
+    private GenericImage background;
+    private GenericImage Pfeil;
+    private GenericImage DPfeil;
     private final GenericPoint pLO;
     private final Borderrect brPfeil;
 

@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Trepjena extends Mainloc {
-    private GenericImage background, trVorn;
+    private GenericImage background;
+    private GenericImage trVorn;
     private final StrazaPoklad strazaPoklad;
     // private Dinglinger dinglinger;
 

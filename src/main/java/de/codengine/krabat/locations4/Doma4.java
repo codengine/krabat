@@ -27,7 +27,11 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Doma4 extends Mainloc {
-    private GenericImage background1, background2, back, foreground, foreground2;
+    private GenericImage background1;
+    private GenericImage background2;
+    private GenericImage back;
+    private GenericImage foreground;
+    private GenericImage foreground2;
 
     private final GenericImage[] Rauchanim;
     private final GenericImage[] LeuteRechts;

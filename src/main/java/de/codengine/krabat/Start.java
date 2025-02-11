@@ -42,7 +42,16 @@ public class Start implements Runnable {
     public Mainloc currentLocation;
 
     // Cursorvariablen
-    public GenericCursor Cup, Cdown, Cleft, Cright, Cinventar, CHinventar, Normal, Kreuz, Warten, Nix;
+    public GenericCursor Cup;
+    public GenericCursor Cdown;
+    public GenericCursor Cleft;
+    public GenericCursor Cright;
+    public GenericCursor Cinventar;
+    public GenericCursor CHinventar;
+    public GenericCursor Normal;
+    public GenericCursor Kreuz;
+    public GenericCursor Warten;
+    public GenericCursor Nix;
     public boolean invCursor;         // Zeigt an, ob Mauscursor = Inventarstueck
     public boolean invHighCursor;     // Zeigt an, ob Mauscursor gehighlighted werden muss
     public int whatItem = 0;          // Welches Inventarstueck haengt an der Angel?
@@ -94,7 +103,8 @@ public class Start implements Runnable {
     // private long paintzeit = 0;  // fuer Debugging Benchmark - Anzeige
 
     // Scrolling - Variablen
-    public int scrollx, scrolly;
+    public int scrollx;
+    public int scrolly;
     public boolean isScrolling;
 
     public boolean[] Actions = new boolean[1002];

@@ -27,7 +27,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Jezba extends Mainloc2 {
-    private GenericImage background, zweitesBild;
+    private GenericImage background;
+    private GenericImage zweitesBild;
 
     private static final GenericPoint MittelPunkt = new GenericPoint(320, 170);
     private static final GenericPoint UntererPunkt = new GenericPoint(320, 380);

@@ -29,7 +29,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Ralbicy2 extends Mainloc2 {
-    private GenericImage background, holz, kreuz;
+    private GenericImage background;
+    private GenericImage holz;
+    private GenericImage kreuz;
     // private bur1 bauer;
     private Mlynk2 mueller;
     private final Multiple2 Dialog;

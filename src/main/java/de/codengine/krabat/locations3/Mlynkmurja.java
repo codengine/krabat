@@ -28,7 +28,8 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Mlynkmurja extends Mainloc {
-    private GenericImage backr, laterne;
+    private GenericImage backr;
+    private GenericImage laterne;
 
     private final Oldmlynk mueller;
     private final GenericPoint muellerPoint;

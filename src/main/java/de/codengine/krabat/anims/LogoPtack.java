@@ -26,7 +26,8 @@ import de.codengine.krabat.platform.GenericImage;
 
 public class LogoPtack extends Mainanim {
     private final GenericImage[] vogel;
-    private int x, y;
+    private int x;
+    private int y;
     private int animpos = 1;
     private boolean last2 = false;
     private boolean animlock = true;

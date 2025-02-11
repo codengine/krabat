@@ -36,7 +36,16 @@ import java.nio.file.Paths;
 public class ApplicationStart extends Frame implements WindowListener, MouseListener, MouseMotionListener, KeyListener {
     private final Start appInstance;
 
-    private GenericCursor Cup, Cdown, Cleft, Cright, Cinventar, CHinventar, Normal, Kreuz, Warten, Nix;
+    private GenericCursor Cup;
+    private GenericCursor Cdown;
+    private GenericCursor Cleft;
+    private GenericCursor Cright;
+    private GenericCursor Cinventar;
+    private GenericCursor CHinventar;
+    private GenericCursor Normal;
+    private GenericCursor Kreuz;
+    private GenericCursor Warten;
+    private GenericCursor Nix;
 
     private Image iconImage;
 

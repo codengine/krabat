@@ -27,7 +27,8 @@ import de.codengine.krabat.platform.GenericImage;
 
 public class Fararhor extends Mainanim {
     private final GenericImage[] farar_talk;
-    private GenericImage farar_open, foreground;
+    private GenericImage farar_open;
+    private GenericImage foreground;
 
     public static final int Breite = 20;
     public static final int Hoehe = 20;

@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Most1 extends Mainloc {
-    private GenericImage background, gelaend, wegstueck;
+    private GenericImage background;
+    private GenericImage gelaend;
+    private GenericImage wegstueck;
     private final GenericImage[] flussu;
     private boolean switchanim = false;
     private int flusscount = 1;

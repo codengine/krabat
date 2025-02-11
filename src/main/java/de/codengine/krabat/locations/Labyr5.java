@@ -28,7 +28,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Labyr5 extends Mainlaby {
-    private GenericImage background, lab52, lab53, lab54;
+    private GenericImage background;
+    private GenericImage lab52;
+    private GenericImage lab53;
+    private GenericImage lab54;
 
     private Plomja feuer;
 

@@ -28,7 +28,9 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Zastup extends Mainloc {
-    private GenericImage background, grasLinks, grasRechts;
+    private GenericImage background;
+    private GenericImage grasLinks;
+    private GenericImage grasRechts;
     private final GenericImage[] Schranke;
     private GenericImage Loch;
     private final Mato mato;

@@ -27,8 +27,10 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class Couch extends Mainloc {
-    private GenericImage background, offeneTuer;
-    private GenericImage vordertuer, fallen;
+    private GenericImage background;
+    private GenericImage offeneTuer;
+    private GenericImage vordertuer;
+    private GenericImage fallen;
 
     private boolean istTuerOffen = false;
 
