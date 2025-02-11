@@ -215,8 +215,6 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     @Override
     public void mouseExited(MouseEvent e) {
-        GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
-        GenericMouseEvent ge = new GenericMouseEvent(e.getButton(), e.getModifiersEx(), point, false);
         appInstance.mouseExited();
     }
 
