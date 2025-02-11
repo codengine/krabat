@@ -90,7 +90,7 @@ public class Poklad extends Mainloc {
         showDingl = true;
         showStraza = true;
 
-        evalPersonPoints(strazaFeet);
+        evalPersonPoints();
 
         mainFrame.Freeze(false);
     }
@@ -110,13 +110,13 @@ public class Poklad extends Mainloc {
 
     }
 
-    private void evalPersonPoints(GenericPoint strazap) {
+    private void evalPersonPoints() {
         strazaPoint = new GenericPoint();
-        strazaPoint.x = strazap.x - StrazaPoklad.Breite / 2;
-        strazaPoint.y = strazap.y - StrazaPoklad.Hoehe;
+        strazaPoint.x = Poklad.strazaFeet.x - StrazaPoklad.Breite / 2;
+        strazaPoint.y = Poklad.strazaFeet.y - StrazaPoklad.Hoehe;
 
         talkPointStraza = new GenericPoint();
-        talkPointStraza.x = strazap.x;
+        talkPointStraza.x = Poklad.strazaFeet.x;
         talkPointStraza.y = strazaPoint.y - 50;
 
         // rectStraza = new borderrect (strazaPoint.x, strazaPoint.y, strazaPoint.x + StrazaPoklad.Breite, strazaPoint.y + StrazaPoklad.Hoehe);
@@ -361,7 +361,7 @@ public class Poklad extends Mainloc {
 
             case 70:
                 // Dinglinger erscheinen lassen und hinstellen
-                evalPersonPoints(strazaFeet);
+                evalPersonPoints();
                 dinglingerwalk.MoveTo(dinglPoint3);
                 walkReady = false;
                 nextActionID = 80;
@@ -446,7 +446,7 @@ public class Poklad extends Mainloc {
                 mainFrame.Clipset = false;
                 showStraza = true;
                 whatPicture = 1;
-                evalPersonPoints(strazaFeet);
+                evalPersonPoints();
                 dinglingerwalk.defScale = 125;
                 dinglingerwalk.SetDinglingerPos(dinglPoint9);
                 dinglingerwalk.SetFacing(3);

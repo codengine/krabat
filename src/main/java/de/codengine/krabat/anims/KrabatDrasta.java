@@ -752,7 +752,7 @@ public class KrabatDrasta extends Krabat {
                 break;
 
             case 142: // Wino an Hlowny Straznik
-                GibWein(g, 0);
+                GibWein(g);
                 break;
 
             case 146: // Wosusk essen (speziell)
@@ -795,7 +795,7 @@ public class KrabatDrasta extends Krabat {
                 break;
 
             case 155: // lies aus Buch
-                LiesBuch(g, 0);
+                LiesBuch(g);
                 break;
 
             // Hier kommt eine grosse Kollektion von statisch angezeigten Bildern
@@ -916,7 +916,7 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Krabat liest aus dem Buch
-    private void LiesBuch(GenericDrawingContext offGraph, int tCount) {
+    private void LiesBuch(GenericDrawingContext offGraph) {
         // sorum hinstellen, dass er zur Seite schaut
         if (GetFacing() == 12) {
             mainFrame.krabat.SetFacing(9);
@@ -979,7 +979,7 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Krabat liest aus dem Buch
-    private void GibWein(GenericDrawingContext offGraph, int tCount) {
+    private void GibWein(GenericDrawingContext offGraph) {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
         // Groesse und Position der Figur berechnen

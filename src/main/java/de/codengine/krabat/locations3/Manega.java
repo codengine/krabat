@@ -520,24 +520,18 @@ public class Manega extends Mainloc {
         ResetAnims();
     }
 
-    private void evalSound(boolean schnarchen) {
+    private void evalSound() {
         // zufaellig wavs fuer Geschnatter abspielen...
 
         // 1. Inventar zeigt an, dass ein Gegenstand genommen wurde, der Sounddevice braucht
         // 2. wave gibt an, dass die nativen Soundroutinen benutzt werden
         // 3. invCursor -> soll nur dann abschalten
 
-        if (schnarchen) // wird hier nicht benutzt
-        {
-            // immer spielen, kommt eh nur selten
-            mainFrame.wave.PlayFile("sfx-dd/lawspi.wav");
-        } else {
-            // eins von dreien als "Grrrr."
-            int zf = (int) (Math.random() * 2.99);
-            zf += 49;
+        // eins von dreien als "Grrrr."
+        int zf = (int) (Math.random() * 2.99);
+        zf += 49;
 
-            mainFrame.wave.PlayFile("sfx-dd/law" + (char) zf + ".wav");
-        }
+        mainFrame.wave.PlayFile("sfx-dd/law" + (char) zf + ".wav");
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
@@ -632,7 +626,7 @@ public class Manega extends Mainloc {
                 } else {
                     // Loewe wehrt sich noch
                     int zuffZahl = (int) (Math.random() * 2.9);
-                    evalSound(false);
+                    evalSound();
                     if (mainFrame.Actions[955]) {
                         // Krabat hat Buch gelesen, versteht Loewen also
                         PersonSagt(HLoewe[zuffZahl], DLoewe[zuffZahl], NLoewe[zuffZahl],

@@ -965,7 +965,7 @@ public class KrabatNormal extends Krabat {
                 break;
 
             case 155: // lies aus Buch
-                LiesBuch(g, 0);
+                LiesBuch(g);
                 break;
 
             case 156: // lies aus Koraktor
@@ -1156,7 +1156,7 @@ public class KrabatNormal extends Krabat {
     }
 
     // Krabat liest aus dem Buch
-    private void LiesBuch(GenericDrawingContext offGraph, int tCount) {
+    private void LiesBuch(GenericDrawingContext offGraph) {
         // sorum hinstellen, dass er zur Seite schaut
         if (GetFacing() == 12) {
             mainFrame.krabat.SetFacing(9);

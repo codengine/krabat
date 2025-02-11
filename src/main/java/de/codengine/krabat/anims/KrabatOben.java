@@ -582,7 +582,7 @@ public class KrabatOben extends Krabat {
                 break;
 
             case 155: // aus dem Buch lesen
-                LiesBuch(g, 0);
+                LiesBuch(g);
                 break;
 
         }
@@ -686,7 +686,7 @@ public class KrabatOben extends Krabat {
     }
 
     // Lasse K das Buch lesen
-    private void LiesBuch(GenericDrawingContext g, int tCount) {
+    private void LiesBuch(GenericDrawingContext g) {
         if (GetFacing() == 3) {
             MaleIhn(g, krabato_liesr);
         }
