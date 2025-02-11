@@ -626,8 +626,8 @@ public class Labyr10 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitright.length; i++) {
-                if (zuffi == Exitright[i]) {
+            for (int j : Exitright) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }
@@ -641,8 +641,8 @@ public class Labyr10 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitup.length; i++) {
-                if (zuffi == Exitup[i]) {
+            for (int j : Exitup) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }
@@ -656,8 +656,8 @@ public class Labyr10 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitdown.length; i++) {
-                if (zuffi == Exitdown[i]) {
+            for (int j : Exitdown) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }

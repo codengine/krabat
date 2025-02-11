@@ -205,9 +205,9 @@ public class Kupa1 extends Mainloc {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1;
 
-        for (int i = 0; i < Blink.length; i++) {
-            if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (Bordertrapez bordertrapez : Blink) {
+            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 

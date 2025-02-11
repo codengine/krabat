@@ -650,8 +650,8 @@ public class Labyr9 extends Mainlaby {
             while (zuffi > 62) {
                 zuffi--;
             }
-            for (int i = 0; i < Exitleft.length; i++) {
-                if (zuffi == Exitleft[i]) {
+            for (int j : Exitleft) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }
@@ -665,8 +665,8 @@ public class Labyr9 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitright.length; i++) {
-                if (zuffi == Exitright[i]) {
+            for (int j : Exitright) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }
@@ -680,8 +680,8 @@ public class Labyr9 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitdown.length; i++) {
-                if (zuffi == Exitdown[i]) {
+            for (int j : Exitdown) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }

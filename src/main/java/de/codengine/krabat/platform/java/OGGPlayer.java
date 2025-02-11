@@ -234,11 +234,11 @@ public class OGGPlayer extends AbstractPlayer {
                         // decoding
                         {
                             byte[][] ptr = vc.user_comments;
-                            for (int j = 0; j < ptr.length; j++) {
-                                if (ptr[j] == null) {
+                            for (byte[] value : ptr) {
+                                if (value == null) {
                                     break;
                                 }
-                                System.err.println(new String(ptr[j], 0, ptr[j].length - 1));
+                                System.err.println(new String(value, 0, value.length - 1));
                             }
                             System.err.println("\nBitstream is " + vi.channels + " channel, " + vi.rate
                                     + "Hz");

@@ -483,8 +483,8 @@ public class Labyr12 extends Mainlaby {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < Exitright.length; i++) {
-                if (zuffi == Exitright[i]) {
+            for (int j : Exitright) {
+                if (zuffi == j) {
                     exit = true;
                     break;
                 }

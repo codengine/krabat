@@ -162,9 +162,9 @@ public class Njedz2 extends Mainloc2 {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1; // 1 Mindestens !
 
-        for (int i = 0; i < Blink.length; i++) {
-            if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (Bordertrapez bordertrapez : Blink) {
+            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 

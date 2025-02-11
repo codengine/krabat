@@ -61,8 +61,8 @@ abstract public class Mainlaby extends Mainloc {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < BludExitLeft.length; i++) {
-                if (zuffi == BludExitLeft[i] && locIndex != zuffi) {
+            for (int j : BludExitLeft) {
+                if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -76,8 +76,8 @@ abstract public class Mainlaby extends Mainloc {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < BludExitRight.length; i++) {
-                if (zuffi == BludExitRight[i] && locIndex != zuffi) {
+            for (int j : BludExitRight) {
+                if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -91,8 +91,8 @@ abstract public class Mainlaby extends Mainloc {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < BludExitUp.length; i++) {
-                if (zuffi == BludExitUp[i] && locIndex != zuffi) {
+            for (int j : BludExitUp) {
+                if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
@@ -106,8 +106,8 @@ abstract public class Mainlaby extends Mainloc {
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int i = 0; i < BludExitDown.length; i++) {
-                if (zuffi == BludExitDown[i] && locIndex != zuffi) {
+            for (int j : BludExitDown) {
+                if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
                 }
