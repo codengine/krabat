@@ -381,7 +381,7 @@ public class KrabatAngeln extends Mainanim {
     }
 
     // reden mit Fisch an der Angel
-    public boolean RedeLinks(GenericDrawingContext g, GenericPoint feetPos, int TalkPerson) {
+    public void RedeLinks(GenericDrawingContext g, GenericPoint feetPos, int TalkPerson) {
         if (--Verhinderhead < 1) {
             // Head 0, 2...8
             Verhinderhead = MAX_VERHINDERHEAD;
@@ -401,7 +401,5 @@ public class KrabatAngeln extends Mainanim {
 
         g.drawImage(rede_rechts[Head], leftUp.x + OFFSETLEFTHEADX, leftUp.y - OFFSETHEADY, null);
         g.drawImage(angle_links[5], leftUp.x, leftUp.y, null);
-
-        return true; // Abschalten muss von Aussen erfolgen
     }
 }    

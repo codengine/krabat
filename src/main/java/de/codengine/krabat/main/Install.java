@@ -496,10 +496,10 @@ public class Install extends Mainloc {
     }
 
     // Methode, die das komplette Aendern des Files uebernimmt
-    private boolean ModifyInstallFile() {
+    private void ModifyInstallFile() {
         // zuerst Datei reinladen
         if (!LoadFile()) {
-            return false;
+            return;
         }
 
         // die beiden "console" - Ausdruecke einfuegen
@@ -524,7 +524,7 @@ public class Install extends Mainloc {
         Einfuege(dritter, Text2.length());
         Einsetze(Text2, dritter);
 
-        return SaveFile();
+        SaveFile();
     }
 
     // File wird gesucht und geladen
