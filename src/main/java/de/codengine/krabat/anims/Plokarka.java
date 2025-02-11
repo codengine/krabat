@@ -62,7 +62,7 @@ public class Plokarka extends Mainanim {
     private boolean horizontal = true;    // Animationen in x oder y Richtung
     private boolean Thorizontal = true;
 
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
+    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 45;// Default - Werte Hoehe,Breite

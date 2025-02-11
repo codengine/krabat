@@ -38,8 +38,8 @@ public class Mac extends Mainanim {
 
     public static final int Breite = 46;
     public static final int Hoehe = 85;
-    public int Breites;
-    public int Hoehes;
+    public final int Breites;
+    public final int Hoehes;
 
     private static final int KOPFY = 30;
     private static final int BODYY = 55;

@@ -35,9 +35,9 @@ public class Usermultiple {
 
     // Variablen fuer Fragen
     public int Anzahl;
-    public String[] Fragen = new String[10];
-    public int[] Ident = new int[10];
-    public GenericRectangle[] Positionen = new GenericRectangle[10];
+    public final String[] Fragen = new String[10];
+    public final int[] Ident = new int[10];
+    public final GenericRectangle[] Positionen = new GenericRectangle[10];
     public int Antwort = 0;
 
     public boolean user = false;

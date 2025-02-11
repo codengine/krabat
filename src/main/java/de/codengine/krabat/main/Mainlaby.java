@@ -37,7 +37,7 @@ abstract public class Mainlaby extends Mainloc {
     public boolean hoerterzu = false;
     public boolean bludNimmt = false;
 
-    public Multiple2 Dialog;
+    public final Multiple2 Dialog;
 
     private static final int ERSCH_KONSTANTE = 10;
 

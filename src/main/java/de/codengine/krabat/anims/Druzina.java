@@ -52,7 +52,7 @@ public class Druzina extends Mainanim {
 
     private boolean Thorizontal = true;
 
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
+    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 65;// Default - Werte Hoehe,Breite

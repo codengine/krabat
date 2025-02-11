@@ -37,7 +37,7 @@ public class Kacka1 extends Mainanim {
 
     private static final int MAX_VERHINDERSCHNATTER = 3;
 
-    public GenericPoint Posit;
+    public final GenericPoint Posit;
 
     private static final GenericPoint Pstart = new GenericPoint(410, 210);
     private static final GenericPoint Pstop = new GenericPoint(300, 220);

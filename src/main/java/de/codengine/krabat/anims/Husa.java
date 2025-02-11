@@ -42,7 +42,7 @@ public class Husa extends Mainanim {
     private static final int KONSTANTE2 = 100;
     private static final int KONSTANTE3 = 100;
 
-    public boolean lautloseGaense = false;  // Schalter, ob sie auch wirklich Schnattern sollen (Intro)
+    public final boolean lautloseGaense = false;  // Schalter, ob sie auch wirklich Schnattern sollen (Intro)
 
     public Husa(Start caller, Borderrect gr) {
         super(caller);

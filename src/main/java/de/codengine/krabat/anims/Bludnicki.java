@@ -57,8 +57,8 @@ public class Bludnicki extends Mainanim {
     private int VerhinderTalk = 0;
     private static final int MAX_VERHINDERTALK = 2;
 
-    public int breite = 34;
-    public int hoehe = 80; // 10 Pix mehr testweise wegen Blinkern...
+    public final int breite = 34;
+    public final int hoehe = 80; // 10 Pix mehr testweise wegen Blinkern...
     private static final int Offset = 10; // Hier Angabe der Hoehenvergroesserung...
 
     private static final int FEUERKONSTANTE = 5;

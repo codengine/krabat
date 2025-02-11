@@ -22,8 +22,8 @@ package de.codengine.krabat.main;
 
 
 public class Borderrect {
-    public GenericPoint lo_point;         // Punkt links oben
-    public GenericPoint ru_point;         // Punkt rechts unten
+    public final GenericPoint lo_point;         // Punkt links oben
+    public final GenericPoint ru_point;         // Punkt rechts unten
 
     // Grenz-Rechteck anlegen
     public Borderrect(int x1, int y1, int x2, int y2) {

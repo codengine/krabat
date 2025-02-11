@@ -63,7 +63,7 @@ public class Awgust extends Mainanim {
 
     private boolean Thorizontal = true; // Animationen in x oder y Richtung
 
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
+    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 81;// Default - Werte Hoehe,Breite

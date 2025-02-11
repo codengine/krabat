@@ -39,7 +39,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
 
     // Variablen fuer Fragen
     private int Anzahl;
-    public String[] Fragen = new String[MCGROESSE];
+    public final String[] Fragen = new String[MCGROESSE];
     private final GenericRectangle[] Positionen = new GenericRectangle[MCGROESSE];
     private final int[] Nextactionids = new int[MCGROESSE];
     private final int[][] Actionvariablen = new int[MCGROESSE][10];

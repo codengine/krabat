@@ -22,7 +22,12 @@ package de.codengine.krabat.main;
 
 
 public class Bordertrapez {
-    public int x1, x2, x3, x4, y1, y2;
+    public final int x1;
+    public final int x2;
+    public final int x3;
+    public final int x4;
+    public final int y1;
+    public final int y2;
 
     // x1 = lo, x2 = ro, x3 = lu, x4 = ru, y1 = o, y2 = u
     public Bordertrapez(int x1, int x2, int x3, int x4, int y1, int y2) {
@@ -129,16 +134,12 @@ public class Bordertrapez {
     // Routine, die zu gegebener Y-Koordinate nach Anstiegsgleichung
     // die linke und rechte X-Koordinate des Trapezes ermittelt
     public GenericPoint Punkte(int ykoord) {
-        float xx1 = x1;
-        float xx2 = x2;
-        float xx3 = x3;
-        float xx4 = x4;
         float yy1 = y1;
         float yy2 = y2;
 
         // hier werden die Anstiegsoffsets berechnet
-        float leftoff = (xx1 - xx3) / (yy2 - yy1);
-        float rightoff = (xx2 - xx4) / (yy2 - yy1);
+        float leftoff = ((float) x1 - (float) x3) / (yy2 - yy1);
+        float rightoff = ((float) x2 - (float) x4) / (yy2 - yy1);
         // ein positiver Offset gibt positiven Anstieg an
 
         // hier wird die X-Koordinate der schraegen Trapezlinien an der Y-Position des Punktes berechnet

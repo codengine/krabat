@@ -43,7 +43,8 @@ public class Inventar extends Mainanim {
     private final GenericPoint pLO;                              // Offset der Linken oberen Ecke
     private final Borderrect brGesamt;
     private final Borderrect brMenu;            // Rectangles fuer mousemove
-    public Borderrect brPfeill, brPfeilr;           // fuer andere Klassen nutzbar
+    public final Borderrect brPfeill;
+    public final Borderrect brPfeilr;           // fuer andere Klassen nutzbar
     private int nFeldAktiv = -1;                    // Flags fuer roten Rahmen
     private int oFeldAktiv = -1;
     private String outputText = "";                 // fuer Textausgabe

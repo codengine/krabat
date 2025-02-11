@@ -26,7 +26,7 @@ import java.util.Vector;
 
 public class Weggeher {
     private final Start mainFrame;
-    public Vector<Bordertrapez> vBorders;
+    public final Vector<Bordertrapez> vBorders;
     public GenericPoint destinationPlace;
     private Vector<Integer> vBestWeg;
     private int wegPosition = 0;

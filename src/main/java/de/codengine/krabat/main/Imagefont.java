@@ -28,7 +28,7 @@ import de.codengine.krabat.platform.GenericImageObserver;
 public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
-    public GenericImage[] redFont;
+    public final GenericImage[] redFont;
     private final Start mainFrame;
     // private imagehelpercutandsave im2;
     private static final int ZEIT = 3;  // entspricht 0.3 Sekunden

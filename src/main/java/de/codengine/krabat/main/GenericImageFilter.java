@@ -22,9 +22,9 @@ package de.codengine.krabat.main;
 
 public abstract class GenericImageFilter {
 
-    protected int whatColor;
+    protected final int whatColor;
 
-    public boolean canFilterIndexColorModel;
+    public final boolean canFilterIndexColorModel;
 
     public GenericImageFilter(int whatColor) {
         this.whatColor = whatColor;
