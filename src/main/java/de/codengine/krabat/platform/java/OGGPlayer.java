@@ -96,7 +96,7 @@ public class OGGPlayer extends AbstractPlayer {
      *
      * @author daniel
      */
-    class PlayThread extends Thread {
+    static class PlayThread extends Thread {
 
         private final Path filepath;
 
