@@ -79,8 +79,7 @@ public class Bordertrapez {
         GenericPoint Ptemp = RandPunkt(dieser);
         int xdist = Math.abs(dieser.x - Ptemp.x);
         int ydist = Math.abs(dieser.y - Ptemp.y);
-        int dist = (int) Math.sqrt(xdist * xdist + ydist * ydist);
-        return dist;
+        return (int) Math.sqrt(xdist * xdist + ydist * ydist);
     }
 
     // Hier wird der beste Punkt innerhalb eines Trapezes ermittelt,

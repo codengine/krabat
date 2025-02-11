@@ -67,6 +67,7 @@ public class Hojnt extends Mainanim {
     // Spritevariablen
     private static final int CWIDTH = 45;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 80;
+    private static final float scaleRatio = (float) CWIDTH / CHEIGHT;
 
     // Abstaende default
     private static final int[] CHORIZ_DIST = {3, 0, 7, 7, 13, 10, 7, 13};
@@ -693,12 +694,9 @@ public class Hojnt extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
-        float fBreite = CWIDTH;
-        float fHoehe = CHEIGHT;
-        float Verhaeltnis = fBreite / fHoehe;
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * Verhaeltnis), CHEIGHT - scale);
+        g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * scaleRatio), CHEIGHT - scale);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage khead, GenericImage kbody) {
@@ -719,13 +717,11 @@ public class Hojnt extends Mainanim {
         // System.out.println ("Kopfhoehe : " + Kopfhoehe + " Bodyhoehe : " + Koerperhoehe);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
-        float fBreite = CWIDTH;
-        float fHoehe = CHEIGHT;
-        float Verhaeltnis = fBreite / fHoehe;
 
         // Figur zeichnen
-        g.drawImage(khead, left, up, CWIDTH - (int) (scale * Verhaeltnis), Kopfhoehe);
-        g.drawImage(kbody, left, up + Kopfhoehe, CWIDTH - (int) (scale * Verhaeltnis), Koerperhoehe);
+        int bodyWidth = CWIDTH - (int) (scale * scaleRatio);
+        g.drawImage(khead, left, up, bodyWidth, Kopfhoehe);
+        g.drawImage(kbody, left, up + Kopfhoehe, bodyWidth, Koerperhoehe);
     }
 
     public boolean bueckeHojnt(GenericDrawingContext g) {

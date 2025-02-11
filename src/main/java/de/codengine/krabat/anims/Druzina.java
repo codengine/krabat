@@ -58,7 +58,7 @@ public class Druzina extends Mainanim {
     private static final int CWIDTH = 65;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 154;
 
-    private final float scaleVerhaeltnisNormal;
+    private final float scaleFactorNormal = (float) CWIDTH / CHEIGHT;
 
     // Abstaende default
     private static final int[] CVERT_DIST = {3, 3, 1, 3, 1, 3};
@@ -80,12 +80,6 @@ public class Druzina extends Mainanim {
         druzina_walk = new GenericImage[6];
 
         InitImages();
-
-        float fWidth = CWIDTH;
-        float fHeight = CHEIGHT;
-
-        scaleVerhaeltnisNormal = fWidth / fHeight;
-
     }
 
     // Bilder vorbereiten
@@ -256,10 +250,8 @@ public class Druzina extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisNormal;
+        float fHelper = getScale(pox, poy) * scaleFactorNormal;
 
         return pox - (CWIDTH - (int) fHelper) / 2;
     }
@@ -336,12 +328,10 @@ public class Druzina extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
-        float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleFactorNormal;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Koerperhoehe = (int) (fHoehe - scale);
+        int Koerperhoehe = (int) ((float) CHEIGHT - scale);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 

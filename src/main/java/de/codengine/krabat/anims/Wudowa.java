@@ -89,8 +89,7 @@ public class Wudowa extends Mainanim {
         float fBodyOffset = BODYOFFSET;
 
         int scaleBODYOFFSET = (int) (fBodyOffset - fBodyOffset / yGroesse * zoomHinten);
-        int KopfGroesse = scaleBODYOFFSET;
-        int KoerperGroesse = (int) (yGroesse - KopfGroesse);
+        int KoerperGroesse = (int) (yGroesse - scaleBODYOFFSET);
 
         // Normales Reden wie immer
         if (TalkPerson == 56 && mainFrame.talkCount > 1) {
@@ -114,7 +113,7 @@ public class Wudowa extends Mainanim {
                 g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, null);
                 g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
             } else {
-                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, (int) xGroesse, KopfGroesse, null);
+                g.drawImage(alte_head[head], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
                 g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
             }
             drawVorder(g);
@@ -139,7 +138,7 @@ public class Wudowa extends Mainanim {
                     g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, null);
                     g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + BODYOFFSET, null);
                 } else {
-                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, (int) xGroesse, KopfGroesse, null);
+                    g.drawImage(alte_lach[Lach], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
                     g.drawImage(alte_body[Body], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
                 }
                 drawVorder(g);
@@ -160,7 +159,7 @@ public class Wudowa extends Mainanim {
                     g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, null);
                     g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + BODYOFFSET, null);
                 } else {
-                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, (int) xGroesse, KopfGroesse, null);
+                    g.drawImage(alte_head[Steh], drawPoint.x, drawPoint.y, (int) xGroesse, scaleBODYOFFSET, null);
                     g.drawImage(alte_body[1], drawPoint.x, drawPoint.y + scaleBODYOFFSET, (int) xGroesse, KoerperGroesse, null);
                 }
                 drawVorder(g);

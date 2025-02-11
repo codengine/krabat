@@ -612,8 +612,7 @@ public class Mlynk2 extends Mainanim {
     public GenericPoint evalMlynkTalkPoint() {
         // Hier Position des Textes berechnen
         Borderrect temp = MlynkRect();
-        GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-        return tTalk;
+        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 
     // Hojnt beim Monolog (ohne Gestikulieren)
@@ -635,23 +634,19 @@ public class Mlynk2 extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisNormal;
+        float fScaleY = getScale(pox, poy) * scaleVerhaeltnisNormal;
 
-        return pox - (CWIDTH - (int) fHelper) / 2;
+        return pox - (CWIDTH - (int) fScaleY) / 2;
     }
 
     // hier beachten, dass er einen Stock in der Hand haelt !!!!!!
     private int getLeftPosWithKij(int pox, int poy) {
         // Skalierungsfaktor holen
-        int helper = getScale(pox, poy);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisStock;
+        float fScaleY = getScale(pox, poy) * scaleVerhaeltnisStock;
 
-        return pox - (COFFSET_STOCK - (int) fHelper) / 2;
+        return pox - (COFFSET_STOCK - (int) fScaleY) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
@@ -732,13 +727,11 @@ public class Mlynk2 extends Mainanim {
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
-        int helper = getScale(xx, yy);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisStock;
+        float fScaleY = getScale(xx, yy) * scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
-        int xd = x + CWIDTH_STOCK - (int) fHelper;
+        int xd = x + CWIDTH_STOCK - (int) fScaleY;
         int yd = yy - y;
 
         g.setClip(x, y, xd, yd);
@@ -776,13 +769,11 @@ public class Mlynk2 extends Mainanim {
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
-        int helper = getScale((int) xps, (int) yps);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisStock;
+        float fScaleY = getScale((int) xps, (int) yps) * scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
-        int xd = x + CWIDTH_STOCK - (int) fHelper;
+        int xd = x + CWIDTH_STOCK - (int) fScaleY;
         int yd = (int) yps;
 
         return new Borderrect(x, y, xd, yd);
@@ -799,13 +790,12 @@ public class Mlynk2 extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
@@ -868,13 +858,12 @@ public class Mlynk2 extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // hier die Extrawurst, wenn er den Stock hat
@@ -914,13 +903,12 @@ public class Mlynk2 extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // hier die Extrawurst, wenn er den Stock hat

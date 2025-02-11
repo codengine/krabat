@@ -69,7 +69,7 @@ public class Awgust extends Mainanim {
     private static final int CWIDTH = 81;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 155;
 
-    private final float scaleVerhaeltnisNormal;
+    private final float scaleFactor = (float) CWIDTH / CHEIGHT;
 
     // Abstaende default
     private static final int[] CVERT_DIST = {6, 2, 6, 2, 6};
@@ -96,12 +96,6 @@ public class Awgust extends Mainanim {
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
-
-        float fWidth = CWIDTH;
-        float fHeight = CHEIGHT;
-
-        scaleVerhaeltnisNormal = fWidth / fHeight;
-
     }
 
     // Bilder vorbereiten
@@ -305,20 +299,17 @@ public class Awgust extends Mainanim {
     public GenericPoint evalAwgustTalkPoint() {
         // Hier Position des Textes berechnen
         Borderrect temp = AwgustRect();
-        GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-        return tTalk;
+        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 
     // Zooming-Variablen berechnen
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
 
-        float fHelper = helper;
-        fHelper *= scaleVerhaeltnisNormal;
+        float fScaleY = getScale(pox, poy) * scaleFactor;
 
-        return pox - (CWIDTH - (int) fHelper) / 2;
+        return pox - (CWIDTH - (int) fScaleY) / 2;
     }
 
     private int getUpPos(int pox, int poy) {
@@ -393,13 +384,12 @@ public class Awgust extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");

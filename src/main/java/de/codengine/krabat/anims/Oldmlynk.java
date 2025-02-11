@@ -81,17 +81,15 @@ public class Oldmlynk extends Mainanim {
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
 
-        float fWidth = Breite;
         float fHeight = Hoehe;
         float fBodyoffset = BODYOFFSET;
-        float scaleHelper = fWidth / fHeight;
-        float fScale = scale;
-        float xScale = fScale * scaleHelper;
-        float scaleHeadAnteil = fScale * (fBodyoffset / fHeight);
+        float scaleHelper = (float) Breite / fHeight;
+        float xScale = (float) scale * scaleHelper;
+        float scaleHeadAnteil = (float) scale * (fBodyoffset / fHeight);
 
         Scalex = (int) (Breite - xScale);
         Scaleyhead = (int) (fBodyoffset - scaleHeadAnteil);
-        Scaleybody = (int) (fHeight - fScale - Scaleyhead);
+        Scaleybody = (int) (fHeight - (float) scale - Scaleyhead);
     }
 
     // uebermittelt Muellerzeichenpunkt an Mlynkmurja

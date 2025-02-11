@@ -1173,12 +1173,10 @@ public class KrabatNormal extends Krabat {
         int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
-        float fOffset = BODYOFFSET;
-        float fScale = scale;
 
         int Koerperbreite = CWIDTH - scale / 2;
-        int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
-        int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
+        int Kopfhoehe = (int) ((fHeight - (float) scale) * ((float) BODYOFFSET / fHeight));
+        int Koerperhoehe = (int) (fHeight - (float) scale - Kopfhoehe);
 
         // Links-Oben-Koordinate verschiebt sich ungezoomt um 10 Pix.
         int Offset = Koerperbreite / 5;
@@ -1229,12 +1227,10 @@ public class KrabatNormal extends Krabat {
         int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
-        float fOffset = BODYOFFSET;
-        float fScale = scale;
 
         int Koerperbreite = CWIDTH - scale / 2;
-        int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
-        int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
+        int Kopfhoehe = (int) ((fHeight - (float) scale) * ((float) BODYOFFSET / fHeight));
+        int Koerperhoehe = (int) (fHeight - (float) scale - Kopfhoehe);
 
         // Links-Oben-Koordinate verschiebt sich ungezoomt um 10 Pix.
         int Offset = Koerperbreite / 5;
@@ -1269,12 +1265,10 @@ public class KrabatNormal extends Krabat {
         int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
-        float fOffset = BODYOFFSET;
-        float fScale = scale;
 
         int Koerperbreite = CWIDTH - scale / 2;
-        int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
-        int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
+        int Kopfhoehe = (int) ((fHeight - (float) scale) * ((float) BODYOFFSET / fHeight));
+        int Koerperhoehe = (int) (fHeight - (float) scale - Kopfhoehe);
 
         // Links-Oben-Koordinate verschiebt sich ungezoomt um 10 Pix.
         int Offset = Koerperbreite / 5;
@@ -1345,12 +1339,10 @@ public class KrabatNormal extends Krabat {
         int scale = getScale((int) xps, (int) yps);
 
         float fHeight = CHEIGHT;
-        float fOffset = BODYOFFSET;
-        float fScale = scale;
 
         int Koerperbreite = CWIDTH - scale / 2;
-        int Kopfhoehe = (int) ((fHeight - fScale) * (fOffset / fHeight));
-        int Koerperhoehe = (int) (fHeight - fScale - Kopfhoehe);
+        int Kopfhoehe = (int) ((fHeight - (float) scale) * ((float) BODYOFFSET / fHeight));
+        int Koerperhoehe = (int) (fHeight - (float) scale - Kopfhoehe);
 
         // je nach Richtung malen
         switch (GetFacing()) {

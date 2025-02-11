@@ -96,7 +96,7 @@ public class Korcmar extends Mainanim {
     // private static final int BODYOFFSET = 34;
     private static final int HEADHEIGHT = 33;
 
-    private final float scalefaktor;
+    private final float scalefaktor = (float) CWIDTH / CHEIGHT;
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
@@ -113,10 +113,6 @@ public class Korcmar extends Mainanim {
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
-
-        float fWidth = CWIDTH;
-        float fHeight = CHEIGHT;
-        scalefaktor = fWidth / fHeight;
     }
 
     // Bilder vorbereiten
@@ -380,20 +376,19 @@ public class Korcmar extends Mainanim {
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);
         int up = getUpPos((int) xps, (int) yps);
-        int scale = getScale((int) xps, (int) yps);
 
         // Offsets berechnen
-        float fScale = scale;
+        float fScale = getScale((int) xps, (int) yps);
         int scalewidth = (int) (fScale * scalefaktor);
 
         float fHeight = CHEIGHT;
-        float fBodyoffset = HEADHEIGHT;
-        int Kopfhoehe = (int) ((fHeight - fScale) * (fBodyoffset / fHeight));
+        int Kopfhoehe = (int) ((fHeight - fScale) * ((float) HEADHEIGHT / fHeight));
         int Koerperhoehe = CHEIGHT - Kopfhoehe;
 
         // Figur zeichnen
-        g.drawImage(krabat_talk_head[Kopf], left, up, CWIDTH - scalewidth, Kopfhoehe);
-        g.drawImage(krabat_talk_body[Body], left, up + Kopfhoehe, CWIDTH - scalewidth, Koerperhoehe);
+        int bodyWidth = CWIDTH - scalewidth;
+        g.drawImage(krabat_talk_head[Kopf], left, up, bodyWidth, Kopfhoehe);
+        g.drawImage(krabat_talk_body[Body], left, up + Kopfhoehe, bodyWidth, Koerperhoehe);
     }
 
     // Zooming-Variablen berechnen
@@ -482,8 +477,7 @@ public class Korcmar extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // Offsets berechnen
-        float fScale = scale;
-        int scalewidth = (int) (fScale * scalefaktor);
+        int scalewidth = (int) ((float) scale * scalefaktor);
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTH - scalewidth, CHEIGHT - scale);

@@ -85,9 +85,7 @@ public class JavaDrawingContext extends GenericDrawingContext {
     @Override
     public GenericRectangle getClipBounds() {
         Rectangle rect = g.getClipBounds();
-        GenericRectangle gRect = new GenericRectangle(
-                rect.x, rect.y, rect.width, rect.height);
-        return gRect;
+        return new GenericRectangle(rect.x, rect.y, rect.width, rect.height);
     }
 
     @Override

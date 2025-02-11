@@ -104,7 +104,7 @@ public class Dinglingerwalk extends Mainanim {
 
     private static final int BODYOFFSET = 47;
 
-    private final float scaleVerhaeltnis;
+    private final float scaleFactor = (float) CWIDTH / CHEIGHT;
 
     private int Verhinderwalk;
 
@@ -132,12 +132,6 @@ public class Dinglingerwalk extends Mainanim {
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderwalk = MAX_VERHINDERWALK;
-
-        float fWidth = CWIDTH;
-        float fHeight = CHEIGHT;
-
-        scaleVerhaeltnis = fWidth / fHeight;
-
     }
 
     // Bilder vorbereiten
@@ -512,10 +506,7 @@ public class Dinglingerwalk extends Mainanim {
     private int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int helper = getScale(pox, poy);
-        float fScale = helper;
-
-        float fScaleY = fScale * scaleVerhaeltnis;
+        float fScaleY = getScale(pox, poy) * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         return pox - Koerperbreite / 2;
     }
@@ -614,13 +605,12 @@ public class Dinglingerwalk extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnis;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         // Figur zeichnen
@@ -637,13 +627,12 @@ public class Dinglingerwalk extends Mainanim {
         int scale = getScale((int) xps, (int) yps);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
-        float fScale = scale;
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = fScale * scaleVerhaeltnis;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        int Kopfhoehe = (int) (fBodyoffset - fScale * (fBodyoffset / fHoehe));
+        int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
         if (direction_x == -1) {

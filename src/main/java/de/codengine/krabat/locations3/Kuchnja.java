@@ -984,8 +984,7 @@ public class Kuchnja extends Mainloc {
     private GenericPoint evalKucharTalkPoint() {
         // Hier Position des Textes berechnen
         Borderrect temp = kuchar.KucharRect();
-        GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-        return tTalk;
+        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 
     private void evalSound(boolean erster, boolean zweiter) {

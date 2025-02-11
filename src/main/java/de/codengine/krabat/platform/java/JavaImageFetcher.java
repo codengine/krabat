@@ -57,8 +57,6 @@ public class JavaImageFetcher extends GenericImageFetcher {
             Thread.currentThread().interrupt();
         }
 
-        JavaImage retImage = new JavaImage(img);
-
-        return retImage;
+        return new JavaImage(img);
     }
 }

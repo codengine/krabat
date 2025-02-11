@@ -80,9 +80,8 @@ public class Mac extends Mainanim {
 
         float sc = SCALEY;
         float ho = Hoehe;
-        float br = Breite;
 
-        Scalex = (int) (sc / ho * br);
+        Scalex = (int) (sc / ho * (float) Breite);
         // Scalex = (SCALEY / Hoehe) * Breite;
 
         float hy = KOPFY;

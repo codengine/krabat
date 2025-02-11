@@ -577,8 +577,7 @@ public class Lodz extends Mainloc {
     private GenericPoint evalZonaTalkPoint() {
         // Hier Position des Textes berechnen
         Borderrect temp = wikowarka.ZonaRect();
-        GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-        return tTalk;
+        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
