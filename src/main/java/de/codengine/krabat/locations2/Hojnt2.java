@@ -35,7 +35,7 @@ public class Hojnt2 extends Mainloc2 {
     private GenericImage skyr;
     private GenericImage hojnt2;
     private GenericImage hojnt3; /* hojnt4, */
-            private GenericImage seil;
+    private GenericImage seil;
     private boolean setScroll = false;
     private int scrollwert;
     private boolean muellerda = false;
@@ -294,7 +294,9 @@ public class Hojnt2 extends Mainloc2 {
         g.drawImage(hojnt3, 426, 258);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Mueller zeichnen
         if (muellerda) {

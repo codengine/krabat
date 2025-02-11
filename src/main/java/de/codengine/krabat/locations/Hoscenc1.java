@@ -276,7 +276,9 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Honck zeichnen, da im Hintergrund !!!
         if (!mainFrame.Actions[902]) {

@@ -233,7 +233,9 @@ public class Njedz2 extends Mainloc2 {
         Blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Mueller zeichnen
         if (muellerda) {

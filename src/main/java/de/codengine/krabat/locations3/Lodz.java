@@ -211,7 +211,9 @@ public class Lodz extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Krabat einen Schritt laufen lassen
         mainFrame.wegGeher.GeheWeg();

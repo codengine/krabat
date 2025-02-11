@@ -216,7 +216,9 @@ public class Trepjena extends Mainloc {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Straza zeichnen
         g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);

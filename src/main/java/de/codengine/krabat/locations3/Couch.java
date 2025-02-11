@@ -146,7 +146,9 @@ public class Couch extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         mainFrame.wegGeher.GeheWeg();
 

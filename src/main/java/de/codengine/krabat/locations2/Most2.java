@@ -385,7 +385,9 @@ public class Most2 extends Mainloc2 {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // hier ist der Sound...
         evalSound();

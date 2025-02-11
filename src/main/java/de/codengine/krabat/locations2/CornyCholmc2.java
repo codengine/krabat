@@ -180,7 +180,9 @@ public class CornyCholmc2 extends Mainloc2 {
         g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // wenn der Mueller morpht, dann diesen Hintergrund loeschen
         if (ismuellermorphing) {

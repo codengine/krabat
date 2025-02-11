@@ -454,7 +454,9 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {

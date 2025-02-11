@@ -36,7 +36,7 @@ public class Info extends Mainanim {
     private final GenericImage Pfeill;
     private final GenericImage DPfeill;
     private final GenericImage Pfeilr; /* DPfeilr, */
-            private GenericImage Abdecken;
+    private GenericImage Abdecken;
 
     private final GenericPoint pLO;
 

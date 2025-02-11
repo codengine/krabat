@@ -31,8 +31,8 @@ public class HojntAuto extends Mainloc {
     private GenericImage backr;
     private GenericImage skyl;
     private GenericImage skyr; /*hojnt2, */
-            private GenericImage hojnt3; /* hojnt4, seil, baum, */
-            private GenericImage hoelzerback;
+    private GenericImage hojnt3; /* hojnt4, seil, baum, */
+    private GenericImage hoelzerback;
     private GenericImage offeneTuer;
 
     private final GenericImage[] hoelzer;
@@ -305,7 +305,9 @@ public class HojntAuto extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {

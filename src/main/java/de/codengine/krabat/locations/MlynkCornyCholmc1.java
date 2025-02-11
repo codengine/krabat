@@ -33,7 +33,7 @@ import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
 public class MlynkCornyCholmc1 extends Mainloc {
     private GenericImage background; /* background2, */
-            private GenericImage himmel1;
+    private GenericImage himmel1;
     private GenericImage himmel2;
     private GenericImage vorder;
 
@@ -228,7 +228,9 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Mueller zeichnen
         if (muellerda) {

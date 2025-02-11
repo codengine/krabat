@@ -172,7 +172,9 @@ public class CornyCholmc1 extends Mainloc {
         g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         mainFrame.wegGeher.GeheWeg();
 

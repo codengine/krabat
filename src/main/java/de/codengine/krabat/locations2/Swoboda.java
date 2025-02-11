@@ -190,7 +190,9 @@ public class Swoboda extends Mainloc {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
         if (iskrabatmorphing) {

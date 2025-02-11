@@ -190,7 +190,9 @@ public class Murja extends Mainloc {
         g.drawImage(backr, 640, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         mainFrame.wegGeher.GeheWeg();
 

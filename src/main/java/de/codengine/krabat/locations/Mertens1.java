@@ -263,7 +263,9 @@ public class Mertens1 extends Mainloc {
         Blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Counter runterzaehlen fuer Wassermannerscheinen
         if (Counter > 0 && !mainFrame.Actions[206]) {

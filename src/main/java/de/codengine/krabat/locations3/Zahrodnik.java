@@ -183,7 +183,9 @@ public class Zahrodnik extends Mainloc {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Handrij zeichnen
         g.setClip(reZahrodnik.lo_point.x, reZahrodnik.lo_point.y, Handrij.Breite, Handrij.Hoehe);

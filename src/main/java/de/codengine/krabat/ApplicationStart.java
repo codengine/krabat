@@ -20,7 +20,10 @@
 
 package de.codengine.krabat;
 
-import de.codengine.krabat.main.*;
+import de.codengine.krabat.main.GenericKeyEvent;
+import de.codengine.krabat.main.GenericMouseEvent;
+import de.codengine.krabat.main.GenericPoint;
+import de.codengine.krabat.main.GenericToolkit;
 import de.codengine.krabat.platform.*;
 import de.codengine.krabat.platform.java.*;
 import de.codengine.krabat.sound.AbstractPlayer;
@@ -92,7 +95,6 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     // Programmstart
     public static void main(String[] args) {
-        Debug.setEnabled(false); //TODO: Make configurable
         int rec = 1;        // Default ist Obersorbisch (hs, ds oder de)
         boolean fullScreen = false;  // Default is Vollbild (im Fenster, wenn 2. Parameter = "win")
 

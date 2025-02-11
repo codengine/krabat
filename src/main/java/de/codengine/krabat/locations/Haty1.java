@@ -541,7 +541,9 @@ public class Haty1 extends Mainloc {
         fische.drawRyby(g, schnauzeFische);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         if (TalkPerson == 31) {
             // angler 2 redet

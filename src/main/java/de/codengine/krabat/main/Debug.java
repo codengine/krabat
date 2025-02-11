@@ -23,22 +23,14 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.platform.GenericDrawingContext;
 
 public class Debug {
-    private static volatile boolean enabled = false;
+    public static final boolean enabled = false;
 
     private Debug() {
     }
 
-    public static void setEnabled(boolean enabled) {
-        Debug.enabled = enabled;
-    }
-
-    public static boolean isEnabled() {
-        return enabled;
-    }
-
     // private Start mainFrame;
     public static void DrawRect(GenericDrawingContext g, Iterable<Bordertrapez> rectangles) {
-        if(!isEnabled()) {
+        if (!enabled) {
             return;
         }
 

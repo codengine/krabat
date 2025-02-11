@@ -170,7 +170,9 @@ public class Ralbicy1 extends Mainloc {
 
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Bauern zeichnen
         g.setClip(60, 223, 35, 32);

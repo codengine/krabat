@@ -173,7 +173,9 @@ public class Straze extends Mainloc {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Wache 1 + 2 zeichnen
         g.setClip(pStraza1.x, pStraza1.y, Straza1.Breite, Straza1.Hoehe);

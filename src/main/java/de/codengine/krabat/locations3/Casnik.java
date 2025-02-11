@@ -311,7 +311,9 @@ public class Casnik extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Straznik weiterbewegen
         readyFlag = hlStraznik.evalStraznik(TalkPerson, trink, schlafein, mainFrame.Actions[706]);

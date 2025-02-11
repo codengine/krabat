@@ -218,7 +218,9 @@ public class Habor extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Gonzales nur, wenn noch nicht Kotwica gegeben
         if (!mainFrame.Actions[568]) {

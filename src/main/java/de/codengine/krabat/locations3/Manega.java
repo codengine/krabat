@@ -174,7 +174,9 @@ public class Manega extends Mainloc {
         loewe.drawLaw(g, TalkPerson, loewePoint, AnimTalkPerson, hoertZu);
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         mainFrame.wegGeher.GeheWeg();
 

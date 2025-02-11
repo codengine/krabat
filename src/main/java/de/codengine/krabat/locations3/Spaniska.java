@@ -251,7 +251,9 @@ public class Spaniska extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // ist Schauspielerin da ?
         if (!mainFrame.Actions[514]) {

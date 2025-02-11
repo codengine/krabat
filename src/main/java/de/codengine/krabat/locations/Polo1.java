@@ -220,7 +220,9 @@ public class Polo1 extends Mainloc {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        if (Debug.enabled) {
+            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+        }
 
         // Andere Personen zeichnen (zuerst Background loeschen)
         g.setClip(michalPoint.x, michalPoint.y, BurMichal.Breite, BurMichal.Hoehe);
