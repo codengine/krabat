@@ -27,6 +27,7 @@ import de.codengine.krabat.platform.GenericImage;
 public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
+    public static final int MAX_WIDTH = 600;
     public final GenericImage[] redFont;
     private final Start mainFrame;
     // private imagehelpercutandsave im2;
@@ -450,16 +451,16 @@ public class Imagefont {
         int tLaenge = 0;
         for (int i = 0; i < bis; i++) {
             int ch = Text.charAt(i);
-            if (ch == 36) {
+            if (ch == '$') {
                 if (tLaenge > laenge) {
                     laenge = tLaenge;
                 }
                 tLaenge = 0;
             } else {
-                if (ch == 32) {
+                if (ch == ' ') {
                     tLaenge += SPACE;
                 } else {
-                    if (ch == 35) {
+                    if (ch == '#') {
                         i++;
                         ch = Text.charAt(i);
                         tLaenge += redFont[evalSpecialChar(ch)].getWidth();
@@ -577,116 +578,128 @@ public class Imagefont {
 
         return new GenericPoint(x, y);
     }
+    // Optimierte Methode, die die Zeilenbreite direkt aufsummiert
+    public String TeileText(String input) {
+        // Eingabetext trimmen
+        String inputTrimmed = input.trim();
 
-    // Teile String in so viele Teile, dass die auf Bildschirm passen - moeglichst obere Zeile laenger...
-    public String TeileText(String EingabeTwo) {
-        String Eingabe = EingabeTwo.trim();
-        String Ausgabe = "";
-        String Zeile = "";
-        String Teil = "";
+        // Falls bereits das Formatzeichen '$' vorkommt, den Originaltext zurückgeben.
+        if (inputTrimmed.indexOf('$') != -1) {
+            return input;
+        }
 
-        int bis = Eingabe.length();
-        int laenge = 0;
+        final StringBuilder output = new StringBuilder();
+        final StringBuilder line = new StringBuilder();  // aktuelle Zeile
+        final StringBuilder word = new StringBuilder();    // aktuelles Wort (analog zu "teil")
+        int lineWidth = 0;  // akkumulierte Breite der aktuellen Zeile
+        int wordWidth = 0;    // akkumulierte Breite des aktuellen Wortes
 
-        for (int i = 0; i < bis; i++) {
-            int ch = Eingabe.charAt(i);
-            if (ch == 36) {
-                // Formatzeichen entdeckt, also nix veraendern
-                return EingabeTwo;
+        // Den Eingabetext Zeichen für Zeichen durchgehen
+        for (int i = 0; i < inputTrimmed.length(); i++) {
+            char ch = inputTrimmed.charAt(i);
+
+            if (ch == '$') {
+                // Sollte das Formatzeichen '$' vorkommen, geben wir den Originaltext zurück.
+                return input;
+            } else if (ch == '%') {
+                // Prozentzeichen: erzwungener Umbruch
+                // Zuerst das aktuelle Wort (falls vorhanden) in die Zeile einfügen
+                flushWord(output, line, word, lineWidth, wordWidth);
+                // Dann den erzwungenen Zeilenumbruch: aktuelle Zeile abschließen und zurücksetzen
+                output.append(line).append("$");
+                line.setLength(0);
+                lineWidth = 0;
+                // Wortpuffer wird ohnehin geleert
+                word.setLength(0);
+                wordWidth = 0;
+            } else if (ch == ' ') {
+                // Leerzeichen: Prüfen, ob unmittelbar ein Satzzeichen folgt
+                if (i + 1 < inputTrimmed.length()) {
+                    char next = inputTrimmed.charAt(i + 1);
+                    if (next == '!' || next == '?' || next == '.' || next == '-') {
+                        // Falls ja, wird das Leerzeichen als Bestandteil des Wortes übernommen
+                        word.append(ch);
+                        wordWidth += SPACE;
+                        continue;
+                    }
+                }
+                // Andernfalls wird das aktuelle Wort abgeschlossen und in die Zeile eingefügt.
+                int[] res = flushWord(output, line, word, lineWidth, wordWidth);
+                lineWidth = res[0];
+                wordWidth = res[1]; // sollte 0 sein
             } else {
-                if (ch == 37) {
-                    // Prozentzeichen entdeckt, also Umbruch einfuegen
-
-                    // zuerst testen, ob Zeile nicht sowieso schon zu lang ist
-                    if (LineLength(Zeile + Teil) < 600) {
-                        Zeile = Zeile + Teil;
-                        Teil = " ";
-                        laenge += SPACE;
-                    } else {
-                        // Laenger darfs nicht werden...
-                        Ausgabe = Ausgabe + Zeile + "$";
-                        Zeile = "";
-                        if (Teil != "") {
-                            Teil = Teil.substring(1) + " ";
-                        }
-                        Zeile = Zeile + Teil;
-                        Teil = "";
-                        laenge = 0;
+                // Normaler Zeichenfall
+                if (ch == '#') {
+                    // Sonderfall: '#' plus das folgende Zeichen als spezielles Symbol
+                    word.append(ch);
+                    if (i + 1 < inputTrimmed.length()) {
+                        i++;
+                        char next = inputTrimmed.charAt(i);
+                        word.append(next);
+                        // Die Breite des Spezialzeichens wird ermittelt über evalSpecialChar(...)
+                        wordWidth += redFont[evalSpecialChar(next)].getWidth();
                     }
-
-                    // Hier den Umbruch einfuegen, der sein muss
-                    if (Teil != "") {
-                        Teil = Teil + " ";
-                    }
-                    Zeile = Zeile + Teil + "$";
-                    Ausgabe = Ausgabe + Zeile;
-                    Zeile = "";
-                    Teil = "";
-                    laenge = 0;
                 } else {
-                    if (ch == 32) {
-                        // Space entdeckt, jetzt kalkulieren
-
-                        // nix veraendern, wenn Ausrufezeichen, Fragezeichen, Punkt oder so an naechster Stelle
-                        int chtemp = Eingabe.charAt(i + 1);
-                        if (chtemp == 33 || chtemp == 63 || chtemp == 46 || chtemp == 45) {
-                            laenge += SPACE;
-                            Teil = Teil + (char) ch;
-                        } else {
-                            // Zeile darf noch laenger werden
-
-                            // System.out.println (LineLength (Zeile + Teil));
-
-                            if (LineLength(Zeile + Teil) < 600) {
-                                Zeile = Zeile + Teil;
-                                Teil = " ";
-                                laenge += SPACE;
-                            } else {
-                                // Laenger darfs nicht werden...
-                                Ausgabe = Ausgabe + Zeile + "$";
-                                Zeile = "";
-                                if (Teil != "") {
-                                    Teil = Teil.substring(1) + " ";
-                                }
-                                Zeile = Zeile + Teil;
-                                Teil = "";
-                                laenge = 0;
-                            }
-                        }
-                    } else {
-                        // Teilstring hinzufuegen, wenn nicht Space
-                        Teil = Teil + (char) ch;
-
-                        if (ch == 35) {
-                            // Bei Sonderzeichen richtige Laenge ermitteln
-                            i++;
-                            ch = Eingabe.charAt(i);
-                            Teil = Teil + (char) ch;
-                            laenge += redFont[evalSpecialChar(ch)].getWidth();
-                        } else {
-                            laenge += redFont[ch].getWidth();
-                        }
-                    }
+                    word.append(ch);
+                    wordWidth += redFont[ch].getWidth();
                 }
             }
         }
-        if (LineLength(Zeile + Teil) < 600) {
-            Zeile = Zeile + Teil;
-            Teil = " ";
-            laenge += SPACE;
-            Ausgabe = Ausgabe + Zeile;
-        } else {
-            // Laenger darfs nicht werden...
-            Ausgabe = Ausgabe + Zeile + "$";
-            Zeile = "";
-            if (Teil != "") {
-                Teil = Teil.substring(1) + " ";
-            }
-            Zeile = Zeile + Teil;
-            Teil = "";
-            laenge = 0;
-            Ausgabe = Ausgabe + Zeile;
+
+        // Nach der Schleife: Falls noch ein Wort im Puffer ist, in die Zeile einfügen.
+        flushWord(output, line, word, lineWidth, wordWidth);
+
+        // Restliche Zeile anhängen
+        output.append(line);
+
+        return output.toString();
+    }
+
+    /**
+     * Hilfsmethode zum "Flushen" des aktuellen Wortes in die laufende Zeile.
+     * Wird aufgerufen, wenn ein Leerzeichen (ohne direkt folgendes Satzzeichen) oder
+     * ein Umbruch (durch '%') erfolgt.
+     *
+     * Die Methode prüft, ob das aktuelle Wort (ggf. mit einem dazwischen zu setzenden Leerzeichen,
+     * falls die Zeile nicht leer ist) in die laufende Zeile passt. Falls nicht, wird die Zeile
+     * abgeschlossen (mit '$') und eine neue Zeile begonnen.
+     *
+     * @param output    Der bisherige Ausgabepuffer.
+     * @param line      Die laufende Zeile.
+     * @param word       Der Wortpuffer.
+     * @param lineWidth Aktuelle Breite der Zeile.
+     * @param wordWidth   Breite des aktuellen Wortes.
+     * @return Ein int-Array mit zwei Werten: [neue Zeilenbreite, 0 (Wortbreite nach Flush)].
+     */
+    private int[] flushWord(StringBuilder output, StringBuilder line, StringBuilder word, int lineWidth, int wordWidth) {
+        // Falls kein Wort vorhanden, nichts zu tun
+        if (wordWidth == 0) {
+            return new int[]{lineWidth, 0};
         }
-        return Ausgabe;
+        // Bestimmen, ob ein Leerzeichen (zwischen den Wörtern) benötigt wird
+        boolean needSpace = (line.length() > 0);
+        int spaceWidth = needSpace ? SPACE : 0;
+
+        // Passt das Wort (ggf. inkl. Leerzeichen) in die aktuelle Zeile?
+        if (lineWidth + spaceWidth + wordWidth <= MAX_WIDTH) {
+            // Falls ja, ggf. Leerzeichen anhängen
+            if (needSpace) {
+                line.append(' ');
+                lineWidth += SPACE;
+            }
+            line.append(word);
+            lineWidth += wordWidth;
+        } else {
+            // Passt nicht mehr: die aktuelle Zeile abschließen und in den Ausgabepuffer schreiben
+            output.append(line).append('$');
+            // Neue Zeile beginnen: Hier entfällt das führende Leerzeichen, daher:
+            line.setLength(0);
+            line.append(word);
+            lineWidth = wordWidth;
+        }
+        // Wortpuffer leeren
+        word.setLength(0);
+        wordWidth = 0;
+        return new int[]{lineWidth, wordWidth};
     }
 }
