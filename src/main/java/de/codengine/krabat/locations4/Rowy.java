@@ -40,7 +40,6 @@ public class Rowy extends Mainloc {
     private GenericImage krabat_links_zucken;
     private GenericImage krabat_links_stehen;
     private final GenericImage[] krabat_links_back = new GenericImage[4];
-    private final GenericImage[] alter_mueller = new GenericImage[2];
     private final GenericImage[] fledermaus = new GenericImage[4];
     private final GenericImage[] fledermausSitzen = new GenericImage[3];
     private final GenericImage[] schaf = new GenericImage[3];
@@ -284,8 +283,6 @@ public class Rowy extends Mainloc {
         krabat_links_back[3] = getPicture("gfx/wotrow/k-l-lb4.gif");
         krabat_links_zucken = getPicture("gfx/wotrow/k-l-zucken.gif");
         krabat_links_stehen = getPicture("gfx/anims/k-l-10.gif");
-        alter_mueller[0] = getPicture("gfx/wotrow/rdml.gif");
-        alter_mueller[1] = getPicture("gfx/wotrow/rdml2.gif");
 
         fledermaus[0] = getPicture("gfx/wotrow/fmaus1a.gif");
         fledermaus[1] = getPicture("gfx/wotrow/fmaus2a.gif");
