@@ -217,74 +217,73 @@ public class LanguageChooser extends Mainloc {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            // linke Maustaste
-            // Pfeil-Oben gedrueckt
-            if (brPfeilOben.IsPointInRect(pTemp)) {
-                Index -= 10;
-                mainFrame.Clipset = false;
-                if (Index < 0) {
-                    Index = 0;
-                }
-                mainFrame.repaint();
+        // Pfeil-Oben gedrueckt
+        if (brPfeilOben.IsPointInRect(pTemp)) {
+            Index -= 10;
+            mainFrame.Clipset = false;
+            if (Index < 0) {
+                Index = 0;
             }
+            mainFrame.repaint();
+        }
 
-            // Pfeil-Unten gedrueckt
-            if (brPfeilUnten.IsPointInRect(pTemp)) {
-                Index += 10;
-                mainFrame.Clipset = false;
-                if (Index > languages.length - 10) {
-                    Index = languages.length - 10;
-                }
-                mainFrame.repaint();
+        // Pfeil-Unten gedrueckt
+        if (brPfeilUnten.IsPointInRect(pTemp)) {
+            Index += 10;
+            mainFrame.Clipset = false;
+            if (Index > languages.length - 10) {
+                Index = languages.length - 10;
             }
+            mainFrame.repaint();
+        }
 
-            if (brOk.IsPointInRect(pTemp) && currLang != 0) {
-                System.out.println("Selected language = " + currLang);
-                if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
-                        || abbreviations[currLang - 1].equalsIgnoreCase("ds")
-                        || abbreviations[currLang - 1].equalsIgnoreCase("de")) {
-                    mainFrame.thirdGameLanguage = "de";
-                } else {
-                    mainFrame.thirdGameLanguage = abbreviations[currLang - 1];
-                }
-                if (abbreviations[currLang - 1].equalsIgnoreCase("hs")) {
-                    mainFrame.sprache = 1;
-                } else if (abbreviations[currLang - 1].equalsIgnoreCase("ds")) {
-                    mainFrame.sprache = 2;
-                } else {
-                    mainFrame.sprache = 3;
-                }
-                Start.stringManager.defineThirdLanguage(
-                        LanguageSupportMapper.getLanguageFilename(abbreviations[currLang - 1]),
-                        LanguageSupportMapper.getFakeLanguage(abbreviations[currLang - 1]),
-                        abbreviations[currLang - 1]);
-                properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(mainFrame.sprache));
-                properties.setProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, mainFrame.thirdGameLanguage);
-                NeuesBild(100, 109);
-                mainFrame.repaint();
+        if (brOk.IsPointInRect(pTemp) && currLang != 0) {
+            System.out.println("Selected language = " + currLang);
+            if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
+                    || abbreviations[currLang - 1].equalsIgnoreCase("ds")
+                    || abbreviations[currLang - 1].equalsIgnoreCase("de")) {
+                mainFrame.thirdGameLanguage = "de";
+            } else {
+                mainFrame.thirdGameLanguage = abbreviations[currLang - 1];
             }
+            if (abbreviations[currLang - 1].equalsIgnoreCase("hs")) {
+                mainFrame.sprache = 1;
+            } else if (abbreviations[currLang - 1].equalsIgnoreCase("ds")) {
+                mainFrame.sprache = 2;
+            } else {
+                mainFrame.sprache = 3;
+            }
+            Start.stringManager.defineThirdLanguage(
+                    LanguageSupportMapper.getLanguageFilename(abbreviations[currLang - 1]),
+                    LanguageSupportMapper.getFakeLanguage(abbreviations[currLang - 1]),
+                    abbreviations[currLang - 1]);
+            properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(mainFrame.sprache));
+            properties.setProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, mainFrame.thirdGameLanguage);
+            NeuesBild(100, 109);
+            mainFrame.repaint();
+        }
 
-            // Sprache wurde ausgewaehlt
-            if (brGesamt.IsPointInRect(pTemp)) {
-                for (int i = 0; i < languages.length; i++) {
+        // Sprache wurde ausgewaehlt
+        if (brGesamt.IsPointInRect(pTemp)) {
+            for (int i = 0; i < languages.length; i++) {
 
-                    // System.out.println("Curr Y: " + pTemp.y);
-                    // System.out.println("Min y: " + (Y_UP + (i - Index) * 25));
-                    // System.out.println("Max y: " + ((Y_UP + (i - Index) * 25) + 24));
+                // System.out.println("Curr Y: " + pTemp.y);
+                // System.out.println("Min y: " + (Y_UP + (i - Index) * 25));
+                // System.out.println("Max y: " + ((Y_UP + (i - Index) * 25) + 24));
 
-                    if (pTemp.y >= Y_UP + (i - Index) * 25 && pTemp.y < Y_UP + (i - Index) * 25 + 24) {
-                        currLang = i + 1;
-                        mainFrame.repaint();
-                        System.out.println("Selected lang=" + abbreviations[i]);
-                        break;
-                    }
+                if (pTemp.y >= Y_UP + (i - Index) * 25 && pTemp.y < Y_UP + (i - Index) * 25 + 24) {
+                    currLang = i + 1;
+                    mainFrame.repaint();
+                    System.out.println("Selected lang=" + abbreviations[i]);
+                    break;
                 }
             }
-        } else {
-            // rechte Maustaste, ignorieren
         }
     }
 

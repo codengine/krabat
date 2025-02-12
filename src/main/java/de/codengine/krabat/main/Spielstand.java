@@ -104,9 +104,7 @@ public class Spielstand {
                 }
             }
             // System.out.println("Checksumme : " + Checksumme + " Feld : " + (Feld[Where] - W) + " Pos : " + Where);
-            if (Checksumme == Feld[Where] - W) {
-                // System.out.println("Verified !");
-            } else {
+            if (Checksumme != Feld[Where] - W) {
                 // System.out.println("Dieser Spielstand wurde manipuliert!");
                 Feld[0] = W;
             }

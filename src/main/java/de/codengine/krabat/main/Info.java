@@ -250,41 +250,38 @@ public class Info extends Mainanim {
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            // linke Maustaste
-            // bei Click Ausserhalb zurueck ins Spiel
-            if (!brGesamt.IsPointInRect(pTemp)) {
+        // bei Click Ausserhalb zurueck ins Spiel
+        if (!brGesamt.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.whatScreen = 0;
+            return;
+        }
+
+        // bei Click auf Pfeil links zurueck ins vorherige Bild oder verlassen
+        if (brPfeill.IsPointInRect(pTemp)) {
+            PictureCounter--;
+            if (PictureCounter < 0) {
                 Deactivate();
-                mainFrame.whatScreen = 0;
                 return;
+            } else {
+                mainFrame.Clipset = false;
+                mainFrame.repaint();
             }
+        }
 
-            // bei Click auf Pfeil links zurueck ins vorherige Bild oder verlassen
-            if (brPfeill.IsPointInRect(pTemp)) {
-                PictureCounter--;
-                if (PictureCounter < 0) {
-                    Deactivate();
-                    return;
-                } else {
-                    mainFrame.Clipset = false;
-                    mainFrame.repaint();
-                }
+        // bei Click auf Pfeil rechts ein Bild weiter
+        if (brPfeilr.IsPointInRect(pTemp)) {
+            if (PictureCounter < 6) {
+                PictureCounter++;
+                mainFrame.Clipset = false;
+                mainFrame.repaint();
             }
-
-            // bei Click auf Pfeil rechts ein Bild weiter
-            if (brPfeilr.IsPointInRect(pTemp)) {
-                if (PictureCounter < 6) {
-                    PictureCounter++;
-                    mainFrame.Clipset = false;
-                    mainFrame.repaint();
-                }
-            }
-
-        } else {
-            // rechte Maustaste
-
         }
 
     }

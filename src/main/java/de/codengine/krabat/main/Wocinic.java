@@ -218,66 +218,64 @@ public class Wocinic extends Mainanim {
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
+        
+        // bei Click Ausserhalb zurueck ins Spiel
+        if (!brGesamt.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.whatScreen = 0;
+            return;
+        }
 
-        if (e.isLeftClick()) {
-            // linke Maustaste
-            // bei Click Ausserhalb zurueck ins Spiel
-            if (!brGesamt.IsPointInRect(pTemp)) {
-                Deactivate();
-                mainFrame.whatScreen = 0;
-                return;
-            }
+        // Verlassen, wenn auf Pfeil links gedrueckt
+        if (brPfeil.IsPointInRect(pTemp)) {
+            Deactivate();
+            return;
+        }
 
-            // Verlassen, wenn auf Pfeil links gedrueckt
-            if (brPfeil.IsPointInRect(pTemp)) {
-                Deactivate();
-                return;
-            }
+        // Laden, wenn auf wocinic gedrueckt und erlaubt
+        if (brWoci.IsPointInRect(pTemp) && selected != -1) {
+            Dir[selected + 1].Load();
+            mainFrame.mainmenu.MMactive = false;
 
-            // Laden, wenn auf wocinic gedrueckt und erlaubt
-            if (brWoci.IsPointInRect(pTemp) && selected != -1) {
-                Dir[selected + 1].Load();
-                mainFrame.mainmenu.MMactive = false;
+            // Introcall - Variable zuruecksetzen
+            mainFrame.mainmenu.introcall = false;
 
-                // Introcall - Variable zuruecksetzen
-                mainFrame.mainmenu.introcall = false;
+            // hier das Hauptmenue auf moegliche neue Sprache zuruecksetzen
+            mainFrame.mainmenu.InitRec();
 
-                // hier das Hauptmenue auf moegliche neue Sprache zuruecksetzen
-                mainFrame.mainmenu.InitRec();
+            Deactivate();
+            return;
+        }
 
-                Deactivate();
-                return;
-            }
+        // GenericImage erhellen, wenn draufgeklickt
+        for (int i = 0; i <= 5; ++i) {
+            if (GetCurrentRect(i).IsPointInRect(pTemp) && Dir[i + 1].Location != 0) {
+                if (selected != i) {
+                    selected = i;
+                }
+                if (mainFrame.dClick) {
 
-            // GenericImage erhellen, wenn draufgeklickt
-            for (int i = 0; i <= 5; ++i) {
-                if (GetCurrentRect(i).IsPointInRect(pTemp) && Dir[i + 1].Location != 0) {
-                    if (selected != i) {
-                        selected = i;
-                    }
-                    if (mainFrame.dClick) {
+                    // bei Doppelklick sofort Laden
+                    Dir[selected + 1].Load();
+                    mainFrame.mainmenu.MMactive = false;
 
-                        // bei Doppelklick sofort Laden
-                        Dir[selected + 1].Load();
-                        mainFrame.mainmenu.MMactive = false;
+                    // Introcall - Variable zuruecksetzen
+                    mainFrame.mainmenu.introcall = false;
 
-                        // Introcall - Variable zuruecksetzen
-                        mainFrame.mainmenu.introcall = false;
+                    // moegliche Sprachenumschaltung im Hauptmenue aktivieren
+                    mainFrame.mainmenu.InitRec();
 
-                        // moegliche Sprachenumschaltung im Hauptmenue aktivieren
-                        mainFrame.mainmenu.InitRec();
-
-                        Deactivate();
-                        return;
-                    }
-                    mainFrame.repaint();
+                    Deactivate();
                     return;
                 }
+                mainFrame.repaint();
+                return;
             }
-        } else {
-            // rechte Maustaste
-            // keine Reaktion
         }
     }
 

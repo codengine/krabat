@@ -515,16 +515,6 @@ public class Start implements Runnable {
                 container.repaint();
 
                 // repaint();
-            } else {
-                /*
-                System.out.println("No repaint: ");
-                System.out.print("isWindowactive=" + isWindowactive + "; ");
-                System.out.print("StopPaint=" + StopPaint + "; ");
-                System.out.print("fPlayAnim=" + fPlayAnim + "; ");
-                System.out.print("isAnim=" + isAnim + "; ");
-                
-                System.out.println();
-                */
             }
 
             try {

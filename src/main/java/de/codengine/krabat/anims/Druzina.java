@@ -115,10 +115,7 @@ public class Druzina extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal)
-        // Horizontal laufen
-        {
-        } else
+        if (!horizontal)
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
@@ -143,6 +140,7 @@ public class Druzina extends Mainanim {
                 return true;
             }
         }
+
         return false;
     }
 

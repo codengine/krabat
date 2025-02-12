@@ -181,9 +181,7 @@ public class Wjes2 extends Mainloc2 {
                 setScroll = true;
                 break;
             case 73: // Von Jaeger aus
-                if (mainFrame.Actions[300]) {
-                    // nix tun, CD spielt einfach weiter
-                } else {
+                if (!mainFrame.Actions[300]) {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
                 mainFrame.krabat.SetKrabatPos(new GenericPoint(16, 292));

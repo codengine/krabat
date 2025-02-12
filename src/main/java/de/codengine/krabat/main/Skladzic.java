@@ -257,59 +257,58 @@ public class Skladzic extends Mainanim {
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            // linke Maustaste
-            // bei Click Ausserhalb zurueck ins Spiel
-            if (!brGesamt.IsPointInRect(pTemp)) {
-                Deactivate();
-                mainFrame.whatScreen = 0;
+        // bei Click Ausserhalb zurueck ins Spiel
+        if (!brGesamt.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.whatScreen = 0;
+            return;
+        }
+
+        // bei Pfeil links verlassen
+        if (brPfeil.IsPointInRect(pTemp)) {
+            Deactivate();
+            return;
+        }
+
+        // Bei Speichern und erlaubt speichern
+        if (brSklad.IsPointInRect(pTemp) && selected != -1) {
+            if (Dir[selected + 1].Location != 0) {
+                // Sicherheitsabfrage aktivieren
+                mainFrame.exit.Activate(3);
                 return;
             }
+            Aktuell.Save(selected + 1);
+            Deactivate();
+            return;
+        }
 
-            // bei Pfeil links verlassen
-            if (brPfeil.IsPointInRect(pTemp)) {
-                Deactivate();
-                return;
-            }
-
-            // Bei Speichern und erlaubt speichern
-            if (brSklad.IsPointInRect(pTemp) && selected != -1) {
-                if (Dir[selected + 1].Location != 0) {
-                    // Sicherheitsabfrage aktivieren
-                    mainFrame.exit.Activate(3);
-                    return;
+        // bei Klick auf Spielstand aktuellen Spielstand darueberzeichnen
+        for (int i = 0; i <= 5; ++i) {
+            if (GetCurrentRect(i).IsPointInRect(pTemp)) {
+                if (selected != i) {
+                    selected = i;
                 }
-                Aktuell.Save(selected + 1);
-                Deactivate();
-                return;
-            }
+                if (mainFrame.dClick) {
 
-            // bei Klick auf Spielstand aktuellen Spielstand darueberzeichnen
-            for (int i = 0; i <= 5; ++i) {
-                if (GetCurrentRect(i).IsPointInRect(pTemp)) {
-                    if (selected != i) {
-                        selected = i;
-                    }
-                    if (mainFrame.dClick) {
-
-                        // Bei Doppelklick sofort speichern
-                        if (Dir[selected + 1].Location != 0) {
-                            // Sicherheitsabfrage aktivieren
-                            mainFrame.exit.Activate(3);
-                            return;
-                        }
-                        Aktuell.Save(selected + 1);
-                        Deactivate();
+                    // Bei Doppelklick sofort speichern
+                    if (Dir[selected + 1].Location != 0) {
+                        // Sicherheitsabfrage aktivieren
+                        mainFrame.exit.Activate(3);
                         return;
                     }
-                    mainFrame.repaint();
+                    Aktuell.Save(selected + 1);
+                    Deactivate();
                     return;
                 }
+                mainFrame.repaint();
+                return;
             }
-        } else {
-            // rechte Maustaste
         }
     }
 

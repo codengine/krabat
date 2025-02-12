@@ -124,53 +124,142 @@ public class Karta extends Mainanim {
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            // Hier Entscheidung nach Teilen
+        // Hier Entscheidung nach Teilen
 
-            // wenn ausserhalb der Karte, dann weg
-            if (!brGesamt.IsPointInRect(pTemp)) {
+        // wenn ausserhalb der Karte, dann weg
+        if (!brGesamt.IsPointInRect(pTemp)) {
+            Deactivate();
+            return;
+        }
+
+        // Teil 1
+        if (!mainFrame.Actions[305]) {
+
+            int tloc = 0;
+
+            // Hier Index der Orte:
+            // 1 = kulow
+            // 2 = njedz
+            // 3 = sunow
+            // 4 = ralbicy
+            // 5 = jitk
+            // 6 = zdzary
+            // 7 = kolmc
+            // 8 = doma
+
+            if (kulowRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(21);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(21);
+                }
+                mainFrame.Clipset = false;
                 Deactivate();
+                mainFrame.repaint();
                 return;
             }
 
-            // Teil 1
-            if (!mainFrame.Actions[305]) {
+            if (njedzRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(16);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(16);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+                return;
+            }
 
+            if (sunowRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(13);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(13);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+                return;
+            }
+
+            if (ralbicyRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(1);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(1);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+                return;
+            }
+
+            if (jitkRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(3);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(3);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+                return;
+            }
+
+            if (zdzaryRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(19);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(19);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+                return;
+            }
+
+            if (kolmcRect.IsPointInRect(pTemp)) {
+                tloc = evalCurrLocation(17);
+                if (tloc != 0) {
+                    mainFrame.komme_von_karte = true;
+                    mainFrame.currLocation = tloc;
+                    mainFrame.Actions[851] = false;
+                    mainFrame.ConstructLocation(17);
+                }
+                mainFrame.Clipset = false;
+                Deactivate();
+                mainFrame.repaint();
+            }
+        } else {
+            // Hier moeglicherweise noch dritter Teil rein...
+            if (!mainFrame.Actions[499]) {
                 int tloc = 0;
 
-                // Hier Index der Orte:
-                // 1 = kulow
-                // 2 = njedz
-                // 3 = sunow
-                // 4 = ralbicy
-                // 5 = jitk
-                // 6 = zdzary
-                // 7 = kolmc
-                // 8 = doma
-
                 if (kulowRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(21);
+                    tloc = evalCurrLocation(76);
                     if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
                         mainFrame.currLocation = tloc;
                         mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(21);
-                    }
-                    mainFrame.Clipset = false;
-                    Deactivate();
-                    mainFrame.repaint();
-                    return;
-                }
-
-                if (njedzRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(16);
-                    if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(16);
+                        mainFrame.ConstructLocation(76);
                     }
                     mainFrame.Clipset = false;
                     Deactivate();
@@ -179,26 +268,11 @@ public class Karta extends Mainanim {
                 }
 
                 if (sunowRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(13);
+                    tloc = evalCurrLocation(87);
                     if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
                         mainFrame.currLocation = tloc;
                         mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(13);
-                    }
-                    mainFrame.Clipset = false;
-                    Deactivate();
-                    mainFrame.repaint();
-                    return;
-                }
-
-                if (ralbicyRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(1);
-                    if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(1);
+                        mainFrame.ConstructLocation(87);
                     }
                     mainFrame.Clipset = false;
                     Deactivate();
@@ -207,12 +281,11 @@ public class Karta extends Mainanim {
                 }
 
                 if (jitkRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(3);
+                    tloc = evalCurrLocation(71);
                     if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
                         mainFrame.currLocation = tloc;
                         mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(3);
+                        mainFrame.ConstructLocation(71);
                     }
                     mainFrame.Clipset = false;
                     Deactivate();
@@ -221,12 +294,11 @@ public class Karta extends Mainanim {
                 }
 
                 if (zdzaryRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(19);
+                    tloc = evalCurrLocation(93);
                     if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
                         mainFrame.currLocation = tloc;
                         mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(19);
+                        mainFrame.ConstructLocation(93);
                     }
                     mainFrame.Clipset = false;
                     Deactivate();
@@ -234,131 +306,59 @@ public class Karta extends Mainanim {
                     return;
                 }
 
-                if (kolmcRect.IsPointInRect(pTemp)) {
-                    tloc = evalCurrLocation(17);
+                if (njedzRect.IsPointInRect(pTemp)) {
+                    tloc = evalCurrLocation(85);
                     if (tloc != 0) {
-                        mainFrame.komme_von_karte = true;
                         mainFrame.currLocation = tloc;
                         mainFrame.Actions[851] = false;
-                        mainFrame.ConstructLocation(17);
+                        mainFrame.ConstructLocation(85);
                     }
                     mainFrame.Clipset = false;
                     Deactivate();
                     mainFrame.repaint();
                 }
-            } else {
-                // Hier moeglicherweise noch dritter Teil rein...
-                if (!mainFrame.Actions[499]) {
-                    int tloc = 0;
-
-                    if (kulowRect.IsPointInRect(pTemp)) {
-                        tloc = evalCurrLocation(76);
-                        if (tloc != 0) {
-                            mainFrame.currLocation = tloc;
-                            mainFrame.Actions[851] = false;
-                            mainFrame.ConstructLocation(76);
-                        }
-                        mainFrame.Clipset = false;
-                        Deactivate();
-                        mainFrame.repaint();
-                        return;
-                    }
-
-                    if (sunowRect.IsPointInRect(pTemp)) {
-                        tloc = evalCurrLocation(87);
-                        if (tloc != 0) {
-                            mainFrame.currLocation = tloc;
-                            mainFrame.Actions[851] = false;
-                            mainFrame.ConstructLocation(87);
-                        }
-                        mainFrame.Clipset = false;
-                        Deactivate();
-                        mainFrame.repaint();
-                        return;
-                    }
-
-                    if (jitkRect.IsPointInRect(pTemp)) {
-                        tloc = evalCurrLocation(71);
-                        if (tloc != 0) {
-                            mainFrame.currLocation = tloc;
-                            mainFrame.Actions[851] = false;
-                            mainFrame.ConstructLocation(71);
-                        }
-                        mainFrame.Clipset = false;
-                        Deactivate();
-                        mainFrame.repaint();
-                        return;
-                    }
-
-                    if (zdzaryRect.IsPointInRect(pTemp)) {
-                        tloc = evalCurrLocation(93);
-                        if (tloc != 0) {
-                            mainFrame.currLocation = tloc;
-                            mainFrame.Actions[851] = false;
-                            mainFrame.ConstructLocation(93);
-                        }
-                        mainFrame.Clipset = false;
-                        Deactivate();
-                        mainFrame.repaint();
-                        return;
-                    }
-
-                    if (njedzRect.IsPointInRect(pTemp)) {
-                        tloc = evalCurrLocation(85);
-                        if (tloc != 0) {
-                            mainFrame.currLocation = tloc;
-                            mainFrame.Actions[851] = false;
-                            mainFrame.ConstructLocation(85);
-                        }
-                        mainFrame.Clipset = false;
-                        Deactivate();
-                        mainFrame.repaint();
-                    }
-                }
-			/*else
-			  {
-			  // Hier 3. Teil...
-			  // Locationevaluation erst, wenn alle Locations drin
-        
-			  if (kutsaRect.IsPointInRect (pTemp) == true)
-			  {
-			  mainFrame.ConstructLocation (120);
-			  mainFrame.Clipset = false;
-			  Deactivate();
-			  mainFrame.repaint();
-			  return;
-			  }		
-        
-			  if (hrodRect.IsPointInRect (pTemp) == true)
-			  {
-			  mainFrame.ConstructLocation (130);
-			  mainFrame.Clipset = false;
-			  Deactivate();
-			  mainFrame.repaint();
-			  return;
-			  }		
-        
-			  if (panorRect.IsPointInRect (pTemp) == true)
-			  {
-			  mainFrame.ConstructLocation (140);
-			  mainFrame.Clipset = false;
-			  Deactivate();
-			  mainFrame.repaint();
-			  return;
-			  }		
-          
-			  if (zastupRect.IsPointInRect (pTemp) == true)
-			  {
-			  mainFrame.ConstructLocation (150);
-			  mainFrame.Clipset = false;
-			  Deactivate();
-			  mainFrame.repaint();
-			  return;
-			  }		
-			  }	*/
             }
-        } else {
-            // rechte Maustaste
+        /*else
+          {
+          // Hier 3. Teil...
+          // Locationevaluation erst, wenn alle Locations drin
+
+          if (kutsaRect.IsPointInRect (pTemp) == true)
+          {
+          mainFrame.ConstructLocation (120);
+          mainFrame.Clipset = false;
+          Deactivate();
+          mainFrame.repaint();
+          return;
+          }
+
+          if (hrodRect.IsPointInRect (pTemp) == true)
+          {
+          mainFrame.ConstructLocation (130);
+          mainFrame.Clipset = false;
+          Deactivate();
+          mainFrame.repaint();
+          return;
+          }
+
+          if (panorRect.IsPointInRect (pTemp) == true)
+          {
+          mainFrame.ConstructLocation (140);
+          mainFrame.Clipset = false;
+          Deactivate();
+          mainFrame.repaint();
+          return;
+          }
+
+          if (zastupRect.IsPointInRect (pTemp) == true)
+          {
+          mainFrame.ConstructLocation (150);
+          mainFrame.Clipset = false;
+          Deactivate();
+          mainFrame.repaint();
+          return;
+          }
+          }	*/
         }
     }
 

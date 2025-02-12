@@ -305,102 +305,100 @@ public class Hauptmenu extends Mainanim {
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            // linke Maustaste
+        // bei Click Ausserhalb zurueck ins Spiel
+        if (!brGesamt.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.whatScreen = 0;
+            mainFrame.repaint();
+            return;
+        }
 
-            // bei Click Ausserhalb zurueck ins Spiel
-            if (!brGesamt.IsPointInRect(pTemp)) {
-                Deactivate();
-                mainFrame.whatScreen = 0;
-                mainFrame.repaint();
+        // Dalehrac
+        if (brDalehrac.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.repaint();
+        }
+
+        // Konc hry
+        if (brKonc.IsPointInRect(pTemp)) {
+            mainFrame.exit.Activate(1);
+            return;
+        }
+
+        // Wocinic
+        if (brWocinic.IsPointInRect(pTemp)) {
+            if (!mainFrame.storageManager.isLoadSaveSupported()) {
                 return;
             }
+            Deactivate();
+            mainFrame.ConstructLocation(102);
+            mainFrame.whatScreen = 3;
+            MMactive = true;
+            mainFrame.repaint();
+            return;
+        }
 
-            // Dalehrac
-            if (brDalehrac.IsPointInRect(pTemp)) {
-                Deactivate();
-                mainFrame.repaint();
-            }
-
-            // Konc hry
-            if (brKonc.IsPointInRect(pTemp)) {
-                mainFrame.exit.Activate(1);
+        // Skladzic
+        if (brSkladzic.IsPointInRect(pTemp)) {
+            // vom Intro aus darf nicht gespeichert werden
+            if (introcall) {
                 return;
             }
-
-            // Wocinic
-            if (brWocinic.IsPointInRect(pTemp)) {
-                if (!mainFrame.storageManager.isLoadSaveSupported()) {
-                    return;
-                }
-                Deactivate();
-                mainFrame.ConstructLocation(102);
-                mainFrame.whatScreen = 3;
-                MMactive = true;
-                mainFrame.repaint();
+            if (!mainFrame.storageManager.isLoadSaveSupported()) {
                 return;
             }
+            Deactivate();
+            mainFrame.ConstructLocation(103);
+            mainFrame.whatScreen = 4;
+            MMactive = true;
+            mainFrame.repaint();
+            return;
+        }
 
-            // Skladzic
-            if (brSkladzic.IsPointInRect(pTemp)) {
-                // vom Intro aus darf nicht gespeichert werden
-                if (introcall) {
-                    return;
-                }
-                if (!mainFrame.storageManager.isLoadSaveSupported()) {
-                    return;
-                }
-                Deactivate();
-                mainFrame.ConstructLocation(103);
-                mainFrame.whatScreen = 4;
-                MMactive = true;
-                mainFrame.repaint();
-                return;
+        // Info
+        if (brInfo.IsPointInRect(pTemp)) {
+            Deactivate();
+            mainFrame.ConstructLocation(104);
+            mainFrame.whatScreen = 5;
+            MMactive = true;
+            mainFrame.repaint();
+            return;
+        }
+
+        // Hornjoserbsce - Delnoserbsce
+        if (brRec.IsPointInRect(pTemp)) {
+            mainFrame.sprache++;
+            // erlaube umschalten auf deutsch
+            if (mainFrame.sprache == 4) {
+                mainFrame.sprache = 1;
+            }
+            InitRec();
+
+            switch (mainFrame.sprache) {
+                case 1:
+                    gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "1");
+                    break;
+                case 2:
+                    gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "2");
+                    break;
+                case 3:
+                    gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "3");
+                    break;
             }
 
-            // Info
-            if (brInfo.IsPointInRect(pTemp)) {
-                Deactivate();
-                mainFrame.ConstructLocation(104);
-                mainFrame.whatScreen = 5;
-                MMactive = true;
-                mainFrame.repaint();
-                return;
-            }
+            mainFrame.Clipset = false;
+            mainFrame.repaint();
+        }
 
-            // Hornjoserbsce - Delnoserbsce
-            if (brRec.IsPointInRect(pTemp)) {
-                mainFrame.sprache++;
-                // erlaube umschalten auf deutsch
-                if (mainFrame.sprache == 4) {
-                    mainFrame.sprache = 1;
-                }
-                InitRec();
-
-                switch (mainFrame.sprache) {
-                    case 1:
-                        gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "1");
-                        break;
-                    case 2:
-                        gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "2");
-                        break;
-                    case 3:
-                        gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "3");
-                        break;
-                }
-
-                mainFrame.Clipset = false;
-                mainFrame.repaint();
-            }
-
-            // Nowostart
-            if (brNowostart.IsPointInRect(pTemp)) {
-                mainFrame.exit.Activate(2);
-            }
-        } else {
-            // rechte Maustaste
+        // Nowostart
+        if (brNowostart.IsPointInRect(pTemp)) {
+            mainFrame.exit.Activate(2);
         }
     }
 

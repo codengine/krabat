@@ -332,79 +332,79 @@ public class Install extends Mainloc {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
+        if (!e.isLeftClick()) {
+            return;
+        }
+
         GenericPoint pTemp = e.getPoint();
 
-        if (e.isLeftClick()) {
-            if (licenseAccepted) {
-                // linke Maustaste waehlt aus, hier im richtigen Menue
-                if (Rects[1].IsPointInRect(pTemp)) {
-                    RecChosen = 1;
+        if (licenseAccepted) {
+            // linke Maustaste waehlt aus, hier im richtigen Menue
+            if (Rects[1].IsPointInRect(pTemp)) {
+                RecChosen = 1;
+            }
+            if (Rects[2].IsPointInRect(pTemp)) {
+                RecChosen = 2;
+            }
+            if (Rects[3].IsPointInRect(pTemp) && RecChosen != 0) {
+                CdChosen = 3;
+            }
+            if (Rects[4].IsPointInRect(pTemp) && RecChosen != 0) {
+                CdChosen = 4;
+            }
+            if (Rects[5].IsPointInRect(pTemp) && RecChosen != 0) {
+                CdChosen = 5;
+            }
+            if (Rects[6].IsPointInRect(pTemp) && CdChosen != 0) {
+                SoundChosen = 6;
+            }
+            if (Rects[7].IsPointInRect(pTemp) && CdChosen != 0) {
+                SoundChosen = 7;
+            }
+            if (brPfeil.IsPointInRect(pTemp) && SoundChosen != 0) {
+                Text2 = "";
+                if (RecChosen == 1) {
+                    Text2 += Rec1;
                 }
-                if (Rects[2].IsPointInRect(pTemp)) {
-                    RecChosen = 2;
-                }
-                if (Rects[3].IsPointInRect(pTemp) && RecChosen != 0) {
-                    CdChosen = 3;
-                }
-                if (Rects[4].IsPointInRect(pTemp) && RecChosen != 0) {
-                    CdChosen = 4;
-                }
-                if (Rects[5].IsPointInRect(pTemp) && RecChosen != 0) {
-                    CdChosen = 5;
-                }
-                if (Rects[6].IsPointInRect(pTemp) && CdChosen != 0) {
-                    SoundChosen = 6;
-                }
-                if (Rects[7].IsPointInRect(pTemp) && CdChosen != 0) {
-                    SoundChosen = 7;
-                }
-                if (brPfeil.IsPointInRect(pTemp) && SoundChosen != 0) {
-                    Text2 = "";
-                    if (RecChosen == 1) {
-                        Text2 += Rec1;
-                    }
-                    if (RecChosen == 2) {
-                        Text2 += Rec2;
-                    }
-
-                    if (CdChosen == 3) {
-                        Text2 += CD1;
-                    }
-                    if (CdChosen == 4) {
-                        Text2 += CD2;
-                    }
-                    if (CdChosen == 5) {
-                        Text2 += CD3;
-                    }
-
-                    if (SoundChosen == 6) {
-                        Text2 += Sound1;
-                    }
-                    if (SoundChosen == 7) {
-                        Text2 += Sound2;
-                    }
-
-                    Text2 += "\r";
-
-                    ModifyInstallFile();
-                    System.exit(0);
-                }
-            } else {
-                // hier das	Lizenzabfragemenu
-                if (LizenzRects[1].IsPointInRect(pTemp) || LizenzRects[2].IsPointInRect(pTemp)) {
-                    licenseAccepted = true;
+                if (RecChosen == 2) {
+                    Text2 += Rec2;
                 }
 
-                if (LizenzRects[3].IsPointInRect(pTemp) || LizenzRects[4].IsPointInRect(pTemp)) {
-                    System.exit(0);
+                if (CdChosen == 3) {
+                    Text2 += CD1;
                 }
+                if (CdChosen == 4) {
+                    Text2 += CD2;
+                }
+                if (CdChosen == 5) {
+                    Text2 += CD3;
+                }
+
+                if (SoundChosen == 6) {
+                    Text2 += Sound1;
+                }
+                if (SoundChosen == 7) {
+                    Text2 += Sound2;
+                }
+
+                Text2 += "\r";
+
+                ModifyInstallFile();
+                System.exit(0);
+            }
+        } else {
+            // hier das	Lizenzabfragemenu
+            if (LizenzRects[1].IsPointInRect(pTemp) || LizenzRects[2].IsPointInRect(pTemp)) {
+                licenseAccepted = true;
             }
 
-            mainFrame.Clipset = false;
-            mainFrame.repaint();
-        } else {
-            // rechte Maustaste tut nix
+            if (LizenzRects[3].IsPointInRect(pTemp) || LizenzRects[4].IsPointInRect(pTemp)) {
+                System.exit(0);
+            }
         }
+
+        mainFrame.Clipset = false;
+        mainFrame.repaint();
     }
 
     @Override

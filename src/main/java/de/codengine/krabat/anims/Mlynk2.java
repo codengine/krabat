@@ -228,32 +228,7 @@ public class Mlynk2 extends Mainanim {
         direction_x = Tdirection_x;
         direction_y = Tdirection_y;
 
-        if (horizontal)
-        // Horizontal laufen
-        {
-		/*
-		  // neuen Punkt ermitteln und setzen
-		  VerschiebeX();
-		  xps = txps;
-		  yps = typs;
-    	
-		  // Animationsphase weiterschalten
-		  anim_pos++;
-		  if (anim_pos == 5) anim_pos = 1;
-      
-		  // Naechsten Schritt auf Gueltigkeit ueberpruefen
-		  VerschiebeX();
-      
-		  // Ueberschreitung feststellen in X - Richtung
-		  if (((walkto.x - (int) txps) * direction_x) <= 0)
-		  {    	
-		  // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-		  SetMlynkPos (walkto);
-		  anim_pos = 0;
-		  return true;
-		  }	
-		*/
-        } else
+        if (!horizontal)
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
@@ -278,6 +253,7 @@ public class Mlynk2 extends Mainanim {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -431,13 +407,6 @@ public class Mlynk2 extends Mainanim {
                 if (direction_y == 1) {
                     MaleIhn(offGraph, 6);
                 }
-            } else {
-                // nach oben laufen
-			/*if (direction_y  == -1) MaleIhn (offGraph, krabat_front[anim_pos]);
-      
-			  // nach unten laufen
-			  if (direction_y == 1) MaleIhn (offGraph, krabat_back[anim_pos]);
-			*/
             }
         }
     }
