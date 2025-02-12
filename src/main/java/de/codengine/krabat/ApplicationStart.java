@@ -104,7 +104,6 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
                 tmp = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
                 System.err.println("Language index string :'" + args[0] + "' not recognized!");
-                tmp = 0;
             }
             if (tmp > 0) {
                 rec = tmp;

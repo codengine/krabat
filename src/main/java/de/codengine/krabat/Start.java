@@ -173,8 +173,8 @@ public class Start implements Runnable {
         } catch (NumberFormatException e) {
             System.out.println("Unrecognized game language index string:'"
                     + gameProperties.getProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX) + "'.");
-            tmpLangIndex = 0;
         }
+
         if (tmpLangIndex >= 1 && tmpLangIndex <= 3) {
             sprache = tmpLangIndex;
         } else {

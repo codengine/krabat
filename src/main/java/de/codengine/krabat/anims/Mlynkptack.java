@@ -51,7 +51,6 @@ public class Mlynkptack extends Mainanim {
         this.Zoomfaktor = Zoomfaktor;
         this.XEnde = XEnde;
         this.isLeft = isLeft;
-        animpos = 1;
         gleitcount = MAXGLEIT;
 
         vogel = new GenericImage[4];

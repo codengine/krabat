@@ -133,7 +133,6 @@ public class Zelen extends Mainloc {
 
         druzina.maxx = 420;
         druzina.zoomf = 3f;
-        awgust.defScale = 0;
 
         awgust.SetAwgustPos(awgustStart);
         druzina.SetDruzinaPos(druzinaStart);

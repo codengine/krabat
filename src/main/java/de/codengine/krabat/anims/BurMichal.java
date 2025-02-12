@@ -139,7 +139,7 @@ public class BurMichal extends Mainanim {
 
                 switch (Work) {
                     case 0:
-                    case 1: // auf 1. Arbeitsschritt
+                        // auf 1. Arbeitsschritt
                         Work = 2;
                         break;
                     case 2: // 2. Arbeitsschritt

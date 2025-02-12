@@ -157,8 +157,6 @@ public class KrabatAngeln extends Mainanim {
                 angeln = MAXANGELN;
                 Verhinderangeln = MAX_VERHINDERANGELN;
                 rueckgabe = false;
-            } else {
-                rueckgabe = true;
             }
         }
 
@@ -200,8 +198,6 @@ public class KrabatAngeln extends Mainanim {
                 angeln = MAXANGELN;
                 Verhinderangeln = MAX_VERHINDERANGELN;
                 rueckgabe = false;
-            } else {
-                rueckgabe = true;
             }
         }
 
@@ -247,8 +243,6 @@ public class KrabatAngeln extends Mainanim {
                 fangen = MAXFANGEN;
                 Verhinderangeln = MAX_VERHINDERANGELN;
                 rueckgabe = false;
-            } else {
-                rueckgabe = true;
             }
         }
 
@@ -333,8 +327,6 @@ public class KrabatAngeln extends Mainanim {
                 fangen = MAXFANGEN;
                 Verhinderangeln = MAX_VERHINDERANGELN;
                 rueckgabe = false;
-            } else {
-                rueckgabe = true;
             }
         }
 

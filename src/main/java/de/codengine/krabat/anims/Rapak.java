@@ -212,7 +212,6 @@ public class Rapak extends Mainanim {
 
             flyy -= PosArray[Fliegpos];
 
-            rgabe = false;
         } else {
             // Rabe schwebt nach unten
             Fliegpos = 2;
@@ -224,8 +223,6 @@ public class Rapak extends Mainanim {
                 Fliegpos = 0;
                 fliegehoch = true;
                 rgabe = true;
-            } else {
-                rgabe = false;
             }
         }
 

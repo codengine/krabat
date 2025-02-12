@@ -113,7 +113,6 @@ public class Boote extends Mainanim {
         // je nach Location Boot zufaellig bestimmen
         switch (locID) {
             case 1: // cychi
-                helper = 0;
                 break;
             case 2: // hdwor
                 helper = 1;

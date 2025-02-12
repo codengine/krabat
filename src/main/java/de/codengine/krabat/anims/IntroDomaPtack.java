@@ -41,7 +41,6 @@ public class IntroDomaPtack extends Mainanim {
         super(caller);
         this.x = x;
         this.y = y;
-        animpos = 1;
         gleitcount = MAXGLEIT;
 
         vogel = new GenericImage[5];

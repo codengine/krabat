@@ -51,7 +51,6 @@ public class PtackZaRapaka extends Mainanim {
         this.y = y;
         this.XEnde = XEnde;
         Zoomfaktor = 0;
-        animpos = 1;
         gleitcount = MAXGLEIT;
 
         vogel = new GenericImage[5];
@@ -66,7 +65,6 @@ public class PtackZaRapaka extends Mainanim {
         this.y = y;
         this.Zoomfaktor = Zoomfaktor;
         this.XEnde = XEnde;
-        animpos = 1;
         gleitcount = MAXGLEIT;
 
         vogel = new GenericImage[5];
@@ -82,7 +80,6 @@ public class PtackZaRapaka extends Mainanim {
         this.Zoomfaktor = Zoomfaktor;
         this.XEnde = XEnde;
         this.isNeverGleiting = isNeverGleiting;
-        animpos = 1;
         gleitcount = MAXGLEIT;
 
         vogel = new GenericImage[5];

@@ -273,6 +273,7 @@ public class Bludnicki extends Mainanim {
                     }
                 }
             } else {
+                //noinspection DataFlowIssue
                 Kratz = 1;
             }
 

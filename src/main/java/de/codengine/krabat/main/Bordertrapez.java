@@ -186,10 +186,7 @@ public class Bordertrapez {
             isLeft = true;
             // System.out.println("Eindeutig Links !");
         } else {
-            if (dieser.x > xx2 && dieser.x > xx4) {
-                isLeft = false;
-                // System.out.println("Eindeutig Rechts !");
-            } else {
+            if (dieser.x <= xx2 || dieser.x <= xx4) {
                 // Gerade mitten durch Trapez berechnen fuer rechts/links - Auswahl
 
                 // Fixpunkte in der Mitte der Waagerechten

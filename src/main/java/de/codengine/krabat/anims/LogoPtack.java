@@ -37,7 +37,6 @@ public class LogoPtack extends Mainanim {
 
         this.x = x;
         this.y = y;
-        animpos = 1;
 
         vogel = new GenericImage[4];
 
