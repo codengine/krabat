@@ -244,10 +244,7 @@ public class Plokarka extends Mainanim {
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = 0;
-        if (horiz_dist != 0) {
-            z = Math.abs(xps - walkto.x) / horiz_dist;
-        }
+        float z = Math.abs(xps - walkto.x) / horiz_dist;
 
         typs = yps;
         if (z != 0) {

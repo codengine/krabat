@@ -659,7 +659,7 @@ public class Imagefont {
      * Hilfsmethode zum "Flushen" des aktuellen Wortes in die laufende Zeile.
      * Wird aufgerufen, wenn ein Leerzeichen (ohne direkt folgendes Satzzeichen) oder
      * ein Umbruch (durch '%') erfolgt.
-     *
+     * <p>
      * Die Methode prüft, ob das aktuelle Wort (ggf. mit einem dazwischen zu setzenden Leerzeichen,
      * falls die Zeile nicht leer ist) in die laufende Zeile passt. Falls nicht, wird die Zeile
      * abgeschlossen (mit '$') und eine neue Zeile begonnen.

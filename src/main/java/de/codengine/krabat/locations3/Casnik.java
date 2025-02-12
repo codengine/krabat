@@ -525,12 +525,8 @@ public class Casnik extends Mainloc {
                         nextActionID = 205;
                     } else {
                         // Wein geben, wenn zu zeitig
-                        if (mainFrame.whatItem == 44 && !mainFrame.Actions[606]) {
-                            nextActionID = 185;
-                        } else {
-                            // Extra - Sinnloszeug fuer andere Sachen
-                            nextActionID = 155;
-                        }
+                        // Extra - Sinnloszeug fuer andere Sachen
+                        nextActionID = mainFrame.whatItem == 44 ? 185 : 155;
                     }
                     pTemp = pStraznik;
                 }

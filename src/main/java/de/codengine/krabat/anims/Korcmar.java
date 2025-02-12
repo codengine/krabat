@@ -249,27 +249,15 @@ public class Korcmar extends Mainanim {
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        boolean horiz;
-
         // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
+        final int xricht = aim.x > (int) xps ? 1 : -1;
+        final int yricht = aim.y > (int) yps ? 1 : -1;
 
         // Horizontal oder verikal laufen ?
-        horiz = false;
 
         // Variablen an Move uebergeben
         Twalkto = aim;
-        Thorizontal = horiz;
+        Thorizontal = false;
         Tdirection_x = xricht;
         Tdirection_y = yricht;
 

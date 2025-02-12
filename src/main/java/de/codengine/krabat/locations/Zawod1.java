@@ -402,15 +402,13 @@ public class Zawod1 extends Mainloc {
             }
 
             // Gaense animieren
-            if (true) {
-                g.setClip(120, 255, 230, 110);
-                g.drawImage(sky, mainFrame.scrollx / 10, 0);
-                g.drawImage(domal, 0, 0);
-                g.drawImage(domar, 640, 0);
-                gans1.BewegeGans(g);
-                gans2.BewegeGans(g);
-                gans3.BewegeGans(g);
-            }
+            g.setClip(120, 255, 230, 110);
+            g.drawImage(sky, mainFrame.scrollx / 10, 0);
+            g.drawImage(domal, 0, 0);
+            g.drawImage(domar, 640, 0);
+            gans1.BewegeGans(g);
+            gans2.BewegeGans(g);
+            gans3.BewegeGans(g);
 
 // 		if (FloetenSpielZeit < 300) FloetenSpielZeit++; // Floete nur 1x waehrend repaint erhoehen
 // 		System.out.println (System.currentTimeMillis());
@@ -484,12 +482,8 @@ public class Zawod1 extends Mainloc {
                 // Zwinker - Routine
                 g.setClip(103, 316, 27, 37);
                 g.drawImage(domal, 0, 0);
-                int zuffi = (int) Math.random() * 50;
-                if (zwinkerIndex == 0 && zuffi > 45) {
-                    zwinkerIndex = 1;
-                } else {
-                    zwinkerIndex = 0;
-                }
+                int zuffi = (int) (Math.random() * 50); //FIXME: This might break something, the previous calculation was always 0
+                zwinkerIndex = zwinkerIndex == 0 && zuffi > 45 ? 1 : 0;
                 g.drawImage(zwinkerIndex == 0 ? sitz1 : sitz2, 103, 316);
                 break;
 

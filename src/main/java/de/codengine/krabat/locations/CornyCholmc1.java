@@ -849,7 +849,7 @@ public class CornyCholmc1 extends Mainloc {
                         Start.stringManager.getTranslation("Loc1_CornyCholmc1_00053"),
                         0, 51, 2, 0, waldTalk);
                 // Test, ob Mueller auch kommen darf
-                if (!mainFrame.Actions[226] || mainFrame.Actions[226] && mainFrame.Actions[919]) {
+                if (!mainFrame.Actions[226] || mainFrame.Actions[919]) {
                     nextActionID = 1020;
                 } else {
                     nextActionID = 700;

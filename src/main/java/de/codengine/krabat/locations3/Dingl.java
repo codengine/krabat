@@ -1675,16 +1675,14 @@ public class Dingl extends Mainloc {
                 if (nextActionID == 812) {
                     nextActionID = 813;
                 }
-                if (nextActionID == 813 && !mainFrame.Actions[638]) {
+                if (!mainFrame.Actions[638]) {
                     PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00222"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00223"),
                             Start.stringManager.getTranslation("Loc3_Dingl_00224"),
                             0, 47, 2, 800, talkPoint);
                     break;
                 }
-                if (nextActionID == 813) {
-                    nextActionID = 800;
-                }
+                nextActionID = 800;
                 break;
 
             // Antworten Frage 2 ////////////

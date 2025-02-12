@@ -151,7 +151,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if (!mainFrame.Actions[236] && !mainFrame.Actions[235]) {
+        if (!mainFrame.Actions[236]) {
             // System.out.println ("Noch kein Blinkern da");
 
             int i = 240;
@@ -184,7 +184,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if (!blink && mainFrame.Actions[236]) {
+        if (!blink) {
             System.out.println("Es wurde der richtige Weg verlassen");
 
 
@@ -208,36 +208,34 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        if (blink && mainFrame.Actions[236]) {
-            System.out.println("Der richtige Weg wurde befolgt");
+        System.out.println("Der richtige Weg wurde befolgt");
 
-            // wir sind ja jetzt auf dem richtigen Weg...
-            int x = 237;
+        // wir sind ja jetzt auf dem richtigen Weg...
+        int x = 237;
 
-            while (mainFrame.Actions[x]) {
-                x++;
-            }
-
-            if (x == 239) {
-                // dann sind wir ja jetzt da....
-
-                System.out.println("Jetzt kann ein Blud erscheinen");
-
-                // Blud ein
-                mainFrame.Actions[235] = true;
-
-                // Blinkern aus
-                mainFrame.Actions[236] = false;
-
-                // Zaehler wielange folgen wieder loeschen
-                for (int j = 237; j <= 239; j++) {
-                    mainFrame.Actions[j] = false;
-                }
-            } else {
-                mainFrame.Actions[x] = true;
-            }
-
+        while (mainFrame.Actions[x]) {
+            x++;
         }
+
+        if (x == 239) {
+            // dann sind wir ja jetzt da....
+
+            System.out.println("Jetzt kann ein Blud erscheinen");
+
+            // Blud ein
+            mainFrame.Actions[235] = true;
+
+            // Blinkern aus
+            mainFrame.Actions[236] = false;
+
+            // Zaehler wielange folgen wieder loeschen
+            for (int j = 237; j <= 239; j++) {
+                mainFrame.Actions[j] = false;
+            }
+        } else {
+            mainFrame.Actions[x] = true;
+        }
+
     }
 
     public void ClearErscheinen() {

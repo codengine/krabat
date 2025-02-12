@@ -330,8 +330,6 @@ public class Mlynk2 extends Mainanim {
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        boolean horiz;
 
         // Lohnt es sich zu laufen ?
 	/*int scale = getScale ((int) xps, (int) yps);
@@ -348,16 +346,8 @@ public class Mlynk2 extends Mainanim {
 	  }*/
 
         // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
+        final int xricht = aim.x > (int) xps ? 1 : -1;
+        final int yricht = aim.y > (int) yps ? 1 : -1;
 
         // Horizontal oder verikal laufen ?
 	/*if (aim.x == ((int) xps) ) horiz = false;
@@ -372,11 +362,9 @@ public class Mlynk2 extends Mainanim {
 	  else horiz = true;
 	  }*/
 
-        horiz = false;
-
         // Variablen an Move uebergeben
         Twalkto = aim;
-        Thorizontal = horiz;
+        Thorizontal = false;
         Tdirection_x = xricht;
         Tdirection_y = yricht;
 
@@ -507,24 +495,11 @@ public class Mlynk2 extends Mainanim {
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
-        int rgabe = 0;
         if (horizontal) {
-            if (direction_x == 1) {
-                rgabe = 3;
-            } else {
-                rgabe = 9;
-            }
+            return direction_x == 1 ? 3 : 9;
         } else {
-            if (direction_y == 1) {
-                rgabe = 6;
-            } else {
-                rgabe = 12;
-            }
+            return direction_y == 1 ? 6 : 12;
         }
-        if (rgabe == 0) {
-            System.out.println("Fehler bei GetFacing !!!");
-        }
-        return rgabe;
     }
 
 

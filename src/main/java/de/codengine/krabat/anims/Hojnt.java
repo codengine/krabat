@@ -349,10 +349,7 @@ public class Hojnt extends Mainanim {
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = 0;
-        if (horiz_dist != 0) {
-            z = Math.abs(xps - walkto.x) / horiz_dist;
-        }
+        float z = Math.abs(xps - walkto.x) / horiz_dist;
 
         typs = yps;
         if (z != 0) {
@@ -533,26 +530,12 @@ public class Hojnt extends Mainanim {
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     // nur private, da nur in dieser Klasse benoetigt
     private int GetFacing() {
-        int rgabe = 0;
         if (horizontal) {
-            if (direction_x == 1) {
-                rgabe = 3;
-            } else {
-                rgabe = 9;
-            }
+            return direction_x == 1 ? 3 : 9;
         } else {
-            if (direction_y == 1) {
-                rgabe = 6;
-            } else {
-                rgabe = 12;
-            }
+            return direction_y == 1 ? 6 : 12;
         }
-        if (rgabe == 0) {
-            System.out.println("Fehler bei GetFacing !!!");
-        }
-        return rgabe;
     }
-
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
     public void talkHojnt(GenericDrawingContext offGraph) {

@@ -133,24 +133,11 @@ abstract public class Krabat extends Mainanim {
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
-        int rgabe = 0;
         if (horizontal) {
-            if (direction_x == 1) {
-                rgabe = 3;
-            } else {
-                rgabe = 9;
-            }
+            return direction_x == 1 ? 3 : 9;
         } else {
-            if (direction_y == 1) {
-                rgabe = 6;
-            } else {
-                rgabe = 12;
-            }
+            return direction_y == 1 ? 6 : 12;
         }
-        if (rgabe == 0) {
-            System.out.println("Fehler bei GetFacing !!!");
-        }
-        return rgabe;
     }
 
     // Hoer auf hier rumzurennen, es gibt anderes zu tun!

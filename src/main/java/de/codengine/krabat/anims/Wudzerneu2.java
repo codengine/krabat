@@ -164,31 +164,27 @@ public class Wudzerneu2 extends Mainanim {
             return false;
         }
 
-        if (true)
-        // Horizontal laufen
-        {
-            // neuen Punkt ermitteln und setzen
-            VerschiebeX();
-            xps = txps;
-            yps = typs;
+        // neuen Punkt ermitteln und setzen
+        VerschiebeX();
+        xps = txps;
+        yps = typs;
 
-            // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 6) {
-                anim_pos = 2;
-            }
+        // Animationsphase weiterschalten
+        anim_pos++;
+        if (anim_pos == 6) {
+            anim_pos = 2;
+        }
 
-            // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeX();
+        // Naechsten Schritt auf Gueltigkeit ueberpruefen
+        VerschiebeX();
 
-            // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * direction_x <= 0) {
-                // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                SetWudzer2Pos(walkto);
-                anim_pos = 1;
-                laeuftNicht = true;
-                return true;
-            }
+        // Ueberschreitung feststellen in X - Richtung
+        if ((walkto.x - (int) txps) * direction_x <= 0) {
+            // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
+            SetWudzer2Pos(walkto);
+            anim_pos = 1;
+            laeuftNicht = true;
+            return true;
         }
 
         laeuftNicht = false;
@@ -204,10 +200,7 @@ public class Wudzerneu2 extends Mainanim {
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = 0;
-        if (horiz_dist != 0) {
-            z = Math.abs(xps - walkto.x) / horiz_dist;
-        }
+        float z = Math.abs(xps - walkto.x) / horiz_dist;
 
         typs = yps;
         if (z != 0) {
