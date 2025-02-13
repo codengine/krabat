@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Install extends Mainloc {
     private GenericImage background;
@@ -543,9 +544,7 @@ public class Install extends Mainloc {
         long Laenge = name.length();
         Feld = new byte[(int) (Laenge + 100)]; // bisschen Reserve fuer das, was noch kommt...
 
-        for (int i = 0; i < Feld.length; i++) {
-            Feld[i] = 32;
-        }
+        Arrays.fill(Feld, (byte) 32);
 
         try {
             FileInputStream Data = new FileInputStream(name);
