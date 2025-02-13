@@ -747,6 +747,7 @@ public class CornyCholmc1 extends Mainloc {
                 break;
 
             case 601:
+            case 1001:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -829,19 +830,6 @@ public class CornyCholmc1 extends Mainloc {
                 nextActionID = 1001;
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
-                break;
-
-            case 1001:
-                // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-
-                nextActionID = Dialog.ActionID;
-
                 break;
 
             case 1010:

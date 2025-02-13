@@ -274,13 +274,6 @@ public class HlownyStraznik extends Mainanim {
                 break;
 
             case 2:
-                if (--Verhinderstand < 1) {
-                    // Schwanken
-                    Verhinderstand = MAX_VERHINDERSTAND;
-                    Stand = 0;
-                }
-                break;
-
             case 3:
                 if (--Verhinderstand < 1) {
                     // Schwanken

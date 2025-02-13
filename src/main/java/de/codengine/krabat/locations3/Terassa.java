@@ -1062,6 +1062,7 @@ public class Terassa extends Mainloc {
                 break;
 
             case 740:
+            case 780:
                 // Ende
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1109,14 +1110,6 @@ public class Terassa extends Mainloc {
                         0, 3, 0, 780);
                 break;
 
-            case 780:
-                // Ende
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                nextActionID = 0;
-                mainFrame.repaint();
-                break;
-
             // Hier Routinen fuer "die Treppe runter"
 
             case 800:
@@ -1149,6 +1142,7 @@ public class Terassa extends Mainloc {
                 break;
 
             case 830:
+            case 930:
                 // wir sind da, nur noch die alten Werte restaurieren
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1186,15 +1180,6 @@ public class Terassa extends Mainloc {
                 isVordergrund = true;
                 InitBorders();
                 nextActionID = 930;
-                break;
-
-            case 930:
-                // wir sind da, nur noch die alten Werte restaurieren
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                nextActionID = MerkActionID;
-                mainFrame.wegGeher.SetzeNeuenWeg(MerkPunkt);
-                mainFrame.repaint();
                 break;
 
             default:

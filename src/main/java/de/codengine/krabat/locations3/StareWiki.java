@@ -2020,6 +2020,7 @@ public class StareWiki extends Mainloc {
                 break;
 
             case 1107:
+            case 1122:
                 // Ende nehmen
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
@@ -2130,15 +2131,6 @@ public class StareWiki extends Mainloc {
                 // Krabat nimmts
                 mainFrame.krabat.nAnimation = 91;
                 nextActionID = 1122;
-                break;
-
-            case 1122:
-                // Ende nehmen
-                if (mainFrame.krabat.nAnimation != 0) {
-                    break;
-                }
-                nextActionID = 900;
-                malIsListening = false;
                 break;
 
             default:

@@ -726,27 +726,21 @@ public class Wotrow extends Mainloc {
                         switch (MerkArray[i][j][2]) {
                             case 0: // Ein Punkt
                             case 1:
+                            case 8:
+                            case 9:
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
                                 break;
 
                             case 2: // Zwei Punkte
                             case 3:
+                            case 6:
+                            case 7:
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
                                 break;
 
                             case 4: // Drei Punkte
                             case 5:
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 2, MerkArray[i][j][1]);
-                                break;
-
-                            case 6: // Zwei Punkte
-                            case 7:
-                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
-                                break;
-
-                            case 8: // Ein Punkt
-                            case 9:
-                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
                                 break;
 
                             default:

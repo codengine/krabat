@@ -1339,23 +1339,17 @@ public class Haty1 extends Mainloc {
                         // den Eintrag zeichnen
                         switch (MerkArray[i][j][2]) {
                             case 0: // Ein Punkt
+                            case 4:
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
                                 break;
 
                             case 1: // Zwei Punkte
+                            case 3:
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
                                 break;
 
                             case 2: // Drei Punkte
                                 g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 2, MerkArray[i][j][1]);
-                                break;
-
-                            case 3: // Zwei Punkte
-                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0] + 1, MerkArray[i][j][1]);
-                                break;
-
-                            case 4: // Ein Punkt
-                                g.drawLine(MerkArray[i][j][0], MerkArray[i][j][1], MerkArray[i][j][0], MerkArray[i][j][1]);
                                 break;
 
                             default:
@@ -2317,6 +2311,7 @@ public class Haty1 extends Mainloc {
                 break;
 
             case 611:
+            case 901:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -2512,19 +2507,6 @@ public class Haty1 extends Mainloc {
                 nextActionID = 901;
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
-                break;
-
-            case 901:
-                // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-
-                nextActionID = Dialog.ActionID;
-
                 break;
 
             case 910:

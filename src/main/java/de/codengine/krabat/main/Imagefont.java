@@ -192,33 +192,19 @@ public class Imagefont {
 
             // Zeichen ausschneiden und in Kontext zeichnen
             switch (ch) {
+                case 81:
                 case 103:
-                    offset = 4;
-                    break;
                 case 106:
-                    offset = 4;
-                    break;
                 case 112:
-                    offset = 4;
-                    break;
                 case 113:
-                    offset = 4;
-                    break;
                 case 121:
                     offset = 4;
                     break;
                 case 74:
                     offset = 2;
                     break;
-                case 81:
-                    offset = 4;
-                    break;
                 case 44:
-                    offset = 3;
-                    break;
                 case 228:
-                    offset = 3;
-                    break;
                 case 231:
                     offset = 3;
                     break;

@@ -1203,6 +1203,8 @@ public class Dingl extends Mainloc {
                 break;
 
             case 601:
+            case 701:
+            case 801:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1383,19 +1385,6 @@ public class Dingl extends Mainloc {
                 nextActionID = 701;
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
-                break;
-
-            case 701:
-                // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-
-                nextActionID = Dialog.ActionID;
-
                 break;
 
             // Antworten Frage 1 ////////////
@@ -1626,19 +1615,6 @@ public class Dingl extends Mainloc {
                 nextActionID = 801;
                 mainFrame.Clipset = false;
                 mainFrame.repaint();
-                break;
-
-            case 801:
-                // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-
-                nextActionID = Dialog.ActionID;
-
                 break;
 
             // Antworten Frage 1 ////////////

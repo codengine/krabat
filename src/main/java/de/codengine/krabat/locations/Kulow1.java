@@ -1801,6 +1801,7 @@ public class Kulow1 extends Mainloc {
                 break;
 
             case 25:
+            case 508:
                 AnimOutputText = "";
                 mainFrame.Clipset = false;
                 AnimCounter = 0;
@@ -1910,17 +1911,6 @@ public class Kulow1 extends Mainloc {
                 if (AnimCounter == 0) {
                     AnimID = 508;
                 }
-                break;
-
-            case 508:
-                AnimOutputText = "";
-                mainFrame.Clipset = false;
-                AnimCounter = 0;
-                AnimTalkPerson = 0;
-                AnimID = 0;
-                AnimActive = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.repaint();
                 break;
 
         }

@@ -740,15 +740,6 @@ public class Rapak2 extends Mainloc {
                 break;
 
             case 100:
-                // Karte einblenden
-                mainFrame.ConstructLocation(106);
-                mainFrame.isAnim = false;
-                mainFrame.whatScreen = 6;
-                nextActionID = 0;
-                mainFrame.Clipset = false;
-                mainFrame.repaint();
-                break;
-
             case 101:
                 // Karte einblenden
                 mainFrame.ConstructLocation(106);

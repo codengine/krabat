@@ -255,25 +255,21 @@ public class Reh extends Mainanim {
                             case 1:
                             case 2:
                             case 3:
+                            case 5:
                                 Animpos[i] = 4;
                                 break;
                             case 4:
                                 Animpos[i] = 5;
                                 break;
-                            case 5:
-                                Animpos[i] = 4;
-                                break;
                             case 8:
                             case 9:
                             case 10:
                             case 11:
+                            case 13:
                                 Animpos[i] = 12;
                                 break;
                             case 12:
                                 Animpos[i] = 13;
-                                break;
-                            case 13:
-                                Animpos[i] = 12;
                                 break;
                         }
                     } else {
@@ -296,25 +292,21 @@ public class Reh extends Mainanim {
                             case 1:
                             case 2:
                             case 3:
+                            case 7:
                                 Animpos[i] = 6;
                                 break;
                             case 6:
                                 Animpos[i] = 7;
                                 break;
-                            case 7:
-                                Animpos[i] = 6;
-                                break;
                             case 8:
                             case 9:
                             case 10:
                             case 11:
+                            case 15:
                                 Animpos[i] = 14;
                                 break;
                             case 14:
                                 Animpos[i] = 15;
-                                break;
-                            case 15:
-                                Animpos[i] = 14;
                                 break;
                         }
                     } else {
