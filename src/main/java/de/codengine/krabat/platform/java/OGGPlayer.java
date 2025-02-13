@@ -239,8 +239,8 @@ public class OGGPlayer extends AbstractPlayer {
                                 }
                                 log.error(new String(value, 0, value.length - 1));
                             }
-                            log.error("\nBitstream is {} channel, {}Hz", vi.channels, vi.rate);
-                            log.error("Encoded by: {}\n", new String(vc.vendor, 0, vc.vendor.length - 1));
+                            log.debug("Bitstream is {} channel, {}Hz", vi.channels, vi.rate);
+                            log.debug("Encoded by: {}", new String(vc.vendor, 0, vc.vendor.length - 1));
                         }
 
                         convsize = 4096 / vi.channels;
