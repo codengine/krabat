@@ -27,6 +27,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Extro extends Mainloc {
     private final GenericImage[] Extropics;
     private GenericImage ludzo_vor_buehne;
@@ -158,7 +160,7 @@ public class Extro extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // sonst noch was zu tun ?
-        if (outputText != "" || Scroller) {
+        if (!Objects.equals(outputText, "") || Scroller) {
             int textColor = FarbenArray[TalkPerson];
             if (Scroller) {
                 textColor = FarbenArray[92];

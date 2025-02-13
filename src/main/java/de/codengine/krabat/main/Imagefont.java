@@ -24,6 +24,8 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
@@ -76,7 +78,7 @@ public class Imagefont {
     // Schreiben eines Strings an best. Pos. in Grafik-Kontext g mit jeweiliger Farbe
     public void drawString(GenericDrawingContext g, String str, int xpos, int ypos, int Farbe) {
         // bei Nullstring tschau
-        if (str == "") {
+        if (Objects.equals(str, "")) {
             return;
         }
 

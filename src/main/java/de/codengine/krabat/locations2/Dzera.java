@@ -27,6 +27,8 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Dzera extends Mainloc {
     private GenericImage background;
 
@@ -145,7 +147,7 @@ public class Dzera extends Mainloc {
         katze.drawKocka(g, TalkPerson, Pkocka);
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

@@ -27,6 +27,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Lodz extends Mainloc {
     private GenericImage background;
     private GenericImage vor1;
@@ -265,7 +267,7 @@ public class Lodz extends Mainloc {
         g.drawImage(vor2, 419, 100);
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

@@ -27,6 +27,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Labyr1 extends Mainlaby {
     private GenericImage background;
     private GenericImage lab12;
@@ -210,7 +212,7 @@ public class Labyr1 extends Mainlaby {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

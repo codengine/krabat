@@ -30,6 +30,8 @@ import de.codengine.krabat.platform.GenericDrawingContext2D;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Zawod1 extends Mainloc {
     private GenericImage domal;
     private GenericImage domar;
@@ -333,7 +335,7 @@ public class Zawod1 extends Mainloc {
             }
 
             // Textausgabe
-            if (outputText != "") {
+            if (!Objects.equals(outputText, "")) {
                 g.setClip(0, 0, 644, 484);
                 mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[13]);
             }
@@ -416,7 +418,7 @@ public class Zawod1 extends Mainloc {
             evalKrabat(g);
 
             // Textausgabe
-            if (outputText != "") {
+            if (!Objects.equals(outputText, "")) {
                 g.setClip(0, 0, 644, 484);
                 mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, Farb);
             }

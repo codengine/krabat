@@ -27,6 +27,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Kuchnja extends Mainloc {
     private GenericImage background;
     private GenericImage herd;
@@ -541,7 +543,7 @@ public class Kuchnja extends Mainloc {
         g.setClip(miy.getX(), miy.getY(), miy.getWidth(), miy.getHeight());
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

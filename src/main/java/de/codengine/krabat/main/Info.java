@@ -25,6 +25,8 @@ import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Info extends Mainanim {
     private GenericImage Bild;
     private GenericImage Jan;
@@ -190,7 +192,7 @@ public class Info extends Mainanim {
             for (int i = 0; i <= 3; i++) {
                 String outputText = BildText[PictureCounter][mainFrame.sprache - 1][i];
                 GenericPoint outputTextPos = BildPunkte[PictureCounter][i];
-                if (outputText != "") // leere Dinger ueberspringen
+                if (!Objects.equals(outputText, "")) // leere Dinger ueberspringen
                 {
                     mainFrame.ifont.drawString(g, outputText, pLO.x + outputTextPos.x + mainFrame.scrollx,
                             pLO.y + outputTextPos.y + mainFrame.scrolly, 0xffff0000);

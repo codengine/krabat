@@ -28,6 +28,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Polo1 extends Mainloc {
     private GenericImage background;
     private GenericImage polo2;
@@ -284,7 +286,7 @@ public class Polo1 extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

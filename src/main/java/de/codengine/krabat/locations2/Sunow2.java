@@ -29,6 +29,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Sunow2 extends Mainloc2 {
     private GenericImage background;
     private GenericImage wegstueck;
@@ -298,7 +300,7 @@ public class Sunow2 extends Mainloc2 {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);

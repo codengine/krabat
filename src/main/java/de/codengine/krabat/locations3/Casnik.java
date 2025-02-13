@@ -27,6 +27,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Casnik extends Mainloc {
     private GenericImage background;
     private GenericImage kozuch;
@@ -407,7 +409,7 @@ public class Casnik extends Mainloc {
         // }
 
         // Ausgabe von Animoutputtext
-        if (AnimOutputText != "") {
+        if (!Objects.equals(AnimOutputText, "")) {
             // Textausgabe
             GenericRectangle may;
             may = g.getClipBounds();
@@ -417,7 +419,7 @@ public class Casnik extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

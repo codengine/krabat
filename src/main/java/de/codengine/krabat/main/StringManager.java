@@ -23,6 +23,7 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.platform.GenericStorageManager;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 public class StringManager {
 
@@ -40,6 +41,6 @@ public class StringManager {
     }
 
     public String getTranslation(String key) {
-        return translations.get(key);
+        return Optional.ofNullable(translations.get(key)).orElseGet(() -> "Missing translation for " + key);
     }
 }

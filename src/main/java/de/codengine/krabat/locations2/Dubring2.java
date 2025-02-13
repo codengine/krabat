@@ -28,6 +28,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Dubring2 extends Mainloc2 {
     private GenericImage backl;
     private GenericImage backr;
@@ -174,7 +176,7 @@ public class Dubring2 extends Mainloc2 {
 
         // Ab hier muss Cliprect wieder gerettet werden
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

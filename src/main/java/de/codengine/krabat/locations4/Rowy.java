@@ -29,6 +29,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Rowy extends Mainloc {
     private GenericImage background;
     private GenericImage backgroundBright;
@@ -506,7 +508,7 @@ public class Rowy extends Mainloc {
 
                 // Redet er etwa gerade ??
                 if (TalkPerson == 36 && mainFrame.talkCount > 0 ||
-                        AnimOutputText != "") {
+                        !Objects.equals(AnimOutputText, "")) {
                     // Nach 4 Frames erneut entscheiden, ob Mueller mit oder ohne Stock redet
                     if (muellerTalkCounter++ % 4 == 0) {
                         muellerTalkWithStock = (int) (Math.random() * 2) != 0;
@@ -849,7 +851,7 @@ public class Rowy extends Mainloc {
         }
 
         // Ausgabe von Animoutputtext
-        if (AnimOutputText != "") {
+        if (!Objects.equals(AnimOutputText, "")) {
             // Textausgabe
             GenericRectangle may;
             may = g.getClipBounds();
@@ -863,7 +865,7 @@ public class Rowy extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

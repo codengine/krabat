@@ -25,6 +25,8 @@ import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Skica extends Mainanim {
     private GenericImage skizze;
 
@@ -72,7 +74,7 @@ public class Skica extends Mainanim {
         g.drawImage(skizze, mainFrame.scrollx, mainFrame.scrolly);
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             // System.out.println ("Skica: Trying to draw text.");
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xff00ff00); // Krabats Frabe

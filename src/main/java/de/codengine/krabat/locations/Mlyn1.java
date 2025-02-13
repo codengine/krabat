@@ -30,6 +30,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Mlyn1 extends Mainloc {
     private GenericImage background;
     private GenericImage offeneTuer;
@@ -366,7 +368,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

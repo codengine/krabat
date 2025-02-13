@@ -26,6 +26,8 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Inmlyn extends Mainloc {
     private GenericImage background1;
     private GenericImage background2;
@@ -251,7 +253,7 @@ public class Inmlyn extends Mainloc {
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
 
         // Textausgabe, falls noetig
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);

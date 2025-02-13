@@ -26,6 +26,8 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class HojntAuto extends Mainloc {
     private GenericImage backl;
     private GenericImage backr;
@@ -360,7 +362,7 @@ public class HojntAuto extends Mainloc {
         evalMouseMoveEvent(mainFrame.Mousepoint);
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

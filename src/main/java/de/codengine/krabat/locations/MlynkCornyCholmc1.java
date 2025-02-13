@@ -31,6 +31,8 @@ import de.codengine.krabat.platform.GenericDrawingContext2D;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class MlynkCornyCholmc1 extends Mainloc {
     private GenericImage background; /* background2, */
     private GenericImage himmel1;
@@ -322,7 +324,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

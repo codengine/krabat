@@ -26,6 +26,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Zachod extends Mainloc {
     private GenericImage background;
     private GenericImage seil;
@@ -420,7 +422,7 @@ public class Zachod extends Mainloc {
         g.setClip(myx.getX(), myx.getY(), myx.getWidth(), myx.getHeight());
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

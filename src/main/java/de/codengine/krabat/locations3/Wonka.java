@@ -26,6 +26,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Wonka extends Mainloc {
     private GenericImage background;
     private GenericImage foreground;
@@ -153,7 +155,7 @@ public class Wonka extends Mainloc {
         g.drawImage(foreground, 0, 297);
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

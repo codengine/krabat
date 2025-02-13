@@ -25,6 +25,7 @@ import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
 import java.util.Vector;
 
 public class Inventar extends Mainanim {
@@ -307,7 +308,7 @@ public class Inventar extends Mainanim {
         }
 
         // Textausgabe, falls noetig
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 1);
         }
 

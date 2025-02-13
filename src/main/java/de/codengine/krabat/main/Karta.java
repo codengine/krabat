@@ -25,6 +25,8 @@ import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import java.util.Objects;
+
 public class Karta extends Mainanim {
     private GenericImage karta;
     private String outputText = "";
@@ -108,7 +110,7 @@ public class Karta extends Mainanim {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xffff0000);
         }

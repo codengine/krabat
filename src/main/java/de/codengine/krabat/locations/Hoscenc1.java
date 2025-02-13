@@ -29,6 +29,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Hoscenc1 extends Mainloc {
     private GenericImage background;
     private GenericImage hosc6;
@@ -370,7 +372,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Ausgabe von AnimText, falls noetig
-        if (AnimOutputText != "" && !AnimMCLocked) {
+        if (!Objects.equals(AnimOutputText, "") && !AnimMCLocked) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
@@ -380,7 +382,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

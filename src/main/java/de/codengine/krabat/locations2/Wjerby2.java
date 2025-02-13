@@ -28,6 +28,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Wjerby2 extends Mainloc2 {
     private GenericImage background;
     private GenericImage weiden2;
@@ -169,7 +171,7 @@ public class Wjerby2 extends Mainloc2 {
         }
 
         // sonst noch was zu tun ?
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();

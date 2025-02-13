@@ -28,6 +28,8 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 
+import java.util.Objects;
+
 public class Doma1 extends Mainloc {
     private GenericImage background1;
     private GenericImage background2;
@@ -494,7 +496,7 @@ public class Doma1 extends Mainloc {
 	  } */
 
         // Textausgabe, falls noetig
-        if (outputText != "") {
+        if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
