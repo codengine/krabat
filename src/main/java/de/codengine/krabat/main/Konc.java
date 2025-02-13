@@ -25,8 +25,11 @@ import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Konc extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Konc.class);
     private int selected = -1;
     private int Anzahl;
     private final String[] Fragen = new String[4];
@@ -116,7 +119,7 @@ public class Konc extends Mainanim {
                         BackgroundMusicPlayer.getInstance().stop();
                         // mainFrame.setVisible(false);
                         // mainFrame.dispose();
-                        System.out.println("Store properties!");
+                        log.debug("Store properties!");
                         gameProperties.saveProperties();
                         System.exit(0);
                         break;

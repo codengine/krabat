@@ -25,10 +25,13 @@ import de.codengine.krabat.anims.PtackZaRapaka;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Inmlyn extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Inmlyn.class);
     private GenericImage background1;
     private GenericImage background2;
     private GenericImage fenster;
@@ -473,7 +476,7 @@ public class Inmlyn extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
     }
 }

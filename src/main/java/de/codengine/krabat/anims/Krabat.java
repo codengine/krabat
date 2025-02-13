@@ -24,8 +24,11 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 abstract public class Krabat extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Krabat.class);
     // alle Variablen, die nach aussen sichtbar sein sollen
 
     public boolean isWandering = false;  // gilt fuer ganze Route
@@ -127,7 +130,7 @@ abstract public class Krabat extends Mainanim {
                 direction_y = -1;
                 break;
             default:
-                System.out.println("Falsche Uhrzeit zum Witzereissen!");
+                log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
 

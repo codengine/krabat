@@ -24,10 +24,13 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Skica extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Skica.class);
     private GenericImage skizze;
 
     private int Counter = 0;
@@ -192,7 +195,7 @@ public class Skica extends Mainanim {
                 break;
 
             default:
-                System.out.println("Wrong NextActionID in main/Skica!");
+                log.error("Wrong NextActionID in main/Skica! nextActionID = {}", nextActionID);
                 break;
         }
     }

@@ -118,7 +118,7 @@ public class OGGPlayer extends AbstractPlayer {
 
             isRunning = true;
 
-            System.out.println("Playing " + filepath + " starts.");
+            log.debug("Playing {} starts.", filepath);
 
             try {
                 outer_endless:
@@ -156,7 +156,7 @@ public class OGGPlayer extends AbstractPlayer {
                                 break;
                             }
 
-                            System.err.println("Input does not appear to be an Ogg bitstream.");
+                            log.error("Input does not appear to be an Ogg bitstream.");
                             isRunning = false;
                             break;
                         }
@@ -167,22 +167,21 @@ public class OGGPlayer extends AbstractPlayer {
                         vc.init();
                         if (os.pagein(og) < 0) {
                             // error; stream version mismatch perhaps
-                            System.err.println("Error reading first page of Ogg bitstream data.");
+                            log.error("Error reading first page of Ogg bitstream data.");
                             isRunning = false;
                             break;
                         }
 
                         if (os.packetout(op) != 1) {
                             // no page? must not be vorbis
-                            System.err.println("Error reading initial header packet.");
+                            log.error("Error reading initial header packet.");
                             isRunning = false;
                             break;
                         }
 
                         if (vi.synthesis_headerin(vc, op) < 0) {
                             // error case; not a vorbis header
-                            System.err
-                                    .println("This Ogg bitstream does not contain Vorbis audio data.");
+                            log.error("This Ogg bitstream does not contain Vorbis audio data.");
                             isRunning = false;
                             break;
                         }
@@ -208,7 +207,7 @@ public class OGGPlayer extends AbstractPlayer {
                                         if (result == -1) {
                                             // Uh oh; data at some point was corrupted or missing!
                                             // We can't tolerate that in a header.  Die.
-                                            System.err.println("Corrupt secondary header.  Exiting.");
+                                            log.error("Corrupt secondary header.  Exiting.");
                                             isRunning = false;
                                             break outer_endless;
                                         }
@@ -223,7 +222,7 @@ public class OGGPlayer extends AbstractPlayer {
                             bytes = inStream.read(buffer, index, 4096);
 
                             if (bytes == 0 && i < 2) {
-                                System.err.println("End of file before finding all Vorbis headers!");
+                                log.error("End of file before finding all Vorbis headers!");
                                 isRunning = false;
                                 break outer_endless;
                             }
@@ -238,12 +237,10 @@ public class OGGPlayer extends AbstractPlayer {
                                 if (value == null) {
                                     break;
                                 }
-                                System.err.println(new String(value, 0, value.length - 1));
+                                log.error(new String(value, 0, value.length - 1));
                             }
-                            System.err.println("\nBitstream is " + vi.channels + " channel, " + vi.rate
-                                    + "Hz");
-                            System.err.println("Encoded by: "
-                                    + new String(vc.vendor, 0, vc.vendor.length - 1) + "\n");
+                            log.error("\nBitstream is {} channel, {}Hz", vi.channels, vi.rate);
+                            log.error("Encoded by: {}\n", new String(vc.vendor, 0, vc.vendor.length - 1));
                         }
 
                         convsize = 4096 / vi.channels;
@@ -274,8 +271,7 @@ public class OGGPlayer extends AbstractPlayer {
                                     break; // need more data
                                 }
                                 if (result == -1) { // missing or corrupt data at this page position
-                                    System.err
-                                            .println("Corrupt or missing data in bitstream; continuing...");
+                                    log.error("Corrupt or missing data in bitstream; continuing...");
                                 } else {
                                     os.pagein(og); // can safely ignore errors at
                                     // this point
@@ -381,7 +377,7 @@ public class OGGPlayer extends AbstractPlayer {
                 log.error("Line unavailable.", e);
             }
 
-            System.out.println("Playing " + filepath + " stops.");
+            log.debug("Playing {} stops.", filepath);
         }
 
         public void terminate() {

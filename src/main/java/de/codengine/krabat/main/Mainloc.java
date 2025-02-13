@@ -23,8 +23,11 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 abstract public class Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Mainloc.class);
     // ID der jeweiligen Location (SS)
     public int locationID;
 
@@ -661,7 +664,7 @@ abstract public class Mainloc {
                 break;
 
             default:
-                System.out.println("Es fehlt eine Ausrede !!!! " + nextActionID);
+                log.error("Es fehlt eine Ausrede !!!! {}", nextActionID);
                 break;
 
         }
@@ -806,7 +809,7 @@ abstract public class Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche ID in SwitchScreen !");
+                log.error("Falsche ID in SwitchScreen! nextActionID = {}", nextActionID);
                 break;
         }
     }

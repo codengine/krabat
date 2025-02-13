@@ -25,8 +25,11 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Mlynk2 extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Mlynk2.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_back;
 
@@ -458,7 +461,7 @@ public class Mlynk2 extends Mainanim {
                 direction_y = -1;
                 break;
             default:
-                System.out.println("Falsche Uhrzeit zum Witzereissen!");
+                log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
 
@@ -497,7 +500,7 @@ public class Mlynk2 extends Mainanim {
 
         int tFacing = GetFacing();
         if (tFacing == 12) {
-            System.out.println("Nach hinten kann er nicht reden !!!");
+            log.debug("Nach hinten kann er nicht reden !!!");
             tFacing = 9;
         }
 
@@ -781,7 +784,7 @@ public class Mlynk2 extends Mainanim {
                 break;
 
             default:
-                System.out.println("Falsche Richtung fuer Mueller angegeben !");
+                log.error("Falsche Richtung fuer Mueller angegeben! Richtung = {}", Richtung);
                 break;
         }
     }
@@ -826,7 +829,7 @@ public class Mlynk2 extends Mainanim {
                 break;
 
             default:
-                System.out.println("Falsche Richtung fuer Mueller angegeben !");
+                log.error("Falsche Richtung fuer Mueller angegeben! Richtung = {}", Richtung);
                 break;
         }
     }

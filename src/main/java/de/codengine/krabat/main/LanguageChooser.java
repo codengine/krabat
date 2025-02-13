@@ -23,8 +23,11 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LanguageChooser extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(LanguageChooser.class);
     private GenericImage background;
     private GenericImage pfeiloben;
     private GenericImage pfeilunten;
@@ -91,7 +94,7 @@ public class LanguageChooser extends Mainloc {
 
         mainFrame.Clipset = false;
 
-        System.out.println("LanguageChooser constructor called!");
+        log.debug("LanguageChooser constructor called!");
 
         mainFrame.Freeze(false);
     }
@@ -122,7 +125,7 @@ public class LanguageChooser extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
 
-        System.out.println("LanguageChooser repaint with clipset=" + mainFrame.Clipset);
+        log.debug("LanguageChooser repaint with clipset={}", mainFrame.Clipset);
 
         // Credits-Background zeichnen
         if (!mainFrame.Clipset) {
@@ -152,7 +155,7 @@ public class LanguageChooser extends Mainloc {
             if (oldLang <= languages.length) {
                 mainFrame.ifont.drawString(g, languages[oldLang - 1], X_LEFT + mainFrame.scrollx, mainFrame.scrolly + Y_UP + (oldLang - Index - 1) * 25, 0xff800000);
             } else {
-                System.out.println("Wrong language to deselect!");
+                log.warn("Wrong language to deselect! oldLang: {}, languages.length: {}", oldLang, languages.length);
             }
         }
         if (oldLang != 0) {
@@ -163,7 +166,7 @@ public class LanguageChooser extends Mainloc {
             if (currLang <= languages.length) {
                 mainFrame.ifont.drawString(g, languages[currLang - 1], X_LEFT + mainFrame.scrollx, mainFrame.scrolly + Y_UP + (currLang - Index - 1) * 25, 0xffff0000);
             } else {
-                System.out.println("Wrong language to select!");
+                log.warn("Wrong language to select! currLang: {}, languages.length: {}", currLang, languages.length);
             }
         }
         if (currLang != 0) {
@@ -184,7 +187,7 @@ public class LanguageChooser extends Mainloc {
                 mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xff800000);
                 break;
             default:
-                System.out.println("Falsches Menu-Item zum abdunkeln!!!");
+                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
         }
 
         if (olditem != 0) {
@@ -205,7 +208,7 @@ public class LanguageChooser extends Mainloc {
                 mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xffff0000);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
         }
 
         if (menuitem != 0) {
@@ -244,7 +247,7 @@ public class LanguageChooser extends Mainloc {
         }
 
         if (brOk.IsPointInRect(pTemp) && currLang != 0) {
-            System.out.println("Selected language = " + currLang);
+            log.debug("Selected language = {}", currLang);
             if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
                     || abbreviations[currLang - 1].equalsIgnoreCase("ds")
                     || abbreviations[currLang - 1].equalsIgnoreCase("de")) {
@@ -280,7 +283,7 @@ public class LanguageChooser extends Mainloc {
                 if (pTemp.y >= Y_UP + (i - Index) * 25 && pTemp.y < Y_UP + (i - Index) * 25 + 24) {
                     currLang = i + 1;
                     mainFrame.repaint();
-                    System.out.println("Selected lang=" + abbreviations[i]);
+                    log.debug("Selected lang={}", abbreviations[i]);
                     break;
                 }
             }

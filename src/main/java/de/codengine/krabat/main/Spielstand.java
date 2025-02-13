@@ -22,10 +22,13 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Vector;
 
 public class Spielstand {
+    private static final Logger log = LoggerFactory.getLogger(Spielstand.class);
     public int Location;
     private GenericPoint Krabatpos;
     private int isHornjos;
@@ -265,7 +268,7 @@ public class Spielstand {
 
         boolean success = mainFrame.storageManager.saveToFile(Feld, Stand);
         if (!success) {
-            System.out.println("File save error!");
+            log.error("File save error!");
         }
 
         // System.out.println("Checksumme : " + Checksum + " Feld : " + (int) Feld[undwo] + " Pos : " + (undwo));

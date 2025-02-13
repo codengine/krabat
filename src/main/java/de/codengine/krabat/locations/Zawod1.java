@@ -29,10 +29,13 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericDrawingContext2D;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Zawod1 extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Zawod1.class);
     private GenericImage domal;
     private GenericImage domar;
     private GenericImage sky;
@@ -500,7 +503,7 @@ public class Zawod1 extends Mainloc {
                 break;
 
             default: // Fehler
-                System.out.println("Falscher Krabat gewuenscht !");
+                log.error("Falscher Krabat gewuenscht! IntroStep = {}", IntroStep);
                 break;
         }
     }
@@ -604,7 +607,7 @@ public class Zawod1 extends Mainloc {
 
             // Load - Screen aktivieren
             if (Taste == GenericKeyEvent.VK_F3) {
-                System.out.println("----- Enable open screen in intro! -----");
+                log.debug("----- Enable open screen in intro! -----");
                 skipActionID = 120;
                 mainFrame.repaint();
             }
@@ -683,7 +686,7 @@ public class Zawod1 extends Mainloc {
                     break;
 
                 default:
-                    System.out.println("Wrong SkipAction !!");
+                    log.error("Wrong SkipAction !! skipActionID = {}", skipActionID);
             }
         } else {
             // System.out.println ("A-ID" + nextActionID);
@@ -844,7 +847,7 @@ public class Zawod1 extends Mainloc {
                     break;
 
                 default:
-                    System.out.println("Wrong Action !!");
+                    log.error("Wrong Action!! nextActionID = {}", nextActionID);
             }
         }
     }

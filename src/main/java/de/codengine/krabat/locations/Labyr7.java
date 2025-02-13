@@ -27,10 +27,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Labyr7 extends Mainlaby {
+    private static final Logger log = LoggerFactory.getLogger(Labyr7.class);
     private GenericImage background;
     private GenericImage lab72;
 
@@ -65,7 +68,7 @@ public class Labyr7 extends Mainlaby {
     // Instanz von dieser Location erzeugen
     public Labyr7(Start caller, int Richtung) {
         super(caller);
-        System.out.println("Laby 7");
+        log.debug("Laby 7");
 
         mainFrame.Freeze(true);
 
@@ -684,7 +687,7 @@ public class Labyr7 extends Mainlaby {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

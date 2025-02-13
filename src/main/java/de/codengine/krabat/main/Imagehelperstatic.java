@@ -22,8 +22,11 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericToolkitImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Imagehelperstatic {
+    private static final Logger log = LoggerFactory.getLogger(Imagehelperstatic.class);
     private final int char_height = 21;  // Hoehe eines Zeichens in Pixeln
     // private GenericImage Fontbild;
     private int[][] ftable;
@@ -571,26 +574,25 @@ public class Imagehelperstatic {
         int[] xx = new int[tmp.length];
 
         for (int i = 0; i < tmp.length; i++) {
-            // Transparenz
-            if (tmp[i] == 5) {
-                xx[i] = 0x00c0c0c0;
-            } else {
-                // Schwarzer Schatten
-                if (tmp[i] == 10) {
+            switch (tmp[i]) {
+                case 5:
+                    // Transparenz
+                    xx[i] = 0x00c0c0c0;
+                    break;
+                case 10:
+                    // Schwarzer Schatten
                     xx[i] = 0xff000000;
-                } else {
+                    break;
+                case 15:
                     // Textfarbe
-                    if (tmp[i] == 15) {
-                        xx[i] = 0xff00ff00;
-                    } else {
-                        // Randfarbe
-                        if (tmp[i] == 20) {
-                            xx[i] = 0xff000000;
-                        } else {
-                            System.out.print("?");
-                        }
-                    }
-                }
+                    xx[i] = 0xff00ff00;
+                    break;
+                case 20:
+                    // Randfarbe
+                    xx[i] = 0xff000000;
+                    break;
+                default:
+                    log.warn("{}?", tmp[i]);
             }
         }
 

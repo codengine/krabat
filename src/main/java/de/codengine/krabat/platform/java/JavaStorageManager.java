@@ -158,7 +158,7 @@ public class JavaStorageManager extends GenericStorageManager {
             BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
             props.load(stream);
         } catch (IOException e) {
-            System.out.println("---- Warning: Game properties could not be loaded ----");
+            log.warn("Game properties could not be loaded", e);
             // intentionally empty
         }
     }
@@ -173,7 +173,7 @@ public class JavaStorageManager extends GenericStorageManager {
             stream.close();
         } catch (IOException e) {
             // intentionally empty
-            System.out.println("---- ERROR: Game properties could not be saved ----");
+            log.error("Game properties could not be saved", e);
         }
     }
 

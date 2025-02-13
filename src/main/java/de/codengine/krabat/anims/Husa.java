@@ -24,9 +24,12 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Husa extends Mainanim {
 
+    private static final Logger log = LoggerFactory.getLogger(Husa.class);
     private final GenericImage[][] Gaense;
     private final Borderrect Grenze;
     private float Positx;
@@ -162,7 +165,7 @@ public class Husa extends Mainanim {
                             Richtung--;
                             break;
                         default:
-                            System.out.println("Falsche Richtungsvariable aufgetreten !");
+                            log.error("Falsche Richtungsvariable aufgetreten! Richtung = {}", Richtung);
                     }
                 }
             }

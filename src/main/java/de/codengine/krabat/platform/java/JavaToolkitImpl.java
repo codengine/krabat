@@ -27,12 +27,15 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericCursor;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericToolkitImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.image.*;
 
 public class JavaToolkitImpl extends GenericToolkitImpl {
 
+    private static final Logger log = LoggerFactory.getLogger(JavaToolkitImpl.class);
     private final Component comp;
 
     public JavaToolkitImpl(Component comp) {
@@ -100,7 +103,7 @@ public class JavaToolkitImpl extends GenericToolkitImpl {
             Thread.currentThread().interrupt();
         }
         if (!success) {
-            System.err.println("Error grabbing pixels!");
+            log.error("Error grabbing pixels!");
         }
     }
 

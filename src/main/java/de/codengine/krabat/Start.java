@@ -28,11 +28,14 @@ import de.codengine.krabat.locations4.*;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.*;
 import de.codengine.krabat.sound.AbstractPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Hashtable;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Start implements Runnable {
+    private static final Logger log = LoggerFactory.getLogger(Start.class);
     // private static final boolean have_png = true;
 
     public Thread animator;
@@ -172,8 +175,7 @@ public class Start implements Runnable {
         try {
             tmpLangIndex = Integer.parseInt(gameProperties.getProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX));
         } catch (NumberFormatException e) {
-            System.out.println("Unrecognized game language index string:'"
-                    + gameProperties.getProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX) + "'.");
+            log.warn("Unrecognized game language index string:'{}'.", gameProperties.getProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX));
         }
 
         if (tmpLangIndex >= 1 && tmpLangIndex <= 3) {
@@ -188,8 +190,8 @@ public class Start implements Runnable {
         // if no language selected yet, this will load German
         stringManager.defineThirdLanguage(LanguageSupportMapper.getLanguageFilename(thirdGameLanguage), false, "");
 
-        System.out.println("Sprache " + sprache);
-        System.out.println("Third language: " + thirdGameLanguage);
+        log.info("Sprache {}", sprache);
+        log.info("Third language: {}", thirdGameLanguage);
 
         // feststellen, ob Sound abgespielt werden darf und wie
         wave = player;
@@ -221,7 +223,7 @@ public class Start implements Runnable {
 
         // getrenntes Laden vom Imagebild und Ausschneiden
         // ifont.init();
-        System.out.println("Font is cut.");
+        log.trace("Font is cut.");
 
         //unsichtbares Bild fuer Double-Buffering erzeugen
 
@@ -247,7 +249,7 @@ public class Start implements Runnable {
     protected void runGamePt3() {
         offImage = GenericToolkit.getDefaultToolkit().createImage(1280, 480);
         offGraphics = offImage.getGraphics();
-        System.out.println("Got DB Offscreen-Image");
+        log.debug("Got DB Offscreen-Image");
 
         if (LanguageSupportMapper.getInternalCode(thirdGameLanguage) == 0) {
             // show language chooser
@@ -259,7 +261,7 @@ public class Start implements Runnable {
 
         start_thread();
         repaint();
-        System.out.println("Well, here we go...");
+        log.debug("Well, here we go...");
     }
 
     // Hier wird alles fuer Neustart initialisiert
@@ -349,7 +351,7 @@ public class Start implements Runnable {
                     skica.paintSkizze(offGraphics);
                     break;
                 default:
-                    System.out.println("Wrong Paint Prio 2 !");
+                    log.error("Wrong Paint Prio 2! whatScreen = {}", whatScreen);
             }
             // g.drawImage(offImage, -scrollx, -scrolly, observer);
             return offImage;
@@ -362,7 +364,7 @@ public class Start implements Runnable {
         if (currentLocation != null) {
             currentLocation.paintLocation(offGraphics);
         } else {
-            System.out.println("Null-Painting !");
+            log.error("Null-Painting !");
         }
 
         // Hier Anzeige von Mausposition und Scaling - Variable fuer manuelles Zooming
@@ -562,7 +564,7 @@ public class Start implements Runnable {
                     skica.evalMouseExitEvent();
                     break;
                 default:
-                    System.out.println("Wrong Exitevent !");
+                    log.error("Wrong Exitevent! whatScreen = {}", whatScreen);
             }
             return;
         }
@@ -617,7 +619,7 @@ public class Start implements Runnable {
                     skica.evalMouseEvent(e);
                     break;
                 default:
-                    System.out.println("Wrong Pressevent Prio 2 !");
+                    log.error("Wrong Pressevent Prio 2! whatScreen = {}", whatScreen);
             }
             return;
         }
@@ -675,7 +677,7 @@ public class Start implements Runnable {
                     skica.evalMouseMoveEvent();
                     break;
                 default:
-                    System.out.println("Wrong Moveevent Prio 2");
+                    log.error("Wrong Moveevent Prio 2! whatScreen = {}", whatScreen);
             }
             return;
         }
@@ -1064,7 +1066,7 @@ public class Start implements Runnable {
                 currentLocation = new Doma4(this);
                 break;
             default:
-                System.out.println("Falsche Location-ID fuer Konstruktor !");
+                log.error("Falsche Location-ID fuer Konstruktor! newLocation: {}", newLocation);
         }
         currLocation = newLocation;
 
@@ -1118,7 +1120,7 @@ public class Start implements Runnable {
                 currentLocation = new Labyr12(this, Richtung);
                 break;
             default:
-                System.out.println("Nott awajlebbl!!");
+                log.error("Not available! newLocation: {}", newLocation);
         }
         currLocation = newLocation;
 
@@ -1198,7 +1200,7 @@ public class Start implements Runnable {
                     skica.evalKeyEvent(e);
                     break;
                 default:
-                    System.out.println("Wrong Keyevent Prio 2 !");
+                    log.error("Wrong Keyevent Prio 2! whatScreen: {}", whatScreen);
             }
             return;
         }

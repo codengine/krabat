@@ -27,10 +27,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Spaniska extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Spaniska.class);
     private GenericImage background;
     private GenericImage stolc;
     private GenericImage roze;
@@ -522,7 +525,7 @@ public class Spaniska extends Mainloc {
                     pTxxx = pPapier;
                 }
 
-                System.out.println("Point = " + pTxxx.x + " " + pTxxx.y);
+                log.debug("Point = {} {}", pTxxx.x, pTxxx.y);
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
                 mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
@@ -631,7 +634,7 @@ public class Spaniska extends Mainloc {
                     }
                 }
 
-                System.out.println("Point = " + pTxxx.x + " " + pTxxx.y);
+                log.debug("Point = {} {}", pTxxx.x, pTxxx.y);
 
                 mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
                 mainFrame.repaint();
@@ -1280,7 +1283,7 @@ public class Spaniska extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
     }
 

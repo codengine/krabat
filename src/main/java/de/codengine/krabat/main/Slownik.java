@@ -24,8 +24,11 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Slownik extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Slownik.class);
     private GenericImage background;
     private GenericImage pfeiloben;
     private GenericImage pfeilunten;
@@ -229,7 +232,7 @@ public class Slownik extends Mainanim {
                 g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Falsches Menu-Item zum abdunkeln!!!");
+                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
         }
 
         if (olditem != 0) {
@@ -247,7 +250,7 @@ public class Slownik extends Mainanim {
                 g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
         }
 
         if (menuitem != 0) {

@@ -21,13 +21,17 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
+import de.codengine.krabat.main.Debug;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.main.GenericRectangle;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Kacka2 extends Mainanim {
 
+    private static final Logger log = LoggerFactory.getLogger(Kacka2.class);
     private final GenericImage[] kacka_flieg;
     private final GenericImage[] kacka_lande;
     private final GenericImage[] kacka_rede;
@@ -122,7 +126,9 @@ public class Kacka2 extends Mainanim {
 
         Yoffset = Ydiff / Xdiff * Xoffset;
 
-        System.out.println("Yoffset = " + Yoffset);
+        if(Debug.enabled) {
+            log.debug("Yoffset = {}", Yoffset);
+        }
     }
 
     // evaluiere Rechteck zum Loeschen der Ente

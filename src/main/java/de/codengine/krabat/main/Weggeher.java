@@ -21,10 +21,13 @@
 package de.codengine.krabat.main;
 
 import de.codengine.krabat.Start;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Vector;
 
 public class Weggeher {
+    private static final Logger log = LoggerFactory.getLogger(Weggeher.class);
     private final Start mainFrame;
     public final Vector<Bordertrapez> vBorders;
     public GenericPoint destinationPlace;
@@ -56,7 +59,7 @@ public class Weggeher {
         // Wurde ggw. Rechteck korrekt ermittelt ?
         if (currBorder < 0) {
             currBorder = RightRect();
-            System.out.println("Rectangle wurde neubestimmt : " + currBorder);
+            log.debug("Rectangle wurde neubestimmt : {}", currBorder);
         }
 
         // Mitte-Koordinaten auf Fuss-Koordinaten umrechnen
@@ -77,7 +80,7 @@ public class Weggeher {
         // liegt Ziel innerhalb des optimalen GrenzRectangle ?
         tBestRect = vBorders.elementAt(bestRect);
 
-        System.out.println("BestRect : " + bestRect);
+        log.debug("BestRect : {}", bestRect);
 
         if (!tBestRect.PointInside(feetPoint)) {
             // optimales Ziel im Rectangle suchen
@@ -196,7 +199,7 @@ public class Weggeher {
                 break;
             }
         }
-        System.out.println("Aktuelles RE : " + nTemp);
+        log.debug("Aktuelles RE : {}", nTemp);
         return nTemp;
     }
 
@@ -209,7 +212,7 @@ public class Weggeher {
         boolean mittenlauf = false;
         if (vBestWeg.size() - wegPosition > 2) {
             mittenlauf = true;
-            System.out.println("Mittenlauf initiiert!");
+            log.debug("Mittenlauf initiiert!");
         }
 
         GenericPoint pBest = new GenericPoint(0, 0);
@@ -298,7 +301,7 @@ public class Weggeher {
             return pBest;
         }
 
-        System.out.println("Fehler im Optimaluebergang !!! Rects falsch!!!");
+        log.error("Fehler im Optimaluebergang !!! Rects falsch!!!");
 
         return pBest;
     }

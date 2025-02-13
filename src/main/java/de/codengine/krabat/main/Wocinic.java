@@ -24,8 +24,11 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Wocinic extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Wocinic.class);
     private boolean Paintcall = false;
 
     private GenericImage LScreen;
@@ -110,7 +113,7 @@ public class Wocinic extends Mainanim {
 
     public void paintLaden(GenericDrawingContext g) {
 
-        System.out.println("********** PaintLaden!");
+        log.trace("********** PaintLaden!");
 
         // Laden-Background zeichnen
         if (!mainFrame.Clipset) {
@@ -184,7 +187,7 @@ public class Wocinic extends Mainanim {
                 g.setClip(tep);
                 break;
             default:
-                System.out.println("Falsches Menu-Item zum loeschen!!!");
+                log.error("Falsches Menu-Item zum loeschen!!! olditem = {}", olditem);
         }
         if (olditem != 0) {
             olditem = 0;
@@ -206,7 +209,7 @@ public class Wocinic extends Mainanim {
                 g.setClip(tepm);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
         }
         if (menuitem != 0) {
             olditem = menuitem;

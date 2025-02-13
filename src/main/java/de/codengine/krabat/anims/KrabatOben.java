@@ -25,8 +25,11 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class KrabatOben extends Krabat {
+    private static final Logger log = LoggerFactory.getLogger(KrabatOben.class);
     // Alle "von - oben" Images
     private final GenericImage[] krabato_left;
     private final GenericImage[] krabato_right;
@@ -467,7 +470,7 @@ public class KrabatOben extends Krabat {
         if (Math.abs(aim.x - (int) xps) < lohnx &&
                 Math.abs(aim.y - (int) yps) < lohny) {
             isWalking = false;
-            System.out.println("Nicht gerade lohnend !!");
+            log.debug("Nicht gerade lohnend !!");
             if (!isWandering && clearanimpos) {
                 anim_pos = 0;
             }

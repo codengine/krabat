@@ -26,10 +26,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Zahrodnik extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Zahrodnik.class);
     private GenericImage background;
     private GenericImage hrod;
     private final Handrij handrij;
@@ -1195,7 +1198,7 @@ public class Zahrodnik extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

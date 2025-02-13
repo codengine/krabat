@@ -25,8 +25,11 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class KrabatDrasta extends Krabat {
+    private static final Logger log = LoggerFactory.getLogger(KrabatDrasta.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_left;
     private final GenericImage[] krabat_right;
@@ -594,7 +597,7 @@ public class KrabatDrasta extends Krabat {
         if (Math.abs(aim.x - (int) xps) < lohnenx &&
                 Math.abs(aim.y - (int) yps) < lohneny) {
             isWalking = false;
-            System.out.println("Lohnt sich nicht !");
+            log.debug("Lohnt sich nicht !");
             if (!isWandering && clearanimpos) {
                 // System.out.println("Animpos wurde zurueckgesetzt !");
                 anim_pos = 0;
@@ -853,7 +856,7 @@ public class KrabatDrasta extends Krabat {
                             break;
 
                         default:
-                            System.out.println("Falsche Do-Animation verlangt !");
+                            log.error("Falsche Do-Animation verlangt! nAnimation = {}", nAnimation);
                             break;
                     }
 

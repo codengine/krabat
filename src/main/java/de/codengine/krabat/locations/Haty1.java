@@ -26,10 +26,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Haty1 extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Haty1.class);
     private GenericImage background;
     private boolean switchanim = false;
 
@@ -612,7 +615,7 @@ public class Haty1 extends Mainloc {
                     break;
 
                 default: // Fehler !!
-                    System.out.println("Falsche Sonderanim !!!");
+                    log.error("Falsche Sonderanim !!! Sonderstatus = {}", Sonderstatus);
                     nochaktiv = false;
                     break;
             }
@@ -1353,7 +1356,7 @@ public class Haty1 extends Mainloc {
                                 break;
 
                             default:
-                                System.out.println("Fehler in Blinkerroutine !!!");
+                                log.error("Fehler in Blinkerroutine !!! {}", MerkArray[i][j][2]);
 
                         }
 
@@ -2628,7 +2631,7 @@ public class Haty1 extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

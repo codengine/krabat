@@ -27,10 +27,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Wila2 extends Mainloc2 {
+    private static final Logger log = LoggerFactory.getLogger(Wila2.class);
     private GenericImage background;
     private Mlynk2 mueller;
     private boolean setAnim = false;
@@ -742,7 +745,7 @@ public class Wila2 extends Mainloc2 {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

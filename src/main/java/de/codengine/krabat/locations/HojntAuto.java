@@ -25,10 +25,13 @@ import de.codengine.krabat.anims.Hojnt;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class HojntAuto extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(HojntAuto.class);
     private GenericImage backl;
     private GenericImage backr;
     private GenericImage skyl;
@@ -100,7 +103,7 @@ public class HojntAuto extends Mainloc {
 
         // An Hoelzern gezogen Hinlauf
         if (!mainFrame.Actions[216] && !mainFrame.Actions[217] && !mainFrame.Actions[218]) {
-            System.out.println("An den Hoelzern gezogen - Hinlauf !");
+            log.debug("An den Hoelzern gezogen - Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 0;
@@ -110,7 +113,7 @@ public class HojntAuto extends Mainloc {
 
         // An Strick gezogen Hinlauf
         if (!mainFrame.Actions[216] && mainFrame.Actions[217] && !mainFrame.Actions[218]) {
-            System.out.println("Am Strick gezogen Hinlauf !");
+            log.debug("Am Strick gezogen Hinlauf !");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 0;
@@ -120,7 +123,7 @@ public class HojntAuto extends Mainloc {
 
         // Ruecklauf
         if (mainFrame.Actions[216] && !mainFrame.Actions[218]) {
-            System.out.println("Ruecklauf aus beiden Szenen !");
+            log.debug("Ruecklauf aus beiden Szenen !");
             isDoorOpen = true;
             jaeger.SetHojntPos(Pright);
             jaeger.SetFacing(9);
@@ -132,7 +135,7 @@ public class HojntAuto extends Mainloc {
 
         // Szene, wenn Krabat in die Grube faellt
         if (mainFrame.Actions[218]) {
-            System.out.println("Szene : K in Grube.");
+            log.debug("Szene : K in Grube.");
             jaeger.SetHojntPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 210;
@@ -662,7 +665,7 @@ public class HojntAuto extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
     }
 }

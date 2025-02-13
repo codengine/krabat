@@ -24,10 +24,13 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Karta extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Karta.class);
     private GenericImage karta;
     private String outputText = "";
     private GenericPoint outputTextPos;
@@ -501,7 +504,7 @@ public class Karta extends Mainanim {
                     break;
 
                 default:
-                    System.out.println("Fehler im Chooser der Strings / Positionen");
+                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
                     break;
             }
         }
@@ -548,7 +551,7 @@ public class Karta extends Mainanim {
                     break;
 
                 default:
-                    System.out.println("Fehler im Chooser der Strings / Positionen");
+                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
                     break;
             }
         }
@@ -595,7 +598,7 @@ public class Karta extends Mainanim {
                     break;
 
                 default:
-                    System.out.println("Fehler im Chooser der Strings / Positionen");
+                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
                     break;
             }
         }
@@ -768,7 +771,7 @@ public class Karta extends Mainanim {
                 break;
 
             default:
-                System.out.println("Fehler beim Locationaussuchen aufgetreten !");
+                log.error("Fehler beim Locationaussuchen aufgetreten! Ziel = {}", Ziel);
                 break;
         }
 

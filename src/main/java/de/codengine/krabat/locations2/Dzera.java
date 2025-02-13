@@ -26,10 +26,13 @@ import de.codengine.krabat.anims.Mlynk2;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Dzera extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Dzera.class);
     private GenericImage background;
 
     private Mlynk2 mueller;
@@ -369,7 +372,7 @@ public class Dzera extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

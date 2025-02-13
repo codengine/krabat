@@ -23,6 +23,8 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
@@ -30,6 +32,7 @@ public class Imagefont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
     private static final int ABSTAND = 25; // Abstand von 2 Zeilen
     public static final int MAX_WIDTH = 600;
+    private static final Logger log = LoggerFactory.getLogger(Imagefont.class);
     public final GenericImage[] redFont;
     private final Start mainFrame;
     // private imagehelpercutandsave im2;
@@ -424,7 +427,7 @@ public class Imagefont {
                 temp = 238;
                 break;             // klein r-Strich (x)
             default:
-                System.out.println("Achtung !!!!!!!!!! Falsches Sonderzeichen - Space auf dem Screen !!!!!!!!!!!!!");
+                log.error("Achtung !!!!!!!!!! Falsches Sonderzeichen '{}' - Space auf dem Screen !!!!!!!!!!!!!", s_char);
                 break;
         }
 

@@ -24,8 +24,11 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Hauptmenu extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Hauptmenu.class);
     private GenericImage Screen;
     private GenericImage Nowostart;
     private GenericImage Wocinic;
@@ -239,7 +242,7 @@ public class Hauptmenu extends Mainanim {
                 g.drawImage(Screen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Falsches Menu-Item zum abdunkeln!!!");
+                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
         }
 
         if (olditem != 0) {
@@ -293,7 +296,7 @@ public class Hauptmenu extends Mainanim {
                 g.drawImage(Konc, brKonc.lo_point.x + mainFrame.scrollx, brKonc.lo_point.y + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
         }
 
         if (menuitem != 0) {

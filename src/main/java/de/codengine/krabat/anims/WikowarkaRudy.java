@@ -25,8 +25,11 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WikowarkaRudy extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(WikowarkaRudy.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_front;
     private final GenericImage[] krabat_back;
@@ -410,7 +413,7 @@ public class WikowarkaRudy extends Mainanim {
                 direction_y = -1;
                 break;
             default:
-                System.out.println("Falsche Uhrzeit zum Witzereissen!");
+                log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
 

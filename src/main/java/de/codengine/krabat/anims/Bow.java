@@ -24,8 +24,11 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Bow extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Bow.class);
     private final GenericImage[] bow;
 
     private int Bowcount = 1;
@@ -116,7 +119,7 @@ public class Bow extends Mainanim {
                 break;
 
             default:
-                System.out.println("Falsche Eimerphase aufgetreten !!");
+                log.error("Falsche Eimerphase aufgetreten !! bowCount = {}", Bowcount);
                 break;
         }
 

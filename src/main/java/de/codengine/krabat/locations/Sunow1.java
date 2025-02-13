@@ -26,10 +26,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Sunow1 extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Sunow1.class);
     private GenericImage background;
     private GenericImage wegstueck;
     private int oldActionID = 0;
@@ -498,13 +501,13 @@ public class Sunow1 extends Mainloc {
 
             // Punkt vor dem Verschwinden berechnen
             GenericPoint rand = TalTrapez.Punkte(kpos.y);
-            System.out.println(rand.x + " " + kpos.x + " " + rand.y);
+            log.debug("randx: {} kposx: {} randy: {}", rand.x, kpos.x, rand.y);
             pTemp.y = TalTrapez.y2;
             float t1 = kpos.x - rand.x;
             float t2 = rand.y - rand.x;
             float teil = t1 / t2;
             pTemp.x = TalTrapez.x3 + (int) ((TalTrapez.x4 - TalTrapez.x3) * teil);
-            System.out.println(teil);
+            log.debug("teil: {}", teil);
 
             // Punkte waehrend Berglauf berechnen
             Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
@@ -512,7 +515,7 @@ public class Sunow1 extends Mainloc {
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
-            System.out.println(Wendepunkt.x + " " + Wendepunkt.y + " " + Endpunkt.x + " " + Endpunkt.y);
+            log.debug("Wendepunkt.x: {} Wendepunkt.y: {} Endpunkt.x: {} Endpunkt.y: {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
             return true;
         }
 
@@ -526,12 +529,12 @@ public class Sunow1 extends Mainloc {
 
             // Punkt vor Verschwinden berechnen
             GenericPoint raud = BergTrapez.Punkte(kpos.y);
-            System.out.println(raud.x + " " + kpos.x + " " + raud.y);
+            log.debug("raud.x: {} kpos.x: {} raud.y: {}", raud.x, kpos.x, raud.y);
             pTemp.y = BergTrapez.y1;
             float t3 = kpos.x - raud.x;
             float t4 = raud.y - raud.x;
             float teal = t3 / t4;
-            System.out.println(teal);
+            log.debug("teal: {}", teal);
 
             if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
@@ -547,7 +550,7 @@ public class Sunow1 extends Mainloc {
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
-            System.out.println(Wendepunkt.x + " " + Wendepunkt.y + " " + Endpunkt.x + " " + Endpunkt.y);
+            log.debug("Wendepunkt.x: {} Wendepunkt.y: {} Endpunkt.x: {} Endpunkt.y: {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
             return true;
         }
         return false;
@@ -732,7 +735,7 @@ public class Sunow1 extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

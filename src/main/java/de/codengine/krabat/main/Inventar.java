@@ -24,11 +24,14 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 import java.util.Vector;
 
 public class Inventar extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Inventar.class);
     private GenericImage iInventar;
     private GenericImage inactiveMenu;
     private GenericImage activeMenu;
@@ -257,7 +260,7 @@ public class Inventar extends Mainanim {
                 g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Wrong inv - menuitem to clear!");
+                log.error("Wrong inv - menuitem to clear! olditem = {}", olditem);
         }
 
         olditem = 0;  // anders loesen! - too many repaints
@@ -276,7 +279,7 @@ public class Inventar extends Mainanim {
                 g.drawImage(Pfeilr, 280 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Wrong inventar-menuitem!!!");
+                log.error("Wrong inventar-menuitem!!! menuitem = {}", menuitem);
         }
 
         if (menuitem != 0) {
@@ -1550,7 +1553,7 @@ public class Inventar extends Mainanim {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
         nextActionID = 0;  // ID zuruecksetzen

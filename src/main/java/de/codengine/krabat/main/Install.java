@@ -23,6 +23,8 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,6 +33,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class Install extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Install.class);
     private GenericImage background;
     private GenericImage Pfeil;
     private GenericImage DPfeil;
@@ -192,7 +195,7 @@ public class Install extends Mainloc {
                     g.drawImage(DPfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                     break;
                 default:
-                    System.out.println("Falsches Menu-Item!!!");
+                    log.error("Falsches Menu-Item!!! olditem = {}", olditem);
             }
 
             if (olditem != 0) {
@@ -207,7 +210,7 @@ public class Install extends Mainloc {
                     g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                     break;
                 default:
-                    System.out.println("Falsches Menu-Item!!!");
+                    log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
             }
 
             if (menuitem != 0) {
@@ -476,7 +479,7 @@ public class Install extends Mainloc {
             mainFrame.DestructLocation(105);
             mainFrame.repaint();
         } else {
-            System.out.println("Wrong ID in Installer !!");
+            log.error("Wrong ID in Installer !! nextActionID = {}", nextActionID);
         }
     }
 
@@ -505,7 +508,7 @@ public class Install extends Mainloc {
         // die beiden "console" - Ausdruecke einfuegen
         int erster = SearchStringInByte(Such1);
         int wieweit = SucheEnter(erster);
-        System.out.println("Es steht was da von " + erster + " " + wieweit);
+        log.debug("Es steht was da von {} {}", erster, wieweit);
         Loesche(erster, wieweit - erster + 1);
         Einfuege(erster, Text1.length());
         Einsetze(Text1, erster);
@@ -531,12 +534,12 @@ public class Install extends Mainloc {
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     private boolean LoadFile() {
         if (!name.exists()) {
-            System.out.println("Fehlerhafte Installation - Krabat.lax fehlt !");
+            log.error("Fehlerhafte Installation - Krabat.lax fehlt !");
             return false;
         }
 
         if (!name.canWrite()) {
-            System.out.println("Kann Krabat.lax nicht veraendern !");
+            log.error("Kann Krabat.lax nicht veraendern !");
             return false;
         }
 
@@ -551,7 +554,7 @@ public class Install extends Mainloc {
             // Position = Data.read (Feld);
             Data.close();
         } catch (IOException e) {
-            System.out.println("File read error " + e);
+            log.error("File read error", e);
             // Data.close();
             return false;
         }
@@ -567,7 +570,7 @@ public class Install extends Mainloc {
             Data.write(Feld);
             Data.close();
         } catch (IOException e) {
-            System.out.println("File write error " + e);
+            log.error("File write error", e);
             // Data.close();
         }
     }
@@ -594,12 +597,12 @@ public class Install extends Mainloc {
             while (!exit && j < which.length());
 
             if (!exit) {
-                System.out.println("String wurde gefunden !");
+                log.debug("String wurde gefunden !");
                 return i + j;
             }
         }
 
-        System.out.println("String nicht gefunden !");
+        log.debug("String nicht gefunden !");
         return 0;
     }
 

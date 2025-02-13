@@ -23,8 +23,11 @@ package de.codengine.krabat.main;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 abstract public class Mainlaby extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Mainlaby.class);
     public GenericPoint bludTalk = new GenericPoint(0, 0);
     public GenericPoint Pblud = new GenericPoint(0, 0);
 
@@ -171,7 +174,7 @@ abstract public class Mainlaby extends Mainloc {
                     }
                     mainFrame.Actions[236] = true;
 
-                    System.out.println("Aber jetzt blinkert es !!");
+                    log.debug("Aber jetzt blinkert es !!");
 
                 }
             } else {
@@ -185,7 +188,7 @@ abstract public class Mainlaby extends Mainloc {
         }
 
         if (!blink) {
-            System.out.println("Es wurde der richtige Weg verlassen");
+            log.debug("Es wurde der richtige Weg verlassen");
 
 
             // Tja, Pech gehabt, wer dem Weg nicht folgt
@@ -208,7 +211,7 @@ abstract public class Mainlaby extends Mainloc {
             return;
         }
 
-        System.out.println("Der richtige Weg wurde befolgt");
+        log.debug("Der richtige Weg wurde befolgt");
 
         // wir sind ja jetzt auf dem richtigen Weg...
         int x = 237;
@@ -220,7 +223,7 @@ abstract public class Mainlaby extends Mainloc {
         if (x == 239) {
             // dann sind wir ja jetzt da....
 
-            System.out.println("Jetzt kann ein Blud erscheinen");
+            log.debug("Jetzt kann ein Blud erscheinen");
 
             // Blud ein
             mainFrame.Actions[235] = true;
@@ -504,7 +507,7 @@ abstract public class Mainlaby extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

@@ -24,12 +24,15 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 public class Skladzic extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Skladzic.class);
     private boolean Paintcall = false;
 
     private final GenericPoint pLO;
@@ -224,7 +227,7 @@ public class Skladzic extends Mainanim {
                 g.setClip(tep);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! olditem = {}", olditem);
         }
         if (olditem != 0) {
             olditem = 0;
@@ -246,7 +249,7 @@ public class Skladzic extends Mainanim {
                 g.setClip(tepm);
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
         }
         if (menuitem != 0) {
             olditem = menuitem;

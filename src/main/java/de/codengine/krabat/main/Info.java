@@ -24,10 +24,13 @@ import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Info extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Info.class);
     private GenericImage Bild;
     private GenericImage Jan;
     private GenericImage Jiri;
@@ -218,7 +221,7 @@ public class Info extends Mainanim {
                 }
                 break;
             default:
-                System.out.println("Falsches Menu-Item!!!");
+                log.error("Falsches Menu-Item!!! oldItem = {}", olditem);
         }
 
         if (olditem != 0) {
@@ -236,7 +239,7 @@ public class Info extends Mainanim {
                 g.drawImage(Pfeilr, 423 + mainFrame.scrollx, 350 + mainFrame.scrolly);
                 break;
             default:
-                System.out.println("Falsches Menu-Item fuers Highlight!!!");
+                log.error("Falsches Menu-Item fuers Highlight!!! menuitem = {}", menuitem);
         }
 
         if (menuitem != 0) {

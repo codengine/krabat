@@ -27,6 +27,8 @@ import de.codengine.krabat.main.GenericToolkit;
 import de.codengine.krabat.platform.*;
 import de.codengine.krabat.platform.java.*;
 import de.codengine.krabat.sound.AbstractPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -34,6 +36,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class ApplicationStart extends Frame implements WindowListener, MouseListener, MouseMotionListener, KeyListener {
+    private static final Logger log = LoggerFactory.getLogger(ApplicationStart.class);
     private final Start appInstance;
 
     private GenericCursor Cup;
@@ -103,7 +106,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
             try {
                 tmp = Integer.parseInt(args[0]);
             } catch (NumberFormatException e) {
-                System.err.println("Language index string :'" + args[0] + "' not recognized!");
+                log.error("Language index string :'{}' not recognized!", args[0]);
             }
             if (tmp > 0) {
                 rec = tmp;

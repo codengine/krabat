@@ -26,10 +26,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Extro extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Extro.class);
     private final GenericImage[] Extropics;
     private GenericImage ludzo_vor_buehne;
     private int PicIndex = 0;
@@ -374,7 +377,7 @@ public class Extro extends Mainloc {
                 if (outputTextPos.y < -1000) {
                     nextActionID = 9500;
                 }
-                System.out.println("Point x : " + outputTextPos.x + " y : " + outputTextPos.y);
+                log.debug("Point x : {} y : {}", outputTextPos.x, outputTextPos.y);
                 break;
 
             case 9500:
@@ -417,7 +420,7 @@ public class Extro extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
     }
 }

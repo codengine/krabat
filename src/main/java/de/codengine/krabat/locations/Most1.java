@@ -26,10 +26,13 @@ import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Most1 extends Mainloc {
+    private static final Logger log = LoggerFactory.getLogger(Most1.class);
     private GenericImage background;
     private GenericImage gelaend;
     private GenericImage wegstueck;
@@ -485,7 +488,7 @@ public class Most1 extends Mainloc {
 
                 boolean tz = TesteLauf(pTemp, nextActionID);
 
-                System.out.println("Lauftest ergab : " + tz);
+                log.debug("Lauftest ergab : {}", tz);
 
                 if (!tz) {
                     mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
@@ -636,7 +639,7 @@ public class Most1 extends Mainloc {
         // Hier Punkt klonen, damit alter Punkt erhalten bleibt
         GenericPoint pTemp = new GenericPoint(pTxxx.x, pTxxx.y);
 
-        System.out.println("Es wird getestet.");
+        log.debug("Es wird getestet.");
 
         // vom Tal auf den Berg???
         if (isTal && pTemp.y > 277) {
@@ -648,14 +651,14 @@ public class Most1 extends Mainloc {
 
             // Punkt vor dem Verschwinden berechnen
             GenericPoint rand = TalTrapez.Punkte(kpos.y);
-            System.out.println(" links aktuell rechts " + rand.x + " " + kpos.x + " " + rand.y);
+            log.debug(" links aktuell rechts {} {} {}", rand.x, kpos.x, rand.y);
             pTemp.y = TalTrapez.y2;
             float t1 = kpos.x - rand.x;
             float t2 = rand.y - rand.x;
             float teil = t1 / t2;
             pTemp.x = TalTrapez.x3 + (int) ((TalTrapez.x4 - TalTrapez.x3) * teil);
 
-            System.out.println("Mittenfaktor " + teil);
+            log.debug("Mittenfaktor {}", teil);
 
             // Punkte waehrend Berglauf berechnen
             Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
@@ -663,11 +666,11 @@ public class Most1 extends Mainloc {
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
 
-            System.out.println(" Startpunkt " + pTemp.x + " " + pTemp.y);
+            log.debug(" Startpunkt {} {}", pTemp.x, pTemp.y);
 
             mainFrame.repaint();
 
-            System.out.println(" Wendepunkt Endpunkt " + Wendepunkt.x + " " + Wendepunkt.y + " " + Endpunkt.x + " " + Endpunkt.y);
+            log.debug(" Wendepunkt Endpunkt {} {} {} {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
 
             return true;
         }
@@ -683,14 +686,14 @@ public class Most1 extends Mainloc {
             // Punkt vor Verschwinden berechnen
             GenericPoint raud = BergTrapez.Punkte(kpos.y);
 
-            System.out.println(" links aktuell rechts " + raud.x + " " + kpos.x + " " + raud.y);
+            log.debug(" links aktuell rechts {} {} {}", raud.x, kpos.x, raud.y);
 
             pTemp.y = BergTrapez.y1;
             float t3 = kpos.x - raud.x;
             float t4 = raud.y - raud.x;
             float teal = t3 / t4;
 
-            System.out.println(" Mittenfaktor " + teal);
+            log.debug(" Mittenfaktor {}", teal);
 
             if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
@@ -700,7 +703,7 @@ public class Most1 extends Mainloc {
                 teal = 0.5f;
             }
 
-            System.out.println(" Mittenfaktor neu " + teal);
+            log.debug(" Mittenfaktor neu {}", teal);
 
             // Punkte waehrend Berglauf berechnen
             Endpunkt = new GenericPoint((int) (TalTrapez.x3 + (TalTrapez.x4 - TalTrapez.x3) * teal), TalTrapez.y2);
@@ -708,11 +711,11 @@ public class Most1 extends Mainloc {
 
             mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
 
-            System.out.println(" Startpunkt " + pTemp.x + " " + pTemp.y);
+            log.debug(" Startpunkt {} {}", pTemp.x, pTemp.y);
 
             mainFrame.repaint();
 
-            System.out.println(" Wendepunkt Endpunkt " + Wendepunkt.x + " " + Wendepunkt.y + " " + Endpunkt.x + " " + Endpunkt.y);
+            log.debug(" Wendepunkt Endpunkt {} {} {} {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
 
             return true;
         }
@@ -982,7 +985,7 @@ public class Most1 extends Mainloc {
                 break;
 
             default:
-                System.out.println("Falsche Action-ID !");
+                log.error("Falsche Action-ID: {} !", nextActionID);
         }
 
     }

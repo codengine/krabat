@@ -25,8 +25,11 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Dinglingerwalk extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(Dinglingerwalk.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_left_talk_head;
     private final GenericImage[] krabat_right_talk_head;
@@ -421,7 +424,7 @@ public class Dinglingerwalk extends Mainanim {
                 direction_y = -1;
                 break;
             default:
-                System.out.println("Falsche Uhrzeit zum Witzereissen!");
+                log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
 
