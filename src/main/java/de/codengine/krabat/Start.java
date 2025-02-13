@@ -519,6 +519,7 @@ public class Start implements Runnable {
             }
 
             try {
+                //noinspection BusyWait
                 Thread.sleep(100); //TODO: Make configurable
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
