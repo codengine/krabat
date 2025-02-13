@@ -36,6 +36,7 @@ public class Start implements Runnable {
     // private static final boolean have_png = true;
 
     public Thread animator;
+    private final Object animatorLock = new Object();
 
     // Instanz des z.Z. aktiven Location-Objekts (SS)
     public Mainloc currentLocation;
@@ -489,7 +490,7 @@ public class Start implements Runnable {
         boolean tmpTrigger;
 
         while (animator != null) {
-            synchronized (animator) {
+            synchronized (animatorLock) {
                 tmpTrigger = repaintCounter.get() > 0;
             }
 
