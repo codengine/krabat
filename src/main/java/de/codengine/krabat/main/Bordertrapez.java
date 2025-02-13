@@ -51,19 +51,9 @@ public class Bordertrapez {
     // Hier wird ermittelt, ob Punkt innerhalb des Trapezes ist
     public boolean PointInside(GenericPoint der) {
         // Zuerst wird Rechteck um Viereck berechnet
-        int lox;
-        if (x3 > x1) {
-            lox = x1;
-        } else {
-            lox = x3;
-        }
+        int lox = Math.min(x3, x1);
 
-        int hix;
-        if (x2 > x4) {
-            hix = x2;
-        } else {
-            hix = x4;
-        }
+        int hix = Math.max(x2, x4);
 
         // Hier erfolgt Abfrage, ob Punkt innerhalb des Vierecks oder nicht
         if (der.x < lox || der.x > hix || der.y < y1 || der.y > y2) {

@@ -135,8 +135,8 @@ public class Boote extends Mainanim {
     private void InitPosition() {
         // innerhalb des umschliessenden Rects Zufallsschuss und auf innerhalb pruefen
         // erstmal die Grenzen
-        int xmin = bootRect.x1 < bootRect.x3 ? bootRect.x1 : bootRect.x3;
-        int xmax = bootRect.x2 > bootRect.x4 ? bootRect.x2 : bootRect.x4;
+        int xmin = Math.min(bootRect.x1, bootRect.x3);
+        int xmax = Math.max(bootRect.x2, bootRect.x4);
         int ymin = bootRect.y1;
         int ymax = bootRect.y2;
 

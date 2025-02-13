@@ -222,27 +222,15 @@ public class Weggeher {
         // ist Quelle unter Ziel ?
         if (quell.y1 > ziel.y2) {
             // erlaubtes Geradenstueck berechnen
-            if (ziel.x3 > quell.x1) {
-                left = ziel.x3;
-            } else {
-                left = quell.x1;
-            }
-            if (ziel.x4 < quell.x2) {
-                right = ziel.x4;
-            } else {
-                right = quell.x2;
-            }
+            left = Math.max(ziel.x3, quell.x1);
+            right = Math.min(ziel.x4, quell.x2);
 
             // kuerzesten Weg berechnen
             pBest.y = ziel.y2;
             if (pKrabatFeets.x < left) {
                 pBest.x = left;
             } else {
-                if (pKrabatFeets.x > right) {
-                    pBest.x = right;
-                } else {
-                    pBest.x = pKrabatFeets.x;
-                }
+                pBest.x = Math.min(pKrabatFeets.x, right);
             }
             if (mittenlauf && Math.abs(pKrabatFeets.y - quell.y1) > Math.abs(pKrabatFeets.x - (left + right) / 2)) {
                 pBest.x = (left + right) / 2;
@@ -253,27 +241,15 @@ public class Weggeher {
         // ist Quelle ueber Ziel ?
         if (quell.y2 < ziel.y1) {
             // erlaubtes Geradenstueck berechnen
-            if (ziel.x1 > quell.x3) {
-                left = ziel.x1;
-            } else {
-                left = quell.x3;
-            }
-            if (ziel.x2 < quell.x4) {
-                right = ziel.x2;
-            } else {
-                right = quell.x4;
-            }
+            left = Math.max(ziel.x1, quell.x3);
+            right = Math.min(ziel.x2, quell.x4);
 
             // kuerzesten Weg berechnen
             pBest.y = ziel.y1;
             if (pKrabatFeets.x < left) {
                 pBest.x = left;
             } else {
-                if (pKrabatFeets.x > right) {
-                    pBest.x = right;
-                } else {
-                    pBest.x = pKrabatFeets.x;
-                }
+                pBest.x = Math.min(pKrabatFeets.x, right);
             }
             if (mittenlauf && Math.abs(pKrabatFeets.y - quell.y2) > Math.abs(pKrabatFeets.x - (left + right) / 2)) {
                 pBest.x = (left + right) / 2;
@@ -287,27 +263,15 @@ public class Weggeher {
         // ist Quelle links vom Ziel ?
         if (quell.x2 < ziel.x1) {
             // erlaubtes Geradenstueck berechnen
-            if (ziel.y1 > quell.y1) {
-                up = ziel.y1;
-            } else {
-                up = quell.y1;
-            }
-            if (ziel.y2 < quell.y2) {
-                down = ziel.y2;
-            } else {
-                down = quell.y2;
-            }
+            up = Math.max(ziel.y1, quell.y1);
+            down = Math.min(ziel.y2, quell.y2);
 
             // kuerzesten Weg berechnen
             pBest.x = ziel.x1;
             if (pKrabatFeets.y < up) {
                 pBest.y = up;
             } else {
-                if (pKrabatFeets.y > down) {
-                    pBest.y = down;
-                } else {
-                    pBest.y = pKrabatFeets.y;
-                }
+                pBest.y = Math.min(pKrabatFeets.y, down);
             }
             if (mittenlauf && Math.abs(pKrabatFeets.x - quell.x2) > Math.abs(pKrabatFeets.y - (up + down) / 2)) {
                 pBest.y = (up + down) / 2;
@@ -318,27 +282,15 @@ public class Weggeher {
         // ist Quelle rechts vom Ziel ?
         if (quell.x1 > ziel.x2) {
             // erlaubtes Geradenstueck berechnen
-            if (ziel.y1 > quell.y1) {
-                up = ziel.y1;
-            } else {
-                up = quell.y1;
-            }
-            if (ziel.y2 < quell.y2) {
-                down = ziel.y2;
-            } else {
-                down = quell.y2;
-            }
+            up = Math.max(ziel.y1, quell.y1);
+            down = Math.min(ziel.y2, quell.y2);
 
             // kuerzesten Weg berechnen
             pBest.x = ziel.x2;
             if (pKrabatFeets.y < up) {
                 pBest.y = up;
             } else {
-                if (pKrabatFeets.y > down) {
-                    pBest.y = down;
-                } else {
-                    pBest.y = pKrabatFeets.y;
-                }
+                pBest.y = Math.min(pKrabatFeets.y, down);
             }
             if (mittenlauf && Math.abs(pKrabatFeets.x - quell.x1) > Math.abs(pKrabatFeets.y - (up + down) / 2)) {
                 pBest.y = (up + down) / 2;

@@ -664,7 +664,7 @@ public class Imagefont {
             return new int[]{lineWidth, 0};
         }
         // Bestimmen, ob ein Leerzeichen (zwischen den Wörtern) benötigt wird
-        boolean needSpace = (line.length() > 0);
+        boolean needSpace = line.length() > 0;
         int spaceWidth = needSpace ? SPACE : 0;
 
         // Passt das Wort (ggf. inkl. Leerzeichen) in die aktuelle Zeile?

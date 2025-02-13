@@ -557,10 +557,10 @@ public class Njedz1 extends Mainloc {
                         int zuffZahl = (int) Math.round(Math.random() * 50);
                         if (zuffZahl > 25) {
                             // Werte fuer Zufallsgenerator berechnen
-                            int xlaenge = (Blink[i].x2 > Blink[i].x4 ? Blink[i].x2 : Blink[i].x4)
-                                    - (Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3);
+                            int xlaenge = Math.max(Blink[i].x2, Blink[i].x4)
+                                    - Math.min(Blink[i].x1, Blink[i].x3);
                             int ylaenge = Blink[i].y2 - Blink[i].y1;
-                            int xoffset = Blink[i].x1 < Blink[i].x3 ? Blink[i].x1 : Blink[i].x3;
+                            int xoffset = Math.min(Blink[i].x1, Blink[i].x3);
 
                             // ungueltige Werte nicht beachten
                             do {
