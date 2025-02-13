@@ -120,13 +120,7 @@ public class Slownik extends Mainanim {
 
     // Woerterbuch laden
     private void LoadSlownik() {
-        String File = "";
-
-        if (mainFrame.sprache == 2) {
-            File = "slowds.kra";
-        } else {
-            File = "slowhs.kra";
-        }
+        String File = mainFrame.sprache == 2 ? "slowds.kra" : "slowhs.kra";
 
         byte[] Feld = new byte[]{};
 

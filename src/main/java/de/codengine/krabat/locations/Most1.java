@@ -647,8 +647,7 @@ public class Most1 extends Mainloc {
             Merkpunkt.y = pTemp.y;
 
             // Punkt vor dem Verschwinden berechnen
-            GenericPoint rand = new GenericPoint(0, 0);
-            rand = TalTrapez.Punkte(kpos.y);
+            GenericPoint rand = TalTrapez.Punkte(kpos.y);
             System.out.println(" links aktuell rechts " + rand.x + " " + kpos.x + " " + rand.y);
             pTemp.y = TalTrapez.y2;
             float t1 = kpos.x - rand.x;
@@ -682,8 +681,7 @@ public class Most1 extends Mainloc {
             Merkpunkt.y = pTemp.y;
 
             // Punkt vor Verschwinden berechnen
-            GenericPoint raud = new GenericPoint(0, 0);
-            raud = BergTrapez.Punkte(kpos.y);
+            GenericPoint raud = BergTrapez.Punkte(kpos.y);
 
             System.out.println(" links aktuell rechts " + raud.x + " " + kpos.x + " " + raud.y);
 

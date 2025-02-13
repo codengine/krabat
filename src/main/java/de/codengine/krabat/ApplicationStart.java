@@ -160,14 +160,14 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     // Cursorbilder vorbereiten
     private GenericPoint InitImages(GenericImageFetcher fetcher) {
-        GenericImage Ccup = null;
-        GenericImage Ccdown = null;
-        GenericImage Ccleft = null;
-        GenericImage Ccright = null;
-        GenericImage NNormal = null;
-        GenericImage KKreuz = null;
-        GenericImage WWarten = null;
-        GenericImage NNix = null;
+        GenericImage Ccup;
+        GenericImage Ccdown;
+        GenericImage Ccleft;
+        GenericImage Ccright;
+        GenericImage NNormal;
+        GenericImage KKreuz;
+        GenericImage WWarten;
+        GenericImage NNix;
 
         Ccup = fetcher.fetchImage("gfx/cursors/horje.gif");
         Ccdown = fetcher.fetchImage("gfx/cursors/dele.gif");

@@ -267,8 +267,7 @@ public class Kulow1 extends Mainloc {
         }
 
         // Parallaxer fuer Saeule, muss immer Hintergrund loeschen ?????
-        float xtf = mainFrame.scrollx;
-        xtf = 1180 - (float) (mainFrame.scrollx * 3) / 8;
+        float xtf = 1180 - (float) (mainFrame.scrollx * 3) / 8;
         int xt = (int) xtf;
         g.setClip(xt - 2, 208, xt + 90, 479);
         g.drawImage(backright, 640, 0);

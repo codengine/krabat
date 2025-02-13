@@ -220,7 +220,7 @@ public class Korcmar extends Mainanim {
         // Skalierungsfaktor holen
         int scale = getScale((int) yps);
 
-        float vert_dist = 1;
+        float vert_dist;
         // Zooming - Faktor beruecksichtigen in y-Richtung
         if (direction_y == 1) {
             vert_dist = CVERT_UNTEN[anim_pos] - (float) scale / SLOWY;

@@ -77,7 +77,7 @@ public class Spielstand {
     public void GetSavedSpiel(int i) {
         // String File = "hry/krabat"+ (char) i +".hra";
         byte[] Feld;
-        int Pos = 0;
+        int Pos;
         Inventar = new Vector<>();
         Aktionen = new boolean[1002];
         Bild = new int[10593];

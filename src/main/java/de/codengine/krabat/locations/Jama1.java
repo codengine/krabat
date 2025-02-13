@@ -517,8 +517,8 @@ public class Jama1 extends Mainloc {
     // Aktionen dieser Location ////////////////////////////////////////
 
     private void DoAction() {
-        Borderrect tmp = new Borderrect(0, 0, 0, 0);
-        GenericPoint tTlk = new GenericPoint(0, 0);
+        Borderrect tmp;
+        GenericPoint tTlk;
 
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||

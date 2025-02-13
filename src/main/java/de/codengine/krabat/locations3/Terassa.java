@@ -42,7 +42,7 @@ public class Terassa extends Mainloc {
     private final Borderrect schmiedClickRect;
     private final GenericPoint schmiedPoint;
     private final GenericPoint schmiedTalk;
-    private boolean schmiedVisible = false;
+    private final boolean schmiedVisible;
     private boolean schmiedhoertzu = false;
     private boolean schnauzeSchmied = false;
     // Schmied ist da, wenn 529 = true und solange 701 = false, aber nur

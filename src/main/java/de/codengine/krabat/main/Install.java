@@ -576,8 +576,8 @@ public class Install extends Mainloc {
     // sucht die Stelle, wo String vorkommt (1. Treffer wird gezaehlt) 
     // und gibt den DARAUFFOLGENDEN INDEX im Byte - Feld an
     private int SearchStringInByte(String which) {
-        int j = 0;
-        boolean exit = false;
+        int j;
+        boolean exit;
 
         // komplettes Feld absuchen
         for (int i = 0; i < Feld.length; i++) {

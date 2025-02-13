@@ -585,7 +585,7 @@ public class Dinglingerwalk extends Mainanim {
         // Clipping - Region setzen
         KrabatClip(g, (int) xps, (int) yps);
 
-        int left = 0;
+        int left;
 
         // Groesse und Position der Figur berechnen
         if (!isSkla) {

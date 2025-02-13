@@ -159,41 +159,17 @@ public class Inventar extends Mainanim {
 
     // Laderoutine fuer Inventarimages
     private GenericImage IconImages(int nGegID) {
-        GenericImage InventarStueck = null;
-
-        InventarStueck = getPicture(ImageDirectory + IconImages[nGegID] + Suffix);
-
-        return InventarStueck;
+        return getPicture(ImageDirectory + IconImages[nGegID] + Suffix);
     }
 
     // Laderoutine fuer Cursors
     private GenericImage GetCursorImage(int nGegID) {
-        GenericImage Cursor = null;
-
-        // Cursor = getPicture (CursorDirectory + CursorImages[nGegID] + Suffix);
-
-        // loadPicture();
-
-        // so long, obiges war einmal vor langer Zeit :-(
-
-        Cursor = mainFrame.constructCursorImage(CursorDirectory + CursorImages[nGegID] + Suffix);
-
-        return Cursor;
+        return mainFrame.constructCursorImage(CursorDirectory + CursorImages[nGegID] + Suffix);
     }
 
     // Laderoutine fuer HighlightCursors
     private GenericImage GetCursorHighImage(int nGegID) {
-        GenericImage CursorHigh = null;
-
-        // CursorHigh = getPicture (CursorDirectory + CursorHighImages[nGegID] + Suffix);
-
-        // loadPicture();
-
-        // so long, obiges war einmal vor langer Zeit :-(
-
-        CursorHigh = mainFrame.constructCursorImage(CursorDirectory + CursorHighImages[nGegID] + Suffix);
-
-        return CursorHigh;
+        return mainFrame.constructCursorImage(CursorDirectory + CursorHighImages[nGegID] + Suffix);
     }
 
 

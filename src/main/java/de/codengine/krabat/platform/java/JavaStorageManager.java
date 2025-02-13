@@ -189,7 +189,7 @@ public class JavaStorageManager extends GenericStorageManager {
 
         try {
             LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
-            String line = "";
+            String line;
             String key;
             String value;
             int separatorPos;
@@ -213,7 +213,7 @@ public class JavaStorageManager extends GenericStorageManager {
         File file = getTranslationPath(filename).toFile();
         try {
             LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
-            String line = "";
+            String line;
             String key;
             String value;
             int separatorPos;

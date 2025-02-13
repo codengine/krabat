@@ -216,8 +216,8 @@ public class Weggeher {
 
         // Lage von Quelle zu Ziel feststellen
 
-        int left = 0;
-        int right = 0;
+        int left;
+        int right;
 
         // ist Quelle unter Ziel ?
         if (quell.y1 > ziel.y2) {
@@ -281,8 +281,8 @@ public class Weggeher {
             return pBest;
         }
 
-        int up = 0;
-        int down = 0;
+        int up;
+        int down;
 
         // ist Quelle links vom Ziel ?
         if (quell.x2 < ziel.x1) {

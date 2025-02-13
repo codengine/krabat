@@ -143,7 +143,7 @@ public class Karta extends Mainanim {
         // Teil 1
         if (!mainFrame.Actions[305]) {
 
-            int tloc = 0;
+            int tloc;
 
             // Hier Index der Orte:
             // 1 = kulow
@@ -254,7 +254,7 @@ public class Karta extends Mainanim {
         } else {
             // Hier moeglicherweise noch dritter Teil rein...
             if (!mainFrame.Actions[499]) {
-                int tloc = 0;
+                int tloc;
 
                 if (kulowRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(76);
@@ -733,10 +733,6 @@ public class Karta extends Mainanim {
                 break;
 
             case 83:
-                // Rapak
-                if (t == 93) {
-                    rueck = 93; // bei Zdzary auch dies vorgaukeln
-                }
                 rueck = 87; // ansonsten Wjes2 vorgaukeln
                 break;
 

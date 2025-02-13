@@ -42,7 +42,7 @@ public class Habor extends Mainloc {
     private final GenericPoint gonzalesPoint;
     private final GenericPoint talkPoint;
 
-    private int whichShip = 0;
+    private final int whichShip;
 
     private boolean giveHaken = false;
 

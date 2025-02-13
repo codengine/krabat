@@ -121,16 +121,6 @@ public class IntroDomaPtack extends Mainanim {
             }
         }
 
-        int xx = x;
-        if (xx < 0) {
-            xx = 0;
-        }
-        int yy = y;
-        if (yy < 0) {
-            yy = 0;
-        }
-
-        // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y);
         return x >= -50;
     }

@@ -66,7 +66,6 @@ public class Imagefont {
 
         Imagehelperstatic im = new Imagehelperstatic();
         im.CutFont(redFont);
-        im = null;
 
         // Cache saeubern
         for (int i = 1; i < GROESSE; i++) {

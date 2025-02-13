@@ -384,7 +384,7 @@ public class Start implements Runnable {
 
     // Scrolling - Routine
     private void ScrollIt() {
-        int scrollOffsetx = 0;
+        int scrollOffsetx;
 
         // erst mal schauen, wer ueberhaupt alles scrollt...
         switch (currLocation) {

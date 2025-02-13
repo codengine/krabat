@@ -181,7 +181,7 @@ public class Mertens1 extends Mainloc {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
-                    int zuffZahl = 0;
+                    int zuffZahl;
 
                     do {
                         zuffZahl = (int) Math.round(Math.random() * 7);

@@ -123,7 +123,7 @@ public class Skladzic extends Mainanim {
     public void paintSpeichern(GenericDrawingContext g) {
 
         // Speichern - Background zeichnen
-        String outputText = "";
+        String outputText;
         if (!mainFrame.Clipset) {
             mainFrame.Clipset = true;
             g.setClip(0, 0, 1284, 484);

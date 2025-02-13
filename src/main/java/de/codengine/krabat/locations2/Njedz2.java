@@ -181,7 +181,7 @@ public class Njedz2 extends Mainloc2 {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
-                    int zuffZahl = 0;
+                    int zuffZahl;
 
                     // System.out.println ("Array " + i + " " + j + "bekommt einen Blinker...");
 

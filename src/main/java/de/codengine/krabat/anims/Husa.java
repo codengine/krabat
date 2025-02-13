@@ -218,7 +218,7 @@ public class Husa extends Mainanim {
 
     private void GetNewAction() {
         // Hier wird immer neue Aktion berechnet
-        int zf = 0;
+        int zf;
 
         do {
             zf = (int) Math.round(Math.random() * 90);

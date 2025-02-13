@@ -424,29 +424,20 @@ public class KrabatOben extends Krabat {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        boolean horiz = true;
 
         // System.out.println("Quell : " + pos_x + " " + pos_y + "Ziel : " + walkto.x + " " + walkto.y);
 
         // System.out.println("X - Lohnen : " + lohnenx + "Y - Lohnen : " + lohneny);
 
         // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
+        int xricht = aim.x > (int) xps ? 1 : -1;
+        int yricht = aim.y > (int) yps ? 1 : -1;
 
 
         // Horizontal oder verikal laufen ?
 
         // Hier Routine fuer von oben, Switch ist bei 45 Grad
+        final boolean horiz;
         if (aim.x == (int) xps) {
             horiz = false;
         } else {

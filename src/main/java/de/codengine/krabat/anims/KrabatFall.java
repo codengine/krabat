@@ -85,12 +85,7 @@ public class KrabatFall extends Mainanim {
 
         // Hoehe und Breite berechnen
         int Hoehe = 100 - zoom;
-        int Breite = 0;
-        if (FallCount == 0) {
-            Breite = 50 - zoom / 2;
-        } else {
-            Breite = 100 - zoom;
-        }
+        int Breite = (FallCount == 0 ? 50 : 100) - zoom;
 
         // Y-Pos berechnen
         LeftUp.y = pos.y - Hoehe;

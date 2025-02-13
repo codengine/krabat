@@ -487,17 +487,6 @@ public class Hoscenc1 extends Mainloc {
 
                 // Ausreden fuer Strolch
                 if (brStrolch.IsPointInRect(pTemp)) {
-                    switch (mainFrame.whatItem) {
-                        case 2: // kij
-                            nextActionID = 230;
-                            break;
-                        case 18: // bron
-                            nextActionID = 240;
-                            break;
-                        default:
-                            nextActionID = 160;
-                            break;
-                    }
                     nextActionID = 160;
                     pTemp = Pstrolch;
                 }

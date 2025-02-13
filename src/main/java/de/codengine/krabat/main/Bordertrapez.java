@@ -211,7 +211,7 @@ public class Bordertrapez {
             // System.out.print("Punkt ist links vom Trapez!");
 
             // Anstiege der linken Schraege berechnen
-            float ml = 0;
+            float ml;
             if (xx1 - xx3 != 0) {
                 ml = (yy2 - yy1) / (xx1 - xx3);
             } else {
@@ -287,7 +287,7 @@ public class Bordertrapez {
             // System.out.print("Punkt ist rechts vom Trapez!");
 
             // Anstieg der rechten Schraege berechnen
-            float mr = 0;
+            float mr;
             if (xx2 - xx4 != 0) {
                 mr = (yy2 - yy1) / (xx2 - xx4);
             } else {

@@ -65,7 +65,6 @@ public class Reh extends Mainanim {
 
         // hier die Abfrage auf nichtwegrennende Rehe
         if (Wieviele > 100) {
-            Wieviele -= 100;
             rennenNieWeg = true;
         }
 
