@@ -39,7 +39,6 @@ public class Start implements Runnable {
     // private static final boolean have_png = true;
 
     public Thread animator;
-    private final Object animatorLock = new Object();
 
     // Instanz des z.Z. aktiven Location-Objekts (SS)
     public Mainloc currentLocation;
@@ -221,24 +220,7 @@ public class Start implements Runnable {
 
         CheckKrabat();
 
-        // getrenntes Laden vom Imagebild und Ausschneiden
-        // ifont.init();
         log.trace("Font is cut.");
-
-        //unsichtbares Bild fuer Double-Buffering erzeugen
-
-        // Java documentation says not to do this
-        // super.addNotify ();
-
-        // ConstructLocation(79);  // Zum ueberspringen von Locations
-
-        //         System.out.println (System.getProperty ("java.home"));
-        //         System.out.println (System.getProperty ("java.class.path"));
-        //         System.out.println (System.getProperty ("os.name"));
-        //         System.out.println (System.getProperty ("os.arch"));
-        //         System.out.println (System.getProperty ("user.name"));
-        //         System.out.println (System.getProperty ("user.home"));
-        //         System.out.println (System.getProperty ("user.dir")); 
 
         repaintCounter = new AtomicInteger();
 
@@ -311,15 +293,9 @@ public class Start implements Runnable {
             return null;
         }
 
-        // System.out.println("Normalpaint !");
-
-        // System.out.println("Time : " + (System.currentTimeMillis() - paintzeit));
-        // paintzeit = System.currentTimeMillis();
-
         // bei aktivem Exit (Sicherheitsabfragen) Paint umleiten - Prioritaet 1 - kein Scrolling
         if (exit.active) {
             exit.paintExit(offGraphics);
-            // g.drawImage(offImage, -scrollx, -scrolly, observer);
             return offImage;
         }
 
@@ -353,7 +329,6 @@ public class Start implements Runnable {
                 default:
                     log.error("Wrong Paint Prio 2! whatScreen = {}", whatScreen);
             }
-            // g.drawImage(offImage, -scrollx, -scrolly, observer);
             return offImage;
         }
 
@@ -367,20 +342,9 @@ public class Start implements Runnable {
             log.error("Null-Painting !");
         }
 
-        // Hier Anzeige von Mausposition und Scaling - Variable fuer manuelles Zooming
-
-        // if (isAnim == true) offGraphics.drawString ("Animationsmodus ein !", 200, 100);
-
-
         if (offImage != null) {
-
-            // g.drawImage (offImage, -scrollx, -scrolly, observer);
             return offImage;
         }
-        // if (offImage != null) g.drawImage (offImage, -scrollx, -scrolly, 2048, 1536, this);  
-
-
-        // if (isAnim == true) g.drawString ("Animationsmodus ein !", 200, 100);
 
         return null;
     }
@@ -489,44 +453,38 @@ public class Start implements Runnable {
 
     @Override
     public void run() {
-        boolean tmpTrigger;
-
         while (animator != null) {
-            synchronized (animatorLock) {
-                tmpTrigger = repaintCounter.get() > 0;
-            }
+            final boolean repaintTriggered = repaintCounter.get() > 0;
+            final boolean needsRepaint = needsRepaint(repaintTriggered);
 
             // um Krabat kuemmern, solange er was zu tun hat
-            if ((krabat.isWalking || krabat.isWandering ||
-                    krabat.nAnimation != 0 || talkCount != 0 || fPlayAnim
-                    || isScrolling || isAnim || tmpTrigger)
-                    && isWindowactive && !StopPaint)
-                /*if (true)*/ {
-
-                // System.out.println("Paint counter: " + repaintCounter.get());
-
+            if (needsRepaint) {
                 // the repaint() logic might try to schedule
                 // another repaint
                 // therefore, make sure we do not decrement
                 // a repaint request immediately again
                 // and so check for decrement right here
-                if (repaintCounter.get() > 0) {
-                    repaintCounter.decrementAndGet();
-                }
-
-                // System.out.println("Repaint!");
+                repaintCounter.updateAndGet(val -> val > 0 ? val - 1 : val);
                 container.repaint();
-
-                // repaint();
             }
 
-            try {
-                //noinspection BusyWait
-                Thread.sleep(100); //TODO: Make configurable
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            sleep(100);
         }
+    }
+
+    private static void sleep(int millis) {
+        try {
+            Thread.sleep(millis); //TODO: Make configurable
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private boolean needsRepaint(boolean repaintTriggered) {
+        return (krabat.isWalking || krabat.isWandering ||
+                krabat.nAnimation != 0 || talkCount != 0 || fPlayAnim
+                || isScrolling || isAnim || repaintTriggered)
+                && !StopPaint;
     }
 
     public void mouseEntered() {
