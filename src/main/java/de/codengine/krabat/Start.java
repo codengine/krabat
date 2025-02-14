@@ -99,7 +99,6 @@ public class Start implements Runnable {
     // Variablen fuer Mousemove und Doppelklick
     public GenericPoint Mousepoint = new GenericPoint(0, 0);
     public boolean dClick = false;
-    // private long paintzeit = 0;  // fuer Debugging Benchmark - Anzeige
 
     // Scrolling - Variablen
     public int scrollx;
@@ -147,7 +146,6 @@ public class Start implements Runnable {
             AbstractPlayer musicPlayer,
             GenericStorageManager storageManager) {
         Start.player = musicPlayer;
-        // Start.urlBase = urlBase + "/";
 
         this.imageFetcher = imageFetcher;
         this.container = container;
@@ -156,9 +154,6 @@ public class Start implements Runnable {
         InitGame();
 
         stringManager = new StringManager(storageManager);
-
-        // Speicheranzeige laden fuer Debugging
-        // new memory();
 
         // Variablen fuer Mausdoppelklick festlegen
         Mousepoint = new GenericPoint(0, 0);
@@ -199,7 +194,6 @@ public class Start implements Runnable {
         ifont = new Imagefont(this); // Schrift
         wegSucher = new Wegsucher();      // Laufroutinen
         wegGeher = new Weggeher(this);   // Laufroutinen
-        // inventory = new inventar (this, InitImages());   // Inventar
     }
 
     protected void runGamePt2(GenericPoint hotSpot, GenericCursor[] cursors) {
@@ -595,7 +589,6 @@ public class Start implements Runnable {
     }
 
     public synchronized final void mouseMoved(GenericMouseEvent e) {
-        // System.out.print("M");
         if (/*(isWindowactive == false) ||*/ !isListenerActive) {
             return;
         }

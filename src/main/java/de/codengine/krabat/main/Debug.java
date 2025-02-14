@@ -22,7 +22,12 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.platform.GenericDrawingContext;
 
+import java.time.Clock;
+import java.time.Instant;
+
+@SuppressWarnings("unused")
 public class Debug {
+    private static final Clock CLOCK = Clock.systemDefaultZone();
     public static final boolean enabled = false;
 
     private Debug() {
@@ -47,5 +52,10 @@ public class Debug {
         }
 
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
+    }
+
+    public static Instant getTimeInstant()
+    {
+        return CLOCK.instant();
     }
 }  

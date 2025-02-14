@@ -186,11 +186,9 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         Dimension cursor = getToolkit().getBestCursorSize(32, 32);
         double x = cursor.getWidth();
         double y = cursor.getHeight();
-        // System.out.println("Cursorgroesse : " + x + " " + y);
 
         int xxx = (int) x / 2;
         int yyy = (int) y / 2;
-        // System.out.println ("Anpassung auf " + xxx + " " + yyy); 
 
         // Mauscursor initialisieren
         Cup = GenericToolkit.getDefaultToolkit().createCustomCursor(Ccup, new GenericPoint(xxx, yyy), "Up");
