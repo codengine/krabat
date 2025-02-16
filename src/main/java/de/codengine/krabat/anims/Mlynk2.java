@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Mlynk2 extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Mlynk2.class);
     // Alle GenericImage - Objekte
@@ -59,7 +64,7 @@ public class Mlynk2 extends Mainanim {
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
+    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
 
     private int Zwinker = 0;
     private static final int BODYOFFSET = 29;
@@ -77,11 +82,11 @@ public class Mlynk2 extends Mainanim {
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     private boolean horizontal = true;    // Animationen in x oder y Richtung
     private boolean Thorizontal = true;
@@ -118,7 +123,7 @@ public class Mlynk2 extends Mainanim {
     // den Hintergrund geht (bildabhaengig)
     // private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
-    private static final int SLOWY = 10;  // dsgl. fuer y - Richtung                                      
+    private static final int SLOWY = 10;  // dsgl. fuer y - Richtung
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     private boolean istMuellerSchonTot = false;
@@ -228,8 +233,8 @@ public class Mlynk2 extends Mainanim {
         // Variablen uebernehmen (Threadsynchronisierung)
         horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (!horizontal)
         // Vertikal laufen
@@ -249,7 +254,7 @@ public class Mlynk2 extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * direction_y <= 0) {
+            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetMlynkPos(walkto);
                 anim_pos = 0;
@@ -259,27 +264,6 @@ public class Mlynk2 extends Mainanim {
 
         return false;
     }
-
-    // Horizontal - Positions - Verschieberoutine
-    /*private void VerschiebeX ()
-      {
-      // Skalierungsfaktor holen
-      int scale = getScale(((int) xps), ((int) yps));
-    	
-    // Zooming - Faktor beruecksichtigen in x - Richtung
-    float horiz_dist = CHORIZ_DIST [anim_pos] - (scale / SLOWX);
-    if (horiz_dist < 1) horiz_dist = 1;
-
-    // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-    float z = 0;
-    if (horiz_dist != 0) z = Math.abs (xps - walkto.x) / horiz_dist;
-      
-    typs = yps;
-    if (z != 0) typs += direction_y * (Math.abs (yps - walkto.y) / z); 
-	  
-    txps = xps + (direction_x * horiz_dist);
-    // System.out.println(xps + " " + txps + " " + yps + " " + typs);
-    }	*/
 
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
@@ -299,58 +283,27 @@ public class Mlynk2 extends Mainanim {
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-
-        // Lohnt es sich zu laufen ?
-	/*int scale = getScale ((int) xps, (int) yps);
-	  int lohnenx = CLOHNENX - (scale / 2);
-	  int lohneny = CLOHNENY - (scale / 4);
-	  if (lohnenx < 1) lohnenx = 1;
-	  if (lohneny < 1) lohneny = 1;
-	  if ((Math.abs (aim.x - ((int) xps)) < lohnenx) && 
-	  (Math.abs (aim.y - ((int) yps)) < lohneny))
-	  {
-	  System.out.println("Lohnt sich nicht !");
-	  anim_pos = 0;
-	  return;
-	  }*/
-
-        // Laufrichtung ermitteln
-        final int xricht = aim.x > (int) xps ? 1 : -1;
-        final int yricht = aim.y > (int) yps ? 1 : -1;
-
-        // Horizontal oder verikal laufen ?
-	/*if (aim.x == ((int) xps) ) horiz = false;
-	  else
-	  {
-	  // Winkel berechnen, den Krabat laufen soll
-	  double yangle = Math.abs (aim.y - ((int) yps) );
-	  double xangle = Math.abs (aim.x - ((int) xps) );
-	  double angle = Math.atan (yangle / xangle);
-	  // System.out.println ((angle * 180 / Math.PI) + " Grad");
-	  if (angle > (22 * Math.PI / 180))  horiz = false;
-	  else horiz = true;
-	  }*/
-
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = false;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -390,24 +343,24 @@ public class Mlynk2 extends Mainanim {
         // fuer MaleIhn nur Richtung angeben, restlichen Variablen koennen dort ausgewertet werden
         if (horizontal) {
             // nach links laufen
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 MaleIhn(offGraph, 9);
             }
 
             // nach rechts laufen
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 MaleIhn(offGraph, 3);
             }
         } else {
             // Bei normaler Darstellung
             if (!upsidedown) {
                 // nach oben laufen
-                if (direction_y == -1) {
+                if (directionY == UP) {
                     MaleIhn(offGraph, 12);
                 }
 
                 // nach unten laufen
-                if (direction_y == 1) {
+                if (directionY == DOWN) {
                     MaleIhn(offGraph, 6);
                 }
             }
@@ -446,19 +399,19 @@ public class Mlynk2 extends Mainanim {
         switch (direction) {
             case 3:
                 horizontal = true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 horizontal = false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 horizontal = true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 horizontal = false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
@@ -468,9 +421,9 @@ public class Mlynk2 extends Mainanim {
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
         if (horizontal) {
-            return direction_x == 1 ? 3 : 9;
+            return directionX == RIGHT ? 3 : 9;
         } else {
-            return direction_y == 1 ? 6 : 12;
+            return directionY == DOWN ? 6 : 12;
         }
     }
 

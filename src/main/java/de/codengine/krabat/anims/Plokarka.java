@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Plokarka extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Plokarka.class);
     // Alle GenericImage - Objekte
@@ -52,17 +57,17 @@ public class Plokarka extends Mainanim {
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
+    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
 
     // Variablen fuer Bewegung und Richtung
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     private boolean horizontal = true;    // Animationen in x oder y Richtung
     private boolean Thorizontal = true;
@@ -180,8 +185,8 @@ public class Plokarka extends Mainanim {
         // Variablen uebernehmen (Threadsynchronisierung)
         horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (horizontal)
         // Horizontal laufen
@@ -201,7 +206,7 @@ public class Plokarka extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * direction_x <= 0) {
+            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetPlokarkaPos(walkto);
                 anim_pos = 0;
@@ -217,7 +222,7 @@ public class Plokarka extends Mainanim {
 
             // Animationsphase weiterschalten
             anim_pos++;
-            if (anim_pos == (direction_y == 1 ? 3 : 4)) {
+            if (anim_pos == (directionY == DOWN ? 3 : 4)) {
                 anim_pos = 0;
             }
 
@@ -225,7 +230,7 @@ public class Plokarka extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * direction_y <= 0) {
+            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetPlokarkaPos(walkto);
                 anim_pos = 0;
@@ -251,10 +256,10 @@ public class Plokarka extends Mainanim {
 
         typs = yps;
         if (z != 0) {
-            typs += direction_y * (Math.abs(yps - walkto.y) / z);
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + direction_x * horiz_dist;
+        txps = xps + directionX.getVal() * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -276,67 +281,38 @@ public class Plokarka extends Mainanim {
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        boolean horiz;
-
-        // Lohnt es sich zu laufen ?
-	/*int scale = getScale ((int) xps, (int) yps);
-	  int lohnenx = CLOHNENX - (scale / 2);
-	  int lohneny = CLOHNENY - (scale / 4);
-	  if (lohnenx < 1) lohnenx = 1;
-	  if (lohneny < 1) lohneny = 1;
-	  if ((Math.abs (aim.x - ((int) xps)) < lohnenx) && 
-	  (Math.abs (aim.y - ((int) yps)) < lohneny))
-	  {
-	  System.out.println("Lohnt sich nicht !");
-	  anim_pos = 0;
-	  return;
-	  }*/
-
-        // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
+        boolean horiz = false;
 
         // Horizontal oder verikal laufen ?
-        if (aim.x == (int) xps) {
-            horiz = false;
-        } else {
+        if (aim.x != (int) xps) {
             // Winkel berechnen, den Krabat laufen soll
             double yangle = Math.abs(aim.y - (int) yps);
             double xangle = Math.abs(aim.x - (int) xps);
             double angle = Math.atan(yangle / xangle);
-            // System.out.println ((angle * 180 / Math.PI) + " Grad");
             horiz = !(angle > 22 * Math.PI / 180);
         }
 
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = horiz;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -358,34 +334,34 @@ public class Plokarka extends Mainanim {
         // je nach Richtung Sprite auswaehlen und zeichnen
         if (horizontal) {
             // nach links laufen
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 MaleIhn(offGraph, hasWaesche ? krabatw_left[anim_pos] : krabat_left[anim_pos]);
             }
 
             // nach rechts laufen
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 MaleIhn(offGraph, krabat_right[anim_pos]);
             }
         } else {
             // Bei normaler Darstellung
             if (!upsidedown) {
                 // nach oben laufen
-                if (direction_y == -1) {
+                if (directionY == UP) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
                 }
 
                 // nach unten laufen
-                if (direction_y == 1) {
+                if (directionY == DOWN) {
                     MaleIhn(offGraph, hasWaesche ? krabatw_front[anim_pos] : krabat_front[anim_pos]);
                 }
             } else {
                 // nach oben laufen
-                if (direction_y == -1) {
+                if (directionY == UP) {
                     MaleIhn(offGraph, krabat_front[anim_pos]);
                 }
 
                 // nach unten laufen
-                if (direction_y == 1) {
+                if (directionY == DOWN) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
                 }
             }
@@ -397,46 +373,24 @@ public class Plokarka extends Mainanim {
         switch (direction) {
             case 3:
                 horizontal = true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 horizontal = false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 horizontal = true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 horizontal = false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
-
-    // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
-    /*public int GetFacing()
-      {
-      int rgabe = 0;
-      if (horizontal == true)
-      {
-      if (direction_x == 1) rgabe = 3;
-      else rgabe = 9;
-      }
-      else
-      {
-      if (direction_y == 1) rgabe = 6;
-      else rgabe = 12;
-      }
-      if (rgabe == 0)
-      {
-      System.out.println("Fehler bei GetFacing !!!");
-      }
-      return rgabe;
-      }*/
-
 
     // Lasse Plokarka Waeschestuecke abnehmen
     public boolean nimmWaescheAb(GenericDrawingContext g) {

@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Wudzerneu1 extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Wudzerneu1.class);
     // Alle GenericImage - Objekte
@@ -54,11 +59,11 @@ public class Wudzerneu1 extends Mainanim {
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     // private boolean horizontal = true;    // Animationen in x oder y Richtung
     // private boolean Thorizontal = true;
@@ -170,8 +175,8 @@ public class Wudzerneu1 extends Mainanim {
     public synchronized boolean Move() {
         // Variablen uebernehmen (Threadsynchronisierung)
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (--Verhinderwalk > 0) {
             laeuftNicht = false;
@@ -202,7 +207,7 @@ public class Wudzerneu1 extends Mainanim {
         VerschiebeX();
 
         // Ueberschreitung feststellen in X - Richtung
-        if ((walkto.x - (int) txps) * direction_x <= 0) {
+        if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
             // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
             SetWudzer1Pos(walkto);
             anim_pos = 1;
@@ -227,42 +232,26 @@ public class Wudzerneu1 extends Mainanim {
 
         typs = yps;
         if (z != 0) {
-            typs += direction_y * (Math.abs(yps - walkto.y) / z);
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + direction_x * horiz_dist;
+        txps = xps + directionX.getVal() * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim, boolean clearAnimPos) {
-        int xricht, yricht;
         laeuftNicht = false;
-
-        // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
 
         // Variablen an Move uebergeben
         Twalkto = aim;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
 
-        if (clearAnimPos) {
-            anim_pos = 0;       // Animationsimage bei Neubeginn initialis.
-        } else {
-            anim_pos = 1;
-        }
-        // System.out.println("Animpos ist . " + anim_pos);
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
+
+        anim_pos = clearAnimPos ? 0 : 1;       // Animationsimage bei Neubeginn initialis.
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -300,12 +289,12 @@ public class Wudzerneu1 extends Mainanim {
             }
 
             // links sitzen
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 MaleIhn(offGraph, angler_left_stand[Stand]);
             }
 
             // rechts sitzen
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 MaleIhn(offGraph, angler_right_stand[Stand]);
             }
         } else {
@@ -319,19 +308,19 @@ public class Wudzerneu1 extends Mainanim {
         switch (direction) {
             case 3:
                 // horizontal=true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 // horizontal=false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 // horizontal=true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 // horizontal=false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
@@ -358,7 +347,7 @@ public class Wudzerneu1 extends Mainanim {
         int up = getUpPos((int) yps);
 
         // Figur zeichnen
-        if (direction_x == 1) {
+        if (directionX == RIGHT) {
             // nach rechts angeln
             g.drawImage(angler_right_talk_body[Stand / 2], left, up);
             g.drawImage(angler_right_talk_head[isLookingAround ? 6 : Head], left + 22, up + 18);
@@ -398,7 +387,7 @@ public class Wudzerneu1 extends Mainanim {
         int y = getUpPos((int) yps);
 
         // hier Unterscheidung nach Richtung, da die Angler viel breitere Images haben
-        if (direction_x == 1) {
+        if (directionX == RIGHT) {
             // schauen nach rechts
             return new Borderrect(x, y + 15, x + 49, y + 60);
         } else {

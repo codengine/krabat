@@ -27,6 +27,11 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 abstract public class Krabat extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Krabat.class);
     // alle Variablen, die nach aussen sichtbar sein sollen
@@ -57,8 +62,8 @@ abstract public class Krabat extends Mainanim {
     float yps;                       // genaue Position der Fuesse fuer Offsetberechnung
 
     boolean horizontal = true;            // Animationen in x oder y Richtung
-    int direction_x = 1;                  // Laufrichtung x
-    int direction_y = 1;                  // Laufrichtung y
+    DirectionX directionX = RIGHT;                  // Laufrichtung x
+    DirectionY directionY = DOWN;                  // Laufrichtung y
 
     int anim_pos = 0;                     // Animationsbild
     GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
@@ -67,8 +72,8 @@ abstract public class Krabat extends Mainanim {
     float typs;                     // temporaere Variablen fuer genaue Position
     GenericPoint Twalkto = new GenericPoint(0, 0);     // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    int Tdirection_x = 1;
-    int Tdirection_y = 1;
+    DirectionX tDirectionX = RIGHT;
+    DirectionY tDirectionY = DOWN;
     boolean Thorizontal = true;
 
     int Floetenwartezeit;
@@ -115,19 +120,19 @@ abstract public class Krabat extends Mainanim {
         switch (direction) {
             case 3:
                 horizontal = true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 horizontal = false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 horizontal = true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 horizontal = false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
@@ -137,9 +142,9 @@ abstract public class Krabat extends Mainanim {
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     public int GetFacing() {
         if (horizontal) {
-            return direction_x == 1 ? 3 : 9;
+            return directionX == RIGHT ? 3 : 9;
         } else {
-            return direction_y == 1 ? 6 : 12;
+            return directionY == DOWN ? 6 : 12;
         }
     }
 

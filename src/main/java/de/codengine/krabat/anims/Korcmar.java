@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Korcmar extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Korcmar.class);
     // Alle GenericImage - Objekte
@@ -44,17 +49,17 @@ public class Korcmar extends Mainanim {
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
+    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
 
     // Variablen fuer Bewegung und Richtung
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DOWN;
 
     private boolean horizontal = true;    // Animationen in x oder y Richtung
     private boolean Thorizontal = true;
@@ -85,7 +90,7 @@ public class Korcmar extends Mainanim {
     // den Hintergrund geht (bildabhaengig)
     // private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
-    private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
+    private static final int SLOWY = 22;  // dsgl. fuer y - Richtung
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     // Redevariablen
@@ -186,8 +191,8 @@ public class Korcmar extends Mainanim {
         // Variablen uebernehmen (Threadsynchronisierung)
         horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (!horizontal)
         // Vertikal laufen
@@ -199,15 +204,15 @@ public class Korcmar extends Mainanim {
 
             // Animationsphase weiterschalten
             anim_pos++;
-            if (anim_pos == (direction_y == 1 ? 6 : 5)) {
-                anim_pos = direction_y == 1 ? 2 : 1;
+            if (anim_pos == (directionY == DOWN ? 6 : 5)) {
+                anim_pos = directionY == DOWN ? 2 : 1;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * direction_y <= 0) {
+            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetKorcmarPos(walkto);
                 anim_pos = 0;
@@ -225,7 +230,7 @@ public class Korcmar extends Mainanim {
 
         float vert_dist;
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        if (direction_y == 1) {
+        if (directionY == DOWN) {
             vert_dist = CVERT_UNTEN[anim_pos] - (float) scale / SLOWY;
         } else {
             vert_dist = CVERT_OBEN[anim_pos] - (float) scale / SLOWY;
@@ -240,10 +245,10 @@ public class Korcmar extends Mainanim {
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
@@ -251,21 +256,18 @@ public class Korcmar extends Mainanim {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
         // Laufrichtung ermitteln
-        final int xricht = aim.x > (int) xps ? 1 : -1;
-        final int yricht = aim.y > (int) yps ? 1 : -1;
-
-        // Horizontal oder verikal laufen ?
+        final DirectionX xricht = aim.x > (int) xps ? RIGHT : LEFT;
+        final DirectionY yricht = aim.y > (int) yps ? DOWN : UP;
 
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = false;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+        tDirectionX = xricht;
+        tDirectionY = yricht;
 
         if (anim_pos == 0) {
-            anim_pos = yricht == 1 ? 2 : 1;       // Animationsimage bei Neubeginn initialis.
+            anim_pos = yricht == DOWN ? 2 : 1;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -292,12 +294,12 @@ public class Korcmar extends Mainanim {
     // je nach Laufrichtung Krabat zeichnen
     public void drawKorcmar(GenericDrawingContext offGraph) {
         // nach oben laufen
-        if (direction_y == -1) {
+        if (directionY == UP) {
             MaleIhn(offGraph, krabat_back[anim_pos]);
         }
 
         // nach unten laufen
-        if (direction_y == 1) {
+        if (directionY == DOWN) {
             // Zwinkern evaluieren
             if (anim_pos == 1) {
                 anim_pos = 0;
@@ -319,19 +321,19 @@ public class Korcmar extends Mainanim {
         switch (direction) {
             case 3:
                 horizontal = true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 horizontal = false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 horizontal = true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 horizontal = false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");

@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class WikowarkaRudy extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(WikowarkaRudy.class);
     // Alle GenericImage - Objekte
@@ -45,17 +50,17 @@ public class WikowarkaRudy extends Mainanim {
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
+    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
 
     // Variablen fuer Bewegung und Richtung
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     // private boolean horizontal = true;    // Animationen in x oder y Richtung
     // private boolean Thorizontal = true;
@@ -80,28 +85,6 @@ public class WikowarkaRudy extends Mainanim {
     private int Guck = 0;
     private int Verhinderguck;
     private static final int MAX_VERHINDERGUCK = 70;
-
-    // Variablen fuer Laufberechnung
-    /*private static final int CLOHNENX = 49;  // Werte fuer Entscheidung, ob sich
-      private static final int CLOHNENY = 25;  // Laufen ueberhaupt lohnt (halber Schritt)
-    */
-
-    // Variablen fuer Animationen
-    // public  int nAnimation = 0;           // ID der ggw. Animation
-    // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
-    // private int nAnimStep = 0;            // ggw. Pos in Animation
-
-    // Variablen fuer Zooming
-    /*public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-      // (Vordergrund) bildabhaengig
-      public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
-      // den Hintergrund geht (bildabhaengig)
-      private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
-      // beim Zoomen veraendern
-      private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
-      public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
-      public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
-    */
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
@@ -158,37 +141,9 @@ public class WikowarkaRudy extends Mainanim {
         // Variablen uebernehmen (Threadsynchronisierung)
         // horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
-    
-	/*if (horizontal == true)
-	  // Horizontal laufen
-	  {
-	  // neuen Punkt ermitteln und setzen
-	  VerschiebeX();
-	  xps = txps;
-	  yps = typs;
-    	
-    	// Animationsphase weiterschalten
-    	anim_pos++;
-    	if (anim_pos == 10) anim_pos = 1;
-      
-    	// Naechsten Schritt auf Gueltigkeit ueberpruefen
-    	VerschiebeX();
-      
-    	// Ueberschreitung feststellen in X - Richtung
-    	if (((walkto.x - (int) txps) * direction_x) <= 0)
-    	{    	
-	// System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-      	SetKucharPos (walkto);
-      	anim_pos = 0;
-	return true;
-    	}	
-	}
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
-	else
-	// Vertikal laufen
-	{*/
         // neuen Punkt ermitteln und setzen
         VerschiebeY();
         xps = txps;
@@ -204,7 +159,7 @@ public class WikowarkaRudy extends Mainanim {
         VerschiebeY();
 
         // Ueberschreitung feststellen in Y - Richtung
-        if ((walkto.y - (int) typs) * direction_y <= 0) {
+        if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
             // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
             SetZonaPos(walkto);
             anim_pos = 0;
@@ -216,110 +171,39 @@ public class WikowarkaRudy extends Mainanim {
         return false;
     }
 
-    // Horizontal - Positions - Verschieberoutine
-    /*private void VerschiebeX ()
-      {
-      // Skalierungsfaktor holen
-      int scale = getScale(((int) xps), ((int) yps));
-    	
-    // Zooming - Faktor beruecksichtigen in x - Richtung
-    float horiz_dist = CHORIZ_DIST [anim_pos] - (scale / SLOWX);
-    if (horiz_dist < 1) horiz_dist = 1;
-
-    // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-    float z = 0;
-    if (horiz_dist != 0) z = Math.abs (xps - walkto.x) / horiz_dist;
-      
-    typs = yps;
-    if (z != 0) typs += direction_y * (Math.abs (yps - walkto.y) / z); 
-	  
-    txps = xps + (direction_x * horiz_dist);
-    // System.out.println(xps + " " + txps + " " + yps + " " + typs);
-    }	*/
-
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
         // Skalierungsfaktor holen
         // int scale = getScale(((int) xps), ((int) yps));
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST; /* - (scale / SLOWY); */
-	/*if (vert_dist < 1) 
-    {
-      vert_dist = 1;
-      // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
-      // und vert_distance ein Pixel erlaubt oder nicht
-    }*/
+        float vert_dist = CVERT_DIST;
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
         float z = Math.abs(yps - walkto.y) / vert_dist;
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        // boolean horiz;
-
-        // Lohnt es sich zu laufen ?
-	/*int scale = getScale ((int) xps, (int) yps);
-	  int lohnenx = CLOHNENX - (scale / 2);
-	  int lohneny = CLOHNENY - (scale / 4);
-	  if (lohnenx < 1) lohnenx = 1;
-	  if (lohneny < 1) lohneny = 1;
-	  if ((Math.abs (aim.x - ((int) xps)) < lohnenx) && 
-	  (Math.abs (aim.y - ((int) yps)) < lohneny))
-	  {
-	  System.out.println("Lohnt sich nicht !");
-	  anim_pos = 0;
-	  return;
-	  }*/
-
-        // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
-
-        // Horizontal oder verikal laufen ?
-	/*if (aim.x == ((int) xps) ) horiz = false;
-	  else
-	  {
-	  // Winkel berechnen, den Krabat laufen soll
-	  double yangle = Math.abs (aim.y - ((int) yps) );
-	  double xangle = Math.abs (aim.x - ((int) xps) );
-	  double angle = Math.atan (yangle / xangle);
-	  // System.out.println ((angle * 180 / Math.PI) + " Grad");
-	  if (angle > (22 * Math.PI / 180))  horiz = false;
-	  else horiz = true;
-	  }*/
-
-        // horiz = false;
-
         // Variablen an Move uebergeben
         Twalkto = aim;
-        // Thorizontal  = horiz;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -338,32 +222,6 @@ public class WikowarkaRudy extends Mainanim {
 
     // je nach Laufrichtung Krabat zeichnen
     public void drawZona(GenericDrawingContext offGraph, boolean isListening) {
-        // je nach Richtung Sprite auswaehlen und zeichnen
-	/*if (horizontal == true)
-    {
-      // nach links laufen
-      if (direction_x  == -1) MaleIhn (offGraph, krabat_left[anim_pos]);
-      
-      // nach rechts laufen
-      if (direction_x == 1) MaleIhn (offGraph, krabat_right[anim_pos]);
-    }
-    else
-    {
-      // Bei normaler Darstellung
-      if (upsidedown == false)
-      {   
-        // nach oben laufen
-        if (direction_y  == -1) MaleIhn (offGraph, krabat_back[anim_pos]);
-      
-        // nach unten laufen
-        if (direction_y == 1) MaleIhn (offGraph, krabat_front[anim_pos]);
-      }
-      else
-      {*/
-
-        // auch hier Uebergabe von isListening -> schneller
-        // this.isListening = isListening;
-
         // hier evaluieren, ob geguckt werden darf oder nicht
         if (!isMoving && !isListening) {
             // Weiterschalten
@@ -380,64 +238,31 @@ public class WikowarkaRudy extends Mainanim {
         }
 
         // nach oben laufen
-        if (direction_y == 1) {
+        if (directionY == DOWN) {
             MaleIhn(offGraph, krabat_front[anim_pos]);
         }
 
         // nach unten laufen
-        if (direction_y == -1) {
+        if (directionY == UP) {
             MaleIhn(offGraph, krabat_back[anim_pos]);
         }
-	/*
-	  }  
-	  }*/
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
     public void SetFacing(int direction) {
         switch (direction) {
-		/*  case 3:
-		    horizontal=true;
-		    direction_x=1;
-		    break;*/
             case 6:
                 // horizontal=false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
-		/*  case 9:
-		    horizontal=true;
-		    direction_x=-1;
-		    break;*/
             case 12:
                 // horizontal=false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
         }
     }
-
-    // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
-    /*public int GetFacing()
-      {
-      int rgabe = 0;
-      if (horizontal == true)
-      {
-      if (direction_x == 1) rgabe = 3;
-      else rgabe = 9;
-      }
-      else
-      {
-      if (direction_y == 1) rgabe = 6;
-      else rgabe = 12;
-      }
-      if (rgabe == 0) 
-      {
-      System.out.println("Fehler bei GetFacing !!!");
-      }
-      return rgabe;
-      }*/
-
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
     public void talkZona(GenericDrawingContext offGraph) {
@@ -485,20 +310,6 @@ public class WikowarkaRudy extends Mainanim {
         g.drawImage(hrajer_extra[2], lo.x, lo.y);
     }
 
-    // Hojnt beim Monolog (ohne Gestikulieren)
-    /*public void describeHojnt(Graphics offGraph)
-      {
-      if (mainFrame.talkCount != 1)
-      {
-      int nTemp;
-      do
-      nTemp = (int) Math.round(Math.random()*6);
-      while ((nTemp==3)||(nTemp==4)||(nTemp==6)||(nTemp==0));
-      MaleIhn (offGraph, krabat_talk[nTemp]);
-      }
-      else drawHojnt (offGraph);
-      }*/
-
     // Zooming-Variablen berechnen
 
     private int getLeftPos(int pox) {
@@ -514,33 +325,6 @@ public class WikowarkaRudy extends Mainanim {
         // int helper = getScale(pox, poy);
         return poy - CHEIGHT / 2;
     }
-
-    // fuer Debugging public - wird wieder private !!!
-    /*public int getScale (int pox, int poy)
-      {
-    
-      // Hier kann override eingeschaltet werden (F7/F8)
-      // return mainFrame.override;
-    
-      // Ermittlung der Hoehendifferenz beim Zooming
-      if (upsidedown == false)
-      {
-      // normale Berechnung	
-      float helper = (maxx - poy) / zoomf;
-      if (helper < 0) helper = 0;
-      helper += defScale;
-      return ((int) helper);
-      }
-      else
-      {
-      // Berechnung bei "upsidedown" - Berg/Tallauf
-      float help2 = (poy - minx) / zoomf;
-      if (help2 < 0) help2 = 0;
-      help2 += defScale;
-      // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2); 
-      return ((int) help2);
-      }
-      } */
 
     // Clipping - Region vor Zeichnen von Krabat setzen
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {

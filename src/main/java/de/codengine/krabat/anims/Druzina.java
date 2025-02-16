@@ -26,6 +26,11 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Druzina extends Mainanim {
     // Alle GenericImage - Objekte
     private final GenericImage[] druzina_walk;
@@ -46,11 +51,11 @@ public class Druzina extends Mainanim {
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     private boolean Thorizontal = true;
 
@@ -112,8 +117,8 @@ public class Druzina extends Mainanim {
         // Animationen in x oder y Richtung
         boolean horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (!horizontal)
         // Vertikal laufen
@@ -133,7 +138,7 @@ public class Druzina extends Mainanim {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * direction_y <= 0) {
+            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetDruzinaPos(walkto);
                 anim_pos = 0;
@@ -162,31 +167,27 @@ public class Druzina extends Mainanim {
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-
-        // Laufrichtung ermitteln
-        final int xricht = aim.x > (int) xps ? 1 : -1;
-        final int yricht = aim.y > (int) yps ? 1 : -1;
-
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = false;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos < 2) {
             anim_pos = 2;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)

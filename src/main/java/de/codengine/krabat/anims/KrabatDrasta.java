@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class KrabatDrasta extends Krabat {
     private static final Logger log = LoggerFactory.getLogger(KrabatDrasta.class);
     // Alle GenericImage - Objekte
@@ -363,8 +368,8 @@ public class KrabatDrasta extends Krabat {
         // Variablen uebernehmen (Threadsynchronisierung)
         horizontal = Thorizontal;
         walkto = new GenericPoint(Twalkto.x, Twalkto.y);
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         // System.out.println ("Move: Vorher " + (int) xps + " " + (int) yps + " nach " + walkto.x + " " + walkto.y);
 
@@ -388,7 +393,7 @@ public class KrabatDrasta extends Krabat {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * direction_x <= 0) {
+            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
                 if (!isWandering && clearanimpos) {
@@ -416,7 +421,7 @@ public class KrabatDrasta extends Krabat {
             VerschiebeY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * direction_y <= 0) {
+            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 isWalking = false;
                 if (!isWandering && clearanimpos) {
@@ -466,18 +471,18 @@ public class KrabatDrasta extends Krabat {
 
         typs = yps;
         if (z != 0) {
-            typs += direction_y * (Math.abs(yps - walkto.y) / z);
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
         }
 
         // System.out.println ("XOffset = " + z + " Yoffset = " + Math.abs (yps - walkto.y));
 
-        txps = xps + direction_x * horiz_dist;
+        txps = xps + directionX.getVal() * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     private float getHorizDist(float scale) {
         float helper;
-        if (direction_x == 1) {
+        if (directionX == RIGHT) {
             // nach rechts laufen
             helper = CRIGHT_DIST[anim_pos];
             // horiz_dist = helper * (float) Math.pow (xFaktor, scale);
@@ -514,16 +519,16 @@ public class KrabatDrasta extends Krabat {
 
         txps = xps;
         if (z != 0) {
-            txps += direction_x * (Math.abs(xps - walkto.x) / z);
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
         }
 
-        typs = yps + direction_y * vert_dist;
+        typs = yps + directionY.getVal() * vert_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     private float getVertDist(float scale) {
         float helper;
-        if (direction_y == 1) {
+        if (directionY == DOWN) {
             // nach unten laufen
             helper = CDOWN_DIST[anim_pos];
             // vert_dist = helper * (float) Math.pow (yFaktor, scale);
@@ -544,38 +549,23 @@ public class KrabatDrasta extends Krabat {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
     public synchronized void MoveTo(GenericPoint aim) {
-
-        // System.out.println("Quell : " + pos_x + " " + pos_y + "Ziel : " + walkto.x + " " + walkto.y);
-
-        // System.out.println("X - Lohnen : " + lohnenx + "Y - Lohnen : " + lohneny);
-
-        // Laufrichtung ermitteln
-        int xricht = aim.x > (int) xps ? 1 : -1;
-        int yricht = aim.y > (int) yps ? 1 : -1;
-
-
-        // Horizontal oder verikal laufen ?
-
         // Hier Default - Routine
-        final boolean horiz;
-        if (aim.x == (int) xps) {
-            horiz = false;
-        } else {
+        boolean horiz = false;
+        if (aim.x != (int) xps) {
             // Winkel berechnen, den Krabat laufen soll
             double yangle = Math.abs(aim.y - (int) yps);
             double xangle = Math.abs(aim.x - (int) xps);
             double angle = Math.atan(yangle / xangle);
-            // System.out.println ((angle * 180 / Math.PI) + " Grad");
             horiz = !(angle > 22 * Math.PI / 180);
         }
 
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = horiz;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
 
-        // AnimationsImage initialisieren, wenn nicht schon in Bewegung
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         // Hier Ueberpruefen, ob es sich auch lohnt, zuerst Scaling holen
         int scale = getScale((int) yps);
@@ -592,14 +582,11 @@ public class KrabatDrasta extends Krabat {
             lohneny = 1;
         }
 
-        // System.out.println ("Lohnen - Variablen x : " + lohnenx + " y : " + lohneny + " bei Scaling : " + scale);
-
         if (Math.abs(aim.x - (int) xps) < lohnenx &&
                 Math.abs(aim.y - (int) yps) < lohneny) {
             isWalking = false;
             log.debug("Lohnt sich nicht !");
             if (!isWandering && clearanimpos) {
-                // System.out.println("Animpos wurde zurueckgesetzt !");
                 anim_pos = 0;
             }
             return;
@@ -610,7 +597,6 @@ public class KrabatDrasta extends Krabat {
             anim_pos = 2;
         }
 
-        // System.out.println("Animpos ist . " + anim_pos);
         isWalking = true;                             // Stiefel los !
     }
 
@@ -637,34 +623,34 @@ public class KrabatDrasta extends Krabat {
         // je nach Richtung Sprite auswaehlen und zeichnen
         if (horizontal) {
             // nach links laufen
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 MaleIhn(offGraph, krabat_left[anim_pos]);
             }
 
             // nach rechts laufen
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 MaleIhn(offGraph, krabat_right[anim_pos]);
             }
         } else {
             // Bei normaler Darstellung
             if (!upsidedown) {
                 // nach oben laufen
-                if (direction_y == -1) {
+                if (directionY == UP) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
                 }
 
                 // nach unten laufen
-                if (direction_y == 1) {
+                if (directionY == DOWN) {
                     MaleIhn(offGraph, krabat_front[anim_pos]);
                 }
             } else {
                 // nach oben laufen
-                if (direction_y == -1) {
+                if (directionY == UP) {
                     MaleIhn(offGraph, krabat_front[anim_pos]);
                 }
 
                 // nach unten laufen
-                if (direction_y == 1) {
+                if (directionY == DOWN) {
                     MaleIhn(offGraph, krabat_back[anim_pos]);
                 }
             }

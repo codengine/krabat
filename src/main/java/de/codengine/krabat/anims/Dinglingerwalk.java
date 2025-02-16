@@ -28,6 +28,11 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
+import static de.codengine.krabat.anims.DirectionX.RIGHT;
+import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
+
 public class Dinglingerwalk extends Mainanim {
     private static final Logger log = LoggerFactory.getLogger(Dinglingerwalk.class);
     // Alle GenericImage - Objekte
@@ -50,17 +55,17 @@ public class Dinglingerwalk extends Mainanim {
     // public  boolean isWandering = false;  // gilt fuer ganze Route
     // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
     private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen 
+    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
 
     // Variablen fuer Bewegung und Richtung
     private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
     private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private int direction_x = 1;          // Laufrichtung x
-    private int Tdirection_x = 1;
+    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
+    private DirectionX tDirectionX = DirectionX.RIGHT;
 
-    private int direction_y = 1;          // Laufrichtung y
-    private int Tdirection_y = 1;
+    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
+    private DirectionY tDirectionY = DirectionY.DOWN;
 
     // private boolean horizontal = true;    // Animationen in x oder y Richtung
     // private boolean Thorizontal = true;
@@ -94,7 +99,7 @@ public class Dinglingerwalk extends Mainanim {
     // den Hintergrund geht (bildabhaengig)
     private static final int SLOWX = 8;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
-    // private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
+    // private static final int SLOWY = 22;  // dsgl. fuer y - Richtung
     public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     private boolean isStanding = true;
@@ -245,8 +250,8 @@ public class Dinglingerwalk extends Mainanim {
         // Variablen uebernehmen (Threadsynchronisierung)
         // horizontal = Thorizontal;
         walkto = Twalkto;
-        direction_x = Tdirection_x;
-        direction_y = Tdirection_y;
+        directionX = tDirectionX;
+        directionY = tDirectionY;
 
         if (--Verhinderwalk < 1)
         // Horizontal laufen
@@ -268,7 +273,7 @@ public class Dinglingerwalk extends Mainanim {
             VerschiebeX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * direction_x <= 0) {
+            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
                 // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
                 SetDinglingerPos(walkto);
                 anim_pos = 0;
@@ -298,41 +303,26 @@ public class Dinglingerwalk extends Mainanim {
 
         typs = yps;
         if (z != 0) {
-            typs += direction_y * (Math.abs(yps - walkto.y) / z);
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + direction_x * horiz_dist;
+        txps = xps + directionX.getVal() * horiz_dist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        int xricht, yricht;
-        // boolean horiz;
-
-        // Laufrichtung ermitteln
-        if (aim.x > (int) xps) {
-            xricht = 1;
-        } else {
-            xricht = -1;
-        }
-        if (aim.y > (int) yps) {
-            yricht = 1;
-        } else {
-            yricht = -1;
-        }
-
         // Variablen an Move uebergeben
         Twalkto = aim;
-        // Thorizontal  = horiz;
-        Tdirection_x = xricht;
-        Tdirection_y = yricht;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
         }
-        // System.out.println("Animpos ist . " + anim_pos);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
@@ -358,12 +348,12 @@ public class Dinglingerwalk extends Mainanim {
         // je nach Richtung Sprite auswaehlen und zeichnen
         if (!isStanding) {
             // nach links laufen
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 MaleIhn(offGraph, krabat_left_walk[anim_pos], false);
             }
 
             // nach rechts laufen
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 MaleIhn(offGraph, krabat_right_walk[anim_pos], false);
             }
         } else {
@@ -382,7 +372,7 @@ public class Dinglingerwalk extends Mainanim {
             }
 
             // Zwinkern eval. wenn links
-            if (direction_x == -1) {
+            if (directionX == LEFT) {
                 if (Head > 0) {
                     Head = 0;
                 } else {
@@ -396,7 +386,7 @@ public class Dinglingerwalk extends Mainanim {
             }
 
             // zeichnen, wenn rechts steht
-            if (direction_x == 1) {
+            if (directionX == RIGHT) {
                 Head = 0;
 
                 MaleIhn(offGraph);
@@ -409,19 +399,19 @@ public class Dinglingerwalk extends Mainanim {
         switch (direction) {
             case 3:
                 // horizontal=true;
-                direction_x = 1;
+                directionX = RIGHT;
                 break;
             case 6:
                 // horizontal=false;
-                direction_y = 1;
+                directionY = DOWN;
                 break;
             case 9:
                 // horizontal=true;
-                direction_x = -1;
+                directionX = LEFT;
                 break;
             case 12:
                 // horizontal=false;
-                direction_y = -1;
+                directionY = UP;
                 break;
             default:
                 log.debug("Falsche Uhrzeit zum Witzereissen!");
@@ -437,7 +427,7 @@ public class Dinglingerwalk extends Mainanim {
         // Heads evaluieren
         if (--Verhinderhead < 1) {
             Verhinderhead = MAX_VERHINDERHEAD;
-            Head = (int) (Math.random() * (direction_x == -1 ? 9.9 : 8.9));
+            Head = (int) (Math.random() * (directionX == LEFT ? 9.9 : 8.9));
         }
 
         // Body je nach AnimID evaluieren
@@ -630,7 +620,7 @@ public class Dinglingerwalk extends Mainanim {
         int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
 
-        if (direction_x == -1) {
+        if (directionX == LEFT) {
             // nach links zeichnen
             g.drawImage(krabat_left_talk_head[Head], left, up, Koerperbreite, Kopfhoehe);
             g.drawImage(krabat_left_talk_body[Body], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
