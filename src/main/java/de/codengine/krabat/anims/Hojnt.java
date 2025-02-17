@@ -21,7 +21,6 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -33,7 +32,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class Hojnt extends Mainanim {
+public class Hojnt extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(Hojnt.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_left;
@@ -49,35 +48,9 @@ public class Hojnt extends Mainanim {
 
     private final GenericImage[] krabat_buecken;
 
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    public boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = DirectionX.RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    private boolean horizontal = true;    // Animationen in x oder y Richtung
-    private boolean Thorizontal = true;
-
-    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-
     // Spritevariablen
     private static final int CWIDTH = 45;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 80;
-    private static final float scaleRatio = (float) CWIDTH / CHEIGHT;
 
     // Abstaende default
     private static final int[] CHORIZ_DIST = {3, 0, 7, 7, 13, 10, 7, 13};
@@ -91,16 +64,9 @@ public class Hojnt extends Mainanim {
     // public  int nAnimation = 0;           // ID der ggw. Animation
     // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
     // private int nAnimStep = 0;            // ggw. Pos in Animation
-
-    // Variablen fuer Zooming
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-    // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
-    // den Hintergrund geht (bildabhaengig)
     private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     private int talkHead = 0;
     private int talkBody = 0;
@@ -122,7 +88,7 @@ public class Hojnt extends Mainanim {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public Hojnt(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         krabat_left = new GenericImage[8];
         krabat_right = new GenericImage[8];
@@ -546,15 +512,16 @@ public class Hojnt extends Mainanim {
     }
 
     // Zooming-Variablen berechnen
-
-    private int getLeftPos(int pox, int poy) {
+    @Override
+    protected int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(poy);
@@ -606,16 +573,6 @@ public class Hojnt extends Mainanim {
         // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
-    // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect HojntRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return new Borderrect(x, y, xd, yd);
-    }
-
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
         KrabatClip(g, (int) xps, (int) yps);
@@ -628,7 +585,7 @@ public class Hojnt extends Mainanim {
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
 
         // Figur zeichnen
-        g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * scaleRatio), CHEIGHT - scale);
+        g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * scaleFactor), CHEIGHT - scale);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage khead, GenericImage kbody) {
@@ -651,7 +608,7 @@ public class Hojnt extends Mainanim {
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
 
         // Figur zeichnen
-        int bodyWidth = CWIDTH - (int) (scale * scaleRatio);
+        int bodyWidth = CWIDTH - (int) (scale * scaleFactor);
         g.drawImage(khead, left, up, bodyWidth, Kopfhoehe);
         g.drawImage(kbody, left, up + Kopfhoehe, bodyWidth, Koerperhoehe);
     }

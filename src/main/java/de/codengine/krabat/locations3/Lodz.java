@@ -167,7 +167,7 @@ public class Lodz extends Mainloc {
 
         // Zona Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp = wikowarka.ZonaRect();
+        Borderrect temp = wikowarka.getRect();
         g.setClip(temp.lo_point.x - 5, temp.lo_point.y - 5, temp.ru_point.x - temp.lo_point.x + 10,
                 temp.ru_point.y - temp.lo_point.y + 10);
 
@@ -182,7 +182,7 @@ public class Lodz extends Mainloc {
 
         // Zona zeichnen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp2 = wikowarka.ZonaRect();
+        Borderrect temp2 = wikowarka.getRect();
         g.setClip(temp2.lo_point.x - 5, temp2.lo_point.y - 5, temp2.ru_point.x - temp2.lo_point.x + 10,
                 temp2.ru_point.y - temp2.lo_point.y + 10);
 
@@ -197,7 +197,7 @@ public class Lodz extends Mainloc {
             // nur rumstehen oder laufen
             else {
                 if (Stollen || Metall || Kiss) {
-                    Borderrect tp = wikowarka.ZonaRect();
+                    Borderrect tp = wikowarka.getRect();
                     if (Stollen) {
                         wikowarka.giveWosusk(g, tp.lo_point);
                     }
@@ -343,7 +343,7 @@ public class Lodz extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -361,7 +361,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Ausreden fuer Frau oder Stollen geben
-                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
                     if (mainFrame.whatItem == 52) {
                         nextActionID = 160;
                     } else {
@@ -421,7 +421,7 @@ public class Lodz extends Mainloc {
                 // }
 
                 // Frau ansehen
-                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 1;
                     pTemp = pZona;
                 }
@@ -432,7 +432,7 @@ public class Lodz extends Mainloc {
                 // rechte Maustaste
 
                 // Mit der Frau reden
-                if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(pZona);
                     mainFrame.repaint();
@@ -473,9 +473,9 @@ public class Lodz extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
-                    wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible;
+                    wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible;
 
             if (Cursorform != 10 && !mainFrame.invHighCursor) {
                 Cursorform = 10;
@@ -498,7 +498,7 @@ public class Lodz extends Mainloc {
                 return;
             }
 
-            if (wikowarka.ZonaRect().IsPointInRect(pTemp) && zonaVisible) {
+            if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.Kreuz);
                     Cursorform = 1;
@@ -585,7 +585,7 @@ public class Lodz extends Mainloc {
 
     private GenericPoint evalZonaTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = wikowarka.ZonaRect();
+        Borderrect temp = wikowarka.getRect();
         return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 

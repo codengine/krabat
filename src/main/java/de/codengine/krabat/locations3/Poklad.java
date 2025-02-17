@@ -173,7 +173,7 @@ public class Poklad extends Mainloc {
 
         if (showDingl) {
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.DinglingerRect();
+            Borderrect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
             if (whatPicture == 1) {
@@ -193,7 +193,7 @@ public class Poklad extends Mainloc {
         // Dinglinger zeichnen
         if (showDingl) {
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.DinglingerRect();
+            Borderrect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
 

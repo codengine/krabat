@@ -437,7 +437,7 @@ public class Rapak1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -711,7 +711,7 @@ public class Rapak1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = brSchild.IsPointInRect(pTemp) && !mainFrame.Actions[901]
                     || tmp.IsPointInRect(pTemp) || rapakRect.IsPointInRect(pTemp) ||
                     !mainFrame.Actions[919] && !mainFrame.Actions[210] && pjeroRect.IsPointInRect(pTemp) ||

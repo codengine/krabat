@@ -212,7 +212,7 @@ public class Mlyn2 extends Mainloc {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp;
             if (!muellerSprichtMitStock) {
-                temp = mueller.MlynkRect();
+                temp = mueller.getRect();
             } else {
                 temp = mueller.MlynkRectMitStockAndersrum();
             }
@@ -244,7 +244,7 @@ public class Mlyn2 extends Mainloc {
             // Clipping - Rectangle feststellen und setzen
             Borderrect temp;
             if (!muellerSprichtMitStock) {
-                temp = mueller.MlynkRect();
+                temp = mueller.getRect();
             } else {
                 temp = mueller.MlynkRectMitStockAndersrum();
             }

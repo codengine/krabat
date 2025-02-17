@@ -269,7 +269,7 @@ public class Hoscenc1 extends Mainloc {
         // Wirt Hintergrund loeschen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = wirt.KorcmarRect();
+            Borderrect temp = wirt.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -315,7 +315,7 @@ public class Hoscenc1 extends Mainloc {
         // Wirt zeichnen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = wirt.KorcmarRect();
+            Borderrect temp = wirt.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -463,7 +463,7 @@ public class Hoscenc1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -710,7 +710,7 @@ public class Hoscenc1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     brSaeufer.IsPointInRect(pTemp) || brStrolch.IsPointInRect(pTemp) ||
                     honckRect.IsPointInRect(pTemp) && !mainFrame.Actions[902] ||

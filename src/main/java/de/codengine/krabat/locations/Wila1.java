@@ -255,7 +255,7 @@ public class Wila1 extends Mainloc {
         // Waschfrau Hintergrund loeschen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = waschfrau.PlokarkaRect();
+            Borderrect temp = waschfrau.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -327,7 +327,7 @@ public class Wila1 extends Mainloc {
         // Waschfrau zeichnen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = waschfrau.PlokarkaRect();
+            Borderrect temp = waschfrau.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -523,7 +523,7 @@ public class Wila1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -723,7 +723,7 @@ public class Wila1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     leineRect.IsPointInRect(pTemp) && !mainFrame.Actions[906] && mainFrame.Actions[175] ||
                     kleiderRect.IsPointInRect(pTemp) && !mainFrame.Actions[175] ||
@@ -1016,7 +1016,7 @@ public class Wila1 extends Mainloc {
                 }
                 waschfrau.SetFacing(12);
                 // Hier Position des Textes berechnen
-                Borderrect temp = waschfrau.PlokarkaRect();
+                Borderrect temp = waschfrau.getRect();
                 GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, tTalk);
                 TalkPerson = 27;
@@ -1181,7 +1181,7 @@ public class Wila1 extends Mainloc {
                     outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00023"));
                 }
                 // Hier Position des Textes berechnen
-                Borderrect tmp = waschfrau.PlokarkaRect();
+                Borderrect tmp = waschfrau.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, tTlk);
                 waschfrau.SetFacing(12);

@@ -33,7 +33,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class WikowarkaRudy extends Mainanim {
+public class WikowarkaRudy extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(WikowarkaRudy.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_front;
@@ -41,31 +41,6 @@ public class WikowarkaRudy extends Mainanim {
     private final GenericImage[] krabat_talk;
     private final GenericImage[] krabat_extra;
     private final GenericImage[] hrajer_extra;
-
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    // private boolean horizontal = true;    // Animationen in x oder y Richtung
-    // private boolean Thorizontal = true;
-
-    // public  boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 33;// Default - Werte Hoehe,Breite
@@ -89,7 +64,7 @@ public class WikowarkaRudy extends Mainanim {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public WikowarkaRudy(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         krabat_front = new GenericImage[4];
         krabat_back = new GenericImage[4];
@@ -311,15 +286,21 @@ public class WikowarkaRudy extends Mainanim {
     }
 
     // Zooming-Variablen berechnen
-
     private int getLeftPos(int pox) {
+        return getLeftPos(pox, 1);
+    }
+
+    // Zooming-Variablen berechnen
+    @Override
+    protected int getLeftPos(int pox, int ignored) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         // int helper = getScale(pox, poy);
         return pox - CWIDTH / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         // int helper = getScale(pox, poy);
@@ -345,12 +326,12 @@ public class WikowarkaRudy extends Mainanim {
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect ZonaRect() {
+    @Override
+    public Borderrect getRect() {
         int x = getLeftPos((int) xps);
         int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = 2 * ((int) yps - y) + y;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
         return new Borderrect(x, y, xd, yd);
     }
 

@@ -399,7 +399,7 @@ public class Wjes2 extends Mainloc2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.MlynkRect();
+            Borderrect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -614,7 +614,7 @@ public class Wjes2 extends Mainloc2 {
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -911,7 +911,7 @@ public class Wjes2 extends Mainloc2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || schmied.schmiedRect().IsPointInRect(pTemp) ||
                     sudobjaRect.IsPointInRect(pTemp) || woknoRect.IsPointInRect(pTemp) ||
                     schildRect.IsPointInRect(pTemp) || wohenRect.IsPointInRect(pTemp);

@@ -220,7 +220,7 @@ public class Swoboda extends Mainloc {
         // Clipping - Rectangle feststellen und setzen
         Borderrect temp;
         if (!mlynkHatStock) {
-            temp = mueller.MlynkRect();
+            temp = mueller.getRect();
         } else {
             temp = mueller.MlynkRectMitStock();
         }
@@ -273,7 +273,7 @@ public class Swoboda extends Mainloc {
         // Clipping - Rectangle feststellen und setzen
         Borderrect tmp;
         if (!mlynkHatStock) {
-            tmp = mueller.MlynkRect();
+            tmp = mueller.getRect();
         } else {
             tmp = mueller.MlynkRectMitStock();
         }

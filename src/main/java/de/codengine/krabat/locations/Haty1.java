@@ -741,7 +741,7 @@ public class Haty1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -751,8 +751,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz left
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -774,8 +774,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz right
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -830,7 +830,7 @@ public class Haty1 extends Mainloc {
 
                 // Ausreden fuer Wasser links
                 if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 370;
@@ -864,7 +864,7 @@ public class Haty1 extends Mainloc {
 
                 // Ausreden fuer Wasser rechts
                 if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 375;
@@ -901,7 +901,7 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Angler
-                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -1004,15 +1004,15 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz left anschauen
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Prohodzl;
                 }
 
                 // Rohodz right anschauen
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Prohodzr;
                 }
@@ -1036,20 +1036,20 @@ public class Haty1 extends Mainloc {
 
                 // Wasser links anschauen
                 if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = PwodaLeft;
                 }
 
                 // Wasser rechts anschauen
                 if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = PwodaRight;
                 }
 
                 // Angler anschauen
-                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
                     if (!mainFrame.Actions[220]) {
                         nextActionID = 8;
                         pTemp = PwudzerRight;
@@ -1075,8 +1075,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz left mitnehmen
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prohodzl);
                     mainFrame.repaint();
@@ -1084,8 +1084,8 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Rohodz right mitnehmen
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp) &&
-                        !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
+                        !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 55;
                     mainFrame.wegGeher.SetzeNeuenWeg(Prohodzr);
                     mainFrame.repaint();
@@ -1118,7 +1118,7 @@ public class Haty1 extends Mainloc {
 
                 // Wasser links use
                 if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 70;
                     mainFrame.wegGeher.SetzeNeuenWeg(PwodaLeft);
                     mainFrame.repaint();
@@ -1127,7 +1127,7 @@ public class Haty1 extends Mainloc {
 
                 // Wasser rechts use
                 if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.Wudzer1Rect().IsPointInRect(pTemp) && !angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 75;
                     mainFrame.wegGeher.SetzeNeuenWeg(PwodaRight);
                     mainFrame.repaint();
@@ -1135,12 +1135,12 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Angler talk
-                if (angler1.Wudzer1Rect().IsPointInRect(pTemp) || angler2.Wudzer2Rect().IsPointInRect(pTemp)) {
+                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
                     if (mainFrame.Actions[220]) {
                         nextActionID = 80;
                         mainFrame.wegGeher.SetzeNeuenWeg(PwudzerLeft);
                     } else {
-                        if (angler2.Wudzer2Rect().IsPointInRect(pTemp) && !angler1.Wudzer1Rect().IsPointInRect(pTemp)) {
+                        if (angler2.getRect().IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp)) {
                             nextActionID = 85;
                         } else {
                             nextActionID = 87;
@@ -1180,13 +1180,13 @@ public class Haty1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
                     wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
                     wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
-                    rohodzRight.IsPointInRect(pTemp) || angler1.Wudzer1Rect().IsPointInRect(pTemp) ||
-                    angler2.Wudzer2Rect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
+                    rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
+                    angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
                     eimerRect.IsPointInRect(pTemp) ||
                     muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152];
 
@@ -1207,8 +1207,8 @@ public class Haty1 extends Mainloc {
             if (wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
                     wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
                     wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
-                    rohodzRight.IsPointInRect(pTemp) || angler1.Wudzer1Rect().IsPointInRect(pTemp) ||
-                    angler2.Wudzer2Rect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
+                    rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
+                    angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
                     eimerRect.IsPointInRect(pTemp) ||
                     muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
                 if (Cursorform != 1) {

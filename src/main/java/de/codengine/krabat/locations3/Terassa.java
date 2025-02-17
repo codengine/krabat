@@ -398,7 +398,7 @@ public class Terassa extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -596,7 +596,7 @@ public class Terassa extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible ||
                     hammerRect.IsPointInRect(pTemp) && !mainFrame.Actions[953] &&

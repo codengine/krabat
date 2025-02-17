@@ -33,7 +33,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class Mlynk2 extends Mainanim {
+public class Mlynk2 extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(Mlynk2.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_back;
@@ -56,16 +56,6 @@ public class Mlynk2 extends Mainanim {
     private GenericImage krabat_gib_karte;
     private GenericImage krabat_hat_stock_andersrum;
 
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
     private int Zwinker = 0;
     private static final int BODYOFFSET = 29;
 
@@ -78,21 +68,6 @@ public class Mlynk2 extends Mainanim {
     private int Head = 0;
     private int Body = 0;
 
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = DirectionX.RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    private boolean horizontal = true;    // Animationen in x oder y Richtung
-    private boolean Thorizontal = true;
-
-    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-
     // Spritevariablen
     private static final int CWIDTH = 70;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 100;
@@ -100,8 +75,7 @@ public class Mlynk2 extends Mainanim {
     private static final int COFFSET_STOCK = 132;  // so weit ist das ungezoomte GenericImage nach links verschoben (* 2) = virtuelle Breite
     // wenn man beachtet, dass die Fussposition so bleiben soll
 
-    private final float scaleVerhaeltnisNormal;
-    private final float scaleVerhaeltnisStock;
+    private final float scaleVerhaeltnisStock = (float) COFFSET_STOCK / CHEIGHT;
 
     // Abstaende default
     // private static final int[] CHORIZ_DIST = {6, 10, 11, 9, 10, 10, 10, 11, 11, 10};
@@ -116,22 +90,15 @@ public class Mlynk2 extends Mainanim {
     // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
     // private int nAnimStep = 0;            // ggw. Pos in Animation
 
-    // Variablen fuer Zooming
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-    // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
-    // den Hintergrund geht (bildabhaengig)
-    // private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
     private static final int SLOWY = 10;  // dsgl. fuer y - Richtung
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     private boolean istMuellerSchonTot = false;
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public Mlynk2(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         krabat_back = new GenericImage[9];
 
@@ -153,15 +120,6 @@ public class Mlynk2 extends Mainanim {
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
-
-        float fWidth = CWIDTH;
-        float fHeight = CHEIGHT;
-
-        scaleVerhaeltnisNormal = fWidth / fHeight;
-
-        fWidth = COFFSET_STOCK;
-
-        scaleVerhaeltnisStock = fWidth / fHeight;
     }
 
     // Bilder vorbereiten
@@ -506,7 +464,7 @@ public class Mlynk2 extends Mainanim {
 
     public GenericPoint evalMlynkTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = MlynkRect();
+        Borderrect temp = getRect();
         return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 
@@ -525,12 +483,12 @@ public class Mlynk2 extends Mainanim {
       }*/
 
     // Zooming-Variablen berechnen
-
-    private int getLeftPos(int pox, int poy) {
+    @Override
+    protected int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
 
-        float fScaleY = getScale(poy) * scaleVerhaeltnisNormal;
+        float fScaleY = getScale(poy) * scaleFactor;
 
         return pox - (CWIDTH - (int) fScaleY) / 2;
     }
@@ -544,7 +502,8 @@ public class Mlynk2 extends Mainanim {
         return pox - (COFFSET_STOCK - (int) fScaleY) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(poy);
@@ -637,16 +596,6 @@ public class Mlynk2 extends Mainanim {
         // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
-    // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect MlynkRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return new Borderrect(x, y, xd, yd);
-    }
-
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet, wenn er den Stock hat !!!
     public Borderrect MlynkRectMitStock() {
         int x = getLeftPosWithKij((int) xps, (int) yps);
@@ -688,7 +637,7 @@ public class Mlynk2 extends Mainanim {
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
@@ -756,7 +705,7 @@ public class Mlynk2 extends Mainanim {
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);
@@ -801,7 +750,7 @@ public class Mlynk2 extends Mainanim {
         float fBodyoffset = BODYOFFSET;
         float fHoehe = CHEIGHT;
 
-        float fScaleY = (float) scale * scaleVerhaeltnisNormal;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         int Kopfhoehe = (int) (fBodyoffset - (float) scale * (fBodyoffset / fHoehe));
         int Koerperhoehe = (int) (fHoehe - scale - Kopfhoehe);

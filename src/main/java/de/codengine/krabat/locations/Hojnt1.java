@@ -355,7 +355,7 @@ public class Hojnt1 extends Mainloc {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -472,7 +472,7 @@ public class Hojnt1 extends Mainloc {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -644,7 +644,7 @@ public class Hojnt1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -1067,7 +1067,7 @@ public class Hojnt1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     hakenRect.IsPointInRect(pTemp) && !mainFrame.Actions[905] ||
                     jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
@@ -1468,7 +1468,7 @@ public class Hojnt1 extends Mainloc {
             case 210:
                 // Jaeger sagt Spruch
                 // Hier Position des Textes berechnen
-                Borderrect tmp = jaeger.HojntRect();
+                Borderrect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 PersonSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00045"),
                         Start.stringManager.getTranslation("Loc1_Hojnt1_00046"),

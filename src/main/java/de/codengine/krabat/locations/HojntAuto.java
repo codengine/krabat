@@ -268,7 +268,7 @@ public class HojntAuto extends Mainloc {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -323,7 +323,7 @@ public class HojntAuto extends Mainloc {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -343,7 +343,7 @@ public class HojntAuto extends Mainloc {
         // Scroller mitschieben, wenn Hojnt bewegt wird
         // Hier allgemeine Scrollingroutine, nur wenn man darf...
         if (isScrollAnim) {
-            Borderrect temprect = jaeger.HojntRect();
+            Borderrect temprect = jaeger.getRect();
             int temp = (temprect.lo_point.x + temprect.ru_point.x) / 2;
             temp -= mainFrame.scrollx;
 
@@ -479,7 +479,7 @@ public class HojntAuto extends Mainloc {
                     outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00002"));
                 }
                 // Hier Position des Textes berechnen
-                Borderrect tmp = jaeger.HojntRect();
+                Borderrect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, tTlk);
                 TalkPerson = 26;
@@ -563,7 +563,7 @@ public class HojntAuto extends Mainloc {
                     outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00005"));
                 }
                 // Hier Position des Textes berechnen
-                Borderrect temp = jaeger.HojntRect();
+                Borderrect temp = jaeger.getRect();
                 GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, tTalk);
                 TalkPerson = 26;
@@ -647,7 +647,7 @@ public class HojntAuto extends Mainloc {
                     outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00008"));
                 }
                 // Hier Position des Textes berechnen
-                Borderrect teemp = jaeger.HojntRect();
+                Borderrect teemp = jaeger.getRect();
                 GenericPoint tTaalk = new GenericPoint((teemp.ru_point.x + teemp.lo_point.x) / 2, teemp.lo_point.y - 50);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, tTaalk);
                 TalkPerson = 26;

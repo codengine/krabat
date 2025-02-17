@@ -21,7 +21,6 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -31,56 +30,25 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class Druzina extends Mainanim {
+public class Druzina extends MovableMainAnim {
     // Alle GenericImage - Objekte
     private final GenericImage[] druzina_walk;
 
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
     private int Zwinker = 0;
-
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = DirectionX.RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    private boolean Thorizontal = true;
-
-    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 65;// Default - Werte Hoehe,Breite
     private static final int CHEIGHT = 154;
 
-    private final float scaleFactorNormal = (float) CWIDTH / CHEIGHT;
-
     // Abstaende default
     private static final int[] CVERT_DIST = {3, 3, 1, 3, 1, 3};
 
-    // Variablen fuer Zooming
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-    // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
-    // den Hintergrund geht (bildabhaengig)
     private static final int SLOWY = 10;  // dsgl. fuer y - Richtung aller wieviel Pix. die Schritte kleiner werden
 
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public Druzina(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         druzina_walk = new GenericImage[6];
 
@@ -228,16 +196,17 @@ public class Druzina extends Mainanim {
     }
 
     // Zooming-Variablen berechnen
-    private int getLeftPos(int pox, int poy) {
+    @Override
+    protected int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
 
-        float fHelper = getScale(poy) * scaleFactorNormal;
-
+        float fHelper = getScale(poy) * scaleFactor;
         return pox - (CWIDTH - (int) fHelper) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(poy);
@@ -287,16 +256,6 @@ public class Druzina extends Mainanim {
         // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
-    // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect DruzinaRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return new Borderrect(x, y, xd, yd);
-    }
-
     private void MaleIhn(GenericDrawingContext g) {
         // Clipping - Region setzen
         KrabatClip(g, (int) xps, (int) yps);
@@ -308,7 +267,7 @@ public class Druzina extends Mainanim {
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
 
-        float fScaleY = (float) scale * scaleFactorNormal;
+        float fScaleY = (float) scale * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
         int Koerperhoehe = (int) ((float) CHEIGHT - scale);
 

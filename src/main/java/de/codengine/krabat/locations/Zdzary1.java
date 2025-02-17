@@ -348,7 +348,7 @@ public class Zdzary1 extends Mainloc {
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -521,7 +521,7 @@ public class Zdzary1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || alteRect.IsPointInRect(pTemp) ||
                     durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2;
 

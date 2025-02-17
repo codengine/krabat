@@ -21,7 +21,6 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -140,7 +139,7 @@ public class KrabatDrasta extends Krabat {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public KrabatDrasta(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         krabat_left = new GenericImage[12];
         krabat_right = new GenericImage[12];
@@ -1069,15 +1068,16 @@ public class KrabatDrasta extends Krabat {
     }
 
     // Zooming-Variablen berechnen
-
-    private int getLeftPos(int pox, int poy) {
+    @Override
+    protected int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(poy);
@@ -1160,17 +1160,6 @@ public class KrabatDrasta extends Krabat {
         // g.setColor(Color.white);
         // g.drawRect(x, y, xd - 1, yd - 1);
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-    }
-
-    // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    @Override
-    public Borderrect KrabatRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {

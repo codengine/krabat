@@ -33,7 +33,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class Wudzerneu2 extends Mainanim {
+public class Wudzerneu2 extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(Wudzerneu2.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] angler_left_stand;
@@ -42,29 +42,6 @@ public class Wudzerneu2 extends Mainanim {
     private final GenericImage[] angler_left_talk_body;
     private final GenericImage[] angler_right_talk_body;
     private final GenericImage[] angler_talk_head;
-
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = DirectionX.RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    // private boolean horizontal = true;    // Animationen in x oder y Richtung
-    // private boolean Thorizontal = true;
 
     // Spritevariablen
     private static final int CWIDTH = 100;// Default - Werte Hoehe,Breite
@@ -92,7 +69,7 @@ public class Wudzerneu2 extends Mainanim {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public Wudzerneu2(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         angler_left_stand = new GenericImage[6];
         angler_right_stand = new GenericImage[6];
@@ -367,8 +344,13 @@ public class Wudzerneu2 extends Mainanim {
     }
 
     // Zooming-Variablen berechnen
+    protected int getLeftPos(int pox) {
+        return getLeftPos(pox, 1);
+    }
 
-    private int getLeftPos(int pox) {
+    // Zooming-Variablen berechnen
+    @Override
+    protected int getLeftPos(int pox, int ignored) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         if (laeuftNicht) {
@@ -378,14 +360,16 @@ public class Wudzerneu2 extends Mainanim {
         }
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         return poy - CHEIGHT;
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect Wudzer2Rect() {
+    @Override
+    public Borderrect getRect() {
         int x = getLeftPos((int) xps);
         int y = getUpPos((int) yps);
 
@@ -397,10 +381,6 @@ public class Wudzerneu2 extends Mainanim {
             // schauen nach links
             return new Borderrect(x + 55, y, x + 89, y + 76);
         }
-	/*int xd = (2 * ( ((int) xps) - x)) + x;
-	  int yd = ((int) yps);
-	  // System.out.println(x + " " + y + " " + xd + " " + yd);
-	  return (new borderrect (x, y, xd, yd)); */
     }
 
     public GenericPoint Wudzer2TalkPoint() {

@@ -21,7 +21,6 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import org.slf4j.Logger;
@@ -32,49 +31,22 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-abstract public class Krabat extends Mainanim {
+abstract public class Krabat extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(Krabat.class);
     // alle Variablen, die nach aussen sichtbar sein sollen
 
     public boolean isWandering = false;  // gilt fuer ganze Route
     public boolean isWalking = false;    // gilt bis zum naechsten Rect.
 
-    public boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-
     // Variablen fuer Animationen
     public int nAnimation = 0;           // ID der ggw. Animation
     public boolean fAnimHelper = false;  // Hilfsflag bei Animation
 
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-    // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
-    // den Hintergrund geht (bildabhaengig)
-
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
     public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
 
     // Variablen, die nur innerhalb Krabat sichtbar sein sollen
 
     int nAnimStep = 0;                    // ggw. Pos in Animation
-    float xps;
-    float yps;                       // genaue Position der Fuesse fuer Offsetberechnung
-
-    boolean horizontal = true;            // Animationen in x oder y Richtung
-    DirectionX directionX = RIGHT;                  // Laufrichtung x
-    DirectionY directionY = DOWN;                  // Laufrichtung y
-
-    int anim_pos = 0;                     // Animationsbild
-    GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-
-    float txps;
-    float typs;                     // temporaere Variablen fuer genaue Position
-    GenericPoint Twalkto = new GenericPoint(0, 0);     // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    DirectionX tDirectionX = RIGHT;
-    DirectionY tDirectionY = DOWN;
-    boolean Thorizontal = true;
 
     int Floetenwartezeit;
     static final int[] Floetenwartezeitarray = new int[]{78, 78, 95, 112, 54};
@@ -82,8 +54,8 @@ abstract public class Krabat extends Mainanim {
 
 
     // Konstruktor
-    public Krabat(Start caller) {
-        super(caller);
+    public Krabat(Start caller, int width, int height) {
+        super(caller, width, height);
     }
 
     // Alle Methoden, die immer Gueltigkeit haben, egal, welche untergelagerte Krabatklasse gerade aktiv ist
@@ -157,8 +129,6 @@ abstract public class Krabat extends Mainanim {
     }
 
     // alle Methoden, die erst in der jeweiligen Klasse implementiert werden
-
-    abstract public Borderrect KrabatRect();
 
     abstract public void Move();
 

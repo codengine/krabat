@@ -401,7 +401,7 @@ public class Most2 extends Mainloc2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.MlynkRect();
+            Borderrect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -584,7 +584,7 @@ public class Most2 extends Mainloc2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -819,7 +819,7 @@ public class Most2 extends Mainloc2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = ralbitzSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
                     dresdenSchild.IsPointInRect(pTemp) || rekaRect.IsPointInRect(pTemp);
 

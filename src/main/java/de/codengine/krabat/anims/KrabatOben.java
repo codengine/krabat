@@ -103,7 +103,7 @@ public class KrabatOben extends Krabat {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public KrabatOben(Start caller) {
-        super(caller);
+        super(caller, CWIDTHO, CHEIGHTO);
 
         krabato_left = new GenericImage[10];
         krabato_right = new GenericImage[10];
@@ -765,12 +765,18 @@ public class KrabatOben extends Krabat {
     }
 
     // Zooming-Variablen berechnen
-
     private int getLeftPos(int pox) {
+        return getLeftPos(pox, 1);
+    }
+
+    // Zooming-Variablen berechnen
+    @Override
+    protected int getLeftPos(int pox, int ignored) {
         return pox - (CWIDTHO - (int) zoomf) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         return poy - (CHEIGHTO - (int) zoomf) / 2;
     }
 
@@ -794,12 +800,11 @@ public class KrabatOben extends Krabat {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
-    public Borderrect KrabatRect() {
+    public Borderrect getRect() {
         int x = getLeftPos((int) xps);
         int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = 2 * ((int) yps - y) + y;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
         return new Borderrect(x, y, xd, yd);
     }
 

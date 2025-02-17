@@ -952,7 +952,7 @@ public class Rowy extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -1270,7 +1270,7 @@ public class Rowy extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     horncy.IsPointInRect(pTemp) ||
                     swaixtix.IsPointInRect(pTemp) && !mainFrame.Actions[986] ||
@@ -1657,7 +1657,7 @@ public class Rowy extends Mainloc {
 
             case 200:
                 // Mueller wird per Morphing hergezaubert
-                Borderrect tmp = mueller.MlynkRect();
+                Borderrect tmp = mueller.getRect();
                 GenericPoint tt = new GenericPoint((tmp.lo_point.x + tmp.ru_point.x) / 2, tmp.ru_point.y);
                 muellerMorph.Init(tt, 100);  // 2. Argument ist die Groesse in Pixeln !!!
                 isMuellerMorphing = true;
@@ -1724,7 +1724,7 @@ public class Rowy extends Mainloc {
 
             case 261:
                 // Start: Mueller wird per Morphing auf alten Mueller geswitcht
-                Borderrect tmp2 = mueller.MlynkRect();
+                Borderrect tmp2 = mueller.getRect();
                 GenericPoint tt2 = new GenericPoint((tmp2.lo_point.x + tmp2.ru_point.x) / 2, tmp2.ru_point.y);
                 muellerMorph.Init(tt2, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
@@ -1758,7 +1758,7 @@ public class Rowy extends Mainloc {
 
             case 268:
                 // Start: Alter Mueller wird per Morphing auf Fledermaus geswitcht
-                Borderrect tmp3 = mueller.MlynkRect();
+                Borderrect tmp3 = mueller.getRect();
                 GenericPoint tt3 = new GenericPoint((tmp3.lo_point.x + tmp3.ru_point.x) / 2, tmp3.ru_point.y);
                 muellerMorph.Init(tt3, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
@@ -1894,7 +1894,7 @@ public class Rowy extends Mainloc {
 
             case 346:
                 // Start: Fledermaus wird per Morphing auf Mueller geswitcht
-                Borderrect tmp4 = mueller.MlynkRect();
+                Borderrect tmp4 = mueller.getRect();
                 GenericPoint tt4 = new GenericPoint((tmp4.lo_point.x + tmp4.ru_point.x) / 2, tmp4.ru_point.y);
                 muellerMorph.Init(tt4, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;

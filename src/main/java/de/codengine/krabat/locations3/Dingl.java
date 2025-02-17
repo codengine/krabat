@@ -229,7 +229,7 @@ public class Dingl extends Mainloc {
             // stehender Dinglinger
 
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.DinglingerRect();
+            Borderrect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
             g.drawImage(background, 0, 0);
@@ -400,7 +400,7 @@ public class Dingl extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 GenericPoint pTxxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -599,7 +599,7 @@ public class Dingl extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     reDinglinger.IsPointInRect(pTemp) ||
                     kunstwerk.IsPointInRect(pTemp) ||

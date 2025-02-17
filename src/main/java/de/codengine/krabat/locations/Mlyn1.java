@@ -245,7 +245,7 @@ public class Mlyn1 extends Mainloc {
         // Mueller Hintergrund loeschen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.MlynkRect();
+            Borderrect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -305,7 +305,7 @@ public class Mlyn1 extends Mainloc {
         // Mueller zeichnen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.MlynkRect();
+            Borderrect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

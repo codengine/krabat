@@ -527,7 +527,7 @@ public class Imagefont {
 
     // Routine, die Text genau ueber Krabat zentriert
     public GenericPoint KrabatText(String Text) {
-        Borderrect tmp = mainFrame.krabat.KrabatRect();
+        Borderrect tmp = mainFrame.krabat.getRect();
 
         // Default : Abstand der letzten Zeile ist 25 Pixel von Krabat
         int ypos = tmp.lo_point.y - 2 * ABSTAND;

@@ -160,7 +160,7 @@ public class Jama1 extends Mainloc {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
 
             if (!istJaegerGebueckt) {
                 g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
@@ -203,7 +203,7 @@ public class Jama1 extends Mainloc {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.HojntRect();
+            Borderrect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -342,7 +342,7 @@ public class Jama1 extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -420,7 +420,7 @@ public class Jama1 extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
                     wackiRect.IsPointInRect(pTemp) && !mainFrame.Actions[908];
 
@@ -600,7 +600,7 @@ public class Jama1 extends Mainloc {
             case 55:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.HojntRect();
+                tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
                 PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00006"),
                         Start.stringManager.getTranslation("Loc1_Jama1_00007"),
@@ -620,7 +620,7 @@ public class Jama1 extends Mainloc {
             case 65:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.HojntRect();
+                tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
                 PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00012"),
                         Start.stringManager.getTranslation("Loc1_Jama1_00013"),
@@ -640,7 +640,7 @@ public class Jama1 extends Mainloc {
             case 75:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.HojntRect();
+                tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
                 PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00018"),
                         Start.stringManager.getTranslation("Loc1_Jama1_00019"),

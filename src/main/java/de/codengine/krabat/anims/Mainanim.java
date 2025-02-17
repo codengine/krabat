@@ -25,7 +25,7 @@ import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.platform.GenericImageFetcher;
 
 
-public class Mainanim {
+public abstract class Mainanim {
     // Objekt auf "start" - sollte das hier rein (Geschwindigkeit ???)
     public final Start mainFrame;
 

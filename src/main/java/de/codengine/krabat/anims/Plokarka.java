@@ -21,7 +21,6 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -33,7 +32,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public class Plokarka extends Mainanim {
+public class Plokarka extends MovableMainAnim {
     private static final Logger log = LoggerFactory.getLogger(Plokarka.class);
     // Alle GenericImage - Objekte
     private final GenericImage[] krabat_left;
@@ -48,31 +47,6 @@ public class Plokarka extends Mainanim {
     private GenericImage krabatw_abnehm;
 
     public boolean hasWaesche = false;
-
-    // Grundlegende Variablen
-    private float xps;
-    private float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    private float txps;
-    private float typs;             // temporaere Variablen fuer genaue Position
-    // public  boolean isWandering = false;  // gilt fuer ganze Route
-    // public  boolean isWalking = false;    // gilt bis zum naechsten Rect.
-    private int anim_pos = 0;             // Animationsbild
-    // public  boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
-
-    // Variablen fuer Bewegung und Richtung
-    private GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    private GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
-    // hier ist das Problem der Threadsynchronisierung !!!!!!!
-    private DirectionX directionX = DirectionX.RIGHT;          // Laufrichtung x
-    private DirectionX tDirectionX = DirectionX.RIGHT;
-
-    private DirectionY directionY = DirectionY.DOWN;          // Laufrichtung y
-    private DirectionY tDirectionY = DirectionY.DOWN;
-
-    private boolean horizontal = true;    // Animationen in x oder y Richtung
-    private boolean Thorizontal = true;
-
-    public final boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
 
     // Spritevariablen
     private static final int CWIDTH = 45;// Default - Werte Hoehe,Breite
@@ -91,15 +65,10 @@ public class Plokarka extends Mainanim {
     // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
     // private int nAnimStep = 0;            // ggw. Pos in Animation
 
-    // Variablen fuer Zooming
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
-    // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
     // den Hintergrund geht (bildabhaengig)
     private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     // Redevariablen
     private int TalkPic = 0;
@@ -115,7 +84,7 @@ public class Plokarka extends Mainanim {
     // Initialisierung ////////////////////////////////////////////////////////////////
 
     public Plokarka(Start caller) {
-        super(caller);
+        super(caller, CWIDTH, CHEIGHT);
 
         krabat_left = new GenericImage[4];
         krabat_right = new GenericImage[4];
@@ -448,15 +417,16 @@ public class Plokarka extends Mainanim {
     }
 
     // Zooming-Variablen berechnen
-
-    private int getLeftPos(int pox, int poy) {
+    @Override
+    protected int getLeftPos(int pox, int poy) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
         int helper = getScale(poy);
         return pox - (CWIDTH - helper / 2) / 2;
     }
 
-    private int getUpPos(int poy) {
+    @Override
+    protected int getUpPos(int poy) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
         int helper = getScale(poy);
@@ -506,16 +476,6 @@ public class Plokarka extends Mainanim {
         // g.setColor(Color.white);
         // g.drawRect(x, y, xd - 1, yd - 1);
         // System.out.println(x + " " + y + " " + xd + " " + yd);
-    }
-
-    // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect PlokarkaRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-        return new Borderrect(x, y, xd, yd);
     }
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {

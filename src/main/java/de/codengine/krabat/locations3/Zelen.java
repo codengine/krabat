@@ -228,7 +228,7 @@ public class Zelen extends Mainloc {
             // Hier wird ersteinmal der Hintergrund beider Figuren geloescht
 
             // Clipping - Rectangle feststellen und setzen fuer Druzina
-            Borderrect temp = druzina.DruzinaRect();
+            Borderrect temp = druzina.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -236,7 +236,7 @@ public class Zelen extends Mainloc {
             g.drawImage(background, 0, 0);
 
             // Hier dasselbe fuer den August
-            temp = awgust.AwgustRect();
+            temp = awgust.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -256,14 +256,14 @@ public class Zelen extends Mainloc {
 
             // nun beide zeichnen, Awgust als zweiten (ist immer davor)
             // Clipping - Rectangle feststellen und setzen fuer Druzina
-            temp = druzina.DruzinaRect();
+            temp = druzina.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
             druzina.drawDruzina(g);
             g.drawImage(vorder, 82, 210);
 
             // fuer Awgust ein paar Unterscheidungen
-            temp = awgust.AwgustRect();
+            temp = awgust.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
             if (TalkPerson == 40 && mainFrame.talkCount > 1) {
@@ -454,7 +454,7 @@ public class Zelen extends Mainloc {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.KrabatRect();
+                Borderrect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -634,7 +634,7 @@ public class Zelen extends Mainloc {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.invCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.KrabatRect();
+            Borderrect tmp = mainFrame.krabat.getRect();
             mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
 // 		    (stuhl.IsPointInRect (pTemp) == true) ||
 //                     (klavier.IsPointInRect (pTemp) == true) ||
