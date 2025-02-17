@@ -138,7 +138,7 @@ public class Zawod1 extends Mainloc {
 
         mainFrame.Clipset = false;
 
-        mainFrame.krabat.SetKrabatPos(new GenericPoint(128, 352));
+        mainFrame.krabat.setPos(new GenericPoint(128, 352));
         mainFrame.krabat.SetFacing(3);
 
         mainFrame.krabat.maxx = 402;

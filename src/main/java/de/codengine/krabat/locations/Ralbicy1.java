@@ -110,7 +110,7 @@ public class Ralbicy1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(581, 463));
+                mainFrame.krabat.setPos(new GenericPoint(581, 463));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 2:
@@ -119,7 +119,7 @@ public class Ralbicy1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(20, 332));
+                mainFrame.krabat.setPos(new GenericPoint(20, 332));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -360,7 +360,7 @@ public class Ralbicy1 extends Mainloc {
                 // zu Jitk gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -380,7 +380,7 @@ public class Ralbicy1 extends Mainloc {
                 // zu Most gehen?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

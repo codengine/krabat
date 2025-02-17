@@ -109,7 +109,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         mueller.zoomf = 4f;
         mueller.defScale = 60;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         krabatvogel = new PtackZaRapaka(mainFrame, 172, 290, 30, -50, true);  // start, x, y, zoomfaktor, ende, gleitet nie?
@@ -744,7 +744,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             case 1320:
                 // Verzauberanim beider Leute
                 muellermorph.Init(mlynkFeet, 35);
-                krabatmorph.Init(mainFrame.krabat.GetKrabatPos(), -40);  // Krabat macht hier keinen Krach
+                krabatmorph.Init(mainFrame.krabat.getPos(), -40);  // Krabat macht hier keinen Krach
                 ismuellermorphing = true;
                 iskrabatmorphing = true;
                 nextActionID = 1342;

@@ -91,7 +91,7 @@ public class Njedz2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         // fuer Blinkern rein
@@ -124,14 +124,14 @@ public class Njedz2 extends Mainloc2 {
             case 73:
                 // von Hojnt aus
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(484, 467));
+                mainFrame.krabat.setPos(new GenericPoint(484, 467));
                 mainFrame.krabat.SetFacing(12);
                 setAnim = true;
                 TalkPause = 10;
                 break;
             case 85:
                 // von Villa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(328, 258));
+                mainFrame.krabat.setPos(new GenericPoint(328, 258));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -419,7 +419,7 @@ public class Njedz2 extends Mainloc2 {
                 // zu Hojnt gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -438,7 +438,7 @@ public class Njedz2 extends Mainloc2 {
                 // zu Villa gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

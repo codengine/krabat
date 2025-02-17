@@ -62,7 +62,7 @@ public class Dubring2 extends Mainloc2 {
         mainFrame.krabat.zoomf = 7f;
         mainFrame.krabat.defScale = -30;
 
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(3);
 
         mueller = new Mlynk2(mainFrame);
@@ -71,7 +71,7 @@ public class Dubring2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = -30;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(9);
 
         muellermorph = new Bumm(mainFrame);

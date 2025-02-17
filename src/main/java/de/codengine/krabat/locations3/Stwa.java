@@ -78,7 +78,7 @@ public class Stwa extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 break;
             case 160: // von Panorama
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(368, 455));
+                mainFrame.krabat.setPos(new GenericPoint(368, 455));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -251,7 +251,7 @@ public class Stwa extends Mainloc {
                 // zu Panorama gehen ?
                 if (ausgangPanorama.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangPanorama.IsPointInRect(kt)) {

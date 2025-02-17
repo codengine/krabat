@@ -357,7 +357,7 @@ public class KrabatOben extends Krabat {
 
         if (!isWalking && !isWandering) {
             // System.out.println("Krabatpos korrigiert!");
-            SetKrabatPos(walkto);
+            setPos(walkto);
             if (clearanimpos) {
                 anim_pos = 0;
             }

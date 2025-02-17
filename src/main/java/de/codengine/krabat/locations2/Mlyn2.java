@@ -88,7 +88,7 @@ public class Mlyn2 extends Mainloc {
         mueller.zoomf = 1f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         Verhinderrad = MAX_VERHINDERRAD;
@@ -100,7 +100,7 @@ public class Mlyn2 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         InitImages();
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);
 
         // Einsprung, wenn von Inmlyn kommend (Anim: darfst nach Hause gehen...)

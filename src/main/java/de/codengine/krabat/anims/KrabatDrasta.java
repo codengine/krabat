@@ -431,7 +431,7 @@ public class KrabatDrasta extends Krabat {
 
         if (!isWalking && !isWandering) {
             // System.out.println("Krabatpos korrigiert auf " + walkto.x + " " + walkto.y);
-            SetKrabatPos(walkto);
+            setPos(walkto);
             if (clearanimpos) {
                 anim_pos = 0;
             }

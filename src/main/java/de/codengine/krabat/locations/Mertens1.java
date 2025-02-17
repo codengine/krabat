@@ -141,7 +141,7 @@ public class Mertens1 extends Mainloc {
                 break;
             case 21:
                 // von Kulow aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(38, 305));
+                mainFrame.krabat.setPos(new GenericPoint(38, 305));
                 mainFrame.krabat.SetFacing(3);
                 mainFrame.Actions[207] = false;
                 break;
@@ -462,7 +462,7 @@ public class Mertens1 extends Mainloc {
                 // zu Kulow gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

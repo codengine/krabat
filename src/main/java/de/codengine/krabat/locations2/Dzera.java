@@ -72,7 +72,7 @@ public class Dzera extends Mainloc {
         mueller.zoomf = 4f;
         mueller.defScale = -20;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         Pkocka.x = kockaFeet.x - Kocka.Breite / 2;

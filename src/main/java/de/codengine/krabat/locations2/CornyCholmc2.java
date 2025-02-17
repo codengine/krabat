@@ -89,7 +89,7 @@ public class CornyCholmc2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 20;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         InitLocation(oldLocation);
@@ -125,7 +125,7 @@ public class CornyCholmc2 extends Mainloc2 {
             case 85:
                 // von Villa aus
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(463, 468));
+                mainFrame.krabat.setPos(new GenericPoint(463, 468));
                 mainFrame.krabat.SetFacing(12);
                 setAnim = true;
                 TalkPause = 10;
@@ -133,7 +133,7 @@ public class CornyCholmc2 extends Mainloc2 {
             case 90:
                 // von Mlyn2 aus (richtig)
                 BackgroundMusicPlayer.getInstance().playTrack(20, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(161, 286));
+                mainFrame.krabat.setPos(new GenericPoint(161, 286));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -372,7 +372,7 @@ public class CornyCholmc2 extends Mainloc2 {
                 // zu Villa gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -391,7 +391,7 @@ public class CornyCholmc2 extends Mainloc2 {
                 // zu Labyrinth gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

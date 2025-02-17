@@ -95,11 +95,11 @@ public class Saal extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 131: // von Trjepjena
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(520, 449));
+                mainFrame.krabat.setPos(new GenericPoint(520, 449));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 141: // von Dingl aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(88, 458));
+                mainFrame.krabat.setPos(new GenericPoint(88, 458));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -284,7 +284,7 @@ public class Saal extends Mainloc {
                 // zu Trjepjena gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -303,7 +303,7 @@ public class Saal extends Mainloc {
                 // zu Dingl gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

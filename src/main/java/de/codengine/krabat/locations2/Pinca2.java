@@ -99,7 +99,7 @@ public class Pinca2 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         InitImages();
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);
         nextActionID = 600;
     }

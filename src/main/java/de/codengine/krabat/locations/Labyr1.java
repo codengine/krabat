@@ -101,13 +101,13 @@ public class Labyr1 extends Mainlaby {
                 break;
             case 3:
                 // von links aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(22, 400));
+                mainFrame.krabat.setPos(new GenericPoint(22, 400));
                 mainFrame.krabat.SetFacing(3);
                 Ausgang = BerechneAusgang(false, false, false, true);
                 break;
             case 9:
                 // von rechts aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(615, 380));
+                mainFrame.krabat.setPos(new GenericPoint(615, 380));
                 mainFrame.krabat.SetFacing(9);
                 Ausgang = BerechneAusgang(false, false, true, false);
                 break;
@@ -207,7 +207,7 @@ public class Labyr1 extends Mainlaby {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab12Rect.IsPointInRect(pKrTemp)) {
@@ -308,7 +308,7 @@ public class Labyr1 extends Mainlaby {
                 // zu naechstem Laby gehen links
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -327,7 +327,7 @@ public class Labyr1 extends Mainlaby {
                 // zu naechstem Laby gehen rechts
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

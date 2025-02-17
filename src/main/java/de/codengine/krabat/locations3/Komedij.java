@@ -132,7 +132,7 @@ public class Komedij extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 break;
             case 123: // von Hala
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(160, 395));
+                mainFrame.krabat.setPos(new GenericPoint(160, 395));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -231,7 +231,7 @@ public class Komedij extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Jacke (nur Clipping - Region wird neugezeichnet)
         if (rectJacke.IsPointInRect(pKrTemp)) {
@@ -372,7 +372,7 @@ public class Komedij extends Mainloc {
                 // zu Halle gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

@@ -142,12 +142,12 @@ public class Straze extends Mainloc {
                 break;
             case 127:
                 // von Terassa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(285, 475));
+                mainFrame.krabat.setPos(new GenericPoint(285, 475));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 130:
                 // von Hdwor aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(279, 445));
+                mainFrame.krabat.setPos(new GenericPoint(279, 445));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -342,7 +342,7 @@ public class Straze extends Mainloc {
                 // zu Terassa gehen ?
                 if (ausgangTerassa.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangTerassa.IsPointInRect(kt)) {
@@ -364,7 +364,7 @@ public class Straze extends Mainloc {
                 if (ausgangHdwor.IsPointInRect(pTemp)) {
                     if (mainFrame.Actions[511]) {
                         nextActionID = 101;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!ausgangHdwor.IsPointInRect(kt)) {

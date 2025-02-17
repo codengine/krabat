@@ -99,7 +99,7 @@ public class CornyCholmc1 extends Mainloc {
         if (oldLocation > 50 && oldLocation < 62) {
             // von Bludnickis teleportiert
             BackgroundMusicPlayer.getInstance().playTrack(26, true);
-            mainFrame.krabat.SetKrabatPos(new GenericPoint(161, 276));
+            mainFrame.krabat.setPos(new GenericPoint(161, 276));
             mainFrame.krabat.SetFacing(6);
         } else {
             switch (oldLocation) {
@@ -113,7 +113,7 @@ public class CornyCholmc1 extends Mainloc {
                         mainFrame.komme_von_karte = false;
                         BackgroundMusicPlayer.getInstance().playTrack(26, true);
                     }
-                    mainFrame.krabat.SetKrabatPos(new GenericPoint(463, 468));
+                    mainFrame.krabat.setPos(new GenericPoint(463, 468));
                     mainFrame.krabat.SetFacing(12);
                     break;
                 case 26:
@@ -125,7 +125,7 @@ public class CornyCholmc1 extends Mainloc {
                 case 62:
                     // von Labyrinth aus
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                    mainFrame.krabat.SetKrabatPos(new GenericPoint(161, 286));
+                    mainFrame.krabat.setPos(new GenericPoint(161, 286));
                     mainFrame.krabat.SetFacing(6);
                     break;
             }
@@ -337,7 +337,7 @@ public class CornyCholmc1 extends Mainloc {
                 // zu Villa gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -356,7 +356,7 @@ public class CornyCholmc1 extends Mainloc {
                 // zu Labyrinth gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

@@ -76,11 +76,11 @@ public class Wonka extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 143: // von Casnik aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(68, 428));
+                mainFrame.krabat.setPos(new GenericPoint(68, 428));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 142: // von Chodba aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(176, 471));
+                mainFrame.krabat.setPos(new GenericPoint(176, 471));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -251,7 +251,7 @@ public class Wonka extends Mainloc {
                 // zu Chodba gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -270,7 +270,7 @@ public class Wonka extends Mainloc {
                 // zu Casnik gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

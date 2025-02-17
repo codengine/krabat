@@ -136,7 +136,7 @@ public class Kuchnjaopen extends Mainloc {
                 break;
             case 121:
                 // von Hintergasse aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(422, 320));
+                mainFrame.krabat.setPos(new GenericPoint(422, 320));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 145:
@@ -148,7 +148,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Flag setzen -> normale Kleidung
                 mainFrame.Actions[511] = false;
                 mainFrame.Actions[850] = false;
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(370, 410));
+                mainFrame.krabat.setPos(new GenericPoint(370, 410));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -243,7 +243,7 @@ public class Kuchnjaopen extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Herd oder Schwein ? (nur Clipping - Region wird neugezeichnet)
         if (herdRect.IsPointInRect(pKrTemp)) {
@@ -379,7 +379,7 @@ public class Kuchnjaopen extends Mainloc {
                 // zu Hintergasse gehen ? geht hier...
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

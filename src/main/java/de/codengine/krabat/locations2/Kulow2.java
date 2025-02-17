@@ -127,19 +127,19 @@ public class Kulow2 extends Mainloc {
             case 0: // Einsprung von Load
                 break;
             case 70: // Aus Cyrkej kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(371, 371));
+                mainFrame.krabat.setPos(new GenericPoint(371, 371));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 51;
                 setScroll = true;
                 break;
             case 87: // Von Wjes aus ueber Skip (Karte)
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(144, 452));
+                mainFrame.krabat.setPos(new GenericPoint(144, 452));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 79: // Von Mertens aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1258, 445));
+                mainFrame.krabat.setPos(new GenericPoint(1258, 445));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
@@ -322,7 +322,7 @@ public class Kulow2 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (kulow2Rect.IsPointInRect(pKrTemp)) {
@@ -521,7 +521,7 @@ public class Kulow2 extends Mainloc {
                 // nach Polo gehen
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -540,7 +540,7 @@ public class Kulow2 extends Mainloc {
                 // nach Mertens gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -559,7 +559,7 @@ public class Kulow2 extends Mainloc {
                 // nach Cyrkej gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

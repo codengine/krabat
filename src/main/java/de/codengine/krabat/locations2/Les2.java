@@ -74,7 +74,7 @@ public class Les2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 10;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(9);
 
         InitLocation();
@@ -89,7 +89,7 @@ public class Les2 extends Mainloc2 {
     private void InitLocation() {
         InitImages();
 
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(3);
     }
 
@@ -168,7 +168,7 @@ public class Les2 extends Mainloc2 {
         // Krabat zeichnen
         mainFrame.krabat.drawKrabat(g);
 
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Krabat hinterm Gras ??
         if (strauchRect.IsPointInRect(pKrTemp)) {

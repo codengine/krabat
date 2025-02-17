@@ -186,7 +186,7 @@ public class Wudzerneu1 extends MovableMainAnim {
         // Ueberschreitung feststellen in X - Richtung
         if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
             // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-            SetWudzer1Pos(walkto);
+            setPos(walkto);
             anim_pos = 1;
             laeuftNicht = true;
             return true;
@@ -214,18 +214,6 @@ public class Wudzerneu1 extends MovableMainAnim {
         tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         anim_pos = clearAnimPos ? 0 : 1;       // Animationsimage bei Neubeginn initialis.
-    }
-
-    // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void SetWudzer1Pos(GenericPoint aim) {
-        // point bezeichnet Fusskoordinaten
-        // pos_x = aim.x;
-        // pos_y = aim.y;
-
-        xps = aim.x;        // Float - Variablen initialisieren
-        yps = aim.y;
-
-        //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////

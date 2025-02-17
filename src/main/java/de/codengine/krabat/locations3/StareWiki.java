@@ -182,7 +182,7 @@ public class StareWiki extends Mainloc {
                 break;
             case 180:
                 // von Karta aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(175, 470));
+                mainFrame.krabat.setPos(new GenericPoint(175, 470));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -341,7 +341,7 @@ public class StareWiki extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Rad ? (nur Clipping - Region wird neugezeichnet)
         if (rectKoleso.IsPointInRect(pKrTemp)) {
@@ -565,7 +565,7 @@ public class StareWiki extends Mainloc {
                 // zu Karta gehen ?
                 if (ausgangKarta.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangKarta.IsPointInRect(kt)) {

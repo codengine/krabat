@@ -126,12 +126,12 @@ public class Hrodz extends Mainloc {
             case 0:
                 // Einsprung fuer Load
                 // Berechnen, wo K steht, wg. rumschaukeln...
-                isRight = mainFrame.krabat.GetKrabatPos().x > 500;
+                isRight = mainFrame.krabat.getPos().x > 500;
                 break;
             case 200:
                 // von Wotrow aus
                 isRight = true;
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(612, 445));
+                mainFrame.krabat.setPos(new GenericPoint(612, 445));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -190,8 +190,8 @@ public class Hrodz extends Mainloc {
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
-            GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x,
-                    mainFrame.krabat.GetKrabatPos().y);
+            GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x,
+                    mainFrame.krabat.getPos().y);
 
             // Groesse
             int scale = mainFrame.krabat.defScale;
@@ -257,9 +257,9 @@ public class Hrodz extends Mainloc {
                         mainFrame.talkCount = 0; // schreien aufhoeren
                         SonderAnim = 0;
                     }
-                    GenericPoint tmp = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint tmp = mainFrame.krabat.getPos();
                     tmp.y += Fallgeschwindigkeit * 2;
-                    mainFrame.krabat.SetKrabatPos(tmp);
+                    mainFrame.krabat.setPos(tmp);
                     break;
             }
         } else {
@@ -438,7 +438,7 @@ public class Hrodz extends Mainloc {
                 // zu Wotrow gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

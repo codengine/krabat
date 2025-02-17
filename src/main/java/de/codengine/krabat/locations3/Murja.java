@@ -104,25 +104,25 @@ public class Murja extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 121: // von Haska aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1247, 475));
+                mainFrame.krabat.setPos(new GenericPoint(1247, 475));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 break;
             case 127: // von Terassa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(40, 475));
+                mainFrame.krabat.setPos(new GenericPoint(40, 475));
                 mainFrame.krabat.SetFacing(3);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 129: // von Mlynkmurja aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(310, 474));
+                mainFrame.krabat.setPos(new GenericPoint(310, 474));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 144: // von Couch aus (Gag)
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(80, 460));
+                mainFrame.krabat.setPos(new GenericPoint(80, 460));
                 mainFrame.krabat.SetFacing(3);
                 isBuschVisible = true;
                 scrollwert = 0;
@@ -357,7 +357,7 @@ public class Murja extends Mainloc {
                 // zu Haska gehen ?
                 if (ausgangHaska.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangHaska.IsPointInRect(kt)) {
@@ -376,7 +376,7 @@ public class Murja extends Mainloc {
                 // zu Terassa gehen
                 if (ausgangTerassa.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangTerassa.IsPointInRect(kt)) {

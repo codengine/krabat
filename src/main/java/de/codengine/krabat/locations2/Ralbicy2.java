@@ -93,7 +93,7 @@ public class Ralbicy2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = -30;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         InitLocation(oldLocation);
@@ -130,7 +130,7 @@ public class Ralbicy2 extends Mainloc2 {
             case 74:
                 // von Jitk aus, Mueller kommt
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(581, 463));
+                mainFrame.krabat.setPos(new GenericPoint(581, 463));
                 mainFrame.krabat.SetFacing(9);
                 setAnim = true;
                 // schnauzeBauer = true;
@@ -139,7 +139,7 @@ public class Ralbicy2 extends Mainloc2 {
 
             case 89:
                 // von Most aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(20, 332));
+                mainFrame.krabat.setPos(new GenericPoint(20, 332));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -419,7 +419,7 @@ public class Ralbicy2 extends Mainloc2 {
                 // zu Jitk gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -439,7 +439,7 @@ public class Ralbicy2 extends Mainloc2 {
                 // zu Most gehen?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

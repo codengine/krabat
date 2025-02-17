@@ -99,19 +99,19 @@ public class Hala extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 break;
             case 122: // von Spaniska aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(180, 415));
+                mainFrame.krabat.setPos(new GenericPoint(180, 415));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 124: // von Komedij aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(920, 420));
+                mainFrame.krabat.setPos(new GenericPoint(920, 420));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 600;
                 setScroll = true;
                 break;
             case 125: // von Jewisco aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1220, 470));
+                mainFrame.krabat.setPos(new GenericPoint(1220, 470));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
@@ -318,7 +318,7 @@ public class Hala extends Mainloc {
                 // zu Spaniska gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -338,7 +338,7 @@ public class Hala extends Mainloc {
                 if (mainFrame.Actions[675]) {
                     if (dritteTuer.IsPointInRect(pTemp)) {
                         nextActionID = 101;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!dritteTuer.IsPointInRect(kt)) {
@@ -364,7 +364,7 @@ public class Hala extends Mainloc {
                 // zu Jewisco gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

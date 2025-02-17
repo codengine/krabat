@@ -72,7 +72,7 @@ public class Wobzor2 extends Mainloc2 {
         mainFrame.krabat.zoomf = 4f;
         mainFrame.krabat.defScale = 80;
 
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(3);
 
         Wasser = new GenericImage[9];
@@ -84,7 +84,7 @@ public class Wobzor2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 80;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(9);
 
         InitLocation();
@@ -217,7 +217,7 @@ public class Wobzor2 extends Mainloc2 {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (horiz3Rect.IsPointInRect(pKrTemp)) {

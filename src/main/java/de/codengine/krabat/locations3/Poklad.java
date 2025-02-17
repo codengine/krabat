@@ -86,7 +86,7 @@ public class Poklad extends Mainloc {
         dinglingerwalk.zoomf = 1f;
         dinglingerwalk.defScale = 125;
 
-        dinglingerwalk.SetDinglingerPos(dinglPoint1);
+        dinglingerwalk.setPos(dinglPoint1);
         dinglingerwalk.SetFacing(9);
 
         straza = new StrazaPoklad(mainFrame);
@@ -344,7 +344,7 @@ public class Poklad extends Mainloc {
                 }
                 mainFrame.Clipset = false;
                 dinglingerwalk.defScale = 0;
-                dinglingerwalk.SetDinglingerPos(dinglPoint2);
+                dinglingerwalk.setPos(dinglPoint2);
                 dinglingerwalk.SetFacing(9);
                 showStraza = false;
                 whatPicture = 2;
@@ -458,7 +458,7 @@ public class Poklad extends Mainloc {
                 whatPicture = 1;
                 evalPersonPoints();
                 dinglingerwalk.defScale = 125;
-                dinglingerwalk.SetDinglingerPos(dinglPoint9);
+                dinglingerwalk.setPos(dinglPoint9);
                 dinglingerwalk.SetFacing(3);
                 dinglingerwalk.MoveTo(dinglPoint1);
                 walkReady = false;

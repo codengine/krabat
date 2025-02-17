@@ -87,7 +87,7 @@ public class Lodz extends Mainloc {
         wikowarka = new WikowarkaRudy(mainFrame);
         Dialog = new Multiple2(mainFrame);
 
-        wikowarka.SetZonaPos(zonaPoint);
+        wikowarka.setPos(zonaPoint);
         wikowarka.SetFacing(6);
 
         if (mainFrame.Actions[559]) {
@@ -126,7 +126,7 @@ public class Lodz extends Mainloc {
                 break;
             case 163:
                 // von Habor aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(39, 164));
+                mainFrame.krabat.setPos(new GenericPoint(39, 164));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -396,7 +396,7 @@ public class Lodz extends Mainloc {
                 // zu Habor gehen ?
                 if (ausgangHabor.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangHabor.IsPointInRect(kt)) {
@@ -656,7 +656,7 @@ public class Lodz extends Mainloc {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     mainFrame.invCursor = false;
-                    mainFrame.krabat.SetKrabatPos(pZona);
+                    mainFrame.krabat.setPos(pZona);
                     mainFrame.krabat.SetFacing(fZona);
                     GiveCounter = 0;
                     nextActionID = 165;

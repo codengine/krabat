@@ -106,7 +106,7 @@ public class Panorama extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 break;
             case 180: // von Karta (Oben)
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(327, 310));
+                mainFrame.krabat.setPos(new GenericPoint(327, 310));
                 mainFrame.krabat.SetFacing(6);
                 break;
             // case 170: // von KartaRechts   ???????????????? (Zastup)
@@ -114,17 +114,17 @@ public class Panorama extends Mainloc {
             //	mainFrame.krabat.SetFacing (9);
             //	break;
             case 161: // von Stwa
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(266, 385));
+                mainFrame.krabat.setPos(new GenericPoint(266, 385));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 162: // von Zahrodnik
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(511, 382));
+                mainFrame.krabat.setPos(new GenericPoint(511, 382));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 163: // von Wobjo (Habor)
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(37, 376));
+                mainFrame.krabat.setPos(new GenericPoint(37, 376));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -309,7 +309,7 @@ public class Panorama extends Mainloc {
                 // zu KarteOben gehen ?
                 if (ausgangKartaOben.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangKartaOben.IsPointInRect(kt)) {
@@ -352,7 +352,7 @@ public class Panorama extends Mainloc {
                 // zu Zahrodnik gehen ?
                 if (ausgangZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangZahrodnik.IsPointInRect(kt)) {
@@ -371,7 +371,7 @@ public class Panorama extends Mainloc {
                 // zu Stwa gehen ?
                 if (ausgangStwa.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangStwa.IsPointInRect(kt)) {
@@ -390,7 +390,7 @@ public class Panorama extends Mainloc {
                 // zu Habor gehen ?
                 if (ausgangWobjo.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangWobjo.IsPointInRect(kt)) {

@@ -157,21 +157,21 @@ public class DDKarta extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 break;
             case 160: // von Panorama
-                mainFrame.krabat.SetKrabatPos(pPanorama);
+                mainFrame.krabat.setPos(pPanorama);
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 170: // von Zastup
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(pZastup);
+                mainFrame.krabat.setPos(pZastup);
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 127: // von Hrod (Terassa)
-                mainFrame.krabat.SetKrabatPos(pHrodmost);
+                mainFrame.krabat.setPos(pHrodmost);
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 175: // von Starewiki
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(pStarewiki);
+                mainFrame.krabat.setPos(pStarewiki);
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -349,7 +349,7 @@ public class DDKarta extends Mainloc {
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
                 if (brPanorama.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
                     if (!brPanorama.IsPointInRect(kt)) {
@@ -371,7 +371,7 @@ public class DDKarta extends Mainloc {
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
                 if (brZastup.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
                     if (!brZastup.IsPointInRect(kt)) {
@@ -393,7 +393,7 @@ public class DDKarta extends Mainloc {
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
                 if (brHrod.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
                     if (!brHrod.IsPointInRect(kt)) {
@@ -415,7 +415,7 @@ public class DDKarta extends Mainloc {
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
                 if (brStarewiki.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
                     if (!brStarewiki.IsPointInRect(kt)) {

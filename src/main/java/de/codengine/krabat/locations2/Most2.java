@@ -161,7 +161,7 @@ public class Most2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = -30;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         kutscher = new Kutser(mainFrame);
@@ -193,21 +193,21 @@ public class Most2 extends Mainloc2 {
                 } else {
                     BackgroundMusicPlayer.getInstance().stop();
                 }
-                GenericPoint tp = mainFrame.krabat.GetKrabatPos();
+                GenericPoint tp = mainFrame.krabat.getPos();
                 Borderrect TalRect = new Borderrect(400, 220, 460, 290);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 71:
                 // von Doma aus - Sonderstellung, soll nix spielen
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(293, 351));
+                mainFrame.krabat.setPos(new GenericPoint(293, 351));
                 mainFrame.krabat.SetFacing(12);
                 isTal = false;
                 break;
             case 82:
                 // von Ralbicy aus
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(624, 384));
+                mainFrame.krabat.setPos(new GenericPoint(624, 384));
                 mainFrame.krabat.SetFacing(9);
                 isTal = false;
                 backgroundSoundAus = true; // Hintergrundgeraeusche hier abschalten
@@ -217,7 +217,7 @@ public class Most2 extends Mainloc2 {
                 break;
             case 84:
                 // von Sunow aus, heimgehszene, nix tun
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(458, 226));
+                mainFrame.krabat.setPos(new GenericPoint(458, 226));
                 mainFrame.krabat.SetFacing(6);
                 isTal = true;
                 break;
@@ -473,7 +473,7 @@ public class Most2 extends Mainloc2 {
             g.drawImage(wegstueck, 342, 270);
         }
 
-        GenericPoint tem = mainFrame.krabat.GetKrabatPos();
+        GenericPoint tem = mainFrame.krabat.getPos();
 
         if (BergTrapez.PointInside(tem)) {
             g.drawImage(gelaend, 379, 273);
@@ -652,7 +652,7 @@ public class Most2 extends Mainloc2 {
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 60;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!untererAusgang.IsPointInRect(kt)) {
@@ -670,7 +670,7 @@ public class Most2 extends Mainloc2 {
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 102;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!obererAusgang.IsPointInRect(kt)) {
@@ -694,7 +694,7 @@ public class Most2 extends Mainloc2 {
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 100;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!rechterAusgang.IsPointInRect(kt)) {
@@ -885,7 +885,7 @@ public class Most2 extends Mainloc2 {
             return false;
         }
 
-        GenericPoint kpos = mainFrame.krabat.GetKrabatPos();
+        GenericPoint kpos = mainFrame.krabat.getPos();
 
         // Hier Punkt klonen, damit alter Punkt erhalten bleibt
         GenericPoint pTemp = new GenericPoint(pTxxx.x, pTxxx.y);
@@ -946,7 +946,7 @@ public class Most2 extends Mainloc2 {
 
             log.debug(" Mittenfaktor {}", teal);
 
-            if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
+            if (BergTrapez.PointInside(mainFrame.krabat.getPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg

@@ -168,11 +168,11 @@ public class Casnik extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 146: // von Wonka aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(190, 470));
+                mainFrame.krabat.setPos(new GenericPoint(190, 470));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 144: // von Couch aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(450, 300));
+                mainFrame.krabat.setPos(new GenericPoint(450, 300));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -342,7 +342,7 @@ public class Casnik extends Mainloc {
 
         if (krabatStelltUhrUm) {
             // Uhr umstellen, erstmal Pos und Groesse berechnen
-            GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y);
+            GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y);
 
             // Groesse
             int scale = mainFrame.krabat.defScale;
@@ -609,7 +609,7 @@ public class Casnik extends Mainloc {
                 // zu Wonka gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -628,7 +628,7 @@ public class Casnik extends Mainloc {
                 // zu Couch gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

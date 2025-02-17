@@ -159,7 +159,7 @@ public class Doma1 extends Mainloc {
         Init(oldLocation);
 
         // Krabat definieren
-        mainFrame.krabat.SetKrabatPos(new GenericPoint(128, 352));
+        mainFrame.krabat.setPos(new GenericPoint(128, 352));
         mainFrame.krabat.SetFacing(3);
         scrollwert = 0;
         setScroll = true;
@@ -201,7 +201,7 @@ public class Doma1 extends Mainloc {
             case 0: // Einsprung von Load
                 break;
             case 3: // Aus Jitk kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(410, 289));
+                mainFrame.krabat.setPos(new GenericPoint(410, 289));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 88;
                 setScroll = true;
@@ -475,7 +475,7 @@ public class Doma1 extends Mainloc {
 
         // Ab hier muss Cliprect wieder gerettet werden
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (brunnenRect.IsPointInRect(pKrTemp)) {
@@ -712,7 +712,7 @@ public class Doma1 extends Mainloc {
                     if (mainFrame.Actions[0]) {
                         nextActionID = 100;
 
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!obererAusgang.IsPointInRect(kt)) {

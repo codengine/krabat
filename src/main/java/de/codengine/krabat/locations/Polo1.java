@@ -134,12 +134,12 @@ public class Polo1 extends Mainloc {
             case 21:
                 // von Kulow aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(536, 314));
+                mainFrame.krabat.setPos(new GenericPoint(536, 314));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 10:
                 // von Weiden aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(34, 413));
+                mainFrame.krabat.setPos(new GenericPoint(34, 413));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -280,7 +280,7 @@ public class Polo1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm polo2 (nur Clipping - Region wird neugezeichnet)
         if (polo2Rect.IsPointInRect(pKrTemp)) {
@@ -441,7 +441,7 @@ public class Polo1 extends Mainloc {
                 // zu Kulow gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -460,7 +460,7 @@ public class Polo1 extends Mainloc {
                 // zu Weiden gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

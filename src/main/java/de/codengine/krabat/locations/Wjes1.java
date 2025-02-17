@@ -125,7 +125,7 @@ public class Wjes1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(640, 460));
+                mainFrame.krabat.setPos(new GenericPoint(640, 460));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 320;
                 setScroll = true;
@@ -135,7 +135,7 @@ public class Wjes1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1226, 299));
+                mainFrame.krabat.setPos(new GenericPoint(1226, 299));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
@@ -145,7 +145,7 @@ public class Wjes1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(16, 292));
+                mainFrame.krabat.setPos(new GenericPoint(16, 292));
                 mainFrame.krabat.SetFacing(3);
                 scrollwert = 0;
                 setScroll = true;
@@ -155,14 +155,14 @@ public class Wjes1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(946, 265));
+                mainFrame.krabat.setPos(new GenericPoint(946, 265));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 626;
                 setScroll = true;
                 break;
             case 24: // Von Hoscenc aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(878, 365));
+                mainFrame.krabat.setPos(new GenericPoint(878, 365));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 558;
                 setScroll = true;
@@ -392,7 +392,7 @@ public class Wjes1 extends Mainloc {
         // Ab hier muss Cliprect wieder gerettet werden
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm wjes2 (nur Clipping - Region wird neugezeichnet)
         if (wjes2Rect.IsPointInRect(pKrTemp)) {
@@ -601,7 +601,7 @@ public class Wjes1 extends Mainloc {
                 // nach Weiden gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -620,7 +620,7 @@ public class Wjes1 extends Mainloc {
                 // nach Sunow gehen
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -639,7 +639,7 @@ public class Wjes1 extends Mainloc {
                 // nach Horiz gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -658,7 +658,7 @@ public class Wjes1 extends Mainloc {
                 // nach Jaeger gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

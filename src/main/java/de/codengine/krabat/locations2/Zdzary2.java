@@ -96,7 +96,7 @@ public class Zdzary2 extends Mainloc {
                 break;
             case 83:
                 // von Rapak aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(270, 467));
+                mainFrame.krabat.setPos(new GenericPoint(270, 467));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -273,7 +273,7 @@ public class Zdzary2 extends Mainloc {
                 // zu Rapak gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -292,7 +292,7 @@ public class Zdzary2 extends Mainloc {
                 // nach oben raus
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

@@ -123,7 +123,7 @@ public class Kupa1 extends Mainloc {
                 break;
             case 10:
                 // von Weiden aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(612, 376));
+                mainFrame.krabat.setPos(new GenericPoint(612, 376));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -320,7 +320,7 @@ public class Kupa1 extends Mainloc {
 
         mainFrame.wegGeher.GeheWeg();
 
-        mainFrame.krabat.SetKrabatPos(CorrectY(mainFrame.krabat.GetKrabatPos()));
+        mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -355,7 +355,7 @@ public class Kupa1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter kupa3 (nur Clipping - Region wird neugezeichnet)
         if (kupa3Rect.IsPointInRect(pKrTemp)) {
@@ -490,7 +490,7 @@ public class Kupa1 extends Mainloc {
                 // zu Weiden gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

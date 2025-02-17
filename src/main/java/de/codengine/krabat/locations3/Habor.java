@@ -164,12 +164,12 @@ public class Habor extends Mainloc {
             case 160:
                 // von Panorama aus
                 BackgroundMusicPlayer.getInstance().playTrack(14, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(611, 426));
+                mainFrame.krabat.setPos(new GenericPoint(611, 426));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 164:
                 // von Lodz aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(301, 352));
+                mainFrame.krabat.setPos(new GenericPoint(301, 352));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -273,7 +273,7 @@ public class Habor extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Mauer ? (nur Clipping - Region wird neugezeichnet)
         if (rectMurja.IsPointInRect(pKrTemp)) {
@@ -409,7 +409,7 @@ public class Habor extends Mainloc {
                 // zu Panorama gehen ?
                 if (ausgangPanorama.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangPanorama.IsPointInRect(kt)) {
@@ -429,7 +429,7 @@ public class Habor extends Mainloc {
                 // zu Lodz gehen ?, falls noch da (wenn Gonzales weg ist)
                 if (ausgangLodz.IsPointInRect(pTemp) && mainFrame.Actions[568] && !mainFrame.Actions[569]) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangLodz.IsPointInRect(kt)) {

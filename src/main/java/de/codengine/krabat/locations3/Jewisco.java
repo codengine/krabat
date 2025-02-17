@@ -109,7 +109,7 @@ public class Jewisco extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 break;
             case 123: // von Hala aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(126, 430));
+                mainFrame.krabat.setPos(new GenericPoint(126, 430));
                 mainFrame.krabat.SetFacing(3);
                 scrollwert = 0;
                 setScroll = true;
@@ -309,7 +309,7 @@ public class Jewisco extends Mainloc {
                 // zu Spaniska gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

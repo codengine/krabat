@@ -144,7 +144,7 @@ public class Awgust extends MovableMainAnim {
             // Ueberschreitung feststellen in Y - Richtung
             if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                SetAwgustPos(walkto);
+                setPos(walkto);
                 anim_pos = 0;
                 return true;
             }
@@ -192,18 +192,6 @@ public class Awgust extends MovableMainAnim {
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
         }
-    }
-
-    // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void SetAwgustPos(GenericPoint aim) {
-        // point bezeichnet Fusskoordinaten
-        // pos_x = aim.x;
-        // pos_y = aim.y;
-
-        xps = aim.x;        // Float - Variablen initialisieren
-        yps = aim.y;
-
-        //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////

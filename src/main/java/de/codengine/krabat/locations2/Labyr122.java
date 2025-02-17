@@ -79,7 +79,7 @@ public class Labyr122 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         InitLocation();
@@ -90,7 +90,7 @@ public class Labyr122 extends Mainloc2 {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         // von unten aus
-        mainFrame.krabat.SetKrabatPos(new GenericPoint(254, 452));
+        mainFrame.krabat.setPos(new GenericPoint(254, 452));
         mainFrame.krabat.SetFacing(12);
         TalkPause = 10;
         InitImages();
@@ -174,7 +174,7 @@ public class Labyr122 extends Mainloc2 {
         mainFrame.krabat.drawKrabat(g);
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab122Rect.IsPointInRect(pKrTemp)) {

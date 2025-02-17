@@ -58,26 +58,6 @@ abstract public class Krabat extends MovableMainAnim {
 
     // Alle Methoden, die immer Gueltigkeit haben, egal, welche untergelagerte Krabatklasse gerade aktiv ist
 
-    // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void SetKrabatPos(GenericPoint aim) {
-        // point bezeichnet Fusskoordinaten
-        // pos_x = aim.x;
-        // pos_y = aim.y;
-
-        xps = aim.x;        // Float - Variablen initialisieren
-        yps = aim.y;
-
-        // System.out.println ("K-Feetpos : " + xps + " " + yps);
-
-        //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    public GenericPoint GetKrabatPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
-    }
-
     // Animation anhalten und Daten zuruecksetzen
     public void StopAnim() {
         nAnimation = 0;

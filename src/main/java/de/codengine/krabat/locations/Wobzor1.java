@@ -153,12 +153,12 @@ public class Wobzor1 extends Mainloc {
                 break;
             case 13:
                 // von Wjes aus
-                mainFrame.krabat.SetKrabatPos(CorrectY(new GenericPoint(160, 200)));
+                mainFrame.krabat.setPos(CorrectY(new GenericPoint(160, 200)));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 8:
                 // von Rapak aus
-                mainFrame.krabat.SetKrabatPos(CorrectY(new GenericPoint(570, 211)));
+                mainFrame.krabat.setPos(CorrectY(new GenericPoint(570, 211)));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -245,7 +245,7 @@ public class Wobzor1 extends Mainloc {
 
         mainFrame.wegGeher.GeheWeg();
 
-        mainFrame.krabat.SetKrabatPos(CorrectY(mainFrame.krabat.GetKrabatPos()));
+        mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -280,7 +280,7 @@ public class Wobzor1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (horiz3Rect.IsPointInRect(pKrTemp)) {
@@ -393,7 +393,7 @@ public class Wobzor1 extends Mainloc {
                 // zu Wjes gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -412,7 +412,7 @@ public class Wobzor1 extends Mainloc {
                 // zu Rapak gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

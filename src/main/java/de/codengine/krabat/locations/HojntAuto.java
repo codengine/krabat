@@ -104,7 +104,7 @@ public class HojntAuto extends Mainloc {
         // An Hoelzern gezogen Hinlauf
         if (!mainFrame.Actions[216] && !mainFrame.Actions[217] && !mainFrame.Actions[218]) {
             log.debug("An den Hoelzern gezogen - Hinlauf !");
-            jaeger.SetHojntPos(Pin);
+            jaeger.setPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 0;
             setScroll = true;
@@ -114,7 +114,7 @@ public class HojntAuto extends Mainloc {
         // An Strick gezogen Hinlauf
         if (!mainFrame.Actions[216] && mainFrame.Actions[217] && !mainFrame.Actions[218]) {
             log.debug("Am Strick gezogen Hinlauf !");
-            jaeger.SetHojntPos(Pin);
+            jaeger.setPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 0;
             setScroll = true;
@@ -125,7 +125,7 @@ public class HojntAuto extends Mainloc {
         if (mainFrame.Actions[216] && !mainFrame.Actions[218]) {
             log.debug("Ruecklauf aus beiden Szenen !");
             isDoorOpen = true;
-            jaeger.SetHojntPos(Pright);
+            jaeger.setPos(Pright);
             jaeger.SetFacing(9);
             showHojnt = true;
             scrollPosition = SCROLLWERT;
@@ -136,7 +136,7 @@ public class HojntAuto extends Mainloc {
         // Szene, wenn Krabat in die Grube faellt
         if (mainFrame.Actions[218]) {
             log.debug("Szene : K in Grube.");
-            jaeger.SetHojntPos(Pin);
+            jaeger.setPos(Pin);
             jaeger.SetFacing(3);
             scrollPosition = 210;
             isScrollAnim = false;

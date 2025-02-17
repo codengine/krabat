@@ -92,12 +92,12 @@ public class Les1 extends Mainloc {
                 break;
             case 3:
                 // von Jitk aus kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(21, 370));
+                mainFrame.krabat.setPos(new GenericPoint(21, 370));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 4:
                 // von Haty aus kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(487, 212));
+                mainFrame.krabat.setPos(new GenericPoint(487, 212));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -185,7 +185,7 @@ public class Les1 extends Mainloc {
             }
         }
 
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Krabat hinterm Gras ??
         if (strauchRect.IsPointInRect(pKrTemp)) {
@@ -285,7 +285,7 @@ public class Les1 extends Mainloc {
                 // zu Haty gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -304,7 +304,7 @@ public class Les1 extends Mainloc {
                 // zu Jitk gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

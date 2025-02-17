@@ -128,19 +128,19 @@ public class Labyr8 extends Mainlaby {
                 break;
             case 9:
                 // von rechts aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(623, 370));
+                mainFrame.krabat.setPos(new GenericPoint(623, 370));
                 mainFrame.krabat.SetFacing(9);
                 Ausgang = BerechneAusgang(true, false, false, false);
                 break;
             case 3:
                 // von links aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(33, 378));
+                mainFrame.krabat.setPos(new GenericPoint(33, 378));
                 mainFrame.krabat.SetFacing(3);
                 Ausgang = BerechneAusgang(true, false, false, true);
                 break;
             case 6:
                 // von oben aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(354, 291));
+                mainFrame.krabat.setPos(new GenericPoint(354, 291));
                 mainFrame.krabat.SetFacing(6);
                 Ausgang = BerechneAusgang(false, false, false, true);
                 break;
@@ -260,7 +260,7 @@ public class Labyr8 extends Mainlaby {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab82Rect.IsPointInRect(pKrTemp)) {
@@ -385,7 +385,7 @@ public class Labyr8 extends Mainlaby {
                 // zu naechstem Laby gehen links
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -404,7 +404,7 @@ public class Labyr8 extends Mainlaby {
                 // zu naechstem Laby gehen rechts
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -423,7 +423,7 @@ public class Labyr8 extends Mainlaby {
                 // zu naechstem Laby gehen oben
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

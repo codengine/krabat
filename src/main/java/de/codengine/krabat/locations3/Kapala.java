@@ -113,7 +113,7 @@ public class Kapala extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 152: // von Gang
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(317, 438));
+                mainFrame.krabat.setPos(new GenericPoint(317, 438));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -357,7 +357,7 @@ public class Kapala extends Mainloc {
                 // zu Gang gehen ?
                 if (ausgangGang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangGang.IsPointInRect(kt)) {

@@ -198,7 +198,7 @@ public class Spielstand {
         Feld[0] = (byte) (mainFrame.currLocation + W);
 
         // Krabats Position zuweisen
-        GenericPoint Tep = mainFrame.krabat.GetKrabatPos();
+        GenericPoint Tep = mainFrame.krabat.getPos();
         Feld[1] = (byte) (Tep.x / 256 + W);
         Feld[2] = (byte) (Tep.x % 256 + W);
         Feld[3] = (byte) (Tep.y / 256 + W);
@@ -298,7 +298,7 @@ public class Spielstand {
         // hier schon der Krabatinit-damit Loadberechnungen abh. von Krabatposition
         // ueberhaupt eine Chance haben
         // Krabats Position setzen
-        mainFrame.krabat.SetKrabatPos(Krabatpos);
+        mainFrame.krabat.setPos(Krabatpos);
 
         // Krabats Blickrichtung festlegen
         mainFrame.krabat.SetFacing(Facing);

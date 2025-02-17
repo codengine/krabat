@@ -144,7 +144,7 @@ public class Zahrodnik extends Mainloc {
                 break;
             case 160:
                 // von Panorama aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(557, 431));
+                mainFrame.krabat.setPos(new GenericPoint(557, 431));
                 mainFrame.krabat.SetFacing(9);
                 initSound = false;  // nur hier Sound abspielen
                 break;
@@ -238,7 +238,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Schloss ? (nur Clipping - Region wird neugezeichnet)
         if (rectHrod.IsPointInRect(pKrTemp)) {
@@ -402,7 +402,7 @@ public class Zahrodnik extends Mainloc {
                 // zu Panorama gehen ?
                 if (ausgangUnten.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen, Achtung: ist jetzt nach rechts!!!
                     if (!ausgangUnten.IsPointInRect(kt)) {

@@ -164,7 +164,7 @@ public class Weggeher {
             // System.out.println("Start : " + thisRect + "Ziel : " + nextRect);
 
             // Optimalen Uebergang zwischen den beiden Grenzen finden
-            GenericPoint pKrFeetPos = mainFrame.krabat.GetKrabatPos();
+            GenericPoint pKrFeetPos = mainFrame.krabat.getPos();
             Bordertrapez thisBRect = vBorders.elementAt(thisRect);
             Bordertrapez nextBRect = vBorders.elementAt(nextRect);
             GenericPoint pUeber = OptimalUebergang(thisBRect, nextBRect, pKrFeetPos);
@@ -191,7 +191,7 @@ public class Weggeher {
     private int GetCurrentBorder() {
         int nTemp = -1;
         int nBRAnzahl = vBorders.size();
-        GenericPoint pKrabat = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrabat = mainFrame.krabat.getPos();
         for (int i = 0; i < nBRAnzahl; i++) {
             Bordertrapez tBRect = vBorders.elementAt(i);
             if (tBRect.PointInside(pKrabat)) {
@@ -309,7 +309,7 @@ public class Weggeher {
     private int RightRect() {
         int rgbe = -1;
         int wieviele = vBorders.size();
-        GenericPoint Fussp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint Fussp = mainFrame.krabat.getPos();
         int tAbstand = 20000;
         for (int fuck = 0; fuck < wieviele; fuck++) {
             Bordertrapez temprect = vBorders.elementAt(fuck);

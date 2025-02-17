@@ -110,13 +110,13 @@ public class Jitk1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(616, 371));
+                mainFrame.krabat.setPos(new GenericPoint(616, 371));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 6:
                 // von Doma aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(284, 453));
+                mainFrame.krabat.setPos(new GenericPoint(284, 453));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 1:
@@ -125,7 +125,7 @@ public class Jitk1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(90, 154));
+                mainFrame.krabat.setPos(new GenericPoint(90, 154));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -320,7 +320,7 @@ public class Jitk1 extends Mainloc {
                 // zu Doma gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -339,7 +339,7 @@ public class Jitk1 extends Mainloc {
                 // zu Ralbicy gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -359,7 +359,7 @@ public class Jitk1 extends Mainloc {
                 // zu Les1 gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

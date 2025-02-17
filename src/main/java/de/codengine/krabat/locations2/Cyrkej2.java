@@ -121,17 +121,17 @@ public class Cyrkej2 extends Mainloc {
                 break;
             case 76:
                 // von Kulow aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(604, 370));
+                mainFrame.krabat.setPos(new GenericPoint(604, 370));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 72:
                 // von Dubring aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(78, 456));
+                mainFrame.krabat.setPos(new GenericPoint(78, 456));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 81:
                 // von Pinca aus
-                mainFrame.krabat.SetKrabatPos(Ptuer);
+                mainFrame.krabat.setPos(Ptuer);
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -351,7 +351,7 @@ public class Cyrkej2 extends Mainloc {
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
 
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -370,7 +370,7 @@ public class Cyrkej2 extends Mainloc {
                 // Karte einblenden
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {

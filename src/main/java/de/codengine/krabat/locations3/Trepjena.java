@@ -176,7 +176,7 @@ public class Trepjena extends Mainloc {
                 break;
             case 130: // von Hdwor aus
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(507, 470));
+                mainFrame.krabat.setPos(new GenericPoint(507, 470));
                 mainFrame.krabat.SetFacing(6);
                 break;
 /*      case 132: // von Poklad aus
@@ -188,7 +188,7 @@ public class Trepjena extends Mainloc {
       	mainFrame.krabat.SetFacing (3);
       	break;*/
             case 140: // von Saal aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(176, 103));
+                mainFrame.krabat.setPos(new GenericPoint(176, 103));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -266,7 +266,7 @@ public class Trepjena extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Vordergrund zeichnen (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.y <= 415) {
@@ -431,7 +431,7 @@ public class Trepjena extends Mainloc {
                 // zu Hdwor gehen ?
                 if (ausgangHof.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangHof.IsPointInRect(kt)) {
@@ -450,7 +450,7 @@ public class Trepjena extends Mainloc {
                 // zu Saal (oben) gehen ?
                 if (ausgangOben.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangOben.IsPointInRect(kt)) {

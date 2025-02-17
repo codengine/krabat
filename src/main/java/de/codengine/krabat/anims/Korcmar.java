@@ -179,7 +179,7 @@ public class Korcmar extends MovableMainAnim {
             // Ueberschreitung feststellen in Y - Richtung
             if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
                 // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                SetKorcmarPos(walkto);
+                setPos(walkto);
                 anim_pos = 0;
                 return true;
             }
@@ -233,25 +233,6 @@ public class Korcmar extends MovableMainAnim {
             anim_pos = yricht == DOWN ? 2 : 1;       // Animationsimage bei Neubeginn initialis.
         }
     }
-
-    // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void SetKorcmarPos(GenericPoint aim) {
-        // point bezeichnet Fusskoordinaten
-        // pos_x = aim.x;
-        // pos_y = aim.y;
-
-        xps = aim.x;        // Float - Variablen initialisieren
-        yps = aim.y;
-
-        //System.out.println("Setkrabatpos allgemein "+pos_x+" "+pos_y);
-    }
-
-    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
-    /*public GenericPoint GetPlokarkaPos ()
-      {
-      //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-      return (new GenericPoint (((int) xps), ((int) yps)));
-      }*/
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
 

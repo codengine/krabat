@@ -78,7 +78,7 @@ public class Jama1 extends Mainloc {
         jaeger.zoomf = 1f;
         jaeger.defScale = -30;
 
-        jaeger.SetHojntPos(AnfangsPunkt);
+        jaeger.setPos(AnfangsPunkt);
         jaeger.SetFacing(3);
 
         Wuermer = new GenericImage[8];
@@ -97,7 +97,7 @@ public class Jama1 extends Mainloc {
 
         InitImages();
 
-        mainFrame.krabat.SetKrabatPos(new GenericPoint(317, 393));
+        mainFrame.krabat.setPos(new GenericPoint(317, 393));
         mainFrame.krabat.SetFacing(12);
     }
 

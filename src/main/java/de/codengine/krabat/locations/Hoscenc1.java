@@ -131,7 +131,7 @@ public class Hoscenc1 extends Mainloc {
         wirt.maxx = 0;
         wirt.zoomf = 10.95f;
         wirt.defScale = 0;
-        wirt.SetKorcmarPos(new GenericPoint(300, 300));
+        wirt.setPos(new GenericPoint(300, 300));
         wirt.SetFacing(6);
 
         strolch = new Dundak(mainFrame);
@@ -188,7 +188,7 @@ public class Hoscenc1 extends Mainloc {
             case 13:
                 // von Wjes aus
                 initSound = true; // nur hier auch wirklich abspielen, wenn man reinkommt...
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(35, 454));
+                mainFrame.krabat.setPos(new GenericPoint(35, 454));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -367,7 +367,7 @@ public class Hoscenc1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Balken (nur Clipping - Region wird neugezeichnet)
         if (hosc6Rect.IsPointInRect(pKrTemp)) {
@@ -572,7 +572,7 @@ public class Hoscenc1 extends Mainloc {
                 // zu Wjes gehen ?
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -1437,7 +1437,7 @@ public class Hoscenc1 extends Mainloc {
                 SoundCountdown = 30; // Strolch-Sound deaktivieren
                 doorOpen = true;
                 mainFrame.wave.PlayFile("sfx/hdurjeauf.wav");
-                wirt.SetKorcmarPos(WirtOOben);
+                wirt.setPos(WirtOOben);
                 wirt.SetFacing(6);
                 wirt.MoveTo(WirtOben);
                 walkReady = false;

@@ -87,11 +87,11 @@ public class Chodba extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 141:  // von Dingl
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(595, 467));
+                mainFrame.krabat.setPos(new GenericPoint(595, 467));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 146:  // von Wonka aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(270, 395));
+                mainFrame.krabat.setPos(new GenericPoint(270, 395));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -269,7 +269,7 @@ public class Chodba extends Mainloc {
                 // zu Dingl gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -288,7 +288,7 @@ public class Chodba extends Mainloc {
                 // zu Wonka gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

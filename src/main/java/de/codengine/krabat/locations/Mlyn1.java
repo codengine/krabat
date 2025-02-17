@@ -108,7 +108,7 @@ public class Mlyn1 extends Mainloc {
         mueller.zoomf = 0.9f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         krabatvogel = new PtackZaRapaka(mainFrame, 845, 408, 10, 300);
@@ -148,7 +148,7 @@ public class Mlyn1 extends Mainloc {
         mainFrame.inventory.vInventory.removeAllElements();
         mainFrame.inventory.vInventory.addElement(1);
 
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(9);
     }
 

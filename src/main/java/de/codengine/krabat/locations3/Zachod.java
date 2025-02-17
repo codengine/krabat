@@ -155,11 +155,11 @@ public class Zachod extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 150: // von Cychi
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(500, 310));
+                mainFrame.krabat.setPos(new GenericPoint(500, 310));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 152: // von Gang
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(214, 395));
+                mainFrame.krabat.setPos(new GenericPoint(214, 395));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -285,7 +285,7 @@ public class Zachod extends Mainloc {
         // Kiste oben zeichnen, wenn keine Verschieberoutine und wenn Krabat davor ist
         if (!verschiebeKiste) {
             if (!mainFrame.Actions[516] &&
-                    !kistenRect.IsPointInRect(mainFrame.krabat.GetKrabatPos())) {
+                    !kistenRect.IsPointInRect(mainFrame.krabat.getPos())) {
                 // Kisten sind nicht verschoben und Krabat ist davor
                 g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
                 g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y);
@@ -387,7 +387,7 @@ public class Zachod extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
         /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
@@ -571,7 +571,7 @@ public class Zachod extends Mainloc {
                 // zu Cychi gehen ?
                 if (ausgangCychi.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangCychi.IsPointInRect(kt)) {
@@ -590,7 +590,7 @@ public class Zachod extends Mainloc {
                 // zu Gang gehen ?
                 if (ausgangGang.IsPointInRect(pTemp) && mainFrame.Actions[517]) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangGang.IsPointInRect(kt)) {
@@ -879,7 +879,7 @@ public class Zachod extends Mainloc {
         festnagelPoint.y = bezugsPunkt.y - ydiff;
 
         // und auch setzen, fuer spaeter
-        mainFrame.krabat.SetKrabatPos(festnagelPoint);
+        mainFrame.krabat.setPos(festnagelPoint);
 
         g.drawImage(kista, (int) xpos, (int) ypos);
         g.drawImage(kista2, (int) xpos + AnfangsPunkt2.x - AnfangsPunkt.x, (int) ypos + AnfangsPunkt2.y - AnfangsPunkt.y);
@@ -1000,7 +1000,7 @@ public class Zachod extends Mainloc {
                 // Kiste verschieben, wenn Stollen gegessen, sonst Ausrede
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                festnagelPoint = new GenericPoint(mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y + 60);
+                festnagelPoint = new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y + 60);
                 bezugsPunkt = new GenericPoint(festnagelPoint.x, festnagelPoint.y);
                 SonderAnim = 1; // extra-Images fuer Kistenschieben
                 if (mainFrame.Actions[680])  // Kisten tatsaechlich verschieben
@@ -1029,7 +1029,7 @@ public class Zachod extends Mainloc {
                 // Anim beenden
                 SonderAnim = 0;
                 InitMatrix();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y - 40));
+                mainFrame.krabat.setPos(new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y - 40));
                 mainFrame.krabat.SetFacing(6);
                 mainFrame.Clipset = false;
                 mainFrame.fPlayAnim = false;

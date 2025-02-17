@@ -84,14 +84,14 @@ public class Inmlyn extends Mainloc {
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
         switch (oldLocation) {
             case 25: // 1. Mal aus Mlyn
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(0, 0));
+                mainFrame.krabat.setPos(new GenericPoint(0, 0));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 0;
                 setScroll = true;
                 break;
 
             case 28: // von Dzera aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(833, 429));
+                mainFrame.krabat.setPos(new GenericPoint(833, 429));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 513;
                 setScroll = true;
@@ -359,7 +359,7 @@ public class Inmlyn extends Mainloc {
             case 110:
                 // Umschalten
                 mainFrame.Actions[310] = true;
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(437, 412));
+                mainFrame.krabat.setPos(new GenericPoint(437, 412));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 117;
                 setScroll = true;
@@ -438,8 +438,8 @@ public class Inmlyn extends Mainloc {
             case 1040:
                 // Raben zeigen und fliegen lassen
                 krabatVisible = false;
-                tempPoint = mainFrame.krabat.GetKrabatPos();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(0, 0));
+                tempPoint = mainFrame.krabat.getPos();
+                mainFrame.krabat.setPos(new GenericPoint(0, 0));
                 scrollCounter = 40;
                 mainFrame.scrollx = 0;
                 nextActionID = 1045;
@@ -450,7 +450,7 @@ public class Inmlyn extends Mainloc {
                 if (--scrollCounter > 1) {
                     break;
                 }
-                mainFrame.krabat.SetKrabatPos(tempPoint);
+                mainFrame.krabat.setPos(tempPoint);
                 mainFrame.krabat.SetFacing(9);  // in Richtung des Raben schauen lassen
                 krabatVisible = true;
                 nextActionID = 1050;

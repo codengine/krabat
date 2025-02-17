@@ -160,14 +160,14 @@ public class Hojnt1 extends Mainloc {
                 break;
 
             case 13: // Aus Wjes kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1243, 458));
+                mainFrame.krabat.setPos(new GenericPoint(1243, 458));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 break;
 
             case 15: // Von Njedz aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(256, 354));
+                mainFrame.krabat.setPos(new GenericPoint(256, 354));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 0;
                 setScroll = true;
@@ -175,19 +175,19 @@ public class Hojnt1 extends Mainloc {
 
             case 27: // aus Jama raus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1134, 440));
+                mainFrame.krabat.setPos(new GenericPoint(1134, 440));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setAnim = true;
                 AnimFlag = 10;
-                jaeger.SetHojntPos(new GenericPoint(1036, 428));
+                jaeger.setPos(new GenericPoint(1036, 428));
                 jaeger.SetFacing(3);
                 showHojnt = true;
                 setScroll = true;
                 break;
 
             case 29: // aus der Animszene Hojnth
-                mainFrame.krabat.SetKrabatPos(Pbaum);
+                mainFrame.krabat.setPos(Pbaum);
                 mainFrame.krabat.SetFacing(9);
                 baumActive = true;
                 scrollwert = 417;
@@ -550,7 +550,7 @@ public class Hojnt1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (strauchRect.IsPointInRect(pKrTemp)) {
@@ -801,7 +801,7 @@ public class Hojnt1 extends Mainloc {
                 // nach Njedz gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -820,7 +820,7 @@ public class Hojnt1 extends Mainloc {
                 // nach Wjes gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

@@ -105,12 +105,12 @@ public class Cychi extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 break;
             case 127: // von Terassa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(280, 285));
+                mainFrame.krabat.setPos(new GenericPoint(280, 285));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 151: // von Zachod aus
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(271, 455));
+                mainFrame.krabat.setPos(new GenericPoint(271, 455));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -191,7 +191,7 @@ public class Cychi extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter dach vom Fachwerk (nur Clipping - Region wird neugezeichnet)
         if (rectFachwerk.IsPointInRect(pKrTemp)) {
@@ -296,7 +296,7 @@ public class Cychi extends Mainloc {
                 // zu Terassa gehen ?
                 if (ausgangTerassa.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangTerassa.IsPointInRect(kt)) {
@@ -315,7 +315,7 @@ public class Cychi extends Mainloc {
                 // zu Zachod gehen ?
                 if (ausgangZachod.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangZachod.IsPointInRect(kt)) {

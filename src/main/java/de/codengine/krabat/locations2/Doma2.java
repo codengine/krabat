@@ -137,7 +137,7 @@ public class Doma2 extends Mainloc {
                 break;
 
             case 74: // Aus Jitk kommend, also 1. Animation
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(413, 275));
+                mainFrame.krabat.setPos(new GenericPoint(413, 275));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 88;
                 setScroll = true;
@@ -146,7 +146,7 @@ public class Doma2 extends Mainloc {
                 break;
 
             case 90: // spaeter aus der Muehle2 zurueck
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(162, 356));
+                mainFrame.krabat.setPos(new GenericPoint(162, 356));
                 mainFrame.krabat.SetFacing(3);
                 scrollwert = 0;
                 setScroll = true;
@@ -156,12 +156,12 @@ public class Doma2 extends Mainloc {
 
             case 87: // von Wjes aus (ueber Karte) oder Bote-Anim
                 if (!mainFrame.Actions[303]) {
-                    mainFrame.krabat.SetKrabatPos(new GenericPoint(413, 275));
+                    mainFrame.krabat.setPos(new GenericPoint(413, 275));
                     mainFrame.krabat.SetFacing(6);
                     scrollwert = 88;
                     istMutterZuSehen = false;
                 } else {
-                    mainFrame.krabat.SetKrabatPos(new GenericPoint(840, 400));
+                    mainFrame.krabat.setPos(new GenericPoint(840, 400));
                     mainFrame.krabat.SetFacing(3);
                     scrollwert = 520;
                     Animation = true;
@@ -410,7 +410,7 @@ public class Doma2 extends Mainloc {
 
         // Ab hier muss Cliprect wieder gerettet werden
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (brunnenRect.IsPointInRect(pKrTemp)) {
@@ -643,7 +643,7 @@ public class Doma2 extends Mainloc {
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
 
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

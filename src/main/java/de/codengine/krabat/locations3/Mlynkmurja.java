@@ -106,7 +106,7 @@ public class Mlynkmurja extends Mainloc {
 
         InitImages();
 
-        mainFrame.krabat.SetKrabatPos(new GenericPoint(607, 475));
+        mainFrame.krabat.setPos(new GenericPoint(607, 475));
         mainFrame.krabat.SetFacing(9);
     }
 

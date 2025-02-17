@@ -149,13 +149,13 @@ public class Gang extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 151: // von Spaniska aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(85, 330));
+                mainFrame.krabat.setPos(new GenericPoint(85, 330));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 153: // von Komedij aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1134, 197));
+                mainFrame.krabat.setPos(new GenericPoint(1134, 197));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 640;
                 setScroll = true;
@@ -263,7 +263,7 @@ public class Gang extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter baumstamm (nur Clipping - Region wird neugezeichnet)
         if (rectStamm.IsPointInRect(pKrTemp)) {
@@ -416,7 +416,7 @@ public class Gang extends Mainloc {
                 // zu Zachod gehen ?
                 if (ausgangZachod.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangZachod.IsPointInRect(kt)) {
@@ -435,7 +435,7 @@ public class Gang extends Mainloc {
                 // zu Kapala gehen ?
                 if (ausgangKapala.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangKapala.IsPointInRect(kt)) {

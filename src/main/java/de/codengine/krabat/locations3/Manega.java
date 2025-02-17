@@ -131,7 +131,7 @@ public class Manega extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 170: // von Zastup
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(278, 367));
+                mainFrame.krabat.setPos(new GenericPoint(278, 367));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -341,7 +341,7 @@ public class Manega extends Mainloc {
                 // zu Zastup gehen ?
                 if (ausgangZastup.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangZastup.IsPointInRect(kt)) {

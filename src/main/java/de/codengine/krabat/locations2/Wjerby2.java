@@ -73,7 +73,7 @@ public class Wjerby2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = -30;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         InitLocation();
@@ -86,7 +86,7 @@ public class Wjerby2 extends Mainloc2 {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         InitImages();
-        mainFrame.krabat.SetKrabatPos(Pkrabat);
+        mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(12);
     }
 
@@ -166,7 +166,7 @@ public class Wjerby2 extends Mainloc2 {
         mainFrame.krabat.drawKrabat(g);
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
         if (weiden2Rect.IsPointInRect(pKrTemp)) {

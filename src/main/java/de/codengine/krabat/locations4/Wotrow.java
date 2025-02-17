@@ -168,12 +168,12 @@ public class Wotrow extends Mainloc {
                 break;
             case 201:
                 // von Oben aus 
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(332, 185));
+                mainFrame.krabat.setPos(new GenericPoint(332, 185));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 203:
                 // von Unten aus (Doma4)
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(372, 462));
+                mainFrame.krabat.setPos(new GenericPoint(372, 462));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -421,7 +421,7 @@ public class Wotrow extends Mainloc {
                 // nach Unten gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -440,7 +440,7 @@ public class Wotrow extends Mainloc {
                 // nach Oben gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

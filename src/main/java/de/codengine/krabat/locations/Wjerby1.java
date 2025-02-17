@@ -92,17 +92,17 @@ public class Wjerby1 extends Mainloc {
                 break;
             case 13:
                 // von Wjes aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(68, 466));
+                mainFrame.krabat.setPos(new GenericPoint(68, 466));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 11:
                 // von Polo aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(625, 239));
+                mainFrame.krabat.setPos(new GenericPoint(625, 239));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 12:
                 // von Kupa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(34, 275));
+                mainFrame.krabat.setPos(new GenericPoint(34, 275));
                 mainFrame.krabat.SetFacing(3);
                 break;
         }
@@ -181,7 +181,7 @@ public class Wjerby1 extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
         if (weiden2Rect.IsPointInRect(pKrTemp)) {
@@ -282,7 +282,7 @@ public class Wjerby1 extends Mainloc {
                 // zu Wjes gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -301,7 +301,7 @@ public class Wjerby1 extends Mainloc {
                 // zu Kupa gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -320,7 +320,7 @@ public class Wjerby1 extends Mainloc {
                 // zu Polo gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

@@ -99,7 +99,7 @@ public class Sunow2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         InitLocation(oldLocation);
@@ -116,20 +116,20 @@ public class Sunow2 extends Mainloc2 {
             case 0: // Einsprung fuer Load
                 // Berechnung, ob K im Tal steht oder nicht
                 BackgroundMusicPlayer.getInstance().playTrack(20, true);
-                GenericPoint tp = mainFrame.krabat.GetKrabatPos();
+                GenericPoint tp = mainFrame.krabat.getPos();
                 Borderrect TalRect = new Borderrect(330, 200, 400, 285);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 89: // aus Most kommend
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(164, 467));
+                mainFrame.krabat.setPos(new GenericPoint(164, 467));
                 mainFrame.krabat.SetFacing(12);
                 isTal = false;
                 setAnim = true;
                 TalkPause = 10;
                 break;
             case 87: // aus Wjes kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(393, 201));
+                mainFrame.krabat.setPos(new GenericPoint(393, 201));
                 mainFrame.krabat.SetFacing(6);
                 isTal = true;
                 break;
@@ -413,7 +413,7 @@ public class Sunow2 extends Mainloc2 {
                 // zu Most gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -432,7 +432,7 @@ public class Sunow2 extends Mainloc2 {
                 // nach Wjes gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -557,7 +557,7 @@ public class Sunow2 extends Mainloc2 {
 
     // Erkennungsroutine, ob Animationsmodus eingeschaltet werden muss
     private boolean TesteLauf(GenericPoint pTxxx, int Action) {
-        GenericPoint kpos = mainFrame.krabat.GetKrabatPos();
+        GenericPoint kpos = mainFrame.krabat.getPos();
 
         // Hier Punkt klonen, damit alter Punkt erhalten bleibt
         GenericPoint pTemp = new GenericPoint(pTxxx.x, pTxxx.y);
@@ -607,7 +607,7 @@ public class Sunow2 extends Mainloc2 {
             float teal = t3 / t4;
             log.debug("teal: {}", teal);
 
-            if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
+            if (BergTrapez.PointInside(mainFrame.krabat.getPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg

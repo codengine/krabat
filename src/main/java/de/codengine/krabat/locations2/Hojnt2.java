@@ -122,7 +122,7 @@ public class Hojnt2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
         xpos = (int) (Math.random() * (MAX_SCHATTENX - MIN_SCHATTENX - 10) + MIN_SCHATTENX + 5);
@@ -138,7 +138,7 @@ public class Hojnt2 extends Mainloc2 {
                 break;
             case 87: // Aus Wjes kommend
                 BackgroundMusicPlayer.getInstance().stop();
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1243, 458));
+                mainFrame.krabat.setPos(new GenericPoint(1243, 458));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
@@ -147,7 +147,7 @@ public class Hojnt2 extends Mainloc2 {
                 break;
 
             case 80: // Von Njedz aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(256, 354));
+                mainFrame.krabat.setPos(new GenericPoint(256, 354));
                 mainFrame.krabat.SetFacing(6);
                 scrollwert = 0;
                 setScroll = true;
@@ -367,7 +367,7 @@ public class Hojnt2 extends Mainloc2 {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
         if (strauchRect.IsPointInRect(pKrTemp)) {
@@ -559,7 +559,7 @@ public class Hojnt2 extends Mainloc2 {
                 // nach Njedz gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -578,7 +578,7 @@ public class Hojnt2 extends Mainloc2 {
                 // nach Wjes gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

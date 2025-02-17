@@ -111,19 +111,19 @@ public class Most1 extends Mainloc {
         switch (oldLocation) {
             case 0: // Einsprung fuer Load
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                GenericPoint tp = mainFrame.krabat.GetKrabatPos();
+                GenericPoint tp = mainFrame.krabat.getPos();
                 Borderrect TalRect = new Borderrect(400, 220, 460, 290);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 1:
                 // von Ralbicy aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(624, 384));
+                mainFrame.krabat.setPos(new GenericPoint(624, 384));
                 mainFrame.krabat.SetFacing(9);
                 isTal = false;
                 break;
             case 7:
                 // von Sunow aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(458, 226));
+                mainFrame.krabat.setPos(new GenericPoint(458, 226));
                 mainFrame.krabat.SetFacing(6);
                 isTal = true;
                 break;
@@ -294,7 +294,7 @@ public class Most1 extends Mainloc {
             g.drawImage(wegstueck, 342, 270);
         }
 
-        GenericPoint tem = mainFrame.krabat.GetKrabatPos();
+        GenericPoint tem = mainFrame.krabat.getPos();
 
         if (BergTrapez.PointInside(tem)) {
             g.drawImage(gelaend, 379, 273);
@@ -419,7 +419,7 @@ public class Most1 extends Mainloc {
                 // zu Dresden gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -433,7 +433,7 @@ public class Most1 extends Mainloc {
                 // nach Sunow gehen?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -452,7 +452,7 @@ public class Most1 extends Mainloc {
                 // rechter Ausgang zu Ralbicy
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -634,7 +634,7 @@ public class Most1 extends Mainloc {
 
     // Erkennungsroutine, ob Animationsmodus eingeschaltet werden muss
     private boolean TesteLauf(GenericPoint pTxxx, int Action) {
-        GenericPoint kpos = mainFrame.krabat.GetKrabatPos();
+        GenericPoint kpos = mainFrame.krabat.getPos();
 
         // Hier Punkt klonen, damit alter Punkt erhalten bleibt
         GenericPoint pTemp = new GenericPoint(pTxxx.x, pTxxx.y);
@@ -695,7 +695,7 @@ public class Most1 extends Mainloc {
 
             log.debug(" Mittenfaktor {}", teal);
 
-            if (BergTrapez.PointInside(mainFrame.krabat.GetKrabatPos())) {
+            if (BergTrapez.PointInside(mainFrame.krabat.getPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg

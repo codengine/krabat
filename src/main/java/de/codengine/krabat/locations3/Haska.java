@@ -122,11 +122,11 @@ public class Haska extends Mainloc {
                 break;
             case 120: // von Kuchnja aus
             case 132: // von Kuchnjaopen dasselbe
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(400, 420));
+                mainFrame.krabat.setPos(new GenericPoint(400, 420));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 122: // von Spaniska aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(180, 460));
+                mainFrame.krabat.setPos(new GenericPoint(180, 460));
                 mainFrame.krabat.SetFacing(3);
                 if (!mainFrame.Actions[519]) {
                     setAnim = true;
@@ -134,7 +134,7 @@ public class Haska extends Mainloc {
                 }
                 break;
             case 126: // von Murja aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(322, 370));
+                mainFrame.krabat.setPos(new GenericPoint(322, 370));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -211,7 +211,7 @@ public class Haska extends Mainloc {
 
         // hier die Extrawurst fuer den Hakenwurf
         if (krabatWirft) {
-            krabatWirft = krabatWerfen.drawKrabat(g, mainFrame.krabat.GetKrabatPos());
+            krabatWirft = krabatWerfen.drawKrabat(g, mainFrame.krabat.getPos());
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
@@ -388,7 +388,7 @@ public class Haska extends Mainloc {
                 // zu Ostansicht gehen ?
                 if (ausgangStadt.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangStadt.IsPointInRect(kt)) {
@@ -407,7 +407,7 @@ public class Haska extends Mainloc {
                 // zu Kuchnja gehen ? - nicht reingehen -> Ausreden
                 if (ausgangKuchnja.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // gerade verlassen, wenn nahe
                     // Wenn nahe am Ausgang, dann "gerade" verlassen

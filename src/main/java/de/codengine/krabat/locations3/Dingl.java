@@ -110,7 +110,7 @@ public class Dingl extends Mainloc {
         dinglingerwalk.zoomf = 1f;
         dinglingerwalk.defScale = 0;
 
-        dinglingerwalk.SetDinglingerPos(dinglFeet);
+        dinglingerwalk.setPos(dinglFeet);
         dinglingerwalk.SetFacing(9);
 
         Dialog = new Multiple2(mainFrame);
@@ -161,15 +161,15 @@ public class Dingl extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 140: // von Saal aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(443, 344));
+                mainFrame.krabat.setPos(new GenericPoint(443, 344));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 142: // von Chodba aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(50, 265));
+                mainFrame.krabat.setPos(new GenericPoint(50, 265));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 181: // von Poklad - Location aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(320, 360));
+                mainFrame.krabat.setPos(new GenericPoint(320, 360));
                 mainFrame.krabat.SetFacing(3);
                 sitzenderDinglinger = false;
                 setAnim = true;
@@ -290,7 +290,7 @@ public class Dingl extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter blido (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.x < 370) {
@@ -482,7 +482,7 @@ public class Dingl extends Mainloc {
                 // zu Chodba gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -502,7 +502,7 @@ public class Dingl extends Mainloc {
                 // zu Saal gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

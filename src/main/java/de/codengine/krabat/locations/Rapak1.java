@@ -148,18 +148,18 @@ public class Rapak1 extends Mainloc {
                 break;
             case 4:
                 // von Haty aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(147, 470));
+                mainFrame.krabat.setPos(new GenericPoint(147, 470));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 9:
                 // von Horiz aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(34, 376));
+                mainFrame.krabat.setPos(new GenericPoint(34, 376));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 19:
                 // von Zdzary aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(195, 200));
+                mainFrame.krabat.setPos(new GenericPoint(195, 200));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -243,7 +243,7 @@ public class Rapak1 extends Mainloc {
             Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
         }
 
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // bei Notwendigkeit Hintergrund fuer Schiessanim loeschen
 	/*if (Sonderstatus != 0)
@@ -330,7 +330,7 @@ public class Rapak1 extends Mainloc {
         if (Sonderstatus != 0) {
             // Sonderanims
             g.setClip(160, 160, 325, 320);
-            if (!schiesser.drawKrabat(g, mainFrame.krabat.GetKrabatPos())) {
+            if (!schiesser.drawKrabat(g, mainFrame.krabat.getPos())) {
                 Sonderstatus = 0;
             }
         } else {
@@ -530,7 +530,7 @@ public class Rapak1 extends Mainloc {
                 // zu Haty gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -549,7 +549,7 @@ public class Rapak1 extends Mainloc {
                 // zu Horiz gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -568,7 +568,7 @@ public class Rapak1 extends Mainloc {
                 // oberer Ausgang zu Zdzary
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -587,7 +587,7 @@ public class Rapak1 extends Mainloc {
                 // rechter Ausgang
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

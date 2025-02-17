@@ -89,7 +89,7 @@ public class Swoboda extends Mainloc {
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
         if (oldLocation == 71) { // Aus Doma kommend
-            mainFrame.krabat.SetKrabatPos(krabatPoint);
+            mainFrame.krabat.setPos(krabatPoint);
             mainFrame.krabat.SetFacing(9);
         }
 
@@ -107,7 +107,7 @@ public class Swoboda extends Mainloc {
         mueller.zoomf = 4f;
         mueller.defScale = -120;
 
-        mueller.SetMlynkPos(Pmueller);
+        mueller.setPos(Pmueller);
         mueller.SetFacing(9);
 
         mutterPoint = new GenericPoint();
@@ -504,7 +504,7 @@ public class Swoboda extends Mainloc {
                 if (--Counter > 1) {
                     break;
                 }
-                krabatmorph.Init(mainFrame.krabat.GetKrabatPos(), 240);
+                krabatmorph.Init(mainFrame.krabat.getPos(), 240);
                 iskrabatmorphing = true;
                 nextActionID = 170;
                 break;

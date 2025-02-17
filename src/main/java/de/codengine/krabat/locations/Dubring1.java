@@ -96,13 +96,13 @@ public class Dubring1 extends Mainloc {
             case 0: // Einsprung von Load
                 break;
             case 16: // Aus Villa kommend
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(20, 365));
+                mainFrame.krabat.setPos(new GenericPoint(20, 365));
                 mainFrame.krabat.SetFacing(3);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 22: // Von Cyrkej aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(1262, 344));
+                mainFrame.krabat.setPos(new GenericPoint(1262, 344));
                 mainFrame.krabat.SetFacing(9);
                 scrollwert = 640;
                 setScroll = true;
@@ -236,7 +236,7 @@ public class Dubring1 extends Mainloc {
         }
 
         // Steht Krabat hinter dem Gras rechts unten ????
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (trawaRect.IsPointInRect(pKrTemp)) {
@@ -488,7 +488,7 @@ public class Dubring1 extends Mainloc {
                 // nach Villa gehen
                 if (linkerAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!linkerAusgang.IsPointInRect(kt)) {
@@ -507,7 +507,7 @@ public class Dubring1 extends Mainloc {
                 // nach Cyrkej gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {

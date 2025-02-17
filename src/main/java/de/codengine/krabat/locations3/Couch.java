@@ -104,11 +104,11 @@ public class Couch extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 143: // von Casnik aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(510, 426));
+                mainFrame.krabat.setPos(new GenericPoint(510, 426));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 145: // von Zelen aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(315, 465));
+                mainFrame.krabat.setPos(new GenericPoint(315, 465));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -159,7 +159,7 @@ public class Couch extends Mainloc {
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
-            GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y);
+            GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y);
 
             // Groesse
             int scale = mainFrame.krabat.defScale;
@@ -186,9 +186,9 @@ public class Couch extends Mainloc {
                 SonderAnim = 0;
             }
 
-            GenericPoint tmp = mainFrame.krabat.GetKrabatPos();
+            GenericPoint tmp = mainFrame.krabat.getPos();
             tmp.y += Fallgeschwindigkeit * 2;
-            mainFrame.krabat.SetKrabatPos(tmp);
+            mainFrame.krabat.setPos(tmp);
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
@@ -342,7 +342,7 @@ public class Couch extends Mainloc {
                 // zu Casnik gehen ?
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -361,7 +361,7 @@ public class Couch extends Mainloc {
                 // zu Zelen gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {

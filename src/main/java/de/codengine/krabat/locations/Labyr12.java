@@ -99,13 +99,13 @@ public class Labyr12 extends Mainlaby {
                 break;
             case 9:
                 // von rechts aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(619, 282));
+                mainFrame.krabat.setPos(new GenericPoint(619, 282));
                 mainFrame.krabat.SetFacing(9);
                 break;
             case 12:
                 // von unten aus
                 BackgroundMusicPlayer.getInstance().playTrack(10, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(254, 452));
+                mainFrame.krabat.setPos(new GenericPoint(254, 452));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -189,7 +189,7 @@ public class Labyr12 extends Mainlaby {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
         if (lab122Rect.IsPointInRect(pKrTemp)) {
@@ -295,7 +295,7 @@ public class Labyr12 extends Mainlaby {
                 // zu naechstem Laby gehen rechts
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -315,7 +315,7 @@ public class Labyr12 extends Mainlaby {
                 // zu naechstem Laby gehen unten
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {

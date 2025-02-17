@@ -410,7 +410,7 @@ public class Start implements Runnable {
         }
 
         // Hier allgemeine Scrollingroutine
-        int temp = krabat.GetKrabatPos().x - scrollx;
+        int temp = krabat.getPos().x - scrollx;
 
         isScrolling = false;
         if (temp < 315) {
@@ -1203,7 +1203,7 @@ public class Start implements Runnable {
 
         // alte Krabatvariablen merken, die beim Umladen weg waeren
         int merkFacing = krabat.GetFacing();
-        GenericPoint merkPos = krabat.GetKrabatPos();
+        GenericPoint merkPos = krabat.getPos();
         int merkMaxx = krabat.maxx;
         float merkZoom = krabat.zoomf;
         int merkDef = krabat.defScale;
@@ -1234,7 +1234,7 @@ public class Start implements Runnable {
 
         // Krabatvariablen wiederherstellen
         krabat.SetFacing(merkFacing);
-        krabat.SetKrabatPos(merkPos);
+        krabat.setPos(merkPos);
         krabat.maxx = merkMaxx;
         krabat.zoomf = merkZoom;
         krabat.defScale = merkDef;

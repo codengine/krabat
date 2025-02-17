@@ -191,7 +191,7 @@ public class Rowy extends Mainloc {
         mueller.zoomf = 1f;
         mueller.defScale = 0;
 
-        mueller.SetMlynkPos(muellerFeet);
+        mueller.setPos(muellerFeet);
         mueller.SetFacing(9);
 
         alterMueller = new Oldmlynk(mainFrame, Muellerzooming, true);
@@ -221,7 +221,7 @@ public class Rowy extends Mainloc {
                 break;
             case 201:
                 // von Hrodz aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(475, 455));
+                mainFrame.krabat.setPos(new GenericPoint(475, 455));
                 mainFrame.krabat.SetFacing(6);
                 // hier sofort Aufstehsequenz abspielen
                 mainFrame.fPlayAnim = true;
@@ -493,7 +493,7 @@ public class Rowy extends Mainloc {
             if (muellerda) {
                 // Facing checken (nach links oder rechts glotzen, je nach Krabat)
                 Borderrect temp;
-                if (mainFrame.krabat.GetKrabatPos().x > muellerFeet.x) {
+                if (mainFrame.krabat.getPos().x > muellerFeet.x) {
                     mueller.SetFacing(3);
                     temp = mueller.MlynkRectMitStockAndersrum();
                 } else {
@@ -671,8 +671,8 @@ public class Rowy extends Mainloc {
             // Sonderanimationen fuer Krabat ?
             if (SonderAnim != 0) {
                 // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
-                GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x,
-                        mainFrame.krabat.GetKrabatPos().y);
+                GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x,
+                        mainFrame.krabat.getPos().y);
 
                 // Groesse
                 int scale = mainFrame.krabat.defScale;
@@ -780,14 +780,14 @@ public class Rowy extends Mainloc {
                                 hier.x, hier.y, weit, hoch);
 
                         // X-Position von Krabat um einen Schritt vermindern
-                        GenericPoint pCurrent = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint pCurrent = mainFrame.krabat.getPos();
                         pCurrent.x -= 14;
-                        mainFrame.krabat.SetKrabatPos(pCurrent);
+                        mainFrame.krabat.setPos(pCurrent);
 
                         // wenn Krabat kurz vor Swaixtix -> Laufen beenden
                         if (pCurrent.x < PswaixtixArm.x + 65) {
                             pCurrent.x = PswaixtixArm.x + 65;
-                            mainFrame.krabat.SetKrabatPos(pCurrent);
+                            mainFrame.krabat.setPos(pCurrent);
                             // System.out.println ("Koordinaten fuer K vor Sw: " + pCurrent.x + " " + pCurrent.y);
                             SonderAnim = 0;
                             nextActionID = 1104;

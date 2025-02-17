@@ -119,11 +119,11 @@ public class Hdwor extends Mainloc {
                 // Einsprung fuer Load
                 break;
             case 128: // von Straza aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(298, 217));
+                mainFrame.krabat.setPos(new GenericPoint(298, 217));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 131: // von Treppe aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(75, 348));
+                mainFrame.krabat.setPos(new GenericPoint(75, 348));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -205,7 +205,7 @@ public class Hdwor extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter den Staeben ? (nur Clipping - Region wird neugezeichnet)
         if (stObenRect.IsPointInRect(pKrTemp)) {
@@ -309,7 +309,7 @@ public class Hdwor extends Mainloc {
                 // zu Trjepjena gehen ?
                 if (ausgangTreppe.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangTreppe.IsPointInRect(kt)) {
@@ -328,7 +328,7 @@ public class Hdwor extends Mainloc {
                 // zu Straza gehen ?
                 if (ausgangStraza.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangStraza.IsPointInRect(kt)) {

@@ -268,12 +268,12 @@ public class Haty1 extends Mainloc {
                 break;
             case 5:
                 // Von Les1 aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(232, 463));
+                mainFrame.krabat.setPos(new GenericPoint(232, 463));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 8:
                 // von Rapak aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(318, 120));
+                mainFrame.krabat.setPos(new GenericPoint(318, 120));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -305,10 +305,10 @@ public class Haty1 extends Mainloc {
         // Hier berechnen, auf welcher Seite die netten Angler stehen...
         if (!mainFrame.Actions[220]) {
             // stehen rechts
-            angler1.SetWudzer1Pos(wudzer1RightFeet);
+            angler1.setPos(wudzer1RightFeet);
             angler1.SetFacing(3);
 
-            angler2.SetWudzer2Pos(wudzer2RightFeet);
+            angler2.setPos(wudzer2RightFeet);
             angler2.SetFacing(3);
 
             // Grenzen setzen
@@ -339,10 +339,10 @@ public class Haty1 extends Mainloc {
 
         } else {
             // stehen links
-            angler1.SetWudzer1Pos(wudzer1LeftFeet);
+            angler1.setPos(wudzer1LeftFeet);
             angler1.SetFacing(9);
 
-            angler2.SetWudzer2Pos(wudzer2LeftFeet);
+            angler2.setPos(wudzer2LeftFeet);
             angler2.SetFacing(9);
 
             // Grenzen setzen
@@ -586,7 +586,7 @@ public class Haty1 extends Mainloc {
         if (Sonderstatus != 0) {
             boolean nochaktiv = true;
 
-            GenericPoint tPoint = mainFrame.krabat.GetKrabatPos();
+            GenericPoint tPoint = mainFrame.krabat.getPos();
 
             switch (Sonderstatus) {
                 case 1: // links angeln ohne Erfolg
@@ -968,7 +968,7 @@ public class Haty1 extends Mainloc {
                 // zu Les1 gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -987,7 +987,7 @@ public class Haty1 extends Mainloc {
                 // zu Rapak gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -1771,7 +1771,7 @@ public class Haty1 extends Mainloc {
                 // Angler laufen los
                 Sonderstatus = 0;
                 mainFrame.Clipset = false;
-                angler2.SetWudzer2Pos(wudzer2RightWalk);
+                angler2.setPos(wudzer2RightWalk);
                 angler2.MoveTo(wudzer2LeftWalk);
                 walkWudzer2 = false;
                 Verzoegerung = 5;
@@ -1783,7 +1783,7 @@ public class Haty1 extends Mainloc {
                 if (--Verzoegerung > 0) {
                     break;
                 }
-                angler1.SetWudzer1Pos(wudzer1RightWalk);
+                angler1.setPos(wudzer1RightWalk);
                 angler1.MoveTo(wudzer1Eimernimm, true);
                 walkWudzer1 = false;
                 nextActionID = 221;

@@ -132,13 +132,13 @@ public class Zastup extends Mainloc {
                 break;
             case 180:
                 // von Karta aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(53, 431));
+                mainFrame.krabat.setPos(new GenericPoint(53, 431));
                 mainFrame.krabat.SetFacing(3);
                 break;
             case 171:
                 // von Manega aus
                 // mainFrame.player.Play ("21", 151500);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(503, 400));
+                mainFrame.krabat.setPos(new GenericPoint(503, 400));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -295,7 +295,7 @@ public class Zastup extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Gras ? (nur Clipping - Region wird neugezeichnet)
         if (rectGrasLinks.IsPointInRect(pKrTemp)) {
@@ -441,7 +441,7 @@ public class Zastup extends Mainloc {
                 // zu Karta gehen ?
                 if (ausgangLinks.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangLinks.IsPointInRect(kt)) {
@@ -487,7 +487,7 @@ public class Zastup extends Mainloc {
                 if (ausgangManega.IsPointInRect(pTemp)) {
                     if (mainFrame.Actions[575]) {
                         nextActionID = 101;
-                        GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                        GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
                         if (!ausgangManega.IsPointInRect(kt)) {

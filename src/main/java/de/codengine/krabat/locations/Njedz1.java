@@ -102,12 +102,12 @@ public class Njedz1 extends Mainloc {
                 break;
             case 14:
                 // von Hojnt aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(484, 467));
+                mainFrame.krabat.setPos(new GenericPoint(484, 467));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 16:
                 // von Villa aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(328, 258));
+                mainFrame.krabat.setPos(new GenericPoint(328, 258));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -346,7 +346,7 @@ public class Njedz1 extends Mainloc {
                 // zu Hojnt gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -365,7 +365,7 @@ public class Njedz1 extends Mainloc {
                 // zu Villa gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

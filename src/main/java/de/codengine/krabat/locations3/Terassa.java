@@ -156,27 +156,27 @@ public class Terassa extends Mainloc {
                 // Einsprung fuer Load
                 // wenn im Vordergrundrect, welches fuer "ist hinten" gilt, dann ist er vorn
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                isVordergrund = vorWennHinten[0].PointInside(mainFrame.krabat.GetKrabatPos());
+                isVordergrund = vorWennHinten[0].PointInside(mainFrame.krabat.getPos());
                 break;
             case 126: // von Murja aus
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(500, 339));
+                mainFrame.krabat.setPos(new GenericPoint(500, 339));
                 mainFrame.krabat.SetFacing(6);
                 isVordergrund = false;
                 break;
             case 128: // von Straza aus
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(193, 368));
+                mainFrame.krabat.setPos(new GenericPoint(193, 368));
                 mainFrame.krabat.SetFacing(6);
                 isVordergrund = false;
                 break;
             case 150: // von Cychi aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(22, 375));
+                mainFrame.krabat.setPos(new GenericPoint(22, 375));
                 mainFrame.krabat.SetFacing(3);
                 isVordergrund = false;
                 break;
             case 180: // von Karta aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(597, 420));
+                mainFrame.krabat.setPos(new GenericPoint(597, 420));
                 mainFrame.krabat.SetFacing(9);
                 isVordergrund = false;
                 break;
@@ -314,7 +314,7 @@ public class Terassa extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Wenn Krabat im Vordergrund steht, dann braucht nicht gecheckt zu werden
         if (!isVordergrund) {
@@ -451,7 +451,7 @@ public class Terassa extends Mainloc {
                 // zu Murja gehen ?
                 if (ausgangMurja.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangMurja.IsPointInRect(kt)) {
@@ -470,7 +470,7 @@ public class Terassa extends Mainloc {
                 // zu Straza gehen ?
                 if (ausgangStraza.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangStraza.IsPointInRect(kt)) {
@@ -489,7 +489,7 @@ public class Terassa extends Mainloc {
                 // zu Cychi gehen ?
                 if (ausgangCychi.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangCychi.IsPointInRect(kt)) {
@@ -508,7 +508,7 @@ public class Terassa extends Mainloc {
                 // zu Karta gehen ?
                 if (ausgangKarta.IsPointInRect(pTemp)) {
                     nextActionID = 103;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!ausgangKarta.IsPointInRect(kt)) {
@@ -1131,7 +1131,7 @@ public class Terassa extends Mainloc {
                     break;
                 }
                 // mainFrame.wegGeher.SetzeGarantiertWegFalsch (walktoTreppe);
-                mainFrame.krabat.SetKrabatPos(walktoTreppe);
+                mainFrame.krabat.setPos(walktoTreppe);
                 // Borders neu initialisieren
                 isVordergrund = false;
                 InitBorders();
@@ -1172,7 +1172,7 @@ public class Terassa extends Mainloc {
                     break;
                 }
                 // mainFrame.wegGeher.SetzeGarantiertWegFalsch (walktoTreppeOben);
-                mainFrame.krabat.SetKrabatPos(walktoTreppeOben);
+                mainFrame.krabat.setPos(walktoTreppeOben);
                 nextActionID = 920;
                 break;
 

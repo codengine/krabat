@@ -182,4 +182,16 @@ public abstract class MovableMainAnim extends Mainanim {
 
         txps = xps + directionX.getVal() * horizDist;
     }
+
+    // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
+    public void setPos(GenericPoint aim) {
+        xps = aim.x;        // Float - Variablen initialisieren
+        yps = aim.y;
+    }
+
+    // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
+    public GenericPoint getPos() {
+        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
+        return new GenericPoint((int) xps, (int) yps);
+    }
 }

@@ -165,7 +165,7 @@ public class Wila1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(293, 465));
+                mainFrame.krabat.setPos(new GenericPoint(293, 465));
                 mainFrame.krabat.SetFacing(12);
                 break;
             case 17:
@@ -174,13 +174,13 @@ public class Wila1 extends Mainloc {
                     mainFrame.komme_von_karte = false;
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(436, 147));
+                mainFrame.krabat.setPos(new GenericPoint(436, 147));
                 mainFrame.krabat.SetFacing(6);
                 break;
             case 18:
                 // von Dubring aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(620, 404));
+                mainFrame.krabat.setPos(new GenericPoint(620, 404));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -375,7 +375,7 @@ public class Wila1 extends Mainloc {
 
                 // Groesse
                 int scale = mainFrame.krabat.defScale;
-                scale += (int) (((float) mainFrame.krabat.maxx - (float) mainFrame.krabat.GetKrabatPos().y) / mainFrame.krabat.zoomf);
+                scale += (int) (((float) mainFrame.krabat.maxx - (float) mainFrame.krabat.getPos().y) / mainFrame.krabat.zoomf);
 
                 // Hoehe: nur offset
                 int hoch = 100 - scale;
@@ -384,7 +384,7 @@ public class Wila1 extends Mainloc {
                 int weit = 50 - scale / 2;
 
                 // Punkt fuer LO-Evaluierung bereitstellen
-                GenericPoint hier = mainFrame.krabat.GetKrabatPos();
+                GenericPoint hier = mainFrame.krabat.getPos();
 
                 hier.x -= (int) ((float) weit * 0.7f);
                 hier.y -= hoch;
@@ -445,7 +445,7 @@ public class Wila1 extends Mainloc {
 
         // Ab hier muss Cliprect wieder gerettet werden
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Hier Vordergruende waehrend der Anim zeichnen
         if (hide) {
@@ -582,7 +582,7 @@ public class Wila1 extends Mainloc {
                 // zu Njedz gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -601,7 +601,7 @@ public class Wila1 extends Mainloc {
                 // zu Dubring gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -620,7 +620,7 @@ public class Wila1 extends Mainloc {
                 // zu Kolmc gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
@@ -956,7 +956,7 @@ public class Wila1 extends Mainloc {
                 }
                 mainFrame.wave.PlayFile("sfx/vdurjeauf.wav");
                 showPlokarka = true;
-                waschfrau.SetPlokarkaPos(waschInDoor);
+                waschfrau.setPos(waschInDoor);
                 waschfrau.SetFacing(3);
                 nextActionID = 55;
                 break;
@@ -1136,7 +1136,7 @@ public class Wila1 extends Mainloc {
                 // Waschfrau muss erscheinen
                 showPlokarka = true;
                 mainFrame.wave.PlayFile("sfx/vdurjeauf.wav");
-                waschfrau.SetPlokarkaPos(waschInDoor);
+                waschfrau.setPos(waschInDoor);
                 waschfrau.SetFacing(6);
                 nextActionID = 180;
                 break;

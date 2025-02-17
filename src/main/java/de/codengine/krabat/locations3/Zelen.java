@@ -139,8 +139,8 @@ public class Zelen extends Mainloc {
         druzina.maxx = 420;
         druzina.zoomf = 3f;
 
-        awgust.SetAwgustPos(awgustStart);
-        druzina.SetDruzinaPos(druzinaStart);
+        awgust.setPos(awgustStart);
+        druzina.setPos(druzinaStart);
 
         kerze = new GenericImage[8];
         krabat_siegeln = new GenericImage[2];
@@ -177,7 +177,7 @@ public class Zelen extends Mainloc {
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 break;
             case 144: // von Couch aus
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(215, 430));
+                mainFrame.krabat.setPos(new GenericPoint(215, 430));
                 mainFrame.krabat.SetFacing(6);
                 break;
         }
@@ -311,7 +311,7 @@ public class Zelen extends Mainloc {
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
-            GenericPoint hier = new GenericPoint(mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y);
+            GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y);
 
             // Groesse
             int scale = mainFrame.krabat.defScale;
@@ -525,7 +525,7 @@ public class Zelen extends Mainloc {
                 // zu Couch gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

@@ -188,7 +188,7 @@ public class Spaniska extends Mainloc {
                 if (mainFrame.Actions[514]) {
                     BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 }
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(480, 400));
+                mainFrame.krabat.setPos(new GenericPoint(480, 400));
                 mainFrame.krabat.SetFacing(6);
                 setAnim = true;
                 if (!mainFrame.Actions[519]) {
@@ -203,7 +203,7 @@ public class Spaniska extends Mainloc {
                 }
                 break;
             case 123: // von Hala 
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(400, 470));
+                mainFrame.krabat.setPos(new GenericPoint(400, 470));
                 mainFrame.krabat.SetFacing(12);
                 break;
         }
@@ -295,7 +295,7 @@ public class Spaniska extends Mainloc {
             if (krabatFaellt || klettertRein) {
                 // hier das Hinfallen, Cliprect besorgt diese Routine selbst
                 if (krabatFaellt) {
-                    fallRueckgabe = krabatFall.drawKrabat(g, mainFrame.krabat.GetKrabatPos());
+                    fallRueckgabe = krabatFall.drawKrabat(g, mainFrame.krabat.getPos());
                 }
 
                 // hier das reinklettern, nur 1 Image
@@ -350,7 +350,7 @@ public class Spaniska extends Mainloc {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
+        GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Stuhl oder Rosen ? (nur Clipping - Region wird neugezeichnet)
         if (pKrTemp.x < 310) {
@@ -554,7 +554,7 @@ public class Spaniska extends Mainloc {
                 // zu Halle gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -573,7 +573,7 @@ public class Spaniska extends Mainloc {
                 // nach draussen gehen ?
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {

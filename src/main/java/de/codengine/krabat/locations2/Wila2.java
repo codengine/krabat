@@ -79,7 +79,7 @@ public class Wila2 extends Mainloc2 {
         mueller.zoomf = 4f;
         mueller.defScale = 10;
 
-        mueller.SetMlynkPos(mlynkFeet);
+        mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
         InitLocation(oldLocation);
@@ -129,7 +129,7 @@ public class Wila2 extends Mainloc2 {
                 break;
             case 80:
                 // von Njedz aus (Mueller oder Karte)
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(293, 475));
+                mainFrame.krabat.setPos(new GenericPoint(293, 475));
                 mainFrame.krabat.SetFacing(12);
                 if (mainFrame.Actions[300]) {
                     BackgroundMusicPlayer.getInstance().stop(); // wenn Mueller, dann CD aus
@@ -142,14 +142,14 @@ public class Wila2 extends Mainloc2 {
             case 75:
                 // von Kolmc aus
                 // nix Musik, kann nur Heimgehszene sein
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(436, 147));
+                mainFrame.krabat.setPos(new GenericPoint(436, 147));
                 mainFrame.krabat.SetFacing(6);
                 break;
 
             case 72:
                 // von Dubring aus (ueber die Karte)
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
-                mainFrame.krabat.SetKrabatPos(new GenericPoint(620, 404));
+                mainFrame.krabat.setPos(new GenericPoint(620, 404));
                 mainFrame.krabat.SetFacing(9);
                 break;
         }
@@ -376,7 +376,7 @@ public class Wila2 extends Mainloc2 {
                 // zu Njedz gehen ?
                 if (untererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 100;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!untererAusgang.IsPointInRect(kt)) {
@@ -395,7 +395,7 @@ public class Wila2 extends Mainloc2 {
                 // zu Dubring gehen
                 if (rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 102;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!rechterAusgang.IsPointInRect(kt)) {
@@ -414,7 +414,7 @@ public class Wila2 extends Mainloc2 {
                 // zu Kolmc gehen
                 if (obererAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 101;
-                    GenericPoint kt = mainFrame.krabat.GetKrabatPos();
+                    GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
                     if (!obererAusgang.IsPointInRect(kt)) {
