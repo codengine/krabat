@@ -505,24 +505,6 @@ public class Mlynk2 extends MovableMainAnim {
         return calcScaleDefault(poy, defScale);
     }
 
-    // Clipping - Region vor Zeichnen von Krabat setzen
-    private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
-        // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos(xx, yy);
-        int y = getUpPos(yy);
-        // System.out.println(xx +  " " + x);
-
-        // Breite und Hoehe ermitteln
-        int xd = 2 * (xx - x);
-        int yd = yy - y;
-        g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-    }
-
     // Clipping - Region vor Zeichnen von Krabat setzen, hier mit Stock in der Hand
     private void KrabatClipWithKij(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
@@ -594,7 +576,7 @@ public class Mlynk2 extends MovableMainAnim {
     // ganz normales Darstellen
     private void MaleIhn(GenericDrawingContext g, int Richtung) {
         // Clipping - Region setzen
-        KrabatClip(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps, (int) yps);

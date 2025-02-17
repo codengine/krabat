@@ -3,6 +3,7 @@ package de.codengine.krabat.anims;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
+import de.codengine.krabat.platform.GenericDrawingContext;
 
 import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
@@ -106,5 +107,58 @@ public abstract class MovableMainAnim extends Mainanim {
             help2 += defScale;
             return (int) help2;
         }
+    }
+
+    // Clipping - Region vor Zeichnen von Krabat setzen
+    protected void krabatClipDefault(GenericDrawingContext g, int xx, int yy) {
+        krabatClipDefault(g, xx, yy, 1);
+    }
+
+    // Clipping - Region vor Zeichnen von Krabat setzen
+    protected void krabatClipDefault(GenericDrawingContext g, int xx, int yy, int ydFactor) {
+        // Links - oben - Korrdinaten ermitteln
+        int x = getLeftPos(xx, yy);
+        int y = getUpPos(yy);
+
+        // Breite und Hoehe ermitteln
+        int xd = 2 * (xx - x);
+        int yd = ydFactor * (yy - y);
+        g.setClip(x, y, xd, yd);
+
+        // Fuer Debugging ClipRectangle zeichnen
+        // g.setColor(Color.white);
+        // g.drawRect(x, y, xd - 1, yd - 1);
+        // System.out.println(x + " " + y + " " + xd + " " + yd);
+    }
+
+    // Clipping - Region vor Zeichnen von Krabat setzen
+    protected void krabatClipExtraDefault(GenericDrawingContext g, int xx, int yy, boolean isLeft) {
+        // Links - oben - Korrdinaten ermitteln, wie sie eigentlich waeren
+        int x = getLeftPos(xx, yy);
+        int y = getUpPos(yy);
+
+        // Breite und Hoehe ermitteln
+        int xd, yd;
+
+        if (isLeft) {
+            // nach links Cliprectangle auch nach links vergroessern !!!
+            // GenericImage ist in Beide Richtungen gleichgross !!
+            yd = yy - y;
+            xd = yd;
+
+            // x-Position muss verringert werden !
+            x -= xd / 2;
+        } else {
+            // nach rechts nur Cliprectangle vergroessern
+            yd = yy - y;
+            xd = yd;
+        }
+
+        g.setClip(x, y, xd, yd);
+
+        // Fuer Debugging ClipRectangle zeichnen
+        // g.setColor(Color.white);
+        // g.drawRect(x, y, xd - 1, yd - 1);
+        // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 }

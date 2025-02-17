@@ -745,7 +745,7 @@ public class KrabatOben extends Krabat {
     // Gilt nur fuer von Oben, Images wurden bereits getestet
     private void Rede(GenericDrawingContext g, int links, int mitte, int rechts) {
         // Clipping - Region setzen
-        KrabatClip(g, (int) xps, (int) yps);
+        krabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps);
@@ -786,21 +786,8 @@ public class KrabatOben extends Krabat {
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
-    private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
-        // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos(xx);
-        int y = getUpPos(yy);
-        // System.out.println(xx +  " " + x);
-
-        // Breite und Hoehe ermitteln
-        int xd = 2 * (xx - x);
-        int yd = 2 * (yy - y);
-        g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen 
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
+    private void krabatClip(GenericDrawingContext g, int xx, int yy) {
+        krabatClipDefault(g, xx, yy, 2);
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
@@ -815,7 +802,7 @@ public class KrabatOben extends Krabat {
 
     private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        KrabatClip(g, (int) xps, (int) yps);
+        krabatClip(g, (int) xps, (int) yps);
 
         // Groesse und Position der Figur berechnen
         int left = getLeftPos((int) xps);
