@@ -307,6 +307,11 @@ public class WikowarkaRudy extends MovableMainAnim {
         return poy - CHEIGHT / 2;
     }
 
+    @Override
+    protected int getScale(int poy) {
+        return 0;
+    }
+
     // Clipping - Region vor Zeichnen von Krabat setzen
     private void KrabatClip(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln

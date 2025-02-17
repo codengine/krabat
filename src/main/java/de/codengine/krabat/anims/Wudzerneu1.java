@@ -360,6 +360,11 @@ public class Wudzerneu1 extends MovableMainAnim {
         return poy - CHEIGHT;
     }
 
+    @Override
+    protected int getScale(int poy) {
+        return 0;
+    }
+
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
     public Borderrect getRect() {

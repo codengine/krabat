@@ -51,6 +51,7 @@ public abstract class MovableMainAnim extends Mainanim {
 
     protected abstract int getLeftPos(int pox, int poy);
     protected abstract int getUpPos(int poy);
+    protected abstract int getScale(int poy);
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     public Borderrect getRect() {
@@ -59,5 +60,26 @@ public abstract class MovableMainAnim extends Mainanim {
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
         return new Borderrect(x, y, xd, yd);
+    }
+
+    protected int calcLeftPosDefault(int pox, int poy) {
+        // Linke x-Koordinate = Fusspunkt - halbe Breite
+        // + halbe Hoehendifferenz
+        int scaleY = getScale(poy);
+        return pox - (width - scaleY / 2) / 2;
+    }
+
+    protected int calcLeftPosDefault(int pox, int poy, float scaleFactor) {
+        // Linke x-Koordinate = Fusspunkt - halbe Breite
+        // + halbe Hoehendifferenz
+        float fScaleY = getScale(poy) * scaleFactor;
+        return pox - (width - (int) fScaleY) / 2;
+    }
+
+    protected int calcUpPosDefault(int poy) {
+        // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
+        // + Hoehendifferenz
+        int fScaleY = getScale(poy);
+        return poy - height + fScaleY;
     }
 }

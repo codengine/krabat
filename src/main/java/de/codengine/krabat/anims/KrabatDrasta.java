@@ -1070,23 +1070,18 @@ public class KrabatDrasta extends Krabat {
     // Zooming-Variablen berechnen
     @Override
     protected int getLeftPos(int pox, int poy) {
-        // Linke x-Koordinate = Fusspunkt - halbe Breite
-        // + halbe Hoehendifferenz
-        int helper = getScale(poy);
-        return pox - (CWIDTH - helper / 2) / 2;
+        return calcLeftPosDefault(pox, poy);
     }
 
     @Override
     protected int getUpPos(int poy) {
-        // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
-        // + Hoehendifferenz
-        int helper = getScale(poy);
-        return poy - CHEIGHT + helper;
+        return calcUpPosDefault(poy);
     }
 
     // fuer Debugging public - wird wieder private !!!
     // wird nur bei Default angesprungen
-    private int getScale(int poy) {
+    @Override
+    protected int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;

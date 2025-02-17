@@ -255,24 +255,17 @@ public class Awgust extends MovableMainAnim {
     // Zooming-Variablen berechnen
     @Override
     protected int getLeftPos(int pox, int poy) {
-        // Linke x-Koordinate = Fusspunkt - halbe Breite
-        // + halbe Hoehendifferenz
-
-        float fScaleY = getScale(poy) * scaleFactor;
-
-        return pox - (CWIDTH - (int) fScaleY) / 2;
+        return calcLeftPosDefault(pox, poy, scaleFactor);
     }
 
     @Override
     protected int getUpPos(int poy) {
-        // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
-        // + Hoehendifferenz
-        int helper = getScale(poy);
-        return poy - CHEIGHT + helper;
+        return calcUpPosDefault(poy);
     }
 
     // fuer Debugging public - wird wieder private !!!
-    public int getScale(int poy) {
+    @Override
+    protected int getScale(int poy) {
 
         // Hier kann override eingeschaltet werden (F7/F8)
         // return mainFrame.override;
