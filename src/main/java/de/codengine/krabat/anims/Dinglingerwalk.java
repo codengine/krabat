@@ -261,12 +261,7 @@ public class Dinglingerwalk extends MovableMainAnim {
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        // Variablen an Move uebergeben
-        Twalkto = aim;
-
-        // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
+        moveToDefault(aim);
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.

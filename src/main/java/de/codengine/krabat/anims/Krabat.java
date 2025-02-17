@@ -188,4 +188,37 @@ abstract public class Krabat extends MovableMainAnim {
         typs = yps + directionY.getVal() * vertDist;
         // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
+
+    protected synchronized void moveToKrabat(GenericPoint aim, int lohnx, int lohny, int minAnimPos, int calcHorizDeg) {
+        // Variablen an Move uebergeben
+        Twalkto = aim;
+        Thorizontal = calcHorizontal(aim, calcHorizDeg);
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
+
+        // Lohnt es sich zu laufen ?
+        if (lohnx < 1) {
+            lohnx = 1;
+        }
+        if (lohny < 1) {
+            lohny = 1;
+        }
+        if (Math.abs(aim.x - (int) xps) < lohnx && Math.abs(aim.y - (int) yps) < lohny) {
+            isWalking = false;
+            log.debug("Nicht gerade lohnend !!");
+            if (!isWandering && clearanimpos) {
+                anim_pos = 0;
+            }
+            return;
+        }
+
+        // von Oben
+        if (anim_pos < minAnimPos) {
+            anim_pos = minAnimPos;
+        }
+
+        isWalking = true;                             // Stiefel los !
+    }
 }	

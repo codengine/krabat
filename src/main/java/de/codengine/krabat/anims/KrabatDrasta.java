@@ -515,45 +515,13 @@ public class KrabatDrasta extends Krabat {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
     public synchronized void MoveTo(GenericPoint aim) {
-        // Variablen an Move uebergeben
-        Twalkto = aim;
-        Thorizontal = calcHorizontal(aim, 22);
-
-        // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
-
         // Hier Ueberpruefen, ob es sich auch lohnt, zuerst Scaling holen
         int scale = getScale((int) yps);
-
         // Lohnen-Variablen dem Scaling anpassen
         int lohnenx = (int) ((float) CLOHNENX * (xFaktor * scale + 1.0f));
         int lohneny = (int) ((float) CLOHNENY * (yFaktor * scale + 1.0f));
 
-        // Abfangen, wenn zu klein
-        if (lohnenx < 1) {
-            lohnenx = 1;
-        }
-        if (lohneny < 1) {
-            lohneny = 1;
-        }
-
-        if (Math.abs(aim.x - (int) xps) < lohnenx &&
-                Math.abs(aim.y - (int) yps) < lohneny) {
-            isWalking = false;
-            log.debug("Lohnt sich nicht !");
-            if (!isWandering && clearanimpos) {
-                anim_pos = 0;
-            }
-            return;
-        }
-
-        // normales Laufen
-        if (anim_pos < 2) {
-            anim_pos = 2;
-        }
-
-        isWalking = true;                             // Stiefel los !
+        moveToKrabat(aim, lohnenx, lohneny, 2, 22);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////

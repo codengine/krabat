@@ -5,8 +5,10 @@ import de.codengine.krabat.main.Borderrect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 
+import static de.codengine.krabat.anims.DirectionX.LEFT;
 import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
+import static de.codengine.krabat.anims.DirectionY.UP;
 
 public abstract class MovableMainAnim extends Mainanim {
     protected final int width;
@@ -222,5 +224,14 @@ public abstract class MovableMainAnim extends Mainanim {
     public GenericPoint getPos() {
         //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
         return new GenericPoint((int) xps, (int) yps);
+    }
+
+    protected void moveToDefault(GenericPoint aim) {
+        // Variablen an Move uebergeben
+        Twalkto = aim;
+
+        // Laufrichtung ermitteln
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
+        tDirectionY = aim.y > (int) yps ? DOWN : UP;
     }
 }

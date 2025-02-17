@@ -205,14 +205,7 @@ public class Wudzerneu1 extends MovableMainAnim {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim, boolean clearAnimPos) {
         laeuftNicht = false;
-
-        // Variablen an Move uebergeben
-        Twalkto = aim;
-
-        // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
-
+        moveToDefault(aim);
         anim_pos = clearAnimPos ? 0 : 1;       // Animationsimage bei Neubeginn initialis.
     }
 

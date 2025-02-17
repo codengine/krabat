@@ -404,39 +404,10 @@ public class KrabatOben extends Krabat {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
     public synchronized void MoveTo(GenericPoint aim) {
-        // Variablen an Move uebergeben
-        Twalkto = aim;
-        Thorizontal = calcHorizontal(aim, 45);
-
-        // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
-
         // Lohnt es sich zu laufen ?
         int lohnx = CLOHNENXO - (int) zoomf;
         int lohny = CLOHNENYO - (int) zoomf;
-        if (lohnx < 1) {
-            lohnx = 1;
-        }
-        if (lohny < 1) {
-            lohny = 1;
-        }
-        if (Math.abs(aim.x - (int) xps) < lohnx &&
-                Math.abs(aim.y - (int) yps) < lohny) {
-            isWalking = false;
-            log.debug("Nicht gerade lohnend !!");
-            if (!isWandering && clearanimpos) {
-                anim_pos = 0;
-            }
-            return;
-        }
-
-        // von Oben
-        if (anim_pos < 1) {
-            anim_pos = 1;
-        }
-
-        isWalking = true;                             // Stiefel los !
+        moveToKrabat(aim, lohnx, lohny, 1, 45);
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////

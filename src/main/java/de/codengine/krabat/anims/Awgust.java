@@ -26,11 +26,6 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-import static de.codengine.krabat.anims.DirectionX.LEFT;
-import static de.codengine.krabat.anims.DirectionX.RIGHT;
-import static de.codengine.krabat.anims.DirectionY.DOWN;
-import static de.codengine.krabat.anims.DirectionY.UP;
-
 public class Awgust extends MovableMainAnim {
     // Alle GenericImage - Objekte
     private final GenericImage[] kral_head;
@@ -161,13 +156,8 @@ public class Awgust extends MovableMainAnim {
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
-        // Variablen an Move uebergeben
-        Twalkto = aim;
+        moveToDefault(aim);
         Thorizontal = false;
-
-        // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
 
         if (anim_pos == 0) {
             anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
