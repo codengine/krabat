@@ -533,26 +533,9 @@ public class KrabatNormal extends Krabat {
 
         // Zooming - Faktor beruecksichtigen in y - Richtung
         // muss nach Richtung getrennt vorgenommen werden
-        float vert_dist = getVertDist(scale);
+        float vertDist = getVertDist(scale);
 
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vert_dist;
-
-        // BUGFIX: kleine z nicht zulassen!!!
-        if (z < 1) {
-            z = 0;
-        }
-
-        txps = xps;
-        if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
-        }
-
-        // System.out.println ("X-Verschiebeoffset ist : " + (directionX.getVal() * (Math.abs (xps - walkto.x) / z)) +
-        //                     " bei walkto : " + walkto.x + " " + walkto.y);
-
-        typs = yps + directionY.getVal() * vert_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeYkrabat(vertDist);
     }
 
     private float getVertDist(float scale) {

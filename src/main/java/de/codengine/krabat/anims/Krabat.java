@@ -170,4 +170,22 @@ abstract public class Krabat extends MovableMainAnim {
 
         txps = xps + directionX.getVal() * horizDist;
     }
+
+    protected void verschiebeYkrabat(float vertDist) {
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = Math.abs(yps - walkto.y) / vertDist;
+
+        // BUGFIX: kleine z nicht zulassen!!!
+        if (z < 1) {
+            z = 0;
+        }
+
+        txps = xps;
+        if (z != 0) {
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
+        }
+
+        typs = yps + directionY.getVal() * vertDist;
+        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+    }
 }	

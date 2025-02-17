@@ -148,22 +148,7 @@ public class WikowarkaRudy extends MovableMainAnim {
 
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
-        // Skalierungsfaktor holen
-        // int scale = getScale(((int) xps), ((int) yps));
-
-        // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST;
-
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vert_dist;
-
-        txps = xps;
-        if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
-        }
-
-        typs = yps + directionY.getVal() * vert_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeY(CVERT_DIST);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten

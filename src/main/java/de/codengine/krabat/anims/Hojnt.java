@@ -318,27 +318,7 @@ public class Hojnt extends MovableMainAnim {
 
     // Vertikal - Positions - Verschieberoutine
     private void VerschiebeY() {
-        // Skalierungsfaktor holen
-        int scale = getScale((int) yps);
-
-        // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERT_DIST - (float) scale / SLOWY;
-        if (vert_dist < 1) {
-            vert_dist = 1;
-            // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
-            // und vert_distance ein Pixel erlaubt oder nicht
-        }
-
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vert_dist;
-
-        txps = xps;
-        if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
-        }
-
-        typs = yps + directionY.getVal() * vert_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeYdefault(CVERT_DIST, SLOWY);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten

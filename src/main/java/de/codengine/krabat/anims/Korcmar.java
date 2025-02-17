@@ -193,28 +193,19 @@ public class Korcmar extends MovableMainAnim {
         // Skalierungsfaktor holen
         int scale = getScale((int) yps);
 
-        float vert_dist;
+        float vertDist;
         // Zooming - Faktor beruecksichtigen in y-Richtung
         if (directionY == DOWN) {
-            vert_dist = CVERT_UNTEN[anim_pos] - (float) scale / SLOWY;
+            vertDist = CVERT_UNTEN[anim_pos] - (float) scale / SLOWY;
         } else {
-            vert_dist = CVERT_OBEN[anim_pos] - (float) scale / SLOWY;
+            vertDist = CVERT_OBEN[anim_pos] - (float) scale / SLOWY;
         }
 
-        if (vert_dist < 1) {
-            vert_dist = 1;
+        if (vertDist < 1) {
+            vertDist = 1;
         }
 
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vert_dist;
-
-        txps = xps;
-        if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
-        }
-
-        typs = yps + directionY.getVal() * vert_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeY(vertDist);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten

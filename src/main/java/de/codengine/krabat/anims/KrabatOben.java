@@ -390,28 +390,14 @@ public class KrabatOben extends Krabat {
         // Skalierungsfaktor ist zoomf fuer von Oben
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vert_dist = CVERTO_DIST - zoomf / SLOWYO;
-        if (vert_dist < 1) {
-            vert_dist = 1;
+        float vertDist = CVERTO_DIST - zoomf / SLOWYO;
+        if (vertDist < 1) {
+            vertDist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
             // und vert_distance ein Pixel erlaubt oder nicht
         }
 
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vert_dist;
-
-        // BUGFIX: kleine z nicht zulassen!!!
-        if (z < 1) {
-            z = 0;
-        }
-
-        txps = xps;
-        if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
-        }
-
-        typs = yps + directionY.getVal() * vert_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeYkrabat(vertDist);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten

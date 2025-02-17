@@ -149,20 +149,20 @@ public abstract class MovableMainAnim extends Mainanim {
         int scale = getScale((int) yps);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = dist - (float) scale / slowX;
-        if (horiz_dist < 1) {
-            horiz_dist = 1;
+        float horizDist = dist - (float) scale / slowX;
+        if (horizDist < 1) {
+            horizDist = 1;
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(xps - walkto.x) / horiz_dist;
+        float z = Math.abs(xps - walkto.x) / horizDist;
 
         typs = yps;
         if (z != 0) {
             typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
         }
 
-        txps = xps + directionX.getVal() * horiz_dist;
+        txps = xps + directionX.getVal() * horizDist;
     }
 
     // Horizontal - Positions - Verschieberoutine
@@ -181,6 +181,35 @@ public abstract class MovableMainAnim extends Mainanim {
         }
 
         txps = xps + directionX.getVal() * horizDist;
+    }
+
+    // Vertikal - Positions - Verschieberoutine
+    protected void verschiebeYdefault(int dist, int slowY) {
+        // Skalierungsfaktor holen
+        int scale = getScale((int) yps);
+
+        // Zooming - Faktor beruecksichtigen in y-Richtung
+        float vertDist = dist - (float) scale / slowY;
+        if (vertDist < 1) {
+            vertDist = 1;
+            // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
+            // und vert_distance ein Pixel erlaubt oder nicht
+        }
+
+        verschiebeY(vertDist);
+    }
+
+    protected void verschiebeY(float vertDist) {
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = Math.abs(yps - walkto.y) / vertDist;
+
+        txps = xps;
+        if (z != 0) {
+            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
+        }
+
+        typs = yps + directionY.getVal() * vertDist;
+        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
