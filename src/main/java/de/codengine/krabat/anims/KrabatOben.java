@@ -376,26 +376,12 @@ public class KrabatOben extends Krabat {
         // Skalierungsfaktor ist gleich zoomf bei von Oben
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZO_DIST - zoomf / SLOWXO;
-        if (horiz_dist < 1) {
-            horiz_dist = 1;
+        float horizDist = CHORIZO_DIST - zoomf / SLOWXO;
+        if (horizDist < 1) {
+            horizDist = 1;
         }
 
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(xps - walkto.x) / horiz_dist;
-
-        // BUGFIX: kleine z nicht zulassen!!!
-        if (z < 1) {
-            z = 0;
-        }
-
-        typs = yps;
-        if (z != 0) {
-            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
-        }
-
-        txps = xps + directionX.getVal() * horiz_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeXkrabat(horizDist);
     }
 
     // Vertikal - Positions - Verschieberoutine, je nach Krabat - Aussehen

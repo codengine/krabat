@@ -131,37 +131,6 @@ public abstract class MovableMainAnim extends Mainanim {
         // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
-    // Clipping - Region vor Zeichnen von Krabat setzen
-    protected void krabatClipExtraDefault(GenericDrawingContext g, int xx, int yy, boolean isLeft) {
-        // Links - oben - Korrdinaten ermitteln, wie sie eigentlich waeren
-        int x = getLeftPos(xx, yy);
-        int y = getUpPos(yy);
-
-        // Breite und Hoehe ermitteln
-        int xd, yd;
-
-        if (isLeft) {
-            // nach links Cliprectangle auch nach links vergroessern !!!
-            // GenericImage ist in Beide Richtungen gleichgross !!
-            yd = yy - y;
-            xd = yd;
-
-            // x-Position muss verringert werden !
-            x -= xd / 2;
-        } else {
-            // nach rechts nur Cliprectangle vergroessern
-            yd = yy - y;
-            xd = yd;
-        }
-
-        g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
-    }
-
     protected boolean calcHorizontal(GenericPoint aim, int maxAngle) {
         // Horizontal oder verikal laufen ?
         if (aim.x != (int) xps) {
@@ -173,5 +142,44 @@ public abstract class MovableMainAnim extends Mainanim {
         }
 
         return false;
+    }
+
+    protected void verschiebeXdefault(int dist, int slowX) {
+        // Skalierungsfaktor holen
+        int scale = getScale((int) yps);
+
+        // Zooming - Faktor beruecksichtigen in x - Richtung
+        float horiz_dist = dist - (float) scale / slowX;
+        if (horiz_dist < 1) {
+            horiz_dist = 1;
+        }
+
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = Math.abs(xps - walkto.x) / horiz_dist;
+
+        typs = yps;
+        if (z != 0) {
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+        }
+
+        txps = xps + directionX.getVal() * horiz_dist;
+    }
+
+    // Horizontal - Positions - Verschieberoutine
+    protected void verschiebeXdefault(float horizDist) {
+        // Zooming - Faktor beruecksichtigen in x - Richtung
+        if (horizDist < 1) {
+            horizDist = 1;
+        }
+
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = Math.abs(xps - walkto.x) / horizDist;
+
+        typs = yps;
+        if (z != 0) {
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+        }
+
+        txps = xps + directionX.getVal() * horizDist;
     }
 }

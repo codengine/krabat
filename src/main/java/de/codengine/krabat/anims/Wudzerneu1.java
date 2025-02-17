@@ -198,22 +198,7 @@ public class Wudzerneu1 extends MovableMainAnim {
 
     // Horizontal - Positions - Verschieberoutine
     private void VerschiebeX() {
-        // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horiz_dist = CHORIZ_DIST[anim_pos];
-        if (horiz_dist < 1) {
-            horiz_dist = 1;
-        }
-
-        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(xps - walkto.x) / horiz_dist;
-
-        typs = yps;
-        if (z != 0) {
-            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
-        }
-
-        txps = xps + directionX.getVal() * horiz_dist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        verschiebeXdefault(CHORIZ_DIST[anim_pos]);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten

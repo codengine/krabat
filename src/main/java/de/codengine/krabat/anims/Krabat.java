@@ -140,4 +140,54 @@ abstract public class Krabat extends MovableMainAnim {
 
     abstract public void DoAnimation(GenericDrawingContext g);
 
+    // Clipping - Region vor Zeichnen von Krabat setzen
+    protected void krabatClipExtraDefault(GenericDrawingContext g, int xx, int yy, boolean isLeft) {
+        // Links - oben - Korrdinaten ermitteln, wie sie eigentlich waeren
+        int x = getLeftPos(xx, yy);
+        int y = getUpPos(yy);
+
+        // Breite und Hoehe ermitteln
+        int xd, yd;
+
+        if (isLeft) {
+            // nach links Cliprectangle auch nach links vergroessern !!!
+            // GenericImage ist in Beide Richtungen gleichgross !!
+            yd = yy - y;
+            xd = yd;
+
+            // x-Position muss verringert werden !
+            x -= xd / 2;
+        } else {
+            // nach rechts nur Cliprectangle vergroessern
+            yd = yy - y;
+            xd = yd;
+        }
+
+        g.setClip(x, y, xd, yd);
+
+        // Fuer Debugging ClipRectangle zeichnen
+        // g.setColor(Color.white);
+        // g.drawRect(x, y, xd - 1, yd - 1);
+        // System.out.println(x + " " + y + " " + xd + " " + yd);
+    }
+
+    protected void verschiebeXkrabat(float horizDist) {
+        // Verschiebungsoffset berechnen (fuer schraege Bewegung)
+        float z = 0;
+        if (horizDist != 0) {
+            z = Math.abs(xps - walkto.x) / horizDist;
+        }
+
+        // BUGFIX: kleine z nicht zulassen!!!
+        if (z < 1) {
+            z = 0;
+        }
+
+        typs = yps;
+        if (z != 0) {
+            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+        }
+
+        txps = xps + directionX.getVal() * horizDist;
+    }
 }	
