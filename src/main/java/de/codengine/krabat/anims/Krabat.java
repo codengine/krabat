@@ -42,8 +42,6 @@ abstract public class Krabat extends MovableMainAnim {
     public int nAnimation = 0;           // ID der ggw. Animation
     public boolean fAnimHelper = false;  // Hilfsflag bei Animation
 
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
-
     // Variablen, die nur innerhalb Krabat sichtbar sein sollen
 
     int nAnimStep = 0;                    // ggw. Pos in Animation

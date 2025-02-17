@@ -1356,33 +1356,10 @@ public class KrabatNormal extends Krabat {
         return calcUpPosDefault(poy);
     }
 
-    // fuer Debugging public - wird wieder private !!!
     // wird nur bei Default angesprungen
     @Override
     protected int getScale(int poy) {
-
-        // Hier kann override eingeschaltet werden (F7/F8)
-        // return mainFrame.override;
-
-        // Ermittlung der Hoehendifferenz beim Zooming
-        if (!upsidedown) {
-            // normale Berechnung
-            float helper = (maxx - poy) / zoomf;
-            if (helper < 0) {
-                helper = 0;
-            }
-            helper += defScale;
-            return (int) helper;
-        } else {
-            // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
-            if (help2 < 0) {
-                help2 = 0;
-            }
-            help2 += defScale;
-            // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return (int) help2;
-        }
+        return calcScaleDefault(poy, defScale);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen

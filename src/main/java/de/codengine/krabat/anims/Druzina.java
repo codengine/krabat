@@ -206,30 +206,9 @@ public class Druzina extends MovableMainAnim {
         return calcUpPosDefault(poy);
     }
 
-    // fuer Debugging public - wird wieder private !!!
     @Override
     protected int getScale(int poy) {
-
-        // Hier kann override eingeschaltet werden (F7/F8)
-        // return mainFrame.override;
-
-        // Ermittlung der Hoehendifferenz beim Zooming
-        if (!upsidedown) {
-            // normale Berechnung
-            float helper = (maxx - poy) / zoomf;
-            if (helper < 0) {
-                helper = 0;
-            }
-            return (int) helper;
-        } else {
-            // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = poy / zoomf;
-            if (help2 < 0) {
-                help2 = 0;
-            }
-            // System.out.println (minx + " + " + poy + " und " + zoomf + " ergeben " + help2);
-            return (int) help2;
-        }
+        return calcScaleDefault(poy);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen

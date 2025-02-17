@@ -33,7 +33,7 @@ public abstract class MovableMainAnim extends Mainanim {
     protected boolean Thorizontal = true; // Animationen in x oder y Richtung
 
     public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-
+    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
     // Variablen fuer Zooming
     public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
     // (Vordergrund) bildabhaengig
@@ -81,5 +81,30 @@ public abstract class MovableMainAnim extends Mainanim {
         // + Hoehendifferenz
         int fScaleY = getScale(poy);
         return poy - height + fScaleY;
+    }
+
+    protected int calcScaleDefault(int poy) {
+        return calcScaleDefault(poy, 0);
+    }
+
+    protected int calcScaleDefault(int poy, int defScale) {
+        // Ermittlung der Hoehendifferenz beim Zooming
+        if (!upsidedown) {
+            // normale Berechnung
+            float helper = (maxx - poy) / zoomf;
+            if (helper < 0) {
+                helper = 0;
+            }
+            helper += defScale;
+            return (int) helper;
+        } else {
+            // Berechnung bei "upsidedown" - Berg/Tallauf
+            float help2 = (poy - minx) / zoomf;
+            if (help2 < 0) {
+                help2 = 0;
+            }
+            help2 += defScale;
+            return (int) help2;
+        }
     }
 }

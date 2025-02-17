@@ -309,7 +309,7 @@ public class WikowarkaRudy extends MovableMainAnim {
 
     @Override
     protected int getScale(int poy) {
-        return 0;
+        return calcScaleDefault(poy);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
