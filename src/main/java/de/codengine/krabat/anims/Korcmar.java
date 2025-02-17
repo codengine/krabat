@@ -221,13 +221,12 @@ public class Korcmar extends MovableMainAnim {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     public synchronized void MoveTo(GenericPoint aim) {
         // Laufrichtung ermitteln
-        final DirectionX xricht = aim.x > (int) xps ? RIGHT : LEFT;
         final DirectionY yricht = aim.y > (int) yps ? DOWN : UP;
 
         // Variablen an Move uebergeben
         Twalkto = aim;
         Thorizontal = false;
-        tDirectionX = xricht;
+        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
         tDirectionY = yricht;
 
         if (anim_pos == 0) {

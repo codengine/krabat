@@ -548,19 +548,9 @@ public class KrabatDrasta extends Krabat {
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
     public synchronized void MoveTo(GenericPoint aim) {
-        // Hier Default - Routine
-        boolean horiz = false;
-        if (aim.x != (int) xps) {
-            // Winkel berechnen, den Krabat laufen soll
-            double yangle = Math.abs(aim.y - (int) yps);
-            double xangle = Math.abs(aim.x - (int) xps);
-            double angle = Math.atan(yangle / xangle);
-            horiz = !(angle > 22 * Math.PI / 180);
-        }
-
         // Variablen an Move uebergeben
         Twalkto = aim;
-        Thorizontal = horiz;
+        Thorizontal = calcHorizontal(aim, 22);
 
         // Laufrichtung ermitteln
         tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;

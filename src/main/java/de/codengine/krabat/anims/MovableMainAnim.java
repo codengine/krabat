@@ -161,4 +161,17 @@ public abstract class MovableMainAnim extends Mainanim {
         // g.drawRect(x, y, xd - 1, yd - 1);
         // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
+
+    protected boolean calcHorizontal(GenericPoint aim, int maxAngle) {
+        // Horizontal oder verikal laufen ?
+        if (aim.x != (int) xps) {
+            // Winkel berechnen, den Krabat laufen soll
+            double yangle = Math.abs(aim.y - (int) yps);
+            double xangle = Math.abs(aim.x - (int) xps);
+            double angle = Math.atan(yangle / xangle);
+            return !(angle > maxAngle * Math.PI / 180);
+        }
+
+        return false;
+    }
 }
