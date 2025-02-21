@@ -61,27 +61,8 @@ public class Doma2 extends Mainloc {
     private boolean istMutterZuSehen = true;
 
     // Texte
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Doma2_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Doma2_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Doma2_00002");
-
-    private static final String[] HKText = {Start.stringManager.getTranslation("Loc2_Doma2_00003"), Start.stringManager.getTranslation("Loc2_Doma2_00004"), Start.stringManager.getTranslation("Loc2_Doma2_00005"), Start.stringManager.getTranslation("Loc2_Doma2_00006"), Start.stringManager.getTranslation("Loc2_Doma2_00007")};
-    private static final String[] DKText = {Start.stringManager.getTranslation("Loc2_Doma2_00008"), Start.stringManager.getTranslation("Loc2_Doma2_00009"), Start.stringManager.getTranslation("Loc2_Doma2_00010"), Start.stringManager.getTranslation("Loc2_Doma2_00011"), Start.stringManager.getTranslation("Loc2_Doma2_00012")};
-    private static final String[] NKText = {Start.stringManager.getTranslation("Loc2_Doma2_00013"), Start.stringManager.getTranslation("Loc2_Doma2_00014"), Start.stringManager.getTranslation("Loc2_Doma2_00015"), Start.stringManager.getTranslation("Loc2_Doma2_00016"), Start.stringManager.getTranslation("Loc2_Doma2_00017")};
-    private static final int KONSTANTE = 4;
+    private static final String[] KRABAT_TEXTS = {"Doma2_27", "Doma2_28", "Doma2_29", "Doma2_30", "Doma2_31"};
     private int Position = 0;
-
-    private static final String H2Text = Start.stringManager.getTranslation("Loc2_Doma2_00018");
-    private static final String D2Text = Start.stringManager.getTranslation("Loc2_Doma2_00019");
-    private static final String N2Text = Start.stringManager.getTranslation("Loc2_Doma2_00020");
-
-    private static final String H3Text = Start.stringManager.getTranslation("Loc2_Doma2_00021");
-    private static final String D3Text = Start.stringManager.getTranslation("Loc2_Doma2_00022");
-    private static final String N3Text = Start.stringManager.getTranslation("Loc2_Doma2_00023");
-
-    private static final String H4Text = Start.stringManager.getTranslation("Loc2_Doma2_00024");
-    private static final String D4Text = Start.stringManager.getTranslation("Loc2_Doma2_00025");
-    private static final String N4Text = Start.stringManager.getTranslation("Loc2_Doma2_00026");
 
     // Walkto - Points fuer Dinge in Location
     private static final GenericPoint Pmutter = new GenericPoint(840, 400);
@@ -899,26 +880,22 @@ public class Doma2 extends Mainloc {
 
             case 1:
                 // Brunnen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00027"), Start.stringManager.getTranslation("Loc2_Doma2_00028"), Start.stringManager.getTranslation("Loc2_Doma2_00029"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma2_1", fBrunnen, 3, 0, 0);
                 break;
 
             case 2:
                 // Haustuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00030"), Start.stringManager.getTranslation("Loc2_Doma2_00031"), Start.stringManager.getTranslation("Loc2_Doma2_00032"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Doma2_2", fTuer, 3, 0, 0);
                 break;
 
             case 3:
                 // Stock anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00033"), Start.stringManager.getTranslation("Loc2_Doma2_00034"), Start.stringManager.getTranslation("Loc2_Doma2_00035"),
-                        fStock, 3, 0, 0);
+                KrabatSagt("Doma2_3", fStock, 3, 0, 0);
                 break;
 
             case 4:
                 // Schild anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00036"), Start.stringManager.getTranslation("Loc2_Doma2_00037"), Start.stringManager.getTranslation("Loc2_Doma2_00038"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Doma2_4", fSchild, 3, 0, 0);
                 break;
 
 		/*      case 5:
@@ -929,36 +906,29 @@ public class Doma2 extends Mainloc {
 
             case 6:
                 // Gaense anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00042"), Start.stringManager.getTranslation("Loc2_Doma2_00043"), Start.stringManager.getTranslation("Loc2_Doma2_00044"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma2_5", fGaense, 3, 0, 0);
                 break;
 
             // Use - DoActions
 
             case 50:
                 // ins Haus gehen ??
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00045"), Start.stringManager.getTranslation("Loc2_Doma2_00046"), Start.stringManager.getTranslation("Loc2_Doma2_00047"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Doma2_6", fTuer, 3, 0, 0);
                 break;
 
             case 51:
                 // Schild mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00048"), Start.stringManager.getTranslation("Loc2_Doma2_00049"), Start.stringManager.getTranslation("Loc2_Doma2_00050"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Doma2_7", fSchild, 3, 0, 0);
                 break;
 
             case 52:
                 // Brunnen benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00053"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma2_8", fBrunnen, 3, 0, 0);
                 break;
 
             case 70:
                 // Gaense mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00054"), Start.stringManager.getTranslation("Loc2_Doma2_00055"), Start.stringManager.getTranslation("Loc2_Doma2_00056"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma2_9", fGaense, 3, 0, 0);
                 break;
 
             // GoTo DoActions
@@ -997,38 +967,32 @@ public class Doma2 extends Mainloc {
 
             case 200:
                 // Angel auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00057"), Start.stringManager.getTranslation("Loc2_Doma2_00058"), Start.stringManager.getTranslation("Loc2_Doma2_00059"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma2_10", fBrunnen, 3, 0, 0);
                 break;
 
             case 210:
                 // Angel mit Wurm oder Holzfisch auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00060"), Start.stringManager.getTranslation("Loc2_Doma2_00061"), Start.stringManager.getTranslation("Loc2_Doma2_00062"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma2_11", fBrunnen, 3, 0, 0);
                 break;
 
             case 220:
                 // Fisch auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00063"), Start.stringManager.getTranslation("Loc2_Doma2_00064"), Start.stringManager.getTranslation("Loc2_Doma2_00065"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma2_12", fBrunnen, 3, 0, 0);
                 break;
 
             case 230:
                 // Kij auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00066"), Start.stringManager.getTranslation("Loc2_Doma2_00067"), Start.stringManager.getTranslation("Loc2_Doma2_00068"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma2_13", fGaense, 3, 0, 0);
                 break;
 
             case 240:
                 // Lajna auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00069"), Start.stringManager.getTranslation("Loc2_Doma2_00070"), Start.stringManager.getTranslation("Loc2_Doma2_00071"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma2_14", fGaense, 3, 0, 0);
                 break;
 
             case 250:
                 // Wacki oder Ryba auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00072"), Start.stringManager.getTranslation("Loc2_Doma2_00073"), Start.stringManager.getTranslation("Loc2_Doma2_00074"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma2_15", fGaense, 3, 0, 0);
                 break;
 
             // Multiple Choice
@@ -1053,71 +1017,51 @@ public class Doma2 extends Mainloc {
 
             case 610:
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00075"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00076"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00077"),
-                        0, 20, 2, 620, MacTalk);
+                PersonSagt("Doma2_16", 0, 20, 2, 620, MacTalk);
                 break;
 
             case 620:
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00078"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00079"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00080"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma2_17", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 630:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00081"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00082"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00083"),
-                        0, 1, 2, 640);
+                KrabatSagt("Doma2_18", 0, 1, 2, 640);
                 break;
 
             case 640:
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00084"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00085"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00086"),
-                        0, 20, 2, 650, MacTalk);
+                PersonSagt("Doma2_19", 0, 20, 2, 650, MacTalk);
                 break;
 
             case 650:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00087"), Start.stringManager.getTranslation("Loc2_Doma2_00088"), Start.stringManager.getTranslation("Loc2_Doma2_00089"),
-                        0, 1, 2, 660);
+                KrabatSagt("Doma2_20", 0, 1, 2, 660);
                 break;
 
             case 660:
                 // Text Erzaehler
-                PersonSagt(H1Text, D1Text, N1Text, 0, 54, 2, 670, new GenericPoint(320, 200));
+                PersonSagt("Doma2_26", 0, 54, 2, 670, new GenericPoint(320, 200));
                 break;
 
             case 670:
                 // Text von Krabat
-                KrabatSagt(HKText[Position], DKText[Position], NKText[Position],
-                        0, 1, 2, 670);
+                KrabatSagt(KRABAT_TEXTS[Position], 0, 1, 2, 670);
                 Position++;
-                if (Position > KONSTANTE) {
+                if (Position >= KRABAT_TEXTS.length) {
                     nextActionID = 680;
                 }
                 break;
 
             case 680:
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00090"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00091"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00092"),
-                        0, 20, 2, 690, MacTalk);
+                PersonSagt("Doma2_21", 0, 20, 2, 690, MacTalk);
                 break;
 
             case 690:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00093"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00094"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00095"),
-                        0, 1, 2, 700);
+                KrabatSagt("Doma2_22", 0, 1, 2, 700);
                 break;
 
             case 700:
@@ -1149,17 +1093,17 @@ public class Doma2 extends Mainloc {
 
             case 800:
                 // Text Erzaehler
-                PersonSagt(H2Text, D2Text, N2Text, 0, 54, 2, 805, new GenericPoint(320, 200));
+                PersonSagt("Doma2_32", 0, 54, 2, 805, new GenericPoint(320, 200));
                 break;
 
             case 805:
                 // Text Erzaehler
-                PersonSagt(H3Text, D3Text, N3Text, 0, 54, 2, 808, new GenericPoint(320, 250));
+                PersonSagt("Doma2_33", 0, 54, 2, 808, new GenericPoint(320, 250));
                 break;
 
             case 808:
                 // Text Erzaehler
-                PersonSagt(H4Text, D4Text, N4Text, 0, 54, 2, 810, new GenericPoint(320, 250));
+                PersonSagt("Doma2_34", 0, 54, 2, 810, new GenericPoint(320, 250));
                 break;
 
             case 810:
@@ -1172,26 +1116,17 @@ public class Doma2 extends Mainloc {
             case 1000:
                 // Anim, nachdem Bote gesprochen hat
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00096"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00097"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00098"),
-                        0, 20, 2, 1010, MacTalk);
+                PersonSagt("Doma2_23", 0, 20, 2, 1010, MacTalk);
                 break;
 
             case 1010:
                 // Text von Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Doma2_00099"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00100"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00101"),
-                        0, 1, 2, 1020);
+                KrabatSagt("Doma2_24", 0, 1, 2, 1020);
                 break;
 
             case 1020:
                 // Mutter spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Doma2_00102"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00103"),
-                        Start.stringManager.getTranslation("Loc2_Doma2_00104"),
-                        0, 20, 2, 1030, MacTalk);
+                PersonSagt("Doma2_25", 0, 20, 2, 1030, MacTalk);
                 break;
 
             case 1030:

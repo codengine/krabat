@@ -591,18 +591,12 @@ public class Straze extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wachen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00000"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00001"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00002"),
-                        fStraze, 3, 0, 0);
+                KrabatSagt("Straze_1", fStraze, 3, 0, 0);
                 break;
 
             case 2:
                 // Wappen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00003"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00004"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00005"),
-                        fWapon, 3, 0, 0);
+                KrabatSagt("Straze_2", fWapon, 3, 0, 0);
                 break;
 
             case 50:
@@ -624,10 +618,7 @@ public class Straze extends Mainloc {
 
             case 60:
                 // Wappen mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00006"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00007"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00008"),
-                        fWapon, 3, 0, 0);
+                KrabatSagt("Straze_3", fWapon, 3, 0, 0);
                 break;
 
             case 100:
@@ -652,18 +643,12 @@ public class Straze extends Mainloc {
 
             case 200:
                 // hlebija auf Wappen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00009"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00010"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00011"),
-                        fWapon, 3, 0, 0);
+                KrabatSagt("Straze_4", fWapon, 3, 0, 0);
                 break;
 
             case 541:
                 // Krabat mit Bedienstetenkleidung benutzen, hier Extrawurst !!!
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00012"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00013"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00014"),
-                        0, 3, 0, 0);
+                KrabatSagt("Straze_5", 0, 3, 0, 0);
                 break;
 
             // Dialog mit Wachen
@@ -671,53 +656,38 @@ public class Straze extends Mainloc {
             case 600:
                 // Reaktion Wache 1
                 straza1VersperrtWeg = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00015"), Start.stringManager.getTranslation("Loc3_Straze_00016"), Start.stringManager.getTranslation("Loc3_Straze_00017"),
-                        0, 43, 2, 601, talkPoint);
+                PersonSagt("Straze_6", 0, 43, 2, 601, talkPoint);
                 break;
 
             case 601:
                 // Reaktion Wache 2
                 straza2VersperrtWeg = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00018"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00019"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00020"),
-                        0, 44, 2, 602, talkPoint2);
+                PersonSagt("Straze_7", 0, 44, 2, 602, talkPoint2);
                 break;
 
             case 602:
                 // Reaktion Wache 1
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00021"), Start.stringManager.getTranslation("Loc3_Straze_00022"), Start.stringManager.getTranslation("Loc3_Straze_00023"),
-                        0, 43, 2, 603, talkPoint);
+                PersonSagt("Straze_8", 0, 43, 2, 603, talkPoint);
                 break;
 
             case 603:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00024"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00025"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00026"),
-                        0, 1, 2, 604);
+                KrabatSagt("Straze_9", 0, 1, 2, 604);
                 break;
 
             case 604:
                 // Reaktion Wache 2
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00027"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00028"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00029"),
-                        0, 44, 2, 605, talkPoint2);
+                PersonSagt("Straze_10", 0, 44, 2, 605, talkPoint2);
                 break;
 
             case 605:
                 // Reaktion Wache 1
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00030"), Start.stringManager.getTranslation("Loc3_Straze_00031"), Start.stringManager.getTranslation("Loc3_Straze_00032"),
-                        0, 43, 2, 606, talkPoint);
+                PersonSagt("Straze_11", 0, 43, 2, 606, talkPoint);
                 break;
 
             case 606:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Straze_00033"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00034"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00035"),
-                        0, 1, 2, 800);
+                KrabatSagt("Straze_12", 0, 1, 2, 800);
                 mainFrame.Actions[510] = true;    // Gesprach nicht wiederholen
                 break;
 
@@ -725,27 +695,18 @@ public class Straze extends Mainloc {
             case 610:
                 // Reaktion Wache 1
                 straza1VersperrtWeg = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00036"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00037"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00038"),
-                        0, 43, 2, 611, talkPoint);
+                PersonSagt("Straze_13", 0, 43, 2, 611, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Wache 2
                 straza2VersperrtWeg = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00039"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00040"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00041"),
-                        0, 44, 2, 800, talkPoint2);
+                PersonSagt("Straze_14", 0, 44, 2, 800, talkPoint2);
                 break;
 
             case 620:
                 // Reaktion Wache 2
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Straze_00042"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00043"),
-                        Start.stringManager.getTranslation("Loc3_Straze_00044"),
-                        0, 44, 2, 800, talkPoint2);
+                PersonSagt("Straze_15", 0, 44, 2, 800, talkPoint2);
                 break;
 
 

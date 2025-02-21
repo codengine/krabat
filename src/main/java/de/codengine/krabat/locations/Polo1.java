@@ -694,18 +694,12 @@ public class Polo1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Burja anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00002"),
-                        fBurja, 3, 0, 0);
+                KrabatSagt("Polo1_1", fBurja, 3, 0, 0);
                 break;
 
             case 3:
                 // Kamuski anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00005"),
-                        fKamuski, 3, 0, 0);
+                KrabatSagt("Polo1_2", fKamuski, 3, 0, 0);
                 break;
 
             case 50:
@@ -721,10 +715,7 @@ public class Polo1 extends Mainloc {
                 // Kamuski mitnehmen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00008"),
-                        fKamuski, 3, 2, 60);
+                KrabatSagt("Polo1_3", fKamuski, 3, 2, 60);
                 break;
 
             case 60:
@@ -816,42 +807,27 @@ public class Polo1 extends Mainloc {
 
             case 200:
                 // kij auf hanza
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00011"),
-                        fBurja, 3, 0, 0);
+                KrabatSagt("Polo1_4", fBurja, 3, 0, 0);
                 break;
 
             case 205:
                 // kij auf michal
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00014"),
-                        fBurja, 3, 0, 0);
+                KrabatSagt("Polo1_5", fBurja, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf hanza
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00017"),
-                        fBurja, 3, 0, 0);
+                KrabatSagt("Polo1_6", fBurja, 3, 0, 0);
                 break;
 
             case 215:
                 // bron auf michal
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00020"),
-                        fBurja, 3, 0, 0);
+                KrabatSagt("Polo1_7", fBurja, 3, 0, 0);
                 break;
 
             case 220:
                 // rohodz auf kamuski
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Polo1_00021"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00022"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00023"),
-                        fKamuski, 3, 0, 0);
+                KrabatSagt("Polo1_8", fKamuski, 3, 0, 0);
                 break;
 
             case 600:
@@ -942,158 +918,102 @@ public class Polo1 extends Mainloc {
 
             case 610:
                 // Reaktion Michal auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00054"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00055"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00056"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_9", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 620:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00057"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00058"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00059"),
-                        0, 28, 2, 621, michalTalk);
+                PersonSagt("Polo1_10", 0, 28, 2, 621, michalTalk);
                 break;
 
             case 621:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00060"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00061"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00062"),
-                        0, 28, 2, 622, michalTalk);
+                PersonSagt("Polo1_11", 0, 28, 2, 622, michalTalk);
                 break;
 
             case 622:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00063"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00064"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00065"),
-                        0, 28, 0, 623, michalTalk);
+                PersonSagt("Polo1_12", 0, 28, 0, 623, michalTalk);
                 break;
 
             case 623:
                 // Reaktion Hanza auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00066"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00067"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00068"),
-                        0, 29, 0, 624, hanzaTalk);
+                PersonSagt("Polo1_13", 0, 29, 0, 624, hanzaTalk);
                 break;
 
             case 624:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00069"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00070"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00071"),
-                        0, 28, 2, 625, michalTalk);
+                PersonSagt("Polo1_14", 0, 28, 2, 625, michalTalk);
                 break;
 
             case 625:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00072"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00073"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00074"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_15", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 630:
                 // Reaktion Michal auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00075"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00076"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00077"),
-                        0, 28, 2, 631, michalTalk);
+                PersonSagt("Polo1_16", 0, 28, 2, 631, michalTalk);
                 break;
 
             case 631:
                 // Reaktion Michal auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00078"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00079"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00080"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_17", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 640:
                 // Reaktion Michal auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00081"), Start.stringManager.getTranslation("Loc1_Polo1_00082"), Start.stringManager.getTranslation("Loc1_Polo1_00083"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_18", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 650:
                 // Reaktion Michal auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00084"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00085"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00086"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_19", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 660:
                 // Reaktion Michal auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00087"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00088"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00089"),
-                        0, 28, 2, 661, michalTalk);
+                PersonSagt("Polo1_20", 0, 28, 2, 661, michalTalk);
                 break;
 
             case 661:
                 // Reaktion Michal auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00090"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00091"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00092"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_21", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 670:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00093"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00094"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00095"),
-                        0, 28, 2, 671, michalTalk);
+                PersonSagt("Polo1_22", 0, 28, 2, 671, michalTalk);
                 break;
 
             case 671:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00096"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00097"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00098"),
-                        0, 28, 2, 672, michalTalk);
+                PersonSagt("Polo1_23", 0, 28, 2, 672, michalTalk);
                 break;
 
             case 672:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00099"), Start.stringManager.getTranslation("Loc1_Polo1_00100"), Start.stringManager.getTranslation("Loc1_Polo1_00101"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_24", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 680:
                 // Reaktion Michal auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00102"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00103"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00104"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_25", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 690:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00105"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00106"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00107"),
-                        0, 28, 2, 691, michalTalk);
+                PersonSagt("Polo1_26", 0, 28, 2, 691, michalTalk);
                 break;
 
             case 691:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00108"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00109"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00110"),
-                        0, 28, 2, 692, michalTalk);
+                PersonSagt("Polo1_27", 0, 28, 2, 692, michalTalk);
                 break;
 
             case 692:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Polo1_00111"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00112"),
-                        Start.stringManager.getTranslation("Loc1_Polo1_00113"),
-                        0, 28, 2, 600, michalTalk);
+                PersonSagt("Polo1_28", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 800:

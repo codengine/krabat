@@ -503,18 +503,12 @@ public class Zdzary2 extends Mainloc {
 
             case 2:
                 // Durje anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Zdzary2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00002"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Zdzary2_1", fDurje, 3, 0, 0);
                 break;
 
             case 55:
                 // Durje mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Zdzary2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00005"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Zdzary2_2", fDurje, 3, 0, 0);
                 break;
 
             case 100:
@@ -537,10 +531,7 @@ public class Zdzary2 extends Mainloc {
 
             case 105:
                 // Krabat hat Angst vor dem boesen Hund
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Zdzary2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Zdzary2_00008"),
-                        fExitUp, 1, 2, 110);
+                KrabatSagt("Zdzary2_3", fExitUp, 1, 2, 110);
                 break;
 
             case 110:

@@ -648,10 +648,7 @@ public class Wobzor1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wasser anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wobzor1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00002"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Wobzor1_1", fWoda, 3, 0, 0);
                 break;
 
             case 100:
@@ -666,18 +663,12 @@ public class Wobzor1 extends Mainloc {
 
             case 150:
                 // Ausreden fuer Wasser Standard
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wobzor1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00005"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Wobzor1_2", fWoda, 3, 0, 0);
                 break;
 
             case 155:
                 // Wasser Extraausrede (mit Angel + Wurm)
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wobzor1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Wobzor1_00008"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Wobzor1_3", fWoda, 3, 0, 0);
                 break;
 
             default:

@@ -873,50 +873,37 @@ public class Dubring1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Schlamm anschauen nach hinten
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00000"), Start.stringManager.getTranslation("Loc1_Dubring1_00001"), Start.stringManager.getTranslation("Loc1_Dubring1_00002"),
-                        fSchlammHinten, 3, 0, 0);
+                KrabatSagt("Dubring1_1", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 2:
                 // Schlamm anschauen nach vorn
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00003"), Start.stringManager.getTranslation("Loc1_Dubring1_00004"), Start.stringManager.getTranslation("Loc1_Dubring1_00005"),
-                        fSchlammVorn, 3, 0, 0);
+                KrabatSagt("Dubring1_2", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 3:
                 // Halzy 1 und 2 anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00006"), Start.stringManager.getTranslation("Loc1_Dubring1_00007"), Start.stringManager.getTranslation("Loc1_Dubring1_00008"),
-                        fHalza, 3, 0, 0);
+                KrabatSagt("Dubring1_3", fHalza, 3, 0, 0);
                 break;
 
             case 4:
                 // Stomy anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00011"),
-                        fStomy, 3, 0, 0);
+                KrabatSagt("Dubring1_4", fStomy, 3, 0, 0);
                 break;
 
             case 50:
                 // Schlamm mitnehmen nach hinten
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00014"),
-                        fSchlammHinten, 3, 0, 0);
+                KrabatSagt("Dubring1_5", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 55:
                 // Schlamm mitnehmen nach vorn
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Dubring1_00017"),
-                        fSchlammVorn, 3, 0, 0);
+                KrabatSagt("Dubring1_6", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 60:
                 // Halzy 1 und 2 mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00018"), Start.stringManager.getTranslation("Loc1_Dubring1_00019"), Start.stringManager.getTranslation("Loc1_Dubring1_00020"),
-                        fHalza, 3, 0, 0);
+                KrabatSagt("Dubring1_7", fHalza, 3, 0, 0);
                 break;
 
 	/*      case 65:
@@ -973,26 +960,22 @@ public class Dubring1 extends Mainloc {
 
             case 200:
                 // Schlamm - Ausreden nach hinten schauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00024"), Start.stringManager.getTranslation("Loc1_Dubring1_00025"), Start.stringManager.getTranslation("Loc1_Dubring1_00026"),
-                        fSchlammHinten, 3, 0, 0);
+                KrabatSagt("Dubring1_8", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 205:
                 // Schlamm - Ausreden nach vorne schauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00027"), Start.stringManager.getTranslation("Loc1_Dubring1_00028"), Start.stringManager.getTranslation("Loc1_Dubring1_00029"),
-                        fSchlammVorn, 3, 0, 0);
+                KrabatSagt("Dubring1_9", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 210:
                 // fisch auf Schlamm - Ausreden nach hinten schauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00030"), Start.stringManager.getTranslation("Loc1_Dubring1_00031"), Start.stringManager.getTranslation("Loc1_Dubring1_00032"),
-                        fSchlammHinten, 3, 0, 0);
+                KrabatSagt("Dubring1_10", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 215:
                 // fisch auf Schlamm - Ausreden nach vorne schauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Dubring1_00033"), Start.stringManager.getTranslation("Loc1_Dubring1_00034"), Start.stringManager.getTranslation("Loc1_Dubring1_00035"),
-                        fSchlammVorn, 3, 0, 0);
+                KrabatSagt("Dubring1_11", fSchlammVorn, 3, 0, 0);
                 break;
 
             default:

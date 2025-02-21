@@ -581,34 +581,22 @@ public class Couch extends Mainloc {
             case 1:
                 // durje ansehen
                 if (!mainFrame.Actions[670]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00000"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00001"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00002"),
-                            fDurje, 3, 0, 0);
+                    KrabatSagt("Couch_1", fDurje, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00003"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00004"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00005"),
-                            fDurje, 3, 0, 0);
+                    KrabatSagt("Couch_2", fDurje, 3, 0, 0);
                 }
                 break;
 
             case 2:
                 // Couch ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00006"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00007"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00008"),
-                        fCouch, 3, 0, 0);
+                KrabatSagt("Couch_3", fCouch, 3, 0, 0);
                 break;
 
             case 50:
                 // Durje oeffnen
                 // keine 2 Mal durchfuehren
                 if (mainFrame.Actions[670]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00009"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00010"),
-                            Start.stringManager.getTranslation("Loc3_Couch_00011"),
-                            fDurje, 3, 0, 0);
+                    KrabatSagt("Couch_4", fDurje, 3, 0, 0);
                 } else {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -623,18 +611,12 @@ public class Couch extends Mainloc {
 
             case 55:
                 // Animszene Tuer ist offen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00012"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00013"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00014"),
-                        0, 3, 2, 60);
+                KrabatSagt("Couch_5", 0, 3, 2, 60);
                 break;
 
             case 60:
                 // Animszene Tuer ist offen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00015"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00016"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00017"),
-                        0, 3, 2, 70);
+                KrabatSagt("Couch_6", 0, 3, 2, 70);
                 break;
 
 		/*case 65:
@@ -648,10 +630,7 @@ public class Couch extends Mainloc {
             case 70:
                 // runterfallen lassen
                 SonderAnim = 1;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00021"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00022"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00023"),
-                        0, 3, 2, 75);
+                KrabatSagt("Couch_7", 0, 3, 2, 75);
                 break;
 
             case 75:
@@ -683,10 +662,7 @@ public class Couch extends Mainloc {
 
             case 90:
                 // Couch mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Couch_00024"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00025"),
-                        Start.stringManager.getTranslation("Loc3_Couch_00026"),
-                        fCouch, 3, 0, 0);
+                KrabatSagt("Couch_8", fCouch, 3, 0, 0);
                 break;
 
             case 100:

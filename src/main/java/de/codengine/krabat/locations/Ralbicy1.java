@@ -618,22 +618,17 @@ public class Ralbicy1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Kirche anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00002"),
-                        fKirche, 3, 0, 0);
+                KrabatSagt("Ralbicy1_1", fKirche, 3, 0, 0);
                 break;
 
             case 2:
                 // Bauer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00003"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00004"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00005"),
-                        fBauer, 3, 0, 0);
+                KrabatSagt("Ralbicy1_2", fBauer, 3, 0, 0);
                 break;
 
             case 50:
                 // Kirche mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00006"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00007"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00008"),
-                        fKirche, 3, 0, 0);
+                KrabatSagt("Ralbicy1_3", fKirche, 3, 0, 0);
                 break;
 
             case 51:
@@ -667,22 +662,17 @@ public class Ralbicy1 extends Mainloc {
 
             case 200:
                 // Stock oder Angel auf Bauern
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00011"),
-                        fBauer, 3, 0, 0);
+                KrabatSagt("Ralbicy1_4", fBauer, 3, 0, 0);
                 break;
 
             case 220:
                 // Krosik auf Bauern
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00012"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00013"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00014"),
-                        fBauer, 3, 0, 0);
+                KrabatSagt("Ralbicy1_5", fBauer, 3, 0, 0);
                 break;
 
             case 230:
                 // Bron auf Bauern
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00015"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00016"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00017"),
-                        fBauer, 3, 0, 0);
+                KrabatSagt("Ralbicy1_6", fBauer, 3, 0, 0);
                 break;
 
             // Dialog mit Bauer
@@ -765,104 +755,67 @@ public class Ralbicy1 extends Mainloc {
 
             case 610:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00045"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00046"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00047"),
-                        0, 21, 2, 611, BurTalk);
+                PersonSagt("Ralbicy1_7", 0, 21, 2, 611, BurTalk);
                 break;
 
             case 611:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00048"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00049"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00050"),
-                        0, 21, 2, 612, BurTalk);
+                PersonSagt("Ralbicy1_8", 0, 21, 2, 612, BurTalk);
                 break;
 
             case 612:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00051"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00052"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00053"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_9", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 620:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00054"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00055"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00056"),
-                        0, 21, 2, 621, BurTalk);
+                PersonSagt("Ralbicy1_10", 0, 21, 2, 621, BurTalk);
                 break;
 
             case 621:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00057"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00058"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00059"),
-                        0, 21, 2, 622, BurTalk);
+                PersonSagt("Ralbicy1_11", 0, 21, 2, 622, BurTalk);
                 break;
 
             case 622:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00060"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00061"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00062"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_12", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 630:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00063"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00064"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00065"),
-                        0, 21, 2, 631, BurTalk);
+                PersonSagt("Ralbicy1_13", 0, 21, 2, 631, BurTalk);
                 break;
 
             case 631:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00066"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00067"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00068"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_14", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 640:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00069"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00070"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00071"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_15", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 650:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00072"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00073"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00074"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_16", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 660:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00075"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00076"), Start.stringManager.getTranslation("Loc1_Ralbicy1_00077"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_17", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 670:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00078"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00079"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00080"),
-                        0, 21, 2, 671, BurTalk);
+                PersonSagt("Ralbicy1_18", 0, 21, 2, 671, BurTalk);
                 break;
 
             case 671:
                 // Reaktion Bauer
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Ralbicy1_00081"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00082"),
-                        Start.stringManager.getTranslation("Loc1_Ralbicy1_00083"),
-                        0, 21, 2, 600, BurTalk);
+                PersonSagt("Ralbicy1_19", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 800:

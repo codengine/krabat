@@ -799,34 +799,22 @@ public class Wotrow extends Mainloc {
 
             case 1:
                 // Look woda
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00003"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00004"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00005"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Wotrow_1", fWoda, 3, 0, 0);
                 break;
 
             case 5:
                 // Look Wokno
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00006"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00007"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00008"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Wotrow_2", fWokno, 3, 0, 0);
                 break;
 
             case 50:
                 // Use woda
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00009"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00010"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00011"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Wotrow_3", fWoda, 3, 0, 0);
                 break;
 
             case 55:
                 // Use wokno
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00012"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00013"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00014"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Wotrow_4", fWokno, 3, 0, 0);
                 break;
 
             case 150:
@@ -841,10 +829,7 @@ public class Wotrow extends Mainloc {
 
             case 100:
                 // Nicht zurueckgehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Wotrow_00015"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00016"),
-                        Start.stringManager.getTranslation("Loc4_Wotrow_00017"),
-                        fExit, 3, 0, 0);
+                KrabatSagt("Wotrow_5", fExit, 3, 0, 0);
                 break;
 
             case 101:

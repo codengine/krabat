@@ -605,26 +605,17 @@ public class Hala extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // 2. Tuer ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Hala_00000"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00001"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00002"),
-                        fTueren, 3, 0, 0);
+                KrabatSagt("Hala_1", fTueren, 3, 0, 0);
                 break;
 
             case 2:
                 // Bild ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Hala_00003"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00004"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00005"),
-                        fBild, 3, 0, 0);
+                KrabatSagt("Hala_2", fBild, 3, 0, 0);
                 break;
 
             case 5:
                 // 3. Tuer  ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Hala_00006"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00007"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00008"),
-                        fTueren, 3, 0, 0);
+                KrabatSagt("Hala_3", fTueren, 3, 0, 0);
                 break;
 
             case 10:
@@ -639,10 +630,7 @@ public class Hala extends Mainloc {
 
             case 15:
                 // Bild mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Hala_00009"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00010"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00011"),
-                        fBild, 3, 0, 0);
+                KrabatSagt("Hala_4", fBild, 3, 0, 0);
                 break;
 
             case 100:
@@ -677,10 +665,7 @@ public class Hala extends Mainloc {
 
             case 200:
                 // Hlebija auf bild
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Hala_00012"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00013"),
-                        Start.stringManager.getTranslation("Loc3_Hala_00014"),
-                        fBild, 3, 0, 0);
+                KrabatSagt("Hala_5", fBild, 3, 0, 0);
                 break;
 
             default:

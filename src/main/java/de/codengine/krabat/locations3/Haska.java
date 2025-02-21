@@ -662,51 +662,33 @@ public class Haska extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00000"),
-                                Start.stringManager.getTranslation("Loc3_Haska_00001"),
-                                Start.stringManager.getTranslation("Loc3_Haska_00002"),
-                                fWino, 3, 0, 0);
+                        KrabatSagt("Haska_1", fWino, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00003"),
-                                Start.stringManager.getTranslation("Loc3_Haska_00004"),
-                                Start.stringManager.getTranslation("Loc3_Haska_00005"),
-                                fWino, 3, 0, 0);
+                        KrabatSagt("Haska_2", fWino, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 2:
                 // Wino benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00006"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00007"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00008"),
-                        fWino, 3, 0, 0);
+                KrabatSagt("Haska_3", fWino, 3, 0, 0);
                 break;
 
             case 4:
                 // Fenster ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00009"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00010"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00011"),
-                        fFenster, 3, 0, 0);
+                KrabatSagt("Haska_4", fFenster, 3, 0, 0);
                 break;
 
             case 5:
                 // versuch ins Fenster reinzukommen (benutzen)
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00012"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00013"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00014"),
-                        fFenster, 3, 0, 0);
+                KrabatSagt("Haska_5", fFenster, 3, 0, 0);
                 break;
 
             case 6:
                 // Enterhaken am Fenster ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00015"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00016"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00017"),
-                        fEnterhaken, 3, 0, 0);
+                KrabatSagt("Haska_6", fEnterhaken, 3, 0, 0);
                 break;
 
             case 20:
@@ -741,10 +723,7 @@ public class Haska extends Mainloc {
 
             case 27:
                 // Bemerkung nach Hakenwurf
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00018"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00019"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00020"),
-                        fEnterhaken, 3, 0, 28);
+                KrabatSagt("Haska_7", fEnterhaken, 3, 0, 28);
                 break;
 
             case 28:
@@ -798,24 +777,15 @@ public class Haska extends Mainloc {
                     int zuffZahl2 = (int) (Math.random() * 2.9);
                     switch (zuffZahl2) {
                         case 0:
-                            KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00021"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00022"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00023"),
-                                    fKuchnja, 3, 0, 0);
+                            KrabatSagt("Haska_8", fKuchnja, 3, 0, 0);
                             break;
 
                         case 1:
-                            KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00024"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00025"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00026"),
-                                    fKuchnja, 3, 0, 0);
+                            KrabatSagt("Haska_9", fKuchnja, 3, 0, 0);
                             break;
 
                         case 2:
-                            KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00027"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00028"),
-                                    Start.stringManager.getTranslation("Loc3_Haska_00029"),
-                                    fKuchnja, 3, 0, 0);
+                            KrabatSagt("Haska_10", fKuchnja, 3, 0, 0);
                             break;
                     }
                 } else {
@@ -844,10 +814,7 @@ public class Haska extends Mainloc {
 
             case 110:
                 // Spruch vorm hochklettern
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00030"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00031"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00032"),
-                        fEnterhaken, 3, 0, 112);
+                KrabatSagt("Haska_11", fEnterhaken, 3, 0, 112);
                 break;
 
             case 112:
@@ -867,18 +834,12 @@ public class Haska extends Mainloc {
 
             case 200:
                 // drasta auf wino
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00033"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00034"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00035"),
-                        fWino, 3, 0, 0);
+                KrabatSagt("Haska_12", fWino, 3, 0, 0);
                 break;
 
             case 210:
                 // wosusk auf wino
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Haska_00036"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00037"),
-                        Start.stringManager.getTranslation("Loc3_Haska_00038"),
-                        fWino, 3, 0, 0);
+                KrabatSagt("Haska_13", fWino, 3, 0, 0);
                 break;
 
             default:

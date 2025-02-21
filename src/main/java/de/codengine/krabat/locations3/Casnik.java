@@ -1002,15 +1002,9 @@ public class Casnik extends Mainloc {
                 // Hlowny straznik anschauen
                 // Testen, ob er schon schlaeft
                 if (!mainFrame.Actions[605]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00000"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00001"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00002"),
-                            fStraznik, 3, 0, 0);
+                    KrabatSagt("Casnik_1", fStraznik, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00003"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00004"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00005"),
-                            fStraznik, 3, 0, 0);
+                    KrabatSagt("Casnik_2", fStraznik, 3, 0, 0);
                 }
                 break;
 
@@ -1018,15 +1012,9 @@ public class Casnik extends Mainloc {
                 // Schluessel anschauen
                 // Test, ob Krabat schon weiss, wozu der Schluessel ist
                 if (!mainFrame.Actions[602]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00006"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00007"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00008"),
-                            fKluc, 3, 0, 0);
+                    KrabatSagt("Casnik_3", fKluc, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00009"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00010"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00011"),
-                            fKluc, 3, 0, 0);
+                    KrabatSagt("Casnik_4", fKluc, 3, 0, 0);
                 }
                 break;
 
@@ -1036,67 +1024,43 @@ public class Casnik extends Mainloc {
                 int zffZahl = (int) (Math.random() * 1.9);
                 switch (zffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00012"),
-                                Start.stringManager.getTranslation("Loc3_Casnik_00013"),
-                                Start.stringManager.getTranslation("Loc3_Casnik_00014"),
-                                fTiger, 3, 0, 0);
+                        KrabatSagt("Casnik_5", fTiger, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00015"),
-                                Start.stringManager.getTranslation("Loc3_Casnik_00016"),
-                                Start.stringManager.getTranslation("Loc3_Casnik_00017"),
-                                fTiger, 3, 0, 0);
+                        KrabatSagt("Casnik_6", fTiger, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 4:
                 // Morgenstern anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00018"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00019"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00020"),
-                        fMorgenstern, 3, 0, 0);
+                KrabatSagt("Casnik_7", fMorgenstern, 3, 0, 0);
                 break;
 
             case 5:
                 // Standuhr anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00021"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00022"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00023"),
-                        fCasnik, 3, 0, 0);
+                KrabatSagt("Casnik_8", fCasnik, 3, 0, 0);
                 break;
 
             case 6:
                 // Zeiger anschauen
                 // Entscheidung, ob schon vorgestellt
                 if (!mainFrame.Actions[606]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00024"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00025"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00026"),
-                            fZeiger, 3, 0, 0);
+                    KrabatSagt("Casnik_9", fZeiger, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00027"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00028"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00029"),
-                            fZeiger, 3, 0, 0);
+                    KrabatSagt("Casnik_10", fZeiger, 3, 0, 0);
                 }
                 break;
 
             case 7:
                 // Engel anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00030"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00031"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00032"),
-                        fEngel, 3, 0, 0);
+                KrabatSagt("Casnik_11", fEngel, 3, 0, 0);
                 break;
 
             case 8:
                 // Sonnenuhr anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00033"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00034"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00035"),
-                        fSonnenuhr, 3, 0, 0);
+                KrabatSagt("Casnik_12", fSonnenuhr, 3, 0, 0);
                 break;
 
             case 40:
@@ -1189,42 +1153,27 @@ public class Casnik extends Mainloc {
 
             case 55:
                 // Morgenstern mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00036"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00037"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00038"),
-                        fMorgenstern, 3, 0, 0);
+                KrabatSagt("Casnik_13", fMorgenstern, 3, 0, 0);
                 break;
 
             case 60:
                 // Uhr mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00039"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00040"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00041"),
-                        fCasnik, 3, 0, 0);
+                KrabatSagt("Casnik_14", fCasnik, 3, 0, 0);
                 break;
 
             case 70:
                 // Straznik benutzen, wenn schon eingeschlafen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00042"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00043"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00044"),
-                        fStraznik, 3, 0, 0);
+                KrabatSagt("Casnik_15", fStraznik, 3, 0, 0);
                 break;
 
             case 75:
                 // Zeiger mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00045"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00046"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00047"),
-                        fZeiger, 3, 0, 0);
+                KrabatSagt("Casnik_16", fZeiger, 3, 0, 0);
                 break;
 
             case 80:
                 // Postawa mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00048"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00049"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00050"),
-                        fEngel, 3, 0, 0);
+                KrabatSagt("Casnik_17", fEngel, 3, 0, 0);
                 break;
 
             case 90:
@@ -1317,10 +1266,7 @@ public class Casnik extends Mainloc {
                     krabatStelltUhrUm = true;
                     umstellCounter = 7;
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Casnik_00051"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00052"),
-                            Start.stringManager.getTranslation("Loc3_Casnik_00053"),
-                            fZeiger, 3, 0, 0);
+                    KrabatSagt("Casnik_18", fZeiger, 3, 0, 0);
                 }
                 break;
 
@@ -1350,18 +1296,12 @@ public class Casnik extends Mainloc {
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 mainFrame.krabat.nAnimation = 142;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00054"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00055"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00056"),
-                        fStraznik, 48, 2, 186, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_19", fStraznik, 48, 2, 186, hlStraznik.evalTalkPoint());
                 break;
 
             case 186:
                 // Reaktion Hl.Straznik auf zu frueh verabreichten Wein
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00057"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00058"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00059"),
-                        0, 48, 2, 187, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_20", 0, 48, 2, 187, hlStraznik.evalTalkPoint());
                 mainFrame.krabat.StopAnim();
                 break;
 
@@ -1391,10 +1331,7 @@ public class Casnik extends Mainloc {
                 noSoundActive = true;
                 mainFrame.invCursor = false;
                 mainFrame.krabat.nAnimation = 142;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00060"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00061"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00062"),
-                        fStraznik, 48, 2, 220, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_21", fStraznik, 48, 2, 220, hlStraznik.evalTalkPoint());
                 mainFrame.Actions[605] = true;
                 mainFrame.Actions[705] = true;
                 break;
@@ -1422,8 +1359,7 @@ public class Casnik extends Mainloc {
                 if (readyFlag) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00063"), Start.stringManager.getTranslation("Loc3_Casnik_00064"), Start.stringManager.getTranslation("Loc3_Casnik_00065"),
-                        0, 48, 2, 235, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_22", 0, 48, 2, 235, hlStraznik.evalTalkPoint());
                 break;
 
             case 235:
@@ -1628,51 +1564,35 @@ public class Casnik extends Mainloc {
             // Sequenz vor MC (erstes Anreden)
             case 608:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00105"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00106"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00107"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_23", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 mainFrame.Actions[601] = true; // Flag setzen, Diese Zeile nicht wiederholen
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00108"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00109"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00110"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_24", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 break;
 
             case 611:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00111"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00112"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00113"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_25", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00114"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00115"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00116"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_26", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 break;
 
             case 621:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00117"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00118"),
-                        Start.stringManager.getTranslation("Loc3_Casnik_00119"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_27", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 break;
 
             case 622:
                 // Reaktion Hl.Straznik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Casnik_00120"), Start.stringManager.getTranslation("Loc3_Casnik_00121"), Start.stringManager.getTranslation("Loc3_Casnik_00122"),
-                        0, 48, 2, 600, hlStraznik.evalTalkPoint());
+                PersonSagt("Casnik_28", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
                 break;
 
             case 800:

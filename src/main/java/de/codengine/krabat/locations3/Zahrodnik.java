@@ -708,58 +708,37 @@ public class Zahrodnik extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Zahrodnik anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00000"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00001"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00002"),
-                        fZahrodLook, 3, 0, 0);
+                KrabatSagt("Zahrodnik_1", fZahrodLook, 3, 0, 0);
                 break;
 
             case 2:
                 // Hrod anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00003"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00004"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00005"),
-                        fHrod, 3, 0, 0);
+                KrabatSagt("Zahrodnik_2", fHrod, 3, 0, 0);
                 break;
 
             case 3:
                 // Papier anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00006"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00007"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00008"),
-                        fPapier, 3, 0, 0);
+                KrabatSagt("Zahrodnik_3", fPapier, 3, 0, 0);
                 break;
 
             case 4:
                 // budka anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00009"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00010"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00011"),
-                        fBudka, 3, 0, 0);
+                KrabatSagt("Zahrodnik_4", fBudka, 3, 0, 0);
                 break;
 
             case 5:
                 // skizze anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00012"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00013"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00014"),
-                        fSkizze, 3, 0, 0);
+                KrabatSagt("Zahrodnik_5", fSkizze, 3, 0, 0);
                 break;
 
             case 6:
                 // feder anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00015"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00016"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00017"),
-                        fFeder, 3, 0, 0);
+                KrabatSagt("Zahrodnik_6", fFeder, 3, 0, 0);
                 break;
 
             case 7:
                 // dokuments anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00018"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00019"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00020"),
-                        fDokumente, 3, 0, 0);
+                KrabatSagt("Zahrodnik_7", fDokumente, 3, 0, 0);
                 break;
 
             case 50:
@@ -784,50 +763,32 @@ public class Zahrodnik extends Mainloc {
 
             case 55:
                 // Hrod mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00021"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00022"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00023"),
-                        fHrod, 3, 0, 0);
+                KrabatSagt("Zahrodnik_8", fHrod, 3, 0, 0);
                 break;
 
             case 60:
                 // Papier mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00024"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00025"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00026"),
-                        fPapier, 3, 0, 0);
+                KrabatSagt("Zahrodnik_9", fPapier, 3, 0, 0);
                 break;
 
             case 65:
                 // budka mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00027"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00028"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00029"),
-                        fBudka, 3, 0, 0);
+                KrabatSagt("Zahrodnik_10", fBudka, 3, 0, 0);
                 break;
 
             case 70:
                 // skizze mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00030"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00031"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00032"),
-                        fSkizze, 3, 0, 0);
+                KrabatSagt("Zahrodnik_11", fSkizze, 3, 0, 0);
                 break;
 
             case 75:
                 // feder mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00033"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00034"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00035"),
-                        fFeder, 3, 0, 0);
+                KrabatSagt("Zahrodnik_12", fFeder, 3, 0, 0);
                 break;
 
             case 80:
                 // dokuments mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00036"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00037"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00038"),
-                        fDokumente, 3, 0, 0);
+                KrabatSagt("Zahrodnik_13", fDokumente, 3, 0, 0);
                 break;
 
             case 100:
@@ -978,18 +939,12 @@ public class Zahrodnik extends Mainloc {
                 // Reaktion Krabat
                 // hier erst Handrij aufmerksam machen
                 handrijHoertZu = true;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00075"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00076"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00077"),
-                        0, 1, 2, 609);
+                KrabatSagt("Zahrodnik_14", 0, 1, 2, 609);
                 break;
 
             case 609:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00078"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00079"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00080"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_15", 0, 50, 2, 600, talkPoint);
                 mainFrame.Actions[530] = true; // Flag setzen
                 break;
 
@@ -997,99 +952,63 @@ public class Zahrodnik extends Mainloc {
 
             case 610:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00081"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00082"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00083"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_16", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00084"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00085"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00086"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_17", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 612:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00087"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00088"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00089"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_18", 0, 50, 2, 600, talkPoint);
                 break;
 
 
             case 613:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00090"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00091"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00092"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_19", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 614:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00093"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00094"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00095"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_20", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 615:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00096"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00097"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00098"),
-                        0, 50, 2, 616, talkPoint);
+                PersonSagt("Zahrodnik_21", 0, 50, 2, 616, talkPoint);
                 break;
 
             case 616:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00099"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00100"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00101"),
-                        0, 50, 2, 617, talkPoint);
+                PersonSagt("Zahrodnik_22", 0, 50, 2, 617, talkPoint);
                 break;
 
             case 617:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00102"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00103"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00104"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_23", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 618:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00105"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00106"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00107"),
-                        0, 50, 2, 619, talkPoint);
+                PersonSagt("Zahrodnik_24", 0, 50, 2, 619, talkPoint);
                 break;
 
             case 619:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00108"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00109"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00110"),
-                        0, 50, 2, 622, talkPoint);
+                PersonSagt("Zahrodnik_25", 0, 50, 2, 622, talkPoint);
                 break;
 
             case 620:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00111"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00112"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00113"),
-                        0, 50, 2, 621, talkPoint);
+                PersonSagt("Zahrodnik_26", 0, 50, 2, 621, talkPoint);
                 break;
 
             case 621:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00114"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00115"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00116"),
-                        0, 50, 2, 622, talkPoint);
+                PersonSagt("Zahrodnik_27", 0, 50, 2, 622, talkPoint);
                 break;
 
             case 622:
@@ -1130,10 +1049,7 @@ public class Zahrodnik extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00117"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00118"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00119"),
-                        0, 1, 2, 800);
+                KrabatSagt("Zahrodnik_28", 0, 1, 2, 800);
                 // Empfehlungsschreiben zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(30);
                 // Flag - setzen ! Krabat bekommt Empfehl.schreiben
@@ -1144,42 +1060,27 @@ public class Zahrodnik extends Mainloc {
             // Antworten zu Frage 2 ////////////////////////////
             case 630:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00120"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00121"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00122"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_29", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00123"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00124"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00125"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_30", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 632:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00126"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00127"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00128"),
-                        0, 50, 2, 633, talkPoint);
+                PersonSagt("Zahrodnik_31", 0, 50, 2, 633, talkPoint);
                 break;
 
             case 633:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00129"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00130"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00131"),
-                        0, 50, 2, 634, talkPoint);
+                PersonSagt("Zahrodnik_32", 0, 50, 2, 634, talkPoint);
                 break;
 
             case 634:
                 // Reaktion Zahrodnik
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zahrodnik_00132"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00133"),
-                        Start.stringManager.getTranslation("Loc3_Zahrodnik_00134"),
-                        0, 50, 2, 600, talkPoint);
+                PersonSagt("Zahrodnik_33", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 800:

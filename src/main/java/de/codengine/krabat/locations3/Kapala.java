@@ -583,42 +583,27 @@ public class Kapala extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Rollen unten anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kapala_00000"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00001"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00002"),
-                        fRolleUnten, 3, 0, 0);
+                KrabatSagt("Kapala_1", fRolleUnten, 3, 0, 0);
                 break;
 
             case 2:
                 // Rolle1 oben anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kapala_00003"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00004"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00005"),
-                        fRolle1, 3, 0, 0);
+                KrabatSagt("Kapala_2", fRolle1, 3, 0, 0);
                 break;
 
             case 3:
                 // Rolle2 anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kapala_00006"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00007"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00008"),
-                        fRolle2, 3, 0, 0);
+                KrabatSagt("Kapala_3", fRolle2, 3, 0, 0);
                 break;
 
             case 50:
                 // Rollen unten take
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kapala_00009"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00010"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00011"),
-                        fRolleUnten, 3, 0, 0);
+                KrabatSagt("Kapala_4", fRolleUnten, 3, 0, 0);
                 break;
 
             case 55:
                 // Rolle1 oben take
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kapala_00012"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00013"),
-                        Start.stringManager.getTranslation("Loc3_Kapala_00014"),
-                        fRolle1, 3, 0, 0);
+                KrabatSagt("Kapala_5", fRolle1, 3, 0, 0);
                 break;
 		/*mainFrame.fPlayAnim = true;
 		  evalMouseMoveEvent (mainFrame.Mousepoint);

@@ -53,30 +53,18 @@ abstract public class Mainloc {
     public Start mainFrame;
 
     // Variablen fuer Standardausreden
-    private static final String[] HAus = {Start.stringManager.getTranslation("Main_Mainloc_00000"), Start.stringManager.getTranslation("Main_Mainloc_00001"), Start.stringManager.getTranslation("Main_Mainloc_00002"), Start.stringManager.getTranslation("Main_Mainloc_00003"), Start.stringManager.getTranslation("Main_Mainloc_00004")};
-    private static final String[] DAus = {Start.stringManager.getTranslation("Main_Mainloc_00005"), Start.stringManager.getTranslation("Main_Mainloc_00006"), Start.stringManager.getTranslation("Main_Mainloc_00007"), Start.stringManager.getTranslation("Main_Mainloc_00008"), Start.stringManager.getTranslation("Main_Mainloc_00009")};
-    private static final String[] NAus = {Start.stringManager.getTranslation("Main_Mainloc_00010"), Start.stringManager.getTranslation("Main_Mainloc_00011"), Start.stringManager.getTranslation("Main_Mainloc_00012"), Start.stringManager.getTranslation("Main_Mainloc_00013"), Start.stringManager.getTranslation("Main_Mainloc_00014")};
-    private static final int AUS_KONSTANTE = 4;
+    private static final String[] EXCUSES_THINGS = {"Mainloc_49", "Mainloc_50", "Mainloc_51", "Mainloc_52", "Mainloc_53"};
 
     // Variablen fuer Standardausreden Personen
 
     // maennlich
-    private static final String[] HMAus = {Start.stringManager.getTranslation("Main_Mainloc_00015"), Start.stringManager.getTranslation("Main_Mainloc_00016"), Start.stringManager.getTranslation("Main_Mainloc_00017")};
-    private static final String[] DMAus = {Start.stringManager.getTranslation("Main_Mainloc_00018"), Start.stringManager.getTranslation("Main_Mainloc_00019"), Start.stringManager.getTranslation("Main_Mainloc_00020")};
-    private static final String[] NMAus = {Start.stringManager.getTranslation("Main_Mainloc_00021"), Start.stringManager.getTranslation("Main_Mainloc_00022"), Start.stringManager.getTranslation("Main_Mainloc_00023")};
-    private static final int MAUS_KONSTANTE = 2;
+    private static final String[] EXCUSES_MALE = {"Mainloc_54", "Mainloc_55", "Mainloc_56"};
 
     // weiblich
-    private static final String[] HWAus = {Start.stringManager.getTranslation("Main_Mainloc_00024"), Start.stringManager.getTranslation("Main_Mainloc_00025"), Start.stringManager.getTranslation("Main_Mainloc_00026")};
-    private static final String[] DWAus = {Start.stringManager.getTranslation("Main_Mainloc_00027"), Start.stringManager.getTranslation("Main_Mainloc_00028"), Start.stringManager.getTranslation("Main_Mainloc_00029")};
-    private static final String[] NWAus = {Start.stringManager.getTranslation("Main_Mainloc_00030"), Start.stringManager.getTranslation("Main_Mainloc_00031"), Start.stringManager.getTranslation("Main_Mainloc_00032")};
-    private static final int WAUS_KONSTANTE = 2;
+    private static final String[] EXCUSES_FEMALE = {"Mainloc_57", "Mainloc_58", "Mainloc_59"};
 
     // mehrere (groesser 2)
-    private static final String[] HAAus = {Start.stringManager.getTranslation("Main_Mainloc_00033"), Start.stringManager.getTranslation("Main_Mainloc_00034"), Start.stringManager.getTranslation("Main_Mainloc_00035")};
-    private static final String[] DAAus = {Start.stringManager.getTranslation("Main_Mainloc_00036"), Start.stringManager.getTranslation("Main_Mainloc_00037"), Start.stringManager.getTranslation("Main_Mainloc_00038")};
-    private static final String[] NAAus = {Start.stringManager.getTranslation("Main_Mainloc_00039"), Start.stringManager.getTranslation("Main_Mainloc_00040"), Start.stringManager.getTranslation("Main_Mainloc_00041")};
-    private static final int AAUS_KONSTANTE = 2;
+    private static final String[] EXCUSES_MULTI = {"Mainloc_60", "Mainloc_61", "Mainloc_62"};
 
     // Hier das Farbenarray nach Talkpersons geordnet
     public static final int[] FarbenArray = {0x00000000, 0x00000001, 0x00000000, 0x00000001, 0x00000000,
@@ -197,82 +185,52 @@ abstract public class Mainloc {
 
             case 502:
                 // Krabat mit Stock benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00060"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00061"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00062"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_1", 0, 3, 0, 0);
                 break;
 
             case 503:
                 // Krabat mit Deska benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00063"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00064"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00065"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_2", 0, 3, 0, 0);
                 break;
 
             case 504:
                 // Krabat mit Honck benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00066"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00067"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00068"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_3", 0, 3, 0, 0);
                 break;
 
             case 505:
                 // Krabat mit Hocka benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00069"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00070"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00071"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_4", 0, 3, 0, 0);
                 break;
 
             case 506:
                 // Krabat mit Lajna benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00072"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00073"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00074"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_5", 0, 3, 0, 0);
                 break;
 
             case 507:
                 // Krabat mit Wuda benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00075"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00076"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00077"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_6", 0, 3, 0, 0);
                 break;
 
             case 508:
                 // Krabat mit Wacki benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00078"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00079"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00080"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_7", 0, 3, 0, 0);
                 break;
 
             case 509:
                 // Krabat mit Wuda + Hocka benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00081"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00082"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00083"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_8", 0, 3, 0, 0);
                 break;
 
             case 510:
                 // Krabat mit Wuda + Hocka + Wacka benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00084"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00085"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00086"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_9", 0, 3, 0, 0);
                 break;
 
             case 511:
                 // Krabat mit Wuda + Hocka + Drjewjana Ryba benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00087"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00088"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00089"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_10", 0, 3, 0, 0);
                 break;
 
             case 512:
@@ -283,34 +241,22 @@ abstract public class Mainloc {
 
             case 513:
                 // Krabat mit Drjewjana Ryba benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00090"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00091"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00092"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_11", 0, 3, 0, 0);
                 break;
 
             case 514:
                 // Krabat mit Ryba benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00093"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00094"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00095"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_12", 0, 3, 0, 0);
                 break;
 
             case 515:
                 // Krabat mit Krosik benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00096"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00097"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00098"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_13", 0, 3, 0, 0);
                 break;
 
             case 516:
                 // Krabat mit Honck z blotom benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00099"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00100"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00101"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_14", 0, 3, 0, 0);
                 break;
 
             case 517:
@@ -322,18 +268,12 @@ abstract public class Mainloc {
 
             case 518:
                 // Krabat mit Rohodz + Kamusk benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00102"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00103"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00104"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_15", 0, 3, 0, 0);
                 break;
 
             case 519:
                 // Krabat mit Pjero benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00105"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00106"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00107"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_16", 0, 3, 0, 0);
                 break;
 
             case 520:
@@ -351,162 +291,102 @@ abstract public class Mainloc {
 
             case 530:
                 // List auf Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00108"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00109"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00110"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_17", 0, 3, 0, 0);
                 break;
 
             case 531:
                 // Krabat mit Dowolnosc pur benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00111"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00112"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00113"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_18", 0, 3, 0, 0);
                 break;
 
             case 532:
                 // Krabat mit Dowolnosc gesiegelt benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00114"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00115"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00116"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_19", 0, 3, 0, 0);
                 break;
 
             case 533:
                 // Krabat mit Dowolnosc unterschrieben benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00117"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00118"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00119"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_20", 0, 3, 0, 0);
                 break;
 
             case 534:
                 // Krabat mit Dowolnosc komplett benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00120"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00121"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00122"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_21", 0, 3, 0, 0);
                 break;
 
             case 535:
                 // Krabat mit drjewo benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00123"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00124"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00125"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_22", 0, 3, 0, 0);
                 break;
 
             case 536:
                 // Krabat mit Kozuch benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00126"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00127"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00128"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_23", 0, 3, 0, 0);
                 break;
 
             case 537:
                 // Krabat mit kotwica benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00129"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00130"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00131"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_24", 0, 3, 0, 0);
                 break;
 
             case 538:
                 // Krabat mit Lajna benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00132"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00133"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00134"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_25", 0, 3, 0, 0);
                 break;
 
             case 539:
                 // Krabat mit kotwica + Lajna benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00135"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00136"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00137"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_26", 0, 3, 0, 0);
                 break;
 
             case 540:
                 // Krabat mit 5 tolerow benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00138"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00139"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00140"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_27", 0, 3, 0, 0);
                 break;
 
             case 541:
                 // Krabat mit Bedienstetenkleidung benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00141"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00142"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00143"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_28", 0, 3, 0, 0);
                 break;
 
             case 542:
                 // Krabat mit Hlebija benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00144"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00145"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00146"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_29", 0, 3, 0, 0);
                 break;
 
             case 543:
                 // Krabat mit Friedhelm benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00147"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00148"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00149"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_30", 0, 3, 0, 0);
                 break;
 
             case 544:
                 // Krabat mit Wilhelm benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00150"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00151"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00152"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_31", 0, 3, 0, 0);
                 break;
 
             case 545:
                 // Krabat mit Casnik benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00153"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00154"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00155"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_32", 0, 3, 0, 0);
                 break;
 
             case 546:
                 // Krabat mit Hamor benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00156"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00157"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00158"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_33", 0, 3, 0, 0);
                 break;
 
             case 547:
                 // Krabat mit Kluc benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00159"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00160"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00161"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_34", 0, 3, 0, 0);
                 break;
 
             case 548:
                 // Krabat mit Metall benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00162"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00163"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00164"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_35", 0, 3, 0, 0);
                 break;
 
             case 549:
                 // Krabat mit Prikaz benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00165"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00166"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00167"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_36", 0, 3, 0, 0);
                 break;
 
             case 550:
@@ -536,52 +416,34 @@ abstract public class Mainloc {
 
             case 552:
                 // Krabat mit Wosusk benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00168"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00169"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00170"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_37", 0, 3, 0, 0);
                 break;
 
             case 553:
                 // Krabat mit Drasta benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00171"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00172"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00173"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_38", 0, 3, 0, 0);
                 break;
 
             case 554:
                 // Krabat mit Karta benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00174"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00175"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00176"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_39", 0, 3, 0, 0);
                 break;
 
             case 555:
                 // Krabat liest Buch oder hat schon gelesen
                 if (mainFrame.Actions[955]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00177"),
-                            Start.stringManager.getTranslation("Main_Mainloc_00178"),
-                            Start.stringManager.getTranslation("Main_Mainloc_00179"),
-                            0, 3, 0, 0);
+                    KrabatSagt("Mainloc_40", 0, 3, 0, 0);
                 } else {
                     mainFrame.Actions[955] = true;
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
-                    KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00180"),
-                            Start.stringManager.getTranslation("Main_Mainloc_00181"),
-                            Start.stringManager.getTranslation("Main_Mainloc_00182"),
-                            0, 3, 2, 580);
+                    KrabatSagt("Mainloc_41", 0, 3, 2, 580);
                 }
                 break;
 
             case 560:
                 // Schuessel auf K
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00183"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00184"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00185"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_42", 0, 3, 0, 0);
                 break;
 
             case 561:
@@ -590,18 +452,12 @@ abstract public class Mainloc {
 
             case 562:
                 // grosser Stein auf K
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00186"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00187"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00188"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_43", 0, 3, 0, 0);
                 break;
 
             case 563:
                 // Stroh auf K
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00189"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00190"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00191"),
-                        0, 3, 0, 0);
+                KrabatSagt("Mainloc_44", 0, 3, 0, 0);
                 break;
 
             // Ab hier Extra-IDs, die nicht an InventarID gebunden sind (Extrawuerste)
@@ -609,10 +465,7 @@ abstract public class Mainloc {
             case 580:
                 // Krabat liest im schweren Buch
                 mainFrame.krabat.nAnimation = 155;
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00192"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00193"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00194"),
-                        0, 3, 2, 581);
+                KrabatSagt("Mainloc_45", 0, 3, 2, 581);
                 break;
 
             case 581:
@@ -626,19 +479,13 @@ abstract public class Mainloc {
                 if (--Counter > 1) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainloc_00195"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00196"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00197"),
-                        0, 54, 2, 583, new GenericPoint(320, 200));
+                PersonSagt("Mainloc_46", 0, 54, 2, 583, new GenericPoint(320, 200));
                 break;
 
             case 583:
                 // Krabat hat zuendegelesen
                 mainFrame.krabat.StopAnim();
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00198"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00199"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00200"),
-                        0, 3, 2, 584);
+                KrabatSagt("Mainloc_47", 0, 3, 2, 584);
                 break;
 
             case 584:
@@ -657,10 +504,7 @@ abstract public class Mainloc {
                 }
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainloc_00201"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00202"),
-                        Start.stringManager.getTranslation("Main_Mainloc_00203"),
-                        6, 3, 0, 0);
+                KrabatSagt("Mainloc_48", 6, 3, 0, 0);
                 break;
 
             default:
@@ -680,46 +524,32 @@ abstract public class Mainloc {
     // Neue Ausreden - Routinen, die Facing mitbehandeln und KrabatSagt benutzen
 
     // fuer Dinge in Location
-    public void DingAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * AUS_KONSTANTE);
-        KrabatSagt(HAus[zuffAusrede], DAus[zuffAusrede], NAus[zuffAusrede], Facing, 3, 0, 0);
+    public void DingAusrede(int facing) {
+        int random = (int) (Math.random() * (EXCUSES_THINGS.length - 1));
+        KrabatSagt(EXCUSES_THINGS[random], facing, 3, 0, 0);
     }
 
     // fuer eine maennliche Person
-    public void MPersonAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * MAUS_KONSTANTE);
-        KrabatSagt(HMAus[zuffAusrede], DMAus[zuffAusrede], NMAus[zuffAusrede], Facing, 3, 0, 0);
+    public void MPersonAusrede(int facing) {
+        int random = (int) (Math.random() * (EXCUSES_MALE.length - 1));
+        KrabatSagt(EXCUSES_MALE[random], facing, 3, 0, 0);
     }
 
     // fuer eine weibliche Person
-    public void WPersonAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * WAUS_KONSTANTE);
-        KrabatSagt(HWAus[zuffAusrede], DWAus[zuffAusrede], NWAus[zuffAusrede], Facing, 3, 0, 0);
+    public void WPersonAusrede(int facing) {
+        int random = (int) (Math.random() * (EXCUSES_FEMALE.length - 1));
+        KrabatSagt(EXCUSES_FEMALE[random], facing, 3, 0, 0);
     }
 
     // fuer mehr als 2 Personen (A steht fuer All)
-    public void APersonAusrede(int Facing) {
-        int zuffAusrede = (int) (Math.random() * AAUS_KONSTANTE);
-        KrabatSagt(HAAus[zuffAusrede], DAAus[zuffAusrede], NAAus[zuffAusrede], Facing, 3, 0, 0);
+    public void APersonAusrede(int facing) {
+        int random = (int) (Math.random() * (EXCUSES_MULTI.length - 1));
+        KrabatSagt(EXCUSES_MULTI[random], facing, 3, 0, 0);
     }
 
-    // allgemeine Methoden, die den Quelltext deutlich reduzieren und Fehlern vorbeugen
-
     // Krabat spricht, entweder allein oder zu jemandem
-    public void KrabatSagt(String HText, String DText, String NText, int Facing, int Person, int Pause, int ActionID) {
-        switch (mainFrame.sprache) {
-            case 1: // Obersorbisch
-                outputText = mainFrame.ifont.TeileText(HText);
-                break;
-
-            case 2: // Niedersorbisch
-                outputText = mainFrame.ifont.TeileText(DText);
-                break;
-
-            case 3: // Deutsch
-                outputText = mainFrame.ifont.TeileText(NText);
-                break;
-        }
+    public void KrabatSagt(String langKey, int Facing, int Person, int Pause, int ActionID) {
+        outputText = mainFrame.ifont.TeileTextKey(langKey);
         outputTextPos = mainFrame.ifont.KrabatText(outputText);
         if (Facing != 0) {
             mainFrame.krabat.SetFacing(Facing);
@@ -730,20 +560,8 @@ abstract public class Mainloc {
     }
 
     // Personen sprechen (keine Hintergrundanimpersonen !!)
-    public void PersonSagt(String HText, String DText, String NText, int Facing, int Person, int Pause, int ActionID, GenericPoint Position) {
-        switch (mainFrame.sprache) {
-            case 1: // Obersorbisch
-                outputText = mainFrame.ifont.TeileText(HText);
-                break;
-
-            case 2: // Niedersorbisch
-                outputText = mainFrame.ifont.TeileText(DText);
-                break;
-
-            case 3: // Deutsch
-                outputText = mainFrame.ifont.TeileText(NText);
-                break;
-        }
+    public void PersonSagt(String langKey, int Facing, int Person, int Pause, int ActionID, GenericPoint Position) {
+        outputText = mainFrame.ifont.TeileTextKey(langKey);
         outputTextPos = mainFrame.ifont.CenterText(outputText, Position);
         if (Facing != 0) {
             mainFrame.krabat.SetFacing(Facing);

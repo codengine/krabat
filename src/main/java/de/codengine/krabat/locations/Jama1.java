@@ -550,20 +550,14 @@ public class Jama1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wuermer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jama1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00002"),
-                        fWacki, 3, 0, 0);
+                KrabatSagt("Jama1_1", fWacki, 3, 0, 0);
                 break;
 
             case 50:
                 // Wuermer mitnehmen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jama1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00005"),
-                        fWacki, 3, 0, 52);
+                KrabatSagt("Jama1_2", fWacki, 3, 0, 52);
                 break;
 
             case 52:
@@ -602,19 +596,13 @@ public class Jama1 extends Mainloc {
                 // Hier Position des Textes berechnen
                 tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00008"),
-                        0, 26, 2, 60, tTlk);
+                PersonSagt("Jama1_3", 0, 26, 2, 60, tTlk);
                 break;
 
 
             case 60:
                 // K spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jama1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00011"),
-                        0, 1, 2, 65);
+                KrabatSagt("Jama1_4", 0, 1, 2, 65);
                 break;
 
             case 65:
@@ -622,19 +610,13 @@ public class Jama1 extends Mainloc {
                 // Hier Position des Textes berechnen
                 tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00014"),
-                        0, 26, 2, 70, tTlk);
+                PersonSagt("Jama1_5", 0, 26, 2, 70, tTlk);
                 break;
 
 
             case 70:
                 // K spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jama1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00017"),
-                        0, 1, 2, 75);
+                KrabatSagt("Jama1_6", 0, 1, 2, 75);
                 break;
 
             case 75:
@@ -642,10 +624,7 @@ public class Jama1 extends Mainloc {
                 // Hier Position des Textes berechnen
                 tmp = jaeger.getRect();
                 tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Jama1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Jama1_00020"),
-                        0, 26, 2, 80, tTlk);
+                PersonSagt("Jama1_7", 0, 26, 2, 80, tTlk);
                 break;
 
             case 80:

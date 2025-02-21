@@ -808,18 +808,12 @@ public class Kupa1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Rohodz anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Kupa1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Kupa1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Kupa1_00002"),
-                        fRohodz, 3, 0, 0);
+                KrabatSagt("Kupa1_1", fRohodz, 3, 0, 0);
                 break;
 
             case 2:
                 // Schild anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Kupa1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Kupa1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Kupa1_00005"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Kupa1_2", fSchild, 3, 0, 0);
                 break;
 
             case 50:
@@ -840,17 +834,11 @@ public class Kupa1 extends Mainloc {
                 }
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Kupa1_00006"),
-                                Start.stringManager.getTranslation("Loc1_Kupa1_00007"),
-                                Start.stringManager.getTranslation("Loc1_Kupa1_00008"),
-                                fSchild, 3, 0, 0);
+                        KrabatSagt("Kupa1_3", fSchild, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Kupa1_00009"),
-                                Start.stringManager.getTranslation("Loc1_Kupa1_00010"),
-                                Start.stringManager.getTranslation("Loc1_Kupa1_00011"),
-                                fSchild, 3, 0, 0);
+                        KrabatSagt("Kupa1_4", fSchild, 3, 0, 0);
                         break;
                 }
                 break;

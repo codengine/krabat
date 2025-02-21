@@ -46,20 +46,6 @@ public class Inmlyn extends Mainloc {
 
     private boolean krabatVisible = true;
 
-    // Text - Variablen
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00002");
-
-    private static final String H2Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00003");
-    private static final String D2Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00004");
-    private static final String N2Text = Start.stringManager.getTranslation("Loc2_Inmlyn_00005");
-
-    // Text
-    private static final String HText = Start.stringManager.getTranslation("Loc2_Inmlyn_00006");
-    private static final String DText = Start.stringManager.getTranslation("Loc2_Inmlyn_00007");
-    private static final String NText = Start.stringManager.getTranslation("Loc2_Inmlyn_00008");
-
     private int Zwinker = 0;
     private int scrollCounter;
 
@@ -353,7 +339,7 @@ public class Inmlyn extends Mainloc {
             case 100:
                 // Textausgabe auf Bild Wokno
                 mainFrame.wave.PlayFile("sound.wav");
-                PersonSagt(H1Text, D1Text, N1Text, 0, 54, 2, 110, new GenericPoint(320, 400));
+                PersonSagt("Inmlyn_2", 0, 54, 2, 110, new GenericPoint(320, 400));
                 break;
 
             case 110:
@@ -385,7 +371,7 @@ public class Inmlyn extends Mainloc {
 
             case 140:
                 // Naechsten Text einblenden
-                PersonSagt(H2Text, D2Text, N2Text, 0, 54, 2, 150, new GenericPoint(320, 200));
+                PersonSagt("Inmlyn_3", 0, 54, 2, 150, new GenericPoint(320, 200));
                 break;
 
             case 150:
@@ -412,10 +398,7 @@ public class Inmlyn extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Inmlyn_00009"),
-                        Start.stringManager.getTranslation("Loc2_Inmlyn_00010"),
-                        Start.stringManager.getTranslation("Loc2_Inmlyn_00011"),
-                        0, 3, 2, 1020);
+                KrabatSagt("Inmlyn_1", 0, 3, 2, 1020);
                 break;
 
             case 1020:
@@ -467,7 +450,7 @@ public class Inmlyn extends Mainloc {
 
             case 1060:
                 // ErzaehlerText
-                PersonSagt(HText, DText, NText, 0, 54, 2, 1070, new GenericPoint(320, 200));
+                PersonSagt("Inmlyn_4", 0, 54, 2, 1070, new GenericPoint(320, 200));
                 break;
 
             case 1070:

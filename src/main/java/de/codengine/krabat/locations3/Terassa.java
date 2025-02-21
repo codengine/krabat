@@ -811,18 +811,12 @@ public class Terassa extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Schmied anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00000"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00001"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00002"),
-                        fKowar, 3, 0, 0);
+                KrabatSagt("Terassa_1", fKowar, 3, 0, 0);
                 break;
 
             case 2:
                 // Hammer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00003"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00004"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00005"),
-                        fHammer, 3, 0, 0);
+                KrabatSagt("Terassa_2", fHammer, 3, 0, 0);
                 break;
 
             case 50:
@@ -843,31 +837,19 @@ public class Terassa extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 3.9);
                 switch (zuffZahl) {
                     case 0:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00006"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00007"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00008"),
-                                fKowar, 45, 0, 53, schmiedTalk);
+                        PersonSagt("Terassa_3", fKowar, 45, 0, 53, schmiedTalk);
                         break;
 
                     case 1:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00009"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00010"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00011"),
-                                fKowar, 45, 0, 53, schmiedTalk);
+                        PersonSagt("Terassa_4", fKowar, 45, 0, 53, schmiedTalk);
                         break;
 
                     case 2:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00012"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00013"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00014"),
-                                fKowar, 45, 0, 53, schmiedTalk);
+                        PersonSagt("Terassa_5", fKowar, 45, 0, 53, schmiedTalk);
                         break;
 
                     case 3:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00015"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00016"),
-                                Start.stringManager.getTranslation("Loc3_Terassa_00017"),
-                                fKowar, 45, 0, 53, schmiedTalk);
+                        PersonSagt("Terassa_6", fKowar, 45, 0, 53, schmiedTalk);
                         break;
                 }
                 break;
@@ -902,10 +884,7 @@ public class Terassa extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00018"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00019"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00020"),
-                        0, 3, 2, 63);
+                KrabatSagt("Terassa_7", 0, 3, 2, 63);
                 break;
 
             case 63:
@@ -931,27 +910,18 @@ public class Terassa extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00021"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00022"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00023"),
-                        fKowar, 45, 2, 75, schmiedTalk);
+                PersonSagt("Terassa_8", fKowar, 45, 2, 75, schmiedTalk);
                 schmiedhoertzu = true;
                 break;
 
             case 75:
                 // Krabat antwortet
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00024"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00025"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00026"),
-                        fKowar, 1, 2, 80);
+                KrabatSagt("Terassa_9", fKowar, 1, 2, 80);
                 break;
 
             case 80:
                 // Schmied sagt letzten Spruch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Terassa_00027"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00028"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00029"),
-                        0, 45, 2, 85, schmiedTalk);
+                PersonSagt("Terassa_10", 0, 45, 2, 85, schmiedTalk);
                 schmiedhoertzu = false;
                 break;
 
@@ -1058,10 +1028,7 @@ public class Terassa extends Mainloc {
 
             case 730:
                 // Kommentar
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00030"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00031"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00032"),
-                        0, 3, 0, 740);
+                KrabatSagt("Terassa_11", 0, 3, 0, 740);
                 break;
 
             case 740:
@@ -1107,10 +1074,7 @@ public class Terassa extends Mainloc {
             case 775:
                 // Spruch reissen, dass wieder Normalkleidung
                 mainFrame.Actions[702] = true;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00033"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00034"),
-                        Start.stringManager.getTranslation("Loc3_Terassa_00035"),
-                        0, 3, 0, 780);
+                KrabatSagt("Terassa_12", 0, 3, 0, 780);
                 break;
 
             // Hier Routinen fuer "die Treppe runter"
@@ -1192,9 +1156,6 @@ public class Terassa extends Mainloc {
 
     private void krabatUmziehen() {
         // Krabat zieht sich Dienstkleidung aus
-        KrabatSagt(Start.stringManager.getTranslation("Loc3_Terassa_00036"),
-                Start.stringManager.getTranslation("Loc3_Terassa_00037"),
-                Start.stringManager.getTranslation("Loc3_Terassa_00038"),
-                0, 3, 0, 0);
+        KrabatSagt("Terassa_13", 0, 3, 0, 0);
     }
 }

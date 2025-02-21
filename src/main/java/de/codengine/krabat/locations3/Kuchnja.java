@@ -1053,10 +1053,7 @@ public class Kuchnja extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Kuchar anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00000"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00001"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00002"),
-                        fKuchar, 3, 0, 0);
+                KrabatSagt("Kuchnja_1", fKuchar, 3, 0, 0);
                 break;
 
             case 2:
@@ -1064,24 +1061,15 @@ public class Kuchnja extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00003"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00004"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00005"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnja_2", fSwinjo, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00006"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00007"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00008"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnja_3", fSwinjo, 3, 0, 0);
                         break;
 
                     case 2:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00009"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00010"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00011"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnja_4", fSwinjo, 3, 0, 0);
                         break;
                 }
                 break;
@@ -1091,72 +1079,45 @@ public class Kuchnja extends Mainloc {
                 int zuffZahl3 = (int) (Math.random() * 1.9);
                 switch (zuffZahl3) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00012"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00013"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00014"),
-                                fDrjewo, 3, 0, 0);
+                        KrabatSagt("Kuchnja_5", fDrjewo, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00015"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00016"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnja_00017"),
-                                fDrjewo, 3, 0, 0);
+                        KrabatSagt("Kuchnja_6", fDrjewo, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 4:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00018"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00019"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00020"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Kuchnja_7", fDurje, 3, 0, 0);
                 break;
 
             case 5:
                 // Glocke anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00021"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00022"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00023"),
-                        fGlocke, 3, 0, 0);
+                KrabatSagt("Kuchnja_8", fGlocke, 3, 0, 0);
                 break;
 
             case 6:
                 // Fenster anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00024"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00025"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00026"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Kuchnja_9", fWokno, 3, 0, 0);
                 break;
 
             case 7:
                 // Herd anschauen
                 if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00027"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00028"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00029"),
-                            fHerd, 3, 0, 0);
+                    KrabatSagt("Kuchnja_10", fHerd, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00030"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00031"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00032"),
-                            fHerd, 3, 0, 0);
+                    KrabatSagt("Kuchnja_11", fHerd, 3, 0, 0);
                 }
                 break;
 
             case 8:
                 // Kochtopf anschauen
                 if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00033"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00034"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00035"),
-                            fHornc, 3, 0, 0);
+                    KrabatSagt("Kuchnja_12", fHornc, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00036"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00037"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00038"),
-                            fHornc, 3, 0, 0);
+                    KrabatSagt("Kuchnja_13", fHornc, 3, 0, 0);
                 }
                 break;
 
@@ -1172,10 +1133,7 @@ public class Kuchnja extends Mainloc {
                     mainFrame.krabat.SetFacing(fDrjewo);
                     mainFrame.repaint();
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00039"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00040"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnja_00041"),
-                            fDrjewo, 3, 0, 0);
+                    KrabatSagt("Kuchnja_14", fDrjewo, 3, 0, 0);
                 }
                 break;
 
@@ -1249,50 +1207,32 @@ public class Kuchnja extends Mainloc {
 
             case 55:
                 // Schwein mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00042"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00043"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00044"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnja_15", fSwinjo, 3, 0, 0);
                 break;
 
             case 60:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00045"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00046"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00047"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Kuchnja_16", fDurje, 3, 0, 0);
                 break;
 
             case 65:
                 // Glocke mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00048"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00049"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00050"),
-                        fGlocke, 3, 0, 0);
+                KrabatSagt("Kuchnja_17", fGlocke, 3, 0, 0);
                 break;
 
             case 70:
                 // Fenster mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00051"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00052"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00053"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Kuchnja_18", fWokno, 3, 0, 0);
                 break;
 
             case 75:
                 // Kochtopf mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00054"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00055"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00056"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnja_19", fHornc, 3, 0, 0);
                 break;
 
             case 80:
                 // Herd mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00057"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00058"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00059"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnja_20", fHornc, 3, 0, 0);
                 break;
 
             case 100:
@@ -1310,18 +1250,12 @@ public class Kuchnja extends Mainloc {
 
             case 155:
                 // Dinge ins Feuer schmeissen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00060"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00061"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00062"),
-                        fHerd, 3, 0, 0);
+                KrabatSagt("Kuchnja_21", fHerd, 3, 0, 0);
                 break;
 
             case 160:
                 // Dinge dem Schwein geben
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00063"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00064"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00065"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnja_22", fSwinjo, 3, 0, 0);
                 break;
 
             case 165:
@@ -1346,18 +1280,12 @@ public class Kuchnja extends Mainloc {
 
             case 185:
                 // Dinge in den Topf werfen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00066"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00067"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00068"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnja_23", fHornc, 3, 0, 0);
                 break;
 
             case 195:
                 // kotwica auf swino
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00069"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00070"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00071"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnja_24", fSwinjo, 3, 0, 0);
                 break;
 
 
@@ -1366,37 +1294,25 @@ public class Kuchnja extends Mainloc {
             case 300:
                 // Reaktion Krabat, wenn Holz in Ofen
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00072"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00073"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00074"),
-                        0, 3, 2, 800);
+                KrabatSagt("Kuchnja_25", 0, 3, 2, 800);
                 break;
 
             case 301:
                 // Reaktion Krabat, wenn Holz in Ofen 2 mal
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00075"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00076"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00077"),
-                        0, 3, 2, 800);
+                KrabatSagt("Kuchnja_26", 0, 3, 2, 800);
                 break;
 
             case 302:
                 // Reaktion Krabat, wenn Holz in Ofen 3 mal -> dann zur Hintergasse
                 // if (mainFrame.krabat.nAnimation != 0) break;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00078"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00079"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00080"),
-                        0, 3, 2, 303);
+                KrabatSagt("Kuchnja_27", 0, 3, 2, 303);
                 break;
 
             case 303:
                 // Reaktion Koch, wenn Brei ueberkocht
                 kucharHoertZu = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00081"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00082"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00083"),
-                        fKuchar, 42, 2, 304, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_28", fKuchar, 42, 2, 304, evalKucharTalkPoint());
                 break;
 
             case 304:
@@ -1413,10 +1329,7 @@ public class Kuchnja extends Mainloc {
 
             case 309:
                 // Reaktion Koch, wenn Brei ueberkocht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00084"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00085"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00086"),
-                        0, 42, 2, 310, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_29", 0, 42, 2, 310, evalKucharTalkPoint());
                 break;
 
             case 310:
@@ -1534,66 +1447,42 @@ public class Kuchnja extends Mainloc {
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00129"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00130"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00131"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_30", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 611:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00132"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00133"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00134"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_31", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 612:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00135"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00136"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00137"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_32", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 613:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00138"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00139"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00140"),
-                        0, 42, 2, 614, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_33", 0, 42, 2, 614, evalKucharTalkPoint());
                 break;
 
             case 614:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00141"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00142"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00143"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_34", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 615:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00144"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00145"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00146"),
-                        0, 42, 2, 616, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_35", 0, 42, 2, 616, evalKucharTalkPoint());
                 break;
 
             case 616:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00147"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00148"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00149"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_36", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 617:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00150"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00151"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00152"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_37", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
@@ -1682,93 +1571,60 @@ public class Kuchnja extends Mainloc {
 
             case 621:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00171"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00172"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00173"),
-                        0, 1, 2, 800);
+                KrabatSagt("Kuchnja_38", 0, 1, 2, 800);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00174"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00175"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00176"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_39", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 631:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00177"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00178"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00179"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_40", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 632:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00180"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00181"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00182"),
-                        0, 42, 2, 633, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_41", 0, 42, 2, 633, evalKucharTalkPoint());
                 break;
 
             case 633:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00183"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00184"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00185"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_42", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 634:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00186"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00187"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00188"),
-                        0, 42, 2, 635, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_43", 0, 42, 2, 635, evalKucharTalkPoint());
                 break;
 
             case 635:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00189"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00190"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00191"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_44", 0, 42, 2, 600, evalKucharTalkPoint());
 
                 break;
 
             // Antworten zu Frage 4 ////////////////////////////
             case 640:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00192"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00193"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00194"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_45", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 641:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00195"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00196"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00197"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_46", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 642:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00198"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00199"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00200"),
-                        0, 42, 2, 643, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_47", 0, 42, 2, 643, evalKucharTalkPoint());
                 break;
 
             case 643:
                 // Reaktion Koch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Kuchnja_00201"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00202"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnja_00203"),
-                        0, 42, 2, 600, evalKucharTalkPoint());
+                PersonSagt("Kuchnja_48", 0, 42, 2, 600, evalKucharTalkPoint());
                 break;
 
             case 800:

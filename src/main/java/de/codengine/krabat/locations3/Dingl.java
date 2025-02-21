@@ -751,34 +751,22 @@ public class Dingl extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Dinglinger anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00000"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00001"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00002"),
-                        fDingl, 3, 0, 0);
+                KrabatSagt("Dingl_1", fDingl, 3, 0, 0);
                 break;
 
             case 2:
                 // Kanne anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00003"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00004"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00005"),
-                        fKanne, 3, 0, 0);
+                KrabatSagt("Dingl_2", fKanne, 3, 0, 0);
                 break;
 
             case 3:
                 // Kanne benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00006"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00007"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00008"),
-                        fKanne, 3, 0, 0);
+                KrabatSagt("Dingl_3", fKanne, 3, 0, 0);
                 break;
 
             case 4:
                 // Kunstwerk mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00009"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00010"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00011"),
-                        fKunstwerk, 3, 0, 0);
+                KrabatSagt("Dingl_4", fKunstwerk, 3, 0, 0);
                 break;
 
             case 5:
@@ -787,17 +775,11 @@ public class Dingl extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00012"),
-                                Start.stringManager.getTranslation("Loc3_Dingl_00013"),
-                                Start.stringManager.getTranslation("Loc3_Dingl_00014"),
-                                fKunstwerk, 3, 0, 0);
+                        KrabatSagt("Dingl_5", fKunstwerk, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00015"),
-                                Start.stringManager.getTranslation("Loc3_Dingl_00016"),
-                                Start.stringManager.getTranslation("Loc3_Dingl_00017"),
-                                fKunstwerk, 3, 0, 0);
+                        KrabatSagt("Dingl_6", fKunstwerk, 3, 0, 0);
                         break;
                 }
                 break;
@@ -895,16 +877,10 @@ public class Dingl extends Mainloc {
                 welcheAnim = 1;
                 if (mainFrame.Actions[520]) {
                     // hat schon um Wein gebettelt
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00018"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00019"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00020"),
-                            0, 47, 5, 163, talkPoint);
+                    PersonSagt("Dingl_7", 0, 47, 5, 163, talkPoint);
                 } else {
                     // hat noch nichts vom Wein gesagt
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00021"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00022"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00023"),
-                            0, 47, 5, 163, talkPoint);
+                    PersonSagt("Dingl_8", 0, 47, 5, 163, talkPoint);
                 }
                 // Brief aus Inventory entfernen
                 mainFrame.inventory.vInventory.removeElement(30);
@@ -947,10 +923,7 @@ public class Dingl extends Mainloc {
                     break;
                 }
                 welcheAnim = 1;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00024"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00025"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00026"),
-                        0, 47, 0, 195, talkPoint);
+                PersonSagt("Dingl_9", 0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[635] = true;
                 mainFrame.inventory.vInventory.removeElement(48);
                 break;
@@ -977,10 +950,7 @@ public class Dingl extends Mainloc {
                     break;
                 }
                 welcheAnim = 1;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00027"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00028"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00029"),
-                        0, 47, 0, 195, talkPoint);
+                PersonSagt("Dingl_10", 0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[636] = true;
                 mainFrame.inventory.vInventory.removeElement(50);
                 break;
@@ -1007,10 +977,7 @@ public class Dingl extends Mainloc {
                     break;
                 }
                 welcheAnim = 1;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00030"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00031"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00032"),
-                        0, 47, 0, 195, talkPoint);
+                PersonSagt("Dingl_11", 0, 47, 0, 195, talkPoint);
                 mainFrame.Actions[637] = true;
                 mainFrame.inventory.vInventory.removeElement(34);
                 break;
@@ -1037,10 +1004,7 @@ public class Dingl extends Mainloc {
                     break;
                 }
                 welcheAnim = 1;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00033"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00034"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00035"),
-                        0, 47, 0, 195, talkPoint);
+                PersonSagt("Dingl_12", 0, 47, 0, 195, talkPoint);
                 mainFrame.invCursor = false;
                 mainFrame.Actions[638] = true;
                 mainFrame.inventory.vInventory.removeElement(47);
@@ -1050,18 +1014,12 @@ public class Dingl extends Mainloc {
                 // Reaktion Dinglinger auf Give Dowol njepodpis.
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00036"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00037"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00038"),
-                        fDingl, 47, 0, 900, talkPoint);
+                PersonSagt("Dingl_13", fDingl, 47, 0, 900, talkPoint);
                 break;
 
             case 190:
                 // Reaktion Dinglinger auf Give Dowol njezyg.
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00039"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00040"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00041"),
-                        fDingl, 47, 0, 900, talkPoint);
+                PersonSagt("Dingl_14", fDingl, 47, 0, 900, talkPoint);
                 break;
 
             case 195:
@@ -1087,26 +1045,17 @@ public class Dingl extends Mainloc {
 
             case 300:
                 // Reaktion Dinglinger, wenn unerlaubt zum Gang
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00042"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00043"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00044"),
-                        0, 47, 2, 900, talkPoint);
+                PersonSagt("Dingl_15", 0, 47, 2, 900, talkPoint);
                 break;
 
             case 303:
                 // Reaktion Dinglinger, wen was gegeben
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00045"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00046"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00047"),
-                        0, 47, 2, 304, talkPoint);
+                PersonSagt("Dingl_16", 0, 47, 2, 304, talkPoint);
                 break;
 
             case 304:
                 // Reaktion Dinglinger, wen was gegeben
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00048"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00049"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00050"),
-                        0, 47, 2, 700, talkPoint);
+                PersonSagt("Dingl_17", 0, 47, 2, 700, talkPoint);
                 // Krabat darf dann zur Chodba raus
                 mainFrame.Actions[527] = true;
                 break;
@@ -1222,125 +1171,80 @@ public class Dingl extends Mainloc {
 
             case 610:
                 // Dinglinger faengt Dialog an
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00087"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00088"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00089"),
-                        0, 47, 2, 611, talkPoint);
+                PersonSagt("Dingl_18", 0, 47, 2, 611, talkPoint);
                 break;
 
             case 611:
                 // Dinglinger faengt Dialog an (Teil 2)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00090"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00091"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00092"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_19", 0, 47, 2, 600, talkPoint);
                 mainFrame.Actions[520] = true; // Diesen Teil nicht wiederholen
                 break;
 
             case 620:
                 // Reaktion Dinglinger (1. Frage)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00093"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00094"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00095"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_20", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 621:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00096"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00097"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00098"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_21", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 622:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00099"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00100"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00101"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_22", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 630:
                 // Reaktion Dinglinger (2. Frage)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00102"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00103"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00104"),
-                        0, 47, 2, 631, talkPoint);
+                PersonSagt("Dingl_23", 0, 47, 2, 631, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Dinglinger (2. Frage)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00105"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00106"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00107"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_24", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 632:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00108"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00109"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00110"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_25", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 633:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00111"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00112"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00113"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_26", 0, 47, 2, 600, talkPoint);
                 break;
 
             // Antworten Frage 3 /////////////////////////////////////////
             case 640:
                 // Reaktion Dinglinger (Frage 3)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00114"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00115"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00116"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_27", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 641:
                 // Reaktion Dinglinger 
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00117"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00118"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00119"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_28", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 642:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00120"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00121"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00122"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_29", 0, 47, 2, 600, talkPoint);
                 break;
 
             case 643:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00123"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00124"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00125"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_30", 0, 47, 2, 600, talkPoint);
                 break;
 
             // Antworten Frage 4 /////////////////////////////////////////
             case 645:
                 // Reaktion Dinglinger (Frage 4)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00126"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00127"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00128"),
-                        0, 47, 2, 646, talkPoint);
+                PersonSagt("Dingl_31", 0, 47, 2, 646, talkPoint);
                 break;
 
             case 646:
                 // Reaktion Dinglinger (Frage 4)
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00129"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00130"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00131"),
-                        0, 47, 2, 600, talkPoint);
+                PersonSagt("Dingl_32", 0, 47, 2, 600, talkPoint);
                 break;
 
 
@@ -1393,140 +1297,89 @@ public class Dingl extends Mainloc {
             // Antworten Frage 1 ////////////
             case 710:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00141"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00142"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00143"),
-                        0, 47, 2, 711, talkPoint);
+                PersonSagt("Dingl_33", 0, 47, 2, 711, talkPoint);
                 break;
 
             case 711:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00144"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00145"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00146"),
-                        0, 47, 2, 700, talkPoint);
+                PersonSagt("Dingl_34", 0, 47, 2, 700, talkPoint);
                 break;
 
             // Antworten Frage 2 //////////// (selbstaend. Sequenz)
             case 720:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00147"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00148"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00149"),
-                        0, 47, 2, 721, talkPoint);
+                PersonSagt("Dingl_35", 0, 47, 2, 721, talkPoint);
                 break;
 
             case 721:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00150"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00151"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00152"),
-                        0, 1, 2, 722);
+                KrabatSagt("Dingl_36", 0, 1, 2, 722);
                 break;
 
             case 722:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00153"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00154"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00155"),
-                        0, 47, 2, 723, talkPoint);
+                PersonSagt("Dingl_37", 0, 47, 2, 723, talkPoint);
                 break;
 
             case 723:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00156"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00157"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00158"),
-                        0, 47, 2, 724, talkPoint);
+                PersonSagt("Dingl_38", 0, 47, 2, 724, talkPoint);
                 break;
 
             case 724:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00159"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00160"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00161"),
-                        0, 1, 2, 725);
+                KrabatSagt("Dingl_39", 0, 1, 2, 725);
                 break;
 
             case 725:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00162"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00163"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00164"),
-                        0, 47, 2, 726, talkPoint);
+                PersonSagt("Dingl_40", 0, 47, 2, 726, talkPoint);
                 break;
 
             case 726:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00165"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00166"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00167"),
-                        0, 1, 2, 727);
+                KrabatSagt("Dingl_41", 0, 1, 2, 727);
 
                 break;
 
             case 727:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00168"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00169"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00170"),
-                        0, 47, 2, 728, talkPoint);
+                PersonSagt("Dingl_42", 0, 47, 2, 728, talkPoint);
                 break;
 
             case 728:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00171"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00172"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00173"),
-                        0, 47, 2, 729, talkPoint);
+                PersonSagt("Dingl_43", 0, 47, 2, 729, talkPoint);
                 break;
 
             case 729:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00174"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00175"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00176"),
-                        0, 1, 2, 730);
+                KrabatSagt("Dingl_44", 0, 1, 2, 730);
                 break;
 
             case 730:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00177"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00178"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00179"),
-                        0, 1, 2, 731);
+                KrabatSagt("Dingl_45", 0, 1, 2, 731);
                 break;
 
             case 731:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00180"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00181"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00182"),
-                        0, 47, 2, 732, talkPoint);
+                PersonSagt("Dingl_46", 0, 47, 2, 732, talkPoint);
                 break;
 
             case 732:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00183"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00184"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00185"),
-                        0, 47, 2, 733, talkPoint);
+                PersonSagt("Dingl_47", 0, 47, 2, 733, talkPoint);
                 break;
 
             case 733:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00186"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00187"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00188"),
-                        0, 1, 2, 734);
+                KrabatSagt("Dingl_48", 0, 1, 2, 734);
                 break;
 
             case 734:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00189"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00190"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00191"),
-                        0, 47, 2, 800, talkPoint);
+                PersonSagt("Dingl_49", 0, 47, 2, 800, talkPoint);
                 break;
 
 
@@ -1627,40 +1480,28 @@ public class Dingl extends Mainloc {
             case 813:
                 // Reaktion Dinglinger
                 if (nextActionID == 810 && !mainFrame.Actions[635]) {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00213"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00214"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00215"),
-                            0, 47, 2, 811, talkPoint);
+                    PersonSagt("Dingl_50", 0, 47, 2, 811, talkPoint);
                     break;
                 }
                 if (nextActionID == 810) {
                     nextActionID = 811;
                 }
                 if (nextActionID == 811 && !mainFrame.Actions[636]) {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00216"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00217"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00218"),
-                            0, 47, 2, 812, talkPoint);
+                    PersonSagt("Dingl_51", 0, 47, 2, 812, talkPoint);
                     break;
                 }
                 if (nextActionID == 811) {
                     nextActionID = 812;
                 }
                 if (nextActionID == 812 && !mainFrame.Actions[637]) {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00219"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00220"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00221"),
-                            0, 47, 2, 813, talkPoint);
+                    PersonSagt("Dingl_52", 0, 47, 2, 813, talkPoint);
                     break;
                 }
                 if (nextActionID == 812) {
                     nextActionID = 813;
                 }
                 if (!mainFrame.Actions[638]) {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00222"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00223"),
-                            Start.stringManager.getTranslation("Loc3_Dingl_00224"),
-                            0, 47, 2, 800, talkPoint);
+                    PersonSagt("Dingl_53", 0, 47, 2, 800, talkPoint);
                     break;
                 }
                 nextActionID = 800;
@@ -1669,70 +1510,46 @@ public class Dingl extends Mainloc {
             // Antworten Frage 2 ////////////
             case 820:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00225"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00226"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00227"),
-                        0, 47, 2, 821, talkPoint);
+                PersonSagt("Dingl_54", 0, 47, 2, 821, talkPoint);
                 break;
 
             case 821:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00228"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00229"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00230"),
-                        0, 47, 2, 800, talkPoint);
+                PersonSagt("Dingl_55", 0, 47, 2, 800, talkPoint);
                 break;
 
             // Antworten Frage 3 ////////////
             case 830:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00231"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00232"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00233"),
-                        0, 47, 2, 831, talkPoint);
+                PersonSagt("Dingl_56", 0, 47, 2, 831, talkPoint);
                 break;
 
             case 831:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00234"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00235"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00236"),
-                        0, 47, 2, 832, talkPoint);
+                PersonSagt("Dingl_57", 0, 47, 2, 832, talkPoint);
                 break;
 
             case 832:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00237"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00238"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00239"),
-                        0, 47, 2, 800, talkPoint);
+                PersonSagt("Dingl_58", 0, 47, 2, 800, talkPoint);
                 break;
 
             // Antworten Frage 4 ////////////
             case 840:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00240"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00241"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00242"),
-                        0, 47, 2, 800, talkPoint);
+                PersonSagt("Dingl_59", 0, 47, 2, 800, talkPoint);
                 break;
 
             // Antworten Frage 5 ////////////
             case 850:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00243"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00244"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00245"),
-                        0, 47, 2, 800, talkPoint);
+                PersonSagt("Dingl_60", 0, 47, 2, 800, talkPoint);
                 break;
 
             // Antworten Frage 6 ////////////
             case 860:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00246"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00247"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00248"),
-                        0, 47, 2, 861, talkPoint);
+                PersonSagt("Dingl_61", 0, 47, 2, 861, talkPoint);
                 break;
 
             case 861:
@@ -1762,10 +1579,7 @@ public class Dingl extends Mainloc {
 
             case 865:
                 // Reaktion Dinglinger
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00249"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00250"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00251"),
-                        0, 47, 2, 900, talkPoint);
+                PersonSagt("Dingl_62", 0, 47, 2, 900, talkPoint);
                 // Erlaubnisschreiben zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(31);
                 break;
@@ -1784,10 +1598,7 @@ public class Dingl extends Mainloc {
 
             case 1000:
                 // Dinglinger "ich habe fertig"
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00252"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00253"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00254"),
-                        0, 47, 2, 1010, talkPoint);
+                PersonSagt("Dingl_63", 0, 47, 2, 1010, talkPoint);
                 break;
 
             case 1010:
@@ -1798,10 +1609,7 @@ public class Dingl extends Mainloc {
             case 1100:
                 // Dinglinger Endsequenz
                 welcheAnim = 4;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00255"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00256"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00257"),
-                        0, 47, 2, 1105, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Dingl_64", 0, 47, 2, 1105, dinglingerwalk.evalTalkPoint());
                 // altes unbenoetigtes Inevntar loeschen
                 mainFrame.inventory.vInventory.removeAllElements();
                 // Schuessel auch wirklich geben
@@ -1826,18 +1634,12 @@ public class Dingl extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00258"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00259"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00260"),
-                        0, 1, 2, 1120);
+                KrabatSagt("Dingl_65", 0, 1, 2, 1120);
                 break;
 
             case 1120:
                 // Dinglinger spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00261"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00262"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00263"),
-                        0, 47, 2, 1130, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Dingl_66", 0, 47, 2, 1130, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 1130:
@@ -1845,18 +1647,12 @@ public class Dingl extends Mainloc {
                 zeigeGrossesBild = true;
                 mainFrame.wave.PlayFile("sfx-dd/modrja.wav");
                 BackgroundMusicPlayer.getInstance().stop();
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Dingl_00264"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00265"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00266"),
-                        0, 54, 2, 1140, new GenericPoint(320, 200));
+                PersonSagt("Dingl_67", 0, 54, 2, 1140, new GenericPoint(320, 200));
                 break;
 
             case 1140:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Dingl_00267"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00268"),
-                        Start.stringManager.getTranslation("Loc3_Dingl_00269"),
-                        0, 3, 2, 1150);
+                KrabatSagt("Dingl_68", 0, 3, 2, 1150);
                 break;
 
             case 1150:

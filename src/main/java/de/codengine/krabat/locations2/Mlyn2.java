@@ -47,18 +47,7 @@ public class Mlyn2 extends Mainloc {
     private boolean muellerSprichtMitStock = false;
 
     // Texte
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Mlyn2_00002");
-
-    private static final String HText = Start.stringManager.getTranslation("Loc2_Mlyn2_00003");
-    private static final String DText = Start.stringManager.getTranslation("Loc2_Mlyn2_00004");
-    private static final String NText = Start.stringManager.getTranslation("Loc2_Mlyn2_00005");
-
-    private static final String[] HAMecker = {Start.stringManager.getTranslation("Loc2_Mlyn2_00006"), Start.stringManager.getTranslation("Loc2_Mlyn2_00007")};
-    private static final String[] DAMecker = {Start.stringManager.getTranslation("Loc2_Mlyn2_00008"), Start.stringManager.getTranslation("Loc2_Mlyn2_00009")};
-    private static final String[] NAMecker = {Start.stringManager.getTranslation("Loc2_Mlyn2_00010"), Start.stringManager.getTranslation("Loc2_Mlyn2_00011")};
-    private static final int KONSTANTE = 1;
+    private static final String[] MILLER_COMPLAINTS = {"Mlyn2_8", "Mlyn2_9"};
 
     // Konstanten - Rects
     // private static final borderrect rechterAusgang = new borderrect (560, 402, 639, 479);
@@ -355,31 +344,22 @@ public class Mlyn2 extends Mainloc {
         switch (nextActionID) {
             case 10:
                 // Textausgabe
-                PersonSagt(HText, DText, NText, 0, 54, 2, 20, new GenericPoint(320, 200));
+                PersonSagt("Mlyn2_7", 0, 54, 2, 20, new GenericPoint(320, 200));
                 break;
 
             case 20:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mlyn2_00012"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00013"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00014"),
-                        0, 36, 2, 30, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn2_1", 0, 36, 2, 30, mueller.evalMlynkTalkPoint());
                 break;
 
             case 30:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mlyn2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00017"),
-                        0, 36, 2, 35, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn2_2", 0, 36, 2, 35, mueller.evalMlynkTalkPoint());
                 break;
 
             case 35:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mlyn2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00020"),
-                        0, 36, 2, 40, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn2_3", 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
                 break;
 
             case 40:
@@ -389,25 +369,19 @@ public class Mlyn2 extends Mainloc {
 
             case 500:
                 // Muellertext fuer Anmecker...
-                int zf = (int) Math.round(Math.random() * KONSTANTE);
-                PersonSagt(HAMecker[zf], DAMecker[zf], NAMecker[zf], 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
+                int zf = (int) Math.round(Math.random() * (MILLER_COMPLAINTS.length - 1));
+                PersonSagt(MILLER_COMPLAINTS[zf], 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1000:
                 // Text vom Erzaehler
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mlyn2_00021"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00022"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00023"),
-                        0, 54, 2, 1010, new GenericPoint(320, 200));
+                PersonSagt("Mlyn2_4", 0, 54, 2, 1010, new GenericPoint(320, 200));
                 break;
 
             case 1010:
                 // Mueller spricht
                 muellerSprichtMitStock = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mlyn2_00024"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00025"),
-                        Start.stringManager.getTranslation("Loc2_Mlyn2_00026"),
-                        0, 36, 2, 1020, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn2_5", 0, 36, 2, 1020, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1020:
@@ -418,7 +392,7 @@ public class Mlyn2 extends Mainloc {
 
             case 2000:
                 // Ersten Teil Text fuer Uebergang Swoboda zeichnen
-                PersonSagt(H1Text, D1Text, N1Text, 0, 54, 2, 2010, new GenericPoint(320, 200));
+                PersonSagt("Mlyn2_6", 0, 54, 2, 2010, new GenericPoint(320, 200));
                 break;
 
             case 2010:

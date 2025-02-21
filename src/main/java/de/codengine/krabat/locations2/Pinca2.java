@@ -47,27 +47,6 @@ public class Pinca2 extends Mainloc {
     private static final GenericPoint Pfar = new GenericPoint(302, 453);
     private static final GenericPoint buchTalk = new GenericPoint(320, 440);
 
-    // Strings
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Pinca2_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Pinca2_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Pinca2_00002");
-
-    private static final String H2Text = Start.stringManager.getTranslation("Loc2_Pinca2_00003");
-    private static final String D2Text = Start.stringManager.getTranslation("Loc2_Pinca2_00004");
-    private static final String N2Text = Start.stringManager.getTranslation("Loc2_Pinca2_00005");
-
-    private static final String H21Text = Start.stringManager.getTranslation("Loc2_Pinca2_00006");
-    private static final String D21Text = Start.stringManager.getTranslation("Loc2_Pinca2_00007");
-    private static final String N21Text = Start.stringManager.getTranslation("Loc2_Pinca2_00008");
-
-    private static final String H3Text = Start.stringManager.getTranslation("Loc2_Pinca2_00009");
-    private static final String D3Text = Start.stringManager.getTranslation("Loc2_Pinca2_00010");
-    private static final String N3Text = Start.stringManager.getTranslation("Loc2_Pinca2_00011");
-
-    private static final String H31Text = Start.stringManager.getTranslation("Loc2_Pinca2_00012");
-    private static final String D31Text = Start.stringManager.getTranslation("Loc2_Pinca2_00013");
-    private static final String N31Text = Start.stringManager.getTranslation("Loc2_Pinca2_00014");
-
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
@@ -271,47 +250,41 @@ public class Pinca2 extends Mainloc {
 
             case 600:
                 // Farar redet
-                PersonSagt(H1Text, D1Text, N1Text, 0, 37, 2, 610, fararTalk);
+                PersonSagt("Pinca2_3", 0, 37, 2, 610, fararTalk);
                 break;
 
             case 610:
                 // Farar redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Pinca2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Pinca2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Pinca2_00017"),
-                        0, 37, 2, 620, fararTalk);
+                PersonSagt("Pinca2_1", 0, 37, 2, 620, fararTalk);
                 break;
 
             case 620:
                 // Farar redet
                 mainFrame.Clipset = false;
                 showBuch = true;
-                PersonSagt(H2Text, D2Text, N2Text, 0, 37, 2, 625, buchTalk);
+                PersonSagt("Pinca2_4", 0, 37, 2, 625, buchTalk);
                 break;
 
             case 625:
                 // farar redet
-                PersonSagt(H21Text, D21Text, N21Text, 0, 37, 2, 630, buchTalk);
+                PersonSagt("Pinca2_5", 0, 37, 2, 630, buchTalk);
                 break;
 
             case 630:
                 // Krabat spricht
                 mainFrame.Clipset = false;
                 showBuch = false;
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Pinca2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Pinca2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Pinca2_00020"),
-                        0, 1, 2, 640);
+                KrabatSagt("Pinca2_2", 0, 1, 2, 640);
                 break;
 
             case 640:
                 // Farar redet
-                PersonSagt(H3Text, D3Text, N3Text, 0, 37, 2, 643, fararTalk);
+                PersonSagt("Pinca2_6", 0, 37, 2, 643, fararTalk);
                 break;
 
             case 643:
                 // Farar redet
-                PersonSagt(H31Text, D31Text, N31Text, 0, 37, 2, 645, fararTalk);
+                PersonSagt("Pinca2_7", 0, 37, 2, 645, fararTalk);
                 break;
 
             case 645:

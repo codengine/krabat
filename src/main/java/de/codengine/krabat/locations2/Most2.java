@@ -127,10 +127,7 @@ public class Most2 extends Mainloc2 {
     private static final int BERG_DEFSCALE = -40;
 
     // Ausreden, wenn Gegend verlassen werden soll
-    private static final String[] HText1 = {Start.stringManager.getTranslation("Loc2_Most2_00000"), Start.stringManager.getTranslation("Loc2_Most2_00001"), Start.stringManager.getTranslation("Loc2_Most2_00002"), Start.stringManager.getTranslation("Loc2_Most2_00003")};
-    private static final String[] DText1 = {Start.stringManager.getTranslation("Loc2_Most2_00004"), Start.stringManager.getTranslation("Loc2_Most2_00005"), Start.stringManager.getTranslation("Loc2_Most2_00006"), Start.stringManager.getTranslation("Loc2_Most2_00007")};
-    private static final String[] NText1 = {Start.stringManager.getTranslation("Loc2_Most2_00008"), Start.stringManager.getTranslation("Loc2_Most2_00009"), Start.stringManager.getTranslation("Loc2_Most2_00010"), Start.stringManager.getTranslation("Loc2_Most2_00011")};
-    private static final int TEXTKONSTANTE = 3;
+    private static final String[] TEXTS = {"Most2_25", "Most2_26", "Most2_27", "Most2_28"};
 
     // Konstante ints
     private static final int fPokazRal = 9;
@@ -1080,50 +1077,32 @@ public class Most2 extends Mainloc2 {
         switch (nextActionID) {
             case 1:
                 // Schild Ralbitz anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00012"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00013"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00014"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most2_1", fPokazRal, 3, 0, 0);
                 break;
 
             case 2:
                 // Schild Dresden anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00017"),
-                        fPokazDrj, 3, 0, 0);
+                KrabatSagt("Most2_2", fPokazDrj, 3, 0, 0);
                 break;
 
             case 3:
                 // Reka anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00020"),
-                        fReka, 3, 0, 0);
+                KrabatSagt("Most2_3", fReka, 3, 0, 0);
                 break;
 
             case 50:
                 // Schild Ralbitz mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00021"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00022"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00023"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most2_4", fPokazRal, 3, 0, 0);
                 break;
 
             case 55:
                 // Schild Dresden mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00024"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00025"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00026"),
-                        fPokazDrj, 3, 0, 0);
+                KrabatSagt("Most2_5", fPokazDrj, 3, 0, 0);
                 break;
 
             case 60:
                 // Nach Dresden gehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00027"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00028"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00029"),
-                        fDrjezdzany, 3, 0, 0);
+                KrabatSagt("Most2_6", fDrjezdzany, 3, 0, 0);
                 break;
 
             case 70:
@@ -1132,17 +1111,11 @@ public class Most2 extends Mainloc2 {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00030"),
-                                Start.stringManager.getTranslation("Loc2_Most2_00031"),
-                                Start.stringManager.getTranslation("Loc2_Most2_00032"),
-                                fReka, 3, 0, 0);
+                        KrabatSagt("Most2_7", fReka, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00033"),
-                                Start.stringManager.getTranslation("Loc2_Most2_00034"),
-                                Start.stringManager.getTranslation("Loc2_Most2_00035"),
-                                fReka, 3, 0, 0);
+                        KrabatSagt("Most2_8", fReka, 3, 0, 0);
                         break;
                 }
                 break;
@@ -1174,28 +1147,22 @@ public class Most2 extends Mainloc2 {
 
             case 200:
                 // kamuski auf schild
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00036"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00037"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00038"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most2_9", fPokazRal, 3, 0, 0);
                 break;
 
             case 210:
                 // Wuda + wacki auf Wasser
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00041"),
-                        fReka, 3, 0, 0);
+                KrabatSagt("Most2_10", fReka, 3, 0, 0);
                 break;
 
             case 520:
                 // Karten - Extraausrede
-                int zd = (int) Math.round(Math.random() * TEXTKONSTANTE);
+                int zd = (int) Math.round(Math.random() * (TEXTS.length - 1));
                 if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zd = 0;
                 }
-                KrabatSagt(HText1[zd], DText1[zd], NText1[zd], 0, 3, 0, 0);
+                KrabatSagt(TEXTS[zd], 0, 3, 0, 0);
                 break;
 
             case 600:
@@ -1285,12 +1252,12 @@ public class Most2 extends Mainloc2 {
 
             case 2000:
                 // Ausreden, wenn Verlassen versucht
-                int zr = (int) Math.round(Math.random() * TEXTKONSTANTE);
+                int zr = (int) Math.round(Math.random() * (TEXTS.length - 1));
                 if (!ersteAusredeGesagt) {
                     ersteAusredeGesagt = true;
                     zr = 0;
                 }
-                KrabatSagt(HText1[zr], DText1[zr], NText1[zr], 0, 3, 0, 0);
+                KrabatSagt(TEXTS[zr], 0, 3, 0, 0);
                 break;
 
             case 2010:
@@ -1390,8 +1357,7 @@ public class Most2 extends Mainloc2 {
                 if (kutscheArbeitet != 10) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00042"), Start.stringManager.getTranslation("Loc2_Most2_00043"), Start.stringManager.getTranslation("Loc2_Most2_00044"),
-                        fPohonc, 39, 2, 2500, pohoncBrrr);
+                PersonSagt("Most2_11", fPohonc, 39, 2, 2500, pohoncBrrr);
                 break;
 
             case 2500:
@@ -1420,66 +1386,42 @@ public class Most2 extends Mainloc2 {
                 }
                 showPohonc = true;
                 pohoncHoertZu = true;
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00048"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00049"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00050"),
-                        0, 1, 0, 2530);
+                KrabatSagt("Most2_12", 0, 1, 0, 2530);
                 break;
 
             case 2530:
                 // Pohonc spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00053"),
-                        0, 39, 2, 2540, pohoncTalk);
+                PersonSagt("Most2_13", 0, 39, 2, 2540, pohoncTalk);
                 break;
 
             case 2540:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00054"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00055"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00056"),
-                        0, 1, 2, 2550);
+                KrabatSagt("Most2_14", 0, 1, 2, 2550);
                 break;
 
             case 2550:
                 // Pohonc spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00057"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00058"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00059"),
-                        0, 39, 2, 2560, pohoncTalk);
+                PersonSagt("Most2_15", 0, 39, 2, 2560, pohoncTalk);
                 break;
 
             case 2560:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00060"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00061"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00062"),
-                        0, 1, 2, 2570);
+                KrabatSagt("Most2_16", 0, 1, 2, 2570);
                 break;
 
             case 2570:
                 // Pohonc spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00063"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00064"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00065"),
-                        0, 39, 2, 2580, pohoncTalk);
+                PersonSagt("Most2_17", 0, 39, 2, 2580, pohoncTalk);
                 break;
 
             case 2580:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00066"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00067"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00068"),
-                        0, 1, 2, 2590);
+                KrabatSagt("Most2_18", 0, 1, 2, 2590);
                 break;
 
             case 2590:
                 // Pohonc spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00069"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00070"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00071"),
-                        0, 39, 2, 2600, pohoncTalk);
+                PersonSagt("Most2_19", 0, 39, 2, 2600, pohoncTalk);
                 break;
 
             case 2600:
@@ -1493,44 +1435,29 @@ public class Most2 extends Mainloc2 {
 
             case 2605:
                 // K spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00072"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00073"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00074"),
-                        0, 1, 2, 2610);
+                KrabatSagt("Most2_20", 0, 1, 2, 2610);
                 break;
 
             case 2610:
                 // Kral spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00075"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00076"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00077"),
-                        0, 40, 2, 2620, kralTalk);
+                PersonSagt("Most2_21", 0, 40, 2, 2620, kralTalk);
                 break;
 
             case 2620:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Most2_00078"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00079"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00080"),
-                        0, 1, 2, 2630);
+                KrabatSagt("Most2_22", 0, 1, 2, 2630);
                 break;
 
             case 2630:
                 // Kral spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00081"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00082"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00083"),
-                        0, 40, 2, 2640, kralTalk);
+                PersonSagt("Most2_23", 0, 40, 2, 2640, kralTalk);
                 break;
 
             case 2640:
                 // Kral spricht
                 mainFrame.wave.PlayFile("sfx/kdurjezu.wav");
                 kutscheOpen = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Most2_00084"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00085"),
-                        Start.stringManager.getTranslation("Loc2_Most2_00086"),
-                        0, 40, 2, 2650, kralTalk);
+                PersonSagt("Most2_24", 0, 40, 2, 2650, kralTalk);
                 break;
 
             case 2650:

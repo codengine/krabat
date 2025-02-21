@@ -296,18 +296,12 @@ public class Doma4 extends Mainloc {
 
             case 10:
                 // Text Erzaehler
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Doma4_00000"),
-                        Start.stringManager.getTranslation("Loc4_Doma4_00001"),
-                        Start.stringManager.getTranslation("Loc4_Doma4_00002"),
-                        0, 54, 2, 15, mittelPunkt);
+                PersonSagt("Doma4_1", 0, 54, 2, 15, mittelPunkt);
                 break;
 
             case 15:
                 // Text Erzaehler
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Doma4_00003"),
-                        Start.stringManager.getTranslation("Loc4_Doma4_00004"),
-                        Start.stringManager.getTranslation("Loc4_Doma4_00005"),
-                        0, 54, 2, 20, mittelPunkt);
+                PersonSagt("Doma4_2", 0, 54, 2, 20, mittelPunkt);
                 break;
 
             case 20:

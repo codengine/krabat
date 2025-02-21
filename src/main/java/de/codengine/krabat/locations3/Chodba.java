@@ -491,18 +491,12 @@ public class Chodba extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Bilder anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Chodba_00000"),
-                        Start.stringManager.getTranslation("Loc3_Chodba_00001"),
-                        Start.stringManager.getTranslation("Loc3_Chodba_00002"),
-                        fBilder, 3, 0, 0);
+                KrabatSagt("Chodba_1", fBilder, 3, 0, 0);
                 break;
 
             case 50:
                 // Bilder mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Chodba_00003"),
-                        Start.stringManager.getTranslation("Loc3_Chodba_00004"),
-                        Start.stringManager.getTranslation("Loc3_Chodba_00005"),
-                        fBilder, 3, 0, 0);
+                KrabatSagt("Chodba_2", fBilder, 3, 0, 0);
                 break;
 
             case 100:

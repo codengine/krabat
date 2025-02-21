@@ -915,58 +915,37 @@ public class Zachod extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Seil ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00000"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00001"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00002"),
-                        fSeil, 3, 0, 0);
+                KrabatSagt("Zachod_1", fSeil, 3, 0, 0);
                 break;
 
             case 3:
                 // Kiste oben ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00003"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00004"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00005"),
-                        fKisteOben, 3, 0, 0);
+                KrabatSagt("Zachod_2", fKisteOben, 3, 0, 0);
                 break;
 
             case 4:
                 // neues Brett ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00006"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00007"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00008"),
-                        fBrettNeu, 3, 0, 0);
+                KrabatSagt("Zachod_3", fBrettNeu, 3, 0, 0);
                 break;
 
             case 5:
                 // stara Deska ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00009"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00010"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00011"),
-                        fBrettAlt, 3, 0, 0);
+                KrabatSagt("Zachod_4", fBrettAlt, 3, 0, 0);
                 break;
 
             case 6:
                 // Blido ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00012"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00013"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00014"),
-                        fBlido, 3, 0, 0);
+                KrabatSagt("Zachod_5", fBlido, 3, 0, 0);
                 break;
 
             case 7:
                 // korbik ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00015"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00016"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00017"),
-                        fKorbik, 3, 0, 0);
+                KrabatSagt("Zachod_6", fKorbik, 3, 0, 0);
                 break;
 
             case 8:
                 // Kiste unten ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00018"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00019"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00020"),
-                        fKisteUnten, 3, 0, 0);
+                KrabatSagt("Zachod_7", fKisteUnten, 3, 0, 0);
                 break;
 
             case 20:
@@ -1047,17 +1026,11 @@ public class Zachod extends Mainloc {
                 mainFrame.Clipset = false;
                 if (!mainFrame.Actions[559] || !mainFrame.Actions[681]) {
                     // Noch keinen 1. Teil Stollen gegessen oder noch nie Kisten verschoben
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00021"),
-                            Start.stringManager.getTranslation("Loc3_Zachod_00022"),
-                            Start.stringManager.getTranslation("Loc3_Zachod_00023"),
-                            fKisteOben, 3, 2, 70);
+                    KrabatSagt("Zachod_8", fKisteOben, 3, 2, 70);
                     mainFrame.Actions[681] = true;
                 } else {
                     // Noch keinen 2. Teil Stollen gegessen
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00024"),
-                            Start.stringManager.getTranslation("Loc3_Zachod_00025"),
-                            Start.stringManager.getTranslation("Loc3_Zachod_00026"),
-                            fKisteOben, 3, 2, 70);
+                    KrabatSagt("Zachod_9", fKisteOben, 3, 2, 70);
                 }
                 break;
 
@@ -1074,18 +1047,12 @@ public class Zachod extends Mainloc {
 
             case 80:
                 // verschobene Kiste nochmal verschieben
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00027"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00028"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00029"),
-                        fKisteUnten, 3, 0, 0);
+                KrabatSagt("Zachod_10", fKisteUnten, 3, 0, 0);
                 break;
 
             case 85:
                 // Brett mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00030"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00031"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00032"),
-                        fBrettNeu, 3, 0, 0);
+                KrabatSagt("Zachod_11", fBrettNeu, 3, 0, 0);
                 break;
 
             case 100:
@@ -1122,10 +1089,7 @@ public class Zachod extends Mainloc {
                 // Brett entfernen ansagen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00033"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00034"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00035"),
-                        fBrettNeu, 3, 0, 185);
+                KrabatSagt("Zachod_12", fBrettNeu, 3, 0, 185);
                 break;
 
             case 185:
@@ -1213,17 +1177,11 @@ public class Zachod extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00036"),
-                                Start.stringManager.getTranslation("Loc3_Zachod_00037"),
-                                Start.stringManager.getTranslation("Loc3_Zachod_00038"),
-                                fBrettNeu, 3, 0, 0);
+                        KrabatSagt("Zachod_13", fBrettNeu, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00039"),
-                                Start.stringManager.getTranslation("Loc3_Zachod_00040"),
-                                Start.stringManager.getTranslation("Loc3_Zachod_00041"),
-                                fBrettNeu, 3, 0, 0);
+                        KrabatSagt("Zachod_14", fBrettNeu, 3, 0, 0);
                         break;
                 }
                 break;
@@ -1245,26 +1203,17 @@ public class Zachod extends Mainloc {
 
             case 240:
                 // stara Deska mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00042"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00043"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00044"),
-                        fBrettAlt, 3, 0, 0);
+                KrabatSagt("Zachod_15", fBrettAlt, 3, 0, 0);
                 break;
 
             case 250:
                 // Blido mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00045"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00046"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00047"),
-                        fBlido, 3, 0, 0);
+                KrabatSagt("Zachod_16", fBlido, 3, 0, 0);
                 break;
 
             case 260:
                 // korbik mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zachod_00048"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00049"),
-                        Start.stringManager.getTranslation("Loc3_Zachod_00050"),
-                        fKorbik, 3, 0, 0);
+                KrabatSagt("Zachod_17", fKorbik, 3, 0, 0);
                 break;
 
             default:

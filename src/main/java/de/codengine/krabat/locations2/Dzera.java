@@ -226,122 +226,77 @@ public class Dzera extends Mainloc {
         switch (nextActionID) {
             case 100:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00003"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00004"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00005"),
-                        0, 36, 0, 110, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_1", 0, 36, 0, 110, mueller.evalMlynkTalkPoint());
                 break;
 
             case 110:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00006"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00007"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00008"),
-                        0, 59, 2, 120, kockaTalk);
+                PersonSagt("Dzera_2", 0, 59, 2, 120, kockaTalk);
                 break;
 
             case 120:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00009"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00010"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00011"),
-                        0, 36, 2, 130, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_3", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
                 break;
 
             case 130:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00012"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00013"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00014"),
-                        0, 59, 2, 135, kockaTalk);
+                PersonSagt("Dzera_4", 0, 59, 2, 135, kockaTalk);
                 break;
 
             case 135:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00015"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00016"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00017"),
-                        0, 59, 2, 140, kockaTalk);
+                PersonSagt("Dzera_5", 0, 59, 2, 140, kockaTalk);
                 break;
 
             case 140:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00018"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00019"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00020"),
-                        0, 36, 2, 150, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_6", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
                 break;
 
             case 150:
                 // Krabat redet
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Dzera_00021"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00022"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00023"),
-                        0, 3, 2, 160);
+                KrabatSagt("Dzera_7", 0, 3, 2, 160);
                 break;
 
             case 160:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00024"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00025"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00026"),
-                        0, 59, 2, 170, kockaTalk);
+                PersonSagt("Dzera_8", 0, 59, 2, 170, kockaTalk);
                 break;
 
             case 170:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00027"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00028"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00029"),
-                        0, 36, 2, 180, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_9", 0, 36, 2, 180, mueller.evalMlynkTalkPoint());
                 break;
 
             case 180:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00030"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00031"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00032"),
-                        0, 59, 2, 190, kockaTalk);
+                PersonSagt("Dzera_10", 0, 59, 2, 190, kockaTalk);
                 break;
 
             case 190:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00033"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00034"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00035"),
-                        0, 36, 2, 200, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_11", 0, 36, 2, 200, mueller.evalMlynkTalkPoint());
                 break;
 
             case 200:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00036"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00037"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00038"),
-                        0, 59, 2, 205, kockaTalk);
+                PersonSagt("Dzera_12", 0, 59, 2, 205, kockaTalk);
                 break;
 
             case 205:
                 // Katze redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00039"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00040"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00041"),
-                        0, 59, 2, 210, kockaTalk);
+                PersonSagt("Dzera_13", 0, 59, 2, 210, kockaTalk);
                 break;
 
             case 210:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00042"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00043"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00044"),
-                        0, 36, 2, 220, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_14", 0, 36, 2, 220, mueller.evalMlynkTalkPoint());
                 break;
 
             case 220:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Dzera_00045"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00046"),
-                        Start.stringManager.getTranslation("Loc2_Dzera_00047"),
-                        0, 36, 2, 250, mueller.evalMlynkTalkPoint());
+                PersonSagt("Dzera_15", 0, 36, 2, 250, mueller.evalMlynkTalkPoint());
                 break;
         
       /*case 230:

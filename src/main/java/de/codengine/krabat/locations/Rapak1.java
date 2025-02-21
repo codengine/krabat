@@ -875,10 +875,7 @@ public class Rapak1 extends Mainloc {
 
             case 1:
                 // Schild anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00002"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Rapak1_1", fSchild, 3, 0, 0);
                 break;
 
             case 2:
@@ -886,35 +883,23 @@ public class Rapak1 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00003"),
-                                Start.stringManager.getTranslation("Loc1_Rapak1_00004"),
-                                Start.stringManager.getTranslation("Loc1_Rapak1_00005"),
-                                fRapak, 3, 0, 0);
+                        KrabatSagt("Rapak1_2", fRapak, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00006"),
-                                Start.stringManager.getTranslation("Loc1_Rapak1_00007"),
-                                Start.stringManager.getTranslation("Loc1_Rapak1_00008"),
-                                fRapak, 3, 0, 0);
+                        KrabatSagt("Rapak1_3", fRapak, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 3:
                 // Pjero anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00011"),
-                        fPjero, 3, 0, 0);
+                KrabatSagt("Rapak1_4", fPjero, 3, 0, 0);
                 break;
 
             case 4:
                 // Schild oben anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00014"),
-                        fSchildOben, 3, 0, 0);
+                KrabatSagt("Rapak1_5", fSchildOben, 3, 0, 0);
                 break;
 
             case 50:
@@ -963,10 +948,7 @@ public class Rapak1 extends Mainloc {
                 if (animit) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00017"),
-                        0, 3, 0, 58);
+                KrabatSagt("Rapak1_6", 0, 3, 0, 58);
                 break;
 
             case 58:
@@ -1005,10 +987,7 @@ public class Rapak1 extends Mainloc {
 
             case 65:
                 // Schild oben mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00020"),
-                        fSchildOben, 3, 0, 0);
+                KrabatSagt("Rapak1_7", fSchildOben, 3, 0, 0);
                 break;
 
             case 100:
@@ -1028,10 +1007,7 @@ public class Rapak1 extends Mainloc {
 
             case 103:
                 // nach rechts gehen will ich nicht !
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00021"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00022"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00023"),
-                        fExitRight, 3, 0, 0);
+                KrabatSagt("Rapak1_8", fExitRight, 3, 0, 0);
                 break;
 
             case 150:
@@ -1097,34 +1073,22 @@ public class Rapak1 extends Mainloc {
 
             case 200:
                 // Kamuski auf schildern
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00026"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Rapak1_9", fSchild, 3, 0, 0);
                 break;
 
             case 210:
                 // Kij auf schild unten
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00027"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00028"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00029"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Rapak1_10", fSchild, 3, 0, 0);
                 break;
 
             case 220:
                 // bron auf rapak 2. Mal
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00030"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00031"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00032"),
-                        fRapak, 3, 0, 0);
+                KrabatSagt("Rapak1_11", fRapak, 3, 0, 0);
                 break;
 
             case 230:
                 // Stock+Kombinationen auf Rapak
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Rapak1_00033"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00034"),
-                        Start.stringManager.getTranslation("Loc1_Rapak1_00035"),
-                        fRapak, 3, 0, 0);
+                KrabatSagt("Rapak1_12", fRapak, 3, 0, 0);
                 break;
 
             default:

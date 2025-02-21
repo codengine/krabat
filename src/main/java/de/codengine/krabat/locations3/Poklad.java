@@ -301,32 +301,23 @@ public class Poklad extends Mainloc {
 
             case 10:
                 // Erzaehler spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00000"), Start.stringManager.getTranslation("Loc3_Poklad_00001"), Start.stringManager.getTranslation("Loc3_Poklad_00002"), 0, 54, 2, 20, new GenericPoint(320, 200));
+                PersonSagt("Poklad_1", 0, 54, 2, 20, new GenericPoint(320, 200));
                 break;
 
             case 20:
                 // Straza spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00003"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00004"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00005"),
-                        0, 46, 2, 30, talkPointStraza);
+                PersonSagt("Poklad_2", 0, 46, 2, 30, talkPointStraza);
                 break;
 
             case 30:
                 // Dingl spricht
                 welcheAnim = 1;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00006"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00007"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00008"),
-                        0, 47, 2, 40, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Poklad_3", 0, 47, 2, 40, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 40:
                 // Straza spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00009"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00010"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00011"),
-                        0, 46, 2, 45, talkPointStraza);
+                PersonSagt("Poklad_4", 0, 46, 2, 45, talkPointStraza);
                 break;
 
             case 45:
@@ -363,10 +354,7 @@ public class Poklad extends Mainloc {
                 if (--Counter > 1) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00012"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00013"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00014"),
-                        0, 47, 2, 70, new GenericPoint(640, 200));
+                PersonSagt("Poklad_5", 0, 47, 2, 70, new GenericPoint(640, 200));
                 break;
 
             case 70:
@@ -382,10 +370,7 @@ public class Poklad extends Mainloc {
                 if (!walkReady) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00015"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00016"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00017"),
-                        0, 47, 2, 81, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Poklad_6", 0, 47, 2, 81, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 81:
@@ -410,18 +395,12 @@ public class Poklad extends Mainloc {
                 if (!walkReady) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00018"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00019"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00020"),
-                        0, 47, 2, 90, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Poklad_7", 0, 47, 2, 90, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 90:
                 // Dingl spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00021"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00022"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00023"),
-                        0, 47, 2, 95, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Poklad_8", 0, 47, 2, 95, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 95:
@@ -471,26 +450,17 @@ public class Poklad extends Mainloc {
                     break;
                 }
                 dinglingerwalk.SetFacing(9);
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00024"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00025"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00026"),
-                        0, 46, 2, 120, talkPointStraza);
+                PersonSagt("Poklad_9", 0, 46, 2, 120, talkPointStraza);
                 break;
 
             case 120:
                 // Dingl spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00027"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00028"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00029"),
-                        0, 47, 2, 130, dinglingerwalk.evalTalkPoint());
+                PersonSagt("Poklad_10", 0, 47, 2, 130, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 130:
                 // Straza spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Poklad_00030"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00031"),
-                        Start.stringManager.getTranslation("Loc3_Poklad_00032"),
-                        0, 46, 2, 140, talkPointStraza);
+                PersonSagt("Poklad_11", 0, 46, 2, 140, talkPointStraza);
                 break;
 
             case 140:

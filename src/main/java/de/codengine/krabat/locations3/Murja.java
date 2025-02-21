@@ -587,18 +587,12 @@ public class Murja extends Mainloc {
             case 605:
                 // Anim runtergefallt
                 isBuschVisible = false;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Murja_00000"),
-                        Start.stringManager.getTranslation("Loc3_Murja_00001"),
-                        Start.stringManager.getTranslation("Loc3_Murja_00002"),
-                        6, 3, 2, 610);
+                KrabatSagt("Murja_1", 6, 3, 2, 610);
                 break;
 
             case 610:
                 // nun sagen, dass man sich ja umziehen moechte
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Murja_00003"),
-                        Start.stringManager.getTranslation("Loc3_Murja_00004"),
-                        Start.stringManager.getTranslation("Loc3_Murja_00005"),
-                        0, 3, 2, 620);
+                KrabatSagt("Murja_2", 0, 3, 2, 620);
                 break;
 
             case 620:

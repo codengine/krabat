@@ -995,60 +995,49 @@ public class Doma1 extends Mainloc {
 
             case 1:
                 // Brunnen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00000"), Start.stringManager.getTranslation("Loc1_Doma1_00001"), Start.stringManager.getTranslation("Loc1_Doma1_00002"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma1_1", fBrunnen, 3, 0, 0);
                 break;
 
             case 2:
                 // Haustuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00003"), Start.stringManager.getTranslation("Loc1_Doma1_00004"), Start.stringManager.getTranslation("Loc1_Doma1_00005"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Doma1_2", fTuer, 3, 0, 0);
                 break;
 
             case 3:
                 // Stock anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00006"), Start.stringManager.getTranslation("Loc1_Doma1_00007"), Start.stringManager.getTranslation("Loc1_Doma1_00008"),
-                        fStock, 3, 0, 0);
+                KrabatSagt("Doma1_3", fStock, 3, 0, 0);
                 break;
 
             case 4:
                 // Schild anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00009"), Start.stringManager.getTranslation("Loc1_Doma1_00010"), Start.stringManager.getTranslation("Loc1_Doma1_00011"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Doma1_4", fSchild, 3, 0, 0);
                 break;
 
             case 5:
                 // Mutter anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00012"), Start.stringManager.getTranslation("Loc1_Doma1_00013"), Start.stringManager.getTranslation("Loc1_Doma1_00014"),
-                        fMutter, 3, 0, 0);
+                KrabatSagt("Doma1_5", fMutter, 3, 0, 0);
                 break;
 
             case 6:
                 // Gaense anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00015"), Start.stringManager.getTranslation("Loc1_Doma1_00016"), Start.stringManager.getTranslation("Loc1_Doma1_00017"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma1_6", fGaense, 3, 0, 0);
                 break;
 
             // Use - DoActions
 
             case 50:
                 // ins Haus gehen ??
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00018"), Start.stringManager.getTranslation("Loc1_Doma1_00019"), Start.stringManager.getTranslation("Loc1_Doma1_00020"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Doma1_7", fTuer, 3, 0, 0);
                 break;
 
             case 51:
                 // Schild mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00021"), Start.stringManager.getTranslation("Loc1_Doma1_00022"), Start.stringManager.getTranslation("Loc1_Doma1_00023"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Doma1_8", fSchild, 3, 0, 0);
                 break;
 
             case 52:
                 // Brunnen benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00026"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma1_9", fBrunnen, 3, 0, 0);
                 break;
 
             case 53:
@@ -1087,8 +1076,7 @@ public class Doma1 extends Mainloc {
 
             case 70:
                 // Gaense mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00033"), Start.stringManager.getTranslation("Loc1_Doma1_00034"), Start.stringManager.getTranslation("Loc1_Doma1_00035"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma1_10", fGaense, 3, 0, 0);
                 break;
 
             case 80:
@@ -1186,38 +1174,32 @@ public class Doma1 extends Mainloc {
 
             case 200:
                 // Angel auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00039"), Start.stringManager.getTranslation("Loc1_Doma1_00040"), Start.stringManager.getTranslation("Loc1_Doma1_00041"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma1_11", fBrunnen, 3, 0, 0);
                 break;
 
             case 210:
                 // Angel mit Wurm oder Holzfisch auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00042"), Start.stringManager.getTranslation("Loc1_Doma1_00043"), Start.stringManager.getTranslation("Loc1_Doma1_00044"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma1_12", fBrunnen, 3, 0, 0);
                 break;
 
             case 220:
                 // Fisch auf Brunnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00045"), Start.stringManager.getTranslation("Loc1_Doma1_00046"), Start.stringManager.getTranslation("Loc1_Doma1_00047"),
-                        fBrunnen, 3, 0, 0);
+                KrabatSagt("Doma1_13", fBrunnen, 3, 0, 0);
                 break;
 
             case 230:
                 // Kij auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00048"), Start.stringManager.getTranslation("Loc1_Doma1_00049"), Start.stringManager.getTranslation("Loc1_Doma1_00050"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma1_14", fGaense, 3, 0, 0);
                 break;
 
             case 240:
                 // Lajna auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00051"), Start.stringManager.getTranslation("Loc1_Doma1_00052"), Start.stringManager.getTranslation("Loc1_Doma1_00053"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma1_15", fGaense, 3, 0, 0);
                 break;
 
             case 250:
                 // Wacki oder Ryba auf Husy
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00054"), Start.stringManager.getTranslation("Loc1_Doma1_00055"), Start.stringManager.getTranslation("Loc1_Doma1_00056"),
-                        fGaense, 3, 0, 0);
+                KrabatSagt("Doma1_16", fGaense, 3, 0, 0);
                 break;
 
             // Multiple Choice
@@ -1245,16 +1227,12 @@ public class Doma1 extends Mainloc {
 
             case 602:
                 // 1. Argument Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Doma1_00057"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00058"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00059"),
-                        fMutter, 1, 2, 603);
+                KrabatSagt("Doma1_17", fMutter, 1, 2, 603);
                 break;
 
             case 603:
                 // 1. Argument Mutter
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00060"), Start.stringManager.getTranslation("Loc1_Doma1_00061"), Start.stringManager.getTranslation("Loc1_Doma1_00062"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_18", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 610:
@@ -1270,8 +1248,7 @@ public class Doma1 extends Mainloc {
                 if (mainFrame.isScrolling) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00063"), Start.stringManager.getTranslation("Loc1_Doma1_00064"), Start.stringManager.getTranslation("Loc1_Doma1_00065"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_19", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 630:
@@ -1356,42 +1333,27 @@ public class Doma1 extends Mainloc {
 
             case 640:
                 // Reaktion Mutter 1. Fr/ 1. T
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00087"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00088"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00089"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_20", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 650:
                 // Reaktion Mutter 1. Fr/2. T
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00090"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00091"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00092"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_21", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 660:
                 // Reaktion Mutter 2. Fr/1. T
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00093"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00094"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00095"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_22", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 670:
                 // Reaktion Mutter 2. Fr/ 2. T
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00096"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00097"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00098"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_23", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 680:
                 // Reaktion Mutter 2. Fr/ 3. T
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00099"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00100"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00101"),
-                        0, 20, 2, 630, MacTalk);
+                PersonSagt("Doma1_24", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 690:
@@ -1407,10 +1369,7 @@ public class Doma1 extends Mainloc {
 
             case 700:
                 // Mutter gibt auf - Erfolg
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Doma1_00102"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00103"),
-                        Start.stringManager.getTranslation("Loc1_Doma1_00104"),
-                        0, 20, 2, 710, MacTalk);
+                PersonSagt("Doma1_25", 0, 20, 2, 710, MacTalk);
                 break;
 
             case 710:

@@ -656,42 +656,27 @@ public class Komedij extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Gorilla ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00000"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00001"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00002"),
-                        fGorilla, 3, 0, 0);
+                KrabatSagt("Komedij_1", fGorilla, 3, 0, 0);
                 break;
 
             case 2:
                 // Gorilla mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00003"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00004"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00005"),
-                        fGorilla, 3, 0, 0);
+                KrabatSagt("Komedij_2", fGorilla, 3, 0, 0);
                 break;
 
             case 3:
                 // Beil ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00006"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00007"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00008"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Komedij_3", fSekera, 3, 0, 0);
                 break;
 
             case 4:
                 // Beil mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00009"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00010"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00011"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Komedij_4", fSekera, 3, 0, 0);
                 break;
 
             case 5:
                 // Bedienstetenkleidung ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00012"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00013"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00014"),
-                        fSluzDrasta, 3, 0, 0);
+                KrabatSagt("Komedij_5", fSluzDrasta, 3, 0, 0);
                 break;
 
             case 6:
@@ -727,59 +712,38 @@ public class Komedij extends Mainloc {
                 int zZahl = (int) (Math.random() * 1.9);
                 switch (zZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00015"),
-                                Start.stringManager.getTranslation("Loc3_Komedij_00016"),
-                                Start.stringManager.getTranslation("Loc3_Komedij_00017"),
-                                fPostawa, 3, 0, 0);
+                        KrabatSagt("Komedij_6", fPostawa, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00018"),
-                                Start.stringManager.getTranslation("Loc3_Komedij_00019"),
-                                Start.stringManager.getTranslation("Loc3_Komedij_00020"),
-                                fPostawa, 3, 0, 0);
+                        KrabatSagt("Komedij_7", fPostawa, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 11:
                 // mjec ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00021"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00022"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00023"),
-                        fMjec, 3, 0, 0);
+                KrabatSagt("Komedij_8", fMjec, 3, 0, 0);
                 break;
 
             case 12:
                 // tesaki ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00024"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00025"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00026"),
-                        fTesaki, 3, 0, 0);
+                KrabatSagt("Komedij_9", fTesaki, 3, 0, 0);
                 break;
 
             case 20:
                 // postawa mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00027"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00028"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00029"),
-                        fPostawa, 3, 0, 0);
+                KrabatSagt("Komedij_10", fPostawa, 3, 0, 0);
                 break;
 
             case 25:
                 // mjec mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00030"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00031"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00032"),
-                        fMjec, 3, 0, 0);
+                KrabatSagt("Komedij_11", fMjec, 3, 0, 0);
                 break;
 
             case 30:
                 // tesaki mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Komedij_00033"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00034"),
-                        Start.stringManager.getTranslation("Loc3_Komedij_00035"),
-                        fTesaki, 3, 0, 0);
+                KrabatSagt("Komedij_12", fTesaki, 3, 0, 0);
                 break;
 
             case 100:

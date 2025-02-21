@@ -523,18 +523,12 @@ public class Jewisco extends Mainloc {
                 // Buch anschauen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00000"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00001"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00002"),
-                        fBuch, 3, 2, 2);
+                KrabatSagt("Jewisco_1", fBuch, 3, 2, 2);
                 break;
 
             case 2:
                 // immer noch Buch anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00003"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00004"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00005"),
-                        fBuch, 3, 0, 3);
+                KrabatSagt("Jewisco_2", fBuch, 3, 0, 3);
                 break;
 
             case 3:
@@ -550,16 +544,10 @@ public class Jewisco extends Mainloc {
                 int zfza = (int) (Math.random() * 1.99);
                 switch (zfza) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00006"),
-                                Start.stringManager.getTranslation("Loc3_Jewisco_00007"),
-                                Start.stringManager.getTranslation("Loc3_Jewisco_00008"),
-                                fZuschauer, 3, 0, 0);
+                        KrabatSagt("Jewisco_3", fZuschauer, 3, 0, 0);
                         break;
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00009"),
-                                Start.stringManager.getTranslation("Loc3_Jewisco_00010"),
-                                Start.stringManager.getTranslation("Loc3_Jewisco_00011"),
-                                fZuschauer, 3, 0, 0);
+                        KrabatSagt("Jewisco_4", fZuschauer, 3, 0, 0);
                         break;
                 }
                 break;
@@ -584,10 +572,7 @@ public class Jewisco extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00012"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00013"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00014"),
-                        fBuch, 3, 0, 60);
+                KrabatSagt("Jewisco_5", fBuch, 3, 0, 60);
                 break;
 
             case 60:
@@ -600,10 +585,7 @@ public class Jewisco extends Mainloc {
 
             case 70:
                 // Use Zuschauer
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Jewisco_00015"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00016"),
-                        Start.stringManager.getTranslation("Loc3_Jewisco_00017"),
-                        fZuschauer, 3, 0, 0);
+                KrabatSagt("Jewisco_6", fZuschauer, 3, 0, 0);
                 break;
 
             case 100:

@@ -717,18 +717,12 @@ public class Sunow2 extends Mainloc2 {
         switch (nextActionID) {
             case 1:
                 // Sunow anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Sunow2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00002"),
-                        fSunow, 3, 0, 0);
+                KrabatSagt("Sunow2_1", fSunow, 3, 0, 0);
                 break;
 
             case 50:
                 // Sunow mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Sunow2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00005"),
-                        fSunow, 3, 0, 0);
+                KrabatSagt("Sunow2_2", fSunow, 3, 0, 0);
                 break;
 
             case 100:
@@ -748,10 +742,7 @@ public class Sunow2 extends Mainloc2 {
 
             case 200:
                 // kamuski auf dorf
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Sunow2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Sunow2_00008"),
-                        fSunow, 3, 0, 0);
+                KrabatSagt("Sunow2_3", fSunow, 3, 0, 0);
                 break;
 
             case 600:

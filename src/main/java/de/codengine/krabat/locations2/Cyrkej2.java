@@ -590,10 +590,7 @@ public class Cyrkej2 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00002"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Cyrkej2_1", fTuer, 3, 0, 0);
                 break;
 
             case 50:
@@ -617,8 +614,7 @@ public class Cyrkej2 extends Mainloc {
             case 57:
                 // Leider hoert keiner, aber beim 1. Mal doch !!
                 if (mainFrame.Actions[302]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00003"), Start.stringManager.getTranslation("Loc2_Cyrkej2_00004"), Start.stringManager.getTranslation("Loc2_Cyrkej2_00005"),
-                            fTuer, 3, 0, 0);
+                    KrabatSagt("Cyrkej2_2", fTuer, 3, 0, 0);
                     mainFrame.fPlayAnim = false;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                 } else {
@@ -766,132 +762,84 @@ public class Cyrkej2 extends Mainloc {
 
             case 610:
                 // Reaktion Farar auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00033"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00034"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00035"),
-                        0, 37, 2, 600, pfarrerTalk);
+                PersonSagt("Cyrkej2_3", 0, 37, 2, 600, pfarrerTalk);
                 break;
 
             case 620:
                 // Reaktion Farar auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00036"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00037"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00038"),
-                        0, 37, 2, 625, pfarrerTalk);
+                PersonSagt("Cyrkej2_4", 0, 37, 2, 625, pfarrerTalk);
                 break;
 
             case 625:
                 // Reaktion Farar auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00041"),
-                        0, 37, 2, 600, pfarrerTalk);
+                PersonSagt("Cyrkej2_5", 0, 37, 2, 600, pfarrerTalk);
                 break;
 
             case 630:
                 // Reaktion Farar auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00042"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00043"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00044"),
-                        0, 37, 2, 632, pfarrerTalk);
+                PersonSagt("Cyrkej2_6", 0, 37, 2, 632, pfarrerTalk);
                 break;
 
 
             case 632:
                 // Reaktion Farar auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00045"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00046"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00047"),
-                        0, 37, 2, 634, pfarrerTalk);
+                PersonSagt("Cyrkej2_7", 0, 37, 2, 634, pfarrerTalk);
                 break;
 
             case 634:
                 // Reaktion Farar auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00048"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00049"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00050"),
-                        0, 37, 2, 636, pfarrerTalk);
+                PersonSagt("Cyrkej2_8", 0, 37, 2, 636, pfarrerTalk);
                 break;
 
             case 636:
                 // Krabat sequenzt hier 
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00053"),
-                        0, 1, 2, 640);
+                KrabatSagt("Cyrkej2_9", 0, 1, 2, 640);
                 break;
 
             case 640:
                 // Reaktion Farar auf 4. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00054"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00055"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00056"),
-                        0, 37, 2, 645, pfarrerTalk);
+                PersonSagt("Cyrkej2_10", 0, 37, 2, 645, pfarrerTalk);
                 break;
 
             case 645:
                 // Krabat sagt nen Spruch  
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00057"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00058"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00059"),
-                        0, 1, 2, 650);
+                KrabatSagt("Cyrkej2_11", 0, 1, 2, 650);
                 break;
 
             case 650:
                 // Reaktion Farar auf 5. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00060"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00061"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00062"),
-                        0, 37, 2, 600, pfarrerTalk);
+                PersonSagt("Cyrkej2_12", 0, 37, 2, 600, pfarrerTalk);
                 break;
 
             case 660:
                 // Reaktion Farar auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00063"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00064"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00065"),
-                        0, 37, 2, 600, pfarrerTalk);
+                PersonSagt("Cyrkej2_13", 0, 37, 2, 600, pfarrerTalk);
                 break;
 
             case 670:
                 // Reaktion Farar auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00066"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00067"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00068"),
-                        0, 37, 2, 600, pfarrerTalk);
+                PersonSagt("Cyrkej2_14", 0, 37, 2, 600, pfarrerTalk);
                 break;
 
             case 680:
                 // Reaktion Farar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00069"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00070"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00071"),
-                        0, 37, 2, 800, pfarrerTalk);
+                PersonSagt("Cyrkej2_15", 0, 37, 2, 800, pfarrerTalk);
                 break;
 
             case 690:
                 // Reaktion Farar auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00072"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00073"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00074"),
-                        0, 37, 2, 695, pfarrerTalk);
+                PersonSagt("Cyrkej2_16", 0, 37, 2, 695, pfarrerTalk);
                 break;
 
             case 695:
                 // Krabat sequenzt
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00075"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00076"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00077"),
-                        0, 1, 2, 700);
+                KrabatSagt("Cyrkej2_17", 0, 1, 2, 700);
                 break;
 
 
             case 700:
                 // Reaktion Farar auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Cyrkej2_00078"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00079"),
-                        Start.stringManager.getTranslation("Loc2_Cyrkej2_00080"),
-                        0, 37, 2, 710, pfarrerTalk);
+                PersonSagt("Cyrkej2_18", 0, 37, 2, 710, pfarrerTalk);
                 break;
 
             case 710:

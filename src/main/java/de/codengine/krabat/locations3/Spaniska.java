@@ -890,10 +890,7 @@ public class Spaniska extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Dziwad#delnica anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00000"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00001"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00002"),
-                        fDziw, 3, 0, 0);
+                KrabatSagt("Spaniska_1", fDziw, 3, 0, 0);
                 break;
 
             case 2:
@@ -906,34 +903,22 @@ public class Spaniska extends Mainloc {
 
             case 3:
                 // Enterhaken anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00003"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00004"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00005"),
-                        fKotwica, 3, 0, 0);
+                KrabatSagt("Spaniska_2", fKotwica, 3, 0, 0);
                 break;
 
             case 4:
                 // Spiegel anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00006"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00007"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00008"),
-                        fSpiegel, 3, 0, 0);
+                KrabatSagt("Spaniska_3", fSpiegel, 3, 0, 0);
                 break;
 
             case 5:
                 // Spiegel benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00009"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00010"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00011"),
-                        fSpiegel, 3, 0, 0);
+                KrabatSagt("Spaniska_4", fSpiegel, 3, 0, 0);
                 break;
 
             case 6:
                 // Blumen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00012"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00013"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00014"),
-                        fBlumen, 3, 0, 0);
+                KrabatSagt("Spaniska_5", fBlumen, 3, 0, 0);
                 break;
 
             case 7:
@@ -947,26 +932,17 @@ public class Spaniska extends Mainloc {
 
             case 8:
                 // Faltwand ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00015"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00016"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00017"),
-                        fFaltWand, 3, 0, 0);
+                KrabatSagt("Spaniska_6", fFaltWand, 3, 0, 0);
                 break;
 
             case 9:
                 // 5 Taler ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00018"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00019"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00020"),
-                        fToler, 3, 0, 0);
+                KrabatSagt("Spaniska_7", fToler, 3, 0, 0);
                 break;
 
             case 10:
                 // Papier ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00021"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00022"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00023"),
-                        fPapier, 3, 0, 0);
+                KrabatSagt("Spaniska_8", fPapier, 3, 0, 0);
                 break;
 
             case 15:
@@ -983,10 +959,7 @@ public class Spaniska extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00024"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00025"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00026"),
-                        fBlumen, 3, 2, 17);
+                KrabatSagt("Spaniska_9", fBlumen, 3, 2, 17);
                 break;
 
             case 17:
@@ -1056,26 +1029,17 @@ public class Spaniska extends Mainloc {
 
             case 30:
                 // Papier mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00027"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00028"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00029"),
-                        fPapier, 3, 0, 0);
+                KrabatSagt("Spaniska_10", fPapier, 3, 0, 0);
                 break;
 
             case 35:
                 // Spaniska mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00030"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00031"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00032"),
-                        fFaltWand, 3, 0, 0);
+                KrabatSagt("Spaniska_11", fFaltWand, 3, 0, 0);
                 break;
 
             case 40:
                 // Haken wieder wegnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00033"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00034"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00035"),
-                        fKotwica, 3, 0, 0);
+                KrabatSagt("Spaniska_12", fKotwica, 3, 0, 0);
                 break;
 
             case 100:
@@ -1132,18 +1096,12 @@ public class Spaniska extends Mainloc {
 
             case 200:
                 // hlebija auf rosen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00036"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00037"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00038"),
-                        fBlumen, 3, 0, 0);
+                KrabatSagt("Spaniska_13", fBlumen, 3, 0, 0);
                 break;
 
             case 210:
                 // schwere ggst auf Spiegel
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00039"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00040"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00041"),
-                        fSpiegel, 3, 0, 0);
+                KrabatSagt("Spaniska_14", fSpiegel, 3, 0, 0);
                 break;
 
             // Krabat schmeisst Bemerkungen
@@ -1152,24 +1110,15 @@ public class Spaniska extends Mainloc {
                 int zuffZahl2 = (int) (Math.random() * 2.9);
                 switch (zuffZahl2) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00042"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00043"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00044"),
-                                0, 3, 2, 800);
+                        KrabatSagt("Spaniska_15", 0, 3, 2, 800);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00045"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00046"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00047"),
-                                0, 3, 2, 800);
+                        KrabatSagt("Spaniska_16", 0, 3, 2, 800);
                         break;
 
                     case 2:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00048"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00049"),
-                                Start.stringManager.getTranslation("Loc3_Spaniska_00050"),
-                                0, 3, 2, 800);
+                        KrabatSagt("Spaniska_17", 0, 3, 2, 800);
                         break;
                 }
                 break;
@@ -1178,16 +1127,12 @@ public class Spaniska extends Mainloc {
             case 310:
                 // Text einblenden
                 mainFrame.Actions[514] = true;  // Dziw ist weg
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00051"), Start.stringManager.getTranslation("Loc3_Spaniska_00052"), Start.stringManager.getTranslation("Loc3_Spaniska_00053"),
-                        0, 54, 2, 311, talkPointCenter);
+                PersonSagt("Spaniska_18", 0, 54, 2, 311, talkPointCenter);
                 break;
 
             case 311:
                 // Text einblenden
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00054"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00055"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00056"),
-                        0, 54, 2, 312, talkPointCenter);
+                PersonSagt("Spaniska_19", 0, 54, 2, 312, talkPointCenter);
                 break;
 
             case 312:
@@ -1195,19 +1140,13 @@ public class Spaniska extends Mainloc {
                 krabatFaellt = false;
                 FadeToBlack = 0;
                 mainFrame.Clipset = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00057"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00058"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00059"),
-                        0, 54, 2, 313, talkPointCenter);
+                PersonSagt("Spaniska_20", 0, 54, 2, 313, talkPointCenter);
                 break;
 
             case 313:
                 // Krabat brummt der Schaedel
                 BackgroundMusicPlayer.getInstance().playTrack(16, true);
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Spaniska_00060"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00061"),
-                        Start.stringManager.getTranslation("Loc3_Spaniska_00062"),
-                        0, 3, 2, 800);
+                KrabatSagt("Spaniska_21", 0, 3, 2, 800);
                 break;
 
             case 800:

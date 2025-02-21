@@ -302,50 +302,32 @@ public class Mlynkmurja extends Mainloc {
 
             case 30:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00000"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00001"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00002"),
-                        0, 36, 2, 40, muellerTalk);
+                PersonSagt("Mlynkmurja_1", 0, 36, 2, 40, muellerTalk);
                 break;
 
             case 40:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00003"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00004"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00005"),
-                        0, 1, 2, 50);
+                KrabatSagt("Mlynkmurja_2", 0, 1, 2, 50);
                 break;
 
             case 50:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00006"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00007"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00008"),
-                        0, 36, 2, 60, muellerTalk);
+                PersonSagt("Mlynkmurja_3", 0, 36, 2, 60, muellerTalk);
                 break;
 
             case 60:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00009"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00010"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00011"),
-                        0, 1, 2, 70);
+                KrabatSagt("Mlynkmurja_4", 0, 1, 2, 70);
                 break;
 
             case 70:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00012"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00013"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00014"),
-                        0, 36, 2, 80, muellerTalk);
+                PersonSagt("Mlynkmurja_5", 0, 36, 2, 80, muellerTalk);
                 break;
 
             case 80:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00015"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00016"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00017"),
-                        0, 1, 2, 90);
+                KrabatSagt("Mlynkmurja_6", 0, 1, 2, 90);
                 break;
 
             case 90:
@@ -366,15 +348,12 @@ public class Mlynkmurja extends Mainloc {
                 if (--Counter > 0) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00018"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00019"),
-                        Start.stringManager.getTranslation("Loc3_Mlynkmurja_00020"),
-                        0, 66, 2, 110, muellerTalk);
+                PersonSagt("Mlynkmurja_7", 0, 66, 2, 110, muellerTalk);
                 break;
 
             case 110:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Mlynkmurja_00021"), Start.stringManager.getTranslation("Loc3_Mlynkmurja_00022"), Start.stringManager.getTranslation("Loc3_Mlynkmurja_00023"), 0, 67, 2, 120, muellerTalk);
+                PersonSagt("Mlynkmurja_8", 0, 67, 2, 120, muellerTalk);
                 break;
 
             case 120:

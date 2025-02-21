@@ -771,50 +771,32 @@ public class Zastup extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Mato anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00000"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00001"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00002"),
-                        fMato, 3, 0, 0);
+                KrabatSagt("Zastup_1", fMato, 3, 0, 0);
                 break;
 
             case 2:
                 // Tor anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00003"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00004"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00005"),
-                        fTor, 3, 0, 0);
+                KrabatSagt("Zastup_2", fTor, 3, 0, 0);
                 break;
 
             case 3:
                 // Tor oeffnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00006"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00007"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00008"),
-                        fTor, 3, 0, 0);
+                KrabatSagt("Zastup_3", fTor, 3, 0, 0);
                 break;
 
             case 4:
                 // Schranke ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00009"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00010"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00011"),
-                        fSchranke, 3, 0, 0);
+                KrabatSagt("Zastup_4", fSchranke, 3, 0, 0);
                 break;
 
             case 5:
                 // Schranke oeffnen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00012"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00013"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00014"),
-                        fSchranke, 3, 0, 0);
+                KrabatSagt("Zastup_5", fSchranke, 3, 0, 0);
                 break;
 
             case 6:
                 //  ueber Schranke klettern
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zastup_00015"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00016"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00017"),
-                        fSchranke, 3, 0, 0);
+                KrabatSagt("Zastup_6", fSchranke, 3, 0, 0);
                 break;
 
             case 10:
@@ -896,27 +878,18 @@ public class Zastup extends Mainloc {
 
             case 300:
                 //  Mato 5 Taler geben -> zuwenig
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00018"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00019"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00020"),
-                        0, 49, 0, 800, talkPoint);
+                PersonSagt("Zastup_7", 0, 49, 0, 800, talkPoint);
                 break;
 
             case 301:
                 //  Mato Pelz geben -> Schranke auf
                 schnauzeLoewe = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00021"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00022"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00023"),
-                        0, 49, 2, 302, talkPoint);
+                PersonSagt("Zastup_8", 0, 49, 2, 302, talkPoint);
                 break;
 
             case 302:
                 //  Mato Pelz geben -> Schranke auf
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00024"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00025"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00026"),
-                        0, 49, 2, 310, talkPoint);
+                PersonSagt("Zastup_9", 0, 49, 2, 310, talkPoint);
                 break;
 
             case 310:
@@ -1049,77 +1022,50 @@ public class Zastup extends Mainloc {
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00054"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00055"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00056"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_10", 0, 49, 2, 600, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00057"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00058"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00059"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_11", 0, 49, 2, 600, talkPoint);
                 break;
 
             case 612:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00060"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00061"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00062"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_12", 0, 49, 2, 600, talkPoint);
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00063"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00064"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00065"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_13", 0, 49, 2, 600, talkPoint);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00066"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00067"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00068"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_14", 0, 49, 2, 600, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00069"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00070"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00071"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_15", 0, 49, 2, 600, talkPoint);
                 break;
 
             // Antworten zu Frage 4 ////////////////////////////
             case 640:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00072"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00073"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00074"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_16", 0, 49, 2, 600, talkPoint);
                 break;
 
             case 641:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00075"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00076"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00077"),
-                        0, 49, 2, 642, talkPoint);
+                PersonSagt("Zastup_17", 0, 49, 2, 642, talkPoint);
                 break;
 
             case 642:
                 // Reaktion Mato
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zastup_00078"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00079"),
-                        Start.stringManager.getTranslation("Loc3_Zastup_00080"),
-                        0, 49, 2, 600, talkPoint);
+                PersonSagt("Zastup_18", 0, 49, 2, 600, talkPoint);
                 break;
 
             case 800:

@@ -62,51 +62,6 @@ public class Mertens2 extends Mainloc {
     private GenericPoint kacka1TalkPoint;
     private GenericPoint kacka2TalkPoint;
 
-    // Strings
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Mertens2_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Mertens2_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Mertens2_00002");
-
-    private static final String H2Text = Start.stringManager.getTranslation("Loc2_Mertens2_00003");
-    private static final String D2Text = Start.stringManager.getTranslation("Loc2_Mertens2_00004");
-    private static final String N2Text = Start.stringManager.getTranslation("Loc2_Mertens2_00005");
-
-    private static final String H3Text = Start.stringManager.getTranslation("Loc2_Mertens2_00006");
-    private static final String D3Text = Start.stringManager.getTranslation("Loc2_Mertens2_00007");
-    private static final String N3Text = Start.stringManager.getTranslation("Loc2_Mertens2_00008");
-
-    private static final String H30Text = Start.stringManager.getTranslation("Loc2_Mertens2_00009");
-    private static final String D30Text = Start.stringManager.getTranslation("Loc2_Mertens2_00010");
-    private static final String N30Text = Start.stringManager.getTranslation("Loc2_Mertens2_00011");
-
-    private static final String H31Text = Start.stringManager.getTranslation("Loc2_Mertens2_00012");
-    private static final String D31Text = Start.stringManager.getTranslation("Loc2_Mertens2_00013");
-    private static final String N31Text = Start.stringManager.getTranslation("Loc2_Mertens2_00014");
-
-    private static final String H4Text = Start.stringManager.getTranslation("Loc2_Mertens2_00015");
-    private static final String D4Text = Start.stringManager.getTranslation("Loc2_Mertens2_00016");
-    private static final String N4Text = Start.stringManager.getTranslation("Loc2_Mertens2_00017");
-
-    private static final String H405Text = Start.stringManager.getTranslation("Loc2_Mertens2_00018");
-    private static final String D405Text = Start.stringManager.getTranslation("Loc2_Mertens2_00019");
-    private static final String N405Text = Start.stringManager.getTranslation("Loc2_Mertens2_00020");
-
-    private static final String H41Text = Start.stringManager.getTranslation("Loc2_Mertens2_00021");
-    private static final String D41Text = Start.stringManager.getTranslation("Loc2_Mertens2_00022");
-    private static final String N41Text = Start.stringManager.getTranslation("Loc2_Mertens2_00023");
-
-    private static final String H42Text = Start.stringManager.getTranslation("Loc2_Mertens2_00024");
-    private static final String D42Text = Start.stringManager.getTranslation("Loc2_Mertens2_00025");
-    private static final String N42Text = Start.stringManager.getTranslation("Loc2_Mertens2_00026");
-
-    private static final String H5Text = Start.stringManager.getTranslation("Loc2_Mertens2_00027");
-    private static final String D5Text = Start.stringManager.getTranslation("Loc2_Mertens2_00028");
-    private static final String N5Text = Start.stringManager.getTranslation("Loc2_Mertens2_00029");
-
-    private static final String HBegruessung = Start.stringManager.getTranslation("Loc2_Mertens2_00030");
-    private static final String DBegruessung = Start.stringManager.getTranslation("Loc2_Mertens2_00031");
-    private static final String NBegruessung = Start.stringManager.getTranslation("Loc2_Mertens2_00032");
-
     // Punkte in Location
     private static final GenericPoint Pleft = new GenericPoint(0, 305);
     private static final GenericPoint wmannFeet = new GenericPoint(365, 373);
@@ -827,10 +782,7 @@ public class Mertens2 extends Mainloc {
         switch (nextActionID) {
             case 2:
                 // Wasser anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00033"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00034"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00035"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Mertens2_1", fWoda, 3, 0, 0);
                 break;
 
             case 50:
@@ -849,15 +801,12 @@ public class Mertens2 extends Mainloc {
 
             case 55:
                 // Wasser mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00036"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00037"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00038"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Mertens2_2", fWoda, 3, 0, 0);
                 break;
 
             case 60:
                 // Wassermann begruesst Krabat
-                PersonSagt(HBegruessung, DBegruessung, NBegruessung, 0, 34, 2, 70, wmannTalk);
+                PersonSagt("Mertens2_47", 0, 34, 2, 70, wmannTalk);
                 mainFrame.Actions[290] = true;
                 break;
 
@@ -882,10 +831,7 @@ public class Mertens2 extends Mainloc {
 
             case 170:
                 // wuda auf Wasser ausreden
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00041"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Mertens2_3", fWoda, 3, 0, 0);
                 break;
 
             case 600:
@@ -965,106 +911,87 @@ public class Mertens2 extends Mainloc {
 
             case 610:
                 // Reaktion Wmuz auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00066"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00067"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00068"),
-                        0, 34, 2, 600, wmannTalk);
+                PersonSagt("Mertens2_4", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 620:
                 // Reaktion Wmuz auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00069"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00070"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00071"),
-                        0, 34, 2, 600, wmannTalk);
+                PersonSagt("Mertens2_5", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 630:
                 // Reaktion Wmuz auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00072"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00073"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00074"),
-                        0, 34, 2, 600, wmannTalk);
+                PersonSagt("Mertens2_6", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 640:
                 // Reaktion Wmuz auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00075"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00076"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00077"),
-                        0, 34, 2, 641, wmannTalk);
+                PersonSagt("Mertens2_7", 0, 34, 2, 641, wmannTalk);
                 break;
 
             case 641:
                 // Reaktion Wmuz auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00078"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00079"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00080"),
-                        0, 34, 2, 600, wmannTalk);
+                PersonSagt("Mertens2_8", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 650:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00081"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00082"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00083"),
-                        0, 34, 2, 651, wmannTalk);
+                PersonSagt("Mertens2_9", 0, 34, 2, 651, wmannTalk);
                 break;
 
             case 651:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H1Text, D1Text, N1Text, 0, 34, 2, 652, wmannTalk);
+                PersonSagt("Mertens2_37", 0, 34, 2, 652, wmannTalk);
                 break;
 
             case 652:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H2Text, D2Text, N2Text, 0, 34, 2, 653, wmannTalk);
+                PersonSagt("Mertens2_38", 0, 34, 2, 653, wmannTalk);
                 break;
 
             case 653:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H3Text, D3Text, N3Text, 0, 34, 2, 654, wmannTalk);
+                PersonSagt("Mertens2_39", 0, 34, 2, 654, wmannTalk);
                 break;
 
             case 654:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H30Text, D30Text, N30Text, 0, 34, 2, 655, wmannTalk);
+                PersonSagt("Mertens2_40", 0, 34, 2, 655, wmannTalk);
                 break;
 
             case 655:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H31Text, D31Text, N31Text, 0, 34, 2, 656, wmannTalk);
+                PersonSagt("Mertens2_41", 0, 34, 2, 656, wmannTalk);
                 break;
 
             case 656:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H4Text, D4Text, N4Text, 0, 34, 2, 657, wmannTalk);
+                PersonSagt("Mertens2_42", 0, 34, 2, 657, wmannTalk);
                 break;
 
             case 657:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H405Text, D405Text, N405Text, 0, 34, 2, 658, wmannTalk);
+                PersonSagt("Mertens2_43", 0, 34, 2, 658, wmannTalk);
                 break;
 
             case 658:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H41Text, D41Text, N41Text, 0, 34, 2, 659, wmannTalk);
+                PersonSagt("Mertens2_44", 0, 34, 2, 659, wmannTalk);
                 break;
 
             case 659:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H42Text, D42Text, N42Text, 0, 34, 2, 661, wmannTalk);
+                PersonSagt("Mertens2_45", 0, 34, 2, 661, wmannTalk);
                 break;
 
             case 660:
                 // Reaktion Wmuz auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00084"), Start.stringManager.getTranslation("Loc2_Mertens2_00085"), Start.stringManager.getTranslation("Loc2_Mertens2_00086"),
-                        0, 34, 2, 651, wmannTalk);
+                PersonSagt("Mertens2_10", 0, 34, 2, 651, wmannTalk);
                 break;
 
             case 661:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H5Text, D5Text, N5Text, 0, 34, 2, 600, wmannTalk);
+                PersonSagt("Mertens2_46", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 800:
@@ -1151,82 +1078,72 @@ public class Mertens2 extends Mainloc {
 
             case 910:
                 // Reaktion Wmuz auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00105"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00106"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00107"),
-                        0, 34, 2, 900, wmannTalk);
+                PersonSagt("Mertens2_11", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 920:
                 // Reaktion Wmuz auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00108"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00109"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00110"),
-                        0, 34, 2, 900, wmannTalk);
+                PersonSagt("Mertens2_12", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 930:
                 // Reaktion Wmuz auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00111"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00112"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00113"),
-                        0, 34, 2, 931, wmannTalk);
+                PersonSagt("Mertens2_13", 0, 34, 2, 931, wmannTalk);
                 break;
 
             case 931:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H1Text, D1Text, N1Text, 0, 34, 2, 932, wmannTalk);
+                PersonSagt("Mertens2_37", 0, 34, 2, 932, wmannTalk);
                 break;
 
             case 932:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H2Text, D2Text, N2Text, 0, 34, 2, 933, wmannTalk);
+                PersonSagt("Mertens2_38", 0, 34, 2, 933, wmannTalk);
                 break;
 
             case 933:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H3Text, D3Text, N3Text, 0, 34, 2, 934, wmannTalk);
+                PersonSagt("Mertens2_39", 0, 34, 2, 934, wmannTalk);
                 break;
 
             case 934:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H30Text, D30Text, N30Text, 0, 34, 2, 935, wmannTalk);
+                PersonSagt("Mertens2_40", 0, 34, 2, 935, wmannTalk);
                 break;
 
             case 935:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H31Text, D31Text, N31Text, 0, 34, 2, 936, wmannTalk);
+                PersonSagt("Mertens2_41", 0, 34, 2, 936, wmannTalk);
                 break;
 
             case 936:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H4Text, D4Text, N4Text, 0, 34, 2, 937, wmannTalk);
+                PersonSagt("Mertens2_42", 0, 34, 2, 937, wmannTalk);
                 break;
 
             case 937:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H405Text, D405Text, N405Text, 0, 34, 2, 938, wmannTalk);
+                PersonSagt("Mertens2_43", 0, 34, 2, 938, wmannTalk);
                 break;
 
             case 938:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H41Text, D41Text, N41Text, 0, 34, 2, 939, wmannTalk);
+                PersonSagt("Mertens2_44", 0, 34, 2, 939, wmannTalk);
                 break;
 
             case 939:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H42Text, D42Text, N42Text, 0, 34, 2, 940, wmannTalk);
+                PersonSagt("Mertens2_45", 0, 34, 2, 940, wmannTalk);
                 break;
 
             case 940:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt(H5Text, D5Text, N5Text, 0, 34, 2, 900, wmannTalk);
+                PersonSagt("Mertens2_46", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 950:
                 // Reaktion Wmuz auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00114"), Start.stringManager.getTranslation("Loc2_Mertens2_00115"), Start.stringManager.getTranslation("Loc2_Mertens2_00116"),
-                        0, 34, 2, 933, wmannTalk);
+                PersonSagt("Mertens2_14", 0, 34, 2, 933, wmannTalk);
                 break;
 
             case 1000:
@@ -1251,114 +1168,72 @@ public class Mertens2 extends Mainloc {
             // Action, wenn Karte gegeben
             case 1100:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00117"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00118"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00119"),
-                        fWmuz, 34, 2, 1110, wmannTalk);
+                PersonSagt("Mertens2_15", fWmuz, 34, 2, 1110, wmannTalk);
                 break;
 
             case 1110:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00120"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00121"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00122"),
-                        0, 1, 2, 1120);
+                KrabatSagt("Mertens2_16", 0, 1, 2, 1120);
                 break;
 
             case 1120:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00123"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00124"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00125"),
-                        0, 34, 2, 1130, wmannTalk);
+                PersonSagt("Mertens2_17", 0, 34, 2, 1130, wmannTalk);
                 break;
 
             case 1130:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00126"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00127"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00128"),
-                        0, 1, 2, 1140);
+                KrabatSagt("Mertens2_18", 0, 1, 2, 1140);
                 break;
 
             case 1140:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00129"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00130"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00131"),
-                        0, 34, 2, 1150, wmannTalk);
+                PersonSagt("Mertens2_19", 0, 34, 2, 1150, wmannTalk);
                 break;
 
             case 1150:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00132"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00133"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00134"),
-                        0, 1, 2, 1160);
+                KrabatSagt("Mertens2_20", 0, 1, 2, 1160);
                 break;
 
             case 1160:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00135"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00136"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00137"),
-                        0, 34, 2, 1165, wmannTalk);
+                PersonSagt("Mertens2_21", 0, 34, 2, 1165, wmannTalk);
                 break;
 
             case 1165:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00138"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00139"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00140"),
-                        0, 34, 2, 1170, wmannTalk);
+                PersonSagt("Mertens2_22", 0, 34, 2, 1170, wmannTalk);
                 break;
 
             case 1170:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00141"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00142"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00143"),
-                        0, 34, 2, 1180, wmannTalk);
+                PersonSagt("Mertens2_23", 0, 34, 2, 1180, wmannTalk);
                 break;
 
             case 1180:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00144"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00145"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00146"),
-                        0, 1, 2, 1190);
+                KrabatSagt("Mertens2_24", 0, 1, 2, 1190);
                 break;
 
             case 1190:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00147"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00148"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00149"),
-                        0, 34, 2, 1193, wmannTalk);
+                PersonSagt("Mertens2_25", 0, 34, 2, 1193, wmannTalk);
                 break;
 
             case 1193:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00150"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00151"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00152"),
-                        0, 34, 2, 1195, wmannTalk);
+                PersonSagt("Mertens2_26", 0, 34, 2, 1195, wmannTalk);
                 break;
 
             case 1195:
                 // Wmuz spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00153"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00154"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00155"),
-                        0, 34, 2, 1200, wmannTalk);
+                PersonSagt("Mertens2_27", 0, 34, 2, 1200, wmannTalk);
                 break;
 
             case 1200:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00156"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00157"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00158"),
-                        0, 1, 2, 1205);
+                KrabatSagt("Mertens2_28", 0, 1, 2, 1205);
                 // Hier beginnt Wassermann abzutauchen
                 isShowing = false;
                 isTauching = true;
@@ -1369,8 +1244,7 @@ public class Mertens2 extends Mainloc {
                 if (isTauching) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00159"), Start.stringManager.getTranslation("Loc2_Mertens2_00160"), Start.stringManager.getTranslation("Loc2_Mertens2_00161"),
-                        0, 1, 2, 1210);
+                KrabatSagt("Mertens2_29", 0, 1, 2, 1210);
                 break;
 
             case 1210:
@@ -1388,18 +1262,12 @@ public class Mertens2 extends Mainloc {
                 // Animszene mit Enten
                 kacka1IsMoving = false;
                 mainFrame.wave.PlayFile("sfx/mlynk-kacka.wav");
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00162"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00163"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00164"),
-                        0, 71, 2, 1225, kacka1TalkPoint);
+                PersonSagt("Mertens2_30", 0, 71, 2, 1225, kacka1TalkPoint);
                 break;
 
             case 1225:
                 // erste Ente spricht noch
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00165"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00166"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00167"),
-                        0, 71, 2, 1230, kacka1TalkPoint);
+                PersonSagt("Mertens2_31", 0, 71, 2, 1230, kacka1TalkPoint);
                 break;
 
             case 1230:
@@ -1427,42 +1295,27 @@ public class Mertens2 extends Mainloc {
                 if (--Counter2 > 1) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00168"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00169"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00170"),
-                        0, 71, 2, 1260, kacka1TalkPoint);
+                PersonSagt("Mertens2_32", 0, 71, 2, 1260, kacka1TalkPoint);
                 break;
 
             case 1260:
                 // zweite Ente spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00171"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00172"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00173"),
-                        0, 72, 2, 1270, kacka2TalkPoint);
+                PersonSagt("Mertens2_33", 0, 72, 2, 1270, kacka2TalkPoint);
                 break;
 
             case 1270:
                 // erste Ente
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00174"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00175"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00176"),
-                        0, 71, 2, 1280, kacka1TalkPoint);
+                PersonSagt("Mertens2_34", 0, 71, 2, 1280, kacka1TalkPoint);
                 break;
 
             case 1280:
                 // zweite Ente
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00177"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00178"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00179"),
-                        0, 72, 2, 1290, kacka2TalkPoint);
+                PersonSagt("Mertens2_35", 0, 72, 2, 1290, kacka2TalkPoint);
                 break;
 
             case 1290:
                 // erste Ente
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Mertens2_00180"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00181"),
-                        Start.stringManager.getTranslation("Loc2_Mertens2_00182"),
-                        0, 71, 2, 1900, kacka1TalkPoint);
+                PersonSagt("Mertens2_36", 0, 71, 2, 1900, kacka1TalkPoint);
                 break;
 
 

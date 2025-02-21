@@ -825,50 +825,32 @@ public class Most1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Schild Ralbitz anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00002"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most1_1", fPokazRal, 3, 0, 0);
                 break;
 
             case 2:
                 // Schild Dresden anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00005"),
-                        fPokazDrj, 3, 0, 0);
+                KrabatSagt("Most1_2", fPokazDrj, 3, 0, 0);
                 break;
 
             case 3:
                 // Reka anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00008"),
-                        fReka, 3, 0, 0);
+                KrabatSagt("Most1_3", fReka, 3, 0, 0);
                 break;
 
             case 50:
                 // Schild Ralbitz mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00011"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most1_4", fPokazRal, 3, 0, 0);
                 break;
 
             case 55:
                 // Schild Dresden mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00014"),
-                        fPokazDrj, 3, 0, 0);
+                KrabatSagt("Most1_5", fPokazDrj, 3, 0, 0);
                 break;
 
             case 60:
                 // Nach Dresden gehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00017"),
-                        fDrjezdzany, 3, 0, 0);
+                KrabatSagt("Most1_6", fDrjezdzany, 3, 0, 0);
                 break;
 
             case 70:
@@ -877,17 +859,11 @@ public class Most1 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00018"),
-                                Start.stringManager.getTranslation("Loc1_Most1_00019"),
-                                Start.stringManager.getTranslation("Loc1_Most1_00020"),
-                                fReka, 3, 0, 0);
+                        KrabatSagt("Most1_7", fReka, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00021"),
-                                Start.stringManager.getTranslation("Loc1_Most1_00022"),
-                                Start.stringManager.getTranslation("Loc1_Most1_00023"),
-                                fReka, 3, 0, 0);
+                        KrabatSagt("Most1_8", fReka, 3, 0, 0);
                         break;
                 }
                 break;
@@ -919,18 +895,12 @@ public class Most1 extends Mainloc {
 
             case 200:
                 // kamuski auf schild
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00026"),
-                        fPokazRal, 3, 0, 0);
+                KrabatSagt("Most1_9", fPokazRal, 3, 0, 0);
                 break;
 
             case 210:
                 // Wuda + wacki auf Wasser
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Most1_00027"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00028"),
-                        Start.stringManager.getTranslation("Loc1_Most1_00029"),
-                        fReka, 3, 0, 0);
+                KrabatSagt("Most1_10", fReka, 3, 0, 0);
                 break;
 
             case 600:

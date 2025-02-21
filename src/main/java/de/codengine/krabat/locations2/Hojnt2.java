@@ -919,80 +919,52 @@ public class Hojnt2 extends Mainloc2 {
         switch (nextActionID) {
             case 2:
                 // Jama anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00002"),
-                        fJama, 3, 0, 0);
+                KrabatSagt("Hojnt2_1", fJama, 3, 0, 0);
                 break;
 
             case 3:
                 // Leine anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00005"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt2_2", fLeine, 3, 0, 0);
                 break;
 
             case 4:
                 // Hoelzer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00006"), Start.stringManager.getTranslation("Loc2_Hojnt2_00007"), Start.stringManager.getTranslation("Loc2_Hojnt2_00008"),
-                        fHoelzer, 3, 0, 0);
+                KrabatSagt("Hojnt2_3", fHoelzer, 3, 0, 0);
                 break;
 
             case 5:
                 // Kurotwy anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00009"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00010"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00011"),
-                        fKurotwy, 3, 0, 0);
+                KrabatSagt("Hojnt2_4", fKurotwy, 3, 0, 0);
                 break;
 
             case 6:
                 // Wokno anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00012"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00013"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00014"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Hojnt2_5", fWokno, 3, 0, 0);
                 break;
 
             case 7:
                 // Sekera anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00017"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Hojnt2_6", fSekera, 3, 0, 0);
                 break;
 
             case 8:
                 // Durje anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00020"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Hojnt2_7", fDurje, 3, 0, 0);
                 break;
 
             case 9:
                 // Drjewo anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00021"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00022"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00023"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt2_8", fDrjewo, 3, 0, 0);
                 break;
 
             case 53:
                 // Leine mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00024"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00025"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00026"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt2_9", fLeine, 3, 0, 0);
                 break;
 
             case 55:
                 // Jama mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00027"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00028"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00029"),
-                        fJama, 3, 0, 0);
+                KrabatSagt("Hojnt2_10", fJama, 3, 0, 0);
                 break;
 
             case 100:
@@ -1022,10 +994,7 @@ public class Hojnt2 extends Mainloc2 {
 
             case 190:
                 // Ausrede, wenn vor dem Jaegerhaus die Hoelzer benutzt werden sollen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00030"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00031"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00032"),
-                        fHoelzer, 3, 0, 0);
+                KrabatSagt("Hojnt2_11", fHoelzer, 3, 0, 0);
                 break;
 
             case 420:
@@ -1055,66 +1024,42 @@ public class Hojnt2 extends Mainloc2 {
 
             case 600:
                 // Kurotwy mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00033"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00034"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00035"),
-                        fKurotwy, 3, 0, 0);
+                KrabatSagt("Hojnt2_12", fKurotwy, 3, 0, 0);
                 break;
 
             case 610:
                 // Wokno mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00036"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00037"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00038"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Hojnt2_13", fWokno, 3, 0, 0);
                 break;
 
             case 620:
                 // Sekera mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00041"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Hojnt2_14", fSekera, 3, 0, 0);
                 break;
 
             case 630:
                 // Durje mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00042"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00043"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00044"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Hojnt2_15", fDurje, 3, 0, 0);
                 break;
 
             case 640:
                 // Drjewo mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00045"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00046"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00047"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt2_16", fDrjewo, 3, 0, 0);
                 break;
 
             case 660:
                 // kij auf lajna, wenn haken schon genommen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00048"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00049"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00050"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt2_17", fLeine, 3, 0, 0);
                 break;
 
             case 670:
                 // kamuski und bron auf wokno
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00053"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Hojnt2_18", fWokno, 3, 0, 0);
                 break;
 
             case 680:
                 // kamuski auf drjewo
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Hojnt2_00054"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00055"),
-                        Start.stringManager.getTranslation("Loc2_Hojnt2_00056"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt2_19", fDrjewo, 3, 0, 0);
                 break;
 
             case 1000:

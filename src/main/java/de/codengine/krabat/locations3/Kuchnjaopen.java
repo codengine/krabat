@@ -647,145 +647,91 @@ public class Kuchnjaopen extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00000"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00001"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00002"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnjaopen_1", fSwinjo, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00003"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00004"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00005"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnjaopen_2", fSwinjo, 3, 0, 0);
                         break;
 
                     case 2:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00006"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00007"),
-                                Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00008"),
-                                fSwinjo, 3, 0, 0);
+                        KrabatSagt("Kuchnjaopen_3", fSwinjo, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 3:
                 // Holz anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00009"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00010"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00011"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_4", fDrjewo, 3, 0, 0);
                 break;
 
             case 4:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00012"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00013"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00014"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_5", fDurje, 3, 0, 0);
                 break;
 
             case 5:
                 // Glocke anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00015"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00016"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00017"),
-                        fGlocke, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_6", fGlocke, 3, 0, 0);
                 break;
 
             case 6:
                 // Fenster anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00018"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00019"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00020"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_7", fWokno, 3, 0, 0);
                 break;
 
             case 7:
                 // Herd anschauen
                 if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00021"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00022"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00023"),
-                            fHerd, 3, 0, 0);
+                    KrabatSagt("Kuchnjaopen_8", fHerd, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00024"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00025"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00026"),
-                            fHerd, 3, 0, 0);
+                    KrabatSagt("Kuchnjaopen_9", fHerd, 3, 0, 0);
                 }
                 break;
 
             case 8:
                 // Kochtopf anschauen
                 if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00027"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00028"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00029"),
-                            fHornc, 3, 0, 0);
+                    KrabatSagt("Kuchnjaopen_10", fHornc, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00030"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00031"),
-                            Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00032"),
-                            fHornc, 3, 0, 0);
+                    KrabatSagt("Kuchnjaopen_11", fHornc, 3, 0, 0);
                 }
                 break;
 
 
             case 40:
                 // Holzscheitel mitnehmen ist hier nicht moeglich
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00033"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00034"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00035"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_12", fDrjewo, 3, 0, 0);
                 break;
 
             case 55:
                 // Schwein mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00036"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00037"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00038"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_13", fSwinjo, 3, 0, 0);
                 break;
 
             case 60:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00039"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00040"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00041"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_14", fDurje, 3, 0, 0);
                 break;
 
             case 65:
                 // Glocke mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00042"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00043"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00044"),
-                        fGlocke, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_15", fGlocke, 3, 0, 0);
                 break;
 
             case 70:
                 // Fenster mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00045"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00046"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00047"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_16", fWokno, 3, 0, 0);
                 break;
 
             case 75:
                 // Kochtopf mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00048"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00049"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00050"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_17", fHornc, 3, 0, 0);
                 break;
 
             case 80:
                 // Herd mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00051"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00052"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00053"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_18", fHornc, 3, 0, 0);
                 break;
 
             case 100:
@@ -795,18 +741,12 @@ public class Kuchnjaopen extends Mainloc {
 
             case 155:
                 // Dinge ins Feuer schmeissen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00054"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00055"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00056"),
-                        fHerd, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_19", fHerd, 3, 0, 0);
                 break;
 
             case 160:
                 // Dinge dem Schwein geben
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00057"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00058"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00059"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_20", fSwinjo, 3, 0, 0);
                 break;
 
             case 165:
@@ -831,18 +771,12 @@ public class Kuchnjaopen extends Mainloc {
 
             case 185:
                 // Dinge in den Topf werfen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00060"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00061"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00062"),
-                        fHornc, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_21", fHornc, 3, 0, 0);
                 break;
 
             case 195:
                 // kotwica auf swino
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00063"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00064"),
-                        Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00065"),
-                        fSwinjo, 3, 0, 0);
+                KrabatSagt("Kuchnjaopen_22", fSwinjo, 3, 0, 0);
                 break;
 
             // Sequenzen mit Kuchar  /////////////////////////////////

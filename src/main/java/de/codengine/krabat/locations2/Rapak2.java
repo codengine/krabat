@@ -711,35 +711,23 @@ public class Rapak2 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00000"),
-                                Start.stringManager.getTranslation("Loc2_Rapak2_00001"),
-                                Start.stringManager.getTranslation("Loc2_Rapak2_00002"),
-                                fRapak, 3, 0, 0);
+                        KrabatSagt("Rapak2_1", fRapak, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00003"),
-                                Start.stringManager.getTranslation("Loc2_Rapak2_00004"),
-                                Start.stringManager.getTranslation("Loc2_Rapak2_00005"),
-                                fRapak, 3, 0, 0);
+                        KrabatSagt("Rapak2_2", fRapak, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 4:
                 // Schild oben anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00008"),
-                        fSchildOben, 3, 0, 0);
+                KrabatSagt("Rapak2_3", fSchildOben, 3, 0, 0);
                 break;
 
             case 65:
                 // Schild oben mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00009"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00010"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00011"),
-                        fSchildOben, 3, 0, 0);
+                KrabatSagt("Rapak2_4", fSchildOben, 3, 0, 0);
                 break;
 
             case 100:
@@ -760,10 +748,7 @@ public class Rapak2 extends Mainloc {
 
             case 103:
                 // nach rechts gehen will ich nicht !
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00012"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00013"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00014"),
-                        fExitRight, 3, 0, 0);
+                KrabatSagt("Rapak2_5", fExitRight, 3, 0, 0);
                 break;
 
             case 155:
@@ -773,36 +758,24 @@ public class Rapak2 extends Mainloc {
 
             case 200:
                 // Kamuski auf schildern
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00017"),
-                        fSchildOben, 3, 0, 0);
+                KrabatSagt("Rapak2_6", fSchildOben, 3, 0, 0);
                 break;
 
             case 600:
                 // Rabe spricht
                 // Es kann nur einen automatischen Dialoganfang geben !!!!
                 mainFrame.Actions[250] = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00020"),
-                        0, 41, 2, 605, rapakTalk);
+                PersonSagt("Rapak2_7", 0, 41, 2, 605, rapakTalk);
                 break;
 
             case 605:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00021"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00022"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00023"),
-                        6, 1, 2, 610);
+                KrabatSagt("Rapak2_8", 6, 1, 2, 610);
                 break;
 
             case 610:
                 // Rabe spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00024"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00025"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00026"),
-                        0, 41, 2, 615, rapakTalk);
+                PersonSagt("Rapak2_9", 0, 41, 2, 615, rapakTalk);
                 break;
 
             case 615:
@@ -885,64 +858,42 @@ public class Rapak2 extends Mainloc {
 
             case 630:
                 // Reaktion Rapak auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00048"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00049"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00050"),
-                        0, 41, 2, 620, rapakTalk);
+                PersonSagt("Rapak2_10", 0, 41, 2, 620, rapakTalk);
                 break;
 
             case 640:
                 // Reaktion Rapak auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00053"),
-                        0, 41, 2, 620, rapakTalk);
+                PersonSagt("Rapak2_11", 0, 41, 2, 620, rapakTalk);
                 break;
 
             case 650:
                 // Reaktion Rapak auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00054"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00055"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00056"),
-                        0, 41, 2, 655, rapakTalk);
+                PersonSagt("Rapak2_12", 0, 41, 2, 655, rapakTalk);
                 break;
 
             case 655:
                 // Reaktion Rapak auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00057"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00058"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00059"),
-                        0, 41, 2, 620, rapakTalk);
+                PersonSagt("Rapak2_13", 0, 41, 2, 620, rapakTalk);
                 break;
 
             case 660:
                 // Reaktion Rapak auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00060"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00061"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00062"),
-                        0, 41, 2, 620, rapakTalk);
+                PersonSagt("Rapak2_14", 0, 41, 2, 620, rapakTalk);
                 break;
 
             case 670:
                 // Reaktion Rapak auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00063"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00064"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00065"),
-                        0, 41, 2, 673, rapakTalk);
+                PersonSagt("Rapak2_15", 0, 41, 2, 673, rapakTalk);
                 break;
 
             case 673:
                 // Reaktion Rapak auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00066"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00067"),
-                        Start.stringManager.getTranslation("Loc2_Rapak2_00068"),
-                        0, 41, 2, 676, rapakTalk);
+                PersonSagt("Rapak2_16", 0, 41, 2, 676, rapakTalk);
                 break;
 
             case 676:
                 // Reaktion Rapak auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Rapak2_00069"), Start.stringManager.getTranslation("Loc2_Rapak2_00070"), Start.stringManager.getTranslation("Loc2_Rapak2_00071"),
-                        0, 41, 2, 680, rapakTalk);
+                PersonSagt("Rapak2_17", 0, 41, 2, 680, rapakTalk);
                 break;
 
             case 680:

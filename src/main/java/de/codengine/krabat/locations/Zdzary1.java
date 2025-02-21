@@ -680,24 +680,15 @@ public class Zdzary1 extends Mainloc {
             case 1:
                 // Wudowa anschauen
                 if (whereIsAlte == 2) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00000"),
-                            Start.stringManager.getTranslation("Loc1_Zdzary1_00001"),
-                            Start.stringManager.getTranslation("Loc1_Zdzary1_00002"),
-                            alteFacing, 3, 0, 0);
+                    KrabatSagt("Zdzary1_1", alteFacing, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00003"),
-                            Start.stringManager.getTranslation("Loc1_Zdzary1_00004"),
-                            Start.stringManager.getTranslation("Loc1_Zdzary1_00005"),
-                            alteFacing, 3, 0, 0);
+                    KrabatSagt("Zdzary1_2", alteFacing, 3, 0, 0);
                 }
                 break;
 
             case 2:
                 // Durje anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00008"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Zdzary1_3", fDurje, 3, 0, 0);
                 break;
 
             case 50:
@@ -710,10 +701,7 @@ public class Zdzary1 extends Mainloc {
 
             case 55:
                 // Durje mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00011"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Zdzary1_4", fDurje, 3, 0, 0);
                 break;
 
             case 100:
@@ -736,10 +724,7 @@ public class Zdzary1 extends Mainloc {
 
             case 105:
                 // Krabat hat Angst vor dem boesen Hund
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00014"),
-                        fExitUp, 1, 2, 110);
+                KrabatSagt("Zdzary1_5", fExitUp, 1, 2, 110);
                 break;
 
             case 110:
@@ -762,18 +747,12 @@ public class Zdzary1 extends Mainloc {
 
             case 200:
                 // kij auf wudowa
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00017"),
-                        alteFacing, 3, 0, 0);
+                KrabatSagt("Zdzary1_6", alteFacing, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf wudowa
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00020"),
-                        alteFacing, 3, 0, 0);
+                KrabatSagt("Zdzary1_7", alteFacing, 3, 0, 0);
                 break;
 
 
@@ -882,346 +861,262 @@ public class Zdzary1 extends Mainloc {
 
             case 610:
                 // Reaktion Alte auf 1. Frage 1. Teil
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00066"), Start.stringManager.getTranslation("Loc1_Zdzary1_00067"), Start.stringManager.getTranslation("Loc1_Zdzary1_00068"),
-                        0, 56, 2, 611, alteTalk);
+                PersonSagt("Zdzary1_8", 0, 56, 2, 611, alteTalk);
                 break;
 
             case 611:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00069"), Start.stringManager.getTranslation("Loc1_Zdzary1_00070"), Start.stringManager.getTranslation("Loc1_Zdzary1_00071"),
-                        0, 57, 2, 612, alteTalk);
+                PersonSagt("Zdzary1_9", 0, 57, 2, 612, alteTalk);
                 break;
 
             case 612:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00072"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00073"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00074"),
-                        0, 56, 2, 613, alteTalk);
+                PersonSagt("Zdzary1_10", 0, 56, 2, 613, alteTalk);
                 break;
 
             case 613:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00075"), Start.stringManager.getTranslation("Loc1_Zdzary1_00076"), Start.stringManager.getTranslation("Loc1_Zdzary1_00077"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_11", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 620:
                 // Reaktion Alte auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00078"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00079"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00080"),
-                        0, 56, 2, 621, alteTalk);
+                PersonSagt("Zdzary1_12", 0, 56, 2, 621, alteTalk);
                 break;
 
             case 621:
                 // Reaktion Alte auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00081"), Start.stringManager.getTranslation("Loc1_Zdzary1_00082"), Start.stringManager.getTranslation("Loc1_Zdzary1_00083"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_13", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 630:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00084"), Start.stringManager.getTranslation("Loc1_Zdzary1_00085"), Start.stringManager.getTranslation("Loc1_Zdzary1_00086"),
-                        0, 57, 2, 631, alteTalk);
+                PersonSagt("Zdzary1_14", 0, 57, 2, 631, alteTalk);
                 break;
 
             case 631:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00087"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00088"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00089"),
-                        0, 56, 2, 632, alteTalk);
+                PersonSagt("Zdzary1_15", 0, 56, 2, 632, alteTalk);
                 break;
 
             case 632:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00090"), Start.stringManager.getTranslation("Loc1_Zdzary1_00091"), Start.stringManager.getTranslation("Loc1_Zdzary1_00092"),
-                        0, 57, 2, 633, alteTalk);
+                PersonSagt("Zdzary1_16", 0, 57, 2, 633, alteTalk);
                 break;
 
             case 633:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00093"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00094"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00095"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_17", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 640:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00096"), Start.stringManager.getTranslation("Loc1_Zdzary1_00097"), Start.stringManager.getTranslation("Loc1_Zdzary1_00098"),
-                        0, 57, 2, 641, alteTalk);
+                PersonSagt("Zdzary1_18", 0, 57, 2, 641, alteTalk);
                 break;
 
             case 641:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00099"), Start.stringManager.getTranslation("Loc1_Zdzary1_00100"), Start.stringManager.getTranslation("Loc1_Zdzary1_00101"),
-                        0, 56, 2, 642, alteTalk);
+                PersonSagt("Zdzary1_19", 0, 56, 2, 642, alteTalk);
                 break;
 
             case 642:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00102"), Start.stringManager.getTranslation("Loc1_Zdzary1_00103"), Start.stringManager.getTranslation("Loc1_Zdzary1_00104"),
-                        0, 57, 2, 643, alteTalk);
+                PersonSagt("Zdzary1_20", 0, 57, 2, 643, alteTalk);
                 break;
 
             case 643:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00105"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00106"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00107"),
-                        0, 56, 2, 644, alteTalk);
+                PersonSagt("Zdzary1_21", 0, 56, 2, 644, alteTalk);
                 break;
 
             case 644:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00108"), Start.stringManager.getTranslation("Loc1_Zdzary1_00109"), Start.stringManager.getTranslation("Loc1_Zdzary1_00110"),
-                        0, 57, 2, 645, alteTalk);
+                PersonSagt("Zdzary1_22", 0, 57, 2, 645, alteTalk);
                 break;
 
             case 645:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00111"), Start.stringManager.getTranslation("Loc1_Zdzary1_00112"), Start.stringManager.getTranslation("Loc1_Zdzary1_00113"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_23", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 650:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00114"), Start.stringManager.getTranslation("Loc1_Zdzary1_00115"), Start.stringManager.getTranslation("Loc1_Zdzary1_00116"),
-                        0, 56, 2, 651, alteTalk);
+                PersonSagt("Zdzary1_24", 0, 56, 2, 651, alteTalk);
                 break;
 
             case 651:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00117"), Start.stringManager.getTranslation("Loc1_Zdzary1_00118"), Start.stringManager.getTranslation("Loc1_Zdzary1_00119"),
-                        0, 57, 2, 652, alteTalk);
+                PersonSagt("Zdzary1_25", 0, 57, 2, 652, alteTalk);
                 break;
 
             case 652:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00120"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00121"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00122"),
-                        0, 56, 2, 653, alteTalk);
+                PersonSagt("Zdzary1_26", 0, 56, 2, 653, alteTalk);
                 break;
 
             case 653:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00123"), Start.stringManager.getTranslation("Loc1_Zdzary1_00124"), Start.stringManager.getTranslation("Loc1_Zdzary1_00125"),
-                        0, 57, 2, 654, alteTalk);
+                PersonSagt("Zdzary1_27", 0, 57, 2, 654, alteTalk);
                 break;
 
             case 654:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00126"), Start.stringManager.getTranslation("Loc1_Zdzary1_00127"), Start.stringManager.getTranslation("Loc1_Zdzary1_00128"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_28", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 660:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00129"), Start.stringManager.getTranslation("Loc1_Zdzary1_00130"), Start.stringManager.getTranslation("Loc1_Zdzary1_00131"),
-                        0, 57, 2, 661, alteTalk);
+                PersonSagt("Zdzary1_29", 0, 57, 2, 661, alteTalk);
                 break;
 
             case 661:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00132"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00133"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00134"),
-                        0, 56, 2, 662, alteTalk);
+                PersonSagt("Zdzary1_30", 0, 56, 2, 662, alteTalk);
                 break;
 
             case 662:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00135"), Start.stringManager.getTranslation("Loc1_Zdzary1_00136"), Start.stringManager.getTranslation("Loc1_Zdzary1_00137"),
-                        0, 57, 2, 663, alteTalk);
+                PersonSagt("Zdzary1_31", 0, 57, 2, 663, alteTalk);
                 break;
 
             case 663:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00138"), Start.stringManager.getTranslation("Loc1_Zdzary1_00139"), Start.stringManager.getTranslation("Loc1_Zdzary1_00140"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_32", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 670:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00141"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00142"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00143"),
-                        0, 56, 2, 671, alteTalk);
+                PersonSagt("Zdzary1_33", 0, 56, 2, 671, alteTalk);
                 break;
 
             case 671:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00144"), Start.stringManager.getTranslation("Loc1_Zdzary1_00145"), Start.stringManager.getTranslation("Loc1_Zdzary1_00146"),
-                        0, 57, 2, 672, alteTalk);
+                PersonSagt("Zdzary1_34", 0, 57, 2, 672, alteTalk);
                 break;
 
             case 672:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00147"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00148"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00149"),
-                        0, 56, 2, 673, alteTalk);
+                PersonSagt("Zdzary1_35", 0, 56, 2, 673, alteTalk);
                 break;
 
             case 673:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00150"), Start.stringManager.getTranslation("Loc1_Zdzary1_00151"), Start.stringManager.getTranslation("Loc1_Zdzary1_00152"),
-                        0, 57, 2, 674, alteTalk);
+                PersonSagt("Zdzary1_36", 0, 57, 2, 674, alteTalk);
                 break;
 
             case 674:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00153"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00154"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00155"),
-                        0, 56, 2, 675, alteTalk);
+                PersonSagt("Zdzary1_37", 0, 56, 2, 675, alteTalk);
                 break;
 
             case 675:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00156"), Start.stringManager.getTranslation("Loc1_Zdzary1_00157"), Start.stringManager.getTranslation("Loc1_Zdzary1_00158"),
-                        0, 57, 2, 676, alteTalk);
+                PersonSagt("Zdzary1_38", 0, 57, 2, 676, alteTalk);
                 break;
 
             case 676:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00159"), Start.stringManager.getTranslation("Loc1_Zdzary1_00160"), Start.stringManager.getTranslation("Loc1_Zdzary1_00161"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_39", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 680:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00162"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00163"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00164"),
-                        0, 56, 2, 681, alteTalk);
+                PersonSagt("Zdzary1_40", 0, 56, 2, 681, alteTalk);
                 break;
 
             case 681:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00165"), Start.stringManager.getTranslation("Loc1_Zdzary1_00166"), Start.stringManager.getTranslation("Loc1_Zdzary1_00167"),
-                        0, 57, 2, 682, alteTalk);
+                PersonSagt("Zdzary1_41", 0, 57, 2, 682, alteTalk);
                 break;
 
             case 682:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00168"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00169"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00170"),
-                        0, 56, 2, 683, alteTalk);
+                PersonSagt("Zdzary1_42", 0, 56, 2, 683, alteTalk);
                 break;
 
             case 683:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00171"), Start.stringManager.getTranslation("Loc1_Zdzary1_00172"), Start.stringManager.getTranslation("Loc1_Zdzary1_00173"),
-                        0, 57, 2, 684, alteTalk);
+                PersonSagt("Zdzary1_43", 0, 57, 2, 684, alteTalk);
                 break;
 
             case 684:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00174"), Start.stringManager.getTranslation("Loc1_Zdzary1_00175"), Start.stringManager.getTranslation("Loc1_Zdzary1_00176"),
-                        0, 56, 2, 685, alteTalk);
+                PersonSagt("Zdzary1_44", 0, 56, 2, 685, alteTalk);
                 break;
 
             case 685:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00177"), Start.stringManager.getTranslation("Loc1_Zdzary1_00178"), Start.stringManager.getTranslation("Loc1_Zdzary1_00179"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_45", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 690:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00180"), Start.stringManager.getTranslation("Loc1_Zdzary1_00181"), Start.stringManager.getTranslation("Loc1_Zdzary1_00182"),
-                        0, 56, 2, 691, alteTalk);
+                PersonSagt("Zdzary1_46", 0, 56, 2, 691, alteTalk);
                 break;
 
             case 691:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00183"), Start.stringManager.getTranslation("Loc1_Zdzary1_00184"), Start.stringManager.getTranslation("Loc1_Zdzary1_00185"),
-                        0, 57, 2, 692, alteTalk);
+                PersonSagt("Zdzary1_47", 0, 57, 2, 692, alteTalk);
                 break;
 
             case 692:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00186"), Start.stringManager.getTranslation("Loc1_Zdzary1_00187"), Start.stringManager.getTranslation("Loc1_Zdzary1_00188"),
-                        0, 56, 2, 693, alteTalk);
+                PersonSagt("Zdzary1_48", 0, 56, 2, 693, alteTalk);
                 break;
 
             case 693:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00189"), Start.stringManager.getTranslation("Loc1_Zdzary1_00190"), Start.stringManager.getTranslation("Loc1_Zdzary1_00191"),
-                        0, 57, 2, 694, alteTalk);
+                PersonSagt("Zdzary1_49", 0, 57, 2, 694, alteTalk);
                 break;
 
             case 694:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00192"), Start.stringManager.getTranslation("Loc1_Zdzary1_00193"), Start.stringManager.getTranslation("Loc1_Zdzary1_00194"),
-                        0, 56, 2, 695, alteTalk);
+                PersonSagt("Zdzary1_50", 0, 56, 2, 695, alteTalk);
                 break;
 
             case 695:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00195"), Start.stringManager.getTranslation("Loc1_Zdzary1_00196"), Start.stringManager.getTranslation("Loc1_Zdzary1_00197"),
-                        0, 57, 2, 696, alteTalk);
+                PersonSagt("Zdzary1_51", 0, 57, 2, 696, alteTalk);
                 break;
 
             case 696:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00198"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00199"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00200"),
-                        0, 56, 2, 697, alteTalk);
+                PersonSagt("Zdzary1_52", 0, 56, 2, 697, alteTalk);
                 break;
 
             case 697:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00201"), Start.stringManager.getTranslation("Loc1_Zdzary1_00202"), Start.stringManager.getTranslation("Loc1_Zdzary1_00203"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_53", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 700:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00204"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00205"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00206"),
-                        0, 56, 2, 701, alteTalk);
+                PersonSagt("Zdzary1_54", 0, 56, 2, 701, alteTalk);
                 break;
 
             case 701:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00207"), Start.stringManager.getTranslation("Loc1_Zdzary1_00208"), Start.stringManager.getTranslation("Loc1_Zdzary1_00209"),
-                        0, 57, 2, 702, alteTalk);
+                PersonSagt("Zdzary1_55", 0, 57, 2, 702, alteTalk);
                 break;
 
             case 702:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00210"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00211"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00212"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_56", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 710:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00213"), Start.stringManager.getTranslation("Loc1_Zdzary1_00214"), Start.stringManager.getTranslation("Loc1_Zdzary1_00215"),
-                        0, 57, 2, 711, alteTalk);
+                PersonSagt("Zdzary1_57", 0, 57, 2, 711, alteTalk);
                 break;
 
             case 711:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00216"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00217"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00218"),
-                        0, 56, 2, 712, alteTalk);
+                PersonSagt("Zdzary1_58", 0, 56, 2, 712, alteTalk);
                 break;
 
             case 712:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00219"), Start.stringManager.getTranslation("Loc1_Zdzary1_00220"), Start.stringManager.getTranslation("Loc1_Zdzary1_00221"),
-                        0, 57, 2, 713, alteTalk);
+                PersonSagt("Zdzary1_59", 0, 57, 2, 713, alteTalk);
                 break;
 
             case 713:
@@ -1316,94 +1211,72 @@ public class Zdzary1 extends Mainloc {
 
             case 720:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00231"), Start.stringManager.getTranslation("Loc1_Zdzary1_00232"), Start.stringManager.getTranslation("Loc1_Zdzary1_00233"),
-                        0, 56, 2, 721, alteTalk);
+                PersonSagt("Zdzary1_60", 0, 56, 2, 721, alteTalk);
                 break;
 
             case 721:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00234"), Start.stringManager.getTranslation("Loc1_Zdzary1_00235"), Start.stringManager.getTranslation("Loc1_Zdzary1_00236"),
-                        0, 57, 2, 722, alteTalk);
+                PersonSagt("Zdzary1_61", 0, 57, 2, 722, alteTalk);
                 break;
 
             case 722:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00237"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00238"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00239"),
-                        0, 56, 2, 723, alteTalk);
+                PersonSagt("Zdzary1_62", 0, 56, 2, 723, alteTalk);
                 break;
 
             case 723:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00240"), Start.stringManager.getTranslation("Loc1_Zdzary1_00241"), Start.stringManager.getTranslation("Loc1_Zdzary1_00242"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_63", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 730:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00243"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00244"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00245"),
-                        0, 56, 2, 731, alteTalk);
+                PersonSagt("Zdzary1_64", 0, 56, 2, 731, alteTalk);
                 break;
 
             case 731:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00246"), Start.stringManager.getTranslation("Loc1_Zdzary1_00247"), Start.stringManager.getTranslation("Loc1_Zdzary1_00248"),
-                        0, 57, 2, 732, alteTalk);
+                PersonSagt("Zdzary1_65", 0, 57, 2, 732, alteTalk);
                 break;
 
             case 732:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00249"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00250"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00251"),
-                        0, 56, 2, 733, alteTalk);
+                PersonSagt("Zdzary1_66", 0, 56, 2, 733, alteTalk);
                 break;
 
             case 733:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00252"), Start.stringManager.getTranslation("Loc1_Zdzary1_00253"), Start.stringManager.getTranslation("Loc1_Zdzary1_00254"),
-                        0, 56, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_67", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 740:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00255"), Start.stringManager.getTranslation("Loc1_Zdzary1_00256"), Start.stringManager.getTranslation("Loc1_Zdzary1_00257"),
-                        0, 56, 2, 741, alteTalk);
+                PersonSagt("Zdzary1_68", 0, 56, 2, 741, alteTalk);
                 break;
 
             case 741:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00258"), Start.stringManager.getTranslation("Loc1_Zdzary1_00259"), Start.stringManager.getTranslation("Loc1_Zdzary1_00260"),
-                        0, 57, 2, 742, alteTalk);
+                PersonSagt("Zdzary1_69", 0, 57, 2, 742, alteTalk);
                 break;
 
             case 742:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00261"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00262"),
-                        Start.stringManager.getTranslation("Loc1_Zdzary1_00263"),
-                        0, 56, 2, 743, alteTalk);
+                PersonSagt("Zdzary1_70", 0, 56, 2, 743, alteTalk);
                 break;
 
             case 743:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00264"), Start.stringManager.getTranslation("Loc1_Zdzary1_00265"), Start.stringManager.getTranslation("Loc1_Zdzary1_00266"),
-                        0, 57, 2, 744, alteTalk);
+                PersonSagt("Zdzary1_71", 0, 57, 2, 744, alteTalk);
                 break;
 
             case 744:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00267"), Start.stringManager.getTranslation("Loc1_Zdzary1_00268"), Start.stringManager.getTranslation("Loc1_Zdzary1_00269"),
-                        0, 56, 2, 745, alteTalk);
+                PersonSagt("Zdzary1_72", 0, 56, 2, 745, alteTalk);
                 break;
 
             case 745:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Zdzary1_00270"), Start.stringManager.getTranslation("Loc1_Zdzary1_00271"), Start.stringManager.getTranslation("Loc1_Zdzary1_00272"),
-                        0, 57, 2, 600, alteTalk);
+                PersonSagt("Zdzary1_73", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 800:

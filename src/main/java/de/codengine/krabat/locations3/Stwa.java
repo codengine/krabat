@@ -470,50 +470,32 @@ public class Stwa extends Mainloc {
 
             case 20:
                 // fremde Stimme meckert
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Stwa_00000"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00001"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00002"),
-                        0, 69, 2, 22, talkPoint);
+                PersonSagt("Stwa_1", 0, 69, 2, 22, talkPoint);
                 break;
 
             case 22:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Stwa_00003"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00004"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00005"),
-                        0, 1, 2, 24);
+                KrabatSagt("Stwa_2", 0, 1, 2, 24);
                 break;
 
             case 24:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Stwa_00006"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00007"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00008"),
-                        0, 3, 2, 26);
+                KrabatSagt("Stwa_3", 0, 3, 2, 26);
                 break;
 
             case 26:
                 // fremde Stimme meckert
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Stwa_00009"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00010"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00011"),
-                        0, 69, 2, 80, talkPoint);
+                PersonSagt("Stwa_4", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 30:
                 // fremde Stimme meckert
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Stwa_00012"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00013"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00014"),
-                        0, 69, 2, 80, talkPoint);
+                PersonSagt("Stwa_5", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 40:
                 // fremde Stimme meckert
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Stwa_00015"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00016"),
-                        Start.stringManager.getTranslation("Loc3_Stwa_00017"),
-                        0, 69, 2, 80, talkPoint);
+                PersonSagt("Stwa_6", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 80:

@@ -1223,79 +1223,51 @@ public class Hojnt1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Haken anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00002"),
-                        fHaken, 3, 0, 0);
+                KrabatSagt("Hojnt1_1", fHaken, 3, 0, 0);
                 break;
 
             case 2:
                 // Jama anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00005"),
-                        fJama, 3, 0, 0);
+                KrabatSagt("Hojnt1_2", fJama, 3, 0, 0);
                 break;
 
             case 3:
                 // Leine anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00008"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt1_3", fLeine, 3, 0, 0);
                 break;
 
             case 4:
                 // Hoelzer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00009"), Start.stringManager.getTranslation("Loc1_Hojnt1_00010"), Start.stringManager.getTranslation("Loc1_Hojnt1_00011"),
-                        fHoelzer, 3, 0, 0);
+                KrabatSagt("Hojnt1_4", fHoelzer, 3, 0, 0);
                 break;
 
             case 5:
                 // Kurotwy anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00014"),
-                        fKurotwy, 3, 0, 0);
+                KrabatSagt("Hojnt1_5", fKurotwy, 3, 0, 0);
                 break;
 
             case 6:
                 // Wokno anschauen
                 if (!mainFrame.Actions[231]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00015"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00016"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00017"),
-                            fWokno, 3, 0, 0);
+                    KrabatSagt("Hojnt1_6", fWokno, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00018"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00019"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00020"),
-                            fWokno, 3, 0, 0);
+                    KrabatSagt("Hojnt1_7", fWokno, 3, 0, 0);
                 }
                 break;
 
             case 7:
                 // Sekera anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00021"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00022"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00023"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Hojnt1_8", fSekera, 3, 0, 0);
                 break;
 
             case 8:
                 // Durje anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00026"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Hojnt1_9", fDurje, 3, 0, 0);
                 break;
 
             case 9:
                 // Drjewo anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00027"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00028"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00029"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt1_10", fDrjewo, 3, 0, 0);
                 break;
 
             case 50:
@@ -1307,27 +1279,18 @@ public class Hojnt1 extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     nextActionID = 0;
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00030"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00031"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00032"),
-                            fHaken, 3, 0, 0);
+                    KrabatSagt("Hojnt1_11", fHaken, 3, 0, 0);
                 }
                 break;
 
             case 53:
                 // Leine mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00033"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00034"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00035"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt1_12", fLeine, 3, 0, 0);
                 break;
 
             case 55:
                 // Jama mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00036"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00037"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00038"),
-                        fJama, 3, 0, 0);
+                KrabatSagt("Hojnt1_13", fJama, 3, 0, 0);
                 break;
 
             case 100:
@@ -1450,19 +1413,13 @@ public class Hojnt1 extends Mainloc {
 
             case 190:
                 // Ausrede, wenn vor dem Jaegerhaus die Hoelzer benutzt werden sollen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00039"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00040"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00041"),
-                        fHoelzer, 3, 0, 0);
+                KrabatSagt("Hojnt1_14", fHoelzer, 3, 0, 0);
                 break;
 
             // Einsprung, wenn gerade aus Grube geholt
             case 200:
                 // Sich bei Jaeger bedanken
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00042"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00043"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00044"),
-                        9, 1, 2, 210);
+                KrabatSagt("Hojnt1_15", 9, 1, 2, 210);
                 break;
 
             case 210:
@@ -1470,10 +1427,7 @@ public class Hojnt1 extends Mainloc {
                 // Hier Position des Textes berechnen
                 Borderrect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00045"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00046"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00047"),
-                        0, 26, 2, 215, tTlk);
+                PersonSagt("Hojnt1_16", 0, 26, 2, 215, tTlk);
                 break;
 
             case 215:
@@ -1575,10 +1529,7 @@ public class Hojnt1 extends Mainloc {
                 // Achtung - Spruch aufsagen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00048"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00049"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00050"),
-                        6, 3, 0, 355);
+                KrabatSagt("Hojnt1_17", 6, 3, 0, 355);
                 break;
 
             case 355:
@@ -1654,114 +1605,72 @@ public class Hojnt1 extends Mainloc {
             case 600:
                 // Kurotwy mitnehmen
                 if (!mainFrame.Actions[231]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00051"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00052"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00053"),
-                            fKurotwy, 3, 0, 0);
+                    KrabatSagt("Hojnt1_18", fKurotwy, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00054"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00055"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00056"),
-                            fKurotwy, 3, 0, 0);
+                    KrabatSagt("Hojnt1_19", fKurotwy, 3, 0, 0);
                 }
                 break;
 
             case 610:
                 // Wokno mitnehmen
                 if (!mainFrame.Actions[231]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00057"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00058"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00059"),
-                            fWokno, 3, 0, 0);
+                    KrabatSagt("Hojnt1_20", fWokno, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00060"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00061"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00062"),
-                            fWokno, 3, 0, 0);
+                    KrabatSagt("Hojnt1_21", fWokno, 3, 0, 0);
                 }
                 break;
 
             case 620:
                 // Sekera mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00063"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00064"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00065"),
-                        fSekera, 3, 0, 0);
+                KrabatSagt("Hojnt1_22", fSekera, 3, 0, 0);
                 break;
 
             case 630:
                 // Durje mitnehmen
                 if (!mainFrame.Actions[231]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00066"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00067"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00068"),
-                            fDurje, 3, 0, 0);
+                    KrabatSagt("Hojnt1_23", fDurje, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00069"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00070"),
-                            Start.stringManager.getTranslation("Loc1_Hojnt1_00071"),
-                            fDurje, 3, 0, 0);
+                    KrabatSagt("Hojnt1_24", fDurje, 3, 0, 0);
                 }
                 break;
 
             case 640:
                 // Drjewo mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00072"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00073"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00074"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt1_25", fDrjewo, 3, 0, 0);
                 break;
 
             case 650:
                 // kij auf hocka
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00075"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00076"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00077"),
-                        fHaken, 3, 0, 0);
+                KrabatSagt("Hojnt1_26", fHaken, 3, 0, 0);
                 break;
 
             case 660:
                 // kij auf lajna, wenn haken schon genommen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00078"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00079"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00080"),
-                        fLeine, 3, 0, 0);
+                KrabatSagt("Hojnt1_27", fLeine, 3, 0, 0);
                 break;
 
             case 670:
                 // kamuski und bron auf wokno
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00081"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00082"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00083"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Hojnt1_28", fWokno, 3, 0, 0);
                 break;
 
             case 680:
                 // kamuski auf drjewo
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00084"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00085"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00086"),
-                        fDrjewo, 3, 0, 0);
+                KrabatSagt("Hojnt1_29", fDrjewo, 3, 0, 0);
                 break;
 
             case 690:
                 // leine 1. Mal anschauen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00087"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00088"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00089"),
-                        fLeine, 3, 0, 160);
+                KrabatSagt("Hojnt1_30", fLeine, 3, 0, 160);
                 break;
 
             case 700:
                 // Grube 1. Mal anschauen
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hojnt1_00090"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00091"),
-                        Start.stringManager.getTranslation("Loc1_Hojnt1_00092"),
-                        fLeine, 3, 0, 160);
+                KrabatSagt("Hojnt1_31", fLeine, 3, 0, 160);
                 break;
 
             default:

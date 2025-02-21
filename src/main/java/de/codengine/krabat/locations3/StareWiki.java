@@ -818,26 +818,17 @@ public class StareWiki extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // PredKorejtow anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00000"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00001"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00002"),
-                        fKorj, 3, 0, 0);
+                KrabatSagt("StareWiki_1", fKorj, 3, 0, 0);
                 break;
 
             case 2:
                 // PredWosuskow anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00003"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00004"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00005"),
-                        fWosu, 3, 0, 0);
+                KrabatSagt("StareWiki_2", fWosu, 3, 0, 0);
                 break;
 
             case 3:
                 // PredMalickow anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00006"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00007"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00008"),
-                        fMali, 3, 0, 0);
+                KrabatSagt("StareWiki_3", fMali, 3, 0, 0);
                 break;
 
             case 50:
@@ -921,10 +912,7 @@ public class StareWiki extends Mainloc {
 
             case 165:
                 // Stollen kaufen
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00009"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00010"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00011"),
-                        fWosu, 63, 0, 167, talkPointWosuski);
+                PersonSagt("StareWiki_4", fWosu, 63, 0, 167, talkPointWosuski);
                 // Taler aus Inventar raus und Stollen rein
                 mainFrame.inventory.vInventory.removeElement(40);
                 mainFrame.inventory.vInventory.addElement(52);
@@ -955,7 +943,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00012"), Start.stringManager.getTranslation("Loc3_StareWiki_00013"), Start.stringManager.getTranslation("Loc3_StareWiki_00014"), 0, 1, 2, 180);
+                KrabatSagt("StareWiki_5", 0, 1, 2, 180);
                 break;
 
             case 180:
@@ -1074,123 +1062,81 @@ public class StareWiki extends Mainloc {
             // Sequenz vor MC (erstes Anreden)
             case 608:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00039"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00040"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00041"),
-                        0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_6", 0, 62, 2, 600, talkPointKorejty);
                 mainFrame.Actions[580] = true; // Flag setzen
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00042"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00043"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00044"),
-                        0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_7", 0, 62, 2, 600, talkPointKorejty);
                 break;
 
             case 611:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00045"), Start.stringManager.getTranslation("Loc3_StareWiki_00046"), Start.stringManager.getTranslation("Loc3_StareWiki_00047"), 0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_8", 0, 62, 2, 600, talkPointKorejty);
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00048"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00049"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00050"),
-                        0, 62, 2, 621, talkPointKorejty);
+                PersonSagt("StareWiki_9", 0, 62, 2, 621, talkPointKorejty);
                 break;
 
             case 621:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00051"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00052"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00053"),
-                        0, 62, 2, 622, talkPointKorejty);
+                PersonSagt("StareWiki_10", 0, 62, 2, 622, talkPointKorejty);
                 break;
 
             case 622:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00054"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00055"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00056"),
-                        0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_11", 0, 62, 2, 600, talkPointKorejty);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00057"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00058"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00059"),
-                        0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_12", 0, 62, 2, 600, talkPointKorejty);
                 break;
 
             case 631:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00060"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00061"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00062"),
-                        0, 62, 2, 632, talkPointKorejty);
+                PersonSagt("StareWiki_13", 0, 62, 2, 632, talkPointKorejty);
                 break;
 
             case 632:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00063"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00064"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00065"),
-                        0, 62, 2, 633, talkPointKorejty);
+                PersonSagt("StareWiki_14", 0, 62, 2, 633, talkPointKorejty);
                 break;
 
             case 633:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00066"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00067"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00068"),
-                        0, 62, 2, 600, talkPointKorejty);
+                PersonSagt("StareWiki_15", 0, 62, 2, 600, talkPointKorejty);
                 break;
 
             case 634:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00069"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00070"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00071"),
-                        0, 62, 2, 635, talkPointKorejty);
+                PersonSagt("StareWiki_16", 0, 62, 2, 635, talkPointKorejty);
                 break;
 
             case 635:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00072"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00073"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00074"),
-                        0, 62, 2, 636, talkPointKorejty);
+                PersonSagt("StareWiki_17", 0, 62, 2, 636, talkPointKorejty);
                 break;
 
             case 636:
                 // Reaktion PredKorejtow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00075"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00076"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00077"),
-                        0, 62, 2, 637, talkPointKorejty);
+                PersonSagt("StareWiki_18", 0, 62, 2, 637, talkPointKorejty);
                 break;
 
             case 637:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00078"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00079"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00080"),
-                        12, 3, 2, 638);
+                KrabatSagt("StareWiki_19", 12, 3, 2, 638);
                 break;
 
             case 638:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00081"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00082"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00083"),
-                        12, 3, 2, 910);
+                KrabatSagt("StareWiki_20", 12, 3, 2, 910);
                 break;
 
 
@@ -1272,59 +1218,38 @@ public class StareWiki extends Mainloc {
             // Antworten zu Frage 1 ////////////////////////////
             case 710:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00102"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00103"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00104"),
-                        0, 63, 2, 700, talkPointWosuski);
+                PersonSagt("StareWiki_21", 0, 63, 2, 700, talkPointWosuski);
                 break;
 
             case 711:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00105"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00106"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00107"),
-                        0, 63, 2, 712, talkPointWosuski);
+                PersonSagt("StareWiki_22", 0, 63, 2, 712, talkPointWosuski);
                 break;
 
             case 712:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00108"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00109"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00110"),
-                        0, 63, 2, 700, talkPointWosuski);
+                PersonSagt("StareWiki_23", 0, 63, 2, 700, talkPointWosuski);
                 break;
 
             case 713:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00111"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00112"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00113"),
-                        0, 63, 2, 714, talkPointWosuski);
+                PersonSagt("StareWiki_24", 0, 63, 2, 714, talkPointWosuski);
                 break;
 
             case 714:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00114"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00115"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00116"),
-                        0, 63, 2, 700, talkPointWosuski);
+                PersonSagt("StareWiki_25", 0, 63, 2, 700, talkPointWosuski);
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 720:
                 // Reaktion PredWosuskow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00117"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00118"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00119"),
-                        0, 63, 2, 721, talkPointWosuski);
+                PersonSagt("StareWiki_26", 0, 63, 2, 721, talkPointWosuski);
                 break;
 
             case 721:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00120"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00121"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00122"),
-                        0, 1, 2, 910);
+                KrabatSagt("StareWiki_27", 0, 1, 2, 910);
                 break;
 
             // Dialog mit PredMalickoscow  ///////////////////////////////////////
@@ -1426,85 +1351,55 @@ public class StareWiki extends Mainloc {
             // Antworten zu Frage 1 ////////////////////////////
             case 810:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00156"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00157"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00158"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_28", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 811:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00159"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00160"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00161"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_29", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 812:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00162"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00163"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00164"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_30", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
 
             case 820:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00165"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00166"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00167"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_31", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 821:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00168"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00169"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00170"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_32", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 822:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00171"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00172"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00173"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_33", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 823:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00174"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00175"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00176"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_34", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 824:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00177"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00178"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00179"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_35", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             case 825:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00180"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00181"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00182"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_36", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 830:
                 // Reaktion PredMalickow
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00183"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00184"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00185"),
-                        0, 64, 2, 800, talkPointMalicki);
+                PersonSagt("StareWiki_37", 0, 64, 2, 800, talkPointMalicki);
                 break;
 
 
@@ -1538,10 +1433,7 @@ public class StareWiki extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     ResetAnims();
                     AnimMCLocked = true;
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00186"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00187"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00188"),
-                            0, 64, 0, 900, talkPointMalicki);
+                    PersonSagt("StareWiki_38", 0, 64, 0, 900, talkPointMalicki);
                 } else {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1565,10 +1457,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00189"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00190"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00191"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_39", 0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
@@ -1589,10 +1478,7 @@ public class StareWiki extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     ResetAnims();
                     AnimMCLocked = true;
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00192"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00193"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00194"),
-                            0, 64, 0, 900, talkPointMalicki);
+                    PersonSagt("StareWiki_40", 0, 64, 0, 900, talkPointMalicki);
                 } else {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1616,10 +1502,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00195"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00196"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00197"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_41", 0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
                 mainFrame.inventory.vInventory.removeElement(49);
@@ -1633,10 +1516,7 @@ public class StareWiki extends Mainloc {
                     evalMouseMoveEvent(mainFrame.Mousepoint);
                     ResetAnims();
                     AnimMCLocked = true;
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00198"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00199"),
-                            Start.stringManager.getTranslation("Loc3_StareWiki_00200"),
-                            0, 64, 0, 900, talkPointMalicki);
+                    PersonSagt("StareWiki_42", 0, 64, 0, 900, talkPointMalicki);
                 } else {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -1660,10 +1540,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00201"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00202"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00203"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_43", 0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
                 mainFrame.inventory.vInventory.removeElement(45);
@@ -1692,10 +1569,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00204"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00205"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00206"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_44", 0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
                 mainFrame.inventory.vInventory.removeElement(49);
@@ -1724,10 +1598,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00207"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00208"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00209"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_45", 0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
@@ -1763,10 +1634,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00210"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00211"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00212"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_46", 0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
                 mainFrame.inventory.vInventory.removeElement(45);
@@ -1795,10 +1663,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00213"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00214"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00215"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_47", 0, 64, 0, 900, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
                 mainFrame.inventory.vInventory.removeElement(45);
@@ -1827,10 +1692,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00216"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00217"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00218"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_48", 0, 64, 0, 900, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
@@ -1866,10 +1728,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00219"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00220"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00221"),
-                        0, 64, 0, 900, talkPointMalicki);
+                PersonSagt("StareWiki_49", 0, 64, 0, 900, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
                 mainFrame.inventory.vInventory.removeElement(49);
@@ -1919,10 +1778,7 @@ public class StareWiki extends Mainloc {
                 if (malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00222"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00223"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00224"),
-                        0, 64, 0, 1096, talkPointMalicki);
+                PersonSagt("StareWiki_50", 0, 64, 0, 1096, talkPointMalicki);
                 // Actionvariable setzen und Inventarstueck entfernen
                 if (!mainFrame.Actions[649]) {
                     // ungesiegelte Dowolnosc
@@ -1999,10 +1855,7 @@ public class StareWiki extends Mainloc {
                 if (malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00225"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00226"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00227"),
-                        0, 64, 0, 1106, talkPointMalicki);
+                PersonSagt("StareWiki_51", 0, 64, 0, 1106, talkPointMalicki);
                 // Prikaz entfernen und Actionvariable setzen
                 mainFrame.Actions[647] = true;
                 mainFrame.inventory.vInventory.removeElement(49);
@@ -2056,10 +1909,7 @@ public class StareWiki extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || malIsGiving) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00228"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00229"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00230"),
-                        0, 64, 2, 1113, talkPointMalicki);
+                PersonSagt("StareWiki_52", 0, 64, 2, 1113, talkPointMalicki);
                 // Casnik entfernen und Actionvariable setzen
                 mainFrame.Actions[648] = true;
                 mainFrame.inventory.vInventory.removeElement(45);
@@ -2089,8 +1939,7 @@ public class StareWiki extends Mainloc {
 
             case 1115:
                 // Krabat redet
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00231"), Start.stringManager.getTranslation("Loc3_StareWiki_00232"), Start.stringManager.getTranslation("Loc3_StareWiki_00233"),
-                        0, 1, 2, 1116);
+                KrabatSagt("StareWiki_53", 0, 1, 2, 1116);
                 break;
 
             case 1116:
@@ -2124,10 +1973,7 @@ public class StareWiki extends Mainloc {
 
             case 1120:
                 // Antwort PredMal... 
-                PersonSagt(Start.stringManager.getTranslation("Loc3_StareWiki_00234"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00235"),
-                        Start.stringManager.getTranslation("Loc3_StareWiki_00236"),
-                        0, 64, 0, 1121, talkPointMalicki);
+                PersonSagt("StareWiki_54", 0, 64, 0, 1121, talkPointMalicki);
                 break;
 
             case 1121:

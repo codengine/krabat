@@ -588,30 +588,22 @@ public class Jitk2 extends Mainloc2 {
         switch (nextActionID) {
             case 1:
                 // Eingang anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Jitk2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Jitk2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Jitk2_00002"),
-                        fEingang, 3, 0, 0);
+                KrabatSagt("Jitk2_1", fEingang, 3, 0, 0);
                 break;
 
             case 2:
                 // Wagen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Jitk2_00003"), Start.stringManager.getTranslation("Loc2_Jitk2_00004"), Start.stringManager.getTranslation("Loc2_Jitk2_00005"),
-                        fWagen, 3, 0, 0);
+                KrabatSagt("Jitk2_2", fWagen, 3, 0, 0);
                 break;
 
             case 50:
                 // Wagen mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Jitk2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Jitk2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Jitk2_00008"),
-                        fWagen, 3, 0, 0);
+                KrabatSagt("Jitk2_3", fWagen, 3, 0, 0);
                 break;
 
             case 51:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Jitk2_00009"), Start.stringManager.getTranslation("Loc2_Jitk2_00010"), Start.stringManager.getTranslation("Loc2_Jitk2_00011"),
-                        fEingang, 3, 0, 0);
+                KrabatSagt("Jitk2_4", fEingang, 3, 0, 0);
                 break;
 
             case 100:

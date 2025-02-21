@@ -509,66 +509,42 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 }
                 ismuellermorphing = false;
                 mainFrame.Clipset = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00000"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00001"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00002"),
-                        12, 36, 2, 1020, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_1", 12, 36, 2, 1020, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1020:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00003"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00004"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00005"),
-                        0, 36, 2, 1030, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_2", 0, 36, 2, 1030, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1030:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00006"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00007"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00008"),
-                        0, 1, 2, 1040);
+                KrabatSagt("MlynkCornyCholmc1_3", 0, 1, 2, 1040);
                 break;
 
             case 1040:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00009"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00010"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00011"),
-                        0, 36, 2, 1042, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_4", 0, 36, 2, 1042, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1042:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00012"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00013"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00014"),
-                        0, 36, 2, 1050, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_5", 0, 36, 2, 1050, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1050:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00015"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00016"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00017"),
-                        0, 36, 2, 1055, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_6", 0, 36, 2, 1055, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1055:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00018"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00019"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00020"),
-                        0, 36, 2, 1060, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_7", 0, 36, 2, 1060, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1060:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00021"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00022"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00023"),
-                        0, 36, 2, 1061, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_8", 0, 36, 2, 1061, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1061:
@@ -594,10 +570,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00024"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00025"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00026"),
-                        0, 36, 2, 1064, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_9", 0, 36, 2, 1064, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1064:
@@ -704,10 +677,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1290:
                 // Krabat sagt, dass er Feder hat und gibt sie
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00027"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00028"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00029"),
-                        0, 1, 2, 1291);
+                KrabatSagt("MlynkCornyCholmc1_10", 0, 1, 2, 1291);
                 break;
 
             case 1291:
@@ -727,18 +697,12 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 // Mueller redet
                 muellerda = true;
                 InitMuellerRueckflug();
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00030"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00031"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00032"),
-                        0, 36, 7, 1310, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_11", 0, 36, 7, 1310, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1310:
                 // Mueller redet
-                PersonSagt(Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00033"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00034"),
-                        Start.stringManager.getTranslation("Loc1_MlynkCornyCholmc1_00035"),
-                        0, 36, 2, 1320, mueller.evalMlynkTalkPoint());
+                PersonSagt("MlynkCornyCholmc1_12", 0, 36, 2, 1320, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1320:

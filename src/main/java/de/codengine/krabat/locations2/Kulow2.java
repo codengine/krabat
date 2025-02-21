@@ -878,48 +878,32 @@ public class Kulow2 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wikowar anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00002"),
-                        fWikowar, 3, 0, 0);
+                KrabatSagt("Kulow2_1", fWikowar, 3, 0, 0);
                 break;
 
             case 2:
                 // Rybowar anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00005"),
-                        fRybowar, 3, 0, 0);
+                KrabatSagt("Kulow2_2", fRybowar, 3, 0, 0);
                 break;
 
             case 4:
                 // geschlossene Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00008"),
-                        fGTuer, 3, 0, 0);
+                KrabatSagt("Kulow2_3", fGTuer, 3, 0, 0);
                 break;
 
             case 5:
                 // offene Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00009"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00010"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00011"),
-                        fOTuer, 3, 0, 0);
+                KrabatSagt("Kulow2_4", fOTuer, 3, 0, 0);
                 break;
 
             case 6:
                 // Stroh anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00012"), Start.stringManager.getTranslation("Loc2_Kulow2_00013"), Start.stringManager.getTranslation("Loc2_Kulow2_00014"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Kulow2_5", fSyno, 3, 0, 0);
                 break;
 
             case 7:
                 // Gefaess anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00017"),
-                        fSudobjo, 3, 0, 0);
+                KrabatSagt("Kulow2_6", fSudobjo, 3, 0, 0);
                 break;
 
             case 50:
@@ -948,10 +932,7 @@ public class Kulow2 extends Mainloc {
 
             case 60:
                 // geschl. Tuer benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00020"),
-                        fGTuer, 3, 0, 0);
+                KrabatSagt("Kulow2_7", fGTuer, 3, 0, 0);
                 break;
 
             case 65:
@@ -960,34 +941,22 @@ public class Kulow2 extends Mainloc {
                 int zuffZahl2 = (int) (Math.random() * 2.9);
                 switch (zuffZahl2) {
                     case 0:
-                        PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00021"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00022"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00023"),
-                                fOTuer, 52, 0, 0, doorTalk);
+                        PersonSagt("Kulow2_8", fOTuer, 52, 0, 0, doorTalk);
                         break;
 
                     case 1:
-                        PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00024"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00025"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00026"),
-                                fOTuer, 52, 0, 0, doorTalk);
+                        PersonSagt("Kulow2_9", fOTuer, 52, 0, 0, doorTalk);
                         break;
 
                     case 2:
-                        PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00027"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00028"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00029"),
-                                fOTuer, 52, 0, 0, doorTalk);
+                        PersonSagt("Kulow2_10", fOTuer, 52, 0, 0, doorTalk);
                         break;
                 }
                 break;
 
             case 70:
                 // Stroh benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00030"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00031"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00032"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Kulow2_11", fSyno, 3, 0, 0);
                 break;
 
             case 75:
@@ -998,17 +967,11 @@ public class Kulow2 extends Mainloc {
                 }
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00033"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00034"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00035"),
-                                fSudobjo, 3, 0, 0);
+                        KrabatSagt("Kulow2_12", fSudobjo, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00036"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00037"),
-                                Start.stringManager.getTranslation("Loc2_Kulow2_00038"),
-                                fSudobjo, 3, 0, 0);
+                        KrabatSagt("Kulow2_13", fSudobjo, 3, 0, 0);
                         break;
                 }
                 break;
@@ -1065,58 +1028,37 @@ public class Kulow2 extends Mainloc {
 
             case 200:
                 // kij auf wikowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00041"),
-                        fWikowar, 3, 0, 0);
+                KrabatSagt("Kulow2_14", fWikowar, 3, 0, 0);
                 break;
 
             case 205:
                 // kij auf rybowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00042"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00043"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00044"),
-                        fRybowar, 3, 0, 0);
+                KrabatSagt("Kulow2_15", fRybowar, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf wikowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00045"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00046"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00047"),
-                        fWikowar, 3, 0, 0);
+                KrabatSagt("Kulow2_16", fWikowar, 3, 0, 0);
                 break;
 
             case 215:
                 // bron auf rybowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00048"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00049"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00050"),
-                        fRybowar, 3, 0, 0);
+                KrabatSagt("Kulow2_17", fRybowar, 3, 0, 0);
                 break;
 
             case 220:
                 // kamuski auf dryba
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00051"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00052"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00053"),
-                        fDryba, 3, 0, 0);
+                KrabatSagt("Kulow2_18", fDryba, 3, 0, 0);
                 break;
 
             case 230:
                 // kamuski auf syno
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00054"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00055"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00056"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Kulow2_19", fSyno, 3, 0, 0);
                 break;
 
             case 240:
                 // ryba auf sudobjo
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00057"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00058"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00059"),
-                        fSudobjo, 3, 0, 0);
+                KrabatSagt("Kulow2_20", fSudobjo, 3, 0, 0);
                 break;
 
             case 600:
@@ -1187,66 +1129,42 @@ public class Kulow2 extends Mainloc {
 
             case 610:
                 // Reaktion Wikowar auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00081"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00082"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00083"),
-                        0, 32, 2, 600, wikowarTalk);
+                PersonSagt("Kulow2_21", 0, 32, 2, 600, wikowarTalk);
                 break;
 
             case 620:
                 // Reaktion Wikowar auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00084"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00085"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00086"),
-                        0, 32, 2, 600, wikowarTalk);
+                PersonSagt("Kulow2_22", 0, 32, 2, 600, wikowarTalk);
                 break;
 
             case 630:
                 // Reaktion Wikowar auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00087"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00088"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00089"),
-                        0, 32, 2, 600, wikowarTalk);
+                PersonSagt("Kulow2_23", 0, 32, 2, 600, wikowarTalk);
                 break;
 
             case 640:
                 // Reaktion Wikowar auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00090"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00091"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00092"),
-                        0, 32, 2, 600, wikowarTalk);
+                PersonSagt("Kulow2_24", 0, 32, 2, 600, wikowarTalk);
                 break;
 
             case 650:
                 // Reaktion Wikowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00093"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00094"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00095"),
-                        0, 32, 2, 651, wikowarTalk);
+                PersonSagt("Kulow2_25", 0, 32, 2, 651, wikowarTalk);
                 break;
 
             case 651:
                 // Reaktion Wikowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00096"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00097"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00098"),
-                        0, 32, 2, 652, wikowarTalk);
+                PersonSagt("Kulow2_26", 0, 32, 2, 652, wikowarTalk);
                 break;
 
             case 652:
                 // Reaktion Wikowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00099"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00100"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00101"),
-                        0, 32, 2, 653, wikowarTalk);
+                PersonSagt("Kulow2_27", 0, 32, 2, 653, wikowarTalk);
                 break;
 
             case 653:
                 // Reaktion Wikowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00102"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00103"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00104"),
-                        0, 32, 2, 600, wikowarTalk);
+                PersonSagt("Kulow2_28", 0, 32, 2, 600, wikowarTalk);
                 break;
 
             case 800:
@@ -1323,34 +1241,22 @@ public class Kulow2 extends Mainloc {
 
             case 910:
                 // Reaktion Rybowar auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00120"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00121"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00122"),
-                        0, 33, 2, 900, rybowarTalk);
+                PersonSagt("Kulow2_29", 0, 33, 2, 900, rybowarTalk);
                 break;
 
             case 920:
                 // Reaktion Rybowar auf 2. Teil 1. Frage (K noch nicht in Haty)
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00123"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00124"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00125"),
-                        0, 33, 2, 900, rybowarTalk);
+                PersonSagt("Kulow2_30", 0, 33, 2, 900, rybowarTalk);
                 break;
 
             case 930:
                 // Reaktion Rybowar auf 2. Teil 1. Frage (K in Haty gewesen)
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00126"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00127"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00128"),
-                        0, 33, 2, 931, rybowarTalk);
+                PersonSagt("Kulow2_31", 0, 33, 2, 931, rybowarTalk);
                 break;
 
             case 931:
                 // Reaktion Rybowar auf 2. Teil 1. Frage (K in Haty gewesen)
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Kulow2_00129"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00130"),
-                        Start.stringManager.getTranslation("Loc2_Kulow2_00131"),
-                        0, 33, 2, 900, rybowarTalk);
+                PersonSagt("Kulow2_32", 0, 33, 2, 900, rybowarTalk);
                 break;
 
             case 1100:

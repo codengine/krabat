@@ -594,22 +594,15 @@ public class CornyCholmc1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wald anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00000"), Start.stringManager.getTranslation("Loc1_CornyCholmc1_00001"), Start.stringManager.getTranslation("Loc1_CornyCholmc1_00002"),
-                        fWald, 3, 0, 0);
+                KrabatSagt("CornyCholmc1_1", fWald, 3, 0, 0);
                 break;
 
             case 2:
                 // Kolmc anschauen
                 if (!mainFrame.Actions[225]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00003"),
-                            Start.stringManager.getTranslation("Loc1_CornyCholmc1_00004"),
-                            Start.stringManager.getTranslation("Loc1_CornyCholmc1_00005"),
-                            fWjes, 3, 0, 0);
+                    KrabatSagt("CornyCholmc1_2", fWjes, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00006"),
-                            Start.stringManager.getTranslation("Loc1_CornyCholmc1_00007"),
-                            Start.stringManager.getTranslation("Loc1_CornyCholmc1_00008"),
-                            fWjes, 3, 0, 0);
+                    KrabatSagt("CornyCholmc1_3", fWjes, 3, 0, 0);
                 }
                 break;
 
@@ -638,34 +631,22 @@ public class CornyCholmc1 extends Mainloc {
 
             case 60:
                 // Wald Anim
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00009"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00010"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00011"),
-                        fWald, 1, 2, 65);
+                KrabatSagt("CornyCholmc1_4", fWald, 1, 2, 65);
                 break;
 
             case 65:
                 // Wald Anim
-                PersonSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00012"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00013"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00014"),
-                        0, 51, 2, 70, waldTalk);
+                PersonSagt("CornyCholmc1_5", 0, 51, 2, 70, waldTalk);
                 break;
 
             case 70:
                 // Wald Anim
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00015"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00016"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00017"),
-                        0, 3, 2, 75);
+                KrabatSagt("CornyCholmc1_6", 0, 3, 2, 75);
                 break;
 
             case 75:
                 // Wald Anim
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00018"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00019"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00020"),
-                        0, 3, 2, 80);
+                KrabatSagt("CornyCholmc1_7", 0, 3, 2, 80);
                 break;
 
             case 80:
@@ -678,10 +659,7 @@ public class CornyCholmc1 extends Mainloc {
 
             case 85:
                 // Kolmc mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00021"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00022"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00023"),
-                        fWjes, 3, 0, 0);
+                KrabatSagt("CornyCholmc1_8", fWjes, 3, 0, 0);
                 break;
 
             case 100:
@@ -765,26 +743,17 @@ public class CornyCholmc1 extends Mainloc {
 
             case 610:
                 // Wald Antwort
-                PersonSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00033"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00034"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00035"),
-                        0, 51, 2, 700, waldTalk);
+                PersonSagt("CornyCholmc1_9", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 620:
                 // Wald Antwort
-                PersonSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00036"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00037"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00038"),
-                        0, 51, 2, 700, waldTalk);
+                PersonSagt("CornyCholmc1_10", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 630:
                 // Wald Antwort
-                PersonSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00039"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00040"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00041"),
-                        0, 51, 2, 700, waldTalk);
+                PersonSagt("CornyCholmc1_11", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 700:
@@ -837,10 +806,7 @@ public class CornyCholmc1 extends Mainloc {
 
             case 1010:
                 // Wald Antwort
-                PersonSagt(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00051"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00052"),
-                        Start.stringManager.getTranslation("Loc1_CornyCholmc1_00053"),
-                        0, 51, 2, 0, waldTalk);
+                PersonSagt("CornyCholmc1_12", 0, 51, 2, 0, waldTalk);
                 // Test, ob Mueller auch kommen darf
                 if (!mainFrame.Actions[226] || mainFrame.Actions[919]) {
                     nextActionID = 1020;

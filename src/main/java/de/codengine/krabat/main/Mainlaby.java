@@ -253,10 +253,7 @@ abstract public class Mainlaby extends Mainloc {
         switch (AID) {
             case 1:
                 // Irrlichter anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainlaby_00000"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00001"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00002"),
-                        bludFacing, 3, 0, 0);
+                KrabatSagt("Mainlaby_1", bludFacing, 3, 0, 0);
                 break;
 
             case 50:
@@ -296,18 +293,12 @@ abstract public class Mainlaby extends Mainloc {
                 bludNimmt = false;
                 if (!mainFrame.Actions[197]) {
                     // nur raus, kein Spruch
-                    PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00003"),
-                            Start.stringManager.getTranslation("Main_Mainlaby_00004"),
-                            Start.stringManager.getTranslation("Main_Mainlaby_00005"),
-                            bludFacing, 35, 2, 158, bludTalk);
+                    PersonSagt("Mainlaby_2", bludFacing, 35, 2, 158, bludTalk);
                 } else {
                     // Spruch sagen und rausbeamen
                     BackgroundMusicPlayer.getInstance().stop();
                     mainFrame.wave.PlayFile("sfx/spruch.wav");
-                    PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00006"),
-                            Start.stringManager.getTranslation("Main_Mainlaby_00007"),
-                            Start.stringManager.getTranslation("Main_Mainlaby_00008"),
-                            bludFacing, 35, 2, 158, bludTalk);
+                    PersonSagt("Mainlaby_3", bludFacing, 35, 2, 158, bludTalk);
                     mainFrame.Actions[215] = true;
 
                     // hier in den Dialogen die Muehlenfragen rausnehmen
@@ -329,10 +320,7 @@ abstract public class Mainlaby extends Mainloc {
 
             case 160:
                 // Irrlichter mit kamuski benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Main_Mainlaby_00009"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00010"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00011"),
-                        bludFacing, 3, 0, 0);
+                KrabatSagt("Mainlaby_4", bludFacing, 3, 0, 0);
                 break;
 
             case 600:
@@ -428,50 +416,32 @@ abstract public class Mainlaby extends Mainloc {
 
             case 610:
                 // Reaktion Irrlicht auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00042"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00043"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00044"),
-                        0, 35, 2, 600, bludTalk);
+                PersonSagt("Mainlaby_5", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 620:
                 // Reaktion Irrlicht auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00045"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00046"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00047"),
-                        0, 35, 2, 600, bludTalk);
+                PersonSagt("Mainlaby_6", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 630:
                 // Reaktion Irrlicht auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00048"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00049"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00050"),
-                        0, 35, 2, 600, bludTalk);
+                PersonSagt("Mainlaby_7", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 640:
                 // Reaktion Irrlicht auf 4. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00051"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00052"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00053"),
-                        0, 35, 2, 641, bludTalk);
+                PersonSagt("Mainlaby_8", 0, 35, 2, 641, bludTalk);
                 break;
 
             case 641:
                 // Reaktion Irrlicht auf 4. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00054"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00055"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00056"),
-                        0, 35, 2, 600, bludTalk);
+                PersonSagt("Mainlaby_9", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 650:
                 // Reaktion Irrlicht auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00057"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00058"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00059"),
-                        0, 35, 2, 651, bludTalk);
+                PersonSagt("Mainlaby_10", 0, 35, 2, 651, bludTalk);
                 break;
 
             case 651:
@@ -482,10 +452,7 @@ abstract public class Mainlaby extends Mainloc {
 
             case 660:
                 // Reaktion Irrlicht auf 2. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Main_Mainlaby_00060"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00061"),
-                        Start.stringManager.getTranslation("Main_Mainlaby_00062"),
-                        0, 35, 2, 600, bludTalk);
+                PersonSagt("Mainlaby_11", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 800:

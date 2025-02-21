@@ -61,9 +61,7 @@ public class Haty1 extends Mainloc {
     private int Verzoegerung;
 
     // Antworten des 1. Anglers bei MC
-    private static final String[] HWAnt = {Start.stringManager.getTranslation("Loc1_Haty1_00000"), Start.stringManager.getTranslation("Loc1_Haty1_00001"), Start.stringManager.getTranslation("Loc1_Haty1_00002"), Start.stringManager.getTranslation("Loc1_Haty1_00003"), Start.stringManager.getTranslation("Loc1_Haty1_00004")};
-    private static final String[] DWAnt = {Start.stringManager.getTranslation("Loc1_Haty1_00005"), Start.stringManager.getTranslation("Loc1_Haty1_00006"), Start.stringManager.getTranslation("Loc1_Haty1_00007"), Start.stringManager.getTranslation("Loc1_Haty1_00008"), Start.stringManager.getTranslation("Loc1_Haty1_00009")};
-    private static final String[] NWAnt = {Start.stringManager.getTranslation("Loc1_Haty1_00010"), Start.stringManager.getTranslation("Loc1_Haty1_00011"), Start.stringManager.getTranslation("Loc1_Haty1_00012"), Start.stringManager.getTranslation("Loc1_Haty1_00013"), Start.stringManager.getTranslation("Loc1_Haty1_00014")};
+    private static final String[] ANGLER_ANSWERS = {"Haty1_88", "Haty1_89", "Haty1_90", "Haty1_91", "Haty1_92"};
 
     // Points fuer Dinge in Location
     private static final GenericPoint Prohodzl = new GenericPoint(73, 324);
@@ -1405,83 +1403,61 @@ public class Haty1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Schilf links ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00015"), Start.stringManager.getTranslation("Loc1_Haty1_00016"), Start.stringManager.getTranslation("Loc1_Haty1_00017"),
-                        fRohodzLeft, 3, 0, 0);
+                KrabatSagt("Haty1_1", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 2:
                 // Schilf rechts ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00018"), Start.stringManager.getTranslation("Loc1_Haty1_00019"), Start.stringManager.getTranslation("Loc1_Haty1_00020"),
-                        fRohodzRight, 3, 0, 0);
+                KrabatSagt("Haty1_2", fRohodzRight, 3, 0, 0);
                 break;
 
             case 3:
                 // Bow z rybami ansehen
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00021"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00022"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00023"),
-                            fBowRight, 3, 0, 0);
+                    KrabatSagt("Haty1_3", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00024"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00025"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00026"),
-                            fBowLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_4", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 4:
                 // Boot ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00027"), Start.stringManager.getTranslation("Loc1_Haty1_00028"), Start.stringManager.getTranslation("Loc1_Haty1_00029"),
-                        fBoot, 3, 0, 0);
+                KrabatSagt("Haty1_5", fBoot, 3, 0, 0);
                 break;
 
             case 5:
                 // Wasser links ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00030"), Start.stringManager.getTranslation("Loc1_Haty1_00031"), Start.stringManager.getTranslation("Loc1_Haty1_00032"),
-                        fWodaLeft, 3, 0, 0);
+                KrabatSagt("Haty1_6", fWodaLeft, 3, 0, 0);
                 break;
 
             case 6:
                 // Wasser rechts ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00033"), Start.stringManager.getTranslation("Loc1_Haty1_00034"), Start.stringManager.getTranslation("Loc1_Haty1_00035"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_7", fWodaRight, 3, 0, 0);
                 break;
 
             case 7:
                 // Angler ansehen, wenn links und fangen nix
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00036"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00037"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00038"),
-                        fWudzerjoLeft, 3, 0, 0);
+                KrabatSagt("Haty1_8", fWudzerjoLeft, 3, 0, 0);
                 break;
 
             case 8:
                 // Angler ansehen, wenn rechts und erfolgreich...
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00039"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00040"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00041"),
-                        fWudzerjoRight, 3, 0, 0);
+                KrabatSagt("Haty1_9", fWudzerjoRight, 3, 0, 0);
                 break;
 
             case 10:
                 // Muell anschauen, sobald er da ist
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00042"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00043"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00044"),
-                        fMuell, 3, 0, 0);
+                KrabatSagt("Haty1_10", fMuell, 3, 0, 0);
                 break;
 
             case 50:
                 // Schilf links mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00045"), Start.stringManager.getTranslation("Loc1_Haty1_00046"), Start.stringManager.getTranslation("Loc1_Haty1_00047"),
-                        fRohodzLeft, 3, 0, 0);
+                KrabatSagt("Haty1_11", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 55:
                 // Schilf rechts mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00048"), Start.stringManager.getTranslation("Loc1_Haty1_00049"), Start.stringManager.getTranslation("Loc1_Haty1_00050"),
-                        fRohodzRight, 3, 0, 0);
+                KrabatSagt("Haty1_12", fRohodzRight, 3, 0, 0);
                 break;
 
             case 60:
@@ -1580,18 +1556,12 @@ public class Haty1 extends Mainloc {
 
             case 70:
                 // Woda Left mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00066"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00067"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00068"),
-                        fWodaLeft, 3, 0, 0);
+                KrabatSagt("Haty1_13", fWodaLeft, 3, 0, 0);
                 break;
 
             case 75:
                 // Woda Right mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00069"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00070"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00071"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_14", fWodaRight, 3, 0, 0);
                 break;
 
             case 80:
@@ -1652,10 +1622,7 @@ public class Haty1 extends Mainloc {
 
             case 90:
                 // Muell mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00078"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00079"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00080"),
-                        fMuell, 3, 0, 0);
+                KrabatSagt("Haty1_15", fMuell, 3, 0, 0);
                 break;
 
             case 100:
@@ -1735,36 +1702,26 @@ public class Haty1 extends Mainloc {
                 }
                 Sonderstatus = 5;
                 // Holzfisch in Wasser tauchen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00081"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00082"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00083"),
-                        0, 3, 5, 205);
+                KrabatSagt("Haty1_16", 0, 3, 5, 205);
                 break;
 
             case 205:
                 // Reaktion Angler 1
                 schautAnglerInDerGegendRum = true;
                 stehenderAnglerSchautSichUm = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00084"), Start.stringManager.getTranslation("Loc1_Haty1_00085"), Start.stringManager.getTranslation("Loc1_Haty1_00086"),
-                        0, 31, 2, 210, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_17", 0, 31, 2, 210, angler2.Wudzer2TalkPoint());
                 break;
 
             case 210:
                 // Reaktion Angler 2
                 schautAnglerInDerGegendRum = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00087"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00088"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00089"),
-                        0, 30, 2, 215, angler1.Wudzer1TalkPoint());
+                PersonSagt("Haty1_18", 0, 30, 2, 215, angler1.Wudzer1TalkPoint());
                 break;
 
             case 215:
                 // Reaktion Angler 1
                 stehenderAnglerSchautSichUm = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00090"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00091"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00092"),
-                        0, 31, 2, 218, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_19", 0, 31, 2, 218, angler2.Wudzer2TalkPoint());
                 break;
 
             case 218:
@@ -1851,58 +1808,37 @@ public class Haty1 extends Mainloc {
 
             case 229:
                 // Reaktion Angler 1
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00093"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00094"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00095"),
-                        0, 31, 2, 230, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_20", 0, 31, 2, 230, angler2.Wudzer2TalkPoint());
                 break;
 
             case 230:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00096"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00097"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00098"),
-                        0, 1, 2, 235);
+                KrabatSagt("Haty1_21", 0, 1, 2, 235);
                 break;
 
             case 235:
                 // Reaktion Angler 1
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00099"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00100"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00101"),
-                        0, 31, 2, 240, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_22", 0, 31, 2, 240, angler2.Wudzer2TalkPoint());
                 break;
 
             case 240:
                 // Reaktion Angler 1
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00102"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00103"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00104"),
-                        0, 31, 2, 245, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_23", 0, 31, 2, 245, angler2.Wudzer2TalkPoint());
                 break;
 
             case 245:
                 // Reaktion Angler 2
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00105"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00106"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00107"),
-                        0, 30, 2, 250, angler1.Wudzer1TalkPoint());
+                PersonSagt("Haty1_24", 0, 30, 2, 250, angler1.Wudzer1TalkPoint());
                 break;
 
             case 250:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00108"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00109"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00110"),
-                        0, 1, 2, 255);
+                KrabatSagt("Haty1_25", 0, 1, 2, 255);
                 break;
 
             case 255:
                 // Reaktion Angler 2
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00111"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00112"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00113"),
-                        0, 30, 2, 260, angler1.Wudzer1TalkPoint());
+                PersonSagt("Haty1_26", 0, 30, 2, 260, angler1.Wudzer1TalkPoint());
                 break;
 
             case 260:
@@ -1916,240 +1852,147 @@ public class Haty1 extends Mainloc {
 
             case 300:
                 // Schilf links mit was erreichen versuchen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00114"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00115"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00116"),
-                        fRohodzLeft, 3, 0, 0);
+                KrabatSagt("Haty1_27", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 305:
                 // Schilf rechts mit was erreichen versuchen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00117"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00118"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00119"),
-                        fRohodzRight, 3, 0, 0);
+                KrabatSagt("Haty1_28", fRohodzRight, 3, 0, 0);
                 break;
 
             case 310:
                 // Schilf links mit Leine
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00120"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00121"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00122"),
-                        fRohodzLeft, 3, 0, 0);
+                KrabatSagt("Haty1_29", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 315:
                 // Schilf rechts mit Leine
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00123"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00124"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00125"),
-                        fRohodzRight, 3, 0, 0);
+                KrabatSagt("Haty1_30", fRohodzRight, 3, 0, 0);
                 break;
 
             case 320:
                 // Schilf links mit Schilf
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00126"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00127"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00128"),
-                        fRohodzLeft, 3, 0, 0);
+                KrabatSagt("Haty1_31", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 325:
                 // Schilf rechts mit Schilf
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00129"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00130"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00131"),
-                        fRohodzRight, 3, 0, 0);
+                KrabatSagt("Haty1_32", fRohodzRight, 3, 0, 0);
                 break;
 
             case 330:
                 // Eimer mit Wuermern
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00132"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00133"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00134"),
-                            fBowRight, 3, 0, 0);
+                    KrabatSagt("Haty1_33", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00135"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00136"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00137"),
-                            fBowLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_34", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 340:
                 // Eimer mit dryba
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00138"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00139"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00140"),
-                            fBowRight, 3, 0, 0);
+                    KrabatSagt("Haty1_35", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00141"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00142"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00143"),
-                            fBowLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_36", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 350:
                 // Eimer mit ryba
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00144"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00145"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00146"),
-                            fBowRight, 3, 0, 0);
+                    KrabatSagt("Haty1_37", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00147"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00148"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00149"),
-                            fBowLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_38", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 360:
                 // Colmik mit Lajna
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00150"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00151"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00152"),
-                        fBoot, 3, 0, 0);
+                KrabatSagt("Haty1_39", fBoot, 3, 0, 0);
                 break;
 
             case 370:
                 // Woda left mit wuda
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00153"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00154"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00155"),
-                        fWodaLeft, 3, 0, 0);
+                KrabatSagt("Haty1_40", fWodaLeft, 3, 0, 0);
                 break;
 
             case 375:
                 // Woda right mit wuda
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00156"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00157"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00158"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_41", fWodaRight, 3, 0, 0);
                 break;
 
             case 380:
                 // Woda left mit wuda + hocka
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00159"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00160"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00161"),
-                        fWodaLeft, 3, 0, 0);
+                KrabatSagt("Haty1_42", fWodaLeft, 3, 0, 0);
                 break;
 
             case 385:
                 // Woda right mit wuda + hocka
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00162"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00163"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00164"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_43", fWodaRight, 3, 0, 0);
                 break;
 
             case 390:
                 // Woda left mit ryba
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00165"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00166"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00167"),
-                        fWodaLeft, 3, 0, 0);
+                KrabatSagt("Haty1_44", fWodaLeft, 3, 0, 0);
                 break;
 
             case 395:
                 // Woda right mit ryba
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00168"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00169"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00170"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_45", fWodaRight, 3, 0, 0);
                 break;
 
             case 400:
                 // Wudzerjo verpruegeln
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00171"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00172"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00173"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_46", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00174"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00175"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00176"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_47", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 410:
                 // Wudzerjo Haken geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00177"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00178"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00179"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_48", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00180"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00181"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00182"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_49", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 420:
                 // Wudzerjo wacki geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00183"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00184"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00185"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_50", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00186"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00187"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00188"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_51", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 430:
                 // Wudzerjo angel geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00189"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00190"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00191"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_52", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00192"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00193"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00194"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_53", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 440:
                 // Wudzerjo wuda + dryba geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00195"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00196"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00197"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_54", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00198"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00199"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00200"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_55", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 450:
                 // Wudzerjo dryba geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00201"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00202"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00203"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_56", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00204"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00205"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00206"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_57", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
@@ -2158,24 +2001,15 @@ public class Haty1 extends Mainloc {
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00207"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00208"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00209"),
-                            fWudzerjoRight, 1, 2, 473);
+                    KrabatSagt("Haty1_58", fWudzerjoRight, 1, 2, 473);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00210"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00211"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00212"),
-                            fWudzerjoLeft, 1, 2, 473);
+                    KrabatSagt("Haty1_59", fWudzerjoLeft, 1, 2, 473);
                 }
                 break;
 
             case 473:
                 // Reaktion Angler 1
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00213"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00214"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00215"),
-                        0, 31, 2, 476, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_60", 0, 31, 2, 476, angler2.Wudzer2TalkPoint());
                 break;
 
             case 476:
@@ -2189,30 +2023,18 @@ public class Haty1 extends Mainloc {
             case 480:
                 // Wudzerjo krosik geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00216"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00217"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00218"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_61", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00219"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00220"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00221"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_62", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 490:
                 // Wudzerjo bron geben
                 if (!mainFrame.Actions[220]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00222"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00223"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00224"),
-                            fWudzerjoRight, 3, 0, 0);
+                    KrabatSagt("Haty1_63", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00225"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00226"),
-                            Start.stringManager.getTranslation("Loc1_Haty1_00227"),
-                            fWudzerjoLeft, 3, 0, 0);
+                    KrabatSagt("Haty1_64", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
@@ -2232,10 +2054,7 @@ public class Haty1 extends Mainloc {
 
             case 600:
                 // Reaktion Angler 1
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00231"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00232"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00233"),
-                        fWudzerjoRight, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_65", fWudzerjoRight, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 mainFrame.Actions[156] = true; // keine 2x dummen Sprueche
                 break;
 
@@ -2327,118 +2146,77 @@ public class Haty1 extends Mainloc {
 
             case 620:
                 // Reaktion Angler 1 auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00264"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00265"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00266"),
-                        0, 31, 2, 621, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_66", 0, 31, 2, 621, angler2.Wudzer2TalkPoint());
                 break;
 
             case 621:
                 // Reaktion Angler 1 auf 1. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00267"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00268"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00269"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_67", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 630:
                 // Reaktion Angler 1 auf 2. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00270"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00271"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00272"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_68", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 640:
                 // Reaktion Angler 1 auf 3. Teil 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00273"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00274"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00275"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_69", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 650:
                 // Reaktion Angler 1 auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00276"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00277"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00278"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_70", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 660:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00279"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00280"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00281"),
-                        0, 31, 2, 661, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_71", 0, 31, 2, 661, angler2.Wudzer2TalkPoint());
                 break;
 
             case 661:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00282"), Start.stringManager.getTranslation("Loc1_Haty1_00283"), Start.stringManager.getTranslation("Loc1_Haty1_00284"),
-                        0, 31, 2, 662, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_72", 0, 31, 2, 662, angler2.Wudzer2TalkPoint());
                 break;
 
             case 662:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00285"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00286"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00287"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_73", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 670:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00288"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00289"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00290"),
-                        0, 31, 2, 671, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_74", 0, 31, 2, 671, angler2.Wudzer2TalkPoint());
                 break;
 
             case 671:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00291"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00292"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00293"),
-                        0, 31, 2, 672, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_75", 0, 31, 2, 672, angler2.Wudzer2TalkPoint());
                 break;
 
             case 672:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00294"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00295"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00296"),
-                        0, 31, 2, 673, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_76", 0, 31, 2, 673, angler2.Wudzer2TalkPoint());
                 break;
 
             case 673:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00297"), Start.stringManager.getTranslation("Loc1_Haty1_00298"), Start.stringManager.getTranslation("Loc1_Haty1_00299"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_77", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 680:
                 // Reaktion Angler 1 auf 1. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00300"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00301"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00302"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_78", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 690:
                 // Reaktion Angler 1 auf 2. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00303"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00304"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00305"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_79", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 700:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00306"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00307"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00308"),
-                        0, 31, 2, 702, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_80", 0, 31, 2, 702, angler2.Wudzer2TalkPoint());
                 break;
      
             /*case 701:
@@ -2449,18 +2227,12 @@ public class Haty1 extends Mainloc {
 
             case 702:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00312"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00313"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00314"),
-                        0, 31, 2, 703, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_81", 0, 31, 2, 703, angler2.Wudzer2TalkPoint());
                 break;
 
             case 703:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00315"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00316"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00317"),
-                        0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_82", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
                 break;
 
             case 800:
@@ -2514,8 +2286,8 @@ public class Haty1 extends Mainloc {
 
             case 910:
                 // Angler 2  - Antworten
-                int zg = (int) Math.round(Math.random() * 4);
-                PersonSagt(HWAnt[zg], DWAnt[zg], NWAnt[zg], 0, 30, 2, 900, angler1.Wudzer1TalkPoint());
+                int zg = (int) Math.round(Math.random() * (ANGLER_ANSWERS.length - 1));
+                PersonSagt(ANGLER_ANSWERS[zg], 0, 30, 2, 900, angler1.Wudzer1TalkPoint());
                 break;
 
             case 1000:
@@ -2528,18 +2300,12 @@ public class Haty1 extends Mainloc {
 
             case 1200:
                 // Reaktion Angler 1, wenn links und K irgendwie angeln will (sinnvolle Angeln)
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00327"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00328"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00329"),
-                        0, 31, 2, 0, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_83", 0, 31, 2, 0, angler2.Wudzer2TalkPoint());
                 break;
 
             case 1210:
                 // Reaktion Angler 1, wenn rechts und K irgendwie angeln
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Haty1_00330"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00331"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00332"),
-                        0, 31, 2, 0, angler2.Wudzer2TalkPoint());
+                PersonSagt("Haty1_84", 0, 31, 2, 0, angler2.Wudzer2TalkPoint());
                 break;
 
             case 1220:
@@ -2587,8 +2353,7 @@ public class Haty1 extends Mainloc {
 
             case 1238:
                 // Habe doch schon Fisch oder krosik
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00333"), Start.stringManager.getTranslation("Loc1_Haty1_00334"), Start.stringManager.getTranslation("Loc1_Haty1_00335"),
-                        3, 3, 0, 0);
+                KrabatSagt("Haty1_85", 3, 3, 0, 0);
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 schnauzeFische = false;
@@ -2613,10 +2378,7 @@ public class Haty1 extends Mainloc {
 
             case 1248:
                 // Fange nichts
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00336"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00337"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00338"),
-                        9, 3, 0, 0);
+                KrabatSagt("Haty1_86", 9, 3, 0, 0);
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 schnauzeFische = false;
@@ -2624,10 +2386,7 @@ public class Haty1 extends Mainloc {
 
             case 1250:
                 // Den Holzfischtrick nicht rechts versuchen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Haty1_00339"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00340"),
-                        Start.stringManager.getTranslation("Loc1_Haty1_00341"),
-                        fWodaRight, 3, 0, 0);
+                KrabatSagt("Haty1_87", fWodaRight, 3, 0, 0);
                 break;
 
             default:

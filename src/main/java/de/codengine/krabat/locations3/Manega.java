@@ -68,13 +68,8 @@ public class Manega extends Mainloc {
     private static final int fLoewe = 9;
 
     // Konstante Strings
-    private static final String[] HLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00000"), Start.stringManager.getTranslation("Loc3_Manega_00001"), Start.stringManager.getTranslation("Loc3_Manega_00002")};
-    private static final String[] DLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00003"), Start.stringManager.getTranslation("Loc3_Manega_00004"), Start.stringManager.getTranslation("Loc3_Manega_00005")};
-    private static final String[] NLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00006"), Start.stringManager.getTranslation("Loc3_Manega_00007"), Start.stringManager.getTranslation("Loc3_Manega_00008")};
-
-    private static final String[] HVLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00009"), Start.stringManager.getTranslation("Loc3_Manega_00010"), Start.stringManager.getTranslation("Loc3_Manega_00011")};
-    private static final String[] DVLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00012"), Start.stringManager.getTranslation("Loc3_Manega_00013"), Start.stringManager.getTranslation("Loc3_Manega_00014")};
-    private static final String[] NVLoewe = {Start.stringManager.getTranslation("Loc3_Manega_00015"), Start.stringManager.getTranslation("Loc3_Manega_00016"), Start.stringManager.getTranslation("Loc3_Manega_00017")};
+    private static final String[] LION_TEXTS = {"Manega_21", "Manega_22", "Manega_23"};
+    private static final String[] VLION_TEXTS = {"Manega_24", "Manega_25", "Manega_26"};
 
     private int Counter = 0;
 
@@ -570,20 +565,15 @@ public class Manega extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Helm anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00018"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00019"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00020"),
-                        fHelm, 3, 0, 0);
+                KrabatSagt("Manega_1", fHelm, 3, 0, 0);
                 break;
 
             case 2:
                 // Loewen anschauen, wenn er noch wach ist oder schon schlaeft
                 if (!mainFrame.Actions[613]) {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00021"), Start.stringManager.getTranslation("Loc3_Manega_00022"), Start.stringManager.getTranslation("Loc3_Manega_00023"),
-                            fLoewe, 3, 0, 0);
+                    KrabatSagt("Manega_2", fLoewe, 3, 0, 0);
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00024"), Start.stringManager.getTranslation("Loc3_Manega_00025"), Start.stringManager.getTranslation("Loc3_Manega_00026"),
-                            fLoewe, 3, 0, 0);
+                    KrabatSagt("Manega_3", fLoewe, 3, 0, 0);
                 }
                 break;
 
@@ -592,10 +582,7 @@ public class Manega extends Mainloc {
                 // Hier Entscheidung, ob schon Buch gelesen
                 if (!mainFrame.Actions[955]) {
                     // noch nicht gelesen
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00027"),
-                            Start.stringManager.getTranslation("Loc3_Manega_00028"),
-                            Start.stringManager.getTranslation("Loc3_Manega_00029"),
-                            fLoewe, 3, 0, 0);
+                    KrabatSagt("Manega_4", fLoewe, 3, 0, 0);
                 } else {
                     // Animszene mit Loewe
                     if (!mainFrame.Actions[610]) {
@@ -605,15 +592,9 @@ public class Manega extends Mainloc {
                     } else {
                         // Loewe ist sauer, oder wenn er schon schlaeft, will K ihn auch in Ruhe lassen
                         if (!mainFrame.Actions[613]) {
-                            PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00030"),
-                                    Start.stringManager.getTranslation("Loc3_Manega_00031"),
-                                    Start.stringManager.getTranslation("Loc3_Manega_00032"),
-                                    0, 68, 0, 0, loeweTalk);
+                            PersonSagt("Manega_5", 0, 68, 0, 0, loeweTalk);
                         } else {
-                            KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00033"),
-                                    Start.stringManager.getTranslation("Loc3_Manega_00034"),
-                                    Start.stringManager.getTranslation("Loc3_Manega_00035"),
-                                    fLoewe, 3, 0, 0);
+                            KrabatSagt("Manega_6", fLoewe, 3, 0, 0);
                         }
                     }
                 }
@@ -637,12 +618,10 @@ public class Manega extends Mainloc {
                     evalSound();
                     if (mainFrame.Actions[955]) {
                         // Krabat hat Buch gelesen, versteht Loewen also
-                        PersonSagt(HLoewe[zuffZahl], DLoewe[zuffZahl], NLoewe[zuffZahl],
-                                0, 68, 0, 0, loeweTalk);
+                        PersonSagt(LION_TEXTS[zuffZahl], 0, 68, 0, 0, loeweTalk);
                     } else {
                         // Krabat hat Buch noch nicht gelesen
-                        PersonSagt(HVLoewe[zuffZahl], DVLoewe[zuffZahl], NVLoewe[zuffZahl],
-                                0, 70, 0, 0, loeweTalk);
+                        PersonSagt(VLION_TEXTS[zuffZahl], 0, 70, 0, 0, loeweTalk);
                     }
                 }
                 break;
@@ -675,98 +654,62 @@ public class Manega extends Mainloc {
             case 200:
                 // Animszene mit Loewe
                 hoertZu = true;
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00036"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00037"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00038"),
-                        fLoewe, 1, 2, 210);
+                KrabatSagt("Manega_7", fLoewe, 1, 2, 210);
                 break;
 
             case 210:
                 // Antwort law
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00039"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00040"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00041"),
-                        0, 68, 2, 220, loeweTalk);
+                PersonSagt("Manega_8", 0, 68, 2, 220, loeweTalk);
                 break;
 
             case 220:
                 // Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00042"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00043"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00044"),
-                        0, 1, 2, 230);
+                KrabatSagt("Manega_9", 0, 1, 2, 230);
                 break;
 
             case 230:
                 // Loewe
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00045"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00046"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00047"),
-                        0, 68, 2, 240, loeweTalk);
+                PersonSagt("Manega_10", 0, 68, 2, 240, loeweTalk);
                 break;
 
             case 240:
                 // K
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00048"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00049"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00050"),
-                        0, 1, 2, 250);
+                KrabatSagt("Manega_11", 0, 1, 2, 250);
                 break;
 
             case 250:
                 // Loewe
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00051"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00052"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00053"),
-                        0, 68, 2, 260, loeweTalk);
+                PersonSagt("Manega_12", 0, 68, 2, 260, loeweTalk);
                 break;
 
             case 260:
                 // K
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00054"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00055"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00056"),
-                        0, 1, 2, 270);
+                KrabatSagt("Manega_13", 0, 1, 2, 270);
                 break;
 
             case 270:
                 // Loewe
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00057"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00058"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00059"),
-                        0, 68, 2, 280, loeweTalk);
+                PersonSagt("Manega_14", 0, 68, 2, 280, loeweTalk);
                 break;
 
             case 280:
                 // Loewe
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00060"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00061"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00062"),
-                        0, 68, 2, 290, loeweTalk);
+                PersonSagt("Manega_15", 0, 68, 2, 290, loeweTalk);
                 break;
 
             case 290:
                 // K
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00063"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00064"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00065"),
-                        0, 3, 2, 300);
+                KrabatSagt("Manega_16", 0, 3, 2, 300);
                 break;
 
             case 300:
                 // K
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Manega_00066"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00067"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00068"),
-                        0, 1, 2, 310);
+                KrabatSagt("Manega_17", 0, 1, 2, 310);
                 break;
 
             case 310:
                 // Loewe
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00069"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00070"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00071"),
-                        0, 68, 2, 320, loeweTalk);
+                PersonSagt("Manega_18", 0, 68, 2, 320, loeweTalk);
                 break;
 
             case 320:
@@ -818,10 +761,7 @@ public class Manega extends Mainloc {
 
             case 610:
                 // 1. Loewenreaktion
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00072"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00073"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00074"),
-                        0, 68, 0, 615, loeweTalk);
+                PersonSagt("Manega_19", 0, 68, 0, 615, loeweTalk);
                 break;
 
             case 615:
@@ -833,10 +773,7 @@ public class Manega extends Mainloc {
 
             case 620:
                 // 2. Loewenreaktion
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Manega_00075"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00076"),
-                        Start.stringManager.getTranslation("Loc3_Manega_00077"),
-                        0, 68, 0, 625, loeweTalk);
+                PersonSagt("Manega_20", 0, 68, 0, 625, loeweTalk);
                 break;
 
             case 625:

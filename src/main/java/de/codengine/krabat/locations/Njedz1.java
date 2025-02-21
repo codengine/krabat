@@ -645,18 +645,12 @@ public class Njedz1 extends Mainloc {
 
             case 1:
                 // Woda anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Njedz1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00002"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Njedz1_1", fWoda, 3, 0, 0);
                 break;
 
             case 50:
                 // Woda mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Njedz1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00005"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Njedz1_2", fWoda, 3, 0, 0);
                 break;
 
             case 100:
@@ -676,18 +670,12 @@ public class Njedz1 extends Mainloc {
 
             case 200:
                 // Ryba auf Woda
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Njedz1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00008"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Njedz1_3", fWoda, 3, 0, 0);
                 break;
 
             case 210:
                 // Wuda auf woda
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Njedz1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Njedz1_00011"),
-                        fWoda, 3, 0, 0);
+                KrabatSagt("Njedz1_4", fWoda, 3, 0, 0);
                 break;
 
             default:

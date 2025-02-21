@@ -638,10 +638,7 @@ public class Wila2 extends Mainloc2 {
 
             case 3:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wila2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00002"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila2_1", fDurje, 3, 0, 0);
                 break;
 
             case 100:
@@ -691,10 +688,7 @@ public class Wila2 extends Mainloc2 {
 
             case 250:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wila2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00005"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila2_2", fDurje, 3, 0, 0);
                 break;
 
             case 270:
@@ -704,10 +698,7 @@ public class Wila2 extends Mainloc2 {
 
             case 280:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wila2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Wila2_00008"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila2_3", fDurje, 3, 0, 0);
                 break;
 
             case 1000:

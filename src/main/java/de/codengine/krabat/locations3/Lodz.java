@@ -619,10 +619,7 @@ public class Lodz extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Wikowarka anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Lodz_00000"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00001"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00002"),
-                        fZona, 3, 0, 0);
+                KrabatSagt("Lodz_1", fZona, 3, 0, 0);
                 break;
 
             case 50:
@@ -648,10 +645,7 @@ public class Lodz extends Mainloc {
             case 160:
                 // grosse Animszene, weil Stollen gegeben - aber nur, wenn er es auch weiss !!!
                 if (!mainFrame.Actions[552]) {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00003"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00004"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00005"),
-                            fZona, 65, 0, 0, evalZonaTalkPoint());
+                    PersonSagt("Lodz_2", fZona, 65, 0, 0, evalZonaTalkPoint());
                 } else {
                     mainFrame.fPlayAnim = true;
                     evalMouseMoveEvent(mainFrame.Mousepoint);
@@ -694,15 +688,9 @@ public class Lodz extends Mainloc {
                 isListening = true;
                 if (!mainFrame.Actions[710]) // Krabat ist vor der Uebergabe nochmal weggegangen
                 {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00006"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00007"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00008"),
-                            0, 65, 2, 181, evalZonaTalkPoint());
+                    PersonSagt("Lodz_3", 0, 65, 2, 181, evalZonaTalkPoint());
                 } else {
-                    PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00009"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00010"),
-                            Start.stringManager.getTranslation("Loc3_Lodz_00011"),
-                            0, 65, 2, 181, evalZonaTalkPoint());
+                    PersonSagt("Lodz_4", 0, 65, 2, 181, evalZonaTalkPoint());
                 }
                 break;
 
@@ -734,7 +722,7 @@ public class Lodz extends Mainloc {
                 if (--GiveCounter > 0) {
                     break;
                 }
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00012"), Start.stringManager.getTranslation("Loc3_Lodz_00013"), Start.stringManager.getTranslation("Loc3_Lodz_00014"), 0, 54, 2, 200, new GenericPoint(320, 200));
+                PersonSagt("Lodz_5", 0, 54, 2, 200, new GenericPoint(320, 200));
                 break;
 
             case 200:
@@ -761,10 +749,7 @@ public class Lodz extends Mainloc {
 
             case 205:
                 // Zona sagt Spruch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00015"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00016"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00017"),
-                        fZona, 65, 2, 210, evalZonaTalkPoint());
+                PersonSagt("Lodz_6", fZona, 65, 2, 210, evalZonaTalkPoint());
                 break;
 
             case 210:
@@ -795,18 +780,12 @@ public class Lodz extends Mainloc {
 
             case 225:
                 // Krabat sagt Spruch	
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Lodz_00018"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00019"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00020"),
-                        fZona, 1, 2, 230);
+                KrabatSagt("Lodz_7", fZona, 1, 2, 230);
                 break;
 
             case 230:
                 // Zona sagt Spruch
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00021"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00022"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00023"),
-                        fZona, 65, 2, 235, evalZonaTalkPoint());
+                PersonSagt("Lodz_8", fZona, 65, 2, 235, evalZonaTalkPoint());
                 break;
 
             case 235:
@@ -836,19 +815,13 @@ public class Lodz extends Mainloc {
 
             case 250:
                 // Krabat sagt Spruch	
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Lodz_00024"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00025"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00026"),
-                        fZona, 1, 2, 255);
+                KrabatSagt("Lodz_9", fZona, 1, 2, 255);
                 break;
 
             case 255:
                 // Zona sagt Spruch
                 schnauzeWasser = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00027"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00028"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00029"),
-                        fZona, 65, 2, 300, evalZonaTalkPoint());
+                PersonSagt("Lodz_10", fZona, 65, 2, 300, evalZonaTalkPoint());
                 break;
 
             case 300:
@@ -977,93 +950,60 @@ public class Lodz extends Mainloc {
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00063"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00064"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00065"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_11", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 611:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00066"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00067"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00068"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_12", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00069"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00070"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00071"),
-                        0, 65, 2, 621, evalZonaTalkPoint());
+                PersonSagt("Lodz_13", 0, 65, 2, 621, evalZonaTalkPoint());
                 break;
 
             case 621:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00072"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00073"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00074"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_14", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 622:
                 // Reaktion Wikowarka
                 mainFrame.Actions[710] = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00075"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00076"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00077"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_15", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 623:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00078"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00079"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00080"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_16", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00081"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00082"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00083"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_17", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 631:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00084"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00085"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00086"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_18", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 632:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00087"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00088"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00089"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_19", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 633:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00090"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00091"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00092"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_20", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 634:
                 // Reaktion Wikowarka
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Lodz_00093"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00094"),
-                        Start.stringManager.getTranslation("Loc3_Lodz_00095"),
-                        0, 65, 2, 600, evalZonaTalkPoint());
+                PersonSagt("Lodz_21", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
 

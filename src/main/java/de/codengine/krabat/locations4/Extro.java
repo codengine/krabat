@@ -319,19 +319,18 @@ public class Extro extends Mainloc {
                 // ersten Text ausgeben
                 BackgroundMusicPlayer.getInstance().playTrack(18, true);
                 isWotrowLocation = false; // ab jetzt Background aus (stoert CD-Track nicht)
-                PersonSagt(HExtro1, DExtro1, NExtro1,
-                        0, 54, 2, 1010, talkPoint);
+                PersonSagt("Extro_2", 0, 54, 2, 1010, talkPoint);
                 break;
 
             case 1010:
                 // zweiten Text
-                PersonSagt(HExtro2, DExtro2, NExtro2,
+                PersonSagt("Extro_3",
                         0, 54, 2, 1020, talkPoint);
                 break;
 
             case 1020:
                 // dritten Text
-                PersonSagt(HExtro3, DExtro3, NExtro3,
+                PersonSagt("Extro_4",
                         0, 54, 2, 8000, talkPoint);
                 break;
 
@@ -346,15 +345,7 @@ public class Extro extends Mainloc {
             case 9000:
                 // Extro-Scroller (testweise)
                 Scroller = true;
-                if (mainFrame.sprache == 1) {
-                    scrollerOutputText = HScroller;
-                }
-                if (mainFrame.sprache == 2) {
-                    scrollerOutputText = DScroller;
-                }
-                if (mainFrame.sprache == 3) {
-                    scrollerOutputText = NScroller;
-                }
+                scrollerOutputText = Start.stringManager.getTranslation("Extro_5");
                 outputTextPos = mainFrame.ifont.CenterAnimText(scrollerOutputText, scrollPoint);
                 TalkPerson = 54;
                 nextActionID = 9010;
@@ -362,15 +353,7 @@ public class Extro extends Mainloc {
 
             case 9010:
                 // scroller hochschieben
-                if (mainFrame.sprache == 1) {
-                    outputText = HScroller;
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = DScroller;
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = NScroller;
-                }
+                outputText = Start.stringManager.getTranslation("Extro_5");
                 mainFrame.Clipset = false;
                 outputTextPos.y -= 2;
                 TalkPerson = 54;
@@ -389,10 +372,7 @@ public class Extro extends Mainloc {
                 break;
 
             case 9510:
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Extro_00012"),
-                        Start.stringManager.getTranslation("Loc4_Extro_00013"),
-                        Start.stringManager.getTranslation("Loc4_Extro_00014"),
-                        0, 54, 2, 9520, talkPointCopyleft);
+                PersonSagt("Extro_1", 0, 54, 2, 9520, talkPointCopyleft);
                 break;
 
             case 9520:

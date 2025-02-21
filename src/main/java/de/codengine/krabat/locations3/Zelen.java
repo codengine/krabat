@@ -771,34 +771,22 @@ public class Zelen extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Prikaz ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00000"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00001"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00002"),
-                        fPrikaz, 3, 0, 0);
+                KrabatSagt("Zelen_1", fPrikaz, 3, 0, 0);
                 break;
 
             case 2:
                 // Klavier ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00003"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00004"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00005"),
-                        fKlavier, 3, 0, 0);
+                KrabatSagt("Zelen_2", fKlavier, 3, 0, 0);
                 break;
 
             case 3:
                 // Stuhl ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00006"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00007"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00008"),
-                        fStuhl, 3, 0, 0);
+                KrabatSagt("Zelen_3", fStuhl, 3, 0, 0);
                 break;
 
             case 4:
                 // Kerze ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00009"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00010"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00011"),
-                        fPrikaz, 3, 0, 0);
+                KrabatSagt("Zelen_4", fPrikaz, 3, 0, 0);
                 break;
 
             case 50:
@@ -833,18 +821,12 @@ public class Zelen extends Mainloc {
 
             case 55:
                 // Klavier mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00012"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00013"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00014"),
-                        fKlavier, 3, 0, 0);
+                KrabatSagt("Zelen_5", fKlavier, 3, 0, 0);
                 break;
 
             case 60:
                 // Stuhl mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00015"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00016"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00017"),
-                        fStuhl, 3, 0, 0);
+                KrabatSagt("Zelen_6", fStuhl, 3, 0, 0);
                 break;
 
             case 65:
@@ -899,10 +881,7 @@ public class Zelen extends Mainloc {
                     mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pKerze);
                     nextActionID = 83;
                 } else { // schon gesiegelt, nicht 2x
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00018"),
-                            Start.stringManager.getTranslation("Loc3_Zelen_00019"),
-                            Start.stringManager.getTranslation("Loc3_Zelen_00020"),
-                            fPrikaz, 3, 0, 0);
+                    KrabatSagt("Zelen_7", fPrikaz, 3, 0, 0);
                 }
                 break;
 
@@ -934,10 +913,7 @@ public class Zelen extends Mainloc {
                 if (SonderAnim != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00024"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00025"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00026"),
-                        0, 3, 2, 87);
+                KrabatSagt("Zelen_8", 0, 3, 2, 87);
                 break;
 
             case 87:
@@ -953,18 +929,12 @@ public class Zelen extends Mainloc {
 
             case 90:
                 // Kerze allein benutzen geht nicht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00027"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00028"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00029"),
-                        fPrikaz, 3, 0, 0);
+                KrabatSagt("Zelen_9", fPrikaz, 3, 0, 0);
                 break;
 
             case 95:
                 // fertige Erlaubnis auf kerze -> geht nicht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00030"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00031"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00032"),
-                        fPrikaz, 3, 0, 0);
+                KrabatSagt("Zelen_10", fPrikaz, 3, 0, 0);
                 break;
 
             case 100:
@@ -1014,27 +984,18 @@ public class Zelen extends Mainloc {
             case 230:
                 // Reaktion August
                 awgustVisible = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zelen_00033"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00034"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00035"),
-                        fAwgust, 40, 2, 240, awgust.evalAwgustTalkPoint());
+                PersonSagt("Zelen_11", fAwgust, 40, 2, 240, awgust.evalAwgustTalkPoint());
                 break;
 
             case 240:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Zelen_00036"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00037"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00038"),
-                        0, 1, 2, 250);
+                KrabatSagt("Zelen_12", 0, 1, 2, 250);
                 break;
 
             case 250:
                 // Reaktion August
                 hatHandErhoben = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Zelen_00039"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00040"),
-                        Start.stringManager.getTranslation("Loc3_Zelen_00041"),
-                        0, 40, 2, 260, awgust.evalAwgustTalkPoint());
+                PersonSagt("Zelen_13", 0, 40, 2, 260, awgust.evalAwgustTalkPoint());
                 break;
 
             case 260:

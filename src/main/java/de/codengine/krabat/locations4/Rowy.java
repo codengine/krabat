@@ -1430,98 +1430,62 @@ public class Rowy extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // horncy anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00021"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00022"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00023"),
-                        fHorncy, 3, 0, 0);
+                KrabatSagt("Rowy_1", fHorncy, 3, 0, 0);
                 break;
 
             case 2:
                 // swaixtix anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00024"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00025"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00026"),
-                        fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_2", fSwaixtix, 3, 0, 0);
                 break;
 
             case 3:
                 // syno anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00027"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00028"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00029"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Rowy_3", fSyno, 3, 0, 0);
                 break;
 
             case 4:
                 // rowy anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00030"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00031"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00032"),
-                        facingOnGraves, 3, 0, 0);
+                KrabatSagt("Rowy_4", facingOnGraves, 3, 0, 0);
                 break;
 
             case 5:
                 // Grab mit Skellet nach swajxtix anbrennen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00033"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00034"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00035"),
-                        facingOnGraves, 3, 0, 0);
+                KrabatSagt("Rowy_5", facingOnGraves, 3, 0, 0);
                 break;
 
             case 6:
                 // Mueller anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00036"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00037"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00038"),
-                        fMueller, 3, 0, 0);
+                KrabatSagt("Rowy_6", fMueller, 3, 0, 0);
                 break;
 
             case 7:
                 // Swaixtix's Arm anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00039"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00040"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00041"),
-                        fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_7", fSwaixtix, 3, 0, 0);
                 break;
 
             case 8:
                 // das geoeffnete Grab anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00042"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00043"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00044"),
-                        facingOnGraves, 3, 0, 0);
+                KrabatSagt("Rowy_8", facingOnGraves, 3, 0, 0);
                 break;
 
             case 9:
                 // Swaixtix's Arm (mit Lichtschaale und Stroh) anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00045"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00046"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00047"),
-                        fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_9", fSwaixtix, 3, 0, 0);
                 break;
 
             case 10:
                 // Swaixtix's Arm (brennt) anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00048"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00049"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00050"),
-                        fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_10", fSwaixtix, 3, 0, 0);
                 break;
 
             case 50:
                 // horncy mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00051"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00052"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00053"),
-                        fHorncy, 3, 0, 0);
+                KrabatSagt("Rowy_11", fHorncy, 3, 0, 0);
                 break;
 
             case 55:
                 // swaixtix mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00054"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00055"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00056"),
-                        fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_12", fSwaixtix, 3, 0, 0);
                 break;
 
             case 60:
@@ -1535,33 +1499,22 @@ public class Rowy extends Mainloc {
 
             case 61:
                 // syno nicht mehr mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00057"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00058"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00059"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Rowy_13", fSyno, 3, 0, 0);
                 break;
 
             case 65:
                 // rowy mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00060"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00061"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00062"),
-                        facingOnGraves, 3, 0, 0);
+                KrabatSagt("Rowy_14", facingOnGraves, 3, 0, 0);
                 break;
 
             case 66:
                 // Mueller mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00063"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00064"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00065"),
-                        fMueller, 3, 0, 0);
+                KrabatSagt("Rowy_15", fMueller, 3, 0, 0);
                 break;
 
             case 67:
                 // swaixtix's Arm mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00066"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00067"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00068"), fSwaixtix, 3, 0, 0);
+                KrabatSagt("Rowy_16", fSwaixtix, 3, 0, 0);
                 break;
 
             case 100:
@@ -1577,10 +1530,7 @@ public class Rowy extends Mainloc {
                 // Spruch sagen
                 SonderAnim = 0;
                 // Kommentar nach Aufstehen schmeissen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00069"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00070"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00071"),
-                        fAufstehen, 3, 2, 102);
+                KrabatSagt("Rowy_17", fAufstehen, 3, 2, 102);
                 break;
 
             case 102:
@@ -1589,10 +1539,7 @@ public class Rowy extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 0;
                 mainFrame.repaint();
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00072"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00073"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00074"),
-                        fAufstehen, 3, 0, 0);
+                KrabatSagt("Rowy_18", fAufstehen, 3, 0, 0);
                 break;
 
 
@@ -1618,10 +1565,7 @@ public class Rowy extends Mainloc {
 
             case 166:
                 // Mueller - Ausreden
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00075"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00076"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00077"),
-                        fMueller, 3, 0, 0);
+                KrabatSagt("Rowy_19", fMueller, 3, 0, 0);
                 break;
 
             case 167:
@@ -1631,26 +1575,17 @@ public class Rowy extends Mainloc {
 
             case 170:
                 // Feuersteine mit Stroh benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00078"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00079"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00080"),
-                        fSyno, 3, 0, 0);
+                KrabatSagt("Rowy_20", fSyno, 3, 0, 0);
                 break;
 
             case 175:
                 // grossen Stein mit Mueller benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00081"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00082"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00083"),
-                        fMueller, 3, 0, 0);
+                KrabatSagt("Rowy_21", fMueller, 3, 0, 0);
                 break;
 
             case 176:
                 // Koraktor mit Mueller benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00084"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00085"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00086"),
-                        fMueller, 3, 0, 0);
+                KrabatSagt("Rowy_22", fMueller, 3, 0, 0);
                 break;
 
             //////////////DoActions fuer 1. Anim /////////////////////
@@ -1675,50 +1610,38 @@ public class Rowy extends Mainloc {
                 }
                 isMuellerMorphing = false;
                 mainFrame.Clipset = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00087"), Start.stringManager.getTranslation("Loc4_Rowy_00088"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00089"), 0, 36,
+                PersonSagt("Rowy_23", 0, 36,
                         2, 210, mueller.evalMlynkTalkPoint());
                 break;
 
             case 210:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00090"), Start.stringManager.getTranslation("Loc4_Rowy_00091"), Start.stringManager.getTranslation("Loc4_Rowy_00092"),
-                        fMueller, 1, 2, 220);
+                KrabatSagt("Rowy_24", fMueller, 1, 2, 220);
                 break;
 
             case 220:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00093"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00094"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00095"),
-                        0, 36, 2, 230, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_25", 0, 36, 2, 230, mueller.evalMlynkTalkPoint());
                 break;
 
             case 230:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00096"), Start.stringManager.getTranslation("Loc4_Rowy_00097"), Start.stringManager.getTranslation("Loc4_Rowy_00098"),
-                        0, 1, 2, 240);
+                KrabatSagt("Rowy_26", 0, 1, 2, 240);
                 break;
 
             case 240:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00099"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00100"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00101"),
-                        0, 36, 2, 250, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_27", 0, 36, 2, 250, mueller.evalMlynkTalkPoint());
                 break;
 
             case 250:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00102"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00103"), Start.stringManager.getTranslation("Loc4_Rowy_00104"),
-                        0, 1, 2, 260);
+                KrabatSagt("Rowy_28", 0, 1, 2, 260);
                 break;
 
             case 260:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00105"), Start.stringManager.getTranslation("Loc4_Rowy_00106"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00107"), 0, 36, 2,
+                PersonSagt("Rowy_29", 0, 36, 2,
                         261, mueller.evalMlynkTalkPoint());
                 break;
 
@@ -1812,70 +1735,49 @@ public class Rowy extends Mainloc {
 
             case 276:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00108"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00109"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00110"),
-                        0, 1, 2, 280);
+                KrabatSagt("Rowy_30", 0, 1, 2, 280);
                 break;
 
             case 280:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00111"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00112"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00113"),
-                        0, 36, 2, 290, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_31", 0, 36, 2, 290, mueller.evalMlynkTalkPoint());
                 break;
 
             case 290:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00114"), Start.stringManager.getTranslation("Loc4_Rowy_00115"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00116"), 0, 1,
+                KrabatSagt("Rowy_32", 0, 1,
                         2, 300);
                 break;
 
             case 300:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00117"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00118"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00119"),
-                        0, 36, 2, 310, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_33", 0, 36, 2, 310, mueller.evalMlynkTalkPoint());
                 break;
 
             case 310:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00120"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00121"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00122"),
-                        0, 1, 2, 320);
+                KrabatSagt("Rowy_34", 0, 1, 2, 320);
                 break;
 
             case 320:
                 // Mueller spricht
                 fledermausActionID = 4; // Fledermaus haengt und redet
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00123"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00124"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00125"),
-                        0, 36, 2, 330, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_35", 0, 36, 2, 330, mueller.evalMlynkTalkPoint());
                 break;
 
             case 330:
                 // Krabat spricht
                 fledermausActionID = 3; // Fledermaus haengt und haelt Schnauze
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00126"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00127"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00128"),
-                        0, 1, 2, 340);
+                KrabatSagt("Rowy_36", 0, 1, 2, 340);
                 break;
 
             case 340:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00129"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00130"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00131"), 0,
+                KrabatSagt("Rowy_37", 0,
                         1, 2, 342);
                 break;
 
@@ -1919,17 +1821,13 @@ public class Rowy extends Mainloc {
 
             case 350:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00132"), Start.stringManager.getTranslation("Loc4_Rowy_00133"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00134"), 0, 36, 2, 360,
+                PersonSagt("Rowy_38", 0, 36, 2, 360,
                         mueller.evalMlynkTalkPoint());
                 break;
 
             case 360:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00135"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00136"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00137"),
-                        0, 1, 2, 370);
+                KrabatSagt("Rowy_39", 0, 1, 2, 370);
                 break;
 
             case 370:
@@ -1949,35 +1847,25 @@ public class Rowy extends Mainloc {
                 // Krabat spricht
                 mainFrame.krabat.SetFacing(3);
                 mainFrame.krabat.nAnimation = 156; // aus Korraktor lesen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00138"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00139"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00140"),
-                        0, 1, 2, 410);  // Next ID 410 ist richtig (695 ist Ende) !!!!!!
+                KrabatSagt("Rowy_40", 0, 1, 2, 410);  // Next ID 410 ist richtig (695 ist Ende) !!!!!!
                 break;
 
             case 410:
                 // Mueller spricht
                 mainFrame.krabat.nAnimation = 158; // Koraktor halten
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00141"), Start.stringManager.getTranslation("Loc4_Rowy_00142"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00143"), 0, 36, 2, 420,
+                PersonSagt("Rowy_41", 0, 36, 2, 420,
                         mueller.evalMlynkTalkPoint());
                 break;
 
             case 420:
                 // Krabat spricht
                 mainFrame.krabat.nAnimation = 156; // aus Korraktor lesen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00144"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00145"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00146"),
-                        0, 1, 2, 430);
+                KrabatSagt("Rowy_42", 0, 1, 2, 430);
                 break;
 
             case 430:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00147"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00148"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00149"),
-                        0, 1, 2, 432);
+                KrabatSagt("Rowy_43", 0, 1, 2, 432);
                 break;
 
             case 432:
@@ -2020,33 +1908,23 @@ public class Rowy extends Mainloc {
 
             case 470:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc4_Rowy_00150"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00151"), Start.stringManager.getTranslation("Loc4_Rowy_00152"),
-                        0, 36, 2, 480, mueller.evalMlynkTalkPoint());
+                PersonSagt("Rowy_44", 0, 36, 2, 480, mueller.evalMlynkTalkPoint());
                 break;
 
             case 480:
                 // Krabat spricht
                 mainFrame.krabat.nAnimation = 156;
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00153"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00154"), Start.stringManager.getTranslation("Loc4_Rowy_00155"),
-                        0, 1, 2, 490);
+                KrabatSagt("Rowy_45", 0, 1, 2, 490);
                 break;
 
             case 490:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00156"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00157"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00158"),
-                        0, 1, 2, 492);
+                KrabatSagt("Rowy_46", 0, 1, 2, 492);
                 break;
 
             case 492:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00159"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00160"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00161"),
-                        0, 1, 2, 495);
+                KrabatSagt("Rowy_47", 0, 1, 2, 495);
                 break;
 
             case 495:
@@ -2111,18 +1989,12 @@ public class Rowy extends Mainloc {
 
             case 670:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00162"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00163"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00164"),
-                        0, 1, 2, 680);
+                KrabatSagt("Rowy_48", 0, 1, 2, 680);
                 break;
 
             case 680:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00165"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00166"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00167"),
-                        0, 1, 2, 681);
+                KrabatSagt("Rowy_49", 0, 1, 2, 681);
                 Counter = 10;
                 break;
 
@@ -2200,10 +2072,7 @@ public class Rowy extends Mainloc {
             case 695:
                 // Krabat spricht
                 mainFrame.wave.PlayFile("sfx/mlynk-konc.wav");
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00168"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00169"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00170"),
-                        0, 1, 2, 698);
+                KrabatSagt("Rowy_50", 0, 1, 2, 698);
                 Counter = 8;
                 break;
 
@@ -2286,17 +2155,12 @@ public class Rowy extends Mainloc {
 
                     // Spruch bloss loslassen, wenn Krabat nach Anzuenden noch nicht Grab angesehen hat !
                     if (!mainFrame.Actions[988]) {
-                        KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00171"),
-                                Start.stringManager.getTranslation("Loc4_Rowy_00172"),
-                                Start.stringManager.getTranslation("Loc4_Rowy_00173"),
-                                0, 1, 2, 1101);
+                        KrabatSagt("Rowy_51", 0, 1, 2, 1101);
                     } else {
                         nextActionID = 1101;
                     }
                 } else {
-                    KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00174"), Start.stringManager.getTranslation("Loc4_Rowy_00175"),
-                            Start.stringManager.getTranslation("Loc4_Rowy_00176"),
-                            0, 3, 0, 0);
+                    KrabatSagt("Rowy_52", 0, 3, 0, 0);
                 }
                 break;
 
@@ -2368,10 +2232,7 @@ public class Rowy extends Mainloc {
 
             case 1110:
                 // K findet Koraktor auf Swaixtix's Sockel
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Rowy_00177"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00178"),
-                        Start.stringManager.getTranslation("Loc4_Rowy_00179"),
-                        9, 3, 2, 1111);
+                KrabatSagt("Rowy_53", 9, 3, 2, 1111);
                 break;
 
             case 1111:

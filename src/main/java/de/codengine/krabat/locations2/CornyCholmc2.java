@@ -614,32 +614,22 @@ public class CornyCholmc2 extends Mainloc2 {
         switch (nextActionID) {
             case 1:
                 // Wald anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_CornyCholmc2_00000"), Start.stringManager.getTranslation("Loc2_CornyCholmc2_00001"), Start.stringManager.getTranslation("Loc2_CornyCholmc2_00002"),
-                        fWald, 3, 0, 0);
+                KrabatSagt("CornyCholmc2_1", fWald, 3, 0, 0);
                 break;
 
             case 2:
                 // Kolmc anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_CornyCholmc2_00003"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00004"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00005"),
-                        fWjes, 3, 0, 0);
+                KrabatSagt("CornyCholmc2_2", fWjes, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat will Wald nicht benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_CornyCholmc2_00006"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00007"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00008"),
-                        fWald, 3, 0, 0);
+                KrabatSagt("CornyCholmc2_3", fWald, 3, 0, 0);
                 break;
 
             case 85:
                 // Kolmc mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_CornyCholmc2_00009"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00010"),
-                        Start.stringManager.getTranslation("Loc2_CornyCholmc2_00011"),
-                        fWjes, 3, 0, 0);
+                KrabatSagt("CornyCholmc2_4", fWjes, 3, 0, 0);
                 break;
 
             case 100:

@@ -679,28 +679,19 @@ public class Gang extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Ring ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00000"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00001"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00002"),
-                        fRing, 3, 0, 0);
+                KrabatSagt("Gang_1", fRing, 3, 0, 0);
                 break;
 
             case 2:
                 // Knochen ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00003"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00004"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00005"),
-                        fKnochen, 3, 0, 0);
+                KrabatSagt("Gang_2", fKnochen, 3, 0, 0);
                 break;
 
             case 3:
                 // Tuer ansehen
                 if (!mainFrame.Actions[690]) {
                     // Tuer ist zu
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00006"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00007"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00008"),
-                            fTuer, 3, 0, 0);
+                    KrabatSagt("Gang_3", fTuer, 3, 0, 0);
                 } else {
                     // Tuer ist auf...
                     mainFrame.krabat.SetFacing(fTuer);
@@ -714,8 +705,7 @@ public class Gang extends Mainloc {
                         nextActionID = 20;
                     } else {
                         // habe schon Speer
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00009"), Start.stringManager.getTranslation("Loc3_Gang_00010"), Start.stringManager.getTranslation("Loc3_Gang_00011"),
-                                0, 3, 0, 0);
+                        KrabatSagt("Gang_4", 0, 3, 0, 0);
                     }
                 }
                 break;
@@ -733,29 +723,20 @@ public class Gang extends Mainloc {
                     nextActionID = 60;
                     mainFrame.wave.PlayFile("sfx-dd/gdurjeauf.wav");
                 } else {  // Buch liegt drauf
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00012"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00013"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00014"),
-                            fRingZieh, 3, 0, 0);
+                    KrabatSagt("Gang_5", fRingZieh, 3, 0, 0);
                 }
                 break;
 
             case 5:
                 // Knochen benutzen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00015"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00016"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00017"),
-                        fKnochen, 3, 0, 0);
+                KrabatSagt("Gang_6", fKnochen, 3, 0, 0);
                 break;
 
             case 6:
                 // Tuer benutzen
                 if (!mainFrame.Actions[690]) {
                     // Tuer ist zu
-                    KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00018"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00019"),
-                            Start.stringManager.getTranslation("Loc3_Gang_00020"),
-                            fTuer, 3, 0, 0);
+                    KrabatSagt("Gang_7", fTuer, 3, 0, 0);
                 } else {
                     // Tuer ist auf...
                     mainFrame.krabat.SetFacing(fTuer);
@@ -769,18 +750,14 @@ public class Gang extends Mainloc {
                         nextActionID = 20;
                     } else {
                         // habe schon Speer
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00021"), Start.stringManager.getTranslation("Loc3_Gang_00022"), Start.stringManager.getTranslation("Loc3_Gang_00023"),
-                                0, 3, 0, 0);
+                        KrabatSagt("Gang_8", 0, 3, 0, 0);
                     }
                 }
                 break;
 
             case 7:
                 // Buch anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00024"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00025"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00026"),
-                        fBuch, 3, 0, 0);
+                KrabatSagt("Gang_9", fBuch, 3, 0, 0);
                 break;
 
             case 20:
@@ -791,8 +768,7 @@ public class Gang extends Mainloc {
 
             case 23:
                 // Tueranim durchfuehren
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00027"), Start.stringManager.getTranslation("Loc3_Gang_00028"), Start.stringManager.getTranslation("Loc3_Gang_00029"),
-                        0, 3, 2, 25);
+                KrabatSagt("Gang_10", 0, 3, 2, 25);
                 break;
 
             case 25:
@@ -803,14 +779,12 @@ public class Gang extends Mainloc {
 
             case 27:
                 // Tueranim
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00030"), Start.stringManager.getTranslation("Loc3_Gang_00031"), Start.stringManager.getTranslation("Loc3_Gang_00032"),
-                        0, 3, 2, 30);
+                KrabatSagt("Gang_11", 0, 3, 2, 30);
                 break;
 
             case 30:
                 // Tueranim
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00033"), Start.stringManager.getTranslation("Loc3_Gang_00034"), Start.stringManager.getTranslation("Loc3_Gang_00035"),
-                        0, 3, 2, 31);
+                KrabatSagt("Gang_12", 0, 3, 2, 31);
                 break;
 
             case 31:
@@ -865,10 +839,7 @@ public class Gang extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00036"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00037"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00038"),
-                        fRingZieh, 3, 2, 65);
+                KrabatSagt("Gang_13", fRingZieh, 3, 2, 65);
                 break;
 
             case 65:
@@ -921,35 +892,23 @@ public class Gang extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00039"),
-                                Start.stringManager.getTranslation("Loc3_Gang_00040"),
-                                Start.stringManager.getTranslation("Loc3_Gang_00041"),
-                                fTuer, 3, 0, 0);
+                        KrabatSagt("Gang_14", fTuer, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00042"),
-                                Start.stringManager.getTranslation("Loc3_Gang_00043"),
-                                Start.stringManager.getTranslation("Loc3_Gang_00044"),
-                                fTuer, 3, 0, 0);
+                        KrabatSagt("Gang_15", fTuer, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 210:
                 // kluc auf tuer
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00045"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00046"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00047"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Gang_16", fTuer, 3, 0, 0);
                 break;
 
             case 220:
                 // hammer auf tuer
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Gang_00048"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00049"),
-                        Start.stringManager.getTranslation("Loc3_Gang_00050"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Gang_17", fTuer, 3, 0, 0);
                 break;
 
             case 230:

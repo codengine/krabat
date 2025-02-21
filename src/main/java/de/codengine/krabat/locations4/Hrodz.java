@@ -684,10 +684,7 @@ public class Hrodz extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Stein anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Hrodz_00000"),
-                        Start.stringManager.getTranslation("Loc4_Hrodz_00001"),
-                        Start.stringManager.getTranslation("Loc4_Hrodz_00002"),
-                        fStein, 3, 0, 0);
+                KrabatSagt("Hrodz_1", fStein, 3, 0, 0);
                 break;
 
             case 50:
@@ -711,10 +708,7 @@ public class Hrodz extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Hrodz_00003"),
-                        Start.stringManager.getTranslation("Loc4_Hrodz_00004"),
-                        Start.stringManager.getTranslation("Loc4_Hrodz_00005"),
-                        0, 3, 2, 60);
+                KrabatSagt("Hrodz_2", 0, 3, 2, 60);
                 break;
 
             case 60:
@@ -762,7 +756,7 @@ public class Hrodz extends Mainloc {
                 if (SonderAnim != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Hrodz_00006"), Start.stringManager.getTranslation("Loc4_Hrodz_00007"), Start.stringManager.getTranslation("Loc4_Hrodz_00008"), 9, 3, 0, 0);
+                KrabatSagt("Hrodz_3", 9, 3, 0, 0);
                 // mainFrame.wegGeher.SetzeNeuenWeg (Pweiterlinks);
                 nextActionID = 630;
                 break;
@@ -804,7 +798,7 @@ public class Hrodz extends Mainloc {
                 if (SonderAnim != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Hrodz_00009"), Start.stringManager.getTranslation("Loc4_Hrodz_00010"), Start.stringManager.getTranslation("Loc4_Hrodz_00011"), 3, 3, 0, 0);
+                KrabatSagt("Hrodz_4", 3, 3, 0, 0);
                 // mainFrame.wegGeher.SetzeNeuenWeg (Pweiterrechts);
                 nextActionID = 730;
                 break;
@@ -840,7 +834,7 @@ public class Hrodz extends Mainloc {
                 mainFrame.wave.PlayFile("sfx/pasle1.wav");
                 krabatFaelltRunter = true;
                 SonderAnim = 3;
-                KrabatSagt(Start.stringManager.getTranslation("Loc4_Hrodz_00012"), Start.stringManager.getTranslation("Loc4_Hrodz_00013"), Start.stringManager.getTranslation("Loc4_Hrodz_00014"), 3, 3, 0, 820);
+                KrabatSagt("Hrodz_5", 3, 3, 0, 820);
                 break;
 
             case 820:

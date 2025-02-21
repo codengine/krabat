@@ -70,11 +70,6 @@ public class Mlyn1 extends Mainloc {
 
     private boolean schnauzeRad = true;
 
-    // Text - Variablen
-    private static final String HText = Start.stringManager.getTranslation("Loc1_Mlyn1_00000");
-    private static final String DText = Start.stringManager.getTranslation("Loc1_Mlyn1_00001");
-    private static final String NText = Start.stringManager.getTranslation("Loc1_Mlyn1_00002");
-
     // Konstanten - Rects
     // private static final borderrect rechterAusgang = new borderrect (560, 402, 639, 479);
 
@@ -492,48 +487,32 @@ public class Mlyn1 extends Mainloc {
                 iskrabatmorphing = false;
                 schnauzeRad = false;
                 mainFrame.Clipset = false;
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00003"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00004"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00005"),
-                        9, 36, 2, 20, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn1_1", 9, 36, 2, 20, mueller.evalMlynkTalkPoint());
                 break;
 
             case 20:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00006"), Start.stringManager.getTranslation("Loc1_Mlyn1_00007"), Start.stringManager.getTranslation("Loc1_Mlyn1_00008"),
-                        0, 3, 2, 30);
+                KrabatSagt("Mlyn1_2", 0, 3, 2, 30);
                 break;
 
             case 30:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00011"),
-                        0, 1, 2, 40);
+                KrabatSagt("Mlyn1_3", 0, 1, 2, 40);
                 break;
 
             case 40:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00014"),
-                        0, 36, 2, 50, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn1_4", 0, 36, 2, 50, mueller.evalMlynkTalkPoint());
                 break;
 
             case 50:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00017"),
-                        0, 1, 2, 60);
+                KrabatSagt("Mlyn1_5", 0, 1, 2, 60);
                 break;
 
             case 60:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Mlyn1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Mlyn1_00020"),
-                        0, 36, 2, 65, mueller.evalMlynkTalkPoint());
+                PersonSagt("Mlyn1_6", 0, 36, 2, 65, mueller.evalMlynkTalkPoint());
                 break;
 
             case 65: // lasse beide reinlaufen
@@ -590,7 +569,7 @@ public class Mlyn1 extends Mainloc {
                 // Textausgabe
                 mainFrame.Clipset = false;
                 allowTextClipset = true;
-                PersonSagt(HText, DText, NText, 0, 54, 2, 90, new GenericPoint(320, 400));
+                PersonSagt("Mlyn1_7", 0, 54, 2, 90, new GenericPoint(320, 400));
                 break;
 
             case 90:

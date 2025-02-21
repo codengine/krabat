@@ -1081,42 +1081,27 @@ public class Wjes2 extends Mainloc2 {
         switch (nextActionID) {
             case 1:
                 // Schmied anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00000"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00001"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00002"),
-                        fSchmied, 3, 0, 0);
+                KrabatSagt("Wjes2_1", fSchmied, 3, 0, 0);
                 break;
 
             case 2:
                 // Sudobja anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00003"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00004"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00005"),
-                        fSudobja, 3, 0, 0);
+                KrabatSagt("Wjes2_2", fSudobja, 3, 0, 0);
                 break;
 
             case 3:
                 // Wokno anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00006"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00007"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00008"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Wjes2_3", fWokno, 3, 0, 0);
                 break;
 
             case 4:
                 // Schild anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00009"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00010"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00011"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Wjes2_4", fSchild, 3, 0, 0);
                 break;
 
             case 5:
                 // Wohen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00012"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00013"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00014"),
-                        fWohen, 3, 0, 0);
+                KrabatSagt("Wjes2_5", fWohen, 3, 0, 0);
                 break;
 
             case 50:
@@ -1130,42 +1115,27 @@ public class Wjes2 extends Mainloc2 {
 
             case 55:
                 // Sudobja mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00015"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00016"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00017"),
-                        fSudobja, 3, 0, 0);
+                KrabatSagt("Wjes2_6", fSudobja, 3, 0, 0);
                 break;
 
             case 60:
                 // Wokno mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00018"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00019"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00020"),
-                        fWokno, 3, 0, 0);
+                KrabatSagt("Wjes2_7", fWokno, 3, 0, 0);
                 break;
 
             case 65:
                 // Schild mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00021"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00022"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00023"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Wjes2_8", fSchild, 3, 0, 0);
                 break;
 
             case 70:
                 // wohen mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00024"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00025"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00026"),
-                        fWohen, 3, 0, 0);
+                KrabatSagt("Wjes2_9", fWohen, 3, 0, 0);
                 break;
 
             case 80:
                 // Hoscenc mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00027"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00028"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00029"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Wjes2_10", fTuer, 3, 0, 0);
                 break;
 
             case 100:
@@ -1254,42 +1224,27 @@ public class Wjes2 extends Mainloc2 {
 
             case 170:
                 // Ausreden wohen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00030"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00031"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00032"),
-                        fWohen, 3, 0, 0);
+                KrabatSagt("Wjes2_11", fWohen, 3, 0, 0);
                 break;
 
             case 200:
                 // kij auf kowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00033"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00034"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00035"),
-                        fSchmied, 3, 0, 0);
+                KrabatSagt("Wjes2_12", fSchmied, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf kowar
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00036"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00037"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00038"),
-                        fSchmied, 3, 0, 0);
+                KrabatSagt("Wjes2_13", fSchmied, 3, 0, 0);
                 break;
 
             case 220:
                 // kij auf znamjo
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00039"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00040"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00041"),
-                        fSchild, 3, 0, 0);
+                KrabatSagt("Wjes2_14", fSchild, 3, 0, 0);
                 break;
 
             case 230:
                 // kamuski auf wohen
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00042"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00043"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00044"),
-                        fWohen, 3, 0, 0);
+                KrabatSagt("Wjes2_15", fWohen, 3, 0, 0);
                 break;
 
             // Dialog mit Bauer
@@ -1352,82 +1307,52 @@ public class Wjes2 extends Mainloc2 {
 
             case 660:
                 // Reaktion Kowar auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00063"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00064"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00065"),
-                        0, 22, 2, 600, SchmiedTalk);
+                PersonSagt("Wjes2_16", 0, 22, 2, 600, SchmiedTalk);
                 break;
 
             case 670:
                 // Reaktion Kowar auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00066"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00067"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00068"),
-                        0, 22, 2, 671, SchmiedTalk);
+                PersonSagt("Wjes2_17", 0, 22, 2, 671, SchmiedTalk);
                 break;
 
             case 671:
                 // Reaktion Kowar auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00069"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00070"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00071"),
-                        0, 22, 2, 600, SchmiedTalk);
+                PersonSagt("Wjes2_18", 0, 22, 2, 600, SchmiedTalk);
                 break;
 
             case 680:
                 // Reaktion Kowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00072"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00073"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00074"),
-                        0, 22, 2, 681, SchmiedTalk);
+                PersonSagt("Wjes2_19", 0, 22, 2, 681, SchmiedTalk);
                 break;
 
             case 681:
                 // Reaktion Kowar auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00075"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00076"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00077"),
-                        0, 22, 2, 600, SchmiedTalk);
+                PersonSagt("Wjes2_20", 0, 22, 2, 600, SchmiedTalk);
                 break;
 
             case 690:
                 // Reaktion Kowar auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00078"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00079"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00080"),
-                        0, 22, 2, 691, SchmiedTalk);
+                PersonSagt("Wjes2_21", 0, 22, 2, 691, SchmiedTalk);
                 break;
 
             case 691:
                 // Reaktion Kowar auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00081"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00082"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00083"),
-                        0, 22, 2, 692, SchmiedTalk);
+                PersonSagt("Wjes2_22", 0, 22, 2, 692, SchmiedTalk);
                 break;
 
             case 692:
                 // Reaktion Kowar auf 4. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00084"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00085"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00086"),
-                        0, 22, 2, 600, SchmiedTalk);
+                PersonSagt("Wjes2_23", 0, 22, 2, 600, SchmiedTalk);
                 break;
 
             case 700:
                 // Reaktion Kowar auf 5. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00087"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00088"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00089"),
-                        0, 22, 2, 701, SchmiedTalk);
+                PersonSagt("Wjes2_24", 0, 22, 2, 701, SchmiedTalk);
                 break;
 
             case 701:
                 // Reaktion Kowar auf 5. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00090"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00091"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00092"),
-                        0, 22, 2, 600, SchmiedTalk);
+                PersonSagt("Wjes2_25", 0, 22, 2, 600, SchmiedTalk);
                 break;
 
             case 800:
@@ -1476,10 +1401,7 @@ public class Wjes2 extends Mainloc2 {
 
             // Anim: Bote redet
             case 1050:
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00093"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00094"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00095"),
-                        0, 38, 2, 1053, boteText);
+                PersonSagt("Wjes2_26", 0, 38, 2, 1053, boteText);
                 break;
 
             case 1053:
@@ -1500,26 +1422,17 @@ public class Wjes2 extends Mainloc2 {
 
             case 1058:
                 // Rede des Boten
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00096"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00097"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00098"),
-                        0, 38, 2, 1060, boteText);
+                PersonSagt("Wjes2_27", 0, 38, 2, 1060, boteText);
                 break;
 
             case 1060:
                 // Rede des Boten
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00099"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00100"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00101"),
-                        0, 38, 2, 1070, boteText);
+                PersonSagt("Wjes2_28", 0, 38, 2, 1070, boteText);
                 break;
 
             case 1070:
                 // Krabat spricht
-                KrabatSagt(Start.stringManager.getTranslation("Loc2_Wjes2_00102"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00103"),
-                        Start.stringManager.getTranslation("Loc2_Wjes2_00104"),
-                        0, 3, 2, 1080);
+                KrabatSagt("Wjes2_29", 0, 3, 2, 1080);
                 break;
 
             case 1080:

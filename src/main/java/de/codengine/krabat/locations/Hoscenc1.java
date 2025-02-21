@@ -859,58 +859,37 @@ public class Hoscenc1 extends Mainloc {
         switch (nextActionID) {
             case 2:
                 // Saeufer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00011"),
-                        fSaeufer, 3, 0, 0);
+                KrabatSagt("Hoscenc1_1", fSaeufer, 3, 0, 0);
                 break;
 
             case 3:
                 // Strolch anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00012"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00013"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00014"),
-                        fStrolch, 3, 0, 0);
+                KrabatSagt("Hoscenc1_2", fStrolch, 3, 0, 0);
                 break;
 
             case 4:
                 // Honck anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00015"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00016"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00017"),
-                        fHonck, 3, 0, 0);
+                KrabatSagt("Hoscenc1_3", fHonck, 3, 0, 0);
                 break;
 
             case 5:
                 // Wobraz1 anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00020"),
-                        fWobraz2, 3, 0, 0);
+                KrabatSagt("Hoscenc1_4", fWobraz2, 3, 0, 0);
                 break;
 
             case 6:
                 // Wobraz2 anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00021"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00022"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00023"),
-                        fWobraz1, 3, 0, 0);
+                KrabatSagt("Hoscenc1_5", fWobraz1, 3, 0, 0);
                 break;
 
             case 7:
                 // Stolc anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00026"),
-                        fStolc, 3, 0, 0);
+                KrabatSagt("Hoscenc1_6", fStolc, 3, 0, 0);
                 break;
 
             case 8:
                 // Durje anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00027"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00028"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00029"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Hoscenc1_7", fDurje, 3, 0, 0);
                 break;
 
             case 50:
@@ -961,34 +940,22 @@ public class Hoscenc1 extends Mainloc {
 
             case 60:
                 // Wobraz 1 mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00030"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00031"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00032"),
-                        fWobraz1, 3, 0, 0);
+                KrabatSagt("Hoscenc1_8", fWobraz1, 3, 0, 0);
                 break;
 
             case 62:
                 // Wobraz 2 mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00033"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00034"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00035"),
-                        fWobraz2, 3, 0, 0);
+                KrabatSagt("Hoscenc1_9", fWobraz2, 3, 0, 0);
                 break;
 
             case 65:
                 // Stolc mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00036"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00037"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00038"),
-                        fStolc, 3, 0, 0);
+                KrabatSagt("Hoscenc1_10", fStolc, 3, 0, 0);
                 break;
 
             case 70:
                 // Durje mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00039"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00040"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00041"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Hoscenc1_11", fDurje, 3, 0, 0);
                 break;
 
             case 100:
@@ -1038,50 +1005,32 @@ public class Hoscenc1 extends Mainloc {
 
             case 200:
                 // Honck z Blotom auf Wobraz 1
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00042"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00043"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00044"),
-                        fWobraz1, 3, 0, 0);
+                KrabatSagt("Hoscenc1_12", fWobraz1, 3, 0, 0);
                 break;
 
             case 202:
                 // Honck z Blotom auf Wobraz 2
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00045"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00046"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00047"),
-                        fWobraz2, 3, 0, 0);
+                KrabatSagt("Hoscenc1_13", fWobraz2, 3, 0, 0);
                 break;
 
             case 210:
                 // Pjero auf Pjany
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00048"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00049"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00050"),
-                        fSaeufer, 3, 0, 0);
+                KrabatSagt("Hoscenc1_14", fSaeufer, 3, 0, 0);
                 break;
 
             case 220:
                 // Kij auf Pjany
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00051"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00052"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00053"),
-                        fSaeufer, 3, 0, 0);
+                KrabatSagt("Hoscenc1_15", fSaeufer, 3, 0, 0);
                 break;
 
             case 230:
                 // Kij auf Dundak
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00054"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00055"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00056"),
-                        fStrolch, 3, 0, 0);
+                KrabatSagt("Hoscenc1_16", fStrolch, 3, 0, 0);
                 break;
 
             case 240:
                 // bron auf Dundak
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00057"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00058"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00059"),
-                        fStrolch, 3, 0, 0);
+                KrabatSagt("Hoscenc1_17", fStrolch, 3, 0, 0);
                 break;
 
             // Dialog mit Saeufer (spaeter Wirt)
@@ -1235,182 +1184,117 @@ public class Hoscenc1 extends Mainloc {
 
             case 610:
                 // Reaktion Wirt auf 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00114"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00115"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00116"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_18", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 620:
                 // Reaktion Wirt auf 1. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00117"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00118"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00119"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_19", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 630:
                 // Reaktion Wirt auf 2. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00120"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00121"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00122"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_20", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 640:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00123"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00124"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00125"),
-                        0, 25, 2, 641, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_21", 0, 25, 2, 641, wirt.evalTalkPoint());
                 break;
 
             case 641:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00126"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00127"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00128"),
-                        0, 25, 2, 642, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_22", 0, 25, 2, 642, wirt.evalTalkPoint());
                 break;
 
             case 642:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00129"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00130"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00131"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_23", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 650:
                 // Reaktion Wirt auf 1. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00132"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00133"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00134"),
-                        0, 25, 2, 651, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_24", 0, 25, 2, 651, wirt.evalTalkPoint());
                 break;
 
             case 651:
                 // Reaktion Wirt auf 1. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00135"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00136"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00137"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_25", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 660:
                 // Reaktion Wirt auf 2. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00138"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00139"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00140"),
-                        0, 25, 2, 661, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_26", 0, 25, 2, 661, wirt.evalTalkPoint());
                 break;
 
             case 661:
                 // Reaktion Wirt auf 2. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00141"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00142"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00143"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_27", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 670:
                 // Reaktion Wirt auf 3. Teil 3. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00144"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00145"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00146"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_28", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 680:
                 // Reaktion Wirt auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00147"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00148"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00149"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_29", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 690:
                 // Reaktion Wirt auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00150"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00151"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00152"),
-                        0, 25, 2, 691, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_30", 0, 25, 2, 691, wirt.evalTalkPoint());
                 break;
 
             case 691:
                 // Reaktion Wirt auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00153"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00154"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00155"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_31", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 700:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00156"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00157"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00158"),
-                        0, 25, 2, 701, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_32", 0, 25, 2, 701, wirt.evalTalkPoint());
                 break;
 
             case 701:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00159"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00160"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00161"),
-                        0, 25, 2, 702, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_33", 0, 25, 2, 702, wirt.evalTalkPoint());
                 break;
 
             case 702:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00162"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00163"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00164"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_34", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 710:
                 // Reaktion Wirt auf 4. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00165"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00166"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00167"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_35", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 720:
                 // Reaktion Wirt auf 5. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00168"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00169"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00170"),
-                        0, 25, 2, 721, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_36", 0, 25, 2, 721, wirt.evalTalkPoint());
                 break;
 
             case 721:
                 // Reaktion Wirt auf 5. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00171"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00172"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00173"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_37", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 730:
                 // Reaktion Wirt auf 1. Teil 6. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00174"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00175"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00176"),
-                        0, 25, 2, 731, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_38", 0, 25, 2, 731, wirt.evalTalkPoint());
                 break;
 
             case 731:
                 // Reaktion Wirt auf 1. Teil 6. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00177"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00178"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00179"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_39", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 740:
                 // Reaktion Wirt auf 2. Teil 6. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00180"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00181"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00182"),
-                        0, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_40", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 750:
@@ -1468,8 +1352,7 @@ public class Hoscenc1 extends Mainloc {
 
             case 780:
                 // Reaktion Wirt wenn Saeufer von Krabat 2. Mal gefragt
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00183"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00184"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00185"),
-                        fWirt, 25, 2, 600, wirt.evalTalkPoint());
+                PersonSagt("Hoscenc1_41", fWirt, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 785:
@@ -1591,94 +1474,62 @@ public class Hoscenc1 extends Mainloc {
 
             case 810:
                 // Reaktion Strolch auf 1. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00207"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00208"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00209"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_42", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 820:
                 // Reaktion Strolch auf 2. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00210"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00211"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00212"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_43", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 830:
                 // Reaktion Strolch auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00213"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00214"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00215"),
-                        0, 24, 2, 831, StrolchTalk);
+                PersonSagt("Hoscenc1_44", 0, 24, 2, 831, StrolchTalk);
                 break;
 
             case 831:
                 // Reaktion Strolch auf 1. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00216"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00217"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00218"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_45", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 840:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00219"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00220"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00221"),
-                        0, 24, 2, 841, StrolchTalk);
+                PersonSagt("Hoscenc1_46", 0, 24, 2, 841, StrolchTalk);
                 break;
 
             case 841:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00222"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00223"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00224"),
-                        0, 24, 2, 842, StrolchTalk);
+                PersonSagt("Hoscenc1_47", 0, 24, 2, 842, StrolchTalk);
                 break;
 
             case 842:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00225"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00226"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00227"),
-                        0, 24, 2, 845, StrolchTalk);
+                PersonSagt("Hoscenc1_48", 0, 24, 2, 845, StrolchTalk);
                 break;
 
             case 845:
                 // Krabat sagt Spruch
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00228"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00229"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00230"),
-                        0, 1, 2, 850);
+                KrabatSagt("Hoscenc1_49", 0, 1, 2, 850);
                 break;
 
             case 850:
                 // Reaktion Strolch auf 3. Teil 4. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00231"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00232"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00233"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_50", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 860:
                 // Reaktion Strolch auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00234"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00235"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00236"),
-                        0, 24, 2, 861, StrolchTalk);
+                PersonSagt("Hoscenc1_51", 0, 24, 2, 861, StrolchTalk);
                 break;
 
             case 861:
                 // Reaktion Strolch auf 1. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00237"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00238"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00239"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_52", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 870:
                 // Reaktion Strolch auf 2. Teil 5. Frage
-                PersonSagt(Start.stringManager.getTranslation("Loc1_Hoscenc1_00240"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00241"),
-                        Start.stringManager.getTranslation("Loc1_Hoscenc1_00242"),
-                        0, 24, 2, 800, StrolchTalk);
+                PersonSagt("Hoscenc1_53", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 900:

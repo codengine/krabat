@@ -42,14 +42,6 @@ public class Jezba extends Mainloc2 {
 
     private boolean playFanfare = false;
 
-    private static final String H1Text = Start.stringManager.getTranslation("Loc2_Jezba_00000");
-    private static final String D1Text = Start.stringManager.getTranslation("Loc2_Jezba_00001");
-    private static final String N1Text = Start.stringManager.getTranslation("Loc2_Jezba_00002");
-
-    private static final String H2Text = Start.stringManager.getTranslation("Loc2_Jezba_00003");
-    private static final String D2Text = Start.stringManager.getTranslation("Loc2_Jezba_00004");
-    private static final String N2Text = Start.stringManager.getTranslation("Loc2_Jezba_00005");
-
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
@@ -192,7 +184,7 @@ public class Jezba extends Mainloc2 {
         switch (nextActionID) {
             case 10:
                 // Hammertext ausgeben
-                PersonSagt(H1Text, D1Text, N1Text, 0, 54, 2, 20, MittelPunkt);
+                PersonSagt("Jezba_1", 0, 54, 2, 20, MittelPunkt);
                 break;
 
             case 20:
@@ -200,7 +192,7 @@ public class Jezba extends Mainloc2 {
                 showSecondPicture = true;
                 mainFrame.Clipset = false;
                 BackgroundMusicPlayer.getInstance().playTrack(25, true);
-                PersonSagt(H2Text, D2Text, N2Text, 0, 54, 2, 30, UntererPunkt);
+                PersonSagt("Jezba_2", 0, 54, 2, 30, UntererPunkt);
                 break;
 
             case 30:

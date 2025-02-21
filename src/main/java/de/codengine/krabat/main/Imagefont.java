@@ -568,6 +568,12 @@ public class Imagefont {
 
         return new GenericPoint(x, y);
     }
+
+    public String TeileTextKey(String langKey) {
+        String input = Start.stringManager.getTranslation(langKey);
+        return TeileText(input);
+    }
+
     // Optimierte Methode, die die Zeilenbreite direkt aufsummiert
     public String TeileText(String input) {
         // Eingabetext trimmen

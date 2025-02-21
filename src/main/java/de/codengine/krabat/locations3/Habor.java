@@ -668,27 +668,18 @@ public class Habor extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Habor_00000"),
-                                Start.stringManager.getTranslation("Loc3_Habor_00001"),
-                                Start.stringManager.getTranslation("Loc3_Habor_00002"),
-                                fGonzales, 3, 0, 0);
+                        KrabatSagt("Habor_1", fGonzales, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Habor_00003"),
-                                Start.stringManager.getTranslation("Loc3_Habor_00004"),
-                                Start.stringManager.getTranslation("Loc3_Habor_00005"),
-                                fGonzales, 3, 0, 0);
+                        KrabatSagt("Habor_2", fGonzales, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 2:
                 // Sudobja anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Habor_00006"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00007"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00008"),
-                        fSudobja, 3, 0, 0);
+                KrabatSagt("Habor_3", fSudobja, 3, 0, 0);
                 break;
 
             case 50:
@@ -707,10 +698,7 @@ public class Habor extends Mainloc {
 
             case 55:
                 // Sudobja mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Habor_00009"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00010"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00011"),
-                        fSudobja, 3, 0, 0);
+                KrabatSagt("Habor_4", fSudobja, 3, 0, 0);
                 break;
 
             case 100:
@@ -827,69 +815,45 @@ public class Habor extends Mainloc {
             // Sequenz vor MC (erstes Anreden)
             case 608:
                 // Reaktion Krabat
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Habor_00045"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00046"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00047"),
-                        0, 1, 2, 609);
+                KrabatSagt("Habor_5", 0, 1, 2, 609);
                 break;
 
             case 609:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00048"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00049"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00050"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_6", 0, 61, 2, 600, talkPoint);
                 mainFrame.Actions[560] = true; // Flag setzen, denn es gibt nur einen Anfang !!!
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00051"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00052"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00053"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_7", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00054"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00055"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00056"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_8", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 612:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00057"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00058"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00059"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_9", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 614:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00060"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00061"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00062"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_10", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 615:
                 // Reaktion Gonzales, noch Ohne Give Haken
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00063"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00064"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00065"),
-                        0, 61, 2, 616, talkPoint);
+                PersonSagt("Habor_11", 0, 61, 2, 616, talkPoint);
                 break;
 
             case 616:
                 // Reaktion Gonzales
                 giveHaken = true;
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00066"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00067"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00068"),
-                        0, 61, 2, 617, talkPoint);
+                PersonSagt("Habor_12", 0, 61, 2, 617, talkPoint);
                 // Enterhaken zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(37);
                 Hakencounter = 10;
@@ -918,67 +882,43 @@ public class Habor extends Mainloc {
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00069"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00070"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00071"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_13", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 621:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00072"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00073"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00074"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_14", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 622:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00075"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00076"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00077"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_15", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 623:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00078"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00079"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00080"),
-                        0, 61, 2, 624, talkPoint);
+                PersonSagt("Habor_16", 0, 61, 2, 624, talkPoint);
                 break;
 
             case 624:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00081"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00082"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00083"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_17", 0, 61, 2, 600, talkPoint);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00084"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00085"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00086"),
-                        0, 61, 2, 631, talkPoint);
+                PersonSagt("Habor_18", 0, 61, 2, 631, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00087"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00088"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00089"),
-                        0, 61, 2, 632, talkPoint);
+                PersonSagt("Habor_19", 0, 61, 2, 632, talkPoint);
                 break;
 
             case 632:
                 // Reaktion Gonzales
-                PersonSagt(Start.stringManager.getTranslation("Loc3_Habor_00090"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00091"),
-                        Start.stringManager.getTranslation("Loc3_Habor_00092"),
-                        0, 61, 2, 600, talkPoint);
+                PersonSagt("Habor_20", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 800:

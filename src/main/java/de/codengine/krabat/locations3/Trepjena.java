@@ -780,10 +780,7 @@ public class Trepjena extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Straza anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00000"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00001"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00002"),
-                        fStraza, 3, 0, 0);
+                KrabatSagt("Trepjena_1", fStraza, 3, 0, 0);
                 break;
 
             case 2:
@@ -804,82 +801,52 @@ public class Trepjena extends Mainloc {
 
             case 4:
                 // Schild ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00003"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00004"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00005"),
-                        fTafla, 3, 0, 0);
+                KrabatSagt("Trepjena_2", fTafla, 3, 0, 0);
                 break;
 
             case 5:
                 // Schild lesen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00006"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00007"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00008"),
-                        fTafla, 3, 0, 0);
+                KrabatSagt("Trepjena_3", fTafla, 3, 0, 0);
                 break;
 
             case 6:
                 // Zur Kapelle (unten) gehen -> verschlossen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00009"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00010"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00011"),
-                        fKapala, 3, 0, 0);
+                KrabatSagt("Trepjena_4", fKapala, 3, 0, 0);
                 break;
 
             case 7:
                 // BildUnten ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00012"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00013"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00014"),
-                        fBildUnten, 3, 0, 0);
+                KrabatSagt("Trepjena_5", fBildUnten, 3, 0, 0);
                 break;
 
             case 8:
                 // BildOben ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00015"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00016"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00017"),
-                        fBildOben, 3, 0, 0);
+                KrabatSagt("Trepjena_6", fBildOben, 3, 0, 0);
                 break;
 
             case 20:
                 // wokna ansehen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00018"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00019"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00020"),
-                        fWokna, 3, 0, 0);
+                KrabatSagt("Trepjena_7", fWokna, 3, 0, 0);
                 break;
 
             case 50:
                 // BildUnten mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00021"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00022"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00023"),
-                        fBildUnten, 3, 0, 0);
+                KrabatSagt("Trepjena_8", fBildUnten, 3, 0, 0);
                 break;
 
             case 55:
                 // BildOben mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00024"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00025"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00026"),
-                        fBildOben, 3, 0, 0);
+                KrabatSagt("Trepjena_9", fBildOben, 3, 0, 0);
                 break;
 
             case 60:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00027"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00028"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00029"),
-                        fKapala, 3, 0, 0);
+                KrabatSagt("Trepjena_10", fKapala, 3, 0, 0);
                 break;
 
             case 65:
                 // Fenster mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00030"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00031"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00032"),
-                        fWokna, 3, 0, 0);
+                KrabatSagt("Trepjena_11", fWokna, 3, 0, 0);
                 break;
 
             case 100:
@@ -934,18 +901,12 @@ public class Trepjena extends Mainloc {
 
             case 200:
                 // kluc auf durje
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00033"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00034"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00035"),
-                        fKapala, 3, 0, 0);
+                KrabatSagt("Trepjena_12", fKapala, 3, 0, 0);
                 break;
 
             case 210:
                 // schwere ggst auf tafla.
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00036"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00037"),
-                        Start.stringManager.getTranslation("Loc3_Trepjena_00038"),
-                        fTafla, 3, 0, 0);
+                KrabatSagt("Trepjena_13", fTafla, 3, 0, 0);
                 break;
 
             // Versuch, mit Stra#za zu reden
@@ -954,17 +915,11 @@ public class Trepjena extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00039"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00040"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00041"),
-                                fStraza, 46, 2, 800, talkPoint);
+                        PersonSagt("Trepjena_14", fStraza, 46, 2, 800, talkPoint);
                         break;
 
                     case 1:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00042"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00043"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00044"),
-                                fStraza, 46, 2, 800, talkPoint);
+                        PersonSagt("Trepjena_15", fStraza, 46, 2, 800, talkPoint);
                         break;
                 }
                 break;
@@ -976,17 +931,11 @@ public class Trepjena extends Mainloc {
                 weistzurueck = true;
                 switch (zuffZahl2) {
                     case 0:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00045"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00046"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00047"),
-                                fStraza, 46, 2, 800, talkPoint);
+                        PersonSagt("Trepjena_16", fStraza, 46, 2, 800, talkPoint);
                         break;
 
                     case 1:
-                        PersonSagt(Start.stringManager.getTranslation("Loc3_Trepjena_00048"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00049"),
-                                Start.stringManager.getTranslation("Loc3_Trepjena_00050"),
-                                fStraza, 46, 2, 800, talkPoint);
+                        PersonSagt("Trepjena_17", fStraza, 46, 2, 800, talkPoint);
                         break;
                 }
                 break;

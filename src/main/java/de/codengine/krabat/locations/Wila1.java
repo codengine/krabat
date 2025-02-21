@@ -877,10 +877,7 @@ public class Wila1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Kleider anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00002"),
-                        fSaty, 3, 0, 0);
+                KrabatSagt("Wila1_1", fSaty, 3, 0, 0);
                 break;
 
             case 2:
@@ -889,27 +886,18 @@ public class Wila1 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00003"),
-                                Start.stringManager.getTranslation("Loc1_Wila1_00004"),
-                                Start.stringManager.getTranslation("Loc1_Wila1_00005"),
-                                fLajna, 3, 0, 0);
+                        KrabatSagt("Wila1_2", fLajna, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00006"),
-                                Start.stringManager.getTranslation("Loc1_Wila1_00007"),
-                                Start.stringManager.getTranslation("Loc1_Wila1_00008"),
-                                fLajna, 3, 0, 0);
+                        KrabatSagt("Wila1_3", fLajna, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 3:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00009"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00010"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00011"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila1_4", fDurje, 3, 0, 0);
                 break;
 
             case 50:
@@ -1105,10 +1093,7 @@ public class Wila1 extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || SonderAnim != 0) {
                     break;
                 }
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00018"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00019"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00020"),
-                        0, 3, 0, 165);
+                KrabatSagt("Wila1_5", 0, 3, 0, 165);
                 break;
 
             case 165:
@@ -1376,10 +1361,7 @@ public class Wila1 extends Mainloc {
 
             case 250:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00024"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00025"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00026"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila1_6", fDurje, 3, 0, 0);
                 break;
 
             case 260:
@@ -1394,10 +1376,7 @@ public class Wila1 extends Mainloc {
 
             case 280:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Wila1_00027"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00028"),
-                        Start.stringManager.getTranslation("Loc1_Wila1_00029"),
-                        fDurje, 3, 0, 0);
+                KrabatSagt("Wila1_7", fDurje, 3, 0, 0);
                 break;
 
             default:

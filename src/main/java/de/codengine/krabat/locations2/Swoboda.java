@@ -429,43 +429,28 @@ public class Swoboda extends Mainloc {
 
             case 100:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00000"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00001"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00002"),
-                        0, 36, 2, 120, mueller.evalMlynkTalkPoint());
+                PersonSagt("Swoboda_1", 0, 36, 2, 120, mueller.evalMlynkTalkPoint());
                 break;
 
             case 120:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00003"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00004"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00005"),
-                        0, 36, 2, 130, mueller.evalMlynkTalkPoint());
+                PersonSagt("Swoboda_2", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
                 break;
 
             case 130:
                 // Mutter spricht 1. Satz, Raben beginnen mit gezieltem Kratzen
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00006"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00007"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00008"),
-                        0, 20, 2, 135, mutterTalk);
+                PersonSagt("Swoboda_3", 0, 20, 2, 135, mutterTalk);
                 rapakiAchtung = true;
                 break;
 
             case 135:
                 // Mutter spricht und zeigt auf K
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00009"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00010"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00011"),
-                        0, 60, 2, 140, mutterTalk);
+                PersonSagt("Swoboda_4", 0, 60, 2, 140, mutterTalk);
                 break;
 
             case 140:
                 // Mueller spricht, Raben hoeren auf sich zu kratzen
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00012"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00013"),
-                        Start.stringManager.getTranslation("Loc2_Swoboda_00014"),
-                        0, 36, 2, 150, mueller.evalMlynkTalkPoint());
+                PersonSagt("Swoboda_5", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
                 mlynkHatStock = true;
                 rapakiAchtung = false;
                 break;
@@ -532,8 +517,7 @@ public class Swoboda extends Mainloc {
 
             case 185:
                 // Mueller spricht
-                PersonSagt(Start.stringManager.getTranslation("Loc2_Swoboda_00015"), Start.stringManager.getTranslation("Loc2_Swoboda_00016"), Start.stringManager.getTranslation("Loc2_Swoboda_00017"),
-                        0, 36, 2, 210, mueller.evalMlynkTalkPoint());
+                PersonSagt("Swoboda_6", 0, 36, 2, 210, mueller.evalMlynkTalkPoint());
                 break;
 
 		/* case 190:

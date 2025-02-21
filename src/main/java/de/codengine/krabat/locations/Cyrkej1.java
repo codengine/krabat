@@ -511,10 +511,7 @@ public class Cyrkej1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Tuer anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Cyrkej1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Cyrkej1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Cyrkej1_00002"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Cyrkej1_1", fTuer, 3, 0, 0);
                 break;
 
             case 50:
@@ -537,8 +534,7 @@ public class Cyrkej1 extends Mainloc {
 
             case 58:
                 // Leider hoert keiner
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Cyrkej1_00003"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00004"), Start.stringManager.getTranslation("Loc1_Cyrkej1_00005"),
-                        fTuer, 3, 0, 0);
+                KrabatSagt("Cyrkej1_2", fTuer, 3, 0, 0);
                 mainFrame.fPlayAnim = false;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 break;

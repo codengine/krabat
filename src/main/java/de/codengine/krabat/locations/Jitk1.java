@@ -596,30 +596,22 @@ public class Jitk1 extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // Eingang anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jitk1_00000"),
-                        Start.stringManager.getTranslation("Loc1_Jitk1_00001"),
-                        Start.stringManager.getTranslation("Loc1_Jitk1_00002"),
-                        fEingang, 3, 0, 0);
+                KrabatSagt("Jitk1_1", fEingang, 3, 0, 0);
                 break;
 
             case 2:
                 // Wagen anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jitk1_00003"), Start.stringManager.getTranslation("Loc1_Jitk1_00004"), Start.stringManager.getTranslation("Loc1_Jitk1_00005"),
-                        fWagen, 3, 0, 0);
+                KrabatSagt("Jitk1_2", fWagen, 3, 0, 0);
                 break;
 
             case 50:
                 // Wagen mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jitk1_00006"),
-                        Start.stringManager.getTranslation("Loc1_Jitk1_00007"),
-                        Start.stringManager.getTranslation("Loc1_Jitk1_00008"),
-                        fWagen, 3, 0, 0);
+                KrabatSagt("Jitk1_3", fWagen, 3, 0, 0);
                 break;
 
             case 51:
                 // Tuer mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc1_Jitk1_00009"), Start.stringManager.getTranslation("Loc1_Jitk1_00010"), Start.stringManager.getTranslation("Loc1_Jitk1_00011"),
-                        fEingang, 3, 0, 0);
+                KrabatSagt("Jitk1_4", fEingang, 3, 0, 0);
                 break;
 
             case 100:

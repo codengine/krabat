@@ -526,18 +526,12 @@ public class Saal extends Mainloc {
         switch (nextActionID) {
             case 1:
                 // BildLinks anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00000"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00001"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00002"),
-                        fBildLinks, 3, 0, 0);
+                KrabatSagt("Saal_1", fBildLinks, 3, 0, 0);
                 break;
 
             case 2:
                 // BildRechts anschauen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00003"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00004"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00005"),
-                        fBildRechts, 3, 0, 0);
+                KrabatSagt("Saal_2", fBildRechts, 3, 0, 0);
                 break;
 
             case 3:
@@ -546,35 +540,23 @@ public class Saal extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00006"),
-                                Start.stringManager.getTranslation("Loc3_Saal_00007"),
-                                Start.stringManager.getTranslation("Loc3_Saal_00008"),
-                                fSaalHinten, 3, 0, 0);
+                        KrabatSagt("Saal_3", fSaalHinten, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00009"),
-                                Start.stringManager.getTranslation("Loc3_Saal_00010"),
-                                Start.stringManager.getTranslation("Loc3_Saal_00011"),
-                                fSaalVorn, 3, 0, 0);
+                        KrabatSagt("Saal_4", fSaalVorn, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 50:
                 // BildLinks mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00012"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00013"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00014"),
-                        fBildLinks, 3, 0, 0);
+                KrabatSagt("Saal_5", fBildLinks, 3, 0, 0);
                 break;
 
             case 55:
                 // BildRechts mitnehmen
-                KrabatSagt(Start.stringManager.getTranslation("Loc3_Saal_00015"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00016"),
-                        Start.stringManager.getTranslation("Loc3_Saal_00017"),
-                        fBildRechts, 3, 0, 0);
+                KrabatSagt("Saal_6", fBildRechts, 3, 0, 0);
                 break;
 
             case 100:
