@@ -520,30 +520,6 @@ public class Swoboda extends Mainloc {
                 PersonSagt("Swoboda_6", 0, 36, 2, 210, mueller.evalMlynkTalkPoint());
                 break;
 
-		/* case 190:
-		   // Text vom Erzaehler
-		   if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00018"));
-		   if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00019"));
-		   if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00020"));
-		   outputTextPos = mainFrame.ifont.CenterText (outputText, new GenericPoint (320, 200));
-		   TalkPerson = 6;
-		   TalkPause = 2;
-		   nextActionID = 200;
-		   macHere = false;
-		   krabatHere = false;
-		   break;
-        
-		   case 200:
-		   // Mueller spricht
-		   if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00021"));
-		   if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00022"));
-		   if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Swoboda_00023"));
-		   outputTextPos = mainFrame.ifont.CenterText (outputText, mueller.evalMlynkTalkPoint());
-		   TalkPerson = 2;
-		   TalkPause = 2;
-		   nextActionID = 210;
-		   break;*/
-
             case 210:
                 // Skip zu Mlyn2
                 NeuesBild(90, 92);

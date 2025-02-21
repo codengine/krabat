@@ -50,12 +50,6 @@ public class Dzera extends Mainloc {
     // private static final GenericPoint krabatTalk = new GenericPoint (320, 100);
     // private static final GenericPoint erzTalk    = new GenericPoint (200, 320);
 
-    // Text
-  /*private static final String HText = Start.stringManager.getTranslation("Loc2_Dzera_00000");
-  private static final String DText = Start.stringManager.getTranslation("Loc2_Dzera_00001");
-  private static final String NText = Start.stringManager.getTranslation("Loc2_Dzera_00002");
-  */
-
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
@@ -298,28 +292,6 @@ public class Dzera extends Mainloc {
                 // Mueller redet
                 PersonSagt("Dzera_15", 0, 36, 2, 250, mueller.evalMlynkTalkPoint());
                 break;
-        
-      /*case 230:
-        // Krabat redet
-        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Dzera_00048"));
-        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Dzera_00049"));
-        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (Start.stringManager.getTranslation("Loc2_Dzera_00050"));
-        outputTextPos = mainFrame.ifont.CenterText (outputText, krabatTalk);
-        TalkPerson = 3;
-        TalkPause = 2;
-        nextActionID = 250;
-        break;
-        
-      case 240:
-      	// ErzaehlerText - wird geskippt !
-        if (mainFrame.sprache == 1) outputText = mainFrame.ifont.TeileText (HText);
-        if (mainFrame.sprache == 2) outputText = mainFrame.ifont.TeileText (DText);
-        if (mainFrame.sprache == 3) outputText = mainFrame.ifont.TeileText (NText);
-        outputTextPos = mainFrame.ifont.CenterText (outputText, erzTalk);
-        TalkPerson = 5;
-        TalkPause = 2;
-        nextActionID = 250;
-        break;  */
 
             case 250:
                 // Skip zur Muehle Innen

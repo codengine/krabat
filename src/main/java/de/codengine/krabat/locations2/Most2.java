@@ -1372,12 +1372,6 @@ public class Most2 extends Mainloc2 {
                 mainFrame.Clipset = false;
                 nextActionID = 2520;
                 break;
-      	
-		/*            case 2510:
-                // Pohonc spricht
-                PersonSagt (Start.stringManager.getTranslation("Loc2_Most2_00045"), Start.stringManager.getTranslation("Loc2_Most2_00046"), Start.stringManager.getTranslation("Loc2_Most2_00047"),
-                            fPohonc, 39, 2, 2520, pohoncTalk);
-                break;*/
 
             case 2520:
                 // Krabat spricht

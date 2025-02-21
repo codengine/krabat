@@ -906,12 +906,6 @@ public class Dubring1 extends Mainloc {
                 KrabatSagt("Dubring1_7", fHalza, 3, 0, 0);
                 break;
 
-	/*      case 65:
-        // Stomy mitnehmen
-        KrabatSagt (Start.stringManager.getTranslation("Loc1_Dubring1_00021"), Start.stringManager.getTranslation("Loc1_Dubring1_00022"), Start.stringManager.getTranslation("Loc1_Dubring1_00023"),
-        						fStomy, 3, 0, 0);
-        break;*/
-
             case 100:
                 // Gehe zu Villa
                 NeuesBild(16, 18);

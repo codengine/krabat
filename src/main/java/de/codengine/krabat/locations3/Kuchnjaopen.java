@@ -779,68 +779,6 @@ public class Kuchnjaopen extends Mainloc {
                 KrabatSagt("Kuchnjaopen_22", fSwinjo, 3, 0, 0);
                 break;
 
-            // Sequenzen mit Kuchar  /////////////////////////////////
-
-		/*      case 300:
-			// Reaktion Krabat, wenn Holz in Ofen
-			KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00066"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00067"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00068"),
-			0, 3, 2, 800);
-			break;
-
-			case 301:
-			// Reaktion Krabat, wenn Holz in Ofen 2 mal
-			KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00069"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00070"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00071"),
-			0, 3, 2, 800);
-			break;
-
-			case 302:
-			// Reaktion Krabat, wenn Holz in Ofen 3 mal -> dann zur Hintergasse
-			KrabatSagt (Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00072"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00073"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00074"),
-			0, 3, 2, 303);
-			break;
-
-			case 303:
-			// Reaktion Koch, wenn Brei ueberkocht
-			PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00075"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00076"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00077"),
-			0, 42, 2, 304, evalKucharTalkPoint ());
-			break;
-
-			case 304:
-			// Koch zum Herd bewegen
-			kuchar.MoveTo (kuPointHerd);
-			walkReady = false;
-			nextActionID = 305;
-			break;  
-
-			case 305:
-			// Warten, bis sie ausgelaufen ist
-			if (walkReady == true) nextActionID = 309;
-			break;
-      	
-      
-			case 309:
-			// Reaktion Koch, wenn Brei ueberkocht
-			PersonSagt (Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00078"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00079"),
-			Start.stringManager.getTranslation("Loc3_Kuchnjaopen_00080"),
-			0, 42, 2, 310, evalKucharTalkPoint ());
-			break;
-
-			case 310:
-			// Krabat geht zum Ausgang Hintergasse
-			nextActionID = 100;
-			mainFrame.wegGeher.SetzeNeuenWeg (pRight);
-			break;*/
-
-
             case 800:
                 // MC beenden, wenn zuende gelabert...
                 mainFrame.fPlayAnim = false;

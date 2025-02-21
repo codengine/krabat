@@ -619,14 +619,6 @@ public class Couch extends Mainloc {
                 KrabatSagt("Couch_6", 0, 3, 2, 70);
                 break;
 
-		/*case 65:
-		// Animszene Tuer ist offen
-		KrabatSagt (Start.stringManager.getTranslation("Loc3_Couch_00018"),
-			    Start.stringManager.getTranslation("Loc3_Couch_00019"),
-			    Start.stringManager.getTranslation("Loc3_Couch_00020"),
-			    0, 3, 2, 70);
-			    break;*/
-
             case 70:
                 // runterfallen lassen
                 SonderAnim = 1;

@@ -894,17 +894,6 @@ public class Zelen extends Mainloc {
                 nextActionID = 86;
                 break;
 
-
-		/*           case 85:
-                // Ende siegeln
-		if (SonderAnim != 0) break;
-                PersonSagt (Start.stringManager.getTranslation("Loc3_Zelen_00021"),
-                            Start.stringManager.getTranslation("Loc3_Zelen_00022"),
-                            Start.stringManager.getTranslation("Loc3_Zelen_00023"),
-                            0, 54, 2, 86, erzaehlerPoint);
-			    break;*/
-
-
             case 86:
                 // Krabat spricht
                 if (--Counter == 1) {

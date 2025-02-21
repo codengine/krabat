@@ -1982,20 +1982,6 @@ public class Haty1 extends Mainloc {
                 }
                 break;
 
-            // Multiple Choice
-
-                /*case 600:
-                  // MC mit Angler 1 beginnen
-                  if (mainFrame.sprache == 1) outputText = Start.stringManager.getTranslation("Loc1_Haty1_00228");
-                  if (mainFrame.sprache == 2) outputText = Start.stringManager.getTranslation("Loc1_Haty1_00229");      
-                  if (mainFrame.sprache == 3) outputText = Start.stringManager.getTranslation("Loc1_Haty1_00230");
-                  outputTextPos = mainFrame.ifont.KrabatText (outputText);
-                  mainFrame.krabat.SetFacing (9);
-                  TalkPerson = 1;
-                  TalkPause = 0;
-                  nextActionID = 605;
-                  break;*/
-
             case 600:
                 // Reaktion Angler 1
                 PersonSagt("Haty1_65", fWudzerjoRight, 31, 2, 610, angler2.Wudzer2TalkPoint());
@@ -2118,12 +2104,6 @@ public class Haty1 extends Mainloc {
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
                 PersonSagt("Haty1_80", 0, 31, 2, 702, angler2.Wudzer2TalkPoint());
                 break;
-     
-            /*case 701:
-                // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt (Start.stringManager.getTranslation("Loc1_Haty1_00309"), Start.stringManager.getTranslation("Loc1_Haty1_00310"), Start.stringManager.getTranslation("Loc1_Haty1_00311"),
-                            0, 31, 2, 702, angler2.Wudzer2TalkPoint () );
-                break;*/
 
             case 702:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage

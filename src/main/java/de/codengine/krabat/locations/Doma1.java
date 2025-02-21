@@ -1059,20 +1059,6 @@ public class Doma1 extends Mainloc {
                 evalMouseMoveEvent(mainFrame.Mousepoint);
                 nextActionID = 630;
                 break;
-  
-		/*      case 60:
-			// Brunnen - Animation (Hallo Echo!)
-			KrabatSagt (Start.stringManager.getTranslation("Loc1_Doma1_00027"), Start.stringManager.getTranslation("Loc1_Doma1_00028"), Start.stringManager.getTranslation("Loc1_Doma1_00029"),
-			fBrunnen, 3, 5, 61);
-			break;
-        
-			case 61:
-			// Brunnen - Animation Ende
-			KrabatSagt (Start.stringManager.getTranslation("Loc1_Doma1_00030"), Start.stringManager.getTranslation("Loc1_Doma1_00031"), Start.stringManager.getTranslation("Loc1_Doma1_00032"),
-			fBrunnen, 3, 0, 0);
-			mainFrame.fPlayAnim = false;
-			evalMouseMoveEvent (mainFrame.Mousepoint);
-			break;*/
 
             case 70:
                 // Gaense mitnehmen

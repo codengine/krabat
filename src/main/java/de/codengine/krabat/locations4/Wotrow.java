@@ -36,12 +36,6 @@ public class Wotrow extends Mainloc {
     private GenericImage foreground;
     private GenericImage mond;
 
-    // Strings - Texte
-    /*private static final String H1Text = Start.stringManager.getTranslation("Loc4_Wotrow_00000");
-      private static final String D1Text = Start.stringManager.getTranslation("Loc4_Wotrow_00001");
-      private static final String N1Text = Start.stringManager.getTranslation("Loc4_Wotrow_00002");
-    */
-
     // Konstanten - Rects
     private static final Borderrect obererAusgang = new Borderrect(325, 119, 387, 149);
     private static final Borderrect untererAusgang = new Borderrect(309, 445, 423, 479);

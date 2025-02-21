@@ -605,48 +605,6 @@ public class Kapala extends Mainloc {
                 // Rolle1 oben take
                 KrabatSagt("Kapala_5", fRolle1, 3, 0, 0);
                 break;
-		/*mainFrame.fPlayAnim = true;
-		  evalMouseMoveEvent (mainFrame.Mousepoint);
-		  mainFrame.krabat.SetFacing (fRolle1);
-		  mainFrame.krabat.nAnimation = 121;
-		  nextActionID = 56;
-		  Counter = 5;
-		  break;
-
-		  case 56:
-		  // genommen, nun Spruch
-		  if ((--Counter) == 1)
-		  {
-		  mainFrame.Actions[632] = true;
-		  mainFrame.Clipset = false;
-		  }
-		  if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) break;
-		  KrabatSagt (Start.stringManager.getTranslation("Loc3_Kapala_00015"),
-		  Start.stringManager.getTranslation("Loc3_Kapala_00016"),
-		  Start.stringManager.getTranslation("Loc3_Kapala_00017"),
-		  fRolle1, 3, 0, 57);
-		  break;
-	  
-		  case 57:
-		  // und wieder hinlegen
-		  mainFrame.krabat.nAnimation = 121;
-		  nextActionID = 58;
-		  Counter = 5;
-		  break;
-
-		  case 58:
-		  // Ende, wenn wieder da
-		  if ((--Counter) == 1)
-		  {
-		  mainFrame.Actions[632] = false;
-		  mainFrame.Clipset = false;
-		  }
-		  if ((mainFrame.krabat.nAnimation != 0) || (Counter > 0)) break;
-		  nextActionID = 0;
-		  mainFrame.fPlayAnim = false;
-		  evalMouseMoveEvent (mainFrame.Mousepoint);
-		  mainFrame.repaint ();
-		  break;*/
 
             case 60:
                 // Rolle2 take

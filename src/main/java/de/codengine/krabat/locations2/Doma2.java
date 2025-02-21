@@ -898,12 +898,6 @@ public class Doma2 extends Mainloc {
                 KrabatSagt("Doma2_4", fSchild, 3, 0, 0);
                 break;
 
-		/*      case 5:
-			// Mutter anschauen
-			KrabatSagt (Start.stringManager.getTranslation("Loc2_Doma2_00039"), Start.stringManager.getTranslation("Loc2_Doma2_00040"), Start.stringManager.getTranslation("Loc2_Doma2_00041"),
-			fMutter, 3, 0, 0);
-			break;*/
-
             case 6:
                 // Gaense anschauen
                 KrabatSagt("Doma2_5", fGaense, 3, 0, 0);
