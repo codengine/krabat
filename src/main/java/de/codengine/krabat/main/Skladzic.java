@@ -93,6 +93,7 @@ public class Skladzic extends Mainanim {
 
     // je nach Sprache init vornehmen
     private void InitRec() {
+        //TODO: Add proper graphics
         switch (mainFrame.sprache) {
             case 1: // Hornjos
             case 3: // temporaer Deutsch bekommt Hornjos
@@ -102,8 +103,7 @@ public class Skladzic extends Mainanim {
                 Empty = getPicture("gfx/mainmenu/leerzelle.gif");
 
                 // Rects festlegen
-                brSklad = new Borderrect(pLO.x + 310, pLO.y + 327,
-                        pLO.x + 489, pLO.y + 355);
+                brSklad = new Borderrect(pLO.x + 310, pLO.y + 327,pLO.x + 489, pLO.y + 355);
                 break;
 
             case 2: // Delnjos
@@ -113,10 +113,8 @@ public class Skladzic extends Mainanim {
                 Empty = getPicture("gfx/mainmenu/leerzelle.gif");
 
                 // Rects festlegen
-                brSklad = new Borderrect(pLO.x + 308, pLO.y + 327,
-                        pLO.x + 491, pLO.y + 355);
+                brSklad = new Borderrect(pLO.x + 308, pLO.y + 327,pLO.x + 491, pLO.y + 355);
                 break;
-
         }
         actualImage = mainFrame.saveImage;
     }

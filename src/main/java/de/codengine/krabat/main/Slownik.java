@@ -103,10 +103,12 @@ public class Slownik extends Mainanim {
         brPfeilOben = new Borderrect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
         brPfeilUnten = new Borderrect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
 
+        //TODO: Lang3 not considered here?
         brGesamt = new Borderrect(LinksOben.x, LinksOben.y, LinksOben.x + (mainFrame.sprache == 2 ? DXANZA : HXANZA) * XDIFF - 1, LinksOben.y + YANZA * YDIFF - 1);
 
         InitImages();
 
+        //TODO: Translations for Slownik
         LoadSlownik();
 
         mainFrame.Freeze(false);

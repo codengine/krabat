@@ -82,6 +82,7 @@ public class Wocinic extends Mainanim {
     }
 
     private void InitRec() {
+        //TODO: Add graphics for third language
         switch (mainFrame.sprache) {
             case 1: // Hornjos
             case 3: // temporaer Deutsch bekommt Hornjos
