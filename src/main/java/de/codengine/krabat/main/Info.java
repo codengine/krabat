@@ -57,55 +57,25 @@ public class Info extends Mainanim {
     private int PictureCounter;
 
     // Hier die Texte
-    private static final String[][][] BildText =
-            {
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00000"), Start.stringManager.getTranslation("Main_Info_00001"), Start.stringManager.getTranslation("Main_Info_00002"), ""},
-                            {Start.stringManager.getTranslation("Main_Info_00003"), Start.stringManager.getTranslation("Main_Info_00004"), Start.stringManager.getTranslation("Main_Info_00005"), ""},
-                            {Start.stringManager.getTranslation("Main_Info_00006"), Start.stringManager.getTranslation("Main_Info_00007"), Start.stringManager.getTranslation("Main_Info_00008"), ""}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00009"), Start.stringManager.getTranslation("Main_Info_00010"), Start.stringManager.getTranslation("Main_Info_00011"), ""},
-                            {Start.stringManager.getTranslation("Main_Info_00012"), Start.stringManager.getTranslation("Main_Info_00013"), Start.stringManager.getTranslation("Main_Info_00014"), ""},
-                            {Start.stringManager.getTranslation("Main_Info_00015"), Start.stringManager.getTranslation("Main_Info_00016"), Start.stringManager.getTranslation("Main_Info_00017"), ""}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00018"), Start.stringManager.getTranslation("Main_Info_00019"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00020"), Start.stringManager.getTranslation("Main_Info_00021"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00022"), Start.stringManager.getTranslation("Main_Info_00023"), "", ""}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00024"), Start.stringManager.getTranslation("Main_Info_00025"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00026"), Start.stringManager.getTranslation("Main_Info_00027"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00028"), Start.stringManager.getTranslation("Main_Info_00029"), "", ""}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00030"), Start.stringManager.getTranslation("Main_Info_00031"), Start.stringManager.getTranslation("Main_Info_00032"), Start.stringManager.getTranslation("Main_Info_00033")},
-                            {Start.stringManager.getTranslation("Main_Info_00034"), Start.stringManager.getTranslation("Main_Info_00035"), Start.stringManager.getTranslation("Main_Info_00036"), Start.stringManager.getTranslation("Main_Info_00037")},
-                            {Start.stringManager.getTranslation("Main_Info_00038"), Start.stringManager.getTranslation("Main_Info_00039"), Start.stringManager.getTranslation("Main_Info_00040"), Start.stringManager.getTranslation("Main_Info_00041")}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00042"), Start.stringManager.getTranslation("Main_Info_00043"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00044"), Start.stringManager.getTranslation("Main_Info_00045"), "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00046"), Start.stringManager.getTranslation("Main_Info_00047"), "", ""}
-                    },
-                    {
-                            {Start.stringManager.getTranslation("Main_Info_00048"), "", "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00049"), "", "", ""},
-                            {Start.stringManager.getTranslation("Main_Info_00050"), "", "", ""}
-                    },
-            };
+    private static final String[][] IMAGE_TEXTS = {
+            {"Info_1", "Info_2", "Info_3", ""},
+            {"Info_4", "Info_5", "Info_6", ""},
+            {"Info_7", "Info_8", "", ""},
+            {"Info_9", "Info_10", "", ""},
+            {"Info_11", "Info_12", "Info_13", "Info_14"},
+            {"Info_15", "Info_16", "", ""},
+            {"Info_17", "", "", ""}
+    };
 
-    private static final GenericPoint[][] BildPunkte =
-            {
-                    {new GenericPoint(110, 55), new GenericPoint(113, 238), new GenericPoint(413, 170), null},
-                    {new GenericPoint(94, 52), new GenericPoint(90, 215), new GenericPoint(440, 80), null},
-                    {new GenericPoint(142, 64), new GenericPoint(257, 223), null, null},
-                    {new GenericPoint(329, 48), new GenericPoint(113, 238), null, null},
-                    {new GenericPoint(91, 76), new GenericPoint(250, 245), new GenericPoint(358, 149), new GenericPoint(406, 183)},
-                    {new GenericPoint(135, 73), new GenericPoint(413, 170), null, null},
-                    {new GenericPoint(90, 45), null, null, null}
-            };
+    private static final GenericPoint[][] BildPunkte = {
+            {new GenericPoint(110, 55), new GenericPoint(113, 238), new GenericPoint(413, 170), null},
+            {new GenericPoint(94, 52), new GenericPoint(90, 215), new GenericPoint(440, 80), null},
+            {new GenericPoint(142, 64), new GenericPoint(257, 223), null, null},
+            {new GenericPoint(329, 48), new GenericPoint(113, 238), null, null},
+            {new GenericPoint(91, 76), new GenericPoint(250, 245), new GenericPoint(358, 149), new GenericPoint(406, 183)},
+            {new GenericPoint(135, 73), new GenericPoint(413, 170), null, null},
+            {new GenericPoint(90, 45), null, null, null}
+    };
 
 
     // Initialisierung ////////////////////////////////////////////////////////
@@ -193,7 +163,8 @@ public class Info extends Mainanim {
             evalMouseMoveEvent(mainFrame.Mousepoint);
 
             for (int i = 0; i <= 3; i++) {
-                String outputText = BildText[PictureCounter][mainFrame.sprache - 1][i];
+                String textKey = IMAGE_TEXTS[PictureCounter][i];
+                String outputText = Objects.equals(textKey, "") ? "" : Start.stringManager.getTranslation(textKey);
                 GenericPoint outputTextPos = BildPunkte[PictureCounter][i];
                 if (!Objects.equals(outputText, "")) // leere Dinger ueberspringen
                 {

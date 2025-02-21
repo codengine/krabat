@@ -1437,15 +1437,7 @@ public class Kulow1 extends Mainloc {
 
             case 3:
                 // 1. Textausgabe
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00156");
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00157");
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00158");
-                }
+                AnimOutputText = Start.stringManager.getTranslation("Kulow1_55");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, rybowarTalk);
                 AnimCounter = 10;
                 AnimTalkPerson = 33;
@@ -1476,15 +1468,7 @@ public class Kulow1 extends Mainloc {
 
             case 7:
                 // 2. Textausgabe
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00159");
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00160");
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00161");
-                }
+                AnimOutputText = Start.stringManager.getTranslation("Kulow1_56");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, rybowarTalk);
                 AnimCounter = 10;
                 AnimTalkPerson = 33;
@@ -1654,27 +1638,11 @@ public class Kulow1 extends Mainloc {
                     case 0:
                         octopussyerscheint = true;
                         mainFrame.wave.PlayFile("sfx/oktopus.wav");
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00174");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00175");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00176");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Kulow1_57");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00177");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00178");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc1_Kulow1_00179");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Kulow1_58");
                         break;
                 }
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, rybowarTalk);

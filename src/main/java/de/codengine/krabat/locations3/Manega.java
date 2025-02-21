@@ -808,15 +808,7 @@ public class Manega extends Mainloc {
 
             case 30:
                 // Text ueber Loewen ausgeben
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Manega_00078");
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Manega_00079");
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Manega_00080");
-                }
+                AnimOutputText = Start.stringManager.getTranslation("Manega_27");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, loeweTalk);
                 // evalSound (true); // schnarchen, hier nicht!!!
                 AnimCounter = 50;

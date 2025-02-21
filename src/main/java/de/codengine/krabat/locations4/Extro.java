@@ -51,23 +51,6 @@ public class Extro extends Mainloc {
 
     private int FadeToBlack = 0;
 
-    // Konstante Strings
-    private static final String HExtro1 = Start.stringManager.getTranslation("Loc4_Extro_00000");
-    private static final String DExtro1 = Start.stringManager.getTranslation("Loc4_Extro_00001");
-    private static final String NExtro1 = Start.stringManager.getTranslation("Loc4_Extro_00002");
-
-    private static final String HExtro2 = Start.stringManager.getTranslation("Loc4_Extro_00003");
-    private static final String DExtro2 = Start.stringManager.getTranslation("Loc4_Extro_00004");
-    private static final String NExtro2 = Start.stringManager.getTranslation("Loc4_Extro_00005");
-
-    private static final String HExtro3 = Start.stringManager.getTranslation("Loc4_Extro_00006");
-    private static final String DExtro3 = Start.stringManager.getTranslation("Loc4_Extro_00007");
-    private static final String NExtro3 = Start.stringManager.getTranslation("Loc4_Extro_00008");
-
-    private static final String HScroller = Start.stringManager.getTranslation("Loc4_Extro_00009");
-    private static final String DScroller = Start.stringManager.getTranslation("Loc4_Extro_00010");
-    private static final String NScroller = Start.stringManager.getTranslation("Loc4_Extro_00011");
-
     // Konstante Points
     private static final GenericPoint talkPoint = new GenericPoint(320, 350);
     private static final GenericPoint talkPointCopyleft = new GenericPoint(320, 425);

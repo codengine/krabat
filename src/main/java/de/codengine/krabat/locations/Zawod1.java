@@ -698,15 +698,7 @@ public class Zawod1 extends Mainloc {
                 case 10:
                     // Einfuehrungstext
                     // mainFrame.player.Play ("2", -133600);
-                    if (mainFrame.sprache == 1) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00036");
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00037");
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00038");
-                    }
+                    outputText = Start.stringManager.getTranslation("Zawod1_13");
                     outputTextPos = mainFrame.ifont.CenterText(outputText, MittelPunkt);
                     mainFrame.talkCount += 50; // Zeit fuer Bautzen-Bild kuenstlich verlaengern
                     TalkPause = 5;
@@ -786,15 +778,7 @@ public class Zawod1 extends Mainloc {
                 case 104:
                     // Text von Krabat redend
                     mainFrame.Clipset = false;
-                    if (mainFrame.sprache == 1) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00039");
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00040");
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = Start.stringManager.getTranslation("Loc1_Zawod1_00041");
-                    }
+                    outputText = Start.stringManager.getTranslation("Zawod1_14");
                     outputTextPos = mainFrame.ifont.KrabatText(outputText);
                     IntroStep++;
                     TalkPause = 3;

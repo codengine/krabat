@@ -462,145 +462,49 @@ public class Karta extends Mainanim {
     }
 
     private void evalString(int newort) {
-        if (mainFrame.sprache == 1) {
-            switch (newort) {
-                case 0:
-                    outputText = "";
-                    break;
+        switch (newort) {
+            case 0:
+                outputText = "";
+                break;
 
-                case 1:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00000");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollx, Pkulow.y + mainFrame.scrolly));
-                    break;
+            case 1:
+                outputText = Start.stringManager.getTranslation("Karta_1");
+                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollx, Pkulow.y + mainFrame.scrolly));
+                break;
 
-                case 2:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00001");
-                    outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollx, Pnjedz.y + mainFrame.scrolly);
-                    break;
+            case 2:
+                outputText = Start.stringManager.getTranslation("Karta_2");
+                outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollx, Pnjedz.y + mainFrame.scrolly);
+                break;
 
-                case 3:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00002");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollx, Psunow.y + mainFrame.scrolly));
-                    break;
+            case 3:
+                outputText = Start.stringManager.getTranslation("Karta_3");
+                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollx, Psunow.y + mainFrame.scrolly));
+                break;
 
-                case 4:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00003");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollx, Pralbicy.y + mainFrame.scrolly));
-                    break;
+            case 4:
+                outputText = Start.stringManager.getTranslation("Karta_4");
+                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollx, Pralbicy.y + mainFrame.scrolly));
+                break;
 
-                case 5:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00004");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollx, Pjitk.y + mainFrame.scrolly));
-                    break;
+            case 5:
+                outputText = Start.stringManager.getTranslation("Karta_5");
+                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollx, Pjitk.y + mainFrame.scrolly));
+                break;
 
-                case 6:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00005");
-                    outputTextPos = new GenericPoint(Pzdzary.x + mainFrame.scrollx, Pzdzary.y + mainFrame.scrolly);
-                    break;
+            case 6:
+                outputText = Start.stringManager.getTranslation("Karta_6");
+                outputTextPos = new GenericPoint(Pzdzary.x + mainFrame.scrollx, Pzdzary.y + mainFrame.scrolly);
+                break;
 
-                case 7:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00006");
-                    outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollx, Pkolmc.y + mainFrame.scrolly);
-                    break;
+            case 7:
+                outputText = Start.stringManager.getTranslation("Karta_7");
+                outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollx, Pkolmc.y + mainFrame.scrolly);
+                break;
 
-                default:
-                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
-                    break;
-            }
-        }
-
-        if (mainFrame.sprache == 2) {
-            switch (newort) {
-                case 0:
-                    outputText = "";
-                    break;
-
-                case 1:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00007");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollx, Pkulow.y + mainFrame.scrolly));
-                    break;
-
-                case 2:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00008");
-                    outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollx, Pnjedz.y + mainFrame.scrolly);
-                    break;
-
-                case 3:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00009");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollx, Psunow.y + mainFrame.scrolly));
-                    break;
-
-                case 4:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00010");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollx, Pralbicy.y + mainFrame.scrolly));
-                    break;
-
-                case 5:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00011");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollx, Pjitk.y + mainFrame.scrolly));
-                    break;
-
-                case 6:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00012");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pzdzary.x + mainFrame.scrollx, Pzdzary.y + mainFrame.scrolly));
-                    break;
-
-                case 7:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00013");
-                    outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollx, Pkolmc.y + mainFrame.scrolly);
-                    break;
-
-                default:
-                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
-                    break;
-            }
-        }
-
-        if (mainFrame.sprache == 3) {
-            switch (newort) {
-                case 0:
-                    outputText = "";
-                    break;
-
-                case 1:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00014");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollx, Pkulow.y + mainFrame.scrolly));
-                    break;
-
-                case 2:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00015");
-                    outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollx, Pnjedz.y + mainFrame.scrolly);
-                    break;
-
-                case 3:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00016");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollx, Psunow.y + mainFrame.scrolly));
-                    break;
-
-                case 4:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00017");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollx, Pralbicy.y + mainFrame.scrolly));
-                    break;
-
-                case 5:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00018");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollx, Pjitk.y + mainFrame.scrolly));
-                    break;
-
-                case 6:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00019");
-                    outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pzdzary.x + mainFrame.scrollx, Pzdzary.y + mainFrame.scrolly));
-                    break;
-
-                case 7:
-                    outputText = Start.stringManager.getTranslation("Main_Karta_00020");
-                    outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollx, Pkolmc.y + mainFrame.scrolly);
-                    break;
-
-                default:
-                    log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
-                    break;
-            }
+            default:
+                log.error("Fehler im Chooser der Strings / Positionen. newort = {}", newort);
+                break;
         }
     }
 

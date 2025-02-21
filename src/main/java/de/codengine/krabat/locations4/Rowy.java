@@ -129,17 +129,9 @@ public class Rowy extends Mainloc {
     // private static final int fGrab4 = 3;
 
     // String fuer Muellerdrohen
-    private static final String[] HMuellerDrohen = {Start.stringManager.getTranslation("Loc4_Rowy_00000"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00001"), Start.stringManager.getTranslation("Loc4_Rowy_00002"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00003"), Start.stringManager.getTranslation("Loc4_Rowy_00004"), Start.stringManager.getTranslation("Loc4_Rowy_00005")};
-    private static final String[] DMuellerDrohen = {Start.stringManager.getTranslation("Loc4_Rowy_00006"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00007"), Start.stringManager.getTranslation("Loc4_Rowy_00008"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00009"), Start.stringManager.getTranslation("Loc4_Rowy_00010"), Start.stringManager.getTranslation("Loc4_Rowy_00011")};
-    private static final String[] NMuellerDrohen = {Start.stringManager.getTranslation("Loc4_Rowy_00012"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00013"), Start.stringManager.getTranslation("Loc4_Rowy_00014"),
-            Start.stringManager.getTranslation("Loc4_Rowy_00015"), Start.stringManager.getTranslation("Loc4_Rowy_00016"), Start.stringManager.getTranslation("Loc4_Rowy_00017")};
-
-    private static final String[] knochenText = {Start.stringManager.getTranslation("Loc4_Rowy_00018"), Start.stringManager.getTranslation("Loc4_Rowy_00019"), Start.stringManager.getTranslation("Loc4_Rowy_00020")}; // habe ich hier eingefuegt, damit Texte immer nur hier oben oder in DoActions -> leicht auffindbar...
+    private static final String[] MILLER_THREATENS = {
+            "Rowy_54", "Rowy_55", "Rowy_56", "Rowy_57", "Rowy_58", "Rowy_59"
+    };
 
     private int SonderAnim = 0;
     private int Counter = 0;
@@ -364,7 +356,7 @@ public class Rowy extends Mainloc {
 
             // Schrei des Schreckens zeigen ?
             if (sonderAnimCounter < 24) {
-                mainFrame.ifont.drawString(g, knochenText[mainFrame.sprache - 1], 210, 230, FarbenArray[1]);
+                mainFrame.ifont.drawString(g, Start.stringManager.getTranslation("Rowy_60"), 210, 230, FarbenArray[1]);
             }
         } else {
             // normaler Ablauf -> Hintergrund und Krabat zeichnen
@@ -2289,18 +2281,8 @@ public class Rowy extends Mainloc {
 
             case 30:
                 // Text ueber Mueller ausgeben
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText =
-                            HMuellerDrohen[(int) (Math.random() * 5.9)];
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText =
-                            DMuellerDrohen[(int) (Math.random() * 5.9)];
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText =
-                            NMuellerDrohen[(int) (Math.random() * 5.9)];
-                }
+                int random = (int) (Math.random() * 5.9);
+                AnimOutputText = Start.stringManager.getTranslation(MILLER_THREATENS[random]);
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(
                         AnimOutputText, mueller.evalMlynkTalkPoint());
                 AnimCounter = 50;

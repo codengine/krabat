@@ -1252,54 +1252,22 @@ public class Spaniska extends Mainloc {
                 }
                 switch (zuffZahl) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00063");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00064");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00065");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Spaniska_22");
                         AnimCounter = 50;
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00066");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00067");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00068");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Spaniska_23");
                         AnimCounter = 60;
                         break;
 
                     case 2:
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00069");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00070");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00071");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Spaniska_24");
                         AnimCounter = 120;
                         break;
 
                     case 3:
-                        if (mainFrame.sprache == 1) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00072");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00073");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            AnimOutputText = Start.stringManager.getTranslation("Loc3_Spaniska_00074");
-                        }
+                        AnimOutputText = Start.stringManager.getTranslation("Spaniska_25");
                         AnimCounter = 70;
                         break;
                 }

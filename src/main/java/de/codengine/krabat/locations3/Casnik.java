@@ -1398,39 +1398,15 @@ public class Casnik extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00066");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00067");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00068");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_36");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00069");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00070");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00071");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_37");
                         break;
 
                     case 2:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00072");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00073");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00074");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_38");
                         break;
                 }
 
@@ -1446,39 +1422,15 @@ public class Casnik extends Mainloc {
                 int zuffZahl2 = (int) (Math.random() * 2.9);
                 switch (zuffZahl2) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00075");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00076");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00077");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_39");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00078");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00079");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00080");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_40");
                         break;
 
                     case 2:
-                        if (mainFrame.sprache == 1) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00081");
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00082");
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = Start.stringManager.getTranslation("Loc3_Casnik_00083");
-                        }
+                        outputText = Start.stringManager.getTranslation("Casnik_41");
                         break;
                 }
 
@@ -1596,15 +1548,7 @@ public class Casnik extends Mainloc {
 
             case 30:
                 // Text ueber Hl. Straznik ausgeben
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Casnik_00123");
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Casnik_00124");
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = Start.stringManager.getTranslation("Loc3_Casnik_00125");
-                }
+                AnimOutputText = Start.stringManager.getTranslation("Casnik_42");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, hlStraznik.evalTalkPoint());
                 AnimCounter = 50;
                 AnimTalkPerson = 48;

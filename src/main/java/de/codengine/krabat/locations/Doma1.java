@@ -1122,15 +1122,7 @@ public class Doma1 extends Mainloc {
                 }
                 mainFrame.fPlayAnim = true;
                 evalMouseMoveEvent(mainFrame.Mousepoint);
-                if (mainFrame.sprache == 1) {
-                    outputText = Start.stringManager.getTranslation("Loc1_Doma1_00036");
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = Start.stringManager.getTranslation("Loc1_Doma1_00037");
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = Start.stringManager.getTranslation("Loc1_Doma1_00038");
-                }
+                outputText = Start.stringManager.getTranslation("Doma1_33");
                 TalkPerson = 20;
                 mainFrame.talkCount = 30;
                 TalkPause = 0;

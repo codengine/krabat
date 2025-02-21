@@ -69,9 +69,7 @@ public class Hoscenc1 extends Mainloc {
     private int SoundCountdown = 20;
 
     // Konstante Strings
-    private static final String[] APH = {Start.stringManager.getTranslation("Loc1_Hoscenc1_00000"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00001"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00002")};
-    private static final String[] APD = {Start.stringManager.getTranslation("Loc1_Hoscenc1_00003"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00004"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00005")};
-    private static final String[] APN = {Start.stringManager.getTranslation("Loc1_Hoscenc1_00006"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00007"), Start.stringManager.getTranslation("Loc1_Hoscenc1_00008")};
+    private static final String[] AP = {"Hoscenc1_79", "Hoscenc1_80", "Hoscenc1_81"};
 
     // Konstanten - Rects
     private static final Borderrect linkerAusgang = new Borderrect(0, 380, 74, 479);
@@ -1224,15 +1222,8 @@ public class Hoscenc1 extends Mainloc {
 
             case 750:
                 // Reaktion Saeufer auf 1. Krabat - Frage
-                if (mainFrame.sprache == 1) {
-                    outputText = APH[(int) Math.round(Math.random() * 2)];
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = APD[(int) Math.round(Math.random() * 2)];
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = APN[(int) Math.round(Math.random() * 2)];
-                }
+                int random = (int) Math.round(Math.random() * (AP.length - 1));
+                outputText = Start.stringManager.getTranslation(AP[random]);
                 outputTextPos = mainFrame.ifont.CenterText(outputText, SaeuferTalk);
                 TalkPerson = 23;
                 TalkPause = 2;
@@ -1472,15 +1463,8 @@ public class Hoscenc1 extends Mainloc {
 
             case 4:
                 // Saeufer - Schnarchen
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = APH[(int) Math.round(Math.random() * 2)];
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = APD[(int) Math.round(Math.random() * 2)];
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = APN[(int) Math.round(Math.random() * 2)];
-                }
+                int random = (int) Math.round(Math.random() * (AP.length - 1));
+                AnimOutputText = Start.stringManager.getTranslation(AP[random]);
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, SaeuferTalk);
                 AnimCounter = 30;
                 AnimTalkPerson = 23;

@@ -58,11 +58,7 @@ public class Hauptmenu extends Mainanim {
     private final GameProperties gameProperties;
 
     private static final String[] helpTextRight = new String[]{
-            "Main_Hauptmenu_00001",
-            "Main_Hauptmenu_00002",
-            "Main_Hauptmenu_00003",
-            "Main_Hauptmenu_00004",
-            "Main_Hauptmenu_00005"
+            "Hauptmenu_1", "Hauptmenu_2", "Hauptmenu_3", "Hauptmenu_4", "Hauptmenu_5"
     };
 
     private static final GenericPoint[] helpTextPosRight = new GenericPoint[]{
@@ -74,8 +70,7 @@ public class Hauptmenu extends Mainanim {
     };
 
     private static final String[] helpTextLeft = new String[]{
-            "Main_Hauptmenu_00006",
-            "Main_Hauptmenu_00007"
+            "Hauptmenu_6", "Hauptmenu_7"
     };
 
     private static final GenericPoint[] helpTextPosLeft = new GenericPoint[]{

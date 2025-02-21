@@ -71,9 +71,7 @@ public class Inventar extends Mainanim {
     public boolean noBackgroundSound = false;       // Anzeige, ob Backgroundwavs deaktiviert werden sollen
 
     // Texte fuer Standardausreden
-    private static final String[] HAusreden = {"Main_Inventar_00000", "Main_Inventar_00001", "Main_Inventar_00002", "Main_Inventar_00003"};
-    private static final String[] DAusreden = {"Main_Inventar_00004", "Main_Inventar_00005", "Main_Inventar_00006", "Main_Inventar_00007"};
-    private static final String[] NAusreden = {"Main_Inventar_00008", "Main_Inventar_00009", "Main_Inventar_00010", "Main_Inventar_00011"};
+    private static final String[] EXCUSES = {"Inventar_81", "Inventar_82", "Inventar_83", "Inventar_84"};
 
     // ----PARSER_DISABLE----
 
@@ -952,16 +950,8 @@ public class Inventar extends Mainanim {
     }
 
     // Routine, die die allgemeinen Sachen der Textausgabe regelt
-    private void ShowText(String HText, String DText, String NText) {
-        if (mainFrame.sprache == 1) {
-            outputText = HText;
-        }
-        if (mainFrame.sprache == 2) {
-            outputText = DText;
-        }
-        if (mainFrame.sprache == 3) {
-            outputText = NText;
-        }
+    private void ShowText(String langKey) {
+        outputText = Start.stringManager.getTranslation(langKey);
         outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320 + mainFrame.scrollx, ytemp));
         mainFrame.repaint();
     }
@@ -973,142 +963,102 @@ public class Inventar extends Mainanim {
         switch (nextActionID) {
             case 1:
                 // Pfeife anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00012"),
-                        Start.stringManager.getTranslation("Main_Inventar_00013"),
-                        Start.stringManager.getTranslation("Main_Inventar_00014"));
+                ShowText("Inventar_1");
                 break;
 
             case 2:
                 // Stock anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00015"),
-                        Start.stringManager.getTranslation("Main_Inventar_00016"),
-                        Start.stringManager.getTranslation("Main_Inventar_00017"));
+                ShowText("Inventar_2");
                 break;
 
             case 3:
                 // Schild (deska) anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00018"),
-                        Start.stringManager.getTranslation("Main_Inventar_00019"),
-                        Start.stringManager.getTranslation("Main_Inventar_00020"));
+                ShowText("Inventar_3");
                 break;
 
             case 4:
                 // Honck anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00021"),
-                        Start.stringManager.getTranslation("Main_Inventar_00022"),
-                        Start.stringManager.getTranslation("Main_Inventar_00023"));
+                ShowText("Inventar_4");
                 break;
 
             case 5:
                 // Hocka  anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00024"),
-                        Start.stringManager.getTranslation("Main_Inventar_00025"),
-                        Start.stringManager.getTranslation("Main_Inventar_00026"));
+                ShowText("Inventar_5");
                 break;
 
             case 6:
                 // Lajna anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00027"),
-                        Start.stringManager.getTranslation("Main_Inventar_00028"),
-                        Start.stringManager.getTranslation("Main_Inventar_00029"));
+                ShowText("Inventar_6");
                 break;
 
             case 7:
                 // Wuda anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00030"),
-                        Start.stringManager.getTranslation("Main_Inventar_00031"),
-                        Start.stringManager.getTranslation("Main_Inventar_00032"));
+                ShowText("Inventar_7");
                 break;
 
             case 8:
                 // Wacki anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00033"),
-                        Start.stringManager.getTranslation("Main_Inventar_00034"),
-                        Start.stringManager.getTranslation("Main_Inventar_00035"));
+                ShowText("Inventar_8");
                 break;
 
             case 9:
                 // Wuda + Hocka anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00036"),
-                        Start.stringManager.getTranslation("Main_Inventar_00037"),
-                        Start.stringManager.getTranslation("Main_Inventar_00038"));
+                ShowText("Inventar_9");
                 break;
 
             case 10:
                 // Wuda + Hocka + Wacka anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00039"),
-                        Start.stringManager.getTranslation("Main_Inventar_00040"),
-                        Start.stringManager.getTranslation("Main_Inventar_00041"));
+                ShowText("Inventar_10");
                 break;
 
             case 11:
                 // Wuda + Hocka + Drjewjana Ryba anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00042"),
-                        Start.stringManager.getTranslation("Main_Inventar_00043"),
-                        Start.stringManager.getTranslation("Main_Inventar_00044"));
+                ShowText("Inventar_11");
                 break;
 
             case 12:
                 // Wohnjowe kamuski anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00045"),
-                        Start.stringManager.getTranslation("Main_Inventar_00046"),
-                        Start.stringManager.getTranslation("Main_Inventar_00047"));
+                ShowText("Inventar_12");
                 break;
 
             case 13:
                 // Drjewjana Ryba anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00048"),
-                        Start.stringManager.getTranslation("Main_Inventar_00049"),
-                        Start.stringManager.getTranslation("Main_Inventar_00050"));
+                ShowText("Inventar_13");
                 break;
 
             case 14:
                 // Ryba anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00051"),
-                        Start.stringManager.getTranslation("Main_Inventar_00052"),
-                        Start.stringManager.getTranslation("Main_Inventar_00053"));
+                ShowText("Inventar_14");
                 break;
 
             case 15:
                 // Krosik anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00054"),
-                        Start.stringManager.getTranslation("Main_Inventar_00055"),
-                        Start.stringManager.getTranslation("Main_Inventar_00056"));
+                ShowText("Inventar_15");
                 break;
 
             case 16:
                 // Honck z blotom anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00057"),
-                        Start.stringManager.getTranslation("Main_Inventar_00058"),
-                        Start.stringManager.getTranslation("Main_Inventar_00059"));
+                ShowText("Inventar_16");
                 break;
 
             case 17:
                 // Rohodz anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00060"),
-                        Start.stringManager.getTranslation("Main_Inventar_00061"),
-                        Start.stringManager.getTranslation("Main_Inventar_00062"));
+                ShowText("Inventar_17");
                 break;
 
             case 18:
                 // Rohodz + Kamusk anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00063"),
-                        Start.stringManager.getTranslation("Main_Inventar_00064"),
-                        Start.stringManager.getTranslation("Main_Inventar_00065"));
+                ShowText("Inventar_18");
                 break;
 
             case 19:
                 // Pjero anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00066"),
-                        Start.stringManager.getTranslation("Main_Inventar_00067"),
-                        Start.stringManager.getTranslation("Main_Inventar_00068"));
+                ShowText("Inventar_19");
                 break;
 
             case 20:
                 // Karta anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00069"),
-                        Start.stringManager.getTranslation("Main_Inventar_00070"),
-                        Start.stringManager.getTranslation("Main_Inventar_00071"));
+                ShowText("Inventar_20");
                 break;
 
 
@@ -1116,191 +1066,137 @@ public class Inventar extends Mainanim {
 
             case 30:
                 // List Zahrodnika anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00072"),
-                        Start.stringManager.getTranslation("Main_Inventar_00073"),
-                        Start.stringManager.getTranslation("Main_Inventar_00074"));
+                ShowText("Inventar_21");
                 break;
 
             case 31:
                 // dowolnosc1 anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00075"),
-                        Start.stringManager.getTranslation("Main_Inventar_00076"),
-                        Start.stringManager.getTranslation("Main_Inventar_00077"));
+                ShowText("Inventar_22");
                 break;
 
             case 32:
                 // dowolnosc3 anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00078"),
-                        Start.stringManager.getTranslation("Main_Inventar_00079"),
-                        Start.stringManager.getTranslation("Main_Inventar_00080"));
+                ShowText("Inventar_23");
                 break;
 
             case 33:
                 // dowolnosc2 anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00081"),
-                        Start.stringManager.getTranslation("Main_Inventar_00082"),
-                        Start.stringManager.getTranslation("Main_Inventar_00083"));
+                ShowText("Inventar_24");
                 break;
 
             case 34:
                 // dowolnosc4 anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00084"),
-                        Start.stringManager.getTranslation("Main_Inventar_00085"),
-                        Start.stringManager.getTranslation("Main_Inventar_00086"));
+                ShowText("Inventar_25");
                 break;
 
             case 35:
                 // Drjewo anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00087"),
-                        Start.stringManager.getTranslation("Main_Inventar_00088"),
-                        Start.stringManager.getTranslation("Main_Inventar_00089"));
+                ShowText("Inventar_26");
                 break;
 
             case 36:
                 // Tigerowy kozuch anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00090"),
-                        Start.stringManager.getTranslation("Main_Inventar_00091"),
-                        Start.stringManager.getTranslation("Main_Inventar_00092"));
+                ShowText("Inventar_27");
                 break;
 
             case 37:
                 // Kotwica anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00093"),
-                        Start.stringManager.getTranslation("Main_Inventar_00094"),
-                        Start.stringManager.getTranslation("Main_Inventar_00095"));
+                ShowText("Inventar_28");
                 break;
 
             case 38:
                 // Powjaz anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00096"),
-                        Start.stringManager.getTranslation("Main_Inventar_00097"),
-                        Start.stringManager.getTranslation("Main_Inventar_00098"));
+                ShowText("Inventar_29");
                 break;
 
             case 39:
                 // Kotwica + Powjaz anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00099"),
-                        Start.stringManager.getTranslation("Main_Inventar_00100"),
-                        Start.stringManager.getTranslation("Main_Inventar_00101"));
+                ShowText("Inventar_30");
                 break;
 
             case 40:
                 // Tolery anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00102"),
-                        Start.stringManager.getTranslation("Main_Inventar_00103"),
-                        Start.stringManager.getTranslation("Main_Inventar_00104"));
+                ShowText("Inventar_31");
                 break;
 
             case 41:
                 // Sluzowna Drasta anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00105"),
-                        Start.stringManager.getTranslation("Main_Inventar_00106"),
-                        Start.stringManager.getTranslation("Main_Inventar_00107"));
+                ShowText("Inventar_32");
                 break;
 
             case 42:
                 // Helbija anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00108"),
-                        Start.stringManager.getTranslation("Main_Inventar_00109"),
-                        Start.stringManager.getTranslation("Main_Inventar_00110"));
+                ShowText("Inventar_33");
                 break;
 
             case 43:
                 // Helm anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00111"),
-                        Start.stringManager.getTranslation("Main_Inventar_00112"),
-                        Start.stringManager.getTranslation("Main_Inventar_00113"));
+                ShowText("Inventar_34");
                 break;
 
             case 44:
                 // Helm mit Wein anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00114"),
-                        Start.stringManager.getTranslation("Main_Inventar_00115"),
-                        Start.stringManager.getTranslation("Main_Inventar_00116"));
+                ShowText("Inventar_35");
                 break;
 
             case 45:
                 // Sonnenuhr anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00117"),
-                        Start.stringManager.getTranslation("Main_Inventar_00118"),
-                        Start.stringManager.getTranslation("Main_Inventar_00119"));
+                ShowText("Inventar_36");
                 break;
 
             case 46:
                 // Hammer anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00120"),
-                        Start.stringManager.getTranslation("Main_Inventar_00121"),
-                        Start.stringManager.getTranslation("Main_Inventar_00122"));
+                ShowText("Inventar_37");
                 break;
 
             case 47:
                 // Schluessel anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00123"),
-                        Start.stringManager.getTranslation("Main_Inventar_00124"),
-                        Start.stringManager.getTranslation("Main_Inventar_00125"));
+                ShowText("Inventar_38");
                 break;
 
             case 48:
                 // Metall anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00126"),
-                        Start.stringManager.getTranslation("Main_Inventar_00127"),
-                        Start.stringManager.getTranslation("Main_Inventar_00128"));
+                ShowText("Inventar_39");
                 break;
 
             case 49:
                 // Befehl anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00129"),
-                        Start.stringManager.getTranslation("Main_Inventar_00130"),
-                        Start.stringManager.getTranslation("Main_Inventar_00131"));
+                ShowText("Inventar_40");
                 break;
 
             case 50:
                 // Skizze anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00132"),
-                        Start.stringManager.getTranslation("Main_Inventar_00133"),
-                        Start.stringManager.getTranslation("Main_Inventar_00134"));
+                ShowText("Inventar_41");
                 break;
 
             case 51:
                 // Halben Stollen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00135"),
-                        Start.stringManager.getTranslation("Main_Inventar_00136"),
-                        Start.stringManager.getTranslation("Main_Inventar_00137"));
+                ShowText("Inventar_42");
                 break;
 
             case 52:
                 // Stollen anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00138"),
-                        Start.stringManager.getTranslation("Main_Inventar_00139"),
-                        Start.stringManager.getTranslation("Main_Inventar_00140"));
+                ShowText("Inventar_43");
                 break;
 
             case 53:
                 // Drasta anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00141"),
-                        Start.stringManager.getTranslation("Main_Inventar_00142"),
-                        Start.stringManager.getTranslation("Main_Inventar_00143"));
+                ShowText("Inventar_44");
                 break;
 
             case 54:
                 // Karte in Dresden anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00144"),
-                        Start.stringManager.getTranslation("Main_Inventar_00145"),
-                        Start.stringManager.getTranslation("Main_Inventar_00146"));
+                ShowText("Inventar_45");
                 break;
 
             case 55:
                 // schweres Buch anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00147"),
-                        Start.stringManager.getTranslation("Main_Inventar_00148"),
-                        Start.stringManager.getTranslation("Main_Inventar_00149"));
+                ShowText("Inventar_46");
                 break;
 
             case 60:
                 // Schuessel anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00150"),
-                        Start.stringManager.getTranslation("Main_Inventar_00151"),
-                        Start.stringManager.getTranslation("Main_Inventar_00152"));
+                ShowText("Inventar_47");
                 break;
 
             case 61:
@@ -1308,248 +1204,177 @@ public class Inventar extends Mainanim {
                 // ShowText ("Koraktor - sk#on#knje sym knihu$mojich prjedownikow namaka#l!",
                 //	  "Koraktor - sko#ncnje som knig#ly$mojich pr#edownikow namaka#l!!",
                 //	  "Der Koraktor -$endlich habe ich ihn gefunden!");
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00153"),
-                        Start.stringManager.getTranslation("Main_Inventar_00154"),
-                        Start.stringManager.getTranslation("Main_Inventar_00155"));
+                ShowText("Inventar_48");
                 break;
 
             case 62:
                 // Grossen Stein anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00156"),
-                        Start.stringManager.getTranslation("Main_Inventar_00157"),
-                        Start.stringManager.getTranslation("Main_Inventar_00158"));
+                ShowText("Inventar_49");
                 break;
 
             case 63:
                 // Syno anschauen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00159"),
-                        Start.stringManager.getTranslation("Main_Inventar_00160"),
-                        Start.stringManager.getTranslation("Main_Inventar_00161"));
+                ShowText("Inventar_50");
                 break;
 
             case 100:
                 // Standardausreden
-                int zuffZahl = (int) Math.round(Math.random() * HAusreden.length);
-                if (zuffZahl == HAusreden.length) {
-                    zuffZahl = 0;
-                }
-                ShowText(Start.stringManager.getTranslation(HAusreden[zuffZahl]),
-                        Start.stringManager.getTranslation(DAusreden[zuffZahl]),
-                        Start.stringManager.getTranslation(NAusreden[zuffZahl]));
+                int zuffZahl = (int) Math.round(Math.random() * (EXCUSES.length - 1));
+                ShowText(EXCUSES[zuffZahl]);
                 break;
 
             case 110:
                 // wacki auf hornck bloto
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00162"),
-                        Start.stringManager.getTranslation("Main_Inventar_00163"),
-                        Start.stringManager.getTranslation("Main_Inventar_00164"));
+                ShowText("Inventar_51");
                 break;
 
             case 115:
                 // ryba auf hornck bloto
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00165"),
-                        Start.stringManager.getTranslation("Main_Inventar_00166"),
-                        Start.stringManager.getTranslation("Main_Inventar_00167"));
+                ShowText("Inventar_52");
                 break;
 
             case 120:
                 // karta auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00168"),
-                        Start.stringManager.getTranslation("Main_Inventar_00169"),
-                        Start.stringManager.getTranslation("Main_Inventar_00170"));
+                ShowText("Inventar_53");
                 break;
 
             case 125:
                 // deska auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00171"),
-                        Start.stringManager.getTranslation("Main_Inventar_00172"),
-                        Start.stringManager.getTranslation("Main_Inventar_00173"));
+                ShowText("Inventar_54");
                 break;
 
             case 130:
                 // bron auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00174"),
-                        Start.stringManager.getTranslation("Main_Inventar_00175"),
-                        Start.stringManager.getTranslation("Main_Inventar_00176"));
+                ShowText("Inventar_55");
                 break;
 
             case 135:
                 // pjerjo auf ryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00177"),
-                        Start.stringManager.getTranslation("Main_Inventar_00178"),
-                        Start.stringManager.getTranslation("Main_Inventar_00179"));
+                ShowText("Inventar_56");
                 break;
 
             case 140:
                 // pjerjo auf hornck bloto
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00180"),
-                        Start.stringManager.getTranslation("Main_Inventar_00181"),
-                        Start.stringManager.getTranslation("Main_Inventar_00182"));
+                ShowText("Inventar_57");
                 break;
 
             case 145:
                 // flejta auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00183"),
-                        Start.stringManager.getTranslation("Main_Inventar_00184"),
-                        Start.stringManager.getTranslation("Main_Inventar_00185"));
+                ShowText("Inventar_58");
                 break;
 
             case 150:
                 // kij auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00186"),
-                        Start.stringManager.getTranslation("Main_Inventar_00187"),
-                        Start.stringManager.getTranslation("Main_Inventar_00188"));
+                ShowText("Inventar_59");
                 break;
 
             case 155:
                 // flejta auf dryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00189"),
-                        Start.stringManager.getTranslation("Main_Inventar_00190"),
-                        Start.stringManager.getTranslation("Main_Inventar_00191"));
+                ShowText("Inventar_60");
                 break;
 
             case 160:
                 // hocka auf dryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00192"),
-                        Start.stringManager.getTranslation("Main_Inventar_00193"),
-                        Start.stringManager.getTranslation("Main_Inventar_00194"));
+                ShowText("Inventar_61");
                 break;
 
             case 165:
                 // wuda auf dryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00195"),
-                        Start.stringManager.getTranslation("Main_Inventar_00196"),
-                        Start.stringManager.getTranslation("Main_Inventar_00197"));
+                ShowText("Inventar_62");
                 break;
 
             case 170:
                 // wacki auf dryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00198"),
-                        Start.stringManager.getTranslation("Main_Inventar_00199"),
-                        Start.stringManager.getTranslation("Main_Inventar_00200"));
+                ShowText("Inventar_63");
                 break;
 
             case 175:
                 // kamuski auf dryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00201"),
-                        Start.stringManager.getTranslation("Main_Inventar_00202"),
-                        Start.stringManager.getTranslation("Main_Inventar_00203"));
+                ShowText("Inventar_64");
                 break;
 
             case 180:
                 // wacki auf ryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00204"),
-                        Start.stringManager.getTranslation("Main_Inventar_00205"),
-                        Start.stringManager.getTranslation("Main_Inventar_00206"));
+                ShowText("Inventar_65");
                 break;
 
             case 185:
                 // wuda + hocka auf ryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00207"),
-                        Start.stringManager.getTranslation("Main_Inventar_00208"),
-                        Start.stringManager.getTranslation("Main_Inventar_00209"));
+                ShowText("Inventar_66");
                 break;
 
             case 190:
                 // wuda + wacki auf ryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00210"),
-                        Start.stringManager.getTranslation("Main_Inventar_00211"),
-                        Start.stringManager.getTranslation("Main_Inventar_00212"));
+                ShowText("Inventar_67");
                 break;
 
             case 195:
                 // wuda + dryba auf ryba
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00213"),
-                        Start.stringManager.getTranslation("Main_Inventar_00214"),
-                        Start.stringManager.getTranslation("Main_Inventar_00215"));
+                ShowText("Inventar_68");
                 break;
 
             case 200:
                 // wacki auf kij
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00216"),
-                        Start.stringManager.getTranslation("Main_Inventar_00217"),
-                        Start.stringManager.getTranslation("Main_Inventar_00218"));
+                ShowText("Inventar_69");
                 break;
 
             case 205:
                 // wacki auf hornck
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00219"),
-                        Start.stringManager.getTranslation("Main_Inventar_00220"),
-                        Start.stringManager.getTranslation("Main_Inventar_00221"));
+                ShowText("Inventar_70");
                 break;
 
             case 210:
                 // wacki auf  hocka
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00222"),
-                        Start.stringManager.getTranslation("Main_Inventar_00223"),
-                        Start.stringManager.getTranslation("Main_Inventar_00224"));
+                ShowText("Inventar_71");
                 break;
 
             case 215:
                 // wacki auf wuda
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00225"),
-                        Start.stringManager.getTranslation("Main_Inventar_00226"),
-                        Start.stringManager.getTranslation("Main_Inventar_00227"));
+                ShowText("Inventar_72");
                 break;
 
             case 220:
                 // lajna auf hocka
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00228"),
-                        Start.stringManager.getTranslation("Main_Inventar_00229"),
-                        Start.stringManager.getTranslation("Main_Inventar_00230"));
+                ShowText("Inventar_73");
                 break;
 
             //////// Dresdner Sonderausreden ///////////////////////////////////
 
             case 225:
                 // list auf verschienden sachen
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00231"),
-                        Start.stringManager.getTranslation("Main_Inventar_00232"),
-                        Start.stringManager.getTranslation("Main_Inventar_00233"));
+                ShowText("Inventar_74");
                 break;
 
             case 230:
                 // List auf 5 tolerow
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00234"),
-                        Start.stringManager.getTranslation("Main_Inventar_00235"),
-                        Start.stringManager.getTranslation("Main_Inventar_00236"));
+                ShowText("Inventar_75");
                 break;
 
             case 240:
                 // 5 tolerow auf drasta / sluz drasta
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00237"),
-                        Start.stringManager.getTranslation("Main_Inventar_00238"),
-                        Start.stringManager.getTranslation("Main_Inventar_00239"));
+                ShowText("Inventar_76");
                 break;
 
             case 255:
                 // hamor auf metall
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00240"),
-                        Start.stringManager.getTranslation("Main_Inventar_00241"),
-                        Start.stringManager.getTranslation("Main_Inventar_00242"));
+                ShowText("Inventar_77");
                 break;
 
             // Teil 4
 
             case 270:
                 // Syno auf Lichtschaale
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00243"),
-                        Start.stringManager.getTranslation("Main_Inventar_00244"),
-                        Start.stringManager.getTranslation("Main_Inventar_00245"));
+                ShowText("Inventar_78");
                 break;
 
             case 271:
                 // Feuersteine auf Syno
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00246"),
-                        Start.stringManager.getTranslation("Main_Inventar_00247"),
-                        Start.stringManager.getTranslation("Main_Inventar_00248"));
+                ShowText("Inventar_79");
                 break;
 
             case 272:
                 // deska auf kamuski
-                ShowText(Start.stringManager.getTranslation("Main_Inventar_00249"),
-                        Start.stringManager.getTranslation("Main_Inventar_00250"),
-                        Start.stringManager.getTranslation("Main_Inventar_00251"));
+                ShowText("Inventar_80");
                 break;
 
             default:

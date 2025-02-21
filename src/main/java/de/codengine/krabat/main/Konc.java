@@ -54,28 +54,13 @@ public class Konc extends Mainanim {
         mainFrame.setCursor(mainFrame.Normal);
         Anzahl = 2;
 
-        if (mainFrame.sprache == 1) {
-            Fragen[0] = Start.stringManager.getTranslation("Main_Konc_00000");
-            Fragen[1] = Start.stringManager.getTranslation("Main_Konc_00001");
-            Fragen[2] = Start.stringManager.getTranslation("Main_Konc_00002");
-            Positionen[0] = new GenericRectangle(205, 202, 150, 50);
-            Positionen[1] = new GenericRectangle(210, 235, 56, 26);
-            Positionen[2] = new GenericRectangle(280, 235, 56, 26);
-        } else if (mainFrame.sprache == 2) {
-            Fragen[0] = Start.stringManager.getTranslation("Main_Konc_00003");
-            Fragen[1] = Start.stringManager.getTranslation("Main_Konc_00004");
-            Fragen[2] = Start.stringManager.getTranslation("Main_Konc_00005");
-            Positionen[0] = new GenericRectangle(200, 202, 150, 50);
-            Positionen[1] = new GenericRectangle(217, 235, 36, 26);
-            Positionen[2] = new GenericRectangle(280, 235, 56, 26);
-        } else {
-            Fragen[0] = Start.stringManager.getTranslation("Main_Konc_00006");
-            Fragen[1] = Start.stringManager.getTranslation("Main_Konc_00007");
-            Fragen[2] = Start.stringManager.getTranslation("Main_Konc_00008");
-            Positionen[0] = new GenericRectangle(200, 202, 150, 50);
-            Positionen[1] = new GenericRectangle(210, 235, 56, 26);
-            Positionen[2] = new GenericRectangle(280, 235, 56, 26);
-        }
+        Fragen[0] = Start.stringManager.getTranslation("Konc_1");
+        Fragen[1] = Start.stringManager.getTranslation("Konc_2");
+        Fragen[2] = Start.stringManager.getTranslation("Konc_3");
+        Positionen[0] = new GenericRectangle(205, 202, 150, 50);
+        Positionen[1] = new GenericRectangle(210, 235, 56, 26);
+        Positionen[2] = new GenericRectangle(280, 235, 56, 26);
+
         active = true;
         mainFrame.repaint();
     }
