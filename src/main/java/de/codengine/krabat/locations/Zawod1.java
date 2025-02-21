@@ -505,7 +505,7 @@ public class Zawod1 extends Mainloc {
             mainFrame.Clipset = false;
             outputText = "";
         }
-        
+
         if (e.isRightClick()) {
             // bei Intro - Bildern Mainmenu erlauben
             // > 0 = alles, > 9 = nur nach Rapaki-Intro

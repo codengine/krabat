@@ -662,9 +662,9 @@ public class Imagefont {
      *
      * @param output    Der bisherige Ausgabepuffer.
      * @param line      Die laufende Zeile.
-     * @param word       Der Wortpuffer.
+     * @param word      Der Wortpuffer.
      * @param lineWidth Aktuelle Breite der Zeile.
-     * @param wordWidth   Breite des aktuellen Wortes.
+     * @param wordWidth Breite des aktuellen Wortes.
      * @return Ein int-Array mit zwei Werten: [neue Zeilenbreite, 0 (Wortbreite nach Flush)].
      */
     private int[] flushWord(StringBuilder output, StringBuilder line, StringBuilder word, int lineWidth, int wordWidth) {

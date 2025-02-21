@@ -126,7 +126,7 @@ public class Kacka2 extends Mainanim {
 
         Yoffset = Ydiff / Xdiff * Xoffset;
 
-        if(Debug.enabled) {
+        if (Debug.enabled) {
             log.debug("Yoffset = {}", Yoffset);
         }
     }

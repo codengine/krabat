@@ -54,8 +54,7 @@ public class Debug {
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
-    public static Instant getTimeInstant()
-    {
+    public static Instant getTimeInstant() {
         return CLOCK.instant();
     }
 }  

@@ -226,7 +226,7 @@ public class Wocinic extends Mainanim {
         }
 
         GenericPoint pTemp = e.getPoint();
-        
+
         // bei Click Ausserhalb zurueck ins Spiel
         if (!brGesamt.IsPointInRect(pTemp)) {
             Deactivate();

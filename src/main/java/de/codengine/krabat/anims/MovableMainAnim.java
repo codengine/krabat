@@ -53,7 +53,9 @@ public abstract class MovableMainAnim extends Mainanim {
     }
 
     protected abstract int getLeftPos(int pox, int poy);
+
     protected abstract int getUpPos(int poy);
+
     protected abstract int getScale(int poy);
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
