@@ -762,29 +762,29 @@ public class Zdzary1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Zdzary1_74", 1000, 80, new int[]{80}, 610);
-                Dialog.ExtendMCO("Zdzary1_75", 80, 81, new int[]{81}, 620);
-                Dialog.ExtendMCO("Zdzary1_76", 81, 82, new int[]{82, 87, 92}, 630);
+                Dialog.ExtendMC("Zdzary1_74", 1000, 80, new int[]{80}, 610);
+                Dialog.ExtendMC("Zdzary1_75", 80, 81, new int[]{81}, 620);
+                Dialog.ExtendMC("Zdzary1_76", 81, 82, new int[]{82, 87, 92}, 630);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Zdzary1_77", 1000, 83, new int[]{83}, 710);
-                Dialog.ExtendMCO("Zdzary1_78", 83, 84, new int[]{84}, 720);
-                Dialog.ExtendMCO("Zdzary1_79", 84, 85, new int[]{85}, 730);
-                Dialog.ExtendMCO("Zdzary1_80", 85, 86, new int[]{86}, 740);
+                Dialog.ExtendMC("Zdzary1_77", 1000, 83, new int[]{83}, 710);
+                Dialog.ExtendMC("Zdzary1_78", 83, 84, new int[]{84}, 720);
+                Dialog.ExtendMC("Zdzary1_79", 84, 85, new int[]{85}, 730);
+                Dialog.ExtendMC("Zdzary1_80", 85, 86, new int[]{86}, 740);
 
                 // 4. Frage ( 3. = Ende )
-                Dialog.ExtendMCO("Zdzary1_81", 87, 88, new int[]{88}, 640);
-                Dialog.ExtendMCO("Zdzary1_82", 88, 89, new int[]{89}, 650);
-                Dialog.ExtendMCO("Zdzary1_83", 89, 90, new int[]{90}, 660);
-                Dialog.ExtendMCO("Zdzary1_84", 90, 91, new int[]{91}, 670);
-                Dialog.ExtendMCO("Zdzary1_85", 91, 1000, null, 680);
+                Dialog.ExtendMC("Zdzary1_81", 87, 88, new int[]{88}, 640);
+                Dialog.ExtendMC("Zdzary1_82", 88, 89, new int[]{89}, 650);
+                Dialog.ExtendMC("Zdzary1_83", 89, 90, new int[]{90}, 660);
+                Dialog.ExtendMC("Zdzary1_84", 90, 91, new int[]{91}, 670);
+                Dialog.ExtendMC("Zdzary1_85", 91, 1000, null, 680);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Zdzary1_86", 92, 93, new int[]{93}, 690);
-                Dialog.ExtendMCO("Zdzary1_87", 93, 1000, null, 700);
+                Dialog.ExtendMC("Zdzary1_86", 92, 93, new int[]{93}, 690);
+                Dialog.ExtendMC("Zdzary1_87", 93, 1000, null, 700);
 
                 // 3. Frage (Ende)
-                Dialog.ExtendMCO("Zdzary1_88", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Zdzary1_88", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

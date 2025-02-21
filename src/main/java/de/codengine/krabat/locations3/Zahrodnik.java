@@ -839,26 +839,26 @@ public class Zahrodnik extends Mainloc {
                 handrijHoertZu = true;
                 // 1. Frage nur, wenn noch kein Liscik
                 if (!mainFrame.Actions[542]) {
-                    Dialog.ExtendMCO("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
-                    Dialog.ExtendMCO("Zahrodnik_35", 537, 536, new int[]{536}, 611);
-                    Dialog.ExtendMCO("Zahrodnik_36", 536, 535, new int[]{535}, 612);
-                    Dialog.ExtendMCO("Zahrodnik_37", 535, 534, new int[]{534}, 613);
-                    Dialog.ExtendMCO("Zahrodnik_38", 534, 533, new int[]{533}, 614);
-                    Dialog.ExtendMCO("Zahrodnik_39", 533, 532, new int[]{532}, 615);
+                    Dialog.ExtendMC("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
+                    Dialog.ExtendMC("Zahrodnik_35", 537, 536, new int[]{536}, 611);
+                    Dialog.ExtendMC("Zahrodnik_36", 536, 535, new int[]{535}, 612);
+                    Dialog.ExtendMC("Zahrodnik_37", 535, 534, new int[]{534}, 613);
+                    Dialog.ExtendMC("Zahrodnik_38", 534, 533, new int[]{533}, 614);
+                    Dialog.ExtendMC("Zahrodnik_39", 533, 532, new int[]{532}, 615);
                     if (!mainFrame.Actions[520]) {
-                        Dialog.ExtendMCO("Zahrodnik_40", 532, 1000, null, 618);
+                        Dialog.ExtendMC("Zahrodnik_40", 532, 1000, null, 618);
                     } else {
-                        Dialog.ExtendMCO("Zahrodnik_41", 532, 1000, null, 620);
+                        Dialog.ExtendMC("Zahrodnik_41", 532, 1000, null, 620);
                     }
                 }
 
                 // 2. Frage
-                Dialog.ExtendMCO("Zahrodnik_42", 1000, 541, new int[]{541}, 630);
-                Dialog.ExtendMCO("Zahrodnik_43", 541, 540, new int[]{540}, 631);
-                Dialog.ExtendMCO("Zahrodnik_44", 540, 1000, null, 632);
+                Dialog.ExtendMC("Zahrodnik_42", 1000, 541, new int[]{541}, 630);
+                Dialog.ExtendMC("Zahrodnik_43", 541, 540, new int[]{540}, 631);
+                Dialog.ExtendMC("Zahrodnik_44", 540, 1000, null, 632);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Zahrodnik_45", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Zahrodnik_45", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

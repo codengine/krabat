@@ -1065,17 +1065,17 @@ public class Kulow2 extends Mainloc {
                 // Multiple - Choice - Routine mit Wikowar
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Kulow2_33", 1000, 120, new int[]{120}, 610);
-                Dialog.ExtendMCO("Kulow2_34", 120, 121, null, 620);
+                Dialog.ExtendMC("Kulow2_33", 1000, 120, new int[]{120}, 610);
+                Dialog.ExtendMC("Kulow2_34", 120, 121, null, 620);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Kulow2_35", 1000, 122, new int[]{122}, 630);
-                Dialog.ExtendMCO("Kulow2_36", 122, 123, new int[]{123}, 640);
-                Dialog.ExtendMCO("Kulow2_37", 123, 1000, null, 650);
+                Dialog.ExtendMC("Kulow2_35", 1000, 122, new int[]{122}, 630);
+                Dialog.ExtendMC("Kulow2_36", 122, 123, new int[]{123}, 640);
+                Dialog.ExtendMC("Kulow2_37", 123, 1000, null, 650);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Kulow2_38", 1000, 125, null, 800);
-                Dialog.ExtendMCO("Kulow2_39", 125, 1000, null, 800);
+                Dialog.ExtendMC("Kulow2_38", 1000, 125, null, 800);
+                Dialog.ExtendMC("Kulow2_39", 125, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1151,16 +1151,16 @@ public class Kulow2 extends Mainloc {
             case 900:
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Kulow2_40", 1000, 130, new int[]{130}, 910);
+                Dialog.ExtendMC("Kulow2_40", 1000, 130, new int[]{130}, 910);
                 if (!mainFrame.Actions[150]) {
-                    Dialog.ExtendMCO("Kulow2_41", 130, 1000, null, 920);
+                    Dialog.ExtendMC("Kulow2_41", 130, 1000, null, 920);
                 } else {
-                    Dialog.ExtendMCO("Kulow2_42", 130, 1000, null, 930);
+                    Dialog.ExtendMC("Kulow2_42", 130, 1000, null, 930);
                 }
 
                 // 3. Frage
-                Dialog.ExtendMCO("Kulow2_43", 1000, 134, null, 1100);
-                Dialog.ExtendMCO("Kulow2_44", 134, 1000, null, 1100);
+                Dialog.ExtendMC("Kulow2_43", 1000, 134, null, 1100);
+                Dialog.ExtendMC("Kulow2_44", 134, 1000, null, 1100);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

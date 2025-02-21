@@ -743,18 +743,18 @@ public class Ralbicy2 extends Mainloc2 {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Ralbicy2_18", 1000, 22, new int[]{22}, 640);
-                Dialog.ExtendMCO("Ralbicy2_19", 22, 21, new int[]{21}, 630);
-                Dialog.ExtendMCO("Ralbicy2_20", 21, 20, new int[]{20}, 620);
-                Dialog.ExtendMCO("Ralbicy2_21", 20, 1000, null, 610);
+                Dialog.ExtendMC("Ralbicy2_18", 1000, 22, new int[]{22}, 640);
+                Dialog.ExtendMC("Ralbicy2_19", 22, 21, new int[]{21}, 630);
+                Dialog.ExtendMC("Ralbicy2_20", 21, 20, new int[]{20}, 620);
+                Dialog.ExtendMC("Ralbicy2_21", 20, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Ralbicy2_22", 1000, 23, new int[]{23}, 660);
-                Dialog.ExtendMCO("Ralbicy2_23", 23, 24, new int[]{24}, 650);
+                Dialog.ExtendMC("Ralbicy2_22", 1000, 23, new int[]{23}, 660);
+                Dialog.ExtendMC("Ralbicy2_23", 23, 24, new int[]{24}, 650);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Ralbicy2_24", 25, 1000, null, 800);
-                Dialog.ExtendMCO("Ralbicy2_25", 1000, 25, null, 800);
+                Dialog.ExtendMC("Ralbicy2_24", 25, 1000, null, 800);
+                Dialog.ExtendMC("Ralbicy2_25", 1000, 25, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

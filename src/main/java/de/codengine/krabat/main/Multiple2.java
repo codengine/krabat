@@ -61,8 +61,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     }
 
     // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
-    public void ExtendMCO(String langKey, int active, int asked, int[] successors, int nextActionId) {
-        String text = Start.stringManager.getTranslation(langKey);
+    public void ExtendMC(String langKey, int active, int asked, int[] successors, int nextActionId) {
         // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
         if (active < 1000 && !mainFrame.Actions[active]) {
             return;
@@ -77,6 +76,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         Anzahl++;
 
         // String merken
+        String text = Start.stringManager.getTranslation(langKey);
         Fragen[Anzahl] = mainFrame.ifont.TeileText(text);
 
         // Rectangle je nach Position des Textes festlegen

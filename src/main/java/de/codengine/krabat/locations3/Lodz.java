@@ -856,25 +856,25 @@ public class Lodz extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Lodz_22", 1000, 550, new int[]{550}, 610);
-                Dialog.ExtendMCO("Lodz_23", 550, 1000, null, 611);
+                Dialog.ExtendMC("Lodz_22", 1000, 550, new int[]{550}, 610);
+                Dialog.ExtendMC("Lodz_23", 550, 1000, null, 611);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Lodz_24", 550, 553, new int[]{553}, 620);
-                Dialog.ExtendMCO("Lodz_25", 553, 552, new int[]{552}, 622);
+                Dialog.ExtendMC("Lodz_24", 550, 553, new int[]{553}, 620);
+                Dialog.ExtendMC("Lodz_25", 553, 552, new int[]{552}, 622);
                 if (!mainFrame.Actions[956]) {
-                    Dialog.ExtendMCO("Lodz_26", 552, 1000, null, 623);
+                    Dialog.ExtendMC("Lodz_26", 552, 1000, null, 623);
                 }
 
                 // 3. Frage
-                Dialog.ExtendMCO("Lodz_27", 1000, 558, new int[]{558}, 630);
-                Dialog.ExtendMCO("Lodz_28", 558, 557, new int[]{557}, 631);
-                Dialog.ExtendMCO("Lodz_29", 557, 556, new int[]{556}, 632);
-                Dialog.ExtendMCO("Lodz_30", 556, 555, new int[]{555}, 633);
-                Dialog.ExtendMCO("Lodz_31", 555, 1000, null, 634);
+                Dialog.ExtendMC("Lodz_27", 1000, 558, new int[]{558}, 630);
+                Dialog.ExtendMC("Lodz_28", 558, 557, new int[]{557}, 631);
+                Dialog.ExtendMC("Lodz_29", 557, 556, new int[]{556}, 632);
+                Dialog.ExtendMC("Lodz_30", 556, 555, new int[]{555}, 633);
+                Dialog.ExtendMC("Lodz_31", 555, 1000, null, 634);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Lodz_32", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Lodz_32", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

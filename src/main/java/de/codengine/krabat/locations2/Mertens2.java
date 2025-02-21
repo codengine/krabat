@@ -838,20 +838,20 @@ public class Mertens2 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Mertens2_48", 1000, 161, new int[]{161}, 610);
-                Dialog.ExtendMCO("Mertens2_49", 161, 1000, null, 620);
+                Dialog.ExtendMC("Mertens2_48", 1000, 161, new int[]{161}, 610);
+                Dialog.ExtendMC("Mertens2_49", 161, 1000, null, 620);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Mertens2_50", 1000, 280, new int[]{280}, 630);
-                Dialog.ExtendMCO("Mertens2_51", 280, 281, new int[]{281}, 640);
-                Dialog.ExtendMCO("Mertens2_52", 281, 282, new int[]{282, 283, 267}, 650);
+                Dialog.ExtendMC("Mertens2_50", 1000, 280, new int[]{280}, 630);
+                Dialog.ExtendMC("Mertens2_51", 280, 281, new int[]{281}, 640);
+                Dialog.ExtendMC("Mertens2_52", 281, 282, new int[]{282, 283, 267}, 650);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Mertens2_53", 283, 1000, null, 660);
+                Dialog.ExtendMC("Mertens2_53", 283, 1000, null, 660);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Mertens2_54", 1000, 284, null, 800);
-                Dialog.ExtendMCO("Mertens2_55", 284, 1000, null, 800);
+                Dialog.ExtendMC("Mertens2_54", 1000, 284, null, 800);
+                Dialog.ExtendMC("Mertens2_55", 284, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -982,16 +982,16 @@ public class Mertens2 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Mertens2_56", 1000, 285, new int[]{285}, 910);
-                Dialog.ExtendMCO("Mertens2_57", 285, 286, new int[]{286}, 920);
+                Dialog.ExtendMC("Mertens2_56", 1000, 285, new int[]{285}, 910);
+                Dialog.ExtendMC("Mertens2_57", 285, 286, new int[]{286}, 920);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Mertens2_58", 1000, 288, new int[]{267, 288}, 930);
-                Dialog.ExtendMCO("Mertens2_59", 288, 1000, null, 950);
+                Dialog.ExtendMC("Mertens2_58", 1000, 288, new int[]{267, 288}, 930);
+                Dialog.ExtendMC("Mertens2_59", 288, 1000, null, 950);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Mertens2_60", 1000, 287, null, 1000);
-                Dialog.ExtendMCO("Mertens2_61", 287, 1000, null, 1000);
+                Dialog.ExtendMC("Mertens2_60", 1000, 287, null, 1000);
+                Dialog.ExtendMC("Mertens2_61", 287, 1000, null, 1000);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

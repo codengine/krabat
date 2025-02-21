@@ -728,23 +728,23 @@ public class Habor extends Mainloc {
                 Dialog.InitMC(20);
 
                 // 1. Frage
-                Dialog.ExtendMCO("Habor_21", 1000, 564, new int[]{564}, 610);
-                Dialog.ExtendMCO("Habor_22", 564, 563, new int[]{563}, 611);
-                Dialog.ExtendMCO("Habor_23", 563, 562, new int[]{562}, 612);
-                Dialog.ExtendMCO("Habor_24", 562, 561, new int[]{561}, 615);
-                Dialog.ExtendMCO("Habor_25", 561, 1000, null, 614);
+                Dialog.ExtendMC("Habor_21", 1000, 564, new int[]{564}, 610);
+                Dialog.ExtendMC("Habor_22", 564, 563, new int[]{563}, 611);
+                Dialog.ExtendMC("Habor_23", 563, 562, new int[]{562}, 612);
+                Dialog.ExtendMC("Habor_24", 562, 561, new int[]{561}, 615);
+                Dialog.ExtendMC("Habor_25", 561, 1000, null, 614);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Habor_26", 1000, 567, new int[]{567}, 620);
-                Dialog.ExtendMCO("Habor_27", 567, 566, new int[]{566}, 621);
-                Dialog.ExtendMCO("Habor_28", 566, 565, new int[]{565}, 622);
-                Dialog.ExtendMCO("Habor_29", 565, 1000, null, 623);
+                Dialog.ExtendMC("Habor_26", 1000, 567, new int[]{567}, 620);
+                Dialog.ExtendMC("Habor_27", 567, 566, new int[]{566}, 621);
+                Dialog.ExtendMC("Habor_28", 566, 565, new int[]{565}, 622);
+                Dialog.ExtendMC("Habor_29", 565, 1000, null, 623);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Habor_30", 565, 1000, null, 630);
+                Dialog.ExtendMC("Habor_30", 565, 1000, null, 630);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Habor_31", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Habor_31", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

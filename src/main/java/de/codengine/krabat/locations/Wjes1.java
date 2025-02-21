@@ -1118,25 +1118,25 @@ public class Wjes1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Wjes1_34", 1000, 60, new int[]{60}, 610);
-                Dialog.ExtendMCO("Wjes1_35", 60, 61, new int[]{61}, 620);
-                Dialog.ExtendMCO("Wjes1_36", 61, 62, new int[]{62, 63, 65}, 630);
+                Dialog.ExtendMC("Wjes1_34", 1000, 60, new int[]{60}, 610);
+                Dialog.ExtendMC("Wjes1_35", 60, 61, new int[]{61}, 620);
+                Dialog.ExtendMC("Wjes1_36", 61, 62, new int[]{62, 63, 65}, 630);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Wjes1_37", 1000, 66, new int[]{66}, 660);
-                Dialog.ExtendMCO("Wjes1_38", 66, 67, new int[]{67}, 670);
-                Dialog.ExtendMCO("Wjes1_39", 67, 68, new int[]{68}, 680);
-                Dialog.ExtendMCO("Wjes1_40", 68, 69, new int[]{69}, 690);
-                Dialog.ExtendMCO("Wjes1_41", 69, 70, new int[]{70}, 700);
+                Dialog.ExtendMC("Wjes1_37", 1000, 66, new int[]{66}, 660);
+                Dialog.ExtendMC("Wjes1_38", 66, 67, new int[]{67}, 670);
+                Dialog.ExtendMC("Wjes1_39", 67, 68, new int[]{68}, 680);
+                Dialog.ExtendMC("Wjes1_40", 68, 69, new int[]{69}, 690);
+                Dialog.ExtendMC("Wjes1_41", 69, 70, new int[]{70}, 700);
 
                 // 4. Frage (3. bedeutet Ende)
-                Dialog.ExtendMCO("Wjes1_42", 63, 64, new int[]{64}, 640);
+                Dialog.ExtendMC("Wjes1_42", 63, 64, new int[]{64}, 640);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Wjes1_43", 65, 1000, null, 650);
+                Dialog.ExtendMC("Wjes1_43", 65, 1000, null, 650);
 
                 // 3. Frage (bedeutet Ende)
-                Dialog.ExtendMCO("Wjes1_44", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Wjes1_44", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

@@ -2006,24 +2006,24 @@ public class Haty1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Haty1_93", 1000, 140, new int[]{140}, 620);
-                Dialog.ExtendMCO("Haty1_94", 140, 141, new int[]{141}, 630);
-                Dialog.ExtendMCO("Haty1_95", 141, 142, new int[]{142}, 640);
+                Dialog.ExtendMC("Haty1_93", 1000, 140, new int[]{140}, 620);
+                Dialog.ExtendMC("Haty1_94", 140, 141, new int[]{141}, 630);
+                Dialog.ExtendMC("Haty1_95", 141, 142, new int[]{142}, 640);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Haty1_96", 1000, 143, new int[]{143}, 650);
-                Dialog.ExtendMCO("Haty1_97", 143, 144, new int[]{144}, 660);
-                Dialog.ExtendMCO("Haty1_98", 144, 145, null, 670);
+                Dialog.ExtendMC("Haty1_96", 1000, 143, new int[]{143}, 650);
+                Dialog.ExtendMC("Haty1_97", 143, 144, new int[]{144}, 660);
+                Dialog.ExtendMC("Haty1_98", 144, 145, null, 670);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Haty1_99", 1000, 146, new int[]{146}, 680);
-                Dialog.ExtendMCO("Haty1_100", 146, 147, new int[]{148, 150}, 690);
+                Dialog.ExtendMC("Haty1_99", 1000, 146, new int[]{146}, 680);
+                Dialog.ExtendMC("Haty1_100", 146, 147, new int[]{148, 150}, 690);
 
                 // 5. Frage (4. = Ende)
-                Dialog.ExtendMCO("Haty1_101", 148, 149, null, 700);
+                Dialog.ExtendMC("Haty1_101", 148, 149, null, 700);
 
                 // 4. Frage (Ende)
-                Dialog.ExtendMCO("Haty1_102", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Haty1_102", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -2148,13 +2148,13 @@ public class Haty1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Haty1_103", 1000, 1000, null, 910);
+                Dialog.ExtendMC("Haty1_103", 1000, 1000, null, 910);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Haty1_104", 1000, 1000, null, 910);
+                Dialog.ExtendMC("Haty1_104", 1000, 1000, null, 910);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Haty1_105", 1000, 1000, null, 1000);
+                Dialog.ExtendMC("Haty1_105", 1000, 1000, null, 1000);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

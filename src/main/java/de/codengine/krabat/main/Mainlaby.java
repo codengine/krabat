@@ -327,23 +327,23 @@ abstract public class Mainlaby extends Mainloc {
                 // Multiple - Choice - Routine mit Bludnicki
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Mainlaby_12", 1000, 180, new int[]{180, 168}, 610);
-                Dialog.ExtendMCO("Mainlaby_13", 180, 181, new int[]{181}, 620);
-                Dialog.ExtendMCO("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
-                Dialog.ExtendMCO("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
+                Dialog.ExtendMC("Mainlaby_12", 1000, 180, new int[]{180, 168}, 610);
+                Dialog.ExtendMC("Mainlaby_13", 180, 181, new int[]{181}, 620);
+                Dialog.ExtendMC("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
+                Dialog.ExtendMC("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
                 if (!mainFrame.Actions[184]) {
-                    Dialog.ExtendMCO("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
+                    Dialog.ExtendMC("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
                 } else {
-                    Dialog.ExtendMCO("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
+                    Dialog.ExtendMC("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
                 }
 
                 // 2. Frage
-                Dialog.ExtendMCO("Mainlaby_18", 1000, 185, new int[]{185, 168}, 650);
-                Dialog.ExtendMCO("Mainlaby_19", 185, 1000, null, 660);
+                Dialog.ExtendMC("Mainlaby_18", 1000, 185, new int[]{185, 168}, 650);
+                Dialog.ExtendMC("Mainlaby_19", 185, 1000, null, 660);
 
                 // 3. Frage (Ende)
-                Dialog.ExtendMCO("Mainlaby_20", 1000, 186, null, 800);
-                Dialog.ExtendMCO("Mainlaby_21", 186, 1000, null, 800);
+                Dialog.ExtendMC("Mainlaby_20", 1000, 186, null, 800);
+                Dialog.ExtendMC("Mainlaby_21", 186, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

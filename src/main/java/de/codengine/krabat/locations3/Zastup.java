@@ -923,26 +923,26 @@ public class Zastup extends Mainloc {
                 Dialog.InitMC(20);
                 if (!mainFrame.Actions[575]) {
                     // 1. Frage, nur wenn noch kein Pelz
-                    Dialog.ExtendMCO("Zastup_19", 1000, 571, new int[]{571}, 610);
-                    Dialog.ExtendMCO("Zastup_20", 571, 570, new int[]{570}, 611);
-                    Dialog.ExtendMCO("Zastup_21", 570, 1000, null, 612);
+                    Dialog.ExtendMC("Zastup_19", 1000, 571, new int[]{571}, 610);
+                    Dialog.ExtendMC("Zastup_20", 571, 570, new int[]{570}, 611);
+                    Dialog.ExtendMC("Zastup_21", 570, 1000, null, 612);
                 }
 
                 // 2. Frage kommt immer
-                Dialog.ExtendMCO("Zastup_22", 1000, 1000, null, 620);
+                Dialog.ExtendMC("Zastup_22", 1000, 1000, null, 620);
 
                 if (!mainFrame.Actions[575]) {
                     // 3. Frage, nur wenn noch kein Pelz
-                    Dialog.ExtendMCO("Zastup_23", 1000, 572, new int[]{572}, 630);
-                    Dialog.ExtendMCO("Zastup_24", 572, 1000, null, 631);
+                    Dialog.ExtendMC("Zastup_23", 1000, 572, new int[]{572}, 630);
+                    Dialog.ExtendMC("Zastup_24", 572, 1000, null, 631);
                 }
 
                 // 4. Frage, kommt immer
-                Dialog.ExtendMCO("Zastup_25", 1000, 573, new int[]{573}, 640);
-                Dialog.ExtendMCO("Zastup_26", 573, 1000, null, 641);
+                Dialog.ExtendMC("Zastup_25", 1000, 573, new int[]{573}, 640);
+                Dialog.ExtendMC("Zastup_26", 573, 1000, null, 641);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Zastup_27", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Zastup_27", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

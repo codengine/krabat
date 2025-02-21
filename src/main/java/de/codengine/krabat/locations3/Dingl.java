@@ -1066,29 +1066,29 @@ public class Dingl extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Dingl_69", 1000, 522, new int[]{522}, 620);
-                Dialog.ExtendMCO("Dingl_70", 522, 521, new int[]{521}, 621);
-                Dialog.ExtendMCO("Dingl_71", 521, 1000, null, 622);
+                Dialog.ExtendMC("Dingl_69", 1000, 522, new int[]{522}, 620);
+                Dialog.ExtendMC("Dingl_70", 522, 521, new int[]{521}, 621);
+                Dialog.ExtendMC("Dingl_71", 521, 1000, null, 622);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Dingl_72", 1000, 524, new int[]{524}, 630);
-                Dialog.ExtendMCO("Dingl_73", 524, 523, new int[]{523}, 632);
-                Dialog.ExtendMCO("Dingl_74", 523, 1000, null, 633);
+                Dialog.ExtendMC("Dingl_72", 1000, 524, new int[]{524}, 630);
+                Dialog.ExtendMC("Dingl_73", 524, 523, new int[]{523}, 632);
+                Dialog.ExtendMC("Dingl_74", 523, 1000, null, 633);
 
                 // 3. Frage
                 if (!mainFrame.Actions[530]) {
-                    Dialog.ExtendMCO("Dingl_75", 1000, 1000, null, 640);
+                    Dialog.ExtendMC("Dingl_75", 1000, 1000, null, 640);
                 } else {
-                    Dialog.ExtendMCO("Dingl_76", 1000, 526, new int[]{526}, 641);
-                    Dialog.ExtendMCO("Dingl_77", 526, 525, new int[]{525}, 642);
-                    Dialog.ExtendMCO("Dingl_78", 525, 1000, null, 643);
+                    Dialog.ExtendMC("Dingl_76", 1000, 526, new int[]{526}, 641);
+                    Dialog.ExtendMC("Dingl_77", 526, 525, new int[]{525}, 642);
+                    Dialog.ExtendMC("Dingl_78", 525, 1000, null, 643);
                 }
 
                 // 4. Frage
-                Dialog.ExtendMCO("Dingl_79", 1000, 1000, null, 645);
+                Dialog.ExtendMC("Dingl_79", 1000, 1000, null, 645);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Dingl_80", 1000, 1000, null, 900);
+                Dialog.ExtendMC("Dingl_80", 1000, 1000, null, 900);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1198,13 +1198,13 @@ public class Dingl extends Mainloc {
                 Dialog.InitMC(20);
 
                 // 1. Frage
-                Dialog.ExtendMCO("Dingl_81", 1000, 1000, null, 710);
+                Dialog.ExtendMC("Dingl_81", 1000, 1000, null, 710);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Dingl_82", 1000, 1000, new int[]{528}, 720);
+                Dialog.ExtendMC("Dingl_82", 1000, 1000, new int[]{528}, 720);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Dingl_83", 1000, 1000, null, 900);
+                Dialog.ExtendMC("Dingl_83", 1000, 1000, null, 900);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1308,27 +1308,27 @@ public class Dingl extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Dingl_84", 1000, 1000, null, 810);
+                Dialog.ExtendMC("Dingl_84", 1000, 1000, null, 810);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Dingl_85", 1000, 1000, null, 820);
+                Dialog.ExtendMC("Dingl_85", 1000, 1000, null, 820);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Dingl_86", 1000, 631, null, 830);
+                Dialog.ExtendMC("Dingl_86", 1000, 631, null, 830);
 
                 // 4. Frage
                 if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
-                    Dialog.ExtendMCO("Dingl_87", 1000, 1000, null, 840);
+                    Dialog.ExtendMC("Dingl_87", 1000, 1000, null, 840);
                 }
 
                 // 5. Frage
                 if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
-                    Dialog.ExtendMCO("Dingl_88", 1000, 1000, null, 850);
+                    Dialog.ExtendMC("Dingl_88", 1000, 1000, null, 850);
                 }
 
                 // 6. Frage
-                Dialog.ExtendMCO("Dingl_89", 1000, 529, new int[]{529}, 860);
-                Dialog.ExtendMCO("Dingl_90", 529, 1000, null, 900);
+                Dialog.ExtendMC("Dingl_89", 1000, 529, new int[]{529}, 860);
+                Dialog.ExtendMC("Dingl_90", 529, 1000, null, 900);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

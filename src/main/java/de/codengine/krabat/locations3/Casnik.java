@@ -1496,17 +1496,17 @@ public class Casnik extends Mainloc {
                 Dialog.InitMC(20);
 
                 // 1. Frage
-                Dialog.ExtendMCO("Casnik_29", 1000, 602, new int[]{602}, 610);
-                Dialog.ExtendMCO("Casnik_30", 602, 1000, null, 611);
+                Dialog.ExtendMC("Casnik_29", 1000, 602, new int[]{602}, 610);
+                Dialog.ExtendMC("Casnik_30", 602, 1000, null, 611);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Casnik_31", 1000, 604, new int[]{604}, 620);
-                Dialog.ExtendMCO("Casnik_32", 604, 603, new int[]{603}, 621);
-                Dialog.ExtendMCO("Casnik_33", 603, 1000, null, 622);
+                Dialog.ExtendMC("Casnik_31", 1000, 604, new int[]{604}, 620);
+                Dialog.ExtendMC("Casnik_32", 604, 603, new int[]{603}, 621);
+                Dialog.ExtendMC("Casnik_33", 603, 1000, null, 622);
 
                 // 3. Frage (607)
-                Dialog.ExtendMCO("Casnik_34", 1000, 607, new int[]{607}, 800);
-                Dialog.ExtendMCO("Casnik_35", 607, 1000, null, 800);
+                Dialog.ExtendMC("Casnik_34", 1000, 607, new int[]{607}, 800);
+                Dialog.ExtendMC("Casnik_35", 607, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

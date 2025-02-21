@@ -834,24 +834,24 @@ public class Polo1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Polo1_29", 1000, 100, new int[]{100}, 610);
-                Dialog.ExtendMCO("Polo1_30", 100, 101, new int[]{101}, 620);
-                Dialog.ExtendMCO("Polo1_31", 101, 102, new int[]{102, 106, 109}, 630);
+                Dialog.ExtendMC("Polo1_29", 1000, 100, new int[]{100}, 610);
+                Dialog.ExtendMC("Polo1_30", 100, 101, new int[]{101}, 620);
+                Dialog.ExtendMC("Polo1_31", 101, 102, new int[]{102, 106, 109}, 630);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Polo1_32", 1000, 103, new int[]{103}, 640);
-                Dialog.ExtendMCO("Polo1_33", 103, 104, new int[]{104}, 650);
-                Dialog.ExtendMCO("Polo1_34", 104, 1000, null, 660);
+                Dialog.ExtendMC("Polo1_32", 1000, 103, new int[]{103}, 640);
+                Dialog.ExtendMC("Polo1_33", 103, 104, new int[]{104}, 650);
+                Dialog.ExtendMC("Polo1_34", 104, 1000, null, 660);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Polo1_35", 106, 107, new int[]{107}, 670);
-                Dialog.ExtendMCO("Polo1_36", 107, 1000, null, 680);
+                Dialog.ExtendMC("Polo1_35", 106, 107, new int[]{107}, 670);
+                Dialog.ExtendMC("Polo1_36", 107, 1000, null, 680);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Polo1_37", 109, 110, new int[]{110}, 690);
+                Dialog.ExtendMC("Polo1_37", 109, 110, new int[]{110}, 690);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Polo1_38", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Polo1_38", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

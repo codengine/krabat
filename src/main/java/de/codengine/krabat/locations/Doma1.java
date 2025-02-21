@@ -1255,19 +1255,19 @@ public class Doma1 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Doma1_26", 1000, 1, new int[]{1}, 640);
+                Dialog.ExtendMC("Doma1_26", 1000, 1, new int[]{1}, 640);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Doma1_27", 1000, 3, new int[]{3}, 660);
-                Dialog.ExtendMCO("Doma1_28", 3, 4, new int[]{4}, 670);
+                Dialog.ExtendMC("Doma1_27", 1000, 3, new int[]{3}, 660);
+                Dialog.ExtendMC("Doma1_28", 3, 4, new int[]{4}, 670);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Doma1_29", 1000, 2, new int[]{2}, 650);
-                Dialog.ExtendMCO("Doma1_30", 2, 5, new int[]{5}, 680);
+                Dialog.ExtendMC("Doma1_29", 1000, 2, new int[]{2}, 650);
+                Dialog.ExtendMC("Doma1_30", 2, 5, new int[]{5}, 680);
 
                 // 4. Frage (Ende)
-                Dialog.ExtendMCO("Doma1_31", 6, 7, null, 690);
-                Dialog.ExtendMCO("Doma1_32", 7, 1000, null, 690);
+                Dialog.ExtendMC("Doma1_31", 6, 7, null, 690);
+                Dialog.ExtendMC("Doma1_32", 7, 1000, null, 690);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

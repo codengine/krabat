@@ -1041,37 +1041,37 @@ public class Hoscenc1 extends Mainloc {
                 // Test, ob Saeufer oder Wirt gefragt wird
                 if (!mainFrame.Actions[30]) {
                     // Dialog mit Saeufer...
-                    Dialog.ExtendMCO("Hoscenc1_54", 1000, 1000, null, 0);
-                    Dialog.ExtendMCO("Hoscenc1_55", 1000, 1000, null, 0);
-                    Dialog.ExtendMCO("Hoscenc1_56", 1000, 1000, null, 0);
+                    Dialog.ExtendMC("Hoscenc1_54", 1000, 1000, null, 0);
+                    Dialog.ExtendMC("Hoscenc1_55", 1000, 1000, null, 0);
+                    Dialog.ExtendMC("Hoscenc1_56", 1000, 1000, null, 0);
                 } else {
                     // Dialog mit Wirt
                     // 1. Frage
-                    Dialog.ExtendMCO("Hoscenc1_57", 1000, 1000, null, 610);
+                    Dialog.ExtendMC("Hoscenc1_57", 1000, 1000, null, 610);
 
                     // 2. Frage
-                    Dialog.ExtendMCO("Hoscenc1_58", 1000, 32, new int[]{32}, 620);
-                    Dialog.ExtendMCO("Hoscenc1_59", 32, 33, new int[]{33}, 630);
-                    Dialog.ExtendMCO("Hoscenc1_60", 33, 31, new int[]{31, 39, 44}, 640);
+                    Dialog.ExtendMC("Hoscenc1_58", 1000, 32, new int[]{32}, 620);
+                    Dialog.ExtendMC("Hoscenc1_59", 32, 33, new int[]{33}, 630);
+                    Dialog.ExtendMC("Hoscenc1_60", 33, 31, new int[]{31, 39, 44}, 640);
 
                     // 3. Frage
-                    Dialog.ExtendMCO("Hoscenc1_61", 1000, 36, new int[]{36}, 650);
-                    Dialog.ExtendMCO("Hoscenc1_62", 36, 37, new int[]{37}, 660);
-                    Dialog.ExtendMCO("Hoscenc1_63", 37, 35, new int[]{35}, 670);
+                    Dialog.ExtendMC("Hoscenc1_61", 1000, 36, new int[]{36}, 650);
+                    Dialog.ExtendMC("Hoscenc1_62", 36, 37, new int[]{37}, 660);
+                    Dialog.ExtendMC("Hoscenc1_63", 37, 35, new int[]{35}, 670);
 
                     // 5. Frage (4. bedeutet Ende...)
-                    Dialog.ExtendMCO("Hoscenc1_64", 39, 40, new int[]{40}, 680);
-                    Dialog.ExtendMCO("Hoscenc1_65", 40, 41, new int[]{41}, 690);
-                    Dialog.ExtendMCO("Hoscenc1_66", 41, 42, new int[]{42}, 700);
-                    Dialog.ExtendMCO("Hoscenc1_67", 42, 43, new int[]{43}, 710);
-                    Dialog.ExtendMCO("Hoscenc1_68", 43, 1000, null, 720);
+                    Dialog.ExtendMC("Hoscenc1_64", 39, 40, new int[]{40}, 680);
+                    Dialog.ExtendMC("Hoscenc1_65", 40, 41, new int[]{41}, 690);
+                    Dialog.ExtendMC("Hoscenc1_66", 41, 42, new int[]{42}, 700);
+                    Dialog.ExtendMC("Hoscenc1_67", 42, 43, new int[]{43}, 710);
+                    Dialog.ExtendMC("Hoscenc1_68", 43, 1000, null, 720);
 
                     // 6. Frage
-                    Dialog.ExtendMCO("Hoscenc1_69", 44, 45, new int[]{45}, 730);
-                    Dialog.ExtendMCO("Hoscenc1_70", 45, 1000, null, 740);
+                    Dialog.ExtendMC("Hoscenc1_69", 44, 45, new int[]{45}, 730);
+                    Dialog.ExtendMC("Hoscenc1_70", 45, 1000, null, 740);
 
                     // 4. Frage
-                    Dialog.ExtendMCO("Hoscenc1_71", 1000, 1000, null, 785);
+                    Dialog.ExtendMC("Hoscenc1_71", 1000, 1000, null, 785);
                 }
 
                 mainFrame.isMultiple = true;
@@ -1324,21 +1324,21 @@ public class Hoscenc1 extends Mainloc {
                 // Multiple - Choice - Routine Dundak
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Hoscenc1_72", 1000, 50, new int[]{50, 51, 55}, 810);
+                Dialog.ExtendMC("Hoscenc1_72", 1000, 50, new int[]{50, 51, 55}, 810);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Hoscenc1_73", 1000, 1000, null, 820);
+                Dialog.ExtendMC("Hoscenc1_73", 1000, 1000, null, 820);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Hoscenc1_74", 51, 52, new int[]{52}, 830);
-                Dialog.ExtendMCO("Hoscenc1_75", 52, 53, new int[]{53}, 840);
+                Dialog.ExtendMC("Hoscenc1_74", 51, 52, new int[]{52}, 830);
+                Dialog.ExtendMC("Hoscenc1_75", 52, 53, new int[]{53}, 840);
 
                 // 5. Frage
-                Dialog.ExtendMCO("Hoscenc1_76", 55, 56, new int[]{56}, 860);
-                Dialog.ExtendMCO("Hoscenc1_77", 56, 57, new int[]{57}, 870);
+                Dialog.ExtendMC("Hoscenc1_76", 55, 56, new int[]{56}, 860);
+                Dialog.ExtendMC("Hoscenc1_77", 56, 57, new int[]{57}, 870);
 
                 // 3. Frage (bedeutet Ende)
-                Dialog.ExtendMCO("Hoscenc1_78", 1000, 1000, null, 900);
+                Dialog.ExtendMC("Hoscenc1_78", 1000, 1000, null, 900);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

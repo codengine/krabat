@@ -973,23 +973,23 @@ public class StareWiki extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("StareWiki_55", 1000, 581, new int[]{581}, 610);
-                Dialog.ExtendMCO("StareWiki_56", 581, 1000, null, 611);
+                Dialog.ExtendMC("StareWiki_55", 1000, 581, new int[]{581}, 610);
+                Dialog.ExtendMC("StareWiki_56", 581, 1000, null, 611);
 
                 // 2. Frage
                 if (!mainFrame.Actions[604]) {
-                    Dialog.ExtendMCO("StareWiki_57", 581, 1000, null, 620);
+                    Dialog.ExtendMC("StareWiki_57", 581, 1000, null, 620);
                 } else {
-                    Dialog.ExtendMCO("StareWiki_58", 581, 1000, null, 620);
+                    Dialog.ExtendMC("StareWiki_58", 581, 1000, null, 620);
                 }
 
                 // 3. Frage
-                Dialog.ExtendMCO("StareWiki_59", 581, 583, new int[]{583}, 630);
-                Dialog.ExtendMCO("StareWiki_60", 583, 582, new int[]{582}, 631);
-                Dialog.ExtendMCO("StareWiki_61", 582, 1000, null, 634);
+                Dialog.ExtendMC("StareWiki_59", 581, 583, new int[]{583}, 630);
+                Dialog.ExtendMC("StareWiki_60", 583, 582, new int[]{582}, 631);
+                Dialog.ExtendMC("StareWiki_61", 582, 1000, null, 634);
 
                 // 4. Frage
-                Dialog.ExtendMCO("StareWiki_62", 1000, 1000, null, 910);
+                Dialog.ExtendMC("StareWiki_62", 1000, 1000, null, 910);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1098,16 +1098,16 @@ public class StareWiki extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("StareWiki_63", 1000, 587, new int[]{587}, 710);
-                Dialog.ExtendMCO("StareWiki_64", 587, 586, new int[]{586}, 711);
-                Dialog.ExtendMCO("StareWiki_65", 586, 585, new int[]{585}, 713);
-                Dialog.ExtendMCO("StareWiki_66", 585, 1000, null, 711);
+                Dialog.ExtendMC("StareWiki_63", 1000, 587, new int[]{587}, 710);
+                Dialog.ExtendMC("StareWiki_64", 587, 586, new int[]{586}, 711);
+                Dialog.ExtendMC("StareWiki_65", 586, 585, new int[]{585}, 713);
+                Dialog.ExtendMC("StareWiki_66", 585, 1000, null, 711);
 
                 // 2. Frage
-                Dialog.ExtendMCO("StareWiki_67", 587, 1000, null, 720);
+                Dialog.ExtendMC("StareWiki_67", 587, 1000, null, 720);
 
                 // 3. Frage
-                Dialog.ExtendMCO("StareWiki_68", 1000, 1000, null, 910);
+                Dialog.ExtendMC("StareWiki_68", 1000, 1000, null, 910);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1177,23 +1177,23 @@ public class StareWiki extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("StareWiki_69", 1000, 591, new int[]{591}, 810);
-                Dialog.ExtendMCO("StareWiki_70", 591, 590, new int[]{590}, 811);
-                Dialog.ExtendMCO("StareWiki_71", 590, 1000, null, 812);
+                Dialog.ExtendMC("StareWiki_69", 1000, 591, new int[]{591}, 810);
+                Dialog.ExtendMC("StareWiki_70", 591, 590, new int[]{590}, 811);
+                Dialog.ExtendMC("StareWiki_71", 590, 1000, null, 812);
 
                 // 2. Frage
-                Dialog.ExtendMCO("StareWiki_72", 1000, 596, new int[]{596}, 820);
-                Dialog.ExtendMCO("StareWiki_73", 596, 595, new int[]{595}, 821);
-                Dialog.ExtendMCO("StareWiki_74", 595, 594, new int[]{594}, 822);
-                Dialog.ExtendMCO("StareWiki_75", 594, 593, new int[]{593}, 823);
-                Dialog.ExtendMCO("StareWiki_76", 593, 592, new int[]{592}, 824);
-                Dialog.ExtendMCO("StareWiki_77", 592, 1000, null, 825);
+                Dialog.ExtendMC("StareWiki_72", 1000, 596, new int[]{596}, 820);
+                Dialog.ExtendMC("StareWiki_73", 596, 595, new int[]{595}, 821);
+                Dialog.ExtendMC("StareWiki_74", 595, 594, new int[]{594}, 822);
+                Dialog.ExtendMC("StareWiki_75", 594, 593, new int[]{593}, 823);
+                Dialog.ExtendMC("StareWiki_76", 593, 592, new int[]{592}, 824);
+                Dialog.ExtendMC("StareWiki_77", 592, 1000, null, 825);
 
                 // 3. Frage
-                Dialog.ExtendMCO("StareWiki_78", 1000, 1000, null, 830);
+                Dialog.ExtendMC("StareWiki_78", 1000, 1000, null, 830);
 
                 // 4. Frage
-                Dialog.ExtendMCO("StareWiki_79", 1000, 1000, null, 910);
+                Dialog.ExtendMC("StareWiki_79", 1000, 1000, null, 910);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

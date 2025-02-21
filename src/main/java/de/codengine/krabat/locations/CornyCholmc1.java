@@ -691,13 +691,13 @@ public class CornyCholmc1 extends Mainloc {
                 // Multiple - Choice - Routine, Mueller kommt aber nie
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("CornyCholmc1_13", 1000, 1000, null, 610);
+                Dialog.ExtendMC("CornyCholmc1_13", 1000, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMCO("CornyCholmc1_14", 1000, 1000, null, 620);
+                Dialog.ExtendMC("CornyCholmc1_14", 1000, 1000, null, 620);
 
                 // 3. Frage
-                Dialog.ExtendMCO("CornyCholmc1_15", 1000, 1000, null, 630);
+                Dialog.ExtendMC("CornyCholmc1_15", 1000, 1000, null, 630);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -747,13 +747,13 @@ public class CornyCholmc1 extends Mainloc {
                 // Multiple - Choice - Routine, Mueller kommt bei letztem Spruch
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("CornyCholmc1_16", 1000, 1000, null, 610);
+                Dialog.ExtendMC("CornyCholmc1_16", 1000, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMCO("CornyCholmc1_17", 1000, 1000, null, 620);
+                Dialog.ExtendMC("CornyCholmc1_17", 1000, 1000, null, 620);
 
                 // 3. Frage
-                Dialog.ExtendMCO("CornyCholmc1_18", 1000, 1000, null, 1010);
+                Dialog.ExtendMC("CornyCholmc1_18", 1000, 1000, null, 1010);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

@@ -1253,14 +1253,14 @@ public class Wjes2 extends Mainloc2 {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 2. Frage
-                Dialog.ExtendMCO("Wjes2_30", 1000, 66, new int[]{66}, 660);
-                Dialog.ExtendMCO("Wjes2_31", 66, 67, new int[]{67}, 670);
-                Dialog.ExtendMCO("Wjes2_32", 67, 68, new int[]{68}, 680);
-                Dialog.ExtendMCO("Wjes2_33", 68, 69, new int[]{69}, 690);
-                Dialog.ExtendMCO("Wjes2_34", 69, 70, new int[]{70}, 700);
+                Dialog.ExtendMC("Wjes2_30", 1000, 66, new int[]{66}, 660);
+                Dialog.ExtendMC("Wjes2_31", 66, 67, new int[]{67}, 670);
+                Dialog.ExtendMC("Wjes2_32", 67, 68, new int[]{68}, 680);
+                Dialog.ExtendMC("Wjes2_33", 68, 69, new int[]{69}, 690);
+                Dialog.ExtendMC("Wjes2_34", 69, 70, new int[]{70}, 700);
 
                 // 3. Frage (bedeutet Ende)
-                Dialog.ExtendMCO("Wjes2_35", 1000, 1000, null, 800);
+                Dialog.ExtendMC("Wjes2_35", 1000, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

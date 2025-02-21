@@ -1351,26 +1351,26 @@ public class Kuchnja extends Mainloc {
                 Dialog.InitMC(20);
 
                 // 1. Frage
-                Dialog.ExtendMCO("Kuchnja_49", 1000, 504, new int[]{504}, 610);
-                Dialog.ExtendMCO("Kuchnja_50", 504, 503, new int[]{503}, 611);
-                Dialog.ExtendMCO("Kuchnja_51", 503, 502, new int[]{502}, 612);
-                Dialog.ExtendMCO("Kuchnja_52", 502, 501, new int[]{501}, 613);
-                Dialog.ExtendMCO("Kuchnja_53", 501, 500, new int[]{500}, 615);
-                Dialog.ExtendMCO("Kuchnja_54", 500, 1000, null, 617);
+                Dialog.ExtendMC("Kuchnja_49", 1000, 504, new int[]{504}, 610);
+                Dialog.ExtendMC("Kuchnja_50", 504, 503, new int[]{503}, 611);
+                Dialog.ExtendMC("Kuchnja_51", 503, 502, new int[]{502}, 612);
+                Dialog.ExtendMC("Kuchnja_52", 502, 501, new int[]{501}, 613);
+                Dialog.ExtendMC("Kuchnja_53", 501, 500, new int[]{500}, 615);
+                Dialog.ExtendMC("Kuchnja_54", 500, 1000, null, 617);
 
                 // 2. Frage
-                Dialog.ExtendMCO("Kuchnja_55", 1000, 507, new int[]{507}, 630);
-                Dialog.ExtendMCO("Kuchnja_56", 507, 506, new int[]{506}, 631);
-                Dialog.ExtendMCO("Kuchnja_57", 506, 505, new int[]{505}, 632);
-                Dialog.ExtendMCO("Kuchnja_58", 505, 1000, null, 634);
+                Dialog.ExtendMC("Kuchnja_55", 1000, 507, new int[]{507}, 630);
+                Dialog.ExtendMC("Kuchnja_56", 507, 506, new int[]{506}, 631);
+                Dialog.ExtendMC("Kuchnja_57", 506, 505, new int[]{505}, 632);
+                Dialog.ExtendMC("Kuchnja_58", 505, 1000, null, 634);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Kuchnja_59", 1000, 509, new int[]{509}, 640);
-                Dialog.ExtendMCO("Kuchnja_60", 509, 508, new int[]{508}, 641);
-                Dialog.ExtendMCO("Kuchnja_61", 508, 1000, null, 642);
+                Dialog.ExtendMC("Kuchnja_59", 1000, 509, new int[]{509}, 640);
+                Dialog.ExtendMC("Kuchnja_60", 509, 508, new int[]{508}, 641);
+                Dialog.ExtendMC("Kuchnja_61", 508, 1000, null, 642);
 
                 // 4. Frage
-                Dialog.ExtendMCO("Kuchnja_62", 1000, 1000, null, 620);
+                Dialog.ExtendMC("Kuchnja_62", 1000, 1000, null, 620);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

@@ -680,23 +680,23 @@ public class Cyrkej2 extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 // 1. Frage
-                Dialog.ExtendMCO("Cyrkej2_19", 1000, 260, new int[]{260}, 610);
-                Dialog.ExtendMCO("Cyrkej2_20", 260, 261, new int[]{261}, 620);
-                Dialog.ExtendMCO("Cyrkej2_21", 261, 262, new int[]{262}, 630);
+                Dialog.ExtendMC("Cyrkej2_19", 1000, 260, new int[]{260}, 610);
+                Dialog.ExtendMC("Cyrkej2_20", 260, 261, new int[]{261}, 620);
+                Dialog.ExtendMC("Cyrkej2_21", 261, 262, new int[]{262}, 630);
 
 
                 // 2. Frage
-                Dialog.ExtendMCO("Cyrkej2_22", 1000, 264, new int[]{264}, 660);
-                Dialog.ExtendMCO("Cyrkej2_23", 264, 265, new int[]{265}, 670);
-                Dialog.ExtendMCO("Cyrkej2_24", 265, 1000, null, 680);
+                Dialog.ExtendMC("Cyrkej2_22", 1000, 264, new int[]{264}, 660);
+                Dialog.ExtendMC("Cyrkej2_23", 264, 265, new int[]{265}, 670);
+                Dialog.ExtendMC("Cyrkej2_24", 265, 1000, null, 680);
 
 
                 // 4. Frage (3. = Ende)
-                Dialog.ExtendMCO("Cyrkej2_25", 267, 268, new int[]{268}, 690);
+                Dialog.ExtendMC("Cyrkej2_25", 267, 268, new int[]{268}, 690);
 
                 // 3. Frage
-                Dialog.ExtendMCO("Cyrkej2_26", 1000, 270, null, 800);
-                Dialog.ExtendMCO("Cyrkej2_27", 270, 1000, null, 800);
+                Dialog.ExtendMC("Cyrkej2_26", 1000, 270, null, 800);
+                Dialog.ExtendMC("Cyrkej2_27", 270, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
