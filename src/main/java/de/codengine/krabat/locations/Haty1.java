@@ -1466,39 +1466,15 @@ public class Haty1 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00051"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00052"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00053"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_106");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00054"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00055"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00056"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_107");
                         break;
 
                     case 2:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00057"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00058"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00059"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_108");
                         break;
                 }
                 outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());
@@ -1521,27 +1497,11 @@ public class Haty1 extends Mainloc {
                 }
                 switch (zuffZahl2) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00060"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00061"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00062"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_109");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00063"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00064"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00065"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_110");
                         break;
                 }
                 outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());
@@ -1570,27 +1530,11 @@ public class Haty1 extends Mainloc {
                 int zuffZahl3 = (int) (Math.random() * 1.9);
                 switch (zuffZahl3) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00072"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00073"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00074"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_111");
                         break;
 
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00075"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00076"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Haty1_00077"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Haty1_112");
                         break;
                 }
                 outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());

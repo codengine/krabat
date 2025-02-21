@@ -469,15 +469,7 @@ public class HojntAuto extends Mainloc {
 
             case 159:
                 // Jaeger sagt Spruch vor dem Loslaufen
-                if (mainFrame.sprache == 1) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00000"));
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00001"));
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00002"));
-                }
+                outputText = mainFrame.ifont.TeileTextKey("HojntAuto_1");
                 // Hier Position des Textes berechnen
                 Borderrect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
@@ -553,15 +545,7 @@ public class HojntAuto extends Mainloc {
 
             case 520:
                 // Jaeger sagt Spruch vor dem Ende
-                if (mainFrame.sprache == 1) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00003"));
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00004"));
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00005"));
-                }
+                outputText = mainFrame.ifont.TeileTextKey("HojntAuto_2");
                 // Hier Position des Textes berechnen
                 Borderrect temp = jaeger.getRect();
                 GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
@@ -637,15 +621,7 @@ public class HojntAuto extends Mainloc {
 
             case 650:
                 // Jaeger sagt Spruch, wenn Krabat reingefallen ist
-                if (mainFrame.sprache == 1) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00006"));
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00007"));
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_HojntAuto_00008"));
-                }
+                outputText = mainFrame.ifont.TeileTextKey("HojntAuto_3");
                 // Hier Position des Textes berechnen
                 Borderrect teemp = jaeger.getRect();
                 GenericPoint tTaalk = new GenericPoint((teemp.ru_point.x + teemp.lo_point.x) / 2, teemp.lo_point.y - 50);

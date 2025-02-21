@@ -25,11 +25,7 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 
 abstract public class Mainloc2 extends Mainloc {
     // Variablen deklarieren, die in der Location dann nicht mehr erscheinen duerfen
-
-    private static final String[] HMMe = {Start.stringManager.getTranslation("Main_Mainloc2_00000"), Start.stringManager.getTranslation("Main_Mainloc2_00001"), Start.stringManager.getTranslation("Main_Mainloc2_00002")};
-    private static final String[] DMMe = {Start.stringManager.getTranslation("Main_Mainloc2_00003"), Start.stringManager.getTranslation("Main_Mainloc2_00004"), Start.stringManager.getTranslation("Main_Mainloc2_00005")};
-    private static final String[] NMMe = {Start.stringManager.getTranslation("Main_Mainloc2_00006"), Start.stringManager.getTranslation("Main_Mainloc2_00007"), Start.stringManager.getTranslation("Main_Mainloc2_00008")};
-    private static final int M_KONSTANTE = 2;
+    private static final String[] MMe_TEXTS = {"Mainloc2_1", "Mainloc2_2", "Mainloc2_3"};
 
     // Methodendefinitionen
 
@@ -40,15 +36,8 @@ abstract public class Mainloc2 extends Mainloc {
 
     // Mueller - Anmeckersprueche  				
     public void MuellerMecker(GenericPoint posit) {
-        if (mainFrame.sprache == 1) {
-            outputText = mainFrame.ifont.TeileText(HMMe[(int) Math.round(Math.random() * M_KONSTANTE)]);
-        }
-        if (mainFrame.sprache == 2) {
-            outputText = mainFrame.ifont.TeileText(DMMe[(int) Math.round(Math.random() * M_KONSTANTE)]);
-        }
-        if (mainFrame.sprache == 3) {
-            outputText = mainFrame.ifont.TeileText(NMMe[(int) Math.round(Math.random() * M_KONSTANTE)]);
-        }
+        int random = (int) Math.round(Math.random() * (MMe_TEXTS.length - 1));
+        outputText = mainFrame.ifont.TeileTextKey(MMe_TEXTS[random]);
         outputTextPos = mainFrame.ifont.CenterText(outputText, posit);
     }
 

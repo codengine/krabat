@@ -56,7 +56,8 @@ public class Usermultiple {
     }
 
     // Hier wird ein MC - Element hinzugefuegt
-    public void ExtendMC(String text, GenericRectangle posit, int index) {
+    public void ExtendMC(String langKey, GenericRectangle posit, int index) {
+        String text = mainFrame.ifont.TeileTextKey(langKey);
         Anzahl++;
         Fragen[Anzahl] = text;
         if (Anzahl == 0) {

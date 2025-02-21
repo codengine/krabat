@@ -1444,70 +1444,22 @@ public class Kuchnja extends Mainloc {
                 int zuffZahl2 = (int) (Math.random() * 5.9);
                 switch (zuffZahl2) {
                     case 0:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00153"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00154"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00155"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_63");
                         break;
                     case 1:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00156"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00157"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00158"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_64");
                         break;
                     case 2:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00159"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00160"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00161"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_65");
                         break;
                     case 3:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00162"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00163"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00164"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_66");
                         break;
                     case 4:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00165"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00166"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00167"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_67");
                         break;
                     case 5:
-                        if (mainFrame.sprache == 1) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00168"));
-                        }
-                        if (mainFrame.sprache == 2) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00169"));
-                        }
-                        if (mainFrame.sprache == 3) {
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_Kuchnja_00170"));
-                        }
+                        outputText = mainFrame.ifont.TeileTextKey("Kuchnja_68");
                         nextActionID = 621;
                         break;
                 }

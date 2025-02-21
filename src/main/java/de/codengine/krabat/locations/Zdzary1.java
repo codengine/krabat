@@ -1074,15 +1074,7 @@ public class Zdzary1 extends Mainloc {
 
             case 714:
                 // User anschauen
-                if (mainFrame.sprache == 1) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Zdzary1_00222"));
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Zdzary1_00223"));
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Zdzary1_00224"));
-                }
+                outputText = mainFrame.ifont.TeileTextKey("Zdzary1_89");
                 outputTextPos = mainFrame.ifont.KrabatText(outputText);
                 nextActionID = 715;
                 TalkPerson = 3;
@@ -1092,33 +1084,11 @@ public class Zdzary1 extends Mainloc {
             case 715:
                 // Multiple - Choice - Routine
                 Userdialog.InitMC(100);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Userdialog.ExtendMC(mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Zdzary1_00225"))
-                            , new GenericRectangle(30, 0, 500, 67), 1);
+                // 1. Frage
+                Userdialog.ExtendMC("Zdzary1_90", new GenericRectangle(30, 0, 500, 67), 1);
 
-                    // 2. Frage
-                    Userdialog.ExtendMC(mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Zdzary1_00226"))
-                            , new GenericRectangle(30, 0, 500, 40), 2);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Userdialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00227")
-                            , new GenericRectangle(30, 0, 500, 67), 1);
-
-                    // 2. Frage
-                    Userdialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00228")
-                            , new GenericRectangle(30, 0, 500, 40), 2);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Userdialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00229")
-                            , new GenericRectangle(30, 0, 500, 67), 1);
-
-                    // 2. Frage
-                    Userdialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00230")
-                            , new GenericRectangle(30, 0, 500, 40), 2);
-                }
+                // 2. Frage
+                Userdialog.ExtendMC("Zdzary1_91", new GenericRectangle(30, 0, 500, 40), 2);
                 Userdialog.user = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 716;

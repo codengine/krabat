@@ -87,26 +87,10 @@ public class Zawod1 extends Mainloc {
 
     private long FloetenSpielZeit = 0; // zaehlt die Zeit, wielange Krabat Floete spielen soll
 
-    private static final String HText1 = Start.stringManager.getTranslation("Loc1_Zawod1_00000");
-    private static final String DText1 = Start.stringManager.getTranslation("Loc1_Zawod1_00001");
-    private static final String NText1 = Start.stringManager.getTranslation("Loc1_Zawod1_00002");
-
-
-    private static final String HText2 = Start.stringManager.getTranslation("Loc1_Zawod1_00003");
-    private static final String DText2 = Start.stringManager.getTranslation("Loc1_Zawod1_00004");
-    private static final String NText2 = Start.stringManager.getTranslation("Loc1_Zawod1_00005");
-
-
-    private static final String HText3 = Start.stringManager.getTranslation("Loc1_Zawod1_00006");
-    private static final String DText3 = Start.stringManager.getTranslation("Loc1_Zawod1_00007");
-    private static final String NText3 = Start.stringManager.getTranslation("Loc1_Zawod1_00008");
-
-
-    private int Zeile4 = 0;
-    private static final int ENDZEILE_VIER = 9;
-    private static final String[][] Speicher4 = {{Start.stringManager.getTranslation("Loc1_Zawod1_00009"), Start.stringManager.getTranslation("Loc1_Zawod1_00010"), Start.stringManager.getTranslation("Loc1_Zawod1_00011"), Start.stringManager.getTranslation("Loc1_Zawod1_00012"), Start.stringManager.getTranslation("Loc1_Zawod1_00013"), Start.stringManager.getTranslation("Loc1_Zawod1_00014"), Start.stringManager.getTranslation("Loc1_Zawod1_00015"), Start.stringManager.getTranslation("Loc1_Zawod1_00016"), Start.stringManager.getTranslation("Loc1_Zawod1_00017")},
-            {Start.stringManager.getTranslation("Loc1_Zawod1_00018"), Start.stringManager.getTranslation("Loc1_Zawod1_00019"), Start.stringManager.getTranslation("Loc1_Zawod1_00020"), Start.stringManager.getTranslation("Loc1_Zawod1_00021"), Start.stringManager.getTranslation("Loc1_Zawod1_00022"), Start.stringManager.getTranslation("Loc1_Zawod1_00023"), Start.stringManager.getTranslation("Loc1_Zawod1_00024"), Start.stringManager.getTranslation("Loc1_Zawod1_00025"), Start.stringManager.getTranslation("Loc1_Zawod1_00026")},
-            {Start.stringManager.getTranslation("Loc1_Zawod1_00027"), Start.stringManager.getTranslation("Loc1_Zawod1_00028"), Start.stringManager.getTranslation("Loc1_Zawod1_00029"), Start.stringManager.getTranslation("Loc1_Zawod1_00030"), Start.stringManager.getTranslation("Loc1_Zawod1_00031"), Start.stringManager.getTranslation("Loc1_Zawod1_00032"), Start.stringManager.getTranslation("Loc1_Zawod1_00033"), Start.stringManager.getTranslation("Loc1_Zawod1_00034"), Start.stringManager.getTranslation("Loc1_Zawod1_00035")}};
+    private int line4 = 0;
+    private static final String[] TEXTS4 = {
+            "Zawod1_4", "Zawod1_5", "Zawod1_6", "Zawod1_7", "Zawod1_8", "Zawod1_9", "Zawod1_10", "Zawod1_11", "Zawod1_12"
+    };
 
 
     private static final GenericPoint MittelPunkt = new GenericPoint(320, 240);
@@ -738,15 +722,7 @@ public class Zawod1 extends Mainloc {
 
                 case 12:
                     // Text ueber Situation
-                    if (mainFrame.sprache == 1) {
-                        outputText = mainFrame.ifont.TeileText(HText1);
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = mainFrame.ifont.TeileText(DText1);
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = mainFrame.ifont.TeileText(NText1);
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_1");
                     outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
@@ -761,15 +737,7 @@ public class Zawod1 extends Mainloc {
 
                 case 14:
                     // Text ueber die dicken Gutsherren
-                    if (mainFrame.sprache == 1) {
-                        outputText = mainFrame.ifont.TeileText(HText2);
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = mainFrame.ifont.TeileText(DText2);
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = mainFrame.ifont.TeileText(NText2);
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_2");
                     outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
@@ -792,15 +760,7 @@ public class Zawod1 extends Mainloc {
 
                 case 101:
                     // Text ueber Krabat (Erzaehler)
-                    if (mainFrame.sprache == 1) {
-                        outputText = mainFrame.ifont.TeileText(HText3);
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = mainFrame.ifont.TeileText(DText3);
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = mainFrame.ifont.TeileText(NText3);
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_3");
                     outputTextPos = mainFrame.ifont.CenterText(outputText, MittelPunkt);
                     IntroStep++;
                     TalkPause = 5;
@@ -812,10 +772,10 @@ public class Zawod1 extends Mainloc {
 
                 case 103:
                     // Text von Krabat denkend
-                    outputText = mainFrame.ifont.TeileText(Speicher4[mainFrame.sprache - 1][Zeile4]);
+                    outputText = mainFrame.ifont.TeileTextKey(TEXTS4[line4]);
                     outputTextPos = mainFrame.ifont.KrabatText(outputText);
-                    Zeile4++;
-                    if (Zeile4 == ENDZEILE_VIER) {
+                    line4++;
+                    if (line4 == TEXTS4.length) {
                         IntroStep++;
                     } else {
                         nextActionID = 0;

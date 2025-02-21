@@ -981,26 +981,10 @@ public class Wila1 extends Mainloc {
                 // Sie sagt ihren Spruch
                 mainFrame.krabat.SetFacing(6);
                 if (!mainFrame.Actions[176]) {
-                    if (mainFrame.sprache == 1) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00012"));
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00013"));
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00014"));
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Wila1_8");
                     mainFrame.Actions[176] = true;
                 } else {
-                    if (mainFrame.sprache == 1) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00015"));
-                    }
-                    if (mainFrame.sprache == 2) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00016"));
-                    }
-                    if (mainFrame.sprache == 3) {
-                        outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00017"));
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Wila1_9");
                 }
                 waschfrau.SetFacing(12);
                 // Hier Position des Textes berechnen
@@ -1156,15 +1140,7 @@ public class Wila1 extends Mainloc {
 
             case 190:
                 // Sie sagt ihren Spruch
-                if (mainFrame.sprache == 1) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00021"));
-                }
-                if (mainFrame.sprache == 2) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00022"));
-                }
-                if (mainFrame.sprache == 3) {
-                    outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Wila1_00023"));
-                }
+                outputText = mainFrame.ifont.TeileTextKey("Wila1_10");
                 // Hier Position des Textes berechnen
                 Borderrect tmp = waschfrau.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);

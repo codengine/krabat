@@ -1885,54 +1885,22 @@ public class StareWiki extends Mainloc {
                         int zuffZahl = (int) (Math.random() * 3.9);
                         switch (zuffZahl) {
                             case 0:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00237");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00238");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00239");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_80");
                                 AnimCounter = 50;
                                 break;
 
                             case 1:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00240"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00241"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00242"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_81");
                                 AnimCounter = 70;
                                 break;
 
                             case 2:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00243"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00244"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00245"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_82");
                                 AnimCounter = 100;
                                 break;
 
                             case 3:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00246"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00247"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00248"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_83");
                                 AnimCounter = 120;
                                 break;
                         }
@@ -1945,41 +1913,17 @@ public class StareWiki extends Mainloc {
                         int zuffZahl2 = (int) (Math.random() * 2.9);
                         switch (zuffZahl2) {
                             case 0:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00249");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00250");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00251");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_84");
                                 AnimCounter = 70;
                                 break;
 
                             case 1:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00252"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00253"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00254"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_85");
                                 AnimCounter = 100;
                                 break;
 
                             case 2:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00255");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00256");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00257");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_86");
                                 AnimCounter = 50;
                                 break;
                         }
@@ -1992,67 +1936,27 @@ public class StareWiki extends Mainloc {
                         int zuffZahl3 = (int) (Math.random() * 4.9);
                         switch (zuffZahl3) {
                             case 0:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00258"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00259"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00260"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_87");
                                 AnimCounter = 60;
                                 break;
 
                             case 1:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00261");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00262");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00263");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_88");
                                 AnimCounter = 50;
                                 break;
 
                             case 2:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00264");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00265");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00266");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_89");
                                 AnimCounter = 60;
                                 break;
 
                             case 3:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00267");
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00268");
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = Start.stringManager.getTranslation("Loc3_StareWiki_00269");
-                                }
+                                AnimOutputText = Start.stringManager.getTranslation("StareWiki_90");
                                 AnimCounter = 60;
                                 break;
 
                             case 4:
-                                if (mainFrame.sprache == 1) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00270"));
-                                }
-                                if (mainFrame.sprache == 2) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00271"));
-                                }
-                                if (mainFrame.sprache == 3) {
-                                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc3_StareWiki_00272"));
-                                }
+                                AnimOutputText = mainFrame.ifont.TeileTextKey("StareWiki_91");
                                 AnimCounter = 70;
                                 break;
                         }

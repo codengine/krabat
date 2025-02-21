@@ -163,19 +163,7 @@ public class Skica extends Mainanim {
 
                 if (!mainFrame.Actions[633]) // Text nur 1x sagen, wenn gefunden
                 {
-                    switch (mainFrame.sprache) {
-                        case 1: // Obersorbisch
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Main_Skica_00000"));
-                            break;
-
-                        case 2: // Niedersorbisch
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Main_Skica_00001"));
-                            break;
-
-                        case 3: // Deutsch
-                            outputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Main_Skica_00002"));
-                            break;
-                    }
+                    outputText = mainFrame.ifont.TeileTextKey("Skica_1");
                     outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 200));
 
                     mainFrame.Actions[633] = true;

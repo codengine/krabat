@@ -1603,15 +1603,7 @@ public class Kulow1 extends Mainloc {
             case 23:
                 // 6. Textausgabe (Person wieder aufrichten...
                 rybowarsuchtzrawc = false;
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00171"));
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00172"));
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00173"));
-                }
+                AnimOutputText = mainFrame.ifont.TeileTextKey("Kulow1_53");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, rybowarTalk);
                 AnimCounter = 20;
                 AnimTalkPerson = 33;
@@ -1716,15 +1708,7 @@ public class Kulow1 extends Mainloc {
             case 506:
                 // 2. Textausgabe (Person wieder aufrichten...
                 rybowarsuchtzrawc = false;
-                if (mainFrame.sprache == 1) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00180"));
-                }
-                if (mainFrame.sprache == 2) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00181"));
-                }
-                if (mainFrame.sprache == 3) {
-                    AnimOutputText = mainFrame.ifont.TeileText(Start.stringManager.getTranslation("Loc1_Kulow1_00182"));
-                }
+                AnimOutputText = mainFrame.ifont.TeileTextKey("Kulow1_54");
                 AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, rybowarTalk);
                 AnimCounter = 30;
                 AnimTalkPerson = 33;
