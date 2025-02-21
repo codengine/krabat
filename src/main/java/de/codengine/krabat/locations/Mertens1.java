@@ -793,69 +793,26 @@ public class Mertens1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00009"), 1000, 161, new int[]{161}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00010"), 161, 1000, null, 620);
+                // 1. Frage
+                Dialog.ExtendMCO("Mertens1_27", 1000, 161, new int[]{161}, 610);
+                Dialog.ExtendMCO("Mertens1_28", 161, 1000, null, 620);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00011"), 1000, 163, new int[]{163}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00012"), 163, 164, new int[]{164}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00013"), 164, 165, new int[]{165}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00014"), 165, 166, new int[]{166, 184}, 660);
-                    if (!mainFrame.Actions[168]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00015"), 166, 167, new int[]{167}, 670);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00016"), 166, 167, new int[]{167}, 670);
-                    }
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00017"), 167, 169, new int[]{169}, 680);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00018"), 1000, 170, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00019"), 170, 1000, null, 800);
+                // 2. Frage
+                Dialog.ExtendMCO("Mertens1_29", 1000, 163, new int[]{163}, 630);
+                Dialog.ExtendMCO("Mertens1_30", 163, 164, new int[]{164}, 640);
+                Dialog.ExtendMCO("Mertens1_31", 164, 165, new int[]{165}, 650);
+                Dialog.ExtendMCO("Mertens1_32", 165, 166, new int[]{166, 184}, 660);
+                if (!mainFrame.Actions[168]) {
+                    Dialog.ExtendMCO("Mertens1_33", 166, 167, new int[]{167}, 670);
+                } else {
+                    Dialog.ExtendMCO("Mertens1_34", 166, 167, new int[]{167}, 670);
                 }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00020"), 1000, 161, new int[]{161}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00021"), 161, 1000, null, 620);
+                Dialog.ExtendMCO("Mertens1_35", 167, 169, new int[]{169}, 680);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00022"), 1000, 163, new int[]{163}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00023"), 163, 164, new int[]{164}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00024"), 164, 165, new int[]{165}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00025"), 165, 166, new int[]{166, 184}, 660);
-                    if (!mainFrame.Actions[168]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00026"), 166, 167, new int[]{167}, 670);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00027"), 166, 167, new int[]{167}, 670);
-                    }
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00028"), 167, 169, new int[]{169}, 680);
+                // 3. Frage
+                Dialog.ExtendMCO("Mertens1_36", 1000, 170, null, 800);
+                Dialog.ExtendMCO("Mertens1_37", 170, 1000, null, 800);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00029"), 1000, 170, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00030"), 170, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00031"), 1000, 161, new int[]{161}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00032"), 161, 1000, null, 620);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00033"), 1000, 163, new int[]{163}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00034"), 163, 164, new int[]{164}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00035"), 164, 165, new int[]{165}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00036"), 165, 166, new int[]{166, 184}, 660);
-                    if (!mainFrame.Actions[168]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00037"), 166, 167, new int[]{167}, 670);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00038"), 166, 167, new int[]{167}, 670);
-                    }
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00039"), 167, 169, new int[]{169}, 680);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00040"), 1000, 170, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00041"), 170, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
@@ -1002,51 +959,20 @@ public class Mertens1 extends Mainloc {
             case 900:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00090"), 1000, 161, new int[]{161}, 910);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00091"), 161, 1000, null, 920);
+                // 1. Frage
+                Dialog.ExtendMCO("Mertens1_38", 1000, 161, new int[]{161}, 910);
+                Dialog.ExtendMCO("Mertens1_39", 161, 1000, null, 920);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00092"), 1000, 200, new int[]{200}, 930);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00093"), 200, 201, new int[]{201}, 940);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00094"), 201, 202, new int[]{202}, 950);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00095"), 202, 203, new int[]{203}, 680);
+                // 2. Frage
+                Dialog.ExtendMCO("Mertens1_40", 1000, 200, new int[]{200}, 930);
+                Dialog.ExtendMCO("Mertens1_41", 200, 201, new int[]{201}, 940);
+                Dialog.ExtendMCO("Mertens1_42", 201, 202, new int[]{202}, 950);
+                Dialog.ExtendMCO("Mertens1_43", 202, 203, new int[]{203}, 680);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00096"), 1000, 204, null, 1000);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00097"), 204, 1000, null, 1000);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00098"), 1000, 161, new int[]{161}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00099"), 161, 1000, null, 620);
+                // 3. Frage
+                Dialog.ExtendMCO("Mertens1_44", 1000, 204, null, 1000);
+                Dialog.ExtendMCO("Mertens1_45", 204, 1000, null, 1000);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00100"), 1000, 200, new int[]{200}, 930);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00101"), 200, 201, new int[]{201}, 940);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00102"), 164, 165, new int[]{165}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00103"), 167, 169, new int[]{169}, 680);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00104"), 1000, 170, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00105"), 170, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00106"), 1000, 161, new int[]{161}, 910);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00107"), 161, 1000, null, 920);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00108"), 1000, 200, new int[]{200}, 930);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00109"), 200, 201, new int[]{201}, 940);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00110"), 201, 202, new int[]{202}, 950);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00111"), 202, 203, new int[]{203}, 680);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00112"), 1000, 204, null, 1000);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Mertens1_00113"), 204, 1000, null, 1000);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 901;

@@ -855,78 +855,27 @@ public class Lodz extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("Lodz_22", 1000, 550, new int[]{550}, 610);
+                Dialog.ExtendMCO("Lodz_23", 550, 1000, null, 611);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00030"), 1000, 550, new int[]{550}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00031"), 550, 1000, null, 611);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00032"), 550, 553, new int[]{553}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00033"), 553, 552, new int[]{552}, 622);
-                    if (!mainFrame.Actions[956]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00034"), 552, 1000, null, 623);
-                    }
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00035"), 1000, 558, new int[]{558}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00036"), 558, 557, new int[]{557}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00037"), 557, 556, new int[]{556}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00038"), 556, 555, new int[]{555}, 633);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00039"), 555, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00040"), 1000, 1000, null, 800);
+                // 2. Frage
+                Dialog.ExtendMCO("Lodz_24", 550, 553, new int[]{553}, 620);
+                Dialog.ExtendMCO("Lodz_25", 553, 552, new int[]{552}, 622);
+                if (!mainFrame.Actions[956]) {
+                    Dialog.ExtendMCO("Lodz_26", 552, 1000, null, 623);
                 }
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00041"), 1000, 550, new int[]{550}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00042"), 550, 1000, null, 611);
+                // 3. Frage
+                Dialog.ExtendMCO("Lodz_27", 1000, 558, new int[]{558}, 630);
+                Dialog.ExtendMCO("Lodz_28", 558, 557, new int[]{557}, 631);
+                Dialog.ExtendMCO("Lodz_29", 557, 556, new int[]{556}, 632);
+                Dialog.ExtendMCO("Lodz_30", 556, 555, new int[]{555}, 633);
+                Dialog.ExtendMCO("Lodz_31", 555, 1000, null, 634);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00043"), 550, 553, new int[]{553}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00044"), 553, 552, new int[]{552}, 622);
-                    if (!mainFrame.Actions[956]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00045"), 552, 1000, null, 623);
-                    }
+                // 4. Frage
+                Dialog.ExtendMCO("Lodz_32", 1000, 1000, null, 800);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00046"), 1000, 558, new int[]{558}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00047"), 558, 557, new int[]{557}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00048"), 557, 556, new int[]{556}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00049"), 556, 555, new int[]{555}, 633);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00050"), 555, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00051"), 1000, 1000, null, 800);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00052"), 1000, 550, new int[]{550}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00053"), 550, 1000, null, 611);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00054"), 550, 553, new int[]{553}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00055"), 553, 552, new int[]{552}, 622);
-                    if (!mainFrame.Actions[956]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00056"), 552, 1000, null, 623);
-                    }
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00057"), 1000, 558, new int[]{558}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00058"), 558, 557, new int[]{557}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00059"), 557, 556, new int[]{556}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00060"), 556, 555, new int[]{555}, 633);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00061"), 555, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Lodz_00062"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

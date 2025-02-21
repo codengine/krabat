@@ -1038,117 +1038,42 @@ public class Hoscenc1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // Test, ob Saeufer oder Wirt gefragt wird
-                    if (!mainFrame.Actions[30]) {
-                        // Dialog mit Saeufer...
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00060"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00061"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00062"), 1000, 1000, null, 0);
-                    } else {
-                        // Dialog mit Wirt
-                        // 1. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00063"), 1000, 1000, null, 610);
+                // Test, ob Saeufer oder Wirt gefragt wird
+                if (!mainFrame.Actions[30]) {
+                    // Dialog mit Saeufer...
+                    Dialog.ExtendMCO("Hoscenc1_54", 1000, 1000, null, 0);
+                    Dialog.ExtendMCO("Hoscenc1_55", 1000, 1000, null, 0);
+                    Dialog.ExtendMCO("Hoscenc1_56", 1000, 1000, null, 0);
+                } else {
+                    // Dialog mit Wirt
+                    // 1. Frage
+                    Dialog.ExtendMCO("Hoscenc1_57", 1000, 1000, null, 610);
 
-                        // 2. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00064"), 1000, 32, new int[]{32}, 620);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00065"), 32, 33, new int[]{33}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00066"), 33, 31, new int[]{31, 39, 44}, 640);
+                    // 2. Frage
+                    Dialog.ExtendMCO("Hoscenc1_58", 1000, 32, new int[]{32}, 620);
+                    Dialog.ExtendMCO("Hoscenc1_59", 32, 33, new int[]{33}, 630);
+                    Dialog.ExtendMCO("Hoscenc1_60", 33, 31, new int[]{31, 39, 44}, 640);
 
-                        // 3. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00067"), 1000, 36, new int[]{36}, 650);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00068"), 36, 37, new int[]{37}, 660);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00069"), 37, 35, new int[]{35}, 670);
+                    // 3. Frage
+                    Dialog.ExtendMCO("Hoscenc1_61", 1000, 36, new int[]{36}, 650);
+                    Dialog.ExtendMCO("Hoscenc1_62", 36, 37, new int[]{37}, 660);
+                    Dialog.ExtendMCO("Hoscenc1_63", 37, 35, new int[]{35}, 670);
 
-                        // 5. Frage (4. bedeutet Ende...)
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00070"), 39, 40, new int[]{40}, 680);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00071"), 40, 41, new int[]{41}, 690);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00072"), 41, 42, new int[]{42}, 700);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00073"), 42, 43, new int[]{43}, 710);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00074"), 43, 1000, null, 720);
+                    // 5. Frage (4. bedeutet Ende...)
+                    Dialog.ExtendMCO("Hoscenc1_64", 39, 40, new int[]{40}, 680);
+                    Dialog.ExtendMCO("Hoscenc1_65", 40, 41, new int[]{41}, 690);
+                    Dialog.ExtendMCO("Hoscenc1_66", 41, 42, new int[]{42}, 700);
+                    Dialog.ExtendMCO("Hoscenc1_67", 42, 43, new int[]{43}, 710);
+                    Dialog.ExtendMCO("Hoscenc1_68", 43, 1000, null, 720);
 
-                        // 6. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00075"), 44, 45, new int[]{45}, 730);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00076"), 45, 1000, null, 740);
+                    // 6. Frage
+                    Dialog.ExtendMCO("Hoscenc1_69", 44, 45, new int[]{45}, 730);
+                    Dialog.ExtendMCO("Hoscenc1_70", 45, 1000, null, 740);
 
-                        // 4. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00077"), 1000, 1000, null, 785);
-                    }
+                    // 4. Frage
+                    Dialog.ExtendMCO("Hoscenc1_71", 1000, 1000, null, 785);
                 }
-                if (mainFrame.sprache == 2) {
-                    // Test, ob Saeufer oder Wirt gefragt wird
-                    if (!mainFrame.Actions[30]) {
-                        // Dialog mit Saeufer...
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00078"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00079"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00080"), 1000, 1000, null, 0);
-                    } else {
-                        // Dialog mit Wirt
-                        // 1. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00081"), 1000, 1000, null, 610);
 
-                        // 2. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00082"), 1000, 32, new int[]{32}, 620);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00083"), 32, 33, new int[]{33}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00084"), 33, 31, new int[]{31, 39, 44}, 640);
-
-                        // 3. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00085"), 1000, 36, new int[]{36}, 650);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00086"), 36, 37, new int[]{37}, 660);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00087"), 37, 35, new int[]{35}, 670);
-
-                        // 5. Frage (4. bedeutet Ende...)
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00088"), 39, 40, new int[]{40}, 680);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00089"), 40, 41, new int[]{41}, 690);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00090"), 41, 42, new int[]{42}, 700);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00091"), 42, 43, new int[]{43}, 710);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00092"), 43, 1000, null, 720);
-
-                        // 6. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00093"), 44, 45, new int[]{45}, 730);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00094"), 45, 1000, null, 740);
-
-                        // 4. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00095"), 1000, 1000, null, 785);
-                    }
-                }
-                if (mainFrame.sprache == 3) {
-                    // Test, ob Saeufer oder Wirt gefragt wird
-                    if (!mainFrame.Actions[30]) {
-                        // Dialog mit Saeufer...
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00096"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00097"), 1000, 1000, null, 0);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00098"), 1000, 1000, null, 0);
-                    } else {
-                        // Dialog mit Wirt
-                        // 1. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00099"), 1000, 1000, null, 610);
-
-                        // 2. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00100"), 1000, 32, new int[]{32}, 620);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00101"), 32, 33, new int[]{33}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00102"), 33, 31, new int[]{31, 39, 44}, 640);
-
-                        // 3. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00103"), 1000, 36, new int[]{36}, 650);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00104"), 36, 37, new int[]{37}, 660);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00105"), 37, 35, new int[]{35}, 670);
-
-                        // 5. Frage (4. bedeutet Ende...)
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00106"), 39, 40, new int[]{40}, 680);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00107"), 40, 41, new int[]{41}, 690);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00108"), 41, 42, new int[]{42}, 700);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00109"), 42, 43, new int[]{43}, 710);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00110"), 43, 1000, null, 720);
-
-                        // 6. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00111"), 44, 45, new int[]{45}, 730);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00112"), 45, 1000, null, 740);
-
-                        // 4. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00113"), 1000, 1000, null, 785);
-                    }
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
@@ -1398,60 +1323,23 @@ public class Hoscenc1 extends Mainloc {
             case 800:
                 // Multiple - Choice - Routine Dundak
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00186"), 1000, 50, new int[]{50, 51, 55}, 810);
+                // 1. Frage
+                Dialog.ExtendMCO("Hoscenc1_72", 1000, 50, new int[]{50, 51, 55}, 810);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00187"), 1000, 1000, null, 820);
+                // 2. Frage
+                Dialog.ExtendMCO("Hoscenc1_73", 1000, 1000, null, 820);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00188"), 51, 52, new int[]{52}, 830);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00189"), 52, 53, new int[]{53}, 840);
+                // 4. Frage
+                Dialog.ExtendMCO("Hoscenc1_74", 51, 52, new int[]{52}, 830);
+                Dialog.ExtendMCO("Hoscenc1_75", 52, 53, new int[]{53}, 840);
 
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00190"), 55, 56, new int[]{56}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00191"), 56, 57, new int[]{57}, 870);
+                // 5. Frage
+                Dialog.ExtendMCO("Hoscenc1_76", 55, 56, new int[]{56}, 860);
+                Dialog.ExtendMCO("Hoscenc1_77", 56, 57, new int[]{57}, 870);
 
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00192"), 1000, 1000, null, 900);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00193"), 1000, 50, new int[]{50, 51, 55}, 810);
+                // 3. Frage (bedeutet Ende)
+                Dialog.ExtendMCO("Hoscenc1_78", 1000, 1000, null, 900);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00194"), 1000, 1000, null, 820);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00195"), 51, 52, new int[]{52}, 830);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00196"), 52, 53, new int[]{53}, 840);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00197"), 55, 56, new int[]{56}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00198"), 56, 57, new int[]{57}, 870);
-
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00199"), 1000, 1000, null, 900);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00200"), 1000, 50, new int[]{50, 51, 55}, 810);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00201"), 1000, 1000, null, 820);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00202"), 51, 52, new int[]{52}, 830);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00203"), 52, 53, new int[]{53}, 840);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00204"), 55, 56, new int[]{56}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00205"), 56, 57, new int[]{57}, 870);
-
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Hoscenc1_00206"), 1000, 1000, null, 900);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 801;

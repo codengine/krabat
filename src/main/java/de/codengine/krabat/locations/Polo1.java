@@ -833,69 +833,26 @@ public class Polo1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00024"), 1000, 100, new int[]{100}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00025"), 100, 101, new int[]{101}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00026"), 101, 102, new int[]{102, 106, 109}, 630);
+                // 1. Frage
+                Dialog.ExtendMCO("Polo1_29", 1000, 100, new int[]{100}, 610);
+                Dialog.ExtendMCO("Polo1_30", 100, 101, new int[]{101}, 620);
+                Dialog.ExtendMCO("Polo1_31", 101, 102, new int[]{102, 106, 109}, 630);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00027"), 1000, 103, new int[]{103}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00028"), 103, 104, new int[]{104}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00029"), 104, 1000, null, 660);
+                // 2. Frage
+                Dialog.ExtendMCO("Polo1_32", 1000, 103, new int[]{103}, 640);
+                Dialog.ExtendMCO("Polo1_33", 103, 104, new int[]{104}, 650);
+                Dialog.ExtendMCO("Polo1_34", 104, 1000, null, 660);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00030"), 106, 107, new int[]{107}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00031"), 107, 1000, null, 680);
+                // 4. Frage
+                Dialog.ExtendMCO("Polo1_35", 106, 107, new int[]{107}, 670);
+                Dialog.ExtendMCO("Polo1_36", 107, 1000, null, 680);
 
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00032"), 109, 110, new int[]{110}, 690);
+                // 5. Frage
+                Dialog.ExtendMCO("Polo1_37", 109, 110, new int[]{110}, 690);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00033"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00034"), 1000, 100, new int[]{100}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00035"), 100, 101, new int[]{101}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00036"), 101, 102, new int[]{102, 106, 109}, 630);
+                // 3. Frage
+                Dialog.ExtendMCO("Polo1_38", 1000, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00037"), 1000, 103, new int[]{103}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00038"), 103, 104, new int[]{104}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00039"), 104, 1000, null, 660);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00040"), 106, 107, new int[]{107}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00041"), 107, 1000, null, 680);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00042"), 109, 110, new int[]{110}, 690);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00043"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00044"), 1000, 100, new int[]{100}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00045"), 100, 101, new int[]{101}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00046"), 101, 102, new int[]{102, 106, 109}, 630);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00047"), 1000, 103, new int[]{103}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00048"), 103, 104, new int[]{104}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00049"), 104, 1000, null, 660);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00050"), 106, 107, new int[]{107}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00051"), 107, 1000, null, 680);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00052"), 109, 110, new int[]{110}, 690);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Polo1_00053"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

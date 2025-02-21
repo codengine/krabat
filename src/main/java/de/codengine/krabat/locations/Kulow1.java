@@ -1225,48 +1225,19 @@ public class Kulow1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine mit Wikowar
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00072"), 1000, 120, new int[]{120}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00073"), 120, 121, null, 620);
+                // 1. Frage
+                Dialog.ExtendMCO("Kulow1_39", 1000, 120, new int[]{120}, 610);
+                Dialog.ExtendMCO("Kulow1_40", 120, 121, null, 620);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00074"), 1000, 122, new int[]{122}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00075"), 122, 123, new int[]{123}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00076"), 123, 1000, null, 650);
+                // 2. Frage
+                Dialog.ExtendMCO("Kulow1_41", 1000, 122, new int[]{122}, 630);
+                Dialog.ExtendMCO("Kulow1_42", 122, 123, new int[]{123}, 640);
+                Dialog.ExtendMCO("Kulow1_43", 123, 1000, null, 650);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00077"), 1000, 125, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00078"), 125, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00079"), 1000, 120, new int[]{120}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00080"), 120, 121, null, 620);
+                // 3. Frage
+                Dialog.ExtendMCO("Kulow1_44", 1000, 125, null, 800);
+                Dialog.ExtendMCO("Kulow1_45", 125, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00081"), 1000, 122, new int[]{122}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00082"), 122, 123, new int[]{123}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00083"), 123, 1000, null, 650);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00084"), 1000, 125, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00085"), 125, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00086"), 1000, 120, new int[]{120}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00087"), 120, 121, null, 620);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00088"), 1000, 122, new int[]{122}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00089"), 122, 123, new int[]{123}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00090"), 123, 1000, null, 650);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00091"), 1000, 125, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00092"), 125, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
@@ -1340,63 +1311,24 @@ public class Kulow1 extends Mainloc {
 
             case 900:
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00117"), 1000, 130, new int[]{130}, 910);
-                    if (!mainFrame.Actions[150]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00118"), 130, 1000, null, 920);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00119"), 130, 1000, null, 930);
-                    }
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00120"), 1000, 132, new int[]{132, 133}, 940);
-
-                    // 4. Frage (wenn 2. weg)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00121"), 133, 1000, null, 950);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00122"), 1000, 134, null, 1100);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00123"), 134, 1000, null, 1100);
+                // 1. Frage
+                Dialog.ExtendMCO("Kulow1_46", 1000, 130, new int[]{130}, 910);
+                if (!mainFrame.Actions[150]) {
+                    Dialog.ExtendMCO("Kulow1_47", 130, 1000, null, 920);
+                } else {
+                    Dialog.ExtendMCO("Kulow1_48", 130, 1000, null, 930);
                 }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00124"), 1000, 130, new int[]{130}, 910);
-                    if (!mainFrame.Actions[150]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00125"), 130, 1000, null, 920);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00126"), 130, 1000, null, 930);
-                    }
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00127"), 1000, 132, new int[]{132, 133}, 940);
+                // 2. Frage
+                Dialog.ExtendMCO("Kulow1_49", 1000, 132, new int[]{132, 133}, 940);
 
-                    // 4. Frage (wenn 2. weg)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00128"), 133, 1000, null, 950);
+                // 4. Frage (wenn 2. weg)
+                Dialog.ExtendMCO("Kulow1_50", 133, 1000, null, 950);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00129"), 1000, 134, null, 1100);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00130"), 134, 1000, null, 1100);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00131"), 1000, 130, new int[]{130}, 910);
-                    if (!mainFrame.Actions[150]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00132"), 130, 1000, null, 920);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00133"), 130, 1000, null, 930);
-                    }
+                // 3. Frage
+                Dialog.ExtendMCO("Kulow1_51", 1000, 134, null, 1100);
+                Dialog.ExtendMCO("Kulow1_52", 134, 1000, null, 1100);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00134"), 1000, 132, new int[]{132, 133}, 940);
-
-                    // 4. Frage (wenn 2. weg)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00135"), 133, 1000, null, 950);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00136"), 1000, 134, null, 1100);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Kulow1_00137"), 134, 1000, null, 1100);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 901;

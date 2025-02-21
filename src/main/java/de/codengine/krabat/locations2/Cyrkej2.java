@@ -679,66 +679,25 @@ public class Cyrkej2 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00006"), 1000, 260, new int[]{260}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00007"), 260, 261, new int[]{261}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00008"), 261, 262, new int[]{262}, 630);
+                // 1. Frage
+                Dialog.ExtendMCO("Cyrkej2_19", 1000, 260, new int[]{260}, 610);
+                Dialog.ExtendMCO("Cyrkej2_20", 260, 261, new int[]{261}, 620);
+                Dialog.ExtendMCO("Cyrkej2_21", 261, 262, new int[]{262}, 630);
 
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00009"), 1000, 264, new int[]{264}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00010"), 264, 265, new int[]{265}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00011"), 265, 1000, null, 680);
+                // 2. Frage
+                Dialog.ExtendMCO("Cyrkej2_22", 1000, 264, new int[]{264}, 660);
+                Dialog.ExtendMCO("Cyrkej2_23", 264, 265, new int[]{265}, 670);
+                Dialog.ExtendMCO("Cyrkej2_24", 265, 1000, null, 680);
 
 
-                    // 4. Frage (3. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00012"), 267, 268, new int[]{268}, 690);
+                // 4. Frage (3. = Ende)
+                Dialog.ExtendMCO("Cyrkej2_25", 267, 268, new int[]{268}, 690);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00013"), 1000, 270, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00014"), 270, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00015"), 1000, 260, new int[]{260}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00016"), 260, 261, new int[]{261}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00017"), 261, 262, new int[]{262}, 630);
+                // 3. Frage
+                Dialog.ExtendMCO("Cyrkej2_26", 1000, 270, null, 800);
+                Dialog.ExtendMCO("Cyrkej2_27", 270, 1000, null, 800);
 
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00018"), 1000, 264, new int[]{264}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00019"), 264, 265, new int[]{265}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00020"), 265, 1000, null, 680);
-
-
-                    // 4. Frage (3. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00021"), 267, 268, new int[]{268}, 690);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00022"), 1000, 270, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00023"), 270, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00024"), 1000, 260, new int[]{260}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00025"), 260, 261, new int[]{261}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00026"), 261, 262, new int[]{262}, 630);
-
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00027"), 1000, 264, new int[]{264}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00028"), 264, 265, new int[]{265}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00029"), 265, 1000, null, 680);
-
-
-                    // 4. Frage (3. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00030"), 267, 268, new int[]{268}, 690);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00031"), 1000, 270, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Cyrkej2_00032"), 270, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

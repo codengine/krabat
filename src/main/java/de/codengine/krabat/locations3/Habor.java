@@ -727,71 +727,25 @@ public class Habor extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00012"), 1000, 564, new int[]{564}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00013"), 564, 563, new int[]{563}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00014"), 563, 562, new int[]{562}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00015"), 562, 561, new int[]{561}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00016"), 561, 1000, null, 614);
+                // 1. Frage
+                Dialog.ExtendMCO("Habor_21", 1000, 564, new int[]{564}, 610);
+                Dialog.ExtendMCO("Habor_22", 564, 563, new int[]{563}, 611);
+                Dialog.ExtendMCO("Habor_23", 563, 562, new int[]{562}, 612);
+                Dialog.ExtendMCO("Habor_24", 562, 561, new int[]{561}, 615);
+                Dialog.ExtendMCO("Habor_25", 561, 1000, null, 614);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00017"), 1000, 567, new int[]{567}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00018"), 567, 566, new int[]{566}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00019"), 566, 565, new int[]{565}, 622);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00020"), 565, 1000, null, 623);
+                // 2. Frage
+                Dialog.ExtendMCO("Habor_26", 1000, 567, new int[]{567}, 620);
+                Dialog.ExtendMCO("Habor_27", 567, 566, new int[]{566}, 621);
+                Dialog.ExtendMCO("Habor_28", 566, 565, new int[]{565}, 622);
+                Dialog.ExtendMCO("Habor_29", 565, 1000, null, 623);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00021"), 565, 1000, null, 630);
+                // 3. Frage
+                Dialog.ExtendMCO("Habor_30", 565, 1000, null, 630);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00022"), 1000, 1000, null, 800);
-                }
+                // 4. Frage
+                Dialog.ExtendMCO("Habor_31", 1000, 1000, null, 800);
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00023"), 1000, 564, new int[]{564}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00024"), 564, 563, new int[]{563}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00025"), 563, 562, new int[]{562}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00026"), 562, 561, new int[]{561}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00027"), 561, 1000, null, 614);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00028"), 1000, 567, new int[]{567}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00029"), 567, 566, new int[]{566}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00030"), 566, 565, new int[]{565}, 622);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00031"), 565, 1000, null, 623);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00032"), 565, 1000, null, 630);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00033"), 1000, 1000, null, 800);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00034"), 1000, 564, new int[]{564}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00035"), 564, 563, new int[]{563}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00036"), 563, 562, new int[]{562}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00037"), 562, 561, new int[]{561}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00038"), 561, 1000, null, 614);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00039"), 1000, 567, new int[]{567}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00040"), 567, 566, new int[]{566}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00041"), 566, 565, new int[]{565}, 622);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00042"), 565, 1000, null, 623);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00043"), 565, 1000, null, 630);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Habor_00044"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

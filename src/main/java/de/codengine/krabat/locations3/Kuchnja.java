@@ -1350,80 +1350,28 @@ public class Kuchnja extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00087"), 1000, 504, new int[]{504}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00088"), 504, 503, new int[]{503}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00089"), 503, 502, new int[]{502}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00090"), 502, 501, new int[]{501}, 613);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00091"), 501, 500, new int[]{500}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00092"), 500, 1000, null, 617);
+                // 1. Frage
+                Dialog.ExtendMCO("Kuchnja_49", 1000, 504, new int[]{504}, 610);
+                Dialog.ExtendMCO("Kuchnja_50", 504, 503, new int[]{503}, 611);
+                Dialog.ExtendMCO("Kuchnja_51", 503, 502, new int[]{502}, 612);
+                Dialog.ExtendMCO("Kuchnja_52", 502, 501, new int[]{501}, 613);
+                Dialog.ExtendMCO("Kuchnja_53", 501, 500, new int[]{500}, 615);
+                Dialog.ExtendMCO("Kuchnja_54", 500, 1000, null, 617);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00093"), 1000, 507, new int[]{507}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00094"), 507, 506, new int[]{506}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00095"), 506, 505, new int[]{505}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00096"), 505, 1000, null, 634);
+                // 2. Frage
+                Dialog.ExtendMCO("Kuchnja_55", 1000, 507, new int[]{507}, 630);
+                Dialog.ExtendMCO("Kuchnja_56", 507, 506, new int[]{506}, 631);
+                Dialog.ExtendMCO("Kuchnja_57", 506, 505, new int[]{505}, 632);
+                Dialog.ExtendMCO("Kuchnja_58", 505, 1000, null, 634);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00097"), 1000, 509, new int[]{509}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00098"), 509, 508, new int[]{508}, 641);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00099"), 508, 1000, null, 642);
+                // 3. Frage
+                Dialog.ExtendMCO("Kuchnja_59", 1000, 509, new int[]{509}, 640);
+                Dialog.ExtendMCO("Kuchnja_60", 509, 508, new int[]{508}, 641);
+                Dialog.ExtendMCO("Kuchnja_61", 508, 1000, null, 642);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00100"), 1000, 1000, null, 620);
-                }
+                // 4. Frage
+                Dialog.ExtendMCO("Kuchnja_62", 1000, 1000, null, 620);
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00101"), 1000, 504, new int[]{504}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00102"), 504, 503, new int[]{503}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00103"), 503, 502, new int[]{502}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00104"), 502, 501, new int[]{501}, 613);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00105"), 501, 500, new int[]{500}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00106"), 500, 1000, null, 617);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00107"), 1000, 507, new int[]{507}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00108"), 507, 506, new int[]{506}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00109"), 506, 505, new int[]{505}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00110"), 505, 1000, null, 634);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00111"), 1000, 509, new int[]{509}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00112"), 509, 508, new int[]{508}, 641);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00113"), 508, 1000, null, 642);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00114"), 1000, 1000, null, 620);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00115"), 1000, 504, new int[]{504}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00116"), 504, 503, new int[]{503}, 611);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00117"), 503, 502, new int[]{502}, 612);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00118"), 502, 501, new int[]{501}, 613);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00119"), 501, 500, new int[]{500}, 615);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00120"), 500, 1000, null, 617);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00121"), 1000, 507, new int[]{507}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00122"), 507, 506, new int[]{506}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00123"), 506, 505, new int[]{505}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00124"), 505, 1000, null, 634);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00125"), 1000, 509, new int[]{509}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00126"), 509, 508, new int[]{508}, 641);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00127"), 508, 1000, null, 642);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Kuchnja_00128"), 1000, 1000, null, 620);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

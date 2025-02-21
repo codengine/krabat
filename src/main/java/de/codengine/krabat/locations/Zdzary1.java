@@ -761,84 +761,31 @@ public class Zdzary1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00021"), 1000, 80, new int[]{80}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00022"), 80, 81, new int[]{81}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00023"), 81, 82, new int[]{82, 87, 92}, 630);
+                // 1. Frage
+                Dialog.ExtendMCO("Zdzary1_74", 1000, 80, new int[]{80}, 610);
+                Dialog.ExtendMCO("Zdzary1_75", 80, 81, new int[]{81}, 620);
+                Dialog.ExtendMCO("Zdzary1_76", 81, 82, new int[]{82, 87, 92}, 630);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00024"), 1000, 83, new int[]{83}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00025"), 83, 84, new int[]{84}, 720);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00026"), 84, 85, new int[]{85}, 730);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00027"), 85, 86, new int[]{86}, 740);
+                // 2. Frage
+                Dialog.ExtendMCO("Zdzary1_77", 1000, 83, new int[]{83}, 710);
+                Dialog.ExtendMCO("Zdzary1_78", 83, 84, new int[]{84}, 720);
+                Dialog.ExtendMCO("Zdzary1_79", 84, 85, new int[]{85}, 730);
+                Dialog.ExtendMCO("Zdzary1_80", 85, 86, new int[]{86}, 740);
 
-                    // 4. Frage ( 3. = Ende )
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00028"), 87, 88, new int[]{88}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00029"), 88, 89, new int[]{89}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00030"), 89, 90, new int[]{90}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00031"), 90, 91, new int[]{91}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00032"), 91, 1000, null, 680);
+                // 4. Frage ( 3. = Ende )
+                Dialog.ExtendMCO("Zdzary1_81", 87, 88, new int[]{88}, 640);
+                Dialog.ExtendMCO("Zdzary1_82", 88, 89, new int[]{89}, 650);
+                Dialog.ExtendMCO("Zdzary1_83", 89, 90, new int[]{90}, 660);
+                Dialog.ExtendMCO("Zdzary1_84", 90, 91, new int[]{91}, 670);
+                Dialog.ExtendMCO("Zdzary1_85", 91, 1000, null, 680);
 
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00033"), 92, 93, new int[]{93}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00034"), 93, 1000, null, 700);
+                // 5. Frage
+                Dialog.ExtendMCO("Zdzary1_86", 92, 93, new int[]{93}, 690);
+                Dialog.ExtendMCO("Zdzary1_87", 93, 1000, null, 700);
 
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00035"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00036"), 1000, 80, new int[]{80}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00037"), 80, 81, new int[]{81}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00038"), 81, 82, new int[]{82, 87, 92}, 630);
+                // 3. Frage (Ende)
+                Dialog.ExtendMCO("Zdzary1_88", 1000, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00039"), 1000, 83, new int[]{83}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00040"), 83, 84, new int[]{84}, 720);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00041"), 84, 85, new int[]{85}, 730);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00042"), 85, 86, new int[]{86}, 740);
-
-                    // 4. Frage ( 3. = Ende )
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00043"), 87, 88, new int[]{88}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00044"), 88, 89, new int[]{89}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00045"), 89, 90, new int[]{90}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00046"), 90, 91, new int[]{91}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00047"), 91, 1000, null, 680);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00048"), 92, 93, new int[]{93}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00049"), 93, 1000, null, 700);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00050"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00051"), 1000, 80, new int[]{80}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00052"), 80, 81, new int[]{81}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00053"), 81, 82, new int[]{82, 87, 92}, 630);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00054"), 1000, 83, new int[]{83}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00055"), 83, 84, new int[]{84}, 720);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00056"), 84, 85, new int[]{85}, 730);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00057"), 85, 86, new int[]{86}, 740);
-
-                    // 4. Frage ( 3. = Ende )
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00058"), 87, 88, new int[]{88}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00059"), 88, 89, new int[]{89}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00060"), 89, 90, new int[]{90}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00061"), 90, 91, new int[]{91}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00062"), 91, 1000, null, 680);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00063"), 92, 93, new int[]{93}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00064"), 93, 1000, null, 700);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Zdzary1_00065"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

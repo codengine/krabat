@@ -837,83 +837,29 @@ public class Zahrodnik extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
                 handrijHoertZu = true;
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage nur, wenn noch kein Liscik
-                    if (!mainFrame.Actions[542]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00039"), 1000, 537, new int[]{537}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00040"), 537, 536, new int[]{536}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00041"), 536, 535, new int[]{535}, 612);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00042"), 535, 534, new int[]{534}, 613);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00043"), 534, 533, new int[]{533}, 614);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00044"), 533, 532, new int[]{532}, 615);
-                        if (!mainFrame.Actions[520]) {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00045"), 532, 1000, null, 618);
-                        } else {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00046"), 532, 1000, null, 620);
-                        }
+                // 1. Frage nur, wenn noch kein Liscik
+                if (!mainFrame.Actions[542]) {
+                    Dialog.ExtendMCO("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
+                    Dialog.ExtendMCO("Zahrodnik_35", 537, 536, new int[]{536}, 611);
+                    Dialog.ExtendMCO("Zahrodnik_36", 536, 535, new int[]{535}, 612);
+                    Dialog.ExtendMCO("Zahrodnik_37", 535, 534, new int[]{534}, 613);
+                    Dialog.ExtendMCO("Zahrodnik_38", 534, 533, new int[]{533}, 614);
+                    Dialog.ExtendMCO("Zahrodnik_39", 533, 532, new int[]{532}, 615);
+                    if (!mainFrame.Actions[520]) {
+                        Dialog.ExtendMCO("Zahrodnik_40", 532, 1000, null, 618);
+                    } else {
+                        Dialog.ExtendMCO("Zahrodnik_41", 532, 1000, null, 620);
                     }
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00047"), 1000, 541, new int[]{541}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00048"), 541, 540, new int[]{540}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00049"), 540, 1000, null, 632);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00050"), 1000, 1000, null, 800);
                 }
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage nur, wenn noch kein Liscik
-                    if (!mainFrame.Actions[542]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00051"), 1000, 537, new int[]{537}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00052"), 537, 536, new int[]{536}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00053"), 536, 535, new int[]{535}, 612);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00054"), 535, 534, new int[]{534}, 613);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00055"), 534, 533, new int[]{533}, 614);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00056"), 533, 532, new int[]{532}, 615);
-                        if (!mainFrame.Actions[520]) {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00057"), 532, 1000, null, 618);
-                        } else {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00058"), 532, 1000, null, 620);
-                        }
-                    }
+                // 2. Frage
+                Dialog.ExtendMCO("Zahrodnik_42", 1000, 541, new int[]{541}, 630);
+                Dialog.ExtendMCO("Zahrodnik_43", 541, 540, new int[]{540}, 631);
+                Dialog.ExtendMCO("Zahrodnik_44", 540, 1000, null, 632);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00059"), 1000, 541, new int[]{541}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00060"), 541, 540, new int[]{540}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00061"), 540, 1000, null, 632);
+                // 3. Frage
+                Dialog.ExtendMCO("Zahrodnik_45", 1000, 1000, null, 800);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00062"), 1000, 1000, null, 800);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage nur, wenn noch kein Liscik
-                    if (!mainFrame.Actions[542]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00063"), 1000, 537, new int[]{537}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00064"), 537, 536, new int[]{536}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00065"), 536, 535, new int[]{535}, 612);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00066"), 535, 534, new int[]{534}, 613);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00067"), 534, 533, new int[]{533}, 614);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00068"), 533, 532, new int[]{532}, 615);
-                        if (!mainFrame.Actions[520]) {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00069"), 532, 1000, null, 618);
-                        } else {
-                            Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00070"), 532, 1000, null, 620);
-                        }
-                    }
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00071"), 1000, 541, new int[]{541}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00072"), 541, 540, new int[]{540}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00073"), 540, 1000, null, 632);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zahrodnik_00074"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

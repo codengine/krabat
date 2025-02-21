@@ -1065,88 +1065,31 @@ public class Dingl extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("Dingl_69", 1000, 522, new int[]{522}, 620);
+                Dialog.ExtendMCO("Dingl_70", 522, 521, new int[]{521}, 621);
+                Dialog.ExtendMCO("Dingl_71", 521, 1000, null, 622);
 
-                // Obersorbische Fragen
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00051"), 1000, 522, new int[]{522}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00052"), 522, 521, new int[]{521}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00053"), 521, 1000, null, 622);
+                // 2. Frage
+                Dialog.ExtendMCO("Dingl_72", 1000, 524, new int[]{524}, 630);
+                Dialog.ExtendMCO("Dingl_73", 524, 523, new int[]{523}, 632);
+                Dialog.ExtendMCO("Dingl_74", 523, 1000, null, 633);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00054"), 1000, 524, new int[]{524}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00055"), 524, 523, new int[]{523}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00056"), 523, 1000, null, 633);
-
-                    // 3. Frage
-                    if (!mainFrame.Actions[530]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00057"), 1000, 1000, null, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00058"), 1000, 526, new int[]{526}, 641);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00059"), 526, 525, new int[]{525}, 642);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00060"), 525, 1000, null, 643);
-                    }
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00061"), 1000, 1000, null, 645);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00062"), 1000, 1000, null, 900);
+                // 3. Frage
+                if (!mainFrame.Actions[530]) {
+                    Dialog.ExtendMCO("Dingl_75", 1000, 1000, null, 640);
+                } else {
+                    Dialog.ExtendMCO("Dingl_76", 1000, 526, new int[]{526}, 641);
+                    Dialog.ExtendMCO("Dingl_77", 526, 525, new int[]{525}, 642);
+                    Dialog.ExtendMCO("Dingl_78", 525, 1000, null, 643);
                 }
-                // Niedersorbische Fragen
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00063"), 1000, 522, new int[]{522}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00064"), 522, 521, new int[]{521}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00065"), 521, 1000, null, 622);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00066"), 1000, 524, new int[]{524}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00067"), 524, 523, new int[]{523}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00068"), 523, 1000, null, 633);
+                // 4. Frage
+                Dialog.ExtendMCO("Dingl_79", 1000, 1000, null, 645);
 
-                    // 3. Frage
-                    if (!mainFrame.Actions[530]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00069"), 1000, 1000, null, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00070"), 1000, 526, new int[]{526}, 641);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00071"), 526, 525, new int[]{525}, 642);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00072"), 525, 1000, null, 643);
-                    }
+                // 5. Frage
+                Dialog.ExtendMCO("Dingl_80", 1000, 1000, null, 900);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00073"), 1000, 1000, null, 645);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00074"), 1000, 1000, null, 900);
-                }
-                // Deutsche Fragen
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00075"), 1000, 522, new int[]{522}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00076"), 522, 521, new int[]{521}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00077"), 521, 1000, null, 622);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00078"), 1000, 524, new int[]{524}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00079"), 524, 523, new int[]{523}, 632);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00080"), 523, 1000, null, 633);
-
-                    // 3. Frage
-                    if (!mainFrame.Actions[530]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00081"), 1000, 1000, null, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00082"), 1000, 526, new int[]{526}, 641);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00083"), 526, 525, new int[]{525}, 642);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00084"), 525, 1000, null, 643);
-                    }
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00085"), 1000, 1000, null, 645);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00086"), 1000, 1000, null, 900);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
@@ -1254,39 +1197,15 @@ public class Dingl extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
 
-                // Obersorbische Fragen
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00132"), 1000, 1000, null, 710);
+                // 1. Frage
+                Dialog.ExtendMCO("Dingl_81", 1000, 1000, null, 710);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00133"), 1000, 1000, new int[]{528}, 720);
+                // 2. Frage
+                Dialog.ExtendMCO("Dingl_82", 1000, 1000, new int[]{528}, 720);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00134"), 1000, 1000, null, 900);
-                }
-                // Niedersorbische Fragen
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00135"), 1000, 1000, null, 710);
+                // 3. Frage
+                Dialog.ExtendMCO("Dingl_83", 1000, 1000, null, 900);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00136"), 1000, 1000, new int[]{528}, 720);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00137"), 1000, 1000, null, 900);
-                }
-                // Deutsche Fragen
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00138"), 1000, 1000, null, 710);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00139"), 1000, 1000, new int[]{528}, 720);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00140"), 1000, 1000, null, 900);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 701;
@@ -1388,84 +1307,29 @@ public class Dingl extends Mainloc {
             case 800:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("Dingl_84", 1000, 1000, null, 810);
 
-                // Obersorbische Fragen
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00192"), 1000, 1000, null, 810);
+                // 2. Frage
+                Dialog.ExtendMCO("Dingl_85", 1000, 1000, null, 820);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00193"), 1000, 1000, null, 820);
+                // 3. Frage
+                Dialog.ExtendMCO("Dingl_86", 1000, 631, null, 830);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00194"), 1000, 631, null, 830);
-
-                    // 4. Frage
-                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00195"), 1000, 1000, null, 840);
-                    }
-
-                    // 5. Frage
-                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00196"), 1000, 1000, null, 850);
-                    }
-
-                    // 6. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00197"), 1000, 529, new int[]{529}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00198"), 529, 1000, null, 900);
+                // 4. Frage
+                if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
+                    Dialog.ExtendMCO("Dingl_87", 1000, 1000, null, 840);
                 }
 
-                // Niedersorbische Fragen
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00199"), 1000, 1000, null, 810);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00200"), 1000, 1000, null, 820);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00201"), 1000, 631, null, 830);
-
-                    // 4. Frage
-                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00202"), 1000, 1000, null, 840);
-                    }
-
-                    // 5. Frage
-                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00203"), 1000, 1000, null, 850);
-                    }
-
-                    // 6. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00204"), 1000, 529, new int[]{529}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00205"), 529, 1000, null, 900);
+                // 5. Frage
+                if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
+                    Dialog.ExtendMCO("Dingl_88", 1000, 1000, null, 850);
                 }
 
-                // Deutsche Fragen
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00206"), 1000, 1000, null, 810);
+                // 6. Frage
+                Dialog.ExtendMCO("Dingl_89", 1000, 529, new int[]{529}, 860);
+                Dialog.ExtendMCO("Dingl_90", 529, 1000, null, 900);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00207"), 1000, 1000, null, 820);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00208"), 1000, 631, null, 830);
-
-                    // 4. Frage
-                    if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00209"), 1000, 1000, null, 840);
-                    }
-
-                    // 5. Frage
-                    if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00210"), 1000, 1000, null, 850);
-                    }
-
-                    // 6. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00211"), 1000, 529, new int[]{529}, 860);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Dingl_00212"), 529, 1000, null, 900);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 801;

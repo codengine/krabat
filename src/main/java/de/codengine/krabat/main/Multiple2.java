@@ -61,14 +61,15 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     }
 
     // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
-    public void ExtendMC(String text, int Aktiv, int Gefragt, int[] Nachfolger, int nextActionID) {
+    public void ExtendMCO(String langKey, int active, int asked, int[] successors, int nextActionId) {
+        String text = Start.stringManager.getTranslation(langKey);
         // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
-        if (Aktiv < 1000 && !mainFrame.Actions[Aktiv]) {
+        if (active < 1000 && !mainFrame.Actions[active]) {
             return;
         }
 
         // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
-        if (Gefragt < 1000 && mainFrame.Actions[Gefragt]) {
+        if (asked < 1000 && mainFrame.Actions[asked]) {
             return;
         }
 
@@ -89,13 +90,13 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         }
 
         // nextActionID merken (wird zurueckgegeben bei Erfolg)
-        Nextactionids[Anzahl] = nextActionID;
+        Nextactionids[Anzahl] = nextActionId;
 
         // hier das Array fuer alle Nachfolger initialisieren (NULL = kein Array)
         for (int i = 0; i < 10; i++) {
-            if (Nachfolger != null) {
-                if (i < Nachfolger.length) {
-                    Actionvariablen[Anzahl][i] = Nachfolger[i];
+            if (successors != null) {
+                if (i < successors.length) {
+                    Actionvariablen[Anzahl][i] = successors[i];
                     // System.out.println ("Variable " + Actionvariablen [Anzahl][i] + " wurde uebernommen.");
                 } else {
                     Actionvariablen[Anzahl][i] = 1000; // 1000 -> ungueltig !

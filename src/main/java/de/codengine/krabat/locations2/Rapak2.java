@@ -793,48 +793,19 @@ public class Rapak2 extends Mainloc {
             case 620:
                 // Multiple - Choice - Routine mit dem Raben
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00027"), 1000, 251, new int[]{251}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00028"), 251, 252, new int[]{252}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00029"), 252, 1000, null, 650);
+                // 1. Frage
+                Dialog.ExtendMCO("Rapak2_18", 1000, 251, new int[]{251}, 630);
+                Dialog.ExtendMCO("Rapak2_19", 251, 252, new int[]{252}, 640);
+                Dialog.ExtendMCO("Rapak2_20", 252, 1000, null, 650);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00030"), 1000, 253, new int[]{253}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00031"), 253, 254, new int[]{254}, 670);
+                // 2. Frage
+                Dialog.ExtendMCO("Rapak2_21", 1000, 253, new int[]{253}, 660);
+                Dialog.ExtendMCO("Rapak2_22", 253, 254, new int[]{254}, 670);
 
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00032"), 1000, 255, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00033"), 255, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00034"), 1000, 251, new int[]{251}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00035"), 251, 252, new int[]{252}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00036"), 252, 1000, null, 650);
+                // 3. Frage (Ende)
+                Dialog.ExtendMCO("Rapak2_23", 1000, 255, null, 800);
+                Dialog.ExtendMCO("Rapak2_24", 255, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00037"), 1000, 253, new int[]{253}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00038"), 253, 254, new int[]{254}, 670);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00039"), 1000, 255, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00040"), 255, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00041"), 1000, 251, new int[]{251}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00042"), 251, 252, new int[]{252}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00043"), 252, 1000, null, 650);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00044"), 1000, 253, new int[]{253}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00045"), 253, 254, new int[]{254}, 670);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00046"), 1000, 255, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Rapak2_00047"), 255, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 625;

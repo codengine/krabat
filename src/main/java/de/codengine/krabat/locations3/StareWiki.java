@@ -972,72 +972,24 @@ public class StareWiki extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("StareWiki_55", 1000, 581, new int[]{581}, 610);
+                Dialog.ExtendMCO("StareWiki_56", 581, 1000, null, 611);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00015"), 1000, 581, new int[]{581}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00016"), 581, 1000, null, 611);
-
-                    // 2. Frage
-                    if (!mainFrame.Actions[604]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00017"), 581, 1000, null, 620);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00018"), 581, 1000, null, 620);
-                    }
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00019"), 581, 583, new int[]{583}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00020"), 583, 582, new int[]{582}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00021"), 582, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00022"), 1000, 1000, null, 910);
+                // 2. Frage
+                if (!mainFrame.Actions[604]) {
+                    Dialog.ExtendMCO("StareWiki_57", 581, 1000, null, 620);
+                } else {
+                    Dialog.ExtendMCO("StareWiki_58", 581, 1000, null, 620);
                 }
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00023"), 1000, 581, new int[]{581}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00024"), 581, 1000, null, 611);
+                // 3. Frage
+                Dialog.ExtendMCO("StareWiki_59", 581, 583, new int[]{583}, 630);
+                Dialog.ExtendMCO("StareWiki_60", 583, 582, new int[]{582}, 631);
+                Dialog.ExtendMCO("StareWiki_61", 582, 1000, null, 634);
 
-                    // 2. Frage
-                    if (!mainFrame.Actions[604]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00025"), 581, 1000, null, 620);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00026"), 581, 1000, null, 620);
-                    }
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00027"), 581, 583, new int[]{583}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00028"), 583, 582, new int[]{582}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00029"), 582, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00030"), 1000, 1000, null, 910);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00031"), 1000, 581, new int[]{581}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00032"), 581, 1000, null, 611);
-
-                    // 2. Frage
-                    if (!mainFrame.Actions[604]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00033"), 581, 1000, null, 620);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00034"), 581, 1000, null, 620);
-                    }
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00035"), 581, 583, new int[]{583}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00036"), 583, 582, new int[]{582}, 631);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00037"), 582, 1000, null, 634);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00038"), 1000, 1000, null, 910);
-                }
+                // 4. Frage
+                Dialog.ExtendMCO("StareWiki_62", 1000, 1000, null, 910);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
@@ -1145,51 +1097,18 @@ public class StareWiki extends Mainloc {
             case 700:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("StareWiki_63", 1000, 587, new int[]{587}, 710);
+                Dialog.ExtendMCO("StareWiki_64", 587, 586, new int[]{586}, 711);
+                Dialog.ExtendMCO("StareWiki_65", 586, 585, new int[]{585}, 713);
+                Dialog.ExtendMCO("StareWiki_66", 585, 1000, null, 711);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00084"), 1000, 587, new int[]{587}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00085"), 587, 586, new int[]{586}, 711);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00086"), 586, 585, new int[]{585}, 713);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00087"), 585, 1000, null, 711);
+                // 2. Frage
+                Dialog.ExtendMCO("StareWiki_67", 587, 1000, null, 720);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00088"), 587, 1000, null, 720);
+                // 3. Frage
+                Dialog.ExtendMCO("StareWiki_68", 1000, 1000, null, 910);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00089"), 1000, 1000, null, 910);
-                }
-
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00090"), 1000, 587, new int[]{587}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00091"), 587, 586, new int[]{586}, 711);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00092"), 586, 585, new int[]{585}, 713);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00093"), 585, 1000, null, 711);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00094"), 587, 1000, null, 720);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00095"), 1000, 1000, null, 910);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00096"), 1000, 587, new int[]{587}, 710);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00097"), 587, 586, new int[]{586}, 711);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00098"), 586, 585, new int[]{585}, 713);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00099"), 585, 1000, null, 711);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00100"), 587, 1000, null, 720);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00101"), 1000, 1000, null, 910);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 701;
@@ -1257,72 +1176,25 @@ public class StareWiki extends Mainloc {
             case 800:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
+                // 1. Frage
+                Dialog.ExtendMCO("StareWiki_69", 1000, 591, new int[]{591}, 810);
+                Dialog.ExtendMCO("StareWiki_70", 591, 590, new int[]{590}, 811);
+                Dialog.ExtendMCO("StareWiki_71", 590, 1000, null, 812);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00123"), 1000, 591, new int[]{591}, 810);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00124"), 591, 590, new int[]{590}, 811);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00125"), 590, 1000, null, 812);
+                // 2. Frage
+                Dialog.ExtendMCO("StareWiki_72", 1000, 596, new int[]{596}, 820);
+                Dialog.ExtendMCO("StareWiki_73", 596, 595, new int[]{595}, 821);
+                Dialog.ExtendMCO("StareWiki_74", 595, 594, new int[]{594}, 822);
+                Dialog.ExtendMCO("StareWiki_75", 594, 593, new int[]{593}, 823);
+                Dialog.ExtendMCO("StareWiki_76", 593, 592, new int[]{592}, 824);
+                Dialog.ExtendMCO("StareWiki_77", 592, 1000, null, 825);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00126"), 1000, 596, new int[]{596}, 820);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00127"), 596, 595, new int[]{595}, 821);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00128"), 595, 594, new int[]{594}, 822);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00129"), 594, 593, new int[]{593}, 823);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00130"), 593, 592, new int[]{592}, 824);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00131"), 592, 1000, null, 825);
+                // 3. Frage
+                Dialog.ExtendMCO("StareWiki_78", 1000, 1000, null, 830);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00132"), 1000, 1000, null, 830);
+                // 4. Frage
+                Dialog.ExtendMCO("StareWiki_79", 1000, 1000, null, 910);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00133"), 1000, 1000, null, 910);
-                }
-
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00134"), 1000, 591, new int[]{591}, 810);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00135"), 591, 590, new int[]{590}, 811);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00136"), 590, 1000, null, 812);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00137"), 1000, 596, new int[]{596}, 820);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00138"), 596, 595, new int[]{595}, 821);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00139"), 595, 594, new int[]{594}, 822);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00140"), 594, 593, new int[]{593}, 823);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00141"), 593, 592, new int[]{592}, 824);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00142"), 592, 1000, null, 825);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00143"), 1000, 1000, null, 830);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00144"), 1000, 1000, null, 910);
-                }
-
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00145"), 1000, 591, new int[]{591}, 810);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00146"), 591, 590, new int[]{590}, 811);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00147"), 590, 1000, null, 812);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00148"), 1000, 596, new int[]{596}, 820);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00149"), 596, 595, new int[]{595}, 821);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00150"), 595, 594, new int[]{594}, 822);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00151"), 594, 593, new int[]{593}, 823);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00152"), 593, 592, new int[]{592}, 824);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00153"), 592, 1000, null, 825);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00154"), 1000, 1000, null, 830);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_StareWiki_00155"), 1000, 1000, null, 910);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 801;

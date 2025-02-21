@@ -2061,70 +2061,26 @@ public class Haty1 extends Mainloc {
             case 610:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00234"), 1000, 140, new int[]{140}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00235"), 140, 141, new int[]{141}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00236"), 141, 142, new int[]{142}, 640);
+                // 1. Frage
+                Dialog.ExtendMCO("Haty1_93", 1000, 140, new int[]{140}, 620);
+                Dialog.ExtendMCO("Haty1_94", 140, 141, new int[]{141}, 630);
+                Dialog.ExtendMCO("Haty1_95", 141, 142, new int[]{142}, 640);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00237"), 1000, 143, new int[]{143}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00238"), 143, 144, new int[]{144}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00239"), 144, 145, null, 670);
+                // 2. Frage
+                Dialog.ExtendMCO("Haty1_96", 1000, 143, new int[]{143}, 650);
+                Dialog.ExtendMCO("Haty1_97", 143, 144, new int[]{144}, 660);
+                Dialog.ExtendMCO("Haty1_98", 144, 145, null, 670);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00240"), 1000, 146, new int[]{146}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00241"), 146, 147, new int[]{148, 150}, 690);
+                // 3. Frage
+                Dialog.ExtendMCO("Haty1_99", 1000, 146, new int[]{146}, 680);
+                Dialog.ExtendMCO("Haty1_100", 146, 147, new int[]{148, 150}, 690);
 
-                    // 5. Frage (4. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00242"), 148, 149, null, 700);
+                // 5. Frage (4. = Ende)
+                Dialog.ExtendMCO("Haty1_101", 148, 149, null, 700);
 
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00243"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00244"), 1000, 140, new int[]{140}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00245"), 140, 141, new int[]{141}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00246"), 141, 142, new int[]{142}, 640);
+                // 4. Frage (Ende)
+                Dialog.ExtendMCO("Haty1_102", 1000, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00247"), 1000, 143, new int[]{143}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00248"), 143, 144, new int[]{144}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00249"), 144, 145, null, 670);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00250"), 1000, 146, new int[]{146}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00251"), 146, 147, new int[]{148, 150}, 690);
-
-                    // 5. Frage (4. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00252"), 148, 149, null, 700);
-
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00253"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00254"), 1000, 140, new int[]{140}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00255"), 140, 141, new int[]{141}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00256"), 141, 142, new int[]{142}, 640);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00257"), 1000, 143, new int[]{143}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00258"), 143, 144, new int[]{144}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00259"), 144, 145, null, 670);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00260"), 1000, 146, new int[]{146}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00261"), 146, 147, new int[]{148, 150}, 690);
-
-                    // 5. Frage (4. = Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00262"), 148, 149, null, 700);
-
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00263"), 1000, 1000, null, 800);
-
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 611;
@@ -2247,36 +2203,15 @@ public class Haty1 extends Mainloc {
             case 900:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00318"), 1000, 1000, null, 910);
+                // 1. Frage
+                Dialog.ExtendMCO("Haty1_103", 1000, 1000, null, 910);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00319"), 1000, 1000, null, 910);
+                // 2. Frage
+                Dialog.ExtendMCO("Haty1_104", 1000, 1000, null, 910);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00320"), 1000, 1000, null, 1000);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00321"), 1000, 1000, null, 910);
+                // 3. Frage
+                Dialog.ExtendMCO("Haty1_105", 1000, 1000, null, 1000);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00322"), 1000, 1000, null, 910);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00323"), 1000, 1000, null, 1000);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00324"), 1000, 1000, null, 910);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00325"), 1000, 1000, null, 910);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Haty1_00326"), 1000, 1000, null, 1000);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 901;

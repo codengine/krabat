@@ -921,84 +921,29 @@ public class Zastup extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    if (!mainFrame.Actions[575]) {
-                        // 1. Frage, nur wenn noch kein Pelz
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00027"), 1000, 571, new int[]{571}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00028"), 571, 570, new int[]{570}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00029"), 570, 1000, null, 612);
-                    }
-
-                    // 2. Frage kommt immer
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00030"), 1000, 1000, null, 620);
-
-                    if (!mainFrame.Actions[575]) {
-                        // 3. Frage, nur wenn noch kein Pelz
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00031"), 1000, 572, new int[]{572}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00032"), 572, 1000, null, 631);
-                    }
-
-                    // 4. Frage, kommt immer
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00033"), 1000, 573, new int[]{573}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00034"), 573, 1000, null, 641);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00035"), 1000, 1000, null, 800);
+                if (!mainFrame.Actions[575]) {
+                    // 1. Frage, nur wenn noch kein Pelz
+                    Dialog.ExtendMCO("Zastup_19", 1000, 571, new int[]{571}, 610);
+                    Dialog.ExtendMCO("Zastup_20", 571, 570, new int[]{570}, 611);
+                    Dialog.ExtendMCO("Zastup_21", 570, 1000, null, 612);
                 }
 
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    if (!mainFrame.Actions[575]) {
-                        // 1. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00036"), 1000, 571, new int[]{571}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00037"), 571, 570, new int[]{570}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00038"), 570, 1000, null, 612);
-                    }
+                // 2. Frage kommt immer
+                Dialog.ExtendMCO("Zastup_22", 1000, 1000, null, 620);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00039"), 1000, 1000, null, 620);
-
-                    if (!mainFrame.Actions[575]) {
-                        // 3. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00040"), 1000, 572, new int[]{572}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00041"), 572, 1000, null, 631);
-                    }
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00042"), 1000, 573, new int[]{573}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00043"), 573, 1000, null, 641);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00044"), 1000, 1000, null, 800);
+                if (!mainFrame.Actions[575]) {
+                    // 3. Frage, nur wenn noch kein Pelz
+                    Dialog.ExtendMCO("Zastup_23", 1000, 572, new int[]{572}, 630);
+                    Dialog.ExtendMCO("Zastup_24", 572, 1000, null, 631);
                 }
 
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    if (!mainFrame.Actions[575]) {
-                        // 1. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00045"), 1000, 571, new int[]{571}, 610);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00046"), 571, 570, new int[]{570}, 611);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00047"), 570, 1000, null, 612);
-                    }
+                // 4. Frage, kommt immer
+                Dialog.ExtendMCO("Zastup_25", 1000, 573, new int[]{573}, 640);
+                Dialog.ExtendMCO("Zastup_26", 573, 1000, null, 641);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00048"), 1000, 1000, null, 620);
+                // 5. Frage
+                Dialog.ExtendMCO("Zastup_27", 1000, 1000, null, 800);
 
-                    if (!mainFrame.Actions[575]) {
-                        // 3. Frage
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00049"), 1000, 572, new int[]{572}, 630);
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00050"), 572, 1000, null, 631);
-                    }
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00051"), 1000, 573, new int[]{573}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00052"), 573, 1000, null, 641);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Zastup_00053"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

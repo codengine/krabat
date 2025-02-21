@@ -1495,51 +1495,18 @@ public class Casnik extends Mainloc {
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
 
-                // Obersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00084"), 1000, 602, new int[]{602}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00085"), 602, 1000, null, 611);
+                // 1. Frage
+                Dialog.ExtendMCO("Casnik_29", 1000, 602, new int[]{602}, 610);
+                Dialog.ExtendMCO("Casnik_30", 602, 1000, null, 611);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00086"), 1000, 604, new int[]{604}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00087"), 604, 603, new int[]{603}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00088"), 603, 1000, null, 622);
+                // 2. Frage
+                Dialog.ExtendMCO("Casnik_31", 1000, 604, new int[]{604}, 620);
+                Dialog.ExtendMCO("Casnik_32", 604, 603, new int[]{603}, 621);
+                Dialog.ExtendMCO("Casnik_33", 603, 1000, null, 622);
 
-                    // 3. Frage (607)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00089"), 1000, 607, new int[]{607}, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00090"), 607, 1000, null, 800);
-                }
-                // Niedersorbische Fragen /////////////////////////////////
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00091"), 1000, 602, new int[]{602}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00092"), 602, 1000, null, 611);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00093"), 1000, 604, new int[]{604}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00094"), 604, 603, new int[]{603}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00095"), 603, 1000, null, 622);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00096"), 1000, 607, new int[]{607}, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00097"), 607, 1000, null, 800);
-                }
-                // Deutsche Fragen /////////////////////////////////
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00098"), 1000, 602, new int[]{602}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00099"), 602, 1000, null, 611);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00100"), 1000, 604, new int[]{604}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00101"), 604, 603, new int[]{603}, 621);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00102"), 603, 1000, null, 622);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00103"), 1000, 607, new int[]{607}, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc3_Casnik_00104"), 607, 1000, null, 800);
-                }
+                // 3. Frage (607)
+                Dialog.ExtendMCO("Casnik_34", 1000, 607, new int[]{607}, 800);
+                Dialog.ExtendMCO("Casnik_35", 607, 1000, null, 800);
 
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;

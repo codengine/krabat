@@ -1117,72 +1117,27 @@ public class Wjes1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00042"), 1000, 60, new int[]{60}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00043"), 60, 61, new int[]{61}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00044"), 61, 62, new int[]{62, 63, 65}, 630);
+                // 1. Frage
+                Dialog.ExtendMCO("Wjes1_34", 1000, 60, new int[]{60}, 610);
+                Dialog.ExtendMCO("Wjes1_35", 60, 61, new int[]{61}, 620);
+                Dialog.ExtendMCO("Wjes1_36", 61, 62, new int[]{62, 63, 65}, 630);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00045"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00046"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00047"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00048"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00049"), 69, 70, new int[]{70}, 700);
+                // 2. Frage
+                Dialog.ExtendMCO("Wjes1_37", 1000, 66, new int[]{66}, 660);
+                Dialog.ExtendMCO("Wjes1_38", 66, 67, new int[]{67}, 670);
+                Dialog.ExtendMCO("Wjes1_39", 67, 68, new int[]{68}, 680);
+                Dialog.ExtendMCO("Wjes1_40", 68, 69, new int[]{69}, 690);
+                Dialog.ExtendMCO("Wjes1_41", 69, 70, new int[]{70}, 700);
 
-                    // 4. Frage (3. bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00050"), 63, 64, new int[]{64}, 640);
+                // 4. Frage (3. bedeutet Ende)
+                Dialog.ExtendMCO("Wjes1_42", 63, 64, new int[]{64}, 640);
 
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00051"), 65, 1000, null, 650);
+                // 5. Frage
+                Dialog.ExtendMCO("Wjes1_43", 65, 1000, null, 650);
 
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00052"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00053"), 1000, 60, new int[]{60}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00054"), 60, 61, new int[]{61}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00055"), 61, 62, new int[]{62, 63, 65}, 630);
+                // 3. Frage (bedeutet Ende)
+                Dialog.ExtendMCO("Wjes1_44", 1000, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00056"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00057"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00058"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00059"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00060"), 69, 70, new int[]{70}, 700);
-
-                    // 4. Frage (3. bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00061"), 63, 64, new int[]{64}, 640);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00062"), 65, 1000, null, 650);
-
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00063"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00064"), 1000, 60, new int[]{60}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00065"), 60, 61, new int[]{61}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00066"), 61, 62, new int[]{62, 63, 65}, 630);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00067"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00068"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00069"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00070"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00071"), 69, 70, new int[]{70}, 700);
-
-                    // 4. Frage (3. bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00072"), 63, 64, new int[]{64}, 640);
-
-                    // 5. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00073"), 65, 1000, null, 650);
-
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Wjes1_00074"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

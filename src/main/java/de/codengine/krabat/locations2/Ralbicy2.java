@@ -742,51 +742,20 @@ public class Ralbicy2 extends Mainloc2 {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00018"), 1000, 22, new int[]{22}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00019"), 22, 21, new int[]{21}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00020"), 21, 20, new int[]{20}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00021"), 20, 1000, null, 610);
+                // 1. Frage
+                Dialog.ExtendMCO("Ralbicy2_18", 1000, 22, new int[]{22}, 640);
+                Dialog.ExtendMCO("Ralbicy2_19", 22, 21, new int[]{21}, 630);
+                Dialog.ExtendMCO("Ralbicy2_20", 21, 20, new int[]{20}, 620);
+                Dialog.ExtendMCO("Ralbicy2_21", 20, 1000, null, 610);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00022"), 1000, 23, new int[]{23}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00023"), 23, 24, new int[]{24}, 650);
+                // 2. Frage
+                Dialog.ExtendMCO("Ralbicy2_22", 1000, 23, new int[]{23}, 660);
+                Dialog.ExtendMCO("Ralbicy2_23", 23, 24, new int[]{24}, 650);
 
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00024"), 25, 1000, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00025"), 1000, 25, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00026"), 1000, 22, new int[]{22}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00027"), 22, 21, new int[]{21}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00028"), 21, 20, new int[]{20}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00029"), 20, 1000, null, 610);
+                // 4. Frage
+                Dialog.ExtendMCO("Ralbicy2_24", 25, 1000, null, 800);
+                Dialog.ExtendMCO("Ralbicy2_25", 1000, 25, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00030"), 1000, 23, new int[]{23}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00031"), 23, 24, new int[]{24}, 650);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00032"), 25, 1000, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00033"), 1000, 25, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00034"), 1000, 22, new int[]{22}, 640);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00035"), 22, 21, new int[]{21}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00036"), 21, 20, new int[]{20}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00037"), 20, 1000, null, 610);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00038"), 1000, 23, new int[]{23}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00039"), 23, 24, new int[]{24}, 650);
-
-                    // 4. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00040"), 25, 1000, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Ralbicy2_00041"), 1000, 25, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

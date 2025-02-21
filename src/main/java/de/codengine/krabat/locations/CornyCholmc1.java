@@ -690,36 +690,15 @@ public class CornyCholmc1 extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine, Mueller kommt aber nie
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00024"), 1000, 1000, null, 610);
+                // 1. Frage
+                Dialog.ExtendMCO("CornyCholmc1_13", 1000, 1000, null, 610);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00025"), 1000, 1000, null, 620);
+                // 2. Frage
+                Dialog.ExtendMCO("CornyCholmc1_14", 1000, 1000, null, 620);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00026"), 1000, 1000, null, 630);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00027"), 1000, 1000, null, 610);
+                // 3. Frage
+                Dialog.ExtendMCO("CornyCholmc1_15", 1000, 1000, null, 630);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00028"), 1000, 1000, null, 620);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00029"), 1000, 1000, null, 630);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00030"), 1000, 1000, null, 610);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00031"), 1000, 1000, null, 620);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00032"), 1000, 1000, null, 630);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
@@ -767,36 +746,15 @@ public class CornyCholmc1 extends Mainloc {
             case 1000:
                 // Multiple - Choice - Routine, Mueller kommt bei letztem Spruch
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00042"), 1000, 1000, null, 610);
+                // 1. Frage
+                Dialog.ExtendMCO("CornyCholmc1_16", 1000, 1000, null, 610);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00043"), 1000, 1000, null, 620);
+                // 2. Frage
+                Dialog.ExtendMCO("CornyCholmc1_17", 1000, 1000, null, 620);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00044"), 1000, 1000, null, 1010);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00045"), 1000, 1000, null, 610);
+                // 3. Frage
+                Dialog.ExtendMCO("CornyCholmc1_18", 1000, 1000, null, 1010);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00046"), 1000, 1000, null, 620);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00047"), 1000, 1000, null, 1010);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00048"), 1000, 1000, null, 610);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00049"), 1000, 1000, null, 620);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_CornyCholmc1_00050"), 1000, 1000, null, 1010);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 1001;

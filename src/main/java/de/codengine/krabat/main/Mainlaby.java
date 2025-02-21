@@ -326,66 +326,25 @@ abstract public class Mainlaby extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine mit Bludnicki
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00012"), 1000, 180, new int[]{180, 168}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00013"), 180, 181, new int[]{181}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00014"), 181, 182, new int[]{182, 197}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00015"), 195, 196, new int[]{182, 196}, 630);
-                    if (!mainFrame.Actions[184]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00016"), 182, 183, new int[]{183, 195}, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00017"), 182, 183, new int[]{183, 195}, 640);
-                    }
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00018"), 1000, 185, new int[]{185, 168}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00019"), 185, 1000, null, 660);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00020"), 1000, 186, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00021"), 186, 1000, null, 800);
+                // 1. Frage
+                Dialog.ExtendMCO("Mainlaby_12", 1000, 180, new int[]{180, 168}, 610);
+                Dialog.ExtendMCO("Mainlaby_13", 180, 181, new int[]{181}, 620);
+                Dialog.ExtendMCO("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
+                Dialog.ExtendMCO("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
+                if (!mainFrame.Actions[184]) {
+                    Dialog.ExtendMCO("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
+                } else {
+                    Dialog.ExtendMCO("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
                 }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00022"), 1000, 180, new int[]{180, 168}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00023"), 180, 181, new int[]{181}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00024"), 181, 182, new int[]{182, 197}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00025"), 195, 196, new int[]{182, 196}, 630);
-                    if (!mainFrame.Actions[184]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00026"), 182, 183, new int[]{183, 195}, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00027"), 182, 183, new int[]{183, 195}, 640);
-                    }
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00028"), 1000, 185, new int[]{185, 168}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00029"), 185, 1000, null, 660);
+                // 2. Frage
+                Dialog.ExtendMCO("Mainlaby_18", 1000, 185, new int[]{185, 168}, 650);
+                Dialog.ExtendMCO("Mainlaby_19", 185, 1000, null, 660);
 
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00030"), 1000, 186, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00031"), 186, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00032"), 1000, 180, new int[]{180, 168}, 610);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00033"), 180, 181, new int[]{181}, 620);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00034"), 181, 182, new int[]{182, 197}, 630);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00035"), 195, 196, new int[]{182, 196}, 630);
-                    if (!mainFrame.Actions[184]) {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00036"), 182, 183, new int[]{183, 195}, 640);
-                    } else {
-                        Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00037"), 182, 183, new int[]{183, 195}, 640);
-                    }
+                // 3. Frage (Ende)
+                Dialog.ExtendMCO("Mainlaby_20", 1000, 186, null, 800);
+                Dialog.ExtendMCO("Mainlaby_21", 186, 1000, null, 800);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00038"), 1000, 185, new int[]{185, 168}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00039"), 185, 1000, null, 660);
-
-                    // 3. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00040"), 1000, 186, null, 800);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Main_Mainlaby_00041"), 186, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;

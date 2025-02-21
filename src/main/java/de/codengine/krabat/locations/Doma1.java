@@ -1254,54 +1254,21 @@ public class Doma1 extends Mainloc {
             case 630:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00066"), 1000, 1, new int[]{1}, 640);
+                // 1. Frage
+                Dialog.ExtendMCO("Doma1_26", 1000, 1, new int[]{1}, 640);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00067"), 1000, 3, new int[]{3}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00068"), 3, 4, new int[]{4}, 670);
+                // 2. Frage
+                Dialog.ExtendMCO("Doma1_27", 1000, 3, new int[]{3}, 660);
+                Dialog.ExtendMCO("Doma1_28", 3, 4, new int[]{4}, 670);
 
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00069"), 1000, 2, new int[]{2}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00070"), 2, 5, new int[]{5}, 680);
+                // 3. Frage
+                Dialog.ExtendMCO("Doma1_29", 1000, 2, new int[]{2}, 650);
+                Dialog.ExtendMCO("Doma1_30", 2, 5, new int[]{5}, 680);
 
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00071"), 6, 7, null, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00072"), 7, 1000, null, 690);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00073"), 1000, 1, new int[]{1}, 640);
+                // 4. Frage (Ende)
+                Dialog.ExtendMCO("Doma1_31", 6, 7, null, 690);
+                Dialog.ExtendMCO("Doma1_32", 7, 1000, null, 690);
 
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00074"), 1000, 3, new int[]{3}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00075"), 3, 4, new int[]{4}, 670);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00076"), 1000, 2, new int[]{2}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00077"), 2, 5, new int[]{5}, 680);
-
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00078"), 6, 7, null, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00079"), 7, 1000, null, 690);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 1. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00080"), 1000, 1, new int[]{1}, 640);
-
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00081"), 1000, 3, new int[]{3}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00082"), 3, 4, new int[]{4}, 670);
-
-                    // 3. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00083"), 1000, 2, new int[]{2}, 650);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00084"), 2, 5, new int[]{5}, 680);
-
-                    // 4. Frage (Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00085"), 6, 7, null, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc1_Doma1_00086"), 7, 1000, null, 690);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 631;

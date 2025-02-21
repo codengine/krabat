@@ -1252,39 +1252,16 @@ public class Wjes2 extends Mainloc2 {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (mainFrame.sprache == 1) {
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00045"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00046"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00047"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00048"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00049"), 69, 70, new int[]{70}, 700);
+                // 2. Frage
+                Dialog.ExtendMCO("Wjes2_30", 1000, 66, new int[]{66}, 660);
+                Dialog.ExtendMCO("Wjes2_31", 66, 67, new int[]{67}, 670);
+                Dialog.ExtendMCO("Wjes2_32", 67, 68, new int[]{68}, 680);
+                Dialog.ExtendMCO("Wjes2_33", 68, 69, new int[]{69}, 690);
+                Dialog.ExtendMCO("Wjes2_34", 69, 70, new int[]{70}, 700);
 
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00050"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 2) {
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00051"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00052"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00053"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00054"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00055"), 69, 70, new int[]{70}, 700);
+                // 3. Frage (bedeutet Ende)
+                Dialog.ExtendMCO("Wjes2_35", 1000, 1000, null, 800);
 
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00056"), 1000, 1000, null, 800);
-                }
-                if (mainFrame.sprache == 3) {
-                    // 2. Frage
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00057"), 1000, 66, new int[]{66}, 660);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00058"), 66, 67, new int[]{67}, 670);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00059"), 67, 68, new int[]{68}, 680);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00060"), 68, 69, new int[]{69}, 690);
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00061"), 69, 70, new int[]{70}, 700);
-
-                    // 3. Frage (bedeutet Ende)
-                    Dialog.ExtendMC(Start.stringManager.getTranslation("Loc2_Wjes2_00062"), 1000, 1000, null, 800);
-                }
                 mainFrame.isMultiple = true;
                 mainFrame.fPlayAnim = false;
                 nextActionID = 601;
