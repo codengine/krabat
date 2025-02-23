@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Haty1 extends Mainloc {
+public class Haty1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Haty1.class);
     private GenericImage background;
     private boolean switchanim = false;
@@ -208,43 +208,43 @@ public class Haty1 extends Mainloc {
         InitImages();
 
         // wenn kein Load, dann die Moeglichkeit, dass mehr Muell da ist, berechnen
-        if (oldLocation != 0 && mainFrame.Actions[220]) {
+        if (oldLocation != 0 && mainFrame.actions[220]) {
             // angler muessen auch links sein
             // Actions von 152 bis 155
 
             // Zufallszahl erzeugen, die unseren Bedingungen nuetzlich ist
             int zz = (int) (Math.random() * 100);
 
-            if (!mainFrame.Actions[152])  // hier wird die Muellgroesse evaluiert
+            if (!mainFrame.actions[152])  // hier wird die Muellgroesse evaluiert
             {
                 // Stufe 1
                 if (zz > 70) {
-                    mainFrame.Actions[152] = true;
+                    mainFrame.actions[152] = true;
                     whichMuell = 0;
                 }
             } else {
                 whichMuell = 0;
-                if (!mainFrame.Actions[153]) {
+                if (!mainFrame.actions[153]) {
                     // Stufe 2
                     if (zz > 80) {
-                        mainFrame.Actions[153] = true;
+                        mainFrame.actions[153] = true;
                         whichMuell = 1;
                     }
 
                 } else {
                     whichMuell = 1;
-                    if (!mainFrame.Actions[154]) {
+                    if (!mainFrame.actions[154]) {
                         // Stufe 3
                         if (zz > 90) {
-                            mainFrame.Actions[154] = true;
+                            mainFrame.actions[154] = true;
                             whichMuell = 2;
                         }
                     } else {
                         whichMuell = 2;
-                        if (!mainFrame.Actions[155]) {
+                        if (!mainFrame.actions[155]) {
                             // Stufe 4
                             if (zz > 93) {
-                                mainFrame.Actions[155] = true;
+                                mainFrame.actions[155] = true;
                                 whichMuell = 3;
                             }
                         } else {
@@ -280,28 +280,28 @@ public class Haty1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/haty/haty2.gif");
+        background = getPicture("gfx/haty/haty2.png");
 
-        Boot[1] = getPicture("gfx/haty/bt3.gif");
-        Boot[2] = getPicture("gfx/haty/bt4.gif");
-        Boot[3] = getPicture("gfx/haty/bt5.gif");
-        Boot[4] = getPicture("gfx/haty/bt6.gif");
-        Boot[5] = getPicture("gfx/haty/bt7.gif");
-        Boot[6] = getPicture("gfx/haty/bt8.gif");
-        Boot[7] = getPicture("gfx/haty/bt9.gif");
-        Boot[8] = getPicture("gfx/haty/bt10.gif");
+        Boot[1] = getPicture("gfx/haty/bt3.png");
+        Boot[2] = getPicture("gfx/haty/bt4.png");
+        Boot[3] = getPicture("gfx/haty/bt5.png");
+        Boot[4] = getPicture("gfx/haty/bt6.png");
+        Boot[5] = getPicture("gfx/haty/bt7.png");
+        Boot[6] = getPicture("gfx/haty/bt8.png");
+        Boot[7] = getPicture("gfx/haty/bt9.png");
+        Boot[8] = getPicture("gfx/haty/bt10.png");
 
-        muell[0] = getPicture("gfx/haty/muell1.gif");
-        muell[1] = getPicture("gfx/haty/muell2.gif");
-        muell[2] = getPicture("gfx/haty/muell3.gif");
-        muell[3] = getPicture("gfx/haty/muell4.gif");
+        muell[0] = getPicture("gfx/haty/muell1.png");
+        muell[1] = getPicture("gfx/haty/muell2.png");
+        muell[2] = getPicture("gfx/haty/muell3.png");
+        muell[3] = getPicture("gfx/haty/muell4.png");
 
     }
 
     // Anglerpositionen definieren
     private void InitAngler() {
         // Hier berechnen, auf welcher Seite die netten Angler stehen...
-        if (!mainFrame.Actions[220]) {
+        if (!mainFrame.actions[220]) {
             // stehen rechts
             angler1.setPos(wudzer1RightFeet);
             angler1.SetFacing(3);
@@ -310,30 +310,30 @@ public class Haty1 extends Mainloc {
             angler2.SetFacing(3);
 
             // Grenzen setzen
-            mainFrame.wegGeher.vBorders.removeAllElements();
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(38, 93, 16, 93, 326, 340));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
+            mainFrame.pathWalker.vBorders.removeAllElements();
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(38, 93, 16, 93, 326, 340));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (459, 525, 459, 542, 345, 364));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
 
             // Matrix loeschen
-            mainFrame.wegSucher.ClearMatrix(9);
+            mainFrame.pathFinder.ClearMatrix(9);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            mainFrame.wegSucher.PosVerbinden(0, 1);
-            mainFrame.wegSucher.PosVerbinden(1, 5);
-            mainFrame.wegSucher.PosVerbinden(2, 3);
-            mainFrame.wegSucher.PosVerbinden(3, 4);
-            mainFrame.wegSucher.PosVerbinden(4, 5);
-            mainFrame.wegSucher.PosVerbinden(5, 6);
-            mainFrame.wegSucher.PosVerbinden(6, 7);
-            mainFrame.wegSucher.PosVerbinden(5, 8);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(1, 5);
+            mainFrame.pathFinder.PosVerbinden(2, 3);
+            mainFrame.pathFinder.PosVerbinden(3, 4);
+            mainFrame.pathFinder.PosVerbinden(4, 5);
+            mainFrame.pathFinder.PosVerbinden(5, 6);
+            mainFrame.pathFinder.PosVerbinden(6, 7);
+            mainFrame.pathFinder.PosVerbinden(5, 8);
 
         } else {
             // stehen links
@@ -344,50 +344,50 @@ public class Haty1 extends Mainloc {
             angler2.SetFacing(9);
 
             // Grenzen setzen
-            mainFrame.wegGeher.vBorders.removeAllElements();
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
+            mainFrame.pathWalker.vBorders.removeAllElements();
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez ( 38,  93,  16,  93, 326, 340));
 
             // dieses nur solange, wie kein Muell zu sehen ist
-            if (!mainFrame.Actions[152]) {
-                mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
+            if (!mainFrame.actions[152]) {
+                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
             }
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(459, 525, 459, 542, 345, 364));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(459, 525, 459, 542, 345, 364));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
 
             // Matrix loeschen, je nachdem, wie gross noch ist
-            mainFrame.wegSucher.ClearMatrix(mainFrame.Actions[152] ? 8 : 9);
+            mainFrame.pathFinder.ClearMatrix(mainFrame.actions[152] ? 8 : 9);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            if (!mainFrame.Actions[152]) {
-                mainFrame.wegSucher.PosVerbinden(0, 1);
-                mainFrame.wegSucher.PosVerbinden(1, 4);
-                mainFrame.wegSucher.PosVerbinden(2, 3);
-                mainFrame.wegSucher.PosVerbinden(3, 4);
-                mainFrame.wegSucher.PosVerbinden(4, 5);
-                mainFrame.wegSucher.PosVerbinden(5, 6);
-                mainFrame.wegSucher.PosVerbinden(6, 7);
-                mainFrame.wegSucher.PosVerbinden(4, 8);
+            if (!mainFrame.actions[152]) {
+                mainFrame.pathFinder.PosVerbinden(0, 1);
+                mainFrame.pathFinder.PosVerbinden(1, 4);
+                mainFrame.pathFinder.PosVerbinden(2, 3);
+                mainFrame.pathFinder.PosVerbinden(3, 4);
+                mainFrame.pathFinder.PosVerbinden(4, 5);
+                mainFrame.pathFinder.PosVerbinden(5, 6);
+                mainFrame.pathFinder.PosVerbinden(6, 7);
+                mainFrame.pathFinder.PosVerbinden(4, 8);
             } else {
-                mainFrame.wegSucher.PosVerbinden(0, 1);
-                mainFrame.wegSucher.PosVerbinden(1, 3);
-                mainFrame.wegSucher.PosVerbinden(2, 3);
-                mainFrame.wegSucher.PosVerbinden(3, 4);
-                mainFrame.wegSucher.PosVerbinden(4, 5);
-                mainFrame.wegSucher.PosVerbinden(5, 6);
-                mainFrame.wegSucher.PosVerbinden(3, 7);
+                mainFrame.pathFinder.PosVerbinden(0, 1);
+                mainFrame.pathFinder.PosVerbinden(1, 3);
+                mainFrame.pathFinder.PosVerbinden(2, 3);
+                mainFrame.pathFinder.PosVerbinden(3, 4);
+                mainFrame.pathFinder.PosVerbinden(4, 5);
+                mainFrame.pathFinder.PosVerbinden(5, 6);
+                mainFrame.pathFinder.PosVerbinden(3, 7);
             }
         }
     }
 
     private void InitEimer() {
         // Hier berechnen, auf welcher Seite der Eimer steht...
-        eimerPos = !mainFrame.Actions[220] ? eimerRechts : eimerLinks;
+        eimerPos = !mainFrame.actions[220] ? eimerRechts : eimerLinks;
         eimerRect = new Borderrect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
     }
 
@@ -475,19 +475,19 @@ public class Haty1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if (mainFrame.isMultiple && mainFrame.Clipset) {
+        if (mainFrame.isMultipleChoiceActive && mainFrame.isClipSet) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.isAnim = true;
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
         }
 
@@ -518,7 +518,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Boot ist im Hintergrund, aber vor Blinkern
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             // Wellenbild berechnen und anzeigen
             switchanim = !switchanim;
             if (!switchanim && --Bootcount < 1) {
@@ -545,7 +545,7 @@ public class Haty1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         if (TalkPerson == 31) {
@@ -577,7 +577,7 @@ public class Haty1 extends Mainloc {
         }
 
         // Krabat bewegen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -629,7 +629,7 @@ public class Haty1 extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -671,7 +671,7 @@ public class Haty1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -679,7 +679,7 @@ public class Haty1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -690,8 +690,8 @@ public class Haty1 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -708,14 +708,14 @@ public class Haty1 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -724,7 +724,7 @@ public class Haty1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -734,7 +734,7 @@ public class Haty1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -814,7 +814,7 @@ public class Haty1 extends Mainloc {
                 }
 
                 // Ausreden fuer Muell
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 185;
                     pTemp = Pmuell;
                 }
@@ -837,14 +837,14 @@ public class Haty1 extends Mainloc {
                             nextActionID = 380;
                             break;
                         case 10: // wuda + wacka
-                            if (!mainFrame.Actions[220]) {
+                            if (!mainFrame.actions[220]) {
                                 nextActionID = 1240;
                             } else {
                                 nextActionID = 1200;
                             }
                             break;
                         case 11: // wuda + dryba
-                            if (!mainFrame.Actions[220]) {
+                            if (!mainFrame.actions[220]) {
                                 nextActionID = 200;
                             } else {
                                 nextActionID = 1200;
@@ -871,10 +871,10 @@ public class Haty1 extends Mainloc {
                             nextActionID = 385;
                             break;
                         case 10: // wuda + wacka
-                            if (!mainFrame.Actions[220]) {
+                            if (!mainFrame.actions[220]) {
                                 nextActionID = 1210;
                             } else {
-                                if (!mainFrame.Actions[914] && !mainFrame.Actions[915]) {
+                                if (!mainFrame.actions[914] && !mainFrame.actions[915]) {
                                     nextActionID = 1220;
                                 } else {
                                     nextActionID = 1230;
@@ -882,7 +882,7 @@ public class Haty1 extends Mainloc {
                             }
                             break;
                         case 11: // wuda + dryba
-                            if (!mainFrame.Actions[220]) {
+                            if (!mainFrame.actions[220]) {
                                 nextActionID = 1210;
                             } else {
                                 nextActionID = 1250;
@@ -934,7 +934,7 @@ public class Haty1 extends Mainloc {
                             nextActionID = 180;
                             break;
                     }
-                    if (!mainFrame.Actions[220]) {
+                    if (!mainFrame.actions[220]) {
                         pTemp = PwudzerRight;
                     } else {
                         pTemp = PwudzerLeft;
@@ -942,15 +942,15 @@ public class Haty1 extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -975,7 +975,7 @@ public class Haty1 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -994,7 +994,7 @@ public class Haty1 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -1021,7 +1021,7 @@ public class Haty1 extends Mainloc {
                     pTemp = eimerPos;
                 }
 
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 10;
                     pTemp = Pmuell;
                 }
@@ -1048,7 +1048,7 @@ public class Haty1 extends Mainloc {
 
                 // Angler anschauen
                 if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
-                    if (!mainFrame.Actions[220]) {
+                    if (!mainFrame.actions[220]) {
                         nextActionID = 8;
                         pTemp = PwudzerRight;
                     } else {
@@ -1057,7 +1057,7 @@ public class Haty1 extends Mainloc {
                     }
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -1076,7 +1076,7 @@ public class Haty1 extends Mainloc {
                 if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
                         !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Prohodzl);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Prohodzl);
                     mainFrame.repaint();
                     return;
                 }
@@ -1085,7 +1085,7 @@ public class Haty1 extends Mainloc {
                 if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
                         !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Prohodzr);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Prohodzr);
                     mainFrame.repaint();
                     return;
                 }
@@ -1093,15 +1093,15 @@ public class Haty1 extends Mainloc {
                 // Eimer mitnehmen
                 if (eimerRect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(eimerPos);
+                    mainFrame.pathWalker.SetzeNeuenWeg(eimerPos);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Muell mitnehmen
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
+                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 90;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pmuell);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pmuell);
                     mainFrame.repaint();
                     return;
                 }
@@ -1109,7 +1109,7 @@ public class Haty1 extends Mainloc {
                 // colmik use
                 if (colmik.IsPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pcolmik);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pcolmik);
                     mainFrame.repaint();
                     return;
                 }
@@ -1118,7 +1118,7 @@ public class Haty1 extends Mainloc {
                 if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
                         !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.wegGeher.SetzeNeuenWeg(PwodaLeft);
+                    mainFrame.pathWalker.SetzeNeuenWeg(PwodaLeft);
                     mainFrame.repaint();
                     return;
                 }
@@ -1127,23 +1127,23 @@ public class Haty1 extends Mainloc {
                 if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
                         !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
                     nextActionID = 75;
-                    mainFrame.wegGeher.SetzeNeuenWeg(PwodaRight);
+                    mainFrame.pathWalker.SetzeNeuenWeg(PwodaRight);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Angler talk
                 if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
-                    if (mainFrame.Actions[220]) {
+                    if (mainFrame.actions[220]) {
                         nextActionID = 80;
-                        mainFrame.wegGeher.SetzeNeuenWeg(PwudzerLeft);
+                        mainFrame.pathWalker.SetzeNeuenWeg(PwudzerLeft);
                     } else {
                         if (angler2.getRect().IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp)) {
                             nextActionID = 85;
                         } else {
                             nextActionID = 87;
                         }
-                        mainFrame.wegGeher.SetzeNeuenWeg(PwudzerRight);
+                        mainFrame.pathWalker.SetzeNeuenWeg(PwudzerRight);
                     }
                     mainFrame.repaint();
                     return;
@@ -1161,41 +1161,41 @@ public class Haty1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Krabat - Animation = transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
                     wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
                     wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
                     rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
                     angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
                     eimerRect.IsPointInRect(pTemp) ||
-                    muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152];
+                    muellRect.IsPointInRect(pTemp) && mainFrame.actions[152];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -1208,9 +1208,9 @@ public class Haty1 extends Mainloc {
                     rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
                     angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
                     eimerRect.IsPointInRect(pTemp) ||
-                    muellRect.IsPointInRect(pTemp) && mainFrame.Actions[152]) {
+                    muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -1218,7 +1218,7 @@ public class Haty1 extends Mainloc {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 4;
                 }
                 return;
@@ -1226,7 +1226,7 @@ public class Haty1 extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -1234,7 +1234,7 @@ public class Haty1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -1250,17 +1250,17 @@ public class Haty1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -1302,8 +1302,8 @@ public class Haty1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -1388,7 +1388,7 @@ public class Haty1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -1413,7 +1413,7 @@ public class Haty1 extends Mainloc {
 
             case 3:
                 // Bow z rybami ansehen
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_3", fBowRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_4", fBowLeft, 3, 0, 0);
@@ -1466,19 +1466,19 @@ public class Haty1 extends Mainloc {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_106");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_106");
                         break;
 
                     case 1:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_107");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_107");
                         break;
 
                     case 2:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_108");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_108");
                         break;
                 }
-                outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());
-                if (!mainFrame.Actions[220]) {
+                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
+                if (!mainFrame.actions[220]) {
                     mainFrame.krabat.SetFacing(3);
                 } else {
                     mainFrame.krabat.SetFacing(9);
@@ -1491,21 +1491,21 @@ public class Haty1 extends Mainloc {
                 // Colmik mitnehmen
                 // Zufallszahl 0...1, erstes Mal immer 0
                 int zuffZahl2 = (int) (Math.random() * 1.9);
-                if (!mainFrame.Actions[151]) {
-                    mainFrame.Actions[151] = true;
+                if (!mainFrame.actions[151]) {
+                    mainFrame.actions[151] = true;
                     zuffZahl2 = 0;
                 }
                 switch (zuffZahl2) {
                     case 0:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_109");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_109");
                         break;
 
                     case 1:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_110");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_110");
                         break;
                 }
-                outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());
-                if (!mainFrame.Actions[220]) {
+                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
+                if (!mainFrame.actions[220]) {
                     mainFrame.krabat.SetFacing(3);
                 } else {
                     mainFrame.krabat.SetFacing(9);
@@ -1530,14 +1530,14 @@ public class Haty1 extends Mainloc {
                 int zuffZahl3 = (int) (Math.random() * 1.9);
                 switch (zuffZahl3) {
                     case 0:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_111");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_111");
                         break;
 
                     case 1:
-                        outputText = mainFrame.ifont.TeileTextKey("Haty1_112");
+                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_112");
                         break;
                 }
-                outputTextPos = mainFrame.ifont.CenterText(outputText, angler2.Wudzer2TalkPoint());
+                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
                 mainFrame.krabat.SetFacing(9);
                 TalkPerson = 31;
                 nextActionID = 0;
@@ -1546,10 +1546,10 @@ public class Haty1 extends Mainloc {
             case 85:
                 // Krabat beginnt MC (Wudzer1 benutzen)
                 mainFrame.krabat.SetFacing(fWudzerjoRight);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 stehenderAnglerSchautSichUm = true;
-                if (!mainFrame.Actions[156]) {
+                if (!mainFrame.actions[156]) {
                     nextActionID = 600;  // erstes Ansprechen
                 } else {
                     nextActionID = 610;
@@ -1559,8 +1559,8 @@ public class Haty1 extends Mainloc {
             case 87:
                 // Krabat beginnt MC (Wudzer2 benutzen)
                 mainFrame.krabat.SetFacing(fWudzerjoRight);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 900;
                 break;
 
@@ -1591,7 +1591,7 @@ public class Haty1 extends Mainloc {
 
             case 160:
                 // Bow - Ausreden
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     DingAusrede(fBowRight);
                 } else {
                     DingAusrede(fBowLeft);
@@ -1615,7 +1615,7 @@ public class Haty1 extends Mainloc {
 
             case 180:
                 // Angler - Ausreden
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     MPersonAusrede(fWudzerjoRight);
                 } else {
                     MPersonAusrede(fWudzerjoLeft);
@@ -1632,9 +1632,9 @@ public class Haty1 extends Mainloc {
 
             case 200:
                 // Anim Holzfisch rausholen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 Sonderstatus = 3;
                 nextActionID = 201;
                 break;
@@ -1671,7 +1671,7 @@ public class Haty1 extends Mainloc {
             case 218:
                 // Angler laufen los
                 Sonderstatus = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 angler2.setPos(wudzer2RightWalk);
                 angler2.MoveTo(wudzer2LeftWalk);
                 walkWudzer2 = false;
@@ -1721,7 +1721,7 @@ public class Haty1 extends Mainloc {
                 anglerNimmtEimer = true;
                 hatAnglerDenEimer = false;
                 merkeEimer = false;
-                mainFrame.Actions[220] = true;
+                mainFrame.actions[220] = true;
                 InitEimer();
                 Verzoegerung = 5;
                 nextActionID = 224;
@@ -1745,7 +1745,7 @@ public class Haty1 extends Mainloc {
                     break;
                 }
                 InitAngler();
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 TalkPause = 5;
                 nextActionID = 229;
                 break;
@@ -1786,9 +1786,9 @@ public class Haty1 extends Mainloc {
                 break;
 
             case 260:
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1826,7 +1826,7 @@ public class Haty1 extends Mainloc {
 
             case 330:
                 // Eimer mit Wuermern
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_33", fBowRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_34", fBowLeft, 3, 0, 0);
@@ -1835,7 +1835,7 @@ public class Haty1 extends Mainloc {
 
             case 340:
                 // Eimer mit dryba
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_35", fBowRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_36", fBowLeft, 3, 0, 0);
@@ -1844,7 +1844,7 @@ public class Haty1 extends Mainloc {
 
             case 350:
                 // Eimer mit ryba
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_37", fBowRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_38", fBowLeft, 3, 0, 0);
@@ -1888,7 +1888,7 @@ public class Haty1 extends Mainloc {
 
             case 400:
                 // Wudzerjo verpruegeln
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_46", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_47", fWudzerjoLeft, 3, 0, 0);
@@ -1897,7 +1897,7 @@ public class Haty1 extends Mainloc {
 
             case 410:
                 // Wudzerjo Haken geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_48", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_49", fWudzerjoLeft, 3, 0, 0);
@@ -1906,7 +1906,7 @@ public class Haty1 extends Mainloc {
 
             case 420:
                 // Wudzerjo wacki geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_50", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_51", fWudzerjoLeft, 3, 0, 0);
@@ -1915,7 +1915,7 @@ public class Haty1 extends Mainloc {
 
             case 430:
                 // Wudzerjo angel geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_52", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_53", fWudzerjoLeft, 3, 0, 0);
@@ -1924,7 +1924,7 @@ public class Haty1 extends Mainloc {
 
             case 440:
                 // Wudzerjo wuda + dryba geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_54", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_55", fWudzerjoLeft, 3, 0, 0);
@@ -1933,7 +1933,7 @@ public class Haty1 extends Mainloc {
 
             case 450:
                 // Wudzerjo dryba geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_56", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_57", fWudzerjoLeft, 3, 0, 0);
@@ -1942,9 +1942,9 @@ public class Haty1 extends Mainloc {
 
             case 470:
                 // Wudzerjo ryba geben
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                if (!mainFrame.Actions[220]) {
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_58", fWudzerjoRight, 1, 2, 473);
                 } else {
                     KrabatSagt("Haty1_59", fWudzerjoLeft, 1, 2, 473);
@@ -1958,15 +1958,15 @@ public class Haty1 extends Mainloc {
 
             case 476:
                 // Ende Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
 
             case 480:
                 // Wudzerjo krosik geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_61", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_62", fWudzerjoLeft, 3, 0, 0);
@@ -1975,7 +1975,7 @@ public class Haty1 extends Mainloc {
 
             case 490:
                 // Wudzerjo bron geben
-                if (!mainFrame.Actions[220]) {
+                if (!mainFrame.actions[220]) {
                     KrabatSagt("Haty1_63", fWudzerjoRight, 3, 0, 0);
                 } else {
                     KrabatSagt("Haty1_64", fWudzerjoLeft, 3, 0, 0);
@@ -1985,7 +1985,7 @@ public class Haty1 extends Mainloc {
             case 600:
                 // Reaktion Angler 1
                 PersonSagt("Haty1_65", fWudzerjoRight, 31, 2, 610, angler2.Wudzer2TalkPoint());
-                mainFrame.Actions[156] = true; // keine 2x dummen Sprueche
+                mainFrame.actions[156] = true; // keine 2x dummen Sprueche
                 break;
 
             case 610:
@@ -2011,20 +2011,20 @@ public class Haty1 extends Mainloc {
                 // 4. Frage (Ende)
                 Dialog.ExtendMC("Haty1_102", 1000, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 611;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 611:
             case 901:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
                 nextActionID = Dialog.ActionID;
@@ -2117,10 +2117,10 @@ public class Haty1 extends Mainloc {
 
             case 800:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 stehenderAnglerSchautSichUm = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -2136,10 +2136,10 @@ public class Haty1 extends Mainloc {
                 // 3. Frage
                 Dialog.ExtendMC("Haty1_105", 1000, 1000, null, 1000);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 901;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -2151,9 +2151,9 @@ public class Haty1 extends Mainloc {
 
             case 1000:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -2169,13 +2169,13 @@ public class Haty1 extends Mainloc {
 
             case 1220:
                 // Angeln und Fisch dran
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = true;
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 Sonderstatus = 4;
                 mainFrame.inventory.vInventory.addElement(14);
-                mainFrame.Actions[914] = true;
+                mainFrame.actions[914] = true;
                 nextActionID = 1222;
                 break;
 
@@ -2187,18 +2187,18 @@ public class Haty1 extends Mainloc {
                 break;
 
             case 1224:
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = false;
                 nextActionID = 0;
                 break;
 
             case 1230:
                 // Angeln wenn schon Fisch oder noch krosik
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = true;
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 Sonderstatus = 2;
                 nextActionID = 1232;
                 break;
@@ -2213,17 +2213,17 @@ public class Haty1 extends Mainloc {
             case 1238:
                 // Habe doch schon Fisch oder krosik
                 KrabatSagt("Haty1_85", 3, 3, 0, 0);
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = false;
                 break;
 
             case 1240:
                 // Angeln im falschen Teich, es passiert nichts
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = true;
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 Sonderstatus = 1;
                 nextActionID = 1242;
                 break;
@@ -2238,8 +2238,8 @@ public class Haty1 extends Mainloc {
             case 1248:
                 // Fange nichts
                 KrabatSagt("Haty1_86", 9, 3, 0, 0);
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = false;
                 break;
 

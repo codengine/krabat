@@ -69,22 +69,22 @@ public class Awgust extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        kral_walk[0] = getPicture("gfx-dd/zelen/kral-u-l2.gif");
-        kral_walk[1] = getPicture("gfx-dd/zelen/kral-u-l4.gif");
-        kral_walk[2] = getPicture("gfx-dd/zelen/kral-u-l6.gif");
-        kral_walk[3] = getPicture("gfx-dd/zelen/kral-u-l8.gif");
+        kral_walk[0] = getPicture("gfx-dd/zelen/kral-u-l2.png");
+        kral_walk[1] = getPicture("gfx-dd/zelen/kral-u-l4.png");
+        kral_walk[2] = getPicture("gfx-dd/zelen/kral-u-l6.png");
+        kral_walk[3] = getPicture("gfx-dd/zelen/kral-u-l8.png");
 
-        kral_head[0] = getPicture("gfx-dd/zelen/kral-uh1.gif");
-        kral_head[1] = getPicture("gfx-dd/zelen/kral-uh1a.gif");
-        kral_head[2] = getPicture("gfx-dd/zelen/kral-uh2.gif");
-        kral_head[3] = getPicture("gfx-dd/zelen/kral-uh3.gif");
-        kral_head[4] = getPicture("gfx-dd/zelen/kral-uh4.gif");
-        kral_head[5] = getPicture("gfx-dd/zelen/kral-uh5.gif");
-        kral_head[6] = getPicture("gfx-dd/zelen/kral-uh6.gif");
-        kral_head[7] = getPicture("gfx-dd/zelen/kral-uh7.gif");
+        kral_head[0] = getPicture("gfx-dd/zelen/kral-uh1.png");
+        kral_head[1] = getPicture("gfx-dd/zelen/kral-uh1a.png");
+        kral_head[2] = getPicture("gfx-dd/zelen/kral-uh2.png");
+        kral_head[3] = getPicture("gfx-dd/zelen/kral-uh3.png");
+        kral_head[4] = getPicture("gfx-dd/zelen/kral-uh4.png");
+        kral_head[5] = getPicture("gfx-dd/zelen/kral-uh5.png");
+        kral_head[6] = getPicture("gfx-dd/zelen/kral-uh6.png");
+        kral_head[7] = getPicture("gfx-dd/zelen/kral-uh7.png");
 
-        kral_body[0] = getPicture("gfx-dd/zelen/kral-ub1.gif");
-        kral_body[1] = getPicture("gfx-dd/zelen/kral-ub2.gif");
+        kral_body[0] = getPicture("gfx-dd/zelen/kral-ub1.png");
+        kral_body[1] = getPicture("gfx-dd/zelen/kral-ub2.png");
     }
 
     @Override

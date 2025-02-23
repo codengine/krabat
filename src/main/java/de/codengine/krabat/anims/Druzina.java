@@ -52,12 +52,12 @@ public class Druzina extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        druzina_walk[0] = getPicture("gfx-dd/zelen/gefolge1.gif");
-        druzina_walk[1] = getPicture("gfx-dd/zelen/gefolge1a.gif");
-        druzina_walk[2] = getPicture("gfx-dd/zelen/gefolge1-l2.gif");
-        druzina_walk[3] = getPicture("gfx-dd/zelen/gefolge1-l4.gif");
-        druzina_walk[4] = getPicture("gfx-dd/zelen/gefolge1-l6.gif");
-        druzina_walk[5] = getPicture("gfx-dd/zelen/gefolge1-l8.gif");
+        druzina_walk[0] = getPicture("gfx-dd/zelen/gefolge1.png");
+        druzina_walk[1] = getPicture("gfx-dd/zelen/gefolge1a.png");
+        druzina_walk[2] = getPicture("gfx-dd/zelen/gefolge1-l2.png");
+        druzina_walk[3] = getPicture("gfx-dd/zelen/gefolge1-l4.png");
+        druzina_walk[4] = getPicture("gfx-dd/zelen/gefolge1-l6.png");
+        druzina_walk[5] = getPicture("gfx-dd/zelen/gefolge1-l8.png");
     }
 
     @Override

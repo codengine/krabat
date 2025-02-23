@@ -80,17 +80,17 @@ public class Labyr1 extends Mainlaby {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int Richtung) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(0, 371, 248, 405));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(249, 366, 472, 386));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(473, 351, 639, 405));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 371, 248, 405));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(249, 366, 472, 386));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(473, 351, 639, 405));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
 
         InitImages();
         switch (Richtung) {
@@ -120,15 +120,15 @@ public class Labyr1 extends Mainlaby {
             AusPoint = Alinks;
         }
 
-        if (mainFrame.Actions[236]) {
+        if (mainFrame.actions[236]) {
             isBlinker = true;
         }
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/labyrinth/laby1.gif");
-        lab12 = getPicture("gfx/labyrinth/lab1-2.gif");
+        background = getPicture("gfx/labyrinth/laby1.png");
+        lab12 = getPicture("gfx/labyrinth/lab1-2.png");
 
     }
 
@@ -147,14 +147,14 @@ public class Labyr1 extends Mainlaby {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -169,10 +169,10 @@ public class Labyr1 extends Mainlaby {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -180,7 +180,7 @@ public class Labyr1 extends Mainlaby {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -220,7 +220,7 @@ public class Labyr1 extends Mainlaby {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -228,7 +228,7 @@ public class Labyr1 extends Mainlaby {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -251,7 +251,7 @@ public class Labyr1 extends Mainlaby {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -259,7 +259,7 @@ public class Labyr1 extends Mainlaby {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -269,7 +269,7 @@ public class Labyr1 extends Mainlaby {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -284,15 +284,15 @@ public class Labyr1 extends Mainlaby {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -317,7 +317,7 @@ public class Labyr1 extends Mainlaby {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -336,14 +336,14 @@ public class Labyr1 extends Mainlaby {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -370,28 +370,28 @@ public class Labyr1 extends Mainlaby {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -410,7 +410,7 @@ public class Labyr1 extends Mainlaby {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -418,7 +418,7 @@ public class Labyr1 extends Mainlaby {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -426,7 +426,7 @@ public class Labyr1 extends Mainlaby {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -442,12 +442,12 @@ public class Labyr1 extends Mainlaby {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -489,8 +489,8 @@ public class Labyr1 extends Mainlaby {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -498,7 +498,7 @@ public class Labyr1 extends Mainlaby {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
-            zuffi = (int) Math.round(Math.random() * Start.LabyHelp) + 50;
+            zuffi = (int) Math.round(Math.random() * Start.labyrinthHelp) + 50;
             while (zuffi > 62) {
                 zuffi--;
             }
@@ -542,7 +542,7 @@ public class Labyr1 extends Mainlaby {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -557,11 +557,11 @@ public class Labyr1 extends Mainlaby {
         switch (nextActionID) {
             case 100:
                 // Gehe zu naechstem Laby links
-                mainFrame.Clipset = false;
-                mainFrame.isAnim = false;
+                mainFrame.isClipSet = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 Erscheinen(Ausgang == 9);
-                if (mainFrame.Actions[235]) {
+                if (mainFrame.actions[235]) {
                     BludLocationLeft();
                 } else {
                     evalNewLocationLeft();
@@ -573,11 +573,11 @@ public class Labyr1 extends Mainlaby {
 
             case 101:
                 // gehe zu naechstem Laby rechts
-                mainFrame.Clipset = false;
-                mainFrame.isAnim = false;
+                mainFrame.isClipSet = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 Erscheinen(Ausgang == 3);
-                if (mainFrame.Actions[235]) {
+                if (mainFrame.actions[235]) {
                     BludLocationRight();
                 } else {
                     evalNewLocationRight();

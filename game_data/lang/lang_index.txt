@@ -1,0 +1,3 @@
+hs|Hornjoserbsce
+ds|Dolnoserbski
+de|Deutsch

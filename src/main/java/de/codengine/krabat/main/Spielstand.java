@@ -195,7 +195,7 @@ public class Spielstand {
         byte[] Feld = new byte[mainFrame.storageManager.getFileSize()];
 
         // Location zuweisen
-        Feld[0] = (byte) (mainFrame.currLocation + W);
+        Feld[0] = (byte) (mainFrame.currentLocationIdx + W);
 
         // Krabats Position zuweisen
         GenericPoint Tep = mainFrame.krabat.getPos();
@@ -205,7 +205,7 @@ public class Spielstand {
         Feld[4] = (byte) (Tep.y % 256 + W);
 
         // Sprache zuweisen
-        Feld[5] = (byte) (mainFrame.sprache + W);
+        Feld[5] = (byte) (Start.language + W);
 
         // Datum zuweisen
         Feld[6] = (byte) (Day + W);
@@ -224,15 +224,15 @@ public class Spielstand {
         }
 
         // Scrolling - Variable zuweisen
-        Feld[42374] = (byte) (mainFrame.scrollx / 256 + W);
-        Feld[42375] = (byte) (mainFrame.scrollx % 256 + W);
+        Feld[42374] = (byte) (mainFrame.scrollX / 256 + W);
+        Feld[42375] = (byte) (mainFrame.scrollX % 256 + W);
 
         // Facing - Variable zuweisen
         Feld[42376] = (byte) (mainFrame.krabat.GetFacing() + W);
 
         // Boolean - Array Actions zuweisen
         for (int i = 42380; i <= 43379; i++) {
-            if (!mainFrame.Actions[i - 42380]) {
+            if (!mainFrame.actions[i - 42380]) {
                 Feld[i] = W;
             } else {
                 Feld[i] = (byte) (1 + W);
@@ -273,7 +273,7 @@ public class Spielstand {
 
         // System.out.println("Checksumme : " + Checksum + " Feld : " + (int) Feld[undwo] + " Pos : " + (undwo));
         mainFrame.Freeze(false);
-        mainFrame.setCursor(mainFrame.Normal);
+        mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // Neuen Spielstand initialisieren
@@ -281,7 +281,7 @@ public class Spielstand {
         mainFrame.Freeze(true);
 
         // Sprache festlegen
-        mainFrame.sprache = isHornjos;
+        Start.language = isHornjos;
 
         // "illegale" Sprache verhindern
         // if (mainFrame.sprache > 2) mainFrame.sprache = 1;
@@ -290,10 +290,10 @@ public class Spielstand {
         mainFrame.inventory.vInventory = Inventar;
 
         // Scrolling - Variable setzen
-        mainFrame.scrollx = Scrolling;
+        mainFrame.scrollX = Scrolling;
 
         // Aktionen festlegen
-        mainFrame.Actions = Aktionen;
+        mainFrame.actions = Aktionen;
 
         // hier schon der Krabatinit-damit Loadberechnungen abh. von Krabatposition
         // ueberhaupt eine Chance haben
@@ -304,8 +304,8 @@ public class Spielstand {
         mainFrame.krabat.SetFacing(Facing);
 
         // alte Location zerstoeren, neue erzeugen
-        mainFrame.DestructLocation(mainFrame.currLocation);
-        mainFrame.currLocation = 0;    // fuer Krabatpositionsinit darf keine alte Location erscheinen
+        mainFrame.DestructLocation(mainFrame.currentLocationIdx);
+        mainFrame.currentLocationIdx = 0;    // fuer Krabatpositionsinit darf keine alte Location erscheinen
         mainFrame.ConstructLocation(Location);
 
         mainFrame.Freeze(false);

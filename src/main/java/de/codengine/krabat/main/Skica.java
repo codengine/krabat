@@ -58,7 +58,7 @@ public class Skica extends Mainanim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        skizze = getPicture("gfx-dd/kapala/skica.gif");
+        skizze = getPicture("gfx-dd/kapala/skica.png");
     }
 
 
@@ -67,27 +67,27 @@ public class Skica extends Mainanim {
     public void paintSkizze(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 1284, 484);
             Cursorform = 200;
             evalMouseMoveEvent();
         }
 
-        g.drawImage(skizze, mainFrame.scrollx, mainFrame.scrolly);
+        g.drawImage(skizze, mainFrame.scrollX, mainFrame.scrollY);
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
             // System.out.println ("Skica: Trying to draw text.");
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xff00ff00); // Krabats Frabe
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xff00ff00); // Krabats Frabe
         }
 
         // Redeschleife herunterzaehlen und Neuzeichnen ermoeglichen
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -124,7 +124,7 @@ public class Skica extends Mainanim {
             return;
         }
         Cursorform = 20;
-        mainFrame.setCursor(mainFrame.Nix);
+        mainFrame.setCursor(mainFrame.cursorNone);
     }
 
     // Key - Auswertung dieser Location /////////////////////////////////
@@ -140,7 +140,7 @@ public class Skica extends Mainanim {
     // Deaktivieren //////////
     private void Deactivate() {
         mainFrame.DestructLocation(108);
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         mainFrame.whatScreen = 0;
         Cursorform = 200;
         mainFrame.repaint();
@@ -161,12 +161,12 @@ public class Skica extends Mainanim {
                     break;
                 }
 
-                if (!mainFrame.Actions[633]) // Text nur 1x sagen, wenn gefunden
+                if (!mainFrame.actions[633]) // Text nur 1x sagen, wenn gefunden
                 {
-                    outputText = mainFrame.ifont.TeileTextKey("Skica_1");
-                    outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 200));
+                    outputText = mainFrame.imageFont.TeileTextKey("Skica_1");
+                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 200));
 
-                    mainFrame.Actions[633] = true;
+                    mainFrame.actions[633] = true;
                     Counter = 0;
                 } else {
                     Counter = 50;

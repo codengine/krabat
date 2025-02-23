@@ -153,22 +153,22 @@ public class Reh extends Mainanim {
     }
 
     private void InitImages() {
-        reh[0] = getPicture("gfx/anims/reh1.gif");  // stehen in eine Richtung
-        reh[1] = getPicture("gfx/anims/reh1a.gif"); // grasen
-        reh[2] = getPicture("gfx/anims/reh2.gif");  // stehen in andere Richtung
-        reh[3] = getPicture("gfx/anims/reh2a.gif"); // grasen
-        reh[4] = getPicture("gfx/anims/reh5a.gif"); // Rennen in 1 Richtung
-        reh[5] = getPicture("gfx/anims/reh6a.gif");
-        reh[6] = getPicture("gfx/anims/reh5.gif");  // Rennen in 2. Richtung
-        reh[7] = getPicture("gfx/anims/reh6.gif");
-        reh[8] = getPicture("gfx/anims/reh3.gif");  // dto.
-        reh[9] = getPicture("gfx/anims/reh3a.gif");
-        reh[10] = getPicture("gfx/anims/reh4.gif");
-        reh[11] = getPicture("gfx/anims/reh4a.gif");
-        reh[12] = getPicture("gfx/anims/reh7a.gif");
-        reh[13] = getPicture("gfx/anims/reh8a.gif");
-        reh[14] = getPicture("gfx/anims/reh7.gif");
-        reh[15] = getPicture("gfx/anims/reh8.gif");
+        reh[0] = getPicture("gfx/anims/reh1.png");  // stehen in eine Richtung
+        reh[1] = getPicture("gfx/anims/reh1a.png"); // grasen
+        reh[2] = getPicture("gfx/anims/reh2.png");  // stehen in andere Richtung
+        reh[3] = getPicture("gfx/anims/reh2a.png"); // grasen
+        reh[4] = getPicture("gfx/anims/reh5a.png"); // Rennen in 1 Richtung
+        reh[5] = getPicture("gfx/anims/reh6a.png");
+        reh[6] = getPicture("gfx/anims/reh5.png");  // Rennen in 2. Richtung
+        reh[7] = getPicture("gfx/anims/reh6.png");
+        reh[8] = getPicture("gfx/anims/reh3.png");  // dto.
+        reh[9] = getPicture("gfx/anims/reh3a.png");
+        reh[10] = getPicture("gfx/anims/reh4.png");
+        reh[11] = getPicture("gfx/anims/reh4a.png");
+        reh[12] = getPicture("gfx/anims/reh7a.png");
+        reh[13] = getPicture("gfx/anims/reh8a.png");
+        reh[14] = getPicture("gfx/anims/reh7.png");
+        reh[15] = getPicture("gfx/anims/reh8.png");
     }
 
     // Reh zeichnen, wenn noch da (Routine entscheidet alles selber)

@@ -54,13 +54,13 @@ public class Bow extends Mainanim {
     }
 
     private void InitImages() {
-        bow[1] = getPicture("gfx/haty/bow1.gif");
-        bow[2] = getPicture("gfx/haty/bow2.gif");
-        bow[3] = getPicture("gfx/haty/bow3.gif");
-        bow[4] = getPicture("gfx/haty/bow4.gif");
-        bow[5] = getPicture("gfx/haty/bow5.gif");
-        bow[6] = getPicture("gfx/haty/bow6.gif");
-        bow[7] = getPicture("gfx/haty/bow7.gif");
+        bow[1] = getPicture("gfx/haty/bow1.png");
+        bow[2] = getPicture("gfx/haty/bow2.png");
+        bow[3] = getPicture("gfx/haty/bow3.png");
+        bow[4] = getPicture("gfx/haty/bow4.png");
+        bow[5] = getPicture("gfx/haty/bow5.png");
+        bow[6] = getPicture("gfx/haty/bow6.png");
+        bow[7] = getPicture("gfx/haty/bow7.png");
     }
 
     @Override

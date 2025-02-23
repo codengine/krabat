@@ -54,19 +54,19 @@ public class Kutser extends Mainanim {
     }
 
     private void InitImages() {
-        kutser_look[0] = getPicture("gfx/most/kutscher.gif");
-        kutser_look[1] = getPicture("gfx/most/kutscher-a.gif");
+        kutser_look[0] = getPicture("gfx/most/kutscher.png");
+        kutser_look[1] = getPicture("gfx/most/kutscher-a.png");
 
-        kutser_listen[0] = getPicture("gfx/most/kutscher2.gif");
-        kutser_listen[1] = getPicture("gfx/most/kutscher2a.gif");
+        kutser_listen[0] = getPicture("gfx/most/kutscher2.png");
+        kutser_listen[1] = getPicture("gfx/most/kutscher2a.png");
 
-        kutser_talk[0] = getPicture("gfx/most/kutscher2t1.gif");
-        kutser_talk[1] = getPicture("gfx/most/kutscher2t2.gif");
-        kutser_talk[2] = getPicture("gfx/most/kutscher2t3.gif");
-        kutser_talk[3] = getPicture("gfx/most/kutscher2t4.gif");
-        kutser_talk[4] = getPicture("gfx/most/kutscher2t5.gif");
-        kutser_talk[5] = getPicture("gfx/most/kutscher2t6.gif");
-        kutser_talk[6] = getPicture("gfx/most/kutscher2t7.gif");
+        kutser_talk[0] = getPicture("gfx/most/kutscher2t1.png");
+        kutser_talk[1] = getPicture("gfx/most/kutscher2t2.png");
+        kutser_talk[2] = getPicture("gfx/most/kutscher2t3.png");
+        kutser_talk[3] = getPicture("gfx/most/kutscher2t4.png");
+        kutser_talk[4] = getPicture("gfx/most/kutscher2t5.png");
+        kutser_talk[5] = getPicture("gfx/most/kutscher2t6.png");
+        kutser_talk[6] = getPicture("gfx/most/kutscher2t7.png");
     }
 
     // Zeichne Dundak, wie er dasteht oder spricht

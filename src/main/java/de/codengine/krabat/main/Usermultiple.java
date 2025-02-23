@@ -57,7 +57,7 @@ public class Usermultiple {
 
     // Hier wird ein MC - Element hinzugefuegt
     public void ExtendMC(String langKey, GenericRectangle posit, int index) {
-        String text = mainFrame.ifont.TeileTextKey(langKey);
+        String text = mainFrame.imageFont.TeileTextKey(langKey);
         Anzahl++;
         Fragen[Anzahl] = text;
         if (Anzahl == 0) {
@@ -78,20 +78,20 @@ public class Usermultiple {
         g.setClip(0, 0, 1284, 964);
 
         // 1.Aufruf, zuerst alles Zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
-                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollx,
-                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xffff0000);
+                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
+                            Positionen[i].getX() + mainFrame.scrollX,
+                            Positionen[i].getY() + mainFrame.scrollY + 10, 0xffff0000);
                 } else {
-                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollx,
-                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xffb00000);
+                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
+                            Positionen[i].getX() + mainFrame.scrollX,
+                            Positionen[i].getY() + mainFrame.scrollY + 10, 0xffb00000);
                 }
             }
             oldsel = selected;
@@ -100,18 +100,18 @@ public class Usermultiple {
         }
 
         if (oldsel != -1) {
-            mainFrame.ifont.drawString(g, "$" + Fragen[oldsel],
-                    Positionen[oldsel].getX() + mainFrame.scrollx,
-                    Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xffb00000);
+            mainFrame.imageFont.drawString(g, "$" + Fragen[oldsel],
+                    Positionen[oldsel].getX() + mainFrame.scrollX,
+                    Positionen[oldsel].getY() + mainFrame.scrollY + 10, 0xffb00000);
         }
         if (oldsel != -1) {
             oldsel = -1;
         }
 
         if (selected != -1) {
-            mainFrame.ifont.drawString(g, "$" + Fragen[selected],
-                    Positionen[selected].getX() + mainFrame.scrollx,
-                    Positionen[selected].getY() + mainFrame.scrolly + 10, 0xffff0000);
+            mainFrame.imageFont.drawString(g, "$" + Fragen[selected],
+                    Positionen[selected].getX() + mainFrame.scrollX,
+                    Positionen[selected].getY() + mainFrame.scrollY + 10, 0xffff0000);
         }
 
         if (selected != -1) {
@@ -131,9 +131,9 @@ public class Usermultiple {
                     Antwort = i;
                     selected = -1;
                     oldsel = -1;
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isAnimRunning = true;
                     user = false;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
                     break;
                 }
@@ -145,7 +145,7 @@ public class Usermultiple {
         // Cursor auf Normal setzen je nach Bedarf
         if (Cursorform != 0) {
             Cursorform = 0;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
         // System.out.println("Move Thrown !");

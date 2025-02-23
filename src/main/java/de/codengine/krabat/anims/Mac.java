@@ -95,33 +95,33 @@ public class Mac extends Mainanim {
     }
 
     private void InitImages() {
-        mac_head_left[1] = getPicture("gfx/anims/ma-k1.gif");
-        mac_head_left[2] = getPicture("gfx/anims/ma-k2.gif");
-        mac_head_left[3] = getPicture("gfx/anims/ma-k3.gif");
-        mac_head_left[4] = getPicture("gfx/anims/ma-k4.gif");
-        mac_head_left[5] = getPicture("gfx/anims/ma-k5.gif");
+        mac_head_left[1] = getPicture("gfx/anims/ma-k1.png");
+        mac_head_left[2] = getPicture("gfx/anims/ma-k2.png");
+        mac_head_left[3] = getPicture("gfx/anims/ma-k3.png");
+        mac_head_left[4] = getPicture("gfx/anims/ma-k4.png");
+        mac_head_left[5] = getPicture("gfx/anims/ma-k5.png");
 
-        mac_head_right[1] = getPicture("gfx/anims/ma-ks1.gif");
-        mac_head_right[2] = getPicture("gfx/anims/ma-ks2.gif");
-        mac_head_right[3] = getPicture("gfx/anims/ma-ks3.gif");
-        mac_head_right[4] = getPicture("gfx/anims/ma-ks4.gif");
-        mac_head_right[5] = getPicture("gfx/anims/ma-ks5.gif");
+        mac_head_right[1] = getPicture("gfx/anims/ma-ks1.png");
+        mac_head_right[2] = getPicture("gfx/anims/ma-ks2.png");
+        mac_head_right[3] = getPicture("gfx/anims/ma-ks3.png");
+        mac_head_right[4] = getPicture("gfx/anims/ma-ks4.png");
+        mac_head_right[5] = getPicture("gfx/anims/ma-ks5.png");
 
-        mac_body_left[1] = getPicture("gfx/anims/ma-b1.gif");
-        mac_body_left[2] = getPicture("gfx/anims/ma-b2.gif");
-        mac_body_left[3] = getPicture("gfx/anims/ma-b3.gif");
-        mac_body_left[4] = getPicture("gfx/anims/ma-b4.gif");
-        mac_body_left[5] = getPicture("gfx/anims/ma-b5.gif");
-        mac_body_left[6] = getPicture("gfx/anims/ma-b6.gif");
+        mac_body_left[1] = getPicture("gfx/anims/ma-b1.png");
+        mac_body_left[2] = getPicture("gfx/anims/ma-b2.png");
+        mac_body_left[3] = getPicture("gfx/anims/ma-b3.png");
+        mac_body_left[4] = getPicture("gfx/anims/ma-b4.png");
+        mac_body_left[5] = getPicture("gfx/anims/ma-b5.png");
+        mac_body_left[6] = getPicture("gfx/anims/ma-b6.png");
 
-        mac_body_right[1] = getPicture("gfx/anims/macpokaza.gif");
-        mac_body_right[2] = getPicture("gfx/anims/ma-3bb.gif");
+        mac_body_right[1] = getPicture("gfx/anims/macpokaza.png");
+        mac_body_right[2] = getPicture("gfx/anims/ma-3bb.png");
 
-        mac[1] = getPicture("gfx/anims/ma-1.gif");
-        mac[2] = getPicture("gfx/anims/ma-1a.gif");
+        mac[1] = getPicture("gfx/anims/ma-1.png");
+        mac[2] = getPicture("gfx/anims/ma-1a.png");
 
-        mac_r[1] = getPicture("gfx/anims/ma-2.gif");
-        mac_r[2] = getPicture("gfx/anims/ma-2a.gif");
+        mac_r[1] = getPicture("gfx/anims/ma-2.png");
+        mac_r[2] = getPicture("gfx/anims/ma-2a.png");
     }
 
     // Zeichne Mutter, wie sie dasteht oder spricht

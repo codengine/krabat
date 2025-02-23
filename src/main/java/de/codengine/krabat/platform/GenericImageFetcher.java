@@ -22,6 +22,6 @@ package de.codengine.krabat.platform;
 
 public abstract class GenericImageFetcher {
 
-    public abstract GenericImage fetchImage(String relativePath);
+    public abstract GenericImage fetchImage(String relativePath, boolean useLang);
 
 }

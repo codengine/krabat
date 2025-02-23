@@ -26,8 +26,8 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract public class Mainloc {
-    private static final Logger log = LoggerFactory.getLogger(Mainloc.class);
+abstract public class MainLocation {
+    private static final Logger log = LoggerFactory.getLogger(MainLocation.class);
     // ID der jeweiligen Location (SS)
     public int locationID;
 
@@ -154,14 +154,14 @@ abstract public class Mainloc {
     // Methodendefinitionen
 
     // Konstruktor
-    public Mainloc(Start caller) {
+    public MainLocation(Start caller) {
         // tracker = new MediaTracker (this);
         mainFrame = caller;
 
     }
 
     // Konstruktor mit Location-ID (SS)
-    public Mainloc(Start caller, int idLocation) {
+    public MainLocation(Start caller, int idLocation) {
         // tracker = new MediaTracker (this);
         mainFrame = caller;
         locationID = idLocation;
@@ -169,7 +169,7 @@ abstract public class Mainloc {
 
     // Methode zum Laden (registrieren) eines Bildes
     public GenericImage getPicture(String Filename) {
-        return mainFrame.imageFetcher.fetchImage(Filename);
+        return mainFrame.imageFetcher.fetchImage(Filename, false);
     }
 
     // Hier werden die Ausreden "Benutze Krabat mit Gegenstand" initialisiert
@@ -279,11 +279,11 @@ abstract public class Mainloc {
             case 520:
                 // Karte aktivieren
                 mainFrame.ConstructLocation(106);
-                mainFrame.invCursor = false;
-                mainFrame.isAnim = false;
+                mainFrame.isInventoryCursor = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = 6;
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -392,10 +392,10 @@ abstract public class Mainloc {
             case 550:
                 // Krabat mit Skica benutzen
                 mainFrame.ConstructLocation(108);
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 mainFrame.whatScreen = 8;
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
 //                 KrabatSagt ("Skicu trjeba Dinglinger!",
 //                             "Skicu trjeba Dinglinger.",
@@ -405,12 +405,12 @@ abstract public class Mainloc {
 
             case 551:
                 // Krabat mit halbem Wosusk benutzen
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 146;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 mainFrame.inventory.vInventory.removeElement(51);
-                mainFrame.Actions[680] = true;
+                mainFrame.actions[680] = true;
                 nextActionID = 590;
                 break;
 
@@ -431,12 +431,12 @@ abstract public class Mainloc {
 
             case 555:
                 // Krabat liest Buch oder hat schon gelesen
-                if (mainFrame.Actions[955]) {
+                if (mainFrame.actions[955]) {
                     KrabatSagt("Mainloc_40", 0, 3, 0, 0);
                 } else {
-                    mainFrame.Actions[955] = true;
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    mainFrame.actions[955] = true;
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                     KrabatSagt("Mainloc_41", 0, 3, 2, 580);
                 }
                 break;
@@ -490,9 +490,9 @@ abstract public class Mainloc {
 
             case 584:
                 // Ende dieser Anim 
-                mainFrame.invCursor = false;
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -502,8 +502,8 @@ abstract public class Mainloc {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 KrabatSagt("Mainloc_48", 6, 3, 0, 0);
                 break;
 
@@ -549,8 +549,8 @@ abstract public class Mainloc {
 
     // Krabat spricht, entweder allein oder zu jemandem
     public void KrabatSagt(String langKey, int Facing, int Person, int Pause, int ActionID) {
-        outputText = mainFrame.ifont.TeileTextKey(langKey);
-        outputTextPos = mainFrame.ifont.KrabatText(outputText);
+        outputText = mainFrame.imageFont.TeileTextKey(langKey);
+        outputTextPos = mainFrame.imageFont.KrabatText(outputText);
         if (Facing != 0) {
             mainFrame.krabat.SetFacing(Facing);
         }
@@ -561,8 +561,8 @@ abstract public class Mainloc {
 
     // Personen sprechen (keine Hintergrundanimpersonen !!)
     public void PersonSagt(String langKey, int Facing, int Person, int Pause, int ActionID, GenericPoint Position) {
-        outputText = mainFrame.ifont.TeileTextKey(langKey);
-        outputTextPos = mainFrame.ifont.CenterText(outputText, Position);
+        outputText = mainFrame.imageFont.TeileTextKey(langKey);
+        outputTextPos = mainFrame.imageFont.CenterText(outputText, Position);
         if (Facing != 0) {
             mainFrame.krabat.SetFacing(Facing);
         }
@@ -573,9 +573,9 @@ abstract public class Mainloc {
 
     // Neue Location wird erzeugt
     public void NeuesBild(int NewLocation, int OldLocation) {
-        mainFrame.isAnim = false;
-        mainFrame.fPlayAnim = false;
-        mainFrame.Clipset = false;
+        mainFrame.isBackgroundAnimRunning = false;
+        mainFrame.isAnimRunning = false;
+        mainFrame.isClipSet = false;
         mainFrame.ConstructLocation(NewLocation);
         mainFrame.DestructLocation(OldLocation);
         nextActionID = 0;
@@ -592,7 +592,7 @@ abstract public class Mainloc {
                 nextActionID = 0;
                 mainFrame.ConstructLocation(102);
                 mainFrame.whatScreen = 3;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -602,7 +602,7 @@ abstract public class Mainloc {
                 mainFrame.StoreImage();
                 mainFrame.ConstructLocation(103);
                 mainFrame.whatScreen = 4;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -611,7 +611,7 @@ abstract public class Mainloc {
                 mainFrame.StoreImage();
                 mainFrame.whatScreen = 2;
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -619,8 +619,8 @@ abstract public class Mainloc {
                 // Inventar aktivieren
                 mainFrame.StoreImage();
                 mainFrame.krabat.StopWalking();
-                mainFrame.Clipset = false;
-                mainFrame.isAnim = false;
+                mainFrame.isClipSet = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = 1;
                 nextActionID = 0;
                 mainFrame.repaint();

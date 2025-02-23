@@ -104,20 +104,20 @@ public class Info extends Mainanim {
         // DPfeilr = mainFrame.inventory.DPfeilr;
 
         mainFrame.Freeze(false);
-        mainFrame.setCursor(mainFrame.Normal);
+        mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // Bilder vorbereiten
     public void InitImages() {
-        Bild = getPicture("gfx/mainmenu/info-7.gif");
-        Jan = getPicture("gfx/mainmenu/jan.gif");
-        Jiri = getPicture("gfx/mainmenu/jiri.gif");
-        Daniel = getPicture("gfx/mainmenu/daniel.gif");
-        Eddie = getPicture("gfx/mainmenu/eddie.gif");
-        Hanus = getPicture("gfx/mainmenu/hanus.gif");
-        Mic = getPicture("gfx/mainmenu/mic.gif");
+        Bild = getPicture("gfx/mainmenu/info-7.png");
+        Jan = getPicture("gfx/mainmenu/jan.png");
+        Jiri = getPicture("gfx/mainmenu/jiri.png");
+        Daniel = getPicture("gfx/mainmenu/daniel.png");
+        Eddie = getPicture("gfx/mainmenu/eddie.png");
+        Hanus = getPicture("gfx/mainmenu/hanus.png");
+        Mic = getPicture("gfx/mainmenu/mic.png");
 
-        Abdecken = getPicture("gfx/mainmenu/dpfeil.gif");
+        Abdecken = getPicture("gfx/mainmenu/dpfeil.png");
     }
 
 
@@ -126,41 +126,41 @@ public class Info extends Mainanim {
     public void paintCredits(GenericDrawingContext g) {
 
         // Credits-Background zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
 
-            g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
+            g.drawImage(Bild, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
             switch (PictureCounter) {
                 case 0:  // Jan und Joerg
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly);
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
                 case 1: // Daniel und Eddie
-                    g.drawImage(Daniel, 186 + pLO.x + mainFrame.scrollx, 87 + pLO.y + mainFrame.scrolly);
-                    g.drawImage(Eddie, 338 + pLO.x + mainFrame.scrollx, 40 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Daniel, 186 + pLO.x + mainFrame.scrollX, 87 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(Eddie, 338 + pLO.x + mainFrame.scrollX, 40 + pLO.y + mainFrame.scrollY);
                     break;
                 case 2: // Hanus
-                    g.drawImage(Hanus, 314 + pLO.x + mainFrame.scrollx, 31 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Hanus, 314 + pLO.x + mainFrame.scrollX, 31 + pLO.y + mainFrame.scrollY);
                     break;
                 case 3: // Jan
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollx, 58 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
                     break;
                 case 4: // Mic
-                    g.drawImage(Mic, 174 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Mic, 174 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
                 case 5: // Jiri
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollx, 43 + pLO.y + mainFrame.scrolly);
+                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
             }
 
             if (PictureCounter == 6) {
-                g.drawImage(Abdecken, pLO.x + mainFrame.scrollx + 380, pLO.y + mainFrame.scrolly + 307);
+                g.drawImage(Abdecken, pLO.x + mainFrame.scrollX + 380, pLO.y + mainFrame.scrollY + 307);
             }
 
-            g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
+            g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             for (int i = 0; i <= 3; i++) {
                 String textKey = IMAGE_TEXTS[PictureCounter][i];
@@ -168,8 +168,8 @@ public class Info extends Mainanim {
                 GenericPoint outputTextPos = BildPunkte[PictureCounter][i];
                 if (!Objects.equals(outputText, "")) // leere Dinger ueberspringen
                 {
-                    mainFrame.ifont.drawString(g, outputText, pLO.x + outputTextPos.x + mainFrame.scrollx,
-                            pLO.y + outputTextPos.y + mainFrame.scrolly, 0xffff0000);
+                    mainFrame.imageFont.drawString(g, outputText, pLO.x + outputTextPos.x + mainFrame.scrollX,
+                            pLO.y + outputTextPos.y + mainFrame.scrollY, 0xffff0000);
                 }
             }
         }
@@ -179,15 +179,15 @@ public class Info extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
+                g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
                 break;
             case 2:
                 if (PictureCounter != 6) {
                     GenericRectangle txx = g.getClipBounds();
-                    g.setClip(422 + mainFrame.scrollx, 348 + mainFrame.scrolly, 100, 50);
+                    g.setClip(422 + mainFrame.scrollX, 348 + mainFrame.scrollY, 100, 50);
                     // BUG!!!
                     //		    g.setClip (422, 348, 100, 50);
-                    g.drawImage(Bild, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
+                    g.drawImage(Bild, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                     g.setClip(txx);
                 }
                 break;
@@ -204,10 +204,10 @@ public class Info extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                g.drawImage(Pfeill, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(Pfeilr, 423 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                g.drawImage(Pfeilr, 423 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             default:
                 log.error("Falsches Menu-Item fuers Highlight!!! menuitem = {}", menuitem);
@@ -246,7 +246,7 @@ public class Info extends Mainanim {
                 Deactivate();
                 return;
             } else {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
             }
         }
@@ -255,7 +255,7 @@ public class Info extends Mainanim {
         if (brPfeilr.IsPointInRect(pTemp)) {
             if (PictureCounter < 6) {
                 PictureCounter++;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
             }
         }
@@ -298,9 +298,9 @@ public class Info extends Mainanim {
     // Deaktivieren //////////
     private void Deactivate() {
         menuitem = 0;
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         mainFrame.DestructLocation(104);
-        if (mainFrame.mainmenu.MMactive) {
+        if (mainFrame.mainMenu.MMactive) {
             mainFrame.whatScreen = 2;
         } else {
             mainFrame.whatScreen = 0;

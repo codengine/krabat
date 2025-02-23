@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class DDKarta extends Mainloc {
+public class DDKarta extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(DDKarta.class);
     private GenericImage background;
     private GenericImage vor1;
@@ -63,11 +63,11 @@ public class DDKarta extends Mainloc {
         mainFrame.Freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
-        if (mainFrame.Actions[953]) {
-            mainFrame.Actions[701] = true;
+        if (mainFrame.actions[953]) {
+            mainFrame.actions[701] = true;
         }
 
-        mainFrame.Actions[851] = true;
+        mainFrame.actions[851] = true;
         mainFrame.CheckKrabat();
 
         mainFrame.krabat.maxx = 0;
@@ -77,13 +77,13 @@ public class DDKarta extends Mainloc {
         InitLocation(oldLocation);
 
         // Kr. hat Enterhaken bekommen -> Schiff kann wegfahren -> anderes kommt, sobald mit Dinglinger geredet
-        if (mainFrame.Actions[561] && mainFrame.Actions[529]) {
-            mainFrame.Actions[568] = true;
+        if (mainFrame.actions[561] && mainFrame.actions[529]) {
+            mainFrame.actions[568] = true;
         }
 
         // Kr. hat Metall bekommen -> Schiff kann wegfahren -> nun is leer
-        if (mainFrame.Actions[559]) {
-            mainFrame.Actions[569] = true;
+        if (mainFrame.actions[559]) {
+            mainFrame.actions[569] = true;
         }
 
         mainFrame.Freeze(false);
@@ -92,63 +92,63 @@ public class DDKarta extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(479, 480, 474, 475, 72, 76));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(474, 475, 456, 457, 77, 79));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(425, 80, 457, 81));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(425, 82, 426, 98));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(405, 99, 426, 100));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(365, 366, 405, 406, 91, 98));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(365, 78, 366, 90));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(352, 76, 366, 77));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(355, 356, 309, 310, 78, 164));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(309, 310, 279, 280, 165, 228));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(190, 229, 280, 230));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(190, 231, 191, 291));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(190, 191, 160, 161, 292, 336));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(160, 337, 161, 385));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(160, 386, 206, 387));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(295, 296, 205, 206, 381, 385));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(295, 379, 320, 380));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(319, 381, 320, 436));
 
-        mainFrame.wegSucher.ClearMatrix(18);
+        mainFrame.pathFinder.ClearMatrix(18);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
-        mainFrame.wegSucher.PosVerbinden(4, 5);
-        mainFrame.wegSucher.PosVerbinden(5, 6);
-        mainFrame.wegSucher.PosVerbinden(6, 7);
-        mainFrame.wegSucher.PosVerbinden(7, 8);
-        mainFrame.wegSucher.PosVerbinden(8, 9);
-        mainFrame.wegSucher.PosVerbinden(9, 10);
-        mainFrame.wegSucher.PosVerbinden(10, 11);
-        mainFrame.wegSucher.PosVerbinden(11, 12);
-        mainFrame.wegSucher.PosVerbinden(12, 13);
-        mainFrame.wegSucher.PosVerbinden(13, 14);
-        mainFrame.wegSucher.PosVerbinden(14, 15);
-        mainFrame.wegSucher.PosVerbinden(15, 16);
-        mainFrame.wegSucher.PosVerbinden(16, 17);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.PosVerbinden(5, 6);
+        mainFrame.pathFinder.PosVerbinden(6, 7);
+        mainFrame.pathFinder.PosVerbinden(7, 8);
+        mainFrame.pathFinder.PosVerbinden(8, 9);
+        mainFrame.pathFinder.PosVerbinden(9, 10);
+        mainFrame.pathFinder.PosVerbinden(10, 11);
+        mainFrame.pathFinder.PosVerbinden(11, 12);
+        mainFrame.pathFinder.PosVerbinden(12, 13);
+        mainFrame.pathFinder.PosVerbinden(13, 14);
+        mainFrame.pathFinder.PosVerbinden(14, 15);
+        mainFrame.pathFinder.PosVerbinden(15, 16);
+        mainFrame.pathFinder.PosVerbinden(16, 17);
 
         InitImages();
         switch (oldLocation) {
@@ -179,11 +179,11 @@ public class DDKarta extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/ddkarta/ddkarta.gif");
-        vor1 = getPicture("gfx-dd/ddkarta/kar1.gif");
-        vor2 = getPicture("gfx-dd/ddkarta/kar2.gif");
-        vor3 = getPicture("gfx-dd/ddkarta/kar3.gif");
-        vor4 = getPicture("gfx-dd/ddkarta/kar4.gif");
+        background = getPicture("gfx-dd/ddkarta/ddkarta.png");
+        vor1 = getPicture("gfx-dd/ddkarta/kar1.png");
+        vor2 = getPicture("gfx-dd/ddkarta/kar2.png");
+        vor3 = getPicture("gfx-dd/ddkarta/kar3.png");
+        vor4 = getPicture("gfx-dd/ddkarta/kar4.png");
 
     }
 
@@ -193,14 +193,14 @@ public class DDKarta extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -208,10 +208,10 @@ public class DDKarta extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -219,7 +219,7 @@ public class DDKarta extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -260,7 +260,7 @@ public class DDKarta extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -268,7 +268,7 @@ public class DDKarta extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -291,7 +291,7 @@ public class DDKarta extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -299,7 +299,7 @@ public class DDKarta extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -309,7 +309,7 @@ public class DDKarta extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -324,15 +324,15 @@ public class DDKarta extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -360,7 +360,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -382,7 +382,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -404,7 +404,7 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -426,14 +426,14 @@ public class DDKarta extends Mainloc {
                         return;
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -458,28 +458,28 @@ public class DDKarta extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -488,7 +488,7 @@ public class DDKarta extends Mainloc {
             // bei Hrod und Starewiki nach unten
             if (brHrod.IsPointInRect(pTemp) || brStarewiki.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 3;
                 }
                 return;
@@ -497,7 +497,7 @@ public class DDKarta extends Mainloc {
             // Zastup und Panorama nach Oben
             if (brZastup.IsPointInRect(pTemp) || brPanorama.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 2;
                 }
                 return;
@@ -516,7 +516,7 @@ public class DDKarta extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -532,12 +532,12 @@ public class DDKarta extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -579,8 +579,8 @@ public class DDKarta extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -598,7 +598,7 @@ public class DDKarta extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -612,25 +612,25 @@ public class DDKarta extends Mainloc {
         switch (nextActionID) {
             case 100:
                 // Gehe zu Panorama
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(160, locationID);
                 break;
 
             case 101:
                 // Gehe zu Zastup
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(170, locationID);
                 break;
 
             case 102:
                 // Gehe zu Hrod
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(127, locationID);
                 break;
 
             case 103:
                 // Gehe zu Starewiki
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(175, locationID);
                 break;
 

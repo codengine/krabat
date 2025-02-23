@@ -54,6 +54,14 @@ public class Debug {
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
+    public static void DrawRect(GenericDrawingContext g, Borderrect rectangle, int scrollx, int scrolly)
+    {
+        g.setColor(GenericColor.white);
+        g.drawRect(rectangle.lo_point.x + scrollx, rectangle.lo_point.y + scrolly,
+                rectangle.ru_point.x - rectangle.lo_point.x,
+                rectangle.ru_point.y - rectangle.lo_point.y);
+    }
+
     public static Instant getTimeInstant() {
         return CLOCK.instant();
     }

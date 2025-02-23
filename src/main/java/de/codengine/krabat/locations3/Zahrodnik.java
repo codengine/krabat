@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Zahrodnik extends Mainloc {
+public class Zahrodnik extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Zahrodnik.class);
     private GenericImage background;
     private GenericImage hrod;
@@ -124,18 +124,18 @@ public class Zahrodnik extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(327, 371, 639, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(505, 333, 600, 370));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(80, 326, 20, 326, 375, 450));
 
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(0, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 2);
 
         InitImages();
         switch (oldLocation) {
@@ -153,8 +153,8 @@ public class Zahrodnik extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/zahrod/zahrod.gif");
-        hrod = getPicture("gfx-dd/zahrod/hrod.gif");
+        background = getPicture("gfx-dd/zahrod/zahrod.png");
+        hrod = getPicture("gfx-dd/zahrod/hrod.png");
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -164,24 +164,24 @@ public class Zahrodnik extends Mainloc {
         // Tuereintrittssound abspielen
         if (!initSound) {
             initSound = true;
-            mainFrame.wave.PlayFile("sfx/vdurjezu.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/vdurjezu.wav");
         }
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if (mainFrame.isMultiple && mainFrame.Clipset) {
+        if (mainFrame.isMultipleChoiceActive && mainFrame.isClipSet) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -189,7 +189,7 @@ public class Zahrodnik extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Handrij zeichnen
@@ -198,7 +198,7 @@ public class Zahrodnik extends Mainloc {
         handrij.drawHandrij(g, TalkPerson, handrijHoertZu, handrijSchreibt, handrijGibt);
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Sound abspielen
         evalSound();
@@ -211,7 +211,7 @@ public class Zahrodnik extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -251,7 +251,7 @@ public class Zahrodnik extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -259,7 +259,7 @@ public class Zahrodnik extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -270,8 +270,8 @@ public class Zahrodnik extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -288,14 +288,14 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -304,7 +304,7 @@ public class Zahrodnik extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -314,7 +314,7 @@ public class Zahrodnik extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -378,15 +378,15 @@ public class Zahrodnik extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -412,7 +412,7 @@ public class Zahrodnik extends Mainloc {
                         pTemp = new GenericPoint(pExitUnten.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -468,7 +468,7 @@ public class Zahrodnik extends Mainloc {
                     pTemp = pDokumenty;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -476,7 +476,7 @@ public class Zahrodnik extends Mainloc {
                 // Mit dem Zahrodnik reden
                 if (reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pZahrUnten);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pZahrUnten);
                     mainFrame.repaint();
                     return;
                 }
@@ -489,7 +489,7 @@ public class Zahrodnik extends Mainloc {
                 // hrod mitnehmen
                 if (lookHrod.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pHrod);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pHrod);
                     mainFrame.repaint();
                     return;
                 }
@@ -497,7 +497,7 @@ public class Zahrodnik extends Mainloc {
                 // blatt mitnehmen
                 if (papier.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pPapier);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pPapier);
                     mainFrame.repaint();
                     return;
                 }
@@ -505,7 +505,7 @@ public class Zahrodnik extends Mainloc {
                 // budka ansehen
                 if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pBudka);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pBudka);
                     mainFrame.repaint();
                     return;
                 }
@@ -513,7 +513,7 @@ public class Zahrodnik extends Mainloc {
                 // skizze ansehen
                 if (skizze.IsPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSkizze);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSkizze);
                     mainFrame.repaint();
                     return;
                 }
@@ -521,7 +521,7 @@ public class Zahrodnik extends Mainloc {
                 // pjerjo ansehen
                 if (pjerjo.IsPointInRect(pTemp)) {
                     nextActionID = 75;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pPjerjo);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pPjerjo);
                     mainFrame.repaint();
                     return;
                 }
@@ -529,7 +529,7 @@ public class Zahrodnik extends Mainloc {
                 // dokumenty ansehen
                 if (dokumenty.IsPointInRect(pTemp)) {
                     nextActionID = 80;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pDokumenty);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pDokumenty);
                     mainFrame.repaint();
                     return;
                 }
@@ -546,37 +546,37 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || skizze.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || skizze.IsPointInRect(pTemp) ||
                     papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
                     budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
                     dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -584,7 +584,7 @@ public class Zahrodnik extends Mainloc {
         else {
             if (ausgangUnten.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
-                    mainFrame.setCursor(mainFrame.Cright);  // Ausgang jetzt rechts!!!
+                    mainFrame.setCursor(mainFrame.cursorRight);  // Ausgang jetzt rechts!!!
                     Cursorform = 6;
                 }
                 return;
@@ -595,7 +595,7 @@ public class Zahrodnik extends Mainloc {
                     budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
                     dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -603,7 +603,7 @@ public class Zahrodnik extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -611,7 +611,7 @@ public class Zahrodnik extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -621,17 +621,17 @@ public class Zahrodnik extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -673,8 +673,8 @@ public class Zahrodnik extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -693,7 +693,7 @@ public class Zahrodnik extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -743,9 +743,9 @@ public class Zahrodnik extends Mainloc {
 
             case 50:
                 // zuerstmal richtig zu Zahrodnik hinlaufen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pZahrodnik);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pZahrodnik);
                 nextActionID = 53;
                 break;
 
@@ -754,7 +754,7 @@ public class Zahrodnik extends Mainloc {
                 schnauzeZahrod = true;  // Sound schon hier abschalten
                 mainFrame.krabat.SetFacing(fZahrod);
                 // Sequenz vor MC ? (beim ersten Ansprechen)
-                if (mainFrame.Actions[530]) {
+                if (mainFrame.actions[530]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 608;
@@ -838,14 +838,14 @@ public class Zahrodnik extends Mainloc {
                 Dialog.InitMC(20);
                 handrijHoertZu = true;
                 // 1. Frage nur, wenn noch kein Liscik
-                if (!mainFrame.Actions[542]) {
+                if (!mainFrame.actions[542]) {
                     Dialog.ExtendMC("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
                     Dialog.ExtendMC("Zahrodnik_35", 537, 536, new int[]{536}, 611);
                     Dialog.ExtendMC("Zahrodnik_36", 536, 535, new int[]{535}, 612);
                     Dialog.ExtendMC("Zahrodnik_37", 535, 534, new int[]{534}, 613);
                     Dialog.ExtendMC("Zahrodnik_38", 534, 533, new int[]{533}, 614);
                     Dialog.ExtendMC("Zahrodnik_39", 533, 532, new int[]{532}, 615);
-                    if (!mainFrame.Actions[520]) {
+                    if (!mainFrame.actions[520]) {
                         Dialog.ExtendMC("Zahrodnik_40", 532, 1000, null, 618);
                     } else {
                         Dialog.ExtendMC("Zahrodnik_41", 532, 1000, null, 620);
@@ -860,19 +860,19 @@ public class Zahrodnik extends Mainloc {
                 // 3. Frage
                 Dialog.ExtendMC("Zahrodnik_45", 1000, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -891,7 +891,7 @@ public class Zahrodnik extends Mainloc {
             case 609:
                 // Reaktion Zahrodnik
                 PersonSagt("Zahrodnik_15", 0, 50, 2, 600, talkPoint);
-                mainFrame.Actions[530] = true; // Flag setzen
+                mainFrame.actions[530] = true; // Flag setzen
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
@@ -967,7 +967,7 @@ public class Zahrodnik extends Mainloc {
             case 623:
                 // warten
                 if (tCounter == 48) {
-                    mainFrame.wave.PlayFile("sfx-dd/pisac.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx-dd/pisac.wav");
                 }
                 if (--tCounter > 1) {
                     break;
@@ -999,7 +999,7 @@ public class Zahrodnik extends Mainloc {
                 // Empfehlungsschreiben zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(30);
                 // Flag - setzen ! Krabat bekommt Empfehl.schreiben
-                mainFrame.Actions[542] = true;
+                mainFrame.actions[542] = true;
                 break;
 
 
@@ -1031,16 +1031,16 @@ public class Zahrodnik extends Mainloc {
 
             case 800:
                 // wieder weg von Zahrodnik laufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pZahrUnten);
+                mainFrame.pathWalker.SetzeNeuenWeg(pZahrUnten);
                 nextActionID = 810;
                 break;
 
             case 810:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
                 handrijHoertZu = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1073,7 +1073,7 @@ public class Zahrodnik extends Mainloc {
             int zwzf = (int) (Math.random() * 4.99);
             zwzf += 49;
 
-            mainFrame.wave.PlayFile("sfx-dd/zahrod" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/zahrod" + (char) zwzf + ".wav");
         }
 
     }

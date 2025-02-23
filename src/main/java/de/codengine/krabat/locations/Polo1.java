@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Polo1 extends Mainloc {
+public class Polo1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Polo1.class);
     private GenericImage background;
     private GenericImage polo2;
@@ -113,17 +113,17 @@ public class Polo1 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(0, 100, 0, 30, 397, 427));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(172, 360, 20, 100, 353, 396));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(592, 639, 201, 360, 299, 352));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 100, 0, 30, 397, 427));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 360, 20, 100, 353, 396));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(592, 639, 201, 360, 299, 352));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
         // Wege eintragen
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
 
         InitImages();
         switch (oldLocation) {
@@ -147,11 +147,11 @@ public class Polo1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/polo/polo.gif");
-        polo2 = getPicture("gfx/polo/polo2.gif");
-        polo3 = getPicture("gfx/polo/polo3.gif");
-        polo4 = getPicture("gfx/polo/polo4.gif");
-        polo5 = getPicture("gfx/polo/polo5.gif");
+        background = getPicture("gfx/polo/polo.png");
+        polo2 = getPicture("gfx/polo/polo2.png");
+        polo3 = getPicture("gfx/polo/polo3.png");
+        polo4 = getPicture("gfx/polo/polo4.png");
+        polo5 = getPicture("gfx/polo/polo5.png");
 
     }
 
@@ -191,21 +191,21 @@ public class Polo1 extends Mainloc {
 		}*/
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
 
         // Wenn die Steine weg, dann anderes GenericImage drueber
-        if (mainFrame.Actions[912]) {
+        if (mainFrame.actions[912]) {
             g.setClip(180, 339, 102, 35);
             g.drawImage(polo3, 180, 339);
             g.drawImage(polo4, 211, 339);
@@ -226,7 +226,7 @@ public class Polo1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Andere Personen zeichnen (zuerst Background loeschen)
@@ -243,7 +243,7 @@ public class Polo1 extends Mainloc {
         g.setClip(hanzaPoint.x, hanzaPoint.y, BurHanza.Breite, BurHanza.Hoehe);
         agnes.drawHanza(g, TalkPerson, hanzaPoint);
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -253,7 +253,7 @@ public class Polo1 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -294,7 +294,7 @@ public class Polo1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -302,7 +302,7 @@ public class Polo1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -313,8 +313,8 @@ public class Polo1 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -331,14 +331,14 @@ public class Polo1 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -347,7 +347,7 @@ public class Polo1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -357,7 +357,7 @@ public class Polo1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -404,22 +404,22 @@ public class Polo1 extends Mainloc {
                 }
 
                 // Ausreden fuer Kamuski
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
                     // rohodz
                     nextActionID = mainFrame.whatItem == 17 ? 220 : 160;
                     pTemp = Pkamuski;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -433,7 +433,7 @@ public class Polo1 extends Mainloc {
                 nextActionID = 0;
 
                 // Kamuski ansehen
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
                     nextActionID = 3;
                     pTemp = Pkamuski;
                 }
@@ -450,7 +450,7 @@ public class Polo1 extends Mainloc {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -469,7 +469,7 @@ public class Polo1 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -482,7 +482,7 @@ public class Polo1 extends Mainloc {
                     pTemp = Pburja;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -500,15 +500,15 @@ public class Polo1 extends Mainloc {
                 // Mit den Bauern reden
                 if (michalRect.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pburja);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pburja);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kamuski nehmen
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
+                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pkamuski);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pkamuski);
                     mainFrame.repaint();
                     return;
                 }
@@ -525,36 +525,36 @@ public class Polo1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp) ||
                     michalRect.IsPointInRect(pTemp) || kamuskiRect.IsPointInRect(pTemp) &&
-                    !mainFrame.Actions[912];
+                    !mainFrame.actions[912];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -563,9 +563,9 @@ public class Polo1 extends Mainloc {
         else {
             if (hanzaRect.IsPointInRect(pTemp) ||
                     michalRect.IsPointInRect(pTemp) ||
-                    kamuskiRect.IsPointInRect(pTemp) && !mainFrame.Actions[912]) {
+                    kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -573,7 +573,7 @@ public class Polo1 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -581,7 +581,7 @@ public class Polo1 extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -589,7 +589,7 @@ public class Polo1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -597,7 +597,7 @@ public class Polo1 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -607,17 +607,17 @@ public class Polo1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -659,8 +659,8 @@ public class Polo1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -679,7 +679,7 @@ public class Polo1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -706,15 +706,15 @@ public class Polo1 extends Mainloc {
                 // Krabat beginnt MC (Bauern benutzen)
                 hoertkrabatzu = true;
                 mainFrame.krabat.SetFacing(12);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 600;
                 break;
 
             case 55:
                 // Kamuski mitnehmen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 KrabatSagt("Polo1_3", fKamuski, 3, 2, 60);
                 break;
 
@@ -722,7 +722,7 @@ public class Polo1 extends Mainloc {
                 // Kamuski benutzen
                 mainFrame.krabat.SetFacing(9);
                 mainFrame.inventory.vInventory.addElement(12);
-                mainFrame.wegGeher.SetzeNeuenWeg(pStein1);
+                mainFrame.pathWalker.SetzeNeuenWeg(pStein1);
                 nextActionID = 62;
                 break;
 
@@ -739,7 +739,7 @@ public class Polo1 extends Mainloc {
                     break;
                 }
                 stein1verdeckt = true;
-                mainFrame.wegGeher.SetzeNeuenWeg(pStein2);
+                mainFrame.pathWalker.SetzeNeuenWeg(pStein2);
                 nextActionID = 66;
                 break;
 
@@ -756,7 +756,7 @@ public class Polo1 extends Mainloc {
                     break;
                 }
                 stein2verdeckt = true;
-                mainFrame.wegGeher.SetzeNeuenWeg(pStein3);
+                mainFrame.pathWalker.SetzeNeuenWeg(pStein3);
                 nextActionID = 70;
                 break;
 
@@ -773,9 +773,9 @@ public class Polo1 extends Mainloc {
                     break;
                 }
                 stein3verdeckt = true;
-                mainFrame.Actions[912] = true;
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[912] = true;
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -853,19 +853,19 @@ public class Polo1 extends Mainloc {
                 // 3. Frage
                 Dialog.ExtendMC("Polo1_38", 1000, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -976,9 +976,9 @@ public class Polo1 extends Mainloc {
             case 800:
                 // MC beenden, wenn zuende gelabert...
                 hoertkrabatzu = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

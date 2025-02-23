@@ -78,31 +78,31 @@ public class WikowarkaRudy extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        krabat_front[0] = getPicture("gfx-dd/lodz/zona.gif");
-        krabat_front[1] = getPicture("gfx-dd/lodz/zona5.gif");
-        krabat_front[2] = getPicture("gfx-dd/lodz/zona.gif");
-        krabat_front[3] = getPicture("gfx-dd/lodz/zona6.gif");
+        krabat_front[0] = getPicture("gfx-dd/lodz/zona.png");
+        krabat_front[1] = getPicture("gfx-dd/lodz/zona5.png");
+        krabat_front[2] = getPicture("gfx-dd/lodz/zona.png");
+        krabat_front[3] = getPicture("gfx-dd/lodz/zona6.png");
 
-        krabat_back[0] = getPicture("gfx-dd/lodz/zona4.gif");
-        krabat_back[1] = getPicture("gfx-dd/lodz/zona2.gif");
-        krabat_back[2] = getPicture("gfx-dd/lodz/zona4.gif");
-        krabat_back[3] = getPicture("gfx-dd/lodz/zona3.gif");
+        krabat_back[0] = getPicture("gfx-dd/lodz/zona4.png");
+        krabat_back[1] = getPicture("gfx-dd/lodz/zona2.png");
+        krabat_back[2] = getPicture("gfx-dd/lodz/zona4.png");
+        krabat_back[3] = getPicture("gfx-dd/lodz/zona3.png");
 
-        krabat_talk[0] = getPicture("gfx-dd/lodz/zona.gif");
-        krabat_talk[1] = getPicture("gfx-dd/lodz/zona9.gif");
-        krabat_talk[2] = getPicture("gfx-dd/lodz/zona10.gif");
-        krabat_talk[3] = getPicture("gfx-dd/lodz/zona11.gif");
-        krabat_talk[4] = getPicture("gfx-dd/lodz/zona12.gif");
-        krabat_talk[5] = getPicture("gfx-dd/lodz/zona13.gif");
-        krabat_talk[6] = getPicture("gfx-dd/lodz/zona14.gif");
-        krabat_talk[7] = getPicture("gfx-dd/lodz/zona15.gif");
+        krabat_talk[0] = getPicture("gfx-dd/lodz/zona.png");
+        krabat_talk[1] = getPicture("gfx-dd/lodz/zona9.png");
+        krabat_talk[2] = getPicture("gfx-dd/lodz/zona10.png");
+        krabat_talk[3] = getPicture("gfx-dd/lodz/zona11.png");
+        krabat_talk[4] = getPicture("gfx-dd/lodz/zona12.png");
+        krabat_talk[5] = getPicture("gfx-dd/lodz/zona13.png");
+        krabat_talk[6] = getPicture("gfx-dd/lodz/zona14.png");
+        krabat_talk[7] = getPicture("gfx-dd/lodz/zona15.png");
 
-        krabat_extra[0] = getPicture("gfx-dd/lodz/zona7.gif");
-        krabat_extra[1] = getPicture("gfx-dd/lodz/zona8.gif");
+        krabat_extra[0] = getPicture("gfx-dd/lodz/zona7.png");
+        krabat_extra[1] = getPicture("gfx-dd/lodz/zona8.png");
 
-        hrajer_extra[0] = getPicture("gfx-dd/lodz/kzona.gif");
-        hrajer_extra[1] = getPicture("gfx-dd/lodz/kzona2.gif");
-        hrajer_extra[2] = getPicture("gfx-dd/lodz/kzona3.gif");
+        hrajer_extra[0] = getPicture("gfx-dd/lodz/kzona.png");
+        hrajer_extra[1] = getPicture("gfx-dd/lodz/kzona2.png");
+        hrajer_extra[2] = getPicture("gfx-dd/lodz/kzona3.png");
     }
 
 

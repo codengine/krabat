@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Jitk2 extends Mainloc2 {
+public class Jitk2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Jitk2.class);
     private GenericImage background/* , strauch */;
 
@@ -74,35 +74,35 @@ public class Jitk2 extends Mainloc2 {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(276, 346, 213, 296, 399, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(276, 639, 276, 528, 375, 398));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(633, 639, 573, 639, 352, 374));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(271, 357, 368, 374));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(360, 374, 339, 367, 345, 356));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(218, 241, 271, 309, 328, 356));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(154, 176, 218, 241, 260, 327));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(91, 96, 154, 176, 220, 259));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(83, 90, 91, 96, 137, 219));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(276, 346, 213, 296, 399, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(276, 639, 276, 528, 375, 398));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(633, 639, 573, 639, 352, 374));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(271, 357, 368, 374));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(360, 374, 339, 367, 345, 356));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(218, 241, 271, 309, 328, 356));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 176, 218, 241, 260, 327));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(91, 96, 154, 176, 220, 259));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(83, 90, 91, 96, 137, 219));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(9);
+        mainFrame.pathFinder.ClearMatrix(9);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(1, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
-        mainFrame.wegSucher.PosVerbinden(3, 5);
-        mainFrame.wegSucher.PosVerbinden(5, 6);
-        mainFrame.wegSucher.PosVerbinden(6, 7);
-        mainFrame.wegSucher.PosVerbinden(7, 8);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(1, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(3, 5);
+        mainFrame.pathFinder.PosVerbinden(5, 6);
+        mainFrame.pathFinder.PosVerbinden(6, 7);
+        mainFrame.pathFinder.PosVerbinden(7, 8);
 
         InitImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
-                if (mainFrame.Actions[300]) {
+                if (mainFrame.actions[300]) {
                     BackgroundMusicPlayer.getInstance().playTrack(20, true);
                 } else {
                     BackgroundMusicPlayer.getInstance().stop();
@@ -124,8 +124,8 @@ public class Jitk2 extends Mainloc2 {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/jitk/jitk.gif");
-        // strauch    = getPicture ("gfx/jitk/strauch.gif");
+        background = getPicture("gfx/jitk/jitk.png");
+        // strauch    = getPicture ("gfx/jitk/strauch.png");
 
     }
 
@@ -140,14 +140,14 @@ public class Jitk2 extends Mainloc2 {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -155,11 +155,11 @@ public class Jitk2 extends Mainloc2 {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabat einen Schritt gehen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -167,7 +167,7 @@ public class Jitk2 extends Mainloc2 {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -207,7 +207,7 @@ public class Jitk2 extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -215,7 +215,7 @@ public class Jitk2 extends Mainloc2 {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -238,7 +238,7 @@ public class Jitk2 extends Mainloc2 {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -246,7 +246,7 @@ public class Jitk2 extends Mainloc2 {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -256,7 +256,7 @@ public class Jitk2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -288,15 +288,15 @@ public class Jitk2 extends Mainloc2 {
 
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -321,7 +321,7 @@ public class Jitk2 extends Mainloc2 {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -341,7 +341,7 @@ public class Jitk2 extends Mainloc2 {
                         pTemp = new GenericPoint(kt.x, Pleft.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -360,7 +360,7 @@ public class Jitk2 extends Mainloc2 {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -379,7 +379,7 @@ public class Jitk2 extends Mainloc2 {
                     pTemp = Pwagen;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -402,7 +402,7 @@ public class Jitk2 extends Mainloc2 {
                 // Tuer mitnehmen
                 if (brEingang.IsPointInRect(pTemp)) {
                     nextActionID = 51;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Peingang);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Peingang);
                     mainFrame.repaint();
                     return;
                 }
@@ -410,7 +410,7 @@ public class Jitk2 extends Mainloc2 {
                 // Wagen mitnehmen
                 if (brWagen.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pwagen);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pwagen);
                     mainFrame.repaint();
                     return;
                 }
@@ -427,29 +427,29 @@ public class Jitk2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = brEingang.IsPointInRect(pTemp) || brWagen.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = brEingang.IsPointInRect(pTemp) || brWagen.IsPointInRect(pTemp) ||
                     tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -457,7 +457,7 @@ public class Jitk2 extends Mainloc2 {
         else {
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 2;
                 }
                 return;
@@ -466,7 +466,7 @@ public class Jitk2 extends Mainloc2 {
             if (brEingang.IsPointInRect(pTemp) ||
                     brWagen.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -474,7 +474,7 @@ public class Jitk2 extends Mainloc2 {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -482,7 +482,7 @@ public class Jitk2 extends Mainloc2 {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -490,7 +490,7 @@ public class Jitk2 extends Mainloc2 {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -506,12 +506,12 @@ public class Jitk2 extends Mainloc2 {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -553,8 +553,8 @@ public class Jitk2 extends Mainloc2 {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -573,7 +573,7 @@ public class Jitk2 extends Mainloc2 {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }

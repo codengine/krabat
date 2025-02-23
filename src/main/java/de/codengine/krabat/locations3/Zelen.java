@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Zelen extends Mainloc {
+public class Zelen extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Zelen.class);
     private GenericImage background;
     private GenericImage iprikaz;
@@ -160,15 +160,15 @@ public class Zelen extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(215, 305, 215, 305, 424, 464));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(135, 305, 135, 305, 465, 479));
 
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -185,23 +185,23 @@ public class Zelen extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/zelen/zelen.gif");
-        iprikaz = getPicture("gfx-dd/zelen/zprikaz.gif");
-        vorder = getPicture("gfx-dd/zelen/zdurje.gif");
+        background = getPicture("gfx-dd/zelen/zelen.png");
+        iprikaz = getPicture("gfx-dd/zelen/zprikaz.png");
+        vorder = getPicture("gfx-dd/zelen/zdurje.png");
 
-        kerze[0] = getPicture("gfx-dd/zelen/kerze1.gif");
-        kerze[1] = getPicture("gfx-dd/zelen/kerze2.gif");
-        kerze[2] = getPicture("gfx-dd/zelen/kerze3.gif");
-        kerze[3] = getPicture("gfx-dd/zelen/kerze4.gif");
-        kerze[4] = getPicture("gfx-dd/zelen/kerze5.gif");
-        kerze[5] = getPicture("gfx-dd/zelen/kerze6.gif");
-        kerze[6] = getPicture("gfx-dd/zelen/kerze7.gif");
-        kerze[7] = getPicture("gfx-dd/zelen/kerze8.gif");
+        kerze[0] = getPicture("gfx-dd/zelen/kerze1.png");
+        kerze[1] = getPicture("gfx-dd/zelen/kerze2.png");
+        kerze[2] = getPicture("gfx-dd/zelen/kerze3.png");
+        kerze[3] = getPicture("gfx-dd/zelen/kerze4.png");
+        kerze[4] = getPicture("gfx-dd/zelen/kerze5.png");
+        kerze[5] = getPicture("gfx-dd/zelen/kerze6.png");
+        kerze[6] = getPicture("gfx-dd/zelen/kerze7.png");
+        kerze[7] = getPicture("gfx-dd/zelen/kerze8.png");
 
-        siegel = getPicture("gfx-dd/zelen/stempel.gif");
+        siegel = getPicture("gfx-dd/zelen/stempel.png");
 
-        krabat_siegeln[0] = getPicture("gfx-dd/zelen/s-o-siegeln1.gif");
-        krabat_siegeln[1] = getPicture("gfx-dd/zelen/s-o-siegeln2.gif");
+        krabat_siegeln[0] = getPicture("gfx-dd/zelen/s-o-siegeln1.png");
+        krabat_siegeln[1] = getPicture("gfx-dd/zelen/s-o-siegeln2.png");
 
     }
 
@@ -210,14 +210,14 @@ public class Zelen extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -275,7 +275,7 @@ public class Zelen extends Mainloc {
         }
 
         // prikaz zeichnen, solange noch da
-        if (!mainFrame.Actions[640]) {
+        if (!mainFrame.actions[640]) {
             g.setClip(412, 404, 24, 10);
             g.drawImage(background, 0, 0);
             g.drawImage(iprikaz, 412, 404);
@@ -304,10 +304,10 @@ public class Zelen extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
@@ -358,7 +358,7 @@ public class Zelen extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -400,7 +400,7 @@ public class Zelen extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -408,7 +408,7 @@ public class Zelen extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -431,7 +431,7 @@ public class Zelen extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -439,7 +439,7 @@ public class Zelen extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -449,7 +449,7 @@ public class Zelen extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -471,7 +471,7 @@ public class Zelen extends Mainloc {
 //                             }
 
                 // Ausreden Prikaz
-                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.actions[640]) {
                     nextActionID = 155;
                     pTemp = pTisch;
                 }
@@ -501,15 +501,15 @@ public class Zelen extends Mainloc {
 //                             }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -534,7 +534,7 @@ public class Zelen extends Mainloc {
                         pTemp = new GenericPoint(pExitUp.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -542,7 +542,7 @@ public class Zelen extends Mainloc {
                 }
 
                 // Prikaz ansehen
-                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.actions[640]) {
                     nextActionID = 1;
                     pTemp = pTisch;
                 }
@@ -567,15 +567,15 @@ public class Zelen extends Mainloc {
 //                                 pTemp = pKlavier;
 //                             }	
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Prikaz mitnehmen
-                if (prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
+                if (prikaz.IsPointInRect(pTemp) && !mainFrame.actions[640]) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTisch);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTisch);
                     mainFrame.repaint();
                     return;
                 }
@@ -583,7 +583,7 @@ public class Zelen extends Mainloc {
                 // Kerze benutzen
                 if (kerzeRect.IsPointInRect(pTemp)) {
                     nextActionID = 90;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pKerze);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pKerze);
                     mainFrame.repaint();
                     return;
                 }
@@ -623,32 +623,32 @@ public class Zelen extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
 // 		    (stuhl.IsPointInRect (pTemp) == true) ||
 //                     (klavier.IsPointInRect (pTemp) == true) ||
-                    prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640] ||
+                    prikaz.IsPointInRect(pTemp) && !mainFrame.actions[640] ||
                     kerzeRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -657,9 +657,9 @@ public class Zelen extends Mainloc {
             if (kerzeRect.IsPointInRect(pTemp) ||
 // 		    (klavier.IsPointInRect (pTemp) == true) ||
 //                     (stuhl.IsPointInRect (pTemp) == true) ||
-                    prikaz.IsPointInRect(pTemp) && !mainFrame.Actions[640]) {
+                    prikaz.IsPointInRect(pTemp) && !mainFrame.actions[640]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -667,7 +667,7 @@ public class Zelen extends Mainloc {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -675,7 +675,7 @@ public class Zelen extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -691,12 +691,12 @@ public class Zelen extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -738,8 +738,8 @@ public class Zelen extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -757,7 +757,7 @@ public class Zelen extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -791,9 +791,9 @@ public class Zelen extends Mainloc {
 
             case 50:
                 // Prikaz mitnehmen, zuerstmal hinlaufen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pKerze);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pKerze);
                 nextActionID = 52;
                 break;
 
@@ -810,8 +810,8 @@ public class Zelen extends Mainloc {
                 // auf Ende nehmen warten
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(49);
-                    mainFrame.Actions[640] = true;
-                    mainFrame.Clipset = false;
+                    mainFrame.actions[640] = true;
+                    mainFrame.isClipSet = false;
                 }
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
@@ -831,12 +831,12 @@ public class Zelen extends Mainloc {
 
             case 65:
                 // Ende nehmen
-                if (mainFrame.Actions[640] && mainFrame.Actions[641]) {
+                if (mainFrame.actions[640] && mainFrame.actions[641]) {
                     nextActionID = 220;
                 } else {
                     nextActionID = 70;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -845,40 +845,40 @@ public class Zelen extends Mainloc {
                 if (SonderAnim != 0) {
                     break;
                 }
-                mainFrame.wegGeher.SetzeNeuenWeg(pVorTisch);
+                mainFrame.pathWalker.SetzeNeuenWeg(pVorTisch);
                 nextActionID = 75;
                 break;
 
             case 75:
                 // Ende dieser Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
 
             case 80:
                 // nur Siegeln
-                if (!mainFrame.Actions[641]) {
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
-                    mainFrame.invCursor = false;
+                if (!mainFrame.actions[641]) {
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
+                    mainFrame.isInventoryCursor = false;
 
                     // Dowol noch nicht gesiegelt, also testen, ob da, dann kann gesiegelt werden
-                    if (!mainFrame.Actions[645]) {
+                    if (!mainFrame.actions[645]) {
                         // Dowol noch nicht an PredMali gegeben, also ununterschriebene austauschen
                         mainFrame.inventory.vInventory.removeElement(31);
                         mainFrame.inventory.vInventory.addElement(32);
                     }
 
-                    if (mainFrame.Actions[645] && mainFrame.Actions[647] &&
-                            mainFrame.Actions[648]) {
+                    if (mainFrame.actions[645] && mainFrame.actions[647] &&
+                            mainFrame.actions[648]) {
                         // Dowol von PredMali zurueck, also unterschriebene austauschen
                         mainFrame.inventory.vInventory.removeElement(33);
                         mainFrame.inventory.vInventory.addElement(34);
                     }
 
-                    mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pKerze);
+                    mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pKerze);
                     nextActionID = 83;
                 } else { // schon gesiegelt, nicht 2x
                     KrabatSagt("Zelen_7", fPrikaz, 3, 0, 0);
@@ -887,7 +887,7 @@ public class Zelen extends Mainloc {
 
             case 83:
                 // steht vor der Kerze, also gut
-                mainFrame.Actions[641] = true;
+                mainFrame.actions[641] = true;
                 SonderAnim = 1;
                 mainFrame.krabat.SetFacing(fKerze);
                 Counter = 20;
@@ -897,7 +897,7 @@ public class Zelen extends Mainloc {
             case 86:
                 // Krabat spricht
                 if (--Counter == 1) {
-                    mainFrame.wave.PlayFile("sfx/schildlegen.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/schildlegen.wav");
                 }
                 if (SonderAnim != 0) {
                     break;
@@ -907,12 +907,12 @@ public class Zelen extends Mainloc {
 
             case 87:
                 // jetzt schauen, obs schon zu Ende ist oder noch nicht...
-                if (mainFrame.Actions[640] && mainFrame.Actions[641]) {
+                if (mainFrame.actions[640] && mainFrame.actions[641]) {
                     nextActionID = 220;
                 } else {
                     nextActionID = 70;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -989,7 +989,7 @@ public class Zelen extends Mainloc {
 
             case 260:
                 // Gehe zu Kuche
-                mainFrame.Actions[655] = true; // Hier Action - Variable fuer Muellererscheinen !!!!
+                mainFrame.actions[655] = true; // Hier Action - Variable fuer Muellererscheinen !!!!
                 NeuesBild(132, locationID);
                 break;
 

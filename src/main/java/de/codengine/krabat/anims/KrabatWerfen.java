@@ -53,10 +53,10 @@ public class KrabatWerfen extends Mainanim {
     }
 
     private void InitImages() {
-        krabat_werfen[0] = getPicture("gfx-dd/haska/k-l-kw1.gif");
-        krabat_werfen[1] = getPicture("gfx-dd/haska/k-l-kw2.gif");
-        krabat_werfen[2] = getPicture("gfx-dd/haska/k-l-kw3.gif");
-        krabat_werfen[3] = getPicture("gfx-dd/haska/k-l-kw4.gif");
+        krabat_werfen[0] = getPicture("gfx-dd/haska/k-l-kw1.png");
+        krabat_werfen[1] = getPicture("gfx-dd/haska/k-l-kw2.png");
+        krabat_werfen[2] = getPicture("gfx-dd/haska/k-l-kw3.png");
+        krabat_werfen[3] = getPicture("gfx-dd/haska/k-l-kw4.png");
     }
 
     // Zeichne Krabat, wie er dasteht oder spricht
@@ -86,7 +86,7 @@ public class KrabatWerfen extends Mainanim {
             BildIndex++;
 
             if (BildIndex == 1) {
-                mainFrame.wave.PlayFile("sfx-dd/wusch2.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/wusch2.wav");
             }
 
             if (BildIndex > 3) {

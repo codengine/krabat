@@ -61,13 +61,13 @@ public class Mlynkptack extends Mainanim {
     // Bilder laden
     private void InitImages() {
         if (isLeft) {
-            vogel[1] = getPicture("gfx/kolmc/iv1a.gif");
-            vogel[2] = getPicture("gfx/kolmc/iv2a.gif");
-            vogel[3] = getPicture("gfx/kolmc/iv3a.gif");
+            vogel[1] = getPicture("gfx/kolmc/iv1a.png");
+            vogel[2] = getPicture("gfx/kolmc/iv2a.png");
+            vogel[3] = getPicture("gfx/kolmc/iv3a.png");
         } else {
-            vogel[1] = getPicture("gfx/kolmc/iv1a-gespiegelt.gif");
-            vogel[2] = getPicture("gfx/kolmc/iv2a-gespiegelt.gif");
-            vogel[3] = getPicture("gfx/kolmc/iv3a-gespiegelt.gif");
+            vogel[1] = getPicture("gfx/kolmc/iv1a-gespiegelt.png");
+            vogel[2] = getPicture("gfx/kolmc/iv2a-gespiegelt.png");
+            vogel[3] = getPicture("gfx/kolmc/iv3a-gespiegelt.png");
         }
     }
 

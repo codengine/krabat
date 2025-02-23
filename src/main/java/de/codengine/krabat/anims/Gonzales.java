@@ -60,19 +60,19 @@ public class Gonzales extends Mainanim {
     }
 
     private void InitImages() {
-        pirat_head[0] = getPicture("gfx-dd/habor/ph1.gif");
-        pirat_head[1] = getPicture("gfx-dd/habor/ph3.gif");
-        pirat_head[2] = getPicture("gfx-dd/habor/ph4.gif");
-        pirat_head[3] = getPicture("gfx-dd/habor/ph5.gif");
-        pirat_head[4] = getPicture("gfx-dd/habor/ph6.gif");
+        pirat_head[0] = getPicture("gfx-dd/habor/ph1.png");
+        pirat_head[1] = getPicture("gfx-dd/habor/ph3.png");
+        pirat_head[2] = getPicture("gfx-dd/habor/ph4.png");
+        pirat_head[3] = getPicture("gfx-dd/habor/ph5.png");
+        pirat_head[4] = getPicture("gfx-dd/habor/ph6.png");
 
-        pirat_body[0] = getPicture("gfx-dd/habor/pb1.gif");
-        pirat_body[1] = getPicture("gfx-dd/habor/pb3.gif");
-        pirat_body[2] = getPicture("gfx-dd/habor/pb4.gif");
-        pirat_body[3] = getPicture("gfx-dd/habor/pb5.gif");
+        pirat_body[0] = getPicture("gfx-dd/habor/pb1.png");
+        pirat_body[1] = getPicture("gfx-dd/habor/pb3.png");
+        pirat_body[2] = getPicture("gfx-dd/habor/pb4.png");
+        pirat_body[3] = getPicture("gfx-dd/habor/pb5.png");
 
-        pirat_blinker = getPicture("gfx-dd/habor/ph2.gif");
-        pirat_give = getPicture("gfx-dd/habor/pb2.gif");
+        pirat_blinker = getPicture("gfx-dd/habor/ph2.png");
+        pirat_give = getPicture("gfx-dd/habor/pb2.png");
     }
 
     @Override

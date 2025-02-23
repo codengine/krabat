@@ -89,16 +89,16 @@ public class Kacka2 extends Mainanim {
     }
 
     private void InitImages() {
-        kacka_flieg[0] = getPicture("gfx/mertens/kacka2-f1.gif");
-        kacka_flieg[1] = getPicture("gfx/mertens/kacka2-f3.gif");
-        kacka_flieg[2] = getPicture("gfx/mertens/kacka2-f2.gif");
+        kacka_flieg[0] = getPicture("gfx/mertens/kacka2-f1.png");
+        kacka_flieg[1] = getPicture("gfx/mertens/kacka2-f3.png");
+        kacka_flieg[2] = getPicture("gfx/mertens/kacka2-f2.png");
 
-        kacka_lande[0] = getPicture("gfx/mertens/kacka2-f3a.gif");
-        kacka_lande[1] = getPicture("gfx/mertens/kacka2-f3b.gif");
-        kacka_lande[2] = getPicture("gfx/mertens/kacka2-f3c.gif");
+        kacka_lande[0] = getPicture("gfx/mertens/kacka2-f3a.png");
+        kacka_lande[1] = getPicture("gfx/mertens/kacka2-f3b.png");
+        kacka_lande[2] = getPicture("gfx/mertens/kacka2-f3c.png");
 
-        kacka_rede[0] = getPicture("gfx/mertens/kacka2.gif");
-        kacka_rede[1] = getPicture("gfx/mertens/kacka2a.gif");
+        kacka_rede[0] = getPicture("gfx/mertens/kacka2.png");
+        kacka_rede[1] = getPicture("gfx/mertens/kacka2a.png");
     }
 
     @Override
@@ -174,7 +174,7 @@ public class Kacka2 extends Mainanim {
                         if (!landeSoundPlayed)  // hier Sound 1x abspielen
                         {
                             landeSoundPlayed = true;
-                            mainFrame.wave.PlayFile("sfx/woda3.wav");
+                            mainFrame.soundPlayer.PlayFile("sfx/woda3.wav");
                         }
 
                         if (--Verhinderland < 1) {
@@ -224,7 +224,7 @@ public class Kacka2 extends Mainanim {
         if (Pstop.x - Positx < 180) {
             if (!flugSoundPlayed) {
                 flugSoundPlayed = true;
-                mainFrame.wave.PlayFile("sfx/quack.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/quack.wav");
             }
         }
 

@@ -124,62 +124,62 @@ public class Mlynk2 extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        krabat_back[0] = getPicture("gfx/anims/ml3.gif");
-        krabat_back[1] = getPicture("gfx/anims/ml3-1.gif");
-        krabat_back[2] = getPicture("gfx/anims/ml3-1.gif");
-        krabat_back[3] = getPicture("gfx/anims/ml3-2.gif");
-        krabat_back[4] = getPicture("gfx/anims/ml3-2.gif");
-        krabat_back[5] = getPicture("gfx/anims/ml3-3.gif");
-        krabat_back[6] = getPicture("gfx/anims/ml3-3.gif");
-        krabat_back[7] = getPicture("gfx/anims/ml3-4.gif");
-        krabat_back[8] = getPicture("gfx/anims/ml3-4.gif");
+        krabat_back[0] = getPicture("gfx/anims/ml3.png");
+        krabat_back[1] = getPicture("gfx/anims/ml3-1.png");
+        krabat_back[2] = getPicture("gfx/anims/ml3-1.png");
+        krabat_back[3] = getPicture("gfx/anims/ml3-2.png");
+        krabat_back[4] = getPicture("gfx/anims/ml3-2.png");
+        krabat_back[5] = getPicture("gfx/anims/ml3-3.png");
+        krabat_back[6] = getPicture("gfx/anims/ml3-3.png");
+        krabat_back[7] = getPicture("gfx/anims/ml3-4.png");
+        krabat_back[8] = getPicture("gfx/anims/ml3-4.png");
 
-        krabat_stand_front_head[0] = getPicture("gfx/anims/ml1-h.gif");
-        krabat_stand_front_head[1] = getPicture("gfx/anims/ml1-ha.gif");
-        krabat_stand_front_body[0] = getPicture("gfx/anims/ml1-b.gif");
+        krabat_stand_front_head[0] = getPicture("gfx/anims/ml1-h.png");
+        krabat_stand_front_head[1] = getPicture("gfx/anims/ml1-ha.png");
+        krabat_stand_front_body[0] = getPicture("gfx/anims/ml1-b.png");
 
-        krabat_stand_left_head[0] = getPicture("gfx/anims/ml2-h.gif");
-        krabat_stand_left_head[1] = getPicture("gfx/anims/ml2-ha.gif");
-        krabat_stand_left_body[0] = getPicture("gfx/anims/ml2-b.gif");
+        krabat_stand_left_head[0] = getPicture("gfx/anims/ml2-h.png");
+        krabat_stand_left_head[1] = getPicture("gfx/anims/ml2-ha.png");
+        krabat_stand_left_body[0] = getPicture("gfx/anims/ml2-b.png");
 
-        krabat_stand_right_head[0] = getPicture("gfx/anims/ml4-h.gif");
-        krabat_stand_right_head[1] = getPicture("gfx/anims/ml4-ha.gif");
-        krabat_stand_right_body[0] = getPicture("gfx/anims/ml4-b.gif");
+        krabat_stand_right_head[0] = getPicture("gfx/anims/ml4-h.png");
+        krabat_stand_right_head[1] = getPicture("gfx/anims/ml4-ha.png");
+        krabat_stand_right_body[0] = getPicture("gfx/anims/ml4-b.png");
 
-        krabat_talk_front_head[0] = getPicture("gfx/anims/ml1-h1.gif");
-        krabat_talk_front_head[1] = getPicture("gfx/anims/ml1-h2.gif");
-        krabat_talk_front_head[2] = getPicture("gfx/anims/ml1-h3.gif");
-        krabat_talk_front_head[3] = getPicture("gfx/anims/ml1-h4.gif");
-        krabat_talk_front_head[4] = getPicture("gfx/anims/ml1-h5.gif");
+        krabat_talk_front_head[0] = getPicture("gfx/anims/ml1-h1.png");
+        krabat_talk_front_head[1] = getPicture("gfx/anims/ml1-h2.png");
+        krabat_talk_front_head[2] = getPicture("gfx/anims/ml1-h3.png");
+        krabat_talk_front_head[3] = getPicture("gfx/anims/ml1-h4.png");
+        krabat_talk_front_head[4] = getPicture("gfx/anims/ml1-h5.png");
 
-        krabat_talk_front_body[0] = getPicture("gfx/anims/ml1-b1.gif");
-        krabat_talk_front_body[1] = getPicture("gfx/anims/ml1-b2.gif");
-        krabat_talk_front_body[2] = getPicture("gfx/anims/ml1-b3.gif");
+        krabat_talk_front_body[0] = getPicture("gfx/anims/ml1-b1.png");
+        krabat_talk_front_body[1] = getPicture("gfx/anims/ml1-b2.png");
+        krabat_talk_front_body[2] = getPicture("gfx/anims/ml1-b3.png");
 
-        krabat_talk_left_head[0] = getPicture("gfx/anims/ml2-h1.gif");
-        krabat_talk_left_head[1] = getPicture("gfx/anims/ml2-h2.gif");
-        krabat_talk_left_head[2] = getPicture("gfx/anims/ml2-h3.gif");
-        // krabat_talk_left_head[3]  = getPicture ("gfx/anims/ml2-h4.gif");
-        krabat_talk_left_head[3] = getPicture("gfx/anims/ml2-h5.gif");
+        krabat_talk_left_head[0] = getPicture("gfx/anims/ml2-h1.png");
+        krabat_talk_left_head[1] = getPicture("gfx/anims/ml2-h2.png");
+        krabat_talk_left_head[2] = getPicture("gfx/anims/ml2-h3.png");
+        // krabat_talk_left_head[3]  = getPicture ("gfx/anims/ml2-h4.png");
+        krabat_talk_left_head[3] = getPicture("gfx/anims/ml2-h5.png");
 
-        krabat_talk_left_body[0] = getPicture("gfx/anims/ml2-b1.gif");
-        krabat_talk_left_body[1] = getPicture("gfx/anims/ml2-b2.gif");
-        krabat_talk_left_body[2] = getPicture("gfx/anims/ml2-b3.gif");
+        krabat_talk_left_body[0] = getPicture("gfx/anims/ml2-b1.png");
+        krabat_talk_left_body[1] = getPicture("gfx/anims/ml2-b2.png");
+        krabat_talk_left_body[2] = getPicture("gfx/anims/ml2-b3.png");
 
-        // krabat_talk_right_head[0]  = getPicture ("gfx/anims/ml4-h1.gif");
-        krabat_talk_right_head[0] = getPicture("gfx/anims/ml4-h2.gif");
-        krabat_talk_right_head[1] = getPicture("gfx/anims/ml4-h3.gif");
-        krabat_talk_right_head[2] = getPicture("gfx/anims/ml4-h4.gif");
-        krabat_talk_right_head[3] = getPicture("gfx/anims/ml4-h5.gif");
+        // krabat_talk_right_head[0]  = getPicture ("gfx/anims/ml4-h1.png");
+        krabat_talk_right_head[0] = getPicture("gfx/anims/ml4-h2.png");
+        krabat_talk_right_head[1] = getPicture("gfx/anims/ml4-h3.png");
+        krabat_talk_right_head[2] = getPicture("gfx/anims/ml4-h4.png");
+        krabat_talk_right_head[3] = getPicture("gfx/anims/ml4-h5.png");
 
-        krabat_talk_right_body[0] = getPicture("gfx/anims/ml4-b1.gif");
-        krabat_talk_right_body[1] = getPicture("gfx/anims/ml4-b2.gif");
-        krabat_talk_right_body[2] = getPicture("gfx/anims/ml4-b3.gif");
+        krabat_talk_right_body[0] = getPicture("gfx/anims/ml4-b1.png");
+        krabat_talk_right_body[1] = getPicture("gfx/anims/ml4-b2.png");
+        krabat_talk_right_body[2] = getPicture("gfx/anims/ml4-b3.png");
 
-        krabat_hat_stock = getPicture("gfx/anims/ml5-b.gif");
-        krabat_gib_karte = getPicture("gfx/anims/ml1-gibkarte.gif");
+        krabat_hat_stock = getPicture("gfx/anims/ml5-b.png");
+        krabat_gib_karte = getPicture("gfx/anims/ml1-gibkarte.png");
 
-        krabat_hat_stock_andersrum = getPicture("gfx/anims/ml5-c.gif");
+        krabat_hat_stock_andersrum = getPicture("gfx/anims/ml5-c.png");
     }
 
 

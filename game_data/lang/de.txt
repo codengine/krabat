@@ -1,0 +1,2020 @@
+Casnik_1|Er sitzt hier und wacht.
+Casnik_2|Er ist betrunken und schl#aft.
+Casnik_3|Das ist ein Schl#ussel.
+Casnik_4|Das ist der Schl#ussel zur Schatzkammer.
+Casnik_5|Ein Tigerfell.
+Casnik_6|Das Tigerfell ist bestimmt ein Erinnerungsst#uck.
+Casnik_7|Eine schreckliche Waffe.
+Casnik_8|Das ist eine Uhr.
+Casnik_9|Zeiger. Es ist erst um drei...
+Casnik_10|Zeiger. Jetzt ist es um vier...
+Casnik_11|Eine Statue, die einen Engel darstellt.
+Casnik_12|Das ist doch eine Sonnenarmbanduhr.
+Casnik_13|Nichts f#ur mich. Das tut nur weh.
+Casnik_14|Das versuche ich gar nicht erst!
+Casnik_15|Wenn der K#pnig das sieht, wird er ihn bestimmt bestrafen!
+Casnik_16|So erreiche ich die Zeiger nicht!
+Casnik_17|Ich kann nicht mit ihm reden!
+Casnik_18|Weiter brauche ich die Uhr nicht zu verstellen!
+Casnik_19|Im Dienst trinke ich nicht - hiks. Jetzt ist es erst um Drei, dort steht die Uhr.
+Casnik_20|In einer Stunde habe ich Feierabend. Dann k#pnnen wir uns ein Gl#aschen genehmigen.
+Casnik_21|Oh, es ist schon um Vier! Dann kann ich einen heben.
+Casnik_22|Oh, starker Tobak!
+Casnik_23|Jipijajeeh - ich sage dir - ich bin im Tee !
+Casnik_24|Das ist in Ordnung, der h#angt hinter mir - hik, hik...
+Casnik_25|Wozu brauchst du den? Die Sch#atze sind sehr schwer und haben schon so manchen unter sich begraben!
+Casnik_26|Was hei#tt hier besoffen ? Ich bin der Hauptw#achter und bin somit der Anf#uhrer... ehm... Anf#uhrer - hiks - aller Wachen hier im Schlo#t.
+Casnik_27|Dort ist das Arbeitszimmer des K#pnigs. Zutritt verboten - hiks - hiks... Jetzt lass mich in Ruhe. Ich mu#t arbeiten !
+Casnik_28|Ich wache !!! ...hik...
+Casnik_29|Ich bin Krabat und suche den Schl#ussel f#ur die Schatzkammer.
+Casnik_30|Geben Sie mir doch bitte den Schl#ussel f#ur die Schatzkammer !
+Casnik_31|Sie sind ja besoffen !
+Casnik_32|Was befindet sich hinter dieser T#ur ?
+Casnik_33|Was arbeiten Sie denn ?
+Casnik_34|Hier stinkt es nach Schnaps! Auf Wiedersehen!
+Casnik_35|Das ist f#ur mich keine richtige Unterhaltung! Auf Wiedersehen!
+Casnik_36|Hey, du hast da nichts verloren !
+Casnik_37|Zutritt verboten, zur#uck ! hiks...
+Casnik_38|Bist du taub ? Ich rufe gleich die Wache...
+Casnik_39|R#uck mir nicht auf den Pelz !
+Casnik_40|Bleib blo#t, wo du bist !
+Casnik_41|hiks... hiks... hiks... Ich habe Angst !
+Casnik_42|Hrrrrrrrrrrrrr ...
+Chodba_1|Ganz sch#pn viele Sch#atze in diesem Schlo#t.
+Chodba_2|Das bleibt hier!
+CornyCholmc1_1|Ein d#usterer Wald.
+CornyCholmc1_2|Ein Dorf am Rande des Waldes. Ein sorbisches Dorf.
+CornyCholmc1_3|Mein Echo sagt, da#t das Schwarzkollm ist.
+CornyCholmc1_4|D#usterer Wald, h#prst Du die m#achtige Stimme Krabats ?
+CornyCholmc1_5|Nein, Krabat, aber Dein Echo Antwortet Dir. Du stehst vor dem Wald neben dem Dorf Schwarzkollm. (reimt sich nicht, ich wei#t)
+CornyCholmc1_6|Huch, so was interessantes!
+CornyCholmc1_7|Vielleicht kann ich sp#ater das Echo nochmal probieren, aber den richtigen Rhythmus zum Reimen hat es noch nicht.
+CornyCholmc1_8|In dieses Dorf will ich nicht. Ich bin dort oft betteln gewesen und die Leute schimpfen nur auf mich.
+CornyCholmc1_9|wer aber schl#aft, ver#andert nichts!
+CornyCholmc1_10|soll Krabat in seinen Tr#aumen wachsen!
+CornyCholmc1_11|auf da#t ihm st#andig das Gl#uck hold sei.
+CornyCholmc1_12|es verstecke sich die Sonne hinter dem d#usteren Wald.
+CornyCholmc1_13|Ich bin Krabat, und wer h#prt mich,
+CornyCholmc1_14|Als gl#ucklicher und zufriedener Kerl,
+CornyCholmc1_15|M#uller zu sein ist eine schwere Arbeit,
+CornyCholmc1_16|Ich bin Krabat, und wer h#prt mich,
+CornyCholmc1_17|Als gl#ucklicher und zufriedener Kerl,
+CornyCholmc1_18|M#uller, M#uller, Krabat ruft Dich,
+CornyCholmc2_1|Ein d#usterer Wald.
+CornyCholmc2_2|Mein Echo sagt, da#t das Schwarzkollm ist.
+CornyCholmc2_3|Ich will den M#uller jetzt nicht rufen.
+CornyCholmc2_4|In dieses Dorf will ich nicht. Ich bin dort oft betteln gewesen und die Leute schimpfen nur auf mich.
+Couch_1|Die T#ur ist nicht verschlossen.
+Couch_2|Die T#ur ist verschlossen.
+Couch_3|Ein weiches Bett.
+Couch_4|Einmal reicht.
+Couch_5|Hier weht der Wind aber stark.
+Couch_6|Schlechte Idee!!!
+Couch_7|Ahhhhhhh ...
+Couch_8|Ich w#urde mich gerne hinlegen, aber daf#ur habe ich keine Zeit!
+Couch_9|Ahhhhhhh...
+Cyrkej1_1|Die Kircht#ur ist verschlossen. Man h#prt Musik aus der Kirche kommen.
+Cyrkej1_2|Es h#prt keiner!
+Cyrkej2_1|Die Kircht#ur ist verschlossen. Man h#prt Musik aus der Kirche kommen.
+Cyrkej2_2|Es hoert keiner!
+Cyrkej2_3|Da hast Du recht. Die K#pnigin der Musikinstrumente ist die Orgel und wenn sie erklingt, dann freut sich auch unser Herr.
+Cyrkej2_4|Nein, das ist nicht m#pglich. Die alten Auseinandersetzungen zwischen den Protestanten und der katholischen Regierung sind noch nicht beigelegt.
+Cyrkej2_5|Solange das nicht erledigt ist, bleibt die Kirche geschlossen.
+Cyrkej2_6|Nun ja, das war eine Folge des drei#tigj#ahrigen Krieges. Die Stadt Wittichenau und mit ihr auch die Kirche durfte sich nicht mehr zum katholischen Glauben bekennen.
+Cyrkej2_7|Die Anh#anger Luthers hatten jetzt hier die geistliche macht. Aber der Stadtrat hat die Kirche wieder schlie#ten lassen, weil die Mitglieder des Rates von der Leitung des Klosters Marienstern w#ahlen lassen.
+Cyrkej2_8|Und mit diesem katholischen Einflu#t l#a#tt sich ordentlich Druck aus#uben.
+Cyrkej2_9|So ein Quatsch! Glauben diese Protestanten etwa an einen anderen Gott?
+Cyrkej2_10|Nein. Wir glauben immer noch an denselben Gott. Das ist jedoch eine neue Richtung, die von der alten r#pmisch - katholischen Kirche ausgegangen ist.
+Cyrkej2_11|Wieso mu#t das alles so kompliziert sein?
+Cyrkej2_12|Ja, fr#uher war alles einfach. Aber das sind vergangene Zeiten, oder...?
+Cyrkej2_13|Sei willkommen, Krabat. Ich bin der Wittichenauer Pfarrer.
+Cyrkej2_14|Das ist nicht m#pglich. Ich kenne keinen, der das #uberlebt hat.
+Cyrkej2_15|Die Leute erz#ahlen mir viel und den M#uller habe ich auch schon kennengelernt. Aber entschuldige, Krabat - ich mu#t dem Orgelspieler die Noten vorbereiten.
+Cyrkej2_16|Was hat Dir Jurij denn so erz#ahlt?
+Cyrkej2_17|Von einer alten Legende, einem heiligen Relikt des sorbischen Volkes ... aber etwas verstehe ich nicht. Wieso hat der M#uller Zauberkr#afte ? Er hat doch den Koraktor gar nicht, und er hat ihn auch nie besessen.
+Cyrkej2_18|Nicht hier auf der Stra#te. Komm mit.
+Cyrkej2_19|Welch sch#pne Musik ist hier zu h#pren...
+Cyrkej2_20|Darf ich in die Kirche, um sie mir mal anzuschauen ?
+Cyrkej2_21|Welche Auseinandersetzungen zwischen Protestanten und Katholiken meinen sie ?
+Cyrkej2_22|Ich bin Krabat aus Eutrich.
+Cyrkej2_23|Ich war Lehrling in der M#uhle bei Schwarzkollm.
+Cyrkej2_24|Aha, sie kennen die schwarze M#uhle ?
+Cyrkej2_25|Der Wassermann schickt mich. Er hat mir vom Koraktor erz#ahlt und ich m#pchte dieses Zauberbuch suchen.
+Cyrkej2_26|Ach, nichts.
+Cyrkej2_27|Ich bedanke mich f#ur das Gespr#ach.
+Dingl_1|Er arbeitet an seinem Werk.
+Dingl_2|Ein leerer Krug samt Kelch.
+Dingl_3|Daf#ur habe ich keine Zeit.
+Dingl_4|Ich fasse hier nichts an - wenn ich wieder was kaputtmache - nein, nein...!
+Dingl_5|Das goldene Kunstwerk.
+Dingl_6|Ein goldenes Pferd mit zwei Soldaten.
+Dingl_7|Kein Wein, aber ein Brief. Naja, mal sehen...
+Dingl_8|Ein Brief? Den mach ich gleich mal auf...
+Dingl_9|Gut, jetzt habe ich ein St#uck Flacheisen, aus dem ich die F#alschung anfertigen kann.
+Dingl_10|Das sind die Abmessungen der Schale, die brauche ich auch. Gut so !
+Dingl_11|Die unterschriebene und gesiegelte Erlaubnis von August ! Flei#tiger Kerl!
+Dingl_12|Aha, den Schl#ussel zur Schatzkammer hast Du besorgt.
+Dingl_13|Das ist nur die gesiegelte Erlaubnis. Jetzt brauche ich noch die Unterschrift.
+Dingl_14|Das ist nur die unterschriebene Erlaubnis. Jetzt brauche ich noch das Siegel darauf.
+Dingl_15|Hey, Diener, zur#uck! Sonst rufe ich die Wachen.
+Dingl_16|Na du bist mir ja einer. Aber da meine Frau von Zahrodnik seiner Wasserleitung so begeistert ist, will ich dir helfen.
+Dingl_17|Da bin ich ja mal gespannt, ob wir das schaffen ! In das Herz Sachsens einzubrechen - du bist mir einer !
+Dingl_18|Ach, Diener ! Gut da#t Sie kommen, ich klingle bereits eine halbe Stunde. Der besoffene Esel hat wieder meinen Wein ausgesoffen.
+Dingl_19|Bringen Sie mir bitte einen neuen Schoppen Wein.
+Dingl_20|Wen soll ich denn wohl meinen !? - Den Hauptw#achter ! Ich mu#t das mal mit August bereden.
+Dingl_21|Du bist wohl neu hier ? Hinter der T#ur die letzte T#ur auf dem Gang.
+Dingl_22|Hinter der T#ur die letzte T#ur auf dem Gang.
+Dingl_23|Ich bin Johann Melchior Dinglinger - Hofjuwelier und enger Freund seiner Majest#at August II., des Kurf#ursten von Sachsen und K#pnigs von Polen.
+Dingl_24|Und ein durstiger Juwelier. Bitte hole den Wein.
+Dingl_25|Du sprichst vom Herzen Sachsens! Das ist geheim!
+Dingl_26|Was geht dich das an ? Gehe den Wein holen.
+Dingl_27|Nein. Was ist mit meinem Wein?
+Dingl_28|Diesen Namen habe ich noch nie geh#prt, da k#pnnte ja auch jeder kommen.
+Dingl_29|Du Neugierde! Das ist die neueste Technik - made in Germany - in Zukunft das Synonym f#ur Qualit#at.
+Dingl_30|Nein! Gehe jetzt den Wein holen!
+Dingl_31|Das ist der Hofstaat von Dehli beim Geburtstag des Gro#tmoguls Awreng Zeb - komplett aus Gold
+Dingl_32|und sicherlich der Gipfel meines bisherigen Schaffens am Hofe seiner Majest#at. Jetzt hole aber den Wein.
+Dingl_33|Die Schatzkammer befindet sich im Westteil des Schlosses. Sie wird von 1,40m bis 2,60m dicken Mauern umgeben. Die Fenster sind komplett vergittert.
+Dingl_34|Die T#ur wird st#andig bewacht. Die Kammer ist architektonisch und strategisch gesehen das Sicherste, was es zur Zeit gibt.
+Dingl_35|Nur 5 Leute: K#pnig August, die Grafen Br#uhl, der Hauptw#achter, der Archivar und ich.
+Dingl_36|Das ist doch prima. Sie besorgen mir die Schale und ich lade Sie dann zum Merettich und Rindfleisch-Essen ein.
+Dingl_37|Und dann tr#anen mir wieder die Augen ! Nein Krabat, so einfach ist das nicht. Jeder, der in die Kammer will, braucht eine besondere Erlaubnis von August.
+Dingl_38|Diese Erlaubnis ben#ptigt man jedes Mal erneut, wenn man in die Kammer m#pchte.
+Dingl_39|Was ist der Inhalt dieser Erlaubnis?
+Dingl_40|Die Begr#undung, wieso du in die Kammer willst. Diese wird dann von August unterschrieben und besiegelt.
+Dingl_41|Sie k#pnnen sich doch ein solches Dokument besorgen.
+Dingl_42|Jetzt mal langsam ! August ist zur Zeit nicht in Dresden und eine unterschriebene Begr#undung habe ich auch nicht. Und dann gibt es noch ein anderes Problem.
+Dingl_43|Jede Woche macht der Archivar eine Inventur. In seinem Archiv hat er die Anzahl und die Abma#te aller Gegenst#ande gesammelt.
+Dingl_44|Verstehe. Wenn da etwas fehlt, seid ihr Vier die Hauptverd#achtigen. Wenn aber jede Woche der Bestand kontrolliert wird...,
+Dingl_45|... dann ist es ja fast unm#pglich! Haben wir vielleicht noch andere M#pglichkeiten?
+Dingl_46|Ich k#pnnte h#pchstens die Schale nachmachen. Daf#ur brauche ich aber ein St#uck Flacheisen, da ich zur Zeit nur mit Gold arbeite.
+Dingl_47|Und ich brauche die Abmasse der echten Schale, sonst f#allt der Austausch auf. Ja, das w#are eigentlich alles...
+Dingl_48|Und was ist mit der Best#atigung ?
+Dingl_49|Oh, das h#atte ich ja fast vergessen ! Wir brauchen eine unterschriebene und besiegelte Erlaubnis. Und denke an den Schl#ussel f#ur die Schatzkammer.
+Dingl_50|- ein St#uck Flacheisen, woraus ich die Kopie fertige
+Dingl_51|- die Abmessungen der Schale, welche Du im Archiv findest
+Dingl_52|- eine unterschriebene und gesiegelte Erlaubnis Augusts
+Dingl_53|- den Schl#ussel zur Schatzkammer
+Dingl_54|Ich tausche das Original durch das Imitat aus. Daf#ur brauchen wir aber eine gute Kopie, sonst bemerkt es der Archivar und ich gehe hinter Gitter.
+Dingl_55|Du kannst von Gl#uck reden, da#t sich diese Opferschale relativ einfach und vor allem schnell nachmachen l#a#tt.
+Dingl_56|Das Archiv wird verschlossen sein, der Archivar ist zur Zeit auf Schlo#t Albrechtsburg in Meissen. Nur er hat den Schl#ussel.
+Dingl_57|Aber er hat mir mal erz#ahlt, da#t ein Geheimgang ins Archiv f#uhrt. Dieser Raum war noch letztes Jahr eine kleine katholische Kapelle, ...
+Dingl_58|... da wegen des protestantischen Einflu#tes keine katholischen Messen in Dresden gefeiert werden durften. Mehr wei#t ich aber auch nicht.
+Dingl_59|Den hat der Hauptw#achter.
+Dingl_60|Wie gesagt, der K#pnig ist heute nicht im Schlo#t. Vielleicht kommt er aber auch eher zur#uck. Schau dich doch mal in seinem Arbeitszimmer um.
+Dingl_61|Warte, bevor ich es vergesse. Nimm diese noch nicht unterschriebene Erlaubnis mit.
+Dingl_62|Ich schreibe immer mehrere vor, so brauch der K#pnig nur noch zu unterschreiben. Und denke an den Siegel ! Viel Spa#t.
+Dingl_63|Jetzt haben wir alles beisammen. Komm morgen wieder zu mir, dann habe ich die Schale gef#alscht. Ich gehe sie gleich fr#uh austauschen.
+Dingl_64|Also, Krabat, hier hast Du endlich Deine Sch#ussel.
+Dingl_65|Wie kann ich Ihnen nur danken ? Sie haben so viel f#ur mich und vielleicht sogar f#ur das ganze sorbische Volk getan !
+Dingl_66|Jetzt h#pr aber auf zu erz#ahlen. Ich bin froh, da#t ich hier im Schlo#t arbeiten darf. Hier habe ich alles, was ich mir w#unsche. In Deiner Heimat ist das bestimmt anders.
+Dingl_67|Endlich hielt Krabat die Opferschale in den H#anden. Er kramt die Karte der Lausitz aus der Hosentasche und vergleicht sie mit den ausgemei#telten Linien und Schraffuren der Opferschale.
+Dingl_68|Hier ist das Buch versteckt, und der Ort ist s#udlich von Eutrich. Das kann nur das Ostroer Schlo#t sein ! Jetzt aber heim !
+Dingl_69|Welcher besoffene Esel ?
+Dingl_70|Wo finde ich den Hauptw#achter ?
+Dingl_71|Wo finde ich nochmal den Hauptw#achter ?
+Dingl_72|Ich bin Krabat. Wer sind sie ?
+Dingl_73|Haben Sie Zutritt zur Schatzkammer des K#pnigs ?
+Dingl_74|Wo befindet sich die Schatzkammer ?
+Dingl_75|Kennen Sie Handrij Zahrodnik ?
+Dingl_76|Ach, da sind Sie ja ! Handrij Zahrodnik schickt mich.
+Dingl_77|Zahrodnik hat bei Ihnen vor kurzem eine Wasserleitung verlegt.
+Dingl_78|Sie kennen Zahrodnik doch. Bitte, Sie m#ussen mir helfen !
+Dingl_79|An was arbeiten Sie gerade ?
+Dingl_80|Ich hole den Wein. Augenblick bitte...
+Dingl_81|Wie sicher ist die Schatzkammer gebaut ?
+Dingl_82|Wer hat alles Zutritt zur Schatzkammer ?
+Dingl_83|Ich will noch nicht ins Gef#angnis. Wiedersehen.
+Dingl_84|Also noch einmal: Was brauchen Sie alles?
+Dingl_85|Wie gelangen wir an die Schale?
+Dingl_86|Wie komme ich in das Archiv?
+Dingl_87|Wo ist der Schl#ussel f#ur die Schatzkammer?
+Dingl_88|Wie bekomme ich die besiegelte Unterschrift des K#pnigs?
+Dingl_89|Ich versuche alles zu besorgen. Auf Wiedersehen.
+Dingl_90|Ich versuche alles zu besorgen. Auf Wiedersehen.
+Doma1_1|Er ist sehr tief!
+Doma1_2|Eine T#ur halt!
+Doma1_3|Das ist mein Weidestock.
+Doma1_4|Geradeaus geht es nach Eutrich.
+Doma1_5|Das ist meine liebe Mutter!
+Doma1_6|Ich habe sie so dressiert, da#t sie sich selbst h#uten.
+Doma1_7|Besser, wenn ich mich jetzt auf den Weg mache!
+Doma1_8|Das kann ich nicht mitnehmen!
+Doma1_9|Dann falle ich noch rein. N#p, n#p!
+Doma1_10|Ich lasse sie lieber in Ruhe.
+Doma1_11|Dort unten ist nichts.
+Doma1_12|Hier nicht.
+Doma1_13|Das lohnt nicht.
+Doma1_14|Nein, da#t ist Tierqu#alerei !
+Doma1_15|Sie laufen schon nicht weg.
+Doma1_16|Das schmeckt ihnen nicht.
+Doma1_17|Mutter, ich habe mich entschlossen, auszuwandern!
+Doma1_18|Aber Krabat, warum das?
+Doma1_19|Wohin willst du denn gehen?
+Doma1_20|Und was willst du tun ?
+Doma1_21|Niemand wei#t, wo genau die M#uhle ist und es wird$erz#ahlt, da#t dort der Teufel pers#pnlich wohnt !
+Doma1_22|Du wei#tt doch, da#t es hier keine Arbeit gibt !
+Doma1_23|Krabat ! Du bist doch das einzige, was wir haben !
+Doma1_24|Auswandern l#pst das Problem auch nicht !
+Doma1_25|Ach, dann geh, Krabat, mit Gottes Segen !
+Doma1_26|Die Armut fri#tt uns auf, wir k#pnnen so nicht weiterleben!
+Doma1_27|Es gen#ugt nicht, wenn ich nur betteln gehe!
+Doma1_28|Aber Mutter! Ich kann doch nicht nur G#anse h#uten!
+Doma1_29|Ich habe von der M#uhle geh#prt, wo der M#uller wohnt. Angeblich kann man dort mehr lernen als nur M#ullerei.
+Doma1_30|Wenn ich hierbleibe, #andert das doch auch nichts!
+Doma1_31|Nichts weiter!
+Doma1_32|Gut, dann bleibe ich!
+Doma1_33|Krabat!!!!!!!!!!!!!!!!!!!
+Doma1_34|Hallo Krabat !
+Doma1_35|Ja, ja. Das war ich !
+Doma2_1|Er ist sehr tief!
+Doma2_2|Eine T#ur halt!
+Doma2_3|Das ist mein Weidestock.
+Doma2_4|Geradeaus geht es nach Eutrich.
+Doma2_5|Ich habe sie so dressiert, da#t sie sich selbst h#uten.
+Doma2_6|Besser, wenn ich mich jetzt auf den Weg mache!
+Doma2_7|Das kann ich nicht mitnehmen!
+Doma2_8|Dann falle ich noch rein. N#p, n#p!
+Doma2_9|Ich lasse sie lieber in Ruhe.
+Doma2_10|Dort unten ist nichts.
+Doma2_11|Hier nicht.
+Doma2_12|Das lohnt nicht.
+Doma2_13|Nein, da#t ist Tierqu#alerei !
+Doma2_14|Sie laufen schon nicht weg.
+Doma2_15|Das schmeckt ihnen nicht.
+Doma2_16|Krabat ? Krabat ! Bist Du es wirklich !? Komm zu mir...
+Doma2_17|Du bist ja ganz mager. Wei#tt Du, was ich und Dein Vater uns f#ur Sorgen gemacht haben - so eine lange Zeit...
+Doma2_18|Ich habe sie aber gefunden...
+Doma2_19|Was hast Du gefunden ... endlich mal Deinen Verstand ?
+Doma2_20|Die Schwarze M#uhle...
+Doma2_21|Wenn das die einzige M#pglichkeit ist...
+Doma2_22|Das ist die letzte und einzige M#pglichkeit ... sonst bin ich verloren - f#ur immer...
+Doma2_23|Nein, Krabat. Du gehst mir nirgens mehr hin. Denkst Du vielleicht, da#t der K#pnig Dich in seiner Kutsche mit nach Dresden nimmt ?
+Doma2_24|Aber Mutter, ich mu#t doch nach Dresden ! Wenn ich den Koraktor habe, dann kannst Du alles bekommen, was Du Dir w#unschst !
+Doma2_25|Ich brauche nichts mehr. Ich bin auch so gl#ucklich. Ich habe Dich und den Vater - das reicht mir. Jetzt geh aber endlich Schweihe h#uten - und keine Albernheiten mit diesen Tieren !
+Doma2_26|Die Mutter erfuhr, in welchen H#anden ihr Sohn steckte und die anf#angliche Freude kehrte sich um in gro#tte Angst.Aber unser Krabat ist doch ein kluges K#ppfchen und hat sich schon in der M#uhle eine List ausgedacht.
+Doma2_27|Mutter, nur ihr k#pnnt mir helfen. Kommt mit mir in den Wald bei Schwarzkollm und verlangt vom M#uller, da#t er mich freil#a#tt.
+Doma2_28|Damit hat er keinen Ausweg, weil das Herz einer liebenden Mutter f#ur diesen Teufel wie Weihwasser ist.
+Doma2_29|Wenn ihr aber diese Bitte an den M#uller richtet, werden sich alle Lehrlinge in Raben verwandeln. Nur wenn ihr mich unter ihnen erkennt, bin ich frei.
+Doma2_30|Das ist eine ziemlich schwere Aufgabe, aber alle meine Kameraden werden ihren Schnabel auf der linken Seite haben, ich werde mich aber unter dem rechten Fl#ugel putzen.
+Doma2_31|Das ist das einzige Zeichen, was ich euch geben kann.
+Doma2_32|Krabat war wieder frei, aber er fand zu Hause die alte ???, Leid und Armut vor. Da waren bessere ??? in der M#uhle. Die Eltern hatten kein Geld in der Tasche und seine kleinen Zauberkunstst#ucke halfen auch nicht so richtig.
+Doma2_33|Aber wenn er Zeit hatte oder es Abend war, wenn er die Sterne am Firnament z#ahlte, erinnerte er sich oft an das Gespr#ach zwischen dem M#uller und der Katze. Sie redeten damals von einem Buch, welches unglaublich m#achtig sein mu#tte, und welches den M#uller so ver#argerte, weil er es nicht besa#t.
+Doma2_34|#fEtwas Wahres ist immer zwischen diesem Geschw#atz#F. Diesen Satz hatte Krabat nicht vergessen und in dem Jungen wuchs der Wille, mehr #uber dieses Buch zu erfahren - oder es sogar zu suchen und zu finden.
+Doma2_35|Das ist meine liebe Mutter!
+Doma4_1|Zu Hause war sicher die Freude gro#t bei der R#uckkehr des verlorenen Sohnes. Die Mutter hatte unseren jungen Helden ordentlich ausgeschimpft, aber abends bei einem guten St#uck Schwein, welches der Vater geschlachtet hatte, lichteten sich die dunklen Wolken der m#utterlichen Sorge. Krabat mu#tte beim Sonntagskleid der Mutter versprechen, in der Heimat zu bleiben.
+Doma4_2|Ja, in der Heimat, was nat#urlich auch das kleine sorbische Dorf Ostro beinhaltet, #uber dem der Zufluchtsort unserer Vorfahren thront - das Schlo#t.%%Dort ist das heilige Buch versteckt. Und Krabat begibt sich wieder auf den Weg.
+Dubring1_1|Moor aus dem Sumpf.
+Dubring1_2|Moor aus dem Sumpf.
+Dubring1_3|Ein einzelner Ast.
+Dubring1_4|Abgestorbene B#aume. Sehen gespenstisch aus.
+Dubring1_5|Es stinkt. Das fasse ich nicht an. Wenn ich in den Sumpf falle, hilft mir niemand.
+Dubring1_6|Es stinkt. Das fasse ich nicht an. Wenn ich in den Sumpf falle, hilft mir niemand.
+Dubring1_7|So erreiche ich sie nicht.
+Dubring1_8|Das brauche ich noch.
+Dubring1_9|Das brauche ich noch.
+Dubring1_10|Ich bin doch nicht dumm!
+Dubring1_11|Ich bin doch nicht dumm!
+Dubring1_12|Die erreiche ich nicht.
+Dzera_1|Er ist flei#tig, vielleicht zu flei#tig ... er ist schlau ...
+Dzera_2|... vielleicht zu schlau ... miau ... und das Jahr hat er bald vollendet ...
+Dzera_3|Ja, und Du wei#tt, was das hei#tt ... liebstes K#atzchen ...
+Dzera_4|Sicher, der beste und kl#ugste ... verschwindet ... miau ... seine Knochen werden im M#uhlrad gebrochen ...
+Dzera_5|im Rad ohne R#uckkehr ... miau ... und der H#pllenmeister freut sich ...
+Dzera_6|So ist es bestimmt ... wer klug ist, der ist auch m#achtig ... und das vertrage ich nicht. Er hat noch einen vollen Monat, dann stirbt er.
+Dzera_7|Die Knochen werden ihm gebrochen? Einen vollen Monat hat er noch? - Wen meinen sie blo#t?
+Dzera_8|Du hast Angst, da#t er zu stark wird ... miau ... ohne das Buch wirst Du immer Angst haben ...
+Dzera_9|So ein Quatsch !!! Das Buch existiert nicht und Schluss !!! Das ist doch nur noch ein M#archen...
+Dzera_10|Du hast nicht viel Macht ... miau ... das ist nur ein l#acherlich kleiner Teil dessen, was das Buch beinhaltete, das Buch aller Zauberb#ucher ... miau ...
+Dzera_11|Ich habe keine Macht ? Ich ... habe keine ... Macht ? Mu#t ich Dich erst in einen Hasen verzaubern ? Geh lieber M#ause jagen...
+Dzera_12|Bah, die alten, stinkenden M#ause ... das ist nichts f#ur mich ... miau ... und Deine zauberk#unste reichen gerade f#ur einen Kindergeburtstag ... miau ...
+Dzera_13|Gro#te, m#achtige Zaubereien ... daf#ur fehlt das Buch ...
+Dzera_14|Geh mir aus dem Weg ... raus !!! Und bereite alles vor ... wenn das erste Laub f#allt, f#allt auch seine Seele -
+Dzera_15|KRABAT, dein Dienst neigt sich dem Ende zu...
+Dzera_16|Was, ich bin gemeint ? Oh Mutter, hilf mir ...
+Dzera_17|Jetzt erinnert sich Krabat an die Warnungen der Leute und die Worte der Mutter. Und die Mutter war auch der Schl#ussel zur Freiheit. Er erbat sich vom M#uller ein wenig Zeit, um die Eltern zu besuchen.
+Extro_1|(c) Copyleft by the Free Software Foundation ;-)
+Extro_2|Der Koraktor war in guten H#anden. Krabat war bekannt und auch ein Helfer f#ur das sorbische Volk. Er wendete die Macht des Buches und seine Kenntnisse zum Wohl des Volkes an. Er verbesserte das sandige Ackerland, legte S#umpfe trocken, bes#anftigte sch#adliche Unwetter und pflegte ab und zu auch seine Verbindungen nach Dresden.
+Extro_3|Krabat war eine gute Seele. Nach seinem Tod blieb nur die Sage, welche sich #uber die Grenzen sorbischer Fluren hinaus verbreitete. Das Zauberbuch wurde jedoch nie gefunden. Der alte J#ungling, wie ihn die Bauern nannten, hatte keinerlei Nachla#t. Doch sein Geist ist eine Ader unseres heutigen Lebens. Jeder kann so stark, ausdauernd, mutig und selbstlos wie er sein. Man mu#t nur die #fKrabat-Seite#F in sich selbst finden.
+Extro_4|Die Sage vom G#ansehirten aus Eutrich bleibt ein fester Bestandteil unseres Bewu#ttseins, solange wir das Pl#atschern des Klosterwassers h#pren.
+Extro_5|Spieldesign : Jan Bensch und J#prg H#ubner$$Programmierung : Daniel Sobe und Stefan Saring$$Zeichnungen : Stefan Hanusch$$Grafik und Animationen : Jan Bensch$$Musik : Michael Ziesch$$Dialoge und Texte : J#prg H#ubner$$Lektorin : Bo#zena Paulick$$#Ubersetzung ins Niedersorbische: Gerhard Nagora$$Betatester:$Tilo Vollprecht$Stefan Krau#t$Ingo R#uckert$Micha#l Cy#z$Anke Richter$Frank Bensch$Stefan Ranft$Thomas Kliem$Stefan H#ubner$Michael Meich#tner$Marcus H#afner$Micha#l #So#lta$$Verpackungsdesign : Thomas Scholze$$Fotografie : Thomas Scholze$$Besonderer Dank an :$Stefan Krau#t$Torsten Mak$Weronika #Zurowa$$Hergestellt im Auftrag der Stiftung f#ur das sorbische Volk
+Gang_1|Eine verrostete Eisenkette.
+Gang_2|Irgendein Tierknochen.
+Gang_3|Eine verschlossene T#ur.
+Gang_4|Hier ist es mir zu dunkel.
+Gang_5|Das klappt so nicht!
+Gang_6|Da knurrt mir ja gleich der Magen... Und stinken tut es hier...
+Gang_7|Sogar das Schl#usselloch fehlt... Was sich wohl dahinter verbirgt?
+Gang_8|Hier ist es mir zu dunkel.
+Gang_9|Das ist mein Buch.
+Gang_10|Alles dunkel!
+Gang_11|Aua! Jetzt habe ich mich gesto#ten!
+Gang_12|Was ist das? Das nehme ich mit:
+Gang_13|Hmmm, eigenartig.
+Gang_14|Sie ist zu d#unn.
+Gang_15|So zerbreche ich sie noch!
+Gang_16|Das Schl#usselloch fehlt!
+Gang_17|Mit dem Hammer geht das nicht!
+Habor_1|Das ist aber eine komische Statue.
+Habor_2|Wieso versteckt die Statue das linke Auge?
+Habor_3|Neue F#asser.
+Habor_4|Nichts f#ur mich!
+Habor_5|Ich bin Krabat und wer bist du?
+Habor_6|Man nennt mich Gonzales. Ich bin ein spanischer Pirat.
+Habor_7|Ein spanisches M#adchen ?! Sie ist sicherlich eine Sch#pnheit. Nimm mich doch mal mit !
+Habor_8|Das ist mir doch egal ! Wenn ich nur mehr Zeit h#atte - ja dann w#urde ich sie nach Piratenmanier besuchen.
+Habor_9|Das ist ganz leicht. Du nimmst einen Enterhaken und ein langes Seil - und dann mu#tt du nur noch ordentlich klettern.
+Habor_10|Versuch es doch mal selber - aber Vorsicht, der Haken h#alt nicht #uberall!
+Habor_11|Danke f#ur das Kompliment. Wir Piraten bekommen so selten Komplimente.
+Habor_12|Wei#tt du, daf#ur schenke ich dir diesen Enterhaken. Mein Seil brauche ich aber noch.
+Habor_13|Ich verbringe hier meinen Urlaub und besuche meine Schwester. Aber die Zeit vergeht so schnell, n#achste Woche legen wir wieder ab.
+Habor_14|#Uberall da, wo die englische Flotte ihre Handelswege auf dem Meer hat.
+Habor_15|Klar, das ist doch eine englische Kolonie. Aber in der Karibik bin ich lieber. Dort gibt es die seltsamsten Piraten, aber auch riesige Sch#atze - ich sage dir...
+Habor_16|Na ja, das ist wahrscheinlich die Schw#ule in der Karibik. Eines Abends sa#ten wir am Ufer, die Flammen des Feuers loderten und ein junger Pirat
+Habor_17|erz#ahlte uns von seinem Kampf gegen einen Geist - den Geist eines alten Kapit#ans. Wie hie#t er denn nochmal - Le..., Le... ach, ich wei#t es nicht mehr.
+Habor_18|Was f#ur Sch#atze sollen die Sorben denn haben? Ich habe hier ein paar Sorben kennengelernt, die die Heimat verlassen haben.
+Habor_19|F#ur diese armen Leute war schon ein Funken Hoffnung ein riesiger Schatz. Ich sah in deren verweinten Augen endlose Traurigkeit, Kummer und Schmerz.
+Habor_20|Die Heimat hat sie ausgespuckt und sie wissen genau, da#t sie nie wieder zur#uckkehren k#pnnen.
+Habor_21|Sch#pner Name. Im Schlo#t arbeitet eine$Dienerin, die Konzuela hei#tt.
+Habor_22|Du bist Pirat und hast somit keinen Zutritt.
+Habor_23|Was bedeutet denn #fnach Piratenmanier#F ?
+Habor_24|Du bist ein echter Pirat. Kann ich das mit$dem Enterhaken auch mal probieren ?
+Habor_25|Gonzales, wie ging das mit dem Enterhaken ?
+Habor_26|Was macht ein Pirat in Dresden ?
+Habor_27|Wo bist du so unterwegs - Pirat ?
+Habor_28|Kennst du Amerika ?
+Habor_29|Was f#ur seltsame Piraten meinst du denn ?
+Habor_30|Ich suche auch einen Schatz, den Schatz der Sorben.
+Habor_31|Das ist mir alles ziemlich spanisch. Tsch#u#t.
+Hala_1|Die T#ur ist verschlossen.
+Hala_2|Das mu#t wohl irgendein Kurf#urst gewesen sein.
+Hala_3|Diese T#ur ist nicht verschlossen.
+Hala_4|Das Bild haengt zu hoch!
+Hala_5|Dann zerkratze ich das Bild noch!
+Haska_1|Aus dem Fa#t tropft Wein.
+Haska_2|Wenn das jemand sieht, der betrinkt sich sofort.
+Haska_3|Hmmm, s#u#ter Wein. Da wird mir ja morgen der Kopf brummen.
+Haska_4|Das Fenster des Kom#pdienhauses.
+Haska_5|Das Fenster kann ich nicht erreichen.
+Haska_6|Jetzt komme ich in das Kom#pdienhaus.
+Haska_7|Aha, hier h#alt der Enterhaken also.
+Haska_8|Freiwillig gehe ich hier nicht mehr rein.
+Haska_9|Den Koch kann ich nicht leiden!
+Haska_10|Diese Idee gef#allt mir nicht! Nein!
+Haska_11|Hoffentlich platzt meine Kleidung nicht, wenn ich meine Muskeln so sehr anstrengen mu#t!
+Haska_12|Das ist roter Wein. Der geht aus den Sachen schwer wieder raus!
+Haska_13|Zum Stollen pa#tt kein Wein!
+Haty1_1|Schilf.
+Haty1_2|Schilf.
+Haty1_3|Sie haben schon ziemlich viel gefangen.
+Haty1_4|Sie haben schon ziemlich viel gefangen.
+Haty1_5|Es schaukelt ganz sch#pn.
+Haty1_6|Alles ruhig.
+Haty1_7|Hier sind aber viele Fische!
+Haty1_8|Ja, da k#pnnen sie lange angeln. Sie fangen doch nichts!
+Haty1_9|Hm, sie fangen einen Fisch nach dem anderen.
+Haty1_10|Na, die ham do den Fisch bestimmt no ni ;-)
+Haty1_11|Das erreiche ich nicht !
+Haty1_12|Das erreiche ich nicht !
+Haty1_13|Zum Baden ist mir heute zu kalt.
+Haty1_14|Zum Baden ist mir heute zu kalt.
+Haty1_15|#Ah, isch brauch niggx von!
+Haty1_16|So einen gro#ten Fisch hat noch niemand gefangen.$VIELLEICHT SIND HIER NOCH MEHR FISCHE DRIN!!!
+Haty1_17|Heh, Paul, sieh doch mal!
+Haty1_18|Donnerkiesel!!! Der Junker hat mir doch versichert, da#t nur noch in diesem Teich Fische sind.
+Haty1_19|Willst Du nun den gr#p#tten Fisch fangen oder was? Komm mit.
+Haty1_20|So jung und schon so viel Gl#uck!
+Haty1_21|Ja, ich wei#t auch nicht. Das ging alles bi#tchen schnell.
+Haty1_22|Eigentlich darfst Du hier gar nicht angeln. Das ist der Teich des Junkers. Aber wir sagen es niemandem.
+Haty1_23|Versuche Dein Gl#uck doch noch einmal in unserem Teich.
+Haty1_24|Ja, wir sehen derweile hier nochmal nach dem Rechten.
+Haty1_25|Wenn sie meinen. Dann versuche ich es auf der rechten Seite nochmal.
+Haty1_26|So ein Einfaltspinsel! Jetzt aber schnell - vielleicht fangen wir noch einen gr#p#teren.
+Haty1_27|Damit erreiche ich das Schilf auch nicht.
+Haty1_28|Damit erreiche ich das Schilf auch nicht.
+Haty1_29|Auch die Leine hilft mir nicht.
+Haty1_30|Auch die Leine hilft mir nicht.
+Haty1_31|Dort ist schon genug.
+Haty1_32|Dort ist schon genug.
+Haty1_33|Sie sind satt.
+Haty1_34|Sie sind satt.
+Haty1_35|T#onle #zort woni zaw#es#ce njezrozumja.
+Haty1_36|T#onle #zort woni zaw#es#ce njezrozumja.
+Haty1_37|Ich bin doch nicht dumm.
+Haty1_38|Ich bin doch nicht dumm.
+Haty1_39|Es ist schon angebunden.
+Haty1_40|Damit allein kann ich nicht angeln.
+Haty1_41|Damit allein kann ich nicht angeln.
+Haty1_42|Warum sollten die Fische anbei#ten?
+Haty1_43|Warum sollten die Fische anbei#ten?
+Haty1_44|Ich bin doch nicht dumm.
+Haty1_45|Ich bin doch nicht dumm.
+Haty1_46|Lieber nicht, Gewalt ist keine L#psung.
+Haty1_47|Lieber nicht, Gewalt ist keine L#psung.
+Haty1_48|Das ist meiner.
+Haty1_49|Das ist meiner.
+Haty1_50|Das sind meine.
+Haty1_51|Das sind meine.
+Haty1_52|Sie haben selber eine Angel.
+Haty1_53|Sie haben selber eine Angel.
+Haty1_54|Sie erkennen die L#uge sicher!
+Haty1_55|Sie erkennen die L#uge sicher!
+Haty1_56|Nein, es ist vielleicht besser, wenn sie das nicht sehen.
+Haty1_57|Nein, es ist vielleicht besser, wenn sie das nicht sehen.
+Haty1_58|Seht nur, was ich gefangen habe!
+Haty1_59|Seht nur, was ich gefangen habe!
+Haty1_60|Ha, solche Kleine haben wir selbst genug!
+Haty1_61|Der ist meine.
+Haty1_62|Der ist meine.
+Haty1_63|Lieber nicht, Gewalt ist keine L#psung.
+Haty1_64|Lieber nicht, Gewalt ist keine L#psung.
+Haty1_65|Braunk#appchen! Du hast doch Wein in Deinem Korb. Gib dem Onkel einen Schluck Wein!
+Haty1_66|Rotk#appchen hat ein rotes K#appchen auf und besucht$ihre liebe Gro#tmutter. Du hast was braunes auf dem Kopf - also bist Du Braunk#appchen.
+Haty1_67|Den Kuchen in Deinem Korb$kannst Du meinem Nachbarn geben, aber um den Wein w#urde ich mich gerne k#ummern - liebes, liebstes Braunk#appchen.
+Haty1_68|Schweig, Braunk#appchen ! Gib mir Deinen Hut !$Ich suche noch etwas f#ur den Faschingsumzug.
+Haty1_69|Ach..., ein Schluck Wein oder Schnaps und Du brauchst den Hut nicht mehr.
+Haty1_70|Ist das wieder eine neue Kneipe in Bautzen ?$Immer diese komischen Namen !
+Haty1_71|Ein geheimer Ort ?!$Da#t Du mir den Hober Sprejwnik nicht aufweckst -
+Haty1_72|hahaha -- hehe
+Haty1_73|Ich trinke ja schon viel Schnaps, aber Du bist daf#ur eigentlich zu jung! Wo erz#ahlt man sich solch ein Gew#asch - in Eutrich oder in Wittichenau?
+Haty1_74|Sicher, sicher. Das ist im Winter sicher ein warmes$Pl#atzchen. Sag dem Teufel bitte alles Gute,
+Haty1_75|in 20 Jahren kann er mit mir rechnen.$Dann w#urde ich gerne in der Abteiung Seelen arbeiten,
+Haty1_76|weil das Heizen unterirdischer Kammern nichts f#ur mich ist.
+Haty1_77|Hahahaahehe.
+Haty1_78|Ja, das ist der letzte Teich mit Fischen in diesem Herbst.
+Haty1_79|In Wittichenau wird Fisch gehandelt. Und weil dieses Jahr nicht so viel Fisch ist, kannst Du Dir damit einige Groschen verdienen.
+Haty1_80|Was willst Du mit einer Angel?
+Haty1_81|N#achstes Jahr kannst Du es versuchen - vielleicht hast Du Gl#uck.
+Haty1_82|Dieses Jahr ist das der letzte Teich mit Fischen und hier darf niemand sonst angeln.
+Haty1_83|Jetzt sind wir hier!
+Haty1_84|Wir angeln hier!
+Haty1_85|Das Gl#uck hat mich jetzt verlassen!
+Haty1_86|Das hat keinen Sinn!
+Haty1_87|Nicht noch einmal!
+Haty1_88|Du bist doch nur wegen der Fische hier !
+Haty1_89|Ich mu#t mich konzentrieren.
+Haty1_90|St#pr mich nicht ! Gerade bei#tt einer.
+Haty1_91|Dieses Jahr fange ich den Gr#p#tten !
+Haty1_92|Ich kann jetzt nicht mit Dir reden.
+Haty1_93|Braunk#appchen ? Ich bin Krabat.
+Haty1_94|Ich bin nicht Braunk#appchen! Solche H#ute tr#agt man$heute. Au#terdem ist das eine dunkle orangene Farbe.
+Haty1_95|Meine Mutter hat mir verboten, drau#ten ohne Hut zu$spielen und letztes Jahr habe ich mich im$Ferienlager erk#altet.
+Haty1_96|Kennen Sie die Schwarze M#uhle ?
+Haty1_97|Die Schwarze M#uhle ist keine Kneipe ! So nennen die$Leute einen geheimen Ort wo man mehr erlernen$kann als nur Korn zu mahlen.
+Haty1_98|Das ist kein Gew#asch !$Ich werde die Schwarze M#uhle finden !
+Haty1_99|Stattliche Fische fangen Sie hier.
+Haty1_100|Was machen Sie mit dem ganzen Fisch ?
+Haty1_101|Woher bekomme ich eine Angel ?
+Haty1_102|Viel Gl#uck noch beim Angeln.
+Haty1_103|Darf ich es auch einmal versuchen ?
+Haty1_104|Ich suche die Schwarze M#uhle.
+Haty1_105|Viel Spa#t noch - Auf Wiedersehen.
+Haty1_106|Finger weg!
+Haty1_107|La#t das!
+Haty1_108|Fang Dir selber was!
+Haty1_109|Hej, das ist unseres!
+Haty1_110|Ich sehe das!
+Haty1_111|Jetzt fangen wir den gr#p#tten Fisch!
+Haty1_112|La#t uns in Ruhe!
+Haty1_113|Ich bin...
+Haty1_114|ach, wozu erz#ahl ich Dir das.
+Hojnt1_1|Ein Haken, um Tiere daran aufzuh#angen.
+Hojnt1_2|Das ist eine Falle.
+Hojnt1_3|Im Haus des J#agers am Ende der Schnur ist eine Klingel. Sie klingelt, wenn er etwas #fgefangen#F hat.
+Hojnt1_4|Eine Klingel.
+Hojnt1_5|Hier h#angen Rebh#uhner.
+Hojnt1_6|Das ist der Schatten des J#agers.
+Hojnt1_7|Es ist niemand drin.
+Hojnt1_8|Eine Axt. Die geh#prt bestimmt dem J#ager.
+Hojnt1_9|Der Hauseingang.
+Hojnt1_10|Holz aus dem Wald.
+Hojnt1_11|Das kann ich nicht, vor dem Fenster ! Wenn mich der Jaeger sieht ! Ich mu#t das irgendwie anders anstellen.
+Hojnt1_12|Das erreiche ich nicht!
+Hojnt1_13|Ich trete nicht nochmal auf die Falle !
+Hojnt1_14|Das kann ich nicht, vor dem Fenster ! Wenn mich der Jaeger sieht ! Ich mu#t das irgendwie anders anstellen.
+Hojnt1_15|Ich danke Ihnen! Eine Frage habe ich noch...
+Hojnt1_16|Keine Zeit. Ich mu#t die Falle ausbessern und mich dann auf die Jagd vorbereiten. Heute nacht fange ich einen Wolf.
+Hojnt1_17|Achtung! Der J#ager kommt zur#uck!
+Hojnt1_18|Das merkt der J#ager bestimmt.
+Hojnt1_19|Die Rebh#uhner brauche ich nicht.
+Hojnt1_20|Wenn ich noch weiter zum Fenster reinschaue, sieht der J#ager mich vielleicht und schimpft mich dann aus.
+Hojnt1_21|Das Fenstert l#a#tt sich nur von innen #pffnen!
+Hojnt1_22|Das w#urde mir der J#ager #ubelnehmen!
+Hojnt1_23|Ich will den J#ager nicht st#pren.
+Hojnt1_24|In das Haus gehe ich nicht.
+Hojnt1_25|Zu schwer!
+Hojnt1_26|So geht das nicht!
+Hojnt1_27|Das hat keinen Sinn mehr. Nich noch einmal!
+Hojnt1_28|Ich will das Fenster nicht kaputtmachen!
+Hojnt1_29|So brennt es nicht!
+Hojnt1_30|Was kann das nur sein? Sieht wie eine Schnur aus. Ich mu#t mir das mal n#aher anschauen!
+Hojnt1_31|Was kann das nur sein? Ich mu#t mir das mal n#aher anschauen!
+Hojnt2_1|Das ist eine Falle.
+Hojnt2_2|Im Haus des J#agers am Ende der Schnur ist eine Klingel. Sie klingelt, wenn er etwas #fgefangen#F hat.
+Hojnt2_3|Eine Klingel.
+Hojnt2_4|Hier h#angen Rebh#uhner.
+Hojnt2_5|Das ist der Schatten des J#agers.
+Hojnt2_6|Eine Axt. Die geh#prt bestimmt dem J#ager.
+Hojnt2_7|Der Hauseingang.
+Hojnt2_8|Holz aus dem Wald.
+Hojnt2_9|Das erreiche ich nicht!
+Hojnt2_10|Ich trete nicht nochmal auf die Falle !
+Hojnt2_11|Das kann ich nicht, vor dem Fenster ! Wenn mich der Jaeger sieht ! Ich mu#t das irgendwie anders anstellen.
+Hojnt2_12|Das merkt der J#ager bestimmt.
+Hojnt2_13|Wenn ich noch weiter zum Fenster reinschaue, sieht der J#ager mich vielleicht und schimpft mich dann aus.
+Hojnt2_14|Das w#urde mir der J#ager #ubelnehmen!
+Hojnt2_15|Ich will den J#ager nicht st#pren.
+Hojnt2_16|Zu schwer!
+Hojnt2_17|Das hat keinen Sinn mehr. Nich noch einmal!
+Hojnt2_18|Ich will das Fenster nicht kaputtmachen!
+Hojnt2_19|So brennt es nicht!
+HojntAuto_1|Zaperlot !!! Ist das jetzt ein Tier oder wieder der Junge ? Ich mu#t da schnell mal nachschauen.
+HojntAuto_2|Komisch. So stark weht der Wind heute doch gar nicht. Mit der Klingel mu#t ich mir noch etwas einfallen lassen.
+HojntAuto_3|Die Klingel hat gel#autet ! Welches Tier habe ich wohl gefangen ?
+Hoscenc1_1|Er schnarcht.
+Hoscenc1_2|Er sitzt da und trinkt ein Bierchen.
+Hoscenc1_3|Ein kleiner leerer Becher.
+Hoscenc1_4|Das ist ein Bild der Kneipe.
+Hoscenc1_5|Das ist ein gemaltes Bild. Ein ziemlich gro#ter Hof. Sieht wie eine M#uhle aus.
+Hoscenc1_6|Ein Stuhl aus Holz.
+Hoscenc1_7|Das ist sicher die T#ur zur K#uche. Ich h#pre, wie jemand mit T#ppfen klappert.
+Hoscenc1_8|Das geh#prt sich nicht!
+Hoscenc1_9|Das geh#prt sich nicht!
+Hoscenc1_10|Ich will mich nicht setzen!
+Hoscenc1_11|Nein, hier darf ich bestimmt nicht rein!
+Hoscenc1_12|Das will ich nicht beschmieren!
+Hoscenc1_13|Das will ich nicht beschmieren!
+Hoscenc1_14|Das w#are unanst#andig!
+Hoscenc1_15|Das traue ich mir nicht!
+Hoscenc1_16|Wof#ur sollte ich ihn bestrafen?
+Hoscenc1_17|Ich will ihn nicht ver#argern!
+Hoscenc1_18|Er ist nicht betrunken, nur m#ude!
+Hoscenc1_19|Die Schwarze M#uhle?! Klingt irgendwie unheimlich.
+Hoscenc1_20|Am Geschw#atz h#angt immer ein bi#tchen Wahrheit, aber auch L#uge. Die Wahrheit liegt dazwischen.
+Hoscenc1_21|H#prner und einen Schwanz habe ich beim M#uller noch nicht gesehen und w#armer wird es auch nicht,
+Hoscenc1_22|wenn er eintritt. Er besucht mein Wirtshaus einmal im Jahr. Letztes Mal hat er mir zwei Bilder
+Hoscenc1_23|geschenkt - f#ur Werbezwecke, meinte er. Dort an der Wand h#angen sie ja.
+Hoscenc1_24|Sicher h#prt man viel Neues. Sch#pnau liegt an einer wichtigen Handelsstra#te. Einmal sind Wittichenauer H#andler
+Hoscenc1_25|meine G#aste, ein anderes Mal Soldaten oder Kurf#ursten, die eine kleine Pause einlegen m#pchten.
+Hoscenc1_26|In Dresden haben sie wieder einen neuen Kurf#ursten - August der Starke nennt er sich.
+Hoscenc1_27|Die Gesandten erz#ahlten, da#t er K#pnig werden will - K#pnig von Polen.
+Hoscenc1_28|Worum bettelst Du? Verstand und Wissen? - Hinter Wittichenau?! Meine G#ute, Junge, das wird nichts mit Dir!
+Hoscenc1_29|Nichts f#ur Dich. Glaub mir, Junge!
+Hoscenc1_30|Du bist nicht der erste, der vor mir steht und mich nach jener M#uhle fragt. Ich habe keinen dieser Burschen
+Hoscenc1_31|wiedergesehen und dieses Wirtshaus f#uhre ich jetzt 20 Jahre. Ist das nicht ziemlich merkw#urdig?
+Hoscenc1_32|Mit ihm will niemand so richtig reden. Wenn er eintritt,$stehen alle auf und verlassen das Wirtshaus.
+Hoscenc1_33|Der M#uller redet nicht viel und bleibt auch nicht so lange. Das ist keine H#pllenhitze, die er ausstrahlt,
+Hoscenc1_34|sondern ... K#alte ...! Die Plage der armen Seelen nennen ihn die Leute.
+Hoscenc1_35|Das ist meine Sache. Die Bilder h#angen nun da und Ende!
+Hoscenc1_36|Jetzt reicht es aber. Schau Dir die Bilder an, das mu#t reichen. Die Schwarze M#uhle findest Du sowieso nicht.
+Hoscenc1_37|Daf#ur braucht man K#ppfchen, Mut und einen festen Willen.
+Hoscenc1_38|Das sicher nicht - der M#uller hat keine Frau. #FIch habe etwas wichtiges verloren#F, sagt er immer.
+Hoscenc1_39|Jedesmal der selbe Satz und dann betrinkt er sich f#urchterlich.
+Hoscenc1_40|Ja, wenn ich das w#u#tte. Aber es mu#t ihm ziemlich nahe gehen.
+Hoscenc1_41|#Argerst Du meine G#aste?
+Hoscenc1_42|Janosch, ich bin Janosch. Ich ziehe durch das Land und erg#ptze mich am Leben.
+Hoscenc1_43|Ich bin nicht aus dieser Region. Frag doch mal den Wirt.
+Hoscenc1_44|Das mu#t jeder f#ur sich selbst wissen.
+Hoscenc1_45|Tu das, was Dich gl#ucklich macht oder denk an etwas, was Du gern tun m#pchtest - zu Anfang gen#ugt das.
+Hoscenc1_46|Was beklagst Du Dich ? Ihr seid doch selbst schuld. Nur Geseufze ist hier zu h#pren ! #fWir warten auf den Helden,
+Hoscenc1_47|der uns befreit.#F Diesen Satz kann ich nicht mehr h#pren ! Dort drau#ten ist niemand, dort ... ist ... niemand,
+Hoscenc1_48|der euch hilft ! Eure Petitionen helfen nicht und ein bewaffneter Aufstand endet blutig und ohne Ergebnis.
+Hoscenc1_49|Ich sehe keinen Ausweg.
+Hoscenc1_50|Das Leben findet immer einen Weg und der Mensch entdeckt M#pglichkeiten.
+Hoscenc1_51|Eine herrliche Gegend, diese Lausitz. Ihr habt hier alles. Blaue Berge s#udlich von Bautzen,
+Hoscenc1_52|weite W#alder und fruchtbare Felder. Das ist wie ein kleines Paradies.
+Hoscenc1_53|Da w#unsche ich Dir viel Erfolg. Vielleicht findest Du die Antworten auf Deine Fragen.
+Hoscenc1_54|Bbbrrr...
+Hoscenc1_55|Hhhhuuuhhhooo...
+Hoscenc1_56|Bbbyyy...
+Hoscenc1_57|Wie kann ein Mensch schon tags#uber so betrunken sein?
+Hoscenc1_58|Ich suche die Schwarze M#uhle.
+Hoscenc1_59|Ich kenne die Schwarze M#uhle nur aus Erz#ahlungen - was die Leute sich halt so erz#ahlen.
+Hoscenc1_60|Was haben Sie von der M#uhle geh#prt? Wohnt dort der Teufel?
+Hoscenc1_61|Als Wirt h#pren Sie doch viel Neues...
+Hoscenc1_62|Was erz#ahlen Ihre G#aste denn so?
+Hoscenc1_63|Dresden?! Ist das nicht eine Stadt hinter Wittichenau? So weit weg bin ich noch nie gelangt beim Betteln.
+Hoscenc1_64|Der M#uller braucht also Helfer?
+Hoscenc1_65|Warum raten Sie mir davon ab, M#ullerbursche zu werden?
+Hoscenc1_66|Was meint der M#uller dazu? Haben Sie ihn gefragt?
+Hoscenc1_67|Warum h#angen dann diese Bilder an der Wand?
+Hoscenc1_68|Erz#ahlen Sie mir mehr von der Schwarzen M#uhle.
+Hoscenc1_69|Er kommt nur einmal pro Jahr hier vorbei ? Der M#uller steht wohl zu Hause ganz sch#pn unterm Pantoffel?
+Hoscenc1_70|Was hat der M#ulller denn so wichtiges verloren?
+Hoscenc1_71|Ich bin nicht durstig - Danke.
+Hoscenc1_72|Ich bin Krabat und wer sind Sie ?
+Hoscenc1_73|Kennen Sie die Schwarze M#uhle ?
+Hoscenc1_74|Wie geht das, sich am Leben zu erg#ptzen ?
+Hoscenc1_75|Sie sind reich und haben viel Zeit f#ur solche R#atsel ! Der arme Mann mu#t schwer arbeiten.
+Hoscenc1_76|Erz#ahlen Sie mir mehr, ich bin auch viel unterwegs.
+Hoscenc1_77|Wenn man nur dem Brot hinterherjagt, ist die Welt um einen dunkel und fremd. Schluss damit !
+Hoscenc1_78|Jetzt bin ich aber durstig. Ich bestelle mir ein stilles Wasser.
+Hoscenc1_79|Hhhhrrr...
+Hoscenc1_80|Aaaarrrgggrrr...
+Hoscenc1_81|Kkkkrrr...
+Hrodz_1|Ein gro#ter Stein. Sieht schwer aus.
+Hrodz_2|Donnerkiesel, bin ich ein kr#aftiger Kerl. Jetzt bin ich aber schwer!
+Hrodz_3|Hmmm ...
+Hrodz_4|Hmmm ...
+Hrodz_5|AAAAAAAAAAH!
+Info_1|SPIELDESIGN:
+Info_2|Jan$Bensch
+Info_3|J#prg$H#ubner
+Info_4|PROGRAMMIERUNG:
+Info_5|Daniel$Sobe
+Info_6|Stefan$Saring
+Info_7|ZEICHNUNGEN:
+Info_8|Stefan$Hanusch
+Info_9|GRAFIK$UND$ANIMATIONEN:
+Info_10|Jan$Bensch
+Info_11|MUSIK:
+Info_12|Michael Ziesch
+Info_13|SFX:
+Info_14|Jan Bensch
+Info_15|DIALOGE$UND$TEXTE:
+Info_16|J#prg$H#ubner
+Info_17|Lektorin : Bo#zena Paulick$$#Ubersetzung ins Niedersorbische: Gerhard Nagora$$Verpackungsdesign : Thomas Scholze$$Fotografie : Thomas Scholze$$Hergestellt im Auftrag der$Stiftung f#ur das sorbische Volk
+Inmlyn_1|Was, ich bin gemeint ? Oh Mutter, hilf mir ...
+Inmlyn_2|Oft sa#t er am h#pchsten Fenster der M#uhle und dachte ??? an zu Hause - an den Vater und die Mutter.%%Sicher, es war nicht nur das M#ullerhandwerk, was Krabat hier gesehen hatte. Das M#uhlrad ohne Wasser blieb nicht das einzige Mysterium, und Krabat fragte sich, woher der M#uller seine Macht sch#ppft.
+Inmlyn_3|Eines Tages im Sp#atfr#uhling - die Sonne hatte sich schon hinter dem Wald versteckt und Krabat hatte noch einige M#ause im Kornspeicher gefangen - da erblickte er auf einmal ein kleines Loch, welches die kleinen Nager in den Boden gefressen hatten. Eine bekannte Stimme drang an seine Ohren...
+Inmlyn_4|Jetzt erinnert sich Krabat an die Warnungen der Leute und die Worte der Mutter. Und die Mutter war auch der Schl#ussel zur Freiheit.
+Inventar_1|Die Fl#pte ist eine Erinnerung$an meinen Gro#tvater.
+Inventar_2|Das ist mein Weidestock.
+Inventar_3|Wof#ur werde ich es nur brauchen?
+Inventar_4|Die Tasse ist leer.
+Inventar_5|Oh, er ist sehr scharf!
+Inventar_6|Eine feine Leine .
+Inventar_7|Hmmm, sieht wie eine Peitsche aus.
+Inventar_8|Igitt, sind die schleimig!
+Inventar_9|Damit kann ich angeln gehen.
+Inventar_10|Der Wurm geht gleich baden!
+Inventar_11|Seht her, was ich gefangen habe!
+Inventar_12|Kleine, teilweise runde Steine .
+Inventar_13|Wenn das nur ein echter w#are...
+Inventar_14|Hm, der f#angt schon zu stinken an.
+Inventar_15|He, ich bin reich!
+Inventar_16|Die kann ich niemandem mehr anbieten!
+Inventar_17|Aha, dadurch kann ich atmen!
+Inventar_18|Ihr Herren, nehmt Euch in Acht!$Na ja, ist nicht gerade die st#arkste Waffe.
+Inventar_19|Eine sch#pne, schwarze Rabenfeder.
+Inventar_20|Eine Karte der Lausitz.
+Inventar_21|Das Empfehlungsschreiben f#ur$Dinglinger.
+Inventar_22|Diese Erlaubnis mu#t noch unterschrieben$und besiegelt werden.
+Inventar_23|Die besiegelte aber noch nicht$unterschriebene Erlaubnis.
+Inventar_24|Die unterschriebene aber noch$nicht besiegelte Erlaubnis.
+Inventar_25|Die unterschriebene und besiegelte$Erlaubnis der K#pnigs.
+Inventar_26|Das Holz brennt bestimmt hervorragend.
+Inventar_27|Ein herrlich weicher Pelz.
+Inventar_28|Wo der Enterhaken blo#t halten wird?
+Inventar_29|Ein festes Seil.
+Inventar_30|Der Enterhaken mit Seil. Jetzt bin ich ein richtiger Pirat.
+Inventar_31|5 Taler. Viel ist das nicht!
+Inventar_32|Damit sehe ich wie ein Hampelmann aus.
+Inventar_33|Eine lange Lanze.
+Inventar_34|Darunter schwitzt man bestimmt sch#pn.
+Inventar_35|Anders gehts nicht,$so bleibt der Wein wenigstens drin.
+Inventar_36|Eine Sonnenarmbanduhr.
+Inventar_37|Der Hammer des Zimmermanns.
+Inventar_38|Das ist der Schl#ussel zur Schatzkammer.
+Inventar_39|Das wird mal eine sch#pne Opferschale.
+Inventar_40|Ein unterschriebener Befehl.
+Inventar_41|Das ist die Skizze der Opferschale.
+Inventar_42|Das ist der Rest des Stollens.
+Inventar_43|Guter Dresdener Stollen.
+Inventar_44|Das ist meine pers#pnliche Kleidung.
+Inventar_45|Das ist eine Karte meiner Heimat.
+Inventar_46|#fDas Publikum und ich. Wie man #Angste #uberwindet#F$Das ist ein ziemlich schweres Buch.
+Inventar_47|Die Opfersch#ussel. Der Schl#ussel zum Koraktor.
+Inventar_48|Der Koraktor -$endlich habe ich ihn gefunden!
+Inventar_49|Ein riesiger, schwerer Stein!
+Inventar_50|Trockenes Stroh.
+Inventar_51|Das kommt mir nicht in den Becher!
+Inventar_52|Er ist nicht durstig!
+Inventar_53|Nein, das will ich nicht anz#unden!
+Inventar_54|Nein, das will ich nicht anz#unden!
+Inventar_55|Einer reicht!
+Inventar_56|Er ist nicht kitzlig.
+Inventar_57|Nein, damit kann ich nicht schreiben.
+Inventar_58|Nein, das will ich nicht anz#unden.
+Inventar_59|Nein, das will ich nicht anz#unden.
+Inventar_60|Nein, nein. Sie spielt ziemlich schlecht.
+Inventar_61|Einfach nur so? Nein!
+Inventar_62|Etwas fehlt noch!
+Inventar_63|Er ist nicht hungrig.
+Inventar_64|Nein, das will ich nicht anz#unden.
+Inventar_65|Er ist nicht mehr hungrig.
+Inventar_66|Einmal reicht zu.
+Inventar_67|Einmal reicht zu.
+Inventar_68|Einmal reicht zu.
+Inventar_69|Heh, das ist Tierqu#alerei!
+Inventar_70|Das kommt mir nicht in den Becher !
+Inventar_71|Einfach nur so? Nein!
+Inventar_72|Etwas fehlt noch!
+Inventar_73|Einfach nur so? Nein!
+Inventar_74|Das kann ich nicht in den Brief stecken!
+Inventar_75|Wie sieht das denn aus? Ein Brief mit dickem Bauch.
+Inventar_76|Sicher. Und dann finde ich die Groschen nicht mehr.
+Inventar_77|Das #uberlasse ich lieber Dinglinger.
+Inventar_78|Einfach nur so? Nein!
+Inventar_79|So lieber nicht.
+Inventar_80|Nein, das will ich nicht anz#unden!
+Inventar_81|Das geht nicht.
+Inventar_82|Das funktioniert nicht.
+Inventar_83|So nicht.
+Inventar_84|Das kann ich nicht machen.
+Jama1_1|#Uberall kriechen W#urmer rum. Sicher sind sie schleimig!
+Jama1_2|Immer mu#t ich sie anfassen!
+Jama1_3|Hej Junge! Was suchst Du denn hier?
+Jama1_4|Ja, was suche ich hier eigentlich? Das wei#t ich selber nicht.
+Jama1_5|Wenn Du es wei#tt, dann ruf mich.
+Jama1_6|Nein, nein - so meinte ich das nicht. Helfen Sie mir bitte.
+Jama1_7|Pa#t n#achstes mal besser auf!
+Jewisco_1|Ein Buch mit dem Titel: #fDas Publikum und ich. Wie man #Angste #uberwindet. Ein Buch f#ur junge Schauspieler.#F
+Jewisco_2|Das ist das richtige Buch f#ur Schauspieler im Kom#pdiantenhaus. Schwer genug ist es auch.
+Jewisco_3|Hier m#pchte ich auch mal vor Leuten spielen.
+Jewisco_4|Wenn man auf der B#uhne kr#aftigen Applaus bekommt, was f#ur ein Gef#uhl mu#t das sein?!
+Jewisco_5|Oh mann, ist das schwer!
+Jewisco_6|Ich habe keine Zuschauer!
+Jezba_1|So flitzte des K#pnis Wagen in den Mittelpunkt der s#achsischen Macht, nach Dresden.
+Jezba_2|Nach einiger Zeit interessierte sich August f#ur den sorbischen Kerl nicht mehr und steckte ihn in die k#pnigliche K#uche. Krabat aber hatte die Worte des Wassermanns und des Wittichenauer Pfarrers nicht vergessen.
+Jitk1_1|Hm, die T#ur ist sch#pner als unsere...
+Jitk1_2|Das ist der Wagen unserer Nachbarn.
+Jitk1_3|Sehr praktisch, aber f#ur mich nur hinderlich.
+Jitk1_4|Es ist niemand zu Hause!
+Jitk2_1|Hm, die T#ur ist sch#pner als unsere...
+Jitk2_2|Das ist der Wagen unserer Nachbarn.
+Jitk2_3|Sehr praktisch, aber f#ur mich nur hinderlich.
+Jitk2_4|Es ist niemand zu Hause!
+Kapala_1|Dokumente.
+Kapala_2|Ein Dokument.
+Kapala_3|Ein Dokument.
+Kapala_4|Nein, das ist nicht die Opferschale.
+Kapala_5|Nein, das ist nicht die Opferschale.
+Kapala_6|Nein, das ist nicht die Opferschale.
+Karta_1|Wittichenau
+Karta_2|Bernsdorf
+Karta_3|Sch#pnau
+Karta_4|Ralbitz
+Karta_5|Eutrich
+Karta_6|S#archen
+Karta_7|Schwarzkollm
+Komedij_1|Das ist ja ein Riesenaffe!
+Komedij_2|Nein, ich kenne schon genug Affen.
+Komedij_3|So ein gro#tes Beil.
+Komedij_4|Ich brauche das Beil nicht.
+Komedij_5|Die Kleidung eines Bediensteten. Die werde ich sicher noch brauchen.
+Komedij_6|Eine grauenvolle Statue.
+Komedij_7|Du hast Gl#uck, da#t Du die Statue nur von hinten siehst!
+Komedij_8|Ein Schwert.
+Komedij_9|Messer.
+Komedij_10|Was soll ich mit der Statue?
+Komedij_11|Das ist eine Requisite f#ur das Theater und nur aus Holz.
+Komedij_12|Das sind Requisiten f#ur das Theater und nur aus Holz.
+Konc_1|   Sind sie sicher?
+Konc_2|  Ja
+Konc_3| Nein
+Kuchnja_1|Der Koch hockt hier rum und f#angt M#ause.
+Kuchnja_2|Ein zubereitetes Schwein.
+Kuchnja_3|So ein sch#pner Apfel f#ur das alte Schwein.
+Kuchnja_4|Sieht noch irgendwie lebendig aus.
+Kuchnja_5|Holz f#ur den Herd.
+Kuchnja_6|Das Holz brennt sicherlich gut.
+Kuchnja_7|Diese T#ur ist verschlossen.
+Kuchnja_8|Das ist die Glocke des K#pnigs.
+Kuchnja_9|Ich kann nur den Himmel sehen.
+Kuchnja_10|Das Feuer ist fast erloschen.
+Kuchnja_11|Jetzt knistert das Feuer ordentlich.
+Kuchnja_12|Der Brei kocht ja gar nicht richtig.
+Kuchnja_13|Jetzt kocht der Brei richtig.
+Kuchnja_14|Ich habe bereits ein Holzst#uck.
+Kuchnja_15|Ich bin nicht hungrig!
+Kuchnja_16|Ich habe keinen Schl#ussel daf#ur!
+Kuchnja_17|Lieber nicht!
+Kuchnja_18|Dieses Fenster erreiche ich nicht!
+Kuchnja_19|Ich bin nicht hungrig!
+Kuchnja_20|Ich will mich nicht selbst verbrennen!
+Kuchnja_21|Das will ich nicht verbrennen!
+Kuchnja_22|Das Schwein braucht das nicht mehr!
+Kuchnja_23|Dann schmeckt der Brei nicht mehr!
+Kuchnja_24|Der Enterhaken ins Schwein? Und was dann?
+Kuchnja_25|Mehr Holz darf ich nicht reinwerfen, sonst kocht der Brei #uber!
+Kuchnja_26|Naja, es ist ja genug Holz da.
+Kuchnja_27|Jetzt gibt es bestimmt #Arger. Schnell weg!
+Kuchnja_28|Du elender T#plpel, du Anf#anger! Um alles mu#t man sich selber k#ummern!
+Kuchnja_29|Geh mir aus dem Weg! Ich will endlich mal mit Profis arbeiten!
+Kuchnja_30|Habe mal was von ihm geh#prt.
+Kuchnja_31|Deine Fragen bringen mich noch um den Verstand. Du bist Angestellter - also arbeite!
+Kuchnja_32|Ja doch! Er ist beim K#pnig und seinen Untertanen sehr angesehen - das, was du nie sein wirst!
+Kuchnja_33|Er hei#tt nicht Krabat, ist nicht faul und hat einen anst#andigen Beruf.
+Kuchnja_34|Als Hofmechaniker bekommt er immer besondere Aufgaben vom  K#pnig.
+Kuchnja_35|Wo wohnt er? Was ist seine Lieblingsfarbe? Was mag er f#ur Musik?
+Kuchnja_36|Mit welchem Bein steht er zuerst auf? KRABAT - ICH HABE KEINE AHNUNG!
+Kuchnja_37|Das geht dich gar nichts an!
+Kuchnja_38|So alt ist August eigentlich gar nicht, aber f#ur seine 28 Jahre hat er bereits ein sch#pnes Gewicht.
+Kuchnja_39|Klar - doch den gebe ich nicht aus der Hand. Arbeite!
+Kuchnja_40|Was? Ich habe keine Klingel geh#prt. Au#terdem hast du keine Dienerkleidung.
+Kuchnja_41|Wie oft soll ich dir das noch erz#ahlen? Ohne Kost#um darf niemand ins Schlo#tinnere.
+Kuchnja_42|Sonst schnappen dich die Wachen, du landest wieder hier und ich bekomme #Arger. Und den kann ich gar nicht gebrauchen!
+Kuchnja_43|Hab dich nicht so ! Dienerkleidung ist Pflicht oder du fliegst - und das direkt in meinen gro#ten K#uchenl#pffel,
+Kuchnja_44|der nat#urlich rein zuf#allig mitten in der K#uche h#angt und dich umhaut! Also arbeite!
+Kuchnja_45|Das ist ein franz#psiches Original - du Narr! Die bekam ich von meinem Meister aus Paris.
+Kuchnja_46|Sicher ! Dieses leckere Tier da auf dem Tisch kann nur von einem Genie - damit meine ich mich - zubereitet werden.
+Kuchnja_47|Das ist richtig so ! W#are ich nur in Paris geblieben, da hat man mich gesch#atzt ... oh Paris,
+Kuchnja_48|geliebtes Frankreich ... oh, Paris ...
+Kuchnja_49|Kennst du Handrij Zahrodnik ?
+Kuchnja_50|Und, was wei#tt du #uber ihn ?
+Kuchnja_51|Wir haben es doch nicht eilig.$Ist er ein Angestellter des K#pnigs ?
+Kuchnja_52|Wieso ist Zahrodnik so angesehen ?
+Kuchnja_53|Wo wohnt Handrij Zahrodnik ?
+Kuchnja_54|Du wei#tt bestimmt, wo Zahrodnik wohnt ?
+Kuchnja_55|Hast du den Schl#ussel f#ur das Schlo#t ?
+Kuchnja_56|Jemand hat nach mir gerufen !
+Kuchnja_57|Wozu brauche ich so etwas ? Ohne dieses Kost#um bin ich doch auch ein adretter sorbischer Bursche.
+Kuchnja_58|Dienerkleidung ?! Ich bin doch kein Hampelmann !
+Kuchnja_59|Kannst du mich denn mit deiner riesigen M#utze #uberhaupt verstehen ?
+Kuchnja_60|Du beherrschst die franz#psische K#uche ?
+Kuchnja_61|Einen Apfel zum Schwein legen - ja das stimmt - das kann wirklich nur ein Genie.
+Kuchnja_62|L#a#tt du mich bitte vorbei?
+Kuchnja_63|Aber zur#uck, du Nichtsnutz! Mach deine Arbeit!
+Kuchnja_64|Bist du taub !? Rupfe den Hahn ab !
+Kuchnja_65|Du sorbischer T#plpel ! Zur#uck !
+Kuchnja_66|Mach mich nicht fertig ! Pa#t lieber auf, da#t der Brei nicht #uberkocht !
+Kuchnja_67|Pa#t auf, da#t das Feuer nicht erlischt !
+Kuchnja_68|Oh nein ! Was f#ur einen Faulpelz hat der Alte mir wieder in die K#uche gegeben ?
+Kuchnjaopen_1|Ein zubereitetes Schwein.
+Kuchnjaopen_2|So ein sch#pner Apfel f#ur das alte Schwein.
+Kuchnjaopen_3|Sieht noch irgendwie lebendig aus.
+Kuchnjaopen_4|Holz f#ur den Herd.
+Kuchnjaopen_5|Diese T#ur ist verschlossen.
+Kuchnjaopen_6|Das ist die Glocke des K#pnigs.
+Kuchnjaopen_7|Ich kann nur den Himmel sehen.
+Kuchnjaopen_8|Das Feuer ist fast erloschen.
+Kuchnjaopen_9|Jetzt knistert das Feuer ordentlich.
+Kuchnjaopen_10|Der Brei kocht ja gar nicht richtig.
+Kuchnjaopen_11|Jetzt kocht der Brei richtig.
+Kuchnjaopen_12|Was will ich mit dem Holz? Das Feuer im Herd brennt eh nicht mehr.
+Kuchnjaopen_13|Ich bin nicht hungrig!
+Kuchnjaopen_14|Ich habe keinen Schl#ussel daf#ur!
+Kuchnjaopen_15|Lieber nicht!
+Kuchnjaopen_16|Dieses Fenster erreiche ich nicht!
+Kuchnjaopen_17|Ich bin nicht hungrig!
+Kuchnjaopen_18|Ich will mich nicht selbst verbrennen!
+Kuchnjaopen_19|Das will ich nicht verbrennen!
+Kuchnjaopen_20|Das Schwein braucht das nicht mehr!
+Kuchnjaopen_21|Dann schmeckt der Brei nicht mehr!
+Kuchnjaopen_22|Der Enterhaken ins Schwein? Und was dann?
+Kuchnjaopen_23|Mehr Holz darf ich nicht reinwerfen, sonst kocht der Brei #uber!
+Kuchnjaopen_24|Naja, es ist ja genug Holz da.
+Kuchnjaopen_25|Jetzt gibt es bestimmt #Arger. Schnell weg!
+Kuchnjaopen_26|Du elender T#plpel, du Anf#anger! Um alles mu#t man sich selber k#ummern!
+Kuchnjaopen_27|Geh mir aus dem Weg! Ich will endlich mal mit Profis arbeiten!
+Kulow1_1|Der H#andler hat nur eine Hand.
+Kulow1_2|Er handelt mit Fisch.
+Kulow1_3|Ein h#plzerner Fisch, f#ur die Werbung.
+Kulow1_4|Die T#ur ins Haus.
+Kulow1_5|Die T#ur ist offen.
+Kulow1_6|Stroh.
+Kulow1_7|Im Gef#a#t ist Wasser.
+Kulow1_8|Was soll das? Finger weg!
+Kulow1_9|Sie ist verschlossen. Ich habe keinen Schl#ussel.
+Kulow1_10|Du hast hier nichts zu suchen!
+Kulow1_11|La#t die T#ur offen! Ich brauche frische Luft.
+Kulow1_12|Auch wenn die T#ur offen ist, hei#tt das nicht, da#t Du hier reindarfst. Wieder so ein Bauernjunge!
+Kulow1_13|Das brauche ich jetzt nicht!
+Kulow1_14|Ich bin nicht durstig.
+Kulow1_15|Das Gef#a#t ist zu schwer.
+Kulow1_16|Das ist aber kein frischer Fisch!
+Kulow1_17|Du bekommst daf#ur einen Groschen - mehr nicht!
+Kulow1_18|Wof#ur sollte ich ihn bestrafen?
+Kulow1_19|Wof#ur sollte ich ihn bestrafen?
+Kulow1_20|Ich will ihn nicht ver#argern!
+Kulow1_21|Ich will ihn nicht ver#argern!
+Kulow1_22|Das will ich nicht anbrennen!
+Kulow1_23|Dann brennt bald das ganze Dorf!
+Kulow1_24|Der Fisch hat hier nichts zu suchen!
+Kulow1_25|Mehl, Getreide, Hirse...alles, was man zum Leben braucht.
+Kulow1_26|Ich kaufe das Mehl auch nur von einem anderen H#andler. Das Getreide kommt aus Preu#ten.
+Kulow1_27|Ich bin ein alter Soldat. Eine Heimat habe ich nicht, und so bin ich dort zu Hause, wohin ich meine Hut haenge.
+Kulow1_28|Ach Junge, was glaubst Du,was so ein Soldat macht - friedenssichernde Ma#tnahmen ?
+Kulow1_29|Meine letzte Schlacht war 1683. Ich war damals Soldat beim Kurf#ursten Johann Georg III.
+Kulow1_30|Die T#urken standen vor Wien - das ist in #Psterreich - und wir k#ampften im Verbund mit der
+Kulow1_31|Armee des polnischen K#pnigs Jan Sobieski. Ein heisser Kampf - aber wir haben gewonnen.
+Kulow1_32|An diese Schlacht erinnert meine fehlende Hand und der sogenannte #fT#urkische Springbrunnen#F in Dresden.
+Kulow1_33|Selbstverst#andlich !!! Ich habe nur frischen Fisch. Was soll das hei#ten ?
+Kulow1_34|Dann verkaufe mir doch frischen Fisch. Dieses Jahr gibt es nicht viel davon.
+Kulow1_35|Ach, Du glaubst das ? Die wollen doch nur mehr Groschen f#ur ihre schuppigen Tiere haben. Deshalb erz#ahlen sie den Leuten
+Kulow1_36|und auch mir so ein Geschw#atz. Aber wenn Du einen Fisch zu verkaufen hast - ich kaufe ihn gern.
+Kulow1_37|Ein St#uck Haifisch - hmmm.. Warte mal, da mu#t ich mal schnell schauen.
+Kulow1_38|Moment, ich schau mal...
+Kulow1_39|Was verkaufen Sie ?
+Kulow1_40|Mehl ? Wo lassen Sie denn das Korn mahlen ?
+Kulow1_41|Woher kommen Sie ?
+Kulow1_42|Da haben Sie als Soldat viel Schreckliches gesehen !
+Kulow1_43|In welcher Gegend haben Sie gek#ampft ?
+Kulow1_44|Ach nichts - ich habe mich geirrt.
+Kulow1_45|Danke. Ich schaue mir noch andere Buden an.
+Kulow1_46|Puh, ist das wirklich frischer Fisch ?
+Kulow1_47|Hier stinkt es nach altem Fisch.
+Kulow1_48|Die Angler bei den Eutricher Teichen meinten, da#t es dieses Jahr nicht viele Fische gibt.
+Kulow1_49|Ich suche ein St#uck Haifisch. Aber bitte ein Filetst#uck.
+Kulow1_50|Ich suche immer noch ein St#uck Haifisch.
+Kulow1_51|Ach nichts - ich habe mich geirrt.
+Kulow1_52|Danke. Ich schaue mir noch andere Buden an.
+Kulow1_53|Heh, es gibt doch gar keinen Haifisch in der Lausitz !
+Kulow1_54|Was mache ich nur ? Ich habe Dir doch gesagt, da#t es hier keinen Haifisch gibt !
+Kulow1_55|Hmmm, Hering habe ich...
+Kulow1_56|Tintenfisch habe ich...
+Kulow1_57|Octopussy - Du altes Schwein !$Du kannst doch nicht die Tinte in den Korb sch#utten.
+Kulow1_58|Hmmm, der Hering stinkt wirklich schon ein bi#tchen.
+Kulow1_59|- wirst du -
+Kulow1_60|#uberall Tintenflecke, zur#uck in den Korb...
+Kulow1_61|hmmm, Walfisch habe ich...
+Kulow2_1|Der H#andler hat nur eine Hand.
+Kulow2_2|Er handelt mit Fisch.
+Kulow2_3|Die T#ur ins Haus.
+Kulow2_4|Die T#ur ist offen.
+Kulow2_5|Stroh.
+Kulow2_6|Im Gef#a#t ist Wasser.
+Kulow2_7|Sie ist verschlossen. Ich habe keinen Schl#ussel.
+Kulow2_8|Du hast hier nichts zu suchen!
+Kulow2_9|La#t die T#ur offen! Ich brauche frische Luft.
+Kulow2_10|Auch wenn die T#ur offen ist, hei#tt das nicht, da#t Du hier reindarfst. Wieder so ein Bauernjunge!
+Kulow2_11|Das brauche ich jetzt nicht!
+Kulow2_12|Ich bin nicht durstig.
+Kulow2_13|Das Gef#a#t ist zu schwer.
+Kulow2_14|Wof#ur sollte ich ihn bestrafen?
+Kulow2_15|Wof#ur sollte ich ihn bestrafen?
+Kulow2_16|Ich will ihn nicht ver#argern!
+Kulow2_17|Ich will ihn nicht ver#argern!
+Kulow2_18|Das will ich nicht anbrennen!
+Kulow2_19|Dann brennt bald das ganze Dorf!
+Kulow2_20|Der Fisch hat hier nichts zu suchen!
+Kulow2_21|Mehl, Getreide, Hirse...alles, was man zum Leben braucht.
+Kulow2_22|Ich kaufe das Mehl auch nur von einem anderen H#andler. Das Getreide kommt aus Preu#ten.
+Kulow2_23|Ich bin ein alter Soldat. Eine Heimat habe ich nicht, und so bin ich dort zu Hause, wohin ich meine Hut haenge.
+Kulow2_24|Ach Junge, was glaubst Du,was so ein Soldat macht - friedenssichernde Ma#tnahmen ?
+Kulow2_25|Meine letzte Schlacht war 1683. Ich war damals Soldat beim Kurf#ursten Johann Georg III.
+Kulow2_26|Die T#urken standen vor Wien - das ist in #Psterreich - und wir k#ampften im Verbund mit der
+Kulow2_27|Armee des polnischen K#pnigs Jan Sobieski. Ein heisser Kampf - aber wir haben gewonnen.
+Kulow2_28|An diese Schlacht erinnert meine fehlende Hand und der sogenannte #fT#urkische Springbrunnen#F in Dresden.
+Kulow2_29|Selbstverst#andlich !!! Ich habe nur frischen Fisch. Was soll das hei#ten ?
+Kulow2_30|Dann verkaufe mir doch frischen Fisch. Dieses Jahr gibt es nicht viel davon.
+Kulow2_31|Ach, Du glaubst das ? Die wollen doch nur mehr Groschen f#ur ihre schuppigen Tiere haben. Deshalb erz#ahlen sie den Leuten
+Kulow2_32|und auch mir so ein Geschw#atz. Aber wenn Du einen Fisch zu verkaufen hast - ich kaufe ihn gern.
+Kulow2_33|Was verkaufen Sie ?
+Kulow2_34|Mehl ? Wo lassen Sie denn das Korn mahlen ?
+Kulow2_35|Woher kommen Sie ?
+Kulow2_36|Da haben Sie als Soldat viel Schreckliches gesehen !
+Kulow2_37|In welcher Gegend haben Sie gek#ampft ?
+Kulow2_38|Ach nichts - ich habe mich geirrt.
+Kulow2_39|Danke. Ich schaue mir noch andere Buden an.
+Kulow2_40|Puh, ist das wirklich frischer Fisch ?
+Kulow2_41|Hier stinkt es nach altem Fisch.
+Kulow2_42|Die Angler bei den Eutricher Teichen meinten, da#t es dieses Jahr nicht viele Fische gibt.
+Kulow2_43|Ach nichts - ich habe mich geirrt.
+Kulow2_44|Danke. Ich schaue mir noch andere Buden an.
+Kupa1_1|Das Schilf w#achst in der N#ahe der Insel.
+Kupa1_2|Ich kann nicht weiter. Hier fehlt ein Brett!
+Kupa1_3|Nein, ich springe nicht! Da kannst Du da drau#ten machen. was Du willst. Wenn ich ins Wasser falle, lachen doch alle...
+Kupa1_4|Du hast Deinen Kopf und ich meinen! Hier gehe ich nicht dr#uber.
+Lodz_1|Das ist eine junge Frau.
+Lodz_2|Dich kenne ich doch gar nicht!
+Lodz_3|Oh, Du hast den Stollen bekommen. So komm, der Kaffee ist schon fertig. Dann kannst Du mir von Dir erz#ahlen.
+Lodz_4|Oh, Du hast den Stollen bekommen. So komm, Du kannst mir etwas von Dir erz#ahlen.
+Lodz_5|Eine Stunde sp#ater...
+Lodz_6|Ich danke Dir, Krabat - f#ur den Stollen, f#ur den Besuch, f#ur die Witze... hier hast Du ein flaches St#uck Metall, wenn Du es so dringend brauchst ?
+Lodz_7|Oh, damit hast Du mir wirklich sehr geholfen.
+Lodz_8|Es ist jetzt Zeit, da#t ich Dir Auf Wiedersehen sage.
+Lodz_9|Heh?! Ein Ku#t - und das f#ur mich?! Kannst Du das nochmal wiederholen?
+Lodz_10|Nein. Das tut zu sehr weh - im Herzen. Jetzt geh!
+Lodz_11|Ich bin eine tschechische Erz- und Eisenh#andlerin und fahre auf der Elbe nach Hamburg. Dort erwartet man mich in einigen Tagen.
+Lodz_12|Das geht auf gar keinen Fall, ich mu#t ja alles in Hamburg abgeben.
+Lodz_13|Danke f#ur das Kompliment, aber so jung bin ich nicht mehr. Klar, die Arbeit ist nicht leicht.
+Lodz_14|Es mu#t aber sein. Da meine Eltern tot sind, mu#t ich f#ur meinen kleinen, hungrigen Bruder sorgen.
+Lodz_15|Du hast Recht. Besorge du doch einen Stollen - den echten Dresdener - und ich koche inzwischen Kaffe.
+Lodz_16|Klar, auf dem Markt in der Stadt gibt es bestimmt welchen. Ich komme dieses Jahr nicht wieder und ich liebe so den Stollen.
+Lodz_17|Ein Freund des K#pnigs. So siehst du aus. Hahahaha...
+Lodz_18|Ist doch egal. Du bist ja ein neugieriger Mann. Hast du etwa nichts zu tun?
+Lodz_19|Du hast doch schon ein kleines B#artchen - oder ist das vielleicht nur Dreck?
+Lodz_20|Oh nein, diese jungen M#anner.
+Lodz_21|Krabat, dar#uber m#pchte ich nicht reden.
+Lodz_22|Was hast du denn so auf deinem Schiff ?
+Lodz_23|Erz und Eisen ? Welch ein Zufall !$Ich brauche ein St#uck Flacheisen.
+Lodz_24|Ist die Arbeit nicht zu schwer f#ur eine junge Frau ?
+Lodz_25|Hunger ist ein gutes Stichwort.$Mir knurrt auch schon der Bauch.
+Lodz_26|Stollen im Herbst ?
+Lodz_27|Ich bin Krabat, ein Freund des K#pnigs.
+Lodz_28|Wie hei#tt du eigentlich ?
+Lodz_29|Du sagst wirklich #fMann#F zu mir ? F#ur die anderen$bin ich nur ein Lausejunge oder ein Faulpelz.
+Lodz_30|Um Gottes Willen ! Der Bart kratzt schon m#achtig...
+Lodz_31|Wieso hat ein solch h#ubsches M#adchen$keinen Freund oder Mann ?
+Lodz_32|Oh, ich mu#t weiter, der K#pnig ruft nach mir.
+Mainlaby_1|Der arme Kerl brennt ja!
+Mainlaby_2|Oh, ein Groschen. Daf#ur helfe ich Dir raus.
+Mainlaby_3|M#uller, M#uller, Krabat ruft Dich, es verstecke sich die Sonne hinter dem d#usteren Wald.
+Mainlaby_4|Er brennt doch schon.
+Mainlaby_5|Sicher brenne ich. Wir sind die Irrlichter und ich bin ihr Anfuehrer.
+Mainlaby_6|Guter Witz. Im warmen Sommer ist das dann ein bi#tchen anders. Was suchst Du hier ?
+Mainlaby_7|Aha, die Schwarze M#uhle. Wei#tt Du schon, wo die ist?
+Mainlaby_8|Das ist wie #uberall im Leben eine Frage des gewissen Pfandes. Sicher wissen wir, wie und wo Du die Schwarze M#uhle findest.
+Mainlaby_9|Aber Du bist ein armer Bursche und hast nichts in der Tasche.
+Mainlaby_10|Sicher. Das erste Mal ist das noch kostenlos. Naechstes Mal kostet das aber einen Groschen. Moment...
+Mainlaby_11|Das ist wie #uberall im Leben eine Frage des gewissen Pfandes. Aber Du bist ein armer Bursche und hast nichts in der Tasche.
+Mainlaby_12|Du brennst irgendwie.
+Mainlaby_13|Da habt ihr es im Winter wenigstens immer sch#pn warm.
+Mainlaby_14|Eigentlich suche ich die Schwarze M#uhle.
+Mainlaby_15|Ich suche die Schwarze M#uhle.
+Mainlaby_16|Nein, keiner hilft mir.
+Mainlaby_17|Der Wassermann hat gesagt, da#t ihr mir helfen k#pnntet.
+Mainlaby_18|Ich finde den Ausgang nicht. K#pnnt ihr mir helfen?
+Mainlaby_19|Ich finde den Ausgang nicht. K#pnnt ihr mir helfen?
+Mainlaby_20|Ach, nichts. Ich habe mich geirrt.
+Mainlaby_21|Ich komme bald zur#uck.
+Mainloc_1|Das verbessert nichts!
+Mainloc_2|Heh, nicht vor den Kopf!
+Mainloc_3|Die ist leer!
+Mainloc_4|Aua!
+Mainloc_5|Sehr fesselnd.
+Mainloc_6|Damit allein kann ich noch nichts anfangen.
+Mainloc_7|Ich habe schon besser gegessen.
+Mainloc_8|Damit allein kann ich noch nichts anfangen.
+Mainloc_9|Ich brauche Wasser.
+Mainloc_10|Ich brauche Wasser.
+Mainloc_11|Das soll wohl ein Witz sein!?
+Mainloc_12|Aber doch nicht roh!
+Mainloc_13|Jetzt ist der Groschen gefallen!
+Mainloc_14|Bin nicht durstig!
+Mainloc_15|Aua!
+Mainloc_16|Heh, ich bin kitzelig!
+Mainloc_17|Den brauche ich f#ur Dinglinger.
+Mainloc_18|Was soll ich mit der Erlaubnis?
+Mainloc_19|Was soll ich mit der Erlaubnis?
+Mainloc_20|Was soll ich mit der Erlaubnis?
+Mainloc_21|Das bekommt Dinglinger.
+Mainloc_22|Was will ich mit dem Holz?
+Mainloc_23|Als ob mich unsere Katze streicheln w#urde.
+Mainloc_24|Was soll das?
+Mainloc_25|Sehr fesselnd.
+Mainloc_26|Wie sieht das denn aus?
+Mainloc_27|Ich habe sie doch schon!
+Mainloc_28|Wenn die Wachen mich in der Stadt mit Bedienstetenkleidung sehen, bekomme ich wieder #Arger.
+Mainloc_29|Au, das tut ziemlich weh!
+Mainloc_30|Ich habe schon einen harten Sch#adel!
+Mainloc_31|Wenn ich das austrinke, bin ich morgen noch betrunken!
+Mainloc_32|Ich kann die richtige Zeit nicht ablesen!
+Mainloc_33|Ich will mir nicht die Z#ahne ziehen!
+Mainloc_34|Den braucht Dinglinger!
+Mainloc_35|Das kann ich nicht allein bearbeiten!
+Mainloc_36|Ich will mir nichts befehlen!
+Mainloc_37|Den m#pchte ich mit einem besonderen Menschen teilen!
+Mainloc_38|Im Schlo#t mu#t ich die Bedienstetenkleidung tragen.
+Mainloc_39|Die brauche ich jetzt nicht.
+Mainloc_40|Ich habe schon drin gelesen.
+Mainloc_41|Blo#t gut, da#t ich in der M#uhle ein bi#tchen lesen gelernt habe.
+Mainloc_42|Das hat keinen Sinn!
+Mainloc_43|Das tu ich mir mal nicht antun tun tun!
+Mainloc_44|Habe keinen Appetit ...
+Mainloc_45|Also - das Buch ist von einem bestimmten Stefan, es handelt in den Bergen...hmmm? Komischer Name!
+Mainloc_46|Ein St#undchen sp#ater...
+Mainloc_47|Das Buch ist nicht nur Schauspieler interessant. Jetzt hat auch Krabat keine Angst mehr.
+Mainloc_48|Oh, das letzte St#uck Stollen war gut. Mit vollem Bauch f#uhle ich mich sehr stark.
+Mainloc_49|Das klappt so nicht!
+Mainloc_50|Das hat keinen Sinn!
+Mainloc_51|Das benutzt man anders!
+Mainloc_52|Das kann ich nicht machen!
+Mainloc_53|Besser nicht!
+Mainloc_54|Das braucht er nicht!
+Mainloc_55|Das werde ich noch brauchen!
+Mainloc_56|Das behalte ich mir lieber!
+Mainloc_57|Das braucht sie nicht!
+Mainloc_58|Das werde ich noch brauchen!
+Mainloc_59|Das behalte ich mir lieber!
+Mainloc_60|Das brauchen sie nicht!
+Mainloc_61|Das werde ich noch brauchen!
+Mainloc_62|Das behalte ich mir lieber!
+Mainloc2_1|Was habe ich Dir gesagt...das ist nicht der k#urzeste Weg...zur#uck in die M#uhle !
+Mainloc2_2|Krabat, h#prst Du nicht zu ? Zur#uck...!!!
+Mainloc2_3|Hast Du keinen Orientierungssinn ? Den k#urzesten Weg !
+Manega_1|Ein Stahlhelm.
+Manega_2|Ein L#pwe.
+Manega_3|Der L#pwe schl#aft.
+Manega_4|Zu diesem b#psen L#pwen gehe ich nicht. Der bei#tt mich noch.
+Manega_5|Mir ist langweilig. Geh mir aus dem Weg!
+Manega_6|Ich wecke ihn nicht auf!
+Manega_7|Ich bin ein junger Kerl aus der Lausitz und arbeite im Moment am Hofe des K#pnigs.
+Manega_8|Huch! Du kannst mit mir reden?
+Manega_9|Sicher. Das habe ich gelernt.
+Manega_10|Jahrelang kann ich mit niemandem reden und Du bist jetzt schon die zweite Person diese Woche.
+Manega_11|Gibt es denn hier keine anderen Tiere, mit denen Du reden kannst und wer war eigentlich die andere Person?
+Manega_12|Ach, wenn ich andere Tiere sehe, bekomme ich nur Appetit. Es dauert nicht lange, und ich habe so eine junge Antilope verspeist. Ich bin immer hungrig.
+Manega_13|Nach einiger Zeit gew#phnt man sich daran. Ich habe auch oft genug gehungert. Wer war denn nun die andere Person?
+Manega_14|Grrr ... das war so ein alter Opa mit einem Stock in der Hand. Er fragte mich nach einem bestimmten ... Krabat ... Ob ich ihn schon mal am Hofe des K#pnigs gesehen h#atte?
+Manega_15|Er mu#t irgendein Diener sein. Du arbeitest doch am Hofe - kennst Du ihn?
+Manega_16|Hmmm - ein alter Opa ... mit einem Stock? Oh je, den kenn ich doch! Was will der blo#t?
+Manega_17|Krabat - nein, der Name sagt mir nichts.
+Manega_18|In Ordnung. Jetzt geh aber ... Du wei#tt, mein Appetit! Au#terdem ist mir langweilig. Dann bin ich immer besonders grimmig.
+Manega_19|Oh, welch sch#pne Musik. Bitte noch ein Lied, ja?
+Manega_20|Wunderbar! Groschen habe ich keine. Nimm Dir doch den Helm mit und verkauf ihn!
+Manega_21|Grrr... la#t das liegen!
+Manega_22|Soll ich Dich ins Hinterteil bei#ten?
+Manega_23|Da#t ist nicht Dein Helm... arrggg...
+Manega_24|Grrrr ...
+Manega_25|Brrrr ...
+Manega_26|Huaaaa ...
+Manega_27|Hrrrrrrrrrrrrr ...
+Mertens1_1|Ein ruhiger Teich.
+Mertens1_2|Jetzt ist es Herbst! Ich kann nicht in jeden Teich springen, den ich sehe!
+Mertens1_3|Hier will ich nicht angeln!
+Mertens1_4|Sicher. Wer sonst ? Ein Faschingskost#um kanns noch nicht sein und bitte nicht an den Ohren ziehen, um es zu #uberpr#ufen !
+Mertens1_5|Hey, sie da drau#ten - ich bin noch vom Fr#uhst#uck satt - das hei#tt #fWassermann#F !
+Mertens1_6|Ich wei#t - und Du suchst die Schwarze M#uhle.
+Mertens1_7|Krabat, unsere Lausitz ist voll von dem Element, in dem ich mich zu Hause f#uhle. Ich bin doch auch ein neugieriger Kerl -
+Mertens1_8|und der Wassermann hat Dich ein bi#tchen beobachtet.
+Mertens1_9|Sie haben Angst, einfach...Angst...vor der Schwarzen Macht sollte doch jeder Angst haben, oder?
+Mertens1_10|So h#pre, Krabat ! Die Schwarze M#uhle ist ein verstecktes Gut im Wald um das Dorf #fSchwarzkollm#F. Es ist keine leichte Sache,
+Mertens1_11|diese M#uhle zu finden. Helfen k#pnnen Dir nur die Irrlichter.
+Mertens1_12|Sie sind so viel M#archen wie ich. Aber die Irrlichter haben auch ihre Prinzipien. Wenn Du ihnen ein bi#tchen Geld zusteckst, dann
+Mertens1_13|h#pre, was sie sagen. Das ist sehr wichtig ! - sonst findest Du die M#uhle niemals nicht. Wenn Du Deinen Dienst beim M#uller #uberlebst,
+Mertens1_14|dann komm wieder zu mir.
+Mertens1_15|Du Esel...so ein Dienst beim Schwarzen M#uller hat eine bestimmte #fOrdnung#F. Aber - was erz#ahl ich Dir - finde erst einmal die m#uhle und dann
+Mertens1_16|wirst Du Dich an meine Worte erinnern.
+Mertens1_17|Jurij !!! - komm zum Mittag und bring den kleinen Jakob mit.
+Mertens1_18|Du h#prst - meine Frau ruft. Jeden Tag nur Fisch zum Mittag, das h#angt einem zum Halse raus.
+Mertens1_19|Also Krabat, gedenke meiner Worte...!!!
+Mertens1_20|Sicher. Wer sonst ? Ein Faschingskost#um kanns noch nicht sein und bitte nicht an den Ohren ziehen, um es zu #uberpr#ufen !
+Mertens1_21|Hey, sie da drau#ten - ich bin noch vom Fr#uhst#uck satt - das hei#tt #fWassermann#F !
+Mertens1_22|Ich wei#t - und jetzt suchst Du eine Rabenfeder.
+Mertens1_23|Krabat, unsere Lausitz ist voll von dem Element, in dem ich mich zu Hause f#uhle. Ich bin doch auch ein neugieriger Kerl -
+Mertens1_24|und der Wassermann hat Dich ein bi#tchen beobachtet.
+Mertens1_25|Aber Krabat, Du hast den M#uller rufen k#pnnen und nun wei#tt Du nicht weiter. Du bist doch ein cleveres Kerlchen mit K#ppfchen. Diese
+Mertens1_26|Aufgabe erf#ullst Du auch noch - und wenn Du Deinen Dienst beim M#uller #uberlebst, dann komm wieder zu mir.
+Mertens1_27|Wassermann ?! - bist Du es wirklich ?
+Mertens1_28|Du h#prst und siehst doch viel - hungriger Mann (Der Witz geht im Deutschen fl#pten...)
+Mertens1_29|Ich bin Krabat aus Eutrich.
+Mertens1_30|Ja, ich suche die #fSchwarze M#uhle#F - aber woher...
+Mertens1_31|Kannst Du mir helfen ? Keiner kann das - da kannst Du jeden fragen...
+Mertens1_32|Was bleibt mir #ubrig ? - und ich will doch zu gern wissen, was an den Geschichten Wahres dran ist.
+Mertens1_33|Die Irrlichter ? Also sind sie kein M#archen.
+Mertens1_34|Ja, die Irrlichter - deren Anf#uhrer habe ich schon kennengelernt. Sie sind kein M#archen.
+Mertens1_35|Wieso #uberleben ? Ich will ein ordentlicher, flei#tiger M#uller werden...
+Mertens1_36|Huch, jetzt aber schnell weg.
+Mertens1_37|Danke f#ur das Gespr#ach.
+Mertens1_38|Wassermann ?! - bist Du es wirklich ?
+Mertens1_39|Du h#prst und siehst doch viel, hungriger Mann. (Der Witz geht im Deutschen fl#pten...)
+Mertens1_40|Ich bin Krabat aus Eutrich.
+Mertens1_41|Ja, aber woher wissen Sie das...
+Mertens1_42|K#pnnen Sie mir helfen ? Niemand kann das - da k#pnnen Sie jeden fragen...
+Mertens1_43|Wieso #uberleben ? Ich will ein ordentlicher, flei#tiger M#uller werden...
+Mertens1_44|Huch, jetzt aber schnell weg.
+Mertens1_45|Danke f#ur das Gespr#ach.
+Mertens2_1|Ein ruhiger Teich.
+Mertens2_2|Jetzt ist es Herbst! Ich kann nicht in jeden Teich springen, den ich sehe!
+Mertens2_3|Hier will ich nicht angeln!
+Mertens2_4|Sicher. Wer sonst ? Ein Faschingskost#um kanns noch nicht sein und bitte nicht an den Ohren ziehen, um es zu #uberpr#ufen !
+Mertens2_5|Hey, sie da drau#ten - ich bin noch vom Fr#uhst#uck satt - das hei#tt #fWassermann#F !
+Mertens2_6|Ich wei#t - und Du suchst das Zauberbuch.
+Mertens2_7|Krabat, unsere Lausitz ist voll von dem Element, in dem ich mich zu Hause f#uhle. Ich bin doch auch ein neugieriger Kerl
+Mertens2_8|und der Wassermann hat Dich ein bi#tchen beobachtet.
+Mertens2_9|Sicher helfe ich Dir - wer die Schwarze M#uhle #uberlebt, hat vielleicht die F#ahigkeiten
+Mertens2_10|Sicher, Krabat, h#pr zu...
+Mertens2_11|Sicher hat jede Katze 9 Leben. Aber diese liebe hatte schon 8 Versuche.
+Mertens2_12|Da#t wei#t keiner so genau. Warum bist Du #uberhaupt zur#uckgekommen ?
+Mertens2_13|Deine Frage habe ich irgendwie vorhergesehen. Na ja, wer die Schwarze M#uhle #uberlebt, hat vielleicht die F#ahigkeit, da#t Buch zu finden.
+Mertens2_14|Sicher, Krabat, h#pr zu...
+Mertens2_15|Nein, diese Zeichnung habe ich noch nicht gesehen. Was unser Herr Pfarrer alles so unter der Wittichenauer Kirche findet. Sch#pne sorbische B#ucher sind dort versteckt vor dem Zugriff der Preu#ten, die die sorbische Sprache ausmerzen wollen.
+Mertens2_16|Der Pfarrer meinte, da#t diese Sch#ussel der Schl#ussel zum Koraktor ist.
+Mertens2_17|Sicher, sicher. Mein Gro#tvater lebte damals und er war ein guter Freund des Anf#uhrers der Milkeler (???). Der hatte oft so eine kleine Schale bei sich und achtete sehr auf sie. Das war n#amlich der einzigste Teil, der au#terhalb der heiligen St#atte getragen werden durfte. Diese Sch#ussel schm#uckten Ornamente, die die auch den Ort der heiligen St#atte zeigten.
+Mertens2_18|Wo aber ist diese Opfersch#ussel geblieben?
+Mertens2_19|Bei dem #Uberfall kaiserlicher oder k#pniglicher Armeen ist diese Sch#ussel in die H#ande fremder Soldaten gelangt. Sie wu#tten ja nicht, was sie symbolisiert. Die Sch#ussel verlor sich in irgendeine Schatzkammer der Junker und wechselte einige Male den Besitzer.
+Mertens2_20|Das klingt so, als ob sie w#u#tten, wo die Opferschale jetzt ist.
+Mertens2_21|Ja, Du hast gut zugeh#prt. Ungef#ahr vor einem Jahrhundert sa#t ich in einer Kneipe - und das in der s#achsischen Hauptstadt - in Dresden. Einen guten Wein haben die dort, da#t Dir der Magen frohlockt. Am Tisch sa#t ein Mann, irgendein Mitarbeiter des K#pnigsschlosses und er hatte lange Listen bei sich.
+Mertens2_22|Wir haben ordentlich getrunken und nach einiger Zeit konnte ich dort mal schnell in die Listen schauen. Was mu#tte ich da sehen ? Dort war ein Teil der Kostbarkeiten verzeichnet und beschrieben, welche in der k#pniglichen Schatzkammer liegen - unter ihnen auch die Sch#ussel.
+Mertens2_23|Sie war mir gar nicht aufgefallen, aber in der Beschreibung stand:%%Bezeichnung:   Opferschale (Eisen)%Herkunft:   Oberlausitz%Alter:   900 Jahre%Besonderheiten:   eingemei#telte Linien und Schraffuren - unbekannter Sinn
+Mertens2_24|Da liegt unser #fSchl#ussel#F in der k#pniglichen Schatzkammer. Etwas Einfacheres gibt es doch gar nicht, oder...?
+Mertens2_25|Wenn Du wirklich die Macht des Koraktors besitzen willst, dann mu#tt Du nach Dresden. Frag dort die Leute nach Handrij Zahrodnik (Andre G#artner). Das ist der einzige Sorbe in der Stadt, den ich kenne und der Dir helfen wird.
+Mertens2_26|Und wenn Du ihn triffst, frag ihn doch, ob er nicht bald das Spielzeug f#ur meinen Sohn Jakob fertig hat. Er ist mir noch was schuldig...
+Mertens2_27|Also Krabat, viel Spa#t in Dresden. Ich - blub - verschwinde jetzt.
+Mertens2_28|Aber Wassermann, wie komme ich eigentlich nach Dresden?
+Mertens2_29|Hmm, weg war er...
+Mertens2_30|Interessante Sachen h#pre ich da, und Krabat ist schon auf den Spuren des Koraktors. Gut so, vielleicht nimmt er mir damit Arbeit ab.
+Mertens2_31|Ich werde ihn beobachten, und wenn er das Buch findet, werde ich ihn ...vernichten...!
+Mertens2_32|He, was denn jetzt? Finger weg, h#prst Du nicht ...ich bin kein Erpel...
+Mertens2_33|Oh, mein Liebster!
+Mertens2_34|Ich bin nicht Dein Liebster, ich bin der M#uller von der Schwarzen M#uhle, der Sohn der H#plle!
+Mertens2_35|Klar, und das Wasser kocht schon, oder bin ich schon in der H#plle!?
+Mertens2_36|Verschwinde, altes Entenvieh! Wenn das die H#plle w#are, w#urdest Du auf dem Thron sitzen und die Teufel w#urden packen!!!
+Mertens2_37|So h#pre, Krabat, ich erz#ahle Dir von einem Buch, welches nie aus unseren K#ppfen verschwand, welches eigentlich nur eine Legende ist, ein Relikt aus alter Zeit - der Geist der Freiheit.
+Mertens2_38|Die Alten nannten das Buch nur - KORAKTOR - Wie ist die Geschichte dieses m#achtien Buches ?
+Mertens2_39|Nach der Ansiedlung sorbischer St#amme zwischen Oder und Elbe im 6. Jahrhundert begann auch der Handel mit den Nachbarn. Das waren aber nicht nur die Sachsen, Franken und Th#uringer, mit denen sie handelten. In unsere gegend f#uhrten auch Handelsstra#ten aus Byzanz und den arabischen L#andern. #Uber diese Wege ist auch der Koraktor in die H#ande der Milkeler (???) gefallen.
+Mertens2_40|Der Koraktor ist ein schwarzes Buch mit wei#ten Buchstaben. Es beinhaltet aber meistens Zeichnungen, die das Zaubern beschreiben. Verantwortlich f#ur das Buch war immer der Stammes#alteste oder der Anf#uhrer des Stammes. Er gab das Buch immer an die folgende Generation weiter.
+Mertens2_41|In der Mitte des 8. Jahrhunderts war der Frieden zu Ende. Die Absicht des fr#ankischen Kaisers Karl des Gro#ten war, die westlichen Regionen der Sorben zu unterwerfen. Anf#angliche Aufst#ande an der Westgrenze wurden bald gebrochen und die Armee des Kaisers marschierte immer weiter in den Osten.
+Mertens2_42|Zu Anfang des 10. Jahrhunderts waren dann auch die Burgen der Milkeler (???) gef#ahrdet und die fremden Soldaten gewannen immer h#aufiger diese ungleichen K#ampfe.
+Mertens2_43|Im Jahr 939 lie#t Markgraf Gero auf listige Art 30 slawische F#ursten umbringen. Heute sehen wir dieses Jahr als den Anfang vom Ende. Die Einheit der westlichen Slawen war v#pllig zerst#prt und unter den Folgen der Unterwerfung und Abh#angigkeit leidest auch Du noch heute, Krabat.
+Mertens2_44|Ach ja, jetzt habe ich den Koraktor ganz vergessen. Unser Buch wurde in einer unterirdischen heiligen St#atte versteckt - vielleicht sogar auf einer Burg, damit das Buch nicht in falsche H#ande ger#at.
+Mertens2_45|Wieso jetzt wieder heilige St#atte ? Die sorbischen oder #uberhaupt slawischen St#amme glaubten nicht nur an einen Gott, wie es der Christ tut. unsere Vorfahren glaubten an verschiedene G#ptter und #uber das ganze sorbische Land waren diese heiligen St#atten verstreut. Das sind also Orte, wo das Volk bestimmte Sachen opferte und zu den G#ptter betete.
+Mertens2_46|Wo dieser heilige Ort ist, wei#t ich nicht genau - aber es existiert ein Schl#ussel zu diesem geheimen Raum. Es ist eine Karte und ein Schl#ussel in einem. Mehr kann ich Dir nicht sagen. Aber frage doch mal den Pfarrer in Wittichenau. Der hat unter der Kirche eine Kammer, wo er alte Schriften aufbewahrt.
+Mertens2_47|Oh, Krabat, ich gr#u#te Dich ! Der M#uller schreit und br#ullt heute noch, wenn er nur Deinen Namen h#prt. Au#terdem hat er wieder eine neue Katze. Die alte ist leider ins M#uhlrad gefallen.
+Mertens2_48|Wassermann ?! Bist Du es wirklich ?
+Mertens2_49|Du h#prst und siehst doch viel, hungriger Mann (haha, sehr witzig im Deutschen...).
+Mertens2_50|Ja, ich bin Krabat aus Eutrich.
+Mertens2_51|Ja, ich suche das Zauberbuch - aber woher...
+Mertens2_52|Kannst Du mir helfen ?
+Mertens2_53|Wassermann, kannst Du die Geschichte vom Koraktor nochmal erz#ahlen ?
+Mertens2_54|Huch, jetzt aber schnell weg.
+Mertens2_55|Danke f#ur das Gespr#ach.
+Mertens2_56|Die arme Katze. Haben die nicht 9 Leben ...?
+Mertens2_57|Sicher ist der M#uller an ihrem Tod schuld !
+Mertens2_58|Ich habe in der M#uhle von einem m#achtigen Zauberbuch geh#prt...
+Mertens2_59|Wassermann, kannst Du die Geschichte vom Koraktor nochmal erz#ahlen ?
+Mertens2_60|Ich habe mich geirrt.
+Mertens2_61|Ich komme bald zur#uck. Auf Wiedersehen.
+Mlyn1_1|Hier sind wir. Du hast von ihr getr#aumt, es war Dein gr#p#tter Wunsch. Jetzt erwartet Dich ein neues Leben...
+Mlyn1_2|Die Schwarze M#uhle!
+Mlyn1_3|Herr M#uller, gleich am Anfang eine kleine Frage an sie...
+Mlyn1_4|Was hast Du auf dem Herzen, Krabat ? Knurrt Dir wegen des Fluges der Magen ?
+Mlyn1_5|Nein, Herr M#uller. Im M#uhlgraben sehe ich kein Wasser, aber das M#uhlrad dreht sich trotzdem.
+Mlyn1_6|Sehr sonderbar, da hast Du recht. Jetzt komm aber...
+Mlyn1_7|Die schwere Eichent#ur schlo#t sich und die Schwarze M#uhle verschluckte Krabat f#ur eine lange Zeit. Er mu#tte schwer arbeiten - riesige S#acke Korn und Mehl brachen das R#uckgrat, den R#ucken und den Willen Krabats.
+Mlyn2_1|In Ordnung. Du bekommst zeit, die Eltern zu besuchen - aber Krabat, h#pre ! Du darfst nur nach Hause,
+Mlyn2_2|wenn du auf dem k#urzesten Weg nach Eutrich gelangst. Nun geh...
+Mlyn2_3|wenn du auf dem k#urzesten Weg nach Eutrich gelangst. Nun geh...
+Mlyn2_4|Mutter und Sohn eilen fr#phlich nach Hause, aber der M#uller #argerte sich sehr #uber Krabat. Er hatte herausgefunden, auf welche Art der Junge ihn #uberlistet hatte.
+Mlyn2_5|Rache ist s#u#t, mein lieber und das dann, wenn Du sie kalt serviert bekommst !!! Auf Wiedersehen - KRABAT!!!
+Mlyn2_6|Einige Tage sp#ater begibt sich die Mutter nach Schwarzkollm. Alles passiert so, wie Krabat es gesagt hatte. Abends stand die Mutter in der dunklen Kammer und vor ihr sa#ten zw#plf Raben auf einer langen Stange.
+Mlyn2_7|Er erbittet sich vom M#uller ein wenig Zeit, um die Eltern zu besuchen.
+Mlyn2_8|Wie ich schon sagte, Krabat - nimm den k#urzesten Weg nach Hause !
+Mlyn2_9|Ich habe es nicht gern, wenn meine Untergebenen durch die Lausitz schlendern. Da wird nur zu viel getratscht. Der k#urzeste Weg !!!
+MlynkCornyCholmc1_1|Du hast mich gerufen und hier bin ich. Ich habe geh#prt, wie sich die Tiere und die Leute erz#ahlten, da#t Du M#uller
+MlynkCornyCholmc1_2|werden m#pchtest - und das in meiner M#uhle.
+MlynkCornyCholmc1_3|Ja, das ist mein gr#p#tter Wunsch.
+MlynkCornyCholmc1_4|So h#pre, Krabat. Wenn das wirklich das ist, wonach Du Dich am meisten sehnst,
+MlynkCornyCholmc1_5|dann bringe mir eine Rabenfeder als Zeichen Deines Willens.
+MlynkCornyCholmc1_6|Du hast Gl#uck, gerade habe ich eine Lehrling$... verloren ... Wenn Du die Rabenfeder hast,
+MlynkCornyCholmc1_7|komm wieder zu diesem Wald und ich werde mich Dir widmen.
+MlynkCornyCholmc1_8|Viel Gl#uck, Krabat! Hier hast Du noch eine kleine Hilfe - eine Karte der Heimat,
+MlynkCornyCholmc1_9|denn ich warte auf Dich ... und brauche Dich.
+MlynkCornyCholmc1_10|Hier ist die Feder.
+MlynkCornyCholmc1_11|Die Rabenfeder. Dein Zeichen - Dein Wille. So fliegen wir in die M#uhle, die die Leute nur #fSchwarze M#uhle#F nennen.
+MlynkCornyCholmc1_12|Winde und St#urme - der M#uller ruft nach euch,$gewaltige M#achte und Elemente dieser Erde.$Hebt uns auf eure Fl#ugel,$gro#ter Dank erhebt sich in euch.
+Mlynkmurja_1|Guten Tag, Junge !
+Mlynkmurja_2|Euch auch, Alter ! Brauchen Sie Hilfe ?
+Mlynkmurja_3|Nein, nein, danke. Aber vielleicht brauchst Du Hilfe ?
+Mlynkmurja_4|Ja, aber Sie k#pnnen mir bestimmt nicht helfen.
+Mlynkmurja_5|Warum nicht? Nur, weil ich alt bin?
+Mlynkmurja_6|Ich mu#t jetzt weiter, Auf Wiedersehen.
+Mlynkmurja_7|Beeile Dich, Krabat ! Du hast noch einen langen Weg vor Dir. Und am Ende des Weges stehe ich, Dein ehrlicher Feind.
+Mlynkmurja_8|Hahaha!
+Most1_1|Ein Hinweisschild.
+Most1_2|Ein Hinweisschild.
+Most1_3|Das ist das Klosterwasser.
+Most1_4|Es zeigt in die Richtung Ralbitz.
+Most1_5|Ich kann nicht lesen. Aber Mutter sagte mal, da#t der Weg nach links in eine gro#te Stadt f#uhrt.
+Most1_6|In diese Richtung m#pchte ich nicht gehen. Meine F#u#te tragen mich nicht so weit.
+Most1_7|Ich bin nicht durstig!
+Most1_8|Zum Baden ist es heute zu kalt!
+Most1_9|Das will ich nicht anbrennen!
+Most1_10|Das hat hier keinen Zweck!
+Most2_1|Ein Hinweisschild.
+Most2_2|Ein Hinweisschild.
+Most2_3|Das ist das Klosterwasser.
+Most2_4|Es zeigt in die Richtung Ralbitz.
+Most2_5|Ich kann nicht lesen. Aber Mutter sagte mal, da#t der Weg nach links in eine gro#te Stadt f#uhrt.
+Most2_6|In diese Richtung m#pchte ich nicht gehen. Meine F#u#te tragen mich nicht so weit.
+Most2_7|Ich bin nicht durstig!
+Most2_8|Zum Baden ist es heute zu kalt!
+Most2_9|Das will ich nicht anbrennen!
+Most2_10|Das hat hier keinen Zweck!
+Most2_11|Brrr! Hej, brrr!
+Most2_12|Kann ich Ihnen helfen ? In Sch#pnau haben wir eine gute Kneipe, dort k#pnnen Sie ...
+Most2_13|He, Du sorbischer Zwerg. Wei#tt Du nicht, mit wem Du redest ?
+Most2_14|Irgendwie ges#attigt sieht er schon aus. Was hei#tt ges#attigt - ein dicker Kerl ist das.
+Most2_15|Sei still ! Du hast Gl#uck, da#t er Dich nicht versteht. Das ist August der Starke. Und er ist nicht dick, er hat Probleme mit den Dr#usen.
+Most2_16|Aug... Augu... August der Starke ?! Ach du gr#une...
+Most2_17|Jetzt beruhige Dich. Ihm hat der Schweinetanz gut gefallen, und deshalb m#pchte er Dich nach Dresden mitnehmen.
+Most2_18|Nach Dresden ?! In Ordnung. Ich habe schon immer von einer gro#ten Stadt getr#aumt.
+Most2_19|Dann steig in die Kutsche und es geht weiter.
+Most2_20|Guten Tag, starker August. Gut, da#t Du mich nicht verstehst.
+Most2_21|Redet der Kutscher #uber mich ? Als K#pnig von Polen kann ich nat#urlich auch ein bi#tchen sorbisch, das wei#t nur niemand weiter...
+Most2_22|Oh, oh, Ihre gn#adige Majest#at !
+Most2_23|Ja doch, ja ! Jetzt brauchst Du mir nicht mehr mit dem Kram kommen.
+Most2_24|Du meinst also, da#t ich dick bin !
+Most2_25|Nein! Die Mutter hat gesagt, da#t ich auf die Schweine aufpassen soll!
+Most2_26|Sicher stinken sie, aber ich mu#t auf sie aufpassen!
+Most2_27|Wenn die W#plfe sie holen, sind sie weg. Ich mu#t auf sie aufpassen.
+Most2_28|Sicher ist das eine langweilige Arbeit. Aber es mu#t sein.
+Most2_29|Brrr! Hej, brrr!
+Murja_1|Vielen Dank! Jetzt darf ich mich wieder richten lassen!
+Murja_2|Wenn mich die Wachen in der Stadt in Dienstkleidung erwischen, bekomme ich nur #Arger - ich ziehe mich besser um.
+Njedz1_1|Die Sonnenstrahlen glitzern auf dem Wasser.
+Njedz1_2|Zum Baden ist es schon zu kalt.
+Njedz1_3|Ich bin doch nicht dumm!
+Njedz1_4|Hier will ich nicht angeln!
+Njedz2_1|Die Sonnenstrahlen glitzern auf dem Wasser.
+Njedz2_2|Zum Baden ist es schon zu kalt.
+Njedz2_3|Ich bin doch nicht dumm!
+Njedz2_4|Hier will ich nicht angeln!
+Pinca2_1|Komm, ich zeige Dir jetzt eine interessante Zeichnung...
+Pinca2_2|Warum hat dann der M#uller noch Zauberkr#afte, wenn das Buch schon mehrere Jahrhunderte verschwunden ist ?
+Pinca2_3|Also, der Wassermann hat die Heiligt#umer angesprochen. Die Heiligt#umer, oder dieser geheime Raum mu#t irgendwo unter der Erde liegen, weil der Koraktor nicht in die H#ande fremder Soldaten fallen durfte. Zugang zu diesem Raum hatten nur die ??? oder die Anf#uhrer des ???, die dort auch begraben wurden.
+Pinca2_4|Hier siehst Du einen solchen Gott der alten Sorben - er nannte sich Swaixtix - der Gott der Sterne und der Sonnenstrahlen - also ein Zeichen des Lebens und der Sicherheit.
+Pinca2_5|In einer Hand h#alt die Statue Swaixtixs eine kleine Schale, aus der Flammen lodern. Unter seinen Beinen sieht man ein schwarzes Buch. Vielleicht kann Dir nur diese Schale helfen. Sie zeigt den Weg zum Koraktor.
+Pinca2_6|Einige Fragmente des Zauberbuches wurden m#undlich den Nachfahren weitergegeben - sicher nur ein kleiner Teil, den der Koraktor beinhaltetet. Na ja, und der M#uller ist so ein Nachfahre des alten ??? Geschlechtes, vielleicht auch der letzte, der mit kleinen Zaubereien die Leute #argert und ???.
+Pinca2_7|Sicher hat der M#uller von seinen Vorfahren von dem Buch erfahren. Er hat aber nicht den #fSchl#ussel#F zum Koraktor - und der Schl#ussel ist diese Schale.
+Poklad_1|Am n#achsten Morgen
+Poklad_2|Herr Juwelier, zeigen Sie mir bitte die Erlaubnis.
+Poklad_3|Bitte sehr. Hier ist sie.
+Poklad_4|Unterschrieben und gesiegelt. In Ordnung, Sie d#urfen in die Kammer.
+Poklad_5|Wo finde ich in dieser verdammt gro#ten Schatzkammer blo#t die Sch#ussel? Vielleicht ist sie dort in der Ecke.
+Poklad_6|Hmm, was hier alles drin ist: Elfenbein, Truhen voller Gold,
+Poklad_7|und da auf dem Regal ist unsere sorbische Sch#ussel.
+Poklad_8|Da wird sich Krabat freuen ! Schnell tausche ich sie aus, damit es niemand merkt.
+Poklad_9|Alles in Ordnung, Herr Dinglinger?
+Poklad_10|Sicher. Sehr gut aufger#aumt, Eure Schatzkammer. Da findet man alles sofort.
+Poklad_11|Wie es sich geh#prt, wir sind ja schlie#tlich nicht in der H#ohle von Ali Baba und den 40 R#aubern. Alles hat seine Ordnung!
+Polo1_1|Sie arbeiten auf dem Feld.
+Polo1_2|Steine auf dem Weg.
+Polo1_3|Heh, das sind ja Feuersteine!
+Polo1_4|Wof#ur sollte ich sie bestrafen?
+Polo1_5|Wof#ur sollte ich ihn bestrafen?
+Polo1_6|Ich will sie nicht ver#argern!
+Polo1_7|Ich will ihn nicht ver#argern!
+Polo1_8|Nehmen wir sie ersteinmal mit.
+Polo1_9|Ich bin Michael und das ist die #angstliche Agnes - meine Frau. Was gibt es Neues in Eutrich?
+Polo1_10|Das ist wahrscheinlich in der ganzen Lausitz so. Jeden Tag derselbe Ablauf. Der Krieg ist schon
+Polo1_11|40 Jahre vorbei - ge#andert hat sich immer noch nichts.
+Polo1_12|Wir stehen hier, die Junker stehen dort - auf ewig...
+Polo1_13|Schwatze nicht so viel - arbeite lieber !!! Wenn der Gutsverwalter das sieht, bekommen wir wieder Pr#ugel.
+Polo1_14|Schweig, Weib ! Sicher bekommen wir Pr#ugel - wieder und wieder. Pr#ugel f#ur verbranntes Getreide,
+Polo1_15|Pr#ugel f#ur magere Schweine, Pr#ugel f#ur Geschw#atz..., aber der slawische Dickkopf ist hart.
+Polo1_16|Ja, vielleicht ist er geduldig, vielleicht zu geduldig. Es ist besser, wenn wir von hier fliehen.
+Polo1_17|In eine andere Gegend oder ueber das gro#te Meer in die neue Welt.
+Polo1_18|Ich brauche keine M#uhle.
+Polo1_19|Nein. Unser Boden vor dem Haus ist zu sandig.
+Polo1_20|Vielleicht wissen die H#andler in Wittichenau mehr. Sie handeln doch mit Mehl und Getreide.
+Polo1_21|Oder der alte Schw#atzer in Sch#pnau - der Wirt.
+Polo1_22|Heutzutage h#prt man viel von dem Land, welches so gro#t sein mu#t, da#t f#ur jeden genug Boden da ist. Dort braucht
+Polo1_23|man keinen Frondienst zu leisten,$man arbeitet f#ur sich selbst oder die Familie.
+Polo1_24|Ich wei#t gar nicht, wie das ist...
+Polo1_25|Wenn man nichts mehr zu bei#ten hat. N#achstes Jahr verlassen wir mit den Nachbarn das Heimatdorf.
+Polo1_26|Wer sagt das?! Wer sagt das?! Du siehst nicht so aus, als h#attest Du das Recht, sowas zu sagen!
+Polo1_27|Wir sind Unrat in den Augen der Junker - aber dieser Unrat lebt!
+Polo1_28|Deshalb m#ussen wir hier weg ! - dorthin, wo man leben kann.
+Polo1_29|Guten Tag ! Ich bin Krabat aus Eutrich.
+Polo1_30|Ach, in Eutrich passiert nicht viel. Die Zeit ist$dort schon vor Jahren stehengeblieben.
+Polo1_31|Der slawische Dickkopf ist nicht hart, aber geduldig.
+Polo1_32|Die Schwarze M#uhle. Haben Sie davon$schon einmal geh#prt ?
+Polo1_33|Bauen Sie kein Getreide an ?
+Polo1_34|Keiner wei#t, wo diese Schwarze M#uhle liegt !
+Polo1_35|Welche neue Welt meinen Sie ?
+Polo1_36|Wer aber bleibt hier ? Wer verk#undet an Ostern$dann zu Pferde die frohe Botschaft ? Welche Mutter$wird ihrer Tochter in die Tracht helfen ?
+Polo1_37|Weglaufen ? Wenn man einmal damit anf#angt,$findet man kein Ende.
+Polo1_38|Ich m#pchte Sie nicht von der Arbeit abhalten.$Auf Wiedersehen.
+Ralbicy1_1|Oh, sie ist ja immer noch nicht fertig!
+Ralbicy1_2|Er arbeitet flei#tig.
+Ralbicy1_3|Ich besuche die Kirche, wenn sie fertig ist!
+Ralbicy1_4|Wof#ur sollte ich ihn bestrafen?
+Ralbicy1_5|Der ist meine !
+Ralbicy1_6|Ich will ihn nicht ver#argern.
+Ralbicy1_7|Du kannst Fragen stellen ! Wenn der Mensch einmal etwas hat, dann will er immer noch mehr .
+Ralbicy1_8|Der Junker hat die Macht, seinen Reichtum auf dem R#ucken der Bev#plkerung zu vermehren . Au#terdem zahlt
+Ralbicy1_9|der Bezirk viel Geld und 30 Jahre lang Krieg zu f#uhren kostet nochmal so viel Geld .
+Ralbicy1_10|Die Arbeit auf den Feldern des Junkers hat sich verl#angert. Wir m#ussen uns 6 Tage die Woche auf den
+Ralbicy1_11|Feldern des Junkers schinden und das jetzt auch mit unserem pers#pnlichen Werkzeug oder Gespann.
+Ralbicy1_12|Die Arbeit auf unseren Feldern interessiert den Junker nicht.
+Ralbicy1_13|Sicher, Herr Krabat ! Die Bauern warten ja nur$auf Dich, um Dir ihre Reicht#umer zu schenken .
+Ralbicy1_14|Wir hungern selbst ! Der volle Frondienst macht uns$kaputt und niemand wei#t, ob wir den Winter #uberleben .
+Ralbicy1_15|Dich kenne ich doch . Du hast letzten Winter bei uns gebettelt und meine Frau ganz sch#pn erz#urnt .
+Ralbicy1_16|Vergangenen Monat habe ich die letzten Arbeiter gesehen. Die Kirche wird wohl noch in 50 Jahren nicht fertig sein.
+Ralbicy1_17|Ja, das ist unsere Kirche .
+Ralbicy1_18|Die Schwarze M#uhle ? Sonderbarer Name . Nein - da kann ich Dir nicht helfen . Aber frage doch mal
+Ralbicy1_19|den Wirt in Sch#pnau. Der wei#t sowas bestimmt.
+Ralbicy1_20|Ich bin Krabat aus Eutrich und wer sind Sie?
+Ralbicy1_21|Ich habe niemanden ver#argert. Der Winter war ziemlich hart und die meisten Leute haben mich abgewiesen.
+Ralbicy1_22|Voller Frondienst, was bedeutet das?
+Ralbicy1_23|Warum sind die Junker so gierig?
+Ralbicy1_24|Ihr habt ja hier eine ganz sch#pn gro#te Baustelle in Ralbitz.
+Ralbicy1_25|Wir sind mitten in der Woche und keiner arbeitet hier.
+Ralbicy1_26|Kennen Sie die Schwarze M#uhle?
+Ralbicy1_27|Haben Sie vielen Dank f#ur das Gespr#ach - Auf Wiedersehen.
+Ralbicy1_28|#Ah, nichts weiter...
+Ralbicy2_1|Oh, sie ist ja immer noch nicht fertig!
+Ralbicy2_2|Er arbeitet flei#tig..
+Ralbicy2_3|Ich besuche die Kirche, wenn sie fertig ist!
+Ralbicy2_4|Wof#ur sollte ich ihn bestrafen?
+Ralbicy2_5|Der ist meine !
+Ralbicy2_6|Ich will ihn nicht ver#argern.
+Ralbicy2_7|Du kannst Fragen stellen ! Wenn der Mensch einmal etwas hat, dann will er immer noch mehr .
+Ralbicy2_8|Der Junker hat die Macht, seinen Reichtum auf dem R#ucken der Bev#plkerung zu vermehren . Au#terdem zahlt
+Ralbicy2_9|der Bezirk viel Geld und 30 Jahre lang Krieg zu f#uhren kostet nochmal so viel Geld .
+Ralbicy2_10|Die Arbeit auf den Feldern des Junkers hat sich verl#angert. Wir m#ussen uns 6 Tage die Woche auf den
+Ralbicy2_11|Feldern des Junkers schinden und das jetzt auch mit unserem pers#pnlichen Werkzeug oder Gespann.
+Ralbicy2_12|Die Arbeit auf unseren Feldern interessiert den Junker nicht.
+Ralbicy2_13|Sicher, Herr Krabat ! Die Bauern warten ja nur$auf Dich, um Dir ihre Reicht#umer zu schenken .
+Ralbicy2_14|Wir hungern selbst ! Der volle Frondienst macht uns$kaputt und niemand wei#t, ob wir den Winter #uberleben .
+Ralbicy2_15|Dich kenne ich doch . Du hast letzten Winter bei uns gebettelt und meine Frau ganz sch#pn erz#urnt .
+Ralbicy2_16|Vergangenen Monat habe ich die letzten Arbeiter gesehen. Die Kirche wird wohl noch in 50 Jahren nicht fertig sein.
+Ralbicy2_17|Ja, das ist unsere Kirche .
+Ralbicy2_18|Ich bin Krabat aus Eutrich und wer sind Sie?
+Ralbicy2_19|Ich habe niemanden ver#argert. Der Winter war ziemlich hart und die meisten Leute haben mich abgewiesen.
+Ralbicy2_20|Voller Frondienst, was bedeutet das?
+Ralbicy2_21|Warum sind die Junker so gierig?
+Ralbicy2_22|Ihr habt ja hier eine ganz sch#pn gro#te Baustelle in Ralbitz.
+Ralbicy2_23|Wir sind mitten in der Woche und keiner arbeitet hier.
+Ralbicy2_24|Haben Sie vielen Dank f#ur das Gespr#ach - Auf Wiedersehen.
+Ralbicy2_25|#Ah, nichts weiter...
+Rapak1_1|Das Schild h#angt nicht richtig fest.
+Rapak1_2|Ein schwarzer Rabe. Welche Farbe sollte das Gefieder auch haben?
+Rapak1_3|Er sitzt hier. Wieder so ein schwarzer Vogel.
+Rapak1_4|Eine Rabenfeder!
+Rapak1_5|Ein Schild aus Holz.
+Rapak1_6|Er l#a#tt sich nicht fangen.
+Rapak1_7|Ich kann nicht lesen, was hier steht.
+Rapak1_8|Ich wei#t nicht, wohin der Weg f#uhrt!
+Rapak1_9|Das will ich nicht anz#unden!
+Rapak1_10|Das geht auch einfacher!
+Rapak1_11|Ich will ihn nicht l#anger #argern!
+Rapak1_12|So erreiche ich ihn nicht!
+Rapak2_1|Ein schwarzer Rabe. Welche Farbe sollte das Gefieder auch haben?
+Rapak2_2|Er sitzt hier. Wieder so ein schwarzer Vogel.
+Rapak2_3|Ein Schild aus Holz.
+Rapak2_4|Ich kann nicht lesen, was hier steht.
+Rapak2_5|Ich wei#t nicht, wohin der Weg f#uhrt!
+Rapak2_6|Das will ich nicht anz#unden!
+Rapak2_7|Kraaa, Kraaaa, Kraaaaaabat ! Kraaaabaaaaaaat !
+Rapak2_8|Was ist denn jetzt los ? Wer ruft mich denn da ?
+Rapak2_9|Mach die Augen auf, Krabat !
+Rapak2_10|Sicher, Du Pfefferkuchen ! Wie hast Du denn sonst die arme Katze des M#ullers verstanden, Kraaa, Kraaa, Kraaabaaat !?
+Rapak2_11|Sicher ! Und weil sein Bauch so viel geplappert hat, liegt die Katze jetzt im M#uhlgraben.
+Rapak2_12|Ich bin ein Lehrling des M#ullers und suche nach neuen Kandidaten. Dazu hat er mich in dieses dumme Kost#um gesteckt.
+Rapak2_13|Jetzt warte ich darauf, da#t mir wieder ein Kerl eine Feder klaut.
+Rapak2_14|Sicher, Kraa-Kraaa-Kraaabaaat ! Genau in den Hin... ehmmm den Schnabel !
+Rapak2_15|Sicher war ich das ! Jedes mal bekomme ich eine gelangt. Der eine schie#tt mit Steinen, der andere schl#agt mich mit einem Ast,
+Rapak2_16|einige kommen gleich mit einem Netz - ich bin doch kein Schmetterling...!!! - ich habe viele dieser Kasper gesehen...
+Rapak2_17|Jetzt habe ich aber genug...
+Rapak2_18|Kann ich jetzt mit Tieren reden ?
+Rapak2_19|Vielleicht ist der M#uller Bauchredner ?
+Rapak2_20|Wer bist Du #uberhaupt ?
+Rapak2_21|Habe ich Dich nicht schon einmal getroffen ?
+Rapak2_22|Ach, Du warst das. Entschuldige, Rabe, aber ich brauchte eine Feder.
+Rapak2_23|Ich bin doch noch nicht verbl#pdet.
+Rapak2_24|Ich mu#t weiter und gr#u#t mir die anderen Raben. Eigentlich ein guter Name f#ur eine Computergruppe in der Zukunft.
+Rowy_1|Das kommt mir nicht in den Topf!
+Rowy_2|Das ist die Statue des Swaixtix. Ich habe$sie auf der Zeichnung des Pfarrers gesehen.
+Rowy_3|Trockenes Stroh.
+Rowy_4|Das sind die Gr#aber der Milkener F#ursten.
+Rowy_5|Komisch. Gerade auf dieses Grab f#allt mehr Licht.
+Rowy_6|Der M#ueller.
+Rowy_7|Die Hand von Swaixtix.
+Rowy_8|Da schau ich nicht noch mal rein!
+Rowy_9|In der Lichtschaale liegt das Stroh.
+Rowy_10|In der Schaale brennt das Stroh.
+Rowy_11|Das fasse ich lieber nicht an.
+Rowy_12|Die Statue ist zu schwer.
+Rowy_13|Ich brauche kein Stroh mehr.
+Rowy_14|Hier ist es zu dunkel. Ich will hier nichts anfassen.
+Rowy_15|Mit dem rede ich nicht mehr!
+Rowy_16|So geht das nicht!
+Rowy_17|In welche komische H#phle bin ich jetzt wieder reingefallen?
+Rowy_18|Ist das nicht die Opferst#atte, die ich die ganze Zeit gesucht habe?
+Rowy_19|Das braucht er nicht.
+Rowy_20|Das brenne ich lieber nicht an.
+Rowy_21|Gewalt hilft hier nicht.
+Rowy_22|Ich bin doch nicht dumm!
+Rowy_23|Ich gr#u#te Dich, Lehrling!
+Rowy_24|M#uller?!
+Rowy_25|Willst Du Deinen alten Meister nicht begr#u#ten?
+Rowy_26|Was suchst Du hier?
+Rowy_27|Das hei#tt #fSie#F! Was suchen #fSie#F hier? Lehrt man solch ein Verhalten in Dresden?
+Rowy_28|Woher wissen Sie, da#t ich in Dresden war?
+Rowy_29|Untersch#atze nie alte Leute!
+Rowy_30|Sch#pne Zaubertricks. Die Katze hatte recht. Die Tricks reichen wirklich nur f#ur einen Kindergeburtstag.
+Rowy_31|Ich habe Dich bestimmt untersch#atzt. Jetzt gib mir aber, was mir geh#prt.
+Rowy_32|Ich wei#t gar nicht, wovon Sie reden.
+Rowy_33|Spa#te nicht mit mir, Krabat! Gib mir den Koraktor! Er ist das Erbe meiner Vorfahren!
+Rowy_34|Mit so einer gro#ten Macht k#pnnen sie sowieso nicht umgehen.
+Rowy_35|Was erlaubst Du Dir, mir so etwas zu sagen?
+Rowy_36|Das sehe ich im Augenblick sehr deutlich. Der m#achtige Zauberer, der Nachfolger des gro#ten Stammes der Mei#tener (???), h#angt als Fledermaus vor einem jungen Kerl unter dem Dach der heiligen St#atte.
+Rowy_37|Mir ist das zu dumm... ich gehe lieber!
+Rowy_38|Du gehst nirgendwo hin!
+Rowy_39|Das werden wir ja sehen. Als Sie so dagehangen haben, ist Ihnen wohl das Blut in den Kopf gestiegen, oder?
+Rowy_40|Jetzt aber Schlu#t! Solche Schimpfw#prter sind nichts f#ur die Ohren eines anst#andigen sorbischen Kerls!
+Rowy_41|Nein! Weg mit dem Buch!
+Rowy_42|Erst schreien sie danach, und jetzt ? Was steht hier denn interessantes ? #fKleinigkeiten f#ur gute Freunde#F - in Ordnung.
+Rowy_43|M#achte der Erde, ich rufe Euch!$Ich habe nicht mehr so eine gro#te Klappe.$Ich verstecke mich aber nicht -$so schickt mir ein sch#pnes Schaf - von der Weide!
+Rowy_44|Das war wohl nix. Kann ich es mal versuchen?
+Rowy_45|Moment ! Das war bestimmt der falsche Reim. (Jaja, es reimt sich gar nicht, ich wei#t ! Ich bin aber kein Dichter !)
+Rowy_46|M#achte der H#plle, Krabat ruft Euch!$Die Erdkruste bebt.$Euer P#achter kehrt gleich zur#uck,$er betr#ubt keinen Menschen mehr.
+Rowy_47|Er war lange genug auf der von Gott gegebenen Erde,$die Arbeit des Menschen vergoldet er aber nicht.$Er hatte gro#te Macht dazu.$Jetzt aber genug, das Leben w#ahrt nicht ewig.
+Rowy_48|Was ist passiert? Der M#uller ist immer noch da, aber das Schaf ist weg.
+Rowy_49|He, M#uller...! Hier stimmt was nicht. Ist das #uberhaupt das richtige Buch?
+Rowy_50|Ja, das ist das richitge Buch. Hoffentlich ist es jetzt in den richtigen H#anden!
+Rowy_51|Komisch. Gerade auf dieses Grab f#allt mehr Licht.
+Rowy_52|Ich habe den Koraktor schon gefunden!
+Rowy_53|Da ist er: DER KORAKTOR. Das Buch war nicht im Grab, sondern im Bauch der Statue!
+Rowy_54|Jetzt vernichte ich Dich!
+Rowy_55|Auf diesen Augenblick habe ich lange genug gewartet!
+Rowy_56|Es gibt keinen Ausweg, Krabat!
+Rowy_57|Die Mutter wird sehr weinen.
+Rowy_58|Ich zerquetsche Dich!
+Rowy_59|Du gemeiner Lehrling, Schande f#ur alle M#uller!
+Rowy_60|Aaaahh, lauter Knochen!
+Saal_1|Diese Gem#alde zeigen s#achsische St#adte.
+Saal_2|Diese Gem#alde zeigen s#achsische St#adte.
+Saal_3|Ein riesiger Saal! Der ist mindestens 60 Meter lang.
+Saal_4|Hallo! Siehst du mich noch?
+Saal_5|Ich kann doch nicht die ganze Wand mitnehmen!
+Saal_6|Ich kann doch nicht die ganze Wand mitnehmen!
+Skica_1|Heh, jetzt wei#t ich es wieder! Das ist die Skizze, die der Pfarrer in Wittichenau mir gezeigt hatte.
+Spaniska_1|Ob die auch mal den Mund halten kann?
+Spaniska_2|Das Fenster mit dem Enterhaken.
+Spaniska_3|Ein riesiger Spiegel!
+Spaniska_4|Ich sehe gar nicht mal so schlecht aus.
+Spaniska_5|Sch#pne Blumen.
+Spaniska_6|Dahinter k#pnnte ich mich gut verstecken.
+Spaniska_7|Das sind 5 Taler.
+Spaniska_8|Irgendein Dokument mit liederlicher Handschrift.
+Spaniska_9|Jetzt juckt es mir in der Nase.
+Spaniska_10|Das brauche ich nicht!
+Spaniska_11|Ich habe keine Zeit f#ur solche Albernheiten!
+Spaniska_12|Den brauche ich noch, um das Zimmer zu verlassen!
+Spaniska_13|Damit mache ich die sch#pnen Blumen kaputt!
+Spaniska_14|Den Spiegel zerschlage ich nicht! Dann habe ich ewig Pech!
+Spaniska_15|So eine Furie! Ob alle K#unstler einen solchen Knall haben?
+Spaniska_16|Mann, wenn sie nur ein wenig leiser w#are.
+Spaniska_17|Einen solchen Drachen #uberlebt niemand!
+Spaniska_18|G A M E   O V E R !
+Spaniska_19|Verzeihung, das war ein Fehler in der Technik.
+Spaniska_20|Eine Stunde sp#ater...
+Spaniska_21|Mann - brummt mir der Sch#adel. Die Zicke hat die Kraft eines L#pwen, die Stimme eines Kakadu und geh#prt de#thalb in den Zoo und nicht auf die B#uhne !
+Spaniska_22|Aaa!
+Spaniska_23|Hillfffeeeee!!!
+Spaniska_24|Ich bin nur eine arme Schauspielerin -$aber nehmt euch doch das Geld auf dem Tisch!
+Spaniska_25|La#tt mich in Ruhe!
+StareWiki_1|Er hat einen dicken Bauch.
+StareWiki_2|Der kann vielleicht rumbr#ullen!
+StareWiki_3|Er verkauft irgendwas.
+StareWiki_4|Bitte sehr, Dein Stollen. La#t ihn Dir schmecken!
+StareWiki_5|Dankesch#pn!
+StareWiki_6|Was willst du denn ? Du siehst nicht so aus, als ob du dir hier etwas leisten k#pnntest !
+StareWiki_7|Was, im Schlo#t ? Kennst du den Hauptw#achter ?
+StareWiki_8|Du Spinner!
+StareWiki_9|Wenn du mal solch einen besoffenen Esel siehst, erinnere ihn bitte daran, da#t er noch die Kutsche f#ur seine Wache bezahlen mu#t.
+StareWiki_10|Und er soll nicht schon wieder diese Wache schicken, die nur #fStop ! Halt ! Keinen Zutritt !#F sagen kann.
+StareWiki_11|Mit dem handelt es sich nicht besonders gut. Der arme Kerl stand bestimmt zulange im Zugwind !
+StareWiki_12|Du meinst den #fs#achsischen Archimedes#F ?
+StareWiki_13|Wei#tt du, Zahrodnik, wie er richtig hei#tt, Dinglinger, P#pppelmann und Permoser - das sind die Genies unserer Zeit.
+StareWiki_14|Die haben Visionen - ich sage dir, in 20 oder vielleicht 50 Jahren wird diese Stadt v#pllig anders aussehen ! Sie wird zum kulturellen Mittelpunkt Europas.
+StareWiki_15|Und ich, oder mein Sohn, wir werden soviel Kutschen verkaufen, wie... hmmm, wie ..., der Hampel da dr#uben Stollen.
+StareWiki_16|Sieh mal, letztes Jahr wurde unser August zum K#pnig Polens gemacht. So ist eines der m#achtigsten K#pnisgh#auser Europas entstanden.
+StareWiki_17|Und so wie ich August kenne, und ich kenne ihn gut, wird er seine Macht auch zur Schau stellen wollen. Sieh dir doch mal die Residenzen in Europa an -
+StareWiki_18|Paris, London, Madrid - und dann unser mickriges Dresdner Schl#p#tchen. Glaub mir, ich kenne August, hier wird noch viel passieren.
+StareWiki_19|Wie bitte? Mickriges Schl#p#tchen? Den mu#t ich mal in unsere Residenz in Eutrich einladen.
+StareWiki_20|Jeder einzelne Teller im Schlo#t ist wertvoller als unser ganzes Haus. Diese St#adter wieder mal!
+StareWiki_21|Mein Name ist Michael. Ich verkaufe hier Stollen.
+StareWiki_22|Also gut. Die Form des Stollens ist ein Symbol und soll an das Heilige Kind erinnern.
+StareWiki_23|Die ersten Stollen wurden etwa im Jahre 1330 in Naumburg gebacken, am Anfang des 15. Jahrhunderts kannte man auch in Dresden diesen Leckerbissen.
+StareWiki_24|Der Papst erlaubte im Jahre 1491 die Stollen mit Butter statt mit #Pl zu backen. Das ist zwar wegen der Adventsfast verboten, aber in Sachsen gibt es keine #Plba#ume.
+StareWiki_25|Daf#ur m#ussen wir aber zus#atzliche Abgaben entrichten, zum Beispiel f#ur den Bau der Kreuzkirche. Daf#ur schmeckt unser Stollen aber besser als alle anderen.
+StareWiki_26|Gern, aber die Leute kaufen heute wie verr#uckt. Ich habe nur noch einen Rosinenstollen. Der kostet 5 Taler, billiger geht es leider nicht.
+StareWiki_27|Augenblick, ich mu#t mal nachsehen.
+StareWiki_28|Nein, nur kleine Kinder, sie sind n#amlich die Kunden der Zukunft.
+StareWiki_29|Du willst mich wohl verkohlen? Und wo sind dann deine Eltern?
+StareWiki_30|Das ist ja alles sehr interessant, aber verschwinde jetzt - du vergraulst mir meine Kunden.
+StareWiki_31|Ja, das ist alles was man so braucht. Was willst du ?
+StareWiki_32|Was meinst du ? Klar, es ist nicht s#amtliches Kleinzeug, aber ich #fverkaufe#F ja auch noch andere Sachen.
+StareWiki_33|Nichts. Ich habe aber andere F#ahigkeiten.
+StareWiki_34|Ich kann zum Beispiel Schriften nachmachen.
+StareWiki_35|Hey, hey, - nicht so laut. Falls du mal was zum Nachmachen hast - komm zu mir. Vielleicht die Unterschrift eines Ber#uhmten - das w#ars !
+StareWiki_36|Kein Geld, kein Geld. Ich suche etwas besonderes. Was nicht jeder hat - etwas exklusives - hmmm, ich wei#t auch nicht so recht, was.
+StareWiki_37|Schon wieder ein Bauer vom Dorf. Auch wir St#adter haben gern etwas Gr#unes um uns !
+StareWiki_38|Was soll ich mit dem Zeug? Ich brauche Deine Geschenke nicht!
+StareWiki_39|Das ist eine nichtunterschriebene Erlaubnis. Jetzt brauche ich noch eine Originalunterschrift zum Vergleich. Komm wieder her, wenn Du sie hast. Das Dokument behalte ich so lange.
+StareWiki_40|Was soll ich mit dem Zeug? Ich brauche Deine Geschenke nicht!
+StareWiki_41|Die Unterschrift Augusts unter einem Befehl. Gute Idee! Wo soll jetzt die Unterschrift drauf?
+StareWiki_42|Was soll ich mit dem Zeug? Ich brauche Deine Geschenke nicht!
+StareWiki_43|Eine Sonnenarmbanduhr! Mama mia, das ist eine Kostbarkeit. Tausendmal danke daf#ur! Was kann ich f#ur Dich tun? Sag, was liegt Dir auf dem Herzen?
+StareWiki_44|Die Unterschrift Augusts! Du bist mir einer! Warte, und was gibst Du mir daf#ur?
+StareWiki_45|Du bekommst die unterschriebene Erlaubnis nur, wenn Du mir etwas besonderes gibst.
+StareWiki_46|Eine Sonnenarmbanduhr ! Das ist Entsch#adigung genug. Jetzt brauche ich nur noch das fehlenden Teil zum F#alschen.
+StareWiki_47|Eine Sonnenarmbanduhr ! Das ist Entsch#adigung genug. Jetzt brauche ich nur noch das fehlenden Teil zum F#alschen.
+StareWiki_48|Das ist eine nichtunterschriebene Erlaubnis. Jetzt brauche ich noch eine Originalunterschrift zum Vergleich. Komm wieder her, wenn Du sie hast. Das Dokument behalte ich so lange.
+StareWiki_49|Die Unterschrift Augusts unter einem Befehl. Gute Idee! Wo soll jetzt die Unterschrift drauf?
+StareWiki_50|Hier, fertig. Die Originalunterschrift des K#pnigs behalte ich mir - vielleicht unterschreibe ich mal Augusts Autogrammkarten f#ur die Touristen.
+StareWiki_51|Hier hast Du die Erlaubnis. Die Originalhandschrift des K#pnigs behalte ich mir - vielleicht unterschreibe ich mal Augusts Autogrammkarten f#ur die Touristen.
+StareWiki_52|Eine Sonnenarmbanduhr ! Das ist Entsch#adigung genug. Ich zeige sie gleich Agnes.
+StareWiki_53|Und mein Dokument?
+StareWiki_54|Entschuldige, das habe ich in der Hektik ganz vergessen. Hier hast Du die Erlaubnis. Die Originalhandschrift des K#pnigs behalte ich mir - vielleicht unterschreibe ich mal Augusts Autogrammkarten f#ur die Touristen.
+StareWiki_55|Ich bin Krabat und arbeite in der k#pniglichen K#uche.
+StareWiki_56|Eigentlich stelle ich immer die Fragen.
+StareWiki_57|#Uber den Hauptw#achter wei#t ich nur das, was die Leute so erz#ahlen.
+StareWiki_58|Ja, den Hauptw#achter kenne ich schon.
+StareWiki_59|Nein, aber kennen Sie den #fsorbischen Archimedes#F ?
+StareWiki_60|Gut, erz#ahlen Sie mir, was Sie so #uber den s#achsischen Archimedes wissen.
+StareWiki_61|Dresden als kultureller Mittelpunkt von Europa ? Wieso das denn ?
+StareWiki_62|Entschuldigung, ich m#pchte nichts kaufen.
+StareWiki_63|Ich bin Krabat und wer bist du ?
+StareWiki_64|Als armer Lausitzer kenne ich keinen Stollen.$Erz#ahl mir doch mehr dar#uber.
+StareWiki_65|Was ist das Besondere am Dresdner Stollen ?
+StareWiki_66|Wie war das noch mal mit dem Stollen, Michael ?
+StareWiki_67|Ich w#urde gerne einen Stollen kaufen.
+StareWiki_68|Ich m#pchte nichts kaufen. Auf Wiedersehen.
+StareWiki_69|Bekomme ich auch ein paar S#u#tigkeiten ?
+StareWiki_70|Ich bin doch noch ein kleines Kind. Gebt mir doch bitte was S#u#tes !
+StareWiki_71|Die sind in Eutrich. Ich bin alleine in Dresden.
+StareWiki_72|Guten Tag. Das ist ja eine Menge Kleinkram !
+StareWiki_73|Einige n#utzliche Kleinigkeiten fehlen hier aber.
+StareWiki_74|Was haben Sie denn noch so im Bauchladen ?
+StareWiki_75|Was f#ur F#ahigkeiten sollen das sein ?
+StareWiki_76|Sie f#alschen Schriften ?
+StareWiki_77|Was #fkosten#F diese Dienste ?
+StareWiki_78|Samen f#ur Balkonpflanzen ? - Ihr St#adter !
+StareWiki_79|Entschuldigung. Ich m#pchte nichts kaufen.
+StareWiki_80|Kutschen! Gebrauchte Wagen!
+StareWiki_81|Fast neue Kutschen - f#ur jede Gelegenheit !
+StareWiki_82|Kutschen, nicht nur f#ur ein, - nein, auch f#ur mehrere Pferde!
+StareWiki_83|Eine halbe Woche bis nach Paris - das ist nur mit diesen Kutschen m#pglich!
+StareWiki_84|Stollen! Bald sind wieder Weihnachten! Stollen!
+StareWiki_85|Echter Dresdner Stollen ! Nu solange noch der Vorrat reicht !
+StareWiki_86|Stollen - jetzt auch mit Rosinen !
+StareWiki_87|Kleinkram ! Alles was man so braucht !
+StareWiki_88|Samen f#ur s#amtliche Balkonpflanzen!
+StareWiki_89|Nadel und Zwirn f#ur zerrissene Kleidung !
+StareWiki_90|S#u#tigkeiten f#ur die Kleinen - heute umsonst !
+StareWiki_91|Schreibt mal wieder! - Nur mit meinem Schreibzeug!
+Straze_1|Sie wachen.
+Straze_2|Das k#pnigliche Wappen.
+Straze_3|Das Wappen h#angt zu hoch.
+Straze_4|Das sehen die Wachen!
+Straze_5|Vor den Wachen kann ich mich doch$nicht umziehen!
+Straze_6|Stop!
+Straze_7|Zutritt nur f#ur die K#pnigsfamilie oder f#ur Bedienstete!
+Straze_8|Halt!
+Straze_9|Hey, ich bins doch, Krabat! Aus der k#pniglichen K#uche.
+Straze_10|Das kann ja wohl jeder sagen. Zutritt nur in Dienstkleidung.
+Straze_11|Stop!
+Straze_12|Alle Achtung, dein Kumpel hat wirklich einen riesigen Wortschatz. Ich komme gleich wieder.
+Straze_13|Stop ! Halt ! Kein Zutritt !
+Straze_14|Zutritt nur in Dienstkleidung !
+Straze_15|Jetzt aber schnell, der K#pnig ist bald zur#uck.
+Stwa_1|He, was hast Du hier zu suchen?
+Stwa_2|Oh, entschuldigen Sie bitte!
+Stwa_3|Schnell weg. Er sieht nicht so aus, als ob er Spa#t versteht.
+Stwa_4|Mit wem redest Du? Raus!!!
+Stwa_5|Falsches Haus! Raus!!!
+Stwa_6|Was habe ich Dir gesagt? Raus!!!
+Sunow1_1|Das ist Sch#pnau. Hier war ich schon mal betteln.
+Sunow1_2|Das Dorf schaue ich mir lieber mal aus der N#ahe an.
+Sunow1_3|Ich will das Dorf doch nicht anbrennen!
+Sunow2_1|Das ist Sch#pnau. Hier war ich schon mal betteln.
+Sunow2_2|Das Dorf schaue ich mir lieber mal aus der N#ahe an.
+Sunow2_3|Ich will das Dorf doch nicht anbrennen!
+Swoboda_1|Jetzt, liebe Mutter - einer dieser zw#plf gefiederten Tiere ist euer Sohn.
+Swoboda_2|Wenn ihr ihn erkennt, dann zeigt auf ihn und er wird frei sein.
+Swoboda_3|Das Herz einer Mutter findet ihren Sohn immer wieder.
+Swoboda_4|Das ist er...
+Swoboda_5|Der Zauberstab in das Ohr des Raben gesteckt,$die Mutter hat Angst, es gefriert ihr das Herz.$Bist Du es wirklich - Krabat -$so zeig Dich uns - meiner Seele Unwetter...
+Swoboda_6|Ja, das ist er...
+Swoboda_7|Mutter und Sohn eilen fr#phlich nach Hause, aber der M#uller #argerte sich sehr #uber Krabat. Er hatte herausgefunden, auf welche Art der Junge ihn #uberlistet hatte.
+Swoboda_8|Rache ist s#u#t, mein lieber und das dann, wenn Du sie kalt serviert bekommst !!! Auf Wiedersehen - KRABAT !!!
+Terassa_1|Er arbeitet.
+Terassa_2|Das ist ein Hammer.
+Terassa_3|Siehst Du nicht, da#t ich arbeite?
+Terassa_4|Ich m#pchte nicht mit Dir reden!
+Terassa_5|Das Gel#ander h#alt nicht. Das mu#t bis zum Abend repariert sein.
+Terassa_6|La#t die Finger von meinem Handwerkszeug!
+Terassa_7|Komisch. Was hat ein Tischlerhammer hier zu suchen? Kann man damit auch Eisen bearbeiten? Ich mu#t das mal versuchen...
+Terassa_8|Heh, Du grober Kerl! Du verunstaltest meine Arbeit! Jetzt ist eine Delle im Gelaender!!!
+Terassa_9|Erz#ahlen Sie doch, da#t das der Daumenabdruck von August dem Starken ist! Das wird bestimmt mal eine Touristenattraktion.
+Terassa_10|Geh mir aus dem Weg!!!
+Terassa_11|Jetzt sehe ich erst aus.
+Terassa_12|Ach, endlich wieder in den eigenen Klamotten - welcome home!
+Terassa_13|Wenn mich die Wachen in der Stadt mit der Diestkleidung erwischen, bekomme ich wieder #Arger!
+Trepjena_1|Er tut seine Pflicht.
+Trepjena_2|Diese Tafel sieht ziemlich neu aus.
+Trepjena_3|Die Tafel h#angt fest an der Wand.
+Trepjena_4|Die T#ur ist verschlossen.
+Trepjena_5|Das mu#t wohl irgendein F#urst gewesen sein.
+Trepjena_6|Diese Frau habe ich schon mal auf dem Hof gesehen. Auf dem Bild ist sie aber wesentlich j#unger.
+Trepjena_7|Wenn ich so aus dem Fenster schaue - Dresden ist schon eine sch#pne Stadt.
+Trepjena_8|Was will ich denn mit dem Bild?
+Trepjena_9|Und wie soll ich das Bild erreichen?
+Trepjena_10|Ich habe keinen Schl#ussel!
+Trepjena_11|Das Fenster kann ich nicht #pffnen!
+Trepjena_12|Das ist nicht der richtige Schl#ussel.
+Trepjena_13|Die Tafel m#pchte ich nicht kaputtmachen!
+Trepjena_14|Ich will und darf mich nicht mit dir unterhalten.
+Trepjena_15|Selbst wenn hinter mir die Schatzkammer w#are, ich h#atte es dir nicht gesagt.
+Trepjena_16|Verschwinde! Du hast hier nichts verloren.
+Trepjena_17|Soll ich etwa den Hauptw#achter rufen?
+Wila1_1|Das sind gewaschene Kleider und Anz#uge. Sie trocknen.
+Wila1_2|Die Leine, an der die Kleider trockneten.
+Wila1_3|Eine lange und feste Leine.
+Wila1_4|Die Tuer ist verschlossen.
+Wila1_5|Jetzt aber schnell verstecken!
+Wila1_6|Das will ich nicht anbrennen!
+Wila1_7|Ich habe keine Zeit daf#ur!
+Wila1_8|Was soll das hei#ten ? Ich kann die Kleider keinen Augenblick hier hinh#angen, ohne da#t sie verschwinden ! Trau Dich ja nicht noch einmal !
+Wila1_9|Was habe ich Dir gesagt ! Wasch Dir die F#u#te, damit der Dreck in Deinen Ohren weiterrutscht !
+Wila1_10|Was f#ur eine Bescherung - die sch#pnen Kleider und Anz#uge ! Ow, ow, da wird der Junker wieder schimpfen. Jetzt mu#t ich alles nochmal waschen !
+Wila2_1|Die Tuer ist verschlossen.
+Wila2_2|Das will ich nicht anbrennen!
+Wila2_3|Ich habe keine Zeit daf#ur!
+Wjes1_1|Er arbeitet so heftig, da#t sogar Funken fliegen!
+Wjes1_2|Sch#pnauer F#asser.
+Wjes1_3|Ich sehe den Wirt in der K#uche.
+Wjes1_4|Das eiserne Schild der Kneipe. Es schaukelt im Wind.
+Wjes1_5|Das Feuer knistert.
+Wjes1_6|Sie sind zu schwer!
+Wjes1_7|Durch das Fenster krieche ich nicht in die Kneipe!
+Wjes1_8|Ich kann das Schild nicht erreichen.
+Wjes1_9|Ich will nicht verbrennen! Dann ist das Spiel gleich zu Ende.
+Wjes1_10|Das will ich nicht verbrennen!
+Wjes1_11|Wof#ur sollte ich ihn bestrafen?
+Wjes1_12|Ich will ihn nicht ver#argern!
+Wjes1_13|Der Stock ist zu kurz!
+Wjes1_14|Besser wird es nicht brennen!
+Wjes1_15|Ich hei#te Jurij und bin der Dorfschmied hier in Sch#pnau. Wieso suchst Du diese M#uhle ?
+Wjes1_16|Du willst also richtig arbeiten? Ich suche noch nach einem Lehrling.
+Wjes1_17|Wenn Du Lust hast, dann kannst Du hier bleiben.
+Wjes1_18|Im Winter wird viel beim Spinnen getratscht. Sicher tr#aumt jeder von einem besseren Leben
+Wjes1_19|oder von einem Buch, wo man durch Abrakadabra die Welt ver#andern kann.
+Wjes1_20|Da bist Du wirklich ein armer Kerl. Das ist ein Teil des gemeinsamen Dorflebens.
+Wjes1_21|Vor allem die Jugend trifft sich im Winter zum Spinnen. Dabei wird erz#ahlt, gesungen oder sogar getanzt.
+Wjes1_22|Im Sommer ist das wegen der Arbeit auf den Feldern fast unm#pglich.
+Wjes1_23|Frag doch die G#aste im Wirtshaus. Sie sehen und h#pren eine Menge.
+Wjes1_24|Sicher! Hufeisen bringen viel Geld. Wenn in Wittichenau Ferkelmarkt ist, ist hier ganz sch#pnes Gedr#ange.
+Wjes1_25|Ja, die meisten Bauern sind noch auf den Feldern der Junker. Der letzte Frost mahnt zur Eile, bevor die
+Wjes1_26|Natur in den langen Schlaf f#allt und die Leute wieder mehr Zeit haben.
+Wjes1_27|Das war bestimmt in Wittichenau. Aber auch auf dem Dorf wird Fasching gefeiert. Wie Abraham Frenzel
+Wjes1_28|mir einmal sagte: Fasching - das ist das Fest des Fressens, Tanzens und Saufens.
+Wjes1_29|Jaja, er ist sehr bekannt. Abraham hat mich mal auf ein Bier eingeladen, weil ich Hufeisen f#ur sein
+Wjes1_30|Pferd geschmiedet habe. Er kann wunderbar erz#ahlen - #uber die Geschichte der Sorben, #uber
+Wjes1_31|unsere Heimat - er schreibt gerade wieder an einem Buch. Ein sehr kluger Mann.
+Wjes1_32|Bildung kostet einiges. Daf#ur bist Du zu arm. Vielleicht gibt es inrgendwann einmal eine Zeit, wo jeder so etwas lernen kann.
+Wjes1_33|Aber wenn ich mir das richtig #uberlege - wof#ur? Zum Schmieden von Eisen brauche ich das nicht.
+Wjes1_34|Ich bin Krabat und suche die Schwarze M#uhle.
+Wjes1_35|Ich m#pchte M#uller werden. Ich habe jahrelang gebettelt und die Armut zu Hause kann ich nicht mehr sehen.
+Wjes1_36|Ich will aber mehr lernen. Die Leute erz#ahlen, da#t man in der M#uhle auch die Schwarze Kunst erlernen kann.
+Wjes1_37|Basteln Sie auch #fSchuhe#F f#ur Pferde ?
+Wjes1_38|Heute sind aber nicht so viele Leute unterwegs.
+Wjes1_39|Letztes Jahr sah ich sogar einen Faschingsumzug in einem kleinen St#adtchen.
+Wjes1_40|Abraham Frenzel ? Von ihm hat unser Pfarrer schon einmal erz#ahlt.
+Wjes1_41|Ich w#urde auch gerne mal ein Buch lesen oder einen Brief schreiben.
+Wjes1_42|Ich gehe im Winter nicht zum Spinnen, sondern betteln.
+Wjes1_43|Sie wissen also nicht, wo die Schwarze M#uhle ist ?
+Wjes1_44|Ich mu#t weiter - Auf Wiedersehen.
+Wjes2_1|Er arbeitet so heftig, da#t sogar Funken fliegen!
+Wjes2_2|Sch#pnauer F#asser.
+Wjes2_3|Hier ist alles dunkel.
+Wjes2_4|Das eiserne Schild der Kneipe. Es schaukelt im Wind.
+Wjes2_5|Das Feuer knistert.
+Wjes2_6|Sie sind zu schwer!
+Wjes2_7|Durch das Fenster krieche ich nicht in die Kneipe!
+Wjes2_8|Ich kann das Schild nicht erreichen.
+Wjes2_9|Ich will nicht verbrennen! Dann ist das Spiel gleich zu Ende.
+Wjes2_10|Die T#ur geht nicht auf!
+Wjes2_11|Das will ich nicht verbrennen!
+Wjes2_12|Wof#ur sollte ich ihn bestrafen?
+Wjes2_13|Ich will ihn nicht ver#argern!
+Wjes2_14|Der Stock ist zu kurz!
+Wjes2_15|Besser wird es nicht brennen!
+Wjes2_16|Sicher! Hufeisen bringen viel Geld. Wenn in Wittichenau Ferkelmarkt ist, ist hier ganz sch#pnes Gedr#ange.
+Wjes2_17|Ja, die meisten Bauern sind noch auf den Feldern der Junker. Der letzte Frost mahnt zur Eile, bevor die
+Wjes2_18|Natur in den langen Schlaf f#allt und die Leute wieder mehr Zeit haben.
+Wjes2_19|Das war bestimmt in Wittichenau. Aber auch auf dem Dorf wird Fasching gefeiert. Wie Abraham Frenzel
+Wjes2_20|mir einmal sagte: Fasching - das ist das Fest des Fressens, Tanzens und Saufens.
+Wjes2_21|Jaja, er ist sehr bekannt. Abraham hat mich mal auf ein Bier eingeladen, weil ich Hufeisen f#ur sein
+Wjes2_22|Pferd geschmiedet habe. Er kann wunderbar erz#ahlen - #uber die Geschichte der Sorben, #uber
+Wjes2_23|unsere Heimat - er schreibt gerade wieder an einem Buch. Ein sehr kluger Mann.
+Wjes2_24|Bildung kostet einiges. Daf#ur bist Du zu arm. Vielleicht gibt es inrgendwann einmal eine Zeit, wo jeder so etwas lernen kann.
+Wjes2_25|Aber wenn ich mir das richtig #uberlege - wof#ur? Zum Schmieden von Eisen brauche ich das nicht.
+Wjes2_26|Untergebene sorbische D#prfbewohner !!!
+Wjes2_27|Seine gn#adige Majest#at, der Kurf#urst Sachsens und K#pnig Polens, August II - genannt #fder Starke#F, wird sich bei seinem Heimweg von Warschau in die Dresdener Residenz #uber Oberlausitzer Wege bewegen.
+Wjes2_28|Der K#pnig freut sich, wenn er l#achelnde Gesichter schwer arbeitender Untergebener sieht, kr#ahende H#ahne h#prt und sch#pne M#adchen erblickt. Der K#pnig wird in dieser Gegend in etwa anderthalb Stunden erwartet.
+Wjes2_29|Der K#pnig ? August der Starke ? Da#t mu#t ich gleich der Mutter erz#ahlen !
+Wjes2_30|Basteln Sie auch #fSchuhe#F f#ur Pferde ?
+Wjes2_31|Heute sind aber nicht so viele Leute unterwegs.
+Wjes2_32|Letztes Jahr sah ich sogar einen Faschingsumzug in einem kleinen St#adtchen.
+Wjes2_33|Abraham Frenzel ? Von ihm hat unser Pfarrer schon einmal erz#ahlt.
+Wjes2_34|Ich w#urde auch gerne mal ein Buch lesen oder einen Brief schreiben.
+Wjes2_35|Ich mu#t weiter - Auf Wiedersehen.
+Wobzor1_1|Von hier aus kann ich den Flu#t doch gar nicht sehen!
+Wobzor1_2|Von hier aus kann ich den Flu#t doch gar nicht sehen!
+Wobzor1_3|Von hier aus kann ich den Flu#t doch gar nicht sehen!
+Wotrow_1|Das ist doch das Klosterwasser!
+Wotrow_2|Hier schlafen schon alle.
+Wotrow_3|Da krieg ich doch eh nur nasse F#u#te!
+Wotrow_4|In fremde Fenster schaut man nicht.
+Wotrow_5|Ich gehe nicht zur#uck.
+Wotrow_6|Zu Hause war nat#urlich die Freude gro#t nach der R#uckkehr des verlorenen Sohnes. Die Mutter hatte unseren jungen Helden ordentlich ausgeschimpft, aber abends bei einem guten St#uck Schwein, welches der Vater geschlachtet hatte, verschwanden die schwarzen Wolken der Sorge wieder. Krabt mu#tte bei dem Sonntagskleid der Mutter versprechen, in der Heimat zu bleiben. Ja, in der Heimat, das schliesst nat#urlich auch das kleine sorbische Dorf Ostro ein, auf dem die Zufluchtsst#atte unserer Vorfahren trohnt - das Schlo#t.%%Dort ist das heilige Buch versteckt. Und Krabat begab sich auf den Weg.
+Zachod_1|Ein Seil.
+Zachod_2|Kisten aus Holz.
+Zachod_3|Ein neues St#uck des Holzfu#tbodens.
+Zachod_4|Ein Brett.
+Zachod_5|Teller und Tassen.
+Zachod_6|Ein gro#ter Korb.
+Zachod_7|Kisten aus Holz.
+Zachod_8|Puh, die Kisten sind zu schwer. Ich habe nicht genug Kraft.
+Zachod_9|Die Kisten sind immer noch zu schwer.
+Zachod_10|Das reicht mit Verschieben!
+Zachod_11|Daf#ur brauche ich entsprechendes Werkzeug.
+Zachod_12|So geht es!
+Zachod_13|Er ist zu d#unn!
+Zachod_14|So zerbreche ich ihn noch!
+Zachod_15|So ein Brett brauche ich nicht mehr! Hier gibt es keine kaputten Br#ucken!
+Zachod_16|Wof#ur sollte ich das brauchen?
+Zachod_17|Den Korb erreiche ich nicht!
+Zahrodnik_1|Er arbeitet.
+Zahrodnik_2|Ein Modell.
+Zahrodnik_3|Ein Blatt Papier.
+Zahrodnik_4|Eine kleine Kabine.
+Zahrodnik_5|Ein gro#tes Blatt Papier.
+Zahrodnik_6|Eine Schreibfeder.
+Zahrodnik_7|Dokumente.
+Zahrodnik_8|Zu schwer...
+Zahrodnik_9|So viele Zahlen machen mich nur m#ude.
+Zahrodnik_10|Heh, sie ist genauso gro#t wie ich!
+Zahrodnik_11|Sieht wie eine Zeichnung der Kabine aus. Die will ich nicht!
+Zahrodnik_12|Ich kann doch nicht schreiben!
+Zahrodnik_13|Ich kann nicht erkennen, was sie beinhalten.
+Zahrodnik_14|Ich bin Krabat und wer sind Sie?
+Zahrodnik_15|Komischer Name - was machst du da eigentlich hinter meinem R#ucken?
+Zahrodnik_16|Der, den du suchst, steht vor dir. Was willst du Schlabat?
+Zahrodnik_17|Klar, der Wassermann. Was f#ur Geschichten willst du mir denn noch erz#ahlen? Ich mu#t arbeiten.
+Zahrodnik_18|Oje, den habe ich ja ganz vergessen! Du bist schlauer, als ich dachte. Was kann ich f#ur dich tun, Marat?
+Zahrodnik_19|Mein Gott, im Herzen von Sachsen !
+Zahrodnik_20|Das kann ich dir nicht sagen. Vielleicht kann dir mein Freund Dinglinger weiterhelfen.
+Zahrodnik_21|Johann Melchior Dinglinger - Hofjuwelier und somit enger Freund von August.
+Zahrodnik_22|Er ist einer der #fAuserw#ahlten#F, die Zutritt zum Herzen Sachsens haben.
+Zahrodnik_23|Letzte Woche erst habe ich bei ihm eine neue Wasserleitung verlegt. Ja, wir beide verstehen uns wirklich gut.
+Zahrodnik_24|Das ist schwierig. Er arbeitet mal wieder an einem gro#ten Auftrag f#ur August und ist deswegen viel im Schlo#t.
+Zahrodnik_25|Wenn es dir gelingt, ins Schlo#t zu gelangen - ich gebe dir eine Empfehlung von mir mit. Er ist Fremden gegen#uber ein wenig scheu.
+Zahrodnik_26|Er arbeitet mal wieder an einem wichtigen Auftrag des K#pnigs.
+Zahrodnik_27|Fremden gegen#uber ist er meist ein wenig #angstlich. Drum gebe ich dir eine Empfehlung f#ur ihn mit, das sollte dir helfen.
+Zahrodnik_28|Das ist sehr nett. Auf Wiedersehen.
+Zahrodnik_29|Das ist meine neueste Erfindung - ein Fahrstuhl f#ur mein Haus.
+Zahrodnik_30|In der Stadt bauen wir in die H#phe - des Platzes wegen. Und im Alter wirst auch du keine Treppen mehr hochflitzen k#pnnen.
+Zahrodnik_31|Das sind nur die ersten Versuche. Die meiste Zeit mu#t ich an anderen Aufgaben verbringen,
+Zahrodnik_32| zum Beispiel an der Ausrichtung der Kanonen auf der Festung K#pnigstein.
+Zahrodnik_33|Unsere Feldherren haben wohl noch nie etwas #uber Ballisitik geh#prt. So mu#t ich mich wieder darum k#ummern.
+Zahrodnik_34|Ich suche nach Handrij Zahrodnik.
+Zahrodnik_35|Ich bin Krabat. Der Wassermann erz#ahlte mir,$da#t Sie mir in einer wichtigen Angelegenheit$helfen k#pnnen.
+Zahrodnik_36|Der kleine Jakub wartet noch auf sein Spielzeug.
+Zahrodnik_37|Ich suche nach der Sch#ussel von Swaixtix. Sie ist in der Schatzkammer des K#pnigs.
+Zahrodnik_38|Ist es m#pglich, die Schale zu bekommen ?
+Zahrodnik_39|Erz#ahl mir mehr #uber Dinglinger.
+Zahrodnik_40|Wo finde ich den Juwelier ?
+Zahrodnik_41|Ich war bereits bei Dinglinger, unterhalten$konnten wir uns jedoch nicht richtig.
+Zahrodnik_42|Was ist das, woran Sie gerade arbeiten ?
+Zahrodnik_43|Ein Fahrstuhl ? Wazu braucht ihr St#adter$denn so etwas ?
+Zahrodnik_44|Wann ist der Fahrstuhl denn fertig ?
+Zahrodnik_45|Also dann, auf Wiedersehen.
+Zastup_1|Er guckt zum Fenster raus.
+Zastup_2|Das Eingangstor.
+Zastup_3|Sie ist zugeschlossen. Den Schl#ussel habe ich auch nicht.
+Zastup_4|Eine Schranke.
+Zastup_5|Die Schranke l#a#tt sich nur aus dem H#auschen #pffnen.
+Zastup_6|Ich klettere nicht #uber die Schranke.
+Zastup_7|Der Eintritt kostet 7 Taler.
+Zastup_8|Oh, der Pelz ist ja sch#pn weich ! Das nenne ich eine Unterlage f#ur meinen harten Stuhl. Vielen Dank.
+Zastup_9|Daf#ur darfst du dir den J#agerhof ansehen. Ich #pffne dir die Schranke und gehe dann schnell Kaffee holen.
+Zastup_10|Mein Name ist Mato. Ich verkaufe hier Karten.
+Zastup_11|Nein, gewi#t nicht. Aber meine R#uckenschmerzen sind kaum zu ertragen, da ich den halben Tag auf diesem harten Stuhl rumsitze.
+Zastup_12|Klar, wenn du mir eine weiche Unterlage zum Sitzen besorgen k#pnntest, mein R#ucken w#are dir dankbar.
+Zastup_13|Nein, diesen Namen h#pre ich zum ersten Mal.
+Zastup_14|Das ist der J#agerhof. - Und die Manege f#ur exotische Tiere, die der August so liebt.
+Zastup_15|Das kostet 7 Taler.
+Zastup_16|Da drin wird wieder ein Soldat vom L#pwen gejagt. Wie im alten Rom, nur das Kolloseum fehlt noch.
+Zastup_17|Um den L#pwen w#urde ich mir keine Sorgen machen. Lieber um den Anzug des Soldaten. Da wird sich seine Frau wieder mal freuen.
+Zastup_18|Dieses sch#pne Kettenhemd, so etwas bekommt man heutzutage nur sehr schwer.
+Zastup_19|Ich bin Krabat und wer bist du ?
+Zastup_20|Den ganzen Tag Karten verkaufen - ist das nicht langweilig ?
+Zastup_21|Kann ich dir irgendwie helfen ?
+Zastup_22|Kennst du Handrij Zahrodnik ?
+Zastup_23|Was ist das f#ur ein Geb#aude ?
+Zastup_24|Darf ich mir die Manege mal anschauen ?
+Zastup_25|Woher kommen diese seltsamen T#pne ?
+Zastup_26|Das ist ja furchtbar ! Der arme L#pwe !
+Zastup_27|Das w#are alles, auf Wiedersehen.
+Zawod1_1|Der Krieg zog durchs Land und brachte gro#tte Not und Elend mit sich. Auch das sorbische Volk litt unter dem Joch der fremden Armeen. Soldaten und R#auber w#uteten 30 Jahre lang, und als sie sich zur#uckzogen, verschwanden Leid und Hunger nicht. Armut herrschte unter der sorbischen Bev#plkerung und war ein st#andiger Begleiter des einfachen Mannes.
+Zawod1_2|Doch ging es nicht allen schlecht. Die Junker eigneten sich als Offiziere w#ahrend des Krieges einige Reicht#umer an. Das war ihnen aber nicht genug. Die Bauern mu#tten f#ur sie Frondienst leisten, die Zeche zahlen und sich sogar an Feiertagen schinden. Freuen und vergn#ugen durfte sich nur der Junker. Und das sorbische Volk erz#ahlte sich, da#t aus dem Volk ein ungew#phnlicher Held oder Recke hervortritt, welcher der Zauberei und anderer Kunde m#achtig ist und m#achtiger ist als der M#achtigste in den Schl#pssern.
+Zawod1_3|Einige Jahre nach dem Krieg hat sich an der Lage der Sorben nicht viel ge#andert. In jener Zeit lebte in Eutrich eine Hirtenfamilie, die so arm war, da#t ihr einziger Sohn Krabat sich schon von kleinauf sein t#aglich Brot selbst verdienen mu#tte. Im Sommer h#utete er Schweine und G#anse, und im Winter ging er betteln, damit er nicht verhungerte.
+Zawod1_4|Ach, jeden Tag dasselbe Elend...
+Zawod1_5|Das Jahr neigt sich dem Ende zu,$der erste Frost hat die Bl#atter der B#aume eingef#arbt
+Zawod1_6|und bald muss ich wieder zu Leuten betteln gehen$(welch Schande)!
+Zawod1_7|Warum bin ich nicht der geliebte Sohn$eines solchen dicken Junkers ?
+Zawod1_8|Wenn mich meine Mutter nur aus dem Haus lassen w#urde -$ja, dann w#urde ich nach dieser M#uhle suchen,
+Zawod1_9|von der die Leute erz#ahlen, da#t$dort der Teufel selbst das Korn mahlt.
+Zawod1_10|Na ja, was sich die Leute$alles so erz#ahlen...
+Zawod1_11|Krabat als starker M#uller -$immer etwas zu Essen, eine warme Kammer, und vielleicht noch ein bi#tchen Zauberei -$das w#are es!
+Zawod1_12|Krabat als m#achtiger Zauberer,$das w#urde auch meinen Eltern belieben, und mehr helfen, als$hier zu sitzen und Federvieh zu h#uten.
+Zawod1_13|Die Lausitz in der ersten H#alfte des 17. Jahrhunderts
+Zawod1_14|Schlu#t damit!
+Zdzary1_1|Sie steht vor dem Haus.
+Zdzary1_2|Sie schaut aus dem Fenster.
+Zdzary1_3|Die T#ur f#allt bald auseinander!
+Zdzary1_4|Nein, in dieses Haus will ich nicht!
+Zdzary1_5|Dort gehe ich nicht hin! Ich habe Angst vor dem Hund!
+Zdzary1_6|Wof#ur sollte ich sie bestrafen?
+Zdzary1_7|Ich will sie nicht ver#argern!
+Zdzary1_8|Krabat!? Junger Bursche...
+Zdzary1_9|hehehe...
+Zdzary1_10|sch#pner Bursche - die Plage der armen Seelen wird Dich fangen - dann bist Du verloren...
+Zdzary1_11|hehehe.
+Zdzary1_12|Der Teufel wirtschaftet im Wald ohne Ausweg...
+Zdzary1_13|hehehehe.
+Zdzary1_14|Hehehe -
+Zdzary1_15|tiefer Boden, da bist Du auf dem Weg. Grauer Nebel von Weitem, da bist Du auf dem Weg...
+Zdzary1_16|hehehe.
+Zdzary1_17|Zweifle ? nicht ! - bleibst Du auf dem Weg !
+Zdzary1_18|Hehehe -
+Zdzary1_19|der Wald ohne Ausweg...
+Zdzary1_20|hehehe.
+Zdzary1_21|Auf Fragen Antworten, f#ur R#atsel K#ppfchen, f#ur Spr#uche einen Groschen. Der Wald ohne Ausweg...
+Zdzary1_22|hehehe -
+Zdzary1_23|ohne Ausweg!
+Zdzary1_24|Sie warten #uberall...
+Zdzary1_25|hehe -
+Zdzary1_26|Auf einer Seite der Teufel, auf der anderen die Teufel... Die Fl#ammchen zeigen den Weg...
+Zdzary1_27|hehe -
+Zdzary1_28|zu einem.
+Zdzary1_29|Hehehe -
+Zdzary1_30|Wer ist der Teufel? Der Soldat, der Bauer, der Junker, der K#pnig oder der M#uller?
+Zdzary1_31|Hehe -
+Zdzary1_32|oder der M#uller!
+Zdzary1_33|Es ist kein Tier und auch kein Mensch...
+Zdzary1_34|hehe -
+Zdzary1_35|Augen wie ein Uhu, die Haut wie ein Fisch...
+Zdzary1_36|hehe -
+Zdzary1_37|es ist nicht alt, auf keinen Fall aber jung...
+Zdzary1_38|hehe -
+Zdzary1_39|die Kinder f#urchten es.
+Zdzary1_40|Dort, wo die Schwarze Elster flie#tt...
+Zdzary1_41|hehe.
+Zdzary1_42|Am Uferrand sah ich eine Statue sitzen - es erschrak...
+Zdzary1_43|hehe -
+Zdzary1_44|ins Wasser und weg...
+Zdzary1_45|hehehehe.
+Zdzary1_46|Zw#plf hat er...
+Zdzary1_47|hehe -
+Zdzary1_48|der Meister der schwarzen Kunst...
+Zdzary1_49|hehe -
+Zdzary1_50|bist Du klug und gewinnst ? ...
+Zdzary1_51|hehe -
+Zdzary1_52|elf hat er und Krabat f#ullt die Zahl auf...
+Zdzary1_53|hehe.
+Zdzary1_54|Drei, sieben, zw#plf - schwarze Zahlen...
+Zdzary1_55|hehe.
+Zdzary1_56|Zw#plf waren es, sind es und werden es sein.
+Zdzary1_57|Hehe -
+Zdzary1_58|f#allt zusammen... sicher, f#allt zusammen. Es fehlt die Kraft, die Kraft einer m#annlichen Hand...
+Zdzary1_59|hehe.
+Zdzary1_60|Ich war jung, sch#pn...
+Zdzary1_61|hehe -
+Zdzary1_62|eine h#ubsche Braut, gro#te Feier...
+Zdzary1_63|hehe.
+Zdzary1_64|Rohe Kr#afte zogen ? durchs Land...
+Zdzary1_65|hehe -
+Zdzary1_66|vor einem halben Jahrhundert,$nahmen den Mann, den Vater und die Mutter...
+Zdzary1_67|ich bin Witwe...
+Zdzary1_68|Mir helfen...
+Zdzary1_69|hehe?
+Zdzary1_70|Hilf Dir selbst ! Suche das Gl#uck - hier wirst Du es nicht finden...
+Zdzary1_71|hehe -
+Zdzary1_72|hinaus in die weite Welt...
+Zdzary1_73|hehehe.
+Zdzary1_74|Ich bin Krabat. Ich m#pchte M#uller werden und deshalb suche ich die Schwarze M#uhle.
+Zdzary1_75|Welche Plage meinen Sie ?
+Zdzary1_76|Sagen Sie mir bitte, wo dieser Wald ohne Ausweg ist.
+Zdzary1_77|Ihr Haus f#allt bald zusammen !
+Zdzary1_78|Haben Sie denn keinen Mann ?
+Zdzary1_79|Und wo ist Ihr Mann jetzt ?
+Zdzary1_80|Oh, entschuldigen sie bitte, das konnte ich nicht wissen. Wie kann ich Ihnen helfen ?
+Zdzary1_81|Sie sprechen in R#atseln - nur ein bi#tchen deutlicher, bitte!
+Zdzary1_82|Wieso ohne Ausweg?
+Zdzary1_83|Ist der M#uller dieser Teufel?
+Zdzary1_84|Wer hilft mir dabei, die Schwarze M#uhle zu finden?
+Zdzary1_85|Wie finde ich diesen... dieses... halt diese Person denn?
+Zdzary1_86|Tiefe Erde ? Grau ? ? ? Das ist ja interessant.
+Zdzary1_87|Wozu mu#t ich die Zahl auff#ullen?
+Zdzary1_88|Ich habe mich geirrt. Auf Wiedersehen.
+Zdzary1_89|Irgendwie komisch - die Alte. Wollen wir nicht lieber weitergehen?
+Zdzary1_90|Du hast recht ! Geh lieber weiter !$Vielleicht bei#tt Sie Dich noch !
+Zdzary1_91|Nein ! Wozu habe ich denn sonst das Spiel gekauft ??
+Zdzary2_1|Die T#ur f#allt bald auseinander!
+Zdzary2_2|Nein, in dieses Haus will ich nicht!
+Zdzary2_3|Dort gehe ich nicht hin! Ich habe Angst vor dem Hund!
+Zelen_1|Ein unterschriebenes Dokument - eine gute Vorlage f#ur die Erlaubnis!
+Zelen_2|Ein Klavier.
+Zelen_3|Ein Stuhl.
+Zelen_4|Das sind Ger#atschaften zum Siegeln.
+Zelen_5|Ja, ich w#urde gerne auf ihm spielen.
+Zelen_6|Ich m#pchte mich nicht setzen.
+Zelen_7|Nicht noch einmal!
+Zelen_8|Jetzt klebt das k#pnigliche Siegel auf der Erlaubnis.
+Zelen_9|Das brauche ich nicht!
+Zelen_10|Nicht noch einmal!
+Zelen_11|Was suchst Du hier, Diener ? Was soll das hei#ten ? Jetzt schn#uffeln die Diener schon in meinen Sachen rum !
+Zelen_12|Majest#at, Ihr kennt mich doch! Ich bin Krabat, der Schweinehirt aus Eutrich.
+Zelen_13|Der K#pnig kennt keinen solchen Hirten. Weg mit ihm !
+Zelen_14|Etwas sp#ater.

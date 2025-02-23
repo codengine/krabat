@@ -54,19 +54,19 @@ public class Farar extends Mainanim {
     }
 
     private void InitImages() {
-        farar_head[1] = getPicture("gfx/pinca/f-h-1.gif");
-        farar_head[2] = getPicture("gfx/pinca/f-h-2.gif");
-        farar_head[3] = getPicture("gfx/pinca/f-h-3.gif");
-        farar_head[4] = getPicture("gfx/pinca/f-h-4.gif");
-        farar_head[5] = getPicture("gfx/pinca/f-h-5.gif");
-        farar_head[6] = getPicture("gfx/pinca/f-h-6.gif");
-        farar_head[7] = getPicture("gfx/pinca/f-h-7.gif");
-        farar_head[8] = getPicture("gfx/pinca/f-h-8.gif");
+        farar_head[1] = getPicture("gfx/pinca/f-h-1.png");
+        farar_head[2] = getPicture("gfx/pinca/f-h-2.png");
+        farar_head[3] = getPicture("gfx/pinca/f-h-3.png");
+        farar_head[4] = getPicture("gfx/pinca/f-h-4.png");
+        farar_head[5] = getPicture("gfx/pinca/f-h-5.png");
+        farar_head[6] = getPicture("gfx/pinca/f-h-6.png");
+        farar_head[7] = getPicture("gfx/pinca/f-h-7.png");
+        farar_head[8] = getPicture("gfx/pinca/f-h-8.png");
 
-        farar_body[1] = getPicture("gfx/pinca/f-b-1.gif");
-        farar_body[2] = getPicture("gfx/pinca/f-b-2.gif");
-        farar_body[3] = getPicture("gfx/pinca/f-b-3.gif");
-        farar_body[4] = getPicture("gfx/pinca/f-b-4.gif");
+        farar_body[1] = getPicture("gfx/pinca/f-b-1.png");
+        farar_body[2] = getPicture("gfx/pinca/f-b-2.png");
+        farar_body[3] = getPicture("gfx/pinca/f-b-3.png");
+        farar_body[4] = getPicture("gfx/pinca/f-b-4.png");
     }
 
     @Override

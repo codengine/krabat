@@ -20,27 +20,31 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericStorageManager;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class StringManager {
-
-    private final HashMap<String, String> translations;
+    private final Map<Integer, Map<String, String>> translations = new HashMap<>();
 
     private final GenericStorageManager storageManager;
 
     public StringManager(GenericStorageManager storageManager) {
         this.storageManager = storageManager;
-        translations = storageManager.loadTranslationsFile("stringtable_common.txt");
+        translations.put(1, storageManager.loadTranslations("hs.txt"));
+        translations.put(2, storageManager.loadTranslations("ds.txt"));
     }
 
-    public void defineThirdLanguage(String filename, boolean isFake, String fakePrefix) {
-        storageManager.mergeTranslationsFile(filename, translations, isFake, fakePrefix);
+    public void defineThirdLanguage(String abbreviation) {
+        translations.put(3, storageManager.loadTranslations(abbreviation + ".txt"));
     }
 
     public String getTranslation(String key) {
-        return Optional.ofNullable(translations.get(key)).orElseGet(() -> "Missing translation for " + key);
+        return Optional.ofNullable(translations.get(Start.language))
+                .map(map -> map.get(key))
+                .orElseGet(() -> "Missing translation: " + key);
     }
 }

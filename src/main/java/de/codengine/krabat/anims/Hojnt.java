@@ -112,65 +112,65 @@ public class Hojnt extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        krabat_left[0] = getPicture("gfx/hojnt/ho-l.gif");
-        krabat_left[1] = getPicture("gfx/hojnt/ho-la.gif");
-        krabat_left[2] = getPicture("gfx/hojnt/ho-l0.gif");
-        krabat_left[3] = getPicture("gfx/hojnt/ho-l2.gif");
-        krabat_left[4] = getPicture("gfx/hojnt/ho-l3.gif");
-        krabat_left[5] = getPicture("gfx/hojnt/ho-l5.gif");
-        krabat_left[6] = getPicture("gfx/hojnt/ho-l7.gif");
-        krabat_left[7] = getPicture("gfx/hojnt/ho-l8.gif");
+        krabat_left[0] = getPicture("gfx/hojnt/ho-l.png");
+        krabat_left[1] = getPicture("gfx/hojnt/ho-la.png");
+        krabat_left[2] = getPicture("gfx/hojnt/ho-l0.png");
+        krabat_left[3] = getPicture("gfx/hojnt/ho-l2.png");
+        krabat_left[4] = getPicture("gfx/hojnt/ho-l3.png");
+        krabat_left[5] = getPicture("gfx/hojnt/ho-l5.png");
+        krabat_left[6] = getPicture("gfx/hojnt/ho-l7.png");
+        krabat_left[7] = getPicture("gfx/hojnt/ho-l8.png");
 
-        krabat_right[0] = getPicture("gfx/hojnt/ho-r.gif");
-        krabat_right[1] = getPicture("gfx/hojnt/ho-ra.gif");
-        krabat_right[2] = getPicture("gfx/hojnt/ho-r0.gif");
-        krabat_right[3] = getPicture("gfx/hojnt/ho-r2.gif");
-        krabat_right[4] = getPicture("gfx/hojnt/ho-r3.gif");
-        krabat_right[5] = getPicture("gfx/hojnt/ho-r5.gif");
-        krabat_right[6] = getPicture("gfx/hojnt/ho-r7.gif");
-        krabat_right[7] = getPicture("gfx/hojnt/ho-r8.gif");
+        krabat_right[0] = getPicture("gfx/hojnt/ho-r.png");
+        krabat_right[1] = getPicture("gfx/hojnt/ho-ra.png");
+        krabat_right[2] = getPicture("gfx/hojnt/ho-r0.png");
+        krabat_right[3] = getPicture("gfx/hojnt/ho-r2.png");
+        krabat_right[4] = getPicture("gfx/hojnt/ho-r3.png");
+        krabat_right[5] = getPicture("gfx/hojnt/ho-r5.png");
+        krabat_right[6] = getPicture("gfx/hojnt/ho-r7.png");
+        krabat_right[7] = getPicture("gfx/hojnt/ho-r8.png");
 
-        krabat_front[0] = getPicture("gfx/hojnt/ho-u.gif");
-        krabat_front[1] = getPicture("gfx/hojnt/ho-u2.gif");
-        krabat_front[2] = getPicture("gfx/hojnt/ho-u.gif");
-        krabat_front[3] = getPicture("gfx/hojnt/ho-u3.gif");
+        krabat_front[0] = getPicture("gfx/hojnt/ho-u.png");
+        krabat_front[1] = getPicture("gfx/hojnt/ho-u2.png");
+        krabat_front[2] = getPicture("gfx/hojnt/ho-u.png");
+        krabat_front[3] = getPicture("gfx/hojnt/ho-u3.png");
 
-        krabat_back[0] = getPicture("gfx/hojnt/ho-o.gif");
-        krabat_back[1] = getPicture("gfx/hojnt/ho-o2.gif");
-        krabat_back[2] = getPicture("gfx/hojnt/ho-o.gif");
-        krabat_back[3] = getPicture("gfx/hojnt/ho-o3.gif");
+        krabat_back[0] = getPicture("gfx/hojnt/ho-o.png");
+        krabat_back[1] = getPicture("gfx/hojnt/ho-o2.png");
+        krabat_back[2] = getPicture("gfx/hojnt/ho-o.png");
+        krabat_back[3] = getPicture("gfx/hojnt/ho-o3.png");
 
-        krabat_left_talk_head[0] = getPicture("gfx/hojnt/ho-lh0.gif");
-        krabat_left_talk_head[1] = getPicture("gfx/hojnt/ho-lh1.gif");
-        krabat_left_talk_head[2] = getPicture("gfx/hojnt/ho-lh2.gif");
-        krabat_left_talk_head[3] = getPicture("gfx/hojnt/ho-lh3.gif");
-        krabat_left_talk_head[4] = getPicture("gfx/hojnt/ho-lh4.gif");
-        krabat_left_talk_head[5] = getPicture("gfx/hojnt/ho-lh5.gif");
+        krabat_left_talk_head[0] = getPicture("gfx/hojnt/ho-lh0.png");
+        krabat_left_talk_head[1] = getPicture("gfx/hojnt/ho-lh1.png");
+        krabat_left_talk_head[2] = getPicture("gfx/hojnt/ho-lh2.png");
+        krabat_left_talk_head[3] = getPicture("gfx/hojnt/ho-lh3.png");
+        krabat_left_talk_head[4] = getPicture("gfx/hojnt/ho-lh4.png");
+        krabat_left_talk_head[5] = getPicture("gfx/hojnt/ho-lh5.png");
 
-        krabat_left_talk_body[0] = getPicture("gfx/hojnt/ho-lb0.gif");
-        krabat_left_talk_body[1] = getPicture("gfx/hojnt/ho-lb1.gif");
-        krabat_left_talk_body[2] = getPicture("gfx/hojnt/ho-lb2.gif");
+        krabat_left_talk_body[0] = getPicture("gfx/hojnt/ho-lb0.png");
+        krabat_left_talk_body[1] = getPicture("gfx/hojnt/ho-lb1.png");
+        krabat_left_talk_body[2] = getPicture("gfx/hojnt/ho-lb2.png");
 
-        krabat_right_talk_head[0] = getPicture("gfx/hojnt/ho-rh0.gif");
-        krabat_right_talk_head[1] = getPicture("gfx/hojnt/ho-rh1.gif");
-        krabat_right_talk_head[2] = getPicture("gfx/hojnt/ho-rh2.gif");
-        krabat_right_talk_head[3] = getPicture("gfx/hojnt/ho-rh3.gif");
-        krabat_right_talk_head[4] = getPicture("gfx/hojnt/ho-rh4.gif");
-        krabat_right_talk_head[5] = getPicture("gfx/hojnt/ho-rh5.gif");
+        krabat_right_talk_head[0] = getPicture("gfx/hojnt/ho-rh0.png");
+        krabat_right_talk_head[1] = getPicture("gfx/hojnt/ho-rh1.png");
+        krabat_right_talk_head[2] = getPicture("gfx/hojnt/ho-rh2.png");
+        krabat_right_talk_head[3] = getPicture("gfx/hojnt/ho-rh3.png");
+        krabat_right_talk_head[4] = getPicture("gfx/hojnt/ho-rh4.png");
+        krabat_right_talk_head[5] = getPicture("gfx/hojnt/ho-rh5.png");
 
-        krabat_right_talk_body[0] = getPicture("gfx/hojnt/ho-rb0.gif");
-        krabat_right_talk_body[1] = getPicture("gfx/hojnt/ho-rb1.gif");
-        krabat_right_talk_body[2] = getPicture("gfx/hojnt/ho-rb2.gif");
+        krabat_right_talk_body[0] = getPicture("gfx/hojnt/ho-rb0.png");
+        krabat_right_talk_body[1] = getPicture("gfx/hojnt/ho-rb1.png");
+        krabat_right_talk_body[2] = getPicture("gfx/hojnt/ho-rb2.png");
 
-        krabat_down_talk[0] = getPicture("gfx/hojnt/ho-u.gif");
-        krabat_down_talk[1] = getPicture("gfx/hojnt/ho-ut1.gif");
-        krabat_down_talk[2] = getPicture("gfx/hojnt/ho-ut2.gif");
-        krabat_down_talk[3] = getPicture("gfx/hojnt/ho-ut3.gif");
-        krabat_down_talk[4] = getPicture("gfx/hojnt/ho-ut4.gif");
-        krabat_down_talk[5] = getPicture("gfx/hojnt/ho-ut5.gif");
+        krabat_down_talk[0] = getPicture("gfx/hojnt/ho-u.png");
+        krabat_down_talk[1] = getPicture("gfx/hojnt/ho-ut1.png");
+        krabat_down_talk[2] = getPicture("gfx/hojnt/ho-ut2.png");
+        krabat_down_talk[3] = getPicture("gfx/hojnt/ho-ut3.png");
+        krabat_down_talk[4] = getPicture("gfx/hojnt/ho-ut4.png");
+        krabat_down_talk[5] = getPicture("gfx/hojnt/ho-ut5.png");
 
-        krabat_buecken[0] = getPicture("gfx/hojnt/ho-rbuecken.gif");
-        krabat_buecken[1] = getPicture("gfx/hojnt/ho-rbuecken2.gif");
+        krabat_buecken[0] = getPicture("gfx/hojnt/ho-rbuecken.png");
+        krabat_buecken[1] = getPicture("gfx/hojnt/ho-rbuecken2.png");
     }
 
     @Override

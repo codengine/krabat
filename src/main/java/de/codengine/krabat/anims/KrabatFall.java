@@ -50,9 +50,9 @@ public class KrabatFall extends Mainanim {
     }
 
     private void InitImages() {
-        krabat_fallen[0] = getPicture("gfx-dd/spaniska/k-l-zucken.gif");
-        krabat_fallen[1] = getPicture("gfx-dd/spaniska/k-l-zucken2.gif");
-        krabat_fallen[2] = getPicture("gfx-dd/spaniska/k-l-zucken3.gif");
+        krabat_fallen[0] = getPicture("gfx-dd/spaniska/k-l-zucken.png");
+        krabat_fallen[1] = getPicture("gfx-dd/spaniska/k-l-zucken2.png");
+        krabat_fallen[2] = getPicture("gfx-dd/spaniska/k-l-zucken3.png");
     }
 
     // Zeichne Krabat, wie sie dasteht oder spricht
@@ -78,7 +78,7 @@ public class KrabatFall extends Mainanim {
                 if (!fallSound) {
 
                     fallSound = true;
-                    mainFrame.wave.PlayFile("sfx-dd/fallen.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx-dd/fallen.wav");
                 }
             }
         }

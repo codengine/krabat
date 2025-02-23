@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Labyr122 extends Mainloc2 {
+public class Labyr122 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Labyr122.class);
     private GenericImage background;
     private GenericImage lab122;
@@ -98,9 +98,9 @@ public class Labyr122 extends Mainloc2 {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/labyrinth/laby12.gif");
-        lab122 = getPicture("gfx/labyrinth/lab12-2.gif");
-        lab123 = getPicture("gfx/labyrinth/lab12-3.gif");
+        background = getPicture("gfx/labyrinth/laby12.png");
+        lab122 = getPicture("gfx/labyrinth/lab12-2.png");
+        lab123 = getPicture("gfx/labyrinth/lab12-3.png");
 
     }
 
@@ -123,15 +123,15 @@ public class Labyr122 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -192,7 +192,7 @@ public class Labyr122 extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -203,7 +203,7 @@ public class Labyr122 extends Mainloc2 {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -226,7 +226,7 @@ public class Labyr122 extends Mainloc2 {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -239,7 +239,7 @@ public class Labyr122 extends Mainloc2 {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -281,7 +281,7 @@ public class Labyr122 extends Mainloc2 {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 MuellerMecker(mueller.evalMlynkTalkPoint());
                 TalkPerson = 36;
                 TalkPause = 5;

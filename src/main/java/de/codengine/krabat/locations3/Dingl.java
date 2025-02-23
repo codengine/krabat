@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Dingl extends Mainloc {
+public class Dingl extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Dingl.class);
     private GenericImage background;
     private GenericImage blido;
@@ -130,26 +130,26 @@ public class Dingl extends Mainloc {
         if (oldLocation != 0) {
             // Actions fuer Versuche zuruecksetzen
             for (int i = 650; i <= 652; i++) {
-                mainFrame.Actions[i] = false;
+                mainFrame.actions[i] = false;
             }
         }
 
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 75, 20, 350, 255, 336));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 70, 20, 70, 337, 420));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(176, 480, 195, 469, 337, 413));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(244, 468, 306, 460, 414, 432));
 
-        mainFrame.wegSucher.ClearMatrix(4);
+        mainFrame.pathFinder.ClearMatrix(4);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(0, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
 
         InitImages();
 
@@ -179,11 +179,11 @@ public class Dingl extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/dingl/dingl.gif");
-        blido = getPicture("gfx-dd/dingl/blido.gif");
-        tworba = getPicture("gfx-dd/dingl/tworba.gif");
+        background = getPicture("gfx-dd/dingl/dingl.png");
+        blido = getPicture("gfx-dd/dingl/blido.png");
+        tworba = getPicture("gfx-dd/dingl/tworba.png");
 
-        kombinacija = getPicture("gfx-dd/dingl/kombinacija.gif");
+        kombinacija = getPicture("gfx-dd/dingl/kombinacija.png");
 
     }
 
@@ -193,23 +193,23 @@ public class Dingl extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if (mainFrame.isMultiple && mainFrame.Clipset) {
+        if (mainFrame.isMultipleChoiceActive && mainFrame.isClipSet) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -217,7 +217,7 @@ public class Dingl extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Dinglinger Hintergrund loeschen
@@ -253,7 +253,7 @@ public class Dingl extends Mainloc {
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -263,7 +263,7 @@ public class Dingl extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -327,7 +327,7 @@ public class Dingl extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -335,7 +335,7 @@ public class Dingl extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -346,8 +346,8 @@ public class Dingl extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -369,14 +369,14 @@ public class Dingl extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -385,7 +385,7 @@ public class Dingl extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -395,7 +395,7 @@ public class Dingl extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -455,15 +455,15 @@ public class Dingl extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTxxxx);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTxxxx);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -492,7 +492,7 @@ public class Dingl extends Mainloc {
                         pTxxxx = new GenericPoint(kt.x, pExitUp.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -512,7 +512,7 @@ public class Dingl extends Mainloc {
                         pTxxxx = new GenericPoint(kt.x, pExitRight.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -536,7 +536,7 @@ public class Dingl extends Mainloc {
                     pTxxxx = pDinglinger;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTxxxx);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTxxxx);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -544,7 +544,7 @@ public class Dingl extends Mainloc {
                 // Mit dem Dinglinger reden
                 if (reDinglinger.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pDinglinger);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pDinglinger);
                     mainFrame.repaint();
                     return;
                 }
@@ -552,7 +552,7 @@ public class Dingl extends Mainloc {
                 // Kelch und Krug benutzen
                 if (blidoRect.IsPointInRect(pTemp)) {
                     nextActionID = 3;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pBlido);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pBlido);
                     mainFrame.repaint();
                     return;
                 }
@@ -560,7 +560,7 @@ public class Dingl extends Mainloc {
                 // Kunstwerk benutzen
                 if (kunstwerk.IsPointInRect(pTemp)) {
                     nextActionID = 4;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pKunstwerk);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pKunstwerk);
                     mainFrame.repaint();
                     return;
                 }
@@ -582,37 +582,37 @@ public class Dingl extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     reDinglinger.IsPointInRect(pTemp) ||
                     kunstwerk.IsPointInRect(pTemp) ||
                     blidoRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -620,7 +620,7 @@ public class Dingl extends Mainloc {
         else {
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -628,7 +628,7 @@ public class Dingl extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -638,7 +638,7 @@ public class Dingl extends Mainloc {
                     kunstwerk.IsPointInRect(pTemp) ||
                     blidoRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -646,7 +646,7 @@ public class Dingl extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -654,7 +654,7 @@ public class Dingl extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -664,17 +664,17 @@ public class Dingl extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -716,8 +716,8 @@ public class Dingl extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -736,7 +736,7 @@ public class Dingl extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -787,18 +787,18 @@ public class Dingl extends Mainloc {
             case 50:
                 // Krabat beginnt MC (Dinglinger benutzen)
                 mainFrame.krabat.SetFacing(9);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
 
                 // hier zuhoerenden Dinglinger einschalten
                 welcheAnim = 1;
 
                 // Hat Krabat schon Dialog 3 mit Dinglinger angefangen (letzter)
-                if (!mainFrame.Actions[528]) {
+                if (!mainFrame.actions[528]) {
                     // Hat Krabat schon Breif von Zahrd. gegeben ? (MC1 oder MC2)
-                    if (!mainFrame.Actions[527]) {
+                    if (!mainFrame.actions[527]) {
                         // faengt Dinglinger (erstes Mal) an zu reden ?
-                        if (mainFrame.Actions[520]) {
+                        if (mainFrame.actions[520]) {
                             nextActionID = 600;
                         } else {
                             nextActionID = 610;
@@ -814,23 +814,23 @@ public class Dingl extends Mainloc {
 
             case 100:
                 // Gehe zu Chodba
-                if (mainFrame.Actions[527]) {
+                if (mainFrame.actions[527]) {
                     // darf zur Chodba gehen (hat von Dingl. Prikaz bekommen)
                     NeuesBild(142, locationID);
                 } else {
                     // 3 mal darf Kr. versuchen rauszugehen
-                    if (!mainFrame.Actions[650] || !mainFrame.Actions[651] || !mainFrame.Actions[652]) {
-                        mainFrame.fPlayAnim = true;
-                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                    if (!mainFrame.actions[650] || !mainFrame.actions[651] || !mainFrame.actions[652]) {
+                        mainFrame.isAnimRunning = true;
+                        evalMouseMoveEvent(mainFrame.mousePoint);
                         nextActionID = 300;
-                        if (mainFrame.Actions[651]) {
-                            mainFrame.Actions[652] = true;
+                        if (mainFrame.actions[651]) {
+                            mainFrame.actions[652] = true;
                         }
-                        if (mainFrame.Actions[650]) {
-                            mainFrame.Actions[651] = true;
+                        if (mainFrame.actions[650]) {
+                            mainFrame.actions[651] = true;
                         }
-                        if (!mainFrame.Actions[650]) {
-                            mainFrame.Actions[650] = true;
+                        if (!mainFrame.actions[650]) {
+                            mainFrame.actions[650] = true;
                         }
                     } else {
                         // zur Strafe in die Kueche zurueck
@@ -852,10 +852,10 @@ public class Dingl extends Mainloc {
             case 160:
                 // Dinglinger Brief von Zahrodnik geben -> darauf Dialog MC2
                 mainFrame.krabat.SetFacing(fDingl);
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 138;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 welcheAnim = 1;
                 nextActionID = 161;
                 break;
@@ -875,7 +875,7 @@ public class Dingl extends Mainloc {
                     break;
                 }
                 welcheAnim = 1;
-                if (mainFrame.Actions[520]) {
+                if (mainFrame.actions[520]) {
                     // hat schon um Wein gebettelt
                     PersonSagt("Dingl_7", 0, 47, 5, 163, talkPoint);
                 } else {
@@ -903,10 +903,10 @@ public class Dingl extends Mainloc {
 
             case 165: // Gib Metall an Dingl
                 mainFrame.krabat.SetFacing(fDingl);
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 139;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 nextActionID = 166;
                 break;
 
@@ -924,16 +924,16 @@ public class Dingl extends Mainloc {
                 }
                 welcheAnim = 1;
                 PersonSagt("Dingl_9", 0, 47, 0, 195, talkPoint);
-                mainFrame.Actions[635] = true;
+                mainFrame.actions[635] = true;
                 mainFrame.inventory.vInventory.removeElement(48);
                 break;
 
             case 170: // Gib Skizze an Dingl
                 mainFrame.krabat.SetFacing(fDingl);
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 140;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 nextActionID = 171;
                 break;
 
@@ -951,16 +951,16 @@ public class Dingl extends Mainloc {
                 }
                 welcheAnim = 1;
                 PersonSagt("Dingl_10", 0, 47, 0, 195, talkPoint);
-                mainFrame.Actions[636] = true;
+                mainFrame.actions[636] = true;
                 mainFrame.inventory.vInventory.removeElement(50);
                 break;
 
             case 175: // Gib Dowolnosc an Dingl
                 mainFrame.krabat.SetFacing(fDingl);
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 141;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 nextActionID = 176;
                 break;
 
@@ -978,16 +978,16 @@ public class Dingl extends Mainloc {
                 }
                 welcheAnim = 1;
                 PersonSagt("Dingl_11", 0, 47, 0, 195, talkPoint);
-                mainFrame.Actions[637] = true;
+                mainFrame.actions[637] = true;
                 mainFrame.inventory.vInventory.removeElement(34);
                 break;
 
             case 180: // Gib Kluc an Dingl
                 mainFrame.krabat.SetFacing(fDingl);
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.nAnimation = 137;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 nextActionID = 181;
                 break;
 
@@ -1005,15 +1005,15 @@ public class Dingl extends Mainloc {
                 }
                 welcheAnim = 1;
                 PersonSagt("Dingl_12", 0, 47, 0, 195, talkPoint);
-                mainFrame.invCursor = false;
-                mainFrame.Actions[638] = true;
+                mainFrame.isInventoryCursor = false;
+                mainFrame.actions[638] = true;
                 mainFrame.inventory.vInventory.removeElement(47);
                 break;
 
             case 185:
                 // Reaktion Dinglinger auf Give Dowol njepodpis.
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 PersonSagt("Dingl_13", fDingl, 47, 0, 900, talkPoint);
                 break;
 
@@ -1024,7 +1024,7 @@ public class Dingl extends Mainloc {
 
             case 195:
                 // kontrollieren, ob alles zusammen
-                if (mainFrame.Actions[635] && mainFrame.Actions[636] && mainFrame.Actions[637] && mainFrame.Actions[638]) {
+                if (mainFrame.actions[635] && mainFrame.actions[636] && mainFrame.actions[637] && mainFrame.actions[638]) {
                     nextActionID = 1000;
                 } else {
                     nextActionID = 900;
@@ -1057,7 +1057,7 @@ public class Dingl extends Mainloc {
                 // Reaktion Dinglinger, wen was gegeben
                 PersonSagt("Dingl_17", 0, 47, 2, 700, talkPoint);
                 // Krabat darf dann zur Chodba raus
-                mainFrame.Actions[527] = true;
+                mainFrame.actions[527] = true;
                 break;
 
             // Dialog mit Dinglinger
@@ -1076,7 +1076,7 @@ public class Dingl extends Mainloc {
                 Dialog.ExtendMC("Dingl_74", 523, 1000, null, 633);
 
                 // 3. Frage
-                if (!mainFrame.Actions[530]) {
+                if (!mainFrame.actions[530]) {
                     Dialog.ExtendMC("Dingl_75", 1000, 1000, null, 640);
                 } else {
                     Dialog.ExtendMC("Dingl_76", 1000, 526, new int[]{526}, 641);
@@ -1090,10 +1090,10 @@ public class Dingl extends Mainloc {
                 // 5. Frage
                 Dialog.ExtendMC("Dingl_80", 1000, 1000, null, 900);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -1101,10 +1101,10 @@ public class Dingl extends Mainloc {
             case 701:
             case 801:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -1120,7 +1120,7 @@ public class Dingl extends Mainloc {
             case 611:
                 // Dinglinger faengt Dialog an (Teil 2)
                 PersonSagt("Dingl_19", 0, 47, 2, 600, talkPoint);
-                mainFrame.Actions[520] = true; // Diesen Teil nicht wiederholen
+                mainFrame.actions[520] = true; // Diesen Teil nicht wiederholen
                 break;
 
             case 620:
@@ -1206,10 +1206,10 @@ public class Dingl extends Mainloc {
                 // 3. Frage
                 Dialog.ExtendMC("Dingl_83", 1000, 1000, null, 900);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 701;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -1317,12 +1317,12 @@ public class Dingl extends Mainloc {
                 Dialog.ExtendMC("Dingl_86", 1000, 631, null, 830);
 
                 // 4. Frage
-                if (!mainFrame.Actions[602] && !mainFrame.Actions[951]) {
+                if (!mainFrame.actions[602] && !mainFrame.actions[951]) {
                     Dialog.ExtendMC("Dingl_87", 1000, 1000, null, 840);
                 }
 
                 // 5. Frage
-                if (!mainFrame.Actions[640] && !mainFrame.Actions[641]) {
+                if (!mainFrame.actions[640] && !mainFrame.actions[641]) {
                     Dialog.ExtendMC("Dingl_88", 1000, 1000, null, 850);
                 }
 
@@ -1330,10 +1330,10 @@ public class Dingl extends Mainloc {
                 Dialog.ExtendMC("Dingl_89", 1000, 529, new int[]{529}, 860);
                 Dialog.ExtendMC("Dingl_90", 529, 1000, null, 900);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 801;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -1343,28 +1343,28 @@ public class Dingl extends Mainloc {
             case 812:
             case 813:
                 // Reaktion Dinglinger
-                if (nextActionID == 810 && !mainFrame.Actions[635]) {
+                if (nextActionID == 810 && !mainFrame.actions[635]) {
                     PersonSagt("Dingl_50", 0, 47, 2, 811, talkPoint);
                     break;
                 }
                 if (nextActionID == 810) {
                     nextActionID = 811;
                 }
-                if (nextActionID == 811 && !mainFrame.Actions[636]) {
+                if (nextActionID == 811 && !mainFrame.actions[636]) {
                     PersonSagt("Dingl_51", 0, 47, 2, 812, talkPoint);
                     break;
                 }
                 if (nextActionID == 811) {
                     nextActionID = 812;
                 }
-                if (nextActionID == 812 && !mainFrame.Actions[637]) {
+                if (nextActionID == 812 && !mainFrame.actions[637]) {
                     PersonSagt("Dingl_52", 0, 47, 2, 813, talkPoint);
                     break;
                 }
                 if (nextActionID == 812) {
                     nextActionID = 813;
                 }
-                if (!mainFrame.Actions[638]) {
+                if (!mainFrame.actions[638]) {
                     PersonSagt("Dingl_53", 0, 47, 2, 800, talkPoint);
                     break;
                 }
@@ -1454,9 +1454,9 @@ public class Dingl extends Mainloc {
                 // MC beenden, wenn zuende gelabert...
                 // zuhoerenden Dinglinger wieder ausschalten
                 welcheAnim = 0;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1509,7 +1509,7 @@ public class Dingl extends Mainloc {
             case 1130:
                 // Erzaehler spricht
                 zeigeGrossesBild = true;
-                mainFrame.wave.PlayFile("sfx-dd/modrja.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/modrja.wav");
                 BackgroundMusicPlayer.getInstance().stop();
                 PersonSagt("Dingl_67", 0, 54, 2, 1140, new GenericPoint(320, 200));
                 break;
@@ -1523,8 +1523,8 @@ public class Dingl extends Mainloc {
                 // Gehe zu Doma Teil 4 (aendert sich sicher noch)
                 // Kleidung wieder zurueckwechseln
                 zeigeGrossesBild = false;
-                mainFrame.Actions[511] = false;
-                mainFrame.Actions[850] = false;
+                mainFrame.actions[511] = false;
+                mainFrame.actions[850] = false;
                 NeuesBild(203, locationID);
                 break;
 

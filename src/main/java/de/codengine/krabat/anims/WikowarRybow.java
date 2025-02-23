@@ -81,31 +81,31 @@ public class WikowarRybow extends Mainanim {
     }
 
     private void InitImages() {
-        wik_head[0] = getPicture("gfx/kulow/fh-h.gif");
-        wik_head[1] = getPicture("gfx/kulow/fh-h1.gif");
-        wik_head[2] = getPicture("gfx/kulow/fh-h2.gif");
-        wik_head[3] = getPicture("gfx/kulow/fh-h3.gif");
-        wik_head[4] = getPicture("gfx/kulow/fh-h4.gif");
-        wik_head[5] = getPicture("gfx/kulow/fh-h5.gif");
-        wik_head[6] = getPicture("gfx/kulow/fh-hb.gif");
-        wik_head[7] = getPicture("gfx/kulow/fh-ha.gif");
-        wik_head[8] = getPicture("gfx/kulow/fh-hc.gif");
+        wik_head[0] = getPicture("gfx/kulow/fh-h.png");
+        wik_head[1] = getPicture("gfx/kulow/fh-h1.png");
+        wik_head[2] = getPicture("gfx/kulow/fh-h2.png");
+        wik_head[3] = getPicture("gfx/kulow/fh-h3.png");
+        wik_head[4] = getPicture("gfx/kulow/fh-h4.png");
+        wik_head[5] = getPicture("gfx/kulow/fh-h5.png");
+        wik_head[6] = getPicture("gfx/kulow/fh-hb.png");
+        wik_head[7] = getPicture("gfx/kulow/fh-ha.png");
+        wik_head[8] = getPicture("gfx/kulow/fh-hc.png");
 
-        wik_body[0] = getPicture("gfx/kulow/fh-b.gif");
-        wik_body[1] = getPicture("gfx/kulow/fh-ba.gif");
-        wik_body[2] = getPicture("gfx/kulow/fh-bb.gif");
-        wik_body[3] = getPicture("gfx/kulow/fh-bc.gif");
-        wik_body[4] = getPicture("gfx/kulow/fh-bd.gif");
+        wik_body[0] = getPicture("gfx/kulow/fh-b.png");
+        wik_body[1] = getPicture("gfx/kulow/fh-ba.png");
+        wik_body[2] = getPicture("gfx/kulow/fh-bb.png");
+        wik_body[3] = getPicture("gfx/kulow/fh-bc.png");
+        wik_body[4] = getPicture("gfx/kulow/fh-bd.png");
 
-        wik_kram[0] = getPicture("gfx/kulow/fhz.gif");
-        wik_kram[1] = getPicture("gfx/kulow/fhz2.gif");
-        wik_kram[2] = getPicture("gfx/kulow/fhz3.gif");
+        wik_kram[0] = getPicture("gfx/kulow/fhz.png");
+        wik_kram[1] = getPicture("gfx/kulow/fhz2.png");
+        wik_kram[2] = getPicture("gfx/kulow/fhz3.png");
 
-        octopussy[0] = getPicture("gfx/kulow/oct1.gif");
-        octopussy[1] = getPicture("gfx/kulow/oct2.gif");
-        octopussy[2] = getPicture("gfx/kulow/oct3.gif");
+        octopussy[0] = getPicture("gfx/kulow/oct1.png");
+        octopussy[1] = getPicture("gfx/kulow/oct2.png");
+        octopussy[2] = getPicture("gfx/kulow/oct3.png");
 
-        foreground = getPicture("gfx/kulow/budka.gif");
+        foreground = getPicture("gfx/kulow/budka.png");
     }
 
     // Zeichne WikowarRybow, wie er dasteht oder spricht

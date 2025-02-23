@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Njedz2 extends Mainloc2 {
+public class Njedz2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Njedz2.class);
     private GenericImage background;
     private Mlynk2 mueller;
@@ -105,15 +105,15 @@ public class Njedz2 extends Mainloc2 {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(256, 305, 349, 639, 293, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(323, 335, 256, 305, 259, 292));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(256, 305, 349, 639, 293, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(323, 335, 256, 305, 259, 292));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -139,7 +139,7 @@ public class Njedz2 extends Mainloc2 {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/njedzichow/njedz.gif");
+        background = getPicture("gfx/njedzichow/njedz.png");
 
     }
 
@@ -209,16 +209,16 @@ public class Njedz2 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
         }
 
@@ -239,7 +239,7 @@ public class Njedz2 extends Mainloc2 {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Mueller zeichnen
@@ -270,7 +270,7 @@ public class Njedz2 extends Mainloc2 {
             muellermorphcount = muellermorph.drawBumm(g);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -278,7 +278,7 @@ public class Njedz2 extends Mainloc2 {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -310,7 +310,7 @@ public class Njedz2 extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -318,7 +318,7 @@ public class Njedz2 extends Mainloc2 {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -347,7 +347,7 @@ public class Njedz2 extends Mainloc2 {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -355,7 +355,7 @@ public class Njedz2 extends Mainloc2 {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -365,7 +365,7 @@ public class Njedz2 extends Mainloc2 {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -395,15 +395,15 @@ public class Njedz2 extends Mainloc2 {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -428,7 +428,7 @@ public class Njedz2 extends Mainloc2 {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -447,7 +447,7 @@ public class Njedz2 extends Mainloc2 {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -460,7 +460,7 @@ public class Njedz2 extends Mainloc2 {
                     pTemp = Pwoda;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -478,7 +478,7 @@ public class Njedz2 extends Mainloc2 {
                 // Wasser mitnehmen
                 if (wodaRect.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pwoda);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pwoda);
                     mainFrame.repaint();
                     return;
                 }
@@ -495,28 +495,28 @@ public class Njedz2 extends Mainloc2 {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -525,7 +525,7 @@ public class Njedz2 extends Mainloc2 {
         else {
             if (wodaRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -533,7 +533,7 @@ public class Njedz2 extends Mainloc2 {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 4;
                 }
                 return;
@@ -541,7 +541,7 @@ public class Njedz2 extends Mainloc2 {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -549,7 +549,7 @@ public class Njedz2 extends Mainloc2 {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -565,12 +565,12 @@ public class Njedz2 extends Mainloc2 {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -612,8 +612,8 @@ public class Njedz2 extends Mainloc2 {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -702,7 +702,7 @@ public class Njedz2 extends Mainloc2 {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -773,7 +773,7 @@ public class Njedz2 extends Mainloc2 {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 MuellerMecker(mueller.evalMlynkTalkPoint());
                 TalkPerson = 36;
                 TalkPause = 5;

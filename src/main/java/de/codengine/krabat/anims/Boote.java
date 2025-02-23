@@ -86,15 +86,15 @@ public class Boote extends Mainanim {
     }
 
     private void InitImages() {
-        boots[0] = getPicture("gfx-dd/cychi/boot2.gif");
-        //       boots[1] = getPicture ("gfx-dd/cychi/boot2a.gif");
+        boots[0] = getPicture("gfx-dd/cychi/boot2.png");
+        //       boots[1] = getPicture ("gfx-dd/cychi/boot2a.png");
 
-        boots[1] = getPicture("gfx-dd/hdwor/boot5.gif");
+        boots[1] = getPicture("gfx-dd/hdwor/boot5.png");
 
-        boots[2] = getPicture("gfx-dd/panorama/boot1.gif");
-        boots[3] = getPicture("gfx-dd/panorama/boot1a.gif");
-        boots[4] = getPicture("gfx-dd/panorama/boot3.gif");
-        boots[5] = getPicture("gfx-dd/panorama/boot4.gif");
+        boots[2] = getPicture("gfx-dd/panorama/boot1.png");
+        boots[3] = getPicture("gfx-dd/panorama/boot1a.png");
+        boots[4] = getPicture("gfx-dd/panorama/boot3.png");
+        boots[5] = getPicture("gfx-dd/panorama/boot4.png");
     }
 
     @Override

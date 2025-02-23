@@ -77,28 +77,28 @@ public class DDKowar extends Mainanim {
 
     // Bilder laden
     private void InitImages() {
-        kowar_work_head[0] = getPicture("gfx-dd/terassa/schmied-wh1.gif");
-        kowar_work_head[1] = getPicture("gfx-dd/terassa/schmied-wh2.gif");
-        kowar_work_head[2] = getPicture("gfx-dd/terassa/schmied-wh3.gif");
+        kowar_work_head[0] = getPicture("gfx-dd/terassa/schmied-wh1.png");
+        kowar_work_head[1] = getPicture("gfx-dd/terassa/schmied-wh2.png");
+        kowar_work_head[2] = getPicture("gfx-dd/terassa/schmied-wh3.png");
 
-        kowar_work_body[0] = getPicture("gfx-dd/terassa/schmied-wb1.gif");
-        kowar_work_body[1] = getPicture("gfx-dd/terassa/schmied-wb2.gif");
-        kowar_work_body[2] = getPicture("gfx-dd/terassa/schmied-wb3.gif");
-        kowar_work_body[3] = getPicture("gfx-dd/terassa/schmied-wb4.gif");
-        kowar_work_body[4] = getPicture("gfx-dd/terassa/schmied-wb5.gif");
+        kowar_work_body[0] = getPicture("gfx-dd/terassa/schmied-wb1.png");
+        kowar_work_body[1] = getPicture("gfx-dd/terassa/schmied-wb2.png");
+        kowar_work_body[2] = getPicture("gfx-dd/terassa/schmied-wb3.png");
+        kowar_work_body[3] = getPicture("gfx-dd/terassa/schmied-wb4.png");
+        kowar_work_body[4] = getPicture("gfx-dd/terassa/schmied-wb5.png");
 
-        kowar_talk_head[0] = getPicture("gfx-dd/terassa/schmied-th1.gif");
-        kowar_talk_head[1] = getPicture("gfx-dd/terassa/schmied-th1a.gif");
-        kowar_talk_head[2] = getPicture("gfx-dd/terassa/schmied-th2.gif");
-        kowar_talk_head[3] = getPicture("gfx-dd/terassa/schmied-th3.gif");
-        kowar_talk_head[4] = getPicture("gfx-dd/terassa/schmied-th4.gif");
-        kowar_talk_head[5] = getPicture("gfx-dd/terassa/schmied-th5.gif");
-        kowar_talk_head[6] = getPicture("gfx-dd/terassa/schmied-th6.gif");
-        kowar_talk_head[7] = getPicture("gfx-dd/terassa/schmied-th7.gif");
+        kowar_talk_head[0] = getPicture("gfx-dd/terassa/schmied-th1.png");
+        kowar_talk_head[1] = getPicture("gfx-dd/terassa/schmied-th1a.png");
+        kowar_talk_head[2] = getPicture("gfx-dd/terassa/schmied-th2.png");
+        kowar_talk_head[3] = getPicture("gfx-dd/terassa/schmied-th3.png");
+        kowar_talk_head[4] = getPicture("gfx-dd/terassa/schmied-th4.png");
+        kowar_talk_head[5] = getPicture("gfx-dd/terassa/schmied-th5.png");
+        kowar_talk_head[6] = getPicture("gfx-dd/terassa/schmied-th6.png");
+        kowar_talk_head[7] = getPicture("gfx-dd/terassa/schmied-th7.png");
 
-        kowar_talk_body[0] = getPicture("gfx-dd/terassa/schmied-tb1.gif");
-        kowar_talk_body[1] = getPicture("gfx-dd/terassa/schmied-tb2.gif");
-        kowar_talk_body[2] = getPicture("gfx-dd/terassa/schmied-tb3.gif");
+        kowar_talk_body[0] = getPicture("gfx-dd/terassa/schmied-tb1.png");
+        kowar_talk_body[1] = getPicture("gfx-dd/terassa/schmied-tb2.png");
+        kowar_talk_body[2] = getPicture("gfx-dd/terassa/schmied-tb3.png");
     }
 
     @Override

@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Hdwor extends Mainloc {
+public class Hdwor extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Hdwor.class);
     private GenericImage background;
     private GenericImage stOben;
@@ -77,40 +77,40 @@ public class Hdwor extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(284, 343, 284, 343, 211, 222));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(247, 385, 247, 435, 223, 289));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(330, 362, 330, 362, 290, 319));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(253, 463, 253, 492, 320, 362));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 492, 35, 520, 363, 392));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(70, 113, 70, 132, 347, 362));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(50, 290, 62, 310, 393, 475));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(342, 390, 365, 435, 393, 475));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(445, 520, 500, 576, 393, 475));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 69, 20, 69, 353, 362));
 
-        mainFrame.wegSucher.ClearMatrix(10);
+        mainFrame.pathFinder.ClearMatrix(10);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
-        mainFrame.wegSucher.PosVerbinden(4, 5);
-        mainFrame.wegSucher.PosVerbinden(4, 6);
-        mainFrame.wegSucher.PosVerbinden(4, 7);
-        mainFrame.wegSucher.PosVerbinden(4, 8);
-        mainFrame.wegSucher.PosVerbinden(5, 9);
-        mainFrame.wegSucher.PosVerbinden(4, 9);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.PosVerbinden(4, 6);
+        mainFrame.pathFinder.PosVerbinden(4, 7);
+        mainFrame.pathFinder.PosVerbinden(4, 8);
+        mainFrame.pathFinder.PosVerbinden(5, 9);
+        mainFrame.pathFinder.PosVerbinden(4, 9);
 
 
         InitImages();
@@ -131,9 +131,9 @@ public class Hdwor extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/hdwor/hdwor.gif");
-        stOben = getPicture("gfx-dd/hdwor/st-oben.gif");
-        stUnten = getPicture("gfx-dd/hdwor/st-unten.gif");
+        background = getPicture("gfx-dd/hdwor/hdwor.png");
+        stOben = getPicture("gfx-dd/hdwor/st-oben.png");
+        stUnten = getPicture("gfx-dd/hdwor/st-unten.png");
 
     }
 
@@ -143,14 +143,14 @@ public class Hdwor extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -158,7 +158,7 @@ public class Hdwor extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Boot-Routine
@@ -170,7 +170,7 @@ public class Hdwor extends Mainloc {
         // Boot zeichnen
         boot.drawBoot(g);
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -178,7 +178,7 @@ public class Hdwor extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -221,7 +221,7 @@ public class Hdwor extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -229,7 +229,7 @@ public class Hdwor extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -252,7 +252,7 @@ public class Hdwor extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -260,7 +260,7 @@ public class Hdwor extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -270,7 +270,7 @@ public class Hdwor extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -285,15 +285,15 @@ public class Hdwor extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -318,7 +318,7 @@ public class Hdwor extends Mainloc {
                         pTemp = new GenericPoint(pExitTreppe.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -337,14 +337,14 @@ public class Hdwor extends Mainloc {
                         pTemp = new GenericPoint(pExitStraza.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -367,28 +367,28 @@ public class Hdwor extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -408,7 +408,7 @@ public class Hdwor extends Mainloc {
             if (ausgangStraza.IsPointInRect(pTemp) ||
                     ausgangTreppe.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -416,7 +416,7 @@ public class Hdwor extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -432,12 +432,12 @@ public class Hdwor extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -479,8 +479,8 @@ public class Hdwor extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -498,7 +498,7 @@ public class Hdwor extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 

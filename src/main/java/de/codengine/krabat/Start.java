@@ -41,39 +41,38 @@ public class Start implements Runnable {
     public Thread animator;
 
     // Instanz des z.Z. aktiven Location-Objekts (SS)
-    public Mainloc currentLocation;
+    public MainLocation currentLocation;
 
-    // Cursorvariablen
-    public GenericCursor Cup;
-    public GenericCursor Cdown;
-    public GenericCursor Cleft;
-    public GenericCursor Cright;
-    public GenericCursor Cinventar;
-    public GenericCursor CHinventar;
-    public GenericCursor Normal;
-    public GenericCursor Kreuz;
-    public GenericCursor Warten;
-    public GenericCursor Nix;
-    public boolean invCursor;         // Zeigt an, ob Mauscursor = Inventarstueck
-    public boolean invHighCursor;     // Zeigt an, ob Mauscursor gehighlighted werden muss
+    public GenericCursor cursorUp;
+    public GenericCursor cursorDown;
+    public GenericCursor cursorLeft;
+    public GenericCursor cursorRight;
+    public GenericCursor cursorInventory;
+    public GenericCursor cursorHighlightInventory;
+    public GenericCursor cursorNormal;
+    public GenericCursor cursorCross;
+    public GenericCursor cursorWait;
+    public GenericCursor cursorNone;
+    public boolean isInventoryCursor;         // Zeigt an, ob Mauscursor = Inventarstueck
+    public boolean isInventoryHighlightCursor;     // Zeigt an, ob Mauscursor gehighlighted werden muss
     public int whatItem = 0;          // Welches Inventarstueck haengt an der Angel?
     // Ist nur im Zusammenhang mit invCursor gueltig!!!
 
     // Klasseninitialisierungen
     public Inventar inventory;
-    public Hauptmenu mainmenu;
-    public Wocinic laden;
-    public Skladzic speichern;
+    public MainMenu mainMenu;
+    public LoadGame loadGame;
+    public SaveGame saveGame;
     public Info credits;
     public Krabat krabat;
-    public Imagefont ifont;
-    public Wegsucher wegSucher;
-    public Weggeher wegGeher;
-    public Konc exit;
-    public GenericSoundEffectPlayer wave;
-    public Karta karte;
-    public Slownik woerterbuch;
-    public Skica skica;
+    public Imagefont imageFont;
+    public PathFinder pathFinder;
+    public PathWalker pathWalker;
+    public ExitGame exitGame;
+    public GenericSoundEffectPlayer soundPlayer;
+    public Karta map;
+    public Slownik dictionary;
+    public Skica sketch;
     // public Slownikcreate woerterbuch;
 
     // wichtige Sachen fuer Hauptklasse
@@ -81,44 +80,44 @@ public class Start implements Runnable {
     public GenericImage saveImage;
     public GenericDrawingContext offGraphics;
 
-    public int currLocation;                  // aktuelle Location (Index)
+    public int currentLocationIdx;                  // aktuelle Location (Index)
     public int talkCount;                     // Zaehler, wielange jemand noch spricht und ob ueberhaupt
-    public boolean fPlayAnim;                 // Flag, ob Animation gespielt wird
-    public boolean isWindowactive;            // Flag, ob Spiel aktiv ist
-    public boolean isMousevalid;              // Flag, ob Mausposition im Fenster ist
-    public boolean isAnim;                    // Flag, ob Hintergrundanimationen laufen
-    public boolean isMultiple;                // Flag, ob Multiple Choice gerade aktiv ist
+    public boolean isAnimRunning;                 // Flag, ob Animation gespielt wird
+    public boolean isWindowActive;            // Flag, ob Spiel aktiv ist
+    public boolean isMouseValid;              // Flag, ob Mausposition im Fenster ist
+    public boolean isBackgroundAnimRunning;                    // Flag, ob Hintergrundanimationen laufen
+    public boolean isMultipleChoiceActive;                // Flag, ob Multiple Choice gerade aktiv ist
     private boolean isListenerActive;         // Flag, ob Listener ausgefuehrt werden oder nicht
-    private boolean StopPaint = false;        // Paint - Schleife waehrend Init anhalten
+    private boolean stopPaint = false;        // Paint - Schleife waehrend Init anhalten
 
     // Flags, die Override fuer Menue festlegen
     public int whatScreen;
 
-    public int sprache; // Sprache
+    public static int language; // Sprache
 
     // Variablen fuer Mousemove und Doppelklick
-    public GenericPoint Mousepoint = new GenericPoint(0, 0);
-    public boolean dClick = false;
+    public GenericPoint mousePoint = new GenericPoint(0, 0);
+    public boolean isDoubleClick = false;
 
     // Scrolling - Variablen
-    public int scrollx;
-    public int scrolly;
+    public int scrollX;
+    public int scrollY;
     public boolean isScrolling;
 
-    public boolean[] Actions = new boolean[1002];
-    public boolean Clipset;
+    public boolean[] actions = new boolean[1002];
+    public boolean isClipSet;
 
     // Konstante fuer Labyrinth - Schwierigkeit
-    public static final int LabyHelp = 15;
+    public static final int labyrinthHelp = 15;
 
-    private int KrabatForm = 0; // gibt an, welche KrabatKlasse aktiv ist (default ist von der Seite)
+    private int krabatShape = 0; // gibt an, welche KrabatKlasse aktiv ist (default ist von der Seite)
 
-    public boolean komme_von_karte = false; // hier ein "Achtung" an den CD-Player jeder Kartenlocation,
+    public boolean enteringFromMap = false; // hier ein "Achtung" an den CD-Player jeder Kartenlocation,
     // dass auf jeden Fall die CD neu gestartet werden muss
 
     // this flag is for make sure that the paint method does nothing until it makes sense
     // otherwise there will be NPExceptions, when using FullScreenMode -- SS 2001/11/10
-    boolean fPaintAllowed = false;
+    boolean isPaintAllowed = false;
 
     public GenericImageFetcher imageFetcher;
 
@@ -136,7 +135,7 @@ public class Start implements Runnable {
 
     public static StringManager stringManager;
 
-    public String thirdGameLanguage;
+    public static String thirdGameLanguage;
 
     protected void runGamePt1(
             int currentLanguageIndex,
@@ -151,16 +150,16 @@ public class Start implements Runnable {
         this.container = container;
         this.storageManager = storageManager;
         // Alle wichtigen Variablen zuruecksetzen
-        InitGame();
+        initGame();
 
         stringManager = new StringManager(storageManager);
 
         // Variablen fuer Mausdoppelklick festlegen
-        Mousepoint = new GenericPoint(0, 0);
+        mousePoint = new GenericPoint(0, 0);
 
         Hashtable<String, String> defaults = new Hashtable<>();
         defaults.put(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(currentLanguageIndex));
-        defaults.put(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, "none");
+        defaults.put(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, "de");
         gameProperties = new GameProperties(storageManager, defaults);
         gameProperties.loadProperties();
 
@@ -173,43 +172,42 @@ public class Start implements Runnable {
         }
 
         if (tmpLangIndex >= 1 && tmpLangIndex <= 3) {
-            sprache = tmpLangIndex;
+            language = tmpLangIndex;
         } else {
-            sprache = 1; // fallback is HS
+            language = 1; // fallback is HS
         }
 
         // what is the selected "third language" (if any)
         thirdGameLanguage = gameProperties.getProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION);
-
         // if no language selected yet, this will load German
-        stringManager.defineThirdLanguage(LanguageSupportMapper.getLanguageFilename(thirdGameLanguage), false, "");
+        stringManager.defineThirdLanguage(thirdGameLanguage);
 
-        log.info("Sprache {}", sprache);
+        log.info("Sprache {}", language);
         log.info("Third language: {}", thirdGameLanguage);
 
         // feststellen, ob Sound abgespielt werden darf und wie
-        wave = player;
+        soundPlayer = player;
 
         // Stets vorhandene Klassen laden
-        ifont = new Imagefont(this); // Schrift
-        wegSucher = new Wegsucher();      // Laufroutinen
-        wegGeher = new Weggeher(this);   // Laufroutinen
+        imageFont = new Imagefont(this); // Schrift
+        pathFinder = new PathFinder();      // Laufroutinen
+        pathWalker = new PathWalker(this);   // Laufroutinen
     }
 
     protected void runGamePt2(GenericPoint hotSpot, GenericCursor[] cursors) {
         inventory = new Inventar(this, hotSpot);   // Inventar
 
-        Cup = cursors[0];
-        Cdown = cursors[1];
-        Cleft = cursors[2];
-        Cright = cursors[3];
-        Normal = cursors[4];
-        Kreuz = cursors[5];
-        Warten = cursors[6];
-        Nix = cursors[7];
+        cursorUp = cursors[0];
+        cursorDown = cursors[1];
+        cursorLeft = cursors[2];
+        cursorRight = cursors[3];
+        cursorNormal = cursors[4];
+        cursorCross = cursors[5];
+        cursorWait = cursors[6];
+        cursorNone = cursors[7];
 
-        mainmenu = new Hauptmenu(this, gameProperties);  // Hauptmenue
-        exit = new Konc(this, gameProperties);       // Sicherheitsabfragen
+        mainMenu = new MainMenu(this, gameProperties);  // Hauptmenue
+        exitGame = new ExitGame(this, gameProperties);       // Sicherheitsabfragen
         krabat = new KrabatNormal(this);
 
         CheckKrabat();
@@ -219,7 +217,7 @@ public class Start implements Runnable {
         repaintCounter = new AtomicInteger();
 
         // finally paint and run everything 
-        fPaintAllowed = true;
+        isPaintAllowed = true;
     }
 
     protected void runGamePt3() {
@@ -227,6 +225,8 @@ public class Start implements Runnable {
         offGraphics = offImage.getGraphics();
         log.debug("Got DB Offscreen-Image");
 
+        // FIXME
+        /*
         if (LanguageSupportMapper.getInternalCode(thirdGameLanguage) == 0) {
             // show language chooser
             ConstructLocation(109);
@@ -234,32 +234,35 @@ public class Start implements Runnable {
             // language set in properties, start game
             ConstructLocation(100);
         }
+         */
 
-        start_thread();
+        ConstructLocation(100);
+
+        startThread();
         repaint();
         log.debug("Well, here we go...");
     }
 
     // Hier wird alles fuer Neustart initialisiert
-    private void InitGame() {
+    private void initGame() {
         // Aktionen loeschen (Krabat hat noch nichts gemacht!)
         for (int i = 0; i <= 1000; ++i) {
-            Actions[i] = false;
+            actions[i] = false;
         }
-        invCursor = false;
-        invHighCursor = false;
+        isInventoryCursor = false;
+        isInventoryHighlightCursor = false;
         talkCount = 0;
-        fPlayAnim = false;
-        isWindowactive = true;
-        isMousevalid = true;
-        isAnim = false;
-        isMultiple = false;
+        isAnimRunning = false;
+        isWindowActive = true;
+        isMouseValid = true;
+        isBackgroundAnimRunning = false;
+        isMultipleChoiceActive = false;
         isListenerActive = false;
         whatScreen = 0;
-        scrollx = 0;
-        scrolly = 0;
+        scrollX = 0;
+        scrollY = 0;
         isScrolling = false;
-        Clipset = false;
+        isClipSet = false;
     }
 
     public void repaint() {
@@ -283,13 +286,13 @@ public class Start implements Runnable {
 		*/
 
         // no paint, until it make sense (othwerwise exceptions in full screen mode)
-        if (!fPaintAllowed) {
+        if (!isPaintAllowed) {
             return null;
         }
 
         // bei aktivem Exit (Sicherheitsabfragen) Paint umleiten - Prioritaet 1 - kein Scrolling
-        if (exit.active) {
-            exit.paintExit(offGraphics);
+        if (exitGame.active) {
+            exitGame.paintExit(offGraphics);
             return offImage;
         }
 
@@ -300,25 +303,25 @@ public class Start implements Runnable {
                     inventory.paintInventory(offGraphics);
                     break;
                 case 2:
-                    mainmenu.paintMainmenu(offGraphics);
+                    mainMenu.paintMainmenu(offGraphics);
                     break;
                 case 3:
-                    laden.paintLaden(offGraphics);
+                    loadGame.paintLaden(offGraphics);
                     break;
                 case 4:
-                    speichern.paintSpeichern(offGraphics);
+                    saveGame.paintSpeichern(offGraphics);
                     break;
                 case 5:
                     credits.paintCredits(offGraphics);
                     break;
                 case 6:
-                    karte.paintKarte(offGraphics);
+                    map.paintKarte(offGraphics);
                     break;
                 case 7:
-                    woerterbuch.paintSlownik(offGraphics);
+                    dictionary.paintSlownik(offGraphics);
                     break;
                 case 8:
-                    skica.paintSkizze(offGraphics);
+                    sketch.paintSkizze(offGraphics);
                     break;
                 default:
                     log.error("Wrong Paint Prio 2! whatScreen = {}", whatScreen);
@@ -327,7 +330,7 @@ public class Start implements Runnable {
         }
 
         // Scrolling berechnen und ausfuehren
-        ScrollIt();
+        scrollIt();
 
         // paint in der jeweiligen Location aufrufen - Prioritaet 3 (SS)
         if (currentLocation != null) {
@@ -344,11 +347,11 @@ public class Start implements Runnable {
     }
 
     // Scrolling - Routine
-    private void ScrollIt() {
+    private void scrollIt() {
         int scrollOffsetx;
 
         // erst mal schauen, wer ueberhaupt alles scrollt...
-        switch (currLocation) {
+        switch (currentLocationIdx) {
             case 6:
             case 71:
                 // Doma in Teil 1 und 2
@@ -410,35 +413,35 @@ public class Start implements Runnable {
         }
 
         // Hier allgemeine Scrollingroutine
-        int temp = krabat.getPos().x - scrollx;
+        int temp = krabat.getPos().x - scrollX;
 
         isScrolling = false;
         if (temp < 315) {
-            scrollx -= scrollOffsetx;
+            scrollX -= scrollOffsetx;
             isScrolling = true;
         }
         if (temp > 325) {
-            scrollx += scrollOffsetx;
+            scrollX += scrollOffsetx;
             isScrolling = true;
         }
-        if (scrollx < 0) {
-            scrollx = 0;
+        if (scrollX < 0) {
+            scrollX = 0;
             isScrolling = false;
         }
-        if (scrollx > 640) {
-            scrollx = 640;
+        if (scrollX > 640) {
+            scrollX = 640;
             isScrolling = false;
         }
 
         // Cursor neu berechnen, weil Hintergrund verschoben wurde
         // aus case-bloecken entfernt (SS)
         if (currentLocation != null) {
-            currentLocation.evalMouseMoveEvent(Mousepoint);
+            currentLocation.evalMouseMoveEvent(mousePoint);
         }
     }
 
     // Thread starten und immer laufen lassen
-    private void start_thread() {
+    private void startThread() {
         animator = new Thread(this);
         animator.setPriority(Thread.NORM_PRIORITY);
         animator.setDaemon(true); // thread shall not block VM termination
@@ -476,17 +479,17 @@ public class Start implements Runnable {
 
     private boolean needsRepaint(boolean repaintTriggered) {
         return (krabat.isWalking || krabat.isWandering ||
-                krabat.nAnimation != 0 || talkCount != 0 || fPlayAnim
-                || isScrolling || isAnim || repaintTriggered)
-                && !StopPaint;
+                krabat.nAnimation != 0 || talkCount != 0 || isAnimRunning
+                || isScrolling || isBackgroundAnimRunning || repaintTriggered)
+                && !stopPaint;
     }
 
     public void mouseEntered() {
-        isMousevalid = true;
+        isMouseValid = true;
     }
 
     public void mouseExited() {
-        isMousevalid = false;
+        isMouseValid = false;
 
         //Signal an Menuelocations, dass HiLight abgeschaltet werden soll
         if (whatScreen != 0) {
@@ -495,25 +498,25 @@ public class Start implements Runnable {
                     inventory.evalMouseExitEvent();
                     break;
                 case 2:
-                    mainmenu.evalMouseExitEvent();
+                    mainMenu.evalMouseExitEvent();
                     break;
                 case 3:
-                    laden.evalMouseExitEvent();
+                    loadGame.evalMouseExitEvent();
                     break;
                 case 4:
-                    speichern.evalMouseExitEvent();
+                    saveGame.evalMouseExitEvent();
                     break;
                 case 5:
                     credits.evalMouseExitEvent();
                     break;
                 case 6:
-                    karte.evalMouseExitEvent();
+                    map.evalMouseExitEvent();
                     break;
                 case 7:
-                    woerterbuch.evalMouseExitEvent();
+                    dictionary.evalMouseExitEvent();
                     break;
                 case 8:
-                    skica.evalMouseExitEvent();
+                    sketch.evalMouseExitEvent();
                     break;
                 default:
                     log.error("Wrong Exitevent! whatScreen = {}", whatScreen);
@@ -528,18 +531,18 @@ public class Start implements Runnable {
     }
 
     public synchronized final void mousePressed(GenericMouseEvent e) {
-        if (!isMousevalid || /*(isWindowactive == false) || */
+        if (!isMouseValid || /*(isWindowactive == false) || */
                 !isListenerActive) {
             // Versuch, Event zu loeschen, wenn nicht benoetigt
             return;
         }
 
         // apply the doubleclick detection
-        dClick = e.getDoubleClick();
+        isDoubleClick = e.getDoubleClick();
 
         // Wenn Exit aktiv, dorthin - Prio 1
-        if (exit.active) {
-            exit.evalMouseEvent(e);
+        if (exitGame.active) {
+            exitGame.evalMouseEvent(e);
             return;
         }
 
@@ -550,25 +553,25 @@ public class Start implements Runnable {
                     inventory.evalMouseEvent(e);
                     break;
                 case 2:
-                    mainmenu.evalMouseEvent(e);
+                    mainMenu.evalMouseEvent(e);
                     break;
                 case 3:
-                    laden.evalMouseEvent(e);
+                    loadGame.evalMouseEvent(e);
                     break;
                 case 4:
-                    speichern.evalMouseEvent(e);
+                    saveGame.evalMouseEvent(e);
                     break;
                 case 5:
                     credits.evalMouseEvent(e);
                     break;
                 case 6:
-                    karte.evalMouseEvent(e);
+                    map.evalMouseEvent(e);
                     break;
                 case 7:
-                    woerterbuch.evalMouseEvent(e);
+                    dictionary.evalMouseEvent(e);
                     break;
                 case 8:
-                    skica.evalMouseEvent(e);
+                    sketch.evalMouseEvent(e);
                     break;
                 default:
                     log.error("Wrong Pressevent Prio 2! whatScreen = {}", whatScreen);
@@ -592,11 +595,11 @@ public class Start implements Runnable {
         if (/*(isWindowactive == false) ||*/ !isListenerActive) {
             return;
         }
-        Mousepoint = e.getPoint();
+        mousePoint = e.getPoint();
 
         // Bei aktivem Exit dorthin - Prio 1
-        if (exit.active) {
-            exit.evalMouseMoveEvent(Mousepoint);
+        if (exitGame.active) {
+            exitGame.evalMouseMoveEvent(mousePoint);
             return;
         }
 
@@ -604,28 +607,28 @@ public class Start implements Runnable {
         if (whatScreen != 0) {
             switch (whatScreen) {
                 case 1:
-                    inventory.evalMouseMoveEvent(Mousepoint);
+                    inventory.evalMouseMoveEvent(mousePoint);
                     break;
                 case 2:
-                    mainmenu.evalMouseMoveEvent(Mousepoint);
+                    mainMenu.evalMouseMoveEvent(mousePoint);
                     break;
                 case 3:
-                    laden.evalMouseMoveEvent(Mousepoint);
+                    loadGame.evalMouseMoveEvent(mousePoint);
                     break;
                 case 4:
-                    speichern.evalMouseMoveEvent(Mousepoint);
+                    saveGame.evalMouseMoveEvent(mousePoint);
                     break;
                 case 5:
-                    credits.evalMouseMoveEvent(Mousepoint);
+                    credits.evalMouseMoveEvent(mousePoint);
                     break;
                 case 6:
-                    karte.evalMouseMoveEvent(Mousepoint);
+                    map.evalMouseMoveEvent(mousePoint);
                     break;
                 case 7:
-                    woerterbuch.evalMouseMoveEvent(Mousepoint);
+                    dictionary.evalMouseMoveEvent(mousePoint);
                     break;
                 case 8:
-                    skica.evalMouseMoveEvent();
+                    sketch.evalMouseMoveEvent();
                     break;
                 default:
                     log.error("Wrong Moveevent Prio 2! whatScreen = {}", whatScreen);
@@ -635,7 +638,7 @@ public class Start implements Runnable {
 
         // ansonsten an Location - Prio 3
         if (currentLocation != null) {
-            currentLocation.evalMouseMoveEvent(Mousepoint);
+            currentLocation.evalMouseMoveEvent(mousePoint);
         }
     }
 
@@ -643,8 +646,8 @@ public class Start implements Runnable {
         if (!isListenerActive) {
             return;
         }
-        Clipset = false;
-        exit.Activate(1);
+        isClipSet = false;
+        exitGame.Activate(1);
     }
 
     // verlassene Location wird geloescht
@@ -654,22 +657,22 @@ public class Start implements Runnable {
         // Laden, Speichern, Credits, Karte muss jedoch geloescht werden 
         switch (oldLocation) {
             case 102:
-                laden = null;
+                loadGame = null;
                 break;
             case 103:
-                speichern = null;
+                saveGame = null;
                 break;
             case 104:
                 credits = null;
                 break;
             case 106:
-                karte = null;
+                map = null;
                 break;
             case 107:
-                woerterbuch = null;
+                dictionary = null;
                 break;
             case 108:
-                skica = null;
+                sketch = null;
                 break;
         }
     }
@@ -704,75 +707,75 @@ public class Start implements Runnable {
             case 0:
                 break;
             case 1:
-                currentLocation = new Ralbicy1(this, currLocation);
+                currentLocation = new Ralbicy1(this, currentLocationIdx);
                 break;
             case 2:
-                currentLocation = new Most1(this, currLocation);
+                currentLocation = new Most1(this, currentLocationIdx);
                 break;
             case 3:
-                currentLocation = new Jitk1(this, currLocation);
+                currentLocation = new Jitk1(this, currentLocationIdx);
                 break;
             case 4:
-                currentLocation = new Haty1(this, currLocation);
+                currentLocation = new Haty1(this, currentLocationIdx);
                 break;
             case 5:
-                currentLocation = new Les1(this, currLocation);
+                currentLocation = new Les1(this, currentLocationIdx);
                 break;
             case 6:
-                currentLocation = new Doma1(this, currLocation);
+                currentLocation = new Doma1(this, currentLocationIdx);
                 break;
             case 7:
-                currentLocation = new Sunow1(this, currLocation);
+                currentLocation = new Sunow1(this, currentLocationIdx);
                 break;
             case 8:
-                currentLocation = new Rapak1(this, currLocation);
+                currentLocation = new Rapak1(this, currentLocationIdx);
                 break;
             case 9:
-                currentLocation = new Wobzor1(this, currLocation);
+                currentLocation = new Wobzor1(this, currentLocationIdx);
                 break;
             case 10:
-                currentLocation = new Wjerby1(this, currLocation);
+                currentLocation = new Wjerby1(this, currentLocationIdx);
                 break;
             case 11:
-                currentLocation = new Polo1(this, currLocation);
+                currentLocation = new Polo1(this, currentLocationIdx);
                 break;
             case 12:
-                currentLocation = new Kupa1(this, currLocation);
+                currentLocation = new Kupa1(this, currentLocationIdx);
                 break;
             case 13:
-                currentLocation = new Wjes1(this, currLocation);
+                currentLocation = new Wjes1(this, currentLocationIdx);
                 break;
             case 14:
-                currentLocation = new Hojnt1(this, currLocation);
+                currentLocation = new Hojnt1(this, currentLocationIdx);
                 break;
             case 15:
-                currentLocation = new Njedz1(this, currLocation);
+                currentLocation = new Njedz1(this, currentLocationIdx);
                 break;
             case 16:
-                currentLocation = new Wila1(this, currLocation);
+                currentLocation = new Wila1(this, currentLocationIdx);
                 break;
             case 17:
-                currentLocation = new CornyCholmc1(this, currLocation);
+                currentLocation = new CornyCholmc1(this, currentLocationIdx);
                 break;
             case 18:
-                currentLocation = new Dubring1(this, currLocation);
+                currentLocation = new Dubring1(this, currentLocationIdx);
                 break;
             case 19:
-                currentLocation = new Zdzary1(this, currLocation);
+                currentLocation = new Zdzary1(this, currentLocationIdx);
                 break;
             case 20:
-                currentLocation = new Mertens1(this, currLocation);
+                currentLocation = new Mertens1(this, currentLocationIdx);
                 break;
             case 21:
-                currentLocation = new Kulow1(this, currLocation);
+                currentLocation = new Kulow1(this, currentLocationIdx);
                 break;
             case 22:
-                currentLocation = new Cyrkej1(this, currLocation);
+                currentLocation = new Cyrkej1(this, currentLocationIdx);
                 break;
             //    case 23: currentLocation = (Mainloc) new pinca1 (this, currLocation);
             //             break;
             case 24:
-                currentLocation = new Hoscenc1(this, currLocation);
+                currentLocation = new Hoscenc1(this, currentLocationIdx);
                 break;
             case 25:
                 currentLocation = new Mlyn1(this);
@@ -790,25 +793,25 @@ public class Start implements Runnable {
                 currentLocation = new HojntAuto(this);
                 break;
             case 70:
-                currentLocation = new Cyrkej2(this, currLocation);
+                currentLocation = new Cyrkej2(this, currentLocationIdx);
                 break;
             case 71:
-                currentLocation = new Doma2(this, currLocation);
+                currentLocation = new Doma2(this, currentLocationIdx);
                 break;
             case 72:
                 currentLocation = new Dubring2(this);
                 break;
             case 73:
-                currentLocation = new Hojnt2(this, currLocation);
+                currentLocation = new Hojnt2(this, currentLocationIdx);
                 break;
             case 74:
-                currentLocation = new Jitk2(this, currLocation);
+                currentLocation = new Jitk2(this, currentLocationIdx);
                 break;
             case 75:
-                currentLocation = new CornyCholmc2(this, currLocation);
+                currentLocation = new CornyCholmc2(this, currentLocationIdx);
                 break;
             case 76:
-                currentLocation = new Kulow2(this, currLocation);
+                currentLocation = new Kulow2(this, currentLocationIdx);
                 break;
             case 77:
                 currentLocation = new Labyr122(this);
@@ -817,49 +820,49 @@ public class Start implements Runnable {
                 currentLocation = new Les2(this);
                 break;
             case 79:
-                currentLocation = new Mertens2(this, currLocation);
+                currentLocation = new Mertens2(this, currentLocationIdx);
                 break;
             case 80:
-                currentLocation = new Njedz2(this, currLocation);
+                currentLocation = new Njedz2(this, currentLocationIdx);
                 break;
             case 81:
                 currentLocation = new Pinca2(this);
                 break;
             case 82:
-                currentLocation = new Ralbicy2(this, currLocation);
+                currentLocation = new Ralbicy2(this, currentLocationIdx);
                 break;
             case 83:
-                currentLocation = new Rapak2(this, currLocation);
+                currentLocation = new Rapak2(this, currentLocationIdx);
                 break;
             case 84:
-                currentLocation = new Sunow2(this, currLocation);
+                currentLocation = new Sunow2(this, currentLocationIdx);
                 break;
             case 85:
-                currentLocation = new Wila2(this, currLocation);
+                currentLocation = new Wila2(this, currentLocationIdx);
                 break;
             case 86:
                 currentLocation = new Wjerby2(this);
                 break;
             case 87:
-                currentLocation = new Wjes2(this, currLocation);
+                currentLocation = new Wjes2(this, currentLocationIdx);
                 break;
             case 88:
                 currentLocation = new Wobzor2(this);
                 break;
             case 89:
-                currentLocation = new Most2(this, currLocation);
+                currentLocation = new Most2(this, currentLocationIdx);
                 break;
             case 90:
-                currentLocation = new Mlyn2(this, currLocation);
+                currentLocation = new Mlyn2(this, currentLocationIdx);
                 break;
             case 91:
-                currentLocation = new Inmlyn(this, currLocation);
+                currentLocation = new Inmlyn(this, currentLocationIdx);
                 break;
             case 92:
-                currentLocation = new Swoboda(this, currLocation);
+                currentLocation = new Swoboda(this, currentLocationIdx);
                 break;
             case 93:
-                currentLocation = new Zdzary2(this, currLocation);
+                currentLocation = new Zdzary2(this, currentLocationIdx);
                 break;
             case 94:
                 currentLocation = new Jezba(this);
@@ -871,147 +874,147 @@ public class Start implements Runnable {
                 currentLocation = new Extro(this);
                 break;
             case 102:
-                laden = new Wocinic(this);
-                newLocation = currLocation; // bei Laden, Speichern, Credits
+                loadGame = new LoadGame(this);
+                newLocation = currentLocationIdx; // bei Laden, Speichern, Credits
                 break;
             case 103:
-                speichern = new Skladzic(this);
-                newLocation = currLocation; // bleibt alte Location bestehen
+                saveGame = new SaveGame(this);
+                newLocation = currentLocationIdx; // bleibt alte Location bestehen
                 break;
             case 104:
                 credits = new Info(this);
-                newLocation = currLocation;
+                newLocation = currentLocationIdx;
                 break;
             case 105:
                 currentLocation = new Install(this);
                 break;
             case 106:
-                karte = new Karta(this);
-                newLocation = currLocation; // alte Location bleibt bestehen
+                map = new Karta(this);
+                newLocation = currentLocationIdx; // alte Location bleibt bestehen
                 break;
             case 107:
-                woerterbuch = new Slownik(this);
+                dictionary = new Slownik(this);
                 // woerterbuch = new Slownikcreate (this);
-                newLocation = currLocation;
+                newLocation = currentLocationIdx;
                 break;
             case 108:
-                skica = new Skica(this);
-                newLocation = currLocation; // alte Location bleibt bestehen
+                sketch = new Skica(this);
+                newLocation = currentLocationIdx; // alte Location bleibt bestehen
                 break;
             case 109:
                 currentLocation = new LanguageChooser(this, gameProperties);
                 break;
             // Dresdener Locations
             case 120:
-                currentLocation = new Kuchnja(this, currLocation);
+                currentLocation = new Kuchnja(this, currentLocationIdx);
                 break;
             case 121:
-                currentLocation = new Haska(this, currLocation);
+                currentLocation = new Haska(this, currentLocationIdx);
                 break;
             case 122:
-                currentLocation = new Spaniska(this, currLocation);
+                currentLocation = new Spaniska(this, currentLocationIdx);
                 break;
             case 123:
-                currentLocation = new Hala(this, currLocation);
+                currentLocation = new Hala(this, currentLocationIdx);
                 break;
             case 124:
-                currentLocation = new Komedij(this, currLocation);
+                currentLocation = new Komedij(this, currentLocationIdx);
                 break;
             case 125:
-                currentLocation = new Jewisco(this, currLocation);
+                currentLocation = new Jewisco(this, currentLocationIdx);
                 break;
             case 126:
-                currentLocation = new Murja(this, currLocation);
+                currentLocation = new Murja(this, currentLocationIdx);
                 break;
             case 127:
-                currentLocation = new Terassa(this, currLocation);
+                currentLocation = new Terassa(this, currentLocationIdx);
                 break;
             case 128:
-                currentLocation = new Straze(this, currLocation);
+                currentLocation = new Straze(this, currentLocationIdx);
                 break;
             case 129:
                 currentLocation = new Mlynkmurja(this);
                 break;
             case 130:
-                currentLocation = new Hdwor(this, currLocation);
+                currentLocation = new Hdwor(this, currentLocationIdx);
                 break;
             case 131:
-                currentLocation = new Trepjena(this, currLocation);
+                currentLocation = new Trepjena(this, currentLocationIdx);
                 break;
             case 132:
-                currentLocation = new Kuchnjaopen(this, currLocation);
+                currentLocation = new Kuchnjaopen(this, currentLocationIdx);
                 break;
             case 140:
-                currentLocation = new Saal(this, currLocation);
+                currentLocation = new Saal(this, currentLocationIdx);
                 break;
             case 141:
-                currentLocation = new Dingl(this, currLocation);
+                currentLocation = new Dingl(this, currentLocationIdx);
                 break;
             case 142:
-                currentLocation = new Chodba(this, currLocation);
+                currentLocation = new Chodba(this, currentLocationIdx);
                 break;
             case 143:
-                currentLocation = new Casnik(this, currLocation);
+                currentLocation = new Casnik(this, currentLocationIdx);
                 break;
             case 144:
-                currentLocation = new Couch(this, currLocation);
+                currentLocation = new Couch(this, currentLocationIdx);
                 break;
             case 145:
-                currentLocation = new Zelen(this, currLocation);
+                currentLocation = new Zelen(this, currentLocationIdx);
                 break;
             case 146:
-                currentLocation = new Wonka(this, currLocation);
+                currentLocation = new Wonka(this, currentLocationIdx);
                 break;
             case 150:
-                currentLocation = new Cychi(this, currLocation);
+                currentLocation = new Cychi(this, currentLocationIdx);
                 break;
             case 151:
-                currentLocation = new Zachod(this, currLocation);
+                currentLocation = new Zachod(this, currentLocationIdx);
                 break;
             case 152:
-                currentLocation = new Gang(this, currLocation);
+                currentLocation = new Gang(this, currentLocationIdx);
                 break;
             case 153:
-                currentLocation = new Kapala(this, currLocation);
+                currentLocation = new Kapala(this, currentLocationIdx);
                 break;
             case 160:
-                currentLocation = new Panorama(this, currLocation);
+                currentLocation = new Panorama(this, currentLocationIdx);
                 break;
             case 161:
-                currentLocation = new Stwa(this, currLocation);
+                currentLocation = new Stwa(this, currentLocationIdx);
                 break;
             case 162:
-                currentLocation = new Zahrodnik(this, currLocation);
+                currentLocation = new Zahrodnik(this, currentLocationIdx);
                 break;
             case 163:
-                currentLocation = new Habor(this, currLocation);
+                currentLocation = new Habor(this, currentLocationIdx);
                 break;
             case 164:
-                currentLocation = new Lodz(this, currLocation);
+                currentLocation = new Lodz(this, currentLocationIdx);
                 break;
             case 170:
-                currentLocation = new Zastup(this, currLocation);
+                currentLocation = new Zastup(this, currentLocationIdx);
                 break;
             case 171:
-                currentLocation = new Manega(this, currLocation);
+                currentLocation = new Manega(this, currentLocationIdx);
                 break;
             case 175:
-                currentLocation = new StareWiki(this, currLocation);
+                currentLocation = new StareWiki(this, currentLocationIdx);
                 break;
             case 180:
-                currentLocation = new DDKarta(this, currLocation);
+                currentLocation = new DDKarta(this, currentLocationIdx);
                 break;
             case 181:
                 currentLocation = new Poklad(this);
                 break;
             case 200:
-                currentLocation = new Wotrow(this, currLocation);
+                currentLocation = new Wotrow(this, currentLocationIdx);
                 break;
             case 201:
-                currentLocation = new Hrodz(this, currLocation);
+                currentLocation = new Hrodz(this, currentLocationIdx);
                 break;
             case 202:
-                currentLocation = new Rowy(this, currLocation);
+                currentLocation = new Rowy(this, currentLocationIdx);
                 break;
             case 203:
                 currentLocation = new Doma4(this);
@@ -1019,7 +1022,7 @@ public class Start implements Runnable {
             default:
                 log.error("Falsche Location-ID fuer Konstruktor! newLocation: {}", newLocation);
         }
-        currLocation = newLocation;
+        currentLocationIdx = newLocation;
 
         // Paint - Schleife wieder aktivieren
         NoPaint(false);
@@ -1073,7 +1076,7 @@ public class Start implements Runnable {
             default:
                 log.error("Not available! newLocation: {}", newLocation);
         }
-        currLocation = newLocation;
+        currentLocationIdx = newLocation;
 
         // Paint - Schleife wieder aktivieren
         NoPaint(false);
@@ -1091,15 +1094,15 @@ public class Start implements Runnable {
             System.gc();
         }
 
-        currentLocation = new Doma1(this, currLocation, gans1, gans2, gans3);
+        currentLocation = new Doma1(this, currentLocationIdx, gans1, gans2, gans3);
 
-        currLocation = newLocation;
+        currentLocationIdx = newLocation;
 
         NoPaint(false);
     }
 
     public synchronized final void keyPressed(GenericKeyEvent e) {
-        if (!isListenerActive || !isWindowactive) {
+        if (!isListenerActive || !isWindowActive) {
             return;
         }
 
@@ -1108,8 +1111,8 @@ public class Start implements Runnable {
         int Taste = e.getKeyCode();
 
         // Bei aktivem Exit dorthin - Prio 1
-        if (exit.active) {
-            exit.evalKeyEvent(e);
+        if (exitGame.active) {
+            exitGame.evalKeyEvent(e);
             return;
         }
 
@@ -1118,7 +1121,7 @@ public class Start implements Runnable {
             if (Taste == GenericKeyEvent.VK_F5) {
                 ConstructLocation(107);
                 whatScreen = 7;
-                Clipset = false;
+                isClipSet = false;
                 repaint();
             }
         }
@@ -1130,25 +1133,25 @@ public class Start implements Runnable {
                     inventory.evalKeyEvent(e);
                     break;
                 case 2:
-                    mainmenu.evalKeyEvent(e);
+                    mainMenu.evalKeyEvent(e);
                     break;
                 case 3:
-                    laden.evalKeyEvent(e);
+                    loadGame.evalKeyEvent(e);
                     break;
                 case 4:
-                    speichern.evalKeyEvent(e);
+                    saveGame.evalKeyEvent(e);
                     break;
                 case 5:
                     credits.evalKeyEvent(e);
                     break;
                 case 6:
-                    karte.evalKeyEvent(e);
+                    map.evalKeyEvent(e);
                     break;
                 case 7:
-                    woerterbuch.evalKeyEvent(e);
+                    dictionary.evalKeyEvent(e);
                     break;
                 case 8:
-                    skica.evalKeyEvent(e);
+                    sketch.evalKeyEvent(e);
                     break;
                 default:
                     log.error("Wrong Keyevent Prio 2! whatScreen: {}", whatScreen);
@@ -1166,14 +1169,14 @@ public class Start implements Runnable {
     public void StoreImage() {
         GenericImage tempImage = GenericToolkit.getDefaultToolkit().createImage(640, 480);
         GenericDrawingContext tempGraphics = tempImage.getGraphics();
-        tempGraphics.drawImage(offImage, -scrollx, -scrolly);
+        tempGraphics.drawImage(offImage, -scrollX, -scrollY);
         saveImage = tempImage.getScaledInstance(119, 89, GenericImage.SCALE_DEFAULT);
     }
 
     // Programmneustart
     public void restart() {
-        DestructLocation(currLocation);
-        InitGame();
+        DestructLocation(currentLocationIdx);
+        initGame();
         inventory.ResetInventory();
         ConstructLocation(100);
         repaint();
@@ -1182,7 +1185,7 @@ public class Start implements Runnable {
     // Alle relevanten Listener fuer Mousepress und Mousemove deaktivieren
     public void Freeze(boolean cold) {
         if (cold) {
-            setCursor(Warten);
+            setCursor(cursorWait);
             isListenerActive = false;
         } else {
             isListenerActive = true;
@@ -1191,7 +1194,7 @@ public class Start implements Runnable {
 
     // Repaint - Schleife anhalten, verhindert Paint-Anhaeufungen
     public void NoPaint(boolean haltan) {
-        StopPaint = haltan; // true = stop, false = weiter
+        stopPaint = haltan; // true = stop, false = weiter
     }
 
     // diese Methode castet den richtigen Spieler, je nach Action - Array
@@ -1209,26 +1212,26 @@ public class Start implements Runnable {
         int merkDef = krabat.defScale;
 
         // normales Aussehen
-        if (!Actions[850] && !Actions[851]) {
-            if (KrabatForm != 1) {
+        if (!actions[850] && !actions[851]) {
+            if (krabatShape != 1) {
                 krabat = new KrabatNormal(this);
-                KrabatForm = 1;
+                krabatShape = 1;
             }
         }
 
         // hat sich Drasta angezogen
-        if (Actions[850]) {
-            if (KrabatForm != 2) {
+        if (actions[850]) {
+            if (krabatShape != 2) {
                 krabat = new KrabatDrasta(this);
-                KrabatForm = 2;
+                krabatShape = 2;
             }
         }
 
         // ist von oben zu sehen
-        if (Actions[851]) {
-            if (KrabatForm != 3) {
+        if (actions[851]) {
+            if (krabatShape != 3) {
                 krabat = new KrabatOben(this);
-                KrabatForm = 3;
+                krabatShape = 3;
             }
         }
 
@@ -1242,6 +1245,6 @@ public class Start implements Runnable {
     }
 
     public GenericImage constructCursorImage(String Pathname) {
-        return imageFetcher.fetchImage(Pathname);
+        return imageFetcher.fetchImage(Pathname, false);
     }
 }

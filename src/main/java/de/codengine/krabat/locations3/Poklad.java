@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Poklad extends Mainloc {
+public class Poklad extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Poklad.class);
     private GenericImage schody;
     private GenericImage komora;
@@ -110,11 +110,11 @@ public class Poklad extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        schody = getPicture("gfx-dd/trepj/trepj.gif");
-        komora = getPicture("gfx-dd/poklad/poklad.gif");
-        skla = getPicture("gfx-dd/poklad/pskla.gif");
+        schody = getPicture("gfx-dd/trepj/trepj.png");
+        komora = getPicture("gfx-dd/poklad/poklad.png");
+        skla = getPicture("gfx-dd/poklad/pskla.png");
 
-        vorderschody = getPicture("gfx-dd/trepj/trepj-vorn.gif");
+        vorderschody = getPicture("gfx-dd/trepj/trepj-vorn.png");
 
     }
 
@@ -136,15 +136,15 @@ public class Poklad extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            mainFrame.fPlayAnim = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            mainFrame.isAnimRunning = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -157,7 +157,7 @@ public class Poklad extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // straza und Dinglinger Hintergrund loeschen
@@ -233,7 +233,7 @@ public class Poklad extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -241,7 +241,7 @@ public class Poklad extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -263,7 +263,7 @@ public class Poklad extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -279,7 +279,7 @@ public class Poklad extends Mainloc {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -333,7 +333,7 @@ public class Poklad extends Mainloc {
                 if (!walkReady) {
                     break;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 dinglingerwalk.defScale = 0;
                 dinglingerwalk.setPos(dinglPoint2);
                 dinglingerwalk.SetFacing(9);
@@ -345,7 +345,7 @@ public class Poklad extends Mainloc {
             case 55:
                 // Aufschliessound bringen und bisschen warten
                 Counter = 50;
-                mainFrame.wave.PlayFile("sfx-dd/kluc.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/kluc.wav");
                 nextActionID = 60;
                 break;
 
@@ -415,7 +415,7 @@ public class Poklad extends Mainloc {
                     ausgewechselt = true;
                     if (!schalenSound) {
                         schalenSound = true;
-                        mainFrame.wave.PlayFile("sfx/becher.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx/becher.wav");
                     }
                 }
                 if (animRueckgabe != 100) {
@@ -432,7 +432,7 @@ public class Poklad extends Mainloc {
                 if (!walkReady) {
                     break;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 showStraza = true;
                 whatPicture = 1;
                 evalPersonPoints();

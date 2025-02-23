@@ -20,7 +20,7 @@
 
 package de.codengine.krabat.platform;
 
-import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public abstract class GenericStorageManager {
@@ -47,8 +47,7 @@ public abstract class GenericStorageManager {
 
     public abstract void saveGameProperties(Properties props);
 
-    public abstract HashMap<String, String> loadTranslationsFile(String filename);
+    public abstract Map<String, String> loadTranslations(String file);
 
-    public abstract void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix);
-
+    public abstract Map<String, String> getExistingTranslations();
 }

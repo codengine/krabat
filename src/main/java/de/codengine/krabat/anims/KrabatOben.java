@@ -141,142 +141,142 @@ public class KrabatOben extends Krabat {
     // Bilder vorbereiten
     private void InitImages() {
         // Images von oben (alle)
-        krabato_left[1] = getPicture("gfx/anims/h-l-1.gif");
-        krabato_left[2] = getPicture("gfx/anims/h-l-2.gif");
-        krabato_left[3] = getPicture("gfx/anims/h-l-3.gif");
-        krabato_left[4] = getPicture("gfx/anims/h-l-4.gif");
-        krabato_left[5] = getPicture("gfx/anims/h-l-5.gif");
-        krabato_left[6] = getPicture("gfx/anims/h-l-6.gif");
-        krabato_left[7] = getPicture("gfx/anims/h-l-7.gif");
-        krabato_left[8] = getPicture("gfx/anims/h-l-8.gif");
-        krabato_left[9] = getPicture("gfx/anims/h-l-9.gif");
-        krabato_left[0] = getPicture("gfx/anims/h-l-10.gif");
+        krabato_left[1] = getPicture("gfx/anims/h-l-1.png");
+        krabato_left[2] = getPicture("gfx/anims/h-l-2.png");
+        krabato_left[3] = getPicture("gfx/anims/h-l-3.png");
+        krabato_left[4] = getPicture("gfx/anims/h-l-4.png");
+        krabato_left[5] = getPicture("gfx/anims/h-l-5.png");
+        krabato_left[6] = getPicture("gfx/anims/h-l-6.png");
+        krabato_left[7] = getPicture("gfx/anims/h-l-7.png");
+        krabato_left[8] = getPicture("gfx/anims/h-l-8.png");
+        krabato_left[9] = getPicture("gfx/anims/h-l-9.png");
+        krabato_left[0] = getPicture("gfx/anims/h-l-10.png");
 
-        krabato_right[1] = getPicture("gfx/anims/h-r-1.gif");
-        krabato_right[2] = getPicture("gfx/anims/h-r-2.gif");
-        krabato_right[3] = getPicture("gfx/anims/h-r-3.gif");
-        krabato_right[4] = getPicture("gfx/anims/h-r-4.gif");
-        krabato_right[5] = getPicture("gfx/anims/h-r-5.gif");
-        krabato_right[6] = getPicture("gfx/anims/h-r-6.gif");
-        krabato_right[7] = getPicture("gfx/anims/h-r-7.gif");
-        krabato_right[8] = getPicture("gfx/anims/h-r-8.gif");
-        krabato_right[9] = getPicture("gfx/anims/h-r-9.gif");
-        krabato_right[0] = getPicture("gfx/anims/h-r-10.gif");
+        krabato_right[1] = getPicture("gfx/anims/h-r-1.png");
+        krabato_right[2] = getPicture("gfx/anims/h-r-2.png");
+        krabato_right[3] = getPicture("gfx/anims/h-r-3.png");
+        krabato_right[4] = getPicture("gfx/anims/h-r-4.png");
+        krabato_right[5] = getPicture("gfx/anims/h-r-5.png");
+        krabato_right[6] = getPicture("gfx/anims/h-r-6.png");
+        krabato_right[7] = getPicture("gfx/anims/h-r-7.png");
+        krabato_right[8] = getPicture("gfx/anims/h-r-8.png");
+        krabato_right[9] = getPicture("gfx/anims/h-r-9.png");
+        krabato_right[0] = getPicture("gfx/anims/h-r-10.png");
 
-        krabato_front[1] = getPicture("gfx/anims/h-u-1.gif");
-        krabato_front[2] = getPicture("gfx/anims/h-u-2.gif");
-        krabato_front[3] = getPicture("gfx/anims/h-u-3.gif");
-        krabato_front[4] = getPicture("gfx/anims/h-u-4.gif");
-        krabato_front[5] = getPicture("gfx/anims/h-u-5.gif");
-        krabato_front[6] = getPicture("gfx/anims/h-u-6.gif");
-        krabato_front[7] = getPicture("gfx/anims/h-u-7.gif");
-        krabato_front[8] = getPicture("gfx/anims/h-u-8.gif");
-        krabato_front[9] = getPicture("gfx/anims/h-u-9.gif");
-        krabato_front[0] = getPicture("gfx/anims/h-u-10.gif");
+        krabato_front[1] = getPicture("gfx/anims/h-u-1.png");
+        krabato_front[2] = getPicture("gfx/anims/h-u-2.png");
+        krabato_front[3] = getPicture("gfx/anims/h-u-3.png");
+        krabato_front[4] = getPicture("gfx/anims/h-u-4.png");
+        krabato_front[5] = getPicture("gfx/anims/h-u-5.png");
+        krabato_front[6] = getPicture("gfx/anims/h-u-6.png");
+        krabato_front[7] = getPicture("gfx/anims/h-u-7.png");
+        krabato_front[8] = getPicture("gfx/anims/h-u-8.png");
+        krabato_front[9] = getPicture("gfx/anims/h-u-9.png");
+        krabato_front[0] = getPicture("gfx/anims/h-u-10.png");
 
-        krabato_back[1] = getPicture("gfx/anims/h-o-1.gif");
-        krabato_back[2] = getPicture("gfx/anims/h-o-2.gif");
-        krabato_back[3] = getPicture("gfx/anims/h-o-3.gif");
-        krabato_back[4] = getPicture("gfx/anims/h-o-4.gif");
-        krabato_back[5] = getPicture("gfx/anims/h-o-5.gif");
-        krabato_back[6] = getPicture("gfx/anims/h-o-6.gif");
-        krabato_back[7] = getPicture("gfx/anims/h-o-7.gif");
-        krabato_back[8] = getPicture("gfx/anims/h-o-8.gif");
-        krabato_back[9] = getPicture("gfx/anims/h-o-9.gif");
-        krabato_back[0] = getPicture("gfx/anims/h-o-10.gif");
+        krabato_back[1] = getPicture("gfx/anims/h-o-1.png");
+        krabato_back[2] = getPicture("gfx/anims/h-o-2.png");
+        krabato_back[3] = getPicture("gfx/anims/h-o-3.png");
+        krabato_back[4] = getPicture("gfx/anims/h-o-4.png");
+        krabato_back[5] = getPicture("gfx/anims/h-o-5.png");
+        krabato_back[6] = getPicture("gfx/anims/h-o-6.png");
+        krabato_back[7] = getPicture("gfx/anims/h-o-7.png");
+        krabato_back[8] = getPicture("gfx/anims/h-o-8.png");
+        krabato_back[9] = getPicture("gfx/anims/h-o-9.png");
+        krabato_back[0] = getPicture("gfx/anims/h-o-10.png");
 
-        krabato_talkl[1] = getPicture("gfx/anims/h-tl-1.gif");
-        krabato_talkl[2] = getPicture("gfx/anims/h-tl-2.gif");
-        krabato_talkl[3] = getPicture("gfx/anims/h-tl-3.gif");
+        krabato_talkl[1] = getPicture("gfx/anims/h-tl-1.png");
+        krabato_talkl[2] = getPicture("gfx/anims/h-tl-2.png");
+        krabato_talkl[3] = getPicture("gfx/anims/h-tl-3.png");
 
-        krabato_talkr[1] = getPicture("gfx/anims/h-tr-1.gif");
-        krabato_talkr[2] = getPicture("gfx/anims/h-tr-2.gif");
-        krabato_talkr[3] = getPicture("gfx/anims/h-tr-3.gif");
+        krabato_talkr[1] = getPicture("gfx/anims/h-tr-1.png");
+        krabato_talkr[2] = getPicture("gfx/anims/h-tr-2.png");
+        krabato_talkr[3] = getPicture("gfx/anims/h-tr-3.png");
 
-        krabato_talkm[1] = getPicture("gfx/anims/h-tk-1.gif");
-        krabato_talkm[2] = getPicture("gfx/anims/h-tk-2.gif");
-        krabato_talkm[3] = getPicture("gfx/anims/h-tk-3.gif");
-        krabato_talkm[4] = getPicture("gfx/anims/h-tk-4.gif");
+        krabato_talkm[1] = getPicture("gfx/anims/h-tk-1.png");
+        krabato_talkm[2] = getPicture("gfx/anims/h-tk-2.png");
+        krabato_talkm[3] = getPicture("gfx/anims/h-tk-3.png");
+        krabato_talkm[4] = getPicture("gfx/anims/h-tk-4.png");
 
-        krabato_klopf[1] = getPicture("gfx/anims/h-o-20.gif");
-        krabato_klopf[2] = getPicture("gfx/anims/h-o-21.gif");
+        krabato_klopf[1] = getPicture("gfx/anims/h-o-20.png");
+        krabato_klopf[2] = getPicture("gfx/anims/h-o-21.png");
 
-        krabato_floetel[0] = getPicture("gfx/anims/h-l-f1.gif");
-        krabato_floetel[1] = getPicture("gfx/anims/h-l-f2.gif");
-        krabato_floetel[2] = getPicture("gfx/anims/h-l-f3.gif");
-        krabato_floetel[3] = getPicture("gfx/anims/h-l-f4.gif");
-        krabato_floetel[4] = getPicture("gfx/anims/h-l-f5.gif");
+        krabato_floetel[0] = getPicture("gfx/anims/h-l-f1.png");
+        krabato_floetel[1] = getPicture("gfx/anims/h-l-f2.png");
+        krabato_floetel[2] = getPicture("gfx/anims/h-l-f3.png");
+        krabato_floetel[3] = getPicture("gfx/anims/h-l-f4.png");
+        krabato_floetel[4] = getPicture("gfx/anims/h-l-f5.png");
 
-        krabato_floeter[0] = getPicture("gfx/anims/h-r-f1.gif");
-        krabato_floeter[1] = getPicture("gfx/anims/h-r-f2.gif");
-        krabato_floeter[2] = getPicture("gfx/anims/h-r-f3.gif");
-        krabato_floeter[3] = getPicture("gfx/anims/h-r-f4.gif");
-        krabato_floeter[4] = getPicture("gfx/anims/h-r-f5.gif");
+        krabato_floeter[0] = getPicture("gfx/anims/h-r-f1.png");
+        krabato_floeter[1] = getPicture("gfx/anims/h-r-f2.png");
+        krabato_floeter[2] = getPicture("gfx/anims/h-r-f3.png");
+        krabato_floeter[3] = getPicture("gfx/anims/h-r-f4.png");
+        krabato_floeter[4] = getPicture("gfx/anims/h-r-f5.png");
 
-        krabato_floetef[0] = getPicture("gfx/anims/h-u-f1.gif");
-        krabato_floetef[1] = getPicture("gfx/anims/h-u-f2.gif");
-        krabato_floetef[2] = getPicture("gfx/anims/h-u-f3.gif");
-        krabato_floetef[3] = getPicture("gfx/anims/h-u-f4.gif");
-        krabato_floetef[4] = getPicture("gfx/anims/h-u-f5.gif");
+        krabato_floetef[0] = getPicture("gfx/anims/h-u-f1.png");
+        krabato_floetef[1] = getPicture("gfx/anims/h-u-f2.png");
+        krabato_floetef[2] = getPicture("gfx/anims/h-u-f3.png");
+        krabato_floetef[3] = getPicture("gfx/anims/h-u-f4.png");
+        krabato_floetef[4] = getPicture("gfx/anims/h-u-f5.png");
 
-        krabato_floeteb[0] = getPicture("gfx/anims/h-o-f1.gif");
-        krabato_floeteb[1] = getPicture("gfx/anims/h-o-f2.gif");
-        krabato_floeteb[2] = getPicture("gfx/anims/h-o-f3.gif");
-        krabato_floeteb[3] = getPicture("gfx/anims/h-o-f4.gif");
-        krabato_floeteb[4] = getPicture("gfx/anims/h-o-f5.gif");
+        krabato_floeteb[0] = getPicture("gfx/anims/h-o-f1.png");
+        krabato_floeteb[1] = getPicture("gfx/anims/h-o-f2.png");
+        krabato_floeteb[2] = getPicture("gfx/anims/h-o-f3.png");
+        krabato_floeteb[3] = getPicture("gfx/anims/h-o-f4.png");
+        krabato_floeteb[4] = getPicture("gfx/anims/h-o-f5.png");
 
-        krabato_rfloetel[0] = getPicture("gfx/anims/h-l-fr1.gif");
-        krabato_rfloetel[1] = getPicture("gfx/anims/h-l-fr2.gif");
-        krabato_rfloetel[2] = getPicture("gfx/anims/h-l-fr3.gif");
-        krabato_rfloetel[3] = getPicture("gfx/anims/h-l-fr4.gif");
-        krabato_rfloetel[4] = getPicture("gfx/anims/h-l-fr5.gif");
+        krabato_rfloetel[0] = getPicture("gfx/anims/h-l-fr1.png");
+        krabato_rfloetel[1] = getPicture("gfx/anims/h-l-fr2.png");
+        krabato_rfloetel[2] = getPicture("gfx/anims/h-l-fr3.png");
+        krabato_rfloetel[3] = getPicture("gfx/anims/h-l-fr4.png");
+        krabato_rfloetel[4] = getPicture("gfx/anims/h-l-fr5.png");
 
-        krabato_rfloeter[0] = getPicture("gfx/anims/h-r-fr1.gif");
-        krabato_rfloeter[1] = getPicture("gfx/anims/h-r-fr2.gif");
-        krabato_rfloeter[2] = getPicture("gfx/anims/h-r-fr3.gif");
-        krabato_rfloeter[3] = getPicture("gfx/anims/h-r-fr4.gif");
-        krabato_rfloeter[4] = getPicture("gfx/anims/h-r-fr5.gif");
+        krabato_rfloeter[0] = getPicture("gfx/anims/h-r-fr1.png");
+        krabato_rfloeter[1] = getPicture("gfx/anims/h-r-fr2.png");
+        krabato_rfloeter[2] = getPicture("gfx/anims/h-r-fr3.png");
+        krabato_rfloeter[3] = getPicture("gfx/anims/h-r-fr4.png");
+        krabato_rfloeter[4] = getPicture("gfx/anims/h-r-fr5.png");
 
-        krabato_rfloetef[0] = getPicture("gfx/anims/h-u-fr1.gif");
-        krabato_rfloetef[1] = getPicture("gfx/anims/h-u-fr2.gif");
-        krabato_rfloetef[2] = getPicture("gfx/anims/h-u-fr3.gif");
-        krabato_rfloetef[3] = getPicture("gfx/anims/h-u-fr4.gif");
-        krabato_rfloetef[4] = getPicture("gfx/anims/h-u-fr5.gif");
+        krabato_rfloetef[0] = getPicture("gfx/anims/h-u-fr1.png");
+        krabato_rfloetef[1] = getPicture("gfx/anims/h-u-fr2.png");
+        krabato_rfloetef[2] = getPicture("gfx/anims/h-u-fr3.png");
+        krabato_rfloetef[3] = getPicture("gfx/anims/h-u-fr4.png");
+        krabato_rfloetef[4] = getPicture("gfx/anims/h-u-fr5.png");
 
-        krabato_rfloeteb[0] = getPicture("gfx/anims/h-o-fr1.gif");
-        krabato_rfloeteb[1] = getPicture("gfx/anims/h-o-fr2.gif");
-        krabato_rfloeteb[2] = getPicture("gfx/anims/h-o-fr3.gif");
-        krabato_rfloeteb[3] = getPicture("gfx/anims/h-o-fr4.gif");
-        krabato_rfloeteb[4] = getPicture("gfx/anims/h-o-fr5.gif");
+        krabato_rfloeteb[0] = getPicture("gfx/anims/h-o-fr1.png");
+        krabato_rfloeteb[1] = getPicture("gfx/anims/h-o-fr2.png");
+        krabato_rfloeteb[2] = getPicture("gfx/anims/h-o-fr3.png");
+        krabato_rfloeteb[3] = getPicture("gfx/anims/h-o-fr4.png");
+        krabato_rfloeteb[4] = getPicture("gfx/anims/h-o-fr5.png");
 
-        krabato_wosuskl[0] = getPicture("gfx/anims/h-l-st1.gif");
-        krabato_wosuskl[1] = getPicture("gfx/anims/h-l-st2.gif");
+        krabato_wosuskl[0] = getPicture("gfx/anims/h-l-st1.png");
+        krabato_wosuskl[1] = getPicture("gfx/anims/h-l-st2.png");
 
-        krabato_wosuskr[0] = getPicture("gfx/anims/h-r-st1.gif");
-        krabato_wosuskr[1] = getPicture("gfx/anims/h-r-st2.gif");
+        krabato_wosuskr[0] = getPicture("gfx/anims/h-r-st1.png");
+        krabato_wosuskr[1] = getPicture("gfx/anims/h-r-st2.png");
 
-        krabato_wosuskf[0] = getPicture("gfx/anims/h-u-st1.gif");
-        krabato_wosuskf[1] = getPicture("gfx/anims/h-u-st2.gif");
+        krabato_wosuskf[0] = getPicture("gfx/anims/h-u-st1.png");
+        krabato_wosuskf[1] = getPicture("gfx/anims/h-u-st2.png");
 
-        krabato_wosuskb[0] = getPicture("gfx/anims/h-o-st1.gif");
-        krabato_wosuskb[1] = getPicture("gfx/anims/h-o-st2.gif");
+        krabato_wosuskb[0] = getPicture("gfx/anims/h-o-st1.png");
+        krabato_wosuskb[1] = getPicture("gfx/anims/h-o-st2.png");
 
-        krabato_feuerl[0] = getPicture("gfx/anims/h-l-k1.gif");
-        krabato_feuerl[1] = getPicture("gfx/anims/h-l-k2.gif");
+        krabato_feuerl[0] = getPicture("gfx/anims/h-l-k1.png");
+        krabato_feuerl[1] = getPicture("gfx/anims/h-l-k2.png");
 
-        krabato_feuerr[0] = getPicture("gfx/anims/h-r-k1.gif");
-        krabato_feuerr[1] = getPicture("gfx/anims/h-r-k2.gif");
+        krabato_feuerr[0] = getPicture("gfx/anims/h-r-k1.png");
+        krabato_feuerr[1] = getPicture("gfx/anims/h-r-k2.png");
 
-        krabato_feuerf[0] = getPicture("gfx/anims/h-u-k1.gif");
-        krabato_feuerf[1] = getPicture("gfx/anims/h-u-k2.gif");
+        krabato_feuerf[0] = getPicture("gfx/anims/h-u-k1.png");
+        krabato_feuerf[1] = getPicture("gfx/anims/h-u-k2.png");
 
-        krabato_feuerb[0] = getPicture("gfx/anims/h-o-k1.gif");
-        krabato_feuerb[1] = getPicture("gfx/anims/h-o-k2.gif");
+        krabato_feuerb[0] = getPicture("gfx/anims/h-o-k1.png");
+        krabato_feuerb[1] = getPicture("gfx/anims/h-o-k2.png");
 
-        krabato_liesl = getPicture("gfx/anims/h-l-k.gif");
-        krabato_liesr = getPicture("gfx/anims/h-r-k.gif");
-        krabato_liesf = getPicture("gfx/anims/h-u-k.gif");
-        krabato_liesb = getPicture("gfx/anims/h-o-k.gif");
+        krabato_liesl = getPicture("gfx/anims/h-l-k.png");
+        krabato_liesr = getPicture("gfx/anims/h-r-k.png");
+        krabato_liesf = getPicture("gfx/anims/h-u-k.png");
+        krabato_liesb = getPicture("gfx/anims/h-o-k.png");
     }
 
 
@@ -460,7 +460,7 @@ public class KrabatOben extends Krabat {
 
             case 5:  // Rohodz spielen
                 if (nAnimStep == 0) {
-                    mainFrame.wave.PlayFile("sfx/frohodz.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/frohodz.wav");
                 } ///////////////// Sound !!!!!!!!!!!!!!
                 if (nAnimStep < rohodzWartezeit) {
                     SpieleRohodz(g, nAnimStep++);
@@ -473,7 +473,7 @@ public class KrabatOben extends Krabat {
             case 146: // Wosusk essen (speziell)
                 if (nAnimStep < 20) {
                     if (nAnimStep == 0) {
-                        mainFrame.wave.PlayFile("sfx-dd/wosusk.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx-dd/wosusk.wav");
                     } ////////////Sound!!!!!!!!!!!!!!!!!!!!!!
                     IssWosusk(g);
                     nAnimStep++;
@@ -486,7 +486,7 @@ public class KrabatOben extends Krabat {
             case 154: // Feuer machen
                 if (nAnimStep < 8) {
                     if (nAnimStep == 0) {
-                        mainFrame.wave.PlayFile("sfx/kamjeny.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx/kamjeny.wav");
                     } /////////////////// Sound !!!!!!!!!!!
                     MacheFeuer(g);
                     nAnimStep++;
@@ -508,7 +508,7 @@ public class KrabatOben extends Krabat {
         // Sound abspielen
         if (tCount == 0) {
             int zuffi = (int) (Math.random() * 4.99);
-            mainFrame.wave.PlayFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
             Floetenwartezeit = Floetenwartezeitarray[zuffi];
         }
 

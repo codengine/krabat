@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Wobzor1 extends Mainloc {
+public class Wobzor1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Wobzor1.class);
     private GenericImage background;
     private GenericImage horiz3;
@@ -140,10 +140,10 @@ public class Wobzor1 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(145, 192, 577, 260));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(145, 192, 577, 260));
 
-        mainFrame.wegSucher.ClearMatrix(1);
+        mainFrame.pathFinder.ClearMatrix(1);
 
         InitImages();
         switch (oldLocation) {
@@ -166,16 +166,16 @@ public class Wobzor1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/horiz/horiz2.gif");
-        horiz3 = getPicture("gfx/horiz/horiz3.gif");
-        horiz4 = getPicture("gfx/horiz/horiz4.gif");
+        background = getPicture("gfx/horiz/horiz2.png");
+        horiz3 = getPicture("gfx/horiz/horiz3.png");
+        horiz4 = getPicture("gfx/horiz/horiz4.png");
 
-        Wasser[1] = getPicture("gfx/horiz/hww5.gif");
-        Wasser[2] = getPicture("gfx/horiz/hww3.gif");
-        Wasser[3] = getPicture("gfx/horiz/hww2.gif");
-        Wasser[4] = getPicture("gfx/horiz/hw3.gif");
-        Wasser[5] = getPicture("gfx/horiz/hw5.gif");
-        Wasser[6] = getPicture("gfx/horiz/hw6.gif");
+        Wasser[1] = getPicture("gfx/horiz/hww5.png");
+        Wasser[2] = getPicture("gfx/horiz/hww3.png");
+        Wasser[3] = getPicture("gfx/horiz/hww2.png");
+        Wasser[4] = getPicture("gfx/horiz/hw3.png");
+        Wasser[5] = getPicture("gfx/horiz/hw5.png");
+        Wasser[6] = getPicture("gfx/horiz/hw6.png");
 
     }
 
@@ -200,14 +200,14 @@ public class Wobzor1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -215,11 +215,11 @@ public class Wobzor1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Wellenimages schunkeln...
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             switchanim = !switchanim;
             if (switchanim) {
                 if (forward) {
@@ -243,7 +243,7 @@ public class Wobzor1 extends Mainloc {
         // hier ist der Sound...
         evalSound();
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
 
@@ -253,7 +253,7 @@ public class Wobzor1 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -298,7 +298,7 @@ public class Wobzor1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -306,7 +306,7 @@ public class Wobzor1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -329,7 +329,7 @@ public class Wobzor1 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -337,7 +337,7 @@ public class Wobzor1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -347,7 +347,7 @@ public class Wobzor1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -376,8 +376,8 @@ public class Wobzor1 extends Mainloc {
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -402,7 +402,7 @@ public class Wobzor1 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -421,7 +421,7 @@ public class Wobzor1 extends Mainloc {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -452,7 +452,7 @@ public class Wobzor1 extends Mainloc {
                 // Woda mitnehmen ?
                 if (wodaRect.IsPointInRect(pTemp)) {
                     nextActionID = 1;
-                    mainFrame.wegGeher.SetzeNeuenWeg(CorrectY(Pwoda));
+                    mainFrame.pathWalker.SetzeNeuenWeg(CorrectY(Pwoda));
                     mainFrame.repaint();
                     return;
                 }
@@ -469,28 +469,28 @@ public class Wobzor1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -499,13 +499,13 @@ public class Wobzor1 extends Mainloc {
         else {
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
             } else if (wodaRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -513,7 +513,7 @@ public class Wobzor1 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -521,7 +521,7 @@ public class Wobzor1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -537,12 +537,12 @@ public class Wobzor1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -584,8 +584,8 @@ public class Wobzor1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -593,7 +593,7 @@ public class Wobzor1 extends Mainloc {
 
     private void SetzeNeuenWeg(GenericPoint dest) {
         GenericPoint right = CorrectY(dest);
-        mainFrame.wegGeher.SetzeNeuenWeg(right);
+        mainFrame.pathWalker.SetzeNeuenWeg(right);
     }
 
     private GenericPoint CorrectY(GenericPoint dst) {
@@ -614,7 +614,7 @@ public class Wobzor1 extends Mainloc {
             int zwzfz = (int) (Math.random() * 4.99);
             zwzfz += 49;
 
-            mainFrame.wave.PlayFile("sfx/recka" + (char) zwzfz + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/recka" + (char) zwzfz + ".wav");
         }
     }
 
@@ -633,7 +633,7 @@ public class Wobzor1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }

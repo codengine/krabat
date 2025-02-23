@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Inmlyn extends Mainloc {
+public class Inmlyn extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Inmlyn.class);
     private GenericImage background1;
     private GenericImage background2;
@@ -91,33 +91,33 @@ public class Inmlyn extends Mainloc {
 
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(423, 450, 403, 450, 407, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(451, 446, 613, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(614, 470, 817, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(818, 423, 856, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(857, 466, 1199, 479));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(423, 450, 403, 450, 407, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(451, 446, 613, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(614, 470, 817, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(818, 423, 856, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(857, 466, 1199, 479));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(5);
+        mainFrame.pathFinder.ClearMatrix(5);
 
         // Wege eintragen
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background1 = getPicture("gfx/mlyn/mlynn-l.gif");
-        background2 = getPicture("gfx/mlyn/mlynn-r.gif");
-        fenster = getPicture("gfx/mlyn/wokno.gif");
+        background1 = getPicture("gfx/mlyn/mlynn-l.png");
+        background2 = getPicture("gfx/mlyn/mlynn-r.png");
+        fenster = getPicture("gfx/mlyn/wokno.png");
 
-        krabatKopf[0] = getPicture("gfx/mlyn/k-u-wokno1.gif");
-        krabatKopf[1] = getPicture("gfx/mlyn/k-u-wokno1a.gif");
+        krabatKopf[0] = getPicture("gfx/mlyn/k-u-wokno1.png");
+        krabatKopf[1] = getPicture("gfx/mlyn/k-u-wokno1a.png");
 
-        rabeVorder = getPicture("gfx/mlyn/mwokno.gif");
+        rabeVorder = getPicture("gfx/mlyn/mwokno.png");
 
     }
 
@@ -146,21 +146,21 @@ public class Inmlyn extends Mainloc {
         // System.out.print("g");
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollX = scrollwert;
             }
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        if (mainFrame.Actions[310]) {
+        if (mainFrame.actions[310]) {
             g.drawImage(background1, 0, 0);
             g.drawImage(background2, 640, 0);
         } else {
@@ -180,7 +180,7 @@ public class Inmlyn extends Mainloc {
         }
 
         // hier am Anfang das Buecken einschalten, wenn aus Dzera zurueckkommend
-        if (setAnim && mainFrame.Actions[310]) {
+        if (setAnim && mainFrame.actions[310]) {
             mainFrame.krabat.nAnimation = 122;
             // System.out.println ("Habe aber doch die Anim eingeschaltet!");
         }
@@ -195,22 +195,22 @@ public class Inmlyn extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
         // Animation??
-        if (mainFrame.Actions[310] && krabatVisible) {
+        if (mainFrame.actions[310] && krabatVisible) {
             if (mainFrame.krabat.nAnimation != 0) {
                 mainFrame.krabat.DoAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -246,7 +246,7 @@ public class Inmlyn extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -254,7 +254,7 @@ public class Inmlyn extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -268,7 +268,7 @@ public class Inmlyn extends Mainloc {
 
         if (setAnim) {
             setAnim = false;
-            if (!mainFrame.Actions[310]) {
+            if (!mainFrame.actions[310]) {
                 nextActionID = 100;
             } else {
                 nextActionID = 1000;
@@ -290,7 +290,7 @@ public class Inmlyn extends Mainloc {
         // Auszugebenden Text abbrechen
         outputText = "";
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -303,10 +303,10 @@ public class Inmlyn extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
         }
 
@@ -338,25 +338,25 @@ public class Inmlyn extends Mainloc {
 
             case 100:
                 // Textausgabe auf Bild Wokno
-                mainFrame.wave.PlayFile("sound.wav");
+                mainFrame.soundPlayer.PlayFile("sound.wav");
                 PersonSagt("Inmlyn_2", 0, 54, 2, 110, new GenericPoint(320, 400));
                 break;
 
             case 110:
                 // Umschalten
-                mainFrame.Actions[310] = true;
+                mainFrame.actions[310] = true;
                 mainFrame.krabat.setPos(new GenericPoint(437, 412));
                 mainFrame.krabat.SetFacing(12);
                 scrollwert = 117;
                 setScroll = true;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 120;
                 break;
 
             case 120:
                 // Rumlaufen
                 TalkPause = 20;
-                mainFrame.wegGeher.SetzeNeuenWeg(new GenericPoint(833, 429));
+                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(833, 429));
                 nextActionID = 130;
                 break;
 
@@ -403,7 +403,7 @@ public class Inmlyn extends Mainloc {
 
             case 1020:
                 // Sound playen und 2 Sek. warten...
-                mainFrame.wave.PlayFile("sfx/rapak1.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
                 Counter = 20;
                 nextActionID = 1030;
                 break;
@@ -424,7 +424,7 @@ public class Inmlyn extends Mainloc {
                 tempPoint = mainFrame.krabat.getPos();
                 mainFrame.krabat.setPos(new GenericPoint(0, 0));
                 scrollCounter = 40;
-                mainFrame.scrollx = 0;
+                mainFrame.scrollX = 0;
                 nextActionID = 1045;
                 break;
 

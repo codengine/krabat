@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Mertens2 extends Mainloc {
+public class Mertens2 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mertens2.class);
     private GenericImage background;
 
@@ -119,7 +119,7 @@ public class Mertens2 extends Mainloc {
 
         InitLocation(oldLocation);
 
-        wmann = new WodnyMuz(mainFrame, mainFrame.Actions[207]);
+        wmann = new WodnyMuz(mainFrame, mainFrame.actions[207]);
         Dialog = new Multiple2(mainFrame);
 
         wmannTalk = new GenericPoint();
@@ -145,15 +145,15 @@ public class Mertens2 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(0, 150, 0, 13, 288, 323));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(284, 307, 65, 185, 266, 287));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 150, 0, 13, 288, 323));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(284, 307, 65, 185, 266, 287));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -169,21 +169,21 @@ public class Mertens2 extends Mainloc {
                 noCounter = true;
                 isShowing = true;
                 whichAnim = 1100;
-                mainFrame.Actions[207] = true; // bei Anim ist Wassermann schon oben
+                mainFrame.actions[207] = true; // bei Anim ist Wassermann schon oben
                 kacka1Visible = true; // erste Ente schon da (Wassermann)
                 break;
             case 76:
                 // von Kulow aus
                 mainFrame.krabat.setPos(new GenericPoint(38, 305));
                 mainFrame.krabat.SetFacing(3);
-                mainFrame.Actions[207] = false; // Wassermann taucht erst auf
+                mainFrame.actions[207] = false; // Wassermann taucht erst auf
                 break;
         }
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mertens/mertens.gif");
+        background = getPicture("gfx/mertens/mertens.png");
 
     }
 
@@ -258,17 +258,17 @@ public class Mertens2 extends Mainloc {
           } */
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -323,17 +323,17 @@ public class Mertens2 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Counter runterzaehlen fuer Wassermannerscheinen, nur so lange, bis Zeichnung gezeigt
-        if (Counter > 0 && !mainFrame.Actions[302] && !noCounter) {
+        if (Counter > 0 && !mainFrame.actions[302] && !noCounter) {
             Counter--;
             if (Counter < 1) {
                 setAnim = true;
                 whichAnim = 2000;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         }
 
@@ -351,7 +351,7 @@ public class Mertens2 extends Mainloc {
             isTauching = wmann.Tauche(g, wmannRect.lo_point);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -361,7 +361,7 @@ public class Mertens2 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -393,7 +393,7 @@ public class Mertens2 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -401,7 +401,7 @@ public class Mertens2 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -412,8 +412,8 @@ public class Mertens2 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -437,14 +437,14 @@ public class Mertens2 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -453,7 +453,7 @@ public class Mertens2 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -463,7 +463,7 @@ public class Mertens2 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -484,15 +484,15 @@ public class Mertens2 extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -517,7 +517,7 @@ public class Mertens2 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -529,7 +529,7 @@ public class Mertens2 extends Mainloc {
                     nextActionID = 2;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -542,7 +542,7 @@ public class Mertens2 extends Mainloc {
                 // Wasser mitnehmen
                 if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                     mainFrame.repaint();
                     return;
                 }
@@ -559,35 +559,35 @@ public class Mertens2 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || wasserobenRect.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wasserobenRect.IsPointInRect(pTemp) ||
                     wasseruntenRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -595,7 +595,7 @@ public class Mertens2 extends Mainloc {
         else {
             if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -603,7 +603,7 @@ public class Mertens2 extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -611,7 +611,7 @@ public class Mertens2 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -619,7 +619,7 @@ public class Mertens2 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -629,17 +629,17 @@ public class Mertens2 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -681,8 +681,8 @@ public class Mertens2 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -767,7 +767,7 @@ public class Mertens2 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -788,11 +788,11 @@ public class Mertens2 extends Mainloc {
             case 50:
                 // Krabat beginnt MC (Wmann benutzen)
                 mainFrame.krabat.SetFacing(fWmuz);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
 
                 // Abfrage, ob schon begruesst
-                if (!mainFrame.Actions[290]) {
+                if (!mainFrame.actions[290]) {
                     nextActionID = 60;
                 } else {
                     nextActionID = 70;
@@ -807,12 +807,12 @@ public class Mertens2 extends Mainloc {
             case 60:
                 // Wassermann begruesst Krabat
                 PersonSagt("Mertens2_47", 0, 34, 2, 70, wmannTalk);
-                mainFrame.Actions[290] = true;
+                mainFrame.actions[290] = true;
                 break;
 
             case 70:
                 // Hier Unterscheidung, welcher Dialog gemeint..
-                if (!mainFrame.Actions[276]) {
+                if (!mainFrame.actions[276]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 900;
@@ -853,20 +853,20 @@ public class Mertens2 extends Mainloc {
                 Dialog.ExtendMC("Mertens2_54", 1000, 284, null, 800);
                 Dialog.ExtendMC("Mertens2_55", 284, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.Actions[284] = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[284] = true;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -971,10 +971,10 @@ public class Mertens2 extends Mainloc {
                 if (isTauching) {
                     break;
                 }
-                mainFrame.Actions[284] = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.actions[284] = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -993,20 +993,20 @@ public class Mertens2 extends Mainloc {
                 Dialog.ExtendMC("Mertens2_60", 1000, 287, null, 1000);
                 Dialog.ExtendMC("Mertens2_61", 287, 1000, null, 1000);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 901;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 901:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.Actions[287] = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[287] = true;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -1096,10 +1096,10 @@ public class Mertens2 extends Mainloc {
                 if (isTauching) {
                     break;
                 }
-                mainFrame.Actions[287] = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.actions[287] = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1188,8 +1188,8 @@ public class Mertens2 extends Mainloc {
             case 1210:
                 // Krabat verlaesst das Bild
                 // Hier wird der Bote in Wjes aktiviert,,,und Pfarrer ausgeschaltet
-                mainFrame.Actions[302] = true;
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(Pverlassen);
+                mainFrame.actions[302] = true;
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Pverlassen);
                 nextActionID = 1220;
                 // hier werden die talkPoints fuer die Enten zugewiesen
                 GenericRectangle k1Temp = kacka1.kackaRect();
@@ -1199,7 +1199,7 @@ public class Mertens2 extends Mainloc {
             case 1220:
                 // Animszene mit Enten
                 kacka1IsMoving = false;
-                mainFrame.wave.PlayFile("sfx/mlynk-kacka.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/mlynk-kacka.wav");
                 PersonSagt("Mertens2_30", 0, 71, 2, 1225, kacka1TalkPoint);
                 break;
 
@@ -1278,7 +1278,7 @@ public class Mertens2 extends Mainloc {
 
             case 2020:
                 // Krabat stellt sich richtig hin
-                mainFrame.wegGeher.SetzeNeuenWeg(Pwmann);
+                mainFrame.pathWalker.SetzeNeuenWeg(Pwmann);
                 nextActionID = 50;
                 break;
 

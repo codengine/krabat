@@ -68,28 +68,28 @@ public class Husa extends Mainanim {
     // 2. Konstruktor fuer vordefinierte Positionen erforderlich !! (???)
 
     private void InitImages() {
-        Gaense[1][1] = getPicture("gfx/doma/g1a.gif");
-        Gaense[1][2] = getPicture("gfx/doma/g1a2.gif");
-        Gaense[1][3] = getPicture("gfx/doma/g1b.gif");
-        Gaense[1][4] = getPicture("gfx/doma/g1b2.gif");
-        Gaense[1][5] = getPicture("gfx/doma/g1c.gif");
-        Gaense[1][6] = getPicture("gfx/doma/g1c2.gif");
-        Gaense[1][7] = getPicture("gfx/doma/g1d.gif");
-        Gaense[1][8] = getPicture("gfx/doma/g1d2.gif");
-        Gaense[2][1] = getPicture("gfx/doma/g2a.gif");
-        Gaense[2][2] = getPicture("gfx/doma/g2a2.gif");
-        Gaense[2][3] = getPicture("gfx/doma/g2b.gif");
-        Gaense[2][4] = getPicture("gfx/doma/g2b2.gif");
-        Gaense[2][5] = getPicture("gfx/doma/g2c.gif");
-        Gaense[2][6] = getPicture("gfx/doma/g2c2.gif");
-        Gaense[3][1] = getPicture("gfx/doma/g3a.gif");
-        Gaense[3][2] = getPicture("gfx/doma/g3a2.gif");
-        Gaense[3][3] = getPicture("gfx/doma/g3b.gif");
-        Gaense[3][4] = getPicture("gfx/doma/g3b2.gif");
-        Gaense[3][5] = getPicture("gfx/doma/g3c.gif");
-        Gaense[3][6] = getPicture("gfx/doma/g3c2.gif");
-        Gaense[3][7] = getPicture("gfx/doma/g3d.gif");
-        Gaense[3][8] = getPicture("gfx/doma/g3d2.gif");
+        Gaense[1][1] = getPicture("gfx/doma/g1a.png");
+        Gaense[1][2] = getPicture("gfx/doma/g1a2.png");
+        Gaense[1][3] = getPicture("gfx/doma/g1b.png");
+        Gaense[1][4] = getPicture("gfx/doma/g1b2.png");
+        Gaense[1][5] = getPicture("gfx/doma/g1c.png");
+        Gaense[1][6] = getPicture("gfx/doma/g1c2.png");
+        Gaense[1][7] = getPicture("gfx/doma/g1d.png");
+        Gaense[1][8] = getPicture("gfx/doma/g1d2.png");
+        Gaense[2][1] = getPicture("gfx/doma/g2a.png");
+        Gaense[2][2] = getPicture("gfx/doma/g2a2.png");
+        Gaense[2][3] = getPicture("gfx/doma/g2b.png");
+        Gaense[2][4] = getPicture("gfx/doma/g2b2.png");
+        Gaense[2][5] = getPicture("gfx/doma/g2c.png");
+        Gaense[2][6] = getPicture("gfx/doma/g2c2.png");
+        Gaense[3][1] = getPicture("gfx/doma/g3a.png");
+        Gaense[3][2] = getPicture("gfx/doma/g3a2.png");
+        Gaense[3][3] = getPicture("gfx/doma/g3b.png");
+        Gaense[3][4] = getPicture("gfx/doma/g3b2.png");
+        Gaense[3][5] = getPicture("gfx/doma/g3c.png");
+        Gaense[3][6] = getPicture("gfx/doma/g3c2.png");
+        Gaense[3][7] = getPicture("gfx/doma/g3d.png");
+        Gaense[3][8] = getPicture("gfx/doma/g3d2.png");
     }
 
     @Override
@@ -247,7 +247,7 @@ public class Husa extends Mainanim {
         {
             int zweiterZufall = (int) (Math.random() * 3.9);
             zweiterZufall += 49;
-            mainFrame.wave.PlayFile("sfx/husa" + (char) zweiterZufall + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/husa" + (char) zweiterZufall + ".wav");
         }
     }
 

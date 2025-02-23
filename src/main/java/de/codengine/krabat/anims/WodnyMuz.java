@@ -78,24 +78,24 @@ public class WodnyMuz extends Mainanim {
     }
 
     private void InitImages() {
-        // woda          = getPicture ("gfx/mertens/woda.gif");
+        // woda          = getPicture ("gfx/mertens/woda.png");
 
-        wmuz_head[1] = getPicture("gfx/mertens/wmk1.gif");
-        wmuz_head[2] = getPicture("gfx/mertens/wmk1a.gif");
-        wmuz_head[3] = getPicture("gfx/mertens/wmk2.gif");
-        wmuz_head[4] = getPicture("gfx/mertens/wmk3.gif");
-        wmuz_head[5] = getPicture("gfx/mertens/wmk4.gif");
-        wmuz_head[6] = getPicture("gfx/mertens/wmk5.gif");
-        wmuz_head[7] = getPicture("gfx/mertens/wmk6.gif");
+        wmuz_head[1] = getPicture("gfx/mertens/wmk1.png");
+        wmuz_head[2] = getPicture("gfx/mertens/wmk1a.png");
+        wmuz_head[3] = getPicture("gfx/mertens/wmk2.png");
+        wmuz_head[4] = getPicture("gfx/mertens/wmk3.png");
+        wmuz_head[5] = getPicture("gfx/mertens/wmk4.png");
+        wmuz_head[6] = getPicture("gfx/mertens/wmk5.png");
+        wmuz_head[7] = getPicture("gfx/mertens/wmk6.png");
 
-        wmuz_body[1] = getPicture("gfx/mertens/wmb1.gif");
-        wmuz_body[2] = getPicture("gfx/mertens/wmb2.gif");
-        wmuz_body[3] = getPicture("gfx/mertens/wmb3.gif");
-        wmuz_body[4] = getPicture("gfx/mertens/wmb4.gif");
-        wmuz_body[5] = getPicture("gfx/mertens/wmb5.gif");
+        wmuz_body[1] = getPicture("gfx/mertens/wmb1.png");
+        wmuz_body[2] = getPicture("gfx/mertens/wmb2.png");
+        wmuz_body[3] = getPicture("gfx/mertens/wmb3.png");
+        wmuz_body[4] = getPicture("gfx/mertens/wmb4.png");
+        wmuz_body[5] = getPicture("gfx/mertens/wmb5.png");
 
-        wmuz_tauch[1] = getPicture("gfx/mertens/wm.gif");
-        wmuz_tauch[2] = getPicture("gfx/mertens/wm2.gif");
+        wmuz_tauch[1] = getPicture("gfx/mertens/wm.png");
+        wmuz_tauch[2] = getPicture("gfx/mertens/wm2.png");
     }
 
     // Zeichne Wassermann, wie er schwimmt oder spricht
@@ -165,7 +165,7 @@ public class WodnyMuz extends Mainanim {
             } else {
                 Offset++;
                 if (Offset == 8) {
-                    mainFrame.wave.PlayFile("sfx/wmuz.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/wmuz.wav");
                 }
                 g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 if (Offset < GRAFIK_HOEHE) {
@@ -182,7 +182,7 @@ public class WodnyMuz extends Mainanim {
             if (Offset > 0) {
                 Offset--;
                 if (Offset == GRAFIK_HOEHE - 1) {
-                    mainFrame.wave.PlayFile("sfx/wmuz.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/wmuz.wav");
                 }
                 g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 return true;

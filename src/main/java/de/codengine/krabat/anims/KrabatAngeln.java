@@ -76,32 +76,32 @@ public class KrabatAngeln extends Mainanim {
 
     // alle Bilder reinladen
     private void InitImages() {
-        angle_rechts[0] = getPicture("gfx/haty/k-r-wuda1.gif");
-        angle_rechts[1] = getPicture("gfx/haty/k-r-wuda2.gif");
-        angle_rechts[2] = getPicture("gfx/haty/k-r-wuda3a.gif");
-        angle_rechts[3] = getPicture("gfx/haty/k-r-wuda3b.gif");
-        angle_rechts[4] = getPicture("gfx/haty/k-r-wuda3c.gif");
-        angle_rechts[5] = getPicture("gfx/haty/k-r-wuda3.gif");
+        angle_rechts[0] = getPicture("gfx/haty/k-r-wuda1.png");
+        angle_rechts[1] = getPicture("gfx/haty/k-r-wuda2.png");
+        angle_rechts[2] = getPicture("gfx/haty/k-r-wuda3a.png");
+        angle_rechts[3] = getPicture("gfx/haty/k-r-wuda3b.png");
+        angle_rechts[4] = getPicture("gfx/haty/k-r-wuda3c.png");
+        angle_rechts[5] = getPicture("gfx/haty/k-r-wuda3.png");
 
-        angle_links[0] = getPicture("gfx/haty/k-l-wuda1.gif");
-        angle_links[1] = getPicture("gfx/haty/k-l-wuda2.gif");
-        angle_links[2] = getPicture("gfx/haty/k-l-wuda3a.gif");
-        angle_links[3] = getPicture("gfx/haty/k-l-wuda3b.gif");
-        angle_links[4] = getPicture("gfx/haty/k-l-wuda3c.gif");
-        angle_links[5] = getPicture("gfx/haty/k-l-wuda3.gif");
+        angle_links[0] = getPicture("gfx/haty/k-l-wuda1.png");
+        angle_links[1] = getPicture("gfx/haty/k-l-wuda2.png");
+        angle_links[2] = getPicture("gfx/haty/k-l-wuda3a.png");
+        angle_links[3] = getPicture("gfx/haty/k-l-wuda3b.png");
+        angle_links[4] = getPicture("gfx/haty/k-l-wuda3c.png");
+        angle_links[5] = getPicture("gfx/haty/k-l-wuda3.png");
 
-        rede_rechts[0] = getPicture("gfx/anims/k-r-h0.gif");
-        rede_rechts[1] = getPicture("gfx/anims/k-r-h0a.gif");
-        rede_rechts[2] = getPicture("gfx/anims/k-r-h1.gif");
-        rede_rechts[3] = getPicture("gfx/anims/k-r-h2.gif");
-        rede_rechts[4] = getPicture("gfx/anims/k-r-h3.gif");
-        rede_rechts[5] = getPicture("gfx/anims/k-r-h4.gif");
-        rede_rechts[6] = getPicture("gfx/anims/k-r-h5.gif");
-        rede_rechts[7] = getPicture("gfx/anims/k-r-h6.gif");
-        rede_rechts[8] = getPicture("gfx/anims/k-r-h7.gif");
+        rede_rechts[0] = getPicture("gfx/anims/k-r-h0.png");
+        rede_rechts[1] = getPicture("gfx/anims/k-r-h0a.png");
+        rede_rechts[2] = getPicture("gfx/anims/k-r-h1.png");
+        rede_rechts[3] = getPicture("gfx/anims/k-r-h2.png");
+        rede_rechts[4] = getPicture("gfx/anims/k-r-h3.png");
+        rede_rechts[5] = getPicture("gfx/anims/k-r-h4.png");
+        rede_rechts[6] = getPicture("gfx/anims/k-r-h5.png");
+        rede_rechts[7] = getPicture("gfx/anims/k-r-h6.png");
+        rede_rechts[8] = getPicture("gfx/anims/k-r-h7.png");
 
-        schaue_links[0] = getPicture("gfx/anims/k-l-h0.gif");
-        schaue_links[1] = getPicture("gfx/anims/k-l-h0a.gif");
+        schaue_links[0] = getPicture("gfx/anims/k-l-h0.png");
+        schaue_links[1] = getPicture("gfx/anims/k-l-h0a.png");
     }
 
     @Override
@@ -221,7 +221,7 @@ public class KrabatAngeln extends Mainanim {
         boolean rueckgabe = true;
 
         if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.wave.PlayFile("sfx/woda2.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
         if (--Verhinderangeln < 1) {
@@ -301,10 +301,10 @@ public class KrabatAngeln extends Mainanim {
         boolean rueckgabe = true;
 
         if (fangen == MAXFANGEN && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.wave.PlayFile("sfx/woda1.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/woda1.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
         if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.wave.PlayFile("sfx/woda2.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
 

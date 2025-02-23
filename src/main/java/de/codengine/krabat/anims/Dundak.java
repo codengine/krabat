@@ -62,23 +62,23 @@ public class Dundak extends Mainanim {
     }
 
     private void InitImages() {
-        hosc_stand[0] = getPicture("gfx/hoscenc/gast2-1.gif");
-        hosc_stand[1] = getPicture("gfx/hoscenc/gast2-1a.gif");
-        hosc_stand[2] = getPicture("gfx/hoscenc/gast2-1b.gif");
-        hosc_stand[3] = getPicture("gfx/hoscenc/gast2-2.gif");
+        hosc_stand[0] = getPicture("gfx/hoscenc/gast2-1.png");
+        hosc_stand[1] = getPicture("gfx/hoscenc/gast2-1a.png");
+        hosc_stand[2] = getPicture("gfx/hoscenc/gast2-1b.png");
+        hosc_stand[3] = getPicture("gfx/hoscenc/gast2-2.png");
 
-        hosc_head[0] = getPicture("gfx/hoscenc/gast2-h1.gif");
-        hosc_head[1] = getPicture("gfx/hoscenc/gast2-h2.gif");
-        hosc_head[2] = getPicture("gfx/hoscenc/gast2-h3.gif");
-        hosc_head[3] = getPicture("gfx/hoscenc/gast2-h4.gif");
-        hosc_head[4] = getPicture("gfx/hoscenc/gast2-h5.gif");
-        hosc_head[5] = getPicture("gfx/hoscenc/gast2-h6.gif");
-        hosc_head[6] = getPicture("gfx/hoscenc/gast2-h7.gif");
+        hosc_head[0] = getPicture("gfx/hoscenc/gast2-h1.png");
+        hosc_head[1] = getPicture("gfx/hoscenc/gast2-h2.png");
+        hosc_head[2] = getPicture("gfx/hoscenc/gast2-h3.png");
+        hosc_head[3] = getPicture("gfx/hoscenc/gast2-h4.png");
+        hosc_head[4] = getPicture("gfx/hoscenc/gast2-h5.png");
+        hosc_head[5] = getPicture("gfx/hoscenc/gast2-h6.png");
+        hosc_head[6] = getPicture("gfx/hoscenc/gast2-h7.png");
 
-        hosc_body[0] = getPicture("gfx/hoscenc/gast2-b1.gif");
-        hosc_body[1] = getPicture("gfx/hoscenc/gast2-b2.gif");
-        hosc_body[2] = getPicture("gfx/hoscenc/gast2-b3.gif");
-        hosc_body[3] = getPicture("gfx/hoscenc/gast2-b4.gif");
+        hosc_body[0] = getPicture("gfx/hoscenc/gast2-b1.png");
+        hosc_body[1] = getPicture("gfx/hoscenc/gast2-b2.png");
+        hosc_body[2] = getPicture("gfx/hoscenc/gast2-b3.png");
+        hosc_body[3] = getPicture("gfx/hoscenc/gast2-b4.png");
     }
 
     @Override
@@ -158,11 +158,11 @@ public class Dundak extends Mainanim {
 
         // wenn sonstige Blockaden noetig, dann mit wave.noBackground checken!!!
 
-        if (mainFrame.inventory.noBackgroundSound && mainFrame.invCursor) {
+        if (mainFrame.inventory.noBackgroundSound && mainFrame.isInventoryCursor) {
             return; // bei Problemen mit dem Soundsystem zurueckspringen
         }
 
-        mainFrame.wave.PlayFile("sfx/becher.wav");
+        mainFrame.soundPlayer.PlayFile("sfx/becher.wav");
 
     }
 

@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Straze extends Mainloc {
+public class Straze extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Straze.class);
     private GenericImage background;
     private final Straza1 straza1;
@@ -79,8 +79,8 @@ public class Straze extends Mainloc {
         mainFrame.Freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
-        if (mainFrame.Actions[953]) {
-            mainFrame.Actions[701] = true;
+        if (mainFrame.actions[953]) {
+            mainFrame.actions[701] = true;
         }
 
         // Zum testen - Rausnehmen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -119,20 +119,20 @@ public class Straze extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.removeAllElements();
 
         // diese Rechtecke nur mit Dienstkleidung passierbar
-        if (mainFrame.Actions[511]) {
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(242, 420, 309, 469));
+        if (mainFrame.actions[511]) {
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(242, 420, 309, 469));
 
-            mainFrame.wegSucher.ClearMatrix(2);
-            mainFrame.wegSucher.PosVerbinden(0, 1);
+            mainFrame.pathFinder.ClearMatrix(2);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
         } else {
             // sonst nur dieses
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
 
-            mainFrame.wegSucher.ClearMatrix(1);
+            mainFrame.pathFinder.ClearMatrix(1);
         }
 
         InitImages();
@@ -155,7 +155,7 @@ public class Straze extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/straze/straze.gif");
+        background = getPicture("gfx-dd/straze/straze.png");
 
     }
 
@@ -164,14 +164,14 @@ public class Straze extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -179,7 +179,7 @@ public class Straze extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Wache 1 + 2 zeichnen
@@ -196,7 +196,7 @@ public class Straze extends Mainloc {
         straza2VersperrtWeg = false;
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -206,7 +206,7 @@ public class Straze extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -238,7 +238,7 @@ public class Straze extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -246,7 +246,7 @@ public class Straze extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -269,7 +269,7 @@ public class Straze extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -278,7 +278,7 @@ public class Straze extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -288,7 +288,7 @@ public class Straze extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -318,15 +318,15 @@ public class Straze extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -352,7 +352,7 @@ public class Straze extends Mainloc {
                         pTemp = new GenericPoint(kt.x, pExitTerassa.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -362,7 +362,7 @@ public class Straze extends Mainloc {
                 // zu Hdwor gehen ?
                 // nur in Dienstkleidung moeglich, sonst Dialog mit Wachen
                 if (ausgangHdwor.IsPointInRect(pTemp)) {
-                    if (mainFrame.Actions[511]) {
+                    if (mainFrame.actions[511]) {
                         nextActionID = 101;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
@@ -374,7 +374,7 @@ public class Straze extends Mainloc {
                             pTemp = new GenericPoint(kt.x, pExitHdwor.y);
                         }
 
-                        if (mainFrame.dClick) {
+                        if (mainFrame.isDoubleClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
@@ -398,7 +398,7 @@ public class Straze extends Mainloc {
                     pTemp = pWappen;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -407,7 +407,7 @@ public class Straze extends Mainloc {
                 if (reStraza1.IsPointInRect(pTemp) ||
                         reStraza2.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pStrazy);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pStrazy);
                     mainFrame.repaint();
                     return;
                 }
@@ -415,7 +415,7 @@ public class Straze extends Mainloc {
                 // Wappen mitnehmen
                 if (wappen.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pWappen);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pWappen);
                     mainFrame.repaint();
                     return;
                 }
@@ -438,29 +438,29 @@ public class Straze extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || reStraza1.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || reStraza1.IsPointInRect(pTemp) ||
                     reStraza2.IsPointInRect(pTemp) || wappen.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -468,7 +468,7 @@ public class Straze extends Mainloc {
         else {
             if (ausgangTerassa.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 6;
                 }
                 return;
@@ -476,7 +476,7 @@ public class Straze extends Mainloc {
 
             if (ausgangHdwor.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -486,7 +486,7 @@ public class Straze extends Mainloc {
                     reStraza2.IsPointInRect(pTemp) ||
                     wappen.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -494,7 +494,7 @@ public class Straze extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -509,12 +509,12 @@ public class Straze extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -556,8 +556,8 @@ public class Straze extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -576,7 +576,7 @@ public class Straze extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -602,13 +602,13 @@ public class Straze extends Mainloc {
             case 50:
                 // Krabat beginnt Dialog mit Wachen
                 mainFrame.krabat.SetFacing(fStraze);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 // Je nachdem, ob Dienstkleidung, passelnd quasseln
-                if (mainFrame.Actions[511]) {
+                if (mainFrame.actions[511]) {
                     nextActionID = 620;
                 } else {
-                    if (mainFrame.Actions[510]) {
+                    if (mainFrame.actions[510]) {
                         nextActionID = 610;
                     } else {
                         nextActionID = 600;
@@ -688,7 +688,7 @@ public class Straze extends Mainloc {
             case 606:
                 // Reaktion Krabat
                 KrabatSagt("Straze_12", 0, 1, 2, 800);
-                mainFrame.Actions[510] = true;    // Gesprach nicht wiederholen
+                mainFrame.actions[510] = true;    // Gesprach nicht wiederholen
                 break;
 
             // Kurzer Dialog
@@ -712,9 +712,9 @@ public class Straze extends Mainloc {
 
             case 800:
                 // Dialog beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

@@ -31,30 +31,30 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public class Skladzic extends Mainanim {
-    private static final Logger log = LoggerFactory.getLogger(Skladzic.class);
+public class SaveGame extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(SaveGame.class);
     private boolean Paintcall = false;
 
     private final GenericPoint pLO;
-    private GenericImage LScreen;
-    private final GenericImage Pfeil;
-    private final GenericImage DPfeil;
-    private GenericImage Sklad;
-    private GenericImage Empty;
+    private GenericImage saveScreen;
+    private final GenericImage arrow;
+    private final GenericImage downArrow;
+    private GenericImage saveButton;
+    private GenericImage empty;
     private final Borderrect brGesamt;
     private final Borderrect brPfeil;
-    private Borderrect brSklad;
-    private final GenericColor inakt = new GenericColor(156, 132, 107);
+    private Borderrect brSaveButton;
+    private final GenericColor inactive = new GenericColor(156, 132, 107);
 
-    private int menuitem = 0;
-    private int olditem = 0;
-    private int nFeldAktiv = -1;
-    private int oFeldAktiv = -1;
+    private int menuItem = 0;
+    private int oldItem = 0;
+    private int nFieldActive = -1;
+    private int oFieldActive = -1;
     private int selected = -1;
     private int unselected = -1;
 
     private final Spielstand[] Dir;
-    private Spielstand Aktuell;
+    private Spielstand currentSavegame;
     private GenericImage actualImage;
 
     public boolean saveIsValid = false;
@@ -62,7 +62,7 @@ public class Skladzic extends Mainanim {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Skladzic(Start caller) {
+    public SaveGame(Start caller) {
         super(caller);
         mainFrame.Freeze(true);
 
@@ -74,8 +74,8 @@ public class Skladzic extends Mainanim {
         brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
         brPfeil = mainFrame.inventory.brPfeill;
-        Pfeil = mainFrame.inventory.Pfeill;
-        DPfeil = mainFrame.inventory.DPfeill;
+        arrow = mainFrame.inventory.Pfeill;
+        downArrow = mainFrame.inventory.DPfeill;
 
         // Spielstaende laden
         Dir = new Spielstand[7];
@@ -88,34 +88,21 @@ public class Skladzic extends Mainanim {
         GetActualSpielstand();
 
         mainFrame.Freeze(false);
-        mainFrame.setCursor(mainFrame.Normal);
+        mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // je nach Sprache init vornehmen
     private void InitRec() {
-        //TODO: Add proper graphics
-        switch (mainFrame.sprache) {
-            case 1: // Hornjos
-            case 3: // temporaer Deutsch bekommt Hornjos
-                // Bilder rein
-                LScreen = getPicture("gfx/mainmenu/save-b.gif");
-                Sklad = getPicture("gfx/mainmenu/m-sklad.gif");
-                Empty = getPicture("gfx/mainmenu/leerzelle.gif");
+        // Bilder rein
+        saveScreen = getPicture("gfx/mainmenu/save-menu.png", true);
+        saveButton = getPicture("gfx/mainmenu/save-button.png", true);
 
-                // Rects festlegen
-                brSklad = new Borderrect(pLO.x + 310, pLO.y + 327,pLO.x + 489, pLO.y + 355);
-                break;
-
-            case 2: // Delnjos
-                // Bilder rein
-                LScreen = getPicture("gfx/mainmenu/save-db.gif");
-                Sklad = getPicture("gfx/mainmenu/d-sklad.gif");
-                Empty = getPicture("gfx/mainmenu/leerzelle.gif");
-
-                // Rects festlegen
-                brSklad = new Borderrect(pLO.x + 308, pLO.y + 327,pLO.x + 491, pLO.y + 355);
-                break;
-        }
+        // Rects festlegen
+        int xOffset = 310 - ((saveButton.getWidth() - 179) / 2);
+        int baseX = pLO.x + xOffset;
+        int baseY = pLO.y + 327;
+        brSaveButton = new Borderrect(baseX, baseY,baseX + saveButton.getWidth(), baseY + saveButton.getHeight());
+        empty = getPicture("gfx/mainmenu/leerzelle.png");
         actualImage = mainFrame.saveImage;
     }
 
@@ -125,27 +112,27 @@ public class Skladzic extends Mainanim {
 
         // Speichern - Background zeichnen
         String outputText;
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 1284, 484);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
-            g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
+            g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
+            g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             // Datum und GenericImage jedes Spielstandes anzeigen
             for (int i = 1; i <= 6; ++i) {
                 GenericPoint outputTextPos = GetCurrentXY(i - 1);
                 if (Dir[i].Location != 0) {
                     outputText = Dir[i].ConvertTime();
-                    g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1);
+                    g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollX + 1,
+                            outputTextPos.y + mainFrame.scrollY + 1);
                     outputTextPos.y += 87;
-                    mainFrame.ifont.drawString(g, outputText, outputTextPos.x + mainFrame.scrollx,
-                            outputTextPos.y + mainFrame.scrolly, 0xffff0000);
+                    mainFrame.imageFont.drawString(g, outputText, outputTextPos.x + mainFrame.scrollX,
+                            outputTextPos.y + mainFrame.scrollY, 0xffff0000);
                 } else {
-                    g.drawImage(Empty, outputTextPos.x + mainFrame.scrollx + 1,
-                            outputTextPos.y + mainFrame.scrolly + 1);
+                    g.drawImage(empty, outputTextPos.x + mainFrame.scrollX + 1,
+                            outputTextPos.y + mainFrame.scrollY + 1);
                 }
             }
         }
@@ -153,25 +140,25 @@ public class Skladzic extends Mainanim {
         // Testen, ob nach Save over Existing gespeichert werden darf
         if (saveIsValid) {
             saveIsValid = false;
-            Aktuell.Save(selected + 1);
+            currentSavegame.Save(selected + 1);
             Deactivate();
             return;
         }
 
         // Ist ein Feld weg vom Cursor ? Dann roten Rahmen weg
-        if (oFeldAktiv >= 0) {
-            g.setColor(inakt);
-            GenericPoint pTemp = GetCurrentXY(oFeldAktiv);
-            g.drawRect(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly, 119, 89);
-            oFeldAktiv = -1;
+        if (oFieldActive >= 0) {
+            g.setColor(inactive);
+            GenericPoint pTemp = GetCurrentXY(oFieldActive);
+            g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 119, 89);
+            oFieldActive = -1;
         }
 
         // Ist ein Feld unter Cursor ? Dann roten Rahmen drum
-        if (nFeldAktiv >= 0) {
+        if (nFieldActive >= 0) {
             g.setColor(GenericColor.red);
-            GenericPoint pTemp = GetCurrentXY(nFeldAktiv);
-            g.drawRect(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly, 119, 89);
-            oFeldAktiv = nFeldAktiv;
+            GenericPoint pTemp = GetCurrentXY(nFieldActive);
+            g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 119, 89);
+            oFieldActive = nFieldActive;
         }
 
         // Demarkiertes Feld mit richtigem Geisterimage �berpinseln und Datum Korrigieren!
@@ -179,78 +166,78 @@ public class Skladzic extends Mainanim {
             GenericPoint pTemp = GetCurrentXY(unselected);
             if (Dir[unselected + 1].Location != 0) {
                 g.drawImage(Dir[unselected + 1].DarkPicture,
-                        pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
+                        pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
             } else {
-                g.drawImage(Empty, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
+                g.drawImage(empty, pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
             }
             pTemp.y += 87;
-            g.setClip(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly + 4, 110, 20);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
+            g.setClip(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY + 4, 110, 20);
+            g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
             if (Dir[unselected + 1].Location != 0) {
                 outputText = Dir[unselected + 1].ConvertTime();
-                mainFrame.ifont.drawString(g, outputText, pTemp.x + mainFrame.scrollx,
-                        pTemp.y + mainFrame.scrolly, 0xffff0000);
+                mainFrame.imageFont.drawString(g, outputText, pTemp.x + mainFrame.scrollX,
+                        pTemp.y + mainFrame.scrollY, 0xffff0000);
             }
-            g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
+            g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
             unselected = -1;
         }
 
         // Markiertes Feld mit richtigem GenericImage �berpinseln und neues Datum hinzufuegen!
         if (selected != -1) {
             GenericPoint pTemp = GetCurrentXY(selected);
-            g.drawImage(Aktuell.Picture, pTemp.x + mainFrame.scrollx + 1, pTemp.y + mainFrame.scrolly + 1);
+            g.drawImage(currentSavegame.Picture, pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
             pTemp.y += 87;
-            g.setClip(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly + 4, 110, 20);
-            g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
-            outputText = Aktuell.ConvertTime();
-            mainFrame.ifont.drawString(g, outputText, pTemp.x + mainFrame.scrollx,
-                    pTemp.y + mainFrame.scrolly, 0xffff0000);
-            g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
+            g.setClip(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY + 4, 110, 20);
+            g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
+            outputText = currentSavegame.ConvertTime();
+            mainFrame.imageFont.drawString(g, outputText, pTemp.x + mainFrame.scrollX,
+                    pTemp.y + mainFrame.scrollY, 0xffff0000);
+            g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
             unselected = selected;
         }
 
         // Wenn noetig, dann highlight aufheben!!!
-        switch (olditem) {
+        switch (oldItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeil, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
+                g.drawImage(downArrow, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
                 break;
             case 2:
                 GenericRectangle tep = g.getClipBounds();
-                g.setClip(brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly,
-                        brSklad.ru_point.x - brSklad.lo_point.x + mainFrame.scrollx,
-                        brSklad.ru_point.y - brSklad.lo_point.y + mainFrame.scrolly);
-                g.drawImage(LScreen, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
+                g.setClip(brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY,
+                        brSaveButton.ru_point.x - brSaveButton.lo_point.x + mainFrame.scrollX,
+                        brSaveButton.ru_point.y - brSaveButton.lo_point.y + mainFrame.scrollY);
+                g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 g.setClip(tep);
                 break;
             default:
-                log.error("Falsches Menu-Item!!! olditem = {}", olditem);
+                log.error("Falsches Menu-Item!!! olditem = {}", oldItem);
         }
-        if (olditem != 0) {
-            olditem = 0;
+        if (oldItem != 0) {
+            oldItem = 0;
         }
 
         // Wenn noetig, dann highlighten!!!
-        switch (menuitem) {
+        switch (menuItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                g.drawImage(arrow, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             case 2:
                 GenericRectangle tepm = g.getClipBounds();
-                g.setClip(brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly,
-                        brSklad.ru_point.x - brSklad.lo_point.x + mainFrame.scrollx,
-                        brSklad.ru_point.y - brSklad.lo_point.y + mainFrame.scrolly);
-                g.drawImage(Sklad, brSklad.lo_point.x + mainFrame.scrollx, brSklad.lo_point.y + mainFrame.scrolly);
+                g.setClip(brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY,
+                        brSaveButton.ru_point.x - brSaveButton.lo_point.x + mainFrame.scrollX,
+                        brSaveButton.ru_point.y - brSaveButton.lo_point.y + mainFrame.scrollY);
+                g.drawImage(saveButton, brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY);
                 g.setClip(tepm);
                 break;
             default:
-                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuItem);
         }
-        if (menuitem != 0) {
-            olditem = menuitem;
+        if (menuItem != 0) {
+            oldItem = menuItem;
         }
 
     }
@@ -278,13 +265,13 @@ public class Skladzic extends Mainanim {
         }
 
         // Bei Speichern und erlaubt speichern
-        if (brSklad.IsPointInRect(pTemp) && selected != -1) {
+        if (brSaveButton.IsPointInRect(pTemp) && selected != -1) {
             if (Dir[selected + 1].Location != 0) {
                 // Sicherheitsabfrage aktivieren
-                mainFrame.exit.Activate(3);
+                mainFrame.exitGame.Activate(3);
                 return;
             }
-            Aktuell.Save(selected + 1);
+            currentSavegame.Save(selected + 1);
             Deactivate();
             return;
         }
@@ -295,15 +282,15 @@ public class Skladzic extends Mainanim {
                 if (selected != i) {
                     selected = i;
                 }
-                if (mainFrame.dClick) {
+                if (mainFrame.isDoubleClick) {
 
                     // Bei Doppelklick sofort speichern
                     if (Dir[selected + 1].Location != 0) {
                         // Sicherheitsabfrage aktivieren
-                        mainFrame.exit.Activate(3);
+                        mainFrame.exitGame.Activate(3);
                         return;
                     }
-                    Aktuell.Save(selected + 1);
+                    currentSavegame.Save(selected + 1);
                     Deactivate();
                     return;
                 }
@@ -315,36 +302,36 @@ public class Skladzic extends Mainanim {
 
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // roten Rahmen zum Umranden festlegen
-        nFeldAktiv = -1;
+        nFieldActive = -1;
         for (int i = 0; i < 6; i++) {
             if (GetCurrentRect(i).IsPointInRect(pTemp)) {
-                nFeldAktiv = i;
+                nFieldActive = i;
             }
         }
 
         // Menueitems fuer Highlight festlegen
-        menuitem = 0;
+        menuItem = 0;
         if (brPfeil.IsPointInRect(pTemp)) {
-            menuitem = 1;
+            menuItem = 1;
         }
-        if (brSklad.IsPointInRect(pTemp) && selected != -1) {
-            menuitem = 2;
+        if (brSaveButton.IsPointInRect(pTemp) && selected != -1) {
+            menuItem = 2;
         }
 
         // wenn noetig , dann Neuzeichnen!
         if (Paintcall) {
             Paintcall = false;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
             return;
         }
-        if (menuitem != olditem || oFeldAktiv != nFeldAktiv) {
+        if (menuItem != oldItem || oFieldActive != nFieldActive) {
             mainFrame.repaint();
         }
     }
 
     public void evalMouseExitEvent() {
-        menuitem = 0;
-        nFeldAktiv = -1;
+        menuItem = 0;
+        nFieldActive = -1;
         mainFrame.repaint();
     }
 
@@ -364,11 +351,11 @@ public class Skladzic extends Mainanim {
 
     // Deaktivieren /////////
     private void Deactivate() {
-        menuitem = 0;
-        nFeldAktiv = -1;
-        mainFrame.Clipset = false;
+        menuItem = 0;
+        nFieldActive = -1;
+        mainFrame.isClipSet = false;
         mainFrame.DestructLocation(103);
-        if (mainFrame.mainmenu.MMactive) {
+        if (mainFrame.mainMenu.MMactive) {
             mainFrame.whatScreen = 2;
         } else {
             mainFrame.whatScreen = 0;
@@ -399,7 +386,7 @@ public class Skladzic extends Mainanim {
         GenericToolkit.getDefaultToolkit().grabPixelsFromImage(actualImage, 0, 0, 118, 88, tempp, 0, 118);
 
         // erzeugt den aktuellen Spielstand (nicht komplett!!)
-        Aktuell = new Spielstand(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
+        currentSavegame = new Spielstand(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
                 Kal.get(Calendar.YEAR));
     }
 }

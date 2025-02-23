@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Wotrow extends Mainloc {
+public class Wotrow extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Wotrow.class);
     private GenericImage background;
     private GenericImage foreground;
@@ -121,39 +121,39 @@ public class Wotrow extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(441, 463, 340, 368, 403, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(410, 414, 441, 463, 390, 402));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(373, 376, 409, 412, 371, 389));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(373, 356, 374, 370));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(437, 439, 373, 376, 326, 355));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(440, 442, 437, 439, 319, 325));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(440, 312, 441, 318));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(407, 408, 440, 441, 282, 311));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(401, 402, 407, 408, 272, 281));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(390, 391, 401, 402, 266, 271));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(382, 383, 390, 391, 255, 265));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(367, 368, 382, 383, 222, 254));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(332, 333, 367, 368, 199, 221));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(330, 331, 332, 333, 190, 198));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(332, 333, 330, 331, 175, 189));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(441, 463, 340, 368, 403, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(410, 414, 441, 463, 390, 402));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(373, 376, 409, 412, 371, 389));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(373, 356, 374, 370));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(437, 439, 373, 376, 326, 355));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(440, 442, 437, 439, 319, 325));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(440, 312, 441, 318));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(407, 408, 440, 441, 282, 311));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(401, 402, 407, 408, 272, 281));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(390, 391, 401, 402, 266, 271));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(382, 383, 390, 391, 255, 265));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(367, 368, 382, 383, 222, 254));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(332, 333, 367, 368, 199, 221));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(330, 331, 332, 333, 190, 198));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(332, 333, 330, 331, 175, 189));
 
-        mainFrame.wegSucher.ClearMatrix(15);
+        mainFrame.pathFinder.ClearMatrix(15);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
-        mainFrame.wegSucher.PosVerbinden(4, 5);
-        mainFrame.wegSucher.PosVerbinden(5, 6);
-        mainFrame.wegSucher.PosVerbinden(6, 7);
-        mainFrame.wegSucher.PosVerbinden(7, 8);
-        mainFrame.wegSucher.PosVerbinden(8, 9);
-        mainFrame.wegSucher.PosVerbinden(9, 10);
-        mainFrame.wegSucher.PosVerbinden(10, 11);
-        mainFrame.wegSucher.PosVerbinden(11, 12);
-        mainFrame.wegSucher.PosVerbinden(12, 13);
-        mainFrame.wegSucher.PosVerbinden(13, 14);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.PosVerbinden(5, 6);
+        mainFrame.pathFinder.PosVerbinden(6, 7);
+        mainFrame.pathFinder.PosVerbinden(7, 8);
+        mainFrame.pathFinder.PosVerbinden(8, 9);
+        mainFrame.pathFinder.PosVerbinden(9, 10);
+        mainFrame.pathFinder.PosVerbinden(10, 11);
+        mainFrame.pathFinder.PosVerbinden(11, 12);
+        mainFrame.pathFinder.PosVerbinden(12, 13);
+        mainFrame.pathFinder.PosVerbinden(13, 14);
 
         InitImages();
         switch (oldLocation) {
@@ -175,10 +175,10 @@ public class Wotrow extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/wotrow/wotrow.gif");
-        foreground = getPicture("gfx/wotrow/wotrow-fg.gif");
+        background = getPicture("gfx/wotrow/wotrow.png");
+        foreground = getPicture("gfx/wotrow/wotrow-fg.png");
 
-        mond = getPicture("gfx/wotrow/mesack.gif");
+        mond = getPicture("gfx/wotrow/mesack.png");
 
     }
 
@@ -237,14 +237,14 @@ public class Wotrow extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -261,13 +261,13 @@ public class Wotrow extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // hier ist der Sound...
         evalSound();
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         //         mainFrame.krabat.SetKrabatPos (CorrectX (mainFrame.krabat.GetKrabatPos()));
 
@@ -279,7 +279,7 @@ public class Wotrow extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -314,7 +314,7 @@ public class Wotrow extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -322,7 +322,7 @@ public class Wotrow extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -345,7 +345,7 @@ public class Wotrow extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -354,7 +354,7 @@ public class Wotrow extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -364,7 +364,7 @@ public class Wotrow extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -398,8 +398,8 @@ public class Wotrow extends Mainloc {
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -424,7 +424,7 @@ public class Wotrow extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -443,7 +443,7 @@ public class Wotrow extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -480,7 +480,7 @@ public class Wotrow extends Mainloc {
                 // Woda mitnehmen
                 if (brWoda.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pwoda);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pwoda);
                     mainFrame.repaint();
                     return;
                 }
@@ -488,7 +488,7 @@ public class Wotrow extends Mainloc {
                 // Wokno mitnehmen
                 if (brWokno.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pwokno);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pwokno);
                     mainFrame.repaint();
                     return;
                 }
@@ -505,29 +505,29 @@ public class Wotrow extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || brWoda.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || brWoda.IsPointInRect(pTemp) ||
                     brWokno.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -536,7 +536,7 @@ public class Wotrow extends Mainloc {
         else {
             if (brWoda.IsPointInRect(pTemp) || brWokno.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -544,7 +544,7 @@ public class Wotrow extends Mainloc {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 4;
                 }
                 return;
@@ -552,7 +552,7 @@ public class Wotrow extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -560,7 +560,7 @@ public class Wotrow extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -573,7 +573,7 @@ public class Wotrow extends Mainloc {
         // mainFrame.wegGeher.SetzeNeuenWeg (right);
 
         // Routine wird nicht mehr genutzt
-        mainFrame.wegGeher.SetzeNeuenWeg(dest);
+        mainFrame.pathWalker.SetzeNeuenWeg(dest);
     }		
   
     /*
@@ -616,12 +616,12 @@ public class Wotrow extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -663,8 +663,8 @@ public class Wotrow extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -673,16 +673,16 @@ public class Wotrow extends Mainloc {
         int zfz = (int) (Math.random() * 100);
 
         if (zfz > 92) {
-            mainFrame.wave.PlayFile("sfx/grillen.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/grillen.wav");
         }
 
         if (zfz > 98) {
             int zfz2 = (int) (Math.random() * 1.99f);
 
             if (zfz2 < 1) {
-                mainFrame.wave.PlayFile("sfx/uhu1.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/uhu1.wav");
             } else {
-                mainFrame.wave.PlayFile("sfx/uhu2.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/uhu2.wav");
             }
         }
     }
@@ -777,7 +777,7 @@ public class Wotrow extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }

@@ -72,30 +72,30 @@ public class Kuchar extends Mainanim {
     }
 
     private void InitImages() {
-        kuchar_down_schlag[0] = getPicture("gfx-dd/kuchnja/koch2.gif");
-        kuchar_down_schlag[1] = getPicture("gfx-dd/kuchnja/koch2a.gif");
-        kuchar_down_schlag[2] = getPicture("gfx-dd/kuchnja/koch2b.gif");
-        kuchar_down_schlag[3] = getPicture("gfx-dd/kuchnja/koch2c.gif");
+        kuchar_down_schlag[0] = getPicture("gfx-dd/kuchnja/koch2.png");
+        kuchar_down_schlag[1] = getPicture("gfx-dd/kuchnja/koch2a.png");
+        kuchar_down_schlag[2] = getPicture("gfx-dd/kuchnja/koch2b.png");
+        kuchar_down_schlag[3] = getPicture("gfx-dd/kuchnja/koch2c.png");
 
-        kuchar_down_talk[0] = getPicture("gfx-dd/kuchnja/koch2-t1.gif");
-        kuchar_down_talk[1] = getPicture("gfx-dd/kuchnja/koch2-t1a.gif");
-        kuchar_down_talk[2] = getPicture("gfx-dd/kuchnja/koch2-t2.gif");
-        kuchar_down_talk[3] = getPicture("gfx-dd/kuchnja/koch2-t3.gif");
-        kuchar_down_talk[4] = getPicture("gfx-dd/kuchnja/koch2-t4.gif");
-        kuchar_down_talk[5] = getPicture("gfx-dd/kuchnja/koch2-t5.gif");
-        kuchar_down_talk[6] = getPicture("gfx-dd/kuchnja/koch2-t6.gif");
-        kuchar_down_talk[7] = getPicture("gfx-dd/kuchnja/koch2-t7.gif");
+        kuchar_down_talk[0] = getPicture("gfx-dd/kuchnja/koch2-t1.png");
+        kuchar_down_talk[1] = getPicture("gfx-dd/kuchnja/koch2-t1a.png");
+        kuchar_down_talk[2] = getPicture("gfx-dd/kuchnja/koch2-t2.png");
+        kuchar_down_talk[3] = getPicture("gfx-dd/kuchnja/koch2-t3.png");
+        kuchar_down_talk[4] = getPicture("gfx-dd/kuchnja/koch2-t4.png");
+        kuchar_down_talk[5] = getPicture("gfx-dd/kuchnja/koch2-t5.png");
+        kuchar_down_talk[6] = getPicture("gfx-dd/kuchnja/koch2-t6.png");
+        kuchar_down_talk[7] = getPicture("gfx-dd/kuchnja/koch2-t7.png");
 
-        kuchar_up_talk[0] = getPicture("gfx-dd/kuchnja/koch1.gif");
-        kuchar_up_talk[1] = getPicture("gfx-dd/kuchnja/koch1-t1.gif");
-        kuchar_up_talk[2] = getPicture("gfx-dd/kuchnja/koch1-t2.gif");
-        kuchar_up_talk[3] = getPicture("gfx-dd/kuchnja/koch1-t3.gif");
-        kuchar_up_talk[4] = getPicture("gfx-dd/kuchnja/koch1-t4.gif");
-        kuchar_up_talk[5] = getPicture("gfx-dd/kuchnja/koch1-t5.gif");
+        kuchar_up_talk[0] = getPicture("gfx-dd/kuchnja/koch1.png");
+        kuchar_up_talk[1] = getPicture("gfx-dd/kuchnja/koch1-t1.png");
+        kuchar_up_talk[2] = getPicture("gfx-dd/kuchnja/koch1-t2.png");
+        kuchar_up_talk[3] = getPicture("gfx-dd/kuchnja/koch1-t3.png");
+        kuchar_up_talk[4] = getPicture("gfx-dd/kuchnja/koch1-t4.png");
+        kuchar_up_talk[5] = getPicture("gfx-dd/kuchnja/koch1-t5.png");
 
-        maus[0] = getPicture("gfx-dd/kuchnja/mos.gif");
-        maus[1] = getPicture("gfx-dd/kuchnja/mos2.gif");
-        maus[2] = getPicture("gfx-dd/kuchnja/mos3.gif");
+        maus[0] = getPicture("gfx-dd/kuchnja/mos.png");
+        maus[1] = getPicture("gfx-dd/kuchnja/mos2.png");
+        maus[2] = getPicture("gfx-dd/kuchnja/mos3.png");
     }
 
     // gib Borderrect fuer "inside" - Evaluierung an
@@ -235,7 +235,7 @@ public class Kuchar extends Mainanim {
 
     private void evalSound() {
         // zufaellig wavs fuer Geschnatter abspielen...
-        mainFrame.wave.PlayFile("sfx-dd/lzica.wav");
+        mainFrame.soundPlayer.PlayFile("sfx-dd/lzica.wav");
     }
 
 

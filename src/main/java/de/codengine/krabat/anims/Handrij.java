@@ -71,31 +71,31 @@ public class Handrij extends Mainanim {
     }
 
     private void InitImages() {
-        hand_work[0] = getPicture("gfx-dd/zahrod/zahrod-o.gif");
-        hand_work[1] = getPicture("gfx-dd/zahrod/zahrod-o1.gif");
-        hand_work[2] = getPicture("gfx-dd/zahrod/zahrod-o2.gif");
-        hand_work[3] = getPicture("gfx-dd/zahrod/zahrod-o3.gif");
-        hand_work[4] = getPicture("gfx-dd/zahrod/zahrod-o4.gif");
-        hand_work[5] = getPicture("gfx-dd/zahrod/zahrod-o5.gif");
-        hand_work[6] = getPicture("gfx-dd/zahrod/zahrod-o6.gif");
+        hand_work[0] = getPicture("gfx-dd/zahrod/zahrod-o.png");
+        hand_work[1] = getPicture("gfx-dd/zahrod/zahrod-o1.png");
+        hand_work[2] = getPicture("gfx-dd/zahrod/zahrod-o2.png");
+        hand_work[3] = getPicture("gfx-dd/zahrod/zahrod-o3.png");
+        hand_work[4] = getPicture("gfx-dd/zahrod/zahrod-o4.png");
+        hand_work[5] = getPicture("gfx-dd/zahrod/zahrod-o5.png");
+        hand_work[6] = getPicture("gfx-dd/zahrod/zahrod-o6.png");
 
-        hand_down[0] = getPicture("gfx-dd/zahrod/zahrod-u.gif");
-        hand_down[1] = getPicture("gfx-dd/zahrod/zahrod-ua.gif");
+        hand_down[0] = getPicture("gfx-dd/zahrod/zahrod-u.png");
+        hand_down[1] = getPicture("gfx-dd/zahrod/zahrod-ua.png");
 
-        hand_head[0] = getPicture("gfx-dd/zahrod/zahrod-rh1.gif");
-        hand_head[1] = getPicture("gfx-dd/zahrod/zahrod-rh1a.gif");
-        hand_head[2] = getPicture("gfx-dd/zahrod/zahrod-rh2.gif");
-        hand_head[3] = getPicture("gfx-dd/zahrod/zahrod-rh3.gif");
-        hand_head[4] = getPicture("gfx-dd/zahrod/zahrod-rh4.gif");
-        hand_head[5] = getPicture("gfx-dd/zahrod/zahrod-rh5.gif");
-        hand_head[6] = getPicture("gfx-dd/zahrod/zahrod-rh6.gif");
-        hand_head[7] = getPicture("gfx-dd/zahrod/zahrod-rh7.gif");
+        hand_head[0] = getPicture("gfx-dd/zahrod/zahrod-rh1.png");
+        hand_head[1] = getPicture("gfx-dd/zahrod/zahrod-rh1a.png");
+        hand_head[2] = getPicture("gfx-dd/zahrod/zahrod-rh2.png");
+        hand_head[3] = getPicture("gfx-dd/zahrod/zahrod-rh3.png");
+        hand_head[4] = getPicture("gfx-dd/zahrod/zahrod-rh4.png");
+        hand_head[5] = getPicture("gfx-dd/zahrod/zahrod-rh5.png");
+        hand_head[6] = getPicture("gfx-dd/zahrod/zahrod-rh6.png");
+        hand_head[7] = getPicture("gfx-dd/zahrod/zahrod-rh7.png");
 
-        hand_body[0] = getPicture("gfx-dd/zahrod/zahrod-rb1.gif");
-        hand_body[1] = getPicture("gfx-dd/zahrod/zahrod-rb2.gif");
-        hand_body[2] = getPicture("gfx-dd/zahrod/zahrod-rb3.gif");
-        hand_body[3] = getPicture("gfx-dd/zahrod/zahrod-rb4.gif");
-        hand_body[4] = getPicture("gfx-dd/zahrod/zahrod-rb5.gif");
+        hand_body[0] = getPicture("gfx-dd/zahrod/zahrod-rb1.png");
+        hand_body[1] = getPicture("gfx-dd/zahrod/zahrod-rb2.png");
+        hand_body[2] = getPicture("gfx-dd/zahrod/zahrod-rb3.png");
+        hand_body[3] = getPicture("gfx-dd/zahrod/zahrod-rb4.png");
+        hand_body[4] = getPicture("gfx-dd/zahrod/zahrod-rb5.png");
     }
 
     @Override

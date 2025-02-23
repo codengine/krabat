@@ -63,12 +63,12 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
     // Hier wird ein MC - Element hinzugefuegt mit automatischer Breite
     public void ExtendMC(String langKey, int active, int asked, int[] successors, int nextActionId) {
         // hier testen, ob diese Frage schon interessant ist, sonst zurueckspringen
-        if (active < 1000 && !mainFrame.Actions[active]) {
+        if (active < 1000 && !mainFrame.actions[active]) {
             return;
         }
 
         // hier noch testen, ob die Frage schon gefrat wurde und deshalb rausfaellt
-        if (asked < 1000 && mainFrame.Actions[asked]) {
+        if (asked < 1000 && mainFrame.actions[asked]) {
             return;
         }
 
@@ -77,16 +77,16 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
 
         // String merken
         String text = Start.stringManager.getTranslation(langKey);
-        Fragen[Anzahl] = mainFrame.ifont.TeileText(text);
+        Fragen[Anzahl] = mainFrame.imageFont.TeileText(text);
 
         // Rectangle je nach Position des Textes festlegen
         // 1. Rectangle extra
         if (Anzahl == 0) {
-            Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + (mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
+            Positionen[Anzahl] = new GenericRectangle(0, yoff, 639, 40 + (mainFrame.imageFont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
         } else {
             // folgende Rects immer anschliessend
             int temp = Positionen[Anzahl - 1].getY() + Positionen[Anzahl - 1].getHeight();
-            Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + (mainFrame.ifont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
+            Positionen[Anzahl] = new GenericRectangle(0, temp, 639, 40 + (mainFrame.imageFont.ZeilenAnzahl(Fragen[Anzahl]) - 1) * 27);
         }
 
         // nextActionID merken (wird zurueckgegeben bei Erfolg)
@@ -116,20 +116,20 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         g.setClip(0, 0, 1284, 964);
 
         // 1.Aufruf, zuerst alles Zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             for (int i = 0; i <= Anzahl; ++i) {
                 if (selected == i) {
-                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollx + 30,
-                            Positionen[i].getY() + mainFrame.scrolly + 10, 1);
+                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
+                            Positionen[i].getX() + mainFrame.scrollX + 30,
+                            Positionen[i].getY() + mainFrame.scrollY + 10, 1);
                 } else {
-                    mainFrame.ifont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollx + 30,
-                            Positionen[i].getY() + mainFrame.scrolly + 10, 0xff00b000);
+                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
+                            Positionen[i].getX() + mainFrame.scrollX + 30,
+                            Positionen[i].getY() + mainFrame.scrollY + 10, 0xff00b000);
                 }
             }
             oldsel = selected;
@@ -138,18 +138,18 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         }
 
         if (oldsel != -1) {
-            mainFrame.ifont.drawString(g, "$" + Fragen[oldsel],
-                    Positionen[oldsel].getX() + mainFrame.scrollx + 30,
-                    Positionen[oldsel].getY() + mainFrame.scrolly + 10, 0xff00b000);
+            mainFrame.imageFont.drawString(g, "$" + Fragen[oldsel],
+                    Positionen[oldsel].getX() + mainFrame.scrollX + 30,
+                    Positionen[oldsel].getY() + mainFrame.scrollY + 10, 0xff00b000);
         }
         if (oldsel != -1) {
             oldsel = -1;
         }
 
         if (selected != -1) {
-            mainFrame.ifont.drawString(g, "$" + Fragen[selected],
-                    Positionen[selected].getX() + mainFrame.scrollx + 30,
-                    Positionen[selected].getY() + mainFrame.scrolly + 10, 1);
+            mainFrame.imageFont.drawString(g, "$" + Fragen[selected],
+                    Positionen[selected].getX() + mainFrame.scrollX + 30,
+                    Positionen[selected].getY() + mainFrame.scrollY + 10, 1);
         }
 
         if (selected != -1) {
@@ -173,7 +173,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
                     // Actionarray bearbeiten
                     for (int f = 0; f < 10; f++) {
                         if (Actionvariablen[i][f] < 1000) {
-                            mainFrame.Actions[Actionvariablen[i][f]] = true;
+                            mainFrame.actions[Actionvariablen[i][f]] = true;
                             // System.out.println ("Actionvariable " + Actionvariablen[i][f] + " wurde true gesetzt.");
                         }
                     }
@@ -181,9 +181,9 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
                     // MC-Klasse deaktivieren und alles zuruecksetzen
                     selected = -1;
                     oldsel = -1;
-                    mainFrame.fPlayAnim = true;
-                    mainFrame.isMultiple = false;
-                    mainFrame.Clipset = false;
+                    mainFrame.isAnimRunning = true;
+                    mainFrame.isMultipleChoiceActive = false;
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
                     break;
                 }
@@ -195,7 +195,7 @@ public class Multiple2  // Turrican II laesst gruessen!!!!!!
         // Cursor auf Normal setzen je nach Bedarf
         if (Cursorform != 0) {
             Cursorform = 0;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
         // System.out.println("Move Thrown !");

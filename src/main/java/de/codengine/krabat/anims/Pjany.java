@@ -47,8 +47,8 @@ public class Pjany extends Mainanim {
     }
 
     private void InitImages() {
-        hosc[0] = getPicture("gfx/hoscenc/gast1-1.gif");
-        hosc[1] = getPicture("gfx/hoscenc/gast1-2.gif");
+        hosc[0] = getPicture("gfx/hoscenc/gast1-1.png");
+        hosc[1] = getPicture("gfx/hoscenc/gast1-2.png");
     }
 
     // Zeichne Saeufer, wie er dasteht oder spricht

@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Hrodz extends Mainloc {
+public class Hrodz extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Hrodz.class);
     private GenericImage background;
     private GenericImage steinpic;
@@ -108,18 +108,18 @@ public class Hrodz extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(
                 new Bordertrapez(224, 450, 328, 479));
-        mainFrame.wegGeher.vBorders.addElement(
+        mainFrame.pathWalker.vBorders.addElement(
                 new Bordertrapez(329, 437, 417, 479));
-        mainFrame.wegGeher.vBorders.addElement(
+        mainFrame.pathWalker.vBorders.addElement(
                 new Bordertrapez(418, 413, 639, 479));
 
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
 
         InitImages();
         switch (oldLocation) {
@@ -139,17 +139,17 @@ public class Hrodz extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/wotrow/hrodzi.gif");
-        steinpic = getPicture("gfx/wotrow/hkamjen.gif");
-        gruftzu = getPicture("gfx/wotrow/gruftzu.gif");
-        vordergruft = getPicture("gfx/wotrow/hgruft.gif");
+        background = getPicture("gfx/wotrow/hrodzi.png");
+        steinpic = getPicture("gfx/wotrow/hkamjen.png");
+        gruftzu = getPicture("gfx/wotrow/gruftzu.png");
+        vordergruft = getPicture("gfx/wotrow/hgruft.png");
 
-        krabat_wippen_left = getPicture("gfx/wotrow/k-l-wippen.gif");
-        krabat_wippen_right = getPicture("gfx/wotrow/k-r-wippen.gif");
+        krabat_wippen_left = getPicture("gfx/wotrow/k-l-wippen.png");
+        krabat_wippen_right = getPicture("gfx/wotrow/k-r-wippen.png");
 
-        krabat_fallen = getPicture("gfx/wotrow/k-r-fallen.gif");
-        krabat_left = getPicture("gfx/anims/k-l-10.gif");
-        krabat_right = getPicture("gfx/anims/k-r-10.gif");
+        krabat_fallen = getPicture("gfx/wotrow/k-r-fallen.png");
+        krabat_left = getPicture("gfx/anims/k-l-10.png");
+        krabat_right = getPicture("gfx/anims/k-r-10.png");
     }
 
 
@@ -159,14 +159,14 @@ public class Hrodz extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -179,14 +179,14 @@ public class Hrodz extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // hier ist der Sound...
         evalSound();
 
         // Krabat einen Schritt gehen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
@@ -269,7 +269,7 @@ public class Hrodz extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -304,7 +304,7 @@ public class Hrodz extends Mainloc {
         }
 
         // Stein zeichnen, solange noch da
-        if (!mainFrame.Actions[980]) {
+        if (!mainFrame.actions[980]) {
             GenericRectangle my;
             my = g.getClipBounds();
 
@@ -321,7 +321,7 @@ public class Hrodz extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x,
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x,
                     outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(),
                     my.getWidth(), my.getHeight());
@@ -331,7 +331,7 @@ public class Hrodz extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -355,7 +355,7 @@ public class Hrodz extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -363,7 +363,7 @@ public class Hrodz extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -373,7 +373,7 @@ public class Hrodz extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -389,7 +389,7 @@ public class Hrodz extends Mainloc {
 
                 // Standardausreden fuer Stein
                 if (stein.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[980]) {
+                        !mainFrame.actions[980]) {
                     nextActionID = 150;
                     pTemp = Pstein;
                 }
@@ -403,7 +403,7 @@ public class Hrodz extends Mainloc {
                 }
                 if (!isRight &&
                         megaRechts.IsPointInRect(pTemp)) {
-                    if (mainFrame.Actions[980]) {
+                    if (mainFrame.actions[980]) {
                         // will mit Stein zurueck
                         nextActionID = 800;
                     } else {
@@ -414,15 +414,15 @@ public class Hrodz extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -457,7 +457,7 @@ public class Hrodz extends Mainloc {
 
                 // Stein ansehen
                 if (stein.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[980]) {
+                        !mainFrame.actions[980]) {
                     nextActionID = 1;
                     pTemp = Pstein;
                 }
@@ -471,7 +471,7 @@ public class Hrodz extends Mainloc {
                 }
                 if (!isRight &&
                         megaRechts.IsPointInRect(pTemp)) {
-                    if (mainFrame.Actions[980]) {
+                    if (mainFrame.actions[980]) {
                         // will mit Stein zurueck
                         nextActionID = 800;
                     } else {
@@ -481,7 +481,7 @@ public class Hrodz extends Mainloc {
                     pTemp = Pschaukeln;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -493,17 +493,17 @@ public class Hrodz extends Mainloc {
 
                 // Stein aufnehmen
                 if (stein.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[980]) {
+                        !mainFrame.actions[980]) {
                     // Testen, ob die Schunkelanim erfolgen muss oder nicht
                     if (isRight &&
                             megaLinks.IsPointInRect(pTemp)) {
                         // will ohne Stein von rechts nach links
-                        mainFrame.wegGeher.SetzeNeuenWeg(Pschaukeln);
+                        mainFrame.pathWalker.SetzeNeuenWeg(Pschaukeln);
                         nextActionID = 600;
                     } else {
                         // normales Steinmitnehmen
                         nextActionID = 50;
-                        mainFrame.wegGeher.SetzeNeuenWeg(Pstein);
+                        mainFrame.pathWalker.SetzeNeuenWeg(Pstein);
                     }
                     mainFrame.repaint();
                     return;
@@ -521,31 +521,31 @@ public class Hrodz extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim ||
+        if (mainFrame.isAnimRunning ||
                 mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     stein.IsPointInRect(pTemp) &&
-                            !mainFrame.Actions[980];
+                            !mainFrame.actions[980];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -553,16 +553,16 @@ public class Hrodz extends Mainloc {
         else {
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 2;
                 }
                 return;
             }
 
             if (stein.IsPointInRect(pTemp) &&
-                    !mainFrame.Actions[980]) {
+                    !mainFrame.actions[980]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -570,7 +570,7 @@ public class Hrodz extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -586,12 +586,12 @@ public class Hrodz extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -633,8 +633,8 @@ public class Hrodz extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -647,10 +647,10 @@ public class Hrodz extends Mainloc {
         int zfz = (int) (Math.random() * 100);
 
         if (zfz > 98) {
-            mainFrame.wave.PlayFile("sfx/uhu3.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/uhu3.wav");
         }
         if (zfz > 92) {
-            mainFrame.wave.PlayFile("sfx/grillen2.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/grillen2.wav");
         }
     }
 
@@ -669,7 +669,7 @@ public class Hrodz extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -689,8 +689,8 @@ public class Hrodz extends Mainloc {
 
             case 50:
                 // Stein mitnehmen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(fStein);
                 mainFrame.krabat.nAnimation = 94;
                 mainFrame.inventory.vInventory.addElement(62);
@@ -702,8 +702,8 @@ public class Hrodz extends Mainloc {
             case 55:
                 // Text sagen
                 if (--Counter == 1) {
-                    mainFrame.Actions[980] = true; // Flag setzen, es gibt keine 2 Steine !!!
-                    mainFrame.Clipset = false;
+                    mainFrame.actions[980] = true; // Flag setzen, es gibt keine 2 Steine !!!
+                    mainFrame.isClipSet = false;
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
@@ -713,8 +713,8 @@ public class Hrodz extends Mainloc {
 
             case 60:
                 // Ende Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -733,8 +733,8 @@ public class Hrodz extends Mainloc {
 
             case 600:
                 // von rechts nach links ohne Stein
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(9);
                 Counter = 20;
                 schnauzeHintergrund = true;
@@ -748,7 +748,7 @@ public class Hrodz extends Mainloc {
                 }
                 SonderAnim = 1;
                 nextActionID = 620;
-                mainFrame.wave.PlayFile("sfx/knack.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/knack.wav");
                 break;
 
             case 620:
@@ -763,8 +763,8 @@ public class Hrodz extends Mainloc {
 
             case 630:
                 // Ende
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 isRight = false;
                 schnauzeHintergrund = false;
@@ -775,8 +775,8 @@ public class Hrodz extends Mainloc {
 
             case 700:
                 // von links nach rechts ohne Stein
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(3);
                 schnauzeHintergrund = true;
                 Counter = 20;
@@ -790,7 +790,7 @@ public class Hrodz extends Mainloc {
                 }
                 SonderAnim = 2;
                 nextActionID = 720;
-                mainFrame.wave.PlayFile("sfx/knack.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/knack.wav");
                 break;
 
             case 720:
@@ -805,8 +805,8 @@ public class Hrodz extends Mainloc {
 
             case 730:
                 // Ende
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 isRight = true;
                 schnauzeHintergrund = false;
@@ -817,8 +817,8 @@ public class Hrodz extends Mainloc {
 
             case 800:
                 // von links nach rechst mit Stein
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 Counter = 20;
                 nextActionID = 810;
                 schnauzeHintergrund = true;
@@ -831,7 +831,7 @@ public class Hrodz extends Mainloc {
                 if (--Counter > 0) {
                     break;
                 }
-                mainFrame.wave.PlayFile("sfx/pasle1.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/pasle1.wav");
                 krabatFaelltRunter = true;
                 SonderAnim = 3;
                 KrabatSagt("Hrodz_5", 3, 3, 0, 820);

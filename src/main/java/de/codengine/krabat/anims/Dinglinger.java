@@ -77,28 +77,28 @@ public class Dinglinger extends Mainanim {
     }
 
     private void InitImages() {
-        dingl_sit_body[0] = getPicture("gfx-dd/dingl/dingl-sb1.gif");
-        dingl_sit_body[1] = getPicture("gfx-dd/dingl/dingl-sb2.gif");
-        dingl_sit_body[2] = getPicture("gfx-dd/dingl/dingl-sb3.gif");
-        dingl_sit_body[3] = getPicture("gfx-dd/dingl/dingl-sb4.gif");
-        dingl_sit_body[4] = getPicture("gfx-dd/dingl/dingl-sb5.gif");
-        dingl_sit_body[5] = getPicture("gfx-dd/dingl/dingl-sberlaubnis.gif");
-        dingl_sit_body[6] = getPicture("gfx-dd/dingl/dingl-sblist.gif");
-        dingl_sit_body[7] = getPicture("gfx-dd/dingl/dingl-sbtake.gif");
+        dingl_sit_body[0] = getPicture("gfx-dd/dingl/dingl-sb1.png");
+        dingl_sit_body[1] = getPicture("gfx-dd/dingl/dingl-sb2.png");
+        dingl_sit_body[2] = getPicture("gfx-dd/dingl/dingl-sb3.png");
+        dingl_sit_body[3] = getPicture("gfx-dd/dingl/dingl-sb4.png");
+        dingl_sit_body[4] = getPicture("gfx-dd/dingl/dingl-sb5.png");
+        dingl_sit_body[5] = getPicture("gfx-dd/dingl/dingl-sberlaubnis.png");
+        dingl_sit_body[6] = getPicture("gfx-dd/dingl/dingl-sblist.png");
+        dingl_sit_body[7] = getPicture("gfx-dd/dingl/dingl-sbtake.png");
 
-        dingl_sit_waithead[0] = getPicture("gfx-dd/dingl/dingl-sh1.gif");
-        dingl_sit_waithead[1] = getPicture("gfx-dd/dingl/dingl-sh2.gif");
+        dingl_sit_waithead[0] = getPicture("gfx-dd/dingl/dingl-sh1.png");
+        dingl_sit_waithead[1] = getPicture("gfx-dd/dingl/dingl-sh2.png");
 
-        dingl_sit_talkhead[0] = getPicture("gfx-dd/dingl/dingl-st1.gif");
-        dingl_sit_talkhead[1] = getPicture("gfx-dd/dingl/dingl-st1a.gif");
-        dingl_sit_talkhead[2] = getPicture("gfx-dd/dingl/dingl-st2.gif");
-        dingl_sit_talkhead[3] = getPicture("gfx-dd/dingl/dingl-st3.gif");
-        dingl_sit_talkhead[4] = getPicture("gfx-dd/dingl/dingl-st4.gif");
-        dingl_sit_talkhead[5] = getPicture("gfx-dd/dingl/dingl-st5.gif");
-        dingl_sit_talkhead[6] = getPicture("gfx-dd/dingl/dingl-st6.gif");
-        dingl_sit_talkhead[7] = getPicture("gfx-dd/dingl/dingl-st7.gif");
-        dingl_sit_talkhead[8] = getPicture("gfx-dd/dingl/dingl-st8.gif");
-        dingl_sit_talkhead[9] = getPicture("gfx-dd/dingl/dingl-st9.gif");
+        dingl_sit_talkhead[0] = getPicture("gfx-dd/dingl/dingl-st1.png");
+        dingl_sit_talkhead[1] = getPicture("gfx-dd/dingl/dingl-st1a.png");
+        dingl_sit_talkhead[2] = getPicture("gfx-dd/dingl/dingl-st2.png");
+        dingl_sit_talkhead[3] = getPicture("gfx-dd/dingl/dingl-st3.png");
+        dingl_sit_talkhead[4] = getPicture("gfx-dd/dingl/dingl-st4.png");
+        dingl_sit_talkhead[5] = getPicture("gfx-dd/dingl/dingl-st5.png");
+        dingl_sit_talkhead[6] = getPicture("gfx-dd/dingl/dingl-st6.png");
+        dingl_sit_talkhead[7] = getPicture("gfx-dd/dingl/dingl-st7.png");
+        dingl_sit_talkhead[8] = getPicture("gfx-dd/dingl/dingl-st8.png");
+        dingl_sit_talkhead[9] = getPicture("gfx-dd/dingl/dingl-st9.png");
     }
 
     @Override

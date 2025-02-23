@@ -63,22 +63,22 @@ public class WikowarZita extends Mainanim {
     }
 
     private void InitImages() {
-        wik_head[0] = getPicture("gfx/kulow/ah-h1.gif");
-        wik_head[1] = getPicture("gfx/kulow/ah-h2.gif");
-        wik_head[2] = getPicture("gfx/kulow/ah-h3.gif");
-        wik_head[3] = getPicture("gfx/kulow/ah-h4.gif");
-        wik_head[4] = getPicture("gfx/kulow/ah-h5.gif");
-        wik_head[5] = getPicture("gfx/kulow/ah-h6.gif");
-        wik_head[6] = getPicture("gfx/kulow/ah-h7.gif");
+        wik_head[0] = getPicture("gfx/kulow/ah-h1.png");
+        wik_head[1] = getPicture("gfx/kulow/ah-h2.png");
+        wik_head[2] = getPicture("gfx/kulow/ah-h3.png");
+        wik_head[3] = getPicture("gfx/kulow/ah-h4.png");
+        wik_head[4] = getPicture("gfx/kulow/ah-h5.png");
+        wik_head[5] = getPicture("gfx/kulow/ah-h6.png");
+        wik_head[6] = getPicture("gfx/kulow/ah-h7.png");
 
-        wik_body[0] = getPicture("gfx/kulow/ah-b1.gif");
-        wik_body[1] = getPicture("gfx/kulow/ah-b2.gif");
+        wik_body[0] = getPicture("gfx/kulow/ah-b1.png");
+        wik_body[1] = getPicture("gfx/kulow/ah-b2.png");
 
-        wik_wait[0] = getPicture("gfx/kulow/ah1.gif");
-        wik_wait[1] = getPicture("gfx/kulow/ah1a.gif");
-        wik_wait[2] = getPicture("gfx/kulow/ah1b.gif");
+        wik_wait[0] = getPicture("gfx/kulow/ah1.png");
+        wik_wait[1] = getPicture("gfx/kulow/ah1a.png");
+        wik_wait[2] = getPicture("gfx/kulow/ah1b.png");
 
-        vorder = getPicture("gfx/kulow/budka2.gif");
+        vorder = getPicture("gfx/kulow/budka2.png");
     }
 
     // Zeichne Mutter, wie sie dasteht oder spricht

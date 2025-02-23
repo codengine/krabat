@@ -44,13 +44,13 @@ public class Plomja extends Mainanim {
     }
 
     private void InitImages() {
-        Feuer[1] = getPicture("gfx/labyrinth/blink1.gif");
-        Feuer[2] = getPicture("gfx/labyrinth/blink2.gif");
-        Feuer[3] = getPicture("gfx/labyrinth/blink3.gif");
-        Feuer[4] = getPicture("gfx/labyrinth/blink4.gif");
-        Feuer[5] = getPicture("gfx/labyrinth/blink5.gif");
-        Feuer[6] = getPicture("gfx/labyrinth/blink6.gif");
-        Feuer[7] = getPicture("gfx/labyrinth/blink7.gif");
+        Feuer[1] = getPicture("gfx/labyrinth/blink1.png");
+        Feuer[2] = getPicture("gfx/labyrinth/blink2.png");
+        Feuer[3] = getPicture("gfx/labyrinth/blink3.png");
+        Feuer[4] = getPicture("gfx/labyrinth/blink4.png");
+        Feuer[5] = getPicture("gfx/labyrinth/blink5.png");
+        Feuer[6] = getPicture("gfx/labyrinth/blink6.png");
+        Feuer[7] = getPicture("gfx/labyrinth/blink7.png");
 
         // Bilder sind 23 x 11 Pixel gross
     }

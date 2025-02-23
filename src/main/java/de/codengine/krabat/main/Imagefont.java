@@ -63,7 +63,7 @@ public class Imagefont {
         cache = new GenericImage[GROESSE];
         Inhalt = new int[GROESSE][3];
 
-        //    im2 = new imagehelpercutandsave ("gfx/sfont-cerw.gif");
+        //    im2 = new imagehelpercutandsave ("gfx/sfont-cerw.png");
         //  im2.CutFont (redFont);
         //im2 = null;
 
@@ -475,12 +475,12 @@ public class Imagefont {
         int x = posit.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
-        if (x < mainFrame.scrollx + 15) {
-            x = mainFrame.scrollx + 15;
+        if (x < mainFrame.scrollX + 15) {
+            x = mainFrame.scrollX + 15;
         }
 
-        if (x + laenge > mainFrame.scrollx + 625) {
-            x = mainFrame.scrollx + 625 - laenge;
+        if (x + laenge > mainFrame.scrollX + 625) {
+            x = mainFrame.scrollX + 625 - laenge;
         }
 
         // y - Position ueber der Figur anpassen
@@ -552,12 +552,12 @@ public class Imagefont {
         int x = posit.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
-        if (x < mainFrame.scrollx + 15) {
-            x = mainFrame.scrollx + 15;
+        if (x < mainFrame.scrollX + 15) {
+            x = mainFrame.scrollX + 15;
         }
 
-        if (x + laenge > mainFrame.scrollx + 625) {
-            x = mainFrame.scrollx + 625 - laenge;
+        if (x + laenge > mainFrame.scrollX + 625) {
+            x = mainFrame.scrollX + 625 - laenge;
         }
 
         // y - Position ueber der Figur anpassen

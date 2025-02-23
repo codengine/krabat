@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Dubring1 extends Mainloc {
+public class Dubring1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Dubring1.class);
     private GenericImage backl;
     private GenericImage backr;
@@ -116,37 +116,37 @@ public class Dubring1 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
 
-        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(0, 48, 0, 144, 352, 373));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(72, 321, 167, 272, 374, 390));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(300, 506, 213, 506, 360, 373));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(507, 363, 571, 381));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(572, 956, 572, 1113, 357, 373));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(740, 810, 652, 957, 339, 356));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(900, 1251, 1082, 1206, 374, 403));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(1278, 1279, 1148, 1279, 326, 373));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 48, 0, 144, 352, 373));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(72, 321, 167, 272, 374, 390));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(300, 506, 213, 506, 360, 373));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(507, 363, 571, 381));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(572, 956, 572, 1113, 357, 373));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(740, 810, 652, 957, 339, 356));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(900, 1251, 1082, 1206, 374, 403));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1278, 1279, 1148, 1279, 326, 373));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(8);
+        mainFrame.pathFinder.ClearMatrix(8);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
-        mainFrame.wegSucher.PosVerbinden(4, 5);
-        mainFrame.wegSucher.PosVerbinden(4, 6);
-        mainFrame.wegSucher.PosVerbinden(6, 7);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.PosVerbinden(4, 6);
+        mainFrame.pathFinder.PosVerbinden(6, 7);
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        backl = getPicture("gfx/dubring/dubr-l3.gif");
-        backr = getPicture("gfx/dubring/dubr-r3.gif");
-        sky = getPicture("gfx/dubring/dubrsky.gif");
-        vorder = getPicture("gfx/dubring/dtrawa.gif");
+        backl = getPicture("gfx/dubring/dubr-l3.png");
+        backr = getPicture("gfx/dubring/dubr-r3.png");
+        sky = getPicture("gfx/dubring/dubrsky.png");
+        vorder = getPicture("gfx/dubring/dtrawa.png");
 
     }
 
@@ -164,42 +164,42 @@ public class Dubring1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollX = scrollwert;
             }
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, mainFrame.scrollx / 2, 0);
+        g.drawImage(sky, mainFrame.scrollX / 2, 0);
         g.drawImage(backl, 0, 0);
         g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
-            int xtemp = mainFrame.scrollx - 5;
+            int xtemp = mainFrame.scrollX - 5;
             if (xtemp < 0) {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, mainFrame.scrollx / 2, 0);
+            g.drawImage(sky, mainFrame.scrollX / 2, 0);
             g.drawImage(backl, 0, 0);
             g.drawImage(backr, 640, 0);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -209,7 +209,7 @@ public class Dubring1 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -250,7 +250,7 @@ public class Dubring1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -258,7 +258,7 @@ public class Dubring1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -282,7 +282,7 @@ public class Dubring1 extends Mainloc {
         // Auszugebenden Text abbrechen
         outputText = "";
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -290,10 +290,10 @@ public class Dubring1 extends Mainloc {
 
         // Cursorpunkt mit Scrolloffset berechnen
         GenericPoint pTemp = e.getPoint();
-        pTemp.x += mainFrame.scrollx;
+        pTemp.x += mainFrame.scrollX;
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -303,7 +303,7 @@ public class Dubring1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linke Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -464,15 +464,15 @@ public class Dubring1 extends Mainloc {
         }	*/
 
                 // wenn nix ausgewaehlt, dann einfach nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // Gegenstand grundsaetzlich wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -497,7 +497,7 @@ public class Dubring1 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -516,7 +516,7 @@ public class Dubring1 extends Mainloc {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -589,7 +589,7 @@ public class Dubring1 extends Mainloc {
           nextActionID = 4;
         }*/
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -607,7 +607,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm1 mitnehmen
                 if (schlamm1.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm1);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm1);
                     mainFrame.repaint();
                     return;
                 }
@@ -615,7 +615,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm2 mitnehmen
                 if (schlamm2.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm2);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm2);
                     mainFrame.repaint();
                     return;
                 }
@@ -623,7 +623,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm3 mitnehmen
                 if (schlamm3.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm3);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm3);
                     mainFrame.repaint();
                     return;
                 }
@@ -631,7 +631,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm4 mitnehmen
                 if (schlamm4.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm4);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm4);
                     mainFrame.repaint();
                     return;
                 }
@@ -639,7 +639,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm5 mitnehmen
                 if (schlamm5.PointInside(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm5);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm5);
                     mainFrame.repaint();
                     return;
                 }
@@ -647,7 +647,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm6 mitnehmen
                 if (schlamm6.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm6);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm6);
                     mainFrame.repaint();
                     return;
                 }
@@ -655,7 +655,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm7 mitnehmen
                 if (schlamm7.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm7);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm7);
                     mainFrame.repaint();
                     return;
                 }
@@ -663,7 +663,7 @@ public class Dubring1 extends Mainloc {
                 // Schlamm8 mitnehmen
                 if (schlamm8.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschlamm8);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm8);
                     mainFrame.repaint();
                     return;
                 }
@@ -671,7 +671,7 @@ public class Dubring1 extends Mainloc {
                 // Halza 1 mitnehmen
                 if (halza1Rect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Phalza1);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Phalza1);
                     mainFrame.repaint();
                     return;
                 }
@@ -679,7 +679,7 @@ public class Dubring1 extends Mainloc {
                 // Halza 2 mitnehmen
                 if (halza2Rect.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Phalza2);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Phalza2);
                     mainFrame.repaint();
                     return;
                 }
@@ -705,37 +705,37 @@ public class Dubring1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // neuen Punkt erzeugen wg. Referenzgleichheit
-        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
+        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollX, pTxxx.y + mainFrame.scrollY);
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
             // (stomyRect.IsPointInRect (pTemp) == true))
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || schlamm1.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || schlamm1.IsPointInRect(pTemp) ||
                     schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||
                     schlamm4.IsPointInRect(pTemp) || schlamm5.PointInside(pTemp) ||
                     schlamm6.IsPointInRect(pTemp) || schlamm7.IsPointInRect(pTemp) ||
                     schlamm8.IsPointInRect(pTemp) ||
                     halza1Rect.IsPointInRect(pTemp) || halza2Rect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -750,7 +750,7 @@ public class Dubring1 extends Mainloc {
             // (stomyRect.IsPointInRect (pTemp) == true))
             {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -758,7 +758,7 @@ public class Dubring1 extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -766,7 +766,7 @@ public class Dubring1 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -774,7 +774,7 @@ public class Dubring1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -790,12 +790,12 @@ public class Dubring1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -837,8 +837,8 @@ public class Dubring1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -858,7 +858,7 @@ public class Dubring1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -919,27 +919,27 @@ public class Dubring1 extends Mainloc {
             case 150:
                 // Bloto schoepfen nach hinten schauen
                 nextActionID = 0;
-                mainFrame.wave.PlayFile("sfx/bloto1.wav");
-                mainFrame.invCursor = false;
+                mainFrame.soundPlayer.PlayFile("sfx/bloto1.wav");
+                mainFrame.isInventoryCursor = false;
                 mainFrame.krabat.SetFacing(fSchlammHinten);
                 mainFrame.krabat.nAnimation = 143;
                 mainFrame.inventory.vInventory.addElement(16);
                 mainFrame.inventory.vInventory.removeElement(4);
-                mainFrame.Actions[916] = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[916] = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 break;
 
             case 155:
                 // Bloto schoepfen nach vorne schauen
                 nextActionID = 0;
-                mainFrame.wave.PlayFile("sfx/bloto1.wav");
-                mainFrame.invCursor = false;
+                mainFrame.soundPlayer.PlayFile("sfx/bloto1.wav");
+                mainFrame.isInventoryCursor = false;
                 mainFrame.krabat.SetFacing(fSchlammVorn);
                 mainFrame.krabat.nAnimation = 144;
                 mainFrame.inventory.vInventory.addElement(16);
                 mainFrame.inventory.vInventory.removeElement(4);
-                mainFrame.Actions[916] = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[916] = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 break;
 
             case 160:

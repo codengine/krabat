@@ -87,41 +87,41 @@ public class Wudzerneu2 extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        angler_left_stand[0] = getPicture("gfx/haty/ang2-1.gif");
-        angler_left_stand[1] = getPicture("gfx/haty/ang2-1a.gif");
-        angler_left_stand[2] = getPicture("gfx/haty/ang2-2.gif");
-        angler_left_stand[3] = getPicture("gfx/haty/ang2-2a.gif");
-        angler_left_stand[4] = getPicture("gfx/haty/ang2-3.gif");
-        angler_left_stand[5] = getPicture("gfx/haty/ang2-3a.gif");
+        angler_left_stand[0] = getPicture("gfx/haty/ang2-1.png");
+        angler_left_stand[1] = getPicture("gfx/haty/ang2-1a.png");
+        angler_left_stand[2] = getPicture("gfx/haty/ang2-2.png");
+        angler_left_stand[3] = getPicture("gfx/haty/ang2-2a.png");
+        angler_left_stand[4] = getPicture("gfx/haty/ang2-3.png");
+        angler_left_stand[5] = getPicture("gfx/haty/ang2-3a.png");
 
-        angler_right_stand[0] = getPicture("gfx/haty/rang2-1.gif");
-        angler_right_stand[1] = getPicture("gfx/haty/rang2-1a.gif");
-        angler_right_stand[2] = getPicture("gfx/haty/rang2-2.gif");
-        angler_right_stand[3] = getPicture("gfx/haty/rang2-2a.gif");
-        angler_right_stand[4] = getPicture("gfx/haty/rang2-3.gif");
-        angler_right_stand[5] = getPicture("gfx/haty/rang2-3a.gif");
+        angler_right_stand[0] = getPicture("gfx/haty/rang2-1.png");
+        angler_right_stand[1] = getPicture("gfx/haty/rang2-1a.png");
+        angler_right_stand[2] = getPicture("gfx/haty/rang2-2.png");
+        angler_right_stand[3] = getPicture("gfx/haty/rang2-2a.png");
+        angler_right_stand[4] = getPicture("gfx/haty/rang2-3.png");
+        angler_right_stand[5] = getPicture("gfx/haty/rang2-3a.png");
 
-        angler_walk[0] = getPicture("gfx/haty/rang2-w0.gif");
-        angler_walk[1] = getPicture("gfx/haty/ang2-w0.gif");
-        angler_walk[2] = getPicture("gfx/haty/ang2-w7.gif");
-        angler_walk[3] = getPicture("gfx/haty/ang2-w9.gif");
-        angler_walk[4] = getPicture("gfx/haty/ang2-w2.gif");
-        angler_walk[5] = getPicture("gfx/haty/ang2-w4.gif");
+        angler_walk[0] = getPicture("gfx/haty/rang2-w0.png");
+        angler_walk[1] = getPicture("gfx/haty/ang2-w0.png");
+        angler_walk[2] = getPicture("gfx/haty/ang2-w7.png");
+        angler_walk[3] = getPicture("gfx/haty/ang2-w9.png");
+        angler_walk[4] = getPicture("gfx/haty/ang2-w2.png");
+        angler_walk[5] = getPicture("gfx/haty/ang2-w4.png");
 
-        angler_left_talk_body[0] = getPicture("gfx/haty/ang2-b1.gif");
-        angler_left_talk_body[1] = getPicture("gfx/haty/ang2-b2.gif");
-        angler_left_talk_body[2] = getPicture("gfx/haty/ang2-b3.gif");
+        angler_left_talk_body[0] = getPicture("gfx/haty/ang2-b1.png");
+        angler_left_talk_body[1] = getPicture("gfx/haty/ang2-b2.png");
+        angler_left_talk_body[2] = getPicture("gfx/haty/ang2-b3.png");
 
-        angler_right_talk_body[0] = getPicture("gfx/haty/rang2-b1.gif");
-        angler_right_talk_body[1] = getPicture("gfx/haty/rang2-b2.gif");
-        angler_right_talk_body[2] = getPicture("gfx/haty/rang2-b3.gif");
+        angler_right_talk_body[0] = getPicture("gfx/haty/rang2-b1.png");
+        angler_right_talk_body[1] = getPicture("gfx/haty/rang2-b2.png");
+        angler_right_talk_body[2] = getPicture("gfx/haty/rang2-b3.png");
 
-        angler_talk_head[0] = getPicture("gfx/haty/ang2-h1.gif");
-        angler_talk_head[1] = getPicture("gfx/haty/ang2-h2.gif");
-        angler_talk_head[2] = getPicture("gfx/haty/ang2-h3.gif");
-        angler_talk_head[3] = getPicture("gfx/haty/ang2-h4.gif");
-        angler_talk_head[4] = getPicture("gfx/haty/ang2-h5.gif");
-        angler_talk_head[5] = getPicture("gfx/haty/ang2-h6.gif");
+        angler_talk_head[0] = getPicture("gfx/haty/ang2-h1.png");
+        angler_talk_head[1] = getPicture("gfx/haty/ang2-h2.png");
+        angler_talk_head[2] = getPicture("gfx/haty/ang2-h3.png");
+        angler_talk_head[3] = getPicture("gfx/haty/ang2-h4.png");
+        angler_talk_head[4] = getPicture("gfx/haty/ang2-h5.png");
+        angler_talk_head[5] = getPicture("gfx/haty/ang2-h6.png");
     }
 
 

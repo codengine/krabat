@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Rapak2 extends Mainloc {
+public class Rapak2 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Rapak2.class);
     private GenericImage background;
     private GenericImage blumen1;
@@ -100,29 +100,29 @@ public class Rapak2 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(196, 205, 172, 194, 185, 229));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(172, 230, 194, 261));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(172, 194, 190, 237, 262, 332));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(190, 237, 152, 251, 333, 365));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(0, 369, 85, 416));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(86, 366, 277, 441));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(86, 442, 233, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(278, 376, 459, 441));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(460, 374, 639, 428));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(196, 205, 172, 194, 185, 229));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 230, 194, 261));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 194, 190, 237, 262, 332));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(190, 237, 152, 251, 333, 365));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 369, 85, 416));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(86, 366, 277, 441));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(86, 442, 233, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(278, 376, 459, 441));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(460, 374, 639, 428));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(9);
+        mainFrame.pathFinder.ClearMatrix(9);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 5);
-        mainFrame.wegSucher.PosVerbinden(4, 5);
-        mainFrame.wegSucher.PosVerbinden(5, 6);
-        mainFrame.wegSucher.PosVerbinden(5, 7);
-        mainFrame.wegSucher.PosVerbinden(7, 8);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 5);
+        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.PosVerbinden(5, 6);
+        mainFrame.pathFinder.PosVerbinden(5, 7);
+        mainFrame.pathFinder.PosVerbinden(7, 8);
 
         InitImages();
         switch (oldLocation) {
@@ -138,7 +138,7 @@ public class Rapak2 extends Mainloc {
                 // von Zdzary aus
                 mainFrame.krabat.setPos(new GenericPoint(195, 200));
                 mainFrame.krabat.SetFacing(6);
-                if (!mainFrame.Actions[250]) {
+                if (!mainFrame.actions[250]) {
                     setAnim = true;
                 }
                 break;
@@ -147,10 +147,10 @@ public class Rapak2 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/rapak/rapak.gif");
-        blumen1 = getPicture("gfx/rapak/rap1.gif");
-        blumen2 = getPicture("gfx/rapak/rap3.gif");
-        // schild     = getPicture ("gfx/rapak/rap2.gif");
+        background = getPicture("gfx/rapak/rapak.png");
+        blumen1 = getPicture("gfx/rapak/rap1.png");
+        blumen2 = getPicture("gfx/rapak/rap3.png");
+        // schild     = getPicture ("gfx/rapak/rap2.png");
 
     }
 
@@ -169,23 +169,23 @@ public class Rapak2 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if (mainFrame.isMultiple && mainFrame.Clipset) {
+        if (mainFrame.isMultipleChoiceActive && mainFrame.isClipSet) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            mainFrame.Clipset = true;
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // Hintergrund und Krabat zeichnen
@@ -193,11 +193,11 @@ public class Rapak2 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // wenn Rabe noch da, dann auch zeichnen
-        if (!mainFrame.Actions[256]) {
+        if (!mainFrame.actions[256]) {
             // Raben zeichnen
             g.setClip(rabe.rapakRect());
             g.drawImage(background, 0, 0);
@@ -210,7 +210,7 @@ public class Rapak2 extends Mainloc {
             }
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -218,7 +218,7 @@ public class Rapak2 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -261,7 +261,7 @@ public class Rapak2 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -269,7 +269,7 @@ public class Rapak2 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -280,8 +280,8 @@ public class Rapak2 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -304,14 +304,14 @@ public class Rapak2 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -320,7 +320,7 @@ public class Rapak2 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -330,7 +330,7 @@ public class Rapak2 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -345,7 +345,7 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // Ausreden fuer Raben
-                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256]) {
                     nextActionID = 155;
                     pTemp = Prapak;
                 }
@@ -358,15 +358,15 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -391,7 +391,7 @@ public class Rapak2 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -410,7 +410,7 @@ public class Rapak2 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -429,7 +429,7 @@ public class Rapak2 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -458,7 +458,7 @@ public class Rapak2 extends Mainloc {
                 }
 
                 // Rapak ansehen
-                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256]) {
                     nextActionID = 2;
                     pTemp = Prapak;
                 }
@@ -469,7 +469,7 @@ public class Rapak2 extends Mainloc {
                     pTemp = Pschild;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -497,15 +497,15 @@ public class Rapak2 extends Mainloc {
                 // Schild oben mitnehmen
                 if (brSchildOben.IsPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Pschild);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
                     return;
                 }
 
                 // mit Raben reden
-                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256]) {
+                if (rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256]) {
                     nextActionID = 615;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Prapak);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Prapak);
                     mainFrame.repaint();
                     return;
                 }
@@ -522,36 +522,36 @@ public class Rapak2 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
-                    rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256] ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
+                    rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256] ||
                     brSchildOben.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -560,16 +560,16 @@ public class Rapak2 extends Mainloc {
         else {
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 4;
                 }
                 return;
             }
 
-            if (rapakRect.IsPointInRect(pTemp) && !mainFrame.Actions[256] ||
+            if (rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256] ||
                     brSchildOben.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -578,7 +578,7 @@ public class Rapak2 extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -586,7 +586,7 @@ public class Rapak2 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -594,7 +594,7 @@ public class Rapak2 extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -602,7 +602,7 @@ public class Rapak2 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -610,7 +610,7 @@ public class Rapak2 extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -620,17 +620,17 @@ public class Rapak2 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -672,8 +672,8 @@ public class Rapak2 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -692,7 +692,7 @@ public class Rapak2 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -734,10 +734,10 @@ public class Rapak2 extends Mainloc {
             case 101:
                 // Karte einblenden
                 mainFrame.ConstructLocation(106);
-                mainFrame.isAnim = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = 6;
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
@@ -764,7 +764,7 @@ public class Rapak2 extends Mainloc {
             case 600:
                 // Rabe spricht
                 // Es kann nur einen automatischen Dialoganfang geben !!!!
-                mainFrame.Actions[250] = true;
+                mainFrame.actions[250] = true;
                 PersonSagt("Rapak2_7", 0, 41, 2, 605, rapakTalk);
                 break;
 
@@ -780,7 +780,7 @@ public class Rapak2 extends Mainloc {
 
             case 615:
                 // zum Raben hingehen
-                mainFrame.wegGeher.SetzeNeuenWeg(Prapak);
+                mainFrame.pathWalker.SetzeNeuenWeg(Prapak);
                 nextActionID = 618;
                 break;
 
@@ -806,20 +806,20 @@ public class Rapak2 extends Mainloc {
                 Dialog.ExtendMC("Rapak2_23", 1000, 255, null, 800);
                 Dialog.ExtendMC("Rapak2_24", 255, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 625;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 625:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.Actions[255] = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[255] = true;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -882,17 +882,17 @@ public class Rapak2 extends Mainloc {
 
             case 700:
                 // raben deaktivieren
-                mainFrame.Actions[256] = true;
+                mainFrame.actions[256] = true;
                 nextActionID = 800;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 break;
 
             case 800:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.Actions[255] = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.actions[255] = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

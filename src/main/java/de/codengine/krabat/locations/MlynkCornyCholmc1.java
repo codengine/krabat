@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class MlynkCornyCholmc1 extends Mainloc {
+public class MlynkCornyCholmc1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(MlynkCornyCholmc1.class);
     private GenericImage background; /* background2, */
     private GenericImage himmel1;
@@ -138,10 +138,10 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/kolmc/kolmc2.gif");
-        himmel1 = getPicture("gfx/kolmc/kcsky1.gif");
-        himmel2 = getPicture("gfx/kolmc/kcsky2.gif");
-        vorder = getPicture("gfx/kolmc/kwald.gif");
+        background = getPicture("gfx/kolmc/kolmc2.png");
+        himmel1 = getPicture("gfx/kolmc/kcsky1.png");
+        himmel2 = getPicture("gfx/kolmc/kcsky2.png");
+        vorder = getPicture("gfx/kolmc/kwald.png");
 
     }
 
@@ -174,15 +174,15 @@ public class MlynkCornyCholmc1 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         FadeBackground();
@@ -234,7 +234,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Mueller zeichnen
@@ -275,7 +275,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -332,7 +332,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -340,7 +340,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -354,7 +354,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             setAnim = false;
 
             // Hier Art der Animation festlegen
-            if (!mainFrame.Actions[226]) {
+            if (!mainFrame.actions[226]) {
                 nextActionID = 1000;
             } else {
                 nextActionID = 1100;
@@ -374,7 +374,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -388,7 +388,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -422,7 +422,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             if (Fadecount < 40) {
                 if (Fadecount == 1) {
-                    mainFrame.wave.PlayFile("sfx/mlynk-les.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/mlynk-les.wav");
                 }
                 Fadecount++;
             } else {
@@ -459,7 +459,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -508,7 +508,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 PersonSagt("MlynkCornyCholmc1_1", 12, 36, 2, 1020, mueller.evalMlynkTalkPoint());
                 break;
 
@@ -576,7 +576,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
             case 1064:
                 // hier Unterscheidung,. ob er Feder schon hat oder noch nicht
                 InitMuellerRueckflug();
-                if (!mainFrame.Actions[919]) {
+                if (!mainFrame.actions[919]) {
                     nextActionID = 1065;
                 } else {
                     nextActionID = 1290;
@@ -598,7 +598,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 if (muellermorphcount < 3) {
                     break;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 muellerda = false;
                 // voegelda = true;
                 darker = false;
@@ -610,7 +610,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 if (muellermorphcount < 8) {
                     break;
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 ismuellermorphing = false;
                 nextActionID = 1069;
                 break;
@@ -625,7 +625,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
 
             case 1070:
                 // back to Kolmc
-                mainFrame.Actions[226] = true;
+                mainFrame.actions[226] = true;
                 NeuesBild(17, 26);
                 break;
 
@@ -671,7 +671,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 1300;
                 break;
 
@@ -723,7 +723,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 krabatda = false;
                 voegelda = true;
                 muellerFliegtAllein = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 1344;
                 break;
 
@@ -734,7 +734,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 }
                 ismuellermorphing = false;
                 iskrabatmorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Counter = 15;
                 nextActionID = 1346;
                 break;
@@ -744,7 +744,7 @@ public class MlynkCornyCholmc1 extends Mainloc {
                 if (--Counter > 1) {
                     break;
                 }
-                mainFrame.wave.PlayFile("sfx/rapak2.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/rapak2.wav");
                 nextActionID = 1348;
                 break;
 

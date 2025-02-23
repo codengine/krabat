@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Spaniska extends Mainloc {
+public class Spaniska extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Spaniska.class);
     private GenericImage background;
     private GenericImage stolc;
@@ -158,40 +158,40 @@ public class Spaniska extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.removeAllElements();
         // mainFrame.wegGeher.vBorders.addElement 
         //	(new bordertrapez (230, 245, 230, 290, 395, 429));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(325, 490, 318, 490, 430, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(245, 317, 185, 317, 465, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(450, 455, 435, 600, 370, 429));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(590, 430, 620, 432));
 
-        mainFrame.wegSucher.ClearMatrix(4);
+        mainFrame.pathFinder.ClearMatrix(4);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(0, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
 
         InitImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
-                if (mainFrame.Actions[514]) {
+                if (mainFrame.actions[514]) {
                     BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 }
                 break;
             case 121: // von Hintergasse
-                if (mainFrame.Actions[514]) {
+                if (mainFrame.actions[514]) {
                     BackgroundMusicPlayer.getInstance().playTrack(16, true);
                 }
                 mainFrame.krabat.setPos(new GenericPoint(480, 400));
                 mainFrame.krabat.SetFacing(6);
                 setAnim = true;
-                if (!mainFrame.Actions[519]) {
+                if (!mainFrame.actions[519]) {
                     ersterHakenDa = false;
                     zweiterHakenDa = false;
                     krabatVisible = false;
@@ -209,21 +209,21 @@ public class Spaniska extends Mainloc {
         }
 
         // wenn Dziwadzelnica noch da, dann die Backgroundanims einschalten...
-        if (!mainFrame.Actions[514]) {
+        if (!mainFrame.actions[514]) {
             dziwSchreit = true;
         }
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/spaniska/spaniska.gif");
-        stolc = getPicture("gfx-dd/spaniska/stolc.gif");
-        roze = getPicture("gfx-dd/spaniska/roze.gif");
-        haken = getPicture("gfx-dd/spaniska/haken.gif");
-        pjenjezy = getPicture("gfx-dd/spaniska/pjenjezy.gif");
-        haken2 = getPicture("gfx-dd/spaniska/haken2.gif");
+        background = getPicture("gfx-dd/spaniska/spaniska.png");
+        stolc = getPicture("gfx-dd/spaniska/stolc.png");
+        roze = getPicture("gfx-dd/spaniska/roze.png");
+        haken = getPicture("gfx-dd/spaniska/haken.png");
+        pjenjezy = getPicture("gfx-dd/spaniska/pjenjezy.png");
+        haken2 = getPicture("gfx-dd/spaniska/haken2.png");
 
-        krabat_steigen = getPicture("gfx-dd/spaniska/k-u-steigen.gif");
+        krabat_steigen = getPicture("gfx-dd/spaniska/k-u-steigen.png");
 
     }
 
@@ -232,17 +232,17 @@ public class Spaniska extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -257,11 +257,11 @@ public class Spaniska extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // ist Schauspielerin da ?
-        if (!mainFrame.Actions[514]) {
+        if (!mainFrame.actions[514]) {
             // Dziwadzelnica zeichnen
             if (!schlaegtZu) {
                 // Cliprect fuer nach rechts schauen
@@ -280,7 +280,7 @@ public class Spaniska extends Mainloc {
             }
         }
 
-        if (!mainFrame.Actions[515]) {
+        if (!mainFrame.actions[515]) {
             // geld zeichnen, da es noch aufm Tisch liegt
             g.setClip(144, 355, 28, 21);
             g.drawImage(background, 0, 0);
@@ -288,7 +288,7 @@ public class Spaniska extends Mainloc {
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
         if (krabatVisible) {
@@ -321,7 +321,7 @@ public class Spaniska extends Mainloc {
 
                     // Cursorruecksetzung nach Animationsende
                     if (mainFrame.krabat.nAnimation == 0) {
-                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                        evalMouseMoveEvent(mainFrame.mousePoint);
                     }
                 } else {
                     if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -380,7 +380,7 @@ public class Spaniska extends Mainloc {
             GenericRectangle may;
             may = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
+            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
@@ -390,7 +390,7 @@ public class Spaniska extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -398,7 +398,7 @@ public class Spaniska extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -433,7 +433,7 @@ public class Spaniska extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -442,7 +442,7 @@ public class Spaniska extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -452,7 +452,7 @@ public class Spaniska extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 // Extra-Punkt fuer Walkto wegen Ueberschneidungen
@@ -470,7 +470,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // ist Schauspielerin da ?
-                if (!mainFrame.Actions[515]) {
+                if (!mainFrame.actions[515]) {
                     // Ausreden fuer Dziwadzelnica
                     if (rectLookDziwadzelnica.IsPointInRect(pTemp)) {
                         // Extra - Sinnloszeug
@@ -514,7 +514,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // Ausreden fuer 5 tolerow
-                if (geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
+                if (geld.IsPointInRect(pTemp) && !mainFrame.actions[515]) {
                     nextActionID = 175;
                     pTxxx = pGeld;
                 }
@@ -528,15 +528,15 @@ public class Spaniska extends Mainloc {
                 log.debug("Point = {} {}", pTxxx.x, pTxxx.y);
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTxxx);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -563,7 +563,7 @@ public class Spaniska extends Mainloc {
                         pTxxx = new GenericPoint(kt.x, pExitDown.y);  // X-Pos bleibt, Y vom Exitpunkt
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -582,7 +582,7 @@ public class Spaniska extends Mainloc {
                         pTxxx = new GenericPoint(kt.x, pExitUp.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -614,7 +614,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // 5 Tolerow ansehen
-                if (geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
+                if (geld.IsPointInRect(pTemp) && !mainFrame.actions[515]) {
                     nextActionID = 9;
                     pTxxx = pGeld;
                 }
@@ -626,7 +626,7 @@ public class Spaniska extends Mainloc {
                 }
 
                 // ist Schauspielerin da ?
-                if (!mainFrame.Actions[515]) {
+                if (!mainFrame.actions[515]) {
                     // Dziwadzelnica ansehen
                     if (rectLookDziwadzelnica.IsPointInRect(pTemp)) {
                         nextActionID = 1;
@@ -636,30 +636,30 @@ public class Spaniska extends Mainloc {
 
                 log.debug("Point = {} {}", pTxxx.x, pTxxx.y);
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTxxx);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTxxx);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // ist Schauspielerin da ?
-                if (!mainFrame.Actions[515]) {
+                if (!mainFrame.actions[515]) {
                     // Mit Dziwadzelnica reden
                     if (rectLookDziwadzelnica.IsPointInRect(pTemp)) {
                         nextActionID = 2;
                         pTemp = pDziwadzelnica;
-                        mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                        mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // ist Schauspielerin noch da ?
-                if (!mainFrame.Actions[515]) {
+                if (!mainFrame.actions[515]) {
                     // Geld nehmen -> paar auf die Ruebe
                     if (geld.IsPointInRect(pTemp)) {
                         nextActionID = 20;
                         pTemp = pPapier;
-                        mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                        mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                         mainFrame.repaint();
                         return;
                     }
@@ -669,7 +669,7 @@ public class Spaniska extends Mainloc {
                 if (papier.IsPointInRect(pTemp)) {
                     nextActionID = 30;
                     pTemp = pPapier;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                     mainFrame.repaint();
                     return;
                 }
@@ -677,7 +677,7 @@ public class Spaniska extends Mainloc {
                 // Am Enterhaken runterklettern
                 if (rectHaken.IsPointInRect(pTemp)) {
                     nextActionID = 40;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pHaken);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pHaken);
                     mainFrame.repaint();
                     return;
                 }
@@ -685,7 +685,7 @@ public class Spaniska extends Mainloc {
                 // in Spiegel sehen
                 if (spiegel.IsPointInRect(pTemp)) {
                     nextActionID = 5;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSpiegel);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSpiegel);
                     mainFrame.repaint();
                     return;
                 }
@@ -693,7 +693,7 @@ public class Spaniska extends Mainloc {
                 // an Blumen riechen
                 if (blumen.IsPointInRect(pTemp)) {
                     nextActionID = 7;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pBlumen);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pBlumen);
                     mainFrame.repaint();
                     return;
                 }
@@ -701,7 +701,7 @@ public class Spaniska extends Mainloc {
                 // Spaniska mitnehmen
                 if (faltWand.IsPointInRect(pTemp)) {
                     nextActionID = 35;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pFaltWand);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pFaltWand);
                     mainFrame.repaint();
                     return;
                 }
@@ -715,7 +715,7 @@ public class Spaniska extends Mainloc {
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
                 mainFrame.krabat.StopWalking();
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 ResetAnims();
                 mainFrame.repaint();
             }
@@ -726,49 +726,49 @@ public class Spaniska extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
-                    rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.Actions[515] ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
+                    rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.actions[515] ||
                     papier.IsPointInRect(pTemp) ||
                     spiegel.IsPointInRect(pTemp) ||
                     blumen.IsPointInRect(pTemp) ||
                     faltWand.IsPointInRect(pTemp) ||
                     rectHaken.IsPointInRect(pTemp) ||
-                    geld.IsPointInRect(pTemp) && !mainFrame.Actions[515];
+                    geld.IsPointInRect(pTemp) && !mainFrame.actions[515];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.Actions[515] ||
+            if (rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.actions[515] ||
                     papier.IsPointInRect(pTemp) ||
                     spiegel.IsPointInRect(pTemp) ||
                     blumen.IsPointInRect(pTemp) ||
                     faltWand.IsPointInRect(pTemp) ||
                     rectHaken.IsPointInRect(pTemp) ||
-                    geld.IsPointInRect(pTemp) && !mainFrame.Actions[515]) {
+                    geld.IsPointInRect(pTemp) && !mainFrame.actions[515]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -776,7 +776,7 @@ public class Spaniska extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 3;
                 }
                 return;
@@ -784,7 +784,7 @@ public class Spaniska extends Mainloc {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 6;
                 }
                 return;
@@ -792,7 +792,7 @@ public class Spaniska extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -807,12 +807,12 @@ public class Spaniska extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -854,8 +854,8 @@ public class Spaniska extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
         ResetAnims();
     }
@@ -875,7 +875,7 @@ public class Spaniska extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -895,8 +895,8 @@ public class Spaniska extends Mainloc {
 
             case 2:
                 // Mit Dziwadzelnica reden (versuchen)
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 301;
                 mainFrame.krabat.SetFacing(fDziw);
                 break;
@@ -923,8 +923,8 @@ public class Spaniska extends Mainloc {
 
             case 7:
                 // Blumen benutzen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(fBlumen);
                 nextActionID = 15;
                 Counter = 3;
@@ -964,16 +964,16 @@ public class Spaniska extends Mainloc {
 
             case 17:
                 // Ende Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
 
             case 20:
                 // Geld nehmen und niederschlagen lassen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 dziwSchreit = false;
                 ResetAnims();
                 mainFrame.krabat.SetFacing(fToler);
@@ -986,8 +986,8 @@ public class Spaniska extends Mainloc {
                 // Auf Ende des Aufhebens warten
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(40);
-                    mainFrame.Clipset = false;
-                    mainFrame.Actions[515] = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.actions[515] = true;
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
@@ -1044,9 +1044,9 @@ public class Spaniska extends Mainloc {
 
             case 100:
                 // Frau schreit rum (Hilfe) oder gehe zu Hala-Doppelbild
-                if (!mainFrame.Actions[515]) {
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                if (!mainFrame.actions[515]) {
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                     nextActionID = 301;
                     mainFrame.repaint();
                 } else {
@@ -1126,7 +1126,7 @@ public class Spaniska extends Mainloc {
             // KRABAT WIRD NIEDERGESCHLAGEN
             case 310:
                 // Text einblenden
-                mainFrame.Actions[514] = true;  // Dziw ist weg
+                mainFrame.actions[514] = true;  // Dziw ist weg
                 PersonSagt("Spaniska_18", 0, 54, 2, 311, talkPointCenter);
                 break;
 
@@ -1139,7 +1139,7 @@ public class Spaniska extends Mainloc {
                 // Text einblenden
                 krabatFaellt = false;
                 FadeToBlack = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 PersonSagt("Spaniska_20", 0, 54, 2, 313, talkPointCenter);
                 break;
 
@@ -1151,9 +1151,9 @@ public class Spaniska extends Mainloc {
 
             case 800:
                 // Dialog beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1171,7 +1171,7 @@ public class Spaniska extends Mainloc {
                     break;
                 }
                 ersterHakenDa = true;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 1020;
                 Counter = 6;
                 break;
@@ -1182,8 +1182,8 @@ public class Spaniska extends Mainloc {
                     break;
                 }
                 zweiterHakenDa = true;
-                mainFrame.wave.PlayFile("sfx-dd/haken.wav");
-                mainFrame.Clipset = false;
+                mainFrame.soundPlayer.PlayFile("sfx-dd/haken.wav");
+                mainFrame.isClipSet = false;
                 nextActionID = 1030;
                 Counter = 60;
                 break;
@@ -1209,15 +1209,15 @@ public class Spaniska extends Mainloc {
                     break;
                 }
                 klettertRein = false;
-                mainFrame.wegGeher.SetzeNeuenWeg(new GenericPoint(480, 420));
+                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(480, 420));
                 nextActionID = 2020;
                 break;
 
             case 2020:
                 // warten bis Ende Counter
                 nextActionID = 0;
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1271,7 +1271,7 @@ public class Spaniska extends Mainloc {
                         AnimCounter = 70;
                         break;
                 }
-                AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, talkPoint);
+                AnimOutputTextPos = mainFrame.imageFont.CenterAnimText(AnimOutputText, talkPoint);
                 AnimTalkPerson = 58;
                 AnimID = 40;
                 break;
@@ -1287,7 +1287,7 @@ public class Spaniska extends Mainloc {
                 // variable Pause dazwischen
                 AnimOutputText = "";
                 AnimTalkPerson = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 AnimCounter = (int) (Math.random() * 70 + 50);
                 AnimID = 60;
                 break;

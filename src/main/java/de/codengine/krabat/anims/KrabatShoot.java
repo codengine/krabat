@@ -60,16 +60,16 @@ public class KrabatShoot extends Mainanim {
     }
 
     private void InitImages() {
-        krabat_schiessen[0] = getPicture("gfx/rapak/k-o-waffe1.gif");
-        krabat_schiessen[1] = getPicture("gfx/rapak/k-o-waffe2.gif");
+        krabat_schiessen[0] = getPicture("gfx/rapak/k-o-waffe1.png");
+        krabat_schiessen[1] = getPicture("gfx/rapak/k-o-waffe2.png");
 
-        stein = getPicture("gfx/rapak/kamjen.gif");
+        stein = getPicture("gfx/rapak/kamjen.png");
     }
 
     // Zeichne Krabat, wie sie dasteht oder spricht
     public boolean drawKrabat(GenericDrawingContext g, GenericPoint pos) {
         if (Counter == 0) {
-            mainFrame.wave.PlayFile("sfx/spuck.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/spuck.wav");
         }  ///////////////////// Sound !!!!!!!!!!!!!!!!!!!!!!!!
 
         // Stein bewegen
@@ -109,7 +109,7 @@ public class KrabatShoot extends Mainanim {
             kamjenx = kamjenStart.x;
             kamjeny = kamjenStart.y;
             Counter = 0;
-            mainFrame.wave.PlayFile("sfx/rapak3.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/rapak3.wav");
         } else {
             zurueck = true;
         }

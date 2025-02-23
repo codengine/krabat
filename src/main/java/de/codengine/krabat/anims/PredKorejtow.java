@@ -87,38 +87,38 @@ public class PredKorejtow extends Mainanim {
     }
 
     private void InitImages() {
-        pred_wait_head[0] = getPicture("gfx-dd/starewiki/khaendler-h1.gif");
-        pred_wait_head[1] = getPicture("gfx-dd/starewiki/khaendler-h1a.gif");
-        pred_wait_head[2] = getPicture("gfx-dd/starewiki/khaendler-h2.gif");
+        pred_wait_head[0] = getPicture("gfx-dd/starewiki/khaendler-h1.png");
+        pred_wait_head[1] = getPicture("gfx-dd/starewiki/khaendler-h1a.png");
+        pred_wait_head[2] = getPicture("gfx-dd/starewiki/khaendler-h2.png");
 
-        pred_wait_body[0] = getPicture("gfx-dd/starewiki/khaendler-b1.gif");
-        pred_wait_body[1] = getPicture("gfx-dd/starewiki/khaendler-b4.gif");
+        pred_wait_body[0] = getPicture("gfx-dd/starewiki/khaendler-b1.png");
+        pred_wait_body[1] = getPicture("gfx-dd/starewiki/khaendler-b4.png");
 
         pred_call_head[0] = pred_wait_head[0];
-        pred_call_head[1] = getPicture("gfx-dd/starewiki/khaendler-h5.gif");
-        pred_call_head[2] = getPicture("gfx-dd/starewiki/khaendler-h8.gif");
-        pred_call_head[3] = getPicture("gfx-dd/starewiki/khaendler-h9.gif");
+        pred_call_head[1] = getPicture("gfx-dd/starewiki/khaendler-h5.png");
+        pred_call_head[2] = getPicture("gfx-dd/starewiki/khaendler-h8.png");
+        pred_call_head[3] = getPicture("gfx-dd/starewiki/khaendler-h9.png");
         pred_call_head[4] = pred_wait_head[2];
-        pred_call_head[5] = getPicture("gfx-dd/starewiki/khaendler-r1.gif");
-        pred_call_head[6] = getPicture("gfx-dd/starewiki/khaendler-r2.gif");
-        pred_call_head[7] = getPicture("gfx-dd/starewiki/khaendler-r3.gif");
+        pred_call_head[5] = getPicture("gfx-dd/starewiki/khaendler-r1.png");
+        pred_call_head[6] = getPicture("gfx-dd/starewiki/khaendler-r2.png");
+        pred_call_head[7] = getPicture("gfx-dd/starewiki/khaendler-r3.png");
 
-        pred_call_body[0] = getPicture("gfx-dd/starewiki/khaendler-b2.gif");
-        pred_call_body[1] = getPicture("gfx-dd/starewiki/khaendler-b3.gif");
+        pred_call_body[0] = getPicture("gfx-dd/starewiki/khaendler-b2.png");
+        pred_call_body[1] = getPicture("gfx-dd/starewiki/khaendler-b3.png");
         pred_call_body[2] = pred_wait_body[1];
 
         pred_talk_head[0] = pred_wait_head[0];
-        pred_talk_head[1] = getPicture("gfx-dd/starewiki/khaendler-h3.gif");
-        pred_talk_head[2] = getPicture("gfx-dd/starewiki/khaendler-h4.gif");
+        pred_talk_head[1] = getPicture("gfx-dd/starewiki/khaendler-h3.png");
+        pred_talk_head[2] = getPicture("gfx-dd/starewiki/khaendler-h4.png");
         pred_talk_head[3] = pred_call_head[1];
-        pred_talk_head[4] = getPicture("gfx-dd/starewiki/khaendler-h6.gif");
-        pred_talk_head[5] = getPicture("gfx-dd/starewiki/khaendler-h7.gif");
+        pred_talk_head[4] = getPicture("gfx-dd/starewiki/khaendler-h6.png");
+        pred_talk_head[5] = getPicture("gfx-dd/starewiki/khaendler-h7.png");
         pred_talk_head[6] = pred_call_head[2];
         pred_talk_head[7] = pred_call_head[3];
 
         pred_talk_body[0] = pred_call_body[0];
         pred_talk_body[1] = pred_wait_body[1];
-        pred_talk_body[2] = getPicture("gfx-dd/starewiki/khaendler-b5.gif");
+        pred_talk_body[2] = getPicture("gfx-dd/starewiki/khaendler-b5.png");
     }
 
     // Predawar beim rumstehen

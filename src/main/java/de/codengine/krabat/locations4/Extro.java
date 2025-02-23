@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Extro extends Mainloc {
+public class Extro extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Extro.class);
     private final GenericImage[] Extropics;
     private GenericImage ludzo_vor_buehne;
@@ -84,7 +84,7 @@ public class Extro extends Mainloc {
         mainFrame.Freeze(false);
 
         // Rapak gleich mal am Anfang kreischen lassen
-        mainFrame.wave.PlayFile("sfx/rapak1.wav");
+        mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
     }
 
     private void InitLocation() {
@@ -92,11 +92,11 @@ public class Extro extends Mainloc {
     }
 
     private void InitImages() {
-        Extropics[0] = getPicture("gfx/wotrow/wotrow.gif");
-        Extropics[1] = getPicture("gfx/wotrow/buehne2.gif");
-        Extropics[2] = getPicture("gfx/wotrow/endbild.gif");
+        Extropics[0] = getPicture("gfx/wotrow/wotrow.png");
+        Extropics[1] = getPicture("gfx/wotrow/buehne2.png");
+        Extropics[2] = getPicture("gfx/wotrow/endbild.png");
 
-        ludzo_vor_buehne = getPicture("gfx/wotrow/bludzo.gif");
+        ludzo_vor_buehne = getPicture("gfx/wotrow/bludzo.png");
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -104,16 +104,16 @@ public class Extro extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
         }
 
@@ -134,14 +134,14 @@ public class Extro extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // hier ist der Sound...
         evalSound();
 
         // Krabat einen Schritt gehen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
@@ -164,7 +164,7 @@ public class Extro extends Mainloc {
             if (!Scroller) {
                 g.setClip(0, 0, 644, 484);
             }
-            mainFrame.ifont.drawString(g, tempText, outputTextPos.x, outputTextPos.y, textColor);
+            mainFrame.imageFont.drawString(g, tempText, outputTextPos.x, outputTextPos.y, textColor);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -180,7 +180,7 @@ public class Extro extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -222,7 +222,7 @@ public class Extro extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -236,7 +236,7 @@ public class Extro extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -258,23 +258,23 @@ public class Extro extends Mainloc {
             int zfz = (int) (Math.random() * 100);
 
             if (zfz > 92) {
-                mainFrame.wave.PlayFile("sfx/grillen.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/grillen.wav");
             }
 
             if (zfz > 98) {
                 int zfz2 = (int) (Math.random() * 1.99f);
 
                 if (zfz2 < 1) {
-                    mainFrame.wave.PlayFile("sfx/uhu1.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/uhu1.wav");
                 } else {
-                    mainFrame.wave.PlayFile("sfx/uhu2.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/uhu2.wav");
                 }
             }
 
             // Rapak-Gekreische (wenn er da ist)
             if (rapakVisible) {
                 if (zfz > 97) {
-                    mainFrame.wave.PlayFile("sfx/rapak1.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
                 }
             }
         }
@@ -319,17 +319,17 @@ public class Extro extends Mainloc {
 
             case 8000:
                 // Bild umschalten
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 PicIndex++;
                 nextActionID = 9000;
-                mainFrame.wave.PlayFile("sfx/applaus.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/applaus.wav");
                 break;
 
             case 9000:
                 // Extro-Scroller (testweise)
                 Scroller = true;
                 scrollerOutputText = Start.stringManager.getTranslation("Extro_5");
-                outputTextPos = mainFrame.ifont.CenterAnimText(scrollerOutputText, scrollPoint);
+                outputTextPos = mainFrame.imageFont.CenterAnimText(scrollerOutputText, scrollPoint);
                 TalkPerson = 54;
                 nextActionID = 9010;
                 break;
@@ -337,7 +337,7 @@ public class Extro extends Mainloc {
             case 9010:
                 // scroller hochschieben
                 outputText = Start.stringManager.getTranslation("Extro_5");
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputTextPos.y -= 2;
                 TalkPerson = 54;
                 if (outputTextPos.y < -1000) {
@@ -349,7 +349,7 @@ public class Extro extends Mainloc {
             case 9500:
                 // End-Bild
                 Scroller = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 PicIndex++;
                 nextActionID = 9510;
                 break;
@@ -374,7 +374,7 @@ public class Extro extends Mainloc {
 
             case 10000:
                 // Ende
-                mainFrame.wave.PlayFile("sfx/wowca.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/wowca.wav");
                 Scroller = false;
                 // mainFrame.setVisible (false);
                 BackgroundMusicPlayer.getInstance().stop();

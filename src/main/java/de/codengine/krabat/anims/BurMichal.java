@@ -56,22 +56,22 @@ public class BurMichal extends Mainanim {
     }
 
     private void InitImages() {
-        bur_work[0] = getPicture("gfx/polo/dmuz.gif");
-        bur_work[1] = getPicture("gfx/polo/dmuz-a.gif");
-        bur_work[2] = getPicture("gfx/polo/dmuz1.gif");
-        bur_work[3] = getPicture("gfx/polo/dmuz2.gif");
-        bur_work[4] = getPicture("gfx/polo/dmuz3.gif");
-        bur_work[5] = getPicture("gfx/polo/dmuz4.gif");
+        bur_work[0] = getPicture("gfx/polo/dmuz.png");
+        bur_work[1] = getPicture("gfx/polo/dmuz-a.png");
+        bur_work[2] = getPicture("gfx/polo/dmuz1.png");
+        bur_work[3] = getPicture("gfx/polo/dmuz2.png");
+        bur_work[4] = getPicture("gfx/polo/dmuz3.png");
+        bur_work[5] = getPicture("gfx/polo/dmuz4.png");
 
-        bur_talk[0] = getPicture("gfx/polo/dmuz-r1.gif");
-        bur_talk[1] = getPicture("gfx/polo/dmuz-r2.gif");
-        bur_talk[2] = getPicture("gfx/polo/dmuz-r3.gif");
-        bur_talk[3] = getPicture("gfx/polo/dmuz-r4.gif");
-        bur_talk[4] = getPicture("gfx/polo/dmuz-r5.gif");
-        bur_talk[5] = getPicture("gfx/polo/dmuz-r6.gif");
-        bur_talk[6] = getPicture("gfx/polo/dmuz-r7.gif");
+        bur_talk[0] = getPicture("gfx/polo/dmuz-r1.png");
+        bur_talk[1] = getPicture("gfx/polo/dmuz-r2.png");
+        bur_talk[2] = getPicture("gfx/polo/dmuz-r3.png");
+        bur_talk[3] = getPicture("gfx/polo/dmuz-r4.png");
+        bur_talk[4] = getPicture("gfx/polo/dmuz-r5.png");
+        bur_talk[5] = getPicture("gfx/polo/dmuz-r6.png");
+        bur_talk[6] = getPicture("gfx/polo/dmuz-r7.png");
 
-        bur_look = getPicture("gfx/polo/dmuz-b.gif");
+        bur_look = getPicture("gfx/polo/dmuz-b.png");
     }
 
     @Override
@@ -154,8 +154,8 @@ public class BurMichal extends Mainanim {
                         }
                         break;
                     case 4: // letzter Arbeitsschritt
-                        if (!mainFrame.inventory.noBackgroundSound || !mainFrame.invCursor) {
-                            mainFrame.wave.PlayFile("sfx/nepl.wav");
+                        if (!mainFrame.inventory.noBackgroundSound || !mainFrame.isInventoryCursor) {
+                            mainFrame.soundPlayer.PlayFile("sfx/nepl.wav");
                         }
                         Work = 5;
                         break;

@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Zawod1 extends Mainloc {
+public class Zawod1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Zawod1.class);
     private GenericImage domal;
     private GenericImage domar;
@@ -120,7 +120,7 @@ public class Zawod1 extends Mainloc {
         gans2 = new Husa(mainFrame, new Borderrect(238, 270, 285, 280));
         gans3 = new Husa(mainFrame, new Borderrect(182, 300, 276, 310));
 
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
 
         mainFrame.krabat.setPos(new GenericPoint(128, 352));
         mainFrame.krabat.SetFacing(3);
@@ -139,24 +139,24 @@ public class Zawod1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        rapaki = getPicture("gfx/intro/rap100.gif");
-        domal = getPicture("gfx/doma/dom-l.gif");
-        domar = getPicture("gfx/doma/dom-r.gif");
-        sky = getPicture("gfx/doma/domsky.gif");
-        kij = getPicture("gfx/doma/doma2.gif");
+        rapaki = getPicture("gfx/intro/rap100.png");
+        domal = getPicture("gfx/doma/dom-l.png");
+        domar = getPicture("gfx/doma/dom-r.png");
+        sky = getPicture("gfx/doma/domsky.png");
+        kij = getPicture("gfx/doma/doma2.png");
 
-        intro1 = getPicture("gfx/intro/intro1.gif");
-        intro2 = getPicture("gfx/intro/intro2.gif");
-        budysin = getPicture("gfx/intro/bzpali.gif");
-        budysky = getPicture("gfx/intro/bzsky.gif");
+        intro1 = getPicture("gfx/intro/intro1.png");
+        intro2 = getPicture("gfx/intro/intro2.png");
+        budysin = getPicture("gfx/intro/bzpali.png");
+        budysky = getPicture("gfx/intro/bzsky.png");
 
-        sitz1 = getPicture("gfx/anims/ksedzo1.gif");
-        sitz2 = getPicture("gfx/anims/ksedzo1a.gif");
+        sitz1 = getPicture("gfx/anims/ksedzo1.png");
+        sitz2 = getPicture("gfx/anims/ksedzo1a.png");
 
-        floete[0] = getPicture("gfx/anims/ks-f1.gif");
-        floete[1] = getPicture("gfx/anims/ks-f2.gif");
-        floete[2] = getPicture("gfx/anims/ks-f3.gif");
-        floete[3] = getPicture("gfx/anims/ks-f4.gif");
+        floete[0] = getPicture("gfx/anims/ks-f1.png");
+        floete[1] = getPicture("gfx/anims/ks-f2.png");
+        floete[2] = getPicture("gfx/anims/ks-f3.png");
+        floete[3] = getPicture("gfx/anims/ks-f4.png");
 
     }
 
@@ -212,18 +212,18 @@ public class Zawod1 extends Mainloc {
         // Logo ein- und ausfaden ///////////////////////////////////////////////
         if (IntroStep < 10) {
             // Wiederherstellen, wenn Mainmenu aufgerufen
-            if (!mainFrame.Clipset) {
-                mainFrame.Clipset = true;
+            if (!mainFrame.isClipSet) {
+                mainFrame.isClipSet = true;
                 Cursorform = 200;
-                mainFrame.fPlayAnim = true;
-                mainFrame.scrollx = 0;
-                mainFrame.scrolly = 0;
+                mainFrame.isAnimRunning = true;
+                mainFrame.scrollX = 0;
+                mainFrame.scrollY = 0;
                 g.setClip(0, 0, 644, 484);
                 g.clearRect(0, 0, 640, 480);
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 if (!playing) {
                     playing = true;
-                    mainFrame.wave.PlayFile("gamesound.wav"); // passiert nicht mehr,nur Gag
+                    mainFrame.soundPlayer.PlayFile("gamesound.wav"); // passiert nicht mehr,nur Gag
                 }
             }
 
@@ -242,8 +242,8 @@ public class Zawod1 extends Mainloc {
                 g2.drawImage(rapaki, 0, 0);
                 if (Help < 40) {
                     Help++;
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 } else {
                     nextActionID = 1;
                 }
@@ -264,10 +264,10 @@ public class Zawod1 extends Mainloc {
 
                 // hier den Sound eval.
                 if (++Counter == 30) {
-                    mainFrame.wave.PlayFile("sfx/rapak1.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
                 }
                 if (Counter == 60) {
-                    mainFrame.wave.PlayFile("sfx/rapak2.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/rapak2.wav");
                 }
             }
 
@@ -285,8 +285,8 @@ public class Zawod1 extends Mainloc {
                 g3.drawImage(rapaki, 0, 0);
                 if (Help > 0) {
                     Help--;
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 } else {
                     nextActionID = 3;
                 }
@@ -297,12 +297,12 @@ public class Zawod1 extends Mainloc {
         // Textausgabe auf leeren Screen (noch keine Bilder da), aber getrennt nach vorgesehenen Bildern
         if (IntroStep > 9 && IntroStep < 20) {
             // Wiederherstellen ist zwar Quatsch, aber wer weiss
-            if (!mainFrame.Clipset) {
+            if (!mainFrame.isClipSet) {
                 g.setClip(0, 0, 644, 484);
-                mainFrame.Clipset = true;
+                mainFrame.isClipSet = true;
                 Cursorform = 200;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
 
             if (BildIndex == 1) {
@@ -324,14 +324,14 @@ public class Zawod1 extends Mainloc {
             // Textausgabe
             if (!Objects.equals(outputText, "")) {
                 g.setClip(0, 0, 644, 484);
-                mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[13]);
+                mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[13]);
             }
 
             // Textausgabezeit mit talkCount realisieren
             if (mainFrame.talkCount > 1) {
                 mainFrame.talkCount--;
                 if (mainFrame.talkCount == 1) {
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     outputText = "";
                 }
                 return;
@@ -348,43 +348,43 @@ public class Zawod1 extends Mainloc {
         // Vogelflug und Scrolling in Doma ////////////////////////////////////////////////////
         if (IntroStep > 99) {
             // Wiederherstellen, wenn Exit aufgerufen
-            if (!mainFrame.Clipset) {
-                mainFrame.Clipset = true;
+            if (!mainFrame.isClipSet) {
+                mainFrame.isClipSet = true;
                 Cursorform = 200;
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 if (setScroll) {
                     setScroll = false;
-                    mainFrame.scrollx = Scrollwert;
+                    mainFrame.scrollX = Scrollwert;
                 }
                 g.setClip(0, 0, 1284, 484);
-                g.drawImage(sky, mainFrame.scrollx / 10, 0);
+                g.drawImage(sky, mainFrame.scrollX / 10, 0);
                 g.drawImage(domal, 0, 0);
                 g.drawImage(domar, 640, 0);
                 g.drawImage(kij, 80, 325);
                 evalKrabat(g);
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
 
             // Voegel fliegen mit Scrolling bis letzter Vogel weg und Scroller zu Ende
             if (IntroStep == 100) {
                 intro2 = null;
-                int xx = mainFrame.scrollx - 10;
+                int xx = mainFrame.scrollX - 10;
                 if (xx < 0) {
                     xx = 0;
                 }
                 g.setClip(xx, 0, xx + 650, 285);
-                g.drawImage(sky, mainFrame.scrollx / 10, 0);
+                g.drawImage(sky, mainFrame.scrollX / 10, 0);
                 g.drawImage(domal, 0, 0);
                 g.drawImage(domar, 640, 0);
                 g.drawImage(kij, 80, 325);
                 evalKrabat(g);
                 g.setClip(0, 0, 900, 250);
                 ptack1.Flieg(g);
-                mainFrame.scrollx -= 1;
-                if (mainFrame.scrollx < 0) {
-                    mainFrame.scrollx = 0;
+                mainFrame.scrollX -= 1;
+                if (mainFrame.scrollX < 0) {
+                    mainFrame.scrollX = 0;
                 }
-                if (!ptack2.Flieg(g) && mainFrame.scrollx == 0) {
+                if (!ptack2.Flieg(g) && mainFrame.scrollX == 0) {
                     IntroStep++;
                 }
                 evalSound();
@@ -392,7 +392,7 @@ public class Zawod1 extends Mainloc {
 
             // Gaense animieren
             g.setClip(120, 255, 230, 110);
-            g.drawImage(sky, mainFrame.scrollx / 10, 0);
+            g.drawImage(sky, mainFrame.scrollX / 10, 0);
             g.drawImage(domal, 0, 0);
             g.drawImage(domar, 640, 0);
             gans1.BewegeGans(g);
@@ -407,14 +407,14 @@ public class Zawod1 extends Mainloc {
             // Textausgabe
             if (!Objects.equals(outputText, "")) {
                 g.setClip(0, 0, 644, 484);
-                mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, Farb);
+                mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, Farb);
             }
 
             // Textausgabezeit mit talkCount realisieren
             if (mainFrame.talkCount > 1) {
                 mainFrame.talkCount--;
                 if (mainFrame.talkCount == 1) {
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     outputText = "";
                 }
                 return;
@@ -502,7 +502,7 @@ public class Zawod1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
             TalkPause = 0;
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
             outputText = "";
         }
 
@@ -511,7 +511,7 @@ public class Zawod1 extends Mainloc {
             // > 0 = alles, > 9 = nur nach Rapaki-Intro
             if (IntroStep > 9 && IntroStep < 20) {
                 // Hauptmenue aufrufen
-                mainFrame.mainmenu.introcall = true;
+                mainFrame.mainMenu.introcall = true;
                 skipActionID = 100;
                 mainFrame.repaint();
             }
@@ -522,15 +522,15 @@ public class Zawod1 extends Mainloc {
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
         } else {
             if (Cursorform != 0) {
                 Cursorform = 0;
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
             }
         }
     }
@@ -583,7 +583,7 @@ public class Zawod1 extends Mainloc {
         if (IntroStep > 9 && IntroStep < 20) {
             // Hauptmenue aktivieren
             if (Taste == GenericKeyEvent.VK_F1) {
-                mainFrame.mainmenu.introcall = true;
+                mainFrame.mainMenu.introcall = true;
                 skipActionID = 100;
                 mainFrame.repaint();
                 return;
@@ -606,7 +606,7 @@ public class Zawod1 extends Mainloc {
             int zweiteZahl = (int) (Math.random() * 1.9);
             zweiteZahl += 49;
 
-            mainFrame.wave.PlayFile("sfx/rapak" + (char) zweiteZahl + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/rapak" + (char) zweiteZahl + ".wav");
         }
     }
 
@@ -618,8 +618,8 @@ public class Zawod1 extends Mainloc {
                 case 10:
                     // Skip Intro - Bilder, ist momentan disabled
                     IntroStep = 10;
-                    mainFrame.Clipset = false;
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.isAnimRunning = true;
                     nextActionID = 0;
                     skipActionID = 0;
                     break;
@@ -630,38 +630,38 @@ public class Zawod1 extends Mainloc {
                     Scrollwert = 200;
                     outputText = "";
                     setScroll = true;
-                    mainFrame.Clipset = false;
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.isAnimRunning = true;
                     nextActionID = 0;
                     skipActionID = 0;
                     break;
 
                 case 100:
                     // Mainmenu aktivieren
-                    mainFrame.fPlayAnim = false;
+                    mainFrame.isAnimRunning = false;
                     mainFrame.whatScreen = 2;
                     skipActionID = 0;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
                     Cursorform = 200;
                     break;
 
                 case 120:
                     // Load - Screen aktivieren
-                    mainFrame.fPlayAnim = false;
+                    mainFrame.isAnimRunning = false;
                     skipActionID = 0;
                     mainFrame.ConstructLocation(102);
                     mainFrame.whatScreen = 3;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
                     Cursorform = 200;
                     break;
 
                 case 200:
                     // Spiel starten
-                    mainFrame.fPlayAnim = false;
-                    mainFrame.Clipset = false;
-                    mainFrame.mainmenu.introcall = false;
+                    mainFrame.isAnimRunning = false;
+                    mainFrame.isClipSet = false;
+                    mainFrame.mainMenu.introcall = false;
                     // Einmalige Ausnahme, wegen Gaense uebergeben
                     mainFrame.ConstructLocation(6, gans1, gans2, gans3);
                     mainFrame.DestructLocation(100);
@@ -690,8 +690,8 @@ public class Zawod1 extends Mainloc {
                 case 3:
                     // Von Rapaki auf Bautzen umschalten
                     IntroStep = 10;
-                    mainFrame.Clipset = false;
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.isAnimRunning = true;
                     nextActionID = 0;
                     break;
 
@@ -699,7 +699,7 @@ public class Zawod1 extends Mainloc {
                     // Einfuehrungstext
                     // mainFrame.player.Play ("2", -133600);
                     outputText = Start.stringManager.getTranslation("Zawod1_13");
-                    outputTextPos = mainFrame.ifont.CenterText(outputText, MittelPunkt);
+                    outputTextPos = mainFrame.imageFont.CenterText(outputText, MittelPunkt);
                     mainFrame.talkCount += 50; // Zeit fuer Bautzen-Bild kuenstlich verlaengern
                     TalkPause = 5;
                     IntroStep++;
@@ -714,8 +714,8 @@ public class Zawod1 extends Mainloc {
 
                 case 12:
                     // Text ueber Situation
-                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_1");
-                    outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 450));
+                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_1");
+                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -729,8 +729,8 @@ public class Zawod1 extends Mainloc {
 
                 case 14:
                     // Text ueber die dicken Gutsherren
-                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_2");
-                    outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320, 450));
+                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_2");
+                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -742,8 +742,8 @@ public class Zawod1 extends Mainloc {
                     IntroStep = 100;
                     Scrollwert = 200;
                     setScroll = true;
-                    mainFrame.Clipset = false;
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.isAnimRunning = true;
                     nextActionID = 0;
                     break;
 
@@ -752,8 +752,8 @@ public class Zawod1 extends Mainloc {
 
                 case 101:
                     // Text ueber Krabat (Erzaehler)
-                    outputText = mainFrame.ifont.TeileTextKey("Zawod1_3");
-                    outputTextPos = mainFrame.ifont.CenterText(outputText, MittelPunkt);
+                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_3");
+                    outputTextPos = mainFrame.imageFont.CenterText(outputText, MittelPunkt);
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -764,8 +764,8 @@ public class Zawod1 extends Mainloc {
 
                 case 103:
                     // Text von Krabat denkend
-                    outputText = mainFrame.ifont.TeileTextKey(TEXTS4[line4]);
-                    outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                    outputText = mainFrame.imageFont.TeileTextKey(TEXTS4[line4]);
+                    outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                     line4++;
                     if (line4 == TEXTS4.length) {
                         IntroStep++;
@@ -777,16 +777,16 @@ public class Zawod1 extends Mainloc {
 
                 case 104:
                     // Text von Krabat redend
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     outputText = Start.stringManager.getTranslation("Zawod1_14");
-                    outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                    outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                     IntroStep++;
                     TalkPause = 3;
                     break;
 
                 case 105:
                     // alles loeschen wg. Redendem Krabat
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     IntroStep++;
                     break;
 

@@ -32,7 +32,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Install extends Mainloc {
+public class Install extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Install.class);
     private GenericImage background;
     private GenericImage Pfeil;
@@ -126,13 +126,13 @@ public class Install extends Mainloc {
         Texty[8] = "#Zeden";
         Texty[9] = "Hynak#sy";
 
-        Rects[1] = new Borderrect(93, 130, 93 + mainFrame.ifont.LineLength(Texty[1]), 130 + OffsetY);
-        Rects[2] = new Borderrect(320, 130, 320 + mainFrame.ifont.LineLength(Texty[2]), 130 + OffsetY);
-        Rects[3] = new Borderrect(93, 200, 93 + mainFrame.ifont.LineLength(Texty[3]), 200 + OffsetY);
-        Rects[4] = new Borderrect(250, 200, 250 + mainFrame.ifont.LineLength(Texty[4]), 200 + OffsetY);
-        Rects[5] = new Borderrect(350, 200, 350 + mainFrame.ifont.LineLength(Texty[5]), 200 + OffsetY);
-        Rects[6] = new Borderrect(93, 270, 93 + mainFrame.ifont.LineLength(Texty[6]), 270 + OffsetY);
-        Rects[7] = new Borderrect(250, 270, 250 + mainFrame.ifont.LineLength(Texty[7]), 270 + OffsetY);
+        Rects[1] = new Borderrect(93, 130, 93 + mainFrame.imageFont.LineLength(Texty[1]), 130 + OffsetY);
+        Rects[2] = new Borderrect(320, 130, 320 + mainFrame.imageFont.LineLength(Texty[2]), 130 + OffsetY);
+        Rects[3] = new Borderrect(93, 200, 93 + mainFrame.imageFont.LineLength(Texty[3]), 200 + OffsetY);
+        Rects[4] = new Borderrect(250, 200, 250 + mainFrame.imageFont.LineLength(Texty[4]), 200 + OffsetY);
+        Rects[5] = new Borderrect(350, 200, 350 + mainFrame.imageFont.LineLength(Texty[5]), 200 + OffsetY);
+        Rects[6] = new Borderrect(93, 270, 93 + mainFrame.imageFont.LineLength(Texty[6]), 270 + OffsetY);
+        Rects[7] = new Borderrect(250, 270, 250 + mainFrame.imageFont.LineLength(Texty[7]), 270 + OffsetY);
 
         LizenzTexty = new String[5];
         LizenzRects = new Borderrect[5];
@@ -142,10 +142,10 @@ public class Install extends Mainloc {
         LizenzTexty[3] = "N#e";
         LizenzTexty[4] = "N#e";
 
-        LizenzRects[1] = new Borderrect(93, 160, 93 + mainFrame.ifont.LineLength(LizenzTexty[1]), 160 + OffsetY);
-        LizenzRects[2] = new Borderrect(93, 260, 93 + mainFrame.ifont.LineLength(LizenzTexty[2]), 260 + OffsetY);
-        LizenzRects[3] = new Borderrect(200, 160, 200 + mainFrame.ifont.LineLength(LizenzTexty[3]), 160 + OffsetY);
-        LizenzRects[4] = new Borderrect(200, 260, 200 + mainFrame.ifont.LineLength(LizenzTexty[4]), 260 + OffsetY);
+        LizenzRects[1] = new Borderrect(93, 160, 93 + mainFrame.imageFont.LineLength(LizenzTexty[1]), 160 + OffsetY);
+        LizenzRects[2] = new Borderrect(93, 260, 93 + mainFrame.imageFont.LineLength(LizenzTexty[2]), 260 + OffsetY);
+        LizenzRects[3] = new Borderrect(200, 160, 200 + mainFrame.imageFont.LineLength(LizenzTexty[3]), 160 + OffsetY);
+        LizenzRects[4] = new Borderrect(200, 260, 200 + mainFrame.imageFont.LineLength(LizenzTexty[4]), 260 + OffsetY);
 
         if (TestInstallFile()) {
             nextActionID = 100;
@@ -159,9 +159,9 @@ public class Install extends Mainloc {
 
     // Bilder vorbereiten
     public void InitImages() {
-        background = getPicture("gfx/mainmenu/info2.gif");
-        DPfeil = getPicture("gfx/inventar/d-p-l-i.gif");
-        Pfeil = getPicture("gfx/inventar/r-p-l.gif");
+        background = getPicture("gfx/mainmenu/info2.png");
+        DPfeil = getPicture("gfx/inventar/d-p-l-i.png");
+        Pfeil = getPicture("gfx/inventar/r-p-l.png");
 
     }
 
@@ -174,12 +174,12 @@ public class Install extends Mainloc {
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
         }
 
@@ -192,7 +192,7 @@ public class Install extends Mainloc {
                 case 0:
                     break;
                 case 1:
-                    g.drawImage(DPfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                    g.drawImage(DPfeil, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                     break;
                 default:
                     log.error("Falsches Menu-Item!!! olditem = {}", olditem);
@@ -207,7 +207,7 @@ public class Install extends Mainloc {
                 case 0:
                     break;
                 case 1:
-                    g.drawImage(Pfeil, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                    g.drawImage(Pfeil, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                     break;
                 default:
                     log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
@@ -220,37 +220,37 @@ public class Install extends Mainloc {
 
         // Ueberschrift anzeigen
         String tempString = "Krabat - Instalacija";
-        GenericPoint tempPoint = mainFrame.ifont.CenterAnimText(tempString, new GenericPoint(320, 60));
-        mainFrame.ifont.drawString(g, tempString, tempPoint.x, tempPoint.y, FarbenArray[13]);
+        GenericPoint tempPoint = mainFrame.imageFont.CenterAnimText(tempString, new GenericPoint(320, 60));
+        mainFrame.imageFont.drawString(g, tempString, tempPoint.x, tempPoint.y, FarbenArray[13]);
 
         // hier die Unterscheidung, ob Lizenz angenommen wurde oder nicht
         int col;
         if (licenseAccepted) {
             // Sprachenchooser immer anzeigen
-            mainFrame.ifont.drawString(g, "Pro#su r#e#k wuzwoli#c", 93, 100, FarbenArray[13]);
+            mainFrame.imageFont.drawString(g, "Pro#su r#e#k wuzwoli#c", 93, 100, FarbenArray[13]);
 
-            mainFrame.ifont.drawString(g, "P#sosym r#ec wuzwoli#y", 320, 100, FarbenArray[13]);
+            mainFrame.imageFont.drawString(g, "P#sosym r#ec wuzwoli#y", 320, 100, FarbenArray[13]);
 
             // Hornjos
             col = FarbenArray[13];
             if (selected != 1 && RecChosen != 1) {
                 col = FarbenArray[14];
             }
-            mainFrame.ifont.drawString(g, Texty[1], Rects[1].lo_point.x, Rects[1].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, Texty[1], Rects[1].lo_point.x, Rects[1].lo_point.y, col);
 
             // Delnjos
             col = FarbenArray[13];
             if (selected != 2 && RecChosen != 2) {
                 col = FarbenArray[14];
             }
-            mainFrame.ifont.drawString(g, Texty[2], Rects[2].lo_point.x, Rects[2].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, Texty[2], Rects[2].lo_point.x, Rects[2].lo_point.y, col);
 
             // Rest nur zeichnen, wenn fuer eine Sprache entschieden
             if (RecChosen != 0) {
                 if (RecChosen == 1) {
-                    mainFrame.ifont.drawString(g, "Wuzwol#ce sej CD-player", 93, 170, FarbenArray[13]);
+                    mainFrame.imageFont.drawString(g, "Wuzwol#ce sej CD-player", 93, 170, FarbenArray[13]);
                 } else {
-                    mainFrame.ifont.drawString(g, "Wuzwol#yo se CD-player", 93, 170, FarbenArray[13]);
+                    mainFrame.imageFont.drawString(g, "Wuzwol#yo se CD-player", 93, 170, FarbenArray[13]);
                 }
 
                 // Win
@@ -258,28 +258,28 @@ public class Install extends Mainloc {
                 if (selected != 3 && CdChosen != 3) {
                     col = FarbenArray[14];
                 }
-                mainFrame.ifont.drawString(g, Texty[3], Rects[3].lo_point.x, Rects[3].lo_point.y, col);
+                mainFrame.imageFont.drawString(g, Texty[3], Rects[3].lo_point.x, Rects[3].lo_point.y, col);
 
                 // Lin
                 col = FarbenArray[13];
                 if (selected != 4 && CdChosen != 4) {
                     col = FarbenArray[14];
                 }
-                mainFrame.ifont.drawString(g, Texty[4], Rects[4].lo_point.x, Rects[4].lo_point.y, col);
+                mainFrame.imageFont.drawString(g, Texty[4], Rects[4].lo_point.x, Rects[4].lo_point.y, col);
 
                 // Keiner
                 col = FarbenArray[13];
                 if (selected != 5 && CdChosen != 5) {
                     col = FarbenArray[14];
                 }
-                mainFrame.ifont.drawString(g, Texty[RecChosen == 1 ? 5 : 8], Rects[5].lo_point.x, Rects[5].lo_point.y, col);
+                mainFrame.imageFont.drawString(g, Texty[RecChosen == 1 ? 5 : 8], Rects[5].lo_point.x, Rects[5].lo_point.y, col);
 
                 // Sound nur zeichnen, wenn CD ausgewaehlt
                 if (CdChosen != 0) {
                     if (RecChosen == 1) {
-                        mainFrame.ifont.drawString(g, "Wuzwol#ce sej sound-system", 93, 240, FarbenArray[13]);
+                        mainFrame.imageFont.drawString(g, "Wuzwol#ce sej sound-system", 93, 240, FarbenArray[13]);
                     } else {
-                        mainFrame.ifont.drawString(g, "Wuzwol#yo se sound-system", 93, 240, FarbenArray[13]);
+                        mainFrame.imageFont.drawString(g, "Wuzwol#yo se sound-system", 93, 240, FarbenArray[13]);
                     }
 
                     // Win
@@ -287,21 +287,21 @@ public class Install extends Mainloc {
                     if (selected != 6 && SoundChosen != 6) {
                         col = FarbenArray[14];
                     }
-                    mainFrame.ifont.drawString(g, Texty[6], Rects[6].lo_point.x, Rects[6].lo_point.y, col);
+                    mainFrame.imageFont.drawString(g, Texty[6], Rects[6].lo_point.x, Rects[6].lo_point.y, col);
 
                     // Java
                     col = FarbenArray[13];
                     if (selected != 7 && SoundChosen != 7) {
                         col = FarbenArray[14];
                     }
-                    mainFrame.ifont.drawString(g, Texty[RecChosen == 1 ? 7 : 9], Rects[7].lo_point.x, Rects[7].lo_point.y, col);
+                    mainFrame.imageFont.drawString(g, Texty[RecChosen == 1 ? 7 : 9], Rects[7].lo_point.x, Rects[7].lo_point.y, col);
 
                     // "Done" nur zeichnen, wenn alles andere da
                     if (SoundChosen != 0) {
                         if (RecChosen == 1) {
-                            mainFrame.ifont.drawString(g, "Krabat znowa startowa#c", 93, 310, FarbenArray[13]);
+                            mainFrame.imageFont.drawString(g, "Krabat znowa startowa#c", 93, 310, FarbenArray[13]);
                         } else {
-                            mainFrame.ifont.drawString(g, "Krabata wotnowotki startowa#y", 93, 310, FarbenArray[13]);
+                            mainFrame.imageFont.drawString(g, "Krabata wotnowotki startowa#y", 93, 310, FarbenArray[13]);
                         }
 
                     }
@@ -309,22 +309,22 @@ public class Install extends Mainloc {
             }
         } else {
             // LizenzabfrageText zeichnen (in 2 Sprachen)
-            mainFrame.ifont.drawString(g, "Akceptuje#ce w#sitke dypki licencneho zr#e#kenja,$kotre#z namaka#ce w p#ri#loze CDje?", 93, 100, FarbenArray[13]);
-            mainFrame.ifont.drawString(g, "Akceptujo#yo w#sykne dypki licencnego$dogrona, kotare#z namakajo#yo w p#yi#loze CDje?", 73, 200, FarbenArray[13]);
+            mainFrame.imageFont.drawString(g, "Akceptuje#ce w#sitke dypki licencneho zr#e#kenja,$kotre#z namaka#ce w p#ri#loze CDje?", 93, 100, FarbenArray[13]);
+            mainFrame.imageFont.drawString(g, "Akceptujo#yo w#sykne dypki licencnego$dogrona, kotare#z namakajo#yo w p#yi#loze CDje?", 73, 200, FarbenArray[13]);
 
             col = FarbenArray[13];
             if (LicenseChosen != 1) {
                 col = FarbenArray[14];
             }
-            mainFrame.ifont.drawString(g, LizenzTexty[1], LizenzRects[1].lo_point.x, LizenzRects[1].lo_point.y, col);
-            mainFrame.ifont.drawString(g, LizenzTexty[2], LizenzRects[2].lo_point.x, LizenzRects[2].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, LizenzTexty[1], LizenzRects[1].lo_point.x, LizenzRects[1].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, LizenzTexty[2], LizenzRects[2].lo_point.x, LizenzRects[2].lo_point.y, col);
 
             col = FarbenArray[13];
             if (LicenseChosen != 2) {
                 col = FarbenArray[14];
             }
-            mainFrame.ifont.drawString(g, LizenzTexty[3], LizenzRects[3].lo_point.x, LizenzRects[3].lo_point.y, col);
-            mainFrame.ifont.drawString(g, LizenzTexty[4], LizenzRects[4].lo_point.x, LizenzRects[4].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, LizenzTexty[3], LizenzRects[3].lo_point.x, LizenzRects[3].lo_point.y, col);
+            mainFrame.imageFont.drawString(g, LizenzTexty[4], LizenzRects[4].lo_point.x, LizenzRects[4].lo_point.y, col);
         }
 
 
@@ -407,7 +407,7 @@ public class Install extends Mainloc {
             }
         }
 
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         mainFrame.repaint();
     }
 
@@ -415,7 +415,7 @@ public class Install extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // sonst normal-Cursor
         if (Cursorform != 0) {
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
             Cursorform = 0;
         }
 
@@ -473,7 +473,7 @@ public class Install extends Mainloc {
 
     private void DoAction() {
         if (nextActionID == 100) {// Installer ist schon gelaufen, wir koennen Krabat starten
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
             nextActionID = 0;
             mainFrame.ConstructLocation(100);
             mainFrame.DestructLocation(105);

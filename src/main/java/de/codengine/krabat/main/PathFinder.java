@@ -22,13 +22,13 @@ package de.codengine.krabat.main;
 
 import java.util.Vector;
 
-public class Wegsucher {
+public class PathFinder {
     private boolean[][] matrix;
     private int numRects;
     private int endPos;
     private Vector<Integer> vBesterWeg;
 
-    public Wegsucher() {
+    public PathFinder() {
     }
 
     /// // Hier werden die Eintraege in den Wegsucher initialisiert ///////////////////

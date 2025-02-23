@@ -26,15 +26,15 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Vector;
 
-public class Weggeher {
-    private static final Logger log = LoggerFactory.getLogger(Weggeher.class);
+public class PathWalker {
+    private static final Logger log = LoggerFactory.getLogger(PathWalker.class);
     private final Start mainFrame;
     public final Vector<Bordertrapez> vBorders;
     public GenericPoint destinationPlace;
     private Vector<Integer> vBestWeg;
     private int wegPosition = 0;
 
-    public Weggeher(Start caller) {
+    public PathWalker(Start caller) {
         mainFrame = caller;
         vBorders = new Vector<>();
     }
@@ -108,7 +108,7 @@ public class Weggeher {
         //    System.out.println (bestRect);
 
         // besten Weg zum Ziel ermitteln
-        vBestWeg = mainFrame.wegSucher.StartSuche(currBorder, bestRect);
+        vBestWeg = mainFrame.pathFinder.StartSuche(currBorder, bestRect);
 
         //    System.out.print ("Weglaenge: ");
         //    System.out.println (vBestWeg.size ());

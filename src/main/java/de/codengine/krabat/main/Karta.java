@@ -90,12 +90,12 @@ public class Karta extends Mainanim {
 
         mainFrame.Freeze(false);
         Paintcall = true;
-        evalMouseMoveEvent(mainFrame.Mousepoint);
+        evalMouseMoveEvent(mainFrame.mousePoint);
     }
 
     // Bilder vorbereiten
     public void InitImages() {
-        karta = getPicture("gfx/karta/karta.gif");
+        karta = getPicture("gfx/karta/karta.png");
     }
 
 
@@ -104,18 +104,18 @@ public class Karta extends Mainanim {
     public void paintKarte(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
-        if (!mainFrame.Clipset) {
+        if (!mainFrame.isClipSet) {
             g.setClip(0, 0, 1280, 480);
-            g.drawImage(karta, mainFrame.scrollx + Plo.x, mainFrame.scrolly + Plo.y);
+            g.drawImage(karta, mainFrame.scrollX + Plo.x, mainFrame.scrollY + Plo.y);
             Cursorform = 200;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xffff0000);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xffff0000);
         }
         oldort = newort;
     }
@@ -144,7 +144,7 @@ public class Karta extends Mainanim {
         }
 
         // Teil 1
-        if (!mainFrame.Actions[305]) {
+        if (!mainFrame.actions[305]) {
 
             int tloc;
 
@@ -161,12 +161,12 @@ public class Karta extends Mainanim {
             if (kulowRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(21);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(21);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -175,12 +175,12 @@ public class Karta extends Mainanim {
             if (njedzRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(16);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(16);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -189,12 +189,12 @@ public class Karta extends Mainanim {
             if (sunowRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(13);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(13);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -203,12 +203,12 @@ public class Karta extends Mainanim {
             if (ralbicyRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(1);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(1);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -217,12 +217,12 @@ public class Karta extends Mainanim {
             if (jitkRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(3);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(3);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -231,12 +231,12 @@ public class Karta extends Mainanim {
             if (zdzaryRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(19);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(19);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
                 return;
@@ -245,28 +245,28 @@ public class Karta extends Mainanim {
             if (kolmcRect.IsPointInRect(pTemp)) {
                 tloc = evalCurrLocation(17);
                 if (tloc != 0) {
-                    mainFrame.komme_von_karte = true;
-                    mainFrame.currLocation = tloc;
-                    mainFrame.Actions[851] = false;
+                    mainFrame.enteringFromMap = true;
+                    mainFrame.currentLocationIdx = tloc;
+                    mainFrame.actions[851] = false;
                     mainFrame.ConstructLocation(17);
                 }
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Deactivate();
                 mainFrame.repaint();
             }
         } else {
             // Hier moeglicherweise noch dritter Teil rein...
-            if (!mainFrame.Actions[499]) {
+            if (!mainFrame.actions[499]) {
                 int tloc;
 
                 if (kulowRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(76);
                     if (tloc != 0) {
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
+                        mainFrame.currentLocationIdx = tloc;
+                        mainFrame.actions[851] = false;
                         mainFrame.ConstructLocation(76);
                     }
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     Deactivate();
                     mainFrame.repaint();
                     return;
@@ -275,11 +275,11 @@ public class Karta extends Mainanim {
                 if (sunowRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(87);
                     if (tloc != 0) {
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
+                        mainFrame.currentLocationIdx = tloc;
+                        mainFrame.actions[851] = false;
                         mainFrame.ConstructLocation(87);
                     }
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     Deactivate();
                     mainFrame.repaint();
                     return;
@@ -288,11 +288,11 @@ public class Karta extends Mainanim {
                 if (jitkRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(71);
                     if (tloc != 0) {
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
+                        mainFrame.currentLocationIdx = tloc;
+                        mainFrame.actions[851] = false;
                         mainFrame.ConstructLocation(71);
                     }
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     Deactivate();
                     mainFrame.repaint();
                     return;
@@ -301,11 +301,11 @@ public class Karta extends Mainanim {
                 if (zdzaryRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(93);
                     if (tloc != 0) {
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
+                        mainFrame.currentLocationIdx = tloc;
+                        mainFrame.actions[851] = false;
                         mainFrame.ConstructLocation(93);
                     }
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     Deactivate();
                     mainFrame.repaint();
                     return;
@@ -314,11 +314,11 @@ public class Karta extends Mainanim {
                 if (njedzRect.IsPointInRect(pTemp)) {
                     tloc = evalCurrLocation(85);
                     if (tloc != 0) {
-                        mainFrame.currLocation = tloc;
-                        mainFrame.Actions[851] = false;
+                        mainFrame.currentLocationIdx = tloc;
+                        mainFrame.actions[851] = false;
                         mainFrame.ConstructLocation(85);
                     }
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     Deactivate();
                     mainFrame.repaint();
                 }
@@ -381,7 +381,7 @@ public class Karta extends Mainanim {
         newort = 0;
 
         // Hier Aufteilung nach Teil
-        if (!mainFrame.Actions[305]) {
+        if (!mainFrame.actions[305]) {
             if (kulowRect.IsPointInRect(pTemp)) {
                 newort = 1;
             }
@@ -405,7 +405,7 @@ public class Karta extends Mainanim {
             }
         } else {
             // Hier zur Not 3. Teil noch drin
-            if (!mainFrame.Actions[499]) {
+            if (!mainFrame.actions[499]) {
                 if (kulowRect.IsPointInRect(pTemp)) {
                     newort = 1;
                 }
@@ -445,7 +445,7 @@ public class Karta extends Mainanim {
 
         if (Cursorform != 0) {
             Cursorform = 0;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
         evalString(newort);
@@ -469,37 +469,37 @@ public class Karta extends Mainanim {
 
             case 1:
                 outputText = Start.stringManager.getTranslation("Karta_1");
-                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollx, Pkulow.y + mainFrame.scrolly));
+                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollX, Pkulow.y + mainFrame.scrollY));
                 break;
 
             case 2:
                 outputText = Start.stringManager.getTranslation("Karta_2");
-                outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollx, Pnjedz.y + mainFrame.scrolly);
+                outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollX, Pnjedz.y + mainFrame.scrollY);
                 break;
 
             case 3:
                 outputText = Start.stringManager.getTranslation("Karta_3");
-                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollx, Psunow.y + mainFrame.scrolly));
+                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollX, Psunow.y + mainFrame.scrollY));
                 break;
 
             case 4:
                 outputText = Start.stringManager.getTranslation("Karta_4");
-                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollx, Pralbicy.y + mainFrame.scrolly));
+                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollX, Pralbicy.y + mainFrame.scrollY));
                 break;
 
             case 5:
                 outputText = Start.stringManager.getTranslation("Karta_5");
-                outputTextPos = mainFrame.ifont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollx, Pjitk.y + mainFrame.scrolly));
+                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollX, Pjitk.y + mainFrame.scrollY));
                 break;
 
             case 6:
                 outputText = Start.stringManager.getTranslation("Karta_6");
-                outputTextPos = new GenericPoint(Pzdzary.x + mainFrame.scrollx, Pzdzary.y + mainFrame.scrolly);
+                outputTextPos = new GenericPoint(Pzdzary.x + mainFrame.scrollX, Pzdzary.y + mainFrame.scrollY);
                 break;
 
             case 7:
                 outputText = Start.stringManager.getTranslation("Karta_7");
-                outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollx, Pkolmc.y + mainFrame.scrolly);
+                outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollX, Pkolmc.y + mainFrame.scrollY);
                 break;
 
             default:
@@ -510,7 +510,7 @@ public class Karta extends Mainanim {
 
     private int evalCurrLocation(int Ziel) {
         int rueck = 0;
-        int t = mainFrame.currLocation;
+        int t = mainFrame.currentLocationIdx;
 
         if (t == Ziel) {
             return rueck;
@@ -696,7 +696,7 @@ public class Karta extends Mainanim {
     private void Deactivate() {
         mainFrame.DestructLocation(106);
         newort = 0;
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         mainFrame.whatScreen = 0;
         Cursorform = 200;
         mainFrame.repaint();

@@ -70,29 +70,29 @@ public class PredWosuskow extends Mainanim {
     }
 
     private void InitImages() {
-        pred_stand[0] = getPicture("gfx-dd/starewiki/whaendler1.gif");
-        pred_stand[1] = getPicture("gfx-dd/starewiki/whaendler1a.gif");
-        pred_stand[2] = getPicture("gfx-dd/starewiki/whaendler1b.gif");
-        pred_stand[3] = getPicture("gfx-dd/starewiki/whaendler1c.gif");
+        pred_stand[0] = getPicture("gfx-dd/starewiki/whaendler1.png");
+        pred_stand[1] = getPicture("gfx-dd/starewiki/whaendler1a.png");
+        pred_stand[2] = getPicture("gfx-dd/starewiki/whaendler1b.png");
+        pred_stand[3] = getPicture("gfx-dd/starewiki/whaendler1c.png");
 
-        pred_call[0] = getPicture("gfx-dd/starewiki/whaendler-r1.gif");
-        pred_call[1] = getPicture("gfx-dd/starewiki/whaendler-r2.gif");
-        pred_call[2] = getPicture("gfx-dd/starewiki/whaendler-r3.gif");
-        pred_call[3] = getPicture("gfx-dd/starewiki/whaendler-r4.gif");
-        pred_call[4] = getPicture("gfx-dd/starewiki/whaendler-r5.gif");
+        pred_call[0] = getPicture("gfx-dd/starewiki/whaendler-r1.png");
+        pred_call[1] = getPicture("gfx-dd/starewiki/whaendler-r2.png");
+        pred_call[2] = getPicture("gfx-dd/starewiki/whaendler-r3.png");
+        pred_call[3] = getPicture("gfx-dd/starewiki/whaendler-r4.png");
+        pred_call[4] = getPicture("gfx-dd/starewiki/whaendler-r5.png");
 
         pred_talk[0] = pred_stand[0];
-        pred_talk[1] = getPicture("gfx-dd/starewiki/whaendler-t1.gif");
-        pred_talk[2] = getPicture("gfx-dd/starewiki/whaendler-t2.gif");
-        pred_talk[3] = getPicture("gfx-dd/starewiki/whaendler-t3.gif");
-        pred_talk[4] = getPicture("gfx-dd/starewiki/whaendler-t4.gif");
-        pred_talk[5] = getPicture("gfx-dd/starewiki/whaendler-t5.gif");
-        pred_talk[6] = getPicture("gfx-dd/starewiki/whaendler-t6.gif");
+        pred_talk[1] = getPicture("gfx-dd/starewiki/whaendler-t1.png");
+        pred_talk[2] = getPicture("gfx-dd/starewiki/whaendler-t2.png");
+        pred_talk[3] = getPicture("gfx-dd/starewiki/whaendler-t3.png");
+        pred_talk[4] = getPicture("gfx-dd/starewiki/whaendler-t4.png");
+        pred_talk[5] = getPicture("gfx-dd/starewiki/whaendler-t5.png");
+        pred_talk[6] = getPicture("gfx-dd/starewiki/whaendler-t6.png");
 
-        pred_stollen = getPicture("gfx-dd/starewiki/whaendler2.gif");
-        pred_take = getPicture("gfx-dd/starewiki/whaendler3.gif");
+        pred_stollen = getPicture("gfx-dd/starewiki/whaendler2.png");
+        pred_take = getPicture("gfx-dd/starewiki/whaendler3.png");
 
-        vorder = getPicture("gfx-dd/starewiki/sbudka.gif");
+        vorder = getPicture("gfx-dd/starewiki/sbudka.png");
     }
 
     // PredWosuskow beim Rumstehen

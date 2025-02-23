@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Doma4 extends Mainloc {
+public class Doma4 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Doma4.class);
     private GenericImage background1;
     private GenericImage background2;
@@ -96,40 +96,40 @@ public class Doma4 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background1 = getPicture("gfx/doma/dom-l.gif");
-        background2 = getPicture("gfx/doma/dom-r.gif");
-        back = getPicture("gfx/doma/domsky.gif");
-        foreground = getPicture("gfx/doma/dwokna.gif");
-        foreground2 = getPicture("gfx/doma/dwokna2.gif");
+        background1 = getPicture("gfx/doma/dom-l.png");
+        background2 = getPicture("gfx/doma/dom-r.png");
+        back = getPicture("gfx/doma/domsky.png");
+        foreground = getPicture("gfx/doma/dwokna.png");
+        foreground2 = getPicture("gfx/doma/dwokna2.png");
 
-        Rauchanim[1] = getPicture("gfx/doma/ra1.gif");
-        Rauchanim[2] = getPicture("gfx/doma/ra2.gif");
-        Rauchanim[3] = getPicture("gfx/doma/ra3.gif");
-        Rauchanim[4] = getPicture("gfx/doma/ra4.gif");
-        Rauchanim[5] = getPicture("gfx/doma/ra5.gif");
-        Rauchanim[6] = getPicture("gfx/doma/ra6.gif");
-        Rauchanim[7] = getPicture("gfx/doma/ra7.gif");
-        Rauchanim[8] = getPicture("gfx/doma/ra8.gif");
-        Rauchanim[9] = getPicture("gfx/doma/ra9.gif");
-        Rauchanim[10] = getPicture("gfx/doma/ra10.gif");
-        Rauchanim[11] = getPicture("gfx/doma/ra11.gif");
-        Rauchanim[12] = getPicture("gfx/doma/ra12.gif");
+        Rauchanim[1] = getPicture("gfx/doma/ra1.png");
+        Rauchanim[2] = getPicture("gfx/doma/ra2.png");
+        Rauchanim[3] = getPicture("gfx/doma/ra3.png");
+        Rauchanim[4] = getPicture("gfx/doma/ra4.png");
+        Rauchanim[5] = getPicture("gfx/doma/ra5.png");
+        Rauchanim[6] = getPicture("gfx/doma/ra6.png");
+        Rauchanim[7] = getPicture("gfx/doma/ra7.png");
+        Rauchanim[8] = getPicture("gfx/doma/ra8.png");
+        Rauchanim[9] = getPicture("gfx/doma/ra9.png");
+        Rauchanim[10] = getPicture("gfx/doma/ra10.png");
+        Rauchanim[11] = getPicture("gfx/doma/ra11.png");
+        Rauchanim[12] = getPicture("gfx/doma/ra12.png");
 
-        LeuteLinks[1] = getPicture("gfx/doma/ll1.gif");
-        LeuteLinks[2] = getPicture("gfx/doma/ll2.gif");
-        LeuteLinks[3] = getPicture("gfx/doma/ll3.gif");
-        LeuteLinks[4] = getPicture("gfx/doma/ll4.gif");
-        LeuteLinks[5] = getPicture("gfx/doma/ll6.gif");
-        LeuteLinks[6] = getPicture("gfx/doma/ll7.gif");
+        LeuteLinks[1] = getPicture("gfx/doma/ll1.png");
+        LeuteLinks[2] = getPicture("gfx/doma/ll2.png");
+        LeuteLinks[3] = getPicture("gfx/doma/ll3.png");
+        LeuteLinks[4] = getPicture("gfx/doma/ll4.png");
+        LeuteLinks[5] = getPicture("gfx/doma/ll6.png");
+        LeuteLinks[6] = getPicture("gfx/doma/ll7.png");
 
-        LeuteRechts[1] = getPicture("gfx/doma/lr1.gif");
-        LeuteRechts[2] = getPicture("gfx/doma/lr2.gif");
-        LeuteRechts[3] = getPicture("gfx/doma/lr3.gif");
-        LeuteRechts[4] = getPicture("gfx/doma/lr4.gif");
-        LeuteRechts[5] = getPicture("gfx/doma/lr5.gif");
+        LeuteRechts[1] = getPicture("gfx/doma/lr1.png");
+        LeuteRechts[2] = getPicture("gfx/doma/lr2.png");
+        LeuteRechts[3] = getPicture("gfx/doma/lr3.png");
+        LeuteRechts[4] = getPicture("gfx/doma/lr4.png");
+        LeuteRechts[5] = getPicture("gfx/doma/lr5.png");
 
-        LeuteMitte[1] = getPicture("gfx/doma/lm1.gif");
-        LeuteMitte[2] = getPicture("gfx/doma/lm2.gif");
+        LeuteMitte[1] = getPicture("gfx/doma/lm1.png");
+        LeuteMitte[2] = getPicture("gfx/doma/lm2.png");
 
     }
 
@@ -139,21 +139,21 @@ public class Doma4 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollX = scrollwert;
             }
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.fPlayAnim = true;
-            mainFrame.isAnim = true;
+            mainFrame.isAnimRunning = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
-        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(back, mainFrame.scrollX / 10, 0);
         g.drawImage(background1, 0, 0);
         g.drawImage(background2, 640, 0);
 
@@ -167,13 +167,13 @@ public class Doma4 extends Mainloc {
             }
         }
         g.setClip(985, 15, 30, 120);
-        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(back, mainFrame.scrollX / 10, 0);
         g.drawImage(Rauchanim[Rauchcount], 985, 15);
         g.drawImage(background2, 640, 0);
 
         // Leute animieren
         g.setClip(923, 271, 127, 74);
-        g.drawImage(back, mainFrame.scrollx / 10, 0);
+        g.drawImage(back, mainFrame.scrollX / 10, 0);
         g.drawImage(background1, 0, 0);
         g.drawImage(background2, 640, 0);
         g.drawImage(foreground2, 923, 271);
@@ -226,7 +226,7 @@ public class Doma4 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -237,7 +237,7 @@ public class Doma4 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -260,7 +260,7 @@ public class Doma4 extends Mainloc {
         // Auszugebenden Text abbrechen
         outputText = "";
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -273,7 +273,7 @@ public class Doma4 extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 

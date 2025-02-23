@@ -68,19 +68,19 @@ public class Kocka extends Mainanim {
     }
 
     private void InitImages() {
-        kocka_look[0] = getPicture("gfx/mlyn/kocka2.gif");
-        kocka_look[1] = getPicture("gfx/mlyn/kocka2a.gif");
-        kocka_look[2] = getPicture("gfx/mlyn/kocka1.gif");
-        kocka_look[3] = getPicture("gfx/mlyn/kocka1a.gif");
-        kocka_look[4] = getPicture("gfx/mlyn/kocka3.gif");
-        kocka_look[5] = getPicture("gfx/mlyn/kocka4.gif");
+        kocka_look[0] = getPicture("gfx/mlyn/kocka2.png");
+        kocka_look[1] = getPicture("gfx/mlyn/kocka2a.png");
+        kocka_look[2] = getPicture("gfx/mlyn/kocka1.png");
+        kocka_look[3] = getPicture("gfx/mlyn/kocka1a.png");
+        kocka_look[4] = getPicture("gfx/mlyn/kocka3.png");
+        kocka_look[5] = getPicture("gfx/mlyn/kocka4.png");
 
-        kocka_talk[0] = getPicture("gfx/mlyn/kocka-t1.gif");
-        kocka_talk[1] = getPicture("gfx/mlyn/kocka-t2.gif");
-        kocka_talk[2] = getPicture("gfx/mlyn/kocka-t3.gif");
-        kocka_talk[3] = getPicture("gfx/mlyn/kocka-t4.gif");
-        kocka_talk[4] = getPicture("gfx/mlyn/kocka-t5.gif");
-        kocka_talk[5] = getPicture("gfx/mlyn/kocka-t6.gif");
+        kocka_talk[0] = getPicture("gfx/mlyn/kocka-t1.png");
+        kocka_talk[1] = getPicture("gfx/mlyn/kocka-t2.png");
+        kocka_talk[2] = getPicture("gfx/mlyn/kocka-t3.png");
+        kocka_talk[3] = getPicture("gfx/mlyn/kocka-t4.png");
+        kocka_talk[4] = getPicture("gfx/mlyn/kocka-t5.png");
+        kocka_talk[5] = getPicture("gfx/mlyn/kocka-t6.png");
     }
 
     @Override

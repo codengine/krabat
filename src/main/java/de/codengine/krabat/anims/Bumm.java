@@ -61,14 +61,14 @@ public class Bumm extends Mainanim {
     }
 
     private void InitImages() {
-        bumm[0] = getPicture("gfx/anims/mo1.gif");
-        bumm[1] = getPicture("gfx/anims/mo2.gif");
-        bumm[2] = getPicture("gfx/anims/mo3.gif");
-        bumm[3] = getPicture("gfx/anims/mo4.gif");
-        bumm[4] = getPicture("gfx/anims/mo5.gif");
-        bumm[5] = getPicture("gfx/anims/mo6.gif");
-        bumm[6] = getPicture("gfx/anims/mo7.gif");
-        bumm[7] = getPicture("gfx/anims/mo8.gif");
+        bumm[0] = getPicture("gfx/anims/mo1.png");
+        bumm[1] = getPicture("gfx/anims/mo2.png");
+        bumm[2] = getPicture("gfx/anims/mo3.png");
+        bumm[3] = getPicture("gfx/anims/mo4.png");
+        bumm[4] = getPicture("gfx/anims/mo5.png");
+        bumm[5] = getPicture("gfx/anims/mo6.png");
+        bumm[6] = getPicture("gfx/anims/mo7.png");
+        bumm[7] = getPicture("gfx/anims/mo8.png");
     }
 
     @Override
@@ -124,7 +124,7 @@ public class Bumm extends Mainanim {
 
         if (playBumm) {
             playBumm = false;
-            mainFrame.wave.PlayFile("sfx/morph.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/morph.wav");
         }
 
         if (--Verhinderbumm < 1) {

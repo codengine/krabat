@@ -57,15 +57,15 @@ public class Posol extends Mainanim {
     }
 
     private void InitImages() {
-        bote_head[0] = getPicture("gfx/wjes/bote-h0.gif");
-        bote_head[1] = getPicture("gfx/wjes/bote-h1.gif");
-        bote_head[2] = getPicture("gfx/wjes/bote-h2.gif");
-        bote_head[3] = getPicture("gfx/wjes/bote-h3.gif");
-        bote_head[4] = getPicture("gfx/wjes/bote-h4.gif");
-        bote_head[5] = getPicture("gfx/wjes/bote-h5.gif");
+        bote_head[0] = getPicture("gfx/wjes/bote-h0.png");
+        bote_head[1] = getPicture("gfx/wjes/bote-h1.png");
+        bote_head[2] = getPicture("gfx/wjes/bote-h2.png");
+        bote_head[3] = getPicture("gfx/wjes/bote-h3.png");
+        bote_head[4] = getPicture("gfx/wjes/bote-h4.png");
+        bote_head[5] = getPicture("gfx/wjes/bote-h5.png");
 
-        bote_body[0] = getPicture("gfx/wjes/bote-b1.gif");
-        bote_body[1] = getPicture("gfx/wjes/bote-b2.gif");
+        bote_body[0] = getPicture("gfx/wjes/bote-b1.png");
+        bote_body[1] = getPicture("gfx/wjes/bote-b2.png");
     }
 
     // Zeichne Mutter, wie sie dasteht oder spricht

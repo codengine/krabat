@@ -25,14 +25,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 
 public class JavaStorageManager extends GenericStorageManager {
 
     private static final Logger log = LoggerFactory.getLogger(JavaStorageManager.class);
+    private static final String LANG_INDEX_FILENAME = "lang_index.txt";
     private final boolean loadSaveSupported;
 
     private final Path loadSaveRootPath;
@@ -177,59 +181,35 @@ public class JavaStorageManager extends GenericStorageManager {
         }
     }
 
+    @Override
+    public Map<String, String> loadTranslations(String file) {
+        Path translationPath = getTranslationPath(file);
+        return readFile(translationPath);
+    }
+
+    private static Map<String, String> readFile(Path path) {
+        try {
+            return Files.readAllLines(path)
+                    .stream()
+                    .map(JavaStorageManager::parseLine)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static Map.Entry<String, String> parseLine(String line) {
+        int separatorPos = line.indexOf('|');
+        return Map.entry(line.substring(0, separatorPos), line.substring(separatorPos + 1));
+    }
+
+    @Override
+    public Map<String, String> getExistingTranslations() {
+        Path translationPath = getTranslationPath(LANG_INDEX_FILENAME);
+        return readFile(translationPath);
+    }
+
     private Path getTranslationPath(String filename) {
         return translationsRootPath.resolve(filename);
-    }
-
-    @Override
-    public HashMap<String, String> loadTranslationsFile(String filename) {
-        HashMap<String, String> translations = new HashMap<>();
-
-        File file = getTranslationPath(filename).toFile();
-
-        try {
-            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
-            String line;
-            String key;
-            String value;
-            int separatorPos;
-            while ((line = reader.readLine()) != null) {
-                separatorPos = line.indexOf('\t');
-                key = line.substring(0, separatorPos).trim();
-                value = line.substring(separatorPos + 1); // do not trim, the spaces may be wanted!!!
-                translations.put(key, value);
-            }
-            reader.close();
-        } catch (IOException e) {
-            log.error("Could not load translations from {}", file.getAbsolutePath(), e);
-            throw new Error("Translations file not found!");
-        }
-
-        return translations;
-    }
-
-    @Override
-    public void mergeTranslationsFile(String filename, HashMap<String, String> translations, boolean isFake, String fakePrefix) {
-        File file = getTranslationPath(filename).toFile();
-        try {
-            LineNumberReader reader = new LineNumberReader(new BufferedReader(new FileReader(file)));
-            String line;
-            String key;
-            String value;
-            int separatorPos;
-            while ((line = reader.readLine()) != null) {
-                separatorPos = line.indexOf('\t');
-                key = line.substring(0, separatorPos).trim();
-                value = line.substring(separatorPos + 1); // do not trim, the spaces may be wanted!!!
-                if (isFake) {
-                    value = fakePrefix + " " + value;
-                }
-                translations.put(key, value);
-            }
-            reader.close();
-        } catch (IOException e) {
-            log.error("Could not load translations from {}", file.getAbsolutePath(), e);
-            throw new Error("Translations file not found!");
-        }
     }
 }

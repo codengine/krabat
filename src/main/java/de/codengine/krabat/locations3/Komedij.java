@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Komedij extends Mainloc {
+public class Komedij extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Komedij.class);
     private GenericImage background;
     private GenericImage jacke;
@@ -112,18 +112,18 @@ public class Komedij extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(105, 390, 105, 390, 372, 475));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(391, 530, 391, 530, 392, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(531, 620, 531, 620, 415, 479));
 
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
 
         InitImages();
         switch (oldLocation) {
@@ -140,17 +140,17 @@ public class Komedij extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/komedij/komedij.gif");
-        jacke = getPicture("gfx-dd/komedij/jacke.gif");
-        schwert = getPicture("gfx-dd/komedij/schwert.gif");
-        gorilla = getPicture("gfx-dd/komedij/gorilla.gif");
-        sluzDrasta = getPicture("gfx-dd/komedij/sluz.gif");
+        background = getPicture("gfx-dd/komedij/komedij.png");
+        jacke = getPicture("gfx-dd/komedij/jacke.png");
+        schwert = getPicture("gfx-dd/komedij/schwert.png");
+        gorilla = getPicture("gfx-dd/komedij/gorilla.png");
+        sluzDrasta = getPicture("gfx-dd/komedij/sluz.png");
 
-        kerzen[0] = getPicture("gfx-dd/komedij/kerze1.gif");
-        kerzen[1] = getPicture("gfx-dd/komedij/kerze2.gif");
-        kerzen[2] = getPicture("gfx-dd/komedij/kerze3.gif");
-        kerzen[3] = getPicture("gfx-dd/komedij/kerze4.gif");
-        kerzen[4] = getPicture("gfx-dd/komedij/kerze5.gif");
+        kerzen[0] = getPicture("gfx-dd/komedij/kerze1.png");
+        kerzen[1] = getPicture("gfx-dd/komedij/kerze2.png");
+        kerzen[2] = getPicture("gfx-dd/komedij/kerze3.png");
+        kerzen[3] = getPicture("gfx-dd/komedij/kerze4.png");
+        kerzen[4] = getPicture("gfx-dd/komedij/kerze5.png");
 
     }
 
@@ -160,14 +160,14 @@ public class Komedij extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -186,17 +186,17 @@ public class Komedij extends Mainloc {
         }
 
         // Ist Dienstkleidung noch da
-        if (!mainFrame.Actions[512]) {
+        if (!mainFrame.actions[512]) {
             g.setClip(502, 209, 70, 152);
             g.drawImage(sluzDrasta, 502, 209);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -204,7 +204,7 @@ public class Komedij extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -248,7 +248,7 @@ public class Komedij extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -256,7 +256,7 @@ public class Komedij extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -279,7 +279,7 @@ public class Komedij extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -287,7 +287,7 @@ public class Komedij extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -297,7 +297,7 @@ public class Komedij extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -330,13 +330,13 @@ public class Komedij extends Mainloc {
                 }
 
                 // Ausreden fuer tesaki, wenn sluz dr. weg
-                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.actions[512]) {
                     nextActionID = 165;
                     pTemp = pTesaki;
                 }
 
                 // Ausreden fuer sl. dr, wenn noch da
-                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.actions[512]) {
                     nextActionID = 170;
                     pTemp = pSluzDrasta;
                 }
@@ -348,15 +348,15 @@ public class Komedij extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -381,7 +381,7 @@ public class Komedij extends Mainloc {
                         pTemp = new GenericPoint(pExitLeft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -401,7 +401,7 @@ public class Komedij extends Mainloc {
                 }
 
                 // Dienstkleidung ansehen (falls noch da)
-                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.actions[512]) {
                     nextActionID = 5;
                     pTemp = pSluzDrasta;
                 }
@@ -419,12 +419,12 @@ public class Komedij extends Mainloc {
                 }
 
                 // tesaki ansehen
-                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.actions[512]) {
                     nextActionID = 12;
                     pTemp = pTesaki;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -432,7 +432,7 @@ public class Komedij extends Mainloc {
                 // Gorilla mitnehmen
                 if (rectGorilla.IsPointInRect(pTemp)) {
                     nextActionID = 2;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pGorilla);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pGorilla);
                     mainFrame.repaint();
                     return;
                 }
@@ -440,15 +440,15 @@ public class Komedij extends Mainloc {
                 // Beil mitnehmen
                 if (sekera.IsPointInRect(pTemp)) {
                     nextActionID = 4;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSekera);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSekera);
                     mainFrame.repaint();
                     return;
                 }
 
                 // SluzDrasta mitnehmen (falls noch da)
-                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512]) {
+                if (rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.actions[512]) {
                     nextActionID = 6;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSluzDrasta);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSluzDrasta);
                     mainFrame.repaint();
                     return;
                 }
@@ -456,7 +456,7 @@ public class Komedij extends Mainloc {
                 // postawa benutzen, wenn mgl.
                 if (postawa.IsPointInRect(pTemp)) {
                     nextActionID = 20;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pPostawa);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pPostawa);
                     mainFrame.repaint();
                     return;
                 }
@@ -464,15 +464,15 @@ public class Komedij extends Mainloc {
                 // mjec benutzen
                 if (mjec.IsPointInRect(pTemp)) {
                     nextActionID = 25;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pMjec);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pMjec);
                     mainFrame.repaint();
                     return;
                 }
 
                 // tesaki benutzen
-                if (tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
+                if (tesaki.IsPointInRect(pTemp) && mainFrame.actions[512]) {
                     nextActionID = 30;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTesaki);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTesaki);
                     mainFrame.repaint();
                     return;
                 }
@@ -494,34 +494,34 @@ public class Komedij extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     sekera.IsPointInRect(pTemp) ||
                     rectGorilla.IsPointInRect(pTemp) ||
-                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512] ||
+                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.actions[512] ||
                     postawa.IsPointInRect(pTemp) ||
                     mjec.IsPointInRect(pTemp) ||
-                    tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512];
+                    tesaki.IsPointInRect(pTemp) && mainFrame.actions[512];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -529,12 +529,12 @@ public class Komedij extends Mainloc {
         else {
             if (sekera.IsPointInRect(pTemp) ||
                     rectGorilla.IsPointInRect(pTemp) ||
-                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.Actions[512] ||
+                    rectSluzDrasta.IsPointInRect(pTemp) && !mainFrame.actions[512] ||
                     postawa.IsPointInRect(pTemp) ||
                     mjec.IsPointInRect(pTemp) ||
-                    tesaki.IsPointInRect(pTemp) && mainFrame.Actions[512]) {
+                    tesaki.IsPointInRect(pTemp) && mainFrame.actions[512]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -542,7 +542,7 @@ public class Komedij extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 9;
                 }
                 return;
@@ -560,7 +560,7 @@ public class Komedij extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -576,12 +576,12 @@ public class Komedij extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -623,8 +623,8 @@ public class Komedij extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -642,7 +642,7 @@ public class Komedij extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -681,8 +681,8 @@ public class Komedij extends Mainloc {
 
             case 6:
                 // Bedienstetenkleidung mitnehmen (wenn noch da)
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 // mainFrame.wave.PlayFile ("sfx-dd/wusch2.wav");
                 mainFrame.krabat.SetFacing(fSluzDrasta);
                 nextActionID = 7;
@@ -694,14 +694,14 @@ public class Komedij extends Mainloc {
                 // Ende take sluz. drasta
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(41);
-                    mainFrame.Actions[512] = true;        // Flag setzen
-                    mainFrame.Clipset = false;  // alles neu zeichnen
+                    mainFrame.actions[512] = true;        // Flag setzen
+                    mainFrame.isClipSet = false;  // alles neu zeichnen
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;

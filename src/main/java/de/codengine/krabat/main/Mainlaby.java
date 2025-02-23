@@ -26,7 +26,7 @@ import de.codengine.krabat.sound.BackgroundMusicPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-abstract public class Mainlaby extends Mainloc {
+abstract public class Mainlaby extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mainlaby.class);
     public GenericPoint bludTalk = new GenericPoint(0, 0);
     public GenericPoint Pblud = new GenericPoint(0, 0);
@@ -148,19 +148,19 @@ abstract public class Mainlaby extends Mainloc {
     }
 
     public void Erscheinen(boolean blink) {
-        if (mainFrame.Actions[235]) {
+        if (mainFrame.actions[235]) {
             // System.out.println ("Jetzt wieder alles deaktivieren...");
             ClearErscheinen();
             return;
         }
 
-        if (!mainFrame.Actions[236]) {
+        if (!mainFrame.actions[236]) {
             // System.out.println ("Noch kein Blinkern da");
 
             int i = 240;
 
             // es wurde normal gelaufen, kein Blinkern erscheinen, also kann keinem gefolgt werden
-            while (mainFrame.Actions[i]) {
+            while (mainFrame.actions[i]) {
                 i++;
             }
 
@@ -170,20 +170,20 @@ abstract public class Mainlaby extends Mainloc {
                 if (zuffi < 5) {
                     // Herumirrzaehler wieder loeschen
                     for (int f = 240; f <= 245; f++) {
-                        mainFrame.Actions[f] = false;
+                        mainFrame.actions[f] = false;
                     }
-                    mainFrame.Actions[236] = true;
+                    mainFrame.actions[236] = true;
 
                     log.debug("Aber jetzt blinkert es !!");
 
                 }
             } else {
                 // Zaehler eins hochsetzen
-                mainFrame.Actions[i] = true;
+                mainFrame.actions[i] = true;
             }
 
             // Blud aus (Sicherheit)
-            mainFrame.Actions[235] = false;
+            mainFrame.actions[235] = false;
             return;
         }
 
@@ -195,19 +195,19 @@ abstract public class Mainlaby extends Mainloc {
 
             // Zaehler fuer Erscheinen loeschen
             for (int f = 240; f <= 245; f++) {
-                mainFrame.Actions[f] = false;
+                mainFrame.actions[f] = false;
             }
 
             // Zaehler fuer wielange folgen loeschen
             for (int g = 237; g <= 239; g++) {
-                mainFrame.Actions[g] = false;
+                mainFrame.actions[g] = false;
             }
 
             // Blinkern aus
-            mainFrame.Actions[236] = false;
+            mainFrame.actions[236] = false;
 
             // Blud aus
-            mainFrame.Actions[235] = false;
+            mainFrame.actions[235] = false;
             return;
         }
 
@@ -216,7 +216,7 @@ abstract public class Mainlaby extends Mainloc {
         // wir sind ja jetzt auf dem richtigen Weg...
         int x = 237;
 
-        while (mainFrame.Actions[x]) {
+        while (mainFrame.actions[x]) {
             x++;
         }
 
@@ -226,24 +226,24 @@ abstract public class Mainlaby extends Mainloc {
             log.debug("Jetzt kann ein Blud erscheinen");
 
             // Blud ein
-            mainFrame.Actions[235] = true;
+            mainFrame.actions[235] = true;
 
             // Blinkern aus
-            mainFrame.Actions[236] = false;
+            mainFrame.actions[236] = false;
 
             // Zaehler wielange folgen wieder loeschen
             for (int j = 237; j <= 239; j++) {
-                mainFrame.Actions[j] = false;
+                mainFrame.actions[j] = false;
             }
         } else {
-            mainFrame.Actions[x] = true;
+            mainFrame.actions[x] = true;
         }
 
     }
 
     public void ClearErscheinen() {
         for (int i = 235; i <= 246; i++) {
-            mainFrame.Actions[i] = false;
+            mainFrame.actions[i] = false;
         }
     }
 
@@ -260,7 +260,7 @@ abstract public class Mainlaby extends Mainloc {
                 // Krabat beginnt MC (Bludnicki benutzen)
                 mainFrame.krabat.SetFacing(bludFacing);
                 hoerterzu = true;
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 // evalMouseMoveEvent (mainFrame.Mousepoint);
                 nextActionID = 600;
                 break;
@@ -272,11 +272,11 @@ abstract public class Mainlaby extends Mainloc {
 
             case 155:
                 // Gib Krosik an Bludnickis
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 hoerterzu = true;
                 mainFrame.krabat.nAnimation = 131;
                 mainFrame.krabat.SetFacing(bludFacing);
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 156;
                 break;
 
@@ -291,29 +291,29 @@ abstract public class Mainlaby extends Mainloc {
             case 157:
                 // Entscheidung, ob nur raus oder auch Spruch
                 bludNimmt = false;
-                if (!mainFrame.Actions[197]) {
+                if (!mainFrame.actions[197]) {
                     // nur raus, kein Spruch
                     PersonSagt("Mainlaby_2", bludFacing, 35, 2, 158, bludTalk);
                 } else {
                     // Spruch sagen und rausbeamen
                     BackgroundMusicPlayer.getInstance().stop();
-                    mainFrame.wave.PlayFile("sfx/spruch.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/spruch.wav");
                     PersonSagt("Mainlaby_3", bludFacing, 35, 2, 158, bludTalk);
-                    mainFrame.Actions[215] = true;
+                    mainFrame.actions[215] = true;
 
                     // hier in den Dialogen die Muehlenfragen rausnehmen
-                    mainFrame.Actions[195] = true;
-                    mainFrame.Actions[196] = true;
-                    mainFrame.Actions[182] = true;
-                    mainFrame.Actions[183] = true;
+                    mainFrame.actions[195] = true;
+                    mainFrame.actions[196] = true;
+                    mainFrame.actions[182] = true;
+                    mainFrame.actions[183] = true;
                 }
                 // Krosik - Lockvariable entfernen, jetzt faengt er wieder was bei Haty
-                mainFrame.Actions[915] = false;
+                mainFrame.actions[915] = false;
                 break;
 
             case 158:
                 // Krabat wird rausgebeamt
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 mainFrame.inventory.vInventory.removeElement(15);
                 NeuesBild(17, locIndex);
                 break;
@@ -331,7 +331,7 @@ abstract public class Mainlaby extends Mainloc {
                 Dialog.ExtendMC("Mainlaby_13", 180, 181, new int[]{181}, 620);
                 Dialog.ExtendMC("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
                 Dialog.ExtendMC("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
-                if (!mainFrame.Actions[184]) {
+                if (!mainFrame.actions[184]) {
                     Dialog.ExtendMC("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
                 } else {
                     Dialog.ExtendMC("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
@@ -345,30 +345,30 @@ abstract public class Mainlaby extends Mainloc {
                 Dialog.ExtendMC("Mainlaby_20", 1000, 186, null, 800);
                 Dialog.ExtendMC("Mainlaby_21", 186, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 // evalMouseMoveEvent (mainFrame.Mousepoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
                 nextActionID = Dialog.ActionID;
 
                 // Fragen zurueckschalten, wegen loop "Pytam #Kertowski mlyn."
-                if (mainFrame.Actions[183] && nextActionID == 630) {
-                    mainFrame.Actions[183] = false;
+                if (mainFrame.actions[183] && nextActionID == 630) {
+                    mainFrame.actions[183] = false;
                 }
-                if (mainFrame.Actions[196] && nextActionID == 640) {
-                    mainFrame.Actions[196] = false;
+                if (mainFrame.actions[196] && nextActionID == 640) {
+                    mainFrame.actions[196] = false;
                 }
 
                 break;
@@ -416,16 +416,16 @@ abstract public class Mainlaby extends Mainloc {
 
             case 800:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.Actions[186] = false;
+                mainFrame.actions[186] = false;
 
                 // hier testen, ob Fragen zurueckgestellt werden sollen
-                if (!mainFrame.Actions[195] || !mainFrame.Actions[196] ||
-                        !mainFrame.Actions[182] || !mainFrame.Actions[183]) {
-                    mainFrame.Actions[196] = false;
-                    mainFrame.Actions[182] = false;
-                    mainFrame.Actions[183] = false;
+                if (!mainFrame.actions[195] || !mainFrame.actions[196] ||
+                        !mainFrame.actions[182] || !mainFrame.actions[183]) {
+                    mainFrame.actions[196] = false;
+                    mainFrame.actions[182] = false;
+                    mainFrame.actions[183] = false;
                 }
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
                 hoerterzu = false;
                 // evalMouseMoveEvent (mainFrame.Mousepoint);

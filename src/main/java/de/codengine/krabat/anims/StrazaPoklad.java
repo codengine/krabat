@@ -51,17 +51,17 @@ public class StrazaPoklad extends Mainanim {
     }
 
     private void InitImages() {
-        straza_head[0] = getPicture("gfx-dd/trepj/pstraza-h1.gif");
-        straza_head[1] = getPicture("gfx-dd/trepj/pstraza-h1a.gif");
-        straza_head[2] = getPicture("gfx-dd/trepj/pstraza-h2.gif");
-        straza_head[3] = getPicture("gfx-dd/trepj/pstraza-h3.gif");
-        straza_head[4] = getPicture("gfx-dd/trepj/pstraza-h4.gif");
-        straza_head[5] = getPicture("gfx-dd/trepj/pstraza-h5.gif");
-        straza_head[6] = getPicture("gfx-dd/trepj/pstraza-h6.gif");
-        straza_head[7] = getPicture("gfx-dd/trepj/pstraza-h7.gif");
+        straza_head[0] = getPicture("gfx-dd/trepj/pstraza-h1.png");
+        straza_head[1] = getPicture("gfx-dd/trepj/pstraza-h1a.png");
+        straza_head[2] = getPicture("gfx-dd/trepj/pstraza-h2.png");
+        straza_head[3] = getPicture("gfx-dd/trepj/pstraza-h3.png");
+        straza_head[4] = getPicture("gfx-dd/trepj/pstraza-h4.png");
+        straza_head[5] = getPicture("gfx-dd/trepj/pstraza-h5.png");
+        straza_head[6] = getPicture("gfx-dd/trepj/pstraza-h6.png");
+        straza_head[7] = getPicture("gfx-dd/trepj/pstraza-h7.png");
 
-        straza_body[0] = getPicture("gfx-dd/trepj/pstraza-b1.gif");
-        straza_body[1] = getPicture("gfx-dd/trepj/pstraza-b2.gif");
+        straza_body[0] = getPicture("gfx-dd/trepj/pstraza-b1.png");
+        straza_body[1] = getPicture("gfx-dd/trepj/pstraza-b2.png");
     }
 
     // Zeichne Hauptwachter, wie er dasteht oder spricht

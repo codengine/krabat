@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Dzera extends Mainloc {
+public class Dzera extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Dzera.class);
     private GenericImage background;
 
@@ -86,7 +86,7 @@ public class Dzera extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mlyn/guck.gif");
+        background = getPicture("gfx/mlyn/guck.png");
     }
 
     @Override
@@ -105,15 +105,15 @@ public class Dzera extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // Hintergrund und Krabat zeichnen
@@ -149,7 +149,7 @@ public class Dzera extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -157,7 +157,7 @@ public class Dzera extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -185,7 +185,7 @@ public class Dzera extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -199,7 +199,7 @@ public class Dzera extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 

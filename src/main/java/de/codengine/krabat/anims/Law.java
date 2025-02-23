@@ -58,21 +58,21 @@ public class Law extends Mainanim {
     }
 
     private void InitImages() {
-        law[0] = getPicture("gfx-dd/manega/law.gif");
-        law[1] = getPicture("gfx-dd/manega/lawa.gif");
+        law[0] = getPicture("gfx-dd/manega/law.png");
+        law[1] = getPicture("gfx-dd/manega/lawa.png");
 
-        law_talk[0] = getPicture("gfx-dd/manega/law-t.gif");
-        law_talk[1] = getPicture("gfx-dd/manega/law-ta.gif");
-        law_talk[2] = getPicture("gfx-dd/manega/law-t1.gif");
-        law_talk[3] = getPicture("gfx-dd/manega/law-t2.gif");
-        law_talk[4] = getPicture("gfx-dd/manega/law-t3.gif");
-        law_talk[5] = getPicture("gfx-dd/manega/law-t4.gif");
-        law_talk[6] = getPicture("gfx-dd/manega/law-t5.gif");
+        law_talk[0] = getPicture("gfx-dd/manega/law-t.png");
+        law_talk[1] = getPicture("gfx-dd/manega/law-ta.png");
+        law_talk[2] = getPicture("gfx-dd/manega/law-t1.png");
+        law_talk[3] = getPicture("gfx-dd/manega/law-t2.png");
+        law_talk[4] = getPicture("gfx-dd/manega/law-t3.png");
+        law_talk[5] = getPicture("gfx-dd/manega/law-t4.png");
+        law_talk[6] = getPicture("gfx-dd/manega/law-t5.png");
 
-        law_sleep[0] = getPicture("gfx-dd/manega/law-sleep1.gif");
-        law_sleep[1] = getPicture("gfx-dd/manega/law-sleep2.gif");
+        law_sleep[0] = getPicture("gfx-dd/manega/law-sleep1.png");
+        law_sleep[1] = getPicture("gfx-dd/manega/law-sleep2.png");
 
-        law_grrr = getPicture("gfx-dd/manega/law-grrr.gif");
+        law_grrr = getPicture("gfx-dd/manega/law-grrr.png");
     }
 
     // Zeichne Loewen, wie er dasteht oder spricht
@@ -162,7 +162,7 @@ public class Law extends Mainanim {
         // 3. invCursor -> soll nur dann abschalten
 
         // immer spielen, kommt eh nur selten
-        mainFrame.wave.PlayFile("sfx-dd/lawspi.wav");
+        mainFrame.soundPlayer.PlayFile("sfx-dd/lawspi.wav");
     }
 
 

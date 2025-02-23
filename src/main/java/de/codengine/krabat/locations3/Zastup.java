@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Zastup extends Mainloc {
+public class Zastup extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Zastup.class);
     private GenericImage background;
     private GenericImage grasLinks;
@@ -147,40 +147,40 @@ public class Zastup extends Mainloc {
     // Grenzen intialisieren 
     private void InitBorders() {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(15, 285, 15, 285, 440, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(15, 22, 15, 143, 406, 439));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(286, 625, 286, 625, 447, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(453, 530, 395, 625, 423, 446));
 
         // Schranke offen ?
-        if (mainFrame.Actions[575]) {
-            mainFrame.wegGeher.vBorders.addElement
+        if (mainFrame.actions[575]) {
+            mainFrame.pathWalker.vBorders.addElement
                     (new Bordertrapez(510, 513, 480, 510, 394, 422));
         }
 
         // Trapez-Beziehungen (Schranke offen oder nicht)
-        if (!mainFrame.Actions[575]) {
-            mainFrame.wegSucher.ClearMatrix(4);
+        if (!mainFrame.actions[575]) {
+            mainFrame.pathFinder.ClearMatrix(4);
 
-            mainFrame.wegSucher.PosVerbinden(0, 1);
-            mainFrame.wegSucher.PosVerbinden(0, 2);
-            mainFrame.wegSucher.PosVerbinden(2, 3);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(0, 2);
+            mainFrame.pathFinder.PosVerbinden(2, 3);
         } else {
-            mainFrame.wegSucher.ClearMatrix(5);
+            mainFrame.pathFinder.ClearMatrix(5);
 
-            mainFrame.wegSucher.PosVerbinden(0, 1);
-            mainFrame.wegSucher.PosVerbinden(0, 2);
-            mainFrame.wegSucher.PosVerbinden(2, 3);
-            mainFrame.wegSucher.PosVerbinden(3, 4);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(0, 2);
+            mainFrame.pathFinder.PosVerbinden(2, 3);
+            mainFrame.pathFinder.PosVerbinden(3, 4);
         }
 
         // SchrankenImage festlegen
-        if (mainFrame.Actions[575]) {
+        if (mainFrame.actions[575]) {
             SchrankCount = 11;
         } else {
             SchrankCount = 1;
@@ -189,23 +189,23 @@ public class Zastup extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/zastup/zastup.gif");
-        grasLinks = getPicture("gfx-dd/zastup/gras-links.gif");
-        grasRechts = getPicture("gfx-dd/zastup/gras-rechts.gif");
+        background = getPicture("gfx-dd/zastup/zastup.png");
+        grasLinks = getPicture("gfx-dd/zastup/gras-links.png");
+        grasRechts = getPicture("gfx-dd/zastup/gras-rechts.png");
 
-        Loch = getPicture("gfx-dd/zastup/lloch.gif");
+        Loch = getPicture("gfx-dd/zastup/lloch.png");
 
-        Schranke[1] = getPicture("gfx-dd/zastup/sr1.gif");
-        Schranke[2] = getPicture("gfx-dd/zastup/sr2.gif");
-        Schranke[3] = getPicture("gfx-dd/zastup/sr3.gif");
-        Schranke[4] = getPicture("gfx-dd/zastup/sr4.gif");
-        Schranke[5] = getPicture("gfx-dd/zastup/sr5.gif");
-        Schranke[6] = getPicture("gfx-dd/zastup/sr6.gif");
-        Schranke[7] = getPicture("gfx-dd/zastup/sr7.gif");
-        Schranke[8] = getPicture("gfx-dd/zastup/sr8.gif");
-        Schranke[9] = getPicture("gfx-dd/zastup/sr9.gif");
-        Schranke[10] = getPicture("gfx-dd/zastup/sr10.gif");
-        Schranke[11] = getPicture("gfx-dd/zastup/sr11.gif");
+        Schranke[1] = getPicture("gfx-dd/zastup/sr1.png");
+        Schranke[2] = getPicture("gfx-dd/zastup/sr2.png");
+        Schranke[3] = getPicture("gfx-dd/zastup/sr3.png");
+        Schranke[4] = getPicture("gfx-dd/zastup/sr4.png");
+        Schranke[5] = getPicture("gfx-dd/zastup/sr5.png");
+        Schranke[6] = getPicture("gfx-dd/zastup/sr6.png");
+        Schranke[7] = getPicture("gfx-dd/zastup/sr7.png");
+        Schranke[8] = getPicture("gfx-dd/zastup/sr8.png");
+        Schranke[9] = getPicture("gfx-dd/zastup/sr9.png");
+        Schranke[10] = getPicture("gfx-dd/zastup/sr10.png");
+        Schranke[11] = getPicture("gfx-dd/zastup/sr11.png");
 
     }
 
@@ -222,14 +222,14 @@ public class Zastup extends Mainloc {
 //             }  
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -237,7 +237,7 @@ public class Zastup extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Schranke zeichnen
@@ -247,18 +247,18 @@ public class Zastup extends Mainloc {
         g.drawImage(Loch, 433, 352);
 
         // Mato zeichnen, falls noch da
-        if (!mainFrame.Actions[576]) {
+        if (!mainFrame.actions[576]) {
             g.setClip(matoPoint.x, matoPoint.y, Mato.Breite, Mato.Hoehe);
             g.drawImage(background, 0, 0);
             mato.drawMato(g, TalkPerson, matoPoint, isOpening, isTaking, isListening);
         }
 
-        if (!mainFrame.Actions[575]) {
+        if (!mainFrame.actions[575]) {
             evalSound(); // Hier zufaellige Soundausgabe
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -268,7 +268,7 @@ public class Zastup extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -311,7 +311,7 @@ public class Zastup extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -319,7 +319,7 @@ public class Zastup extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -330,8 +330,8 @@ public class Zastup extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -348,14 +348,14 @@ public class Zastup extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -364,7 +364,7 @@ public class Zastup extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -374,7 +374,7 @@ public class Zastup extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -389,8 +389,8 @@ public class Zastup extends Mainloc {
                 }
 
                 // Pelz oder Papier geben, oder Ausreden, falls Mato noch da
-                if (reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576]) {
-                    if (mainFrame.whatItem == 40 && !mainFrame.Actions[575]) {
+                if (reMato.IsPointInRect(pTemp) && !mainFrame.actions[576]) {
+                    if (mainFrame.whatItem == 40 && !mainFrame.actions[575]) {
                         // Taler nur dann, wenn Schranke noch zu
                         nextActionID = 10;  // 5 Taler
                     } else {
@@ -411,21 +411,21 @@ public class Zastup extends Mainloc {
                 }
 
                 // Schranke Ausreden
-                if (schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575]) {
+                if (schranke.IsPointInRect(pTemp) && !mainFrame.actions[575]) {
                     nextActionID = 165;
                     pTemp = pSchranke;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -451,7 +451,7 @@ public class Zastup extends Mainloc {
                         pTemp = new GenericPoint(kt.x, pExitLinks.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -485,7 +485,7 @@ public class Zastup extends Mainloc {
 
                 // zu Manega gehen ? - Schranke offen ?
                 if (ausgangManega.IsPointInRect(pTemp)) {
-                    if (mainFrame.Actions[575]) {
+                    if (mainFrame.actions[575]) {
                         nextActionID = 101;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
@@ -497,7 +497,7 @@ public class Zastup extends Mainloc {
                             pTemp = new GenericPoint(kt.x, pExitManega.y);
                         }
 
-                        if (mainFrame.dClick) {
+                        if (mainFrame.isDoubleClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
@@ -510,7 +510,7 @@ public class Zastup extends Mainloc {
                 }
 
                 // Mato ansehen
-                if (reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576]) {
+                if (reMato.IsPointInRect(pTemp) && !mainFrame.actions[576]) {
                     nextActionID = 1;
                     pTemp = pMato;
                 }
@@ -522,21 +522,21 @@ public class Zastup extends Mainloc {
                 }
 
                 // Schranke ansehen
-                if (schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575]) {
+                if (schranke.IsPointInRect(pTemp) && !mainFrame.actions[575]) {
                     nextActionID = 4;
                     pTemp = pSchranke;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit dem Mato reden
                 if (reMato.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[576]) {
+                        !mainFrame.actions[576]) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pMato);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pMato);
                     mainFrame.repaint();
                     return;
                 }
@@ -544,16 +544,16 @@ public class Zastup extends Mainloc {
                 // Tor oeffnen
                 if (tor.IsPointInRect(pTemp)) {
                     nextActionID = 3;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTor);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTor);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schranke oeffnen
                 if (schranke.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[575]) {
+                        !mainFrame.actions[575]) {
                     nextActionID = 5;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSchranke);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSchranke);
                     mainFrame.repaint();
                     return;
                 }
@@ -577,37 +577,37 @@ public class Zastup extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
-                    reMato.IsPointInRect(pTemp) && !mainFrame.Actions[576] ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
+                    reMato.IsPointInRect(pTemp) && !mainFrame.actions[576] ||
                     tor.IsPointInRect(pTemp) ||
-                    schranke.IsPointInRect(pTemp) && !mainFrame.Actions[575];
+                    schranke.IsPointInRect(pTemp) && !mainFrame.actions[575];
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -615,7 +615,7 @@ public class Zastup extends Mainloc {
         else {
             if (ausgangLinks.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 9;
                 }
                 return;
@@ -631,7 +631,7 @@ public class Zastup extends Mainloc {
 
             if (ausgangManega.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -639,11 +639,11 @@ public class Zastup extends Mainloc {
 
             if (tor.IsPointInRect(pTemp) ||
                     reMato.IsPointInRect(pTemp) &&
-                            !mainFrame.Actions[576] ||
+                            !mainFrame.actions[576] ||
                     schranke.IsPointInRect(pTemp) &&
-                            !mainFrame.Actions[575]) {
+                            !mainFrame.actions[575]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -651,7 +651,7 @@ public class Zastup extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -659,7 +659,7 @@ public class Zastup extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -669,17 +669,17 @@ public class Zastup extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -721,8 +721,8 @@ public class Zastup extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -737,7 +737,7 @@ public class Zastup extends Mainloc {
             int zwzfz = (int) (Math.random() * 2.99);
             zwzfz += 49;
 
-            mainFrame.wave.PlayFile("sfx-dd/law" + (char) zwzfz + "-2.wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/law" + (char) zwzfz + "-2.wav");
         }
     }
 
@@ -756,7 +756,7 @@ public class Zastup extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -802,18 +802,18 @@ public class Zastup extends Mainloc {
             case 10:
                 // Kr. gibt Mato 5 Taler
                 mainFrame.krabat.SetFacing(fMato);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 nextActionID = 300;
                 break;
 
             case 11:
                 // Kr. gibt Mato Tigerpelz
                 mainFrame.krabat.SetFacing(fMato);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 mainFrame.krabat.nAnimation = 134;
                 TakeCount = 4;
                 nextActionID = 12;
@@ -829,7 +829,7 @@ public class Zastup extends Mainloc {
                 // Ende nehmen timen
                 if (--TakeCount < 2) {
                     isTaking = false;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     nextActionID = 301;
                 }
                 break;
@@ -837,8 +837,8 @@ public class Zastup extends Mainloc {
             case 50:
                 // Krabat beginnt MC (Mato benutzen)
                 mainFrame.krabat.SetFacing(fMato);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 isListening = true;
                 nextActionID = 600;
                 break;
@@ -847,8 +847,8 @@ public class Zastup extends Mainloc {
                 // Gehe zu Karta
                 NeuesBild(180, locationID);
                 // Flag setzen, dass Kr. raus war -> Mato in Zastup weg, aber nur, wenn Pelz gegeben
-                if (mainFrame.Actions[575]) {
-                    mainFrame.Actions[576] = true;
+                if (mainFrame.actions[575]) {
+                    mainFrame.actions[576] = true;
                 }
                 break;
 
@@ -856,7 +856,7 @@ public class Zastup extends Mainloc {
                 // Gehe zu Manega
                 NeuesBild(171, locationID);
                 // Flag setzen, dass Kr. raus war -> Mato in Zastup weg, Pelz muss er hier gegeben haben !
-                mainFrame.Actions[576] = true;
+                mainFrame.actions[576] = true;
                 break;
 
             case 155:
@@ -896,7 +896,7 @@ public class Zastup extends Mainloc {
                 isOpening = true;
                 if (--Verhinderschranke < 1) {
                     Verhinderschranke = MAX_VERHINDERSCHRANKE;
-                    mainFrame.wave.PlayFile("sfx-dd/tack.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx-dd/tack.wav");
                     SchrankCount++;
                 }
                 if (SchrankCount == 11) {
@@ -909,7 +909,7 @@ public class Zastup extends Mainloc {
                 // Anim zu Ende, Schranke auf
                 nextActionID = 800;
                 // Krabat darf dann zur Manega raus
-                mainFrame.Actions[575] = true;
+                mainFrame.actions[575] = true;
                 // Pelz aus Inventory entfernen
                 mainFrame.inventory.vInventory.removeElement(36);
                 // Bewegungsgrenzen neu setzen
@@ -921,7 +921,7 @@ public class Zastup extends Mainloc {
             case 600:
                 // Multiple - Choice - Routine
                 Dialog.InitMC(20);
-                if (!mainFrame.Actions[575]) {
+                if (!mainFrame.actions[575]) {
                     // 1. Frage, nur wenn noch kein Pelz
                     Dialog.ExtendMC("Zastup_19", 1000, 571, new int[]{571}, 610);
                     Dialog.ExtendMC("Zastup_20", 571, 570, new int[]{570}, 611);
@@ -931,7 +931,7 @@ public class Zastup extends Mainloc {
                 // 2. Frage kommt immer
                 Dialog.ExtendMC("Zastup_22", 1000, 1000, null, 620);
 
-                if (!mainFrame.Actions[575]) {
+                if (!mainFrame.actions[575]) {
                     // 3. Frage, nur wenn noch kein Pelz
                     Dialog.ExtendMC("Zastup_23", 1000, 572, new int[]{572}, 630);
                     Dialog.ExtendMC("Zastup_24", 572, 1000, null, 631);
@@ -944,19 +944,19 @@ public class Zastup extends Mainloc {
                 // 5. Frage
                 Dialog.ExtendMC("Zastup_27", 1000, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -1016,9 +1016,9 @@ public class Zastup extends Mainloc {
             case 800:
                 // MC beenden, wenn zuende gelabert...
                 isListening = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

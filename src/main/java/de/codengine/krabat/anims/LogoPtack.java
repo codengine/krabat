@@ -45,9 +45,9 @@ public class LogoPtack extends Mainanim {
     }
 
     private void InitImages() {
-        vogel[1] = getPicture("gfx/intro/iv1.gif");
-        vogel[2] = getPicture("gfx/intro/iv2.gif");
-        vogel[3] = getPicture("gfx/intro/iv3.gif");
+        vogel[1] = getPicture("gfx/intro/iv1.png");
+        vogel[2] = getPicture("gfx/intro/iv2.png");
+        vogel[3] = getPicture("gfx/intro/iv3.png");
     }
 
     @Override

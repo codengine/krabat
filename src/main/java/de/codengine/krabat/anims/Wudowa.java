@@ -60,24 +60,24 @@ public class Wudowa extends Mainanim {
     }
 
     private void InitImages() {
-        alte_head[1] = getPicture("gfx/zdzary/st-k.gif");
-        alte_head[2] = getPicture("gfx/zdzary/st-k1.gif");
-        alte_head[3] = getPicture("gfx/zdzary/st-k2.gif");
-        alte_head[4] = getPicture("gfx/zdzary/st-k3.gif");
-        alte_head[5] = getPicture("gfx/zdzary/st-k4.gif");
-        alte_head[6] = getPicture("gfx/zdzary/st-k5.gif");
-        alte_head[7] = getPicture("gfx/zdzary/st-k6.gif");
+        alte_head[1] = getPicture("gfx/zdzary/st-k.png");
+        alte_head[2] = getPicture("gfx/zdzary/st-k1.png");
+        alte_head[3] = getPicture("gfx/zdzary/st-k2.png");
+        alte_head[4] = getPicture("gfx/zdzary/st-k3.png");
+        alte_head[5] = getPicture("gfx/zdzary/st-k4.png");
+        alte_head[6] = getPicture("gfx/zdzary/st-k5.png");
+        alte_head[7] = getPicture("gfx/zdzary/st-k6.png");
 
-        alte_body[1] = getPicture("gfx/zdzary/st-b.gif");
-        alte_body[2] = getPicture("gfx/zdzary/st-b2.gif");
-        alte_body[3] = getPicture("gfx/zdzary/st-b3.gif");
-        alte_body[4] = getPicture("gfx/zdzary/st-b4.gif");
+        alte_body[1] = getPicture("gfx/zdzary/st-b.png");
+        alte_body[2] = getPicture("gfx/zdzary/st-b2.png");
+        alte_body[3] = getPicture("gfx/zdzary/st-b3.png");
+        alte_body[4] = getPicture("gfx/zdzary/st-b4.png");
 
-        alte_lach[1] = getPicture("gfx/zdzary/st-l.gif");
-        alte_lach[2] = getPicture("gfx/zdzary/st-l2.gif");
+        alte_lach[1] = getPicture("gfx/zdzary/st-l.png");
+        alte_lach[2] = getPicture("gfx/zdzary/st-l2.png");
 
-        wokno1 = getPicture("gfx/zdzary/wokno1.gif");
-        wokno2 = getPicture("gfx/zdzary/wokno2.gif");
+        wokno1 = getPicture("gfx/zdzary/wokno1.png");
+        wokno2 = getPicture("gfx/zdzary/wokno2.png");
     }
 
     // Zeichne Mutter, wie sie dasteht oder spricht

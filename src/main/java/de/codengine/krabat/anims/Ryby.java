@@ -62,17 +62,17 @@ public class Ryby extends Mainanim {
     }
 
     private void InitImages() {
-        ryby_left[0] = getPicture("gfx/haty/fisch1.gif");
-        ryby_left[1] = getPicture("gfx/haty/fisch2.gif");
-        ryby_left[2] = getPicture("gfx/haty/fisch3.gif");
-        ryby_left[3] = getPicture("gfx/haty/fisch4.gif");
-        ryby_left[4] = getPicture("gfx/haty/fisch5.gif");
+        ryby_left[0] = getPicture("gfx/haty/fisch1.png");
+        ryby_left[1] = getPicture("gfx/haty/fisch2.png");
+        ryby_left[2] = getPicture("gfx/haty/fisch3.png");
+        ryby_left[3] = getPicture("gfx/haty/fisch4.png");
+        ryby_left[4] = getPicture("gfx/haty/fisch5.png");
 
-        ryby_right[0] = getPicture("gfx/haty/rfisch1.gif");
-        ryby_right[1] = getPicture("gfx/haty/rfisch2.gif");
-        ryby_right[2] = getPicture("gfx/haty/rfisch3.gif");
-        ryby_right[3] = getPicture("gfx/haty/rfisch4.gif");
-        ryby_right[4] = getPicture("gfx/haty/rfisch5.gif");
+        ryby_right[0] = getPicture("gfx/haty/rfisch1.png");
+        ryby_right[1] = getPicture("gfx/haty/rfisch2.png");
+        ryby_right[2] = getPicture("gfx/haty/rfisch3.png");
+        ryby_right[3] = getPicture("gfx/haty/rfisch4.png");
+        ryby_right[4] = getPicture("gfx/haty/rfisch5.png");
     }
 
     // Zeichne Hauptwachter, wie er dasteht oder spricht
@@ -82,7 +82,7 @@ public class Ryby extends Mainanim {
             // Fisch weiterschalten, wenn noetig
             if (--Verhindercount < 1) {
                 if (Rybycount == 3 && !noSound) {
-                    mainFrame.wave.PlayFile("sfx/woda1.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/woda1.wav");
                 }
 
                 Verhindercount = MAX_VERHINDERCOUNT;

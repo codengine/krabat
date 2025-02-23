@@ -172,34 +172,34 @@ public class Kutsche extends Mainanim {
     }
 
     private void InitImages() {
-        kutsche = getPicture("gfx/most/kutse.gif");
-        kutschentuer = getPicture("gfx/most/kudurje.gif");
+        kutsche = getPicture("gfx/most/kutse.png");
+        kutschentuer = getPicture("gfx/most/kudurje.png");
 
-        // pferdohr1    = getPicture ("gfx/most/kohr.gif");
-        // pferdohr2    = getPicture ("gfx/most/kohr2.gif");
-        // hinterohr    = getPicture ("gfx/most/kohr3.gif");
+        // pferdohr1    = getPicture ("gfx/most/kohr.png");
+        // pferdohr2    = getPicture ("gfx/most/kohr2.png");
+        // hinterohr    = getPicture ("gfx/most/kohr3.png");
 
-        pferdschwanz[0] = getPicture("gfx/most/ps1.gif");
-        pferdschwanz[1] = getPicture("gfx/most/ps2.gif");
-        pferdschwanz[2] = getPicture("gfx/most/ps3.gif");
+        pferdschwanz[0] = getPicture("gfx/most/ps1.png");
+        pferdschwanz[1] = getPicture("gfx/most/ps2.png");
+        pferdschwanz[2] = getPicture("gfx/most/ps3.png");
 
-        kleineWolke[0] = getPicture("gfx/most/wo1.gif");
-        kleineWolke[1] = getPicture("gfx/most/wo2.gif");
-        kleineWolke[2] = getPicture("gfx/most/wo3.gif");
-        kleineWolke[3] = getPicture("gfx/most/wo4.gif");
-        kleineWolke[4] = getPicture("gfx/most/wo5.gif");
-        kleineWolke[5] = getPicture("gfx/most/wo6.gif");
+        kleineWolke[0] = getPicture("gfx/most/wo1.png");
+        kleineWolke[1] = getPicture("gfx/most/wo2.png");
+        kleineWolke[2] = getPicture("gfx/most/wo3.png");
+        kleineWolke[3] = getPicture("gfx/most/wo4.png");
+        kleineWolke[4] = getPicture("gfx/most/wo5.png");
+        kleineWolke[5] = getPicture("gfx/most/wo6.png");
 
-        grosseWolke[0] = getPicture("gfx/most/gwo1.gif");
-        grosseWolke[1] = getPicture("gfx/most/gwo2.gif");
-        grosseWolke[2] = getPicture("gfx/most/gwo3.gif");
-        grosseWolke[3] = getPicture("gfx/most/gwo4.gif");
-        grosseWolke[4] = getPicture("gfx/most/gwo5.gif");
-        grosseWolke[5] = getPicture("gfx/most/gwo6.gif");
+        grosseWolke[0] = getPicture("gfx/most/gwo1.png");
+        grosseWolke[1] = getPicture("gfx/most/gwo2.png");
+        grosseWolke[2] = getPicture("gfx/most/gwo3.png");
+        grosseWolke[3] = getPicture("gfx/most/gwo4.png");
+        grosseWolke[4] = getPicture("gfx/most/gwo5.png");
+        grosseWolke[5] = getPicture("gfx/most/gwo6.png");
 
-        vorder = getPicture("gfx/most/most-3.gif");
+        vorder = getPicture("gfx/most/most-3.png");
 
-        pohonc = getPicture("gfx/most/kutscher.gif");
+        pohonc = getPicture("gfx/most/kutscher.png");
     }
 
     // gibt Rectangle an Most zurueck, wo sich Kutsche befindet
@@ -289,7 +289,7 @@ public class Kutsche extends Mainanim {
                 // Sound eval.
                 if (vornMusik) {
                     vornMusik = false;
-                    mainFrame.wave.PlayFile("sfx/kutsa.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/kutsa.wav");
                 }
 
                 // GenericImage weiterschalten

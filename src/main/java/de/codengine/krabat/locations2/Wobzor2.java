@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Wobzor2 extends Mainloc2 {
+public class Wobzor2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Wobzor2.class);
     private GenericImage background;
     private GenericImage horiz3;
@@ -102,18 +102,18 @@ public class Wobzor2 extends Mainloc2 {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/horiz/horiz2.gif");
-        horiz3 = getPicture("gfx/horiz/horiz3.gif");
-        horiz4 = getPicture("gfx/horiz/horiz4.gif");
+        background = getPicture("gfx/horiz/horiz2.png");
+        horiz3 = getPicture("gfx/horiz/horiz3.png");
+        horiz4 = getPicture("gfx/horiz/horiz4.png");
 
-        Wasser[1] = getPicture("gfx/horiz/hww5.gif");
-        Wasser[2] = getPicture("gfx/horiz/hww4.gif");
-        Wasser[3] = getPicture("gfx/horiz/hww3.gif");
-        Wasser[4] = getPicture("gfx/horiz/hww2.gif");
-        Wasser[5] = getPicture("gfx/horiz/hw3.gif");
-        Wasser[6] = getPicture("gfx/horiz/hw4.gif");
-        Wasser[7] = getPicture("gfx/horiz/hw5.gif");
-        Wasser[8] = getPicture("gfx/horiz/hw6.gif");
+        Wasser[1] = getPicture("gfx/horiz/hww5.png");
+        Wasser[2] = getPicture("gfx/horiz/hww4.png");
+        Wasser[3] = getPicture("gfx/horiz/hww3.png");
+        Wasser[4] = getPicture("gfx/horiz/hww2.png");
+        Wasser[5] = getPicture("gfx/horiz/hw3.png");
+        Wasser[6] = getPicture("gfx/horiz/hw4.png");
+        Wasser[7] = getPicture("gfx/horiz/hw5.png");
+        Wasser[8] = getPicture("gfx/horiz/hw6.png");
 
     }
 
@@ -145,21 +145,21 @@ public class Wobzor2 extends Mainloc2 {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
 
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             switchanim = !switchanim;
             if (switchanim) {
                 if (forward) {
@@ -235,7 +235,7 @@ public class Wobzor2 extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -246,7 +246,7 @@ public class Wobzor2 extends Mainloc2 {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -265,7 +265,7 @@ public class Wobzor2 extends Mainloc2 {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -279,7 +279,7 @@ public class Wobzor2 extends Mainloc2 {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -321,7 +321,7 @@ public class Wobzor2 extends Mainloc2 {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 MuellerMecker(mueller.evalMlynkTalkPoint());
                 TalkPerson = 36;
                 TalkPause = 5;

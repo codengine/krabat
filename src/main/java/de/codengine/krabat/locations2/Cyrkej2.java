@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Cyrkej2 extends Mainloc {
+public class Cyrkej2 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Cyrkej2.class);
     private GenericImage background;
     private GenericImage durje;
@@ -70,7 +70,7 @@ public class Cyrkej2 extends Mainloc {
         super(caller);
         mainFrame.Freeze(true);
 
-        mainFrame.Actions[851] = true;
+        mainFrame.actions[851] = true;
         mainFrame.CheckKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(7, true);
@@ -100,19 +100,19 @@ public class Cyrkej2 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(330, 600, 40, 600, 384, 462));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(334, 335, 337, 374, 330, 383));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(605, 639, 380, 639, 311, 383));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(600, 290, 610, 310));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(330, 600, 40, 600, 384, 462));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(334, 335, 337, 374, 330, 383));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(605, 639, 380, 639, 311, 383));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(600, 290, 610, 310));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(4);
+        mainFrame.pathFinder.ClearMatrix(4);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(0, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
 
         InitImages();
         switch (oldLocation) {
@@ -139,8 +139,8 @@ public class Cyrkej2 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/cyrkej/cyrkej2.gif");
-        durje = getPicture("gfx/cyrkej/cdurje.gif");
+        background = getPicture("gfx/cyrkej/cyrkej2.png");
+        durje = getPicture("gfx/cyrkej/cdurje.png");
 
     }
 
@@ -159,20 +159,20 @@ public class Cyrkej2 extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        if (mainFrame.isMultiple && mainFrame.Clipset) {
+        if (mainFrame.isMultipleChoiceActive && mainFrame.isClipSet) {
             Dialog.paintMultiple(g);
             return;
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -186,7 +186,7 @@ public class Cyrkej2 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Pfarrer zeichnen
@@ -201,7 +201,7 @@ public class Cyrkej2 extends Mainloc {
             }
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -211,7 +211,7 @@ public class Cyrkej2 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -243,7 +243,7 @@ public class Cyrkej2 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -251,7 +251,7 @@ public class Cyrkej2 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -262,8 +262,8 @@ public class Cyrkej2 extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -280,14 +280,14 @@ public class Cyrkej2 extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -296,7 +296,7 @@ public class Cyrkej2 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -306,7 +306,7 @@ public class Cyrkej2 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -326,15 +326,15 @@ public class Cyrkej2 extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -360,7 +360,7 @@ public class Cyrkej2 extends Mainloc {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -379,7 +379,7 @@ public class Cyrkej2 extends Mainloc {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -392,7 +392,7 @@ public class Cyrkej2 extends Mainloc {
                     pTemp = Ptuer;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -410,7 +410,7 @@ public class Cyrkej2 extends Mainloc {
                 // an die Tuer Klopfen
                 if (brTuer.IsPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.wegGeher.SetzeNeuenWeg(Ptuer);
+                    mainFrame.pathWalker.SetzeNeuenWeg(Ptuer);
                     mainFrame.repaint();
                     return;
                 }
@@ -427,34 +427,34 @@ public class Cyrkej2 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || brTuer.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || brTuer.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -463,7 +463,7 @@ public class Cyrkej2 extends Mainloc {
         else {
             if (brTuer.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -471,7 +471,7 @@ public class Cyrkej2 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -479,7 +479,7 @@ public class Cyrkej2 extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 2) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 2;
                 }
                 return;
@@ -487,7 +487,7 @@ public class Cyrkej2 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -503,17 +503,17 @@ public class Cyrkej2 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -555,8 +555,8 @@ public class Cyrkej2 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -575,7 +575,7 @@ public class Cyrkej2 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -595,11 +595,11 @@ public class Cyrkej2 extends Mainloc {
 
             case 50:
                 // An Tuer der Kirche klopfen
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.SetFacing(fTuer);
                 mainFrame.krabat.nAnimation = 4;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wave.PlayFile("sfx/klopfklopf.wav");
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.soundPlayer.PlayFile("sfx/klopfklopf.wav");
                 nextActionID = 55;
                 WaitCount = 50;
                 break;
@@ -613,10 +613,10 @@ public class Cyrkej2 extends Mainloc {
 
             case 57:
                 // Leider hoert keiner, aber beim 1. Mal doch !!
-                if (mainFrame.Actions[302]) {
+                if (mainFrame.actions[302]) {
                     KrabatSagt("Cyrkej2_2", fTuer, 3, 0, 0);
-                    mainFrame.fPlayAnim = false;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    mainFrame.isAnimRunning = false;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 } else {
                     nextActionID = 58;
                 }
@@ -624,7 +624,7 @@ public class Cyrkej2 extends Mainloc {
 
             case 58:
                 // Krabat tritt zurueck, weil Pfarrer ja Platz braucht
-                mainFrame.wegGeher.SetzeNeuenWeg(new GenericPoint(334, 340));
+                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(334, 340));
                 nextActionID = 59;
                 break;
 
@@ -636,7 +636,7 @@ public class Cyrkej2 extends Mainloc {
             case 60:
                 // Pfarrer erscheinen lassen
                 doorOpen = true;
-                mainFrame.wave.PlayFile("sfx/cdurjeauf.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/cdurjeauf.wav");
                 showPfarrer = true;
                 openDoorAnim = true;
                 nextActionID = 65;
@@ -652,22 +652,22 @@ public class Cyrkej2 extends Mainloc {
             case 100:
                 // Karte einblenden
                 mainFrame.ConstructLocation(106);
-                mainFrame.isAnim = false;
+                mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = 6;
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 101:
                 // Goto Kulow
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(76, 70);
                 break;
 
             case 102:
                 // Goto Pinca
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(81, 70);
                 break;
 
@@ -698,20 +698,20 @@ public class Cyrkej2 extends Mainloc {
                 Dialog.ExtendMC("Cyrkej2_26", 1000, 270, null, 800);
                 Dialog.ExtendMC("Cyrkej2_27", 270, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.Actions[270] = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.actions[270] = true;
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -803,13 +803,13 @@ public class Cyrkej2 extends Mainloc {
 
             case 710:
                 // Umschalten auf Pinca (Anim)
-                mainFrame.Actions[851] = false;
+                mainFrame.actions[851] = false;
                 NeuesBild(81, 70);
                 break;
 
             case 800:
                 // den Pfarrer wieder verschwinden lassen
-                mainFrame.Actions[270] = false;
+                mainFrame.actions[270] = false;
                 openDoorAnim = true;
                 nextActionID = 805;
                 break;
@@ -819,17 +819,17 @@ public class Cyrkej2 extends Mainloc {
                 if (!openDoorAnim) {
                     showPfarrer = false;
                     doorOpen = false;
-                    mainFrame.wave.PlayFile("sfx/cdurjezu.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/cdurjezu.wav");
                     nextActionID = 810;
                 }
                 break;
 
             case 810:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
-                mainFrame.Clipset = false;
+                mainFrame.isAnimRunning = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

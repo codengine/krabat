@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Jezba extends Mainloc2 {
+public class Jezba extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Jezba.class);
     private GenericImage background;
     private GenericImage zweitesBild;
@@ -71,8 +71,8 @@ public class Jezba extends Mainloc2 {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/most/trip.gif");
-        zweitesBild = getPicture("gfx-dd/terassa/terassa.gif");
+        background = getPicture("gfx/most/trip.png");
+        zweitesBild = getPicture("gfx-dd/terassa/terassa.png");
 
     }
 
@@ -90,20 +90,20 @@ public class Jezba extends Mainloc2 {
         // Fanfare 1x abspielen
         if (!playFanfare) {
             playFanfare = true;
-            mainFrame.wave.PlayFile("sfx/fanfara.wav");
+            mainFrame.soundPlayer.PlayFile("sfx/fanfara.wav");
         }
 
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -119,14 +119,14 @@ public class Jezba extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -148,7 +148,7 @@ public class Jezba extends Mainloc2 {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -161,7 +161,7 @@ public class Jezba extends Mainloc2 {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
 
     }
@@ -190,7 +190,7 @@ public class Jezba extends Mainloc2 {
             case 20:
                 // Hammertext ausgeben, 2. Teil auf Tesassa-Bild
                 showSecondPicture = true;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 BackgroundMusicPlayer.getInstance().playTrack(25, true);
                 PersonSagt("Jezba_2", 0, 54, 2, 30, UntererPunkt);
                 break;

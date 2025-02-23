@@ -38,8 +38,13 @@ public abstract class Mainanim {
     }
 
     // Methode zum Laden (registrieren) eines Bildes
-    public GenericImage getPicture(String Filename) {
-        return imageFetcher.fetchImage(Filename);
+    public GenericImage getPicture(String filename) {
+        return getPicture(filename, false);
+    }
+
+    // Methode zum Laden (registrieren) eines Bildes
+    public GenericImage getPicture(String filename, boolean useLang) {
+        return imageFetcher.fetchImage(filename, useLang);
     }
 
     public void cleanup() {

@@ -89,10 +89,10 @@ public class PtackZaRapaka extends Mainanim {
 
     // Bilder laden
     private void InitImages() {
-        vogel[1] = getPicture("gfx/doma/vogel1.gif");
-        vogel[2] = getPicture("gfx/doma/vogel2.gif");
-        vogel[3] = getPicture("gfx/doma/vogel3.gif");
-        vogel[4] = getPicture("gfx/doma/vogel4.gif");
+        vogel[1] = getPicture("gfx/doma/vogel1.png");
+        vogel[2] = getPicture("gfx/doma/vogel2.png");
+        vogel[3] = getPicture("gfx/doma/vogel3.png");
+        vogel[4] = getPicture("gfx/doma/vogel4.png");
     }
 
     // Gib mir das Rectangle zurueck, wo der Vogel drin ist (aktuell)

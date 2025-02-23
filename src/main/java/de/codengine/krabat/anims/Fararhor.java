@@ -54,16 +54,16 @@ public class Fararhor extends Mainanim {
     }
 
     private void InitImages() {
-        farar_talk[1] = getPicture("gfx/cyrkej/f-t-1.gif");
-        farar_talk[2] = getPicture("gfx/cyrkej/f-t-2.gif");
-        farar_talk[3] = getPicture("gfx/cyrkej/f-t-3.gif");
-        farar_talk[4] = getPicture("gfx/cyrkej/f-t-4.gif");
-        farar_talk[5] = getPicture("gfx/cyrkej/f-t-5.gif");
-        farar_talk[6] = getPicture("gfx/cyrkej/f-t-6.gif");
-        farar_talk[7] = getPicture("gfx/cyrkej/f-t-7.gif");
+        farar_talk[1] = getPicture("gfx/cyrkej/f-t-1.png");
+        farar_talk[2] = getPicture("gfx/cyrkej/f-t-2.png");
+        farar_talk[3] = getPicture("gfx/cyrkej/f-t-3.png");
+        farar_talk[4] = getPicture("gfx/cyrkej/f-t-4.png");
+        farar_talk[5] = getPicture("gfx/cyrkej/f-t-5.png");
+        farar_talk[6] = getPicture("gfx/cyrkej/f-t-6.png");
+        farar_talk[7] = getPicture("gfx/cyrkej/f-t-7.png");
 
-        farar_open = getPicture("gfx/cyrkej/f-t-1a.gif");
-        foreground = getPicture("gfx/cyrkej/cdurje2.gif");
+        farar_open = getPicture("gfx/cyrkej/f-t-1a.png");
+        foreground = getPicture("gfx/cyrkej/cdurje2.png");
     }
 
     @Override

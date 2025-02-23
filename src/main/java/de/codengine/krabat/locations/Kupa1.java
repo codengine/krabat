@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Kupa1 extends Mainloc {
+public class Kupa1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Kupa1.class);
     private GenericImage background;
     private GenericImage kupa3;
@@ -132,68 +132,68 @@ public class Kupa1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/kupa/kupa2.gif");
-        kupa3 = getPicture("gfx/kupa/kupa3.gif");
-        kupa4 = getPicture("gfx/kupa/kupa4.gif");
-        kupa5 = getPicture("gfx/kupa/kupa5.gif");
-        kupa2a = getPicture("gfx/kupa/kupa2a.gif");
-        rohodz = getPicture("gfx/kupa/krohodz.gif");
+        background = getPicture("gfx/kupa/kupa2.png");
+        kupa3 = getPicture("gfx/kupa/kupa3.png");
+        kupa4 = getPicture("gfx/kupa/kupa4.png");
+        kupa5 = getPicture("gfx/kupa/kupa5.png");
+        kupa2a = getPicture("gfx/kupa/kupa2a.png");
+        rohodz = getPicture("gfx/kupa/krohodz.png");
 
     }
 
     private void InitMatrix() {
         // Entscheidung, ob Schild schon reingelegt oder noch nicht
-        if (mainFrame.Actions[224]) {
+        if (mainFrame.actions[224]) {
             // Schild ist drin
             // Grenzen setzen
-            mainFrame.wegGeher.vBorders.removeAllElements();
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(262, 356, 411, 371));
+            mainFrame.pathWalker.vBorders.removeAllElements();
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(262, 356, 411, 371));
 
             // Borders auf der Insel
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (243, 361, 261, 404));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(210, 261, 210, 261, 356, 371));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(166, 209, 156, 209, 368, 371));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(156, 158, 123, 125, 372, 404));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(117, 252, 117, 181, 405, 450));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(210, 261, 210, 261, 356, 371));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(166, 209, 156, 209, 368, 371));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(156, 158, 123, 125, 372, 404));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(117, 252, 117, 181, 405, 450));
 
             // Matrix loeschen
-            mainFrame.wegSucher.ClearMatrix(10);
+            mainFrame.pathFinder.ClearMatrix(10);
 
             // Wege eintragen
-            mainFrame.wegSucher.PosVerbinden(0, 1);
-            mainFrame.wegSucher.PosVerbinden(1, 2);
-            mainFrame.wegSucher.PosVerbinden(2, 3);
-            mainFrame.wegSucher.PosVerbinden(3, 4);
-            mainFrame.wegSucher.PosVerbinden(4, 5);
-            mainFrame.wegSucher.PosVerbinden(5, 6);
-            mainFrame.wegSucher.PosVerbinden(6, 7);
-            mainFrame.wegSucher.PosVerbinden(7, 8);
-            mainFrame.wegSucher.PosVerbinden(8, 9);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(1, 2);
+            mainFrame.pathFinder.PosVerbinden(2, 3);
+            mainFrame.pathFinder.PosVerbinden(3, 4);
+            mainFrame.pathFinder.PosVerbinden(4, 5);
+            mainFrame.pathFinder.PosVerbinden(5, 6);
+            mainFrame.pathFinder.PosVerbinden(6, 7);
+            mainFrame.pathFinder.PosVerbinden(7, 8);
+            mainFrame.pathFinder.PosVerbinden(8, 9);
         } else {
             // noch kein Schild drin, nix mit auf die Insel geh...
             // Grenzen setzen
-            mainFrame.wegGeher.vBorders.removeAllElements();
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(356, 356, 411, 371));
+            mainFrame.pathWalker.vBorders.removeAllElements();
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(356, 356, 411, 371));
 
             // Matrix loeschen
-            mainFrame.wegSucher.ClearMatrix(6);
+            mainFrame.pathFinder.ClearMatrix(6);
 
             // Wege eintragen
-            mainFrame.wegSucher.PosVerbinden(0, 1);
-            mainFrame.wegSucher.PosVerbinden(1, 2);
-            mainFrame.wegSucher.PosVerbinden(2, 3);
-            mainFrame.wegSucher.PosVerbinden(3, 4);
-            mainFrame.wegSucher.PosVerbinden(4, 5);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(1, 2);
+            mainFrame.pathFinder.PosVerbinden(2, 3);
+            mainFrame.pathFinder.PosVerbinden(3, 4);
+            mainFrame.pathFinder.PosVerbinden(4, 5);
         }
     }
 
@@ -262,30 +262,30 @@ public class Kupa1 extends Mainloc {
         if (mainFrame.krabat.fAnimHelper) {
             if (WhichItem == 17) {
                 mainFrame.inventory.vInventory.addElement(17);
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.krabat.fAnimHelper = false;
-                mainFrame.Actions[917] = true;
+                mainFrame.actions[917] = true;
                 WhichItem = 0;
             }
             if (WhichItem == 500) {
                 mainFrame.inventory.vInventory.removeElement(3);
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.krabat.fAnimHelper = false;
-                mainFrame.Actions[224] = true;
+                mainFrame.actions[224] = true;
                 InitMatrix();
                 WhichItem = 0;
             }
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -297,7 +297,7 @@ public class Kupa1 extends Mainloc {
         Blink(g);
 
         // fehlendes Stueck Bruecke zeichnen
-        if (!mainFrame.Actions[224]) {
+        if (!mainFrame.actions[224]) {
             g.setClip(324, 361, 37, 28);
             g.drawImage(kupa5, 324, 361);
         } else {
@@ -308,17 +308,17 @@ public class Kupa1 extends Mainloc {
         // Hier Rohodz zeichnen, wenn noch nicht aufgehoben
         g.setClip(48, 388, 44, 61);
         g.drawImage(kupa4, 48, 388); // dieses Stueck immer, da jetzt der andere kommt
-        if (!mainFrame.Actions[917]) {
+        if (!mainFrame.actions[917]) {
             g.setClip(50, 415, 49, 37);
             g.drawImage(rohodz, 50, 415);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
 
@@ -328,7 +328,7 @@ public class Kupa1 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -368,7 +368,7 @@ public class Kupa1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -376,7 +376,7 @@ public class Kupa1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -399,7 +399,7 @@ public class Kupa1 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -407,7 +407,7 @@ public class Kupa1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -417,7 +417,7 @@ public class Kupa1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -432,8 +432,8 @@ public class Kupa1 extends Mainloc {
                 }
 
                 // Ausreden fuer Rohodz
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
-                        mainFrame.Actions[224]) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                        mainFrame.actions[224]) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Prohodz;
@@ -441,7 +441,7 @@ public class Kupa1 extends Mainloc {
 
                 // Ausreden fuer Schild
                 if (schildRect.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[224]) {
+                        !mainFrame.actions[224]) {
                     if (mainFrame.whatItem == 3) {
                         nextActionID = 160;
                     } else {
@@ -459,8 +459,8 @@ public class Kupa1 extends Mainloc {
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -474,15 +474,15 @@ public class Kupa1 extends Mainloc {
                 nextActionID = 0;
 
                 // Rohodz ansehen
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
-                        mainFrame.Actions[224]) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                        mainFrame.actions[224]) {
                     nextActionID = 1;
                     pTemp = Prohodz;
                 }
 
                 // Schild ansehen
                 if (schildRect.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[224]) {
+                        !mainFrame.actions[224]) {
                     nextActionID = 2;
                     pTemp = Pschild;
                 }
@@ -499,7 +499,7 @@ public class Kupa1 extends Mainloc {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -517,8 +517,8 @@ public class Kupa1 extends Mainloc {
                 }
 
                 // Rohodz nehmen
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
-                        mainFrame.Actions[224]) {
+                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                        mainFrame.actions[224]) {
                     nextActionID = 50;
                     SetzeNeuenWeg(Prohodz);
                     mainFrame.repaint();
@@ -527,7 +527,7 @@ public class Kupa1 extends Mainloc {
 
                 // Schild nehmen
                 if (schildRect.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[224]) {
+                        !mainFrame.actions[224]) {
                     nextActionID = 55;
                     SetzeNeuenWeg(Pschild);
                     mainFrame.repaint();
@@ -546,41 +546,41 @@ public class Kupa1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) || rohodzRect.IsPointInRect(pTemp) &&
-                    !mainFrame.Actions[917] && mainFrame.Actions[224] ||
-                    !mainFrame.Actions[224] && schildRect.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || rohodzRect.IsPointInRect(pTemp) &&
+                    !mainFrame.actions[917] && mainFrame.actions[224] ||
+                    !mainFrame.actions[224] && schildRect.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.Actions[917] &&
-                    mainFrame.Actions[224] || schildRect.IsPointInRect(pTemp) &&
-                    !mainFrame.Actions[224]) {
+            if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                    mainFrame.actions[224] || schildRect.IsPointInRect(pTemp) &&
+                    !mainFrame.actions[224]) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -588,7 +588,7 @@ public class Kupa1 extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -596,7 +596,7 @@ public class Kupa1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -606,7 +606,7 @@ public class Kupa1 extends Mainloc {
 
     private void SetzeNeuenWeg(GenericPoint dest) {
         GenericPoint right = CorrectSetY(dest);
-        mainFrame.wegGeher.SetzeNeuenWeg(right);
+        mainFrame.pathWalker.SetzeNeuenWeg(right);
     }
 
     private GenericPoint CorrectY(GenericPoint dst) {
@@ -637,7 +637,7 @@ public class Kupa1 extends Mainloc {
         }
 
         // Hier Korrektur, wenn Schild noch nicht in Location
-        if (!mainFrame.Actions[224]) {
+        if (!mainFrame.actions[224]) {
             if (dst.x < 362) {
                 return CorrectY(new GenericPoint(362, 300));
             }
@@ -658,12 +658,12 @@ public class Kupa1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -705,8 +705,8 @@ public class Kupa1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -793,7 +793,7 @@ public class Kupa1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -819,11 +819,11 @@ public class Kupa1 extends Mainloc {
             case 50:
                 // Rohodz benutzen
                 nextActionID = 0;
-                mainFrame.wave.PlayFile("sfx/rohodz.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/rohodz.wav");
                 mainFrame.krabat.SetFacing(9);
                 WhichItem = 17;
                 mainFrame.krabat.nAnimation = 92;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 break;
 
             case 55:
@@ -861,12 +861,12 @@ public class Kupa1 extends Mainloc {
             case 160:
                 // Schild hinlegen
                 nextActionID = 0;
-                mainFrame.wave.PlayFile("sfx/schildlegen.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/schildlegen.wav");
                 mainFrame.krabat.SetFacing(9);
                 WhichItem = 500;
                 mainFrame.krabat.nAnimation = 130;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.invCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.isInventoryCursor = false;
                 break;
 
             default:

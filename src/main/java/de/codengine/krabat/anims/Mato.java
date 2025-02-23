@@ -62,25 +62,25 @@ public class Mato extends Mainanim {
     }
 
     private void InitImages() {
-        mato_look[0] = getPicture("gfx-dd/zastup/schrankier.gif");
-        mato_look[1] = getPicture("gfx-dd/zastup/schrankier-a.gif");
-        mato_look[2] = getPicture("gfx-dd/zastup/schrankier2.gif");
-        mato_look[3] = getPicture("gfx-dd/zastup/schrankier2-a.gif");
+        mato_look[0] = getPicture("gfx-dd/zastup/schrankier.png");
+        mato_look[1] = getPicture("gfx-dd/zastup/schrankier-a.png");
+        mato_look[2] = getPicture("gfx-dd/zastup/schrankier2.png");
+        mato_look[3] = getPicture("gfx-dd/zastup/schrankier2-a.png");
 
         mato_talk[0] = mato_look[0];
-        mato_talk[1] = getPicture("gfx-dd/zastup/schrankier-r1.gif");
-        mato_talk[2] = getPicture("gfx-dd/zastup/schrankier-r2.gif");
-        mato_talk[3] = getPicture("gfx-dd/zastup/schrankier-r3.gif");
-        mato_talk[4] = getPicture("gfx-dd/zastup/schrankier-r4.gif");
-        mato_talk[5] = getPicture("gfx-dd/zastup/schrankier-r5.gif");
-        mato_talk[6] = getPicture("gfx-dd/zastup/schrankier-r6.gif");
+        mato_talk[1] = getPicture("gfx-dd/zastup/schrankier-r1.png");
+        mato_talk[2] = getPicture("gfx-dd/zastup/schrankier-r2.png");
+        mato_talk[3] = getPicture("gfx-dd/zastup/schrankier-r3.png");
+        mato_talk[4] = getPicture("gfx-dd/zastup/schrankier-r4.png");
+        mato_talk[5] = getPicture("gfx-dd/zastup/schrankier-r5.png");
+        mato_talk[6] = getPicture("gfx-dd/zastup/schrankier-r6.png");
 
-        mato_open[0] = getPicture("gfx-dd/zastup/schrankier-s1.gif");
-        mato_open[1] = getPicture("gfx-dd/zastup/schrankier-s2.gif");
+        mato_open[0] = getPicture("gfx-dd/zastup/schrankier-s1.png");
+        mato_open[1] = getPicture("gfx-dd/zastup/schrankier-s2.png");
 
-        mato_take = getPicture("gfx-dd/zastup/schrankier-take.gif");
+        mato_take = getPicture("gfx-dd/zastup/schrankier-take.png");
 
-        vorder = getPicture("gfx-dd/zastup/zwokno.gif");
+        vorder = getPicture("gfx-dd/zastup/zwokno.png");
     }
 
     // Zeichne Mato, wie er dasteht oder spricht

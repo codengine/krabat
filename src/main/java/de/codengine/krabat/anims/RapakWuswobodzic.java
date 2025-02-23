@@ -50,10 +50,10 @@ public class RapakWuswobodzic extends Mainanim {
     }
 
     private void InitImages() {
-        Vogel[1] = getPicture("gfx/rapak/pk1.gif");  // 34x43 Size
-        Vogel[2] = getPicture("gfx/rapak/pk2.gif");
-        Vogel[3] = getPicture("gfx/rapak/pk3.gif");
-        Vogel[4] = getPicture("gfx/rapak/pk4.gif");
+        Vogel[1] = getPicture("gfx/rapak/pk1.png");  // 34x43 Size
+        Vogel[2] = getPicture("gfx/rapak/pk2.png");
+        Vogel[3] = getPicture("gfx/rapak/pk3.png");
+        Vogel[4] = getPicture("gfx/rapak/pk4.png");
     }
 
     // Zeichne Raben bei Animationen oder reden

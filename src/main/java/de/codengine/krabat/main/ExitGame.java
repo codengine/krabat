@@ -28,8 +28,8 @@ import de.codengine.krabat.sound.BackgroundMusicPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Konc extends Mainanim {
-    private static final Logger log = LoggerFactory.getLogger(Konc.class);
+public class ExitGame extends Mainanim {
+    private static final Logger log = LoggerFactory.getLogger(ExitGame.class);
     private int selected = -1;
     private int Anzahl;
     private final String[] Fragen = new String[4];
@@ -42,7 +42,7 @@ public class Konc extends Mainanim {
     private final GameProperties gameProperties;
 
     // Im Konstruktor Variablen bereitstellen
-    public Konc(Start caller, GameProperties gameProperties) {
+    public ExitGame(Start caller, GameProperties gameProperties) {
         super(caller);
         this.gameProperties = gameProperties;
     }
@@ -51,7 +51,7 @@ public class Konc extends Mainanim {
     public void Activate(int WhatAction) {
         this.WhatAction = WhatAction;
         InitImages();
-        mainFrame.setCursor(mainFrame.Normal);
+        mainFrame.setCursor(mainFrame.cursorNormal);
         Anzahl = 2;
 
         Fragen[0] = Start.stringManager.getTranslation("Konc_1");
@@ -67,7 +67,7 @@ public class Konc extends Mainanim {
 
     // Hintergrund laden
     private void InitImages() {
-        backgr = getPicture("gfx/abfrage3.gif");
+        backgr = getPicture("gfx/abfrage3.png");
     }
 
     // Paint - Routine fuer Multiple Choice
@@ -76,17 +76,17 @@ public class Konc extends Mainanim {
         my = g.getClipBounds();
         g.setClip(0, 0, 1280, 960);
         Paintcall = true;
-        evalMouseMoveEvent(mainFrame.Mousepoint);
-        g.drawImage(backgr, 190 + mainFrame.scrollx, 190 + mainFrame.scrolly);
+        evalMouseMoveEvent(mainFrame.mousePoint);
+        g.drawImage(backgr, 190 + mainFrame.scrollX, 190 + mainFrame.scrollY);
         for (int i = 0; i <= Anzahl; ++i) {
             if (selected == i || i == 0) {
-                mainFrame.ifont.drawString(g, Fragen[i],
-                        Positionen[i].getX() + mainFrame.scrollx,
-                        Positionen[i].getY() + mainFrame.scrolly, 0xffff0000);
+                mainFrame.imageFont.drawString(g, Fragen[i],
+                        Positionen[i].getX() + mainFrame.scrollX,
+                        Positionen[i].getY() + mainFrame.scrollY, 0xffff0000);
             } else {
-                mainFrame.ifont.drawString(g, Fragen[i],
-                        Positionen[i].getX() + mainFrame.scrollx,
-                        Positionen[i].getY() + mainFrame.scrolly, 0xffb00000);
+                mainFrame.imageFont.drawString(g, Fragen[i],
+                        Positionen[i].getX() + mainFrame.scrollX,
+                        Positionen[i].getY() + mainFrame.scrollY, 0xffb00000);
             }
         }
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
@@ -110,23 +110,23 @@ public class Konc extends Mainanim {
                         break;
                     case 2: // Neustarten
                         BackgroundMusicPlayer.getInstance().stop();
-                        mainFrame.Clipset = false;
+                        mainFrame.isClipSet = false;
                         backgr = null;
                         active = false;
                         mainFrame.restart();
                         break;
                     case 3: // Speichern ueber existierend
-                        mainFrame.speichern.saveIsValid = true;
+                        mainFrame.saveGame.saveIsValid = true;
                         active = false;
                         backgr = null;
-                        mainFrame.Clipset = false;
+                        mainFrame.isClipSet = false;
                         mainFrame.repaint();
                         break;
                 }
             }
             if (Positionen[2].contains(pTemp)) {
                 // Es wurde NE gewaehlt
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 backgr = null;
                 active = false;
                 mainFrame.repaint();
@@ -159,7 +159,7 @@ public class Konc extends Mainanim {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             // Esc hat dieselben Auswirkungen wie Ne!!!
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
             backgr = null;
             active = false;
             mainFrame.repaint();

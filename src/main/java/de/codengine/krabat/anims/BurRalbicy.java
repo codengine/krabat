@@ -79,29 +79,29 @@ public class BurRalbicy extends Mainanim {
 
     private void InitImages() {
 
-        bur_head[1] = getPicture("gfx/ralbicy/b-k1.gif");
-        bur_head[2] = getPicture("gfx/ralbicy/b-k2.gif");
-        bur_head[3] = getPicture("gfx/ralbicy/b-k3.gif");
-        bur_head[4] = getPicture("gfx/ralbicy/b-k4.gif");
-        bur_head[5] = getPicture("gfx/ralbicy/b-k5.gif");
-        bur_head[6] = getPicture("gfx/ralbicy/b-k6.gif");
-        bur_head[7] = getPicture("gfx/ralbicy/b-k7.gif");
+        bur_head[1] = getPicture("gfx/ralbicy/b-k1.png");
+        bur_head[2] = getPicture("gfx/ralbicy/b-k2.png");
+        bur_head[3] = getPicture("gfx/ralbicy/b-k3.png");
+        bur_head[4] = getPicture("gfx/ralbicy/b-k4.png");
+        bur_head[5] = getPicture("gfx/ralbicy/b-k5.png");
+        bur_head[6] = getPicture("gfx/ralbicy/b-k6.png");
+        bur_head[7] = getPicture("gfx/ralbicy/b-k7.png");
 
-        bur_body[1] = getPicture("gfx/ralbicy/b-b1.gif");
-        bur_body[2] = getPicture("gfx/ralbicy/b-b2.gif");
-        bur_body[3] = getPicture("gfx/ralbicy/b-b3.gif");
-        bur_body[4] = getPicture("gfx/ralbicy/b-b4.gif");
-        bur_body[5] = getPicture("gfx/ralbicy/b-b5.gif");
-        bur_body[6] = getPicture("gfx/ralbicy/b-b6.gif");
+        bur_body[1] = getPicture("gfx/ralbicy/b-b1.png");
+        bur_body[2] = getPicture("gfx/ralbicy/b-b2.png");
+        bur_body[3] = getPicture("gfx/ralbicy/b-b3.png");
+        bur_body[4] = getPicture("gfx/ralbicy/b-b4.png");
+        bur_body[5] = getPicture("gfx/ralbicy/b-b5.png");
+        bur_body[6] = getPicture("gfx/ralbicy/b-b6.png");
 
-        bur_work[1] = getPicture("gfx/ralbicy/b-1.gif");
-        bur_work[2] = getPicture("gfx/ralbicy/b-2.gif");
-        bur_work[3] = getPicture("gfx/ralbicy/b-3.gif");
-        bur_work[4] = getPicture("gfx/ralbicy/b-4.gif");
-        bur_work[5] = getPicture("gfx/ralbicy/b-5.gif");
-        bur_work[6] = getPicture("gfx/ralbicy/b-6.gif");
-        bur_work[7] = getPicture("gfx/ralbicy/b-7.gif");
-        bur_work[8] = getPicture("gfx/ralbicy/b-8.gif");
+        bur_work[1] = getPicture("gfx/ralbicy/b-1.png");
+        bur_work[2] = getPicture("gfx/ralbicy/b-2.png");
+        bur_work[3] = getPicture("gfx/ralbicy/b-3.png");
+        bur_work[4] = getPicture("gfx/ralbicy/b-4.png");
+        bur_work[5] = getPicture("gfx/ralbicy/b-5.png");
+        bur_work[6] = getPicture("gfx/ralbicy/b-6.png");
+        bur_work[7] = getPicture("gfx/ralbicy/b-7.png");
+        bur_work[8] = getPicture("gfx/ralbicy/b-8.png");
     }
 
     @Override
@@ -262,6 +262,6 @@ public class BurRalbicy extends Mainanim {
 
     private void evalSound(int welcher) {
         // zufaellig wavs fuer Geschnatter abspielen...
-        mainFrame.wave.PlayFile("sfx/stroh" + (char) (welcher + 48) + ".wav");
+        mainFrame.soundPlayer.PlayFile("sfx/stroh" + (char) (welcher + 48) + ".wav");
     }
 }    

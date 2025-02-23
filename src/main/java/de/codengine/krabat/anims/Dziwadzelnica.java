@@ -54,19 +54,19 @@ public class Dziwadzelnica extends Mainanim {
     }
 
     private void InitImages() {
-        dziw_talk[0] = getPicture("gfx-dd/spaniska/dziwa2.gif");
-        dziw_talk[1] = getPicture("gfx-dd/spaniska/dziwa2a.gif");
-        dziw_talk[2] = getPicture("gfx-dd/spaniska/dziwa2b.gif");
-        dziw_talk[3] = getPicture("gfx-dd/spaniska/dziwa2c.gif");
-        dziw_talk[4] = getPicture("gfx-dd/spaniska/dziwa2d.gif");
-        dziw_talk[5] = getPicture("gfx-dd/spaniska/dziwa2e.gif");
-        dziw_talk[6] = getPicture("gfx-dd/spaniska/dziwa2f.gif");
-        dziw_talk[7] = getPicture("gfx-dd/spaniska/dziwa2g.gif");
-        dziw_talk[8] = getPicture("gfx-dd/spaniska/dziwa2h.gif");
+        dziw_talk[0] = getPicture("gfx-dd/spaniska/dziwa2.png");
+        dziw_talk[1] = getPicture("gfx-dd/spaniska/dziwa2a.png");
+        dziw_talk[2] = getPicture("gfx-dd/spaniska/dziwa2b.png");
+        dziw_talk[3] = getPicture("gfx-dd/spaniska/dziwa2c.png");
+        dziw_talk[4] = getPicture("gfx-dd/spaniska/dziwa2d.png");
+        dziw_talk[5] = getPicture("gfx-dd/spaniska/dziwa2e.png");
+        dziw_talk[6] = getPicture("gfx-dd/spaniska/dziwa2f.png");
+        dziw_talk[7] = getPicture("gfx-dd/spaniska/dziwa2g.png");
+        dziw_talk[8] = getPicture("gfx-dd/spaniska/dziwa2h.png");
 
-        dziw_beat[0] = getPicture("gfx-dd/spaniska/dziwa1.gif");
-        dziw_beat[1] = getPicture("gfx-dd/spaniska/dziwa1a.gif");
-        dziw_beat[2] = getPicture("gfx-dd/spaniska/dziwa1b.gif");
+        dziw_beat[0] = getPicture("gfx-dd/spaniska/dziwa1.png");
+        dziw_beat[1] = getPicture("gfx-dd/spaniska/dziwa1a.png");
+        dziw_beat[2] = getPicture("gfx-dd/spaniska/dziwa1b.png");
     }
 
     @Override
@@ -95,7 +95,7 @@ public class Dziwadzelnica extends Mainanim {
                 Verhinderbeat = MAX_VERHINDERBEAT;
                 Beat++;
                 if (Beat == 2) {
-                    mainFrame.wave.PlayFile("sfx-dd/dyr.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx-dd/dyr.wav");
                 }
             }
 

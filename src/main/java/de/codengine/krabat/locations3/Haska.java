@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Haska extends Mainloc {
+public class Haska extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Haska.class);
     private GenericImage background;
     private GenericImage ohneSeil;
@@ -105,15 +105,15 @@ public class Haska extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(234, 320, 193, 370, 367, 419));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(193, 400, 145, 443, 420, 479));
 
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -128,9 +128,9 @@ public class Haska extends Mainloc {
             case 122: // von Spaniska aus
                 mainFrame.krabat.setPos(new GenericPoint(180, 460));
                 mainFrame.krabat.SetFacing(3);
-                if (!mainFrame.Actions[519]) {
+                if (!mainFrame.actions[519]) {
                     setAnim = true;
-                    mainFrame.Actions[519] = true;
+                    mainFrame.actions[519] = true;
                 }
                 break;
             case 126: // von Murja aus
@@ -142,18 +142,18 @@ public class Haska extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/haska/haska.gif");
-        ohneSeil = getPicture("gfx-dd/haska/haska2.gif");
+        background = getPicture("gfx-dd/haska/haska.png");
+        ohneSeil = getPicture("gfx-dd/haska/haska2.png");
 
-        tropfen[0] = getPicture("gfx-dd/haska/wino0.gif");
-        tropfen[1] = getPicture("gfx-dd/haska/wino1.gif");
-        tropfen[2] = getPicture("gfx-dd/haska/wino2.gif");
-        tropfen[3] = getPicture("gfx-dd/haska/wino3.gif");
-        tropfen[4] = getPicture("gfx-dd/haska/wino4.gif");
-        tropfen[5] = getPicture("gfx-dd/haska/wino5.gif");
-        tropfen[6] = getPicture("gfx-dd/haska/wino6.gif");
-        tropfen[7] = getPicture("gfx-dd/haska/wino7.gif");
-        tropfen[8] = getPicture("gfx-dd/haska/wino8.gif");
+        tropfen[0] = getPicture("gfx-dd/haska/wino0.png");
+        tropfen[1] = getPicture("gfx-dd/haska/wino1.png");
+        tropfen[2] = getPicture("gfx-dd/haska/wino2.png");
+        tropfen[3] = getPicture("gfx-dd/haska/wino3.png");
+        tropfen[4] = getPicture("gfx-dd/haska/wino4.png");
+        tropfen[5] = getPicture("gfx-dd/haska/wino5.png");
+        tropfen[6] = getPicture("gfx-dd/haska/wino6.png");
+        tropfen[7] = getPicture("gfx-dd/haska/wino7.png");
+        tropfen[8] = getPicture("gfx-dd/haska/wino8.png");
 
     }
 
@@ -163,29 +163,29 @@ public class Haska extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
 
         // Seil uebermalen, falls noch keins da
-        if (!mainFrame.Actions[519]) {
+        if (!mainFrame.actions[519]) {
             g.drawImage(ohneSeil, 53, 111);
         }
 
         // Anim (Weintropfen) zeichnen, da stets im Hintergrund
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             switchanim = !switchanim;
             if (switchanim) {
                 weinCount++;
@@ -204,10 +204,10 @@ public class Haska extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // hier die Extrawurst fuer den Hakenwurf
         if (krabatWirft) {
@@ -219,7 +219,7 @@ public class Haska extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -261,7 +261,7 @@ public class Haska extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -269,7 +269,7 @@ public class Haska extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -299,7 +299,7 @@ public class Haska extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -307,7 +307,7 @@ public class Haska extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -317,7 +317,7 @@ public class Haska extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -358,21 +358,21 @@ public class Haska extends Mainloc {
                 }
 
                 // Enterhaken am Haus Ausreden
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.Actions[519]) {
+                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
                     pTemp = pFenster;
                     nextActionID = 160;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -397,7 +397,7 @@ public class Haska extends Mainloc {
                         pTemp = new GenericPoint(pExitStadt.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -418,7 +418,7 @@ public class Haska extends Mainloc {
                     }
 
                     // nur dann Doppelklick, wenn man in die Kueche gehen kann
-                    if (mainFrame.dClick && mainFrame.Actions[655]) {
+                    if (mainFrame.isDoubleClick && mainFrame.actions[655]) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -445,12 +445,12 @@ public class Haska extends Mainloc {
                           }*/
 
                 // Enterhaken am Haus ansehen
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.Actions[519]) {
+                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
                     pTemp = pFenster;
                     nextActionID = 6;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -458,7 +458,7 @@ public class Haska extends Mainloc {
                 // Wino trinken
                 if (wino.IsPointInRect(pTemp)) {
                     nextActionID = 2;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pWino);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pWino);
                     mainFrame.repaint();
                     return;
                 }
@@ -466,15 +466,15 @@ public class Haska extends Mainloc {
                 // Fenster benutzen
                 if (fenster.IsPointInRect(pTemp)) {
                     nextActionID = 5;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pFenster);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pFenster);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Am Enterhaken hochklettern
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.Actions[519]) {
+                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
                     nextActionID = 101;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pFenster);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pFenster);
                     mainFrame.repaint();
                     return;
                 }
@@ -497,32 +497,32 @@ public class Haska extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     fenster.IsPointInRect(pTemp) ||
                     wino.IsPointInRect(pTemp) ||
-                    mainFrame.Actions[519] &&
+                    mainFrame.actions[519] &&
                             seilHaken.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -531,10 +531,10 @@ public class Haska extends Mainloc {
             if (wino.IsPointInRect(pTemp) ||
                     // (komedHaus.IsPointInRect (pTemp) == true) ||
                     fenster.IsPointInRect(pTemp) ||
-                    mainFrame.Actions[519] &&
+                    mainFrame.actions[519] &&
                             seilHaken.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -543,7 +543,7 @@ public class Haska extends Mainloc {
             if (ausgangKuchnja.IsPointInRect(pTemp) ||
                     ausgangStadt.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -551,7 +551,7 @@ public class Haska extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -567,12 +567,12 @@ public class Haska extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -614,8 +614,8 @@ public class Haska extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -626,7 +626,7 @@ public class Haska extends Mainloc {
         }
 
         if (wein == 5) {
-            mainFrame.wave.PlayFile("sfx-dd/tropf.wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/tropf.wav");
         }
 
     }
@@ -645,7 +645,7 @@ public class Haska extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -693,8 +693,8 @@ public class Haska extends Mainloc {
 
             case 20:
                 // Enterhaken an Fenster schmeissen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(fEnterhaken);
                 schnauzeWein = true;
                 Counter = 20;
@@ -706,7 +706,7 @@ public class Haska extends Mainloc {
                 if (--Counter > 1) {
                     break;
                 }
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 // Enterhaken-Kombi aus Inventory entfernen
                 mainFrame.inventory.vInventory.removeElement(39);
                 nextActionID = 22;
@@ -728,19 +728,19 @@ public class Haska extends Mainloc {
 
             case 28:
                 // Ende Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 30:
                 // Helm mit wein fuellen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.SetFacing(12);
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 mainFrame.inventory.vInventory.removeElement(43);
                 mainFrame.inventory.vInventory.addElement(44);
                 nextActionID = 35;
@@ -756,7 +756,7 @@ public class Haska extends Mainloc {
                 }
                 mainFrame.krabat.nAnimation = 152;
                 nextActionID = 37;
-                mainFrame.wave.PlayFile("sfx-dd/tropftropf.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/tropftropf.wav");
                 Counter = 15;
                 break;
 
@@ -764,8 +764,8 @@ public class Haska extends Mainloc {
                 if (mainFrame.krabat.nAnimation != 0 || --Counter > 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 schnauzeWein = false;
                 mainFrame.repaint();
@@ -773,7 +773,7 @@ public class Haska extends Mainloc {
 
             case 100:
                 // In Kueche gehen -> Krabat will nicht
-                if (!mainFrame.Actions[655]) {
+                if (!mainFrame.actions[655]) {
                     int zuffZahl2 = (int) (Math.random() * 2.9);
                     switch (zuffZahl2) {
                         case 0:
@@ -796,16 +796,16 @@ public class Haska extends Mainloc {
 
             case 101:
                 // Gehe zu Spaniska, zuerst richtig rangehen
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(pAmHaken);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pAmHaken);
                 nextActionID = 110;
                 break;
 
             case 102:
                 // Gehe zu Murja
                 // hier unterscheiden, welche Location konstruhiert wird
-                if (mainFrame.Actions[655] && !mainFrame.Actions[656]) {
+                if (mainFrame.actions[655] && !mainFrame.actions[656]) {
                     NeuesBild(129, locationID);
                 } else {
                     NeuesBild(126, locationID);

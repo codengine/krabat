@@ -26,7 +26,9 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LanguageChooser extends Mainloc {
+import java.util.Map;
+
+public class LanguageChooser extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(LanguageChooser.class);
     private GenericImage background;
     private GenericImage pfeiloben;
@@ -92,7 +94,7 @@ public class LanguageChooser extends Mainloc {
         initLanguages();
         Index = 0;
 
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
 
         log.debug("LanguageChooser constructor called!");
 
@@ -101,22 +103,26 @@ public class LanguageChooser extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mainmenu/background2.gif");
-        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.gif");
-        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.gif");
-        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.gif");
-        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.gif");
+        background = getPicture("gfx/mainmenu/background2.png");
+        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.png");
+        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
+        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.png");
+        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
     }
 
     private void initLanguages() {
-        int tmp = LanguageSupportMapper.getNumberSupportedLanguages();
+        Map<String, String> existingTranslations = mainFrame.storageManager.getExistingTranslations();
+        int tmp = existingTranslations.size();
 
         languages = new String[tmp];
         abbreviations = new String[tmp];
 
-        for (int i = 0; i < tmp; i++) {
-            languages[i] = LanguageSupportMapper.getLanguageName(i);
-            abbreviations[i] = LanguageSupportMapper.getLanguageAbbreviation(i);
+        int i = 0;
+
+        for (Map.Entry<String, String> langEntry : existingTranslations.entrySet()) {
+            abbreviations[i] = langEntry.getKey();
+            languages[i] = langEntry.getValue();
+            i++;
         }
     }
 
@@ -125,35 +131,35 @@ public class LanguageChooser extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
 
-        log.debug("LanguageChooser repaint with clipset={}", mainFrame.Clipset);
+        log.debug("LanguageChooser repaint with clipset={}", mainFrame.isClipSet);
 
         // Credits-Background zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
             Cursorform = 200;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
-            g.drawImage(background, mainFrame.scrollx, 0);
-            GenericPoint ps = mainFrame.ifont.CenterAnimText("Select language", new GenericPoint(320, 35));
-            mainFrame.ifont.drawString(g, "Select language", ps.x, ps.y, 0xffff0000);
+            g.drawImage(background, mainFrame.scrollX, 0);
+            GenericPoint ps = mainFrame.imageFont.CenterAnimText("Select language", new GenericPoint(320, 35));
+            mainFrame.imageFont.drawString(g, "Select language", ps.x, ps.y, 0xffff0000);
 
             for (int i = Math.max(Index, 0); i < Math.min(Index + 10, languages.length); i++) {
-                mainFrame.ifont.drawString(g, languages[i], X_LEFT + mainFrame.scrollx, mainFrame.scrolly + Y_UP + (i - Index) * 25, 0xff800000);
+                mainFrame.imageFont.drawString(g, languages[i], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (i - Index) * 25, 0xff800000);
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
 
-            mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xff800000);
+            mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xff800000);
         }
 
         if (oldLang > 0) {
             if (oldLang <= languages.length) {
-                mainFrame.ifont.drawString(g, languages[oldLang - 1], X_LEFT + mainFrame.scrollx, mainFrame.scrolly + Y_UP + (oldLang - Index - 1) * 25, 0xff800000);
+                mainFrame.imageFont.drawString(g, languages[oldLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (oldLang - Index - 1) * 25, 0xff800000);
             } else {
                 log.warn("Wrong language to deselect! oldLang: {}, languages.length: {}", oldLang, languages.length);
             }
@@ -164,7 +170,7 @@ public class LanguageChooser extends Mainloc {
 
         if (currLang > 0) {
             if (currLang <= languages.length) {
-                mainFrame.ifont.drawString(g, languages[currLang - 1], X_LEFT + mainFrame.scrollx, mainFrame.scrolly + Y_UP + (currLang - Index - 1) * 25, 0xffff0000);
+                mainFrame.imageFont.drawString(g, languages[currLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (currLang - Index - 1) * 25, 0xffff0000);
             } else {
                 log.warn("Wrong language to select! currLang: {}, languages.length: {}", currLang, languages.length);
             }
@@ -178,13 +184,13 @@ public class LanguageChooser extends Mainloc {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
                 break;
             case 3:
-                mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xff800000);
+                mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xff800000);
                 break;
             default:
                 log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
@@ -199,13 +205,13 @@ public class LanguageChooser extends Mainloc {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
                 break;
             case 3:
-                mainFrame.ifont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollx, mainFrame.scrolly + pOkUnten.y, 0xffff0000);
+                mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xffff0000);
                 break;
             default:
                 log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
@@ -229,7 +235,7 @@ public class LanguageChooser extends Mainloc {
         // Pfeil-Oben gedrueckt
         if (brPfeilOben.IsPointInRect(pTemp)) {
             Index -= 10;
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
             if (Index < 0) {
                 Index = 0;
             }
@@ -239,7 +245,7 @@ public class LanguageChooser extends Mainloc {
         // Pfeil-Unten gedrueckt
         if (brPfeilUnten.IsPointInRect(pTemp)) {
             Index += 10;
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
             if (Index > languages.length - 10) {
                 Index = languages.length - 10;
             }
@@ -256,17 +262,14 @@ public class LanguageChooser extends Mainloc {
                 mainFrame.thirdGameLanguage = abbreviations[currLang - 1];
             }
             if (abbreviations[currLang - 1].equalsIgnoreCase("hs")) {
-                mainFrame.sprache = 1;
+                Start.language = 1;
             } else if (abbreviations[currLang - 1].equalsIgnoreCase("ds")) {
-                mainFrame.sprache = 2;
+                Start.language = 2;
             } else {
-                mainFrame.sprache = 3;
+                Start.language = 3;
             }
-            Start.stringManager.defineThirdLanguage(
-                    LanguageSupportMapper.getLanguageFilename(abbreviations[currLang - 1]),
-                    LanguageSupportMapper.getFakeLanguage(abbreviations[currLang - 1]),
-                    abbreviations[currLang - 1]);
-            properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(mainFrame.sprache));
+            Start.stringManager.defineThirdLanguage(abbreviations[currLang - 1]);
+            properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(Start.language));
             properties.setProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, mainFrame.thirdGameLanguage);
             NeuesBild(100, 109);
             mainFrame.repaint();
@@ -294,7 +297,7 @@ public class LanguageChooser extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 0) {
             Cursorform = 0;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
         // Highlight im Menue festlegen

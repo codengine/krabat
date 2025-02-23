@@ -104,7 +104,7 @@ public class Slownik extends Mainanim {
         brPfeilUnten = new Borderrect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
 
         //TODO: Lang3 not considered here?
-        brGesamt = new Borderrect(LinksOben.x, LinksOben.y, LinksOben.x + (mainFrame.sprache == 2 ? DXANZA : HXANZA) * XDIFF - 1, LinksOben.y + YANZA * YDIFF - 1);
+        brGesamt = new Borderrect(LinksOben.x, LinksOben.y, LinksOben.x + (Start.language == 2 ? DXANZA : HXANZA) * XDIFF - 1, LinksOben.y + YANZA * YDIFF - 1);
 
         InitImages();
 
@@ -116,16 +116,16 @@ public class Slownik extends Mainanim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mainmenu/background2.gif");
-        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.gif");
-        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.gif");
-        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.gif");
-        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.gif");
+        background = getPicture("gfx/mainmenu/background2.png");
+        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.png");
+        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
+        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.png");
+        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
     }
 
     // Woerterbuch laden
     private void LoadSlownik() {
-        String File = mainFrame.sprache == 2 ? "slowds.kra" : "slowhs.kra";
+        String File = Start.language == 2 ? "slowds.kra" : "slowhs.kra";
 
         byte[] Feld = new byte[]{};
 
@@ -184,42 +184,42 @@ public class Slownik extends Mainanim {
     public void paintSlownik(GenericDrawingContext g) {
 
         // Credits-Background zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
             Cursorform = 200;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
-            g.drawImage(background, mainFrame.scrollx, 0);
-            GenericPoint ps = mainFrame.ifont.CenterAnimText("S#lownik", new GenericPoint(320, 35));
-            mainFrame.ifont.drawString(g, "S#lownik", ps.x, ps.y, 0xffff0000);
+            g.drawImage(background, mainFrame.scrollX, 0);
+            GenericPoint ps = mainFrame.imageFont.CenterAnimText("S#lownik", new GenericPoint(320, 35));
+            mainFrame.imageFont.drawString(g, "S#lownik", ps.x, ps.y, 0xffff0000);
 
             for (int i = Index; i < Index + 10; i++) {
                 // System.out.println (Eintrag[i][0]);
-                mainFrame.ifont.drawString(g, Eintrag[i][0], X_SORB + mainFrame.scrollx, mainFrame.scrolly + Y_SORB + (i - Index) * 25, 0xffff0000);
-                mainFrame.ifont.drawString(g, Eintrag[i][1], X_DEUT + mainFrame.scrollx, mainFrame.scrolly + Y_DEUT + (i - Index) * 25, 0xffff0000);
+                mainFrame.imageFont.drawString(g, Eintrag[i][0], X_SORB + mainFrame.scrollX, mainFrame.scrollY + Y_SORB + (i - Index) * 25, 0xffff0000);
+                mainFrame.imageFont.drawString(g, Eintrag[i][1], X_DEUT + mainFrame.scrollX, mainFrame.scrollY + Y_DEUT + (i - Index) * 25, 0xffff0000);
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
         }
 
         // Hier Unterscheidung HS-DS
-        int TempXANZA = mainFrame.sprache == 2 ? DXANZA : HXANZA;
+        int TempXANZA = Start.language == 2 ? DXANZA : HXANZA;
 
         // Auswahl anzeigen bzw. highlighten (wenn ihr dabeiseid, dann gibts 'n Highlight)
         for (int i = 0; i < TempXANZA; i++) {
-            GenericPoint px = mainFrame.ifont.CenterAnimText(mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollx + LinksOben.x + i * XDIFF + XDIFF / 2, mainFrame.scrolly + LinksOben.y));
-            mainFrame.ifont.drawString(g, mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], px.x, px.y, i == Skip ? 0xffff0000 : 0xff800000);
+            GenericPoint px = mainFrame.imageFont.CenterAnimText(Start.language == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollX + LinksOben.x + i * XDIFF + XDIFF / 2, mainFrame.scrollY + LinksOben.y));
+            mainFrame.imageFont.drawString(g, Start.language == 2 ? DAuswahl[i] : HAuswahl[i], px.x, px.y, i == Skip ? 0xffff0000 : 0xff800000);
         }
 
-        for (int i = TempXANZA; i < TempXANZA * 2 - (mainFrame.sprache == 2 ? 0 : 1); i++)  // HS hat ungerade Anzahl
+        for (int i = TempXANZA; i < TempXANZA * 2 - (Start.language == 2 ? 0 : 1); i++)  // HS hat ungerade Anzahl
         {
-            GenericPoint py = mainFrame.ifont.CenterAnimText(mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollx + LinksOben.x + (i - TempXANZA) * XDIFF + XDIFF / 2, mainFrame.scrolly + LinksOben.y + YDIFF));
-            mainFrame.ifont.drawString(g, mainFrame.sprache == 2 ? DAuswahl[i] : HAuswahl[i], py.x, py.y, i == Skip ? 0xffff0000 : 0xff800000);
+            GenericPoint py = mainFrame.imageFont.CenterAnimText(Start.language == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollX + LinksOben.x + (i - TempXANZA) * XDIFF + XDIFF / 2, mainFrame.scrollY + LinksOben.y + YDIFF));
+            mainFrame.imageFont.drawString(g, Start.language == 2 ? DAuswahl[i] : HAuswahl[i], py.x, py.y, i == Skip ? 0xffff0000 : 0xff800000);
         }
 
 
@@ -228,10 +228,10 @@ public class Slownik extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
                 break;
             default:
                 log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
@@ -246,10 +246,10 @@ public class Slownik extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollx, pPfeilOben.y + mainFrame.scrolly);
+                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollx, pPfeilUnten.y + mainFrame.scrolly);
+                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
                 break;
             default:
                 log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
@@ -271,7 +271,7 @@ public class Slownik extends Mainanim {
             // Pfeil-Oben gedrueckt
             if (brPfeilOben.IsPointInRect(pTemp)) {
                 Index -= 10;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 if (Index < 0) {
                     Index = 0;
                 }
@@ -281,7 +281,7 @@ public class Slownik extends Mainanim {
             // Pfeil-Unten gedrueckt
             if (brPfeilUnten.IsPointInRect(pTemp)) {
                 Index += 10;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 if (Index > Nummer - 10) {
                     Index = Nummer - 10;
                 }
@@ -293,15 +293,15 @@ public class Slownik extends Mainanim {
                 int adresse = 0;
 
                 // Y-Offset berechnen
-                adresse += (pTemp.y - LinksOben.y) / YDIFF * (mainFrame.sprache == 2 ? DXANZA : HXANZA);
+                adresse += (pTemp.y - LinksOben.y) / YDIFF * (Start.language == 2 ? DXANZA : HXANZA);
 
                 // X-Offset dazu
                 adresse += (pTemp.x - LinksOben.x) / XDIFF;
 
                 // Index neu festlegen, nicht, wenn auf Leerfeld in HS gedrueckt
-                if (mainFrame.sprache != 1 || adresse < 25) {
-                    Index = mainFrame.sprache == 2 ? DSprung[adresse] : HSprung[adresse];
-                    mainFrame.Clipset = false;
+                if (Start.language != 1 || adresse < 25) {
+                    Index = Start.language == 2 ? DSprung[adresse] : HSprung[adresse];
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
                 }
             }
@@ -318,7 +318,7 @@ public class Slownik extends Mainanim {
         // {
         if (Cursorform != 0) {
             Cursorform = 0;
-            mainFrame.setCursor(mainFrame.Normal);
+            mainFrame.setCursor(mainFrame.cursorNormal);
         }
         // }
 
@@ -338,7 +338,7 @@ public class Slownik extends Mainanim {
             Skip = 0;
 
             // Y-Offset berechnen
-            Skip += (pTemp.y - LinksOben.y) / YDIFF * (mainFrame.sprache == 2 ? DXANZA : HXANZA);
+            Skip += (pTemp.y - LinksOben.y) / YDIFF * (Start.language == 2 ? DXANZA : HXANZA);
 
             // X-Offset dazu
             Skip += (pTemp.x - LinksOben.x) / XDIFF;
@@ -373,7 +373,7 @@ public class Slownik extends Mainanim {
 
     // Deaktivieren //////////
     private void Deactivate() {
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         mainFrame.DestructLocation(107);
         mainFrame.whatScreen = 0;
 

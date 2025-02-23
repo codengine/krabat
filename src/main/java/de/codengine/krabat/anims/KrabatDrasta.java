@@ -196,158 +196,158 @@ public class KrabatDrasta extends Krabat {
     // Bilder vorbereiten
     private void InitImages() {
         // Normal - Images, default
-        krabat_left[0] = getPicture("gfx/anims/s-l-10.gif");  // Stehen
-        krabat_left[1] = getPicture("gfx/anims/s-l-10a.gif"); // Zwinkern
-        krabat_left[2] = getPicture("gfx/anims/s-l-5.gif");   // Laufen
-        krabat_left[3] = getPicture("gfx/anims/s-l-6.gif");
-        krabat_left[4] = getPicture("gfx/anims/s-l-7.gif");
-        krabat_left[5] = getPicture("gfx/anims/s-l-8.gif");
-        krabat_left[6] = getPicture("gfx/anims/s-l-9.gif");
-        krabat_left[7] = getPicture("gfx/anims/s-l-0.gif");
-        krabat_left[8] = getPicture("gfx/anims/s-l-1.gif");
-        krabat_left[9] = getPicture("gfx/anims/s-l-2.gif");
-        krabat_left[10] = getPicture("gfx/anims/s-l-3.gif");
-        krabat_left[11] = getPicture("gfx/anims/s-l-4.gif");
+        krabat_left[0] = getPicture("gfx/anims/s-l-10.png");  // Stehen
+        krabat_left[1] = getPicture("gfx/anims/s-l-10a.png"); // Zwinkern
+        krabat_left[2] = getPicture("gfx/anims/s-l-5.png");   // Laufen
+        krabat_left[3] = getPicture("gfx/anims/s-l-6.png");
+        krabat_left[4] = getPicture("gfx/anims/s-l-7.png");
+        krabat_left[5] = getPicture("gfx/anims/s-l-8.png");
+        krabat_left[6] = getPicture("gfx/anims/s-l-9.png");
+        krabat_left[7] = getPicture("gfx/anims/s-l-0.png");
+        krabat_left[8] = getPicture("gfx/anims/s-l-1.png");
+        krabat_left[9] = getPicture("gfx/anims/s-l-2.png");
+        krabat_left[10] = getPicture("gfx/anims/s-l-3.png");
+        krabat_left[11] = getPicture("gfx/anims/s-l-4.png");
 
-        krabat_right[0] = getPicture("gfx/anims/s-r-10.gif");   // Stehen
-        krabat_right[1] = getPicture("gfx/anims/s-r-10a.gif");  // Zwinkern
-        krabat_right[2] = getPicture("gfx/anims/s-r-0.gif");    // Laufen
-        krabat_right[3] = getPicture("gfx/anims/s-r-1.gif");
-        krabat_right[4] = getPicture("gfx/anims/s-r-2.gif");
-        krabat_right[5] = getPicture("gfx/anims/s-r-3.gif");
-        krabat_right[6] = getPicture("gfx/anims/s-r-4.gif");
-        krabat_right[7] = getPicture("gfx/anims/s-r-5.gif");
-        krabat_right[8] = getPicture("gfx/anims/s-r-6.gif");
-        krabat_right[9] = getPicture("gfx/anims/s-r-7.gif");
-        krabat_right[10] = getPicture("gfx/anims/s-r-8.gif");
-        krabat_right[11] = getPicture("gfx/anims/s-r-9.gif");
+        krabat_right[0] = getPicture("gfx/anims/s-r-10.png");   // Stehen
+        krabat_right[1] = getPicture("gfx/anims/s-r-10a.png");  // Zwinkern
+        krabat_right[2] = getPicture("gfx/anims/s-r-0.png");    // Laufen
+        krabat_right[3] = getPicture("gfx/anims/s-r-1.png");
+        krabat_right[4] = getPicture("gfx/anims/s-r-2.png");
+        krabat_right[5] = getPicture("gfx/anims/s-r-3.png");
+        krabat_right[6] = getPicture("gfx/anims/s-r-4.png");
+        krabat_right[7] = getPicture("gfx/anims/s-r-5.png");
+        krabat_right[8] = getPicture("gfx/anims/s-r-6.png");
+        krabat_right[9] = getPicture("gfx/anims/s-r-7.png");
+        krabat_right[10] = getPicture("gfx/anims/s-r-8.png");
+        krabat_right[11] = getPicture("gfx/anims/s-r-9.png");
 
-        krabat_front[0] = getPicture("gfx/anims/s-u-10.gif");   // Stehen
-        krabat_front[1] = getPicture("gfx/anims/s-u-10a.gif");  // Zwinkern
-        krabat_front[2] = getPicture("gfx/anims/s-u-8.gif");    // Laufen
-        krabat_front[3] = getPicture("gfx/anims/s-u-1.gif");
-        krabat_front[4] = getPicture("gfx/anims/s-u-2.gif");
-        krabat_front[5] = getPicture("gfx/anims/s-u-3.gif");
-        krabat_front[6] = getPicture("gfx/anims/s-u-4.gif");
-        krabat_front[7] = getPicture("gfx/anims/s-u-5.gif");
-        krabat_front[8] = getPicture("gfx/anims/s-u-6.gif");
-        krabat_front[9] = getPicture("gfx/anims/s-u-7.gif");
+        krabat_front[0] = getPicture("gfx/anims/s-u-10.png");   // Stehen
+        krabat_front[1] = getPicture("gfx/anims/s-u-10a.png");  // Zwinkern
+        krabat_front[2] = getPicture("gfx/anims/s-u-8.png");    // Laufen
+        krabat_front[3] = getPicture("gfx/anims/s-u-1.png");
+        krabat_front[4] = getPicture("gfx/anims/s-u-2.png");
+        krabat_front[5] = getPicture("gfx/anims/s-u-3.png");
+        krabat_front[6] = getPicture("gfx/anims/s-u-4.png");
+        krabat_front[7] = getPicture("gfx/anims/s-u-5.png");
+        krabat_front[8] = getPicture("gfx/anims/s-u-6.png");
+        krabat_front[9] = getPicture("gfx/anims/s-u-7.png");
 
-        krabat_back[0] = getPicture("gfx/anims/s-o-10.gif");  // Stehen
-        krabat_back[1] = getPicture("gfx/anims/s-o-10.gif");  // Zwinkern (gibts hier nicht, aber egal)
-        krabat_back[2] = getPicture("gfx/anims/s-o-4.gif");   // Laufen
-        krabat_back[3] = getPicture("gfx/anims/s-o-5.gif");
-        krabat_back[4] = getPicture("gfx/anims/s-o-6.gif");
-        krabat_back[5] = getPicture("gfx/anims/s-o-7.gif");
-        krabat_back[6] = getPicture("gfx/anims/s-o-8.gif");
-        krabat_back[7] = getPicture("gfx/anims/s-o-1.gif");
-        krabat_back[8] = getPicture("gfx/anims/s-o-2.gif");
-        krabat_back[9] = getPicture("gfx/anims/s-o-3.gif");
+        krabat_back[0] = getPicture("gfx/anims/s-o-10.png");  // Stehen
+        krabat_back[1] = getPicture("gfx/anims/s-o-10.png");  // Zwinkern (gibts hier nicht, aber egal)
+        krabat_back[2] = getPicture("gfx/anims/s-o-4.png");   // Laufen
+        krabat_back[3] = getPicture("gfx/anims/s-o-5.png");
+        krabat_back[4] = getPicture("gfx/anims/s-o-6.png");
+        krabat_back[5] = getPicture("gfx/anims/s-o-7.png");
+        krabat_back[6] = getPicture("gfx/anims/s-o-8.png");
+        krabat_back[7] = getPicture("gfx/anims/s-o-1.png");
+        krabat_back[8] = getPicture("gfx/anims/s-o-2.png");
+        krabat_back[9] = getPicture("gfx/anims/s-o-3.png");
 
-        krabat_floete[0] = getPicture("gfx/anims/s-u-f1.gif");
-        krabat_floete[1] = getPicture("gfx/anims/s-u-f2.gif");
-        krabat_floete[2] = getPicture("gfx/anims/s-u-f3.gif");
-        krabat_floete[3] = getPicture("gfx/anims/s-u-f4.gif");
+        krabat_floete[0] = getPicture("gfx/anims/s-u-f1.png");
+        krabat_floete[1] = getPicture("gfx/anims/s-u-f2.png");
+        krabat_floete[2] = getPicture("gfx/anims/s-u-f3.png");
+        krabat_floete[3] = getPicture("gfx/anims/s-u-f4.png");
 
-        krabat_rohodz[0] = getPicture("gfx/anims/s-u-fr1.gif");
-        krabat_rohodz[1] = getPicture("gfx/anims/s-u-fr2.gif");
-        krabat_rohodz[2] = getPicture("gfx/anims/s-u-fr3.gif");
-        krabat_rohodz[3] = getPicture("gfx/anims/s-u-fr4.gif");
+        krabat_rohodz[0] = getPicture("gfx/anims/s-u-fr1.png");
+        krabat_rohodz[1] = getPicture("gfx/anims/s-u-fr2.png");
+        krabat_rohodz[2] = getPicture("gfx/anims/s-u-fr3.png");
+        krabat_rohodz[3] = getPicture("gfx/anims/s-u-fr4.png");
 
-        krabat_left_talk_head[0] = getPicture("gfx/anims/s-l-h0.gif");
-        krabat_left_talk_head[1] = getPicture("gfx/anims/s-l-h1.gif");
-        krabat_left_talk_head[2] = getPicture("gfx/anims/s-l-h2.gif");
-        krabat_left_talk_head[3] = getPicture("gfx/anims/s-l-h3.gif");
-        krabat_left_talk_head[4] = getPicture("gfx/anims/s-l-h4.gif");
-        krabat_left_talk_head[5] = getPicture("gfx/anims/s-l-h5.gif");
-        krabat_left_talk_head[6] = getPicture("gfx/anims/s-l-h6.gif");
-        krabat_left_talk_head[7] = getPicture("gfx/anims/s-l-h7.gif");
+        krabat_left_talk_head[0] = getPicture("gfx/anims/s-l-h0.png");
+        krabat_left_talk_head[1] = getPicture("gfx/anims/s-l-h1.png");
+        krabat_left_talk_head[2] = getPicture("gfx/anims/s-l-h2.png");
+        krabat_left_talk_head[3] = getPicture("gfx/anims/s-l-h3.png");
+        krabat_left_talk_head[4] = getPicture("gfx/anims/s-l-h4.png");
+        krabat_left_talk_head[5] = getPicture("gfx/anims/s-l-h5.png");
+        krabat_left_talk_head[6] = getPicture("gfx/anims/s-l-h6.png");
+        krabat_left_talk_head[7] = getPicture("gfx/anims/s-l-h7.png");
 
-        krabat_left_talk_body[0] = getPicture("gfx/anims/s-l-b0.gif");
-        krabat_left_talk_body[1] = getPicture("gfx/anims/s-l-b1.gif");
-        krabat_left_talk_body[2] = getPicture("gfx/anims/s-l-b2.gif");
-        krabat_left_talk_body[3] = getPicture("gfx/anims/s-l-b3.gif");
+        krabat_left_talk_body[0] = getPicture("gfx/anims/s-l-b0.png");
+        krabat_left_talk_body[1] = getPicture("gfx/anims/s-l-b1.png");
+        krabat_left_talk_body[2] = getPicture("gfx/anims/s-l-b2.png");
+        krabat_left_talk_body[3] = getPicture("gfx/anims/s-l-b3.png");
 
-        krabat_right_talk_head[0] = getPicture("gfx/anims/s-r-h0.gif");
-        krabat_right_talk_head[1] = getPicture("gfx/anims/s-r-h1.gif");
-        krabat_right_talk_head[2] = getPicture("gfx/anims/s-r-h2.gif");
-        krabat_right_talk_head[3] = getPicture("gfx/anims/s-r-h3.gif");
-        krabat_right_talk_head[4] = getPicture("gfx/anims/s-r-h4.gif");
-        krabat_right_talk_head[5] = getPicture("gfx/anims/s-r-h5.gif");
-        krabat_right_talk_head[6] = getPicture("gfx/anims/s-r-h6.gif");
-        krabat_right_talk_head[7] = getPicture("gfx/anims/s-r-h7.gif");
+        krabat_right_talk_head[0] = getPicture("gfx/anims/s-r-h0.png");
+        krabat_right_talk_head[1] = getPicture("gfx/anims/s-r-h1.png");
+        krabat_right_talk_head[2] = getPicture("gfx/anims/s-r-h2.png");
+        krabat_right_talk_head[3] = getPicture("gfx/anims/s-r-h3.png");
+        krabat_right_talk_head[4] = getPicture("gfx/anims/s-r-h4.png");
+        krabat_right_talk_head[5] = getPicture("gfx/anims/s-r-h5.png");
+        krabat_right_talk_head[6] = getPicture("gfx/anims/s-r-h6.png");
+        krabat_right_talk_head[7] = getPicture("gfx/anims/s-r-h7.png");
 
-        krabat_right_talk_body[0] = getPicture("gfx/anims/s-r-b0.gif");
-        krabat_right_talk_body[1] = getPicture("gfx/anims/s-r-b1.gif");
-        krabat_right_talk_body[2] = getPicture("gfx/anims/s-r-b2.gif");
-        krabat_right_talk_body[3] = getPicture("gfx/anims/s-r-b3.gif");
+        krabat_right_talk_body[0] = getPicture("gfx/anims/s-r-b0.png");
+        krabat_right_talk_body[1] = getPicture("gfx/anims/s-r-b1.png");
+        krabat_right_talk_body[2] = getPicture("gfx/anims/s-r-b2.png");
+        krabat_right_talk_body[3] = getPicture("gfx/anims/s-r-b3.png");
 
-        krabat_up_talk_head[0] = getPicture("gfx/anims/s-o-h0.gif");
-        krabat_up_talk_head[1] = getPicture("gfx/anims/s-o-h1.gif");
+        krabat_up_talk_head[0] = getPicture("gfx/anims/s-o-h0.png");
+        krabat_up_talk_head[1] = getPicture("gfx/anims/s-o-h1.png");
 
-        krabat_up_talk_body[0] = getPicture("gfx/anims/s-o-b0.gif");
-        krabat_up_talk_body[1] = getPicture("gfx/anims/s-o-b1.gif");
-        krabat_up_talk_body[2] = getPicture("gfx/anims/s-o-b2.gif");
+        krabat_up_talk_body[0] = getPicture("gfx/anims/s-o-b0.png");
+        krabat_up_talk_body[1] = getPicture("gfx/anims/s-o-b1.png");
+        krabat_up_talk_body[2] = getPicture("gfx/anims/s-o-b2.png");
 
-        krabat_down_talk_head[0] = getPicture("gfx/anims/s-u-h0.gif");
-        krabat_down_talk_head[1] = getPicture("gfx/anims/s-u-h1.gif");
-        krabat_down_talk_head[2] = getPicture("gfx/anims/s-u-h2.gif");
-        krabat_down_talk_head[3] = getPicture("gfx/anims/s-u-h3.gif");
-        krabat_down_talk_head[4] = getPicture("gfx/anims/s-u-h4.gif");
-        krabat_down_talk_head[5] = getPicture("gfx/anims/s-u-h5.gif");
+        krabat_down_talk_head[0] = getPicture("gfx/anims/s-u-h0.png");
+        krabat_down_talk_head[1] = getPicture("gfx/anims/s-u-h1.png");
+        krabat_down_talk_head[2] = getPicture("gfx/anims/s-u-h2.png");
+        krabat_down_talk_head[3] = getPicture("gfx/anims/s-u-h3.png");
+        krabat_down_talk_head[4] = getPicture("gfx/anims/s-u-h4.png");
+        krabat_down_talk_head[5] = getPicture("gfx/anims/s-u-h5.png");
 
-        krabat_down_talk_body[0] = getPicture("gfx/anims/s-u-b0.gif");
-        krabat_down_talk_body[1] = getPicture("gfx/anims/s-u-b1.gif");
-        krabat_down_talk_body[2] = getPicture("gfx/anims/s-u-b2.gif");
+        krabat_down_talk_body[0] = getPicture("gfx/anims/s-u-b0.png");
+        krabat_down_talk_body[1] = getPicture("gfx/anims/s-u-b1.png");
+        krabat_down_talk_body[2] = getPicture("gfx/anims/s-u-b2.png");
 
-        krabat_left_take_oben[0] = getPicture("gfx/anims/s-l-takeoben.gif");
-        krabat_left_take_mitte[0] = getPicture("gfx/anims/s-l-takemitte.gif");
-        krabat_left_take_unten[0] = getPicture("gfx/anims/s-l-takeunten.gif");
-        krabat_left_take_unten2[0] = getPicture("gfx/anims/s-l-takeunten2.gif");
+        krabat_left_take_oben[0] = getPicture("gfx/anims/s-l-takeoben.png");
+        krabat_left_take_mitte[0] = getPicture("gfx/anims/s-l-takemitte.png");
+        krabat_left_take_unten[0] = getPicture("gfx/anims/s-l-takeunten.png");
+        krabat_left_take_unten2[0] = getPicture("gfx/anims/s-l-takeunten2.png");
 
-        krabat_up_take_oben[0] = getPicture("gfx/anims/s-o-takeoben.gif");
-        krabat_up_take_mitte[0] = getPicture("gfx/anims/s-o-takemitte.gif");
-        krabat_up_take_unten[0] = getPicture("gfx/anims/s-o-takeunten.gif");
+        krabat_up_take_oben[0] = getPicture("gfx/anims/s-o-takeoben.png");
+        krabat_up_take_mitte[0] = getPicture("gfx/anims/s-o-takemitte.png");
+        krabat_up_take_unten[0] = getPicture("gfx/anims/s-o-takeunten.png");
 
-        krabat_right_take_oben[0] = getPicture("gfx/anims/s-r-takeoben.gif");
-        krabat_right_take_mitte[0] = getPicture("gfx/anims/s-r-takemitte.gif");
-        krabat_right_take_unten[0] = getPicture("gfx/anims/s-r-takeunten.gif");
-        krabat_right_take_unten2[0] = getPicture("gfx/anims/s-r-takeunten2.gif");
+        krabat_right_take_oben[0] = getPicture("gfx/anims/s-r-takeoben.png");
+        krabat_right_take_mitte[0] = getPicture("gfx/anims/s-r-takemitte.png");
+        krabat_right_take_unten[0] = getPicture("gfx/anims/s-r-takeunten.png");
+        krabat_right_take_unten2[0] = getPicture("gfx/anims/s-r-takeunten2.png");
 
-        krabat_down_take_mitte[0] = getPicture("gfx/anims/s-u-takemitte.gif");
-        krabat_down_take_unten[0] = getPicture("gfx/anims/s-u-takeunten.gif");
+        krabat_down_take_mitte[0] = getPicture("gfx/anims/s-u-takemitte.png");
+        krabat_down_take_unten[0] = getPicture("gfx/anims/s-u-takeunten.png");
 
-        krabat_gibkluc = getPicture("gfx/anims/s-l-gibkluc.gif");
-        krabat_giblist = getPicture("gfx/anims/s-l-giblist.gif");
-        krabat_gibmetall = getPicture("gfx/anims/s-l-gibmetall.gif");
-        krabat_gibskizze = getPicture("gfx/anims/s-l-gibskizze.gif");
-        krabat_gibwino = getPicture("gfx/anims/s-l-gibwino.gif");
-        krabat_gibwop = getPicture("gfx/anims/s-l-gibwop.gif");
+        krabat_gibkluc = getPicture("gfx/anims/s-l-gibkluc.png");
+        krabat_giblist = getPicture("gfx/anims/s-l-giblist.png");
+        krabat_gibmetall = getPicture("gfx/anims/s-l-gibmetall.png");
+        krabat_gibskizze = getPicture("gfx/anims/s-l-gibskizze.png");
+        krabat_gibwino = getPicture("gfx/anims/s-l-gibwino.png");
+        krabat_gibwop = getPicture("gfx/anims/s-l-gibwop.png");
 
-        krabat_wosusk[0] = getPicture("gfx/anims/s-u-wosusk1.gif");
-        krabat_wosusk[1] = getPicture("gfx/anims/s-u-wosusk2.gif");
+        krabat_wosusk[0] = getPicture("gfx/anims/s-u-wosusk1.png");
+        krabat_wosusk[1] = getPicture("gfx/anims/s-u-wosusk2.png");
 
-        krabat_hammer[0] = getPicture("gfx/anims/s-o-hammer1.gif");
-        krabat_hammer[1] = getPicture("gfx/anims/s-o-hammer2.gif");
+        krabat_hammer[0] = getPicture("gfx/anims/s-o-hammer1.png");
+        krabat_hammer[1] = getPicture("gfx/anims/s-o-hammer2.png");
 
-        krabat_feuer[0] = getPicture("gfx/anims/s-u-kamj1.gif");
-        krabat_feuer[1] = getPicture("gfx/anims/s-u-kamj2.gif");
-        krabat_feuer[2] = getPicture("gfx/anims/s-u-kamj3.gif");
+        krabat_feuer[0] = getPicture("gfx/anims/s-u-kamj1.png");
+        krabat_feuer[1] = getPicture("gfx/anims/s-u-kamj2.png");
+        krabat_feuer[2] = getPicture("gfx/anims/s-u-kamj3.png");
 
-        krabat_left_liesbuch_head[0] = getPicture("gfx/anims/s-l-c1.gif");
-        krabat_left_liesbuch_head[1] = getPicture("gfx/anims/s-l-c2.gif");
-        krabat_left_liesbuch_head[2] = getPicture("gfx/anims/s-l-c3.gif");
-        krabat_left_liesbuch_head[3] = getPicture("gfx/anims/s-l-c4.gif");
-        krabat_left_liesbuch_head[4] = getPicture("gfx/anims/s-l-c5.gif");
+        krabat_left_liesbuch_head[0] = getPicture("gfx/anims/s-l-c1.png");
+        krabat_left_liesbuch_head[1] = getPicture("gfx/anims/s-l-c2.png");
+        krabat_left_liesbuch_head[2] = getPicture("gfx/anims/s-l-c3.png");
+        krabat_left_liesbuch_head[3] = getPicture("gfx/anims/s-l-c4.png");
+        krabat_left_liesbuch_head[4] = getPicture("gfx/anims/s-l-c5.png");
 
-        krabat_right_liesbuch_head[0] = getPicture("gfx/anims/s-r-c1.gif");
-        krabat_right_liesbuch_head[1] = getPicture("gfx/anims/s-r-c2.gif");
-        krabat_right_liesbuch_head[2] = getPicture("gfx/anims/s-r-c3.gif");
-        krabat_right_liesbuch_head[3] = getPicture("gfx/anims/s-r-c4.gif");
-        krabat_right_liesbuch_head[4] = getPicture("gfx/anims/s-r-c5.gif");
+        krabat_right_liesbuch_head[0] = getPicture("gfx/anims/s-r-c1.png");
+        krabat_right_liesbuch_head[1] = getPicture("gfx/anims/s-r-c2.png");
+        krabat_right_liesbuch_head[2] = getPicture("gfx/anims/s-r-c3.png");
+        krabat_right_liesbuch_head[3] = getPicture("gfx/anims/s-r-c4.png");
+        krabat_right_liesbuch_head[4] = getPicture("gfx/anims/s-r-c5.png");
 
-        krabat_left_liesbuch_body = getPicture("gfx/anims/s-l-bc.gif");
-        krabat_right_liesbuch_body = getPicture("gfx/anims/s-r-bc.gif");
+        krabat_left_liesbuch_body = getPicture("gfx/anims/s-l-bc.png");
+        krabat_right_liesbuch_body = getPicture("gfx/anims/s-r-bc.png");
     }
 
 
@@ -592,7 +592,7 @@ public class KrabatDrasta extends Krabat {
 
             case 5:  // Rohodz spielen
                 if (nAnimStep == 0) {
-                    mainFrame.wave.PlayFile("sfx/frohodz.wav");
+                    mainFrame.soundPlayer.PlayFile("sfx/frohodz.wav");
                 } ///////////////// Sound !!!!!!!!!!!!!!
                 if (nAnimStep < rohodzWartezeit) {
                     SpieleRohodz(g, nAnimStep++);
@@ -662,7 +662,7 @@ public class KrabatDrasta extends Krabat {
             case 146: // Wosusk essen (speziell)
                 if (nAnimStep < 20) {
                     if (nAnimStep == 0) {
-                        mainFrame.wave.PlayFile("sfx-dd/wosusk.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx-dd/wosusk.wav");
                     } ////////////Sound!!!!!!!!!!!!!!!!!!!!!!
                     ZeigeBild(g, krabat_wosusk[nAnimStep % 4 < 2 ? 0 : 1], 0);
                     nAnimStep++;
@@ -676,7 +676,7 @@ public class KrabatDrasta extends Krabat {
                 if (nAnimStep < 24) {
                     ZeigeBild(g, krabat_hammer[nAnimStep % 12 < 6 ? 0 : 1], 0);
                     if (nAnimStep == 6 || nAnimStep == 18) {
-                        mainFrame.wave.PlayFile("sfx-dd/schlag.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx-dd/schlag.wav");
                     }
                     nAnimStep++;
                 } else {
@@ -688,7 +688,7 @@ public class KrabatDrasta extends Krabat {
             case 154: // mache Feuer mit Feuersteinen
                 if (nAnimStep < 12) {
                     if (nAnimStep == 0) {
-                        mainFrame.wave.PlayFile("sfx/kamjeny.wav");
+                        mainFrame.soundPlayer.PlayFile("sfx/kamjeny.wav");
                     } /////////////////// Sound !!!!!!!!!!!
                     ZeigeBild(g, krabat_feuer[nAnimStep % 6 / 2], 0);
                     nAnimStep++;
@@ -792,7 +792,7 @@ public class KrabatDrasta extends Krabat {
         // Sound abspielen
         if (tCount == 0) {
             int zuffi = (int) (Math.random() * 4.99);
-            mainFrame.wave.PlayFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
             Floetenwartezeit = Floetenwartezeitarray[zuffi];
         }
 

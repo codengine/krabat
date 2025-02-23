@@ -58,18 +58,18 @@ public class Straza2 extends Mainanim {
     }
 
     private void InitImages() {
-        straza_head[0] = getPicture("gfx-dd/straze/straza2-h.gif");
-        straza_head[1] = getPicture("gfx-dd/straze/straza2-ha.gif");
-        straza_head[2] = getPicture("gfx-dd/straze/straza2-t1.gif");
-        straza_head[3] = getPicture("gfx-dd/straze/straza2-t2.gif");
-        straza_head[4] = getPicture("gfx-dd/straze/straza2-t3.gif");
-        straza_head[5] = getPicture("gfx-dd/straze/straza2-t4.gif");
-        straza_head[6] = getPicture("gfx-dd/straze/straza2-t5.gif");
-        straza_head[7] = getPicture("gfx-dd/straze/straza2-t6.gif");
-        straza_head[8] = getPicture("gfx-dd/straze/straza2-t7.gif");
+        straza_head[0] = getPicture("gfx-dd/straze/straza2-h.png");
+        straza_head[1] = getPicture("gfx-dd/straze/straza2-ha.png");
+        straza_head[2] = getPicture("gfx-dd/straze/straza2-t1.png");
+        straza_head[3] = getPicture("gfx-dd/straze/straza2-t2.png");
+        straza_head[4] = getPicture("gfx-dd/straze/straza2-t3.png");
+        straza_head[5] = getPicture("gfx-dd/straze/straza2-t4.png");
+        straza_head[6] = getPicture("gfx-dd/straze/straza2-t5.png");
+        straza_head[7] = getPicture("gfx-dd/straze/straza2-t6.png");
+        straza_head[8] = getPicture("gfx-dd/straze/straza2-t7.png");
 
-        straza_body[0] = getPicture("gfx-dd/straze/straza2-b1.gif");
-        straza_body[1] = getPicture("gfx-dd/straze/straza2-b2.gif");
+        straza_body[0] = getPicture("gfx-dd/straze/straza2-b1.png");
+        straza_body[1] = getPicture("gfx-dd/straze/straza2-b2.png");
     }
 
     // Zeichne Wache, wie er dasteht oder spricht

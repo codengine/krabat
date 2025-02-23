@@ -88,34 +88,34 @@ public class KowarSunow extends Mainanim {
     }
 
     private void InitImages() {
-        kowar_head[1] = getPicture("gfx/wjes/kw-h1.gif");
-        kowar_head[2] = getPicture("gfx/wjes/kw-h2.gif");
-        kowar_head[3] = getPicture("gfx/wjes/kw-h3.gif");
-        kowar_head[4] = getPicture("gfx/wjes/kw-h4.gif");
-        kowar_head[5] = getPicture("gfx/wjes/kw-h5.gif");
-        kowar_head[6] = getPicture("gfx/wjes/kw-h6.gif");
+        kowar_head[1] = getPicture("gfx/wjes/kw-h1.png");
+        kowar_head[2] = getPicture("gfx/wjes/kw-h2.png");
+        kowar_head[3] = getPicture("gfx/wjes/kw-h3.png");
+        kowar_head[4] = getPicture("gfx/wjes/kw-h4.png");
+        kowar_head[5] = getPicture("gfx/wjes/kw-h5.png");
+        kowar_head[6] = getPicture("gfx/wjes/kw-h6.png");
 
-        kowar_body[1] = getPicture("gfx/wjes/kw-b1.gif");
-        kowar_body[2] = getPicture("gfx/wjes/kw-b2.gif");
-        kowar_body[3] = getPicture("gfx/wjes/kw-b3.gif");
-        kowar_body[4] = getPicture("gfx/wjes/kw-b4.gif");
-        kowar_body[5] = getPicture("gfx/wjes/kw-b5.gif");
+        kowar_body[1] = getPicture("gfx/wjes/kw-b1.png");
+        kowar_body[2] = getPicture("gfx/wjes/kw-b2.png");
+        kowar_body[3] = getPicture("gfx/wjes/kw-b3.png");
+        kowar_body[4] = getPicture("gfx/wjes/kw-b4.png");
+        kowar_body[5] = getPicture("gfx/wjes/kw-b5.png");
 
-        kowar_work[1] = getPicture("gfx/wjes/kw2.gif");
-        kowar_work[2] = getPicture("gfx/wjes/kw3.gif");
-        kowar_work[3] = getPicture("gfx/wjes/kw4.gif");
+        kowar_work[1] = getPicture("gfx/wjes/kw2.png");
+        kowar_work[2] = getPicture("gfx/wjes/kw3.png");
+        kowar_work[3] = getPicture("gfx/wjes/kw4.png");
 
-        kowar_walkl[1] = getPicture("gfx/wjes/kw5.gif");
-        kowar_walkl[2] = getPicture("gfx/wjes/kw.gif");
-        kowar_walkl[3] = getPicture("gfx/wjes/kw6.gif");
+        kowar_walkl[1] = getPicture("gfx/wjes/kw5.png");
+        kowar_walkl[2] = getPicture("gfx/wjes/kw.png");
+        kowar_walkl[3] = getPicture("gfx/wjes/kw6.png");
 
-        kowar_walkr[1] = getPicture("gfx/wjes/kw5a.gif");
-        kowar_walkr[2] = getPicture("gfx/wjes/kw1a.gif");
-        kowar_walkr[3] = getPicture("gfx/wjes/kw6a.gif");
+        kowar_walkr[1] = getPicture("gfx/wjes/kw5a.png");
+        kowar_walkr[2] = getPicture("gfx/wjes/kw1a.png");
+        kowar_walkr[3] = getPicture("gfx/wjes/kw6a.png");
 
-        kowar_zwinker = getPicture("gfx/wjes/kw1.gif");
+        kowar_zwinker = getPicture("gfx/wjes/kw1.png");
 
-        Vorder = getPicture("gfx/wjes/kowarnja.gif");
+        Vorder = getPicture("gfx/wjes/kowarnja.png");
     }
 
     @Override
@@ -359,7 +359,7 @@ public class KowarSunow extends Mainanim {
         // 2. wave gibt an, dass die nativen Soundroutinen benutzt werden
         // 3. invCursor -> soll nur dann abschalten
 
-        mainFrame.wave.PlayFile("sfx/amboss.wav");
+        mainFrame.soundPlayer.PlayFile("sfx/amboss.wav");
 
     }
 

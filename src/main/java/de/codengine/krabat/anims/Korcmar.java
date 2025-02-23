@@ -91,31 +91,31 @@ public class Korcmar extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        krabat_back[0] = getPicture("gfx/hoscenc/wirt-o.gif");
-        krabat_back[1] = getPicture("gfx/hoscenc/wirt-o1.gif");
-        krabat_back[2] = getPicture("gfx/hoscenc/wirt-o2.gif");
-        krabat_back[3] = getPicture("gfx/hoscenc/wirt-o3.gif");
-        krabat_back[4] = getPicture("gfx/hoscenc/wirt-o4.gif");
+        krabat_back[0] = getPicture("gfx/hoscenc/wirt-o.png");
+        krabat_back[1] = getPicture("gfx/hoscenc/wirt-o1.png");
+        krabat_back[2] = getPicture("gfx/hoscenc/wirt-o2.png");
+        krabat_back[3] = getPicture("gfx/hoscenc/wirt-o3.png");
+        krabat_back[4] = getPicture("gfx/hoscenc/wirt-o4.png");
 
-        krabat_front[0] = getPicture("gfx/hoscenc/wirt-u.gif");
-        krabat_front[1] = getPicture("gfx/hoscenc/wirt-ua.gif");
-        krabat_front[2] = getPicture("gfx/hoscenc/wirt-u1.gif");
-        krabat_front[3] = getPicture("gfx/hoscenc/wirt-u2.gif");
-        krabat_front[4] = getPicture("gfx/hoscenc/wirt-u3.gif");
-        krabat_front[5] = getPicture("gfx/hoscenc/wirt-u4.gif");
+        krabat_front[0] = getPicture("gfx/hoscenc/wirt-u.png");
+        krabat_front[1] = getPicture("gfx/hoscenc/wirt-ua.png");
+        krabat_front[2] = getPicture("gfx/hoscenc/wirt-u1.png");
+        krabat_front[3] = getPicture("gfx/hoscenc/wirt-u2.png");
+        krabat_front[4] = getPicture("gfx/hoscenc/wirt-u3.png");
+        krabat_front[5] = getPicture("gfx/hoscenc/wirt-u4.png");
 
-        krabat_talk_head[0] = getPicture("gfx/hoscenc/wirt-h0.gif");
-        krabat_talk_head[1] = getPicture("gfx/hoscenc/wirt-h1.gif");
-        krabat_talk_head[2] = getPicture("gfx/hoscenc/wirt-h2.gif");
-        krabat_talk_head[3] = getPicture("gfx/hoscenc/wirt-h3.gif");
-        krabat_talk_head[4] = getPicture("gfx/hoscenc/wirt-h4.gif");
-        krabat_talk_head[5] = getPicture("gfx/hoscenc/wirt-h5.gif");
-        krabat_talk_head[6] = getPicture("gfx/hoscenc/wirt-h6.gif");
+        krabat_talk_head[0] = getPicture("gfx/hoscenc/wirt-h0.png");
+        krabat_talk_head[1] = getPicture("gfx/hoscenc/wirt-h1.png");
+        krabat_talk_head[2] = getPicture("gfx/hoscenc/wirt-h2.png");
+        krabat_talk_head[3] = getPicture("gfx/hoscenc/wirt-h3.png");
+        krabat_talk_head[4] = getPicture("gfx/hoscenc/wirt-h4.png");
+        krabat_talk_head[5] = getPicture("gfx/hoscenc/wirt-h5.png");
+        krabat_talk_head[6] = getPicture("gfx/hoscenc/wirt-h6.png");
 
-        krabat_talk_body[0] = getPicture("gfx/hoscenc/wirt-b0.gif");
-        krabat_talk_body[1] = getPicture("gfx/hoscenc/wirt-b1.gif");
-        krabat_talk_body[2] = getPicture("gfx/hoscenc/wirt-b2.gif");
-        krabat_talk_body[3] = getPicture("gfx/hoscenc/wirt-b3.gif");
+        krabat_talk_body[0] = getPicture("gfx/hoscenc/wirt-b0.png");
+        krabat_talk_body[1] = getPicture("gfx/hoscenc/wirt-b1.png");
+        krabat_talk_body[2] = getPicture("gfx/hoscenc/wirt-b2.png");
+        krabat_talk_body[3] = getPicture("gfx/hoscenc/wirt-b3.png");
     }
 
     @Override

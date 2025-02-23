@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Murja extends Mainloc {
+public class Murja extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Murja.class);
     private GenericImage backl;
     private GenericImage backr;
@@ -69,8 +69,8 @@ public class Murja extends Mainloc {
         mainFrame.Freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
-        if (mainFrame.Actions[953]) {
-            mainFrame.Actions[701] = true;
+        if (mainFrame.actions[953]) {
+            mainFrame.actions[701] = true;
         }
 
         mainFrame.CheckKrabat();
@@ -88,15 +88,15 @@ public class Murja extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(10, 473, 1259, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(1260, 1270, 1260, 1270, 435, 479));
 
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -135,13 +135,13 @@ public class Murja extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        backl = getPicture("gfx-dd/murja/murja-l.gif");
-        backr = getPicture("gfx-dd/murja/murja-r.gif");
-        himmel = getPicture("gfx-dd/murja/mur-sky.gif");
-        laterne = getPicture("gfx-dd/murja/laterna.gif");
-        openDoor = getPicture("gfx-dd/murja/mdurje2.gif");
-        closedDoor = getPicture("gfx-dd/murja/mdurje.gif");
-        busch = getPicture("gfx-dd/murja/mbusch.gif");
+        backl = getPicture("gfx-dd/murja/murja-l.png");
+        backr = getPicture("gfx-dd/murja/murja-r.png");
+        himmel = getPicture("gfx-dd/murja/mur-sky.png");
+        laterne = getPicture("gfx-dd/murja/laterna.png");
+        openDoor = getPicture("gfx-dd/murja/mdurje2.png");
+        closedDoor = getPicture("gfx-dd/murja/mdurje.png");
+        busch = getPicture("gfx-dd/murja/mbusch.png");
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -150,34 +150,34 @@ public class Murja extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollX = scrollwert;
             }
             Cursorform = 200;
             if (setAnim) {
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
             }
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen  ?????????????????????
-        g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0);
+        g.drawImage(himmel, 65 + mainFrame.scrollX / scrollTurm, 0);
         g.drawImage(backl, 0, 0);
         g.drawImage(backr, 640, 0);
 
         // Parallax - Scrolling ausfuehren  ??????????????????????
         if (mainFrame.isScrolling) {
-            int xtemp = mainFrame.scrollx - 5;
+            int xtemp = mainFrame.scrollX - 5;
             if (xtemp < 0) {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 500, 105);
-            g.drawImage(himmel, 65 + mainFrame.scrollx / scrollTurm, 0);
+            g.drawImage(himmel, 65 + mainFrame.scrollX / scrollTurm, 0);
             g.drawImage(backl, 0, 0);
             g.drawImage(backr, 640, 0);
         }
@@ -187,7 +187,7 @@ public class Murja extends Mainloc {
         g.drawImage(isDoorOpen ? openDoor : closedDoor, 103, 184);
 
         // Parallaxer fuer Laterne, muss immer Hintergrund loeschen ?????
-        float xtf = 900 - (float) ((mainFrame.scrollx - 110) * 4) / scrollLaterne;
+        float xtf = 900 - (float) ((mainFrame.scrollX - 110) * 4) / scrollLaterne;
         int laterneAdd = (int) xtf;
         g.setClip(laterneAdd - 10, 0, 190 + 20, 479);
         g.drawImage(backl, 0, 0);
@@ -195,10 +195,10 @@ public class Murja extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -206,7 +206,7 @@ public class Murja extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -233,7 +233,7 @@ public class Murja extends Mainloc {
         }
 
         // Laterne zeichnen, wenn im Bild (Clipping nur temporaer !!!)
-        if (mainFrame.scrollx > 110) // Diesen Wert bitte exakt !!
+        if (mainFrame.scrollX > 110) // Diesen Wert bitte exakt !!
         {
             GenericRectangle may;
             may = g.getClipBounds();
@@ -261,7 +261,7 @@ public class Murja extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -275,7 +275,7 @@ public class Murja extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -298,9 +298,9 @@ public class Murja extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // Cursorpunkt mit Scrolloffset berechnen
         GenericPoint pTemp = e.getPoint();
-        pTemp.x += mainFrame.scrollx;
+        pTemp.x += mainFrame.scrollX;
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -308,7 +308,7 @@ public class Murja extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -318,7 +318,7 @@ public class Murja extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -333,15 +333,15 @@ public class Murja extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -366,7 +366,7 @@ public class Murja extends Mainloc {
                         pTemp = new GenericPoint(pExitHaska.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -385,14 +385,14 @@ public class Murja extends Mainloc {
                         pTemp = new GenericPoint(pExitTerassa.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -415,31 +415,31 @@ public class Murja extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // neuen Punkt erzeugen wg. Scrolling
-        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
+        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollX, pTxxx.y + mainFrame.scrollY);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -458,7 +458,7 @@ public class Murja extends Mainloc {
 
             if (ausgangHaska.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -466,7 +466,7 @@ public class Murja extends Mainloc {
 
             if (ausgangTerassa.IsPointInRect(pTemp)) {
                 if (Cursorform != 9) {
-                    mainFrame.setCursor(mainFrame.Cleft);
+                    mainFrame.setCursor(mainFrame.cursorLeft);
                     Cursorform = 9;
                 }
                 return;
@@ -474,7 +474,7 @@ public class Murja extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -490,12 +490,12 @@ public class Murja extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -537,8 +537,8 @@ public class Murja extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -556,7 +556,7 @@ public class Murja extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -580,7 +580,7 @@ public class Murja extends Mainloc {
 
             case 600:
                 // hinter Busch hervorkommen
-                mainFrame.wegGeher.SetzeNeuenWeg(new GenericPoint(140, 477));
+                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(140, 477));
                 nextActionID = 605;
                 break;
 
@@ -597,14 +597,14 @@ public class Murja extends Mainloc {
 
             case 620:
                 // aus dem Bild laufen
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(new GenericPoint(-80, 478));
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(new GenericPoint(-80, 478));
                 nextActionID = 630;
                 break;
 
             case 630:
                 // umziehen
-                mainFrame.Actions[511] = false;
-                mainFrame.Actions[850] = false;
+                mainFrame.actions[511] = false;
+                mainFrame.actions[850] = false;
                 mainFrame.CheckKrabat();
                 mainFrame.inventory.vInventory.addElement(41);
                 mainFrame.inventory.vInventory.removeElement(53);
@@ -613,15 +613,15 @@ public class Murja extends Mainloc {
 
             case 640:
                 // wieder herkommen
-                mainFrame.wegGeher.SetzeNeuenWeg(new GenericPoint(119, 474));
+                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(119, 474));
                 nextActionID = 650;
                 break;
 
             case 650:
                 // Ende Anim
-                mainFrame.Clipset = false;
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isClipSet = false;
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;

@@ -51,14 +51,14 @@ public class Straza1 extends Mainanim {
     }
 
     private void InitImages() {
-        straza_stand[0] = getPicture("gfx-dd/straze/straza1.gif");
-        straza_stand[1] = getPicture("gfx-dd/straze/straza1a.gif");
-        straza_stand[2] = getPicture("gfx-dd/straze/straza1b.gif");
-        straza_stand[3] = getPicture("gfx-dd/straze/straza1c.gif");
+        straza_stand[0] = getPicture("gfx-dd/straze/straza1.png");
+        straza_stand[1] = getPicture("gfx-dd/straze/straza1a.png");
+        straza_stand[2] = getPicture("gfx-dd/straze/straza1b.png");
+        straza_stand[3] = getPicture("gfx-dd/straze/straza1c.png");
 
-        straza_talk[0] = getPicture("gfx-dd/straze/straza1-t1.gif");
-        straza_talk[1] = getPicture("gfx-dd/straze/straza1-t2.gif");
-        straza_talk[2] = getPicture("gfx-dd/straze/straza1-t3.gif");
+        straza_talk[0] = getPicture("gfx-dd/straze/straza1-t1.png");
+        straza_talk[1] = getPicture("gfx-dd/straze/straza1-t2.png");
+        straza_talk[2] = getPicture("gfx-dd/straze/straza1-t3.png");
     }
 
     // Zeichne Wache, wie er dasteht oder spricht

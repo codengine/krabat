@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Casnik extends Mainloc {
+public class Casnik extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Casnik.class);
     private GenericImage background;
     private GenericImage kozuch;
@@ -133,7 +133,7 @@ public class Casnik extends Mainloc {
 
         pendel = new GenericImage[3];
 
-        hlStraznik = new HlownyStraznik(mainFrame, true, mainFrame.Actions[705]);
+        hlStraznik = new HlownyStraznik(mainFrame, true, mainFrame.actions[705]);
         //                                           ist casnik
         Dialog = new Multiple2(mainFrame);
 
@@ -150,12 +150,12 @@ public class Casnik extends Mainloc {
         if (oldLocation != 0) {
             // Actions fuer Versuche zuruecksetzen
             for (int i = 615; i <= 620; i++) {
-                mainFrame.Actions[i] = false;
+                mainFrame.actions[i] = false;
             }
         }
 
         // Grenzen setzen (abhaengig vom Tigerfell)
-        if (!mainFrame.Actions[600]) {
+        if (!mainFrame.actions[600]) {
             initBorders();
         } else {
             initBordersWithoutTiger();
@@ -178,59 +178,59 @@ public class Casnik extends Mainloc {
         }
 
         // beim Init festlegen, ob geschnarcht wird oder nicht
-        straznikSchnarcht = mainFrame.Actions[705];
+        straznikSchnarcht = mainFrame.actions[705];
     }
 
     private void initBorders() {
         // Grenzen setzen, wenn Tigerfell liegt
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 355, 20, 355, 404, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(505, 620, 505, 620, 404, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 620, 20, 620, 364, 403));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(262, 455, 198, 550, 320, 363));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(415, 470, 415, 455, 300, 319));
 
-        mainFrame.wegSucher.ClearMatrix(5);
+        mainFrame.pathFinder.ClearMatrix(5);
 
-        mainFrame.wegSucher.PosVerbinden(0, 2);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
-        mainFrame.wegSucher.PosVerbinden(3, 4);
+        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(3, 4);
     }
 
     private void initBordersWithoutTiger() {
         // Grenzen setzen, wenn kein Tigerfell liegt
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(20, 620, 20, 620, 364, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(262, 455, 198, 550, 320, 363));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(415, 470, 415, 455, 300, 319));
 
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/casnik/casnik.gif");
-        kozuch = getPicture("gfx-dd/casnik/kozuch.gif");
-        umdrei = getPicture("gfx-dd/casnik/cas3.gif");
-        umvier = getPicture("gfx-dd/casnik/cas4.gif");
-        kluc = getPicture("gfx-dd/casnik/pkluc.gif");
-        zeitumstell = getPicture("gfx-dd/casnik/s-o-hlebija.gif");
+        background = getPicture("gfx-dd/casnik/casnik.png");
+        kozuch = getPicture("gfx-dd/casnik/kozuch.png");
+        umdrei = getPicture("gfx-dd/casnik/cas3.png");
+        umvier = getPicture("gfx-dd/casnik/cas4.png");
+        kluc = getPicture("gfx-dd/casnik/pkluc.png");
+        zeitumstell = getPicture("gfx-dd/casnik/s-o-hlebija.png");
 
-        pendel[0] = getPicture("gfx-dd/casnik/pendel2.gif");
-        pendel[1] = getPicture("gfx-dd/casnik/pendel1.gif");
-        pendel[2] = getPicture("gfx-dd/casnik/pendel3.gif");
+        pendel[0] = getPicture("gfx-dd/casnik/pendel2.png");
+        pendel[1] = getPicture("gfx-dd/casnik/pendel1.png");
+        pendel[2] = getPicture("gfx-dd/casnik/pendel3.png");
 
     }
 
@@ -247,27 +247,27 @@ public class Casnik extends Mainloc {
           }*/
 
         // wenn noch ie dringewesen, dann Sound von Uhr "um drei"
-        if (!mainFrame.Actions[608]) {
-            mainFrame.Actions[608] = true;
-            mainFrame.wave.PlayFile("sfx-dd/drei.wav");
+        if (!mainFrame.actions[608]) {
+            mainFrame.actions[608] = true;
+            mainFrame.soundPlayer.PlayFile("sfx-dd/drei.wav");
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
 
         // liegt Tigerfell noch da ?
-        if (!mainFrame.Actions[600]) {
+        if (!mainFrame.actions[600]) {
             g.setClip(355, 412, 145, 75);
             g.drawImage(background, 0, 0);
             g.drawImage(kozuch, 355, 412);
@@ -276,7 +276,7 @@ public class Casnik extends Mainloc {
         // Uhr richtig zeichnen
         g.setClip(311, 154, 25, 24);
         g.drawImage(background, 0, 0);
-        g.drawImage(!mainFrame.Actions[606] ? umdrei : umvier, 311, 154);
+        g.drawImage(!mainFrame.actions[606] ? umdrei : umvier, 311, 154);
 
         // Hier das Uhrpendel rein
         g.setClip(309, 190, 32, 59);
@@ -309,7 +309,7 @@ public class Casnik extends Mainloc {
 
 
         // Schluessel zeichnen, wenn noch da
-        if (!mainFrame.Actions[951]) {
+        if (!mainFrame.actions[951]) {
             g.setClip(129, 235, 6, 16);
             g.drawImage(background, 0, 0);
             g.drawImage(kluc, 129, 235);
@@ -317,11 +317,11 @@ public class Casnik extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Straznik weiterbewegen
-        readyFlag = hlStraznik.evalStraznik(TalkPerson, trink, schlafein, mainFrame.Actions[706]);
+        readyFlag = hlStraznik.evalStraznik(TalkPerson, trink, schlafein, mainFrame.actions[706]);
         // Cliprect nun setzen
         temp = hlStraznik.straznikRect(TalkPerson);
         g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
@@ -336,7 +336,7 @@ public class Casnik extends Mainloc {
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -376,7 +376,7 @@ public class Casnik extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -417,7 +417,7 @@ public class Casnik extends Mainloc {
             GenericRectangle may;
             may = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
+            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
@@ -427,7 +427,7 @@ public class Casnik extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -435,7 +435,7 @@ public class Casnik extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -446,8 +446,8 @@ public class Casnik extends Mainloc {
         }
 
         // Multiple Choice ausfuehren
-        if (mainFrame.isMultiple) {
-            mainFrame.Clipset = false;
+        if (mainFrame.isMultipleChoiceActive) {
+            mainFrame.isClipSet = false;
             Dialog.paintMultiple(g);
             return;
         }
@@ -469,14 +469,14 @@ public class Casnik extends Mainloc {
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
         // bei Multiple Choice extra Mouseroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseEvent(e);
             return;
         }
 
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -485,7 +485,7 @@ public class Casnik extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -495,7 +495,7 @@ public class Casnik extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -510,7 +510,7 @@ public class Casnik extends Mainloc {
                 }
 
                 // Ausreden fuer Kozuch, wenn noch da
-                if (rectKozuch.IsPointInRect(pTemp) && !mainFrame.Actions[600]) {
+                if (rectKozuch.IsPointInRect(pTemp) && !mainFrame.actions[600]) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                     pTemp = pKozuch;
@@ -522,11 +522,11 @@ public class Casnik extends Mainloc {
                 // nicht in der Naehe Sonnenuhr und schon schlafend ODER
                 // noch stehend
                 if (hlStraznik.straznikRect(TalkPerson).IsPointInRect(pTemp) &&
-                        (mainFrame.Actions[706] ||
-                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.Actions[705] ||
-                                !mainFrame.Actions[705])) {
+                        (mainFrame.actions[706] ||
+                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.actions[705] ||
+                                !mainFrame.actions[705])) {
                     // Wein geben, wenn es geht
-                    if (mainFrame.whatItem == 44 && mainFrame.Actions[606]) {
+                    if (mainFrame.whatItem == 44 && mainFrame.actions[606]) {
                         nextActionID = 205;
                     } else {
                         // Wein geben, wenn zu zeitig
@@ -537,7 +537,7 @@ public class Casnik extends Mainloc {
                 }
 
                 // Ausreden fuer Schluessel
-                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.Actions[951]) {
+                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.actions[951]) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = pSchluessel;
@@ -577,23 +577,23 @@ public class Casnik extends Mainloc {
 
                 // Ausreden fuer Sonnenuhr
                 // wenn drin, noch nicht weg aber schon da
-                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.Actions[706] &&
-                        mainFrame.Actions[705]) {
+                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&
+                        mainFrame.actions[705]) {
                     // Extra - Sinnloszeug
                     nextActionID = 250;
                     pTemp = pSonnenuhr;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -618,7 +618,7 @@ public class Casnik extends Mainloc {
                         pTemp = new GenericPoint(pExitDown.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -637,7 +637,7 @@ public class Casnik extends Mainloc {
                         pTemp = new GenericPoint(pExitUp.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -646,21 +646,21 @@ public class Casnik extends Mainloc {
 
                 // HlStraznik ansehen
                 if (hlStraznik.straznikRect(TalkPerson).IsPointInRect(pTemp) &&
-                        (mainFrame.Actions[706] ||
-                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.Actions[705] ||
-                                !mainFrame.Actions[705])) {
+                        (mainFrame.actions[706] ||
+                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.actions[705] ||
+                                !mainFrame.actions[705])) {
                     nextActionID = 1;
                     pTemp = pStraznik;
                 }
 
                 // Schluessel ansehen
-                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.Actions[951]) {
+                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.actions[951]) {
                     nextActionID = 2;
                     pTemp = pSchluessel;
                 }
 
                 // Tigerfell ansehen
-                if (!mainFrame.Actions[600] && rectKozuch.IsPointInRect(pTemp)) {
+                if (!mainFrame.actions[600] && rectKozuch.IsPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = pKozuch;
                 }
@@ -690,47 +690,47 @@ public class Casnik extends Mainloc {
                 }
 
                 // Sonnenuhr ansehen
-                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.Actions[706] &&
-                        mainFrame.Actions[705]) {
+                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&
+                        mainFrame.actions[705]) {
                     nextActionID = 8;
                     pTemp = pSonnenuhr;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit dem Hl.Straznik reden
                 if (hlStraznik.straznikRect(TalkPerson).IsPointInRect(pTemp) &&
-                        (mainFrame.Actions[706] ||
-                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.Actions[705] ||
-                                !mainFrame.Actions[705])) {
-                    if (mainFrame.Actions[605]) {
+                        (mainFrame.actions[706] ||
+                                !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.actions[705] ||
+                                !mainFrame.actions[705])) {
+                    if (mainFrame.actions[605]) {
                         // er ist schon eingeschlafen
                         nextActionID = 70;
                     } else {
                         // er kann noch reden
                         nextActionID = 50;
                     }
-                    mainFrame.wegGeher.SetzeNeuenWeg(pStraznik);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pStraznik);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kozuch mitnehmen
                 if (rectKozuch.IsPointInRect(pTemp) &&
-                        !mainFrame.Actions[600]) {
+                        !mainFrame.actions[600]) {
                     nextActionID = 40;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pKozuch);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pKozuch);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schluessel mitnehmen
-                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.Actions[951]) {
+                if (rectSchluessel.IsPointInRect(pTemp) && !mainFrame.actions[951]) {
                     nextActionID = 45;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSchluessel);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSchluessel);
                     mainFrame.repaint();
                     return;
                 }
@@ -744,7 +744,7 @@ public class Casnik extends Mainloc {
                 // Morgenstern mitnehmen
                 if (morgenstern.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pMorgenstern);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pMorgenstern);
                     mainFrame.repaint();
                     return;
                 }
@@ -752,7 +752,7 @@ public class Casnik extends Mainloc {
                 // Standuhr mitnehmen
                 if (standuhr.IsPointInRect(pTemp) && !zeiger.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pStanduhr);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pStanduhr);
                     mainFrame.repaint();
                     return;
                 }
@@ -760,7 +760,7 @@ public class Casnik extends Mainloc {
                 // Zeiger mitnehmen
                 if (zeiger.IsPointInRect(pTemp)) {
                     nextActionID = 75;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pZeiger);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pZeiger);
                     mainFrame.repaint();
                     return;
                 }
@@ -768,16 +768,16 @@ public class Casnik extends Mainloc {
                 // Statua mitnehmen
                 if (statue.IsPointInRect(pTemp)) {
                     nextActionID = 80;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pStatue);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pStatue);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Sonnenuhr mitnehmen
-                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.Actions[706] &&
-                        mainFrame.Actions[705]) {
+                if (sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&
+                        mainFrame.actions[705]) {
                     nextActionID = 90;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSonnenuhr);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSonnenuhr);
                     mainFrame.repaint();
                     return;
                 }
@@ -785,7 +785,7 @@ public class Casnik extends Mainloc {
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
                 mainFrame.krabat.StopWalking();
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 ResetAnims();
             }
@@ -796,61 +796,61 @@ public class Casnik extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // bei Multiple Choice eigene Routine aufrufen
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseMoveEvent(pTemp);
             return;
         }
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
-                    rectKozuch.IsPointInRect(pTemp) && !mainFrame.Actions[600] ||
-                    sonnenuhr.IsPointInRect(pTemp) && !mainFrame.Actions[706] &&
-                            mainFrame.Actions[705] ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
+                    rectKozuch.IsPointInRect(pTemp) && !mainFrame.actions[600] ||
+                    sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&
+                            mainFrame.actions[705] ||
                     hlStraznik.straznikRect(TalkPerson).IsPointInRect(pTemp) &&
-                            (mainFrame.Actions[706] ||
-                                    !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.Actions[705] ||
-                                    !mainFrame.Actions[705]) ||
-                    rectSchluessel.IsPointInRect(pTemp) && !mainFrame.Actions[951] ||
+                            (mainFrame.actions[706] ||
+                                    !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.actions[705] ||
+                                    !mainFrame.actions[705]) ||
+                    rectSchluessel.IsPointInRect(pTemp) && !mainFrame.actions[951] ||
                     morgenstern.IsPointInRect(pTemp) || standuhr.IsPointInRect(pTemp) ||
                     statue.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rectKozuch.IsPointInRect(pTemp) && !mainFrame.Actions[600] ||
+            if (rectKozuch.IsPointInRect(pTemp) && !mainFrame.actions[600] ||
                     hlStraznik.straznikRect(TalkPerson).IsPointInRect(pTemp) &&
-                            (mainFrame.Actions[706] ||
-                                    !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.Actions[705] ||
-                                    !mainFrame.Actions[705]) ||
-                    sonnenuhr.IsPointInRect(pTemp) && !mainFrame.Actions[706] &&
-                            mainFrame.Actions[705] ||
-                    rectSchluessel.IsPointInRect(pTemp) && !mainFrame.Actions[951] ||
+                            (mainFrame.actions[706] ||
+                                    !umsonnenuhr.IsPointInRect(pTemp) && mainFrame.actions[705] ||
+                                    !mainFrame.actions[705]) ||
+                    sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&
+                            mainFrame.actions[705] ||
+                    rectSchluessel.IsPointInRect(pTemp) && !mainFrame.actions[951] ||
                     morgenstern.IsPointInRect(pTemp) || standuhr.IsPointInRect(pTemp) ||
                     statue.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -858,7 +858,7 @@ public class Casnik extends Mainloc {
 
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -866,7 +866,7 @@ public class Casnik extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 6) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 6;
                 }
                 return;
@@ -874,7 +874,7 @@ public class Casnik extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -882,7 +882,7 @@ public class Casnik extends Mainloc {
 
     @Override
     public void evalMouseExitEvent() {
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             Dialog.evalMouseExitEvent();
         }
     }
@@ -892,17 +892,17 @@ public class Casnik extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Bei Multiple Choice eigene Keyroutine
-        if (mainFrame.isMultiple) {
+        if (mainFrame.isMultipleChoiceActive) {
             return;
         }
 
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -944,8 +944,8 @@ public class Casnik extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
         ResetAnims();
     }
@@ -963,10 +963,10 @@ public class Casnik extends Mainloc {
 
         // nur kurz vor Ausschlagende abspielen
         if (Pendelpos == 2 && tick) {
-            mainFrame.wave.PlayFile("sfx-dd/tick.wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/tick.wav");
         }
         if (Pendelpos == 0 && !tick) {
-            mainFrame.wave.PlayFile("sfx-dd/tack.wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/tack.wav");
         }
     }
 
@@ -985,7 +985,7 @@ public class Casnik extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -1001,7 +1001,7 @@ public class Casnik extends Mainloc {
             case 1:
                 // Hlowny straznik anschauen
                 // Testen, ob er schon schlaeft
-                if (!mainFrame.Actions[605]) {
+                if (!mainFrame.actions[605]) {
                     KrabatSagt("Casnik_1", fStraznik, 3, 0, 0);
                 } else {
                     KrabatSagt("Casnik_2", fStraznik, 3, 0, 0);
@@ -1011,7 +1011,7 @@ public class Casnik extends Mainloc {
             case 2:
                 // Schluessel anschauen
                 // Test, ob Krabat schon weiss, wozu der Schluessel ist
-                if (!mainFrame.Actions[602]) {
+                if (!mainFrame.actions[602]) {
                     KrabatSagt("Casnik_3", fKluc, 3, 0, 0);
                 } else {
                     KrabatSagt("Casnik_4", fKluc, 3, 0, 0);
@@ -1046,7 +1046,7 @@ public class Casnik extends Mainloc {
             case 6:
                 // Zeiger anschauen
                 // Entscheidung, ob schon vorgestellt
-                if (!mainFrame.Actions[606]) {
+                if (!mainFrame.actions[606]) {
                     KrabatSagt("Casnik_9", fZeiger, 3, 0, 0);
                 } else {
                     KrabatSagt("Casnik_10", fZeiger, 3, 0, 0);
@@ -1065,11 +1065,11 @@ public class Casnik extends Mainloc {
 
             case 40:
                 // Tigerfell mitnehmen und Bewegungsgrenzen neu setzen
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 initBordersWithoutTiger();
                 mainFrame.krabat.SetFacing(fTiger);
                 mainFrame.krabat.nAnimation = 32;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 43;
                 Counter = 5;
                 break;
@@ -1078,42 +1078,42 @@ public class Casnik extends Mainloc {
                 // Ende take Kozuch
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(36);
-                    mainFrame.Clipset = false;
-                    mainFrame.Actions[600] = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.actions[600] = true;
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
 
             case 45:
                 // Schluessel mitnehmen
-                if (mainFrame.Actions[605]) {
+                if (mainFrame.actions[605]) {
                     // darf mitnehmen (Wache hat Wein bekommen -> besoffen)
-                    mainFrame.fPlayAnim = true;
+                    mainFrame.isAnimRunning = true;
                     mainFrame.krabat.SetFacing(fKluc);
                     mainFrame.krabat.nAnimation = 120;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                     nextActionID = 48;
                     Counter = 5;
                 } else {
                     // 4 mal darf Kr. versuchen wegzunehmen
-                    if (!mainFrame.Actions[615] || !mainFrame.Actions[616] || !mainFrame.Actions[617]) {
-                        mainFrame.fPlayAnim = true;
-                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                    if (!mainFrame.actions[615] || !mainFrame.actions[616] || !mainFrame.actions[617]) {
+                        mainFrame.isAnimRunning = true;
+                        evalMouseMoveEvent(mainFrame.mousePoint);
                         nextActionID = 301;
-                        if (mainFrame.Actions[616]) {
-                            mainFrame.Actions[617] = true;
+                        if (mainFrame.actions[616]) {
+                            mainFrame.actions[617] = true;
                         }
-                        if (mainFrame.Actions[615]) {
-                            mainFrame.Actions[616] = true;
+                        if (mainFrame.actions[615]) {
+                            mainFrame.actions[616] = true;
                         }
-                        if (!mainFrame.Actions[615]) {
-                            mainFrame.Actions[615] = true;
+                        if (!mainFrame.actions[615]) {
+                            mainFrame.actions[615] = true;
                         }
                     } else {
                         // zur Strafe in die Kueche zurueck
@@ -1126,14 +1126,14 @@ public class Casnik extends Mainloc {
                 // Ende take Schluessel
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(47);
-                    mainFrame.Clipset = false;
-                    mainFrame.Actions[951] = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.actions[951] = true;
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -1141,10 +1141,10 @@ public class Casnik extends Mainloc {
             case 50:
                 // Krabat beginnt MC (Straznik benutzen)
                 mainFrame.krabat.SetFacing(9);
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 // Sequenz vor MC ? (beim ersten Ansprechen)
-                if (mainFrame.Actions[601]) {
+                if (mainFrame.actions[601]) {
                     nextActionID = 600;
                 } else {
                     nextActionID = 608;
@@ -1178,10 +1178,10 @@ public class Casnik extends Mainloc {
 
             case 90:
                 // Sonnenuhr mitnehmen
-                mainFrame.fPlayAnim = true;
+                mainFrame.isAnimRunning = true;
                 mainFrame.krabat.SetFacing(fSonnenuhr);
                 mainFrame.krabat.nAnimation = 121;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 93;
                 Counter = 5;
                 break;
@@ -1190,14 +1190,14 @@ public class Casnik extends Mainloc {
                 // Ende take Sonnenuhr
                 if (--Counter == 1) {
                     mainFrame.inventory.vInventory.addElement(45);
-                    mainFrame.Clipset = false;
-                    mainFrame.Actions[706] = true;
+                    mainFrame.isClipSet = false;
+                    mainFrame.actions[706] = true;
                 }
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -1209,23 +1209,23 @@ public class Casnik extends Mainloc {
 
             case 101:
                 // Gehe zu Chodba
-                if (mainFrame.Actions[605]) {
+                if (mainFrame.actions[605]) {
                     // darf zur couch gehen (Wache hat Wein bekommen)
                     NeuesBild(144, locationID);
                 } else {
                     // 4 mal darf Kr. versuchen rauszugehen
-                    if (!mainFrame.Actions[618] || !mainFrame.Actions[619] || !mainFrame.Actions[620]) {
-                        mainFrame.fPlayAnim = true;
-                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                    if (!mainFrame.actions[618] || !mainFrame.actions[619] || !mainFrame.actions[620]) {
+                        mainFrame.isAnimRunning = true;
+                        evalMouseMoveEvent(mainFrame.mousePoint);
                         nextActionID = 300;
-                        if (mainFrame.Actions[619]) {
-                            mainFrame.Actions[620] = true;
+                        if (mainFrame.actions[619]) {
+                            mainFrame.actions[620] = true;
                         }
-                        if (mainFrame.Actions[618]) {
-                            mainFrame.Actions[619] = true;
+                        if (mainFrame.actions[618]) {
+                            mainFrame.actions[619] = true;
                         }
-                        if (!mainFrame.Actions[618]) {
-                            mainFrame.Actions[618] = true;
+                        if (!mainFrame.actions[618]) {
+                            mainFrame.actions[618] = true;
                         }
                     } else {
                         // zur Strafe in die Kueche zurueck
@@ -1256,11 +1256,11 @@ public class Casnik extends Mainloc {
 
             case 170:
                 // Uhr vorstellen
-                if (!mainFrame.Actions[606]) {
-                    mainFrame.fPlayAnim = true;
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                if (!mainFrame.actions[606]) {
+                    mainFrame.isAnimRunning = true;
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                     SoundCountdown = 30;
-                    mainFrame.invCursor = false;
+                    mainFrame.isInventoryCursor = false;
                     mainFrame.krabat.SetFacing(fZeiger);
                     nextActionID = 171;
                     krabatStelltUhrUm = true;
@@ -1275,12 +1275,12 @@ public class Casnik extends Mainloc {
                 if (--umstellCounter > 1) {
                     break;
                 }
-                mainFrame.Actions[606] = true;
-                mainFrame.Clipset = false;
+                mainFrame.actions[606] = true;
+                mainFrame.isClipSet = false;
                 krabatStelltUhrUm = false;
-                mainFrame.wave.PlayFile("sfx-dd/vier.wav");
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.soundPlayer.PlayFile("sfx-dd/vier.wav");
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -1293,8 +1293,8 @@ public class Casnik extends Mainloc {
 
             case 185:
                 // Reaktion Hl.Straznik, wenn Wein zu frueh angeboten
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.krabat.nAnimation = 142;
                 PersonSagt("Casnik_19", fStraznik, 48, 2, 186, hlStraznik.evalTalkPoint());
                 break;
@@ -1307,8 +1307,8 @@ public class Casnik extends Mainloc {
 
             case 187:
                 // Ende dieser Anim
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 nextActionID = 0;
                 break;
@@ -1326,14 +1326,14 @@ public class Casnik extends Mainloc {
 
             case 205:
                 // Gib Wein an Straznik
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 noSoundActive = true;
-                mainFrame.invCursor = false;
+                mainFrame.isInventoryCursor = false;
                 mainFrame.krabat.nAnimation = 142;
                 PersonSagt("Casnik_21", fStraznik, 48, 2, 220, hlStraznik.evalTalkPoint());
-                mainFrame.Actions[605] = true;
-                mainFrame.Actions[705] = true;
+                mainFrame.actions[605] = true;
+                mainFrame.actions[705] = true;
                 break;
 
             case 220:
@@ -1349,7 +1349,7 @@ public class Casnik extends Mainloc {
                     break;
                 }
                 mainFrame.krabat.StopAnim();
-                mainFrame.wave.PlayFile("sfx-dd/pic.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/pic.wav");
                 mainFrame.inventory.vInventory.removeElement(44); // Wein rausnehmen
                 nextActionID = 230;
                 break;
@@ -1379,8 +1379,8 @@ public class Casnik extends Mainloc {
                 // Ende Weintrinkanim  
                 straznikSchnarcht = true;
                 noSoundActive = false;
-                mainFrame.fPlayAnim = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;
@@ -1410,7 +1410,7 @@ public class Casnik extends Mainloc {
                         break;
                 }
 
-                outputTextPos = mainFrame.ifont.CenterText(outputText, hlStraznik.evalTalkPoint());
+                outputTextPos = mainFrame.imageFont.CenterText(outputText, hlStraznik.evalTalkPoint());
                 TalkPerson = 48;
                 TalkPause = 2;
                 nextActionID = 800;
@@ -1434,7 +1434,7 @@ public class Casnik extends Mainloc {
                         break;
                 }
 
-                outputTextPos = mainFrame.ifont.CenterText(outputText, hlStraznik.evalTalkPoint());
+                outputTextPos = mainFrame.imageFont.CenterText(outputText, hlStraznik.evalTalkPoint());
                 TalkPerson = 48;
                 TalkPause = 2;
                 nextActionID = 800;
@@ -1460,19 +1460,19 @@ public class Casnik extends Mainloc {
                 Dialog.ExtendMC("Casnik_34", 1000, 607, new int[]{607}, 800);
                 Dialog.ExtendMC("Casnik_35", 607, 1000, null, 800);
 
-                mainFrame.isMultiple = true;
-                mainFrame.fPlayAnim = false;
+                mainFrame.isMultipleChoiceActive = true;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 601;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.ifont.KrabatText(outputText);
+                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
                 TalkPerson = 1;
                 TalkPause = 2;
 
@@ -1484,7 +1484,7 @@ public class Casnik extends Mainloc {
             case 608:
                 // Reaktion Hl.Straznik
                 PersonSagt("Casnik_23", 0, 48, 2, 600, hlStraznik.evalTalkPoint());
-                mainFrame.Actions[601] = true; // Flag setzen, Diese Zeile nicht wiederholen
+                mainFrame.actions[601] = true; // Flag setzen, Diese Zeile nicht wiederholen
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
@@ -1516,10 +1516,10 @@ public class Casnik extends Mainloc {
 
             case 800:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.Actions[607] = false;
-                mainFrame.fPlayAnim = false;
+                mainFrame.actions[607] = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
@@ -1549,7 +1549,7 @@ public class Casnik extends Mainloc {
             case 30:
                 // Text ueber Hl. Straznik ausgeben
                 AnimOutputText = Start.stringManager.getTranslation("Casnik_42");
-                AnimOutputTextPos = mainFrame.ifont.CenterAnimText(AnimOutputText, hlStraznik.evalTalkPoint());
+                AnimOutputTextPos = mainFrame.imageFont.CenterAnimText(AnimOutputText, hlStraznik.evalTalkPoint());
                 AnimCounter = 50;
                 AnimTalkPerson = 48;
                 AnimID = 40;
@@ -1565,7 +1565,7 @@ public class Casnik extends Mainloc {
             case 50:
                 // variable Pause dazwischen
                 AnimOutputText = "";
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 AnimCounter = (int) (Math.random() * 70 + 50);
                 AnimID = 60;
                 break;

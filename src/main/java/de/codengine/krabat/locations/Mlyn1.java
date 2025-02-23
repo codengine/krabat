@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Mlyn1 extends Mainloc {
+public class Mlyn1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mlyn1.class);
     private GenericImage background;
     private GenericImage offeneTuer;
@@ -124,18 +124,18 @@ public class Mlyn1 extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(154, 639, 242, 639, 442, 479));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(90, 100, 154, 164, 435, 441));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(90, 100, 90, 100, 420, 434));
-        mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(60, 70, 77, 100, 395, 419));
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 639, 242, 639, 442, 479));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(90, 100, 154, 164, 435, 441));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(90, 100, 90, 100, 420, 434));
+        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(60, 70, 77, 100, 395, 419));
 
         // Matrix loeschen
-        mainFrame.wegSucher.ClearMatrix(4);
+        mainFrame.pathFinder.ClearMatrix(4);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
 
         InitImages();
 
@@ -149,30 +149,30 @@ public class Mlyn1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mlyn/mlyn2.gif");
-        offeneTuer = getPicture("gfx/mlyn/mldurje.gif");
-        foreground = getPicture("gfx/mlyn/mlmauer.gif");
+        background = getPicture("gfx/mlyn/mlyn2.png");
+        offeneTuer = getPicture("gfx/mlyn/mldurje.png");
+        foreground = getPicture("gfx/mlyn/mlmauer.png");
 
-        Rad[1] = getPicture("gfx/mlyn/r1.gif");
-        Rad[2] = getPicture("gfx/mlyn/r2.gif");
-        Rad[3] = getPicture("gfx/mlyn/r3.gif");
-        Rad[4] = getPicture("gfx/mlyn/r4.gif");
-        Rad[5] = getPicture("gfx/mlyn/r5.gif");
-        Rad[6] = getPicture("gfx/mlyn/r6.gif");
-        Rad[7] = getPicture("gfx/mlyn/r7.gif");
-        Rad[8] = getPicture("gfx/mlyn/r8.gif");
-        Rad[9] = getPicture("gfx/mlyn/r9.gif");
-        Rad[10] = getPicture("gfx/mlyn/r10.gif");
-        Rad[11] = getPicture("gfx/mlyn/r11.gif");
-        Rad[12] = getPicture("gfx/mlyn/r12.gif");
-        Rad[13] = getPicture("gfx/mlyn/r13.gif");
-        Rad[14] = getPicture("gfx/mlyn/r14.gif");
-        Rad[15] = getPicture("gfx/mlyn/r15.gif");
-        Rad[16] = getPicture("gfx/mlyn/r16.gif");
-        Rad[17] = getPicture("gfx/mlyn/r17.gif");
-        Rad[18] = getPicture("gfx/mlyn/r18.gif");
-        Rad[19] = getPicture("gfx/mlyn/r19.gif");
-        Rad[20] = getPicture("gfx/mlyn/r20.gif");
+        Rad[1] = getPicture("gfx/mlyn/r1.png");
+        Rad[2] = getPicture("gfx/mlyn/r2.png");
+        Rad[3] = getPicture("gfx/mlyn/r3.png");
+        Rad[4] = getPicture("gfx/mlyn/r4.png");
+        Rad[5] = getPicture("gfx/mlyn/r5.png");
+        Rad[6] = getPicture("gfx/mlyn/r6.png");
+        Rad[7] = getPicture("gfx/mlyn/r7.png");
+        Rad[8] = getPicture("gfx/mlyn/r8.png");
+        Rad[9] = getPicture("gfx/mlyn/r9.png");
+        Rad[10] = getPicture("gfx/mlyn/r10.png");
+        Rad[11] = getPicture("gfx/mlyn/r11.png");
+        Rad[12] = getPicture("gfx/mlyn/r12.png");
+        Rad[13] = getPicture("gfx/mlyn/r13.png");
+        Rad[14] = getPicture("gfx/mlyn/r14.png");
+        Rad[15] = getPicture("gfx/mlyn/r15.png");
+        Rad[16] = getPicture("gfx/mlyn/r16.png");
+        Rad[17] = getPicture("gfx/mlyn/r17.png");
+        Rad[18] = getPicture("gfx/mlyn/r18.png");
+        Rad[19] = getPicture("gfx/mlyn/r19.png");
+        Rad[20] = getPicture("gfx/mlyn/r20.png");
 
     }
 
@@ -222,16 +222,16 @@ public class Mlyn1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
             setClipForText = false;
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -275,7 +275,7 @@ public class Mlyn1 extends Mainloc {
         }
 
         // Anim zeichnen, da stets im Hintergrund
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             if (--Verhinderrad < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
@@ -295,7 +295,7 @@ public class Mlyn1 extends Mainloc {
             walkReady = mueller.Move();
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Mueller zeichnen
         if (showPersonen) {
@@ -341,7 +341,7 @@ public class Mlyn1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Voegel in Bild reinfliegen lassen
@@ -375,7 +375,7 @@ public class Mlyn1 extends Mainloc {
             } else {
                 g.setClip(120, 260, 135, 145);
             }
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             if (allowTextClipset) {
                 if (!setClipForText) {
                     setClipForText = true;
@@ -393,7 +393,7 @@ public class Mlyn1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -411,7 +411,7 @@ public class Mlyn1 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -424,7 +424,7 @@ public class Mlyn1 extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -473,7 +473,7 @@ public class Mlyn1 extends Mainloc {
                 }
                 showPersonen = true;
                 showVoegel = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 nextActionID = 15;
                 TalkPause = 2;
                 break;
@@ -486,7 +486,7 @@ public class Mlyn1 extends Mainloc {
                 ismuellermorphing = false;
                 iskrabatmorphing = false;
                 schnauzeRad = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 PersonSagt("Mlyn1_1", 9, 36, 2, 20, mueller.evalMlynkTalkPoint());
                 break;
 
@@ -519,7 +519,7 @@ public class Mlyn1 extends Mainloc {
                 schnauzeRad = true;
                 mueller.MoveTo(doorPoint);
                 walkReady = false;
-                mainFrame.wegGeher.SetzeNeuenWeg(vorDoorPoint);
+                mainFrame.pathWalker.SetzeNeuenWeg(vorDoorPoint);
                 nextActionID = 70;
                 break;
 
@@ -534,10 +534,10 @@ public class Mlyn1 extends Mainloc {
             case 71:
                 // Mueller oeffnet Tuer und geht rein
                 openDoor = true;
-                mainFrame.wave.PlayFile("sfx/cdurjeauf.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/cdurjeauf.wav");
                 mueller.MoveTo(muehleRein);
                 walkReady = false;
-                mainFrame.wegGeher.SetzeNeuenWeg(doorPoint);
+                mainFrame.pathWalker.SetzeNeuenWeg(doorPoint);
                 nextActionID = 72;
                 break;
 
@@ -551,23 +551,23 @@ public class Mlyn1 extends Mainloc {
             case 73:
                 // jetzt geht auch Krabat rein
                 krabatBehindDoor = true;
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(muehleRein);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(muehleRein);
                 nextActionID = 79;
                 break;
 
             case 79:
                 // Figuren ausblenden
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 showPersonen = false;
                 openDoor = false;
-                mainFrame.wave.PlayFile("sfx-dd/gdurjezu.wav");
+                mainFrame.soundPlayer.PlayFile("sfx-dd/gdurjezu.wav");
                 krabatBehindDoor = false;
                 nextActionID = 80;
                 break;
 
             case 80:
                 // Textausgabe
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 allowTextClipset = true;
                 PersonSagt("Mlyn1_7", 0, 54, 2, 90, new GenericPoint(320, 400));
                 break;
@@ -595,7 +595,7 @@ public class Mlyn1 extends Mainloc {
             int zwzf = (int) (Math.random() * 2.99);
             zwzf += 49;
 
-            mainFrame.wave.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
         }
     }
 }

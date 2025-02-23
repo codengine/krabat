@@ -61,16 +61,16 @@ public class Swinjo2 extends Mainanim {
     }
 
     private void InitImages() {
-        swinjo_look[0] = getPicture("gfx/most/swino2.gif");
-        swinjo_look[1] = getPicture("gfx/most/swino2a.gif");
-        swinjo_look[2] = getPicture("gfx/most/swino2b.gif");
-        swinjo_look[3] = getPicture("gfx/most/swino2c.gif");
-        swinjo_look[4] = getPicture("gfx/most/swino2d.gif");
+        swinjo_look[0] = getPicture("gfx/most/swino2.png");
+        swinjo_look[1] = getPicture("gfx/most/swino2a.png");
+        swinjo_look[2] = getPicture("gfx/most/swino2b.png");
+        swinjo_look[3] = getPicture("gfx/most/swino2c.png");
+        swinjo_look[4] = getPicture("gfx/most/swino2d.png");
 
-        swinjo_dance[0] = getPicture("gfx/most/swino2-d0.gif");
-        swinjo_dance[1] = getPicture("gfx/most/swino2-d1.gif");
-        swinjo_dance[2] = getPicture("gfx/most/swino2-d2.gif");
-        swinjo_dance[3] = getPicture("gfx/most/swino2-d3.gif");
+        swinjo_dance[0] = getPicture("gfx/most/swino2-d0.png");
+        swinjo_dance[1] = getPicture("gfx/most/swino2-d1.png");
+        swinjo_dance[2] = getPicture("gfx/most/swino2-d2.png");
+        swinjo_dance[3] = getPicture("gfx/most/swino2-d3.png");
     }
 
     // gibt Rectangle zurueck, wo sich Schein drin befindet
@@ -179,7 +179,7 @@ public class Swinjo2 extends Mainanim {
             int zwzfz = (int) (Math.random() * 4.99);
             zwzfz += 49;
 
-            mainFrame.wave.PlayFile("sfx/swino" + (char) zwzfz + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/swino" + (char) zwzfz + ".wav");
         }
     }
 }    

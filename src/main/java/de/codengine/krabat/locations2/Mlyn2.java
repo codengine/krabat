@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Mlyn2 extends Mainloc {
+public class Mlyn2 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mlyn2.class);
     private GenericImage background;
 
@@ -123,27 +123,27 @@ public class Mlyn2 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mlyn/mlyn2.gif");
-        Rad[1] = getPicture("gfx/mlyn/r1.gif");
-        Rad[2] = getPicture("gfx/mlyn/r2.gif");
-        Rad[3] = getPicture("gfx/mlyn/r3.gif");
-        Rad[4] = getPicture("gfx/mlyn/r4.gif");
-        Rad[5] = getPicture("gfx/mlyn/r5.gif");
-        Rad[6] = getPicture("gfx/mlyn/r6.gif");
-        Rad[7] = getPicture("gfx/mlyn/r7.gif");
-        Rad[8] = getPicture("gfx/mlyn/r8.gif");
-        Rad[9] = getPicture("gfx/mlyn/r9.gif");
-        Rad[10] = getPicture("gfx/mlyn/r10.gif");
-        Rad[11] = getPicture("gfx/mlyn/r11.gif");
-        Rad[12] = getPicture("gfx/mlyn/r12.gif");
-        Rad[13] = getPicture("gfx/mlyn/r13.gif");
-        Rad[14] = getPicture("gfx/mlyn/r14.gif");
-        Rad[15] = getPicture("gfx/mlyn/r15.gif");
-        Rad[16] = getPicture("gfx/mlyn/r16.gif");
-        Rad[17] = getPicture("gfx/mlyn/r17.gif");
-        Rad[18] = getPicture("gfx/mlyn/r18.gif");
-        Rad[19] = getPicture("gfx/mlyn/r19.gif");
-        Rad[20] = getPicture("gfx/mlyn/r20.gif");
+        background = getPicture("gfx/mlyn/mlyn2.png");
+        Rad[1] = getPicture("gfx/mlyn/r1.png");
+        Rad[2] = getPicture("gfx/mlyn/r2.png");
+        Rad[3] = getPicture("gfx/mlyn/r3.png");
+        Rad[4] = getPicture("gfx/mlyn/r4.png");
+        Rad[5] = getPicture("gfx/mlyn/r5.png");
+        Rad[6] = getPicture("gfx/mlyn/r6.png");
+        Rad[7] = getPicture("gfx/mlyn/r7.png");
+        Rad[8] = getPicture("gfx/mlyn/r8.png");
+        Rad[9] = getPicture("gfx/mlyn/r9.png");
+        Rad[10] = getPicture("gfx/mlyn/r10.png");
+        Rad[11] = getPicture("gfx/mlyn/r11.png");
+        Rad[12] = getPicture("gfx/mlyn/r12.png");
+        Rad[13] = getPicture("gfx/mlyn/r13.png");
+        Rad[14] = getPicture("gfx/mlyn/r14.png");
+        Rad[15] = getPicture("gfx/mlyn/r15.png");
+        Rad[16] = getPicture("gfx/mlyn/r16.png");
+        Rad[17] = getPicture("gfx/mlyn/r17.png");
+        Rad[18] = getPicture("gfx/mlyn/r18.png");
+        Rad[19] = getPicture("gfx/mlyn/r19.png");
+        Rad[20] = getPicture("gfx/mlyn/r20.png");
 
     }
 
@@ -182,15 +182,15 @@ public class Mlyn2 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -214,7 +214,7 @@ public class Mlyn2 extends Mainloc {
         }
 
         // Anim zeichnen, da stets im Hintergrund
-        if (mainFrame.isAnim) {
+        if (mainFrame.isBackgroundAnimRunning) {
             if (--Verhinderrad < 1) {
                 Verhinderrad = MAX_VERHINDERRAD;
                 Radcount++;
@@ -280,7 +280,7 @@ public class Mlyn2 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -291,7 +291,7 @@ public class Mlyn2 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -309,7 +309,7 @@ public class Mlyn2 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -322,7 +322,7 @@ public class Mlyn2 extends Mainloc {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -414,7 +414,7 @@ public class Mlyn2 extends Mainloc {
             int zwzf = (int) (Math.random() * 2.99);
             zwzf += 49;
 
-            mainFrame.wave.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
         }
     }
 }

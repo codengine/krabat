@@ -77,40 +77,40 @@ public class Bludnicki extends Mainanim {
     }
 
     private void InitImages() {
-        Head[1][1] = getPicture("gfx/labyrinth/bha1.gif");
-        Head[1][2] = getPicture("gfx/labyrinth/bha2.gif");
-        Head[1][3] = getPicture("gfx/labyrinth/bha3.gif");
-        Head[1][4] = getPicture("gfx/labyrinth/bha4.gif");
-        Head[1][5] = getPicture("gfx/labyrinth/bha5.gif");
-        Head[1][6] = getPicture("gfx/labyrinth/bha6.gif");
-        Head[2][1] = getPicture("gfx/labyrinth/bhb1.gif");
-        Head[2][2] = getPicture("gfx/labyrinth/bhb2.gif");
-        Head[2][3] = getPicture("gfx/labyrinth/bhb3.gif");
-        Head[2][4] = getPicture("gfx/labyrinth/bhb4.gif");
-        Head[2][5] = getPicture("gfx/labyrinth/bhb5.gif");
-        Head[2][6] = getPicture("gfx/labyrinth/bhb6.gif");
-        Head[3][1] = getPicture("gfx/labyrinth/bhc1.gif");
-        Head[3][2] = getPicture("gfx/labyrinth/bhc2.gif");
-        Head[3][3] = getPicture("gfx/labyrinth/bhc3.gif");
-        Head[3][4] = getPicture("gfx/labyrinth/bhc4.gif");
-        Head[3][5] = getPicture("gfx/labyrinth/bhc5.gif");
-        Head[3][6] = getPicture("gfx/labyrinth/bhc6.gif");
+        Head[1][1] = getPicture("gfx/labyrinth/bha1.png");
+        Head[1][2] = getPicture("gfx/labyrinth/bha2.png");
+        Head[1][3] = getPicture("gfx/labyrinth/bha3.png");
+        Head[1][4] = getPicture("gfx/labyrinth/bha4.png");
+        Head[1][5] = getPicture("gfx/labyrinth/bha5.png");
+        Head[1][6] = getPicture("gfx/labyrinth/bha6.png");
+        Head[2][1] = getPicture("gfx/labyrinth/bhb1.png");
+        Head[2][2] = getPicture("gfx/labyrinth/bhb2.png");
+        Head[2][3] = getPicture("gfx/labyrinth/bhb3.png");
+        Head[2][4] = getPicture("gfx/labyrinth/bhb4.png");
+        Head[2][5] = getPicture("gfx/labyrinth/bhb5.png");
+        Head[2][6] = getPicture("gfx/labyrinth/bhb6.png");
+        Head[3][1] = getPicture("gfx/labyrinth/bhc1.png");
+        Head[3][2] = getPicture("gfx/labyrinth/bhc2.png");
+        Head[3][3] = getPicture("gfx/labyrinth/bhc3.png");
+        Head[3][4] = getPicture("gfx/labyrinth/bhc4.png");
+        Head[3][5] = getPicture("gfx/labyrinth/bhc5.png");
+        Head[3][6] = getPicture("gfx/labyrinth/bhc6.png");
 
-        Body[1] = getPicture("gfx/labyrinth/bb1.gif");
-        Body[2] = getPicture("gfx/labyrinth/bb2.gif");
-        Body[3] = getPicture("gfx/labyrinth/bb3.gif");
-        Body[4] = getPicture("gfx/labyrinth/bb4.gif");
-        Body[5] = getPicture("gfx/labyrinth/bb5.gif");
+        Body[1] = getPicture("gfx/labyrinth/bb1.png");
+        Body[2] = getPicture("gfx/labyrinth/bb2.png");
+        Body[3] = getPicture("gfx/labyrinth/bb3.png");
+        Body[4] = getPicture("gfx/labyrinth/bb4.png");
+        Body[5] = getPicture("gfx/labyrinth/bb5.png");
 
-        Krat[1] = getPicture("gfx/labyrinth/bl5.gif");
-        Krat[2] = getPicture("gfx/labyrinth/bl6.gif");
+        Krat[1] = getPicture("gfx/labyrinth/bl5.png");
+        Krat[2] = getPicture("gfx/labyrinth/bl6.png");
 
-        Stan[1] = getPicture("gfx/labyrinth/bl1.gif");
-        Stan[2] = getPicture("gfx/labyrinth/bl2.gif");
-        Stan[3] = getPicture("gfx/labyrinth/bl3.gif");
-        Stan[4] = getPicture("gfx/labyrinth/bl4.gif");
+        Stan[1] = getPicture("gfx/labyrinth/bl1.png");
+        Stan[2] = getPicture("gfx/labyrinth/bl2.png");
+        Stan[3] = getPicture("gfx/labyrinth/bl3.png");
+        Stan[4] = getPicture("gfx/labyrinth/bl4.png");
 
-        take = getPicture("gfx/labyrinth/bb-take.gif");
+        take = getPicture("gfx/labyrinth/bb-take.png");
     }
 
     @Override

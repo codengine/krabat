@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Dubring2 extends Mainloc2 {
+public class Dubring2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Dubring2.class);
     private GenericImage backl;
     private GenericImage backr;
@@ -87,9 +87,9 @@ public class Dubring2 extends Mainloc2 {
 
     // Bilder vorbereiten
     public void InitImages() {
-        backl = getPicture("gfx/dubring/dubr-l3.gif");
-        backr = getPicture("gfx/dubring/dubr-r3.gif");
-        sky = getPicture("gfx/dubring/dubrsky.gif");
+        backl = getPicture("gfx/dubring/dubr-l3.png");
+        backr = getPicture("gfx/dubring/dubr-r3.png");
+        sky = getPicture("gfx/dubring/dubrsky.png");
 
     }
 
@@ -110,32 +110,32 @@ public class Dubring2 extends Mainloc2 {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = 0;
+                mainFrame.scrollX = 0;
             }
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund zeichnen
-        g.drawImage(sky, mainFrame.scrollx / 2, 0);
+        g.drawImage(sky, mainFrame.scrollX / 2, 0);
         g.drawImage(backl, 0, 0);
         g.drawImage(backr, 640, 0);
 
         // Parallaxer ausfuehren
         if (mainFrame.isScrolling) {
-            int xtemp = mainFrame.scrollx - 5;
+            int xtemp = mainFrame.scrollX - 5;
             if (xtemp < 0) {
                 xtemp = 0;
             }
             g.setClip(xtemp, 0, 650, 241);
-            g.drawImage(sky, mainFrame.scrollx / 2, 0);
+            g.drawImage(sky, mainFrame.scrollX / 2, 0);
             g.drawImage(backl, 0, 0);
             g.drawImage(backr, 640, 0);
         }
@@ -184,7 +184,7 @@ public class Dubring2 extends Mainloc2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -195,7 +195,7 @@ public class Dubring2 extends Mainloc2 {
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
             if (mainFrame.talkCount < 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
             }
         }
@@ -215,7 +215,7 @@ public class Dubring2 extends Mainloc2 {
         // Auszugebenden Text abbrechen
         outputText = "";
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -227,7 +227,7 @@ public class Dubring2 extends Mainloc2 {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -268,7 +268,7 @@ public class Dubring2 extends Mainloc2 {
                     break;
                 }
                 ismuellermorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 MuellerMecker(mueller.evalMlynkTalkPoint());
                 TalkPerson = 36;
                 TalkPause = 5;

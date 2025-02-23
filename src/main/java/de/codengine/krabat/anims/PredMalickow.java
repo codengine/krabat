@@ -73,29 +73,29 @@ public class PredMalickow extends Mainanim {
     }
 
     private void InitImages() {
-        pred_stand[0] = getPicture("gfx-dd/starewiki/faelscher1.gif");
-        pred_stand[1] = getPicture("gfx-dd/starewiki/faelscher1a.gif");
-        pred_stand[2] = getPicture("gfx-dd/starewiki/faelscher1b.gif");
-        pred_stand[3] = getPicture("gfx-dd/starewiki/faelscher1c.gif");
+        pred_stand[0] = getPicture("gfx-dd/starewiki/faelscher1.png");
+        pred_stand[1] = getPicture("gfx-dd/starewiki/faelscher1a.png");
+        pred_stand[2] = getPicture("gfx-dd/starewiki/faelscher1b.png");
+        pred_stand[3] = getPicture("gfx-dd/starewiki/faelscher1c.png");
 
-        pred_call[0] = getPicture("gfx-dd/starewiki/faelscher1-r1.gif");
-        pred_call[1] = getPicture("gfx-dd/starewiki/faelscher1-r2.gif");
-        pred_call[2] = getPicture("gfx-dd/starewiki/faelscher1-r3.gif");
-        pred_call[3] = getPicture("gfx-dd/starewiki/faelscher1-r4.gif");
-        pred_call[4] = getPicture("gfx-dd/starewiki/faelscher1-r5.gif");
+        pred_call[0] = getPicture("gfx-dd/starewiki/faelscher1-r1.png");
+        pred_call[1] = getPicture("gfx-dd/starewiki/faelscher1-r2.png");
+        pred_call[2] = getPicture("gfx-dd/starewiki/faelscher1-r3.png");
+        pred_call[3] = getPicture("gfx-dd/starewiki/faelscher1-r4.png");
+        pred_call[4] = getPicture("gfx-dd/starewiki/faelscher1-r5.png");
 
         pred_talk[0] = pred_stand[0];
-        pred_talk[1] = getPicture("gfx-dd/starewiki/faelscher1-t1.gif");
-        pred_talk[2] = getPicture("gfx-dd/starewiki/faelscher1-t2.gif");
-        pred_talk[3] = getPicture("gfx-dd/starewiki/faelscher1-t3.gif");
-        pred_talk[4] = getPicture("gfx-dd/starewiki/faelscher1-t4.gif");
-        pred_talk[5] = getPicture("gfx-dd/starewiki/faelscher1-t5.gif");
-        pred_talk[6] = getPicture("gfx-dd/starewiki/faelscher1-t6.gif");
+        pred_talk[1] = getPicture("gfx-dd/starewiki/faelscher1-t1.png");
+        pred_talk[2] = getPicture("gfx-dd/starewiki/faelscher1-t2.png");
+        pred_talk[3] = getPicture("gfx-dd/starewiki/faelscher1-t3.png");
+        pred_talk[4] = getPicture("gfx-dd/starewiki/faelscher1-t4.png");
+        pred_talk[5] = getPicture("gfx-dd/starewiki/faelscher1-t5.png");
+        pred_talk[6] = getPicture("gfx-dd/starewiki/faelscher1-t6.png");
 
-        pred_walkback = getPicture("gfx-dd/starewiki/faelscher2.gif");
-        pred_take = getPicture("gfx-dd/starewiki/faelscher1g.gif");
+        pred_walkback = getPicture("gfx-dd/starewiki/faelscher2.png");
+        pred_take = getPicture("gfx-dd/starewiki/faelscher1g.png");
 
-        vorder = getPicture("gfx-dd/starewiki/sbudka2.gif");
+        vorder = getPicture("gfx-dd/starewiki/sbudka2.png");
     }
 
     // PredMalickow beim Rumstehen

@@ -1,0 +1,2020 @@
+Casnik_1|W#on tu stra#zuje.
+Casnik_2|N#etko je pjany a spi.
+Casnik_3|Klu#k.
+Casnik_4|Klu#k do pok#ladni#s#ca.
+Casnik_5|Lawjacy ko#zuch.
+Casnik_6|Ko#zuch je zaw#es#ce dopomnjenka.
+Casnik_7|Stra#sna br#o#n.
+Casnik_8|#Kasnik.
+Casnik_9|Pokazowaki. Je hakle w t#roch.
+Casnik_10|Pokazowaki. N#etko je w #styrjoch!
+Casnik_11|Postawa jand#dela.
+Casnik_12|To je tola naru#kny s#l#on#kny #kasnik.
+Casnik_13|Ni#ko za mnje. To jeno#z boli!
+Casnik_14|To nochcu docy#la spyta#c.
+Casnik_15|Hdy#z kral to wid#di, jeho zaw#es#ce poch#losta.
+Casnik_16|Tak pokazowaki njedosahnu.
+Casnik_17|Njem#o#zu z njej r#e#ke#c.
+Casnik_18|Dale njetrjebam #kasnik p#restaje#c.
+Casnik_19|W s#lu#zbje njepiju - hiks. N#etko je hakle w t#roch, tamle ma#s #kasnik.
+Casnik_20|Za hod#dinu mam swjatok. Hdy#z #kasnik to pokazuje, m#o#zemoj sej #skle#n#kku pop#re#c.
+Casnik_21|Ow, je hi#zo w #styrjoch! Tak m#o#zu sej jedyn sr#ebny#c.
+Casnik_22|Oj, sylny tobak!
+Casnik_23|Jipijaju - ja #ci baju, jipijaju - ja sym w #kaju!
+Casnik_24|To je w porjadku, zady mnje w#on wisa - hik, hik ...
+Casnik_25|Hik, #sto z nim chce#s? Bohatstwo je #ce#zke - n#ekotrych je hi#zo zat#l#o#ki#lo!
+Casnik_26|#Sto r#eka pjany? Sym h#lowny stra#znik a z tym nawoda ... ehm ... nawoda - hiks - w#sitkich stra#znikow w hrod#de.
+Casnik_27|To je kralowska d#d#e#larnja. P#ristup zakazany - hiks - hiks ... N#etko mje hi#zo njemyl. Dyrbju d#d#e#la#c!
+Casnik_28|Stra#zuju! - hiks -
+Casnik_29|Ja sym Krabat a pytam klu#k do pok#ladni#s#ca.
+Casnik_30|Daj#ce mi pro#su klu#k do pok#ladni#s#ca.
+Casnik_31|S#ce tola pjany!
+Casnik_32|#Sto je za tutymi durjemi?
+Casnik_33|#Sto tu d#d#e#la#ce?
+Casnik_34|Tu smjerd#di za palencom. Bo#zemje.
+Casnik_35|To mi njeb#e prawa rozmo#lwa. Bo#zemje.
+Casnik_36|Hej, nima#s tam ni#co pyta#c!
+Casnik_37|P#ristup zakazany, wr#o#ko! Hiks...
+Casnik_38|Njes#ly#si#s? Zawo#lam hnydom stra#zu!
+Casnik_39|Njel#ez mi na ko#zuch!
+Casnik_40|Wosta#n jeno#z tam, hd#de#z sy!
+Casnik_41|hiks hiks hiks... Mam strach!
+Casnik_42|Hrrrrrrrrrrrrr ...
+Chodba_1|Lute droho#cinki w tutym hrod#de.
+Chodba_2|Wone wostanu tu!
+CornyCholmc1_1|#Cmowy l#es.
+CornyCholmc1_2|Wjes na kromje l#esa. Serbska wjeska.
+CornyCholmc1_3|Moje echo praji, zo je to #Korny Cho#lmc.
+CornyCholmc1_4|#Cmowy l#eso, s#ly#si#s m#ocny h#l#os Krabata?
+CornyCholmc1_5|N#e, Krabato, tw#oj echo #ci wotmo#lwja. Steji#s p#ri l#esu #Korneho Cho#lmca.
+CornyCholmc1_6|Huch, tajke n#e#sto zajimawe!
+CornyCholmc1_7|Snano m#o#zu so moje echo pozd#di#so znowa pra#se#c, ale prawy rytmus za rym wono hi#s#ce nima.
+CornyCholmc1_8|Do tuteje wjeski nochcu. Sym tam hus#ci#so po pro#senju chod#di#l, a lud#do tam jeno#z na mnje swarja.
+CornyCholmc1_9|#st#o#z pak spi, ni#ko njep#rem#eni.
+CornyCholmc1_10|njech Krabat w swojich sonach ros#ce.
+CornyCholmc1_11|njech stajne zbo#zo by jemu k#c#e#lo.
+CornyCholmc1_12|n#etk s#l#onco so za #cmowym l#esom chowa.
+CornyCholmc1_13|Ja sym Krabat, a #st#o mje s#ly#si,
+CornyCholmc1_14|Pacho#l zbo#za, rados#ce a spokojnos#ce,
+CornyCholmc1_15|By#c m#lynski je w#sak #ce#zke d#d#e#lo,
+CornyCholmc1_16|Ja sym Krabat, a #st#o mje s#ly#si,
+CornyCholmc1_17|Pacho#l zbo#za, rados#ce a spokojnos#ce,
+CornyCholmc1_18|M#lynko, m#lynko - Krabat #ce wo#la,
+CornyCholmc2_1|#Cmowy l#es.
+CornyCholmc2_2|Moje echo praji, zo je to #Korny Cho#lmc.
+CornyCholmc2_3|N#etko nochcu m#lynka wo#la#c!
+CornyCholmc2_4|Do tuteje wjeski nochcu. Sym tam hus#ci#so po pro#senju chod#di#l, a lud#do tam jeno#z na mnje swarja.
+Couch_1|Durje njejsu zamknjene.
+Couch_2|Durje su zamknjene.
+Couch_3|Mjechke #lo#zo.
+Couch_4|Za durje trjebam klu#k.
+Couch_5|Tule w#et#rik ch#etro duje.
+Couch_6|#Spatna ideja!!!
+Couch_7|Ahhhhhhh ...
+Couch_8|Bych so rady lehny#l, ale za to nimam chwile!
+Couch_9|Ahhhhhhh...
+Cyrkej1_1|Cyrkwinske durje su zawrjene. Z cyrkwje je hud#dba s#ly#se#c.
+Cyrkej1_2|Nicht#o njes#ly#si!
+Cyrkej2_1|Cyrkwinske durje su zawrjene. Z cyrkwje je hud#dba s#ly#se#c.
+Cyrkej2_2|Nicht#o njes#ly#si!
+Cyrkej2_3|To ma#s prawje. Kralowna hud#dbnych instrumentow su pi#s#cele, a hdy#z zaklin#ka, so na#s B#oh t#on Knjez raduje.
+Cyrkej2_4|N#e, to njeje m#o#zno. Stare wu#sparanja mjez protestantami a katolskim knjejstwom njejsu hi#s#ce rozrisane.
+Cyrkej2_5|Do#lho#z to njebud#de, wostanje cyrkej zawrjena.
+Cyrkej2_6|N#o haj, b#e#se to s#c#eh t#rice#cil#etneje w#ojny. M#esto Kulow, a z tym te#z cyrkej, njesm#ed#de#se so wjace ke katolskej w#erje wuznawa#c.
+Cyrkej2_7|P#riwisnicy Luthera m#ejachu tule n#etko duchownu m#oc. Ale m#e#s#canska rada da ewangelsku cyrkej zaso zawr#e#c, dokel#z je kl#o#ster Marijineje hw#ezdy rad#di#celow postaja#l.
+Cyrkej2_8|A p#rez tut#on katolski wliw da so porjadnje #ci#s#c wukonje#c.
+Cyrkej2_9|Tajki ka#l! W#erja protestan#ca do hina#seho boha?
+Cyrkej2_10|N#e. W#erimy p#reco hi#s#ce do jednoho Boha. To pak je nowy sm#er, ki#z je ze stareje romsko-katolskeje cyrkwje wu#so#l.
+Cyrkej2_11|#Kehodla dyrbi to w#sitko tak #ce#zko by#c?
+Cyrkej2_12|Haj, prjedy b#e w#sitko jednorje. Ale to su stare #kasy p#reco, abo ...?
+Cyrkej2_13|Witaj, Krabato! Ja sym Kulowski farar.
+Cyrkej2_14|To njeje m#o#zno. Njeznaju #zanoho, kotry#z by to p#re#ziwi#l.
+Cyrkej2_15|Lud#do mi wjele pow#edaja, a m#lynka sym te#z hi#zo zezna#l. Ale wodaj, Krabato, dyrbju organistej noty p#rihotowa#c.
+Cyrkej2_16|#Sto je #ci to Jurij pow#eda#l?
+Cyrkej2_17|Wo starej legend#de, s#lawnym zbytku serbskeho luda ... Ale n#e#sto njezrozumju. Zwotkel ma m#lynk kuz#larsku m#oc? W#on tola docy#la Koraktor nima a njeje knihu te#z #zenje wobsed#da#l.
+Cyrkej2_18|Njer#e#kmoj tule na dr#oze. P#oj sobu!
+Cyrkej2_19|Kajku krasnu hud#dbu tule s#ly#su ...
+Cyrkej2_20|Sm#em do cyrkwje, zo bych sej ju wobhlada#l?
+Cyrkej2_21|Kotre wu#sparanja mjez protestantami a katolskimi m#eni#ce?
+Cyrkej2_22|Sym Krabat z Jitka.
+Cyrkej2_23|B#ech wu#komnik w m#lynje pola #Korneho Cho#lmca.
+Cyrkej2_24|Aha, znaje#ce #Kertowski m#lyn?
+Cyrkej2_25|W#odny mu#z mje s#cele. Je mi wo Koraktoru pow#eda#l, a ja chcu tutu kuz#larsku knihu pyta#c.
+Cyrkej2_26|Ach, ni#ko.
+Cyrkej2_27|D#dakuju so za rozmo#lwu.
+Dingl_1|W#on so mi wotwobro#ca.
+Dingl_2|Pr#ozdny karan a keluch.
+Dingl_3|Karan sobu njewozmu.
+Dingl_4|Ja tu ni#ko njep#rimnu - #sto, hdy#z zaso n#e#sto sk#oncuju - n#e, n#e ...!
+Dingl_5|Wud#d#e#lk ze z#lota.
+Dingl_6|Konik a wojacy ze z#lota.
+Dingl_7|#Zane wino, ale list. N#o haj.
+Dingl_8|List? T#on hnydom wo#kinju.
+Dingl_9|Derje, n#etko mam kruch #zeleza, z kotreho#z fal#sowanku zhotowju.
+Dingl_10|Tole su m#ery #skl#e, te te#z trjebam. Prawje tak!
+Dingl_11|Podpisana a zyglowana dowolnos#c Awgusta. Pilny kadla!
+Dingl_12|Aha, klu#k do pok#ladni#s#ca sy wobstara#l.
+Dingl_13|To je jeno#z zyglowana dowolnos#c. N#etko trjebam tu hi#s#ce podpismo.
+Dingl_14|To je jeno#z podpisana dowolnos#c. N#etko trjebam hi#s#ce kralowski pje#kat na dowolnos#c.
+Dingl_15|Hej, s#lu#zowniko, wr#o#co! Hewak zawo#lam stra#zu.
+Dingl_16|N#o, ty sy mi serbska heja. Ale Zahrodnikowy wodow#od moja #zona p#rew#so wuchwaluje. Tu#z budu #ci pomha#c a sym w#cipny, ha#k to zam#o#ze#s:
+Dingl_17|Zadoby#c so do wutroby Sakskeje. Ty sy mi serbska heja!
+Dingl_18|Ach, s#lu#zowny! To je derje, zo d#de#s. Sym hi#zo po#l hod#diny za tobu zwoni#l. T#on pjany kozo#l je moje winko wulapta#l.
+Dingl_19|P#rinjes mi pro#su nowy karan wina.
+Dingl_20|H#lowny stra#znik! Dyrbju z Awgustom por#e#ke#c.
+Dingl_21|Njejsy drje hi#s#ce do#lho w hrod#de? Za durjemi a na ch#odbje poslednje durje.
+Dingl_22|Za durjemi a na ch#odbje poslednje durje.
+Dingl_23|Sym Johann Melchior Dinglinger, dw#orski juwel#er a p#re#cel jeho majestos#ce Awgusta II., kurwjercha Sakskeje a krala P#olskeje.
+Dingl_24|A juwel#er je la#kny. Pro#su, dob#eh#n po winko.
+Dingl_25|R#e#ki#s wo wutrobje Sakskeje! To je tajne!
+Dingl_26|#Sto to tebje stara? D#di po wino.
+Dingl_27|N#e. Sym la#kny. D#di po wino.
+Dingl_28|Tute mjeno njeznaju, to m#o#ze tola k#o#zdy praji#c.
+Dingl_29|Ty w#cipna J#ewa! To je najnow#sa technika - #fmade in Germany#F - w p#richod#de bud#de to synonym za kwalitu.
+Dingl_30|N#e! D#di po wino!
+Dingl_31|To su dworjenjo Dehlija na narodninach wulkomogula Awrenga Zeba - dospo#lnje ze z#lota d#d#e#lany model a
+Dingl_32|wjer#sk mojeho dotalneho skutkowanja p#ri dworje jeho majestos#ce. N#etko pak sp#echaj po winko.
+Dingl_33|Pok#ladni#s#co je w zapadnym d#d#elu hrodu. #Skitane je p#rez 1,40m do 2,60m to#lste murje. Wokna su zawrjene ze #zeleznymi woke#ncami.
+Dingl_34|P#red durjemi steji stra#znik. To je architektonisce a strategisce najl#epje p#remyslena rumnos#c z najwjet#sej w#estotu.
+Dingl_35|Jeno#z pje#co: kral Awgust, hrabja Br#uhl, h#lowny stra#znik, archiwar a ja.
+Dingl_36|To je tola derje. Wy mi #sklu wobstara#ce, a ja was p#repro#su na chr#en z howjazym mjasom.
+Dingl_37|A potom budu so mi zaso sylzy roni#c! N#e, Krabato, tak lochce to njeje. K#o#zdy, ki#z chce do komory, trjeba wosebitu dowolnos#c Awgusta.
+Dingl_38|Tutu dowolnos#c trjeba#s k#o#zdy raz znowa, hdy#z chce#s do komory.
+Dingl_39|#Sto je wobsah dowolnos#ce?
+Dingl_40|Potwjerd#denka, kotra#z dowola p#ristup do komory. Potom da Awgust swoje podpismo a kralowski pje#kat.
+Dingl_41|M#o#ze#ce sej tola cy#ly dokument wobstara#c.
+Dingl_42|Nic tak skoku! Awgust tuchwilu docy#la w Drje#zd#danach njeje, a podpisane potwjerd#denki nimam. Ale je hi#s#ce druhi problem.
+Dingl_43|K#o#zdy tyd#de#n #kini na#s archiwar inwenturu. W swojim archiwje ma zapis wobstatkow a m#erow jednotliwych p#redmjetow.
+Dingl_44|Aha, rozumju. Hdy#z so potajkim n#e#sto zhubi, potom jeno#z wy #styrjo do kruha podhladnych li#ki#ce. A hdy#z so k#o#zdy tyd#de#n wobstatki kontroluja ... -
+Dingl_45|to je skoro njem#o#zne p#redewza#ce! Kotru m#o#znos#c hewak mamy?
+Dingl_46|Jeni#kka m#o#znos#c je, zo #sklu napodobnju. Za to pak trjebam p#lony kruch #zeleza, dokel#z tuchwilu jeno#z ze z#lotom d#d#e#lam.
+Dingl_47|A trjebam m#ery originalneje #skl#e. Njesm#e d#d#e to napadny#c, hdy#z #skli wum#enju. To by poprawom w#sitko by#lo.
+Dingl_48|#Sto je z potwjerd#denku?
+Dingl_49|Ow, to bych nimale zaby#l! Trjebamy podpisanu a zyglowanu kralowsku dowolnos#c. A njezabud#d klu#k do pok#ladni#s#ca.
+Dingl_50|- p#lony kusk #zeleza, z kotreho#z potom napodobiznu zhotowju
+Dingl_51|- m#ery #skl#e, namaka#s je w archiwje
+Dingl_52|- podpisanu a zyglowanu dowolnos#c Awgusta
+Dingl_53|- klu#k do komory
+Dingl_54|Wum#enju original z napodobiznu. Ta pak dyrbi jara dobra by#c, hewak archiwar to pytnje, a tyknu mje do jastwa.
+Dingl_55|Ma#s zbo#zo, zo je tuta woporna #skla pom#ernje jednorje zhotowjena. Tak da so lochce a wosebje sp#e#snje fal#sowa#c.
+Dingl_56|Archiw bud#de zamknjeny. Stary archiwar je mjenujcy w Mi#snje na hrod#de Albrechtsburg. Tola jeno#z w#on ma klu#k.
+Dingl_57|Ale sym wot njeho j#onu s#ly#sa#l, zo wjed#de tajna ch#odba do archiwa. Tuta rumnos#c b#e hi#s#ce p#red l#etom katolska kapa#la.
+Dingl_58|N#etko su Drje#zd#dany pod protestantiskim wliwom, a zjawnje njesm#ed#da so hi#zo #zane katolske kem#se swje#ci#c. Wjace pak te#z njew#em.
+Dingl_59|T#on ma h#lowny stra#znik.
+Dingl_60|Ka#z hi#zo prajach, kral d#densa w hrod#de njeje. Snano so w#on te#z prjedy nawr#o#ci. Wobhladaj sej tola Awgustowu d#d#e#larnju. Tam zaw#es#ce n#e#sto wu#zitneho namaka#s.
+Dingl_61|#Kakaj! Prjedy ha#k to zabudu: wzmi tutu njepodpisanu potwjerd#denku sobu.
+Dingl_62|Ja p#reco cy#lu kopicu p#redpisam, tak zo trjeba kral jeno#z hi#s#ce podpisa#c. Njezabud#d na kralowski pje#kat. Wjele wjesela!
+Dingl_63|N#etko mamy w#sitko hromad#de. P#oj jut#re zaso ke mni, potom zm#eju #sklu sfal#sowanu. P#o#ndu ju hnydom rano wum#eni#c.
+Dingl_64|Potajkim, Krabato, tu ma#s sk#on#knje swoju #sklu.
+Dingl_65|Kak m#o#zu so wam jeno#z d#dakowa#c? S#ce telko za mnje a snano za cy#ly serbski lud #kini#l!
+Dingl_66|N#etko pak p#resta#n pow#eda#c. Sym zbo#zowny, zo sm#em tu w hrod#de d#d#e#la#c. Tu mam w#sikto, #sto#z sej p#reju. W twojej domiznje je to zaw#es#ce hinak.
+Dingl_67|Sk#on#knje d#der#ze#se Krabat wopornu #sklu w rukomaj. W#on wukramos#ci kartu #Lu#zicy ze zaka a p#riruna ju z wudypanymi linijemi a #srafurami woporneje #skl#e.
+Dingl_68|Tu je kniha zadypana, a m#estno Koraktora je ju#znje Jitka. To m#o#ze jeno#z Wotrowske hrod#di#s#co by#c! N#etko pak domoj!
+Dingl_69|Kajki pjany kozo#l?
+Dingl_70|Hd#de nade#ndu h#lowneho stra#znika?
+Dingl_71|Knje#ze, hd#de namakam h#lowneho stra#znika?
+Dingl_72|Ja sym Krabat. #St#o wy s#ce?
+Dingl_73|Ma#ce p#ristup ke kralowskemu pok#ladni#s#cu?
+Dingl_74|Hd#de namakam pok#ladni#s#co?
+Dingl_75|Znaje#ce Handrija Zahrodnika?
+Dingl_76|Was pytam! Handrij Zahrodnik mje s#cele.
+Dingl_77|Zahrodnik je pola was njedawno wodow#od k#lad#l.
+Dingl_78|Znaje#ce tola Zahrodnika. Dyrbi#ce mi pomha#c! Ja was pro#su!
+Dingl_79|Kak so tw#orba mjenuje, na kotrej#z d#d#e#la#ce?
+Dingl_80|P#o#ndu po wino. Wokomik pro#su!
+Dingl_81|Kak je pok#ladni#s#co twarjene?
+Dingl_82|#St#o ma p#ristup do pok#ladni#s#ca?
+Dingl_83|N#etko hi#s#ce do jastwa nochcu. Bo#zemje.
+Dingl_84|Pro#su hi#s#ce raz: #Sto w#sitko trjeba#ce?
+Dingl_85|Zwotkel d#ostanjemy #sklu?
+Dingl_86|Kak p#ri#ndu do archiwa?
+Dingl_87|Hd#de je klu#k do pok#ladni#s#ca?
+Dingl_88|Zwotkel d#ostanu podpismo a pje#kat krala?
+Dingl_89|Spytam w#sitko wobstara#c. Bo#zemje.
+Dingl_90|Spytam w#sitko wobstara#c. Bo#zemje.
+Doma1_1|Wona je jara h#luboka!
+Doma1_2|Hlej, durje!
+Doma1_3|To je m#oj pastyrski kij.
+Doma1_4|Runjewon d#de do Jitka.
+Doma1_5|To je moja luba ma#ci!
+Doma1_6|Sym je tak sklud#di#l, zo so same pasu.
+Doma1_7|Je l#epje, zo so zaso na pu#c podam.
+Doma1_8|To njem#o#zu sobu wza#c!
+Doma1_9|Potom hi#s#ce do studnje padnu. N#e, n#e!
+Doma1_10|Ja je rad#so na pokoj wostaju.
+Doma1_11|Tam deleka ni#ko njeje.
+Doma1_12|Tule nic.
+Doma1_13|To njeje h#odne.
+Doma1_14|N#e, to je #kw#elowanje zw#erjatow!
+Doma1_15|Woni hi#zo nje#ceknu.
+Doma1_16|To jim njes#lod#di.
+Doma1_17|Ma#ci, sym so rozsud#di#l, zo p#o#ndu do sw#eta!
+Doma1_18|Ale Krabato, #kehodla to?
+Doma1_19|Dokal da chce#s?
+Doma1_20|Ale kak da chce#s to zdokonje#c?
+Doma1_21|Nicht#o njew#e, hd#de m#lyn dok#ladnje steji, a pow#eda so, zo bydli tam #kert sam!
+Doma1_22|W#e#s, zo tule d#d#e#la njeje!
+Doma1_23|Krabato! Sy to jeni#kke, #sto#z mamy!
+Doma1_24|Wupu#cowanje te#z pomha#c njebud#de!
+Doma1_25|Ach, tu#z d#di, Krabato, d#di w bo#zim mjenje!
+Doma1_26|Chudoba nas #zerje, njem#o#zemy dale tak #ziwi by#c!
+Doma1_27|Njedosaha, zo jeno#z po pro#senju chod#du!
+Doma1_28|Ale ma#ci! Njem#o#zu stajnje jeno#z husy pas#c!
+Doma1_29|Sym s#ly#sa#l wo m#lynje, hd#de#z bydli m#lynk-#kinkar, a zo je m#o#zno, tam wjace nawukny#c, dy#zli m#lynstwo!
+Doma1_30|Hdy#z tu wostanu, so tola te#z ni#ko njezm#eni!
+Doma1_31|Ni#ko dale.
+Doma1_32|Derje, tak njep#o#ndu!
+Doma1_33|Krabato!!!!!!!!!!!!!!!!!!!
+Doma1_34|Hallo Krabato !
+Doma1_35|Haj, haj. To sym ja by#l !
+Doma2_1|Wona je jara h#luboka!
+Doma2_2|Hlej, durje!
+Doma2_3|To je m#oj pastyrski kij.
+Doma2_4|Runjewon d#de do Jitka.
+Doma2_5|Sym je tak sklud#di#l, zo so same pasu.
+Doma2_6|Je l#epje, zo so zaso na pu#c podam.
+Doma2_7|To njem#o#zu sobu wza#c!
+Doma2_8|Potom hi#s#ce do studnje padnu. N#e, n#e!
+Doma2_9|Ja je rad#so na pokoj wostaju.
+Doma2_10|Tam deleka ni#ko njeje.
+Doma2_11|Tule nic.
+Doma2_12|To njeje h#odne.
+Doma2_13|N#e, to je #kw#elowanje zw#erjatow!
+Doma2_14|Woni hi#zo nje#ceknu.
+Doma2_15|To jim njes#lod#di.
+Doma2_16|Krabato? Krabato! Sy to woprawd#de!? P#oj ke mni ...
+Doma2_17|Cyle suchi sy. W#e#s, kajke staros#ce sm#oj sej z nanom #kini#loj - tajki do#lhi #kas ...
+Doma2_18|Ja pak sym j#on namaka#l ...
+Doma2_19|#Sto sy namaka#l? Sk#on#knje sw#oj rozum?
+Doma2_20|#Kertowski m#lyn!
+Doma2_21|Je-li to jeni#kka m#o#znos#c ...
+Doma2_22|To je jeni#kka a poslednja m#o#znos#c, hewak sym zhubjeny - na w#e#kne!
+Doma2_23|N#e, Krabato. Ty mi nihd#de wjace njep#ond#de#s. Mysli#s sej, zo #ce kral w korej#ce do Drje#zd#dan sobu wozmje?
+Doma2_24|Ale ma#ci, dyrbju tola do Drje#zd#dan! Hdy#z mam Koraktor, potom m#o#ze#s d#osta#c, #sto#zkuli sej p#reje#s!
+Doma2_25|Ja ni#ko wjace njetrjebam. Sym te#z tak zbo#zowna. Mam tebje a nana, to mi dosaha. N#etko pak d#di sk#on#knje swinje pas#c! A #zane w#olbornos#ce ze skotom!
+Doma2_26|Tak ma#cerka sk#on#knje zhoni, w #kejich rukach jeje syn t#ki. Spo#katne wjeselo zasowid#denja so p#rewobro#ci do wulkeho stracha. Ale na#s Krabat w#sak je mudra h#l#oj#kka a b#e#se sej hi#zo w m#lynje les#c wumysli#l.
+Doma2_27|Ma#ci, jeno#z ty m#o#ze#s mi pomha#c. Pokazam #ci pu#c k #Kertowskemu m#lynej. #Zadaj sej wot m#lynka, zo mje pu#s#ci.
+Doma2_28|Z tym nima hi#zo wupu#ca, dokel#z je wutroba lubowaceje ma#cerje za tutoho #kerta ka#z swje#cena woda.
+Doma2_29|Hdy#z pak tute p#re#ce m#lynkej praji#s, p#rem#enja so w#sitcy wu#komnicy do rapakow. Jeno#z, jeli mje mjez nimi sp#oznaje#s, budu swobodny.
+Doma2_30|To je ch#etro #ce#zka w#ec. Tola w#sitcy moji towar#sojo zm#eja sw#oj pysk na l#ewym boku, ja pak budu so pod prawym k#ridle#skom skuba#c.
+Doma2_31|To je jeni#kke znamjo, kotre#z m#o#zu #ci da#c.
+Doma2_32|Krabat b#e#se zaso swobodny, ale doma namaka staru b#edu, hubjenstwo a nuzu. To b#echu w m#lynje l#ep#se ch#l#o#s#cenki sydali. Kro#siki star#sej njem#eje#staj, a ma#le nawuknjene kuz#la nochcychu tak prawje skutkowa#c.
+Doma2_33|Tola hdy#z m#eje#se Krabat chwile abo wje#kor, jako hw#ezdy na firmamen#ce li#ke#se, dopomina#se so husto na rozmo#lwu m#lynka z k#o#kku. B#e#staj tehdy wo knize bachta#loj, kotra#z dyrbje#se njesm#ernu m#oc spo#z#ke#c a kotra#z b#e#se m#lynka tak rozhn#ewa#la, dokel#z ju njewobsed#de#se.
+Doma2_34|#fN#e#sto w#erneho je p#reco srjed#d tutoho wusmu#za.#F Tutu sadu Krabat njeb#e zaby#l. A w h#ol#kecu ros#ce#se p#re#ce, wjace wo wonej knize zhoni#c. Chcy#se ju samo pyta#c a namaka#c.
+Doma2_35|To je moja luba ma#ci!
+Doma4_1|Doma b#e w#ezo wulke wjeselo po nawr#o#ce zhubjeneho syna. Ma#c b#e#se na#seho m#lodeho rjeka porjadnje wuswarje#la, ale wje#kor p#ri dobrym kusku swinje#ca, kotre#z b#e#se nan zar#eza#l, so #cmowe mr#o#kele ma#cerneje staros#ciwos#ce rozpu#s#cichu. Krabat dyrbje#se p#ri njed#delskej sukni ma#cerje slubi#c, zo wostanje w domiznje.
+Doma4_2|Haj, w domiznje, #sto#z zap#rija w#ezo te#z ma#lu serbsku wjesku Wotrow, nad kotrej#z tr#onuje wu#cek na#sich prjedownikow - hrod#di#s#co.%%Tam chowa so s#lawna kniha. A Krabat so zaso na pu#c poda.
+Dubring1_1|B#l#oto z bahna.
+Dubring1_2|B#l#oto z bahna.
+Dubring1_3|Jednotliwa ha#lza.
+Dubring1_4|Wotemr#ete #stomy. Wupadaja ka#z #serjenja!
+Dubring1_5|Wono smjerd#di. To njep#rimnu. Hdy#z do bahna padnu, mi nicht#o njepomha.
+Dubring1_6|Wono smjerd#di. To njep#rimnu. Hdy#z do bahna padnu, mi nicht#o njepomha.
+Dubring1_7|Tak ju njedosahnu.
+Dubring1_8|To ja hi#s#ce trjebam.
+Dubring1_9|To ja hi#s#ce trjebam.
+Dubring1_10|Ja tola h#lupy njejsym!
+Dubring1_11|Ja tola h#lupy njejsym!
+Dubring1_12|Te njedosahnu.
+Dzera_1|Je pilny, samo p#repilny - a w#on je mudry ...
+Dzera_2|... snano p#remudry ... miaw ... a l#eto je nimale dopjelni#l.
+Dzera_3|Haj! A ty w#e#s, #sto to r#eka, najlub#sa k#o#kka.
+Dzera_4|W#ezo, najl#ep#si a najmudri#si so zhubi ... miaw ... a jeho kos#ce so z#lamaja w m#lynskim kole.
+Dzera_5|W kole, bjez nawr#ota ... miaw ... a helski mi#str so wjeseli.
+Dzera_6|Tak je postajene. #St#o#z je mudry, t#on je te#z m#ocny - a to ja njeznjesu. Jedyn po#lny m#esa#kk hi#s#ce wo#kaknu, potom w#on wumrje.
+Dzera_7|Kos#ce so z#lamaja? Jedyn po#lny m#esa#kk hi#s#ce? Koho jeno#z m#enitaj?
+Dzera_8|Ty ma#s strach, zo bud#de p#resylny ... miaw ... Bjez knihi zm#eje#s p#reco strach.
+Dzera_9|Tajki ka#l! Kniha je pre#k, a k#onc! To je jeno#z hi#s#ce pow#es#c.
+Dzera_10|Ty nima#s wulku m#oc ... miaw ... Je to jeno#z snadny, m#oli#kki d#d#el toho, #sto#z wobsahowa#se kniha - kniha w#sitkich #kornych knihow ... miaw ...
+Dzera_11|Nimam m#oc? Ja nimam m#oc? Mam #ce do zajaca p#rekuz#la#c? D#di rad#so my#se #l#oji#c ...
+Dzera_12|Ach te stare, smjerd#date my#se - to ni#ko za mnje njeje ... miaw ... A twoje kuz#larske kum#sty dosahaja runje tak za d#d#e#cace narodniny ... miaw ...
+Dzera_13|Za wulke, m#ocne kuz#la faluje #ci kniha.
+Dzera_14|D#di mi z pu#ca, won! A p#rihotuj w#sitko! Hdy#z p#o#knje pr#enje lis#co pada#c, padnje te#z jeho du#sa.
+Dzera_15|KRABATO, twoja s#lu#zba so nachila.
+Dzera_16|#Sto ? Ja sym m#enjeny ... ? Ow ma#ci, pomhaj mi ...
+Dzera_17|N#etko so Krabat dopomni na warnowanje lud#di a na s#lowa ma#cerje. A ma#c b#e#se te#z klu#k swobody. Wuprosy sebi wot m#lynka n#e#sto swobodneho #kasa, zo by m#oh#l star#seju wopyta#c.
+Extro_1|(c) Za#lo#zba za serbski lud 2001
+Extro_2|Koraktor b#e#se w dobrymaj rukomaj. Krabat bu znaty a zdobom dobro#cel serbskeho luda. Na#lo#zowa#se m#oc knihi a swoje nazhonjenja na dobro chudych. Pol#ep#si jim p#eskojtu rolu, wusu#si tonid#la, zm#erowa #sk#odne njewjedra a hdys a hdys p#estowa#se te#z styki do Drje#zd#dan.
+Extro_3|Krabat b#e dobra du#sa. Po jeho smjer#ci zwosta jeno#z pow#es#c, ki#z so p#rez mjezy serbskich honow roz#s#eri. Kuz#larska kniha pak so #zenje wjace njenamaka. Stary m#lod#denc, ka#z jeho burja mjenowachu, potomstwo njem#eje#se. Tola jeho duch je #zi#lka na#seho #ziwjenja. K#o#zdy m#o#ze tak sylny, wutrajny, zmu#zity a njesebi#kny by#c, ka#z w#on. Dyrbi jeno#z Krabatowu stronku w sebi namaka#c.
+Extro_4|Pow#es#c wo pastyrskim h#olcu z Jitka wostanje kruty wobstatk na#seho w#edomja, do#lho#z s#ly#simy pluskotanje Kl#o#sterskeje wody.
+Extro_5|Design hry: Jan Bje#n#s a J#prg H#ubner$$Program#erowanje: Daniel Zoba a Stefan Zarje#nk$$Rysowanki: #S#c#epan Hanu#s$$Grafika a animacije: Jan Bje#n#s$$Hud#dba: Micha#l Cy#z$$Dialogi a teksty: J#prg H#ubner$$Lektorka: Bo#zena Pawlikec$$P#re#lo#zk do delnoserb#s#ciny: Gerat Nagora$$Beta-test:$Tilo Vollprecht$Stefan Krau#t$Ingo R#uckert$Micha#l Cy#z$Anke Richter$Frank Bensch$Stefan Ranft$Thomas Kliem$Stefan H#ubner$Michael Meich#tner$Marcus H#afner$Micha#l #So#lta$$Wobalka a p#riru#kka: Toma#s #So#lta$$Fotografija: Toma#s #So#lta$$Wutrobny d#dak:$Stefan Krau#t$Torsten Mak$Weronika #Zurowa$$Zhotowjene w nadawku Za#lo#zby za serbski lud
+Gang_1|Zerzawy rje#caz.
+Gang_2|K#os#c zw#erje#ca.
+Gang_3|Zawrjene durje.
+Gang_4|Tu je mi p#re#cma.
+Gang_5|Tak to nje#nd#de!
+Gang_6|Mi nadobo #zo#ldk kor#ki. Tu tak a tak spod#diwnje smjerd#di.
+Gang_7|Samo klu#kowa d#d#erka pobrachuje. #Sto so jeno#z za nimi chowa?
+Gang_8|Tu je mi p#re#cma.
+Gang_9|To je moja kniha.
+Gang_10|W#sitko #cma!
+Gang_11|Awa! N#etko sym so dyri#l.
+Gang_12|#Sto je to? To sej sobu wozmu.
+Gang_13|Spod#diwnje.
+Gang_14|Wona je p#re#ke#nka.
+Gang_15|Tak ju hi#s#ce roz#lamam!
+Gang_16|Njeje klu#koweje d#d#erki!
+Gang_17|Z hamorom to njep#o#nd#de!
+Habor_1|To pak je spod#diwna figura.
+Habor_2|#Kehodla chowa figura l#ewe w#o#kko?
+Habor_3|Nowe sudy.
+Habor_4|Ni#ko za mnje.
+Habor_5|Ja sym Krabat, a #st#o sy ty?
+Habor_6|Mje mjenuja Gonzales. Sym #spaniski pirat.
+Habor_7|#Spaniske holi#ko?! Je wona rjanolinka? Zaw#es#ce je wona rjana! Wzmi mje tola raz sobu!
+Habor_8|Derje, derje. Bych-li wjace chwile m#e#l, bych ju raz na piratske wa#snje wopyta#l!
+Habor_9|To je cyle jednore. Wozmje#s sej k#otwicu a prawje do#lhi powjaz, a potom dyrbi#s jeno#z hi#s#ce porjadnje krosnowa#c.
+Habor_10|Spytaj to tola sam - ale ked#dbuj, w#sud#de k#otwica njed#der#zi!
+Habor_11|D#dakuju so za kompliment. W#e#s, pira#ca p#rewjele komplimentow njed#ostawaja.
+Habor_12|Za to #ci k#otwicu dam. Powjaz dyrbi#s sej sam wobstara#c.
+Habor_13|Mam dowol a wopytach swoju sot#ri#kku. Ale #kas so tak skoku minje, a n#etko dyrbju zaso wr#o#co. Moja #l#od#d za tyd#de#n wotj#ed#de.
+Habor_14|W#sud#de tam, hd#de#z ma jend#delska flota po morju swoje wikowanske pu#ce.
+Habor_15|W#ezo, to je jend#delska kolonija. Ale rad#so sym w #cop#lej Karibice. Tam ma#s #ci spod#diwnych piratow, ale te#z njesm#erne bohatstwo - ja #ci praju ...
+Habor_16|N#o haj - zale#zi to najskerje na tej tu#zno#ce w Karibice. Raz sed#dachmy wje#kor na p#ribrjoze. P#lomjenja wohenja knyskotachu,
+Habor_17|a m#lody pirat pow#eda#se wo swojim wojowanju p#re#ciwo jednomu duchej - duchej stareho kapitana. #Kakaj, kak so w#on mjenowa#se? Le ..., Le ... - ach, ja so hi#zo njedopominam.
+Habor_18|#Sto? Kajke bohatstwa tu#ci Serbja maja? Sym tu w Drje#zd#danach n#ekotrych Serbow zezna#l, kot#ri#z su ze swojeje domizny do m#esta #ceknyli.
+Habor_19|Ty r#e#ki#s wo bohatstwach, za nich je hi#zo #skri#kka nad#dije hoberske bohatstwo. W sylzojtych wo#kach #spihelowa#se so bjezk#on#kna zrudoba, horjo a b#eda.
+Habor_20|Domizna je jich wupluny#la, a woni jara derje w#ed#da, zo so #zenje njenawr#o#ca.
+Habor_21|Rjane mjeno. W hrod#de d#d#e#la s#lu#zowna, kotru#z mjenuja Konzuela.
+Habor_22|Sy pirat a z tym njed#ostanje#s p#ristup.
+Habor_23|#Sto to r#eka, na piratske wa#snje?
+Habor_24|Ty sy prawy pirat. M#o#zu to z k#otwicu te#z raz pospyta#c?
+Habor_25|Gonzaleso, kajke to b#e z tutej k#otwicu?
+Habor_26|#Sto pyta pirat w Drje#zd#danach?
+Habor_27|Hd#de sy to po pu#cu, pirato?
+Habor_28|Znaje#s te#z Ameriku?
+Habor_29|Kajkich spod#diwnych piratow to m#eni#s?
+Habor_30|Pytam te#z bohatstwo, mjenujcy bohatstwo Serbow.
+Habor_31|To zdawa so mi w#sitko n#ekak #spaniske. Bo#zemje.
+Hala_1|Durje su zamknjene.
+Hala_2|Wobraz n#ekajkeho kurwjercha.
+Hala_3|Tute durje njejsu zamknjene.
+Hala_4|Wobraz wisa p#rewysoko!
+Hala_5|Potom wobraz hi#s#ce roz#skrabam!
+Haska_1|Ze suda kapa wino.
+Haska_2|#St#o#z tole wid#di, so na blaku wopije.
+Haska_3|S#l#odke wino. To bud#de mi jut#re h#lowa brun#ke#c!
+Haska_4|Wokno do komedijoweho domu.
+Haska_5|Tak wokno njedosahnu.
+Haska_6|N#etko m#o#zu do komedijoweho domu.
+Haska_7|Aha, tu k#otwica d#der#zi!
+Haska_8|N#e, tam ja dobrow#olnje njep#o#ndu.
+Haska_9|Kuchar njeje luby kadla!
+Haska_10|To je dw#elomna ideja! N#e!
+Haska_11|Nad#dijomnje so moja drasta njepuknje, hdy#z dyrbju swoje my#ski tak jara napina#c!
+Haska_12|To je #kerwjene wino. Wone so hubjenje wup#loka!
+Haska_13|K wosu#skej so wino njehod#di!
+Haty1_1|Rohod#d.
+Haty1_2|Rohod#d.
+Haty1_3|Wonaj staj #zno ch#etro wjele popadny#loj.
+Haty1_4|Wonaj staj #zno ch#etro wjele popadny#loj.
+Haty1_5|W#on pak so rjenje #kumpa.
+Haty1_6|W#so m#erne.
+Haty1_7|Jowle pak je wjele rybow!
+Haty1_8|Haj, to m#o#zetaj do#lho wud#di#c. Wonaj ni#ko njepopadnjetaj!
+Haty1_9|Hm, wonaj jednu rybu po druhej wu#cahnjetaj.
+Haty1_10|Najskerje rybu hi#s#ce nimataj.
+Haty1_11|Ja ju njedosahnu.
+Haty1_12|Ja ju njedosahnu.
+Haty1_13|Za kupanje je mi d#dens p#rezyma.
+Haty1_14|Za kupanje je mi d#dens p#rezyma.
+Haty1_15|Wot toho ni#ko njetrjebam.
+Haty1_16|Tajku wulku rybu hi#s#ce nicht#o popadny#l njeje.$SNANO JE HI#S#CE WJACE RYBOW TU!!!
+Haty1_17|Hej, Pawlo, pohladaj raz!
+Haty1_18|Zaperlot! Knje#zi #sosar je mi tola p#ri#sukny#l, zo je jeno#z w tutym ha#ce hi#s#ce rybow.
+Haty1_19|Chce#s n#etko najwjet#su rybu popadny#c, abo #sto? P#oj sobu!
+Haty1_20|Tajki m#lody, a hi#zo telko zbo#za!
+Haty1_21|Haj, ja te#z njew#em. To d#d#e#se w#sitko jara sp#e#snje.
+Haty1_22|Poprawom tu docy#la wud#di#c njesm#e#s. To je knje#zi hat. Ale nikomu to njeprajimoj.
+Haty1_23|Spytaj tola hi#s#ce j#onu swoje zbo#zo w na#sim ha#ce.
+Haty1_24|Haj, my tule mjeztym za prawym pohladamoj.
+Haty1_25|Hdy#z m#enitaj. Tak, na prawym boku to hi#s#ce raz spytam.
+Haty1_26|Tajki njeplech! N#etko pak skoku! Snano hi#s#ce wjet#su popadnjemoj.
+Haty1_27|Z tym rohod#d te#z njedosahnu.
+Haty1_28|Z tym rohod#d te#z njedosahnu.
+Haty1_29|Te#z powjaz tu njepomha.
+Haty1_30|Te#z powjaz tu njepomha.
+Haty1_31|Tam je #zno dos#c.
+Haty1_32|Tam je #zno dos#c.
+Haty1_33|Wone su so runje na#zrali.
+Haty1_34|Wone su so runje na#zrali.
+Haty1_35|T#onle #zort wonaj zaw#es#ce njezrozumitaj.
+Haty1_36|T#onle #zort wonaj zaw#es#ce njezrozumitaj.
+Haty1_37|Ja tola h#lupy njejsym.
+Haty1_38|Ja tola h#lupy njejsym.
+Haty1_39|Je hi#zo p#riwjazany.
+Haty1_40|Z tym hi#s#ce wud#di#c njem#o#zu.
+Haty1_41|Z tym hi#s#ce wud#di#c njem#o#zu.
+Haty1_42|#Kehodla dyrbjeli ryby p#rikusny#c?
+Haty1_43|#Kehodla bychu dyrbjeli ryby p#rikusny#c?
+Haty1_44|Ja tola h#lupy njejsym.
+Haty1_45|Ja tola h#lupy njejsym.
+Haty1_46|Rad#so nic, hrubos#c #zenje njepomha.
+Haty1_47|Rad#so nic, hrubos#c #zenje njepomha.
+Haty1_48|To je moja.
+Haty1_49|To je moja.
+Haty1_50|To su moje.
+Haty1_51|To su moje.
+Haty1_52|Mataj samaj wudu.
+Haty1_53|Mataj samaj wudu.
+Haty1_54|Wonaj #l#zu zaw#es#ce sp#oznajetaj!
+Haty1_55|Wonaj #l#zu zaw#es#ce sp#oznajetaj!
+Haty1_56|N#e, snano je l#epje, zo to zbliska njewid#detaj.
+Haty1_57|N#e, snano je l#epje, zo to zbliska njewid#da.
+Haty1_58|Hladataj, #sto sym popadny#l!
+Haty1_59|Hladataj, #sto sym popadny#l!
+Haty1_60|Ha, tajkich ma#lych mamoj samaj dos#c!
+Haty1_61|T#on je m#oj.
+Haty1_62|T#on je m#oj.
+Haty1_63|Rad#so nic, hrubos#c #zenje njepomha.
+Haty1_64|Rad#so nic, hrubos#c #zenje njepomha.
+Haty1_65|Brunjawka! Ma#s tola wino w swojim ko#siku. Daj wujej lunk wina!
+Haty1_66|#Kerwjenawka ma #kerwjenu #kapku a wopyta swoju lubu wowku. Ty ma#s n#e#sto bruneho na h#lowje, potajkim sy Brunjawka.
+Haty1_67|Tykanc w swojim ko#siku m#o#ze#s mojemu susodej da#c, ale wo wino bych so radlubje sam postara#l - luba, najlub#sa Brunjawka.
+Haty1_68|Mjel#k, Brunjawka! Daj mi sw#oj nah#lownik! Pytam hi#s#ce n#e#sto za p#ostniski #cah.
+Haty1_69|Ach, lunk wina abo palenca, a hi#zo #kapku trjeba#c njebud#de#s.
+Haty1_70|Je to zaso nowa kor#kma w Budy#sinje? P#reco tute w#olborne mjena!
+Haty1_71|Tajne m#estno!? Zo mi hobra Sprjewnika njewubud#di#s -
+Haty1_72|hahaha -- hehe.
+Haty1_73|Ja hi#zo wjele palenca piju, ale za to sy ty poprawom p#rem#lody! Hd#ze ha tajke blady pow#edaja - w Jitku abo w Kulowje?
+Haty1_74|So w#e, so w#e. To je w zymje zaw#es#ce #cop#le m#estno. Praj pro#su #kertej wjele dobreho,
+Haty1_75|za 20 l#et m#o#ze hela ze mnu li#ki#c. Potom bych rady w zarjadnistwje du#sow d#d#e#la#l,
+Haty1_76|dokel#z tepjenje podzemskich komorow za mnje ni#ko njeje -
+Haty1_77|hahaha hehe.
+Haty1_78|Haj, tutu nazymu je tole posledni hat z rybami.
+Haty1_79|W Kulowje wikuja te#z z rybami. A dokel#z jich l#etsa telko njeje, m#o#ze#s sej t#oj#sto kro#sikow zas#lu#zi#c.
+Haty1_80|#Sto z wudu chce#s?
+Haty1_81|Za l#eto p#ri#nd#d zaso. Snano zm#eje#s potom zbo#zo.
+Haty1_82|L#etsa je tole posledni hat z rybami, a nicht#o druhi tu wud#di#c njesm#e.
+Haty1_83|N#etko sm#oj m#oj tu!
+Haty1_84|M#oj tu wud#dimoj!
+Haty1_85|Zbo#zo je mje wopu#s#ci#lo!
+Haty1_86|To nima zmys#la!
+Haty1_87|Nic hi#s#ce raz!
+Haty1_88|Ty sy tola jeno#z rybow dla tu!
+Haty1_89|Dyrbju so koncentrowa#c.
+Haty1_90|Njemyl mje! Runje jedna kusa.
+Haty1_91|L#etsa ja najwjet#su popadnu!
+Haty1_92|Njem#o#zu n#etko z tobu r#e#ke#c.
+Haty1_93|Brunjawka? Ja sym Krabat.
+Haty1_94|Ja njejsym Brunjawka! Tajke #kapki so d#densa no#sa. Nimo toho je to #cmowa oran#zowa barba.
+Haty1_95|Ma#c je mi zakaza#la, sej wonka bjez #kapki hrajka#c. #Sto, jeli so nazymnju?
+Haty1_96|Znaje#ce #Kertowski m#lyn?
+Haty1_97|#Kertowski m#lyn njeje nowa kor#kma! Tak mjenuja lud#do tajne m#estno, hd#de#z m#o#ze#s wjace nawukny#c, ha#k jeno#z ml#e#ce zorna.
+Haty1_98|To njejsu blady! Ja #Kertowski m#lyn namakam!
+Haty1_99|#Swarne ryby s#ce nawud#di#l.
+Haty1_100|#Sto z rybami #kini#ce?
+Haty1_101|Hd#de d#ostanu wudu?
+Haty1_102|Wjele zbo#za hi#s#ce p#ri wud#denju.
+Haty1_103|M#o#zu to te#z raz spyta#c?
+Haty1_104|Pytam #Kertowski m#lyn.
+Haty1_105|Wjele wjesela hi#s#ce - bo#zemje.
+Haty1_106|Ruce pre#k!
+Haty1_107|Wostaj to!
+Haty1_108|D#di sej sam n#e#sto popadny#c!
+Haty1_109|Hej, to je na#s!
+Haty1_110|Ja to wid#du!
+Haty1_111|N#etko m#oj najwjet#su rybu popadnjemoj!
+Haty1_112|Wostaj naju na pokoj!
+Haty1_113|Ja sym...
+Haty1_114|ach, #sto #ci to pow#edam.
+Hojnt1_1|H#o#kka. Wona tu wisa.
+Hojnt1_2|To su pasle.
+Hojnt1_3|P#ri hajnkowni na k#oncu #sn#ory je zw#on#kk. T#on zwoni, hdy#z je so n#e#sto #fpopadny#lo#F.
+Hojnt1_4|Zw#on#kk.
+Hojnt1_5|Tu wisaja kurotwy.
+Hojnt1_6|To je s#cin knje#zeho hajnika.
+Hojnt1_7|Tu nicht#o nut#rka njeje.
+Hojnt1_8|Sekera. Wona zaw#es#ce hajnikej s#lu#sa.
+Hojnt1_9|Zachod do domskeho.
+Hojnt1_10|Drjewo z l#esa.
+Hojnt1_11|To njem#o#zu p#red woknom. Hdy#z mje hajnik wid#di! Dyrbju to n#ekak hinak zdokonje#c.
+Hojnt1_12|To njedosahnu.
+Hojnt1_13|Do paslow wjace njestupju.
+Hojnt1_14|To njem#o#zu p#red woknom. Hdy#z mje hajnik wid#di! Dyrbju to n#ekak hinak zdokonje#c.
+Hojnt1_15|D#dakuju so wam! Mam hi#s#ce pra#senje.
+Hojnt1_16|Njeje chwile. Dyrbju pasle zwuporjed#de#c a potom so na h#o#ntwu p#rihotuju. A tule n#oc wjelka popadnu.
+Hojnt1_17|Ked#dbu! Hajnik so wr#o#ci!
+Hojnt1_18|To hajnik pytnje.
+Hojnt1_19|Kurotwy njetrjebam.
+Hojnt1_20|Hdy#z dale do wokna hladam, mje w#on snano wid#di a potom mje wuswari.
+Hojnt1_21|Wokno da so jeno#z wotnut#rka wo#kini#c.
+Hojnt1_22|Wona kru#ce w zd#onku t#ki!
+Hojnt1_23|Nochcu hajnika myli#c.
+Hojnt1_24|Do domskeho njep#o#ndu.
+Hojnt1_25|P#re#ce#zke!
+Hojnt1_26|Tak to nje#nd#de!
+Hojnt1_27|Nochcu hajnika hi#s#ce raz mjerza#c. W#on chce tola wjelka popadny#c.
+Hojnt1_28|Nochcu wokno rozbi#c!
+Hojnt1_29|Tak je njezapali#s.
+Hojnt1_30|#Sto m#o#ze to jeno#z by#c? Wupada ka#z #sn#ora. Dyrbju sej to bli#ze wobhlada#c!
+Hojnt1_31|#Sto m#o#ze to jeno#z by#c? Dyrbju sej to bli#ze wobhlada#c!
+Hojnt2_1|To su pasle.
+Hojnt2_2|P#ri hajnkowni na k#oncu #sn#ory je zw#on#kk. T#on zwoni, hdy#z je so n#e#sto #fpopadny#lo#F.
+Hojnt2_3|Zw#on#kk.
+Hojnt2_4|Tu wisaja kurotwy.
+Hojnt2_5|To je s#cin knje#zeho hajnika.
+Hojnt2_6|Sekera. Wona zaw#es#ce hajnikej s#lu#sa.
+Hojnt2_7|Zachod do domskeho.
+Hojnt2_8|Drjewo z l#esa.
+Hojnt2_9|To njedosahnu!
+Hojnt2_10|Do paslow wjace njestupju.
+Hojnt2_11|To njem#o#zu p#red woknom. Hdy#z mje hajnik wid#di! Dyrbju to n#ekak hinak zdokonje#c.
+Hojnt2_12|To hajnik pytnje.
+Hojnt2_13|Hdy#z dale do wokna hladam, mje w#on snano wid#di a potom mje wuswari.
+Hojnt2_14|Wona kru#ce w zd#onku t#ki!
+Hojnt2_15|Nochcu hajnika myli#c.
+Hojnt2_16|P#re#ce#zke!
+Hojnt2_17|Nochcu hajnika hi#s#ce raz mjerza#c. W#on chce tola wjelka popadny#c.
+Hojnt2_18|Nochcu wokno rozbi#c!
+Hojnt2_19|Tak je njezapali#s.
+HojntAuto_1|Zaperlot! Je to n#etko zw#erjo abo zaso h#olc? Dyrbju za tym skoku pohlada#c.
+HojntAuto_2|D#diwnje. Tajki w#et#rik tola d#densa njeje. Ze zw#on#kkom dyrbju sej hi#s#ce n#e#sto p#remysli#c.
+HojntAuto_3|Zw#on#kk je zazwoni#l! Kotre zw#erjo drje sym popadny#l?
+Hoscenc1_1|W#on smor#ki.
+Hoscenc1_2|W#on tu sed#di a piwko lapta.
+Hoscenc1_3|Horn#kk je pr#ozdny.
+Hoscenc1_4|Aha, kor#kma wotnut#rka.
+Hoscenc1_5|To je molowany wobraz. Pom#ernje wulki to statok. Wupada ka#z m#lyn.
+Hoscenc1_6|Drjewjany st#olc.
+Hoscenc1_7|To su zaw#es#ce durje do kuchnje. S#ly#su, kak n#echt#o z horncami klepota.
+Hoscenc1_8|To so njes#lu#sa!
+Hoscenc1_9|To so njes#lu#sa!
+Hoscenc1_10|Nochcu so sydny#c!
+Hoscenc1_11|N#e, tu zaw#es#ce njesm#em zastupi#c.
+Hoscenc1_12|To nochcu womaza#c!
+Hoscenc1_13|To nochcu womaza#c!
+Hoscenc1_14|To je njep#ristojne.
+Hoscenc1_15|To sej njezwa#zu.
+Hoscenc1_16|Za #ko bych jeho dyrbja#l poch#losta#c?
+Hoscenc1_17|Nochcu, zo so rozhn#ewa!
+Hoscenc1_18|Njeje pjany, jeno#z mu#kny!
+Hoscenc1_19|#Kertowski m#lyn?! To klin#ki stra#snje.
+Hoscenc1_20|Na bladach je p#reco hro#satka w#ernos#ce, ale w#ezo te#z njew#ernos#c. To prawe je srjed#d tutoho wusmu#za.
+Hoscenc1_21|Rohaj a wopu#s ka#z #kert njejsym hi#s#ce pola m#lynka wid#da#l, a #copli#so te#z njebywa, hdy#z tu zastupi.
+Hoscenc1_22|W#on j#onu wob l#eto sem do kor#kmy p#ri#nd#de. Za#s#ly raz je mi samo wobrazaj dari#l - dla wabjena, w#on m#enje#se.
+Hoscenc1_23|Tam na s#c#enje wisatej.
+Hoscenc1_24|W#ezo s#ly#si#s wjele noweho. #Sunow le#zi p#ri wa#znej wikowanskej dr#oze.
+Hoscenc1_25|J#onu su Kulowscy wikowarjo moji hos#co a druhi raz wojacy abo posoljo kurwjercha, ki#z sej ma#lu p#restawku pop#reja.
+Hoscenc1_26|W Drje#zd#danach maja zaso noweho kurwjercha. Awgust Sylny so mjenuje.
+Hoscenc1_27|Posoljo pow#edachu, zo chce by#c kral - a to kral P#olskeje.
+Hoscenc1_28|Wo #ko lud#di prosy#s? Wo rozum a w#edu? - Zady Kulowa?! Jejdyrko h#ol#ke, z tebje ni#ko njebud#de!
+Hoscenc1_29|Ni#ko za tebje. W#er mi h#ol#ke!
+Hoscenc1_30|Ty njejsy pr#eni, ki#z p#rede mnu steji a so za wonym m#lynom pra#sa. Ja #zanoho z tutych pacho#low wjace wid#da#l njejsym,
+Hoscenc1_31|a tutu kor#kmu mam hi#zo dl#eje ha#k 20 l#et. Njeje to trochu spod#diwne?
+Hoscenc1_32|Z nim so nicht#o tak prawje rozmo#lwje#c nochce. Hdy#z w#on zastupi, w#sitcy stanu a kor#kmu wopu#s#ca.
+Hoscenc1_33|M#lynk wjele njepraji a p#redo#lho te#z njewostawa. Njeje to helska #cop#lota, kotru#z w#on wuprud#da, ale ... zymnota!
+Hoscenc1_34|#f#Kw#ela chudych du#sow#F jeho lud#do mjenuja.
+Hoscenc1_35|To je moja w#ec. Wobrazy njech tam wisaja, a k#onc!
+Hoscenc1_36|N#etko pak dos#c. Wobhladaj sej wobrazy, to njech dosaha. #Kertowski m#lyn tak a tak njenamaka#s.
+Hoscenc1_37|Za to trjeba#s h#l#oj#kku, zmu#zitos#c a sylnu wolu.
+Hoscenc1_38|To zaw#es#ce nic - m#lynk nima #zonu. #fSym n#e#sto wa#zneho zhubi#l#F, w#on p#reco praji.
+Hoscenc1_39|K#o#zdy raz samsnu sadu, a potom so #za#lostnje wopije.
+Hoscenc1_40|Haj, hdy bych to w#ed#da#l. Ale dyrbi to jemu ch#etro blisko hi#c.
+Hoscenc1_41|Chce#s mojich hos#ci mjerza#c?
+Hoscenc1_42|Jano#s, sym Jano#s. Dundam po kraju a wok#rewjam so na #ziwjenju.
+Hoscenc1_43|Ja njejsym wottud. Pra#sej so tola kor#kmarja.
+Hoscenc1_44|To dyrbi k#o#zdy za sebje w#ed#de#c.
+Hoscenc1_45|#Ki#n to, z #kim#z sy zbo#zowny, abo mysli na to, #sto#z by rady #kini#l. Na spo#katku to dosaha.
+Hoscenc1_46|#Sto so huntori#s? Wy s#ce tola sami wina. Jeno#z stonanja su tule s#ly#se#c! #f#Kakamy na rjeka, ki#z nas wuswobod#di.#F
+Hoscenc1_47|Tutu sadu njem#o#zu wjace s#ly#se#c! Tam wonka nicht#o njeje, tam ... nicht#o ... njeje, ki#z by wam pomha#l!
+Hoscenc1_48|Wa#se peticije wam njepomhaja, a wobr#onjene zb#e#zki so p#reco krawnje a bjez wusp#echa sk#on#ka.
+Hoscenc1_49|Ja wupu#ca njewid#du.
+Hoscenc1_50|W #ziwjenju namaka so p#reco pu#c, a #k#lowjek nade#nd#de m#o#znos#ce.
+Hoscenc1_51|Krasna k#on#kina, tuta #Lu#zica. W#sitko tu ma#ce. M#odre horiny ju#znje Budy#sina, daloke l#esy a p#l#odne pola.
+Hoscenc1_52|To je ma#ly paradiz.
+Hoscenc1_53|To #ci p#reju wjele wusp#echa. Snad#d namaka#s wotmo#lwy na swoje pra#senja.
+Hoscenc1_54|Bbbrrr...
+Hoscenc1_55|Hhhhuuuhhhooo...
+Hoscenc1_56|Bbbyyy...
+Hoscenc1_57|Kak m#o#ze #k#lowjek hi#zo wodnjo tak pjany by#c?
+Hoscenc1_58|Pytam #Kertowski m#lyn.
+Hoscenc1_59|#Kertowski m#lyn jeno#z z pow#edanja znaju - #sto#z lud#do tak bled#da.
+Hoscenc1_60|#Sto s#ce wo m#lynje s#ly#sa#l? Bydli tam #kert?
+Hoscenc1_61|Jako kor#kmar tola mnoho nowos#cow s#ly#si#ce ...
+Hoscenc1_62|#Sto wa#si hos#co takle pow#edaja?
+Hoscenc1_63|Drje#zd#dany?! Njeje to m#esto zady Kulowa? Tak daloko hi#s#ce po pro#senju chod#di#l njeb#ech.
+Hoscenc1_64|M#lynk potajkim pomocnikow trjeba?
+Hoscenc1_65|#Kehodla mi wotrad#duje#ce, by#c m#lynski?
+Hoscenc1_66|#Sto m#lynk k tomu m#eni? S#ce so jeho pra#sa#l?
+Hoscenc1_67|#Kehodla potom tute wobrazy na s#c#enje wisaja?
+Hoscenc1_68|Pow#edaj#ce mi wjace wo #Kertowskim m#lynje.
+Hoscenc1_69|Jeno#z j#onu wob l#eto was wopyta? M#lynk drje doma m#ocnje pod toflom steji?
+Hoscenc1_70|#Sto je m#lynk wa#zneho zhubi#l?
+Hoscenc1_71|Njejsym la#kny, d#dakuju so.
+Hoscenc1_72|Ja sym Krabat, a #st#o s#ce wy?
+Hoscenc1_73|Znaje#ce #Kertowski m#lyn?
+Hoscenc1_74|Kak to d#de, so na #ziwjenju wok#rewje#c?
+Hoscenc1_75|Wy s#ce bohaty a ma#ce chwile za tajke hr#on#kka. Chudy mu#z dyrbi #ce#zce d#d#e#la#c. Snano jeho to zbo#zowneho s#kini. Ale hdy#z sej swojeho nana wobhladam, njejsym sej wjace tak w#esty.
+Hoscenc1_76|Pow#edaj#ce wjace, ja sym te#z wjele po pu#cu.
+Hoscenc1_77|Druhdy rjanos#ce #ziwjenja docy#la wjace njewid#du. Hdy#z k#o#zdy d#de#n jeno#z za chl#ebom honi#s, je sw#et woko#lo tebje #cmowy a cuzy. N#etko pak chcu sw#et zezna#c!
+Hoscenc1_78|N#etko pak sym la#kny. Skazam sej #cichu wodu.
+Hoscenc1_79|Hhhhrrr...
+Hoscenc1_80|Aaaarrrgggrrr...
+Hoscenc1_81|Kkkkrrr...
+Hrodz_1|Wulki kamje#n. Zdawa so #ce#zki.
+Hrodz_2|Zaperlot, sym m#ocny kadla. N#etko pak sym #ce#zki pacho#l.
+Hrodz_3|Hmmm ...
+Hrodz_4|Hmmm ...
+Hrodz_5|AAAAAAAAAAH!
+Info_1|DESIGN$HRY:
+Info_2|Jan$Bje#n#s
+Info_3|J#prg$H#ubner
+Info_4|PROGRAM#EROWANJE:
+Info_5|Daniel$Zoba
+Info_6|Stefan$Zarje#nk
+Info_7|RYSOWANKI:
+Info_8|#S#c#epan$Hanu#s
+Info_9|GRAFIKA$A$ANIMACIJE:
+Info_10|Jan$Bje#n#s
+Info_11|HUD#DBA:
+Info_12|Micha#l Cy#z
+Info_13|ZWUK:
+Info_14|Jan Bje#n#s
+Info_15|DIALOGI$A$TEKSTY:
+Info_16|J#prg$H#ubner
+Info_17|Lektorka: Bo#zena Pawlikec$$P#re#lo#zk do delnoserb#s#ciny: Gerat Nagora$$Wobalka a p#riru#kka: Toma#s #So#lta$$Fotografija: Toma#s #So#lta$$Zhotowjene w nadawku$Za#lo#zby za serbski lud
+Inmlyn_1|#Sto? M#eni mje? Ow ma#ci, pomhaj mi!
+Inmlyn_2|Hustohdy sed#de#se p#ri najwy#sim woknje m#lyna a mysle#se styskniwje na doma - na nana a ma#c.%%W#ezo njeb#e to jeno#z m#lynske wukub#lanje, kotre#z b#e na#s Krabat tu zezna#l. M#lynske ko#lo bjez wody njezwosta jeni#kki mysterij. A Krabat so pra#se#se, zwotkel m#lynk swoju m#oc sr#eba.
+Inmlyn_3|J#onu w p#ozdnim l#e#cu - s#l#onco so hi#zo zeza l#esa chowa#se a Krabat b#e#se hi#s#ce n#ekotre my#ski w zornowym sk#lad#di#s#cu popadny#l - to wuhlada naraz d#d#erku, kotru#z b#echu zw#erjatka do wjercha hrymzali. Znaty h#l#os so k njemu p#redr#ewa#se ...
+Inmlyn_4|N#etko so Krabat dopomni na warnowanje lud#di a na s#lowa ma#cerje. A ma#c b#e#se te#z klu#k do swobody.
+Inventar_1|Pi#s#ca#lka je dopomnjenka$na mojeho d#d#eda.
+Inventar_2|To je m#oj pastyrski kij.
+Inventar_3|Za #ko budu j#on jeno#z trjeba#c?
+Inventar_4|Horn#kk je pr#ozdny.
+Inventar_5|W#ed#dach, zo ma tale w#ec h#o#kku!
+Inventar_6|Kruty powjaz.
+Inventar_7|Hmmm, wupada ka#z k#rud.
+Inventar_8|Pi, ba - su te slinojte!
+Inventar_9|Z tym m#o#zu wud#di#c hi#c.
+Inventar_10|Tale wa#kka p#o#nd#de so hnydom kupa#c!
+Inventar_11|Hladaj#ce, #sto sym popadny#l!
+Inventar_12|Ma#le, zd#d#ela kulowate wohnjowe kamu#ski.
+Inventar_13|Jeno#z z drjewa.$Hdy by jeno#z prawa by#la!
+Inventar_14|Puh, ta hi#zo po#kina smjerd#de#c ...
+Inventar_15|Hej, sym bohaty!
+Inventar_16|T#on horn#kk z b#l#otom nikomu wjace$poski#ci#c njem#o#zu.
+Inventar_17|Aj, p#rez nju m#o#zu dycha#c!
+Inventar_18|Knje#zkojo, bjer#ce so na ked#dbu!$N#o haj, najsylni#sa br#o#n to runje njeje.
+Inventar_19|Krasne, #korne rapakowe pjerjo.
+Inventar_20|Karta na#seje wokoliny.
+Inventar_21|Doporu#kenje. Trjebam je za Dinglingera.
+Inventar_22|Njepodpisana a njezyglowana$potwjerd#denka.
+Inventar_23|Njepodpisana, ale zyglowana$potwjerd#denka.
+Inventar_24|Podpisana, ale njezyglowana potwjerd#denka.
+Inventar_25|Podpisana kralowska potwjerd#denka$z kralowskim pje#katom.
+Inventar_26|To je drjewo za tepjenje.
+Inventar_27|Rjany, mjechki ko#zuch.
+Inventar_28|Hd#de jeno#z k#otwica d#der#zi?
+Inventar_29|Kruty powjaz.
+Inventar_30|Powjaz z k#otwicu. N#etko sym prawy pirat.
+Inventar_31|5 tolerjow. Wjele to njeje!
+Inventar_32|W tutej dras#ce wupadam ka#z dypornak.
+Inventar_33|Do#lha hlebija.
+Inventar_34|Z tym so ch#etro po#ci#s.
+Inventar_35|Tak so wino njewupanca.
+Inventar_36|Naru#kny s#l#on#kny #kasnik.
+Inventar_37|#C#esliski hamor.
+Inventar_38|To je klu#k do pok#ladni#s#ca.
+Inventar_39|To bud#de raz krasna woporna #skla.
+Inventar_40|Podpisany p#rikaz.
+Inventar_41|To je skica woporneje #skl#e.
+Inventar_42|To je zbytk wosu#ska.
+Inventar_43|S#l#odny Drje#zd#danski wosu#sk.
+Inventar_44|To je moja wosobinska drasta.
+Inventar_45|To je karta domizny.
+Inventar_46|#fPublikum a ja. Kak p#rewinu strachi.#F$Pom#ernje #ce#zka kniha to je.
+Inventar_47|Woporna #skla. Klu#k za Koraktor.
+Inventar_48|Stara kniha - KORAKTOR!
+Inventar_49|Hoberski, #ke#zki kamje#n!
+Inventar_50|Syno.
+Inventar_51|Do horn#kka mi to njep#ri#nd#de!
+Inventar_52|Njeje la#kna...
+Inventar_53|N#e, to nochcu zapali#c!
+Inventar_54|N#e, to nochcu zapali#c!
+Inventar_55|Jedyn dosaha!
+Inventar_56|Njeje #losko#ciwa.
+Inventar_57|N#e, z tym pisa#c njem#o#zu.
+Inventar_58|N#e, to nochcu zapali#c.
+Inventar_59|N#e, to nochcu zapali#c.
+Inventar_60|N#e, n#e. Wona ch#etro hubjenje hraje.
+Inventar_61|Jeno#z tak? N#e!
+Inventar_62|N#e#sto hi#s#ce pobrachuje!
+Inventar_63|Njeje h#l#odna.
+Inventar_64|N#e, to nochcu zapali#c.
+Inventar_65|Wona wjace h#l#odna njeje.
+Inventar_66|J#onu to dosaha.
+Inventar_67|J#onu to dosaha.
+Inventar_68|J#onu to dosaha.
+Inventar_69|Hej, to je #kw#elowanje zw#erjatow!
+Inventar_70|Do horn#kka mi to njep#ri#nd#de!
+Inventar_71|Jeno#z tak? N#e!
+Inventar_72|N#e#sto hi#s#ce pobrachuje!
+Inventar_73|Jeno#z tak? N#e!
+Inventar_74|To njem#o#zu do lista tykny#c!
+Inventar_75|Kajke to wupada? List z to#lstym brjuchom.
+Inventar_76|W#ezo. Potom kro#siki wjace njenamakam.
+Inventar_77|To rad#so Dinglingerej p#rewostaju.
+Inventar_78|Jeno#z tak? N#e!
+Inventar_79|Tak nic.
+Inventar_80|N#e, to nochcu zapali#c!
+Inventar_81|To nje#nd#de.
+Inventar_82|To so njehod#di.
+Inventar_83|Tak nic.
+Inventar_84|To ja njem#o#zu #kini#c.
+Jama1_1|W#sud#de wa#za wa#kki. W#ezo su slinojte!
+Jama1_2|Grawam so!
+Jama1_3|Hej, kadla! #Sto tu pyta#s?
+Jama1_4|Haj, #sto tu jeno#z pytam? To ani prawje njew#em.
+Jama1_5|Hdy#z bud#de#s to w#ed#de#c, potom mje zawo#laj.
+Jama1_6|N#e, n#e - tak to njem#enjach. Pomhaj#ce mi pro#su.
+Jama1_7|P#richodny raz pak bjer so na ked#dbu!
+Jewisco_1|Zajimawa to kniha z titulom: #fPublikum a ja. Kak p#rewinu strachi. Kniha za m#lodych d#diwad#delnikow.#F
+Jewisco_2|To je prawa kniha za d#diwad#delnikow w komedijowym domje. Pom#ernje #ce#zka wona te#z je.
+Jewisco_3|Tule chcu te#z raz za lud#di hra#c.
+Jewisco_4|Hdy#z d#ostanje#s na tutym jewi#s#cu m#ocny p#riklesk - kajke je to za#ku#ce?!
+Jewisco_5|Ow, ta kniha pak je #ce#zka!
+Jewisco_6|Ja p#rihladowarjow nimam!
+Jezba_1|Tak smale#se kralowski w#oz do srjed#di#s#ca sakskeje mocy, do Drje#zd#dan.
+Jezba_2|Po #kasu so Awgust wjace za serbskeho pacho#la njezajimowa#se a tykny jeho do kralowskeje kuchnje. Krabat pak njeb#e#se s#lowa w#odneho mu#za a Kulowskeho fararja zaby#l.
+Jitk1_1|Hm, tute durje su rje#n#se ha#k na#se ...
+Jitk1_2|To je susod#dic wozy#kk.
+Jitk1_3|Jara praktiski, ale za mnje jeno#z br#emjo.
+Jitk1_4|Tu nicht#o doma njeje.
+Jitk2_1|Hm, tute durje su rje#n#se ha#k na#se ...
+Jitk2_2|To je susod#dic wozy#kk.
+Jitk2_3|Jara praktiski, ale za mnje jeno#z br#emjo.
+Jitk2_4|Tu nicht#o doma njeje.
+Kapala_1|Dokumenty.
+Kapala_2|Dokument.
+Kapala_3|Dokument.
+Kapala_4|N#e, to woporna #skla njeje.
+Kapala_5|N#e, to woporna #skla njeje.
+Kapala_6|N#e, to woporna #skla njeje.
+Karta_1|Kulow
+Karta_2|Njed#dichow
+Karta_3|#Sunow
+Karta_4|Ralbicy
+Karta_5|Jitk
+Karta_6|#Zd#dary
+Karta_7|#Korny Cho#lmc
+Komedij_1|Tajka wulka wopica!
+Komedij_2|Wopicow znaju dos#c.
+Komedij_3|Tajka wulka sekera.
+Komedij_4|Sekeru njetrjebam.
+Komedij_5|Drasta s#lu#zownika. Tu zaw#es#ce hi#s#ce trjebam.
+Komedij_6|Hr#ozbna postawa.
+Komedij_7|Ma#s zbo#zo, zo ju jeno#z wot zady wid#di#s!
+Komedij_8|Mje#k.
+Komedij_9|Tesaki.
+Komedij_10|#Sto z postawu chcu?
+Komedij_11|To je rekwizita za d#diwad#lo a jeno#z z drjewa.
+Komedij_12|To su rekwizity a jeno#z z drjewa.
+Konc_1|      Woprawd#de?
+Konc_2| Haj
+Konc_3|  N#e
+Kuchnja_1|Kuchar tu kle#ki a my#se #l#oji.
+Kuchnja_2|To je za hos#cinu p#rihotowane swinjo.
+Kuchnja_3|Rjane jab#luko ma w tlamje.
+Kuchnja_4|Wupada ka#z #ziwe!
+Kuchnja_5|Drjewo za tepjenje.
+Kuchnja_6|Drjewo so zaw#es#ce derje pali.
+Kuchnja_7|Durje su zamknjene.
+Kuchnja_8|To je kralowy zw#on#kk.
+Kuchnja_9|Wid#du jeno#z njebjo.
+Kuchnja_10|P#lomjenja so hnydom hasnu.
+Kuchnja_11|N#etko prawje knyskota.
+Kuchnja_12|Wusmu#z so scy#la porjadnje njewari!
+Kuchnja_13|N#etko so wusmu#z porjadnje wari.
+Kuchnja_14|Kruch drjewa hi#zo mam.
+Kuchnja_15|Njejsym h#l#odny!
+Kuchnja_16|Nimam klu#k!
+Kuchnja_17|Rad#so nic!
+Kuchnja_18|Tute wokno njedosahnu.
+Kuchnja_19|Njejsym h#l#odny!
+Kuchnja_20|Nochcu so spali#c!
+Kuchnja_21|To nochcu zapali#c!
+Kuchnja_22|Swinjo to wjace njetrjeba!
+Kuchnja_23|Potom wusmu#z wjace njes#lod#di.
+Kuchnja_24|K#otwica w swinje#cu? A #sto potom?
+Kuchnja_25|Wjace drjewa njesm#em p#ri#lo#zi#c. Hewak so wusmu#z p#rewari!
+Kuchnja_26|N#o haj, drjewa je tola dos#c!
+Kuchnja_27|N#etko hrozy zaw#erno strach. Skoku pre#k!
+Kuchnja_28|Ty njedo#kinko, zapo#katkarjo, amatero. Wo w#so dyrbju so sam stara#c!
+Kuchnja_29|D#di mi z pu#ca! Ja chcu z profijemi d#d#e#la#c!
+Kuchnja_30|Sym wo nim s#ly#sa#l.
+Kuchnja_31|Twoje #za#lostne pra#senja - twoje #za#lostne #zwanje! Sy s#lu#zownik - tu#z d#d#e#laj!
+Kuchnja_32|Haj w#sak! W#on je na kralowskim dworje jara nahladany #k#lowjek a s#lu#zownym nap#re#co p#reco dostojny - #sto#z ty #zenje njebud#de#s!
+Kuchnja_33|W#on njer#eka Krabat, njeje zhni#ly a je n#e#sto porjadneho nawukny#l.
+Kuchnja_34|Zahrodnik je dw#orski mechanikar Awgusta Sylneho, a kral ma p#reco n#ekajke wosebite nadawki za njeho.
+Kuchnja_35|Hd#de w#on bydli? #Sto je jeho najlub#sa barba? Kotru hud#dbu rady s#lucha?
+Kuchnja_36|Z kotrej nohu rano z #lo#za stanje? KRABATO - JA TO NJEW#EM!
+Kuchnja_37|To #ce ni#ko njestara!
+Kuchnja_38|Tak stary Awgust tola docy#la njeje, ale za swojich 28 l#et je tola hi#zo pom#ernje #ce#zki pacho#l.
+Kuchnja_39|Haj, ale ty j#on njed#ostanje#s. D#d#e#laj!
+Kuchnja_40|#Sto? Ja klinka#kk s#ly#sa#l njejsym. Nimo toho nima#s s#lu#zbnu drastu.
+Kuchnja_41|Kak husto mam #ci to hi#s#ce pr#edowa#c? Bjez tutoho kostima w hrod#de ni#ko pyta#c nima#s.
+Kuchnja_42|Hewak #ce stra#za hrabnje. Na k#oncu zaso w kuchni sed#di#s a ja d#ostanju swar. A w#e#s, zo swar hid#du!
+Kuchnja_43|P#resta#n diskutowa#c. S#lu#zbna drasta je winowatos#c. Hewak zle#ci#s - a to runjewon do mojeje wulkeje kucharskeje #l#zicy,
+Kuchnja_44|kotra#z potom - w#ezo cyle p#ripadnje - tu wosrjed#d kuchnje wisa a #ce dyri! Tu#z d#d#e#laj!
+Kuchnja_45|To je francoski original - b#lazniwco! T#on sym wot swojeho mi#stra z Parisa d#osta#l.
+Kuchnja_46|W#ezo! Tute rjane zw#erjo tamle na blid#de jeno#z #zenij - z tym sym ja m#enjeny - p#rihotowa#c zam#o#ze.
+Kuchnja_47|Cyle prawje! Sym dyrbja#l w Parisu wosta#c. Tam su sej mje wa#zili. Ach, Paris!
+Kuchnja_48|Mi so tak styska. Lubowana Francoska ... ach, Paris ...
+Kuchnja_49|Znaje#s Handrija Zahrodnika?
+Kuchnja_50|A dale? #Sto sy s#ly#sa#l wo Zahrodniku?
+Kuchnja_51|Mamy tola hi#s#ce hod#dinku. Je w#on p#ristajeny krala?
+Kuchnja_52|#Kehodla je Zahrodnik tak nahladany?
+Kuchnja_53|A hd#de Handrij Zahrodnik bydli?
+Kuchnja_54|W#ezo to w#e#s! Hd#de Zahrodnik bydli?
+Kuchnja_55|Ma#s klu#k do hrodu?
+Kuchnja_56|Mje je runje n#echt#o wo#la#l!
+Kuchnja_57|Za #ko tajke n#e#sto trjebam? Sym te#z bjez tutoho kostima nahladny serbski pacho#l.
+Kuchnja_58|S#lu#zbnu drastu? To wupadam ka#z dypornak!
+Kuchnja_59|Ze swojej wulkej kucharskej #kapku mje docy#la njezrozumi#s!
+Kuchnja_60|Ty wobknje#zi#s francosku kuchnju?
+Kuchnja_61|Jab#luko swinje#cu do tlamy tykny#c - haj, to dowid#du, to jeno#z #zenij zam#o#ze.
+Kuchnja_62|M#o#zu pro#su nimo?
+Kuchnja_63|Hej - ty njedo#kinko! Wr#o#co! #Ki#n swoje d#d#e#lo!
+Kuchnja_64|Njes#ly#si#s!? Wotskubaj hona#ka!
+Kuchnja_65|Ty s#lowjanska heja! Wr#o#co!
+Kuchnja_66|Njeteptaj mi na #kuwach! Ked#dbuj, zo so wusmu#z njep#rewari!
+Kuchnja_67|Hladaj na wohe#n, zo so njehasnje!
+Kuchnja_68|N#e, n#e. Kajkeho zhni#leho njeplecha je mi t#on stary jeno#z do kuchnje da#l.
+Kuchnjaopen_1|To je za hos#cinu p#rihotowane swinjo.
+Kuchnjaopen_2|Rjane jab#luko ma w tlamje.
+Kuchnjaopen_3|Wupada ka#z #ziwe!
+Kuchnjaopen_4|Drjewo za tepjenje.
+Kuchnjaopen_5|Durje su zamknjene.
+Kuchnjaopen_6|To je kralowy zw#on#kk.
+Kuchnjaopen_7|Wid#du jeno#z njebjo.
+Kuchnjaopen_8|P#lomjenja so hnydom hasnu.
+Kuchnjaopen_9|N#etko prawje knyskota.
+Kuchnjaopen_10|Wusmu#z so scy#la porjadnje njewari!
+Kuchnjaopen_11|N#etko so wusmu#z porjadnje wari.
+Kuchnjaopen_12|#Sto z drjewom chcu? Wohe#n w kachlach so wjace njepali.
+Kuchnjaopen_13|Njejsym h#l#odny!
+Kuchnjaopen_14|Nimam klu#k!
+Kuchnjaopen_15|Rad#so nic!
+Kuchnjaopen_16|Tute wokno njedosahnu.
+Kuchnjaopen_17|Njejsym h#l#odny!
+Kuchnjaopen_18|Nochcu so spali#c!
+Kuchnjaopen_19|To nochcu zapali#c!
+Kuchnjaopen_20|Swinjo to wjace njetrjeba!
+Kuchnjaopen_21|Potom wusmu#z wjace njes#lod#di!
+Kuchnjaopen_22|K#otwica w swinje#cu? A #sto potom?
+Kuchnjaopen_23|Wjace drjewa njesm#em p#ri#lo#zi#c. Hewak so wusmu#z p#rewari!
+Kuchnjaopen_24|N#o haj, drjewa je tola dos#c!
+Kuchnjaopen_25|N#etko hrozy zaw#erno strach. Skoku pre#k!
+Kuchnjaopen_26|Ty njedo#kinko, zapo#katkarjo, amatero. Wo w#so dyrbju so sam stara#c!
+Kuchnjaopen_27|D#zi mi z pu#ca! Ja chcu z profijemi d#d#e#la#c!
+Kulow1_1|Wikowar ma jeno#z jednu ruku.
+Kulow1_2|W#on p#redawa ryby.
+Kulow1_3|Drjewjana ryba - za wabjenje.
+Kulow1_4|Durje do domskeho.
+Kulow1_5|Tute durje su wo#kinjene.
+Kulow1_6|Syno.
+Kulow1_7|W sud#de je woda.
+Kulow1_8|#Sto to dyrbi? Ruce pre#k!
+Kulow1_9|Su zawrjene. Nimam klu#k.
+Kulow1_10|Ty tu ni#ko pyta#c nima#s!
+Kulow1_11|Wostaj durje wo#kinjene! Trjebam #kerstweho pow#etra.
+Kulow1_12|Byrnje#z su durje wo#kinjene to njer#eka, zo sm#e#s zastupi#c. Zaso tajki burski h#olc!
+Kulow1_13|To n#etko njetrjebam!
+Kulow1_14|Njejsym la#kny.
+Kulow1_15|Sudobjo je p#re#ce#zke.
+Kulow1_16|To pak njeje #kerstwa ryba!
+Kulow1_17|D#ostanje#s kro#sik - wjace nic!
+Kulow1_18|Za #ko bych jeho dyrbja#l poch#losta#c?
+Kulow1_19|Za #ko bych jeho dyrbja#l poch#losta#c?
+Kulow1_20|Nochcu, zo so rozhn#ewa!
+Kulow1_21|Nochcu, zo so rozhn#ewa!
+Kulow1_22|To nochcu zapali#c!
+Kulow1_23|Potom so b#orze cy#la wjes pali!
+Kulow1_24|Ta ryba tu ni#ko pyta#c nima.
+Kulow1_25|Muku, zorno, jah#ly - w#sitko, #sto#z je za #ziwjenje tr#ebne.
+Kulow1_26|Ja muku te#z jeno#z pola druheho wikowarja nakupuju. Zorno pochad#da z Pruskeje.
+Kulow1_27|Sym stary wojak. Domiznu nimam a tu#z so w#sud#de doma #kuju, hd#de#z sw#oj k#lobuk p#ojsnu.
+Kulow1_28|Ach h#ol#ke! #Sto m#eni#s, #sto tajki wojak #kini? M#er zachowace naprawy?
+Kulow1_29|Moja poslednja bitwa b#e 1683. B#ech tehdy wojak pod kurwjerchom Janom Jurjom III.
+Kulow1_30|Turkojo stejachu p#red Wienom - to je w Rakuskej - a my wojowachmy w zwjaskarstwje z w#ojskom p#olskeho krala Jana Sobieskeho.
+Kulow1_31|Horca b#e to bitwa - ale smy dobyli. Na tutu bitwu dopominatej moja falowaca ruka
+Kulow1_32|a tak mjenowana #fTurkowska Studnja#F p#red hrodom w Drje#zd#danach.
+Kulow1_33|W#ezo! Ja mam jeno#z #kerstwe ryby. #Sto ma to r#eka#c?
+Kulow1_34|To mi tola #kerstwe p#redaj. L#etsa jich telko njeje.
+Kulow1_35|Ach, to w#eri#s? #Ci chced#da jeno#z wjace kro#sikow za swoje #supiznate zw#erjata.
+Kulow1_36|Tohodla pow#edaja lud#dom, a te#z mi, tajke blady. Ale jeli ma#s rybu na p#reda#n - ja #ci ju rady wotkupju.
+Kulow1_37|Kruch #zrawca? Wokomik, to dyrbju skoku pohladny#c.
+Kulow1_38|Wokomik, pohladnu.
+Kulow1_39|#Sto ma#ce na p#reda#n?
+Kulow1_40|Muku?! Hd#de da#ce zorno ml#e#c?
+Kulow1_41|Zwotkel p#ri#nd#de#ce?
+Kulow1_42|To s#ce jako wojak zaw#es#ce wjele hr#ozbneho wid#da#l?
+Kulow1_43|W kotrej k#on#kinje s#ce to wojowa#l?
+Kulow1_44|Ach, ni#ko - sym so myli#l.
+Kulow1_45|D#dakuju so. Ja sej hi#s#ce druhe budki wobhladam.
+Kulow1_46|Puh, su to woprawd#de #kerstwe ryby?
+Kulow1_47|Tu smjerd#di za starymi rybami.
+Kulow1_48|Wud#derjej p#ri Jitkowskim ha#ce m#enje#staj, zo l#etsa wjele rybow njeje.
+Kulow1_49|Trjebam kruch #zrawca. Ale pro#su filet#erowany.
+Kulow1_50|Pytam p#reco hi#s#ce kruch #zrawca.
+Kulow1_51|Ach, ni#ko - sym so myli#l.
+Kulow1_52|D#dakuju so. Ja sej hi#s#ce druhe budki wobhladam.
+Kulow1_53|Hej, #zrawcow tola we #Lu#zicy #zanych njeje!
+Kulow1_54|#Sto ja jeno#z #kinju? Sym #ci tola praji#l, zo tu #zrawcow njeje!
+Kulow1_55|Hmmm - #s#cuki mam...
+Kulow1_56|karpy mam...
+Kulow1_57|Octopussy - ty stare swinjo!$Njem#o#ze#s tintu do korba wule#c.
+Kulow1_58|Hmmm, karpy woprawd#de hi#zo trochu smjerd#da.
+Kulow1_59|- bud#de#s ty -
+Kulow1_60|w#sud#de tintowe blaki, wr#o#co do korba...
+Kulow1_61|hmmm, wjelrybu mam...
+Kulow2_1|Wikowar ma jeno#z jednu ruku.
+Kulow2_2|W#on p#redawa ryby.
+Kulow2_3|Durje do domskeho.
+Kulow2_4|Tute durje su wo#kinjene.
+Kulow2_5|Syno.
+Kulow2_6|W sud#de je woda.
+Kulow2_7|Su zawrjene. Nimam klu#k.
+Kulow2_8|Ty tu ni#ko pyta#c nima#s!
+Kulow2_9|Wostaj durje wo#kinjene! Trjebam #kerstweho pow#etra.
+Kulow2_10|Byrnje#z su durje wo#kinjene to njer#eka, zo sm#e#s zastupi#c. Zaso tajki burski h#olc!
+Kulow2_11|To n#etko njetrjebam!
+Kulow2_12|Njejsym la#kny.
+Kulow2_13|Sudobjo je p#re#ce#zke.
+Kulow2_14|Za #ko bych jeho dyrbja#l poch#losta#c?
+Kulow2_15|Za #ko bych jeho dyrbja#l poch#losta#c?
+Kulow2_16|Nochcu, zo so rozhn#ewa!
+Kulow2_17|Nochcu, zo so rozhn#ewa!
+Kulow2_18|To nochcu zapali#c!
+Kulow2_19|Potom so b#orze cy#la wjes pali!
+Kulow2_20|Ta ryba tu ni#ko pyta#c nima.
+Kulow2_21|Muku, zorno, jah#ly - w#sitko, #sto#z je za #ziwjenje tr#ebne.
+Kulow2_22|Ja muku te#z jeno#z pola druheho wikowarja nakupuju. Zorno pochad#da z Pruskeje.
+Kulow2_23|Sym stary wojak. Domiznu nimam a tu#z so w#sud#de doma #kuju, hd#de#z sw#oj k#lobuk p#ojsnu.
+Kulow2_24|Ach h#ol#ke! #Sto m#eni#s, #sto tajki wojak #kini? M#er zachowace naprawy?
+Kulow2_25|Moja poslednja bitwa b#e 1683. B#ech tehdy wojak pod kurwjerchom Janom Jurjom III.
+Kulow2_26|Turkojo stejachu p#red Wienom - to je w Rakuskej - a my wojowachmy w zwjaskarstwje z w#ojskom p#olskeho krala Jana Sobieskeho.
+Kulow2_27|Horca b#e to bitwa - ale smy dobyli. Na tutu bitwu dopominatej moja falowaca ruka
+Kulow2_28|a tak mjenowana #fTurkowska Studnja#F p#red hrodom w Drje#zd#danach.
+Kulow2_29|W#ezo! Ja mam jeno#z #kerstwe ryby. #Sto ma to r#eka#c?
+Kulow2_30|To mi tola #kerstwe p#redaj. L#etsa jich telko njeje.
+Kulow2_31|Ach, to w#eri#s? #Ci chced#da jeno#z wjace kro#sikow za swoje #supiznate zw#erjata.
+Kulow2_32|Tohodla pow#edaja lud#dom, a te#z mi, tajke blady. Ale jeli ma#s rybu na p#reda#n - ja #ci ju rady wotkupju.
+Kulow2_33|#Sto ma#ce na p#reda#n?
+Kulow2_34|Muku?! Hd#de da#ce zorno ml#e#c?
+Kulow2_35|Zwotkel p#ri#nd#de#ce?
+Kulow2_36|To s#ce jako wojak zaw#es#ce wjele hr#ozbneho wid#da#l?
+Kulow2_37|W kotrej k#on#kinje s#ce to wojowa#l?
+Kulow2_38|Ach, ni#ko - sym so myli#l.
+Kulow2_39|D#dakuju so. Ja sej hi#s#ce druhe budki wobhladam.
+Kulow2_40|Puh, su to woprawd#de #kerstwe ryby?
+Kulow2_41|Tu smjerd#di za starymi rybami.
+Kulow2_42|Wud#derjo p#ri Jitkowskim ha#ce m#enjachu, zo l#etsa wjele rybow njeje.
+Kulow2_43|Ach, ni#ko - sym so myli#l.
+Kulow2_44|D#dakuju so. Ja sej hi#s#ce druhe budki wobhladam.
+Kupa1_1|Rohod#d, ki#z p#ri kupje ros#ce.
+Kupa1_2|Njem#o#zu dale. Tu faluje deska.
+Kupa1_3|N#e, njesko#ku! To m#o#ze#s #kini#c, #sto#z chce#s. Hdy#z do wody padnu, so mi jeno#z wusm#eje#ce ...
+Kupa1_4|Ty ma#s swoju wolu a ja moju. Tu njep#o#ndu!
+Lodz_1|Rjana m#loda #zona.
+Lodz_2|Tebje njeznaju.
+Lodz_3|Ow, sy wosu#sk d#osta#l. Tak p#oj, kofej je hi#zo sp#rihotowany. Potom m#o#ze#s mi wo sebi pow#eda#c.
+Lodz_4|Ow, sy wosu#sk d#osta#l. Tak p#oj, m#o#ze#s mi wo sebi pow#eda#c.
+Lodz_5|Hod#dinu pozd#di#so ...
+Lodz_6|Ja so #ci d#dakuju, Krabato: za wosu#sk, za wopyt a za #zortne pow#edki. Tule ma#s k#on#kk p#loneho #zeleza, hdy#z j#on tak nuznje trjeba#s.
+Lodz_7|Ow, z tym sy mi woprawd#de jara pomha#la.
+Lodz_8|Je n#etko #kas, zo #ci bo#zemje praju.
+Lodz_9|Hej?! Hubka - a to za mnje?! M#o#ze#s to wospjetowa#c? Tajke n#e#sto s#l#odke hi#s#ce #zenje wopta#l njejsym.
+Lodz_10|N#e. To p#rejara boli - we wutrobje. N#etko d#di!
+Lodz_11|Wikuju ze #zelezom a rudu. P#ri#ndu z #K#eskeje a sym po #Lobju po pu#cu do Hamburga. Tam mje za n#e#sto dnjow wo#kakuja.
+Lodz_12|Na #zadyn pad. Dyrbju w#sitko w Hamburgu woteda#c, a p#ri wikowanju ja te#z #zane kurjace w#o#kko njezat#l#o#ku.
+Lodz_13|D#dakuju so za kompliment, ale tak m#loda w#sak hi#zo njejsym. W#ezo je to #ce#zke d#d#e#lo.
+Lodz_14|#Sto pak sej chcu? Nimam nana a ma#c, a m#oj brat#rik n#e#sto k j#ed#di trjeba.
+Lodz_15|To ma#s prawje. Namjetuju, zo wobstara#s wosu#sk - ale t#on prawy Drje#zd#danski - a ja mjeztym kofej zwarju.
+Lodz_16|W#ezo. Sym l#etsa posledni raz tu a Drje#zd#danski wosu#sk lubuju. Na wikach w m#es#ce j#on zaw#es#ce d#ostanje#s. Ja dyrbju na #l#od#di wosta#c.
+Lodz_17|P#re#cel krala?! Tak mi wupada#s. Hahahaha ...
+Lodz_18|To je njewa#zne. Sy w#cipny mu#z! Nima#s ni#ko za d#d#e#lo?
+Lodz_19|Kusk m#o#ska d#d#e hi#zo ma#s. Chiba so njejsy porjadne my#l?
+Lodz_20|Haj, haj! #Ci m#lod#di mu#zojo.
+Lodz_21|Wo tym nochcu r#e#ke#c, Krabato.
+Lodz_22|#Sto na wa#sej #l#od#di rjane ma#ce?
+Lodz_23|Ruda a #zelezo? Tajkile p#ripad! Trjebam p#lony kruch #zeleza.
+Lodz_24|Njeje to #ce#zke d#d#e#lo za m#lodu holcu?
+Lodz_25|K j#ed#di?! To je dobre hes#lo. Mi te#z n#ekak #zo#ldk kor#ki.
+Lodz_26|Nazymu hi#zo wosu#sk?
+Lodz_27|Mjenuja mje Krabat, sym p#re#cel krala.
+Lodz_28|Kak poprawom r#eka#s?
+Lodz_29|Sy mje woprawd#de #fmu#z#F mjenowa#la? Za druhich sym m#lody pacho#l, h#ol#kec abo jeno#z zhni#ly kadla.
+Lodz_30|Bo#zedla! Ta broda hi#zo ch#etro drapa. To je wob#ce#zna w#ec.
+Lodz_31|#Kehodla nima tajka #sikwana holca mu#za abo p#re#cela?
+Lodz_32|Sym so myli#l. Dyrbju dale. Kral mje wo#la.
+Mainlaby_1|T#on wbohi kadla so tola pali!
+Mainlaby_2|Ow, kro#sik! Za to pokazam #ci pu#c do swobody.
+Mainlaby_3|M#lynko, m#lynko - Krabat #ce wo#la - n#etk s#l#onco so za #cmowym l#esom chowa.
+Mainlaby_4|W#on so tola hi#zo pali!
+Mainlaby_5|W#ezo so palu. My smy b#ludni#kki, a ja sym jich nawoda.
+Mainlaby_6|Rjany #zort. W #cop#lym l#e#cu je to potom trochu hinak. #Sto tu pyta#s?
+Mainlaby_7|Aha, #Kertowski m#lyn. Ma#s da zda#ce, hd#de w#on je?
+Mainlaby_8|To je - ka#z w#sud#de na sw#e#ce - jeno#z pra#senje w#esteje mzdy.
+Mainlaby_9|W#ezo w#emy, kak a hd#de #Kertowski m#lyn namaka#s. Ale sy chudy pacho#l a nima#s ni#ko w zaku.
+Mainlaby_10|W#ezo. Pr#eni raz je to hi#s#ce darmotnje. P#richodny raz pak to p#la#ci kro#siki. Wokomik ...
+Mainlaby_11|To je - ka#z w#sud#de na sw#e#ce - jeno#z pra#senje w#esteje mzdy. Ale sy chudy pacho#l a nima#s ni#ko w zaku.
+Mainlaby_12|Ty so n#ekak pali#s.
+Mainlaby_13|To ma#ce w zymje znajmje#n#sa p#reco rjenje #cop#lo.
+Mainlaby_14|Poprawom pytam #Kertowski m#lyn.
+Mainlaby_15|Pytam #Kertowski m#lyn.
+Mainlaby_16|N#e, nicht#o mi njepomha.
+Mainlaby_17|W#odny mu#z praji, zo m#o#ze#ce wy mi pomha#c.
+Mainlaby_18|Njenamakam wupu#c. M#o#ze#s mi pomha#c?
+Mainlaby_19|Njenamakam wupu#c. M#o#ze#s mi pomha#c?
+Mainlaby_20|Ach, ni#ko. Sym so myli#l.
+Mainlaby_21|Ja so b#orze wr#o#cu.
+Mainloc_1|Sym p#reklepany dos#c!
+Mainloc_2|Hej, nic p#red h#lowu!
+Mainloc_3|W#on je pr#ozdny!
+Mainloc_4|Awa!
+Mainloc_5|Jara putace.
+Mainloc_6|Jeni#kce tole mi ni#ko njepomha!
+Mainloc_7|Sym hi#zo l#ep#se j#ed#l.
+Mainloc_8|Jeni#kce tole mi ni#ko njepomha!
+Mainloc_9|Trjebam wodu.
+Mainloc_10|Trjebam wodu.
+Mainloc_11|#Zort, abo?
+Mainloc_12|Nic syru!
+Mainloc_13|Ah, n#etko je kro#sik padny#l!
+Mainloc_14|Njejsym la#kny!
+Mainloc_15|Awa!
+Mainloc_16|Hej, to wosko#ci!
+Mainloc_17|Trjebam je za Dinglingera.
+Mainloc_18|#Sto z potwjerd#denku chcu?
+Mainloc_19|#Sto z potwjerd#denku chcu?
+Mainloc_20|#Sto z potwjerd#denku chcu?
+Mainloc_21|To d#ostanje Dinglinger.
+Mainloc_22|#Sto z drjewom chcu?
+Mainloc_23|Ka#z by mje na#sa micka majka#la.
+Mainloc_24|#Sto to dyrbi?
+Mainloc_25|Jara putace.
+Mainloc_26|Kajke to wupada?
+Mainloc_27|Ja tolerje hi#zo mam!
+Mainloc_28|Hdy#z mje stra#za w m#es#ce w s#lu#zbnej dras#ce lepi, d#ostanu zaso swarje.
+Mainloc_29|Aw, to ch#etro boli!
+Mainloc_30|Mam hi#zo twjerdu h#l#oj#kku!
+Mainloc_31|Jeli to wupiju, budu jut#re hi#s#ce pjany!
+Mainloc_32|Ja prawy #kas wot#kita#c njem#o#zu!
+Mainloc_33|Nochcu sej zuby sk#oncowa#c!
+Mainloc_34|T#on trjeba Dinglinger!
+Mainloc_35|#Zelezo dam Dinglingerej.
+Mainloc_36|Ja sej sam ni#ko p#rikaza#c nochcu!
+Mainloc_37|T#on chcu sej z wosebitym #k#lowjekom d#d#eli#c!
+Mainloc_38|W hrod#de sm#em so jeno#z w s#lu#zbnej dras#ce pohibowa#c!
+Mainloc_39|Tu n#etko njetrjebam.
+Mainloc_40|W knize sym hi#zo #kita#l.
+Mainloc_41|Jeno#z derje, zo sym w m#lynje trochu #kita#c nawukny#l.
+Mainloc_42|To nima zmys#la!
+Mainloc_43|T#on #ce#zko w brju#se le#zi!
+Mainloc_44|Njejsym h#l#odny ...
+Mainloc_45|Potajkim - kniha je wot w#esteho #S#c#epana, ki#z sej w horinach hrajka ... hmmm? Spod#diwne mjeno!
+Mainloc_46|Hod#dinku pozd#di#so ...
+Mainloc_47|Kniha njeje jeno#z za d#diwad#delnikow zajimawa. N#etko te#z Krabat #zadyn strach wjace nima.
+Mainloc_48|Ow, t#on posledni kusk wosu#ska b#e dobry. Z po#lnym #zo#ldkom so tak prawje m#ocny #kuju.
+Mainloc_49|Tak to nje#nd#de!
+Mainloc_50|To nima zmys#la!
+Mainloc_51|To so hinak wu#ziwa!
+Mainloc_52|To njemo#zu #kini#c!
+Mainloc_53|Rad#so nic!
+Mainloc_54|To w#on njetrjeba!
+Mainloc_55|To hi#s#ce trjebam!
+Mainloc_56|To sebi zd#der#zu!
+Mainloc_57|To wona njetrjeba!
+Mainloc_58|To hi#s#ce trjebam!
+Mainloc_59|To sebi zd#der#zu!
+Mainloc_60|To woni njetrjebaja!
+Mainloc_61|To hi#s#ce trjebam!
+Mainloc_62|To sebi zd#der#zu!
+Mainloc2_1|#Sto sym #ci praji#l? To njeje najkr#ot#si pu#c! Wr#o#co do m#lyna!
+Mainloc2_2|Krabato, #kehodla njeposka#s? Wr#o#co ...!
+Mainloc2_3|Sy sm#er zhubi#l? Najkr#ot#si pu#c!
+Manega_1|#Zelezny nah#lownik.
+Manega_2|Hr#ozbny law.
+Manega_3|Law spi.
+Manega_4|K tutomu hr#ozbnemu lawej njep#o#ndu. W#on mje hi#s#ce kusnje.
+Manega_5|Mi so wostud#di. D#di mi z pu#ca!
+Manega_6|Ja jeho njewubud#du!
+Manega_7|Ja sym m#lody pacho#l z #Lu#zicy a d#d#e#lam tuchwilu pola krala.
+Manega_8|Huch, ty m#o#ze#s ze mnu r#e#ke#c?
+Manega_9|W#ezo. Sym to nawukny#l.
+Manega_10|L#eta do#lho njem#o#zach z nikim r#e#ke#c, a ty sy n#etko hi#zo druhi #k#lowjek tut#on tyd#de#n.
+Manega_11|Nimaja woni tu druhe zw#erjata, z kotrymi#z m#o#ze#s pobachta#c, a #st#o b#e poprawom t#on druhi #k#lowjek?
+Manega_12|Ach, hdy#z druhe zw#erjata wid#du, d#ostanu jeno#z apetit. To do#lho njetraje, a sym tajku m#lodu antilopu zj#ed#l. Sym p#reco h#l#odny.
+Manega_13|Po #kasu so na to zwu#ki#s. Ja sym te#z do#lho dos#c h#l#od trada#l. #St#o b#e n#etko tuta druha wosoba?
+Manega_14|Grrr ..., to b#e#se tajki d#d#ed z kijom. Pra#se#se so mje za w#estym ... Krabatom ... - Ha#k sym jeho hi#zo j#onu pola krala wid#da#l.
+Manega_15|W#on dyrbi n#ekajki s#lu#zowny by#c. Ty tola na kralowskim dworje d#d#e#la#s - znaje#s jeho?
+Manega_16|Hmmm? - D#d#ed ... z kijom? Ow jej, toho tola znaju! #Sto t#on jeno#z chce?
+Manega_17|Krabat - n#e, te mjeno mi ni#ko njepraji!
+Manega_18|Derje. N#etko pak d#di ... ty w#e#s, m#oj apetit! Nimo toho so mi wostud#di. Potom sym p#reco wosebje hr#ozbny.
+Manega_19|Ow, kajka krasna hud#dba. Pro#su hi#s#ce jedyn sp#ew#kk, haj?
+Manega_20|Wurjadnje! Kro#sikow #zanych nimam. Wzmi sej tola nah#lownik a p#redaj j#on!
+Manega_21|Grrr ... wostaj to le#zo!
+Manega_22|Mam #ce do zadka kusny#c?
+Manega_23|To njeje tw#oj nah#lownik ... arrggg ...
+Manega_24|Grrrr ...
+Manega_25|Brrrr ...
+Manega_26|Huaaaa ...
+Manega_27|Hrrrrrrrrrrrrr ...
+Mertens1_1|M#erny hat.
+Mertens1_2|N#etko je nazyma! Njem#o#zu p#reco do k#o#zdeho hata sko#ki#c, kotry#z po pu#cu wid#du.
+Mertens1_3|Tu nochcu wud#di#c.
+Mertens1_4|W#ezo. #St#o hewak? P#ostniski kostim to hi#s#ce by#c njem#o#ze a pro#su, nje#cahaj mje za wu#si, zo by to p#repruwowa#l!
+Mertens1_5|Hej, wy tam wonka! Sym hi#s#ce syty wot sn#edanje. Ja njejsym #fh#l#odny mu#z#F ale #fw#odny mu#z#F.
+Mertens1_6|W#em! A ty pyta#s #Kertowski m#lyn.
+Mertens1_7|Krabato, na#sa #Lu#zica je po#lna toho elementa, w kotrym#z so doma #kuju.
+Mertens1_8|Ja sym tola runje tajka w#cipna J#ewa ka#z ty - a sym #ce trochu wobked#dbowa#l.
+Mertens1_9|Woni maja strach, pros#ce ... strach. P#red mocami #cmy ma tola k#o#zdy strach, abo?
+Mertens1_10|Tak s#luchaj, Krabato! #Kertowski m#lyn je schowany statok we l#esu blisko wjeski #Korny Cho#lmc.
+Mertens1_11|Njeje to jednora w#ec, tut#on m#lyn namaka#c. Pomha#c m#o#za tebi jen#o#z b#ludni#kki.
+Mertens1_12|Wone su runje tak jara z pow#es#ce, ka#z ja. Ale b#ludni#kki maja te#z swoje principy.
+Mertens1_13|Hdy#z jim n#e#sto pjenjez p#rityknje#s, potom s#luchaj, #sto woni praja. To je jara wa#zne! Hewak m#lyn nihdy nanihdy njenamaka#s.
+Mertens1_14|Sy-li s#lu#zbu pola m#lynka p#re#ziwi#l, potom p#oj zaso ke mni.
+Mertens1_15|Ty wosole! Tajka s#lu#zba pola m#lynka ma sw#oj porjad.
+Mertens1_16|Ale - #sto tu pow#edam - namakaj najprjedy m#lyn a potom so na moje s#lowa dopomni#s.
+Mertens1_17|Jurjo! P#oj k wobjedu a p#rinjes Jakubka sobu.
+Mertens1_18|S#ly#si#s? Moja #zona wo#la. K#o#zdy d#ze#n jeno#z ryby k wobjedu, to #ci ze #sije l#eze.
+Mertens1_19|Potajkim Krabato, mysli na moje s#lowa!
+Mertens1_20|W#ezo. #St#o hewak? P#ostniski kostim to hi#s#ce by#c njem#o#ze a pro#su, nje#cahaj mje za wu#si, zo by to p#repruwowa#l!
+Mertens1_21|Hej, wy tam wonka! Sym hi#s#ce syty wot sn#edanje. Ja njejsym h#l#odny mu#z ale w#odny mu#z.
+Mertens1_22|Ja w#em! A n#etko pyta#s pjerjo rapaka.
+Mertens1_23|Krabato, na#sa #Lu#zica je po#lna toho elementa, w kotrym#z so doma #kuju.
+Mertens1_24|Ja sym tola runje tajka w#cipna J#ewa ka#z ty - a sym #ce trochu wobked#dbowa#l.
+Mertens1_25|Ale Krabato, ty sy zam#oh#l m#lynka wo#la#c a n#etko njew#e#s dale? Sy tola wu#sikny kadla.
+Mertens1_26|Tut#on nadawk te#z hi#s#ce spjelni#s. A sy-li s#lu#zbu pola m#lynka p#re#ziwi#l, potom p#oj zaso ke mni.
+Mertens1_27|W#odny mu#zo?! - Sy to woprawd#de?
+Mertens1_28|Ty tola wjele wid#di#s a s#ly#si#s - h#l#odny mu#zo.
+Mertens1_29|Ja sym Krabat z Jitka.
+Mertens1_30|Haj, pytam #Kertowski m#lyn. Ale zwotkel...?
+Mertens1_31|M#o#ze#s mi pomha#c? Nicht#o to njezam#o#ze. M#o#ze#s so pra#se#c, koho#z chce#s.
+Mertens1_32|#Sto mi zwostanje? Chcu tola p#rerady w#ed#de#c, #sto je na tych pow#es#cach w#erneho.
+Mertens1_33|B#ludni#kki? Potajkim njejsu z bajki.
+Mertens1_34|Haj, b#ludni#kki! Jich nawodu sym hi#zo zezna#l. Wone njejsu z pow#es#ce.
+Mertens1_35|#Kehodla #fp#re#ziwi#l#F? Chcu by#c porjadny, pilny m#lynski!
+Mertens1_36|Huch, n#etko pak skoku pre#k.
+Mertens1_37|D#dakuju so za rozmo#lwu.
+Mertens1_38|W#odny mu#zo?! - Sy to woprawd#de?
+Mertens1_39|Ty tola wjele wid#di#s a s#ly#si#s - h#l#odny mu#zo.
+Mertens1_40|Ja sym Krabat z Jitka.
+Mertens1_41|Haj, ale zwotkel to w#e#s?
+Mertens1_42|M#o#ze#s mi pomha#c? Nicht#o to njezam#o#ze. M#o#ze#s so pra#se#c, koho#z chce#s.
+Mertens1_43|#Kehodla p#re#ziwi#l? Chcu by#c porjadny, pilny m#lynski!
+Mertens1_44|Huch, n#etko pak skoku pre#k.
+Mertens1_45|D#dakuju so za rozmo#lwu.
+Mertens2_1|M#erny hat.
+Mertens2_2|N#etko je nazyma! Njem#o#zu p#reco do k#o#zdeho hata sko#ki#c, kotry#z po pu#cu wid#du.
+Mertens2_3|Tu nochcu wud#di#c.
+Mertens2_4|W#ezo. #St#o hewak? P#ostniski kostim to hi#s#ce by#c njem#o#ze a pro#su, nje#cahaj mje za wu#si, zo by to p#repruwowa#l!
+Mertens2_5|Hej, wy tam wonka! Sym hi#s#ce syty wot sn#edanje. Ja njejsym #fh#l#odny mu#z#F ale #fw#odny mu#z#F.
+Mertens2_6|Ja w#em! A ty pyta#s kuz#larsku knihu.
+Mertens2_7|Krabato, na#sa #Lu#zica je po#lna toho elementa, w kotrym#z so doma #kuju.
+Mertens2_8|Ja sym tola runje tajka w#cipna J#ewa ka#z ty - a sym #ce trochu wobked#dbowa#l.
+Mertens2_9|W#ezo #ci pomham. #St#o#z #Kertowski m#lyn p#re#ziwi, ma snano kmanos#ce, knihu namaka#c.
+Mertens2_10|W#ezo, Krabato, s#luchaj:
+Mertens2_11|W#ezo maja k#o#kki 9 #ziwjenjow. Ale ta luba m#eje#se hi#zo wosom pospytow.
+Mertens2_12|To nicht#o tak prawje njew#e. #Kehodla sy so poprawom wr#o#ci#l?
+Mertens2_13|Twoje pra#senje sym n#ekak p#redwid#da#l. N#o haj, #st#o#z #Kertowski m#lyn p#re#ziwi, ma snano kmanos#ce, knihu namaka#c.
+Mertens2_14|W#ezo, Krabato, s#luchaj:
+Mertens2_15|N#e, tutu rysowanku hi#s#ce wid#da#l njejsym. #Sto na#s knjez farar takle w#sitko pod Kulowskej cyrkwju namaka. Rjane serbske knihi chowaja so tam p#red pazorami Prusow, kot#ri#z chced#da na#su r#e#k wutupi#c.
+Mertens2_16|Farar m#enje#se, zo je tuta #skla klu#k ke Koraktorej.
+Mertens2_17|W#ezo, w#ezo. M#oj prad#d#ed b#e#se tehdy #ziwy. W#on b#e dobry p#re#cel nawody Mil#kanow. T#on m#eje#se hustohdy tajku #skli#kku p#ri sebi a na nju ch#etro ked#dbowa#se. B#e#se to mjenujcy jeni#kki d#d#el, kotry#z sm#ed#de#se so ze swjatnicy won njes#c. Tutu #sklu py#sachu zadypane ornamenty, kotre#z te#z m#estno swjatnicy p#rerad#dachu.
+Mertens2_18|Hd#de pak je tuta woporna #skla zwosta#la?
+Mertens2_19|P#ri nadpad#de kralowskich abo kej#zorskich w#ojskow je do rukow cuzych wojakow p#ri#s#la. Woni w#sako njew#ed#dachu, #sto symbolizuje. #Skla zhubi so do n#ekajkeho pok#ladni#s#ca knje#zka a m#enje#se n#ekotre razy wobsed#derja.
+Mertens2_20|To klin#ki, jako by w#ed#da#l, hd#de woporna #skla tuchwilu je?
+Mertens2_21|Haj, sy derje pos#lucha#l. P#red n#ehd#de l#etstotkom sed#dach w kor#kmje - a to w sakskej stolicy - w Drje#zd#danach. Dobre winko tam maja, to #ci #zo#ldk poskakuje! Za blidom sed#de#se mu#z, n#ekajki #k#lowjek z kralowskeho hroda, ki#z m#eje#se wulke lis#ciny.
+Mertens2_22|Smy porjadnje pili, a po chwilce m#o#zach skr#otka do lis#ciny pohladny#c. #Sto tam wuhladach? Tam b#e#se d#d#el droho#cinkow zarysowany a wopisany, kotry#z w pok#ladni#s#cu krala le#zi - mjez druhim te#z #skla.
+Mertens2_23|$Njeby mi docy#la napadny#la,$ale we wopisanju steje#se:$$pomjenowanje:   woporna #skla (#zelezo)$pochad:   kraj Mil#kanow$staroba:   900 l#et$wosebitos#ce:   wudypane linije a wobrazy - zmys#l njeznaty
+Mertens2_24|Potajkim je na#s #fklu#k#F w kralowskim pok#ladni#s#cu. Jednori#seje m#o#znos#ce njeje, abo ...?
+Mertens2_25|Hdy#z chce#s woprawd#de m#oc Koraktora wobsed#de#c, dyrbi#s so do Drje#zd#dan poda#c. Pra#sej so tam lud#di za Handrijom Zahrodnikom. To je jeni#kki Serb w m#es#ce, kotreho#z znaju a kotry#z bud#de #ci pomha#c.
+Mertens2_26|A hdy#z jeho zetka#s, potom so jeho wopra#sej, ha#k nima sk#on#knje hrajku za mojeho syna Jakuba hotowu. W#on je mi hi#s#ce n#e#sto do#l#zny.
+Mertens2_27|Potajkim Krabato, wjele wjesela w Drje#zd#danach. Ja so n#etko - blub - zminu.
+Mertens2_28|Ale w#odny mu#zo, kak scy#la do Drje#zd#dan p#ri#ndu?
+Mertens2_29|Hmm, pre#k b#e ...
+Mertens2_30|P#rew#so zajimawe w#ecy tu s#ly#su, a Krabat hi#zo po sl#edach Koraktora pu#cuje. Derje tak, snano mi z tym d#d#e#lo wotewza.
+Mertens2_31|Budu jeho wobked#dbowa#c, a hdy#z knihu namaka, potom jeho ... zni#ku ...!
+Mertens2_32|Hej, #sto ha n#etko? Ruce pre#k, njes#ly#si#s ... ja ka#kor njejsym ...
+Mertens2_33|Ow, m#oj lubu#sko!
+Mertens2_34|Njejsym tw#oj lubu#sk, ja sym m#lynk z #Kertowskeho m#lyna - syn helskeho djabo#la!
+Mertens2_35|Haj, a woda so hi#zo wari, abo sym hi#zo w heli!?
+Mertens2_36|Pre#k, stare ka#kid#lo! Hdy#z je to hela, by ty na tr#onje sed#da#la a #kertojo bychu roz#c#ekali!!!
+Mertens2_37|Tak s#luchaj, Krabato! Pow#edam #ci wo knize, kotra#z njeje so #zenje z na#sich h#lowow zminy#la, kotra#z je poprawom jeno#z legenda, powostank dawnych #kasow, duch swobody.
+Mertens2_38|Stari mjenowachu knihu jeno#z KORAKTOR. #Sto je stawizna tuteje m#ocneje knihi?
+Mertens2_39|Po swojim zasydlenju mjez W#odru a #Lobjom w 6. l#etstotku zapo#kachu serbske splahi ze susodami wikowa#c. Njeb#echu pak to jeno#z Saksojo, Frankojo abo Duringojo. Do na#sich k#on#kinow wjed#dechu te#z wikowanske dr#ohi z Bycanca a arabskich krajow. Po tutych pu#cach je pje#ka te#z Koraktor Mil#kanam do rukow p#ri#so#l.
+Mertens2_40|Koraktor je #korna kniha z b#e#lymi pismikami. Su pak to h#lownje rysowanki, kotre#z kuz#larske #kinki wopisuja. Zamo#lwity za knihu b#e p#reco star#si abo nawoda splaha. W#on p#repoda knihu p#richodnej generaciji.
+Mertens2_41|Srjed#d 8. l#etstotka b#e z m#erom k#onc. Zam#er frankskeho kej#zora Korle Wulkeho b#e#se pod#cisnjenje zapadnych k#on#kinow S#lowjanow. Spo#katne spje#cowanja p#ri zapadnej hranicy buchu b#orze zlemjene, a w#ojska kej#zora wle#kechu so dale a dale do wuchoda.
+Mertens2_42|Spo#katk 10. l#etstotka b#echu potom te#z hrod#di#s#ca Mil#kanow wohro#zene, a cuzy wojacy dobywachu dale a hus#ci#so tute njerune boje.
+Mertens2_43|W l#e#ce 939 da markhrabja Gero na les#ciwe wa#snje 30 s#lowjanskich wjerchow zamordowa#c. D#densa wobhladujemy tute l#eto jako spo#katk k#onca. Jednota zapadnych S#lowjanow b#e#se so dosk#on#knje z#lama#la, a pod s#c#ehami pod#cisnjenja a wotwisnos#ce te#z ty d#densa hi#s#ce #cerpi#s, Krabato.
+Mertens2_44|Ach haj, n#etko sym cyle na Koraktor zaby#l. Na#su knihu chowachu w podzemskej swjatnicy - snano samo na jednym hrod#di#s#cu, zo njeby kniha do wopa#knych rukow p#ri#s#la.
+Mertens2_45|#Kehodla n#etko zaso w swjatnicy? Serbske abo scy#la s#lowjanske splahi njew#erjachu jeno#z do jednoho boha, ka#z to k#res#can #kini. Na#si prjedownicy w#erjachu do w#selakich bohow, a po w#s#em serbskim kraju b#echu swjatnicy rozbrojene. Su to potajkim m#estna, hd#de#z lud woprowa#se a bohow pro#se#se.
+Mertens2_46|Hd#de tuta swjatnica je, to dok#ladnje njew#em - ale eksistuje klu#k k tajnej rumnos#ci. Stej to karta a klu#k w jednym. Wjace #ci njem#o#zu n#etko praji#c. Ale pra#sej so tola knjeza fararja w Kulowje. Tam je pod cyrkwju stwi#kka, hd#de#z stare spisy chowaja.
+Mertens2_47|Ow, Krabato, witam #ce! M#lynk hi#s#ce d#densa rjeji a bjaka, hdy#z jeno#z twoje mjeno zas#ly#si. Nimo toho ma zaso m#lodu k#o#kku. Stara je bohu#zel do m#lynskeho ko#la padny#la.
+Mertens2_48|W#odny mu#zo?! - Sy to woprawd#de?
+Mertens2_49|Ty tola wjele wid#di#s a s#ly#si#s - h#l#odny mu#zo.
+Mertens2_50|Haj, ja sym Krabat z Jitka.
+Mertens2_51|Haj, pytam kuz#larsku knihu. Ale zwotkel...
+Mertens2_52|M#o#ze#s ty mi pomha#c?
+Mertens2_53|W#odny mu#zo, m#o#ze#s stawiznu wo Koraktoru wospjetowa#c?
+Mertens2_54|Huch, n#etko pak skoku pre#k.
+Mertens2_55|D#dakuju so za rozmo#lwu.
+Mertens2_56|Wboha k#o#kka! Nimaja k#o#kki 9 #ziwjenjow?
+Mertens2_57|Zaw#es#ce je m#lynk na ko#kej smjer#ci wina.
+Mertens2_58|Sym w m#lynje wo m#ocnej, kuz#larskej knize s#ly#sa#l.
+Mertens2_59|W#odny mu#zo, m#o#ze#s stawiznu wo Koraktoru wospjetowa#c?
+Mertens2_60|Sym so myli#l.
+Mertens2_61|B#orze so wr#o#cu, bo#zemje.
+Mlyn1_1|Tu smy. Ty sy wo nim soni#l, b#e to twoje najwjet#se p#re#ce. N#etko wo#kakuje #ce nowe #ziwjenje.
+Mlyn1_2|#Kertowski m#lyn!
+Mlyn1_3|Knje#ze m#lynko, hnydom pra#sen#kko na spo#katku:
+Mlyn1_4|#Sto ma#s na wutrobje, Krabato? Po l#etanju #ci w#es#ce #zo#ldk kor#ki?
+Mlyn1_5|N#e, knje#ze m#lynko. W m#lynskej hrjebi njewid#du ani kapki wody, ale ko#lo so najeba#c to wjer#ci.
+Mlyn1_6|Jara spod#diwnje, tola ma#s prawje. N#etko pak p#oj!
+Mlyn1_7|#Ce#zke dubowe durje so zaprasnychu, a #Kertowski m#lyn sp#o#zr#e Krabata na do#lhi #kas. Dyrbje#se #ce#zce d#d#e#la#c. Hoberske m#echi zorna a muki lemjachu Krabatej rjap a wolu.
+Mlyn2_1|W porjadku. Dam #ci chwile, wopytaj star#seju. Ale s#luchaj, Krabato:
+Mlyn2_2|Sm#e#s jeno#z domoj, jeli po najkr#ot#sim pu#cu do Jitka d#de#s. Twoje w#ecy pak wostanu tu!
+Mlyn2_3|A mysli na to: po najkr#ot#sim pu#cu!
+Mlyn2_4|Ma#c a syn chwata#staj wjeso#laj domoj, ale m#lynk so na Krabata p#rew#so z#lobje#se. W#on b#e#se pytny#l, na kotre wa#snje je jeho h#ol#kec p#reles#ci#l.
+Mlyn2_5|Wje#cba je s#l#odka, m#oj luby! Na zasowid#denje - KRABATO!
+Mlyn2_6|N#e#sto dnjow pozd#di#so poda so ma#c do #Korneho Cho#lmca. W#so so sta, ka#z b#e Krabat praji#l. Wje#kor steje#se ma#c w #cmowej komorce, a p#red njej sed#de#se dwana#ce rapakow na do#lhej #zerd#di.
+Mlyn2_7|Wuprosy sej wot m#lynka n#e#sto #kasa, zo m#oh#l star#seju wopyta#c.
+Mlyn2_8|Ka#z hi#zo prajach, Krabato: Namakaj sej najkr#ot#si pu#c domoj!
+Mlyn2_9|Nimam rady, hdy#z poddanjo po #Lu#zicy dundaja. To so jeno#z p#rewjele bled#di. Najkr#ot#si pu#c!
+MlynkCornyCholmc1_1|Sy mje wo#la#l, a tu sym. S#ly#sach lud#di ka#z te#z zw#erjata pow#eda#c,
+MlynkCornyCholmc1_2|zo chce#s by#c m#lynski - a to w mojim m#lynje.
+MlynkCornyCholmc1_3|Haj, to je moje najwjet#se p#re#ce.
+MlynkCornyCholmc1_4|Tak s#luchaj, Krabato. Hdy#z je to woprawd#de to, za #kim#z najb#ole #zed#di#s,
+MlynkCornyCholmc1_5|tak p#rinjes mi pjerjo rapaka jako znamjo swojeje wole.
+MlynkCornyCholmc1_6|Ma#s zbo#zo. Runje sym wu#komnika zhubi#l. Hdy#z pjerjo rapaka ma#s,
+MlynkCornyCholmc1_7|p#oj zaso k tutomu l#esej, a ja so #ci zjewju.
+MlynkCornyCholmc1_8|Wjele wusp#echa, Krabato! Tu ma#s hi#s#ce n#e#sto k pomocy - kartu domizny,
+MlynkCornyCholmc1_9|w#sako na tebje #kakam ... a #ce trjebam.
+MlynkCornyCholmc1_10|Tu wone pjerjo je.
+MlynkCornyCholmc1_11|Pjerjo rapaka. Twoje znamjo - twoja wola. Tak pole#cimoj do m#lyna, kotremu#z lud#do jeno#z #Kertowski m#lyn praja.
+MlynkCornyCholmc1_12|W#et#riki a wichory - m#lynk was wo#la,$mocy hoberske a elementy tutoho sw#eta.$Pozb#eh#n#ce naju na wa#se k#rid#la,$d#dak wulki w namaj so zb#eha.
+Mlynkmurja_1|Dobry d#de#n, h#ol#ke!
+Mlynkmurja_2|Wam tohorunja, starco! Trjeba#ce pomoc?
+Mlynkmurja_3|N#e, n#e, d#dakuju so. Snano pak trjeba#s ty pomoc?
+Mlynkmurja_4|Haj, ale wy mi zaw#es#ce pomha#c njem#o#ze#ce.
+Mlynkmurja_5|#Kehodla nic? Jeno#z, dokel#z sym stary?
+Mlynkmurja_6|Dyrbju n#etko dale, bo#zemje.
+Mlynkmurja_7|Chwataj, Krabato! Ma#s hi#s#ce daloki pu#c p#red sobu. A na k#oncu pu#ca steju ja, tw#oj w#erny njep#re#cel.
+Mlynkmurja_8|Hahaha!
+Most1_1|Pu#cnik.
+Most1_2|Pu#cnik.
+Most1_3|To je Kl#o#sterska woda.
+Most1_4|Pokazuje do sm#era Ralbicy.
+Most1_5|Njem#o#zu #kita#c. Ale ma#c raz m#enje#se, zo wjed#de pu#c nal#ewo do wulkeho m#esta.
+Most1_6|Do tutoho sm#era nochcu! Mojej noze mje tak daloko njeponjesetej.
+Most1_7|Njejsym la#kny.
+Most1_8|Za kupanje je p#rezyma!
+Most1_9|To nochcu zapali#c!
+Most1_10|Tule to zmys#la nima!
+Most2_1|Pu#cnik.
+Most2_2|Pu#cnik.
+Most2_3|To je Kl#o#sterska woda.
+Most2_4|Pokazuje do sm#era Ralbicy.
+Most2_5|Njem#o#zu #kita#c. Ale ma#c raz m#enje#se, zo wjed#de pu#c nal#ewo do wulkeho m#esta.
+Most2_6|Do tutoho sm#era nochcu! Mojej noze mje tak daloko njeponjesetej.
+Most2_7|Njejsym la#kny.
+Most2_8|Za kupanje je p#rezyma!
+Most2_9|To nochcu zapali#c!
+Most2_10|Tu to zmys#la nima!
+Most2_11|Brrr! Hej, brrr!
+Most2_12|M#o#zu wam pomha#c? W #Sunowje mamy porjadnu kor#kmu, tam m#o#ze#ce ...
+Most2_13|Hej, ty serbski lutko! Njew#e#s, z kim to r#e#ki#s?
+Most2_14|N#ekak nasy#ceny w#on hi#zo wupada. #Sto r#eka nasy#ceny - to#lsty kadla to je.
+Most2_15|Mjel#k! Ma#s zbo#zo, zo #ce njezrozumi. To je Awgust Sylny. A w#on njeje to#lsty, ale ma ze #za#lzami.
+Most2_16|Awg ... Awgu ... Awgust Sylny?! Jejdyrko ...
+Most2_17|N#etko so zm#eruj. Jemu je so ta swinjaca reja spodoba#la, a tohodla chce #ce rady do Drje#zd#dan sobu wza#c.
+Most2_18|Do Drje#zd#dan?! W porjadku. Sym p#reco hi#zo wo wulkim m#es#ce soni#l.
+Most2_19|Tu#z zal#ez do korejty, a potom p#o#nd#de dale.
+Most2_20|Dobry d#de#n, sylny Awgusto. Derje, zo mje njezrozumi#s.
+Most2_21|Pow#eda pohon#c wo mni? Jako kral P#olskeje m#o#zu w#ezo te#z trochu serbsce, to jeno#z nicht#o dale njew#e ...
+Most2_22|Ow, ow, Wa#sa majestos#c!
+Most2_23|Haj w#sak, haj! N#etko njetrjeba#s wjace z tym #kaporom p#ri#n#c.
+Most2_24|Ty potajkim m#eni#s, zo sym to#lsty!
+Most2_25|N#e! Ma#c je praji#la, zo dyrbju na swinje ked#dbowa#c.
+Most2_26|W#ezo wone smjerd#da, ale dyrbju na nje ked#dbowa#c.
+Most2_27|Hdy#z wjelki je hrabnu, su fuk. Dyrbju na nje ked#dbowa#c.
+Most2_28|W#ezo je to wostud#le d#d#e#lo. Ale tr#ebne.
+Most2_29|Brrr! Hej, brrr!
+Murja_1|Wutrobny d#dak! N#etko dyrbju zaso k runakej!
+Murja_2|Hdy#z mje stra#za w m#es#ce ze s#lu#zbnej drastu lepi, d#ostanu zaso swarje - ja so rad#so p#redras#cu.
+Njedz1_1|S#l#on#kne pruhi so na wod#de frinkola.
+Njedz1_2|Za kupanje je hi#zo p#rezyma.
+Njedz1_3|Ja tola h#lupy njejsym!
+Njedz1_4|Tule nochcu wud#di#c!
+Njedz2_1|S#l#on#kne pruhi so na wod#de frinkola.
+Njedz2_2|Za kupanje je hi#zo p#rezyma.
+Njedz2_3|Ja tola h#lupy njejsym!
+Njedz2_4|Tu nochcu wud#di#c!
+Pinca2_1|P#oj, pokazam #ci n#etko zajimawu rysowanku ...
+Pinca2_2|Zwotkel pak ma m#lynk potom hi#s#ce kuz#larsku m#oc, hdy#z je kniha hi#zo wjacore sta l#eta zhubjena?
+Pinca2_3|Potajkim, w#odny mu#z je swjatnicu naspomni#l. Swjatnica, abo tuta tajna rumnos#c, drje je n#ehd#de pod zemju, dokel#z Koraktor njesm#ed#de#se cuzym wojakam do rukow p#ri#n#c. P#ristup k tutym rumnos#cam m#ejachu jeno#z m#e#snicy abo nawoda splaha, tu#ci buchu tam te#z pochowani.
+Pinca2_4|Tu wid#di#s tajkeho boha starych Serbow. W#on mjenowa#se so Swaixtix - b#oh hw#ezdow a s#l#on#knych pruhow - potajkim znamjo #ziwjenja a w#estoty.
+Pinca2_5|W jednej ruce ma Swaixtix #skli#kku, z kotreje#z p#lomje#ska sapaja. Jemu pod nohomaj wid#di#s #kornu knihu. Snano m#o#ze #ci tuta #skla pomha#c. Wona pokazuje pu#c ke Koraktorej.
+Pinca2_6|W#este d#d#ele kuz#larskeje knihi b#echu so ertnje potomnikam zd#d#elili - w#ezo jeno#z m#oli#kki d#d#el toho, #sto#z Koraktor wobsahowa#se. N#o haj, a m#lynk je tajki potomnik stareho m#e#sniskeho splaha, snano te#z posledni, ki#z z ma#lymi #kinkami lud#di mjerza a tra#si.
+Pinca2_7|W#ezo je m#lynk wot swojich prjedownikow wo m#ocnej knize s#ly#sa#l. W#on pak nima klu#k ke Koraktorej. Klu#k je tuta #skla.
+Poklad_1|Nazajtra
+Poklad_2|Knje#ze juwel#ero, poka#z#ce mi dowolnos#c.
+Poklad_3|Pro#su jara. Tule je.
+Poklad_4|Podpisana je a te#z zyglowana. W porjadku, sm#e#ce do pok#ladni#s#ca zastupi#c.
+Poklad_5|Hd#de jeno#z w tutej zatra#snje wulkej komorje #sklu namakam? Snano chowa so tam w r#o#zku.
+Poklad_6|Hmm, #sto so tu w#sitko sk#laduje: s#lonowina, k#rinje po#lne z#lota,
+Poklad_7|a tu na polcy je na#sa serbska #skla.
+Poklad_8|To bud#de so Krabat wjeseli#c! Skoku ju wum#enju, zo to nicht#o njepytnje.
+Poklad_9|W#sitko w porjadku, knje#ze Dinglingero?
+Poklad_10|W#ezo. Jara porjadnje zrumowane, wa#se pok#ladni#s#co. To hnydom w#sitko namaka#s.
+Poklad_11|Ka#z so s#lu#sa, w#sako njejsmy w pr#ozdnje#ncy Ali Baby a jeho 40 rubje#znikow. W#sitko ma sw#oj porjad!
+Polo1_1|Wonaj na polu d#d#e#lataj.
+Polo1_2|Kamu#ski na pu#cu.
+Polo1_3|Hej, to su wohnjowe kamu#ski!
+Polo1_4|Za #ko bych ju dyrbja#l poch#losta#c?
+Polo1_5|Za #ko bych jeho dyrbja#l poch#losta#c?
+Polo1_6|Nochcu, zo so rozhn#ewa!
+Polo1_7|Nochcu, zo so rozhn#ewa!
+Polo1_8|Wozmjemy je najprjedy sobu.
+Polo1_9|Ja sym Micha#l. A to je Ha#n#za, moja stracho#ciwa #zona. #Sto je noweho w Jitku?
+Polo1_10|To je najskerje we w#sej #Lu#zicy tak. D#de#n wote dnja samsny wotb#eh.
+Polo1_11|Wojna je hi#zo dl#eje ha#k 40 l#et nimo, tola zm#eni#lo so p#reco hi#s#ce ni#ko njeje.
+Polo1_12|My stejimy tu, knje#za wor#sta steji tam - na w#eki ...
+Polo1_13|Njebled#d telko, d#d#e#laj rad#so! Hdy#z #sosar to wid#di, d#ostanjemoj sej zaso puki.
+Polo1_14|Mjel#k, #zona! W#ezo d#ostanjemoj sej puki, zas a zaso.
+Polo1_15|Puki za spalene syno, puki za suche swinje, puki za bled#denje ... Ale s#lowjanska heja je twjerda.
+Polo1_16|Haj, snano je wutrajna, najskerje p#rewutrajna. Bud#de l#epje, zo tu #ceknjemy.
+Polo1_17|Do druheje k#on#kiny abo p#rez wulke morjo do noweho sw#eta.
+Polo1_18|Njetrjebam m#lyna.
+Polo1_19|N#e. Na#sa p#oda je p#rep#eskojta.
+Polo1_20|Snano w#ed#da wikowarjo w Kulowje wjace. Woni tola z muku a ze zornom wikuja.
+Polo1_21|Abo ta stara blada w #Sunowje - kor#kmar.
+Polo1_22|D#densni#si d#de#n s#ly#si#s wjele wo kraju, ki#z drje je tak wulki, zo je za k#o#zdeho p#ody dos#c.
+Polo1_23|Mjenuja j#on Ameriku. Tam njetrjeba#s knje#zkej na robotu chod#di#c. D#d#e#la#s za sebje a za sw#ojbu.
+Polo1_24|Ja docy#la njew#em, kajke to je.
+Polo1_25|Tola hdy#z ni#ko ke kusanju nima#s! Kl#etu wopu#s#cimoj ze susodami r#odnu wjes.
+Polo1_26|#St#o to praji?! #St#o to praji?! Ty njewupada#s tajki, jako by m#e#l prawo, tajke n#e#sto rjec!
+Polo1_27|My smy njerjad we wo#kach knje#zkow. Ale tut#on njerjad je #ziwy!
+Polo1_28|Tohodla dyrbimy pre#k wottud! Tam, hd#de#z m#o#ze#s #ziwy by#c.
+Polo1_29|Pomhaj B#oh! Sym Krabat z Jitka.
+Polo1_30|Och, w Jitku so wjele njestawa. #Kas je tam hi#zo p#red l#etami stejo wosta#l.
+Polo1_31|S#lowjanska heja njeje twjerda, ale wutrajna.
+Polo1_32|#Kertowski m#lyn. S#ce wo nim hi#zo s#ly#sa#l?
+Polo1_33|Njeplahuje#ce #zito?
+Polo1_34|Nicht#o njew#e, hd#de tut#on #Kertowski m#lyn steji.
+Polo1_35|Kotry nowy sw#et m#eni#ce?
+Polo1_36|#St#o pak wostanje tu? #St#o potom jutry na konju wjeso#le poselstwo wozjewja? Kotra ma#c bud#de swojej d#dowce do narodneje drasty pomha#c?
+Polo1_37|#Cekny#c? Hdy#z j#onu z tym zapo#knje#s, njenamaka#s k#onca.
+Polo1_38|Nochcu was w d#d#ele komd#di#c. Bo#zemje.
+Ralbicy1_1|Ow, wona p#reco hi#s#ce hotowa njeje.
+Ralbicy1_2|W#on tu pilnje d#d#e#la.
+Ralbicy1_3|Njejsym twarstwo wukny#l.
+Ralbicy1_4|Za #ko bych jeho dyrbja#l poch#losta#c?
+Ralbicy1_5|T#on je m#oj!
+Ralbicy1_6|Nochcu, zo so rozhn#ewa.
+Ralbicy1_7|Ty so #ci pra#se#s! Hdy#z #k#lowjek n#e#sto ma, chce p#reco wjace.
+Ralbicy1_8|Knje#zk ma m#oc, swoje bohatstwo na chribje#ce ludnos#ce mno#zi#c.
+Ralbicy1_9|Nimo toho p#la#ci w#ojwodstwo wjele pjenjez, a 30 l#et w#ojnu wjes#c p#la#ci hi#s#ce raz telko.
+Ralbicy1_10|D#d#e#lo na knje#zich polach je so podl#e#si#lo.
+Ralbicy1_11|Dyrbimy so #s#es#c dnjow wob tyd#de#n na knje#zich kub#lach dr#e#c a to n#etko te#z z na#sim wosobinskim gratom abo zap#rahom.
+Ralbicy1_12|D#d#e#lo na na#sich p#olkach knje#zka njezajimuje.
+Ralbicy1_13|W#ezo, knje#ze Krabato! Burja jeno#z na tebje #kakaja, zo bychu #ci ze swojeho bohatstwa darili.
+Ralbicy1_14|My sami h#l#od tradamy! Po#lna robota nas rozdr#ewa, a nicht#o njew#e, ha#k p#richodnu zymu p#re#ziwi.
+Ralbicy1_15|Tebje tola znaju. Sy za#s#lu zymu pola nas po pro#senju by#l a moju #zonu ch#etro rozhn#ewa#l.
+Ralbicy1_16|Za#s#ly m#esac sym poslednich d#d#e#la#cerjow wid#da#l. Cyrkej ani za 50 l#et hotowa njebud#de!
+Ralbicy1_17|Haj, to bud#de na#sa nowa cyrkej.
+Ralbicy1_18|#Kertowski m#lyn?! Spod#diwne mjeno. N#e, to #ci pomha#c njem#o#zu.
+Ralbicy1_19|Ale pra#sej so tola kor#kmarja w #Sunowje. T#on m#oh#l to w#ed#de#c.
+Ralbicy1_20|Ja sym Krabat z Jitka, a #st#o s#ce wy?
+Ralbicy1_21|Ja nikoho rozmjerza#l njejsym. Zyma b#e kruta, a wjet#sina lud#di je mje wotpokaza#la.
+Ralbicy1_22|Po#lna robota - #sto to woznamjenja?
+Ralbicy1_23|#Kehodla su knje#zkojo tak nahrabni?
+Ralbicy1_24|#Swarne twarni#s#co tu w Ralbicach ma#ce.
+Ralbicy1_25|Je wosrjed#d tyd#denja, a nicht#o tu njed#d#e#la.
+Ralbicy1_26|Znaje#ce #Kertowski m#lyn?
+Ralbicy1_27|M#ej#ce wutrobny d#dak za rozmo#lwu. Bo#zemje.
+Ralbicy1_28|Ni#ko dale.
+Ralbicy2_1|Ow, wona p#reco hi#s#ce hotowa njeje.
+Ralbicy2_2|W#on tu pilnje d#d#e#la.
+Ralbicy2_3|Njejsym twarstwo wukny#l.
+Ralbicy2_4|Za #ko bych dyrbja#l jeho poch#losta#c?
+Ralbicy2_5|T#on je m#oj!
+Ralbicy2_6|Nochcu, zo so rozhn#ewa.
+Ralbicy2_7|Ty so #ci pra#se#s! Hdy#z #k#lowjek n#e#sto ma, chce p#reco wjace.
+Ralbicy2_8|Knje#zk ma m#oc, swoje bohatstwo na chribje#ce ludnos#ce mno#zi#c.
+Ralbicy2_9|Nimo toho p#la#ci w#ojwodstwo wjele pjenjez, a 30 l#et w#ojnu wjes#c p#la#ci hi#s#ce raz telko.
+Ralbicy2_10|D#d#e#lo na knje#zich polach je so podl#e#si#lo.
+Ralbicy2_11|Dyrbimy so #s#es#c dnjow wob tyd#de#n na knje#zich kub#lach dr#e#c a to n#etko te#z z na#sim wosobinskim gratom abo zap#rahom.
+Ralbicy2_12|D#d#e#lo na na#sich p#olkach knje#zka njezajimuje.
+Ralbicy2_13|W#ezo, knje#ze Krabato! Burja jeno#z na tebje #kakaja, zo bychu #ci ze swojeho bohatstwa darili.
+Ralbicy2_14|My sami h#l#od tradamy! Po#lna robota nas rozdr#ewa, a nicht#o njew#e, ha#k p#richodnu zymu p#re#ziwi.
+Ralbicy2_15|Tebje tola znaju. Sy za#s#lu zymu pola nas po pro#senju by#l a moju #zonu ch#etro rozhn#ewa#l.
+Ralbicy2_16|Za#s#ly m#esac sym poslednich d#d#e#la#cerjow wid#da#l. Cyrkej ani za 50 l#et hotowa njebud#de!
+Ralbicy2_17|Haj, to bud#de na#sa nowa cyrkej.
+Ralbicy2_18|Ja sym Krabat z Jitka, a #st#o s#ce wy ?
+Ralbicy2_19|Ja nikoho rozmjerza#l njejsym. Zyma b#e kruta, a wjet#sina lud#di je mje wotpokaza#la.
+Ralbicy2_20|Po#lna robota - #sto to woznamjenja ?
+Ralbicy2_21|#Kehodla su knje#zkojo tak nahrabni ?
+Ralbicy2_22|#Swarne twarni#s#co tu w Ralbicach ma#ce.
+Ralbicy2_23|Je wosrjed#d tyd#denja, a nicht#o tu njed#d#e#la.
+Ralbicy2_24|M#ej#ce wutrobny d#dak za rozmo#lwu. Bo#zemje.
+Ralbicy2_25|Ni#ko dale.
+Rapak1_1|Pu#cnik hi#zo prawje njed#der#zi.
+Rapak1_2|#Korny rapak. W#ezo! Kotru barbu m#e#lo jeho pjerjo hewak m#e#c?
+Rapak1_3|W#on tu sed#di. Zaso tajki #korny ptak.
+Rapak1_4|Pjerjo rapaka!
+Rapak1_5|Pu#cnik.
+Rapak1_6|W#on so njeda popadny#c!
+Rapak1_7|#Sto drje tu steji?
+Rapak1_8|Njew#em, dokal pu#c wjed#de!
+Rapak1_9|To nochcu zapali#c.
+Rapak1_10|To d#de te#z l#o#ze.
+Rapak1_11|Nochcu jeho wjace hn#ewa#c!
+Rapak1_12|Tak jeho njedosahnu!
+Rapak2_1|#Korny rapak. W#ezo! Kotru barbu m#e#lo jeho pjerjo hewak m#e#c?
+Rapak2_2|W#on tu sed#di. Zaso tajki #korny ptak.
+Rapak2_3|Pu#cnik.
+Rapak2_4|#Sto drje tu steji?
+Rapak2_5|Njew#em, dokal pu#c wjed#de!
+Rapak2_6|To nochcu zapali#c.
+Rapak2_7|Kraaa, Kraaa, Kraaabato! Kraaabaaato!
+Rapak2_8|#Sto ha n#etko? #St#o mje wo#la?
+Rapak2_9|Wo#ki#n wo#ki, Kraaabaaato!
+Rapak2_10|W#ezo, ty poprjanco! Kak da by hewak wbohu k#o#kku m#lynka zrozumi#l, Kraaa, Kraaa, Kraaabaaato!?
+Rapak2_11|W#ezo! A dokel#z je jeho brjuch tak jara plapota#l, le#zi k#o#kka n#etko w m#lynskej hrjebi.
+Rapak2_12|Ja sym m#lynkowy wu#komnik a pytam nowych kandidatow. Za to je mje do tutoho h#lupikojteho kostima tykny#l.
+Rapak2_13|N#etko tu #kakam, zo by mi zaso jedyn pacho#l pjerjo pokradny#c spyta#l.
+Rapak2_14|W#ezo, Kraaa-Kraaa-Kraaabaaato! Runjewon do ri ... ehmmm do pyska!
+Rapak2_15|W#ezo b#ech to ja! K#o#zdy raz d#ostanu jednu sm#oknjenu. T#on jedyn t#r#ela z kamu#skami, druhi mje dyri z ha#lzu,
+Rapak2_16|n#ekot#ri p#ri#ndu hnydom ze sakom - ja tola njejsym mjetel#kka! Sym wjele tajkich ka#sporkow wid#da#l.
+Rapak2_17|N#etko pak mam dos#c!
+Rapak2_18|Zam#o#zu n#etko hi#zo ze zw#erjatami r#e#ke#c?
+Rapak2_19|Chiba r#e#ki m#lynk p#rez brjuch?
+Rapak2_20|#St#o poprawom sy?
+Rapak2_21|Njejsm#oj so hi#zo raz trjechi#loj?
+Rapak2_22|Ach, ty sy to by#l. Wodaj, rapako, ale sym pjerjo trjeba#l.
+Rapak2_23|Sym drje hi#zo wob#ludni#l.
+Rapak2_24|Dyrbju dale, postrow mi druhe rapaki. Poprawom dobre mjeno za komputerowu skupinu p#richoda.
+Rowy_1|Hlinjane sudobjo.
+Rowy_2|To je postawa Swaixtixa. Wid#dach ju$na rysowance knjeza fararja.
+Rowy_3|Syno.
+Rowy_4|To su rowy m#e#snikow a w#ojwodow Mil#kanow.
+Rowy_5|Spod#diwnje. Runje na tut#on row wjace sw#ecy pada.
+Rowy_6|M#lynk.
+Rowy_7|Ruka Swaixtixa.
+Rowy_8|Sym so hi#zo nastr#o#zi#l!
+Rowy_9|Syno le#zi w we wopornej #skl#e.
+Rowy_10|Syno so w #skli pali.
+Rowy_11|Toho so rad#so njed#otknu.
+Rowy_12|Postawa je p#re#ce#zka.
+Rowy_13|To wjace njetrjebam.
+Rowy_14|Tu je p#re#cma. Nochcu so ni#keho d#otkny#c.
+Rowy_15|Z m#lynkom wjace njer#e#ku!
+Rowy_16|Tak to nje#nd#de!
+Rowy_17|Do kajkeje pr#ozdnjency sym so n#etko zaso zapadny#l?
+Rowy_18|Hej, njeje to swjatnica, kotru#z pytam?
+Rowy_19|To w#on njetrjeba.
+Rowy_20|To nochcu n#etko zapali#c.
+Rowy_21|Hrubos#c njepomha.
+Rowy_22|Ja tola h#lupy njejsym.
+Rowy_23|Strowju #ce, wu#komniko!
+Rowy_24|Huch, m#lynko, ty?!
+Rowy_25|Nochce#s swojeho stareho mi#stra postrowi#c?
+Rowy_26|#Sto tu pyta#s?
+Rowy_27|To r#eka #fwy#F! #Sto #fwy#F tu pyta#ce? Wu#ka tajke zad#der#zenje w Drje#zd#danach?
+Rowy_28|Zwotkel w#es#ce, zo b#ech w Drje#zd#danach?
+Rowy_29|Njepodh#odno#cej starych lud#di!
+Rowy_30|Rjane to kuz#larske #kinki. K#o#kka m#eje#se prawje. Wone woprawd#de jeno#z za d#d#e#cace narodniny dosahaja.
+Rowy_31|Sym #ce zaw#erno podh#odno#ci#l. N#etko pak daj, #sto#z mi s#lu#sa.
+Rowy_32|Njew#em scy#la, #sto m#eni#ce.
+Rowy_33|Nje#zortuj ze mnu, Krabato! Daj mi Koraktor! W#on je herbstwo mojich prjedownikow!
+Rowy_34|Z tajkej hoberskej mocu tak a tak wobchad#de#c njezam#o#ze#ce.
+Rowy_35|#Sto sej zwa#zi#s, mi tajke n#e#sto praji#c?
+Rowy_36|Tole we wokomiku jara dok#ladnje wid#du. M#ocny kuz#lar, nasl#ednik wulkeho m#e#sniskeho splaha, wisa jako njetopyr p#red m#lodym kadlu na wjerchu swjatnicy.
+Rowy_37|To je mi p#reh#lupje, ja rad#so du!
+Rowy_38|Ty nihd#de njep#o#nd#de#s!
+Rowy_39|To bud#demy wid#de#c. Takle wisajo je drje wam krej do h#lowy stupi#la, #sto?
+Rowy_40|N#etko pak k#onc! Tajke wudma njejsu ni#ko za wu#si porjadneho serbskeho kadle!
+Rowy_41|N#e! Pre#k z knihu!
+Rowy_42|Najprjedy za njej rjeji#ce, a n#etko? #Sto tu zajimaweho steji? #fMali#kkos#ce za dobrych p#re#celow#F - w porjadku.
+Rowy_43|Mocy zemje, wo#lam was!$Nimam wjace hubu p#rewulku.$Ja pak so hi#zo njechowam -$tak p#os#cel#ce mi rjanu wowcu - pastyrsku!
+Rowy_44|To ni#ko njeb#e. M#o#zu ja to raz spyta#c?
+Rowy_45|Wokomik! Zaw#es#ce b#e to wopa#kny rym.
+Rowy_46|Helske mocy, Krabat was wo#la!$Zemska skora bybota.$Wa#s najenk so hnydom wr#o#ci,$#zanoho #k#lowjeka hi#zo njezamu#ci.
+Rowy_47|B#e do#lho dos#c na wot boha datej zemi,$#k#lowje#ke d#d#e#lo pak njepoz#lo#ci.$Mocy za to m#eje#se hoberske.$N#etko pak dos#c, #ziwjenje njeje na w#e#kne ...
+Rowy_48|#Sto je so sta#lo? M#lynk tu p#reco hi#s#ce je, ale wowca je so zminy#la.
+Rowy_49|Hej, m#lynko ...! Tu n#e#sto njetrjechi. Je to scy#la prawa kniha?
+Rowy_50|Haj, to je prawa kniha. Nad#dijomnje je Koraktor n#etko w dobrymaj rukomaj.
+Rowy_51|Spod#diwnje. Runje na tut#on row wjace sw#ecy pada.
+Rowy_52|Nic hi#s#ce raz!
+Rowy_53|Tu w#on je: KORAKTOR. Kniha njeb#e w rowje, ale w brju#se postawy!
+Rowy_54|N#etko #ce zni#ku!
+Rowy_55|Na tut#on wokomik sym jara do#lho #kaka#l!
+Rowy_56|Njeje wupu#ca, Krabato!
+Rowy_57|Ma#c bud#de ch#etro p#laka#c.
+Rowy_58|Ja #ce rozt#l#o#ku!
+Rowy_59|Ty njekni#komny wu#komniko, ha#nba w#sitkich m#lynskich!
+Rowy_60|Ow jej! Lute kos#ce!
+Saal_1|To su wobrazy m#estow w Sakskej.
+Saal_2|To su wobrazy m#estow w Sakskej.
+Saal_3|#Swarna rumnos#c! Zaw#es#ce dl#e#sa ha#k 60 metrow.
+Saal_4|Halo! Wid#di#s mje hi#s#ce?
+Saal_5|S#c#enu sobu wza#c njem#o#zu!
+Saal_6|S#c#enu sobu wza#c njem#o#zu!
+Skica_1|Aha, to wupada ka#z skica woporneje #skl#e. Tak, ka#z na rysowance Kulowskeho fararja. To bud#de so Dinglinger wjeseli#c.
+Spaniska_1|Wona p#rede mnu steji a rjeji.
+Spaniska_2|Wokno z k#otwicu.
+Spaniska_3|Tajki wulki #spihel!
+Spaniska_4|Sym tola #sikwany kadla.
+Spaniska_5|Rjane r#o#zi#kki.
+Spaniska_6|Zady njeje m#o#zu so schowa#c.
+Spaniska_7|To je 5 tolerjow.
+Spaniska_8|N#ekajki dokument w njerodnym rukopisu.
+Spaniska_9|N#etko mi w nosu #loskota.
+Spaniska_10|T#on njetrjebam.
+Spaniska_11|Nimam chwile za tajke w#olbernos#ce.
+Spaniska_12|Trjebam k#otwicu, zo bych z wokna zal#ez#l.
+Spaniska_13|Tak rjane kw#etki sk#oncuju!
+Spaniska_14|#Spihel njerozbiju! To p#rinjese njezbo#zo.
+Spaniska_15|Tajka cyplkojta #z#onska. Su w#sitcy wum#e#lcy tajcy?
+Spaniska_16|Huch, hdy by wona jeno#z kusk mjel#ki#so by#la.
+Spaniska_17|Tajkeho zmija nicht#o njep#re#ziwi!
+Spaniska_18|G A M E   O V E R !
+Spaniska_19|Wodaj#ce pro#su, ma#ly zmylk techniki.
+Spaniska_20|Hod#dinu pozd#di#so ...
+Spaniska_21|Jejdyrko, mi pak h#lowa brun#ki. Ta ma m#oc lawa a h#l#os ka#z kakadu. Wona s#lu#sa do coologiskeje zahrody, na #zadyn pad na jewi#s#co!
+Spaniska_22|Aaa!
+Spaniska_23|Pomoooccc!
+Spaniska_24|Sym drje chuda d#diwad#delnica -$ale wzmi#ce sej pjenjezy na blid#de!
+Spaniska_25|Wostaj#ce mje na pokoj!
+StareWiki_1|W#on ma to#lsty brjuch.
+StareWiki_2|T#on #k#lowjek #ci m#o#ze bjaka#c.
+StareWiki_3|W#on n#e#sto p#redawa.
+StareWiki_4|Pro#su jara, tw#oj wosu#sk. Njech #ci zes#lod#di!
+StareWiki_5|D#dakuju so!
+StareWiki_6|#Sto chce#s? Njewupada#s, jako by pjenjezy za tajke droho#cinki m#e#l!
+StareWiki_7|#Sto? W hrod#de? Znaje#s h#lowneho stra#znika?
+StareWiki_8|Njeplecho!
+StareWiki_9|Hdy#z tutoho pjaneho sr#ebca wid#di#s, potom jeho na to dopomni, zo dyrbi hi#s#ce ku#ku za swoju stra#zu zap#la#ci#c.
+StareWiki_10|A p#richodny raz njech njep#os#cele tutoho stra#znika, ki#z m#o#ze jeno#z #fStop! St#oj! #Zadyn p#ristup!#F praji#c.
+StareWiki_11|Z nim so #spatnje wikuje. T#on wbohi kadla je najskerje p#redo#lho we w#et#riku sta#l!
+StareWiki_12|Ty m#eni#s sakskeho Archimedesa?
+StareWiki_13|Zahrodnik, tak w#on prawje r#eka, Dinglinger, P#pppelmann a Permoser - to su #zenije d#densni#seho #kasa.
+StareWiki_14|Maja wizije. A ja #ci praju: Za 20 abo snad#d 50 l#et bud#de tute m#esto cyle hinak wupada#c. To bud#de europske kulturne srjed#di#s#co w architekturje, molerstwje a hud#dbje.
+StareWiki_15|A ja abo m#oj syn telko korejtow, wozow a ku#kow p#redamoj, ka#z ... hmmm, ka#z ..., kelko#z t#on ka#spor tamle swojich wosu#skow.
+StareWiki_16|Hladaj h#ol#ke: Za#s#le l#eto su na#seho Awgusta kr#onowali na krala P#olskeje. Z tym je nasta#l jedyn z najm#ocni#sich kralowskich domow Europy.
+StareWiki_17|A tak, ka#z Awgusta znaju - a ja jeho woprawd#de znaju - chce w#on swoju m#oc te#z zjawnje pokaza#c. N#etko sej wobhladaj rezidency kralow w Europje -
+StareWiki_18|Paris, London, Madrid - a potom na#s chudu#ski hr#od w Drje#zd#danach. Tu ma so n#e#sto sta#c! A ty w#e#s, ja Awgusta znaju.
+StareWiki_19|Chudu#ski hr#od? To je chudu#ski hr#od? Dyrbju toho kadlu j#onu do na#seje rezidency w Jitku p#reprosy#c.
+StareWiki_20|Jeni#kki taler w hrod#de je wjace h#odny ha#k na#se cy#le domske. N#o haj, tajke su p#redstawy m#e#s#canow.
+StareWiki_21|Sym Micha#l. P#redawam wosu#ski.
+StareWiki_22|Tak s#luchaj! Wosu#sk ze swojej formu je symbol a dopomina na bo#ze d#d#e#catko.
+StareWiki_23|Pr#enje wosu#ski buchu woko#lo l#eta 1330 w Naumburgu pje#kene, a spo#katk 15. l#etstotka znajachu te#z tu w Drje#zd#danach tutu s#l#odnu j#ed#d.
+StareWiki_24|Z l#eta 1491 je nam wot bam#za dowolene, m#esto z wolijom wosu#sk z butru pjec. To drje je adwentskeho pos#cenja dla zakazane, ale tu w Sakskej d#d#e wolijowcy nimamy.
+StareWiki_25|Za to dyrbimy klerusej p#ridatne wotedawki p#la#ci#c, na p#rik#lad za twar K#ri#zneje cyrkwje. Ale w#sako na#s wosu#sk wjele l#epje s#lod#di ha#k druhe.
+StareWiki_26|Lud#do d#densa ka#z wr#otni kupuja. Mam jeno#z hi#s#ce wosu#sk z r#ozynkami. T#on p#la#ci 5 tolerjow. Wodaj, ale tu#n#so to nje#nd#de.
+StareWiki_27|Wokomik, pohladam.
+StareWiki_28|N#e! Jeno#z ma#le d#d#e#ci n#e#sto darmo d#ostanu. Wone su kupcy p#richoda.
+StareWiki_29|Chce#s mje mjerza#c? A hd#de staj twojej star#sej?
+StareWiki_30|To je w#sitko jara zajimawe. Ale n#etko d#di! Wottra#se#s mi kupcow!
+StareWiki_31|Haj, drobjaz w#s#edneho dnja. #Sto chce#s?
+StareWiki_32|Na #ko mysli#s? Zaw#erno to njejsu w#sitke mali#kkos#ce. Ale to pak te#z njeje w#sitko, #sto#z #fp#redawam#F.
+StareWiki_33|Ni#ko. Mam pak druhe kmanos#ce.
+StareWiki_34|M#o#zu na p#rik#lad pismo druhich napodobnje#c.
+StareWiki_35|Hej, hej - nic tak w#ot#re. Hdy#z j#onu n#e#sto k napodobnjenju ma#s, to p#oj ke mni. Snano podpismo n#ekajko znateho - to by by#lo.
+StareWiki_36|#Zane pjenjezy, #zane pjenjezy. Pytam n#e#sto wosebite. #Sto#z k#o#zdy nima, n#e#sto wurjadne. Hmmm, ja te#z tak prawje njew#em, #sto.
+StareWiki_37|Zaso burik z wjeski. Te#z m#e#s#cenjo wid#da rady zelenu barbu.
+StareWiki_38|#Sto z tutym #kaporom chcu? Ja twoje dary njetrjebam.
+StareWiki_39|To je njepodpisana dowolnos#c. N#etko trjebam hi#s#ce originalne podpismo k p#rirunanju. P#oj zaso sem, hdy#z je ma#s. Dokument sej tak do#lho zd#der#zu.
+StareWiki_40|#Sto z tutym #kaporom chcu? Ja twoje dary njetrjebam.
+StareWiki_41|Podpismo Awgusta pod jednym p#rikazom. Dobra ideja! Hd#de mamy n#etko podpismo staji#c?
+StareWiki_42|#Sto z tutym #kaporom chcu? Ja twoje dary njetrjebam.
+StareWiki_43|Naru#kny s#l#on#kny #kasnik! Mama mia, to je #ci droho#cinka. Tysac razow d#dak! #Sto m#o#zu za tebje #kini#c? Praj, #sto ma#s na wutrobje?
+StareWiki_44|Podpismo Awgusta! Ty sy mi kadli#kka! Do#kakaj, a #sto mi za to da#s?
+StareWiki_45|D#ostanje#s podpisanu dowolnos#c jeno#z, hdy#z mi n#e#sto wosebiteho da#s.
+StareWiki_46|Naru#kny s#l#on#kny #kasnik! To je narunanja dos#c. N#etko trjebam jeno#z hi#s#ce pobrachowacy d#d#el k napodobnjenju.
+StareWiki_47|Naru#kny s#l#on#kny #kasnik! To je narunanja dos#c. N#etko trjebam jeno#z hi#s#ce pobrachowacy d#d#el k napodobnjenju.
+StareWiki_48|To je njepodpisana dowolnos#c. N#etko trjebam hi#s#ce originalne podpismo k p#rirunanju. P#oj zaso sem, hdy#z je ma#s. Dokument sej tak do#lho zd#der#zu.
+StareWiki_49|Podpismo Awgusta pod jednym p#rikazom. Dobra ideja! Hd#de mamy n#etko podpismo staji#c?
+StareWiki_50|Tule ma#s. Originalne podpismo krala sej zd#der#zu - snano podpisam raz Awgustowe awtogramowe kartki za turistow.
+StareWiki_51|Tu ma#s potwjerd#denku. Originalny rukopis krala sej zd#der#zu - snano podpisam raz Awgustowe awtogramowe kartki za turistow.
+StareWiki_52|Naru#kny s#l#on#kny #kasnik! To je narunanja dos#c. Hnydom j#on Ha#n#zi pokazam.
+StareWiki_53|A m#oj dokument?
+StareWiki_54|Wodaj, to sym w hektice cyle zaby#l. Tule ma#s. Originalny rukopis krala sej zd#der#zu - snano podpisam raz Awgustowe awtogramowe kartki za turistow.
+StareWiki_55|Sym Krabat. D#d#e#lam jako s#lu#zowny w kralowskej kuchni.
+StareWiki_56|Poprawom so ja p#reco pra#sam.
+StareWiki_57|H#lowneho stra#znika jeno#z z pow#edkow znaju, ka#z lud#do tak bled#da.
+StareWiki_58|Haj, h#lowneho stra#znika hi#zo znaju.
+StareWiki_59|N#e. Ale znaje#ce serbskeho Archimedesa?
+StareWiki_60|Pow#edaj#ce mi wo Sakskim Archimedesu. #Sto hi#s#ce tak wo nim w#es#ce?
+StareWiki_61|Drje#zd#dany - europske kulturne srjed#di#s#co? #Kehodla?
+StareWiki_62|Sym so myli#l. Njecham ni#ko kupi#c.
+StareWiki_63|Ja sym Krabat, a #st#o sy ty?
+StareWiki_64|Tajke n#e#sto chudy #Lu#zi#kan njeznaje. Pow#edaj mi n#e#sto wo wosu#sku.
+StareWiki_65|#Sto je wosebite na Drje#zd#danskim wosu#sku?
+StareWiki_66|Michale, pow#edaj mi pro#su hi#s#ce raz wo wosu#sku.
+StareWiki_67|P#reda#s mi wosu#sk?
+StareWiki_68|Nochcu ni#ko kupi#c. Bo#zemje.
+StareWiki_69|Ma#ce te#z ch#l#o#s#cenku za mnje?
+StareWiki_70|Sym ma#le d#d#e#co. Pro#su, daj#ce mi tola ch#l#os#cenku!
+StareWiki_71|W Jitku. Ja sym sam tu w Drje#zd#danach.
+StareWiki_72|Dobry d#de#n! Telko drobjaza!
+StareWiki_73|W#sitke mali#kkos#ce pak to njejsu.
+StareWiki_74|#Sto da hi#s#ce w drjewanym brju#se ma#ce?
+StareWiki_75|Kajke kmanos#ce to su?
+StareWiki_76|Fal#suje#ce pismo?
+StareWiki_77|#Sto twoja s#lu#zba p#la#ci?
+StareWiki_78|Symjo za balkonowe rostliny? Wy m#e#s#cenjo!
+StareWiki_79|Sym so myli#l. Nochcu ni#ko kupi#c.
+StareWiki_80|Korejty! Trjebane wozy!
+StareWiki_81|Ku#ke, ka#z nowe! Za k#o#zdu p#rile#znos#c!
+StareWiki_82|Korejty! Nic jeno#z za jednoho, n#e, te#z za wjacore konje!
+StareWiki_83|Za po#l tyd#denja w Parisu - jeno#z z tutymi ku#kemi je to m#o#zno!
+StareWiki_84|Wosu#ski! B#orze budu hody! Wosu#ski!
+StareWiki_85|Prawy Drje#zd#danski wosu#sk! Jeno#z tule a do#lho#z dosaha!
+StareWiki_86|Wosu#sk - n#etko te#z z r#ozynkami!
+StareWiki_87|Drobjaz! Mali#kkos#ce w#s#edneho dnja!
+StareWiki_88|Symjo za balkonowe rostliny!
+StareWiki_89|Cwjern a jehli#kki za roztorhanu drastu!
+StareWiki_90|S#l#odkos#ce za d#d#e#ci - d#densa darmotnje!
+StareWiki_91|Pisaj zaso raz - jeno#z z mojim pisanskim gratom!
+Straze_1|Woni stra#zuja.
+Straze_2|To je kralowski wopon.
+Straze_3|Wopon wisa p#rewysoko.
+Straze_4|To stra#ze wid#da!
+Straze_5|P#red stra#zemi njem#o#zu so p#rewobleka#c!
+Straze_6|Stop!
+Straze_7|P#ristup jeno#z kralowskej sw#ojbje a s#lu#zownym!
+Straze_8|St#oj!
+Straze_9|Hej, lud#do, to sym tola ja, Krabat! D#d#e#lam w kralowskej kuchni.
+Straze_10|To m#o#ze k#o#zdy praji#c. P#ristup jeno#z w s#lu#zbnej dras#ce.
+Straze_11|Stop!
+Straze_12|Zaperlot! Tw#oj p#re#cel ma woprawd#de wulki s#lowosk#lad. Hnydom so wr#o#cu.
+Straze_13|Stop! St#oj! #Zadyn p#ristup!
+Straze_14|P#ristup jeno#z w s#lu#zbnej dras#ce!
+Straze_15|N#etko pak skoku, kral so b#orze wr#o#ci.
+Stwa_1|Hej, #sto ma#s tule pyta#c?
+Stwa_2|Ow, wodaj#ce pro#su.
+Stwa_3|Skoku pre#k. W#on njewupada tajki, ka#z zo by #zorta zrozumi#l.
+Stwa_4|Z kim r#e#ki#s? Won!!!
+Stwa_5|Wopa#kne domske! Won!!!
+Stwa_6|#Sto sym #ci praji#l? Won!!!
+Sunow1_1|To je #Sunow. B#ech tu hi#zo po pro#senju.
+Sunow1_2|Wjes sej rad#so zbliska wobhladam.
+Sunow1_3|Ja tola nochcu wjes zapali#c.
+Sunow2_1|To je #Sunow. B#ech tu hi#zo po pro#senju.
+Sunow2_2|Wjes sej rad#so zbliska wobhladam.
+Sunow2_3|Ja tola nochcu wjes zapali#c.
+Swoboda_1|Tule, luba ma#cerka: Jedyn z tutych dwana#ce pjeriznatych je wa#s syn.
+Swoboda_2|Jeli jeho sp#oznaje#ce, potom na njeho pokazaj#ce, a w#on bud#de swobodny.
+Swoboda_3|Ma#cerna wutroba syna p#reco namaka.
+Swoboda_4|T#onle je m#oj syn.
+Swoboda_5|Kuz#larski kij njech d#otknje wucho rapaka.$Ma#c ma strach, njech zmjerznje jeje wutroba.$Hdy#z sy to woprawd#de, Krabato,$tak poka#z so nam - moje du#sine njewjedro!
+Swoboda_6|Haj, to w#on je!
+Swoboda_7|Ma#c a syn chwatachu wjeso#li domoj ale M#lynk so na Krabata jara z#lobje#se. W#on b#e#se pytny#l, po kotrym wa#snju jeho h#ol#kec p#reles#ci.
+Swoboda_8|Wje#cba je sw#odka, m#oj luby a to potom, hdy#z ju zymnu d#ostanje#s !!! Na zasowid#denje - KRABATO !!!
+Terassa_1|W#on d#d#e#la.
+Terassa_2|To je hamor.
+Terassa_3|Njewid#di#s, zo mam d#d#e#lo?
+Terassa_4|Nochcu z tobu r#e#ke#c!
+Terassa_5|Wob#lo#zenje prawje njed#der#zi. Dyrbi do wje#kora sporjed#dane by#c.
+Terassa_6|Njed#otkaj so mojeho kowarskeho gratu!
+Terassa_7|Spod#diwnje. #Sto ma #c#esliski hamor tule pyta#c? M#o#ze#s da z nim te#z #zelezo wobd#d#e#la#c? Dyrbju to raz spyta#c ...
+Terassa_8|Hej, ty hruby kadla! Wonje#kes#cuje#s moje d#d#e#lo! N#etko je we wob#lo#zenju d#ol#kk!!!
+Terassa_9|Praj#ce tola, zo je to wot#ci#s#c palca Awgusta Sylneho! To bud#de zaw#es#ce raz turistiska atrakcija w Drje#zd#danach.
+Terassa_10|D#di mi z pu#ca!!!
+Terassa_11|N#etko wupadam ka#z dypornak.
+Terassa_12|Ach, sk#on#knje sym zaso w sw#ojskej dras#ce.
+Terassa_13|Hdy#z mje stra#za w m#es#ce w s#lu#zbnej dras#ce lepi, d#ostanu zaso swarje.
+Trepjena_1|W#on tu stra#zuje.
+Trepjena_2|Tafla je pom#ernje nowa.
+Trepjena_3|Tafla kru#ce na s#c#enje wisa.
+Trepjena_4|Durje su zawrjene.
+Trepjena_5|Wobraz n#ekajkeho knje#zka.
+Trepjena_6|Tutu #zonu sym na dworje hi#zo wid#da#l. Na wobrazu pak je wona hi#s#ce m#loda.
+Trepjena_7|Hdy#z tak z wokna hladam - Drje#zd#dany su zaw#erno rjane m#esto.
+Trepjena_8|#Sto z wobrazom chcu?
+Trepjena_9|Ale kak wobraz jeno#z dosahnu?
+Trepjena_10|Nimam klu#k!
+Trepjena_11|Wokna njem#o#zu wo#kini#c.
+Trepjena_12|To njeje prawy klu#k!
+Trepjena_13|Taflu nochcu sk#oncowa#c!
+Trepjena_14|Je mi zakazane z tobu r#e#ke#c.
+Trepjena_15|Byrnje#z by za mnu pok#ladni#s#co by#lo, njebych #ci to praji#l.
+Trepjena_16|D#di pre#k! Nima#s tu ni#ko pyta#c.
+Trepjena_17|Zawo#lam hnydom h#lowneho stra#znika!
+Wila1_1|To su p#lokane #saty na su#senju.
+Wila1_2|Powjaz, na kotrym#z #saty su#sachu.
+Wila1_3|Do#lha, kruta lajna.
+Wila1_4|Durje su zawrjene.
+Wila1_5|N#etko pak dyrbju so sp#e#snje schowa#c!
+Wila1_6|To nochcu zapali#c!
+Wila1_7|Nimam chwile!
+Wila1_8|#Sto ma to r#eka#c? Njem#o#zu #saty ani wokomik tu wisajo m#e#c, bjez toho zo so hnydom zminu!? Ty so mi jeno zw#er!
+Wila1_9|#Sto sym #ci praji#la! Wumyj sej noze, zo by so #sma#lc w twojimaj wu#somaj dale suny#l!
+Wila1_10|Kajka to wobrada! W#sitko mazane! Ow, ow, to bud#de knje#zk zaso swarje#c. N#etko dyrbju w#sitko hi#s#ce raz p#loka#c!
+Wila2_1|Durje su zawrjene.
+Wila2_2|To nochcu zapali#c!
+Wila2_3|Nimam chwile!
+Wjes1_1|W#on tak m#ocnje d#d#e#la, zo #skr#e l#etaja!
+Wjes1_2|#Sunowske sudy.
+Wjes1_3|Wid#du kor#kmarja w kuchni.
+Wjes1_4|#Zelezna tafla kor#kmy, wona so we w#et#riku #kumpa.
+Wjes1_5|Wohe#n knyskota.
+Wjes1_6|Wone su p#re#ce#zke!
+Wjes1_7|P#rez wokno so do kor#kmy njekrosnuju!
+Wjes1_8|Njem#o#zu taflu dosahny#c.
+Wjes1_9|Nochcu so spali#c! Potom je tuta hra hnydom sk#on#kena!
+Wjes1_10|To nochcu zapali#c!
+Wjes1_11|Za #ko bych jeho dyrbja#l poch#losta#c?
+Wjes1_12|Nochcu, zo so rozhn#ewa!
+Wjes1_13|Kij je p#rekr#otki!
+Wjes1_14|L#epje so nje#nd#de pali#c!
+Wjes1_15|R#ekam Jurij a sym wjesny kowar tu w #Sunowje. #Kehodla pyta#s wony m#lyn?
+Wjes1_16|Chce#s potajkim porjadnje d#d#e#la#c? Pytam hi#s#ce wu#komnika.
+Wjes1_17|Hdy#z ma#s l#o#st, m#o#ze#s tu wosta#c.
+Wjes1_18|W zymje so na p#razy jara wjele bled#di.
+Wjes1_19|W#ezo soni k#o#zdy wo l#ep#sim #ziwjenju abo wo knize, z kotreje#z #fabrakadabra#F m#o#ze#s sw#et zm#eni#c.
+Wjes1_20|To sy woprawd#de chudy pacho#l. P#raza s#lu#sa do wjesneho #ziwjenja.
+Wjes1_21|Wosebje m#lod#dina so w zymje na p#razy zetkawa. P#ri tym bachta, sp#ewa abo samo rejuje.
+Wjes1_22|W l#e#ce je zabawa d#d#e#la na polach dla nimale njem#o#zna.
+Wjes1_23|Pra#sej so tola hos#ci w kor#kmje. #Ci wjele wid#da a s#ly#sa.
+Wjes1_24|W#ezo! P#odkowy za koniki p#rinjesu rjany dobytk. Hdy#z su sk#otne wiki w Kulowje, je tu ho#lk a to#lk.
+Wjes1_25|N#e, w#sako je wjet#sina burow hi#s#ce na knje#zich polach. Pr#eni zmjerzk nuzuje do sp#echa,
+Wjes1_26|prjedy ha#k so p#riroda do do#lheho spara poda a lud#do zaso wjace chwile maja.
+Wjes1_27|To b#e#se zaw#es#ce w Kulowje. Ale te#z na wjesce swje#ca p#ostnicy.
+Wjes1_28|Ka#z Frenclec Abraham mi j#onu praji: #fP#ostnicy - swjed#de#n #zranja, rejow a #zlokanja.#F
+Wjes1_29|Haj, haj. W#on je znaty #k#lowjek. Abraham je mje raz na piwo p#reprosy#l, dokel#z sym jeho konjej p#odkowy d#d#e#la#l.
+Wjes1_30|W#on m#o#ze wulkotnje pow#eda#c - wo stawiznach Serbow, wo na#sej domiznje -
+Wjes1_31|runje zaso jednu knihu pisa. Jara mudry to #k#lowjek.
+Wjes1_32|Kub#lanje t#oj#sto p#la#ci. Za to sy p#rechudy. Snano zaswita j#onu d#de#n, hdy#z m#o#ze k#o#zdy tajke n#e#sto nawukny#c.
+Wjes1_33|Ale hdy#z sej to prawje p#remysluju - za #ko? P#ri kowanju #zeleza to njetrjebam.
+Wjes1_34|Ja sym Krabat. Pytam #Kertowski m#lyn.
+Wjes1_35|Chcu by#c m#lynski. Sym l#eta po pro#senju chod#di#l a w zymje husto h#l#od trada#l. Chudobu doma w Jitku wjace njeznjesu.
+Wjes1_36|Chcu pak wjace nawukny#c. Lud#do pow#edaja, zo ma#s w #Kertowskim m#lynje te#z p#ristup k #kinkarstwu.
+Wjes1_37|Pasli#ce te#z konjam #f#krije#F?
+Wjes1_38|D#densa pak njeje telko lud#di po pu#cu.
+Wjes1_39|Za#s#le l#eto sym samo w jednym m#esta#kku p#ostniski #cah wid#da#l.
+Wjes1_40|Abraham Frencel? Wo nim je knjez farar hi#zo j#onu pow#eda#l.
+Wjes1_41|Bych te#z rady knihi #kita#l abo raz list napisa#l.
+Wjes1_42|Njechod#du w zymje na p#razu, ale po pro#senju.
+Wjes1_43|Wy potajkim njew#es#ce, hd#de #Kertowski m#lyn steji?
+Wjes1_44|Dyrbju dale - bo#zemje.
+Wjes2_1|W#on tak m#ocnje d#d#e#la, zo #skr#e l#etaja!
+Wjes2_2|#Sunowske sudy.
+Wjes2_3|Tu je w#sud#de #cma.
+Wjes2_4|#Zelezna tafla kor#kmy, wona so we w#et#riku #kumpa.
+Wjes2_5|Wohe#n knyskota.
+Wjes2_6|Wone su p#re#ce#zke!
+Wjes2_7|P#rez wokno so do kor#kmy njekrosnuju!
+Wjes2_8|Njem#o#zu taflu dosahny#c.
+Wjes2_9|Nochcu so spali#c! Potom je tuta hra hnydom sk#on#kena!
+Wjes2_10|Spod#diwnje, durje su zamknjene!
+Wjes2_11|To nochcu zapali#c!
+Wjes2_12|Za #ko bych jeho dyrbja#l poch#losta#c?
+Wjes2_13|Nochcu, zo so rozhn#ewa!
+Wjes2_14|Kij je p#rekr#otki!
+Wjes2_15|L#epje so nje#nd#de pali#c!
+Wjes2_16|W#ezo! P#odkowy za koniki p#rinjesu rjany dobytk. Hdy#z su sk#otne wiki w Kulowje, je tu ho#lk a to#lk.
+Wjes2_17|N#e, w#sako je wjet#sina burow hi#s#ce na knje#zich polach. Pr#eni zmjerzk nuzuje do sp#echa,
+Wjes2_18|prjedy ha#k so p#riroda do do#lheho spara poda a lud#do zaso wjace chwile maja.
+Wjes2_19|To b#e#se zaw#es#ce w Kulowje. Ale te#z na wjesce swje#ca p#ostnicy.
+Wjes2_20|Ka#z Frenclec Abraham mi j#onu praji: #fP#ostnicy - swjed#de#n #zranja, rejow a #zlokanja.#F
+Wjes2_21|Haj, haj. W#on je znaty #k#lowjek. Abraham je mje raz na piwo p#reprosy#l, dokel#z sym jeho konjej p#odkowy d#d#e#la#l.
+Wjes2_22|W#on m#o#ze wulkotnje pow#eda#c - wo stawiznach Serbow, wo na#sej domiznje -
+Wjes2_23|runje zaso jednu knihu pisa. Jara mudry to #k#lowjek.
+Wjes2_24|Kub#lanje t#oj#sto p#la#ci. Za to sy p#rechudy. Snano zaswita j#onu d#de#n, hdy#z m#o#ze k#o#zdy tajke n#e#sto nawukny#c.
+Wjes2_25|Ale hdy#z sej to prawje p#remysluju - za #ko? P#ri kowanju #zeleza to njetrjebam.
+Wjes2_26|Poddanojo, serbscy wjesnjenjo!
+Wjes2_27|Swoja majestos#c, kurwjerch Sakskeje a kral P#olskeje Awgust II., mjenowany Sylny, bud#de so na wr#o#copu#cu z War#sawy do Drje#zd#danskeje rezidency po hornjo#lu#ziskich pu#cach pohibowa#c.
+Wjes2_28|Kral so raduje, hdy#z wid#di sm#ejace so wobli#ka #ce#zko d#d#e#lacych poddanow, k#c#ejace hona a rjane holcy. Wo#kakujemy krala w tutej k#on#kinje za n#ehd#de po#ldra hod#diny.
+Wjes2_29|Kral? Awgust Sylny? To hnydom ma#ceri rjeknu!
+Wjes2_30|Pasli#ce te#z konjam #f#krije#F?
+Wjes2_31|D#densa pak njeje telko lud#di po pu#cu.
+Wjes2_32|Za#s#le l#eto sym samo w jednym m#esta#kku p#ostniski #cah wid#da#l.
+Wjes2_33|Abraham Frencel ? Wo nim je knjez farar hi#zo j#onu pow#eda#l.
+Wjes2_34|Bych te#z rady knihi #kita#l abo raz list napisa#l.
+Wjes2_35|Dyrbju dale - bo#zemje.
+Wobzor1_1|Wottud r#eku docy#la wid#de#c njem#o#zu!
+Wobzor1_2|Wottud r#eku docy#la wid#de#c njem#o#zu!
+Wobzor1_3|Wottud r#eku docy#la wid#de#c njem#o#zu!
+Wotrow_1|To je tola Kl#o#sterska woda!
+Wotrow_2|Tule hi#zo w#sitko spi.
+Wotrow_3|To d#ostanu jeno#z mokrej noze.
+Wotrow_4|Do cuzych woknow njehladam.
+Wotrow_5|Wr#o#co wjace njep#o#ndu.
+Wotrow_6|Doma b#e w#ezo wulke wjeselo po nawr#o#ce zhubjeneho syna. Ma#c b#e#se na#seho m#lodeho rjeka porjadnje wuswarje#la, ale wje#kor p#ri dobrym kusku swinje#ca, kotre#z b#e#se nan zar#eza#l, so #cmowe mr#o#kele ma#cerneje staros#ciwos#ce rozpu#s#cichu. Krabat dyrbje#se p#ri njed#delskej sukni ma#cerje slubi#c, zo wostanje w domiznje. Haj, w domiznje, #sto#z zap#rija w#ezo te#z ma#lu serbsku wjesku Wotrow, nad kotrej#z tr#onuje wu#cek na#sich prjedownikow - hrod#di#s#co.%%Tam chowa so s#lawna kniha. A Krabat so zaso na pu#c poda.
+Zachod_1|Powjaz.
+Zachod_2|Drjewjane kisty.
+Zachod_3|Nowy d#d#el drjewjaneho #spundowanja!
+Zachod_4|Deska.
+Zachod_5|Sudobjo.
+Zachod_6|Wulki ko#s.
+Zachod_7|Drjewjane kisty.
+Zachod_8|Puh, su p#re#ce#zke. Nimam dos#c mocy.
+Zachod_9|Kisty su p#reco hi#s#ce p#re#ce#zke za mnje.
+Zachod_10|N#etko je suwanja dos#c!
+Zachod_11|Za to trjebam wotpow#edny grat.
+Zachod_12|Tak to p#o#nd#de!
+Zachod_13|Wona je p#re#ce#nka!
+Zachod_14|Tak ju hi#s#ce roz#lamam!
+Zachod_15|Tajku desku wjace njetrjebam! Tule sk#oncowanych mos#cikow njeje.
+Zachod_16|Za #ko bych je trjeba#l?
+Zachod_17|Njedosahnu j#on!
+Zahrodnik_1|W#on d#d#e#la.
+Zahrodnik_2|Model twjerd#dizny.
+Zahrodnik_3|#Lopjeno.
+Zahrodnik_4|Budka.
+Zahrodnik_5|Wulke #lopjeno.
+Zahrodnik_6|Pisanske pjerjo.
+Zahrodnik_7|Dokumenty.
+Zahrodnik_8|P#re#ce#zki ...
+Zahrodnik_9|Telko li#kbow mje jeno#z zamu#ca.
+Zahrodnik_10|Hej, je runje tak wulka ka#z ja!
+Zahrodnik_11|Wupada ka#z rysowanka budki. Ju njetrjebam.
+Zahrodnik_12|Ja tola pisa#c njem#o#zu.
+Zahrodnik_13|Njem#o#zu sp#ozna#c, za #ko su.
+Zahrodnik_14|Ja sym Krabat. A #st#o s#ce wy?
+Zahrodnik_15|Kajke je to mjeno! A #sto docy#la za mojim chribjetom #kini#s?
+Zahrodnik_16|Toho, kotreho#z pyta#s, steji p#red tobu. #Sto chce#s, #Slabato?
+Zahrodnik_17|Aha! W#odny mu#z. Snano chce#s mi hi#s#ce n#e#sto pow#eda#c wo b#ludni#kkach abo zmijach, kotre#z ma#le d#d#e#ci kradnu. Rjane bajki! Dyrbju d#d#e#la#c.
+Zahrodnik_18|Ow jej, na toho sym cyle zaby#l! Sy mudri#si ha#k sej myslach. #Sto ma#s na wutrobje, Marato?
+Zahrodnik_19|Jejdyrko, we wutrobje Sakskeje!
+Zahrodnik_20|To woprawd#de njew#em. Snano m#o#ze #ci m#oj p#re#cel Dinglinger pomha#c.
+Zahrodnik_21|Johann Melchior Dinglinger je dw#orski juwel#er a z tym wulki p#re#cel Awgusta.
+Zahrodnik_22|Je jedyn z wuzwolenych, kot#ri#z maja p#ristup do wutroby Sakskeje.
+Zahrodnik_23|Pola njeho sym runje p#red tyd#denjom nowy wodow#od k#lad#l. Haj, m#oj so derje rozumimoj.
+Zahrodnik_24|To je #ce#zko. W#on zaso raz na wulkim nadawku Awgusta d#d#e#la a tohodla je #kasto w hrod#de.
+Zahrodnik_25|Jeli so #ci porad#di, n#ekak do hrodu p#ri#n#c, #ci lis#cik za Dinglingera napi#su. W#on je cuzym nap#re#co trochu bojazliwy.
+Zahrodnik_26|W#on zaso raz na wulkim nadawku krala d#d#e#la a tu#z so cyle na to koncentruje.
+Zahrodnik_27|Cuzym nap#re#co je p#reco hi#zo trochu bojazliwy by#l. Ja pak #ci lis#cik napisam, a t#on jemu daj. To bud#de #ci pomha#c.
+Zahrodnik_28|To je jara zdw#orliwje. Bo#zemje.
+Zahrodnik_29|To je moja nowa wunamakanka: t#riposchodowy lift za moje domske.
+Zahrodnik_30|Tu w m#es#ce dyrbimy do wysokos#ce twari#c - m#estna dla. A hdy#z sy stary, njem#o#ze#s wjace tak lochce schody horje a dele smali#c.
+Zahrodnik_31|To su hakle pr#enje pospyty. M#oj swobodny #kas je jara wobmjezowany.
+Zahrodnik_32|Najprjedy mam druhe nadawki, na p#rik#lad strategiske wusm#erjenje artilerije za twjerd#diznu K#pnigstein.
+Zahrodnik_33|Na#se w#ojwodstwo nima ani kuska zda#ca wo balistice kanonoweje kulki. A za kim rjeja? Za mnu!
+Zahrodnik_34|Pytam Handrija Zahrodnika.
+Zahrodnik_35|R#ekam Krabat a trjebam pomoc we wa#znej nale#znos#ci. W#odny mu#z mje s#cele. W#on je praji#l, zo s#ce wy prawy mu#z za m#oj problem.
+Zahrodnik_36|Ma#ly Jakub na swoju hrajku #kaka.
+Zahrodnik_37|Pytam za sw#et#lowej abo wopornej #sklu Swaixtixa. Je zamknjena w kralowskim pok#ladni#s#cu.
+Zahrodnik_38|Kajku m#o#znos#c mam, zo #sklu d#ostanu?
+Zahrodnik_39|#Sto w#e#s wo Dinglingeru?
+Zahrodnik_40|Hd#de namakam juwel#era?
+Zahrodnik_41|Sym Dinglingera hi#zo zezna#l, ale prawu rozmo#lwu z nim njejsym m#e#l.
+Zahrodnik_42|#Sto je to do budki, kotru#z tu twari#ce?
+Zahrodnik_43|Lift? Za #ko tajke n#e#sto trjeba#ce? Wy m#es#cenjo ma#ce wr#otne p#redstawy.
+Zahrodnik_44|Hdy bud#de lift hotowy?
+Zahrodnik_45|Sym dos#c s#ly#sa#l - w bo#zim mjenje.
+Zastup_1|W#on hlada z wokna.
+Zastup_2|Durje do twarjenja.
+Zastup_3|Su zawrjene. Nimam klu#k.
+Zastup_4|Zaw#era.
+Zastup_5|Zaw#eru m#o#ze#s jeno#z wot nut#rka wotewr#e#c.
+Zastup_6|Ja so p#rez zaw#eru njekrosnuju.
+Zastup_7|Zastup p#la#ci 7 tolerjow.
+Zastup_8|Ow, tajki rjany a wosebje mjechki ko#zuch. To je prawa pod#loha za m#oj st#olc! Wutrobny d#dak, h#ol#ke.
+Zastup_9|Za to m#o#ze#s skoku do h#o#ntwjerskeho dwora pohlada#c. Zaw#eru #ci zb#ehnu a potom p#o#ndu sej po lunk kofeja.
+Zastup_10|Sym Mato a p#redawam zastupne lis#ciki.
+Zastup_11|N#e, to zaw#es#ce nic. Mje pak p#reco tak chribjet boli. Po#l dnja dyrbju tu na twjerdym st#olcu syda#c a nikoho to njestara.
+Zastup_12|Haj, w#ezo, z mjechkej pod#lohu za m#oj st#olc. Potom by so m#oj chribjet zaso wo#kerstwi#l.
+Zastup_13|N#e, tute mjeno hi#s#ce #zenje s#ly#sa#l njejsym.
+Zastup_14|To je ho#ntwjerski dw#or - mane#za za eksotiske zw#erjata. Awgust d#diwje zw#erjata lubuje.
+Zastup_15|To p#la#ci 7 tolerjow.
+Zastup_16|Tam nut#rka law zaso wojaka honi. Ka#z w starym Romje. Jeno#z kolosejum nam hi#s#ce pobrachuje.
+Zastup_17|Wo lawa njebych sej staros#cow #kini#l. Skerje wo wojakowu drastu. To bud#de so jeho #zona zaso huntori#c.
+Zastup_18|Tajku rjanu rje#cazowu ko#slu d#d#e d#densni#si d#de#n hubjenje d#ostanje#s.
+Zastup_19|Ja sym Krabat. A #st#o sy ty?
+Zastup_20|Njeje to wostud#le - cy#ly d#de#n zastupne lis#ciki p#redawa#c?
+Zastup_21|M#o#zu #ci z n#e#kim pomha#c?
+Zastup_22|Znaje#s Handrija Zahrodnika?
+Zastup_23|#Sto je to do twara?
+Zastup_24|M#o#zu sej mane#zu wobhlada#c?
+Zastup_25|S#ly#su spod#diwne zynki.
+Zastup_26|Tajke n#e#sto surowe! Wbohi law!
+Zastup_27|To by by#lo, bo#zemje.
+Zawod1_1|W#ojna #zerje#se so p#rez kraj a p#rinjese wulku nuzu a b#edu ze sobu. Te#z serbski lud pod kwaklu cuzych w#ojskow #cerpje#se. Wojacy a rubje#znicy t#rice#ci l#et do#lho cychnowachu, tola hdy#z so wotsalichu, so horjo a h#l#od z nimi njeminy#stej. Chudoba knje#ze#se mjez serbskej ludnos#cu a b#e#se stajny p#rewodnik jednoreho mu#za.
+Zawod1_2|Tola w#sitkim so hubjenje nje#nd#de#se. Knje#zkojo sej jako wy#skojo za #kas w#ojny t#oj#sto bohatstwa p#riswojichu. To pak jim njeb#e#se dos#c. Burja m#ejachu za nich robo#ci#c, dawki p#la#ci#c a so dr#e#c, a to samo na dnjach wot boha dateho m#era. Wjeseli#c a so zabawje#c sm#ed#de#se jeno#z knje#zk. A serbski lud sej pow#eda#se, zo wu#nd#de z luda njew#s#edny rjek abo sylnjan, ki#z - znajo kuz#lad#la a w#selake w#edy - bud#de m#ocni#si ha#k najm#ocni#si na hrodach.
+Zawod1_3|T#oj#sto l#et po w#ojnje so na po#lo#zenju Serbow wjele zm#eni#lo njeb#e#se. We wonym #kasu bydle#se w Jitku pastyrska sw#ojba, kotra#z b#e#se tak chudu#ska, zo dyrbje#se sej jeni#kki syn Krabat hi#zo wot ma#los#ce sw#oj w#s#edny chl#eb sam zas#lu#ze#c. W l#e#cu pase#se swinje a husy a w zymje chod#de#se po pro#senju, zo njeby zah#l#odni#l.
+Zawod1_4|Ach, k#o#zdy d#de#n samsna b#eda.
+Zawod1_5|L#eto so nachila, pr#enje zmjerzki su #lopjena #stomow wobarbili, a b#orze dyrbju zaso po pro#senju chod#di#c.
+Zawod1_6|Tajka ha#nba!
+Zawod1_7|#Kehodla njejsym lubowany synk tajkeho to#lsteho wjercha?
+Zawod1_8|Hdy by mje ma#cerka jeno#z z domu pu#s#ci#la!
+Zawod1_9|Haj, potom bych za wonym m#lynom pyta#l, wo kotrym#z lud#do praja, zo tam #kert sam zorno ml#eje.
+Zawod1_10|N#o, #sto lud#do tak bled#da.
+Zawod1_11|Krabat jako sylny m#lynski - p#reco n#e#sto k j#ed#di, #cop#lu komoru a snano tola kusk kuz#lanja - to by by#lo!
+Zawod1_12|Krabat jako sylny #kinkar, to by so te#z star#simaj spodoba#lo a b#ole pomha#lo, ha#k tule sed#de#c a tute pjerjate sko#cata pas#c.
+Zawod1_13|#Lu#zica w pr#enjej po#lojcy 17. l#etstotka
+Zawod1_14|K#onc z tym!
+Zdzary1_1|Spod#diwna to wosoba!
+Zdzary1_2|Spod#diwna to wosoba!
+Zdzary1_3|Durje b#orze rozpadnu.
+Zdzary1_4|N#e, do toho domu nochcu!
+Zdzary1_5|Tam njep#o#ndu. Boju so psa!
+Zdzary1_6|Za #ko bych ju dyrbja#l poch#losta#c?
+Zdzary1_7|Nochcu, zo so rozhn#ewa!
+Zdzary1_8|Krabat?! M#lody h#ol#kec -
+Zdzary1_9|hehehe -
+Zdzary1_10|rjany h#ol#kec. #Kw#ela chudych du#sow #ce popadnje. Potom sy fuk -
+Zdzary1_11|hehehe.
+Zdzary1_12|Helski djabo#l hospodari w l#esu bjez wupu#ca -
+Zdzary1_13|hehehehe.
+Zdzary1_14|Hehehe -
+Zdzary1_15|H#luboka zemja, to sy na pu#cu. #S#ere #serjenja zdaloka, to sy na pu#cu -
+Zdzary1_16|hehehe.
+Zdzary1_17|Njechab#laj! Wosta#n na pu#cu!
+Zdzary1_18|Hehehe -
+Zdzary1_19|L#es bjez wupu#ca -
+Zdzary1_20|hehehe.
+Zdzary1_21|Na pra#senja wotmo#lwy, za h#odan#kka h#l#oj#kku, za hr#on#kka kro#siki. L#es bjez wupu#ca -
+Zdzary1_22|hehehe -
+Zdzary1_23|bjez wupu#ca!
+Zdzary1_24|#Kakaja w#sud#de -
+Zdzary1_25|hehe -
+Zdzary1_26|na jednym boku #kert, na druhim boku #kertojo. P#lomje#sko pokazuje pu#c -
+Zdzary1_27|hehe -
+Zdzary1_28|k jednomu.
+Zdzary1_29|Hehehe!
+Zdzary1_30|#St#o je #kert? Wojak, bur, knje#zk, kral abo m#lynk?
+Zdzary1_31|Hehe -
+Zdzary1_32|abo m#lynk?!
+Zdzary1_33|Njeje zw#erjo ani #k#lowjek -
+Zdzary1_34|hehe -
+Zdzary1_35|wo#ki ka#z #subut, ko#zu ka#z ryba -
+Zdzary1_36|hehe -
+Zdzary1_37|njeje stary, na #zadyn pad m#lody -
+Zdzary1_38|hehe -
+Zdzary1_39|d#d#e#ci so jeho boja.
+Zdzary1_40|Tam nad #Kornym Hal#strowom -
+Zdzary1_41|hehe!
+Zdzary1_42|P#ri brjoze wid#dach postawu - so str#o#zi -
+Zdzary1_43|hehe -
+Zdzary1_44|do wody a pre#k -
+Zdzary1_45|hehehehe.
+Zdzary1_46|Dwana#coch ma -
+Zdzary1_47|hehe -
+Zdzary1_48|mi#ster #kornych kum#stow -
+Zdzary1_49|hehe -
+Zdzary1_50|mudry sy a p#r#ehraje#s -
+Zdzary1_51|hehe -
+Zdzary1_52|j#edna#coch ma, a Krabat li#kbu dopjelni -
+Zdzary1_53|hehe.
+Zdzary1_54|T#ri, sydom, dwana#ce - #korne li#kby -
+Zdzary1_55|hehe.
+Zdzary1_56|Dwana#co su byli, budu a wostanu.
+Zdzary1_57|Hehe!
+Zdzary1_58|Sypnje ... - w#ezo sypnje. Faluje m#oc, m#oc muskeje ruki -
+Zdzary1_59|hehe.
+Zdzary1_60|B#ech m#loda, rjana -
+Zdzary1_61|hehe -
+Zdzary1_62|krasna njewjesta, wulkotne hejsowanje -
+Zdzary1_63|hehe.
+Zdzary1_64|Surowe mocy walachu so p#rez kraj -
+Zdzary1_65|hehe -
+Zdzary1_66|p#red po#l l#etstotkom. Wzachu mi mu#za, nana a ma#c.
+Zdzary1_67|Sym wudowa.
+Zdzary1_68|Mi pomha#c -
+Zdzary1_69|hehe?
+Zdzary1_70|Pomhaj sej sam! Pytaj zbo#zo! Tu je njenamaka#s -
+Zdzary1_71|hehe -
+Zdzary1_72|won do dalokeho sw#eta -
+Zdzary1_73|hehehe.
+Zdzary1_74|Sym Krabat. Chcu by#c m#lynski a tohodla pytam #Kertowski m#lyn.
+Zdzary1_75|Kajku #kw#elu m#eni#ce?
+Zdzary1_76|Praj#ce mi pro#su, hd#de tut#on l#es bjez wupu#ca le#zi!
+Zdzary1_77|Wa#se domske so b#orze sypnje.
+Zdzary1_78|Nima#ce da mu#za w domje?
+Zdzary1_79|A hd#de je wa#s mu#z d#densa?
+Zdzary1_80|Ow, wodaj#ce pro#su. To njejsym w#ed#da#l. M#o#zu wam pomha#c?
+Zdzary1_81|R#e#ki#ce w h#odan#kkach. Jeno#z trochu jasni#so pro#su!
+Zdzary1_82|#Kehodla bjez wupu#ca?
+Zdzary1_83|Je m#lynk tut#on #kert?
+Zdzary1_84|#St#o mi pomha, zo #Kertowski m#lyn namakam?
+Zdzary1_85|Hd#de tutoho ... tutu ... - hd#de potajkim wosobu nade#ndu?
+Zdzary1_86|H#luboka zemja? #Serjenja? To klin#ki zajimawje.
+Zdzary1_87|Za #ko dyrbju li#kbu dopjelni#c?
+Zdzary1_88|Bo#zemje.
+Zdzary1_89|N#ekak d#diwnu#ska, ta stara. Nochcemoj rad#so dale hi#c?
+Zdzary1_90|Ma#s prawje. D#di rad#so dale. Nic zo #ce hi#s#ce kusnje!
+Zdzary1_91|N#e! Za #ko sym sej tutu hru hewak kupi#l?
+Zdzary2_1|Durje b#orze rozpadnu.
+Zdzary2_2|N#e, do toho domu nochcu!
+Zdzary2_3|Tam njep#o#ndu. Boju so psa!
+Zelen_1|Podpisany dokument - dobra p#red#loha za potwjerd#denku!
+Zelen_2|Klaw#er.
+Zelen_3|St#olc.
+Zelen_4|To su nastroje za zyglowanje.
+Zelen_5|Haj, bych rady na nim hra#l.
+Zelen_6|Nochcu so sydny#c.
+Zelen_7|Nic hi#s#ce raz!
+Zelen_8|N#etko l#epi kralowski pje#kat na dowolnos#ci.
+Zelen_9|To njetrjebam!
+Zelen_10|Nic hi#s#ce raz!
+Zelen_11|#Sto tu pyta#s, s#lu#zowniko? #Sto ma to r#eka#c? N#etko s#lu#zownicy hi#zo w mojich w#ecach #ku#sla!
+Zelen_12|Majestos#c, znaje#ce mje tola! Ja sym Krabat, swinjacy pastyr z Jitka.
+Zelen_13|Kral njeznaje tajkeho pastyrja. Pre#k z nim!
+Zelen_14|N#e#sto pozd#di#so.

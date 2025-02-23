@@ -80,29 +80,29 @@ public class HlownyStraznik extends Mainanim {
 
     private void InitImages() {
         if (istCasnik) {
-            straz_stand[0] = getPicture("gfx-dd/casnik/straznik1.gif");
-            straz_stand[1] = getPicture("gfx-dd/casnik/straznik1z.gif");
-            straz_stand[2] = getPicture("gfx-dd/casnik/straznik1a.gif");
-            straz_stand[3] = getPicture("gfx-dd/casnik/straznik1b.gif");
+            straz_stand[0] = getPicture("gfx-dd/casnik/straznik1.png");
+            straz_stand[1] = getPicture("gfx-dd/casnik/straznik1z.png");
+            straz_stand[2] = getPicture("gfx-dd/casnik/straznik1a.png");
+            straz_stand[3] = getPicture("gfx-dd/casnik/straznik1b.png");
 
             straz_talk[0] = straz_stand[0];
-            straz_talk[1] = getPicture("gfx-dd/casnik/straznik1-t1.gif");
-            straz_talk[2] = getPicture("gfx-dd/casnik/straznik1-t2.gif");
-            straz_talk[3] = getPicture("gfx-dd/casnik/straznik1-t3.gif");
-            straz_talk[4] = getPicture("gfx-dd/casnik/straznik1-t4.gif");
-            straz_talk[5] = getPicture("gfx-dd/casnik/straznik1-t5.gif");
-            straz_talk[6] = getPicture("gfx-dd/casnik/straznik1-t6.gif");
+            straz_talk[1] = getPicture("gfx-dd/casnik/straznik1-t1.png");
+            straz_talk[2] = getPicture("gfx-dd/casnik/straznik1-t2.png");
+            straz_talk[3] = getPicture("gfx-dd/casnik/straznik1-t3.png");
+            straz_talk[4] = getPicture("gfx-dd/casnik/straznik1-t4.png");
+            straz_talk[5] = getPicture("gfx-dd/casnik/straznik1-t5.png");
+            straz_talk[6] = getPicture("gfx-dd/casnik/straznik1-t6.png");
 
-            straz_drink[0] = getPicture("gfx-dd/casnik/straznik1-w.gif");
-            straz_drink[1] = getPicture("gfx-dd/casnik/straznik1-w1.gif");
-            straz_drink[2] = getPicture("gfx-dd/casnik/straznik1-w2.gif");
+            straz_drink[0] = getPicture("gfx-dd/casnik/straznik1-w.png");
+            straz_drink[1] = getPicture("gfx-dd/casnik/straznik1-w1.png");
+            straz_drink[2] = getPicture("gfx-dd/casnik/straznik1-w2.png");
 
-            straz_sit[0] = getPicture("gfx-dd/casnik/straznik1-s.gif");
-            straz_sit[1] = getPicture("gfx-dd/casnik/straznik2a.gif");
-            straz_sit[2] = getPicture("gfx-dd/casnik/straznik2b.gif");
-            straz_sit[3] = getPicture("gfx-dd/casnik/straznik2.gif");
+            straz_sit[0] = getPicture("gfx-dd/casnik/straznik1-s.png");
+            straz_sit[1] = getPicture("gfx-dd/casnik/straznik2a.png");
+            straz_sit[2] = getPicture("gfx-dd/casnik/straznik2b.png");
+            straz_sit[3] = getPicture("gfx-dd/casnik/straznik2.png");
 
-            vorder = getPicture("gfx-dd/casnik/cblido.gif");
+            vorder = getPicture("gfx-dd/casnik/cblido.png");
         }
     }
 

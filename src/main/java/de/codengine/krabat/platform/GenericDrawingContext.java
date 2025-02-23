@@ -25,24 +25,24 @@ import de.codengine.krabat.main.GenericRectangle;
 
 public abstract class GenericDrawingContext {
 
-    public abstract void setClip(int x, int y, int xd, int yd);
+    public abstract void setClip(int x, int y, int width, int height);
 
     public abstract GenericRectangle getClipBounds();
 
-    public abstract void clearRect(int k, int j, int i, int k2);
+    public abstract void clearRect(int x, int y, int width, int height);
 
     public abstract void setClip(GenericRectangle txx);
 
     public abstract void setColor(GenericColor inakt);
 
-    public abstract void drawRect(int i, int j, int k, int l);
+    public abstract void drawRect(int x, int y, int width, int height);
 
-    public abstract void drawLine(int i, int j, int k, int l);
+    public abstract void drawLine(int x1, int y1, int x2, int y2);
 
     public abstract void drawImage(GenericImage genericImage, int x, int y);
 
-    public abstract void drawImage(GenericImage ktemp, int left, int up,
-                                   int koerperbreite, int i);
+    public abstract void drawImage(GenericImage ktemp, int x, int y,
+                                   int width, int height);
 
     public abstract GenericDrawingContext2D get2DContext();
 

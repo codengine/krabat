@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Sunow1 extends Mainloc {
+public class Sunow1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Sunow1.class);
     private GenericImage background;
     private GenericImage wegstueck;
@@ -117,22 +117,22 @@ public class Sunow1 extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/sunow/sunow.gif");
-        wegstueck = getPicture("gfx/sunow/sunow-2.gif");
+        background = getPicture("gfx/sunow/sunow.png");
+        wegstueck = getPicture("gfx/sunow/sunow-2.png");
 
     }
 
     private void InitMatrix() {
-        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.removeAllElements();
 
         if (isTal) {
             // Grenzen setzen im Tal
             // Taltrapez
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(391, 397, 340, 356, 202, 276));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(391, 397, 340, 356, 202, 276));
 
             // Laufmatrix anpassen
             // Matrix loeschen
-            mainFrame.wegSucher.ClearMatrix(1);
+            mainFrame.pathFinder.ClearMatrix(1);
 
             // Zooming anpassen
             mainFrame.krabat.maxx = TAL_MAXX;
@@ -142,15 +142,15 @@ public class Sunow1 extends Mainloc {
         } else {
             // Grenzen setzen auf dem Berg
             // Bergtrapez
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(295, 322, 154, 229, 278, 394));
-            mainFrame.wegGeher.vBorders.addElement(new Bordertrapez(154, 229, 54, 162, 395, 479));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(295, 322, 154, 229, 278, 394));
+            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 229, 54, 162, 395, 479));
 
             // Laufmatrix anpassen
             // Matrix loeschen
-            mainFrame.wegSucher.ClearMatrix(2);
+            mainFrame.pathFinder.ClearMatrix(2);
 
             // moegliche Wege eintragen
-            mainFrame.wegSucher.PosVerbinden(0, 1);
+            mainFrame.pathFinder.PosVerbinden(0, 1);
 
             // Zooming anpassen
             mainFrame.krabat.maxx = BERG_MAXX;
@@ -175,14 +175,14 @@ public class Sunow1 extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -197,10 +197,10 @@ public class Sunow1 extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -208,7 +208,7 @@ public class Sunow1 extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -242,7 +242,7 @@ public class Sunow1 extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -250,7 +250,7 @@ public class Sunow1 extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -273,7 +273,7 @@ public class Sunow1 extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -281,7 +281,7 @@ public class Sunow1 extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -291,7 +291,7 @@ public class Sunow1 extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -317,7 +317,7 @@ public class Sunow1 extends Mainloc {
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
                 if (!tg) {
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 }
                 mainFrame.repaint();
             }
@@ -325,8 +325,8 @@ public class Sunow1 extends Mainloc {
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -351,7 +351,7 @@ public class Sunow1 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -370,7 +370,7 @@ public class Sunow1 extends Mainloc {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -386,7 +386,7 @@ public class Sunow1 extends Mainloc {
                 boolean gh = TesteLauf(pTemp, nextActionID);
 
                 if (!gh) {
-                    mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 }
                 mainFrame.repaint();
             } else {
@@ -424,28 +424,28 @@ public class Sunow1 extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = sunowRect.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = sunowRect.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -454,7 +454,7 @@ public class Sunow1 extends Mainloc {
         else {
             if (obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 4) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 4;
                 }
                 return;
@@ -462,7 +462,7 @@ public class Sunow1 extends Mainloc {
 
             if (sunowRect.IsPointInRect(pTemp) && !obererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -470,7 +470,7 @@ public class Sunow1 extends Mainloc {
 
             if (untererAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 5) {
-                    mainFrame.setCursor(mainFrame.Cdown);
+                    mainFrame.setCursor(mainFrame.cursorDown);
                     Cursorform = 5;
                 }
                 return;
@@ -478,7 +478,7 @@ public class Sunow1 extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -513,7 +513,7 @@ public class Sunow1 extends Mainloc {
             Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
             Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
-            mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
+            mainFrame.pathWalker.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
             log.debug("Wendepunkt.x: {} Wendepunkt.y: {} Endpunkt.x: {} Endpunkt.y: {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
             return true;
@@ -548,7 +548,7 @@ public class Sunow1 extends Mainloc {
             Endpunkt = new GenericPoint((int) (TalTrapez.x3 + (TalTrapez.x4 - TalTrapez.x3) * teal), TalTrapez.y2);
             Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
-            mainFrame.wegGeher.SetzeWegOhneStand(pTemp);
+            mainFrame.pathWalker.SetzeWegOhneStand(pTemp);
             mainFrame.repaint();
             log.debug("Wendepunkt.x: {} Wendepunkt.y: {} Endpunkt.x: {} Endpunkt.y: {}", Wendepunkt.x, Wendepunkt.y, Endpunkt.x, Endpunkt.y);
             return true;
@@ -567,12 +567,12 @@ public class Sunow1 extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -609,8 +609,8 @@ public class Sunow1 extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -631,7 +631,7 @@ public class Sunow1 extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -677,9 +677,9 @@ public class Sunow1 extends Mainloc {
             case 600:
                 // vom Tal auf den Berg laufen
                 Berglauf = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(Wendepunkt);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Wendepunkt);
                 nextActionID = 601;
                 break;
 
@@ -689,22 +689,22 @@ public class Sunow1 extends Mainloc {
                 mainFrame.krabat.zoomf = BERG_ZOOMF;
                 mainFrame.krabat.defScale = BERG_DEFSCALE;
                 mainFrame.krabat.minx = BERG_MINX;
-                mainFrame.wegGeher.SetzeGarantiertWegFalsch(Endpunkt);
+                mainFrame.pathWalker.SetzeGarantiertWegFalsch(Endpunkt);
                 nextActionID = 620;
                 break;
 
             case 610:
                 // vom Berg ins Tal laufen invertiert
                 Berglauf = true;
-                mainFrame.fPlayAnim = true;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
-                mainFrame.wegGeher.SetzeGarantiertWegFalsch(Wendepunkt);
+                mainFrame.isAnimRunning = true;
+                evalMouseMoveEvent(mainFrame.mousePoint);
+                mainFrame.pathWalker.SetzeGarantiertWegFalsch(Wendepunkt);
                 nextActionID = 611;
                 break;
 
             case 611:
                 // beim Lauf Berg ins Tal wieder zum Vorschein kommen
-                mainFrame.wegGeher.SetzeGarantiertNeuenWeg(Endpunkt);
+                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Endpunkt);
                 mainFrame.krabat.maxx = TAL_MAXX;
                 mainFrame.krabat.defScale = TAL_DEFSCALE;
                 mainFrame.krabat.zoomf = TAL_ZOOMF;
@@ -714,14 +714,14 @@ public class Sunow1 extends Mainloc {
 
             case 620:
                 // Laufen beenden und alles wieder auf Normal zuruecksetzen
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 Berglauf = false;
                 Cursorform = 200;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 isTal = !isTal;
                 InitMatrix();
                 nextActionID = oldActionID;
-                mainFrame.wegGeher.SetzeNeuenWeg(Merkpunkt);
+                mainFrame.pathWalker.SetzeNeuenWeg(Merkpunkt);
                 mainFrame.repaint();
                 break;
 

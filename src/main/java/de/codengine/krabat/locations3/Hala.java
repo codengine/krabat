@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Hala extends Mainloc {
+public class Hala extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Hala.class);
     private GenericImage backl;
     private GenericImage backr;
@@ -82,15 +82,15 @@ public class Hala extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(140, 810, 25, 810, 407, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(811, 1115, 811, 1235, 407, 479));
 
-        mainFrame.wegSucher.ClearMatrix(2);
+        mainFrame.pathFinder.ClearMatrix(2);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
 
         InitImages();
         switch (oldLocation) {
@@ -121,9 +121,9 @@ public class Hala extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        backl = getPicture("gfx-dd/hala/hala-l.gif");
-        backr = getPicture("gfx-dd/hala/hala-r.gif");
-        door = getPicture("gfx-dd/hala/hala-r2.gif");
+        backl = getPicture("gfx-dd/hala/hala-l.png");
+        backr = getPicture("gfx-dd/hala/hala-r.png");
+        door = getPicture("gfx-dd/hala/hala-r2.png");
 
     }
 
@@ -133,16 +133,16 @@ public class Hala extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             if (setScroll) {
                 setScroll = false;
-                mainFrame.scrollx = scrollwert;
+                mainFrame.scrollX = scrollwert;
             }
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -150,17 +150,17 @@ public class Hala extends Mainloc {
         g.drawImage(backr, 640, 0);
 
         // offene Tuer zeichnen, sobald da
-        if (mainFrame.Actions[675]) {
+        if (mainFrame.actions[675]) {
             g.setClip(883, 112, 84, 292);
             g.drawImage(door, 883, 112);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
@@ -168,7 +168,7 @@ public class Hala extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -209,7 +209,7 @@ public class Hala extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -217,7 +217,7 @@ public class Hala extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -240,9 +240,9 @@ public class Hala extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // Cursorpunkt mit Scrolloffset berechnen
         GenericPoint pTemp = e.getPoint();
-        pTemp.x += mainFrame.scrollx;
+        pTemp.x += mainFrame.scrollX;
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -250,7 +250,7 @@ public class Hala extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -260,7 +260,7 @@ public class Hala extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -275,7 +275,7 @@ public class Hala extends Mainloc {
                 }
 
                 // Ausreden fuer Tuer, wenn noch anwaehlbar
-                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.Actions[675]) {
+                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675]) {
                     nextActionID = 150;
                     pTemp = pExitKomedij;
                 }
@@ -294,15 +294,15 @@ public class Hala extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -327,7 +327,7 @@ public class Hala extends Mainloc {
                         pTemp = new GenericPoint(pExitLinks.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -335,7 +335,7 @@ public class Hala extends Mainloc {
                 }
 
                 // zu Komedij gehen , wenn schon geoeffnet
-                if (mainFrame.Actions[675]) {
+                if (mainFrame.actions[675]) {
                     if (dritteTuer.IsPointInRect(pTemp)) {
                         nextActionID = 101;
                         GenericPoint kt = mainFrame.krabat.getPos();
@@ -347,7 +347,7 @@ public class Hala extends Mainloc {
                             pTemp = new GenericPoint(pExitKomedij.x, kt.y);
                         }
 
-                        if (mainFrame.dClick) {
+                        if (mainFrame.isDoubleClick) {
                             mainFrame.krabat.StopWalking();
                             mainFrame.repaint();
                             return;
@@ -373,7 +373,7 @@ public class Hala extends Mainloc {
                         pTemp = new GenericPoint(pExitRechts.x, kt.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -392,7 +392,7 @@ public class Hala extends Mainloc {
                     pTemp = pWobraz;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -400,22 +400,22 @@ public class Hala extends Mainloc {
                 // Wenn Ausgang -> kein Inventar anzeigen
                 if (linkerAusgang.IsPointInRect(pTemp) ||
                         rechterAusgang.IsPointInRect(pTemp) ||
-                        dritteTuer.IsPointInRect(pTemp) && mainFrame.Actions[675]) {
+                        dritteTuer.IsPointInRect(pTemp) && mainFrame.actions[675]) {
                     return;
                 }
 
                 // verschlossene Tuer oeffnen (erfolglos)
                 if (zweiteTuer.IsPointInRect(pTemp)) {
                     nextActionID = 1;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pZweiteTuer);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pZweiteTuer);
                     mainFrame.repaint();
                     return;
                 }
 
                 // offene Tuer oeffnen
-                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.Actions[675]) {
+                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675]) {
                     nextActionID = 10;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pExitKomedij);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pExitKomedij);
                     mainFrame.repaint();
                     return;
                 }
@@ -423,7 +423,7 @@ public class Hala extends Mainloc {
                 // Bild mitnehmen
                 if (wobraz.IsPointInRect(pTemp)) {
                     nextActionID = 15;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pWobraz);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pWobraz);
                     mainFrame.repaint();
                     return;
                 }
@@ -440,44 +440,44 @@ public class Hala extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // neuen Punkt erzeugen wg. Scrolling
-        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollx, pTxxx.y + mainFrame.scrolly);
+        GenericPoint pTemp = new GenericPoint(pTxxx.x + mainFrame.scrollX, pTxxx.y + mainFrame.scrollY);
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wobraz.IsPointInRect(pTemp) ||
-                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.Actions[675] ||
+                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675] ||
                     zweiteTuer.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
             if (wobraz.IsPointInRect(pTemp) ||
-                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.Actions[675] ||
+                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675] ||
                     zweiteTuer.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -485,15 +485,15 @@ public class Hala extends Mainloc {
 
             if (linkerAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
             }
 
-            if (dritteTuer.IsPointInRect(pTemp) && mainFrame.Actions[675]) {
+            if (dritteTuer.IsPointInRect(pTemp) && mainFrame.actions[675]) {
                 if (Cursorform != 12) {
-                    mainFrame.setCursor(mainFrame.Cup);
+                    mainFrame.setCursor(mainFrame.cursorUp);
                     Cursorform = 12;
                 }
                 return;
@@ -501,7 +501,7 @@ public class Hala extends Mainloc {
 
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -509,7 +509,7 @@ public class Hala extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -525,12 +525,12 @@ public class Hala extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -572,8 +572,8 @@ public class Hala extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
 
@@ -591,7 +591,7 @@ public class Hala extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -621,10 +621,10 @@ public class Hala extends Mainloc {
             case 10:
                 // Tuer aufmachen
                 mainFrame.krabat.SetFacing(fTueren);
-                mainFrame.Actions[675] = true;
+                mainFrame.actions[675] = true;
                 nextActionID = 0;
-                mainFrame.wave.PlayFile("sfx/kdurjeauf.wav");
-                mainFrame.Clipset = false;
+                mainFrame.soundPlayer.PlayFile("sfx/kdurjeauf.wav");
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 

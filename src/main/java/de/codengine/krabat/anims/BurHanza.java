@@ -53,15 +53,15 @@ public class BurHanza extends Mainanim {
     }
 
     private void InitImages() {
-        bur_work[0] = getPicture("gfx/polo/dzona1.gif");
-        bur_work[1] = getPicture("gfx/polo/dzona2.gif");
-        bur_work[2] = getPicture("gfx/polo/dzona3.gif");
-        bur_work[3] = getPicture("gfx/polo/dzona4.gif");
+        bur_work[0] = getPicture("gfx/polo/dzona1.png");
+        bur_work[1] = getPicture("gfx/polo/dzona2.png");
+        bur_work[2] = getPicture("gfx/polo/dzona3.png");
+        bur_work[3] = getPicture("gfx/polo/dzona4.png");
 
-        bur_talk[0] = getPicture("gfx/polo/dzona-r1.gif");
-        bur_talk[1] = getPicture("gfx/polo/dzona-r2.gif");
-        bur_talk[2] = getPicture("gfx/polo/dzona-r3.gif");
-        bur_talk[3] = getPicture("gfx/polo/dzona-r4.gif");
+        bur_talk[0] = getPicture("gfx/polo/dzona-r1.png");
+        bur_talk[1] = getPicture("gfx/polo/dzona-r2.png");
+        bur_talk[2] = getPicture("gfx/polo/dzona-r3.png");
+        bur_talk[3] = getPicture("gfx/polo/dzona-r4.png");
     }
 
     @Override
@@ -100,8 +100,8 @@ public class BurHanza extends Mainanim {
                     int zf = (int) (Math.random() * 50);
                     if (zf < 40) {
                         Work = 0;
-                    } else if (!mainFrame.inventory.noBackgroundSound || !mainFrame.invCursor) {
-                        mainFrame.wave.PlayFile("sfx/nepl.wav");
+                    } else if (!mainFrame.inventory.noBackgroundSound || !mainFrame.isInventoryCursor) {
+                        mainFrame.soundPlayer.PlayFile("sfx/nepl.wav");
                     }
                 }
             }

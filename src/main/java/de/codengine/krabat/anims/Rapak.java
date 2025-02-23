@@ -67,17 +67,17 @@ public class Rapak extends Mainanim {
     }
 
     private void InitImages() {
-        Vogel[1] = getPicture("gfx/rapak/pk1.gif");
-        Vogel[2] = getPicture("gfx/rapak/pk2.gif");
-        Vogel[3] = getPicture("gfx/rapak/pk3.gif");
-        Vogel[4] = getPicture("gfx/rapak/pk4.gif");
-        Vogel[5] = getPicture("gfx/rapak/pk5.gif");
-        Vogel[6] = getPicture("gfx/rapak/pk5a.gif");
-        Vogel[7] = getPicture("gfx/rapak/pk6.gif");
-        Vogel[8] = getPicture("gfx/rapak/pk7.gif");
-        Vogel[9] = getPicture("gfx/rapak/pk8.gif");
-        Vogel[10] = getPicture("gfx/rapak/pk9.gif");
-        Vogel[11] = getPicture("gfx/rapak/pk10.gif");
+        Vogel[1] = getPicture("gfx/rapak/pk1.png");
+        Vogel[2] = getPicture("gfx/rapak/pk2.png");
+        Vogel[3] = getPicture("gfx/rapak/pk3.png");
+        Vogel[4] = getPicture("gfx/rapak/pk4.png");
+        Vogel[5] = getPicture("gfx/rapak/pk5.png");
+        Vogel[6] = getPicture("gfx/rapak/pk5a.png");
+        Vogel[7] = getPicture("gfx/rapak/pk6.png");
+        Vogel[8] = getPicture("gfx/rapak/pk7.png");
+        Vogel[9] = getPicture("gfx/rapak/pk8.png");
+        Vogel[10] = getPicture("gfx/rapak/pk9.png");
+        Vogel[11] = getPicture("gfx/rapak/pk10.png");
     }
 
     // gibt das Clipping - Rect zurueck, wo der Rabe drin ist
@@ -260,7 +260,7 @@ public class Rapak extends Mainanim {
         else {
             if (!flyawaySound) {
                 flyawaySound = true;
-                mainFrame.wave.PlayFile("sfx/rapak1.wav");
+                mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
             }
 
             return sideptack.Flieg(g);

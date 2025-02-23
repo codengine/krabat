@@ -67,9 +67,10 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
         Path workingDir = Paths.get(System.getProperty("user.dir"));
 
-        GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, this);
+        Path langPath = workingDir.resolve("lang");
+        GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, langPath,this);
         GenericContainer container = new JavaContainer(this);
-        GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(workingDir.resolve("sound"));
+        GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(workingDir);
         GenericToolkit.impl = new JavaToolkitImpl(this);
         AbstractPlayer musicPlayer = new OGGPlayer(workingDir);
         Path resourcePath = workingDir.resolve("resource");
@@ -77,7 +78,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
                 true, workingDir.resolve("hry"), "krabat", ".hra",
                 true, resourcePath,
                 true, resourcePath,
-                resourcePath);
+                langPath);
 
         appInstance.runGamePt1(defaultLanguageIndex, imageFetcher, container, player, musicPlayer, storageManager);
         GenericPoint pt = InitImages(imageFetcher);
@@ -155,8 +156,8 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         GenericImage img = appInstance.paint(null);
         if (img != null) {
             Image javaImg = ((JavaImage) img).getImage();
-            int scrollx = appInstance.scrollx;
-            int scrolly = appInstance.scrolly;
+            int scrollx = appInstance.scrollX;
+            int scrolly = appInstance.scrollY;
             g.drawImage(javaImg, -scrollx, -scrolly, null);
         }
     }
@@ -172,15 +173,15 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         GenericImage WWarten;
         GenericImage NNix;
 
-        Ccup = fetcher.fetchImage("gfx/cursors/horje.gif");
-        Ccdown = fetcher.fetchImage("gfx/cursors/dele.gif");
-        Ccleft = fetcher.fetchImage("gfx/cursors/nalewo.gif");
-        Ccright = fetcher.fetchImage("gfx/cursors/naprawo.gif");
-        NNormal = fetcher.fetchImage("gfx/cursors/bezec4.gif");
-        KKreuz = fetcher.fetchImage("gfx/cursors/bezec10.gif");
-        WWarten = fetcher.fetchImage("gfx/cursors/cakac.gif");
-        NNix = fetcher.fetchImage("gfx/cursors/trans.gif");
-        iconImage = ((JavaImage) fetcher.fetchImage("gfx/k-icon.gif")).getImage();
+        Ccup = fetcher.fetchImage("gfx/cursors/horje.png", false);
+        Ccdown = fetcher.fetchImage("gfx/cursors/dele.png", false);
+        Ccleft = fetcher.fetchImage("gfx/cursors/nalewo.png", false);
+        Ccright = fetcher.fetchImage("gfx/cursors/naprawo.png", false);
+        NNormal = fetcher.fetchImage("gfx/cursors/bezec4.png", false);
+        KKreuz = fetcher.fetchImage("gfx/cursors/bezec10.png", false);
+        WWarten = fetcher.fetchImage("gfx/cursors/cakac.png", false);
+        NNix = fetcher.fetchImage("gfx/cursors/trans.png", false);
+        iconImage = ((JavaImage) fetcher.fetchImage("gfx/k-icon.png", false)).getImage();
 
         // Cursorgroesse fuer jeweiliges System bestimmen
         Dimension cursor = getToolkit().getBestCursorSize(32, 32);
@@ -276,22 +277,22 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     @Override
     public void windowDeiconified(WindowEvent event) {
-        appInstance.isWindowactive = true;
+        appInstance.isWindowActive = true;
     }
 
     @Override
     public void windowIconified(WindowEvent event) {
-        appInstance.isWindowactive = false;
+        appInstance.isWindowActive = false;
     }
 
     @Override
     public void windowActivated(WindowEvent event) {
-        appInstance.isWindowactive = true;
+        appInstance.isWindowActive = true;
     }
 
     @Override
     public void windowDeactivated(WindowEvent event) {
-        appInstance.isWindowactive = false;
+        appInstance.isWindowActive = false;
     }
 
     @Override

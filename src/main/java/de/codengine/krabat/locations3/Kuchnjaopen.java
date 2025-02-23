@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Kuchnjaopen extends Mainloc {
+public class Kuchnjaopen extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Kuchnjaopen.class);
     private GenericImage background;
     private GenericImage herd;
@@ -106,28 +106,28 @@ public class Kuchnjaopen extends Mainloc {
     private void InitLocation(int oldLocation) {
 
         // Feuer-Variablen immer auf niedrigste Groesse setzen
-        mainFrame.Actions[625] = false;
-        mainFrame.Actions[626] = false;
-        mainFrame.Actions[627] = false;
+        mainFrame.actions[625] = false;
+        mainFrame.actions[626] = false;
+        mainFrame.actions[627] = false;
 
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.removeAllElements();
         // mainFrame.wegGeher.vBorders.addElement
         //	(new bordertrapez (405, 445, 400, 475, 305, 354));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(400, 311, 449, 354));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(370, 575, 360, 610, 355, 399));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(125, 610, 75, 620, 400, 430));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(75, 380, 75, 380, 431, 479));
 
-        mainFrame.wegSucher.ClearMatrix(4);
+        mainFrame.pathFinder.ClearMatrix(4);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
-        mainFrame.wegSucher.PosVerbinden(2, 3);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(2, 3);
 
         InitImages();
         switch (oldLocation) {
@@ -146,8 +146,8 @@ public class Kuchnjaopen extends Mainloc {
                 // Eigene Kleidung entfernen
                 mainFrame.inventory.vInventory.removeElement(53);
                 // Flag setzen -> normale Kleidung
-                mainFrame.Actions[511] = false;
-                mainFrame.Actions[850] = false;
+                mainFrame.actions[511] = false;
+                mainFrame.actions[850] = false;
                 mainFrame.krabat.setPos(new GenericPoint(370, 410));
                 mainFrame.krabat.SetFacing(3);
                 break;
@@ -159,11 +159,11 @@ public class Kuchnjaopen extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx-dd/kuchnja/kuchnja.gif");
-        herd = getPicture("gfx-dd/kuchnja/herd.gif");
-        schwein = getPicture("gfx-dd/kuchnja/schwein.gif");
-        // herd2      = getPicture ("gfx-dd/kuchnja/herd2.gif");
-        // herd3      = getPicture ("gfx-dd/kuchnja/herd3.gif");
+        background = getPicture("gfx-dd/kuchnja/kuchnja.png");
+        herd = getPicture("gfx-dd/kuchnja/herd.png");
+        schwein = getPicture("gfx-dd/kuchnja/schwein.png");
+        // herd2      = getPicture ("gfx-dd/kuchnja/herd2.png");
+        // herd3      = getPicture ("gfx-dd/kuchnja/herd3.png");
 
     }
 
@@ -172,14 +172,14 @@ public class Kuchnjaopen extends Mainloc {
     @Override
     public void paintLocation(GenericDrawingContext g) {
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
-            mainFrame.Clipset = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
+            mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -202,11 +202,11 @@ public class Kuchnjaopen extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -216,7 +216,7 @@ public class Kuchnjaopen extends Mainloc {
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
             if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -259,7 +259,7 @@ public class Kuchnjaopen extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -267,7 +267,7 @@ public class Kuchnjaopen extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -290,7 +290,7 @@ public class Kuchnjaopen extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         GenericPoint pTemp = e.getPoint();
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -299,7 +299,7 @@ public class Kuchnjaopen extends Mainloc {
         outputText = "";
 
         // Wenn in Animation, dann normales Gameplay aussetzen
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -309,7 +309,7 @@ public class Kuchnjaopen extends Mainloc {
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // linker Maustaste
             if (e.isLeftClick()) {
                 nextActionID = 0;
@@ -355,15 +355,15 @@ public class Kuchnjaopen extends Mainloc {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             }
 
             // rechte Maustaste
             else {
                 // grundsaetzlich Gegenstand wieder ablegen
-                mainFrame.invCursor = false;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                mainFrame.isInventoryCursor = false;
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.krabat.StopWalking();
                 mainFrame.repaint();
@@ -389,7 +389,7 @@ public class Kuchnjaopen extends Mainloc {
                         pTemp = new GenericPoint(kt.x, pRight.y);
                     }
 
-                    if (mainFrame.dClick) {
+                    if (mainFrame.isDoubleClick) {
                         mainFrame.krabat.StopWalking();
                         mainFrame.repaint();
                         return;
@@ -422,7 +422,7 @@ public class Kuchnjaopen extends Mainloc {
                     pTemp = pWokno;
                 }
 
-                mainFrame.wegGeher.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
@@ -430,7 +430,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Holz mitnehmen
                 if (drjewo.IsPointInRect(pTemp)) {
                     nextActionID = 40;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pDrjewo);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pDrjewo);
                     mainFrame.repaint();
                     return;
                 }
@@ -438,7 +438,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Schwein mitnehmen
                 if (swinjo.IsPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pSwinjo);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pSwinjo);
                     mainFrame.repaint();
                     return;
                 }
@@ -446,7 +446,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Tuer mitnehmen
                 if (durje.IsPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pDurje);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pDurje);
                     mainFrame.repaint();
                     return;
                 }
@@ -454,7 +454,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Glocke mitnehmen
                 if (glocke.IsPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pGlocke);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pGlocke);
                     mainFrame.repaint();
                     return;
                 }
@@ -462,7 +462,7 @@ public class Kuchnjaopen extends Mainloc {
                 // Fenster mitnehmen
                 if (wokno.IsPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.wegGeher.SetzeNeuenWeg(pWokno);
+                    mainFrame.pathWalker.SetzeNeuenWeg(pWokno);
                     mainFrame.repaint();
                     return;
                 }
@@ -484,33 +484,33 @@ public class Kuchnjaopen extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim || mainFrame.krabat.nAnimation != 0) {
+        if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
         }
 
         // wenn InventarCursor, dann anders reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
             Borderrect tmp = mainFrame.krabat.getRect();
-            mainFrame.invHighCursor = tmp.IsPointInRect(pTemp) ||
+            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     glocke.IsPointInRect(pTemp) ||
                     drjewo.IsPointInRect(pTemp) ||
                     durje.IsPointInRect(pTemp) ||
                     wokno.IsPointInRect(pTemp) ||
                     swinjo.IsPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
@@ -518,7 +518,7 @@ public class Kuchnjaopen extends Mainloc {
         else {
             if (rechterAusgang.IsPointInRect(pTemp)) {
                 if (Cursorform != 3) {
-                    mainFrame.setCursor(mainFrame.Cright);
+                    mainFrame.setCursor(mainFrame.cursorRight);
                     Cursorform = 3;
                 }
                 return;
@@ -530,7 +530,7 @@ public class Kuchnjaopen extends Mainloc {
                     wokno.IsPointInRect(pTemp) ||
                     swinjo.IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
-                    mainFrame.setCursor(mainFrame.Kreuz);
+                    mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
                 }
                 return;
@@ -538,7 +538,7 @@ public class Kuchnjaopen extends Mainloc {
 
             // sonst normal-Cursor
             if (Cursorform != 0) {
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
                 Cursorform = 0;
             }
         }
@@ -554,12 +554,12 @@ public class Kuchnjaopen extends Mainloc {
     @Override
     public void evalKeyEvent(GenericKeyEvent e) {
         // Wenn Inventarcursor, dann keine Keys
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             return;
         }
 
         // Bei Animationen keine Keys
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             return;
         }
 
@@ -601,8 +601,8 @@ public class Kuchnjaopen extends Mainloc {
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        mainFrame.Clipset = false;
-        mainFrame.isAnim = false;
+        mainFrame.isClipSet = false;
+        mainFrame.isBackgroundAnimRunning = false;
         mainFrame.krabat.StopWalking();
     }
   
@@ -629,7 +629,7 @@ public class Kuchnjaopen extends Mainloc {
 
             // manche Ausreden erfordern neuen Cursor !!!
 
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
 
             return;
         }
@@ -682,7 +682,7 @@ public class Kuchnjaopen extends Mainloc {
 
             case 7:
                 // Herd anschauen
-                if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
+                if (!mainFrame.actions[625] && !mainFrame.actions[626] && !mainFrame.actions[627]) {
                     KrabatSagt("Kuchnjaopen_8", fHerd, 3, 0, 0);
                 } else {
                     KrabatSagt("Kuchnjaopen_9", fHerd, 3, 0, 0);
@@ -691,7 +691,7 @@ public class Kuchnjaopen extends Mainloc {
 
             case 8:
                 // Kochtopf anschauen
-                if (!mainFrame.Actions[625] && !mainFrame.Actions[626] && !mainFrame.Actions[627]) {
+                if (!mainFrame.actions[625] && !mainFrame.actions[626] && !mainFrame.actions[627]) {
                     KrabatSagt("Kuchnjaopen_10", fHornc, 3, 0, 0);
                 } else {
                     KrabatSagt("Kuchnjaopen_11", fHornc, 3, 0, 0);
@@ -781,9 +781,9 @@ public class Kuchnjaopen extends Mainloc {
 
             case 800:
                 // MC beenden, wenn zuende gelabert...
-                mainFrame.fPlayAnim = false;
+                mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 

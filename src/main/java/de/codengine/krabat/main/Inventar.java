@@ -78,7 +78,7 @@ public class Inventar extends Mainanim {
     // Texte fuer das Laden der einzelnen Images
     private static final String ImageDirectory = "gfx/inventar/i-";
     private static final String CursorDirectory = "gfx/cursors/";
-    private static final String Suffix = ".gif";
+    private static final String Suffix = ".png";
 
     // Imagefilenamen
     private static final String[] IconImages =
@@ -149,13 +149,13 @@ public class Inventar extends Mainanim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        iInventar = getPicture("gfx/inventar/inventar.gif");
-        activeMenu = getPicture("gfx/inventar/m-meni.gif");
-        inactiveMenu = getPicture("gfx/inventar/meni.gif");
-        Pfeill = getPicture("gfx/inventar/r-p-l.gif");
-        DPfeill = getPicture("gfx/inventar/d-p-l.gif");
-        Pfeilr = getPicture("gfx/inventar/r-p-r.gif");
-        DPfeilr = getPicture("gfx/inventar/d-p-r.gif");
+        iInventar = getPicture("gfx/inventar/inventar.png");
+        activeMenu = getPicture("gfx/inventar/m-meni.png");
+        inactiveMenu = getPicture("gfx/inventar/meni.png");
+        Pfeill = getPicture("gfx/inventar/r-p-l.png");
+        DPfeill = getPicture("gfx/inventar/d-p-l.png");
+        Pfeilr = getPicture("gfx/inventar/r-p-r.png");
+        DPfeilr = getPicture("gfx/inventar/d-p-r.png");
     }
 
     // Laderoutine fuer Inventarimages
@@ -179,27 +179,27 @@ public class Inventar extends Mainanim {
     public void paintInventory(GenericDrawingContext g) {
 
         // Inventar-Background und Menuitems zeichnen
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
 
             // Inventarhintergrund zeichnen und Clipping - Region einengen
             g.setClip(0, 0, 1284, 964);
-            g.drawImage(iInventar, pLO.x + mainFrame.scrollx, pLO.y + mainFrame.scrolly);
-            g.setClip(90 + mainFrame.scrollx, 70 + mainFrame.scrolly, 550, 390);
+            g.drawImage(iInventar, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
+            g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
 
             // Menuitems zeichnen
             if (!secScreenActive) {
                 g.drawImage
-                        (inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly);
+                        (inactiveMenu, pLO.x + 415 + mainFrame.scrollX, pLO.y + 331 + mainFrame.scrollY);
             }
-            g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
+            g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
 
             // Gegenstand-Icons zeichnen
             int nAnzahl = vInventory.size();
             if (nAnzahl > 9) {
                 secScreenAvail = true;
                 if (!secScreenActive) {
-                    g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly);
+                    g.drawImage(DPfeilr, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
                 }
             } else {
                 secScreenAvail = false;
@@ -214,22 +214,22 @@ public class Inventar extends Mainanim {
             for (int i = f; i < nAnzahl; i++) {
                 int iTemp = vInventory.elementAt(i);
                 GenericPoint pTemp = new GenericPoint(GetCurrentXY(i));
-                if (mainFrame.whatItem != iTemp || !mainFrame.invCursor) {
-                    g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollx, pTemp.y + 1 + mainFrame.scrolly);
+                if (mainFrame.whatItem != iTemp || !mainFrame.isInventoryCursor) {
+                    g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollX, pTemp.y + 1 + mainFrame.scrollY);
                 }
             }
 
             // original Mauspoint bei Init beachten, erst zuletzt, da es die Variablen "secScreenAvail" gueltig benoetigt
             Cursorform = 200;
             Paintcall = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // Alten roten Rahmen loeschen
         if (oFeldAktiv >= 0) {
             g.setColor(inakt);
             GenericPoint pTemp = GetCurrentXY(oFeldAktiv);
-            g.drawRect(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly, 145, 75);
+            g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 145, 75);
             oFeldAktiv = -1;
         }
 
@@ -237,7 +237,7 @@ public class Inventar extends Mainanim {
         if (nFeldAktiv >= 0) {
             g.setColor(GenericColor.red);
             GenericPoint pTemp = GetCurrentXY(nFeldAktiv);
-            g.drawRect(pTemp.x + mainFrame.scrollx, pTemp.y + mainFrame.scrolly, 145, 75);
+            g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 145, 75);
         }
 
         if (nFeldAktiv >= 0) {
@@ -249,13 +249,13 @@ public class Inventar extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(inactiveMenu, pLO.x + 415 + mainFrame.scrollx, pLO.y + 331 + mainFrame.scrolly);
+                g.drawImage(inactiveMenu, pLO.x + 415 + mainFrame.scrollX, pLO.y + 331 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollx, 349 + mainFrame.scrolly);
+                g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
                 break;
             case 3:
-                g.drawImage(DPfeilr, 279 + mainFrame.scrollx, 348 + mainFrame.scrolly);
+                g.drawImage(DPfeilr, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
                 break;
             default:
                 log.error("Wrong inv - menuitem to clear! olditem = {}", olditem);
@@ -268,13 +268,13 @@ public class Inventar extends Mainanim {
             case 0:
                 break;
             case 1:
-                g.drawImage(activeMenu, pLO.x + 416 + mainFrame.scrollx, pLO.y + 333 + mainFrame.scrolly);
+                g.drawImage(activeMenu, pLO.x + 416 + mainFrame.scrollX, pLO.y + 333 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                g.drawImage(Pfeill, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             case 3:
-                g.drawImage(Pfeilr, 280 + mainFrame.scrollx, 350 + mainFrame.scrolly);
+                g.drawImage(Pfeilr, 280 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             default:
                 log.error("Wrong inventar-menuitem!!! menuitem = {}", menuitem);
@@ -286,7 +286,7 @@ public class Inventar extends Mainanim {
 
         // Textausgabe, falls noetig
         if (!Objects.equals(outputText, "")) {
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 1);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 1);
         }
 
         // Talkcount herunterzaehlen fuer Anzeige
@@ -294,7 +294,7 @@ public class Inventar extends Mainanim {
             mainFrame.talkCount--;
             // System.out.println(mainFrame.talkCount);
             if (mainFrame.talkCount == 0) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 mainFrame.repaint();
             }
@@ -333,13 +333,13 @@ public class Inventar extends Mainanim {
     public void evalMouseEvent(GenericMouseEvent e) {
         // Talkcount - Schleife beenden und Text loeschen
         mainFrame.talkCount = 0;
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         outputText = "";
         mainFrame.repaint();
         GenericPoint pTemp = e.getPoint();
 
         // Kursor = Sprite -> anders auf MouseEvents reagieren
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             if (e.isLeftClick()) {
                 // linke Maustaste gedrueckt
                 if (brPfeill.IsPointInRect(pTemp)) {
@@ -348,7 +348,7 @@ public class Inventar extends Mainanim {
                         Deactivate();
                     } else {
                         secScreenActive = false;
-                        mainFrame.Clipset = false;
+                        mainFrame.isClipSet = false;
                         menuitem = 0;
                         olditem = 0;
                         nFeldAktiv = -1;
@@ -361,7 +361,7 @@ public class Inventar extends Mainanim {
                 if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     // bei Pfeil nach rechts 2. Screen anzeigen
                     secScreenActive = true;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     menuitem = 0;
                     olditem = 0;
                     nFeldAktiv = -1;
@@ -419,10 +419,10 @@ public class Inventar extends Mainanim {
 
                     // Wenn auf die jeweilige leere Zelle geklickt, dann ablegen
                     if (mainFrame.whatItem == xx) {
-                        mainFrame.invCursor = false;
-                        mainFrame.Clipset = false;
+                        mainFrame.isInventoryCursor = false;
+                        mainFrame.isClipSet = false;
                         mainFrame.repaint();
-                        evalMouseMoveEvent(mainFrame.Mousepoint);
+                        evalMouseMoveEvent(mainFrame.mousePoint);
                         return;
                     }
 
@@ -601,10 +601,10 @@ public class Inventar extends Mainanim {
             } else {
                 // rechte Maustaste gedrueckt
                 // Gegenstand wird wieder abgelegt (grundsaetzlich!)
-                mainFrame.invCursor = false;
-                mainFrame.Clipset = false;
+                mainFrame.isInventoryCursor = false;
+                mainFrame.isClipSet = false;
                 mainFrame.repaint();
-                evalMouseMoveEvent(mainFrame.Mousepoint);
+                evalMouseMoveEvent(mainFrame.mousePoint);
             }
         }
 
@@ -638,7 +638,7 @@ public class Inventar extends Mainanim {
                         Deactivate();
                     } else {
                         secScreenActive = false;
-                        mainFrame.Clipset = false;
+                        mainFrame.isClipSet = false;
                         menuitem = 0;
                         olditem = 0;
                         nFeldAktiv = -1;
@@ -651,7 +651,7 @@ public class Inventar extends Mainanim {
                 // 2. Screen bei rechtem Pfeil anzeigen
                 if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     secScreenActive = true;
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     menuitem = 0;
                     olditem = 0;
                     nFeldAktiv = -1;
@@ -677,13 +677,13 @@ public class Inventar extends Mainanim {
                 // rechte Maustaste
                 int x = GetMouseRect(pTemp);
                 if (x > -1) {
-                    mainFrame.Cinventar = GenericToolkit.getDefaultToolkit().createCustomCursor
+                    mainFrame.cursorInventory = GenericToolkit.getDefaultToolkit().createCustomCursor
                             (GetCursorImage(vInventory.elementAt(x)),
                                     HotSpot, "Inv");
-                    mainFrame.CHinventar = GenericToolkit.getDefaultToolkit().createCustomCursor
+                    mainFrame.cursorHighlightInventory = GenericToolkit.getDefaultToolkit().createCustomCursor
                             (GetCursorHighImage(vInventory.elementAt(x)),
                                     HotSpot, "HInv");
-                    mainFrame.invCursor = true;
+                    mainFrame.isInventoryCursor = true;
                     mainFrame.whatItem = vInventory.elementAt(x);
 
                     // ----PARSER_ENABLE----
@@ -693,9 +693,9 @@ public class Inventar extends Mainanim {
                     noBackgroundSound = mainFrame.whatItem == 1 || mainFrame.whatItem == 12 ||
                             mainFrame.whatItem == 17 || mainFrame.whatItem == 51; // Floete, kamuski, Rohodz, halber Wosusk
 
-                    mainFrame.Clipset = false;
+                    mainFrame.isClipSet = false;
                     mainFrame.repaint();
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             }
 
@@ -721,9 +721,9 @@ public class Inventar extends Mainanim {
                 vInventory.removeElement(zweitesItem);
             }
 
-            mainFrame.invCursor = false;
-            mainFrame.invHighCursor = false;
-            mainFrame.Clipset = false;
+            mainFrame.isInventoryCursor = false;
+            mainFrame.isInventoryHighlightCursor = false;
+            mainFrame.isClipSet = false;
             mainFrame.repaint();
             return true;
         } else {
@@ -778,29 +778,29 @@ public class Inventar extends Mainanim {
         // Talkcount - Schleife beenden
         // ist wegen Text loeschen noetig !!!!!
         // System.out.println(olditem + " " + menuitem + " " + oFeldAktiv + " " + nFeldAktiv);
-        if (mainFrame.invCursor) {
+        if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die erkennt, ob gehighlighted wird
 
             int invTemp = GetMouseRect(pTemp);
 
             if (invTemp > -1) {
                 if (vInventory.elementAt(invTemp) != mainFrame.whatItem) {
-                    mainFrame.invHighCursor = true;
+                    mainFrame.isInventoryHighlightCursor = true;
                 }
             } else {
-                mainFrame.invHighCursor = false;
+                mainFrame.isInventoryHighlightCursor = false;
             }
 
             // bei Inventarcursor diesen setzen
-            if (Cursorform != 10 && !mainFrame.invHighCursor) {
+            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 10;
-                mainFrame.setCursor(mainFrame.Cinventar);
+                mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
             // bei Inventarcursor mit Highlight diesen setzen
-            if (Cursorform != 11 && mainFrame.invHighCursor) {
+            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
                 Cursorform = 11;
-                mainFrame.setCursor(mainFrame.CHinventar);
+                mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
 
             // Beenden ,wenn mit Inventarstueck Screen verlassen
@@ -824,7 +824,7 @@ public class Inventar extends Mainanim {
             // Standard - Cursor setzen
             if (Cursorform != 0) {
                 Cursorform = 0;
-                mainFrame.setCursor(mainFrame.Normal);
+                mainFrame.setCursor(mainFrame.cursorNormal);
             }
 
             // Roten rand berechnen
@@ -852,7 +852,7 @@ public class Inventar extends Mainanim {
             // Talkcount - Schleife beenden
             mainFrame.talkCount = 0;
 
-            mainFrame.Clipset = false; // ist wegen Text loeschen n�tig !!!!!
+            mainFrame.isClipSet = false; // ist wegen Text loeschen n�tig !!!!!
             outputText = "";
             mainFrame.repaint();
         }
@@ -878,12 +878,12 @@ public class Inventar extends Mainanim {
 
     // Inventar - deaktivieren - Routine//////////////////////////////////////
     public void Deactivate() {
-        mainFrame.Clipset = false;
+        mainFrame.isClipSet = false;
         menuitem = 0;
         nFeldAktiv = -1;
         mainFrame.whatScreen = 0;
         secScreenActive = false;
-        mainFrame.invHighCursor = false;
+        mainFrame.isInventoryHighlightCursor = false;
     }
 
     // Berechnungsroutine Inventarfensternummer - X/Y-Koordinaten//////////////
@@ -952,7 +952,7 @@ public class Inventar extends Mainanim {
     // Routine, die die allgemeinen Sachen der Textausgabe regelt
     private void ShowText(String langKey) {
         outputText = Start.stringManager.getTranslation(langKey);
-        outputTextPos = mainFrame.ifont.CenterText(outputText, new GenericPoint(320 + mainFrame.scrollx, ytemp));
+        outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320 + mainFrame.scrollX, ytemp));
         mainFrame.repaint();
     }
 

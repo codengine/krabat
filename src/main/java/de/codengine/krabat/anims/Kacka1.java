@@ -66,11 +66,11 @@ public class Kacka1 extends Mainanim {
     }
 
     private void InitImages() {
-        kacka_left[0] = getPicture("gfx/mertens/kacka1.gif");
-        kacka_left[1] = getPicture("gfx/mertens/kacka1a.gif");
+        kacka_left[0] = getPicture("gfx/mertens/kacka1.png");
+        kacka_left[1] = getPicture("gfx/mertens/kacka1a.png");
 
-        kacka_front[0] = getPicture("gfx/mertens/kacka1-t.gif");
-        kacka_front[1] = getPicture("gfx/mertens/kacka1-ta.gif");
+        kacka_front[0] = getPicture("gfx/mertens/kacka1-t.png");
+        kacka_front[1] = getPicture("gfx/mertens/kacka1-ta.png");
     }
 
     @Override

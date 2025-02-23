@@ -106,27 +106,27 @@ public class Oldmlynk extends Mainanim {
     private void InitImages() {
         // Wenn OldMlynk fuer Teil 4 -> nur Grafiken fuer Links-Stehen laden
         if (!fOnlyStandAndLookLeft) {
-            mlynk_body[0] = getPicture("gfx-dd/murja/dml-b.gif");
-            mlynk_body[1] = getPicture("gfx-dd/murja/dml-b1.gif");
-            mlynk_body[2] = getPicture("gfx-dd/murja/dml-b2.gif");
-            mlynk_body[3] = getPicture("gfx-dd/murja/dml-b3.gif");
+            mlynk_body[0] = getPicture("gfx-dd/murja/dml-b.png");
+            mlynk_body[1] = getPicture("gfx-dd/murja/dml-b1.png");
+            mlynk_body[2] = getPicture("gfx-dd/murja/dml-b2.png");
+            mlynk_body[3] = getPicture("gfx-dd/murja/dml-b3.png");
 
-            mlynk_head[0] = getPicture("gfx-dd/murja/dml2-h.gif");
-            mlynk_head[1] = getPicture("gfx-dd/murja/dml2-ha.gif");
-            mlynk_head[2] = getPicture("gfx-dd/murja/dml2-h1.gif");
-            mlynk_head[6] = getPicture("gfx-dd/murja/dml2-h1.gif"); // Achtung, hier falsches Image, wegen Fehlermoeglichkeit -> richtiges GenericImage wird nicht verwendet!!
-            mlynk_head[3] = getPicture("gfx-dd/murja/dml2-h3.gif");
-            mlynk_head[4] = getPicture("gfx-dd/murja/dml2-h4.gif");
-            mlynk_head[5] = getPicture("gfx-dd/murja/dml2-h5.gif");
-            mlynk_head[7] = getPicture("gfx-dd/murja/dml2-h6.gif");
-            mlynk_head[8] = getPicture("gfx-dd/murja/dml2-h7.gif");
-            mlynk_head[9] = getPicture("gfx-dd/murja/dml2-h8.gif");
-            mlynk_head[10] = getPicture("gfx-dd/murja/dml2-h9.gif");
-            mlynk_head[11] = getPicture("gfx-dd/murja/dml2-h10.gif");
-            mlynk_head[12] = getPicture("gfx-dd/murja/dml2-h11.gif");
+            mlynk_head[0] = getPicture("gfx-dd/murja/dml2-h.png");
+            mlynk_head[1] = getPicture("gfx-dd/murja/dml2-ha.png");
+            mlynk_head[2] = getPicture("gfx-dd/murja/dml2-h1.png");
+            mlynk_head[6] = getPicture("gfx-dd/murja/dml2-h1.png"); // Achtung, hier falsches Image, wegen Fehlermoeglichkeit -> richtiges GenericImage wird nicht verwendet!!
+            mlynk_head[3] = getPicture("gfx-dd/murja/dml2-h3.png");
+            mlynk_head[4] = getPicture("gfx-dd/murja/dml2-h4.png");
+            mlynk_head[5] = getPicture("gfx-dd/murja/dml2-h5.png");
+            mlynk_head[7] = getPicture("gfx-dd/murja/dml2-h6.png");
+            mlynk_head[8] = getPicture("gfx-dd/murja/dml2-h7.png");
+            mlynk_head[9] = getPicture("gfx-dd/murja/dml2-h8.png");
+            mlynk_head[10] = getPicture("gfx-dd/murja/dml2-h9.png");
+            mlynk_head[11] = getPicture("gfx-dd/murja/dml2-h10.png");
+            mlynk_head[12] = getPicture("gfx-dd/murja/dml2-h11.png");
         } else {
-            mlynk_left[0] = getPicture("gfx/wotrow/rdml.gif");
-            mlynk_left[1] = getPicture("gfx/wotrow/rdml2.gif");
+            mlynk_left[0] = getPicture("gfx/wotrow/rdml.png");
+            mlynk_left[1] = getPicture("gfx/wotrow/rdml2.png");
         }
     }
 

@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Mlynkmurja extends Mainloc {
+public class Mlynkmurja extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mlynkmurja.class);
     private GenericImage backr;
     private GenericImage laterne;
@@ -91,18 +91,18 @@ public class Mlynkmurja extends Mainloc {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         // Grenzen setzen
-        mainFrame.wegGeher.vBorders.removeAllElements();
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.removeAllElements();
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(0, 90, 0, 90, 473, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(91, 619, 91, 619, 470, 479));
-        mainFrame.wegGeher.vBorders.addElement
+        mainFrame.pathWalker.vBorders.addElement
                 (new Bordertrapez(620, 630, 620, 630, 435, 479));
 
-        mainFrame.wegSucher.ClearMatrix(3);
+        mainFrame.pathFinder.ClearMatrix(3);
 
-        mainFrame.wegSucher.PosVerbinden(0, 1);
-        mainFrame.wegSucher.PosVerbinden(1, 2);
+        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.PosVerbinden(1, 2);
 
         InitImages();
 
@@ -112,8 +112,8 @@ public class Mlynkmurja extends Mainloc {
 
     // Bilder vorbereiten
     private void InitImages() {
-        backr = getPicture("gfx-dd/murja/murja-r.gif");
-        laterne = getPicture("gfx-dd/murja/laterna.gif");
+        backr = getPicture("gfx-dd/murja/murja-r.png");
+        laterne = getPicture("gfx-dd/murja/laterna.png");
 
     }
 
@@ -123,17 +123,17 @@ public class Mlynkmurja extends Mainloc {
     public void paintLocation(GenericDrawingContext g) {
         if (initplay) {
             initplay = false;
-            mainFrame.wave.PlayFile("sfx-dd/mlynk-dd.wav");
+            mainFrame.soundPlayer.PlayFile("sfx-dd/mlynk-dd.wav");
         }
 
         // Clipping -Region initialisieren
-        if (!mainFrame.Clipset) {
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.isClipSet = true;
             Cursorform = 200;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 644, 484);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
         }
 
         // Hintergrund und Krabat zeichnen
@@ -147,10 +147,10 @@ public class Mlynkmurja extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -161,7 +161,7 @@ public class Mlynkmurja extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -192,7 +192,7 @@ public class Mlynkmurja extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -216,7 +216,7 @@ public class Mlynkmurja extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -237,9 +237,9 @@ public class Mlynkmurja extends Mainloc {
     public void evalMouseEvent(GenericMouseEvent e) {
         // Cursorpunkt mit Scrolloffset berechnen
         GenericPoint pTemp = e.getPoint();
-        pTemp.x += mainFrame.scrollx;
+        pTemp.x += mainFrame.scrollX;
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -253,7 +253,7 @@ public class Mlynkmurja extends Mainloc {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (Cursorform != 20) {
             Cursorform = 20;
-            mainFrame.setCursor(mainFrame.Nix);
+            mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
 
@@ -282,7 +282,7 @@ public class Mlynkmurja extends Mainloc {
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
             // manche Ausreden erfordern neuen Cursor !!!
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            evalMouseMoveEvent(mainFrame.mousePoint);
             return;
         }
 
@@ -290,7 +290,7 @@ public class Mlynkmurja extends Mainloc {
         switch (nextActionID) {
             case 10:
                 // Krabat laeuft zum Mueller
-                mainFrame.wegGeher.SetzeNeuenWeg(Pmueller);
+                mainFrame.pathWalker.SetzeNeuenWeg(Pmueller);
                 nextActionID = 20;
                 break;
 
@@ -332,7 +332,7 @@ public class Mlynkmurja extends Mainloc {
 
             case 90:
                 // Krabat laeuft aus dem Bild
-                mainFrame.wegGeher.SetzeNeuenWeg(Pexit);
+                mainFrame.pathWalker.SetzeNeuenWeg(Pexit);
                 nextActionID = 95;
                 break;
 
@@ -359,7 +359,7 @@ public class Mlynkmurja extends Mainloc {
             case 120:
                 // Gehe zu Murja, aber diesmal wieder die alte...
                 NeuesBild(126, locationID);
-                mainFrame.Actions[656] = true; // hier verhindern, dass Szene ein zweites Mal passiert
+                mainFrame.actions[656] = true; // hier verhindern, dass Szene ein zweites Mal passiert
                 break;
 
             default:

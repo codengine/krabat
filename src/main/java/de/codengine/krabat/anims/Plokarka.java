@@ -102,47 +102,47 @@ public class Plokarka extends MovableMainAnim {
 
     // Bilder vorbereiten
     private void InitImages() {
-        krabat_left[0] = getPicture("gfx/villa/wf3a.gif");
-        krabat_left[1] = getPicture("gfx/villa/wf4a.gif");
-        krabat_left[2] = getPicture("gfx/villa/wf5a.gif");
-        krabat_left[3] = getPicture("gfx/villa/wf6a.gif");
+        krabat_left[0] = getPicture("gfx/villa/wf3a.png");
+        krabat_left[1] = getPicture("gfx/villa/wf4a.png");
+        krabat_left[2] = getPicture("gfx/villa/wf5a.png");
+        krabat_left[3] = getPicture("gfx/villa/wf6a.png");
 
-        krabat_right[0] = getPicture("gfx/villa/wf3.gif");
-        krabat_right[1] = getPicture("gfx/villa/wf4.gif");
-        krabat_right[2] = getPicture("gfx/villa/wf5.gif");
-        krabat_right[3] = getPicture("gfx/villa/wf6.gif");
+        krabat_right[0] = getPicture("gfx/villa/wf3.png");
+        krabat_right[1] = getPicture("gfx/villa/wf4.png");
+        krabat_right[2] = getPicture("gfx/villa/wf5.png");
+        krabat_right[3] = getPicture("gfx/villa/wf6.png");
 
-        krabat_front[0] = getPicture("gfx/villa/wf1a.gif");
-        krabat_front[1] = getPicture("gfx/villa/wf1b.gif");
-        krabat_front[2] = getPicture("gfx/villa/wf1c.gif");
+        krabat_front[0] = getPicture("gfx/villa/wf1a.png");
+        krabat_front[1] = getPicture("gfx/villa/wf1b.png");
+        krabat_front[2] = getPicture("gfx/villa/wf1c.png");
 
-        krabat_back[0] = getPicture("gfx/villa/wf2.gif");
-        krabat_back[1] = getPicture("gfx/villa/wf2g.gif");
-        krabat_back[2] = getPicture("gfx/villa/wf2h.gif");
-        krabat_back[3] = getPicture("gfx/villa/wf2g.gif");
+        krabat_back[0] = getPicture("gfx/villa/wf2.png");
+        krabat_back[1] = getPicture("gfx/villa/wf2g.png");
+        krabat_back[2] = getPicture("gfx/villa/wf2h.png");
+        krabat_back[3] = getPicture("gfx/villa/wf2g.png");
 
-        krabat_talk[0] = getPicture("gfx/villa/wf2.gif");
-        krabat_talk[1] = getPicture("gfx/villa/wf2a.gif");
-        krabat_talk[2] = getPicture("gfx/villa/wf2d.gif");
-        krabat_talk[3] = getPicture("gfx/villa/wf2e.gif");
-        krabat_talk[4] = getPicture("gfx/villa/wf2f.gif");
+        krabat_talk[0] = getPicture("gfx/villa/wf2.png");
+        krabat_talk[1] = getPicture("gfx/villa/wf2a.png");
+        krabat_talk[2] = getPicture("gfx/villa/wf2d.png");
+        krabat_talk[3] = getPicture("gfx/villa/wf2e.png");
+        krabat_talk[4] = getPicture("gfx/villa/wf2f.png");
 
-        krabat_haende[0] = getPicture("gfx/villa/wf2.gif");
-        krabat_haende[1] = getPicture("gfx/villa/wf2b.gif");
-        krabat_haende[2] = getPicture("gfx/villa/wf2c.gif");
-        krabat_haende[3] = getPicture("gfx/villa/wf2e.gif");
-        krabat_haende[4] = getPicture("gfx/villa/wf2f.gif");
+        krabat_haende[0] = getPicture("gfx/villa/wf2.png");
+        krabat_haende[1] = getPicture("gfx/villa/wf2b.png");
+        krabat_haende[2] = getPicture("gfx/villa/wf2c.png");
+        krabat_haende[3] = getPicture("gfx/villa/wf2e.png");
+        krabat_haende[4] = getPicture("gfx/villa/wf2f.png");
 
-        krabatw_left[0] = getPicture("gfx/villa/wf3a2.gif");
-        krabatw_left[1] = getPicture("gfx/villa/wf4a2.gif");
-        krabatw_left[2] = getPicture("gfx/villa/wf5a2.gif");
-        krabatw_left[3] = getPicture("gfx/villa/wf6a2.gif");
+        krabatw_left[0] = getPicture("gfx/villa/wf3a2.png");
+        krabatw_left[1] = getPicture("gfx/villa/wf4a2.png");
+        krabatw_left[2] = getPicture("gfx/villa/wf5a2.png");
+        krabatw_left[3] = getPicture("gfx/villa/wf6a2.png");
 
-        krabatw_front[0] = getPicture("gfx/villa/wf1a2.gif");
-        krabatw_front[1] = getPicture("gfx/villa/wf1b2.gif");
-        krabatw_front[2] = getPicture("gfx/villa/wf1c2.gif");
+        krabatw_front[0] = getPicture("gfx/villa/wf1a2.png");
+        krabatw_front[1] = getPicture("gfx/villa/wf1b2.png");
+        krabatw_front[2] = getPicture("gfx/villa/wf1c2.png");
 
-        krabatw_abnehm = getPicture("gfx/villa/wf2i.gif");
+        krabatw_abnehm = getPicture("gfx/villa/wf2i.png");
     }
 
 

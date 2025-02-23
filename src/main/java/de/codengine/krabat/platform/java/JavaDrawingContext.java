@@ -60,8 +60,8 @@ public class JavaDrawingContext extends GenericDrawingContext {
     }
 
     @Override
-    public void drawRect(int x1, int y1, int width, int height) {
-        g.drawRect(x1, y1, width, height);
+    public void drawRect(int x, int y, int width, int height) {
+        g.drawRect(x, y, width, height);
     }
 
     @Override

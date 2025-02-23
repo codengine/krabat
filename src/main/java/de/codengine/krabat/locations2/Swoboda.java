@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Swoboda extends Mainloc {
+public class Swoboda extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Swoboda.class);
     private GenericImage background;
     private Mac mutter;
@@ -143,12 +143,12 @@ public class Swoboda extends Mainloc {
         mainFrame.inventory.vInventory.addElement(20);
 
         // Hier Zeichen an Karte, dass Teil 2 begonnen hat
-        mainFrame.Actions[305] = true;
+        mainFrame.actions[305] = true;
     }
 
     // Bilder vorbereiten
     private void InitImages() {
-        background = getPicture("gfx/mlyn/mlynn-r.gif");
+        background = getPicture("gfx/mlyn/mlynn-r.png");
 
     }
 
@@ -180,15 +180,15 @@ public class Swoboda extends Mainloc {
         // System.out.print("g");
 
         // Clipping - Region initialisieren und Rauchthread aktivieren
-        if (!mainFrame.Clipset) {
-            mainFrame.scrollx = 0;
-            mainFrame.scrolly = 0;
-            mainFrame.Clipset = true;
+        if (!mainFrame.isClipSet) {
+            mainFrame.scrollX = 0;
+            mainFrame.scrollY = 0;
+            mainFrame.isClipSet = true;
             Cursorform = 200;
             g.setClip(0, 0, 1284, 964);
-            mainFrame.isAnim = true;
-            mainFrame.fPlayAnim = true;
-            evalMouseMoveEvent(mainFrame.Mousepoint);
+            mainFrame.isBackgroundAnimRunning = true;
+            mainFrame.isAnimRunning = true;
+            evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // Hintergrund zeichnen (Krabat loeschen bzw. voellig neu zeichnen)
@@ -196,7 +196,7 @@ public class Swoboda extends Mainloc {
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
-            Debug.DrawRect(g, mainFrame.wegGeher.vBorders);
+            Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // wenn Krabat morpht, dann diesen Hintergrund loeschen
@@ -301,7 +301,7 @@ public class Swoboda extends Mainloc {
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.wegGeher.GeheWeg();
+        mainFrame.pathWalker.GeheWeg();
 
         // Krabat zeichnen
 
@@ -312,7 +312,7 @@ public class Swoboda extends Mainloc {
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
-                    evalMouseMoveEvent(mainFrame.Mousepoint);
+                    evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
                 if (mainFrame.talkCount > 0 && TalkPerson != 0) {
@@ -353,7 +353,7 @@ public class Swoboda extends Mainloc {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.ifont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -361,7 +361,7 @@ public class Swoboda extends Mainloc {
         if (mainFrame.talkCount > 0) {
             --mainFrame.talkCount;
             if (mainFrame.talkCount <= 1) {
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 outputText = "";
                 TalkPerson = 0;
             }
@@ -391,7 +391,7 @@ public class Swoboda extends Mainloc {
         // Auszugebenden Text abbrechen
         outputText = "";
         if (mainFrame.talkCount != 0) {
-            mainFrame.Clipset = false;
+            mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
@@ -403,10 +403,10 @@ public class Swoboda extends Mainloc {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (mainFrame.fPlayAnim) {
+        if (mainFrame.isAnimRunning) {
             if (Cursorform != 20) {
                 Cursorform = 20;
-                mainFrame.setCursor(mainFrame.Nix);
+                mainFrame.setCursor(mainFrame.cursorNone);
             }
         }
     }
@@ -479,7 +479,7 @@ public class Swoboda extends Mainloc {
                     break;
                 }
                 israbemorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 Counter = 22;
                 nextActionID = 165;
                 break;
@@ -510,7 +510,7 @@ public class Swoboda extends Mainloc {
                 }
                 mlynkHatStock = false;
                 iskrabatmorphing = false;
-                mainFrame.Clipset = false;
+                mainFrame.isClipSet = false;
                 TalkPause = 10;
                 nextActionID = 185;
                 break;
