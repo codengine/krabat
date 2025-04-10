@@ -98,9 +98,9 @@ public class Doma1 extends MainLocation {
     // normaler Einsprung waehrend Spiel oder Load
     public Doma1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         gans1 = new Husa(mainFrame, new Borderrect(150, 260, 197, 270));
         gans2 = new Husa(mainFrame, new Borderrect(238, 270, 285, 280));
@@ -139,17 +139,17 @@ public class Doma1 extends MainLocation {
         }
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Einsprung vom Intro aus
     public Doma1(Start caller, int oldLocation, Husa gans1, Husa gans2, Husa gans3) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         BackgroundMusicPlayer.getInstance().playTrack(24, false);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         this.gans1 = gans1;
         this.gans2 = gans2;
@@ -183,7 +183,7 @@ public class Doma1 extends MainLocation {
         Dialog = new Multiple2(mainFrame);
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     private void Init(int oldLocation) {

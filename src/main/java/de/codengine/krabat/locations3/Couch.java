@@ -72,16 +72,16 @@ public class Couch extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Couch(Start caller, int oldLocation) {
         super(caller, 144);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 479;
         mainFrame.krabat.zoomf = 4.8f;
         mainFrame.krabat.defScale = -60;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

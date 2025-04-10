@@ -74,9 +74,9 @@ public class Kapala extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Kapala(Start caller, int oldLocation) {
         super(caller, 153);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(15, true);
 
@@ -89,7 +89,7 @@ public class Kapala extends MainLocation {
         Verhinderfeuer = MAX_VERHINDERFEUER;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -627,7 +627,7 @@ public class Kapala extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0 || Counter > 0) {
                     break;
                 }
-                mainFrame.ConstructLocation(108);
+                mainFrame.constructLocation(108);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.isAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.SKETCH;

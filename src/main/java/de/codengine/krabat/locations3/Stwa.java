@@ -50,16 +50,16 @@ public class Stwa extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Stwa(Start caller, int oldLocation) {
         super(caller, 161);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 50;   // nicht zoomen !!!
         mainFrame.krabat.zoomf = 1f;
         mainFrame.krabat.defScale = -30;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

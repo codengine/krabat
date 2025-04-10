@@ -88,9 +88,9 @@ public class Dingl extends MainLocation {
     public Dingl(Start caller, int oldLocation) {
         super(caller, 141);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 350;
         mainFrame.krabat.zoomf = 1.84f;
@@ -117,7 +117,7 @@ public class Dingl extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         // Zum Testen - rausnehmen !!!!!!!!!!!!!!!!
         // mainFrame.Actions[527] = true; // darf zum Gang raus

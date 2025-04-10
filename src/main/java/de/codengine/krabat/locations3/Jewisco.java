@@ -68,16 +68,16 @@ public class Jewisco extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Jewisco(Start caller, int oldLocation) {
         super(caller, 125);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 419;
         mainFrame.krabat.zoomf = 0.5f;
         mainFrame.krabat.defScale = -100;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -127,9 +127,9 @@ public class Spaniska extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Spaniska(Start caller, int oldLocation) {
         super(caller, 122);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 50;   // nicht zoomen !!!
         mainFrame.krabat.zoomf = 1f;
@@ -152,7 +152,7 @@ public class Spaniska extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

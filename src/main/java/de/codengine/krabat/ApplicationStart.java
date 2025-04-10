@@ -39,20 +39,20 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     private static final Logger log = LoggerFactory.getLogger(ApplicationStart.class);
     private final Start appInstance;
 
-    private GenericCursor Cup;
-    private GenericCursor Cdown;
-    private GenericCursor Cleft;
-    private GenericCursor Cright;
-    private GenericCursor Normal;
-    private GenericCursor Kreuz;
-    private GenericCursor Warten;
-    private GenericCursor Nix;
+    private GenericCursor cursorUp;
+    private GenericCursor cursorDown;
+    private GenericCursor cursorLeft;
+    private GenericCursor cursorRight;
+    private GenericCursor cursorNormal;
+    private GenericCursor cursorCross;
+    private GenericCursor cursorWait;
+    private GenericCursor cursorNone;
 
     private Image iconImage;
 
-    private Point Mousetemp;
+    private Point mouseTemp;
 
-    private boolean dClick;
+    private boolean isDoubleClick;
 
     private long timeskip;
 
@@ -60,10 +60,10 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     private static final long doubleClickTimeLimit = 500;
 
-    public ApplicationStart(int defaultLanguageIndex, boolean fullScreen) {
+    public ApplicationStart(int defaultLanguageIndex, boolean fullscreen) {
         super("Krabat");
         appInstance = new Start();
-        startGame(fullScreen);
+        startGame(fullscreen);
 
         Path workingDir = Paths.get(System.getProperty("user.dir"));
 
@@ -81,12 +81,12 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
                 langPath);
 
         appInstance.runGamePt1(defaultLanguageIndex, imageFetcher, container, player, musicPlayer, storageManager);
-        GenericPoint pt = InitImages(imageFetcher);
+        GenericPoint pt = initImages(imageFetcher);
         setIconImage(iconImage);
-        appInstance.runGamePt2(pt, new GenericCursor[]{Cup, Cdown, Cleft, Cright, Normal, Kreuz, Warten, Nix});
+        appInstance.runGamePt2(pt, new GenericCursor[]{cursorUp, cursorDown, cursorLeft, cursorRight, cursorNormal, cursorCross, cursorWait, cursorNone});
 
-        Mousetemp = new Point(0, 0);
-        dClick = false;
+        mouseTemp = new Point(0, 0);
+        isDoubleClick = false;
         timeskip = System.currentTimeMillis();
 
         addMouseListener(this);
@@ -120,7 +120,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         new ApplicationStart(rec, fullScreen);
     }
 
-    private void startGame(boolean fullScreen) {
+    private void startGame(boolean fullscreen) {
         setResizable(false);
         setBackground(Color.black);
         setSize(640, 480);
@@ -131,7 +131,7 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         final DisplayMode dmCurrent = gfxDevice.getDisplayMode();
 
         // Vollbild aktivieren wenn erwünscht und unterstützt
-        if (fullScreen && gfxDevice.isFullScreenSupported()) {
+        if (fullscreen && gfxDevice.isFullScreenSupported()) {
 
             // Window-Dekorationen entfernen
             this.setLocation(0, 0);
@@ -163,24 +163,24 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     }
 
     // Cursorbilder vorbereiten
-    private GenericPoint InitImages(GenericImageFetcher fetcher) {
-        GenericImage Ccup;
-        GenericImage Ccdown;
-        GenericImage Ccleft;
-        GenericImage Ccright;
-        GenericImage NNormal;
-        GenericImage KKreuz;
-        GenericImage WWarten;
-        GenericImage NNix;
+    private GenericPoint initImages(GenericImageFetcher fetcher) {
+        GenericImage imgCursorUp;
+        GenericImage imgCursorDown;
+        GenericImage imgCursorLeft;
+        GenericImage imgCursorRight;
+        GenericImage imgCursorNormal;
+        GenericImage imgCursorCross;
+        GenericImage imgCursorWait;
+        GenericImage imgCursorNone;
 
-        Ccup = fetcher.fetchImage("gfx/cursors/horje.png", false);
-        Ccdown = fetcher.fetchImage("gfx/cursors/dele.png", false);
-        Ccleft = fetcher.fetchImage("gfx/cursors/nalewo.png", false);
-        Ccright = fetcher.fetchImage("gfx/cursors/naprawo.png", false);
-        NNormal = fetcher.fetchImage("gfx/cursors/bezec4.png", false);
-        KKreuz = fetcher.fetchImage("gfx/cursors/bezec10.png", false);
-        WWarten = fetcher.fetchImage("gfx/cursors/cakac.png", false);
-        NNix = fetcher.fetchImage("gfx/cursors/trans.png", false);
+        imgCursorUp = fetcher.fetchImage("gfx/cursors/horje.png", false);
+        imgCursorDown = fetcher.fetchImage("gfx/cursors/dele.png", false);
+        imgCursorLeft = fetcher.fetchImage("gfx/cursors/nalewo.png", false);
+        imgCursorRight = fetcher.fetchImage("gfx/cursors/naprawo.png", false);
+        imgCursorNormal = fetcher.fetchImage("gfx/cursors/bezec4.png", false);
+        imgCursorCross = fetcher.fetchImage("gfx/cursors/bezec10.png", false);
+        imgCursorWait = fetcher.fetchImage("gfx/cursors/cakac.png", false);
+        imgCursorNone = fetcher.fetchImage("gfx/cursors/trans.png", false);
         iconImage = ((JavaImage) fetcher.fetchImage("gfx/k-icon.png", false)).getImage();
 
         // Cursorgroesse fuer jeweiliges System bestimmen
@@ -192,14 +192,14 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         int yyy = (int) y / 2;
 
         // Mauscursor initialisieren
-        Cup = GenericToolkit.getDefaultToolkit().createCustomCursor(Ccup, new GenericPoint(xxx, yyy), "Up");
-        Cdown = GenericToolkit.getDefaultToolkit().createCustomCursor(Ccdown, new GenericPoint(xxx, yyy), "Down");
-        Cleft = GenericToolkit.getDefaultToolkit().createCustomCursor(Ccleft, new GenericPoint(xxx, yyy), "Left");
-        Cright = GenericToolkit.getDefaultToolkit().createCustomCursor(Ccright, new GenericPoint(xxx, yyy), "Right");
-        Normal = GenericToolkit.getDefaultToolkit().createCustomCursor(NNormal, new GenericPoint(xxx, yyy), "Normal");
-        Kreuz = GenericToolkit.getDefaultToolkit().createCustomCursor(KKreuz, new GenericPoint(xxx, yyy), "Kreuz");
-        Warten = GenericToolkit.getDefaultToolkit().createCustomCursor(WWarten, new GenericPoint(xxx, yyy), "Warten");
-        Nix = GenericToolkit.getDefaultToolkit().createCustomCursor(NNix, new GenericPoint(xxx, yyy), "Nix");
+        cursorUp = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorUp, new GenericPoint(xxx, yyy), "Up");
+        cursorDown = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorDown, new GenericPoint(xxx, yyy), "Down");
+        cursorLeft = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorLeft, new GenericPoint(xxx, yyy), "Left");
+        cursorRight = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorRight, new GenericPoint(xxx, yyy), "Right");
+        cursorNormal = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorNormal, new GenericPoint(xxx, yyy), "Normal");
+        cursorCross = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorCross, new GenericPoint(xxx, yyy), "Kreuz");
+        cursorWait = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorWait, new GenericPoint(xxx, yyy), "Warten");
+        cursorNone = GenericToolkit.getDefaultToolkit().createCustomCursor(imgCursorNone, new GenericPoint(xxx, yyy), "Nix");
 
         return new GenericPoint(xxx, yyy);
     }
@@ -222,15 +222,15 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     @Override
     public void mousePressed(MouseEvent e) {
         // Doppelclick (zeitlich begrenzt) erkennen
-        dClick = Math.abs(Mousetemp.x - e.getPoint().x) < doubleClickPointLimit &&
-                Math.abs(Mousetemp.y - e.getPoint().y) < doubleClickPointLimit &&
-                !dClick && System.currentTimeMillis() - timeskip < doubleClickTimeLimit;
+        isDoubleClick = Math.abs(mouseTemp.x - e.getPoint().x) < doubleClickPointLimit &&
+                Math.abs(mouseTemp.y - e.getPoint().y) < doubleClickPointLimit &&
+                !isDoubleClick && System.currentTimeMillis() - timeskip < doubleClickTimeLimit;
         timeskip = System.currentTimeMillis();
-        Mousetemp = e.getPoint();
+        mouseTemp = e.getPoint();
 
         GenericPoint point = new GenericPoint(e.getPoint().x, e.getPoint().y);
         GenericMouseEvent ge = new GenericMouseEvent(
-                e.getButton(), e.getModifiersEx(), point, dClick);
+                e.getButton(), e.getModifiersEx(), point, isDoubleClick);
         appInstance.mousePressed(ge);
     }
 

@@ -168,9 +168,9 @@ public class Rowy extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Rowy(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(17, true);
 
@@ -195,7 +195,7 @@ public class Rowy extends MainLocation {
         muellerPoint.y = muellerFeet.y - Oldmlynk.Hoehe;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

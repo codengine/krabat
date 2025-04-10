@@ -76,9 +76,9 @@ public class Lodz extends MainLocation {
 
         // Krabat von Oben hinstellen
         mainFrame.actions[851] = true;
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         mainFrame.krabat.maxx = 50;      // no zooming
         mainFrame.krabat.zoomf = 0f;
@@ -96,7 +96,7 @@ public class Lodz extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

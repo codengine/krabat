@@ -51,16 +51,16 @@ public class Wjerby1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Wjerby1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 370;
         mainFrame.krabat.zoomf = 1.75f;
         mainFrame.krabat.defScale = -30;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

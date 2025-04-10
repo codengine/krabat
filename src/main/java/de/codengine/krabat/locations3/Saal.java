@@ -63,16 +63,16 @@ public class Saal extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Saal(Start caller, int oldLocation) {
         super(caller, 140);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 452;
         mainFrame.krabat.zoomf = 1.04f;
         mainFrame.krabat.defScale = 0;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

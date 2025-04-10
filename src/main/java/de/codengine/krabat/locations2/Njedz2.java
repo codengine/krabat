@@ -75,9 +75,9 @@ public class Njedz2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Njedz2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 492;
         mainFrame.krabat.zoomf = 2.1f;
@@ -99,7 +99,7 @@ public class Njedz2 extends MainLocation2 {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

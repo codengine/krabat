@@ -90,9 +90,9 @@ public class Most1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Most1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         Merkpunkt = new GenericPoint(0, 0);
 
@@ -102,7 +102,7 @@ public class Most1 extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

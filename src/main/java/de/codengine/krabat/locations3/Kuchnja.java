@@ -139,7 +139,7 @@ public class Kuchnja extends MainLocation {
     public Kuchnja(Start caller, int oldLocation) {
         super(caller, 120);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 2f;
@@ -174,7 +174,7 @@ public class Kuchnja extends MainLocation {
 
         Yoffset = (ye - Ypos) / (Xpos - xe) * XOFFSET;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -272,7 +272,7 @@ public class Kuchnja extends MainLocation {
                 break;
         }
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
     }
 

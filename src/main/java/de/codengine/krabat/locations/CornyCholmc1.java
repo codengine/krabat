@@ -62,9 +62,9 @@ public class CornyCholmc1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public CornyCholmc1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 479;
         mainFrame.krabat.zoomf = 4.2f;
@@ -73,7 +73,7 @@ public class CornyCholmc1 extends MainLocation {
         Dialog = new Multiple2(mainFrame);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -672,8 +672,8 @@ public class CornyCholmc1 extends MainLocation {
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
-                mainFrame.ConstructLocation(62, 12);
-                mainFrame.DestructLocation(17);
+                mainFrame.constructLocation(62, 12);
+                mainFrame.destructLocation(17);
                 mainFrame.repaint();
                 break;
 

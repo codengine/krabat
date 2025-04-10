@@ -93,9 +93,9 @@ public class Zastup extends MainLocation {
     public Zastup(Start caller, int oldLocation) {
         super(caller, 170);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 440;
         mainFrame.krabat.zoomf = 0.67f;
@@ -118,7 +118,7 @@ public class Zastup extends MainLocation {
 
         Verhinderschranke = MAX_VERHINDERSCHRANKE;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren 

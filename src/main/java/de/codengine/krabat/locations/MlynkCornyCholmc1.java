@@ -92,12 +92,12 @@ public class MlynkCornyCholmc1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public MlynkCornyCholmc1(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // CD aus, wenn Mueller da...
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         // es werden die alten Werte fuer Krabat erhalten, wie sie aus Kolmc stammen
   	/*mainFrame.krabat.maxx = 458;
@@ -122,7 +122,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
         offGraphics = offImage.getGraphics();
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // damit die Rueckflugssequenz immer gleich ist...

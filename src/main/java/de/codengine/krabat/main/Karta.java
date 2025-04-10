@@ -67,7 +67,7 @@ public class Karta extends Mainanim {
     // Instanz von dieser Location erzeugen
     public Karta(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         InitImages();
 
@@ -89,7 +89,7 @@ public class Karta extends Mainanim {
         Pzdzary = new GenericPoint(352 + Plo.x, 142 + Plo.y - Offset);
         Pkolmc = new GenericPoint(186 + Plo.x, 61 + Plo.y - Offset);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
         Paintcall = true;
         evalMouseMoveEvent(mainFrame.mousePoint);
     }
@@ -165,7 +165,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(21);
+                    mainFrame.constructLocation(21);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -179,7 +179,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(16);
+                    mainFrame.constructLocation(16);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -193,7 +193,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(13);
+                    mainFrame.constructLocation(13);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -207,7 +207,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(1);
+                    mainFrame.constructLocation(1);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -221,7 +221,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(3);
+                    mainFrame.constructLocation(3);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -235,7 +235,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(19);
+                    mainFrame.constructLocation(19);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -249,7 +249,7 @@ public class Karta extends Mainanim {
                     mainFrame.enteringFromMap = true;
                     mainFrame.currentLocationIdx = tloc;
                     mainFrame.actions[851] = false;
-                    mainFrame.ConstructLocation(17);
+                    mainFrame.constructLocation(17);
                 }
                 mainFrame.isClipSet = false;
                 Deactivate();
@@ -265,7 +265,7 @@ public class Karta extends Mainanim {
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
                         mainFrame.actions[851] = false;
-                        mainFrame.ConstructLocation(76);
+                        mainFrame.constructLocation(76);
                     }
                     mainFrame.isClipSet = false;
                     Deactivate();
@@ -278,7 +278,7 @@ public class Karta extends Mainanim {
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
                         mainFrame.actions[851] = false;
-                        mainFrame.ConstructLocation(87);
+                        mainFrame.constructLocation(87);
                     }
                     mainFrame.isClipSet = false;
                     Deactivate();
@@ -291,7 +291,7 @@ public class Karta extends Mainanim {
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
                         mainFrame.actions[851] = false;
-                        mainFrame.ConstructLocation(71);
+                        mainFrame.constructLocation(71);
                     }
                     mainFrame.isClipSet = false;
                     Deactivate();
@@ -304,7 +304,7 @@ public class Karta extends Mainanim {
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
                         mainFrame.actions[851] = false;
-                        mainFrame.ConstructLocation(93);
+                        mainFrame.constructLocation(93);
                     }
                     mainFrame.isClipSet = false;
                     Deactivate();
@@ -317,7 +317,7 @@ public class Karta extends Mainanim {
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
                         mainFrame.actions[851] = false;
-                        mainFrame.ConstructLocation(85);
+                        mainFrame.constructLocation(85);
                     }
                     mainFrame.isClipSet = false;
                     Deactivate();
@@ -695,7 +695,7 @@ public class Karta extends Mainanim {
 
     // Deaktivieren //////////
     private void Deactivate() {
-        mainFrame.DestructLocation(106);
+        mainFrame.destructLocation(106);
         newort = 0;
         mainFrame.isClipSet = false;
         mainFrame.whatScreen = ScreenType.NONE;

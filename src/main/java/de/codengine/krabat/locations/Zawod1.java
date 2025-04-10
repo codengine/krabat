@@ -102,9 +102,9 @@ public class Zawod1 extends MainLocation {
     // Instanz von diesem Intro erzeugen
     public Zawod1(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         floete = new GenericImage[4];
 
@@ -135,7 +135,7 @@ public class Zawod1 extends MainLocation {
 
         Counter = 0; // nur zur Sicherheit
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten
@@ -651,7 +651,7 @@ public class Zawod1 extends MainLocation {
                     // Load - Screen aktivieren
                     mainFrame.isAnimRunning = false;
                     skipActionID = 0;
-                    mainFrame.ConstructLocation(102);
+                    mainFrame.constructLocation(102);
                     mainFrame.whatScreen = ScreenType.LOAD_GAME;
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
@@ -664,8 +664,8 @@ public class Zawod1 extends MainLocation {
                     mainFrame.isClipSet = false;
                     mainFrame.mainMenu.introcall = false;
                     // Einmalige Ausnahme, wegen Gaense uebergeben
-                    mainFrame.ConstructLocation(6, gans1, gans2, gans3);
-                    mainFrame.DestructLocation(100);
+                    mainFrame.constructLocation(6, gans1, gans2, gans3);
+                    mainFrame.destructLocation(100);
                     mainFrame.repaint();
                     skipActionID = 0;
                     break;

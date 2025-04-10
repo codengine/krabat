@@ -124,9 +124,9 @@ public class Terassa extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Terassa(Start caller, int oldLocation) {
         super(caller, 127);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         schmied = new DDKowar(mainFrame);
 
@@ -145,7 +145,7 @@ public class Terassa extends MainLocation {
         schmiedVisible = mainFrame.actions[529] && !mainFrame.actions[701];
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -1010,7 +1010,7 @@ public class Terassa extends MainLocation {
                 // Kleidung wechseln, sluz Drasta anziehen
                 mainFrame.actions[511] = true;
                 mainFrame.actions[850] = true;
-                mainFrame.CheckKrabat();
+                mainFrame.checkKrabat();
                 mainFrame.inventory.vInventory.addElement(53);
                 mainFrame.inventory.vInventory.removeElement(41);
                 nextActionID = 720;
@@ -1055,7 +1055,7 @@ public class Terassa extends MainLocation {
                 // Kleidung wechseln, wieder normale Kleidung anziehen
                 mainFrame.actions[511] = false;
                 mainFrame.actions[850] = false;
-                mainFrame.CheckKrabat();
+                mainFrame.checkKrabat();
                 mainFrame.inventory.vInventory.addElement(41);
                 mainFrame.inventory.vInventory.removeElement(53);
                 nextActionID = 770;

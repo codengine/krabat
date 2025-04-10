@@ -63,9 +63,9 @@ public class Labyr1 extends Mainlaby {
         super(caller);
         log.debug("Laby 1");
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 7.25f;
@@ -74,7 +74,7 @@ public class Labyr1 extends Mainlaby {
         feuer = new Plomja(mainFrame);
         InitLocation(Richtung);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -566,8 +566,8 @@ public class Labyr1 extends Mainlaby {
                 } else {
                     evalNewLocationLeft();
                 }
-                mainFrame.ConstructLocation(newloc, 9);
-                mainFrame.DestructLocation(51);
+                mainFrame.constructLocation(newloc, 9);
+                mainFrame.destructLocation(51);
                 mainFrame.repaint();
                 break;
 
@@ -582,8 +582,8 @@ public class Labyr1 extends Mainlaby {
                 } else {
                     evalNewLocationRight();
                 }
-                mainFrame.ConstructLocation(newloc, 3);
-                mainFrame.DestructLocation(51);
+                mainFrame.constructLocation(newloc, 3);
+                mainFrame.destructLocation(51);
                 mainFrame.repaint();
                 break;
 

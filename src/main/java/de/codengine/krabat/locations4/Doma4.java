@@ -68,9 +68,9 @@ public class Doma4 extends MainLocation {
     public Doma4(Start caller) {
         super(caller);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(24, false);
 
@@ -91,7 +91,7 @@ public class Doma4 extends MainLocation {
         Verhinderleutelinks = MAX_VERHINDERLEUTELINKS;
         Verhinderleuterechts = MAX_VERHINDERLEUTERECHTS;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten

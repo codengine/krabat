@@ -53,11 +53,11 @@ public class Cyrkej1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Cyrkej1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Krabat - Definition
         mainFrame.actions[851] = true;
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(7, true);
 
@@ -66,7 +66,7 @@ public class Cyrkej1 extends MainLocation {
         mainFrame.krabat.defScale = 0;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

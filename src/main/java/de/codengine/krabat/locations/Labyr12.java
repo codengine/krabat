@@ -57,9 +57,9 @@ public class Labyr12 extends Mainlaby {
         super(caller);
         log.debug("Laby 12");
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 6.97f;
@@ -67,7 +67,7 @@ public class Labyr12 extends Mainlaby {
 
         InitLocation(Richtung);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -551,9 +551,9 @@ public class Labyr12 extends Mainlaby {
 
                 // Hier Unterscheidung, ob Exit oder weiter im Laby
                 /*if (newloc == 17)*/
-                mainFrame.ConstructLocation(17);
+                mainFrame.constructLocation(17);
                 /*else              mainFrame.ConstructLocation (newloc, 6);*/
-                mainFrame.DestructLocation(62);
+                mainFrame.destructLocation(62);
                 mainFrame.repaint();
                 break;
 
@@ -562,8 +562,8 @@ public class Labyr12 extends Mainlaby {
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
-                mainFrame.ConstructLocation(newloc, 3);
-                mainFrame.DestructLocation(62);
+                mainFrame.constructLocation(newloc, 3);
+                mainFrame.destructLocation(62);
                 mainFrame.repaint();
                 break;
 

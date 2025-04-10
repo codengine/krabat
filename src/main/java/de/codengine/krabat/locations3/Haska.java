@@ -81,9 +81,9 @@ public class Haska extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Haska(Start caller, int oldLocation) {
         super(caller, 121);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
         tropfen = new GenericImage[9];
@@ -99,7 +99,7 @@ public class Haska extends MainLocation {
         krabatWerfen.defScale = mainFrame.krabat.defScale;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

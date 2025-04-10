@@ -101,9 +101,9 @@ public class Wotrow extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Wotrow(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -115,7 +115,7 @@ public class Wotrow extends MainLocation {
         InitBlinker();
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

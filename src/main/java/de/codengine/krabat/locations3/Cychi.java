@@ -60,14 +60,14 @@ public class Cychi extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Cychi(Start caller, int oldLocation) {
         super(caller, 150);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
         if (mainFrame.actions[953]) {
             mainFrame.actions[701] = true;
         }
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 435;
         mainFrame.krabat.zoomf = 10f;
@@ -76,7 +76,7 @@ public class Cychi extends MainLocation {
         boot = new Boote(mainFrame, 1);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

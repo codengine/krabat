@@ -116,9 +116,9 @@ public class Wjes2 extends MainLocation2 {
 
     public Wjes2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         schmied = new KowarSunow(mainFrame);
         bote = new Posol(mainFrame);
@@ -204,7 +204,7 @@ public class Wjes2 extends MainLocation2 {
             setAnim = true;
         }
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -1145,11 +1145,11 @@ public class Wjes2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(84);
-                    mainFrame.DestructLocation(87);
+                    mainFrame.constructLocation(84);
+                    mainFrame.destructLocation(87);
                 } else {
                     // Karte einblenden
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
@@ -1161,11 +1161,11 @@ public class Wjes2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(88);
-                    mainFrame.DestructLocation(87);
+                    mainFrame.constructLocation(88);
+                    mainFrame.destructLocation(87);
                 } else {
                     // Karte einblenden
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
@@ -1177,11 +1177,11 @@ public class Wjes2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(73);
-                    mainFrame.DestructLocation(87);
+                    mainFrame.constructLocation(73);
+                    mainFrame.destructLocation(87);
                 } else {
                     // Karte einblenden
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
@@ -1193,11 +1193,11 @@ public class Wjes2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(86);
-                    mainFrame.DestructLocation(87);
+                    mainFrame.constructLocation(86);
+                    mainFrame.destructLocation(87);
                 } else {
                     // Karte einblenden
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();

@@ -88,9 +88,9 @@ public class Hrodz extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Hrodz(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -102,7 +102,7 @@ public class Hrodz extends MainLocation {
 
         Verhinderwippen = MAX_VERHINDERWIPPEN;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

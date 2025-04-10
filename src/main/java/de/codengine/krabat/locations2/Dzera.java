@@ -55,9 +55,9 @@ public class Dzera extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Dzera(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mueller = new Mlynk2(mainFrame);
         katze = new Kocka(mainFrame);
@@ -76,7 +76,7 @@ public class Dzera extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

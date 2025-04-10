@@ -264,7 +264,7 @@ public class MainMenu extends Mainanim {
                 return;
             }
             Deactivate();
-            mainFrame.ConstructLocation(102);
+            mainFrame.constructLocation(102);
             mainFrame.whatScreen = ScreenType.LOAD_GAME;
             MMactive = true;
             mainFrame.repaint();
@@ -281,7 +281,7 @@ public class MainMenu extends Mainanim {
                 return;
             }
             Deactivate();
-            mainFrame.ConstructLocation(103);
+            mainFrame.constructLocation(103);
             mainFrame.whatScreen = ScreenType.SAVE_GAME;
             MMactive = true;
             mainFrame.repaint();
@@ -291,7 +291,7 @@ public class MainMenu extends Mainanim {
         // Info
         if (brInfo.IsPointInRect(pTemp)) {
             Deactivate();
-            mainFrame.ConstructLocation(104);
+            mainFrame.constructLocation(104);
             mainFrame.whatScreen = ScreenType.CREDITS;
             MMactive = true;
             mainFrame.repaint();

@@ -74,9 +74,9 @@ public class Poklad extends MainLocation {
     public Poklad(Start caller) {
         super(caller, 181);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(25, true);
 
@@ -100,7 +100,7 @@ public class Poklad extends MainLocation {
 
         evalPersonPoints();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

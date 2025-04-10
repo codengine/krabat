@@ -79,9 +79,9 @@ public class Dubring1 extends MainLocation {
 
     public Dubring1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(9, true);
 
@@ -110,7 +110,7 @@ public class Dubring1 extends MainLocation {
         }
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -96,9 +96,9 @@ public class Kulow2 extends MainLocation {
 
     public Kulow2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(6, true);
 
@@ -149,7 +149,7 @@ public class Kulow2 extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -979,7 +979,7 @@ public class Kulow2 extends MainLocation {
 
             case 100:
                 // Karte einblenden
-                mainFrame.ConstructLocation(106);
+                mainFrame.constructLocation(106);
                 mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.MAP;
                 nextActionID = 0;

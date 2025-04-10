@@ -65,7 +65,7 @@ public class SaveGame extends Mainanim {
     // Instanz von dieser Location erzeugen
     public SaveGame(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         pLO = new GenericPoint(31, 31);
 
@@ -88,7 +88,7 @@ public class SaveGame extends Mainanim {
         // aktuellen Spielstand (nicht komplett!!) erzeugen
         GetActualSpielstand();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
@@ -355,7 +355,7 @@ public class SaveGame extends Mainanim {
         menuItem = 0;
         nFieldActive = -1;
         mainFrame.isClipSet = false;
-        mainFrame.DestructLocation(103);
+        mainFrame.destructLocation(103);
         if (mainFrame.mainMenu.MMactive) {
             mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {

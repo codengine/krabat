@@ -62,9 +62,9 @@ public class Panorama extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Panorama(Start caller, int oldLocation) {
         super(caller, 160);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 377;
         mainFrame.krabat.zoomf = 10f;
@@ -73,7 +73,7 @@ public class Panorama extends MainLocation {
         boot = new Boote(mainFrame, 3);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
     }
 

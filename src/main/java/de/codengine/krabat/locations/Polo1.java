@@ -81,9 +81,9 @@ public class Polo1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Polo1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 9.8f;
@@ -96,7 +96,7 @@ public class Polo1 extends MainLocation {
         evalPersons();
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Personen berechnen

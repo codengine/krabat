@@ -63,9 +63,9 @@ public class Jama1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Jama1(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -84,7 +84,7 @@ public class Jama1 extends MainLocation {
         Wuermer = new GenericImage[8];
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -62,9 +62,9 @@ public class Wobzor2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Wobzor2(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -89,7 +89,7 @@ public class Wobzor2 extends MainLocation2 {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         nextActionID = 10;
         TalkPause = 10;

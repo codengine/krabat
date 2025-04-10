@@ -78,9 +78,9 @@ public class Manega extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Manega(Start caller, int oldLocation) {
         super(caller, 171);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -95,7 +95,7 @@ public class Manega extends MainLocation {
         loeweRect = new Borderrect(loewePoint.x, loewePoint.y, loewePoint.x + Law.Breite, loewePoint.y + Law.Hoehe);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

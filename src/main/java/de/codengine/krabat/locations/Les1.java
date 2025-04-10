@@ -52,9 +52,9 @@ public class Les1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Les1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 340;
         mainFrame.krabat.zoomf = 2.45f;
@@ -64,7 +64,7 @@ public class Les1 extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -76,7 +76,7 @@ public class Straze extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Straze(Start caller, int oldLocation) {
         super(caller, 128);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
         if (mainFrame.actions[953]) {
@@ -86,7 +86,7 @@ public class Straze extends MainLocation {
         // Zum testen - Rausnehmen !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // mainFrame.Actions[511] = true;
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -113,7 +113,7 @@ public class Straze extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

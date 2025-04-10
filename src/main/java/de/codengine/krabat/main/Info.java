@@ -84,7 +84,7 @@ public class Info extends Mainanim {
     // Instanz von dieser Location erzeugen
     public Info(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         InitImages();
 
@@ -104,7 +104,7 @@ public class Info extends Mainanim {
         Pfeilr = mainFrame.inventory.Pfeilr;
         // DPfeilr = mainFrame.inventory.DPfeilr;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
@@ -300,7 +300,7 @@ public class Info extends Mainanim {
     private void Deactivate() {
         menuitem = 0;
         mainFrame.isClipSet = false;
-        mainFrame.DestructLocation(104);
+        mainFrame.destructLocation(104);
         if (mainFrame.mainMenu.MMactive) {
             mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {

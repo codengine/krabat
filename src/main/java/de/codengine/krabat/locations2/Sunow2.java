@@ -86,9 +86,9 @@ public class Sunow2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Sunow2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         Merkpunkt = new GenericPoint(0, 0);
         mueller = new Mlynk2(mainFrame);
@@ -106,7 +106,7 @@ public class Sunow2 extends MainLocation2 {
 
         reh = new Reh(mainFrame, false, new GenericRectangle(530, 237, 78, 56), 5);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

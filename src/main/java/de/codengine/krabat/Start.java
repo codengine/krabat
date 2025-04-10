@@ -209,7 +209,7 @@ public class Start implements Runnable {
         exitGame = new ExitGame(this, gameProperties);       // Sicherheitsabfragen
         krabat = new KrabatNormal(this);
 
-        CheckKrabat();
+        checkKrabat();
 
         log.trace("Font is cut.");
 
@@ -235,7 +235,7 @@ public class Start implements Runnable {
         }
          */
 
-        ConstructLocation(100);
+        constructLocation(100);
 
         startThread();
         repaint();
@@ -650,7 +650,7 @@ public class Start implements Runnable {
     }
 
     // verlassene Location wird geloescht
-    public synchronized void DestructLocation(int oldLocation) {
+    public synchronized void destructLocation(int oldLocation) {
         // normale Locations werden nicht zerstoert, nur ueberschrieben (Mainloc - Objekt)
 
         // Laden, Speichern, Credits, Karte muss jedoch geloescht werden 
@@ -677,9 +677,9 @@ public class Start implements Runnable {
     }
 
     // neue Location wird erzeugt
-    public synchronized void ConstructLocation(int newLocation) {
+    public synchronized void constructLocation(int newLocation) {
         // Paint - Schleife anhalten
-        NoPaint(true);
+        stopPaint(true);
 
         // to save memory a "cleanup" method is called here
         // the default implementation, however, is just an empty method
@@ -698,7 +698,7 @@ public class Start implements Runnable {
 
         // Labyrinth - Load - Einspruenge umleiten und als Load kennzeichnen
         if (newLocation > 50 && newLocation < 63) {
-            ConstructLocation(newLocation, 0);
+            constructLocation(newLocation, 0);
             return;
         }
 
@@ -1024,15 +1024,15 @@ public class Start implements Runnable {
         currentLocationIdx = newLocation;
 
         // Paint - Schleife wieder aktivieren
-        NoPaint(false);
+        stopPaint(false);
     }
 
     // neue Location wird erzeugt fuer Labyrinth extra, da Richtung unbekannt !!!
-    public synchronized void ConstructLocation(int newLocation, int Richtung) {
+    public synchronized void constructLocation(int newLocation, int Richtung) {
         // Richtungsvariable wieder nach Uhrzeit 3, 6, 9, 12
 
         // Paint - Schleife anhalten
-        NoPaint(true);
+        stopPaint(true);
 
         switch (newLocation) {
 
@@ -1078,11 +1078,11 @@ public class Start implements Runnable {
         currentLocationIdx = newLocation;
 
         // Paint - Schleife wieder aktivieren
-        NoPaint(false);
+        stopPaint(false);
     }
 
-    public synchronized void ConstructLocation(int newLocation, Husa gans1, Husa gans2, Husa gans3) {
-        NoPaint(true);
+    public synchronized void constructLocation(int newLocation, Husa gans1, Husa gans2, Husa gans3) {
+        stopPaint(true);
 
         if (currentLocation != null) {
             currentLocation.cleanup();
@@ -1097,7 +1097,7 @@ public class Start implements Runnable {
 
         currentLocationIdx = newLocation;
 
-        NoPaint(false);
+        stopPaint(false);
     }
 
     public synchronized final void keyPressed(GenericKeyEvent e) {
@@ -1118,7 +1118,7 @@ public class Start implements Runnable {
         // Feststellen, ob das Woerterbuch aktiviert werden soll
         if (whatScreen == ScreenType.NONE) {
             if (key == GenericKeyEvent.VK_F5) {
-                ConstructLocation(107);
+                constructLocation(107);
                 whatScreen = ScreenType.DICTIONARY;
                 isClipSet = false;
                 repaint();
@@ -1165,7 +1165,7 @@ public class Start implements Runnable {
     }
 
     // erzeugt kleines GenericImage vom Gamescreen, falls Speichern aufgerufen wird
-    public void StoreImage() {
+    public void storeImage() {
         GenericImage tempImage = GenericToolkit.getDefaultToolkit().createImage(640, 480);
         GenericDrawingContext tempGraphics = tempImage.getGraphics();
         tempGraphics.drawImage(offImage, -scrollX, -scrollY);
@@ -1174,15 +1174,15 @@ public class Start implements Runnable {
 
     // Programmneustart
     public void restart() {
-        DestructLocation(currentLocationIdx);
+        destructLocation(currentLocationIdx);
         initGame();
         inventory.ResetInventory();
-        ConstructLocation(100);
+        constructLocation(100);
         repaint();
     }
 
     // Alle relevanten Listener fuer Mousepress und Mousemove deaktivieren
-    public void Freeze(boolean cold) {
+    public void freeze(boolean cold) {
         if (cold) {
             setCursor(cursorWait);
             isListenerActive = false;
@@ -1192,12 +1192,12 @@ public class Start implements Runnable {
     }
 
     // Repaint - Schleife anhalten, verhindert Paint-Anhaeufungen
-    public void NoPaint(boolean haltan) {
-        stopPaint = haltan; // true = stop, false = weiter
+    public void stopPaint(boolean stop) {
+        stopPaint = stop; // true = stop, false = weiter
     }
 
     // diese Methode castet den richtigen Spieler, je nach Action - Array
-    public void CheckKrabat() {
+    public void checkKrabat() {
         // 850 und 851 = false -> Krabat ist ganz normal
         // 850 = true          -> Krabat von Seite mit Drasta
         // 851 = true          -> Krabat von Oben

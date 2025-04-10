@@ -77,9 +77,9 @@ public class Labyr9 extends Mainlaby {
         log.debug("Laby 9");
 
         mainFrame = caller;
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 5.22f;
@@ -104,7 +104,7 @@ public class Labyr9 extends Mainlaby {
             bludVisible = true;
         }
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -744,8 +744,8 @@ public class Labyr9 extends Mainlaby {
                 } else {
                     evalNewLocationLeft();
                 }
-                mainFrame.ConstructLocation(newloc, 9);
-                mainFrame.DestructLocation(59);
+                mainFrame.constructLocation(newloc, 9);
+                mainFrame.destructLocation(59);
                 mainFrame.repaint();
                 break;
 
@@ -760,8 +760,8 @@ public class Labyr9 extends Mainlaby {
                 } else {
                     evalNewLocationRight();
                 }
-                mainFrame.ConstructLocation(newloc, 3);
-                mainFrame.DestructLocation(59);
+                mainFrame.constructLocation(newloc, 3);
+                mainFrame.destructLocation(59);
                 mainFrame.repaint();
                 break;
 
@@ -776,8 +776,8 @@ public class Labyr9 extends Mainlaby {
                 } else {
                     evalNewLocationDown();
                 }
-                mainFrame.ConstructLocation(newloc, 6);
-                mainFrame.DestructLocation(59);
+                mainFrame.constructLocation(newloc, 6);
+                mainFrame.destructLocation(59);
                 mainFrame.repaint();
                 break;
 

@@ -47,9 +47,9 @@ public class Jezba extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Jezba(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -59,7 +59,7 @@ public class Jezba extends MainLocation2 {
         mainFrame.inventory.vInventory.addElement(54); // "Dresdener Karte" der Lausitz
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         nextActionID = 10;
     }

@@ -69,10 +69,10 @@ public class Cyrkej2 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Cyrkej2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         mainFrame.actions[851] = true;
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(7, true);
 
@@ -95,7 +95,7 @@ public class Cyrkej2 extends MainLocation {
         Dialog = new Multiple2(mainFrame);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -652,7 +652,7 @@ public class Cyrkej2 extends MainLocation {
 
             case 100:
                 // Karte einblenden
-                mainFrame.ConstructLocation(106);
+                mainFrame.constructLocation(106);
                 mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.MAP;
                 nextActionID = 0;

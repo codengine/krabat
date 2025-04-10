@@ -123,9 +123,9 @@ public class Casnik extends MainLocation {
     public Casnik(Start caller, int oldLocation) {
         super(caller, 143);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 365;
         mainFrame.krabat.zoomf = 1.2f;
@@ -141,7 +141,7 @@ public class Casnik extends MainLocation {
 
         Verhinderpendel = MAX_VERHINDERPENDEL[Pendelpos];
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

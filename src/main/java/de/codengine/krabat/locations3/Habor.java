@@ -80,9 +80,9 @@ public class Habor extends MainLocation {
     public Habor(Start caller, int oldLocation) {
         super(caller, 163);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 50;      // no zooming
         mainFrame.krabat.zoomf = 2f;
@@ -119,7 +119,7 @@ public class Habor extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

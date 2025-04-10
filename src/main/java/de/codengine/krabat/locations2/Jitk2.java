@@ -58,9 +58,9 @@ public class Jitk2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Jitk2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 374;
         mainFrame.krabat.zoomf = 3.38f;
@@ -68,7 +68,7 @@ public class Jitk2 extends MainLocation2 {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

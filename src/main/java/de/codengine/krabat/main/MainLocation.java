@@ -279,7 +279,7 @@ abstract public class MainLocation {
 
             case 520:
                 // Karte aktivieren
-                mainFrame.ConstructLocation(106);
+                mainFrame.constructLocation(106);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.MAP;
@@ -392,7 +392,7 @@ abstract public class MainLocation {
 
             case 550:
                 // Krabat mit Skica benutzen
-                mainFrame.ConstructLocation(108);
+                mainFrame.constructLocation(108);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.whatScreen = ScreenType.SKETCH;
                 nextActionID = 0;
@@ -577,8 +577,8 @@ abstract public class MainLocation {
         mainFrame.isBackgroundAnimRunning = false;
         mainFrame.isAnimRunning = false;
         mainFrame.isClipSet = false;
-        mainFrame.ConstructLocation(NewLocation);
-        mainFrame.DestructLocation(OldLocation);
+        mainFrame.constructLocation(NewLocation);
+        mainFrame.destructLocation(OldLocation);
         nextActionID = 0;
         mainFrame.repaint();
     }
@@ -591,7 +591,7 @@ abstract public class MainLocation {
             case 120:
                 // Load - Screen aktivieren
                 nextActionID = 0;
-                mainFrame.ConstructLocation(102);
+                mainFrame.constructLocation(102);
                 mainFrame.whatScreen = ScreenType.LOAD_GAME;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
@@ -600,8 +600,8 @@ abstract public class MainLocation {
             case 121:
                 // Save - Screen aktivieren
                 nextActionID = 0;
-                mainFrame.StoreImage();
-                mainFrame.ConstructLocation(103);
+                mainFrame.storeImage();
+                mainFrame.constructLocation(103);
                 mainFrame.whatScreen = ScreenType.SAVE_GAME;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
@@ -609,7 +609,7 @@ abstract public class MainLocation {
 
             case 122:
                 // Mainmenu aktivieren
-                mainFrame.StoreImage();
+                mainFrame.storeImage();
                 mainFrame.whatScreen = ScreenType.MAIN_MENU;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
@@ -618,7 +618,7 @@ abstract public class MainLocation {
 
             case 123:
                 // Inventar aktivieren
-                mainFrame.StoreImage();
+                mainFrame.storeImage();
                 mainFrame.krabat.StopWalking();
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;

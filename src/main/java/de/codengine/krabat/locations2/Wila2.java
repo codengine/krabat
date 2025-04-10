@@ -64,9 +64,9 @@ public class Wila2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Wila2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 400;
         mainFrame.krabat.zoomf = 4f;
@@ -85,7 +85,7 @@ public class Wila2 extends MainLocation2 {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -648,10 +648,10 @@ public class Wila2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(80);
-                    mainFrame.DestructLocation(85);
+                    mainFrame.constructLocation(80);
+                    mainFrame.destructLocation(85);
                 } else {
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
@@ -663,10 +663,10 @@ public class Wila2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(75);
-                    mainFrame.DestructLocation(85);
+                    mainFrame.constructLocation(75);
+                    mainFrame.destructLocation(85);
                 } else {
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
@@ -678,10 +678,10 @@ public class Wila2 extends MainLocation2 {
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
                 if (mainFrame.actions[300]) {
-                    mainFrame.ConstructLocation(72);
-                    mainFrame.DestructLocation(85);
+                    mainFrame.constructLocation(72);
+                    mainFrame.destructLocation(85);
                 } else {
-                    mainFrame.ConstructLocation(106);
+                    mainFrame.constructLocation(106);
                     mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();

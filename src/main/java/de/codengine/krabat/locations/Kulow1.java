@@ -109,9 +109,9 @@ public class Kulow1 extends MainLocation {
 
     public Kulow1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.enteringFromMap = false;  // hier ohne Bedeutung, Kulow stimmt immer neu an
         BackgroundMusicPlayer.getInstance().playTrack(6, true);
@@ -163,7 +163,7 @@ public class Kulow1 extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

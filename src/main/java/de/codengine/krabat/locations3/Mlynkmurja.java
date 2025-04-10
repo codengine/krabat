@@ -61,9 +61,9 @@ public class Mlynkmurja extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Mlynkmurja(Start caller) {
         super(caller, 129);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
         BackgroundMusicPlayer.getInstance().stop();
 
         mainFrame.krabat.maxx = 469;
@@ -85,7 +85,7 @@ public class Mlynkmurja extends MainLocation {
 
         // System.out.println ("Laterne wird auf Pos. " + laterneAdd + " gezeichnet.");
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

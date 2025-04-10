@@ -109,9 +109,9 @@ public class Hoscenc1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Hoscenc1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         // hier zufaellig Lied auswaehlen
         int zf = (int) (Math.random() * 50);
@@ -156,7 +156,7 @@ public class Hoscenc1 extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

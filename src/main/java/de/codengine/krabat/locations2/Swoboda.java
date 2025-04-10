@@ -72,9 +72,9 @@ public class Swoboda extends MainLocation {
 
     public Swoboda(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         // mainFrame.player.Play ("12", 174000);  // kommt schon durch Mlyn2 rein
 
@@ -95,7 +95,7 @@ public class Swoboda extends MainLocation {
 
         setAnim = true;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

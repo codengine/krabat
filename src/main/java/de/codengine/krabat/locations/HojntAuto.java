@@ -80,9 +80,9 @@ public class HojntAuto extends MainLocation {
 
     public HojntAuto(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 420;
         mainFrame.krabat.zoomf = 4.4f;
@@ -146,7 +146,7 @@ public class HojntAuto extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

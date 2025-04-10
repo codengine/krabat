@@ -64,9 +64,9 @@ public class Extro extends MainLocation {
     // Instanz vom Extro erzeugen
     public Extro(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -81,7 +81,7 @@ public class Extro extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         // Rapak gleich mal am Anfang kreischen lassen
         mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");

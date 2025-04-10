@@ -56,9 +56,9 @@ public class Les2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Les2(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -79,7 +79,7 @@ public class Les2 extends MainLocation2 {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         nextActionID = 10;
         TalkPause = 10;

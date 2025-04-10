@@ -107,9 +107,9 @@ public class Mertens2 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Mertens2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(26, true);
 
@@ -139,7 +139,7 @@ public class Mertens2 extends MainLocation {
         // fuer Blinkern rein
         InitBlinker();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

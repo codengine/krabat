@@ -97,9 +97,9 @@ public class StareWiki extends MainLocation {
     public StareWiki(Start caller, int oldLocation) {
         super(caller, 175);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(6, true);
 
@@ -147,7 +147,7 @@ public class StareWiki extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

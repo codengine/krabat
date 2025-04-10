@@ -87,7 +87,7 @@ public class Kuchnjaopen extends MainLocation {
     public Kuchnjaopen(Start caller, int oldLocation) {
         super(caller, 132);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -99,7 +99,7 @@ public class Kuchnjaopen extends MainLocation {
         //                                           nicht Casnik !!!!
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -153,7 +153,7 @@ public class Kuchnjaopen extends MainLocation {
                 break;
         }
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
     }
 

@@ -106,9 +106,9 @@ public class Hojnt2 extends MainLocation2 {
 
     public Hojnt2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 420;
         mainFrame.krabat.zoomf = 4.4f;
@@ -156,7 +156,7 @@ public class Hojnt2 extends MainLocation2 {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

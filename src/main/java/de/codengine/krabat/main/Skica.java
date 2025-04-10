@@ -48,13 +48,13 @@ public class Skica extends Mainanim {
     // Instanz von dieser Location erzeugen
     public Skica(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         InitImages();
 
         nextActionID = 10;
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten
@@ -140,7 +140,7 @@ public class Skica extends Mainanim {
 
     // Deaktivieren //////////
     private void Deactivate() {
-        mainFrame.DestructLocation(108);
+        mainFrame.destructLocation(108);
         mainFrame.isClipSet = false;
         mainFrame.whatScreen = ScreenType.NONE;
         Cursorform = 200;

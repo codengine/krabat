@@ -92,9 +92,9 @@ public class Komedij extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Komedij(Start caller, int oldLocation) {
         super(caller, 124);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 50;   // nicht zoomen !!!
         mainFrame.krabat.zoomf = 1f;
@@ -106,7 +106,7 @@ public class Komedij extends MainLocation {
         Verhinderkerze = new int[]{MAX_VERHINDERKERZE[0], MAX_VERHINDERKERZE[1], MAX_VERHINDERKERZE[2]};
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

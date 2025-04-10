@@ -114,9 +114,9 @@ public class Zachod extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Zachod(Start caller, int oldLocation) {
         super(caller, 151);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -141,7 +141,7 @@ public class Zachod extends MainLocation {
         krabat_schieb = new GenericImage[2];
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -93,8 +93,8 @@ public class Doma2 extends MainLocation {
     public Doma2(Start caller, int oldLocation) {
         super(caller);
 
-        mainFrame.Freeze(true);
-        mainFrame.CheckKrabat();
+        mainFrame.freeze(true);
+        mainFrame.checkKrabat();
 
         gans1 = new Husa(mainFrame, new Borderrect(150, 260, 197, 270));
         gans2 = new Husa(mainFrame, new Borderrect(238, 270, 285, 280));
@@ -167,7 +167,7 @@ public class Doma2 extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -930,7 +930,7 @@ public class Doma2 extends MainLocation {
 
             case 100:
                 // Karte einblenden
-                mainFrame.ConstructLocation(106);
+                mainFrame.constructLocation(106);
                 mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.MAP;
                 nextActionID = 0;

@@ -52,9 +52,9 @@ public class Pinca2 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Pinca2(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(8, true);
 
@@ -72,7 +72,7 @@ public class Pinca2 extends MainLocation {
         fararTalk.y = Pfarar.y - 50;
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -58,9 +58,9 @@ public class Hdwor extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Hdwor(Start caller, int oldLocation) {
         super(caller, 130);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -71,7 +71,7 @@ public class Hdwor extends MainLocation {
         boot = new Boote(mainFrame, 2);
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

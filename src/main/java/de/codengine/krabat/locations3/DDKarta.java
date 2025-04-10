@@ -60,7 +60,7 @@ public class DDKarta extends MainLocation {
     // Instanz von dieser Location erzeugen
     public DDKarta(Start caller, int oldLocation) {
         super(caller, 180);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
         if (mainFrame.actions[953]) {
@@ -68,7 +68,7 @@ public class DDKarta extends MainLocation {
         }
 
         mainFrame.actions[851] = true;
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 36f;
@@ -86,7 +86,7 @@ public class DDKarta extends MainLocation {
             mainFrame.actions[569] = true;
         }
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

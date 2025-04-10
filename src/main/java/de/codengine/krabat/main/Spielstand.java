@@ -190,7 +190,7 @@ public class Spielstand {
     }
 
     public synchronized void Save(int Stand) {
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
         // String File = "hry/krabat"+ (char) (Stand + 48) +".hra";
         byte[] Feld = new byte[mainFrame.storageManager.getFileSize()];
 
@@ -272,13 +272,13 @@ public class Spielstand {
         }
 
         // System.out.println("Checksumme : " + Checksum + " Feld : " + (int) Feld[undwo] + " Pos : " + (undwo));
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // Neuen Spielstand initialisieren
     public synchronized void Load() {
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Sprache festlegen
         Start.language = isHornjos;
@@ -304,10 +304,10 @@ public class Spielstand {
         mainFrame.krabat.SetFacing(Facing);
 
         // alte Location zerstoeren, neue erzeugen
-        mainFrame.DestructLocation(mainFrame.currentLocationIdx);
+        mainFrame.destructLocation(mainFrame.currentLocationIdx);
         mainFrame.currentLocationIdx = 0;    // fuer Krabatpositionsinit darf keine alte Location erscheinen
-        mainFrame.ConstructLocation(Location);
+        mainFrame.constructLocation(Location);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 }  

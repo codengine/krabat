@@ -52,9 +52,9 @@ public class Dubring2 extends MainLocation2 {
 
     public Dubring2(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -79,7 +79,7 @@ public class Dubring2 extends MainLocation2 {
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         nextActionID = 10;
         TalkPause = 10;

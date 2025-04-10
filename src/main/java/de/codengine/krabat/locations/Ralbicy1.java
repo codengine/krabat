@@ -63,9 +63,9 @@ public class Ralbicy1 extends MainLocation {
     public Ralbicy1(Start caller, int oldLocation) {
         super(caller);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 543;
         mainFrame.krabat.zoomf = 4.92f;
@@ -76,7 +76,7 @@ public class Ralbicy1 extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

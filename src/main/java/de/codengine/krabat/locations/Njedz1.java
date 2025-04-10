@@ -65,9 +65,9 @@ public class Njedz1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Njedz1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 479;
         mainFrame.krabat.zoomf = 1.35f;
@@ -78,7 +78,7 @@ public class Njedz1 extends MainLocation {
         // fuer Blinkern rein
         InitBlinker();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -76,9 +76,9 @@ public class LanguageChooser extends MainLocation {
     // Instanz von dieser Location erzeugen
     public LanguageChooser(Start caller, GameProperties properties) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.NoPaint(true);
+        mainFrame.stopPaint(true);
 
         this.properties = properties;
 
@@ -98,7 +98,7 @@ public class LanguageChooser extends MainLocation {
 
         log.debug("LanguageChooser constructor called!");
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten

@@ -70,12 +70,12 @@ public class CornyCholmc2 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public CornyCholmc2(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Oberwichtig !!! Hier wird "Hachhauselauf" eingeschaltet !!!
         mainFrame.actions[300] = true;
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 479;
         mainFrame.krabat.zoomf = 4.2f;
@@ -94,7 +94,7 @@ public class CornyCholmc2 extends MainLocation2 {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

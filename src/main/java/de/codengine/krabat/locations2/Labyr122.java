@@ -61,9 +61,9 @@ public class Labyr122 extends MainLocation2 {
     // Instanz von dieser Location erzeugen
     public Labyr122(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -84,7 +84,7 @@ public class Labyr122 extends MainLocation2 {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

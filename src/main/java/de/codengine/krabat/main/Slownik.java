@@ -95,9 +95,9 @@ public class Slownik extends Mainanim {
     // Instanz von dieser Location erzeugen
     public Slownik(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.NoPaint(true);
+        mainFrame.stopPaint(true);
 
         Eintrag = new String[600][2];
 
@@ -112,7 +112,7 @@ public class Slownik extends Mainanim {
         //TODO: Translations for Slownik
         LoadSlownik();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten
@@ -375,10 +375,10 @@ public class Slownik extends Mainanim {
     // Deaktivieren //////////
     private void Deactivate() {
         mainFrame.isClipSet = false;
-        mainFrame.DestructLocation(107);
+        mainFrame.destructLocation(107);
         mainFrame.whatScreen = ScreenType.NONE;
 
-        mainFrame.NoPaint(false);
+        mainFrame.stopPaint(false);
 
         mainFrame.repaint();
     }

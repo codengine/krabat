@@ -57,7 +57,7 @@ public class LoadGame extends Mainanim {
     // Instanz von dieser Location erzeugen
     public LoadGame(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         pLO = new GenericPoint(31, 31);
 
@@ -78,7 +78,7 @@ public class LoadGame extends Mainanim {
             Dir[i - 48].GetSavedSpiel(i - 48);
         }
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
@@ -339,7 +339,7 @@ public class LoadGame extends Mainanim {
         nFeldAktiv = -1;
         selected = -1;
         mainFrame.isClipSet = false;
-        mainFrame.DestructLocation(102);
+        mainFrame.destructLocation(102);
         if (mainFrame.mainMenu.MMactive) {
             mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {

@@ -100,9 +100,9 @@ public class Trepjena extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Trepjena(Start caller, int oldLocation) {
         super(caller, 131);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 8f;
@@ -122,7 +122,7 @@ public class Trepjena extends MainLocation {
 
         InitLocation(oldLocation);
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

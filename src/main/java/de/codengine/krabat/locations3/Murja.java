@@ -66,14 +66,14 @@ public class Murja extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Murja(Start caller, int oldLocation) {
         super(caller, 126);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         // Schmied raushauen, wenn Hammer genommen
         if (mainFrame.actions[953]) {
             mainFrame.actions[701] = true;
         }
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().stop();
 
@@ -82,7 +82,7 @@ public class Murja extends MainLocation {
         mainFrame.krabat.defScale = 40;
 
         InitLocation(oldLocation);
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -605,7 +605,7 @@ public class Murja extends MainLocation {
                 // umziehen
                 mainFrame.actions[511] = false;
                 mainFrame.actions[850] = false;
-                mainFrame.CheckKrabat();
+                mainFrame.checkKrabat();
                 mainFrame.inventory.vInventory.addElement(41);
                 mainFrame.inventory.vInventory.removeElement(53);
                 nextActionID = 640;

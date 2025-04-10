@@ -101,7 +101,7 @@ public class Install extends MainLocation {
     public Install(Start caller) {
         super(caller);
 
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
         name = new File(Datei);
 
@@ -153,7 +153,7 @@ public class Install extends MainLocation {
             drawMe = true;
         }
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
 
@@ -475,8 +475,8 @@ public class Install extends MainLocation {
         if (nextActionID == 100) {// Installer ist schon gelaufen, wir koennen Krabat starten
             mainFrame.isClipSet = false;
             nextActionID = 0;
-            mainFrame.ConstructLocation(100);
-            mainFrame.DestructLocation(105);
+            mainFrame.constructLocation(100);
+            mainFrame.destructLocation(105);
             mainFrame.repaint();
         } else {
             log.error("Wrong ID in Installer !! nextActionID = {}", nextActionID);

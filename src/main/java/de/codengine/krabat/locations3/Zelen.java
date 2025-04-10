@@ -121,9 +121,9 @@ public class Zelen extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Zelen(Start caller, int oldLocation) {
         super(caller, 145);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         mainFrame.krabat.maxx = 0;
         mainFrame.krabat.zoomf = 2f;
@@ -154,7 +154,7 @@ public class Zelen extends MainLocation {
         VerhinderwalkAwgust = MAX_VERHINDERWALKAWGUST;
         VerhinderwalkDruzina = MAX_VERHINDERWALKDRUZINA - 1;  // asynchron Laufen !!
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

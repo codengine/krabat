@@ -97,9 +97,9 @@ public class Wjes1 extends MainLocation {
 
     public Wjes1(Start caller, int oldLocation) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         schmied = new KowarSunow(mainFrame);
         Dialog = new Multiple2(mainFrame);
@@ -173,7 +173,7 @@ public class Wjes1 extends MainLocation {
 
         InitLocation();
 
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)

@@ -86,9 +86,9 @@ public class Mlyn1 extends MainLocation {
     // Instanz von dieser Location erzeugen
     public Mlyn1(Start caller) {
         super(caller);
-        mainFrame.Freeze(true);
+        mainFrame.freeze(true);
 
-        mainFrame.CheckKrabat();
+        mainFrame.checkKrabat();
 
         BackgroundMusicPlayer.getInstance().playTrack(12, true);
 
@@ -113,7 +113,7 @@ public class Mlyn1 extends MainLocation {
         krabatmorph = new Bumm(mainFrame);
 
         InitLocation();
-        mainFrame.Freeze(false);
+        mainFrame.freeze(false);
 
         nextActionID = 10;
         TalkPause = 5;
