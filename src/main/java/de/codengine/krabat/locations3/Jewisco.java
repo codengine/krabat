@@ -39,18 +39,18 @@ public class Jewisco extends MainLocation {
     private int scrollwert;
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang
-            = new Borderrect(0, 90, 75, 450);
+    private static final BorderRect linkerAusgang
+            = new BorderRect(0, 90, 75, 450);
     /*
     private static final borderrect kerzen
 	= new borderrect (158, 95, 215, 183);
     private static final borderrect stuehle
 	= new borderrect (135, 288, 252, 415);
 	*/
-    private static final Borderrect brBuch
-            = new Borderrect(213, 345, 257, 362);
-    private static final Borderrect zuschauer
-            = new Borderrect(883, 326, 993, 358);
+    private static final BorderRect brBuch
+            = new BorderRect(213, 345, 257, 362);
+    private static final BorderRect zuschauer
+            = new BorderRect(883, 326, 993, 358);
 
     // Konstante Points
     private static final GenericPoint pExitLinks = new GenericPoint(126, 427);
@@ -85,15 +85,15 @@ public class Jewisco extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 125, 20, 125, 458, 479));
+                (new BorderTrapezoid(20, 125, 20, 125, 458, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(126, 1170, 126, 1170, 420, 479));
+                (new BorderTrapezoid(126, 1170, 126, 1170, 420, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(1171, 1260, 1171, 1260, 443, 479));
+                (new BorderTrapezoid(1171, 1260, 1171, 1260, 443, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(805, 1080, 725, 1165, 376, 419));
+                (new BorderTrapezoid(805, 1080, 725, 1165, 376, 419));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(870, 990, 870, 1010, 361, 375));
+                (new BorderTrapezoid(870, 990, 870, 1010, 361, 375));
 
         mainFrame.pathFinder.ClearMatrix(5);
 
@@ -263,7 +263,7 @@ public class Jewisco extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -388,7 +388,7 @@ public class Jewisco extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     zuschauer.IsPointInRect(pTemp) ||
                     brBuch.IsPointInRect(pTemp) && !mainFrame.actions[952];

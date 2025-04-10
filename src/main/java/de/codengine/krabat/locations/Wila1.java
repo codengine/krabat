@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Plokarka;
+import de.codengine.krabat.anims.WasherWoman;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -47,7 +47,7 @@ public class Wila1 extends MainLocation {
     private GenericImage threelost;
     private final GenericImage[] krabat_waesche;
 
-    private Plokarka waschfrau;
+    private WasherWoman waschfrau;
 
     private boolean showPlokarka = false; // Ist sie ueberhaupt zu sehen ???
     private boolean walkReady = true; // Flag, ob sie denn schon fertiggelaufen ist
@@ -63,14 +63,14 @@ public class Wila1 extends MainLocation {
     private int AnimPosition = 0;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(378, 90, 464, 144);
-    private static final Borderrect untererAusgang = new Borderrect(102, 437, 400, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(600, 306, 639, 479);
-    private static final Borderrect kleiderRect = new Borderrect(375, 235, 441, 280);
-    private static final Borderrect leineRect = new Borderrect(375, 240, 441, 265);
-    private static final Borderrect durjeRect = new Borderrect(300, 347, 328, 411);
-    private static final Borderrect dachRect = new Borderrect(355, 282, 421, 351); // fuer Vordergrund
-    private static final Borderrect stangeRect = new Borderrect(423, 261, 476, 372); // fuer Vordergrund
+    private static final BorderRect obererAusgang = new BorderRect(378, 90, 464, 144);
+    private static final BorderRect untererAusgang = new BorderRect(102, 437, 400, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(600, 306, 639, 479);
+    private static final BorderRect kleiderRect = new BorderRect(375, 235, 441, 280);
+    private static final BorderRect leineRect = new BorderRect(375, 240, 441, 265);
+    private static final BorderRect durjeRect = new BorderRect(300, 347, 328, 411);
+    private static final BorderRect dachRect = new BorderRect(355, 282, 421, 351); // fuer Vordergrund
+    private static final BorderRect stangeRect = new BorderRect(423, 261, 476, 372); // fuer Vordergrund
 
     // Konstante Points
     private static final GenericPoint Pdown = new GenericPoint(208, 479);
@@ -108,7 +108,7 @@ public class Wila1 extends MainLocation {
         mainFrame.krabat.zoomf = 5.3f;
         mainFrame.krabat.defScale = 10;
 
-        waschfrau = new Plokarka(mainFrame);
+        waschfrau = new WasherWoman(mainFrame);
         waschfrau.maxx = 400;
         waschfrau.zoomf = 4f;
         waschfrau.defScale = 0;
@@ -127,17 +127,17 @@ public class Wila1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(166, 458, 639, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(352, 639, 166, 639, 428, 457));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(536, 639, 464, 639, 373, 427));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(550, 639, 536, 639, 333, 372));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 458, 639, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(352, 639, 166, 639, 428, 457));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(536, 639, 464, 639, 373, 427));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(550, 639, 536, 639, 333, 372));
         // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (488, 494, 550, 625, 249, 332));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(488, 494, 519, 560, 249, 297));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(465, 298, 567, 307));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(523, 567, 550, 625, 308, 332));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(390, 298, 464, 307));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(460, 464, 488, 494, 178, 248));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(435, 437, 460, 464, 145, 177));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(488, 494, 519, 560, 249, 297));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(465, 298, 567, 307));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(523, 567, 550, 625, 308, 332));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(390, 298, 464, 307));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(460, 464, 488, 494, 178, 248));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(435, 437, 460, 464, 145, 177));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(10);
@@ -255,7 +255,7 @@ public class Wila1 extends MainLocation {
         // Waschfrau Hintergrund loeschen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = waschfrau.getRect();
+            BorderRect temp = waschfrau.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -327,7 +327,7 @@ public class Wila1 extends MainLocation {
         // Waschfrau zeichnen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = waschfrau.getRect();
+            BorderRect temp = waschfrau.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -523,7 +523,7 @@ public class Wila1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -723,7 +723,7 @@ public class Wila1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] && mainFrame.actions[175] ||
                     kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175] ||
@@ -988,7 +988,7 @@ public class Wila1 extends MainLocation {
                 }
                 waschfrau.SetFacing(12);
                 // Hier Position des Textes berechnen
-                Borderrect temp = waschfrau.getRect();
+                BorderRect temp = waschfrau.getRect();
                 GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
                 outputTextPos = mainFrame.imageFont.CenterText(outputText, tTalk);
                 TalkPerson = 27;
@@ -1142,7 +1142,7 @@ public class Wila1 extends MainLocation {
                 // Sie sagt ihren Spruch
                 outputText = mainFrame.imageFont.TeileTextKey("Wila1_10");
                 // Hier Position des Textes berechnen
-                Borderrect tmp = waschfrau.getRect();
+                BorderRect tmp = waschfrau.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 outputTextPos = mainFrame.imageFont.CenterText(outputText, tTlk);
                 waschfrau.SetFacing(12);

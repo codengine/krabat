@@ -39,14 +39,14 @@ public class Kapala extends MainLocation {
     private final GenericImage[] Feuer;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangGang
-            = new Borderrect(180, 365, 285, 432);
-    private static final Borderrect papierRollen
-            = new Borderrect(425, 415, 505, 448);
-    private static final Borderrect papierRolle1
-            = new Borderrect(434, 363, 456, 380);
-    private static final Borderrect papierRolle2
-            = new Borderrect(458, 368, 475, 385);
+    private static final BorderRect ausgangGang
+            = new BorderRect(180, 365, 285, 432);
+    private static final BorderRect papierRollen
+            = new BorderRect(425, 415, 505, 448);
+    private static final BorderRect papierRolle1
+            = new BorderRect(434, 363, 456, 380);
+    private static final BorderRect papierRolle2
+            = new BorderRect(458, 368, 475, 385);
 
     private static final int Feuerwidth = 50;
     private int Feuercount = 0;
@@ -97,11 +97,11 @@ public class Kapala extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(304, 372, 354, 372, 426, 479));
+                (new BorderTrapezoid(304, 372, 354, 372, 426, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(373, 467, 432, 479));
+                (new BorderTrapezoid(373, 467, 432, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(433, 434, 433, 469, 467, 479));
+                (new BorderTrapezoid(433, 434, 433, 469, 467, 479));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -303,7 +303,7 @@ public class Kapala extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -449,7 +449,7 @@ public class Kapala extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     papierRollen.IsPointInRect(pTemp) ||
                     papierRolle1.IsPointInRect(pTemp) ||

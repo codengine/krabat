@@ -42,10 +42,10 @@ public class Kupa1 extends MainLocation {
     private int WhichItem = 0;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(610, 336, 639, 405);
-    private static final Borderrect kupa3Rect = new Borderrect(114, 293, 271, 396);
-    private static final Borderrect rohodzRect = new Borderrect(0, 341, 81, 479);
-    private static final Borderrect schildRect = new Borderrect(324, 361, 360, 390);
+    private static final BorderRect rechterAusgang = new BorderRect(610, 336, 639, 405);
+    private static final BorderRect kupa3Rect = new BorderRect(114, 293, 271, 396);
+    private static final BorderRect rohodzRect = new BorderRect(0, 341, 81, 479);
+    private static final BorderRect schildRect = new BorderRect(324, 361, 360, 390);
 
     private static final int[] Carray = {363, 363, 363, 364, 364, 365, 365, 365, 366, 366,
             366, 366, 366, 366, 366, 367, 367, 367, 367, 367,
@@ -70,19 +70,19 @@ public class Kupa1 extends MainLocation {
     private static final GenericPoint Pschild = new GenericPoint(356, 368);
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(0, 331, 150, 349),
-                    new Bordertrapez(74, 150, 74, 87, 350, 404),
-                    new Bordertrapez(77, 405, 84, 452),
-                    new Bordertrapez(77, 92, 77, 128, 453, 479),
-                    new Bordertrapez(238, 324, 402, 351),
-                    new Bordertrapez(254, 400, 283, 373, 352, 360),
-                    new Bordertrapez(297, 376, 297, 343, 385, 435),
-                    new Bordertrapez(297, 343, 250, 379, 436, 479),
-                    new Bordertrapez(403, 324, 430, 328),
-                    new Bordertrapez(431, 325, 501, 326),
-                    new Bordertrapez(523, 330, 639, 334),
-                    new Bordertrapez(553, 639, 626, 639, 335, 353)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(0, 331, 150, 349),
+                    new BorderTrapezoid(74, 150, 74, 87, 350, 404),
+                    new BorderTrapezoid(77, 405, 84, 452),
+                    new BorderTrapezoid(77, 92, 77, 128, 453, 479),
+                    new BorderTrapezoid(238, 324, 402, 351),
+                    new BorderTrapezoid(254, 400, 283, 373, 352, 360),
+                    new BorderTrapezoid(297, 376, 297, 343, 385, 435),
+                    new BorderTrapezoid(297, 343, 250, 379, 436, 479),
+                    new BorderTrapezoid(403, 324, 430, 328),
+                    new BorderTrapezoid(431, 325, 501, 326),
+                    new BorderTrapezoid(523, 330, 639, 334),
+                    new BorderTrapezoid(553, 639, 626, 639, 335, 353)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -147,19 +147,19 @@ public class Kupa1 extends MainLocation {
             // Schild ist drin
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(262, 356, 411, 371));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(543, 570, 615, 639, 358, 382));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(500, 350, 550, 357));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(446, 345, 499, 354));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(425, 348, 445, 356));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(412, 355, 424, 362));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(262, 356, 411, 371));
 
             // Borders auf der Insel
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (243, 361, 261, 404));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(210, 261, 210, 261, 356, 371));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(166, 209, 156, 209, 368, 371));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(156, 158, 123, 125, 372, 404));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(117, 252, 117, 181, 405, 450));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(210, 261, 210, 261, 356, 371));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 209, 156, 209, 368, 371));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(156, 158, 123, 125, 372, 404));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(117, 252, 117, 181, 405, 450));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(10);
@@ -178,12 +178,12 @@ public class Kupa1 extends MainLocation {
             // noch kein Schild drin, nix mit auf die Insel geh...
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(543, 570, 615, 639, 358, 382));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(500, 350, 550, 357));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(446, 345, 499, 354));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(425, 348, 445, 356));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(412, 355, 424, 362));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(356, 356, 411, 371));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(543, 570, 615, 639, 358, 382));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(500, 350, 550, 357));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(446, 345, 499, 354));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(425, 348, 445, 356));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(412, 355, 424, 362));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(356, 356, 411, 371));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(6);
@@ -210,9 +210,9 @@ public class Kupa1 extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1;
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -422,7 +422,7 @@ public class Kupa1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -557,7 +557,7 @@ public class Kupa1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || rohodzRect.IsPointInRect(pTemp) &&
                     !mainFrame.actions[917] && mainFrame.actions[224] ||
                     !mainFrame.actions[224] && schildRect.IsPointInRect(pTemp);

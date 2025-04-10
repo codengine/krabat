@@ -37,10 +37,10 @@ public class Wotrow extends MainLocation {
     private GenericImage mond;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(325, 119, 387, 149);
-    private static final Borderrect untererAusgang = new Borderrect(309, 445, 423, 479);
-    private static final Borderrect brWoda = new Borderrect(420, 270, 525, 280);
-    private static final Borderrect brWokno = new Borderrect(331, 398, 360, 411);
+    private static final BorderRect obererAusgang = new BorderRect(325, 119, 387, 149);
+    private static final BorderRect untererAusgang = new BorderRect(309, 445, 423, 479);
+    private static final BorderRect brWoda = new BorderRect(420, 270, 525, 280);
+    private static final BorderRect brWokno = new BorderRect(331, 398, 360, 411);
 
     // Konstante Points
     private static final GenericPoint Pdown = new GenericPoint(357, 479);
@@ -86,9 +86,9 @@ public class Wotrow extends MainLocation {
     private static final int fWokno = 9;
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(430, 461, 421, 460, 273, 277),
-                    new Bordertrapez(469, 491, 470, 491, 274, 277)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(430, 461, 421, 460, 273, 277),
+                    new BorderTrapezoid(469, 491, 470, 491, 274, 277)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -122,21 +122,21 @@ public class Wotrow extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(441, 463, 340, 368, 403, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(410, 414, 441, 463, 390, 402));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(373, 376, 409, 412, 371, 389));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(373, 356, 374, 370));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(437, 439, 373, 376, 326, 355));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(440, 442, 437, 439, 319, 325));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(440, 312, 441, 318));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(407, 408, 440, 441, 282, 311));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(401, 402, 407, 408, 272, 281));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(390, 391, 401, 402, 266, 271));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(382, 383, 390, 391, 255, 265));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(367, 368, 382, 383, 222, 254));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(332, 333, 367, 368, 199, 221));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(330, 331, 332, 333, 190, 198));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(332, 333, 330, 331, 175, 189));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(441, 463, 340, 368, 403, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(410, 414, 441, 463, 390, 402));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(373, 376, 409, 412, 371, 389));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(373, 356, 374, 370));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(437, 439, 373, 376, 326, 355));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(440, 442, 437, 439, 319, 325));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(440, 312, 441, 318));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(407, 408, 440, 441, 282, 311));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(401, 402, 407, 408, 272, 281));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(390, 391, 401, 402, 266, 271));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(382, 383, 390, 391, 255, 265));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(367, 368, 382, 383, 222, 254));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(332, 333, 367, 368, 199, 221));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(330, 331, 332, 333, 190, 198));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(332, 333, 330, 331, 175, 189));
 
         mainFrame.pathFinder.ClearMatrix(15);
 
@@ -196,9 +196,9 @@ public class Wotrow extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1; // 1 Mindestens !
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -369,7 +369,7 @@ public class Wotrow extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -516,7 +516,7 @@ public class Wotrow extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || brWoda.IsPointInRect(pTemp) ||
                     brWokno.IsPointInRect(pTemp);
 

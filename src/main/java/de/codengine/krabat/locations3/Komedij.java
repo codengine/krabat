@@ -49,24 +49,24 @@ public class Komedij extends MainLocation {
     private static final int[] MAX_VERHINDERKERZE = {3, 2, 4};
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang
-            = new Borderrect(0, 0, 163, 150);
-    private static final Borderrect sekera
-            = new Borderrect(144, 210, 185, 298);
-    private static final Borderrect rectJacke // fuer vordergrund
-            = new Borderrect(0, 370, 260, 480);
-    private static final Borderrect rectGorilla
-            = new Borderrect(424, 190, 490, 345);
-    private static final Borderrect rectSluzDrasta
-            = new Borderrect(502, 209, 570, 359);
-    private static final Borderrect rectSchwert // fuer Vordergrund
-            = new Borderrect(210, 370, 445, 480);
-    private static final Borderrect postawa
-            = new Borderrect(55, 151, 128, 479);
-    private static final Borderrect mjec
-            = new Borderrect(312, 227, 336, 479);
-    private static final Borderrect tesaki
-            = new Borderrect(491, 251, 578, 311);
+    private static final BorderRect linkerAusgang
+            = new BorderRect(0, 0, 163, 150);
+    private static final BorderRect sekera
+            = new BorderRect(144, 210, 185, 298);
+    private static final BorderRect rectJacke // fuer vordergrund
+            = new BorderRect(0, 370, 260, 480);
+    private static final BorderRect rectGorilla
+            = new BorderRect(424, 190, 490, 345);
+    private static final BorderRect rectSluzDrasta
+            = new BorderRect(502, 209, 570, 359);
+    private static final BorderRect rectSchwert // fuer Vordergrund
+            = new BorderRect(210, 370, 445, 480);
+    private static final BorderRect postawa
+            = new BorderRect(55, 151, 128, 479);
+    private static final BorderRect mjec
+            = new BorderRect(312, 227, 336, 479);
+    private static final BorderRect tesaki
+            = new BorderRect(491, 251, 578, 311);
 
     // Konstante Points
     private static final GenericPoint pExitLeft = new GenericPoint(135, 372);
@@ -114,11 +114,11 @@ public class Komedij extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(105, 390, 105, 390, 372, 475));
+                (new BorderTrapezoid(105, 390, 105, 390, 372, 475));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(391, 530, 391, 530, 392, 479));
+                (new BorderTrapezoid(391, 530, 391, 530, 392, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(531, 620, 531, 620, 415, 479));
+                (new BorderTrapezoid(531, 620, 531, 620, 415, 479));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -302,7 +302,7 @@ public class Komedij extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -505,7 +505,7 @@ public class Komedij extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     sekera.IsPointInRect(pTemp) ||
                     rectGorilla.IsPointInRect(pTemp) ||

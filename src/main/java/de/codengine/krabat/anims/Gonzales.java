@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Gonzales extends Mainanim {
+public class Gonzales extends MainAnim {
     private final GenericImage[] pirat_head;
     private final GenericImage[] pirat_body;
     private GenericImage pirat_blinker;

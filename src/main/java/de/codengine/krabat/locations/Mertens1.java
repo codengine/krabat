@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.WodnyMuz;
+import de.codengine.krabat.anims.WaterSpirit;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -35,8 +35,8 @@ public class Mertens1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mertens1.class);
     private GenericImage background;
 
-    private WodnyMuz wmann;
-    private final Multiple2 Dialog;
+    private WaterSpirit wmann;
+    private final MultipleChoice Dialog;
     private boolean isShowing = false;
     private boolean isTauching = false;
 
@@ -44,7 +44,7 @@ public class Mertens1 extends MainLocation {
     private boolean setAnim = false;
 
     private final GenericPoint wmannTalk;
-    private final Borderrect wmannRect;
+    private final BorderRect wmannRect;
 
     // Punkte in Location
     private static final GenericPoint Pleft = new GenericPoint(0, 305);
@@ -53,27 +53,27 @@ public class Mertens1 extends MainLocation {
     private static final GenericPoint Pwmann = new GenericPoint(59, 305);
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect linkerAusgang = new Borderrect(0, 261, 29, 341);
-    private static final Borderrect wasserobenRect = new Borderrect(0, 181, 452, 240);
-    private static final Borderrect wasseruntenRect = new Borderrect(122, 338, 428, 400);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 261, 29, 341);
+    private static final BorderRect wasserobenRect = new BorderRect(0, 181, 452, 240);
+    private static final BorderRect wasseruntenRect = new BorderRect(122, 338, 428, 400);
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(597, 195, 639, 413),
-                    new Bordertrapez(543, 231, 554, 285),
-                    new Bordertrapez(552, 303, 556, 339),
-                    new Bordertrapez(553, 183, 561, 203),
-                    new Bordertrapez(504, 517, 505, 506, 178, 212),
-                    new Bordertrapez(500, 501, 485, 511, 290, 419),
-                    new Bordertrapez(388, 456, 388, 435, 173, 381),
-                    new Bordertrapez(388, 435, 388, 415, 382, 401),
-                    new Bordertrapez(358, 387, 83, 387, 289, 354),
-                    new Bordertrapez(83, 387, 178, 387, 355, 401),
-                    new Bordertrapez(0, 193, 387, 226),
-                    new Bordertrapez(155, 387, 0, 387, 175, 192),
-                    new Bordertrapez(34, 152, 152, 153, 227, 249),
-                    new Bordertrapez(153, 227, 180, 246),
-                    new Bordertrapez(181, 227, 330, 252)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(597, 195, 639, 413),
+                    new BorderTrapezoid(543, 231, 554, 285),
+                    new BorderTrapezoid(552, 303, 556, 339),
+                    new BorderTrapezoid(553, 183, 561, 203),
+                    new BorderTrapezoid(504, 517, 505, 506, 178, 212),
+                    new BorderTrapezoid(500, 501, 485, 511, 290, 419),
+                    new BorderTrapezoid(388, 456, 388, 435, 173, 381),
+                    new BorderTrapezoid(388, 435, 388, 415, 382, 401),
+                    new BorderTrapezoid(358, 387, 83, 387, 289, 354),
+                    new BorderTrapezoid(83, 387, 178, 387, 355, 401),
+                    new BorderTrapezoid(0, 193, 387, 226),
+                    new BorderTrapezoid(155, 387, 0, 387, 175, 192),
+                    new BorderTrapezoid(34, 152, 152, 153, 227, 249),
+                    new BorderTrapezoid(153, 227, 180, 246),
+                    new BorderTrapezoid(181, 227, 330, 252)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -103,16 +103,16 @@ public class Mertens1 extends MainLocation {
 
         InitLocation(oldLocation); // schon hier oben, da wmannposit festgelegt werden muss
 
-        wmann = new WodnyMuz(mainFrame, mainFrame.actions[207]);
-        Dialog = new Multiple2(mainFrame);
+        wmann = new WaterSpirit(mainFrame, mainFrame.actions[207]);
+        Dialog = new MultipleChoice(mainFrame);
 
         wmannTalk = new GenericPoint();
         wmannTalk.x = wmannFeet.x;
-        wmannTalk.y = wmannFeet.y - WodnyMuz.Tauchhoehe - 50;
+        wmannTalk.y = wmannFeet.y - WaterSpirit.Tauchhoehe - 50;
 
-        int wmannxk = wmannFeet.x - WodnyMuz.Breite / 2;
+        int wmannxk = wmannFeet.x - WaterSpirit.Breite / 2;
         // die verschiedenen Hoehenangaben sind richtig, da "Fusspunkt" nicht Ende des Images !
-        wmannRect = new Borderrect(wmannxk, wmannFeet.y - WodnyMuz.Tauchhoehe, wmannxk + WodnyMuz.Breite, wmannFeet.y - WodnyMuz.Tauchhoehe + WodnyMuz.Hoehe);
+        wmannRect = new BorderRect(wmannxk, wmannFeet.y - WaterSpirit.Tauchhoehe, wmannxk + WaterSpirit.Breite, wmannFeet.y - WaterSpirit.Tauchhoehe + WaterSpirit.Hoehe);
 
         // fuer Blinkern rein
         InitBlinker();
@@ -124,8 +124,8 @@ public class Mertens1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 150, 0, 13, 288, 323));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(284, 307, 65, 185, 266, 287));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 150, 0, 13, 288, 323));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(284, 307, 65, 185, 266, 287));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(2);
@@ -167,9 +167,9 @@ public class Mertens1 extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1;
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -284,14 +284,14 @@ public class Mertens1 extends MainLocation {
 
         // Wassermann zeichnen beim Schwimmen und Reden
         if (isShowing) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
+            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
             wmann.drawWmuz(g, TalkPerson, wmannRect.lo_point);
         }
 
         // Wassermann zeichnen beim Auf / Abtauchen
         if (isTauching) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
+            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
             isTauching = wmann.Tauche(g, wmannRect.lo_point);
         }
@@ -414,7 +414,7 @@ public class Mertens1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -546,7 +546,7 @@ public class Mertens1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wasserobenRect.IsPointInRect(pTemp) ||
                     wasseruntenRect.IsPointInRect(pTemp);
 

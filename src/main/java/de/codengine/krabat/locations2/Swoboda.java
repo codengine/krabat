@@ -21,10 +21,10 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mac;
-import de.codengine.krabat.anims.Mlynk2;
-import de.codengine.krabat.anims.RapakWuswobodzic;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
+import de.codengine.krabat.anims.Mother;
+import de.codengine.krabat.anims.RavenFreedom;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,9 +36,9 @@ import java.util.Objects;
 public class Swoboda extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Swoboda.class);
     private GenericImage background;
-    private Mac mutter;
-    private Mlynk2 mueller;
-    private RapakWuswobodzic[] raben;
+    private Mother mutter;
+    private Miller mueller;
+    private RavenFreedom[] raben;
     private GenericPoint[] rapakpos;
 
     private boolean setAnim = false;
@@ -58,11 +58,11 @@ public class Swoboda extends MainLocation {
 
     private GenericPoint mutterTalk;
 
-    private Bumm krabatmorph;
+    private Boom krabatmorph;
     private int krabatmorphcount = 0;
     private boolean iskrabatmorphing = false;
 
-    private Bumm rabemorph;
+    private Boom rabemorph;
     private int rabemorphcount = 0;
     private boolean israbemorphing = false;
 
@@ -82,8 +82,8 @@ public class Swoboda extends MainLocation {
         mainFrame.krabat.zoomf = 4.93f;
         mainFrame.krabat.defScale = -150;
 
-        krabatmorph = new Bumm(mainFrame);
-        rabemorph = new Bumm(mainFrame);
+        krabatmorph = new Boom(mainFrame);
+        rabemorph = new Boom(mainFrame);
 
         InitLocation();
         InitImages();
@@ -100,8 +100,8 @@ public class Swoboda extends MainLocation {
 
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
-        mutter = new Mac(mainFrame, false);
-        mueller = new Mlynk2(mainFrame);
+        mutter = new Mother(mainFrame, false);
+        mueller = new Miller(mainFrame);
 
         mueller.maxx = 467;
         mueller.zoomf = 4f;
@@ -118,24 +118,24 @@ public class Swoboda extends MainLocation {
         mutterTalk.x = Pmutter.x;
         mutterTalk.y = mutterPoint.y - 50;
 
-        raben = new RapakWuswobodzic[13];
-        raben[1] = new RapakWuswobodzic(mainFrame);
-        raben[2] = new RapakWuswobodzic(mainFrame);
-        raben[3] = new RapakWuswobodzic(mainFrame);
-        raben[4] = new RapakWuswobodzic(mainFrame);
-        raben[5] = new RapakWuswobodzic(mainFrame);
-        raben[6] = new RapakWuswobodzic(mainFrame);
-        raben[7] = new RapakWuswobodzic(mainFrame);
-        raben[8] = new RapakWuswobodzic(mainFrame);
-        raben[9] = new RapakWuswobodzic(mainFrame);
-        raben[10] = new RapakWuswobodzic(mainFrame);
-        raben[11] = new RapakWuswobodzic(mainFrame);
-        raben[12] = new RapakWuswobodzic(mainFrame);
+        raben = new RavenFreedom[13];
+        raben[1] = new RavenFreedom(mainFrame);
+        raben[2] = new RavenFreedom(mainFrame);
+        raben[3] = new RavenFreedom(mainFrame);
+        raben[4] = new RavenFreedom(mainFrame);
+        raben[5] = new RavenFreedom(mainFrame);
+        raben[6] = new RavenFreedom(mainFrame);
+        raben[7] = new RavenFreedom(mainFrame);
+        raben[8] = new RavenFreedom(mainFrame);
+        raben[9] = new RavenFreedom(mainFrame);
+        raben[10] = new RavenFreedom(mainFrame);
+        raben[11] = new RavenFreedom(mainFrame);
+        raben[12] = new RavenFreedom(mainFrame);
 
         rapakpos = new GenericPoint[13];
         for (int i = 1; i <= 12; i++) {
             // rapakpos[i] = new GenericPoint (((i - 1) * 23) + 142, ((i - 1) * 2) + 231);
-            rapakpos[i] = new GenericPoint((i - 1) * 23 + 142, Rarray[i] - RapakWuswobodzic.Hoehe + 3);
+            rapakpos[i] = new GenericPoint((i - 1) * 23 + 142, Rarray[i] - RavenFreedom.Hoehe + 3);
         }
 
         // Hier bekommt Krabat seine Inventargegenstaende wieder
@@ -218,7 +218,7 @@ public class Swoboda extends MainLocation {
 
         // Mueller Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp;
+        BorderRect temp;
         if (!mlynkHatStock) {
             temp = mueller.getRect();
         } else {
@@ -232,7 +232,7 @@ public class Swoboda extends MainLocation {
 
         // Raben
         for (int i = 1; i <= 12; i++) {
-            g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
+            g.setClip(rapakpos[i].x, rapakpos[i].y, RavenFreedom.Breite, RavenFreedom.Hoehe);
             g.drawImage(background, 0, 0);
         }
 
@@ -242,7 +242,7 @@ public class Swoboda extends MainLocation {
                 if (i == KRABATRABE && !rabeVisible) {
                     continue;
                 }
-                g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
+                g.setClip(rapakpos[i].x, rapakpos[i].y, RavenFreedom.Breite, RavenFreedom.Hoehe);
                 raben[i].drawRapak(g, rapakpos[i]);
             }
         } else {
@@ -250,7 +250,7 @@ public class Swoboda extends MainLocation {
                 if (i == KRABATRABE && !rabeVisible) {
                     continue;
                 }
-                g.setClip(rapakpos[i].x, rapakpos[i].y, RapakWuswobodzic.Breite, RapakWuswobodzic.Hoehe);
+                g.setClip(rapakpos[i].x, rapakpos[i].y, RavenFreedom.Breite, RavenFreedom.Hoehe);
                 if (i != KRABATRABE) {
                     raben[i].KratzeLinks(g, rapakpos[i]);
                 } else {
@@ -271,7 +271,7 @@ public class Swoboda extends MainLocation {
 
         // Mueller zeichnen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect tmp;
+        BorderRect tmp;
         if (!mlynkHatStock) {
             tmp = mueller.getRect();
         } else {
@@ -457,8 +457,8 @@ public class Swoboda extends MainLocation {
 
             case 150:
                 // Raben rausmorphen
-                GenericPoint pTe = new GenericPoint(rapakpos[KRABATRABE].x + RapakWuswobodzic.Breite / 2,
-                        rapakpos[KRABATRABE].y + RapakWuswobodzic.Hoehe);
+                GenericPoint pTe = new GenericPoint(rapakpos[KRABATRABE].x + RavenFreedom.Breite / 2,
+                        rapakpos[KRABATRABE].y + RavenFreedom.Hoehe);
                 rabemorph.Init(pTe, 50);
                 israbemorphing = true;
                 nextActionID = 153;

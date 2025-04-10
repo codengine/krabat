@@ -22,9 +22,9 @@ package de.codengine.krabat.locations;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Husa;
-import de.codengine.krabat.anims.IntroDomaPtack;
-import de.codengine.krabat.anims.LogoPtack;
+import de.codengine.krabat.anims.Geese;
+import de.codengine.krabat.anims.IntroHomeBird;
+import de.codengine.krabat.anims.LogoBird;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericDrawingContext2D;
@@ -51,11 +51,11 @@ public class Zawod1 extends MainLocation {
     private final GenericImage[] floete;
     private int IntroStep = 1;
     private int nextActionID = 0;
-    private IntroDomaPtack ptack1;
-    private IntroDomaPtack ptack2;
-    private final Husa gans1;
-    private final Husa gans2;
-    private final Husa gans3;
+    private IntroHomeBird ptack1;
+    private IntroHomeBird ptack2;
+    private final Geese gans1;
+    private final Geese gans2;
+    private final Geese gans3;
 
     private GenericImage offImage;
     private GenericDrawingContext offGraphics;
@@ -68,9 +68,9 @@ public class Zawod1 extends MainLocation {
 
     private boolean playing = true;  // so lassen, ist nur ein Gag...
 
-    private LogoPtack vogel1;
-    private LogoPtack vogel2;
-    private LogoPtack vogel3;
+    private LogoBird vogel1;
+    private LogoBird vogel2;
+    private LogoBird vogel3;
 
     private int skipActionID = 0;
 
@@ -110,16 +110,16 @@ public class Zawod1 extends MainLocation {
 
         InitImages();
 
-        ptack1 = new IntroDomaPtack(mainFrame, 1150, 10);
-        ptack2 = new IntroDomaPtack(mainFrame, 1250, 15);
+        ptack1 = new IntroHomeBird(mainFrame, 1150, 10);
+        ptack2 = new IntroHomeBird(mainFrame, 1250, 15);
 
-        vogel1 = new LogoPtack(mainFrame, 640, 185);
-        vogel2 = new LogoPtack(mainFrame, 690, 200);
-        vogel3 = new LogoPtack(mainFrame, 750, 225);
+        vogel1 = new LogoBird(mainFrame, 640, 185);
+        vogel2 = new LogoBird(mainFrame, 690, 200);
+        vogel3 = new LogoBird(mainFrame, 750, 225);
 
-        gans1 = new Husa(mainFrame, new Borderrect(150, 260, 197, 270));
-        gans2 = new Husa(mainFrame, new Borderrect(238, 270, 285, 280));
-        gans3 = new Husa(mainFrame, new Borderrect(182, 300, 276, 310));
+        gans1 = new Geese(mainFrame, new BorderRect(150, 260, 197, 270));
+        gans2 = new Geese(mainFrame, new BorderRect(238, 270, 285, 280));
+        gans3 = new Geese(mainFrame, new BorderRect(182, 300, 276, 310));
 
         mainFrame.isClipSet = false;
 

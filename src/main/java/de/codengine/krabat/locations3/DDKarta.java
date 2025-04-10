@@ -39,14 +39,14 @@ public class DDKarta extends MainLocation {
     private GenericImage vor4;
 
     // Konstanten - Rects
-    private static final Borderrect brPanorama
-            = new Borderrect(312, 28, 394, 91);
-    private static final Borderrect brHrod
-            = new Borderrect(202, 246, 279, 290);
-    private static final Borderrect brStarewiki
-            = new Borderrect(295, 381, 392, 479);
-    private static final Borderrect brZastup
-            = new Borderrect(417, 10, 488, 85);
+    private static final BorderRect brPanorama
+            = new BorderRect(312, 28, 394, 91);
+    private static final BorderRect brHrod
+            = new BorderRect(202, 246, 279, 290);
+    private static final BorderRect brStarewiki
+            = new BorderRect(295, 381, 392, 479);
+    private static final BorderRect brZastup
+            = new BorderRect(417, 10, 488, 85);
 
     // Konstante Points
     private static final GenericPoint pPanorama = new GenericPoint(355, 78);
@@ -94,41 +94,41 @@ public class DDKarta extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(479, 480, 474, 475, 72, 76));
+                (new BorderTrapezoid(479, 480, 474, 475, 72, 76));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(474, 475, 456, 457, 77, 79));
+                (new BorderTrapezoid(474, 475, 456, 457, 77, 79));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(425, 80, 457, 81));
+                (new BorderTrapezoid(425, 80, 457, 81));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(425, 82, 426, 98));
+                (new BorderTrapezoid(425, 82, 426, 98));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(405, 99, 426, 100));
+                (new BorderTrapezoid(405, 99, 426, 100));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(365, 366, 405, 406, 91, 98));
+                (new BorderTrapezoid(365, 366, 405, 406, 91, 98));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(365, 78, 366, 90));
+                (new BorderTrapezoid(365, 78, 366, 90));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(352, 76, 366, 77));
+                (new BorderTrapezoid(352, 76, 366, 77));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(355, 356, 309, 310, 78, 164));
+                (new BorderTrapezoid(355, 356, 309, 310, 78, 164));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(309, 310, 279, 280, 165, 228));
+                (new BorderTrapezoid(309, 310, 279, 280, 165, 228));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(190, 229, 280, 230));
+                (new BorderTrapezoid(190, 229, 280, 230));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(190, 231, 191, 291));
+                (new BorderTrapezoid(190, 231, 191, 291));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(190, 191, 160, 161, 292, 336));
+                (new BorderTrapezoid(190, 191, 160, 161, 292, 336));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(160, 337, 161, 385));
+                (new BorderTrapezoid(160, 337, 161, 385));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(160, 386, 206, 387));
+                (new BorderTrapezoid(160, 386, 206, 387));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(295, 296, 205, 206, 381, 385));
+                (new BorderTrapezoid(295, 296, 205, 206, 381, 385));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(295, 379, 320, 380));
+                (new BorderTrapezoid(295, 379, 320, 380));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(319, 381, 320, 436));
+                (new BorderTrapezoid(319, 381, 320, 436));
 
         mainFrame.pathFinder.ClearMatrix(18);
 
@@ -314,7 +314,7 @@ public class DDKarta extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -469,7 +469,7 @@ public class DDKarta extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

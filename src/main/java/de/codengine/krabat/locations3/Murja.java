@@ -48,10 +48,10 @@ public class Murja extends MainLocation {
     private boolean isBuschVisible = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangHaska
-            = new Borderrect(1240, 355, 1279, 460);
-    private static final Borderrect ausgangTerassa
-            = new Borderrect(0, 380, 40, 479);
+    private static final BorderRect ausgangHaska
+            = new BorderRect(1240, 355, 1279, 460);
+    private static final BorderRect ausgangTerassa
+            = new BorderRect(0, 380, 40, 479);
 
     // Konstante Points
     private static final GenericPoint pExitHaska = new GenericPoint(1260, 435);
@@ -90,9 +90,9 @@ public class Murja extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(10, 473, 1259, 479));
+                (new BorderTrapezoid(10, 473, 1259, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(1260, 1270, 1260, 1270, 435, 479));
+                (new BorderTrapezoid(1260, 1270, 1260, 1270, 435, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -323,7 +323,7 @@ public class Murja extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -429,7 +429,7 @@ public class Murja extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

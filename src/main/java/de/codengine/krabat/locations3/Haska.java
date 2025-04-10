@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.KrabatWerfen;
+import de.codengine.krabat.anims.KrabatThrow;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -39,7 +39,7 @@ public class Haska extends MainLocation {
     private boolean switchanim = false;
     private int weinCount = 0;
 
-    private final KrabatWerfen krabatWerfen;
+    private final KrabatThrow krabatThrow;
 
     private boolean krabatWirft = false;
 
@@ -48,18 +48,18 @@ public class Haska extends MainLocation {
     private boolean schnauzeWein = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangKuchnja
-            = new Borderrect(421, 275, 463, 391);
-    private static final Borderrect ausgangStadt
-            = new Borderrect(330, 254, 370, 363);
-    private static final Borderrect fenster
-            = new Borderrect(33, 11, 110, 127);
-    private static final Borderrect wino
-            = new Borderrect(452, 396, 509, 452);
+    private static final BorderRect ausgangKuchnja
+            = new BorderRect(421, 275, 463, 391);
+    private static final BorderRect ausgangStadt
+            = new BorderRect(330, 254, 370, 363);
+    private static final BorderRect fenster
+            = new BorderRect(33, 11, 110, 127);
+    private static final BorderRect wino
+            = new BorderRect(452, 396, 509, 452);
     // private static final borderrect komedHaus
     //     = new borderrect (115, 135, 204, 365);
-    private static final Borderrect seilHaken
-            = new Borderrect(60, 132, 90, 425);
+    private static final BorderRect seilHaken
+            = new BorderRect(60, 132, 90, 425);
 
     // Konstante Points
     private static final GenericPoint pExitKuchnja = new GenericPoint(400, 420);
@@ -88,15 +88,15 @@ public class Haska extends MainLocation {
         BackgroundMusicPlayer.getInstance().stop();
         tropfen = new GenericImage[9];
 
-        krabatWerfen = new KrabatWerfen(mainFrame);
+        krabatThrow = new KrabatThrow(mainFrame);
 
         mainFrame.krabat.maxx = 424;
         mainFrame.krabat.zoomf = 1.48f;
         mainFrame.krabat.defScale = -50;
 
-        krabatWerfen.maxx = mainFrame.krabat.maxx;
-        krabatWerfen.zoomf = mainFrame.krabat.zoomf;
-        krabatWerfen.defScale = mainFrame.krabat.defScale;
+        krabatThrow.maxx = mainFrame.krabat.maxx;
+        krabatThrow.zoomf = mainFrame.krabat.zoomf;
+        krabatThrow.defScale = mainFrame.krabat.defScale;
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -107,9 +107,9 @@ public class Haska extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(234, 320, 193, 370, 367, 419));
+                (new BorderTrapezoid(234, 320, 193, 370, 367, 419));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(193, 400, 145, 443, 420, 479));
+                (new BorderTrapezoid(193, 400, 145, 443, 420, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -211,7 +211,7 @@ public class Haska extends MainLocation {
 
         // hier die Extrawurst fuer den Hakenwurf
         if (krabatWirft) {
-            krabatWirft = krabatWerfen.drawKrabat(g, mainFrame.krabat.getPos());
+            krabatWirft = krabatThrow.drawKrabat(g, mainFrame.krabat.getPos());
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
@@ -322,7 +322,7 @@ public class Haska extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -508,7 +508,7 @@ public class Haska extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     fenster.IsPointInRect(pTemp) ||
                     wino.IsPointInRect(pTemp) ||

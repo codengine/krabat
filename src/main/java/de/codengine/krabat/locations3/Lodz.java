@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.WikowarkaRudy;
+import de.codengine.krabat.anims.MerchantIronOre;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,8 +36,8 @@ public class Lodz extends MainLocation {
     private GenericImage background;
     private GenericImage vor1;
     private GenericImage vor2;
-    private final WikowarkaRudy wikowarka;
-    private final Multiple2 Dialog;
+    private final MerchantIronOre wikowarka;
+    private final MultipleChoice Dialog;
 
     private int GiveCounter = 0;
 
@@ -50,8 +50,8 @@ public class Lodz extends MainLocation {
     private boolean Kiss = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangHabor
-            = new Borderrect(0, 70, 40, 240);
+    private static final BorderRect ausgangHabor
+            = new BorderRect(0, 70, 40, 240);
 
     // Konstante Points
     private static final GenericPoint pExitHabor = new GenericPoint(15, 156);
@@ -84,8 +84,8 @@ public class Lodz extends MainLocation {
         mainFrame.krabat.zoomf = 0f;
         mainFrame.krabat.defScale = 50;
 
-        wikowarka = new WikowarkaRudy(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        wikowarka = new MerchantIronOre(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         wikowarka.setPos(zonaPoint);
         wikowarka.SetFacing(6);
@@ -104,13 +104,13 @@ public class Lodz extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(10, 30, 180, 200, 155, 246));
+                (new BorderTrapezoid(10, 30, 180, 200, 155, 246));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(127, 460, 127, 460, 247, 257));
+                (new BorderTrapezoid(127, 460, 127, 460, 247, 257));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(242, 300, 242, 300, 258, 330));
+                (new BorderTrapezoid(242, 300, 242, 300, 258, 330));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(144, 164, 80, 100, 258, 370));
+                (new BorderTrapezoid(144, 164, 80, 100, 258, 370));
 
         mainFrame.pathFinder.ClearMatrix(4);
 
@@ -167,7 +167,7 @@ public class Lodz extends MainLocation {
 
         // Zona Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp = wikowarka.getRect();
+        BorderRect temp = wikowarka.getRect();
         g.setClip(temp.lo_point.x - 5, temp.lo_point.y - 5, temp.ru_point.x - temp.lo_point.x + 10,
                 temp.ru_point.y - temp.lo_point.y + 10);
 
@@ -182,7 +182,7 @@ public class Lodz extends MainLocation {
 
         // Zona zeichnen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp2 = wikowarka.getRect();
+        BorderRect temp2 = wikowarka.getRect();
         g.setClip(temp2.lo_point.x - 5, temp2.lo_point.y - 5, temp2.ru_point.x - temp2.lo_point.x + 10,
                 temp2.ru_point.y - temp2.lo_point.y + 10);
 
@@ -197,7 +197,7 @@ public class Lodz extends MainLocation {
             // nur rumstehen oder laufen
             else {
                 if (Stollen || Metall || Kiss) {
-                    Borderrect tp = wikowarka.getRect();
+                    BorderRect tp = wikowarka.getRect();
                     if (Stollen) {
                         wikowarka.giveWosusk(g, tp.lo_point);
                     }
@@ -343,7 +343,7 @@ public class Lodz extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -473,7 +473,7 @@ public class Lodz extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible;
 
@@ -585,7 +585,7 @@ public class Lodz extends MainLocation {
 
     private GenericPoint evalZonaTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = wikowarka.getRect();
+        BorderRect temp = wikowarka.getRect();
         return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 

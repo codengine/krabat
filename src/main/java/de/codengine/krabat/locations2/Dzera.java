@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Kocka;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Cat;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -35,8 +35,8 @@ public class Dzera extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Dzera.class);
     private GenericImage background;
 
-    private Mlynk2 mueller;
-    private Kocka katze;
+    private Miller mueller;
+    private Cat katze;
 
     private boolean setAnim = false;
 
@@ -59,8 +59,8 @@ public class Dzera extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mueller = new Mlynk2(mainFrame);
-        katze = new Kocka(mainFrame);
+        mueller = new Miller(mainFrame);
+        katze = new Cat(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -69,8 +69,8 @@ public class Dzera extends MainLocation {
         mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
-        Pkocka.x = kockaFeet.x - Kocka.Breite / 2;
-        Pkocka.y = kockaFeet.y - Kocka.Hoehe;
+        Pkocka.x = kockaFeet.x - Cat.Breite / 2;
+        Pkocka.y = kockaFeet.y - Cat.Hoehe;
         kockaTalk.x = kockaFeet.x;
         kockaTalk.y = Pkocka.y - 50;
 
@@ -121,7 +121,7 @@ public class Dzera extends MainLocation {
 
         // Hintergrund fuer Mueller loeschen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp = mueller.getRect();
+        BorderRect temp = mueller.getRect();
         g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                 temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -139,7 +139,7 @@ public class Dzera extends MainLocation {
         }
 
         // Katze zeichnen
-        g.setClip(Pkocka.x, Pkocka.y, Kocka.Breite, Kocka.Hoehe);
+        g.setClip(Pkocka.x, Pkocka.y, Cat.Breite, Cat.Hoehe);
         g.drawImage(background, 0, 0);
         katze.drawKocka(g, TalkPerson, Pkocka);
 

@@ -21,14 +21,14 @@
 package de.codengine.krabat.main;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mainanim;
+import de.codengine.krabat.anims.MainAnim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import de.codengine.krabat.sound.BackgroundMusicPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExitGame extends Mainanim {
+public class ExitGame extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(ExitGame.class);
     private int selected = -1;
     private int Anzahl;

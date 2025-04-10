@@ -21,9 +21,9 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Kacka1;
-import de.codengine.krabat.anims.Kacka2;
-import de.codengine.krabat.anims.WodnyMuz;
+import de.codengine.krabat.anims.Duck1;
+import de.codengine.krabat.anims.Duck2;
+import de.codengine.krabat.anims.WaterSpirit;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -37,8 +37,8 @@ public class Mertens2 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Mertens2.class);
     private GenericImage background;
 
-    private WodnyMuz wmann;
-    private final Multiple2 Dialog;
+    private WaterSpirit wmann;
+    private final MultipleChoice Dialog;
     private boolean isShowing = false;
     private boolean isTauching = false;
 
@@ -49,10 +49,10 @@ public class Mertens2 extends MainLocation {
     private int whichAnim = 0;
 
     private final GenericPoint wmannTalk;
-    private final Borderrect wmannRect;
+    private final BorderRect wmannRect;
 
-    private Kacka1 kacka1;
-    private Kacka2 kacka2;
+    private Duck1 duck1;
+    private Duck2 duck2;
     private boolean kacka1Visible = false;
     private boolean kacka2Visible = false;
     private boolean kacka1IsLeft = false;
@@ -70,27 +70,27 @@ public class Mertens2 extends MainLocation {
     private static final GenericPoint Pverlassen = new GenericPoint(-50, 305);
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect linkerAusgang = new Borderrect(0, 261, 29, 341);
-    private static final Borderrect wasserobenRect = new Borderrect(0, 181, 452, 240);
-    private static final Borderrect wasseruntenRect = new Borderrect(122, 338, 428, 400);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 261, 29, 341);
+    private static final BorderRect wasserobenRect = new BorderRect(0, 181, 452, 240);
+    private static final BorderRect wasseruntenRect = new BorderRect(122, 338, 428, 400);
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(597, 195, 639, 413),
-                    new Bordertrapez(543, 231, 554, 285),
-                    new Bordertrapez(552, 303, 556, 339),
-                    new Bordertrapez(553, 183, 561, 203),
-                    new Bordertrapez(504, 517, 505, 506, 178, 212),
-                    new Bordertrapez(500, 501, 485, 511, 290, 419),
-                    new Bordertrapez(388, 456, 388, 435, 173, 381),
-                    new Bordertrapez(388, 435, 388, 415, 382, 401),
-                    new Bordertrapez(358, 387, 83, 387, 289, 354),
-                    new Bordertrapez(83, 387, 178, 387, 355, 401),
-                    new Bordertrapez(0, 193, 387, 226),
-                    new Bordertrapez(155, 387, 0, 387, 175, 192),
-                    new Bordertrapez(34, 152, 152, 153, 227, 249),
-                    new Bordertrapez(153, 227, 180, 246),
-                    new Bordertrapez(181, 227, 330, 252)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(597, 195, 639, 413),
+                    new BorderTrapezoid(543, 231, 554, 285),
+                    new BorderTrapezoid(552, 303, 556, 339),
+                    new BorderTrapezoid(553, 183, 561, 203),
+                    new BorderTrapezoid(504, 517, 505, 506, 178, 212),
+                    new BorderTrapezoid(500, 501, 485, 511, 290, 419),
+                    new BorderTrapezoid(388, 456, 388, 435, 173, 381),
+                    new BorderTrapezoid(388, 435, 388, 415, 382, 401),
+                    new BorderTrapezoid(358, 387, 83, 387, 289, 354),
+                    new BorderTrapezoid(83, 387, 178, 387, 355, 401),
+                    new BorderTrapezoid(0, 193, 387, 226),
+                    new BorderTrapezoid(155, 387, 0, 387, 175, 192),
+                    new BorderTrapezoid(34, 152, 152, 153, 227, 249),
+                    new BorderTrapezoid(153, 227, 180, 246),
+                    new BorderTrapezoid(181, 227, 330, 252)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -119,22 +119,22 @@ public class Mertens2 extends MainLocation {
 
         InitLocation(oldLocation);
 
-        wmann = new WodnyMuz(mainFrame, mainFrame.actions[207]);
-        Dialog = new Multiple2(mainFrame);
+        wmann = new WaterSpirit(mainFrame, mainFrame.actions[207]);
+        Dialog = new MultipleChoice(mainFrame);
 
         wmannTalk = new GenericPoint();
         wmannTalk.x = wmannFeet.x;
-        wmannTalk.y = wmannFeet.y - WodnyMuz.Tauchhoehe - 50;
+        wmannTalk.y = wmannFeet.y - WaterSpirit.Tauchhoehe - 50;
 
-        int wmannxk = wmannFeet.x - WodnyMuz.Breite / 2;
+        int wmannxk = wmannFeet.x - WaterSpirit.Breite / 2;
         // die verschiedenen Hoehenangaben sind richtig, da "Fusspunkt" nicht Ende des Images !
-        wmannRect = new Borderrect(wmannxk, wmannFeet.y - WodnyMuz.Tauchhoehe, wmannxk + WodnyMuz.Breite, wmannFeet.y - WodnyMuz.Tauchhoehe + WodnyMuz.Hoehe);
+        wmannRect = new BorderRect(wmannxk, wmannFeet.y - WaterSpirit.Tauchhoehe, wmannxk + WaterSpirit.Breite, wmannFeet.y - WaterSpirit.Tauchhoehe + WaterSpirit.Hoehe);
 
         Counter = (int) Math.round(Math.random() * 60);
         Counter += 40;
 
-        kacka1 = new Kacka1(mainFrame);
-        kacka2 = new Kacka2(mainFrame);
+        duck1 = new Duck1(mainFrame);
+        duck2 = new Duck2(mainFrame);
 
         // fuer Blinkern rein
         InitBlinker();
@@ -146,8 +146,8 @@ public class Mertens2 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 150, 0, 13, 288, 323));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(284, 307, 65, 185, 266, 287));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 150, 0, 13, 288, 323));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(284, 307, 65, 185, 266, 287));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(2);
@@ -200,9 +200,9 @@ public class Mertens2 extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1;
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -240,10 +240,10 @@ public class Mertens2 extends MainLocation {
 
         wmann.cleanup();
         wmann = null;
-        kacka1.cleanup();
-        kacka1 = null;
-        kacka2.cleanup();
-        kacka2 = null;
+        duck1.cleanup();
+        duck1 = null;
+        duck2.cleanup();
+        duck2 = null;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -309,16 +309,16 @@ public class Mertens2 extends MainLocation {
 
         // erste Ente zeichnen, wenn da
         if (kacka1Visible) {
-            g.setClip(kacka1.kackaRect());
+            g.setClip(duck1.kackaRect());
             g.drawImage(background, 0, 0);
-            kacka1.drawKacka(g, TalkPerson, kacka1IsLeft, kacka1IsMoving);
+            duck1.drawKacka(g, TalkPerson, kacka1IsLeft, kacka1IsMoving);
         }
 
         // zweite Ente zeichnen, wenn da
         if (kacka2Visible) {
-            g.setClip(kacka2.kackaRect());
+            g.setClip(duck2.kackaRect());
             g.drawImage(background, 0, 0);
-            kacka2FliegtNoch = kacka2.drawKacka(g, TalkPerson);
+            kacka2FliegtNoch = duck2.drawKacka(g, TalkPerson);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
@@ -339,14 +339,14 @@ public class Mertens2 extends MainLocation {
 
         // Wassermann zeichnen beim Schwimmen und Reden
         if (isShowing) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
+            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
             wmann.drawWmuz(g, TalkPerson, wmannRect.lo_point);
         }
 
         // Wassermann zeichnen beim Auf / Abtauchen
         if (isTauching) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WodnyMuz.Breite, WodnyMuz.Tauchhoehe);
+            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
             isTauching = wmann.Tauche(g, wmannRect.lo_point);
         }
@@ -468,7 +468,7 @@ public class Mertens2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -576,7 +576,7 @@ public class Mertens2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wasserobenRect.IsPointInRect(pTemp) ||
                     wasseruntenRect.IsPointInRect(pTemp);
 
@@ -1192,7 +1192,7 @@ public class Mertens2 extends MainLocation {
                 mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Pverlassen);
                 nextActionID = 1220;
                 // hier werden die talkPoints fuer die Enten zugewiesen
-                GenericRectangle k1Temp = kacka1.kackaRect();
+                GenericRectangle k1Temp = duck1.kackaRect();
                 kacka1TalkPoint = new GenericPoint(k1Temp.getX() + k1Temp.getWidth() / 2, k1Temp.getY() - 50);
                 break;
 
@@ -1210,7 +1210,7 @@ public class Mertens2 extends MainLocation {
 
             case 1230:
                 // andere Ente erscheinen lassen
-                kacka2.initPos(kacka1.Posit);
+                duck2.initPos(duck1.Posit);
                 kacka2Visible = true;
                 kacka1IsLeft = true;
                 nextActionID = 1240;
@@ -1221,7 +1221,7 @@ public class Mertens2 extends MainLocation {
                 if (kacka2FliegtNoch) {
                     break;
                 }
-                GenericRectangle k2Temp = kacka2.kackaRect();
+                GenericRectangle k2Temp = duck2.kackaRect();
                 kacka2TalkPoint = new GenericPoint(k2Temp.getX() + k2Temp.getWidth() / 2, k2Temp.getY() - 50);
                 // System.out.println ("Talkpoint Ente 2: " + kacka2TalkPoint.x + " " + kacka2TalkPoint.y);
                 nextActionID = 1250;

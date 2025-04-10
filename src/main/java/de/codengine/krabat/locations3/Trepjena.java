@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.StrazaPoklad;
+import de.codengine.krabat.anims.GuardTreasure;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -35,40 +35,40 @@ public class Trepjena extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Trepjena.class);
     private GenericImage background;
     private GenericImage trVorn;
-    private final StrazaPoklad strazaPoklad;
+    private final GuardTreasure guardTreasure;
     // private Dinglinger dinglinger;
 
     private final GenericPoint talkPoint;
     private final GenericPoint strazaPoint;
-    private final Borderrect rectStraza;
+    private final BorderRect rectStraza;
 
     private boolean weistzurueck = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangOben
-            = new Borderrect(140, 5, 170, 95);
-    private static final Borderrect ausgangMitte
-            = new Borderrect(145, 177, 172, 280);
-    private static final Borderrect ausgangUnten
-            = new Borderrect(102, 325, 135, 457);
-    private static final Borderrect ausgangHof
-            = new Borderrect(460, 337, 526, 463);
-    private static final Borderrect rectSchild
-            = new Borderrect(73, 347, 98, 392);
-    private static final Borderrect rectBildOben
-            = new Borderrect(339, 163, 390, 225);
-    private static final Borderrect rectBildUnten
-            = new Borderrect(333, 346, 385, 410);
-    private static final Borderrect durje
-            = new Borderrect(105, 344, 118, 457);
-    private static final Borderrect wokno1
-            = new Borderrect(248, 13, 278, 60);
-    private static final Borderrect wokno2
-            = new Borderrect(323, 12, 354, 58);
-    private static final Borderrect wokno3
-            = new Borderrect(385, 12, 414, 58);
-    private static final Borderrect wokno4
-            = new Borderrect(493, 15, 525, 59);
+    private static final BorderRect ausgangOben
+            = new BorderRect(140, 5, 170, 95);
+    private static final BorderRect ausgangMitte
+            = new BorderRect(145, 177, 172, 280);
+    private static final BorderRect ausgangUnten
+            = new BorderRect(102, 325, 135, 457);
+    private static final BorderRect ausgangHof
+            = new BorderRect(460, 337, 526, 463);
+    private static final BorderRect rectSchild
+            = new BorderRect(73, 347, 98, 392);
+    private static final BorderRect rectBildOben
+            = new BorderRect(339, 163, 390, 225);
+    private static final BorderRect rectBildUnten
+            = new BorderRect(333, 346, 385, 410);
+    private static final BorderRect durje
+            = new BorderRect(105, 344, 118, 457);
+    private static final BorderRect wokno1
+            = new BorderRect(248, 13, 278, 60);
+    private static final BorderRect wokno2
+            = new BorderRect(323, 12, 354, 58);
+    private static final BorderRect wokno3
+            = new BorderRect(385, 12, 414, 58);
+    private static final BorderRect wokno4
+            = new BorderRect(493, 15, 525, 59);
 
     // Konstante Points
     private static final GenericPoint pExitOben = new GenericPoint(172, 103);
@@ -108,17 +108,17 @@ public class Trepjena extends MainLocation {
         mainFrame.krabat.zoomf = 8f;
         mainFrame.krabat.defScale = 20;
 
-        strazaPoklad = new StrazaPoklad(mainFrame);
+        guardTreasure = new GuardTreasure(mainFrame);
 
         strazaPoint = new GenericPoint();
-        strazaPoint.x = strazaFeet.x - StrazaPoklad.Breite / 2;
-        strazaPoint.y = strazaFeet.y - StrazaPoklad.Hoehe;
+        strazaPoint.x = strazaFeet.x - GuardTreasure.Breite / 2;
+        strazaPoint.y = strazaFeet.y - GuardTreasure.Hoehe;
 
         talkPoint = new GenericPoint();
         talkPoint.x = strazaFeet.x;
         talkPoint.y = strazaPoint.y - 50;
 
-        rectStraza = new Borderrect(strazaPoint.x, strazaPoint.y, strazaPoint.x + StrazaPoklad.Breite, strazaPoint.y + StrazaPoklad.Hoehe);
+        rectStraza = new BorderRect(strazaPoint.x, strazaPoint.y, strazaPoint.x + GuardTreasure.Breite, strazaPoint.y + GuardTreasure.Hoehe);
 
         InitLocation(oldLocation);
 
@@ -130,29 +130,29 @@ public class Trepjena extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(296, 520, 296, 555, 466, 479));
+                (new BorderTrapezoid(296, 520, 296, 555, 466, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(140, 295, 90, 295, 461, 479));
+                (new BorderTrapezoid(140, 295, 90, 295, 461, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(215, 220, 215, 220, 414, 460));
+                (new BorderTrapezoid(215, 220, 215, 220, 414, 460));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(205, 330, 205, 330, 412, 413));
+                (new BorderTrapezoid(205, 330, 205, 330, 412, 413));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(325, 330, 325, 330, 360, 410));
+                (new BorderTrapezoid(325, 330, 325, 330, 360, 410));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(515, 520, 325, 330, 290, 359));
+                (new BorderTrapezoid(515, 520, 325, 330, 290, 359));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(235, 520, 235, 520, 288, 289));
+                (new BorderTrapezoid(235, 520, 235, 520, 288, 289));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(245, 250, 245, 250, 252, 287));
+                (new BorderTrapezoid(245, 250, 245, 250, 252, 287));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(240, 325, 240, 325, 250, 251));
+                (new BorderTrapezoid(240, 325, 240, 325, 250, 251));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(320, 325, 320, 325, 175, 249));
+                (new BorderTrapezoid(320, 325, 320, 325, 175, 249));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(513, 518, 320, 325, 105, 174));
+                (new BorderTrapezoid(513, 518, 320, 325, 105, 174));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(175, 518, 175, 518, 103, 104));
+                (new BorderTrapezoid(175, 518, 175, 518, 103, 104));
 
         mainFrame.pathFinder.ClearMatrix(12);
 
@@ -226,9 +226,9 @@ public class Trepjena extends MainLocation {
         }
 
         // Straza zeichnen
-        g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
+        g.setClip(strazaPoint.x, strazaPoint.y, GuardTreasure.Breite, GuardTreasure.Hoehe);
         g.drawImage(background, 0, 0);
-        strazaPoklad.drawStraza(g, TalkPerson, strazaPoint, weistzurueck);
+        guardTreasure.drawStraza(g, TalkPerson, strazaPoint, weistzurueck);
         g.drawImage(trVorn, 147, 0);
 
         mainFrame.pathWalker.GeheWeg();
@@ -333,7 +333,7 @@ public class Trepjena extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -634,7 +634,7 @@ public class Trepjena extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || rectStraza.IsPointInRect(pTemp) ||
                     durje.IsPointInRect(pTemp) || wokno1.IsPointInRect(pTemp) ||
                     wokno2.IsPointInRect(pTemp) || wokno3.IsPointInRect(pTemp) ||

@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -46,12 +46,12 @@ public class Hojnt2 extends MainLocation2 {
     private boolean muellerda = false;
     private boolean setAnim = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
     // private boolean AnimActive = false;
-    private Mlynk2 mueller;
+    private Miller mueller;
 
     private GenericImage leftschatten;
     private GenericImage rightschatten;
@@ -65,19 +65,19 @@ public class Hojnt2 extends MainLocation2 {
     private static final int MAX_VERHINDERWANDERN = 5;
 
     // Konstante rects
-    private static final Borderrect obererAusgang = new Borderrect(199, 277, 271, 379);
-    private static final Borderrect rechterAusgang = new Borderrect(1206, 409, 1279, 479);
-    private static final Borderrect strauchRect = new Borderrect(160, 249, 305, 394);
-    private static final Borderrect jamaRect = new Borderrect(1081, 378, 1188, 424);
-    private static final Borderrect hoelzerRect = new Borderrect(613, 250, 640, 290);
-    private static final Borderrect leineRect = new Borderrect(1100, 245, 1155, 362);
-    private static final Borderrect kurotwy1Rect = new Borderrect(438, 278, 454, 311);
-    private static final Borderrect kurotwy2Rect = new Borderrect(480, 278, 507, 311);
-    private static final Borderrect wokno1Rect = new Borderrect(378, 267, 420, 307);
-    private static final Borderrect wokno2Rect = new Borderrect(523, 267, 565, 309);
-    private static final Borderrect sekeraRect = new Borderrect(145, 188, 237, 220);
-    private static final Borderrect durjeRect = new Borderrect(273, 266, 303, 339);
-    private static final Borderrect drjewoRect = new Borderrect(0, 150, 84, 428);
+    private static final BorderRect obererAusgang = new BorderRect(199, 277, 271, 379);
+    private static final BorderRect rechterAusgang = new BorderRect(1206, 409, 1279, 479);
+    private static final BorderRect strauchRect = new BorderRect(160, 249, 305, 394);
+    private static final BorderRect jamaRect = new BorderRect(1081, 378, 1188, 424);
+    private static final BorderRect hoelzerRect = new BorderRect(613, 250, 640, 290);
+    private static final BorderRect leineRect = new BorderRect(1100, 245, 1155, 362);
+    private static final BorderRect kurotwy1Rect = new BorderRect(438, 278, 454, 311);
+    private static final BorderRect kurotwy2Rect = new BorderRect(480, 278, 507, 311);
+    private static final BorderRect wokno1Rect = new BorderRect(378, 267, 420, 307);
+    private static final BorderRect wokno2Rect = new BorderRect(523, 267, 565, 309);
+    private static final BorderRect sekeraRect = new BorderRect(145, 188, 237, 220);
+    private static final BorderRect durjeRect = new BorderRect(273, 266, 303, 339);
+    private static final BorderRect drjewoRect = new BorderRect(0, 150, 84, 428);
 
     // Konstante Punkte
     // Konstante Punkte
@@ -114,9 +114,9 @@ public class Hojnt2 extends MainLocation2 {
         mainFrame.krabat.zoomf = 4.4f;
         mainFrame.krabat.defScale = -10;
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -165,11 +165,11 @@ public class Hojnt2 extends MainLocation2 {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(229, 265, 267, 340, 350, 364));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(285, 606, 361, 642, 365, 383));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(605, 663, 715, 927, 384, 410));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(716, 996, 857, 1138, 411, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(985, 1279, 1117, 1279, 442, 463));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(229, 265, 267, 340, 350, 364));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(285, 606, 361, 642, 365, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(605, 663, 715, 927, 384, 410));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(716, 996, 857, 1138, 411, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(985, 1279, 1117, 1279, 442, 463));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -307,7 +307,7 @@ public class Hojnt2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -444,7 +444,7 @@ public class Hojnt2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -776,7 +776,7 @@ public class Hojnt2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
                     hoelzerRect.IsPointInRect(pTemp) ||

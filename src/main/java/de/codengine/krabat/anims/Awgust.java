@@ -21,7 +21,7 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
+import de.codengine.krabat.main.BorderRect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -206,7 +206,7 @@ public class Awgust extends MovableMainAnim {
 
     public GenericPoint evalAwgustTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = getRect();
+        BorderRect temp = getRect();
         return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 

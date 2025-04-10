@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class PredWosuskow extends Mainanim {
+public class PredWosuskow extends MainAnim {
     private final GenericImage[] pred_stand;
     private final GenericImage[] pred_call;
     private final GenericImage[] pred_talk;

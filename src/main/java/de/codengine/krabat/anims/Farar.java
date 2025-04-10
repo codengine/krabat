@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Farar extends Mainanim {
+public class Farar extends MainAnim {
     private final GenericImage[] farar_head;
     private final GenericImage[] farar_body;
 

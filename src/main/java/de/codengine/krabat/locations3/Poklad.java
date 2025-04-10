@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Dinglingerwalk;
-import de.codengine.krabat.anims.StrazaPoklad;
+import de.codengine.krabat.anims.DinglingerWalk;
+import de.codengine.krabat.anims.GuardTreasure;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -38,8 +38,8 @@ public class Poklad extends MainLocation {
     private GenericImage komora;
     private GenericImage vorderschody;
     private GenericImage skla;
-    private final Dinglingerwalk dinglingerwalk;
-    private final StrazaPoklad straza;
+    private final DinglingerWalk dinglingerwalk;
+    private final GuardTreasure straza;
 
     private GenericPoint talkPointStraza;
     private GenericPoint strazaPoint;
@@ -80,7 +80,7 @@ public class Poklad extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().playTrack(25, true);
 
-        dinglingerwalk = new Dinglingerwalk(mainFrame);
+        dinglingerwalk = new DinglingerWalk(mainFrame);
 
         dinglingerwalk.maxx = 0;
         dinglingerwalk.zoomf = 1f;
@@ -89,7 +89,7 @@ public class Poklad extends MainLocation {
         dinglingerwalk.setPos(dinglPoint1);
         dinglingerwalk.SetFacing(9);
 
-        straza = new StrazaPoklad(mainFrame);
+        straza = new GuardTreasure(mainFrame);
 
         InitLocation();
 
@@ -120,8 +120,8 @@ public class Poklad extends MainLocation {
 
     private void evalPersonPoints() {
         strazaPoint = new GenericPoint();
-        strazaPoint.x = Poklad.strazaFeet.x - StrazaPoklad.Breite / 2;
-        strazaPoint.y = Poklad.strazaFeet.y - StrazaPoklad.Hoehe;
+        strazaPoint.x = Poklad.strazaFeet.x - GuardTreasure.Breite / 2;
+        strazaPoint.y = Poklad.strazaFeet.y - GuardTreasure.Hoehe;
 
         talkPointStraza = new GenericPoint();
         talkPointStraza.x = Poklad.strazaFeet.x;
@@ -162,7 +162,7 @@ public class Poklad extends MainLocation {
 
         // straza und Dinglinger Hintergrund loeschen
         if (showStraza) {
-            g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
+            g.setClip(strazaPoint.x, strazaPoint.y, GuardTreasure.Breite, GuardTreasure.Hoehe);
             if (whatPicture == 1) {
                 g.drawImage(schody, 0, 0);
             }
@@ -173,7 +173,7 @@ public class Poklad extends MainLocation {
 
         if (showDingl) {
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.getRect();
+            BorderRect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
             if (whatPicture == 1) {
@@ -193,7 +193,7 @@ public class Poklad extends MainLocation {
         // Dinglinger zeichnen
         if (showDingl) {
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.getRect();
+            BorderRect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
 
@@ -222,7 +222,7 @@ public class Poklad extends MainLocation {
 
         // Straza zeichnen
         if (showStraza) {
-            g.setClip(strazaPoint.x, strazaPoint.y, StrazaPoklad.Breite, StrazaPoklad.Hoehe);
+            g.setClip(strazaPoint.x, strazaPoint.y, GuardTreasure.Breite, GuardTreasure.Hoehe);
             straza.drawStraza(g, TalkPerson, strazaPoint, false);
             g.drawImage(vorderschody, 147, 0);
         }

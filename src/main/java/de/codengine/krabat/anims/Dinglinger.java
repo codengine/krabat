@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Dinglinger extends Mainanim {
+public class Dinglinger extends MainAnim {
     private final GenericImage[] dingl_sit_body;
     private final GenericImage[] dingl_sit_waithead;
     private final GenericImage[] dingl_sit_talkhead;

@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Wudowa;
+import de.codengine.krabat.anims.OldWoman;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -34,9 +34,9 @@ import java.util.Objects;
 public class Zdzary1 extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Zdzary1.class);
     private GenericImage background;
-    private Wudowa alte;
-    private final Multiple2 Dialog;
-    private final Usermultiple Userdialog;
+    private OldWoman alte;
+    private final MultipleChoice Dialog;
+    private final UserMultipleChoice Userdialog;
 
     private int whereIsAlte = 0;
 
@@ -47,14 +47,14 @@ public class Zdzary1 extends MainLocation {
     private static final GenericPoint Pdurje = new GenericPoint(309, 431);
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect untererAusgang = new Borderrect(102, 454, 366, 479);
-    private static final Borderrect obererAusgang = new Borderrect(34, 233, 61, 288);
-    private static final Borderrect durjeRect = new Borderrect(277, 309, 315, 400);
+    private static final BorderRect untererAusgang = new BorderRect(102, 454, 366, 479);
+    private static final BorderRect obererAusgang = new BorderRect(34, 233, 61, 288);
+    private static final BorderRect durjeRect = new BorderRect(277, 309, 315, 400);
 
     // Deklarationen fuer die Alte, da sie sonstwo sein kann
     private GenericPoint Palte;
     private GenericPoint altePoint;
-    private Borderrect alteRect;
+    private BorderRect alteRect;
     private GenericPoint alteTalk;
     private int alteFacing;
 
@@ -78,11 +78,11 @@ public class Zdzary1 extends MainLocation {
         mainFrame.krabat.zoomf = 1.73f;
         mainFrame.krabat.defScale = -30;
 
-        alte = new Wudowa(mainFrame);
+        alte = new OldWoman(mainFrame);
         DefineAlte();
 
-        Dialog = new Multiple2(mainFrame);
-        Userdialog = new Usermultiple(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
+        Userdialog = new UserMultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
 
@@ -93,12 +93,12 @@ public class Zdzary1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(77, 609, 126, 609, 454, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(478, 432, 609, 453));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(25, 344, 25, 393, 433, 453));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(17, 36, 63, 188, 380, 432));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(17, 315, 19, 379));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(33, 50, 17, 19, 290, 314));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(77, 609, 126, 609, 454, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(478, 432, 609, 453));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(25, 344, 25, 393, 433, 453));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(17, 36, 63, 188, 380, 432));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(17, 315, 19, 379));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(33, 50, 17, 19, 290, 314));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(6);
@@ -149,7 +149,7 @@ public class Zdzary1 extends MainLocation {
                 Palte = new GenericPoint(152, 435);
                 altePoint.x = 184;
                 altePoint.y = 306;
-                alteRect = new Borderrect(altePoint.x, altePoint.y, altePoint.x + Wudowa.Breite, altePoint.y + 35);
+                alteRect = new BorderRect(altePoint.x, altePoint.y, altePoint.x + OldWoman.Breite, altePoint.y + 35);
                 alteFacing = 3;
                 break;
             case 1:
@@ -157,7 +157,7 @@ public class Zdzary1 extends MainLocation {
                 Palte = new GenericPoint(584, 446);
                 altePoint.x = 526;
                 altePoint.y = 225;
-                alteRect = new Borderrect(altePoint.x, altePoint.y, altePoint.x + Wudowa.Breite, altePoint.y + 35);
+                alteRect = new BorderRect(altePoint.x, altePoint.y, altePoint.x + OldWoman.Breite, altePoint.y + 35);
                 alteFacing = 12;
                 break;
             case 2:
@@ -165,14 +165,14 @@ public class Zdzary1 extends MainLocation {
                 Palte = new GenericPoint(300, 452);
                 altePoint.x = 295;
                 altePoint.y = 323;
-                alteRect = new Borderrect(altePoint.x, altePoint.y, altePoint.x + Wudowa.Breite, altePoint.y + Wudowa.Hoehe);
+                alteRect = new BorderRect(altePoint.x, altePoint.y, altePoint.x + OldWoman.Breite, altePoint.y + OldWoman.Hoehe);
                 alteFacing = 12;
                 break;
         }
 
         whereIsAlte = zuffi;
 
-        alteTalk.x = altePoint.x + Wudowa.Breite / 2;
+        alteTalk.x = altePoint.x + OldWoman.Breite / 2;
         alteTalk.y = altePoint.y - 50;
     }
 
@@ -348,7 +348,7 @@ public class Zdzary1 extends MainLocation {
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -521,7 +521,7 @@ public class Zdzary1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || alteRect.IsPointInRect(pTemp) ||
                     durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2;
 

@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class KrabatShoot extends Mainanim {
+public class KrabatShoot extends MainAnim {
     private final GenericImage[] krabat_schiessen;
     private GenericImage stein;
 

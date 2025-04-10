@@ -39,16 +39,16 @@ public class Hala extends MainLocation {
     private int scrollwert;
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang
-            = new Borderrect(135, 120, 273, 399);
-    private static final Borderrect zweiteTuer
-            = new Borderrect(464, 184, 577, 399);
-    private static final Borderrect dritteTuer
-            = new Borderrect(820, 113, 963, 403);
-    private static final Borderrect rechterAusgang
-            = new Borderrect(1240, 111, 1279, 479);
-    private static final Borderrect wobraz
-            = new Borderrect(468, 13, 585, 150);
+    private static final BorderRect linkerAusgang
+            = new BorderRect(135, 120, 273, 399);
+    private static final BorderRect zweiteTuer
+            = new BorderRect(464, 184, 577, 399);
+    private static final BorderRect dritteTuer
+            = new BorderRect(820, 113, 963, 403);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(1240, 111, 1279, 479);
+    private static final BorderRect wobraz
+            = new BorderRect(468, 13, 585, 150);
 
     // Konstante Points
     private static final GenericPoint pExitLinks = new GenericPoint(180, 403);
@@ -84,9 +84,9 @@ public class Hala extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(140, 810, 25, 810, 407, 479));
+                (new BorderTrapezoid(140, 810, 25, 810, 407, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(811, 1115, 811, 1235, 407, 479));
+                (new BorderTrapezoid(811, 1115, 811, 1235, 407, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -265,7 +265,7 @@ public class Hala extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -454,7 +454,7 @@ public class Hala extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wobraz.IsPointInRect(pTemp) ||
                     dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675] ||

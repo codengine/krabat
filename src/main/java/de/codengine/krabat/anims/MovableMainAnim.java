@@ -1,7 +1,7 @@
 package de.codengine.krabat.anims;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.main.Borderrect;
+import de.codengine.krabat.main.BorderRect;
 import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 
@@ -10,7 +10,7 @@ import static de.codengine.krabat.anims.DirectionX.RIGHT;
 import static de.codengine.krabat.anims.DirectionY.DOWN;
 import static de.codengine.krabat.anims.DirectionY.UP;
 
-public abstract class MovableMainAnim extends Mainanim {
+public abstract class MovableMainAnim extends MainAnim {
     protected final int width;
     protected final int height;
     protected final float scaleFactor;
@@ -59,12 +59,12 @@ public abstract class MovableMainAnim extends Mainanim {
     protected abstract int getScale(int poy);
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public Borderrect getRect() {
+    public BorderRect getRect() {
         int x = getLeftPos((int) xps, (int) yps);
         int y = getUpPos((int) yps);
         int xd = 2 * ((int) xps - x) + x;
         int yd = (int) yps;
-        return new Borderrect(x, y, xd, yd);
+        return new BorderRect(x, y, xd, yd);
     }
 
     protected int calcLeftPosDefault(int pox, int poy) {

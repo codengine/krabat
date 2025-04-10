@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Bludnicki extends Mainanim {
+public class Bludnicki extends MainAnim {
     private final GenericImage[][] Head;
     private final GenericImage[] Body;
     private final GenericImage[] Krat;
@@ -33,7 +33,7 @@ public class Bludnicki extends Mainanim {
 
     private GenericImage take;
 
-    private Plomja feuer;
+    private Fire feuer;
 
     private int Kopf1 = 1;
     private int Kopf2 = 1;
@@ -71,7 +71,7 @@ public class Bludnicki extends Mainanim {
         Krat = new GenericImage[3];
         Stan = new GenericImage[5];
 
-        feuer = new Plomja(mainFrame);
+        feuer = new Fire(mainFrame);
 
         InitImages();
     }

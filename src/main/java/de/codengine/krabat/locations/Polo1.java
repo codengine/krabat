@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.BurHanza;
-import de.codengine.krabat.anims.BurMichal;
+import de.codengine.krabat.anims.FarmerHanza;
+import de.codengine.krabat.anims.FarmerMichal;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -40,12 +40,12 @@ public class Polo1 extends MainLocation {
     private GenericImage polo4;
     private GenericImage polo5;
 
-    private BurMichal michael;
-    private BurHanza agnes;
-    private final Multiple2 Dialog;
+    private FarmerMichal michael;
+    private FarmerHanza agnes;
+    private final MultipleChoice Dialog;
 
-    private Borderrect hanzaRect;
-    private Borderrect michalRect;
+    private BorderRect hanzaRect;
+    private BorderRect michalRect;
     private GenericPoint hanzaTalk;
     private GenericPoint michalTalk;
 
@@ -57,10 +57,10 @@ public class Polo1 extends MainLocation {
 
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang = new Borderrect(0, 351, 40, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(595, 245, 639, 350);
-    private static final Borderrect polo2Rect = new Borderrect(492, 244, 639, 470);
-    private static final Borderrect kamuskiRect = new Borderrect(192, 340, 263, 377);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 351, 40, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(595, 245, 639, 350);
+    private static final BorderRect polo2Rect = new BorderRect(492, 244, 639, 470);
+    private static final BorderRect kamuskiRect = new BorderRect(192, 340, 263, 377);
 
     // Konstante Punkte
     private static final GenericPoint michalPoint = new GenericPoint(375, 211);
@@ -89,9 +89,9 @@ public class Polo1 extends MainLocation {
         mainFrame.krabat.zoomf = 9.8f;
         mainFrame.krabat.defScale = 0;
 
-        agnes = new BurHanza(mainFrame);
-        michael = new BurMichal(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        agnes = new FarmerHanza(mainFrame);
+        michael = new FarmerMichal(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         evalPersons();
 
@@ -101,22 +101,22 @@ public class Polo1 extends MainLocation {
 
     // Personen berechnen
     private void evalPersons() {
-        michalRect = new Borderrect(michalPoint.x, michalPoint.y, michalPoint.x + BurMichal.Breite, michalPoint.y + BurMichal.Hoehe);
+        michalRect = new BorderRect(michalPoint.x, michalPoint.y, michalPoint.x + FarmerMichal.Breite, michalPoint.y + FarmerMichal.Hoehe);
 
-        michalTalk = new GenericPoint(michalPoint.x + BurMichal.Breite / 2, michalPoint.y - 50);
+        michalTalk = new GenericPoint(michalPoint.x + FarmerMichal.Breite / 2, michalPoint.y - 50);
 
-        hanzaRect = new Borderrect(hanzaPoint.x, hanzaPoint.y, hanzaPoint.x + BurHanza.Breite, hanzaPoint.y + BurHanza.Hoehe);
+        hanzaRect = new BorderRect(hanzaPoint.x, hanzaPoint.y, hanzaPoint.x + FarmerHanza.Breite, hanzaPoint.y + FarmerHanza.Hoehe);
 
-        hanzaTalk = new GenericPoint(hanzaPoint.x + BurHanza.Breite / 2, hanzaPoint.y - 50);
+        hanzaTalk = new GenericPoint(hanzaPoint.x + FarmerHanza.Breite / 2, hanzaPoint.y - 50);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 100, 0, 30, 397, 427));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 360, 20, 100, 353, 396));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(592, 639, 201, 360, 299, 352));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 100, 0, 30, 397, 427));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(172, 360, 20, 100, 353, 396));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(592, 639, 201, 360, 299, 352));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(3);
@@ -230,17 +230,17 @@ public class Polo1 extends MainLocation {
         }
 
         // Andere Personen zeichnen (zuerst Background loeschen)
-        g.setClip(michalPoint.x, michalPoint.y, BurMichal.Breite, BurMichal.Hoehe);
+        g.setClip(michalPoint.x, michalPoint.y, FarmerMichal.Breite, FarmerMichal.Hoehe);
         g.drawImage(background, 0, 0);
-        g.setClip(hanzaPoint.x, hanzaPoint.y, BurHanza.Breite, BurHanza.Hoehe);
+        g.setClip(hanzaPoint.x, hanzaPoint.y, FarmerHanza.Breite, FarmerHanza.Hoehe);
         g.drawImage(background, 0, 0);
 
         // Michal
-        g.setClip(michalPoint.x, michalPoint.y, BurMichal.Breite, BurMichal.Hoehe);
+        g.setClip(michalPoint.x, michalPoint.y, FarmerMichal.Breite, FarmerMichal.Hoehe);
         michael.drawMichal(g, TalkPerson, michalPoint, hoertkrabatzu);
 
         // Hanza
-        g.setClip(hanzaPoint.x, hanzaPoint.y, BurHanza.Breite, BurHanza.Hoehe);
+        g.setClip(hanzaPoint.x, hanzaPoint.y, FarmerHanza.Breite, FarmerHanza.Hoehe);
         agnes.drawHanza(g, TalkPerson, hanzaPoint);
 
         mainFrame.pathWalker.GeheWeg();
@@ -362,7 +362,7 @@ public class Polo1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -542,7 +542,7 @@ public class Polo1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp) ||
                     michalRect.IsPointInRect(pTemp) || kamuskiRect.IsPointInRect(pTemp) &&
                     !mainFrame.actions[912];

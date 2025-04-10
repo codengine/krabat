@@ -41,11 +41,11 @@ public class Wobzor1 extends MainLocation {
     private boolean forward = true;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(594, 150, 639, 231);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 164, 140, 250);
-    private static final Borderrect horiz3Rect = new Borderrect(179, 175, 270, 248);
-    private static final Borderrect horiz4Rect = new Borderrect(528, 177, 639, 219);
-    private static final Borderrect wodaRect = new Borderrect(329, 373, 639, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(594, 150, 639, 231);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 164, 140, 250);
+    private static final BorderRect horiz3Rect = new BorderRect(179, 175, 270, 248);
+    private static final BorderRect horiz4Rect = new BorderRect(528, 177, 639, 219);
+    private static final BorderRect wodaRect = new BorderRect(329, 373, 639, 479);
 
     // Konstanten - Points
     private static final GenericPoint Pleft = new GenericPoint(146, 236);
@@ -141,7 +141,7 @@ public class Wobzor1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(145, 192, 577, 260));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(145, 192, 577, 260));
 
         mainFrame.pathFinder.ClearMatrix(1);
 
@@ -352,7 +352,7 @@ public class Wobzor1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -480,7 +480,7 @@ public class Wobzor1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

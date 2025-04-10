@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.PtackZaRapaka;
+import de.codengine.krabat.anims.RapakiRaven;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -42,7 +42,7 @@ public class Inmlyn extends MainLocation {
     private int scrollwert;
     private boolean setAnim = false;
     private boolean showRapak = false;
-    private PtackZaRapaka rabe;
+    private RapakiRaven rabe;
 
     private boolean krabatVisible = true;
 
@@ -92,11 +92,11 @@ public class Inmlyn extends MainLocation {
     // Gegend intialisieren (Grenzen u.s.w.)
     private void InitLocation() {
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(423, 450, 403, 450, 407, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(451, 446, 613, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(614, 470, 817, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(818, 423, 856, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(857, 466, 1199, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(423, 450, 403, 450, 407, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(451, 446, 613, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(614, 470, 817, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(818, 423, 856, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(857, 466, 1199, 479));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -413,7 +413,7 @@ public class Inmlyn extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                rabe = new PtackZaRapaka(mainFrame, 300, 270, -50);
+                rabe = new RapakiRaven(mainFrame, 300, 270, -50);
                 showRapak = true;
                 nextActionID = 1040;
                 break;

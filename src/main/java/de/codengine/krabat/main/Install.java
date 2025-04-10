@@ -38,7 +38,7 @@ public class Install extends MainLocation {
     private GenericImage Pfeil;
     private GenericImage DPfeil;
     private final GenericPoint pLO;
-    private final Borderrect brPfeil;
+    private final BorderRect brPfeil;
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -67,10 +67,10 @@ public class Install extends MainLocation {
 
     private static final int OffsetY = 30;
 
-    private final Borderrect[] Rects;
+    private final BorderRect[] Rects;
     private final String[] Texty;
 
-    private final Borderrect[] LizenzRects;
+    private final BorderRect[] LizenzRects;
     private final String[] LizenzTexty;
 
     private static final String Datei = "Krabat.lax";
@@ -111,9 +111,9 @@ public class Install extends MainLocation {
 
         // Rechtecke im Inventar-Fenster festlegen
         pLO = new GenericPoint(31, 31);
-        brPfeil = new Borderrect(pLO.x + 90, pLO.y + 319, pLO.x + 180, pLO.y + 358);
+        brPfeil = new BorderRect(pLO.x + 90, pLO.y + 319, pLO.x + 180, pLO.y + 358);
 
-        Rects = new Borderrect[8];
+        Rects = new BorderRect[8];
         Texty = new String[10];
 
         Texty[1] = "Hornjoserbsce";
@@ -126,26 +126,26 @@ public class Install extends MainLocation {
         Texty[8] = "#Zeden";
         Texty[9] = "Hynak#sy";
 
-        Rects[1] = new Borderrect(93, 130, 93 + mainFrame.imageFont.LineLength(Texty[1]), 130 + OffsetY);
-        Rects[2] = new Borderrect(320, 130, 320 + mainFrame.imageFont.LineLength(Texty[2]), 130 + OffsetY);
-        Rects[3] = new Borderrect(93, 200, 93 + mainFrame.imageFont.LineLength(Texty[3]), 200 + OffsetY);
-        Rects[4] = new Borderrect(250, 200, 250 + mainFrame.imageFont.LineLength(Texty[4]), 200 + OffsetY);
-        Rects[5] = new Borderrect(350, 200, 350 + mainFrame.imageFont.LineLength(Texty[5]), 200 + OffsetY);
-        Rects[6] = new Borderrect(93, 270, 93 + mainFrame.imageFont.LineLength(Texty[6]), 270 + OffsetY);
-        Rects[7] = new Borderrect(250, 270, 250 + mainFrame.imageFont.LineLength(Texty[7]), 270 + OffsetY);
+        Rects[1] = new BorderRect(93, 130, 93 + mainFrame.imageFont.LineLength(Texty[1]), 130 + OffsetY);
+        Rects[2] = new BorderRect(320, 130, 320 + mainFrame.imageFont.LineLength(Texty[2]), 130 + OffsetY);
+        Rects[3] = new BorderRect(93, 200, 93 + mainFrame.imageFont.LineLength(Texty[3]), 200 + OffsetY);
+        Rects[4] = new BorderRect(250, 200, 250 + mainFrame.imageFont.LineLength(Texty[4]), 200 + OffsetY);
+        Rects[5] = new BorderRect(350, 200, 350 + mainFrame.imageFont.LineLength(Texty[5]), 200 + OffsetY);
+        Rects[6] = new BorderRect(93, 270, 93 + mainFrame.imageFont.LineLength(Texty[6]), 270 + OffsetY);
+        Rects[7] = new BorderRect(250, 270, 250 + mainFrame.imageFont.LineLength(Texty[7]), 270 + OffsetY);
 
         LizenzTexty = new String[5];
-        LizenzRects = new Borderrect[5];
+        LizenzRects = new BorderRect[5];
 
         LizenzTexty[1] = "Haj";
         LizenzTexty[2] = "Jo";
         LizenzTexty[3] = "N#e";
         LizenzTexty[4] = "N#e";
 
-        LizenzRects[1] = new Borderrect(93, 160, 93 + mainFrame.imageFont.LineLength(LizenzTexty[1]), 160 + OffsetY);
-        LizenzRects[2] = new Borderrect(93, 260, 93 + mainFrame.imageFont.LineLength(LizenzTexty[2]), 260 + OffsetY);
-        LizenzRects[3] = new Borderrect(200, 160, 200 + mainFrame.imageFont.LineLength(LizenzTexty[3]), 160 + OffsetY);
-        LizenzRects[4] = new Borderrect(200, 260, 200 + mainFrame.imageFont.LineLength(LizenzTexty[4]), 260 + OffsetY);
+        LizenzRects[1] = new BorderRect(93, 160, 93 + mainFrame.imageFont.LineLength(LizenzTexty[1]), 160 + OffsetY);
+        LizenzRects[2] = new BorderRect(93, 260, 93 + mainFrame.imageFont.LineLength(LizenzTexty[2]), 260 + OffsetY);
+        LizenzRects[3] = new BorderRect(200, 160, 200 + mainFrame.imageFont.LineLength(LizenzTexty[3]), 160 + OffsetY);
+        LizenzRects[4] = new BorderRect(200, 260, 200 + mainFrame.imageFont.LineLength(LizenzTexty[4]), 260 + OffsetY);
 
         if (TestInstallFile()) {
             nextActionID = 100;

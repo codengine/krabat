@@ -21,10 +21,10 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
-import de.codengine.krabat.anims.Mlynkptack;
-import de.codengine.krabat.anims.PtackZaRapaka;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
+import de.codengine.krabat.anims.MillerBird;
+import de.codengine.krabat.anims.RapakiRaven;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericDrawingContext2D;
@@ -42,7 +42,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
     private GenericImage himmel2;
     private GenericImage vorder;
 
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean muellerda = false;
     private boolean krabatda = true;
     private boolean voegelda = false;
@@ -56,14 +56,14 @@ public class MlynkCornyCholmc1 extends MainLocation {
     private GenericImage offImage;
     private GenericDrawingContext offGraphics;
 
-    private PtackZaRapaka krabatvogel;
-    private Mlynkptack muellervogel;
+    private RapakiRaven krabatvogel;
+    private MillerBird muellervogel;
 
     private int Warten = 0;
     private boolean mlynkGibtKarte = false;
 
-    private Bumm muellermorph;
-    private Bumm krabatmorph;
+    private Boom muellermorph;
+    private Boom krabatmorph;
 
     private int muellermorphcount;
     // private int krabatmorphcount;
@@ -104,7 +104,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 	  mainFrame.krabat.zoomf = 2.79f;
 	  mainFrame.krabat.defScale = 0;*/
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
         mueller.maxx = 0;
         mueller.zoomf = 4f;
         mueller.defScale = 60;
@@ -112,11 +112,11 @@ public class MlynkCornyCholmc1 extends MainLocation {
         mueller.setPos(mlynkFeet);
         mueller.SetFacing(6);
 
-        krabatvogel = new PtackZaRapaka(mainFrame, 172, 290, 30, -50, true);  // start, x, y, zoomfaktor, ende, gleitet nie?
-        muellervogel = new Mlynkptack(mainFrame, -50, 270, 25, 155, false); // start, x, y, zoomfaktor, ende, isLeft?
+        krabatvogel = new RapakiRaven(mainFrame, 172, 290, 30, -50, true);  // start, x, y, zoomfaktor, ende, gleitet nie?
+        muellervogel = new MillerBird(mainFrame, -50, 270, 25, 155, false); // start, x, y, zoomfaktor, ende, isLeft?
 
-        krabatmorph = new Bumm(mainFrame);
-        muellermorph = new Bumm(mainFrame);
+        krabatmorph = new Boom(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         offImage = GenericToolkit.getDefaultToolkit().createImage(640, 90);
         offGraphics = offImage.getGraphics();
@@ -127,7 +127,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
     // damit die Rueckflugssequenz immer gleich ist...
     private void InitMuellerRueckflug() {
-        muellervogel = new Mlynkptack(mainFrame, 155, 270, 30, -50, true);
+        muellervogel = new MillerBird(mainFrame, 155, 270, 30, -50, true);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
@@ -201,7 +201,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
         // Mlynk Hintergrund loeschen
         if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -240,7 +240,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
         // Mueller zeichnen
         if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

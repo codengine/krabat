@@ -47,30 +47,30 @@ public class Most2 extends MainLocation2 {
     private boolean Berglauf = false;
     private boolean isTal;
 
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean setAnim = false;
     private boolean muellerda = false;
     private boolean setAusnahme = false; // Anzeige, ob Schweinehueteszene
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
     private boolean showPohonc = false;
     private final GenericPoint pohoncPoint;
     private final GenericPoint pohoncTalk;
-    private Kutser kutscher;
+    private Coachman kutscher;
     private boolean pohoncHoertZu = false;
 
-    private Kutsche kutsche;
+    private Coach coach;
     private boolean kutscheOpen = false;
     // private int Kutschenstatus;
     private int kutscheArbeitet = 0;
     private boolean kutscheda = false;
 
-    private Swinjo1 schwein1;
-    private Swinjo2 schwein2;
-    private Swinjo3 schwein3;
+    private Pig1 schwein1;
+    private Pig2 schwein2;
+    private Pig3 schwein3;
     private boolean schweineDa = false;
     private boolean schwein1Tanzt = false;
     private boolean schwein2Tanzt = false;
@@ -86,16 +86,16 @@ public class Most2 extends MainLocation2 {
     private boolean wasserAus = false;          // gilt nur fuer Wasser
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(609, 353, 639, 415);
-    private static final Borderrect obererAusgang = new Borderrect(412, 176, 496, 221);
-    private static final Borderrect untererAusgang = new Borderrect(0, 436, 246, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(609, 353, 639, 415);
+    private static final BorderRect obererAusgang = new BorderRect(412, 176, 496, 221);
+    private static final BorderRect untererAusgang = new BorderRect(0, 436, 246, 479);
     // private static final borderrect gelRect        = new borderrect (351, 284, 430, 343); 
-    private static final Borderrect ralbitzSchild = new Borderrect(254, 208, 301, 228);
-    private static final Borderrect dresdenSchild = new Borderrect(255, 233, 296, 246);
-    private static final Borderrect rekaRect = new Borderrect(427, 383, 513, 476);
+    private static final BorderRect ralbitzSchild = new BorderRect(254, 208, 301, 228);
+    private static final BorderRect dresdenSchild = new BorderRect(255, 233, 296, 246);
+    private static final BorderRect rekaRect = new BorderRect(427, 383, 513, 476);
 
-    private static final Bordertrapez BergTrapez = new Bordertrapez(376, 396, 272, 342, 278, 349);
-    private static final Bordertrapez TalTrapez = new Bordertrapez(457, 459, 407, 419, 225, 284);
+    private static final BorderTrapezoid BergTrapez = new BorderTrapezoid(376, 396, 272, 342, 278, 349);
+    private static final BorderTrapezoid TalTrapez = new BorderTrapezoid(457, 459, 407, 419, 225, 284);
 
     // Points in Location
     private static final GenericPoint Pschild = new GenericPoint(305, 333);
@@ -150,9 +150,9 @@ public class Most2 extends MainLocation2 {
         Merkpunkt = new GenericPoint(0, 0);
 
         flussu = new GenericImage[8];
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -161,19 +161,19 @@ public class Most2 extends MainLocation2 {
         mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
-        kutscher = new Kutser(mainFrame);
+        kutscher = new Coachman(mainFrame);
 
         pohoncPoint = new GenericPoint(80, 267);
 
         pohoncTalk = new GenericPoint();
-        pohoncTalk.x = pohoncPoint.x + Kutser.Breite / 2;
+        pohoncTalk.x = pohoncPoint.x + Coachman.Breite / 2;
         pohoncTalk.y = pohoncPoint.y - 50;
 
-        kutsche = new Kutsche(mainFrame);
+        coach = new Coach(mainFrame);
 
-        schwein1 = new Swinjo1(mainFrame, new GenericPoint(40, 270));
-        schwein2 = new Swinjo2(mainFrame, new GenericPoint(180, 250));
-        schwein3 = new Swinjo3(mainFrame, new GenericPoint(110, 280));
+        schwein1 = new Pig1(mainFrame, new GenericPoint(40, 270));
+        schwein2 = new Pig2(mainFrame, new GenericPoint(180, 250));
+        schwein3 = new Pig3(mainFrame, new GenericPoint(110, 280));
 
         InitLocation(oldLocation);
 
@@ -191,7 +191,7 @@ public class Most2 extends MainLocation2 {
                     BackgroundMusicPlayer.getInstance().stop();
                 }
                 GenericPoint tp = mainFrame.krabat.getPos();
-                Borderrect TalRect = new Borderrect(400, 220, 460, 290);
+                BorderRect TalRect = new BorderRect(400, 220, 460, 290);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 71:
@@ -270,8 +270,8 @@ public class Most2 extends MainLocation2 {
 
         kutscher.cleanup();
         kutscher = null;
-        kutsche.cleanup();
-        kutsche = null;
+        coach.cleanup();
+        coach = null;
         schwein1.cleanup();
         schwein1 = null;
         schwein2.cleanup();
@@ -286,7 +286,7 @@ public class Most2 extends MainLocation2 {
         if (isTal) {
             // Grenzen setzen im Tal
             // Taltrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(457, 459, 407, 419, 225, 284));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(457, 459, 407, 419, 225, 284));
 
             // Laufmatrix anpassen
             mainFrame.pathFinder.ClearMatrix(1);
@@ -299,12 +299,12 @@ public class Most2 extends MainLocation2 {
         } else {
             // Grenzen setzen auf dem Berg
             // Bergtrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(376, 396, 272, 342, 278, 349));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(272, 515, 218, 515, 350, 367));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(516, 358, 556, 373));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(557, 368, 609, 378));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(610, 368, 639, 402));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(218, 286, 43, 182, 368, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(376, 396, 272, 342, 278, 349));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(272, 515, 218, 515, 350, 367));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(516, 358, 556, 373));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(557, 368, 609, 378));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(610, 368, 639, 402));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(218, 286, 43, 182, 368, 479));
 
             // Laufmatrix anpassen
             mainFrame.pathFinder.ClearMatrix(6);
@@ -355,13 +355,13 @@ public class Most2 extends MainLocation2 {
 
         // Pohonc Hintergrund loeschen
         if (showPohonc) {
-            g.setClip(pohoncPoint.x, pohoncPoint.y, Kutser.Breite, Kutser.Hoehe);
+            g.setClip(pohoncPoint.x, pohoncPoint.y, Coachman.Breite, Coachman.Hoehe);
             g.drawImage(background, 0, 0);
         }
 
         // Kutsche Hintergrund loeschen
         if (kutscheda) {
-            g.setClip(kutsche.kutscheRect());
+            g.setClip(coach.kutscheRect());
             g.drawImage(background, 0, 0);
         }
 
@@ -398,7 +398,7 @@ public class Most2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -486,13 +486,13 @@ public class Most2 extends MainLocation2 {
 
         // Kutsche zeichnen, hat Vorrang vor K
         if (kutscheda) {
-            g.setClip(kutsche.kutscheRect());
-            kutscheArbeitet = kutsche.drawKutsche(g, kutscheOpen);
+            g.setClip(coach.kutscheRect());
+            kutscheArbeitet = coach.drawKutsche(g, kutscheOpen);
         }
 
         // Pohonc zeichnen, auch Vorrang, weil auf Kutsche, aber nicht, wenn sie aus dem Rauch aufsteigt.
         if (showPohonc) {
-            g.setClip(pohoncPoint.x, pohoncPoint.y, Kutser.Breite, Kutser.Hoehe);
+            g.setClip(pohoncPoint.x, pohoncPoint.y, Coachman.Breite, Coachman.Hoehe);
             kutscher.drawKutser(g, TalkPerson, pohoncPoint, pohoncHoertZu);
         }
 
@@ -581,7 +581,7 @@ public class Most2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -816,7 +816,7 @@ public class Most2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = ralbitzSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
                     dresdenSchild.IsPointInRect(pTemp) || rekaRect.IsPointInRect(pTemp);
 
@@ -1318,7 +1318,7 @@ public class Most2 extends MainLocation2 {
             case 2020:
                 // Kutsche hinten Init und los gehts...
                 if (Counter == 100) {
-                    kutsche.InitKutsche(0);
+                    coach.InitKutsche(0);
                     kutscheda = true;
                     kutscheArbeitet = 1;
                 }
@@ -1347,7 +1347,7 @@ public class Most2 extends MainLocation2 {
                     break;
                 }
                 kutscheda = true;
-                kutsche.InitKutsche(1);
+                coach.InitKutsche(1);
                 kutscheArbeitet = 1;
                 nextActionID = 2040;
                 break;
@@ -1368,7 +1368,7 @@ public class Most2 extends MainLocation2 {
                 schwein1Tanzt = false;
                 schwein2Tanzt = false;
                 schwein3Tanzt = false;
-                kutsche.InitKutsche(2);
+                coach.InitKutsche(2);
                 mainFrame.isClipSet = false;
                 nextActionID = 2520;
                 break;

@@ -40,26 +40,26 @@ public class Zachod extends MainLocation {
     private final GenericImage[] krabat_schieb;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangCychi
-            = new Borderrect(468, 190, 532, 294);
-    private static final Borderrect ausgangGang
-            = new Borderrect(132, 376, 230, 421);
-    private static final Borderrect rectSeil
-            = new Borderrect(574, 271, 598, 298);
-    private static final Borderrect staraDeska
-            = new Borderrect(542, 432, 584, 457);
-    private static final Borderrect blido
-            = new Borderrect(300, 324, 377, 350);
-    private static final Borderrect korbik
-            = new Borderrect(162, 138, 194, 180);
-    private static final Borderrect kisty
-            = new Borderrect(99, 345, 200, 400);
-    private static final Borderrect kistyUnten
-            = new Borderrect(48, 394, 150, 479);
-    private static final Borderrect nowaDeska
-            = new Borderrect(156, 371, 204, 429);
-    private static final Borderrect kistenRect
-            = new Borderrect(0, 330, 300, 420);
+    private static final BorderRect ausgangCychi
+            = new BorderRect(468, 190, 532, 294);
+    private static final BorderRect ausgangGang
+            = new BorderRect(132, 376, 230, 421);
+    private static final BorderRect rectSeil
+            = new BorderRect(574, 271, 598, 298);
+    private static final BorderRect staraDeska
+            = new BorderRect(542, 432, 584, 457);
+    private static final BorderRect blido
+            = new BorderRect(300, 324, 377, 350);
+    private static final BorderRect korbik
+            = new BorderRect(162, 138, 194, 180);
+    private static final BorderRect kisty
+            = new BorderRect(99, 345, 200, 400);
+    private static final BorderRect kistyUnten
+            = new BorderRect(48, 394, 150, 479);
+    private static final BorderRect nowaDeska
+            = new BorderRect(156, 371, 204, 429);
+    private static final BorderRect kistenRect
+            = new BorderRect(0, 330, 300, 420);
 
     private static final GenericPoint AnfangsPunkt = new GenericPoint(99, 345);
     private static final GenericPoint AnfangsPunkt2 = new GenericPoint(157, 347);
@@ -184,12 +184,12 @@ public class Zachod extends MainLocation {
         if (!mainFrame.actions[516]) {
             // Kisten sind noch oben
             mainFrame.pathWalker.vBorders.removeAllElements();
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(480, 299, 523, 407));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(524, 340, 560, 342));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(467, 541, 467, 470, 408, 479));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(75, 466, 20, 466, 444, 479));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(242, 244, 298, 300, 381, 443));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(155, 375, 244, 380));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(480, 299, 523, 407));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(524, 340, 560, 342));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(467, 541, 467, 470, 408, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(75, 466, 20, 466, 444, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(242, 244, 298, 300, 381, 443));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(155, 375, 244, 380));
 
             mainFrame.pathFinder.ClearMatrix(6);
 
@@ -203,13 +203,13 @@ public class Zachod extends MainLocation {
             // Brett ist noch drauf
             if (!mainFrame.actions[517]) {
                 mainFrame.pathWalker.vBorders.removeAllElements();
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(480, 299, 523, 407));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(524, 340, 560, 342));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(467, 541, 467, 470, 408, 479));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(233, 466, 220, 466, 444, 479));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(150, 245, 150, 300, 387, 443));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(120, 393, 149, 443));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(159, 370, 210, 386));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(480, 299, 523, 407));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(524, 340, 560, 342));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(467, 541, 467, 470, 408, 479));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(233, 466, 220, 466, 444, 479));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(150, 245, 150, 300, 387, 443));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(120, 393, 149, 443));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(159, 370, 210, 386));
 
                 mainFrame.pathFinder.ClearMatrix(7);
 
@@ -222,11 +222,11 @@ public class Zachod extends MainLocation {
             } else {
                 // Brett ist weg
                 mainFrame.pathWalker.vBorders.removeAllElements();
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(480, 299, 523, 407));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(524, 340, 560, 342));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(467, 541, 467, 470, 408, 479));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(233, 466, 220, 466, 444, 479));
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(201, 245, 220, 300, 387, 443));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(480, 299, 523, 407));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(524, 340, 560, 342));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(467, 541, 467, 470, 408, 479));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(233, 466, 220, 466, 444, 479));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(201, 245, 220, 300, 387, 443));
 
                 mainFrame.pathFinder.ClearMatrix(5);
 
@@ -484,7 +484,7 @@ public class Zachod extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -740,7 +740,7 @@ public class Zachod extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518] ||
                     kisty.IsPointInRect(pTemp) && !mainFrame.actions[516] ||

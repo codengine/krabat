@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,16 +36,16 @@ public class Les2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Les2.class);
     private GenericImage background;
     private GenericImage strauch;
-    private Mlynk2 mueller;
+    private Miller mueller;
 
     private boolean muellerVisible = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
     // Vordergrund - Rects
-    private static final Borderrect strauchRect = new Borderrect(0, 380, 255, 419);
+    private static final BorderRect strauchRect = new BorderRect(0, 380, 255, 419);
 
     // Konstante Points
     private static final GenericPoint Pkrabat = new GenericPoint(50, 361);
@@ -66,9 +66,9 @@ public class Les2 extends MainLocation2 {
         mainFrame.krabat.zoomf = 2.88f;
         mainFrame.krabat.defScale = -20;
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -141,7 +141,7 @@ public class Les2 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

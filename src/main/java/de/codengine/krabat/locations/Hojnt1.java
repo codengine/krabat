@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Hojnt;
+import de.codengine.krabat.anims.Hunter;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -59,7 +59,7 @@ public class Hojnt1 extends MainLocation {
 
     private boolean setAnim = false;
     private int AnimFlag = 0;
-    private Hojnt jaeger;
+    private Hunter jaeger;
     private boolean showHojnt = false;
     private boolean walkReady = true;
     private boolean isDoorOpen = false;
@@ -80,21 +80,21 @@ public class Hojnt1 extends MainLocation {
 
     private boolean istJaegerGebueckt = false;
 
-    private static final Borderrect obererAusgang = new Borderrect(199, 277, 271, 379);
-    private static final Borderrect rechterAusgang = new Borderrect(1206, 409, 1279, 479);
-    private static final Borderrect strauchRect = new Borderrect(160, 249, 305, 394);
-    private static final Borderrect hakenRect = new Borderrect(426, 258, 506, 277);
-    private static final Borderrect jamaRect = new Borderrect(1081, 378, 1188, 424);
-    private static final Borderrect hoelzerRect = new Borderrect(613, 250, 640, 290);
-    private static final Borderrect leineRect = new Borderrect(1100, 245, 1155, 362);
-    private static final Borderrect brMega = new Borderrect(741, 0, 1279, 479);
-    private static final Borderrect kurotwy1Rect = new Borderrect(438, 278, 454, 311);
-    private static final Borderrect kurotwy2Rect = new Borderrect(480, 278, 507, 311);
-    private static final Borderrect wokno1Rect = new Borderrect(378, 267, 420, 307);
-    private static final Borderrect wokno2Rect = new Borderrect(523, 267, 565, 309);
-    private static final Borderrect sekeraRect = new Borderrect(145, 188, 237, 220);
-    private static final Borderrect durjeRect = new Borderrect(273, 266, 303, 339);
-    private static final Borderrect drjewoRect = new Borderrect(0, 150, 84, 428);
+    private static final BorderRect obererAusgang = new BorderRect(199, 277, 271, 379);
+    private static final BorderRect rechterAusgang = new BorderRect(1206, 409, 1279, 479);
+    private static final BorderRect strauchRect = new BorderRect(160, 249, 305, 394);
+    private static final BorderRect hakenRect = new BorderRect(426, 258, 506, 277);
+    private static final BorderRect jamaRect = new BorderRect(1081, 378, 1188, 424);
+    private static final BorderRect hoelzerRect = new BorderRect(613, 250, 640, 290);
+    private static final BorderRect leineRect = new BorderRect(1100, 245, 1155, 362);
+    private static final BorderRect brMega = new BorderRect(741, 0, 1279, 479);
+    private static final BorderRect kurotwy1Rect = new BorderRect(438, 278, 454, 311);
+    private static final BorderRect kurotwy2Rect = new BorderRect(480, 278, 507, 311);
+    private static final BorderRect wokno1Rect = new BorderRect(378, 267, 420, 307);
+    private static final BorderRect wokno2Rect = new BorderRect(523, 267, 565, 309);
+    private static final BorderRect sekeraRect = new BorderRect(145, 188, 237, 220);
+    private static final BorderRect durjeRect = new BorderRect(273, 266, 303, 339);
+    private static final BorderRect drjewoRect = new BorderRect(0, 150, 84, 428);
 
     // Konstante Punkte
     private static final GenericPoint Pup = new GenericPoint(246, 350);
@@ -135,7 +135,7 @@ public class Hojnt1 extends MainLocation {
         mainFrame.krabat.zoomf = 0.93f;
         mainFrame.krabat.defScale = -15;
 
-        jaeger = new Hojnt(mainFrame);
+        jaeger = new Hunter(mainFrame);
         jaeger.maxx = mainFrame.krabat.maxx;
         jaeger.zoomf = mainFrame.krabat.zoomf;
         jaeger.defScale = mainFrame.krabat.defScale;
@@ -212,11 +212,11 @@ public class Hojnt1 extends MainLocation {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(229, 265, 267, 340, 350, 364));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(285, 606, 361, 642, 365, 383));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(605, 663, 715, 927, 384, 410));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(716, 996, 857, 1138, 411, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(985, 1279, 1117, 1279, 442, 463));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(229, 265, 267, 340, 350, 364));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(285, 606, 361, 642, 365, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(605, 663, 715, 927, 384, 410));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(716, 996, 857, 1138, 411, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(985, 1279, 1117, 1279, 442, 463));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -355,7 +355,7 @@ public class Hojnt1 extends MainLocation {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -472,7 +472,7 @@ public class Hojnt1 extends MainLocation {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -644,7 +644,7 @@ public class Hojnt1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -1067,7 +1067,7 @@ public class Hojnt1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     hakenRect.IsPointInRect(pTemp) && !mainFrame.actions[905] ||
                     jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
@@ -1425,7 +1425,7 @@ public class Hojnt1 extends MainLocation {
             case 210:
                 // Jaeger sagt Spruch
                 // Hier Position des Textes berechnen
-                Borderrect tmp = jaeger.getRect();
+                BorderRect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 PersonSagt("Hojnt1_16", 0, 26, 2, 215, tTlk);
                 break;

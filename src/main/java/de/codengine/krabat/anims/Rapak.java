@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericRectangle;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Rapak extends Mainanim {
+public class Rapak extends MainAnim {
     private final GenericImage[] Vogel;
     private int whichanim = 0;
     private int Animcount = 0;
@@ -50,7 +50,7 @@ public class Rapak extends Mainanim {
     private static final int MAX_FLYX = 412;
     private static final int MAX_FLYY = 144;
 
-    private final PtackZaRapaka sideptack;
+    private final RapakiRaven sideptack;
 
     private boolean flyawaySound = false;
 
@@ -58,7 +58,7 @@ public class Rapak extends Mainanim {
         super(caller);
 
         Vogel = new GenericImage[12];
-        sideptack = new PtackZaRapaka(mainFrame, 412, 78, -50);
+        sideptack = new RapakiRaven(mainFrame, 412, 78, -50);
 
         flyx = MAX_FLYX;
         flyy = MAX_FLYY;

@@ -40,14 +40,14 @@ public class Couch extends MainLocation {
     private boolean istTuerOffen = false;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang
-            = new Borderrect(490, 165, 590, 418);
-    private static final Borderrect untererAusgang
-            = new Borderrect(120, 445, 500, 479);
-    private static final Borderrect durje
-            = new Borderrect(257, 212, 347, 375);
-    private static final Borderrect couch
-            = new Borderrect(53, 115, 203, 386);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(490, 165, 590, 418);
+    private static final BorderRect untererAusgang
+            = new BorderRect(120, 445, 500, 479);
+    private static final BorderRect durje
+            = new BorderRect(257, 212, 347, 375);
+    private static final BorderRect couch
+            = new BorderRect(53, 115, 203, 386);
 
     // Konstante Points
     private static final GenericPoint pExitRight = new GenericPoint(510, 426);
@@ -89,9 +89,9 @@ public class Couch extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(265, 370, 85, 370, 383, 479));
+                (new BorderTrapezoid(265, 370, 85, 370, 383, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(371, 505, 371, 500, 426, 479));
+                (new BorderTrapezoid(371, 505, 371, 500, 426, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -296,7 +296,7 @@ public class Couch extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -439,7 +439,7 @@ public class Couch extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     durje.IsPointInRect(pTemp) ||
                     couch.IsPointInRect(pTemp);

@@ -21,9 +21,9 @@
 package de.codengine.krabat.locations4;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
-import de.codengine.krabat.anims.Oldmlynk;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
+import de.codengine.krabat.anims.OldMiller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -56,9 +56,9 @@ public class Rowy extends MainLocation {
     private GenericImage imOhneSwaixtix;
     private final GenericImage[] muellerExplosion = new GenericImage[11];
 
-    private final Oldmlynk alterMueller;
+    private final OldMiller alterMueller;
     private boolean alterMuellerda = false;
-    private final Mlynk2 mueller;
+    private final Miller mueller;
     private boolean muellerTalkWithStock = false;
     private int muellerTalkCounter = 0;
     private boolean muellerda = false; // Achtung !!!!!!!!!! Muss wg. Load noch berechnet werden !!!
@@ -75,33 +75,33 @@ public class Rowy extends MainLocation {
     private final GenericPoint muellerPoint;
 
     // Variablen fuer Morphing-Animationen
-    private final Bumm muellerMorph;
+    private final Boom muellerMorph;
     private int muellerMorphCount = 0;
     private boolean isMuellerMorphing = false;
 
     // konstante Rects
-    private static final Borderrect horncy =
-            new Borderrect(551, 391, 639, 479);
-    private static final Borderrect swaixtix =
-            new Borderrect(144, 254, 192, 396);
-    private static final Borderrect swaixtixArm =
-            new Borderrect(124, 255, 141, 290);
-    private static final Borderrect swaixtixGefallen =
-            new Borderrect(16, 320, 160, 380);
-    private static final Borderrect syno =
-            new Borderrect(32, 434, 115, 479);
-    private static final Borderrect brMueller =
-            new Borderrect(268, 323, 298, 413);
+    private static final BorderRect horncy =
+            new BorderRect(551, 391, 639, 479);
+    private static final BorderRect swaixtix =
+            new BorderRect(144, 254, 192, 396);
+    private static final BorderRect swaixtixArm =
+            new BorderRect(124, 255, 141, 290);
+    private static final BorderRect swaixtixGefallen =
+            new BorderRect(16, 320, 160, 380);
+    private static final BorderRect syno =
+            new BorderRect(32, 434, 115, 479);
+    private static final BorderRect brMueller =
+            new BorderRect(268, 323, 298, 413);
 
     // alle Graeber (von links oben nach rechts unten)
-    private static final Borderrect brGrab1 =
-            new Borderrect(228, 368, 253, 396);
-    private static final Borderrect brGrab2 =
-            new Borderrect(280, 376, 325, 400);
-    private static final Borderrect brGrab3 = // (dieses Grab wird geoeffnet !)
-            new Borderrect(335, 391, 398, 416);
-    private static final Borderrect brGrab4 =
-            new Borderrect(356, 425, 470, 442);
+    private static final BorderRect brGrab1 =
+            new BorderRect(228, 368, 253, 396);
+    private static final BorderRect brGrab2 =
+            new BorderRect(280, 376, 325, 400);
+    private static final BorderRect brGrab3 = // (dieses Grab wird geoeffnet !)
+            new BorderRect(335, 391, 398, 416);
+    private static final BorderRect brGrab4 =
+            new BorderRect(356, 425, 470, 442);
 
     // konstante Points
     private static final GenericPoint Phorncy = new GenericPoint(520, 420);
@@ -178,7 +178,7 @@ public class Rowy extends MainLocation {
         mainFrame.krabat.zoomf = 4.5f;
         mainFrame.krabat.defScale = -25;  // -45 war zu gross (Jan)
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
         mueller.maxx = 0;
         mueller.zoomf = 1f;
         mueller.defScale = 0;
@@ -186,13 +186,13 @@ public class Rowy extends MainLocation {
         mueller.setPos(muellerFeet);
         mueller.SetFacing(9);
 
-        alterMueller = new Oldmlynk(mainFrame, Muellerzooming, true);
+        alterMueller = new OldMiller(mainFrame, Muellerzooming, true);
 
-        muellerMorph = new Bumm(mainFrame);
+        muellerMorph = new Boom(mainFrame);
 
         muellerPoint = new GenericPoint();
-        muellerPoint.x = muellerFeet.x - Oldmlynk.Breite / 2;
-        muellerPoint.y = muellerFeet.y - Oldmlynk.Hoehe;
+        muellerPoint.x = muellerFeet.x - OldMiller.Breite / 2;
+        muellerPoint.y = muellerFeet.y - OldMiller.Hoehe;
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -228,13 +228,13 @@ public class Rowy extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(112, 330, 175, 330, 430, 479));
+                new BorderTrapezoid(112, 330, 175, 330, 430, 479));
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(331, 454, 494, 456));
+                new BorderTrapezoid(331, 454, 494, 456));
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(495, 410, 525, 479));
+                new BorderTrapezoid(495, 410, 525, 479));
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(432, 505, 432, 525, 383, 409));
+                new BorderTrapezoid(432, 505, 432, 525, 383, 409));
 
         // wenn Swaixtix noch nicht umgefallen -> Treppe (5. Trapez) noch da
         if (!mainFrame.actions[986]) {
@@ -250,7 +250,7 @@ public class Rowy extends MainLocation {
         // wenn Swaixtix noch nicht umgefallen -> Treppe (5. Trapez) hinzufuegen
         if (!mainFrame.actions[986]) {
             mainFrame.pathWalker.vBorders.addElement(
-                    new Bordertrapez(130, 131, 112, 114, 395, 429));
+                    new BorderTrapezoid(130, 131, 112, 114, 395, 429));
 
             mainFrame.pathFinder.PosVerbinden(0, 4);
         }
@@ -462,7 +462,7 @@ public class Rowy extends MainLocation {
             // Mueller Hintergrund loeschen
             if (muellerda) {
                 // Clipping - Rectangle feststellen und setzen
-                Borderrect temp;
+                BorderRect temp;
                 if (mueller.GetFacing() == 3) {
                     temp = mueller.MlynkRectMitStockAndersrum();
                 } else {
@@ -484,7 +484,7 @@ public class Rowy extends MainLocation {
             // Mueller zeichnen
             if (muellerda) {
                 // Facing checken (nach links oder rechts glotzen, je nach Krabat)
-                Borderrect temp;
+                BorderRect temp;
                 if (mainFrame.krabat.getPos().x > muellerFeet.x) {
                     mueller.SetFacing(3);
                     temp = mueller.MlynkRectMitStockAndersrum();
@@ -535,7 +535,7 @@ public class Rowy extends MainLocation {
             // alten Mueller zeichnen, wenn er da ist
             if (alterMuellerda) {
                 g.setClip(muellerPoint.x, muellerPoint.y,
-                        Oldmlynk.Breite, Oldmlynk.Hoehe);
+                        OldMiller.Breite, OldMiller.Hoehe);
                 drawSpecialBackgrounds(g);
 
                 alterMueller.drawOldmlynk(g, TalkPerson, muellerPoint);
@@ -544,13 +544,13 @@ public class Rowy extends MainLocation {
             // explodiert der Mueller zur Zeit ?
             if (muellerExplodiert) {
                 g.setClip(muellerPoint.x, muellerPoint.y,
-                        Oldmlynk.Breite, Oldmlynk.Hoehe);
+                        OldMiller.Breite, OldMiller.Hoehe);
                 drawSpecialBackgrounds(g);
 
                 if (muellerExplosionCounter < muellerExplosion.length * 2) {
                     g.drawImage(muellerExplosion[muellerExplosionCounter++ / 2],
                             muellerPoint.x, muellerPoint.y,
-                            Oldmlynk.Breite, Oldmlynk.Hoehe);
+                            OldMiller.Breite, OldMiller.Hoehe);
                 } else {
                     muellerExplodiert = false;
                 }
@@ -944,7 +944,7 @@ public class Rowy extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -1262,7 +1262,7 @@ public class Rowy extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     horncy.IsPointInRect(pTemp) ||
                     swaixtix.IsPointInRect(pTemp) && !mainFrame.actions[986] ||
@@ -1584,7 +1584,7 @@ public class Rowy extends MainLocation {
 
             case 200:
                 // Mueller wird per Morphing hergezaubert
-                Borderrect tmp = mueller.getRect();
+                BorderRect tmp = mueller.getRect();
                 GenericPoint tt = new GenericPoint((tmp.lo_point.x + tmp.ru_point.x) / 2, tmp.ru_point.y);
                 muellerMorph.Init(tt, 100);  // 2. Argument ist die Groesse in Pixeln !!!
                 isMuellerMorphing = true;
@@ -1639,7 +1639,7 @@ public class Rowy extends MainLocation {
 
             case 261:
                 // Start: Mueller wird per Morphing auf alten Mueller geswitcht
-                Borderrect tmp2 = mueller.getRect();
+                BorderRect tmp2 = mueller.getRect();
                 GenericPoint tt2 = new GenericPoint((tmp2.lo_point.x + tmp2.ru_point.x) / 2, tmp2.ru_point.y);
                 muellerMorph.Init(tt2, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
@@ -1673,7 +1673,7 @@ public class Rowy extends MainLocation {
 
             case 268:
                 // Start: Alter Mueller wird per Morphing auf Fledermaus geswitcht
-                Borderrect tmp3 = mueller.getRect();
+                BorderRect tmp3 = mueller.getRect();
                 GenericPoint tt3 = new GenericPoint((tmp3.lo_point.x + tmp3.ru_point.x) / 2, tmp3.ru_point.y);
                 muellerMorph.Init(tt3, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;
@@ -1788,7 +1788,7 @@ public class Rowy extends MainLocation {
 
             case 346:
                 // Start: Fledermaus wird per Morphing auf Mueller geswitcht
-                Borderrect tmp4 = mueller.getRect();
+                BorderRect tmp4 = mueller.getRect();
                 GenericPoint tt4 = new GenericPoint((tmp4.lo_point.x + tmp4.ru_point.x) / 2, tmp4.ru_point.y);
                 muellerMorph.Init(tt4, 100);  // 2. Argument ist die Groesse in Pixeln
                 isMuellerMorphing = true;

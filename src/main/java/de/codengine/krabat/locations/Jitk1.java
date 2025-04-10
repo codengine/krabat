@@ -42,11 +42,11 @@ public class Jitk1 extends MainLocation {
     private static final GenericPoint Pdown = new GenericPoint(261, 479);
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect rechterAusgang = new Borderrect(598, 327, 639, 412);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 67, 131, 151);
-    private static final Borderrect untererAusgang = new Borderrect(172, 435, 364, 479);
-    private static final Borderrect brEingang = new Borderrect(353, 250, 397, 334);
-    private static final Borderrect brWagen = new Borderrect(0, 338, 142, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(598, 327, 639, 412);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 67, 131, 151);
+    private static final BorderRect untererAusgang = new BorderRect(172, 435, 364, 479);
+    private static final BorderRect brEingang = new BorderRect(353, 250, 397, 334);
+    private static final BorderRect brWagen = new BorderRect(0, 338, 142, 479);
     // private static final borderrect buschRect      = new borderrect (0, 0, 0, 0);
 
     // Konstante ints
@@ -75,15 +75,15 @@ public class Jitk1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(276, 346, 213, 296, 399, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(276, 639, 276, 528, 375, 398));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(633, 639, 573, 639, 352, 374));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(271, 357, 368, 374));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(360, 374, 339, 367, 345, 356));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(218, 241, 271, 309, 328, 356));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 176, 218, 241, 260, 327));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(91, 96, 154, 176, 220, 259));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(83, 90, 91, 96, 137, 219));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(276, 346, 213, 296, 399, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(276, 639, 276, 528, 375, 398));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(633, 639, 573, 639, 352, 374));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(271, 357, 368, 374));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(360, 374, 339, 367, 345, 356));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(218, 241, 271, 309, 328, 356));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(154, 176, 218, 241, 260, 327));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(91, 96, 154, 176, 220, 259));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(83, 90, 91, 96, 137, 219));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(9);
@@ -271,7 +271,7 @@ public class Jitk1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -446,7 +446,7 @@ public class Jitk1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = brEingang.IsPointInRect(pTemp) || brWagen.IsPointInRect(pTemp) ||
                     tmp.IsPointInRect(pTemp);
 

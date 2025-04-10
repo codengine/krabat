@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Straza1;
-import de.codengine.krabat.anims.Straza2;
+import de.codengine.krabat.anims.Guard1;
+import de.codengine.krabat.anims.Guard2;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -35,11 +35,11 @@ import java.util.Objects;
 public class Straze extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(Straze.class);
     private GenericImage background;
-    private final Straza1 straza1;
-    private final Straza2 straza2;
+    private final Guard1 guard1;
+    private final Guard2 guard2;
 
-    private final Borderrect reStraza1;
-    private final Borderrect reStraza2;
+    private final BorderRect reStraza1;
+    private final BorderRect reStraza2;
 
     private final GenericPoint talkPoint;  // links
     private final GenericPoint talkPoint2; // rechts
@@ -51,12 +51,12 @@ public class Straze extends MainLocation {
     private boolean straza2VersperrtWeg = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangHdwor
-            = new Borderrect(233, 330, 340, 405);
-    private static final Borderrect ausgangTerassa
-            = new Borderrect(150, 450, 420, 479);
-    private static final Borderrect wappen
-            = new Borderrect(250, 78, 331, 172);
+    private static final BorderRect ausgangHdwor
+            = new BorderRect(233, 330, 340, 405);
+    private static final BorderRect ausgangTerassa
+            = new BorderRect(150, 450, 420, 479);
+    private static final BorderRect wappen
+            = new BorderRect(250, 78, 331, 172);
 
     // Konstante Points
     private static final GenericPoint pExitHdwor = new GenericPoint(285, 410);
@@ -94,22 +94,22 @@ public class Straze extends MainLocation {
         mainFrame.krabat.zoomf = 1f;
         mainFrame.krabat.defScale = -30;
 
-        straza1 = new Straza1(mainFrame);
-        straza2 = new Straza2(mainFrame);
+        guard1 = new Guard1(mainFrame);
+        guard2 = new Guard2(mainFrame);
 
         // Inits fuer Straza1
-        pStraza1 = new GenericPoint(straza1Feet.x - Straza1.Breite / 2, straza1Feet.y - Straza1.Hoehe);
+        pStraza1 = new GenericPoint(straza1Feet.x - Guard1.Breite / 2, straza1Feet.y - Guard1.Hoehe);
 
         talkPoint = new GenericPoint(straza1Feet.x, pStraza1.y - 50);
 
-        reStraza1 = new Borderrect(pStraza1.x, pStraza1.y, pStraza1.x + Straza1.Breite, pStraza1.y + Straza1.Hoehe);
+        reStraza1 = new BorderRect(pStraza1.x, pStraza1.y, pStraza1.x + Guard1.Breite, pStraza1.y + Guard1.Hoehe);
 
         // Inits fuer Straza2
-        pStraza2 = new GenericPoint(straza2Feet.x - Straza2.Breite / 2, straza2Feet.y - Straza2.Hoehe);
+        pStraza2 = new GenericPoint(straza2Feet.x - Guard2.Breite / 2, straza2Feet.y - Guard2.Hoehe);
 
         talkPoint2 = new GenericPoint(straza2Feet.x, pStraza2.y - 50);
 
-        reStraza2 = new Borderrect(pStraza2.x, pStraza2.y, pStraza2.x + Straza2.Breite, pStraza2.y + Straza2.Hoehe);
+        reStraza2 = new BorderRect(pStraza2.x, pStraza2.y, pStraza2.x + Guard2.Breite, pStraza2.y + Guard2.Hoehe);
 
         InitLocation(oldLocation);
 
@@ -123,14 +123,14 @@ public class Straze extends MainLocation {
 
         // diese Rechtecke nur mit Dienstkleidung passierbar
         if (mainFrame.actions[511]) {
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(242, 420, 309, 469));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(160, 410, 80, 430, 470, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(242, 420, 309, 469));
 
             mainFrame.pathFinder.ClearMatrix(2);
             mainFrame.pathFinder.PosVerbinden(0, 1);
         } else {
             // sonst nur dieses
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(160, 410, 80, 430, 470, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(160, 410, 80, 430, 470, 479));
 
             mainFrame.pathFinder.ClearMatrix(1);
         }
@@ -183,14 +183,14 @@ public class Straze extends MainLocation {
         }
 
         // Wache 1 + 2 zeichnen
-        g.setClip(pStraza1.x, pStraza1.y, Straza1.Breite, Straza1.Hoehe);
+        g.setClip(pStraza1.x, pStraza1.y, Guard1.Breite, Guard1.Hoehe);
         g.drawImage(background, 0, 0);
-        straza1.drawStraza1(g, TalkPerson, pStraza1, straza1VersperrtWeg);
+        guard1.drawStraza1(g, TalkPerson, pStraza1, straza1VersperrtWeg);
 
         // hier Wache2 (rechts)
-        g.setClip(pStraza2.x, pStraza2.y, Straza2.Breite, Straza2.Hoehe);
+        g.setClip(pStraza2.x, pStraza2.y, Guard2.Breite, Guard2.Hoehe);
         g.drawImage(background, 0, 0);
-        straza2.drawStraza2(g, TalkPerson, pStraza2, straza2VersperrtWeg);
+        guard2.drawStraza2(g, TalkPerson, pStraza2, straza2VersperrtWeg);
 
         // Wache 2 entscheidet selber, wann "Stop" zurueckgenommen
         straza2VersperrtWeg = false;
@@ -293,7 +293,7 @@ public class Straze extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -449,7 +449,7 @@ public class Straze extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || reStraza1.IsPointInRect(pTemp) ||
                     reStraza2.IsPointInRect(pTemp) || wappen.IsPointInRect(pTemp);
 

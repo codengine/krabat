@@ -35,13 +35,13 @@ public class CornyCholmc1 extends MainLocation {
     private GenericImage background;
     private GenericImage himmel;
     private GenericImage vorder;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect obererAusgang = new Borderrect(123, 228, 187, 276);
-    private static final Borderrect untererAusgang = new Borderrect(376, 451, 590, 479);
-    private static final Borderrect waldRect = new Borderrect(0, 44, 424, 164);
-    private static final Borderrect kolmcRect = new Borderrect(511, 125, 639, 241);
+    private static final BorderRect obererAusgang = new BorderRect(123, 228, 187, 276);
+    private static final BorderRect untererAusgang = new BorderRect(376, 451, 590, 479);
+    private static final BorderRect waldRect = new BorderRect(0, 44, 424, 164);
+    private static final BorderRect kolmcRect = new BorderRect(511, 125, 639, 241);
 
     // Konstante Points
     private static final GenericPoint Pup = new GenericPoint(161, 268);
@@ -70,7 +70,7 @@ public class CornyCholmc1 extends MainLocation {
         mainFrame.krabat.zoomf = 4.2f;
         mainFrame.krabat.defScale = 20;
 
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -80,11 +80,11 @@ public class CornyCholmc1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(437, 490, 472, 497, 466, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(211, 263, 437, 490, 389, 465));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(196, 222, 211, 263, 367, 388));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(169, 184, 196, 222, 325, 366));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(153, 163, 169, 184, 276, 324));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(437, 490, 472, 497, 466, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(211, 263, 437, 490, 389, 465));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(196, 222, 211, 263, 367, 388));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(169, 184, 196, 222, 325, 366));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(153, 163, 169, 184, 276, 324));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -289,7 +289,7 @@ public class CornyCholmc1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -444,7 +444,7 @@ public class CornyCholmc1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || waldRect.IsPointInRect(pTemp) ||
                     kolmcRect.IsPointInRect(pTemp);
 

@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Hojnt;
+import de.codengine.krabat.anims.Hunter;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -47,7 +47,7 @@ public class HojntAuto extends MainLocation {
     private static final int MAX_MEHRMALS = 3;
 
     // private boolean setAnim = false;
-    private Hojnt jaeger;
+    private Hunter jaeger;
     private boolean showHojnt = false;
     private boolean walkReady = true;
 
@@ -88,7 +88,7 @@ public class HojntAuto extends MainLocation {
         mainFrame.krabat.zoomf = 4.4f;
         mainFrame.krabat.defScale = 50;
 
-        jaeger = new Hojnt(mainFrame);
+        jaeger = new Hunter(mainFrame);
         jaeger.maxx = 0;
         jaeger.zoomf = mainFrame.krabat.zoomf;
         jaeger.defScale = 0;
@@ -155,11 +155,11 @@ public class HojntAuto extends MainLocation {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(229, 265, 267, 340, 350, 364));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(285, 606, 361, 642, 365, 383));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(605, 663, 715, 927, 384, 410));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(716, 996, 857, 1138, 411, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(985, 1279, 1024, 1279, 442, 463));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(229, 265, 267, 340, 350, 364));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(285, 606, 361, 642, 365, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(605, 663, 715, 927, 384, 410));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(716, 996, 857, 1138, 411, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(985, 1279, 1024, 1279, 442, 463));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -268,7 +268,7 @@ public class HojntAuto extends MainLocation {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -323,7 +323,7 @@ public class HojntAuto extends MainLocation {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -343,7 +343,7 @@ public class HojntAuto extends MainLocation {
         // Scroller mitschieben, wenn Hojnt bewegt wird
         // Hier allgemeine Scrollingroutine, nur wenn man darf...
         if (isScrollAnim) {
-            Borderrect temprect = jaeger.getRect();
+            BorderRect temprect = jaeger.getRect();
             int temp = (temprect.lo_point.x + temprect.ru_point.x) / 2;
             temp -= mainFrame.scrollX;
 
@@ -471,7 +471,7 @@ public class HojntAuto extends MainLocation {
                 // Jaeger sagt Spruch vor dem Loslaufen
                 outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_1");
                 // Hier Position des Textes berechnen
-                Borderrect tmp = jaeger.getRect();
+                BorderRect tmp = jaeger.getRect();
                 GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
                 outputTextPos = mainFrame.imageFont.CenterText(outputText, tTlk);
                 TalkPerson = 26;
@@ -547,7 +547,7 @@ public class HojntAuto extends MainLocation {
                 // Jaeger sagt Spruch vor dem Ende
                 outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_2");
                 // Hier Position des Textes berechnen
-                Borderrect temp = jaeger.getRect();
+                BorderRect temp = jaeger.getRect();
                 GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
                 outputTextPos = mainFrame.imageFont.CenterText(outputText, tTalk);
                 TalkPerson = 26;
@@ -623,7 +623,7 @@ public class HojntAuto extends MainLocation {
                 // Jaeger sagt Spruch, wenn Krabat reingefallen ist
                 outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_3");
                 // Hier Position des Textes berechnen
-                Borderrect teemp = jaeger.getRect();
+                BorderRect teemp = jaeger.getRect();
                 GenericPoint tTaalk = new GenericPoint((teemp.ru_point.x + teemp.lo_point.x) / 2, teemp.lo_point.y - 50);
                 outputTextPos = mainFrame.imageFont.CenterText(outputText, tTaalk);
                 TalkPerson = 26;

@@ -35,9 +35,9 @@ public class Njedz1 extends MainLocation {
     private GenericImage background;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(307, 222, 361, 262);
-    private static final Borderrect untererAusgang = new Borderrect(291, 435, 639, 479);
-    private static final Borderrect wodaRect = new Borderrect(406, 258, 500, 300);
+    private static final BorderRect obererAusgang = new BorderRect(307, 222, 361, 262);
+    private static final BorderRect untererAusgang = new BorderRect(291, 435, 639, 479);
+    private static final BorderRect wodaRect = new BorderRect(406, 258, 500, 300);
 
     // Konstante Points
     private static final GenericPoint Pdown = new GenericPoint(494, 479);
@@ -45,13 +45,13 @@ public class Njedz1 extends MainLocation {
     private static final GenericPoint Pwoda = new GenericPoint(393, 342);
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(407, 422, 399, 400, 259, 283),
-                    new Bordertrapez(423, 260, 498, 266),
-                    new Bordertrapez(473, 267, 498, 302),
-                    new Bordertrapez(464, 306, 480, 315),
-                    new Bordertrapez(601, 263, 639, 276),
-                    new Bordertrapez(598, 609, 594, 603, 277, 289)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(407, 422, 399, 400, 259, 283),
+                    new BorderTrapezoid(423, 260, 498, 266),
+                    new BorderTrapezoid(473, 267, 498, 302),
+                    new BorderTrapezoid(464, 306, 480, 315),
+                    new BorderTrapezoid(601, 263, 639, 276),
+                    new BorderTrapezoid(598, 609, 594, 603, 277, 289)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -85,8 +85,8 @@ public class Njedz1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(256, 305, 349, 639, 293, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(323, 335, 256, 305, 259, 292));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(256, 305, 349, 639, 293, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(323, 335, 256, 305, 259, 292));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(2);
@@ -132,9 +132,9 @@ public class Njedz1 extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1; // 1 Mindestens !
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -297,7 +297,7 @@ public class Njedz1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -433,7 +433,7 @@ public class Njedz1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

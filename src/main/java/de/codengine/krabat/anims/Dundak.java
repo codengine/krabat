@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Dundak extends Mainanim {
+public class Dundak extends MainAnim {
     private final GenericImage[] hosc_stand;
     private final GenericImage[] hosc_head;
     private final GenericImage[] hosc_body;

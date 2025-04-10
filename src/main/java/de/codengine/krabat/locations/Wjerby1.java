@@ -36,10 +36,10 @@ public class Wjerby1 extends MainLocation {
     private GenericImage weiden2;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(591, 201, 639, 286);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 222, 30, 307);
-    private static final Borderrect untererAusgang = new Borderrect(0, 418, 255, 479);
-    private static final Borderrect weiden2Rect = new Borderrect(71, 244, 253, 325);
+    private static final BorderRect obererAusgang = new BorderRect(591, 201, 639, 286);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 222, 30, 307);
+    private static final BorderRect untererAusgang = new BorderRect(0, 418, 255, 479);
+    private static final BorderRect weiden2Rect = new BorderRect(71, 244, 253, 325);
 
     // Konstanten - Points
     private static final GenericPoint Pdown = new GenericPoint(55, 479);
@@ -67,12 +67,12 @@ public class Wjerby1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(19, 180, 19, 135, 447, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(291, 394, 19, 180, 326, 446));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(201, 485, 281, 394, 301, 325));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(585, 639, 379, 485, 247, 300));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(628, 639, 585, 639, 230, 246));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 72, 143, 308, 270, 300));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(19, 180, 19, 135, 447, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(291, 394, 19, 180, 326, 446));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(201, 485, 281, 394, 301, 325));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(585, 639, 379, 485, 247, 300));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(628, 639, 585, 639, 230, 246));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 72, 143, 308, 270, 300));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(6);
@@ -248,7 +248,7 @@ public class Wjerby1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -380,7 +380,7 @@ public class Wjerby1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

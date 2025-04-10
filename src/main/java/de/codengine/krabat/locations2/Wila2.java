@@ -22,8 +22,8 @@ package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,19 +36,19 @@ import java.util.Objects;
 public class Wila2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Wila2.class);
     private GenericImage background;
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean setAnim = false;
     private boolean muellerda = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(393, 101, 464, 144);
-    private static final Borderrect untererAusgang = new Borderrect(102, 437, 340, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(610, 306, 639, 479);
-    private static final Borderrect durjeRect = new Borderrect(300, 347, 328, 411);
+    private static final BorderRect obererAusgang = new BorderRect(393, 101, 464, 144);
+    private static final BorderRect untererAusgang = new BorderRect(102, 437, 340, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(610, 306, 639, 479);
+    private static final BorderRect durjeRect = new BorderRect(300, 347, 328, 411);
 
     // Konstante Points
     private static final GenericPoint Pdown = new GenericPoint(208, 479);
@@ -72,9 +72,9 @@ public class Wila2 extends MainLocation2 {
         mainFrame.krabat.zoomf = 4f;
         mainFrame.krabat.defScale = 5;
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -92,17 +92,17 @@ public class Wila2 extends MainLocation2 {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(166, 458, 639, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(352, 639, 166, 639, 428, 457));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(536, 639, 464, 639, 373, 427));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(550, 639, 536, 639, 333, 372));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 458, 639, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(352, 639, 166, 639, 428, 457));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(536, 639, 464, 639, 373, 427));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(550, 639, 536, 639, 333, 372));
         // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (488, 494, 550, 625, 249, 332));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(488, 494, 519, 560, 249, 297));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(465, 298, 567, 307));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(523, 567, 550, 625, 308, 332));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(390, 298, 464, 307));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(460, 464, 488, 494, 178, 248));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(435, 437, 460, 464, 145, 177));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(488, 494, 519, 560, 249, 297));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(465, 298, 567, 307));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(523, 567, 550, 625, 308, 332));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(390, 298, 464, 307));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(460, 464, 488, 494, 178, 248));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(435, 437, 460, 464, 145, 177));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(10);
@@ -209,7 +209,7 @@ public class Wila2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -336,7 +336,7 @@ public class Wila2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -488,7 +488,7 @@ public class Wila2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     durjeRect.IsPointInRect(pTemp);
 

@@ -22,7 +22,7 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mainanim;
+import de.codengine.krabat.anims.MainAnim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Info extends Mainanim {
+public class Info extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Info.class);
     private GenericImage Bild;
     private GenericImage Jan;
@@ -46,9 +46,9 @@ public class Info extends Mainanim {
 
     private final GenericPoint pLO;
 
-    private final Borderrect brGesamt;
-    private final Borderrect brPfeill;
-    private final Borderrect brPfeilr;
+    private final BorderRect brGesamt;
+    private final BorderRect brPfeill;
+    private final BorderRect brPfeilr;
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -92,11 +92,11 @@ public class Info extends Mainanim {
 
         // Rechtecke im Inventar-Fenster festlegen
         pLO = new GenericPoint(31, 31);
-        brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
+        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
 
         brPfeill = mainFrame.inventory.brPfeill;
-        brPfeilr = new Borderrect(pLO.x + 391, pLO.y + 319,
+        brPfeilr = new BorderRect(pLO.x + 391, pLO.y + 319,
                 pLO.x + 481, pLO.y + 359);
 
         Pfeill = mainFrame.inventory.Pfeill;

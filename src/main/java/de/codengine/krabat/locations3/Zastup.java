@@ -39,12 +39,12 @@ public class Zastup extends MainLocation {
     private final GenericImage[] Schranke;
     private GenericImage Loch;
     private final Mato mato;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     private int SchrankCount;
 
     private final GenericPoint talkPoint;
-    private final Borderrect reMato;
+    private final BorderRect reMato;
 
     private boolean isOpening = false;
     private boolean isTaking = false;
@@ -56,20 +56,20 @@ public class Zastup extends MainLocation {
     private static final int MAX_VERHINDERSCHRANKE = 15;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangLinks
-            = new Borderrect(0, 310, 40, 479);
+    private static final BorderRect ausgangLinks
+            = new BorderRect(0, 310, 40, 479);
     //private static final borderrect ausgangRechts
     //    = new borderrect (600, 380, 639, 479);
-    private static final Borderrect ausgangManega
-            = new Borderrect(455, 275, 575, 409);
-    private static final Borderrect tor
-            = new Borderrect(258, 327, 328, 431);
-    private static final Borderrect schranke
-            = new Borderrect(454, 367, 553, 390);
-    private static final Borderrect rectGrasLinks
-            = new Borderrect(0, 430, 175, 479);
-    private static final Borderrect rectGrasRechts
-            = new Borderrect(400, 430, 640, 480);
+    private static final BorderRect ausgangManega
+            = new BorderRect(455, 275, 575, 409);
+    private static final BorderRect tor
+            = new BorderRect(258, 327, 328, 431);
+    private static final BorderRect schranke
+            = new BorderRect(454, 367, 553, 390);
+    private static final BorderRect rectGrasLinks
+            = new BorderRect(0, 430, 175, 479);
+    private static final BorderRect rectGrasRechts
+            = new BorderRect(400, 430, 640, 480);
 
     // Konstante Points
     private static final GenericPoint pExitLinks = new GenericPoint(16, 416);
@@ -103,13 +103,13 @@ public class Zastup extends MainLocation {
 
         // Mato noch da
         mato = new Mato(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         talkPoint = new GenericPoint();
         talkPoint.x = matoPoint.x + Mato.Breite / 2;
         talkPoint.y = matoPoint.y - 50;
 
-        reMato = new Borderrect(matoPoint.x, matoPoint.y, matoPoint.x + Mato.Breite, matoPoint.y + Mato.Hoehe);
+        reMato = new BorderRect(matoPoint.x, matoPoint.y, matoPoint.x + Mato.Breite, matoPoint.y + Mato.Hoehe);
 
         Schranke = new GenericImage[12];
 
@@ -149,18 +149,18 @@ public class Zastup extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(15, 285, 15, 285, 440, 479));
+                (new BorderTrapezoid(15, 285, 15, 285, 440, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(15, 22, 15, 143, 406, 439));
+                (new BorderTrapezoid(15, 22, 15, 143, 406, 439));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(286, 625, 286, 625, 447, 479));
+                (new BorderTrapezoid(286, 625, 286, 625, 447, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(453, 530, 395, 625, 423, 446));
+                (new BorderTrapezoid(453, 530, 395, 625, 423, 446));
 
         // Schranke offen ?
         if (mainFrame.actions[575]) {
             mainFrame.pathWalker.vBorders.addElement
-                    (new Bordertrapez(510, 513, 480, 510, 394, 422));
+                    (new BorderTrapezoid(510, 513, 480, 510, 394, 422));
         }
 
         // Trapez-Beziehungen (Schranke offen oder nicht)
@@ -379,7 +379,7 @@ public class Zastup extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -594,7 +594,7 @@ public class Zastup extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     reMato.IsPointInRect(pTemp) && !mainFrame.actions[576] ||
                     tor.IsPointInRect(pTemp) ||

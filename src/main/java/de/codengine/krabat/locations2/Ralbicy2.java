@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -38,13 +38,13 @@ public class Ralbicy2 extends MainLocation2 {
     private GenericImage holz;
     private GenericImage kreuz;
     // private bur1 bauer;
-    private Mlynk2 mueller;
-    private final Multiple2 Dialog;
+    private Miller mueller;
+    private final MultipleChoice Dialog;
     private boolean setAnim = false;
     private boolean muellerda = false;
     // private boolean isListening = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
@@ -53,10 +53,10 @@ public class Ralbicy2 extends MainLocation2 {
     private static final boolean bauerda = false;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(450, 423, 639, 479);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 290, 42, 361);
-    private static final Borderrect brKirche = new Borderrect(172, 136, 544, 277);
-    private static final Borderrect brBauer = new Borderrect(62, 217, 120, 307);
+    private static final BorderRect rechterAusgang = new BorderRect(450, 423, 639, 479);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 290, 42, 361);
+    private static final BorderRect brKirche = new BorderRect(172, 136, 544, 277);
+    private static final BorderRect brBauer = new BorderRect(62, 217, 120, 307);
 
     // Punkte in Location
     private static final GenericPoint Pkirche = new GenericPoint(77, 316);
@@ -84,10 +84,10 @@ public class Ralbicy2 extends MainLocation2 {
         mainFrame.krabat.defScale = -40;
 
         // bauer  = new bur1 (mainFrame);
-        Dialog = new Multiple2(mainFrame);
-        mueller = new Mlynk2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -105,11 +105,11 @@ public class Ralbicy2 extends MainLocation2 {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 16, 0, 221, 296, 362));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 223, 97, 223, 363, 420));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(224, 372, 300, 435));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(301, 390, 408, 454));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(409, 390, 639, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 16, 0, 221, 296, 362));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 223, 97, 223, 363, 420));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(224, 372, 300, 435));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(301, 390, 408, 454));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(409, 390, 639, 479));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -223,7 +223,7 @@ public class Ralbicy2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -370,7 +370,7 @@ public class Ralbicy2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -529,7 +529,7 @@ public class Ralbicy2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = brKirche.IsPointInRect(pTemp) ||
                     tmp.IsPointInRect(pTemp) ||
                     brBauer.IsPointInRect(pTemp) && bauerda;

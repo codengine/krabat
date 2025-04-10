@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Oldmlynk;
+import de.codengine.krabat.anims.OldMiller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,7 +36,7 @@ public class Mlynkmurja extends MainLocation {
     private GenericImage backr;
     private GenericImage laterne;
 
-    private final Oldmlynk mueller;
+    private final OldMiller mueller;
     private final GenericPoint muellerPoint;
     private final GenericPoint muellerTalk;
 
@@ -73,7 +73,7 @@ public class Mlynkmurja extends MainLocation {
         InitLocation();
 
         // Mueller initialisieren
-        mueller = new Oldmlynk(mainFrame, Muellerzooming);
+        mueller = new OldMiller(mainFrame, Muellerzooming);
 
         muellerPoint = mueller.getMuellerPoint(muellerFeet);
         muellerTalk = mueller.getTalkPoint(muellerFeet);
@@ -93,11 +93,11 @@ public class Mlynkmurja extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(0, 90, 0, 90, 473, 479));
+                (new BorderTrapezoid(0, 90, 0, 90, 473, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(91, 619, 91, 619, 470, 479));
+                (new BorderTrapezoid(91, 619, 91, 619, 470, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(620, 630, 620, 630, 435, 479));
+                (new BorderTrapezoid(620, 630, 620, 630, 435, 479));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -141,7 +141,7 @@ public class Mlynkmurja extends MainLocation {
         g.drawImage(laterne, laterneAdd, 0);
 
         // Mueller zeichnen
-        g.setClip(muellerPoint.x, muellerPoint.y, Oldmlynk.Breite, Oldmlynk.Hoehe);
+        g.setClip(muellerPoint.x, muellerPoint.y, OldMiller.Breite, OldMiller.Hoehe);
         g.drawImage(backr, 0, 0);
         mueller.drawOldmlynk(g, TalkPerson, muellerPoint);
 

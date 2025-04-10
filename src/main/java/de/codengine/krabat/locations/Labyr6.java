@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Plomja;
+import de.codengine.krabat.anims.Fire;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -31,13 +31,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Labyr6 extends Mainlaby {
+public class Labyr6 extends MainLabyrinth {
     private static final Logger log = LoggerFactory.getLogger(Labyr6.class);
     private GenericImage background;
     private GenericImage lab62;
     private GenericImage lab63;
 
-    private Plomja feuer;
+    private Fire feuer;
 
     private boolean isBlinker = false;
     private int Ausgang = 0;
@@ -46,10 +46,10 @@ public class Labyr6 extends Mainlaby {
     private GenericPoint AusPoint = new GenericPoint(0, 0);
 
     // Konstanten - Rects
-    private static final Borderrect untererAusgang = new Borderrect(283, 435, 498, 479);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 248, 28, 326);
-    private static final Borderrect lab62Rect = new Borderrect(70, 193, 384, 336);
-    private static final Borderrect lab63Rect = new Borderrect(378, 348, 457, 378);
+    private static final BorderRect untererAusgang = new BorderRect(283, 435, 498, 479);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 248, 28, 326);
+    private static final BorderRect lab62Rect = new BorderRect(70, 193, 384, 336);
+    private static final BorderRect lab63Rect = new BorderRect(378, 348, 457, 378);
 
     // Exitlocation - Array
     private static final int[] Exitdown = {52, 54, 55, 58, 60, 61};
@@ -73,7 +73,7 @@ public class Labyr6 extends Mainlaby {
         mainFrame.krabat.zoomf = 6.97f;
         mainFrame.krabat.defScale = 0;
 
-        feuer = new Plomja(mainFrame);
+        feuer = new Fire(mainFrame);
 
         InitLocation(Richtung);
 
@@ -84,12 +84,12 @@ public class Labyr6 extends Mainlaby {
     private void InitLocation(int Richtung) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(344, 362, 344, 414, 389, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(344, 356, 362, 388));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(312, 322, 312, 382, 305, 355));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(228, 305, 311, 319));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(198, 269, 227, 319));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 269, 197, 293));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(344, 362, 344, 414, 389, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(344, 356, 362, 388));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(312, 322, 312, 382, 305, 355));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(228, 305, 311, 319));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(198, 269, 227, 319));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 269, 197, 293));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(6);
@@ -178,7 +178,7 @@ public class Labyr6 extends Mainlaby {
 
         // Blinkern zeichnen
         if (isBlinker) {
-            g.setClip(AusPoint.x, AusPoint.y, Plomja.Breite, Plomja.Hoehe);
+            g.setClip(AusPoint.x, AusPoint.y, Fire.Breite, Fire.Hoehe);
             g.drawImage(background, 0, 0);
             feuer.drawPlomja(g, AusPoint);
         }
@@ -290,7 +290,7 @@ public class Labyr6 extends Mainlaby {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -397,7 +397,7 @@ public class Labyr6 extends Mainlaby {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

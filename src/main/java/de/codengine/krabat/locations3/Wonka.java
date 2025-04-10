@@ -35,10 +35,10 @@ public class Wonka extends MainLocation {
     private GenericImage background;
     private GenericImage foreground;
 
-    private static final Borderrect rechterAusgang
-            = new Borderrect(188, 316, 293, 479);
-    private static final Borderrect linkerAusgang
-            = new Borderrect(0, 252, 74, 479);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(188, 316, 293, 479);
+    private static final BorderRect linkerAusgang
+            = new BorderRect(0, 252, 74, 479);
 
     private static final GenericPoint Pleft = new GenericPoint(0, 440);
     private static final GenericPoint Pright = new GenericPoint(228, 469);
@@ -65,7 +65,7 @@ public class Wonka extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(23, 25, 186, 188, 410, 475));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(23, 25, 186, 188, 410, 475));
 
         mainFrame.pathFinder.ClearMatrix(1);
 
@@ -217,7 +217,7 @@ public class Wonka extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -320,7 +320,7 @@ public class Wonka extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

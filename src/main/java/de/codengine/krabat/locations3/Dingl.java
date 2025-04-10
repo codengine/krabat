@@ -22,7 +22,7 @@ package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Dinglinger;
-import de.codengine.krabat.anims.Dinglingerwalk;
+import de.codengine.krabat.anims.DinglingerWalk;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -39,11 +39,11 @@ public class Dingl extends MainLocation {
     private GenericImage tworba;
     private GenericImage kombinacija;
     private final Dinglinger dinglinger;
-    private final Dinglingerwalk dinglingerwalk;
-    private final Multiple2 Dialog;
+    private final DinglingerWalk dinglingerwalk;
+    private final MultipleChoice Dialog;
 
     private final GenericPoint talkPoint;
-    private final Borderrect reDinglinger;
+    private final BorderRect reDinglinger;
 
     private boolean setAnim = false;
 
@@ -59,14 +59,14 @@ public class Dingl extends MainLocation {
     private boolean zeigeGrossesBild = false;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang
-            = new Borderrect(17, 122, 92, 248);
-    private static final Borderrect rechterAusgang
-            = new Borderrect(426, 123, 526, 327);
-    private static final Borderrect kunstwerk
-            = new Borderrect(465, 365, 639, 479);
-    private static final Borderrect blidoRect
-            = new Borderrect(176, 328, 235, 390);
+    private static final BorderRect obererAusgang
+            = new BorderRect(17, 122, 92, 248);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(426, 123, 526, 327);
+    private static final BorderRect kunstwerk
+            = new BorderRect(465, 365, 639, 479);
+    private static final BorderRect blidoRect
+            = new BorderRect(176, 328, 235, 390);
 
     // Konstante Points
     private static final GenericPoint pExitUp = new GenericPoint(50, 255);
@@ -102,9 +102,9 @@ public class Dingl extends MainLocation {
         talkPoint.x = dinglLO.x + Dinglinger.Breite / 2;
         talkPoint.y = dinglLO.y - 50;
 
-        reDinglinger = new Borderrect(dinglLO.x, dinglLO.y, dinglLO.x + Dinglinger.Breite, dinglLO.y + Dinglinger.Hoehe);
+        reDinglinger = new BorderRect(dinglLO.x, dinglLO.y, dinglLO.x + Dinglinger.Breite, dinglLO.y + Dinglinger.Hoehe);
 
-        dinglingerwalk = new Dinglingerwalk(mainFrame);
+        dinglingerwalk = new DinglingerWalk(mainFrame);
 
         dinglingerwalk.maxx = 0;
         dinglingerwalk.zoomf = 1f;
@@ -113,7 +113,7 @@ public class Dingl extends MainLocation {
         dinglingerwalk.setPos(dinglFeet);
         dinglingerwalk.SetFacing(9);
 
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
 
@@ -137,13 +137,13 @@ public class Dingl extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 75, 20, 350, 255, 336));
+                (new BorderTrapezoid(20, 75, 20, 350, 255, 336));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 70, 20, 70, 337, 420));
+                (new BorderTrapezoid(20, 70, 20, 70, 337, 420));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(176, 480, 195, 469, 337, 413));
+                (new BorderTrapezoid(176, 480, 195, 469, 337, 413));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(244, 468, 306, 460, 414, 432));
+                (new BorderTrapezoid(244, 468, 306, 460, 414, 432));
 
         mainFrame.pathFinder.ClearMatrix(4);
 
@@ -229,7 +229,7 @@ public class Dingl extends MainLocation {
             // stehender Dinglinger
 
             // Hintergrund loeschen
-            Borderrect temp = dinglingerwalk.getRect();
+            BorderRect temp = dinglingerwalk.getRect();
             g.setClip(temp.lo_point.x, temp.lo_point.y,
                     temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
             g.drawImage(background, 0, 0);
@@ -400,7 +400,7 @@ public class Dingl extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 GenericPoint pTxxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -599,7 +599,7 @@ public class Dingl extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     reDinglinger.IsPointInRect(pTemp) ||
                     kunstwerk.IsPointInRect(pTemp) ||

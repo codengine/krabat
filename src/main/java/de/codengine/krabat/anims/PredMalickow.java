@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class PredMalickow extends Mainanim {
+public class PredMalickow extends MainAnim {
     private final GenericImage[] pred_stand;
     private final GenericImage[] pred_call;
     private final GenericImage[] pred_talk;

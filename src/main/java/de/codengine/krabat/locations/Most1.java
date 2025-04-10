@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Reh;
+import de.codengine.krabat.anims.Deer;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -46,19 +46,19 @@ public class Most1 extends MainLocation {
     private boolean Berglauf = false;
     private boolean isTal;
 
-    private Reh reh;
+    private Deer deer;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(609, 353, 639, 415);
-    private static final Borderrect obererAusgang = new Borderrect(412, 176, 496, 221);
-    private static final Borderrect untererAusgang = new Borderrect(0, 436, 246, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(609, 353, 639, 415);
+    private static final BorderRect obererAusgang = new BorderRect(412, 176, 496, 221);
+    private static final BorderRect untererAusgang = new BorderRect(0, 436, 246, 479);
     // private static final borderrect gelRect        = new borderrect (351, 284, 430, 343);
-    private static final Borderrect ralbitzSchild = new Borderrect(254, 208, 301, 228);
-    private static final Borderrect dresdenSchild = new Borderrect(255, 233, 296, 246);
-    private static final Borderrect rekaRect = new Borderrect(427, 383, 513, 476);
+    private static final BorderRect ralbitzSchild = new BorderRect(254, 208, 301, 228);
+    private static final BorderRect dresdenSchild = new BorderRect(255, 233, 296, 246);
+    private static final BorderRect rekaRect = new BorderRect(427, 383, 513, 476);
 
-    private static final Bordertrapez BergTrapez = new Bordertrapez(376, 396, 272, 342, 278, 349);
-    private static final Bordertrapez TalTrapez = new Bordertrapez(457, 459, 407, 419, 225, 284);
+    private static final BorderTrapezoid BergTrapez = new BorderTrapezoid(376, 396, 272, 342, 278, 349);
+    private static final BorderTrapezoid TalTrapez = new BorderTrapezoid(457, 459, 407, 419, 225, 284);
 
     // Points in Location
     private static final GenericPoint Pschild = new GenericPoint(305, 333);
@@ -98,7 +98,7 @@ public class Most1 extends MainLocation {
 
         flussu = new GenericImage[8];
 
-        reh = new Reh(mainFrame, false, new GenericRectangle(586, 247, 53, 25), 3);
+        deer = new Deer(mainFrame, false, new GenericRectangle(586, 247, 53, 25), 3);
 
         InitLocation(oldLocation);
 
@@ -112,7 +112,7 @@ public class Most1 extends MainLocation {
             case 0: // Einsprung fuer Load
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 GenericPoint tp = mainFrame.krabat.getPos();
-                Borderrect TalRect = new Borderrect(400, 220, 460, 290);
+                BorderRect TalRect = new BorderRect(400, 220, 460, 290);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 1:
@@ -156,7 +156,7 @@ public class Most1 extends MainLocation {
         if (isTal) {
             // Grenzen setzen im Tal
             // Taltrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(457, 459, 407, 419, 225, 284));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(457, 459, 407, 419, 225, 284));
 
             // Laufmatrix anpassen
             mainFrame.pathFinder.ClearMatrix(1);
@@ -169,12 +169,12 @@ public class Most1 extends MainLocation {
         } else {
             // Grenzen setzen auf dem Berg
             // Bergtrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(376, 396, 272, 342, 278, 349));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(272, 515, 218, 515, 350, 367));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(516, 358, 556, 373));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(557, 368, 609, 378));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(610, 368, 639, 402));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(218, 286, 43, 182, 368, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(376, 396, 272, 342, 278, 349));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(272, 515, 218, 515, 350, 367));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(516, 358, 556, 373));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(557, 368, 609, 378));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(610, 368, 639, 402));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(218, 286, 43, 182, 368, 479));
 
             // Laufmatrix anpassen
             mainFrame.pathFinder.ClearMatrix(6);
@@ -208,8 +208,8 @@ public class Most1 extends MainLocation {
         flussu[6] = null;
         flussu[7] = null;
 
-        reh.cleanup();
-        reh = null;
+        deer.cleanup();
+        deer = null;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -236,7 +236,7 @@ public class Most1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
-        reh.drawReh(g);
+        deer.drawReh(g);
 
         // Animation abspielen
         switchanim = !switchanim;
@@ -360,7 +360,7 @@ public class Most1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -573,7 +573,7 @@ public class Most1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = ralbitzSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
                     dresdenSchild.IsPointInRect(pTemp) || rekaRect.IsPointInRect(pTemp);
 

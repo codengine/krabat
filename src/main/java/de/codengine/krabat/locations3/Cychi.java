@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Boote;
+import de.codengine.krabat.anims.Boats;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -37,17 +37,17 @@ public class Cychi extends MainLocation {
     private GenericImage fachwerk;
     private GenericImage pfosten;
 
-    private final Boote boot;
+    private final Boats boot;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangTerassa
-            = new Borderrect(225, 187, 290, 284);
-    private static final Borderrect ausgangZachod
-            = new Borderrect(248, 390, 287, 447);
-    private static final Borderrect rectFachwerk
-            = new Borderrect(220, 224, 320, 405);
-    private static final Borderrect rectPfosten
-            = new Borderrect(250, 430, 310, 464);
+    private static final BorderRect ausgangTerassa
+            = new BorderRect(225, 187, 290, 284);
+    private static final BorderRect ausgangZachod
+            = new BorderRect(248, 390, 287, 447);
+    private static final BorderRect rectFachwerk
+            = new BorderRect(220, 224, 320, 405);
+    private static final BorderRect rectPfosten
+            = new BorderRect(250, 430, 310, 464);
     // private static final borderrect kerzen
     //      = new borderrect (170, 42, 210, 118);
 
@@ -73,7 +73,7 @@ public class Cychi extends MainLocation {
         mainFrame.krabat.zoomf = 10f;
         mainFrame.krabat.defScale = 45;
 
-        boot = new Boote(mainFrame, 1);
+        boot = new Boats(mainFrame, 1);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -84,13 +84,13 @@ public class Cychi extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(260, 280, 274, 370, 285, 375));
+                (new BorderTrapezoid(260, 280, 274, 370, 285, 375));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(320, 371, 320, 470, 376, 447));
+                (new BorderTrapezoid(320, 371, 320, 470, 376, 447));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(310, 470, 310, 516, 448, 479));
+                (new BorderTrapezoid(310, 470, 310, 516, 448, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(270, 309, 270, 309, 448, 458));
+                (new BorderTrapezoid(270, 309, 270, 309, 448, 458));
 
         mainFrame.pathFinder.ClearMatrix(4);
 
@@ -149,7 +149,7 @@ public class Cychi extends MainLocation {
 
         // Boot-Routine
         // Hintergrund loeschen
-        Borderrect temp = boot.evalBootRect();
+        BorderRect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
         g.drawImage(background, 0, 0);
@@ -262,7 +262,7 @@ public class Cychi extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -365,7 +365,7 @@ public class Cychi extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

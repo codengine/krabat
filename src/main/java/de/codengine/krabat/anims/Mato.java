@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Mato extends Mainanim {
+public class Mato extends MainAnim {
     private final GenericImage[] mato_look;
     private final GenericImage[] mato_talk;
     private final GenericImage[] mato_open;

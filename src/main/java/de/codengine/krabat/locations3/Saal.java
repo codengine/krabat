@@ -35,16 +35,16 @@ public class Saal extends MainLocation {
     private GenericImage background;
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang
-            = new Borderrect(26, 326, 83, 433);
-    private static final Borderrect rechterAusgang
-            = new Borderrect(533, 332, 568, 438);
-    private static final Borderrect bildLinks
-            = new Borderrect(65, 175, 134, 281);
-    private static final Borderrect bildRechts
-            = new Borderrect(470, 182, 553, 288);
-    private static final Borderrect saalEnde
-            = new Borderrect(260, 340, 353, 388);
+    private static final BorderRect linkerAusgang
+            = new BorderRect(26, 326, 83, 433);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(533, 332, 568, 438);
+    private static final BorderRect bildLinks
+            = new BorderRect(65, 175, 134, 281);
+    private static final BorderRect bildRechts
+            = new BorderRect(470, 182, 553, 288);
+    private static final BorderRect saalEnde
+            = new BorderRect(260, 340, 353, 388);
 
     // Konstante Points
     private static final GenericPoint pExitLeft = new GenericPoint(88, 458);
@@ -80,9 +80,9 @@ public class Saal extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(238, 375, 180, 440, 395, 418));
+                (new BorderTrapezoid(238, 375, 180, 440, 395, 418));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(180, 440, 30, 590, 419, 479));
+                (new BorderTrapezoid(180, 440, 30, 590, 419, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -238,7 +238,7 @@ public class Saal extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -386,7 +386,7 @@ public class Saal extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || bildLinks.IsPointInRect(pTemp) ||
                     bildRechts.IsPointInRect(pTemp);
 

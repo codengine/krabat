@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.KowarSunow;
-import de.codengine.krabat.anims.Reh;
+import de.codengine.krabat.anims.BlacksmithSunow;
+import de.codengine.krabat.anims.Deer;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -45,8 +45,8 @@ public class Wjes1 extends MainLocation {
     private final GenericImage[] Feuer;
     private boolean setScroll = false;
     private int scrollwert;
-    private KowarSunow schmied;
-    private final Multiple2 Dialog;
+    private BlacksmithSunow schmied;
+    private final MultipleChoice Dialog;
     private boolean ListenSchmied = false;
 
     private int animcount = 1;
@@ -57,22 +57,22 @@ public class Wjes1 extends MainLocation {
     private int Feuercount = 0;
     private boolean switchanim = false;
 
-    private Reh reh;
+    private Deer deer;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(915, 207, 984, 248);
-    private static final Borderrect untererAusgang = new Borderrect(532, 450, 760, 479);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 242, 48, 338);
-    private static final Borderrect rechterAusgang = new Borderrect(1231, 240, 1280, 301);
-    private static final Borderrect brTuer = new Borderrect(825, 287, 884, 357);
-    private static final Borderrect wjes2Rect = new Borderrect(191, 326, 396, 446);
-    private static final Borderrect wjes3Rect = new Borderrect(912, 236, 1028, 313);
-    private static final Borderrect wjes4Rect = new Borderrect(694, 357, 1150, 477);
-    private static final Borderrect wjes5Rect = new Borderrect(1162, 235, 1279, 355);
-    private static final Borderrect sudobjaRect = new Borderrect(405, 320, 464, 369);
-    private static final Borderrect woknoRect = new Borderrect(584, 344, 610, 369);
-    private static final Borderrect schildRect = new Borderrect(921, 259, 958, 303);
-    private static final Borderrect wohenRect = new Borderrect(1072, 227, 1086, 242);
+    private static final BorderRect obererAusgang = new BorderRect(915, 207, 984, 248);
+    private static final BorderRect untererAusgang = new BorderRect(532, 450, 760, 479);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 242, 48, 338);
+    private static final BorderRect rechterAusgang = new BorderRect(1231, 240, 1280, 301);
+    private static final BorderRect brTuer = new BorderRect(825, 287, 884, 357);
+    private static final BorderRect wjes2Rect = new BorderRect(191, 326, 396, 446);
+    private static final BorderRect wjes3Rect = new BorderRect(912, 236, 1028, 313);
+    private static final BorderRect wjes4Rect = new BorderRect(694, 357, 1150, 477);
+    private static final BorderRect wjes5Rect = new BorderRect(1162, 235, 1279, 355);
+    private static final BorderRect sudobjaRect = new BorderRect(405, 320, 464, 369);
+    private static final BorderRect woknoRect = new BorderRect(584, 344, 610, 369);
+    private static final BorderRect schildRect = new BorderRect(921, 259, 958, 303);
+    private static final BorderRect wohenRect = new BorderRect(1072, 227, 1086, 242);
 
     // Konstante Punkte
     private static final GenericPoint Pschmied = new GenericPoint(1026, 279);
@@ -101,8 +101,8 @@ public class Wjes1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        schmied = new KowarSunow(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        schmied = new BlacksmithSunow(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         mainFrame.krabat.maxx = 1942;
         mainFrame.krabat.zoomf = 79f;
@@ -111,7 +111,7 @@ public class Wjes1 extends MainLocation {
         Schild = new GenericImage[6];
         Feuer = new GenericImage[11];
 
-        reh = new Reh(mainFrame, true, new GenericRectangle(0, 115, 60, 25), 3);
+        deer = new Deer(mainFrame, true, new GenericRectangle(0, 115, 60, 25), 3);
 
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
@@ -182,17 +182,17 @@ public class Wjes1 extends MainLocation {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(452, 815, 593, 742, 435, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 129, 440, 570, 307, 434));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 18, 0, 129, 273, 306));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(870, 1010, 639, 807, 363, 434));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1011, 1070, 1061, 1120, 363, 415));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1061, 1171, 1075, 1171, 416, 433));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1075, 1156, 1123, 1211, 434, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1036, 1090, 887, 1090, 318, 362));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(930, 960, 1038, 1103, 261, 317));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1091, 318, 1218, 335));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1261, 1279, 1105, 1218, 266, 317));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(452, 815, 593, 742, 435, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 129, 440, 570, 307, 434));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 18, 0, 129, 273, 306));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(870, 1010, 639, 807, 363, 434));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1011, 1070, 1061, 1120, 363, 415));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1061, 1171, 1075, 1171, 416, 433));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1075, 1156, 1123, 1211, 434, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1036, 1090, 887, 1090, 318, 362));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(930, 960, 1038, 1103, 261, 317));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1091, 318, 1218, 335));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1261, 1279, 1105, 1218, 266, 317));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(11);
@@ -270,8 +270,8 @@ public class Wjes1 extends MainLocation {
 
         schmied.cleanup();
         schmied = null;
-        reh.cleanup();
-        reh = null;
+        deer.cleanup();
+        deer = null;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -316,7 +316,7 @@ public class Wjes1 extends MainLocation {
         g.drawImage(backl, 0, 0);
 
         // Rehe zeichnen
-        reh.drawReh(g);
+        deer.drawReh(g);
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
 
@@ -520,7 +520,7 @@ public class Wjes1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -820,7 +820,7 @@ public class Wjes1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || schmied.schmiedRect().IsPointInRect(pTemp) ||
                     sudobjaRect.IsPointInRect(pTemp) || woknoRect.IsPointInRect(pTemp) ||
                     schildRect.IsPointInRect(pTemp) || wohenRect.IsPointInRect(pTemp);

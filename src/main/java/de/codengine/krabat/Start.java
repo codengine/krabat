@@ -59,20 +59,20 @@ public class Start implements Runnable {
     // Ist nur im Zusammenhang mit invCursor gueltig!!!
 
     // Klasseninitialisierungen
-    public Inventar inventory;
+    public Inventory inventory;
     public MainMenu mainMenu;
     public LoadGame loadGame;
     public SaveGame saveGame;
     public Info credits;
     public Krabat krabat;
-    public Imagefont imageFont;
+    public ImageFont imageFont;
     public PathFinder pathFinder;
     public PathWalker pathWalker;
     public ExitGame exitGame;
     public GenericSoundEffectPlayer soundPlayer;
-    public Karta map;
-    public Slownik dictionary;
-    public Skica sketch;
+    public Map map;
+    public Dictionary dictionary;
+    public Sketch sketch;
     // public Slownikcreate woerterbuch;
 
     // wichtige Sachen fuer Hauptklasse
@@ -188,13 +188,13 @@ public class Start implements Runnable {
         soundPlayer = player;
 
         // Stets vorhandene Klassen laden
-        imageFont = new Imagefont(this); // Schrift
+        imageFont = new ImageFont(this); // Schrift
         pathFinder = new PathFinder();      // Laufroutinen
         pathWalker = new PathWalker(this);   // Laufroutinen
     }
 
     protected void runGamePt2(GenericPoint hotSpot, GenericCursor[] cursors) {
-        inventory = new Inventar(this, hotSpot);   // Inventar
+        inventory = new Inventory(this, hotSpot);   // Inventar
 
         cursorUp = cursors[0];
         cursorDown = cursors[1];
@@ -888,16 +888,16 @@ public class Start implements Runnable {
                 currentLocation = new Install(this);
                 break;
             case 106:
-                map = new Karta(this);
+                map = new Map(this);
                 newLocation = currentLocationIdx; // alte Location bleibt bestehen
                 break;
             case 107:
-                dictionary = new Slownik(this);
+                dictionary = new Dictionary(this);
                 // woerterbuch = new Slownikcreate (this);
                 newLocation = currentLocationIdx;
                 break;
             case 108:
-                sketch = new Skica(this);
+                sketch = new Sketch(this);
                 newLocation = currentLocationIdx; // alte Location bleibt bestehen
                 break;
             case 109:
@@ -1081,7 +1081,7 @@ public class Start implements Runnable {
         stopPaint(false);
     }
 
-    public synchronized void constructLocation(int newLocation, Husa gans1, Husa gans2, Husa gans3) {
+    public synchronized void constructLocation(int newLocation, Geese gans1, Geese gans2, Geese gans3) {
         stopPaint(true);
 
         if (currentLocation != null) {
@@ -1221,7 +1221,7 @@ public class Start implements Runnable {
         // hat sich Drasta angezogen
         if (actions[850]) {
             if (krabatShape != 2) {
-                krabat = new KrabatDrasta(this);
+                krabat = new KrabatAppearance(this);
                 krabatShape = 2;
             }
         }
@@ -1229,7 +1229,7 @@ public class Start implements Runnable {
         // ist von oben zu sehen
         if (actions[851]) {
             if (krabatShape != 3) {
-                krabat = new KrabatOben(this);
+                krabat = new KrabatUp(this);
                 krabatShape = 3;
             }
         }

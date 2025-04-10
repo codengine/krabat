@@ -22,8 +22,8 @@ package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Husa;
-import de.codengine.krabat.anims.Mac;
+import de.codengine.krabat.anims.Geese;
+import de.codengine.krabat.anims.Mother;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -47,14 +47,14 @@ public class Doma2 extends MainLocation {
     private int FadeToBlack = 0;
 
     private boolean switchanim = true;
-    private Mac mutter;
+    private Mother mutter;
     private boolean setScroll = false;
     private int scrollwert;
     private boolean Animation;
 
-    private Husa gans1;
-    private Husa gans2;
-    private Husa gans3;
+    private Geese gans1;
+    private Geese gans2;
+    private Geese gans3;
 
     private final GenericPoint MacTalk;
     private final GenericPoint Pmac;
@@ -75,12 +75,12 @@ public class Doma2 extends MainLocation {
     private static final GenericPoint Pgaense = new GenericPoint(254, 357);
 
     // Konstanten - Rects initialisieren
-    private static final Borderrect brunnenRect = new Borderrect(1024, 300, 1279, 479);
-    private static final Borderrect blattRect = new Borderrect(751, 379, 856, 464);
-    private static final Borderrect brTuer = new Borderrect(900, 290, 920, 340);
-    private static final Borderrect brBrunnen = new Borderrect(1130, 350, 1230, 410);
-    private static final Borderrect obererAusgang = new Borderrect(386, 229, 425, 286);
-    private static final Borderrect brSchild = new Borderrect(330, 267, 367, 283);
+    private static final BorderRect brunnenRect = new BorderRect(1024, 300, 1279, 479);
+    private static final BorderRect blattRect = new BorderRect(751, 379, 856, 464);
+    private static final BorderRect brTuer = new BorderRect(900, 290, 920, 340);
+    private static final BorderRect brBrunnen = new BorderRect(1130, 350, 1230, 410);
+    private static final BorderRect obererAusgang = new BorderRect(386, 229, 425, 286);
+    private static final BorderRect brSchild = new BorderRect(330, 267, 367, 283);
 
     // Konstante ints fuer Facing
     private static final int fBrunnen = 6;
@@ -96,9 +96,9 @@ public class Doma2 extends MainLocation {
         mainFrame.freeze(true);
         mainFrame.checkKrabat();
 
-        gans1 = new Husa(mainFrame, new Borderrect(150, 260, 197, 270));
-        gans2 = new Husa(mainFrame, new Borderrect(238, 270, 285, 280));
-        gans3 = new Husa(mainFrame, new Borderrect(182, 300, 276, 310));
+        gans1 = new Geese(mainFrame, new BorderRect(150, 260, 197, 270));
+        gans2 = new Geese(mainFrame, new BorderRect(238, 270, 285, 280));
+        gans3 = new Geese(mainFrame, new BorderRect(182, 300, 276, 310));
 
         TalkPerson = 0;
         BackgroundMusicPlayer.getInstance().playTrack(4, true);
@@ -153,11 +153,11 @@ public class Doma2 extends MainLocation {
                 break;
         }
 
-        mutter = new Mac(mainFrame, true);
+        mutter = new Mother(mainFrame, true);
 
         Pmac = new GenericPoint();
-        Pmac.x = MutterFeet.x - Mac.Breite / 2;
-        Pmac.y = MutterFeet.y - Mac.Hoehe;
+        Pmac.x = MutterFeet.x - Mother.Breite / 2;
+        Pmac.y = MutterFeet.y - Mother.Hoehe;
 
         MacTalk = new GenericPoint();
         MacTalk.x = MutterFeet.x;
@@ -178,16 +178,16 @@ public class Doma2 extends MainLocation {
         // Grenzen setzen
         // je nach dem, ob Mutter da ist oder nicht
         if (!istMutterZuSehen) {
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(411, 423, 396, 420, 281, 329));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(396, 420, 382, 470, 330, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(135, 158, 187, 218, 351, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(187, 496, 255, 496, 365, 410));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(497, 353, 639, 411));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(640, 370, 824, 408));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(825, 346, 866, 414));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(867, 373, 1015, 403));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1016, 365, 1127, 416));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1128, 366, 1200, 392));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(411, 423, 396, 420, 281, 329));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(396, 420, 382, 470, 330, 364));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(135, 158, 187, 218, 351, 364));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(187, 496, 255, 496, 365, 410));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(497, 353, 639, 411));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(640, 370, 824, 408));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(825, 346, 866, 414));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(867, 373, 1015, 403));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1016, 365, 1127, 416));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1128, 366, 1200, 392));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(10);
@@ -203,12 +203,12 @@ public class Doma2 extends MainLocation {
             mainFrame.pathFinder.PosVerbinden(7, 8);
             mainFrame.pathFinder.PosVerbinden(8, 9);
         } else {
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(411, 423, 396, 420, 281, 329));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(396, 420, 382, 470, 330, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(135, 158, 187, 218, 351, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(187, 496, 255, 496, 365, 410));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(497, 353, 639, 411));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(640, 370, 824, 408));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(411, 423, 396, 420, 281, 329));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(396, 420, 382, 470, 330, 364));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(135, 158, 187, 218, 351, 364));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(187, 496, 255, 496, 365, 410));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(497, 353, 639, 411));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(640, 370, 824, 408));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(6);
@@ -351,7 +351,7 @@ public class Doma2 extends MainLocation {
 
         // Mac zeichnen bei Reden und Herumstehen, vorher Hintergrund wiederherstellen
         if (mainFrame.scrollX > 130 && istMutterZuSehen) {
-            g.setClip(Pmac.x, Pmac.y, Mac.Breite, Mac.Hoehe);
+            g.setClip(Pmac.x, Pmac.y, Mother.Breite, Mother.Hoehe);
             g.drawImage(background2, 640, 0);
             mutter.drawMac(g, Pmac, TalkPerson);
         }
@@ -503,7 +503,7 @@ public class Doma2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -735,7 +735,7 @@ public class Doma2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = brBrunnen.IsPointInRect(pTemp) && !istMutterZuSehen ||
                     brTuer.IsPointInRect(pTemp) && !istMutterZuSehen ||
                     brSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||

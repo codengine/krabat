@@ -22,7 +22,7 @@ package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Bludnicki;
-import de.codengine.krabat.anims.Plomja;
+import de.codengine.krabat.anims.Fire;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -32,13 +32,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Labyr10 extends Mainlaby {
+public class Labyr10 extends MainLabyrinth {
     private static final Logger log = LoggerFactory.getLogger(Labyr10.class);
     private GenericImage background;
     private GenericImage lab102;
 
     private Bludnicki irrlicht;
-    private Plomja feuer;
+    private Fire feuer;
 
     private boolean isBlinker = false;
     private boolean bludVisible = false;
@@ -49,10 +49,10 @@ public class Labyr10 extends Mainlaby {
     private GenericPoint AusPoint = new GenericPoint(0, 0);
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(266, 163, 372, 225);
-    private static final Borderrect rechterAusgang = new Borderrect(609, 227, 639, 333);
-    private static final Borderrect untererAusgang = new Borderrect(282, 438, 487, 479);
-    private static final Borderrect lab102Rect = new Borderrect(409, 162, 598, 352);
+    private static final BorderRect obererAusgang = new BorderRect(266, 163, 372, 225);
+    private static final BorderRect rechterAusgang = new BorderRect(609, 227, 639, 333);
+    private static final BorderRect untererAusgang = new BorderRect(282, 438, 487, 479);
+    private static final BorderRect lab102Rect = new BorderRect(409, 162, 598, 352);
 
     // Exitlocations - Array
     private static final int[] Exitup = {53, /*54,*/ 56, 59, /*62*/};
@@ -83,11 +83,11 @@ public class Labyr10 extends Mainlaby {
         mainFrame.krabat.defScale = -30;
 
         irrlicht = new Bludnicki(mainFrame);
-        feuer = new Plomja(mainFrame);
+        feuer = new Fire(mainFrame);
 
         // Definitionen fuer Hauptklasse
         int th = bludFeet.x - irrlicht.breite / 2;
-        bludRect = new Borderrect(th, bludFeet.y - irrlicht.hoehe, th + irrlicht.breite, bludFeet.y);
+        bludRect = new BorderRect(th, bludFeet.y - irrlicht.hoehe, th + irrlicht.breite, bludFeet.y);
         bludTalk = new GenericPoint(bludFeet.x, bludFeet.y - irrlicht.hoehe - 50);
 
         Pblud = new GenericPoint(556, 278);  // das ist der Krabat-Look/Use-Point fuer blud!!!
@@ -108,9 +108,9 @@ public class Labyr10 extends Mainlaby {
     private void InitLocation(int Richtung) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(327, 639, 352, 639, 262, 294));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(352, 402, 345, 419, 295, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(326, 338, 327, 369, 224, 261));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(327, 639, 352, 639, 262, 294));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(352, 402, 345, 419, 295, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(326, 338, 327, 369, 224, 261));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(3);
@@ -217,7 +217,7 @@ public class Labyr10 extends Mainlaby {
 
         // Blinkern zeichnen
         if (isBlinker) {
-            g.setClip(AusPoint.x, AusPoint.y, Plomja.Breite, Plomja.Hoehe);
+            g.setClip(AusPoint.x, AusPoint.y, Fire.Breite, Fire.Hoehe);
             g.drawImage(background, 0, 0);
             feuer.drawPlomja(g, AusPoint);
         }
@@ -340,7 +340,7 @@ public class Labyr10 extends Mainlaby {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -501,7 +501,7 @@ public class Labyr10 extends Mainlaby {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || bludRect.IsPointInRect(pTemp) && bludVisible;
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

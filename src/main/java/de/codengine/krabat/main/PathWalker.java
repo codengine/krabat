@@ -29,7 +29,7 @@ import java.util.Vector;
 public class PathWalker {
     private static final Logger log = LoggerFactory.getLogger(PathWalker.class);
     private final Start mainFrame;
-    public final Vector<Bordertrapez> vBorders;
+    public final Vector<BorderTrapezoid> vBorders;
     public GenericPoint destinationPlace;
     private Vector<Integer> vBestWeg;
     private int wegPosition = 0;
@@ -51,7 +51,7 @@ public class PathWalker {
 
         destinationPlace = destPoint;
         int nAnzahlRect = vBorders.size();
-        Bordertrapez tBestRect;
+        BorderTrapezoid tBestRect;
         int currBorder = GetCurrentBorder();
         int bestRect = -1;
         float minDistance = 1000;
@@ -68,7 +68,7 @@ public class PathWalker {
 
         // alle Grenzrechtecke dursuchen, welches der Beste als Ziel
         for (int i = 0; i < nAnzahlRect; i++) {
-            Bordertrapez tBRect = vBorders.elementAt(i);
+            BorderTrapezoid tBRect = vBorders.elementAt(i);
             float t_dist = tBRect.CenterDistance(feetPoint);
             if (t_dist < minDistance) {
                 // dieses Rechteck ist besser
@@ -165,8 +165,8 @@ public class PathWalker {
 
             // Optimalen Uebergang zwischen den beiden Grenzen finden
             GenericPoint pKrFeetPos = mainFrame.krabat.getPos();
-            Bordertrapez thisBRect = vBorders.elementAt(thisRect);
-            Bordertrapez nextBRect = vBorders.elementAt(nextRect);
+            BorderTrapezoid thisBRect = vBorders.elementAt(thisRect);
+            BorderTrapezoid nextBRect = vBorders.elementAt(nextRect);
             GenericPoint pUeber = OptimalUebergang(thisBRect, nextBRect, pKrFeetPos);
 
             //      System.out.print ("Schritt: ");
@@ -193,7 +193,7 @@ public class PathWalker {
         int nBRAnzahl = vBorders.size();
         GenericPoint pKrabat = mainFrame.krabat.getPos();
         for (int i = 0; i < nBRAnzahl; i++) {
-            Bordertrapez tBRect = vBorders.elementAt(i);
+            BorderTrapezoid tBRect = vBorders.elementAt(i);
             if (tBRect.PointInside(pKrabat)) {
                 nTemp = i;
                 break;
@@ -206,7 +206,7 @@ public class PathWalker {
 
     // Ermittelt den Punkt des besten Ubergangs zwischen zwei Grenzrechtecken,
     // wobei die aktuelle Position der Figur beachtet wird (Fuesse)
-    private GenericPoint OptimalUebergang(Bordertrapez quell, Bordertrapez ziel,
+    private GenericPoint OptimalUebergang(BorderTrapezoid quell, BorderTrapezoid ziel,
                                           GenericPoint pKrabatFeets) {
         // Testen, ob Mittenlauf sinnvoll!
         boolean mittenlauf = false;
@@ -312,7 +312,7 @@ public class PathWalker {
         GenericPoint Fussp = mainFrame.krabat.getPos();
         int tAbstand = 20000;
         for (int fuck = 0; fuck < wieviele; fuck++) {
-            Bordertrapez temprect = vBorders.elementAt(fuck);
+            BorderTrapezoid temprect = vBorders.elementAt(fuck);
             if (temprect.CenterDistance(Fussp) < tAbstand) {
                 tAbstand = temprect.CenterDistance(Fussp);
                 rgbe = fuck;

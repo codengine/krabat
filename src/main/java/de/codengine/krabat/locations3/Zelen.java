@@ -22,7 +22,7 @@ package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Awgust;
-import de.codengine.krabat.anims.Druzina;
+import de.codengine.krabat.anims.Fellowship;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -46,7 +46,7 @@ public class Zelen extends MainLocation {
     private final Awgust awgust;
     private boolean hatHandErhoben = false;
 
-    private final Druzina druzina;
+    private final Fellowship fellowship;
 
     private boolean awgustVisible = false;  // Awgust erscheint nur zusammen mit Druzina !!!
 
@@ -69,18 +69,18 @@ public class Zelen extends MainLocation {
     private static final int MAX_VERHINDERTROPF = 2;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang
-            = new Borderrect(177, 234, 237, 410);
+    private static final BorderRect obererAusgang
+            = new BorderRect(177, 234, 237, 410);
     /*
     private static final borderrect klavier
         = new borderrect (0, 375, 100, 455);
     private static final borderrect stuhl
         = new borderrect (111, 352, 167, 453);
     */
-    private static final Borderrect prikaz
-            = new Borderrect(412, 404, 435, 412);
-    private static final Borderrect kerzeRect
-            = new Borderrect(378, 382, 393, 402);
+    private static final BorderRect prikaz
+            = new BorderRect(412, 404, 435, 412);
+    private static final BorderRect kerzeRect
+            = new BorderRect(378, 382, 393, 402);
 
     // Konstante Points
     private static final GenericPoint pExitUp = new GenericPoint(215, 424);
@@ -130,17 +130,17 @@ public class Zelen extends MainLocation {
         mainFrame.krabat.defScale = -60;
 
         awgust = new Awgust(mainFrame);
-        druzina = new Druzina(mainFrame);
+        fellowship = new Fellowship(mainFrame);
 
         awgust.maxx = 420;
         awgust.zoomf = 3f;
         awgust.defScale = 0;
 
-        druzina.maxx = 420;
-        druzina.zoomf = 3f;
+        fellowship.maxx = 420;
+        fellowship.zoomf = 3f;
 
         awgust.setPos(awgustStart);
-        druzina.setPos(druzinaStart);
+        fellowship.setPos(druzinaStart);
 
         kerze = new GenericImage[8];
         krabat_siegeln = new GenericImage[2];
@@ -162,9 +162,9 @@ public class Zelen extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(215, 305, 215, 305, 424, 464));
+                (new BorderTrapezoid(215, 305, 215, 305, 424, 464));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(135, 305, 135, 305, 465, 479));
+                (new BorderTrapezoid(135, 305, 135, 305, 465, 479));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -228,7 +228,7 @@ public class Zelen extends MainLocation {
             // Hier wird ersteinmal der Hintergrund beider Figuren geloescht
 
             // Clipping - Rectangle feststellen und setzen fuer Druzina
-            Borderrect temp = druzina.getRect();
+            BorderRect temp = fellowship.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -251,15 +251,15 @@ public class Zelen extends MainLocation {
 
             if (--VerhinderwalkDruzina < 1) {
                 VerhinderwalkDruzina = MAX_VERHINDERWALKDRUZINA;
-                walkReadyDruzina = druzina.Move();
+                walkReadyDruzina = fellowship.Move();
             }
 
             // nun beide zeichnen, Awgust als zweiten (ist immer davor)
             // Clipping - Rectangle feststellen und setzen fuer Druzina
-            temp = druzina.getRect();
+            temp = fellowship.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
-            druzina.drawDruzina(g);
+            fellowship.drawDruzina(g);
             g.drawImage(vorder, 82, 210);
 
             // fuer Awgust ein paar Unterscheidungen
@@ -454,7 +454,7 @@ public class Zelen extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -634,7 +634,7 @@ public class Zelen extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
 // 		    (stuhl.IsPointInRect (pTemp) == true) ||
 //                     (klavier.IsPointInRect (pTemp) == true) ||
@@ -956,7 +956,7 @@ public class Zelen extends MainLocation {
                 BackgroundMusicPlayer.getInstance().playTrack(23, false);
                 awgustVisible = true;
                 awgust.MoveTo(awgustStop);
-                druzina.MoveTo(druzinaStop);
+                fellowship.MoveTo(druzinaStop);
                 walkReadyAwgust = false;
                 walkReadyDruzina = false;
                 nextActionID = 225;

@@ -38,10 +38,10 @@ public class Habor extends MainLocation {
     private GenericImage steg;
     private GenericImage boota;
     private GenericImage bootb;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
     private final Gonzales gonzales;
 
-    private final Borderrect gonzalesRect;
+    private final BorderRect gonzalesRect;
     private final GenericPoint gonzalesPoint;
     private final GenericPoint talkPoint;
 
@@ -54,14 +54,14 @@ public class Habor extends MainLocation {
     private boolean isListening = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangPanorama
-            = new Borderrect(600, 370, 639, 479);
-    private static final Borderrect ausgangLodz
-            = new Borderrect(220, 270, 280, 335);
-    private static final Borderrect rectMurja
-            = new Borderrect(360, 370, 485, 430);
-    private static final Borderrect sudobjaRect
-            = new Borderrect(357, 328, 402, 359);
+    private static final BorderRect ausgangPanorama
+            = new BorderRect(600, 370, 639, 479);
+    private static final BorderRect ausgangLodz
+            = new BorderRect(220, 270, 280, 335);
+    private static final BorderRect rectMurja
+            = new BorderRect(360, 370, 485, 430);
+    private static final BorderRect sudobjaRect
+            = new BorderRect(357, 328, 402, 359);
 
     // Konstante Points
     private static final GenericPoint pExitPanorama = new GenericPoint(639, 427);
@@ -90,7 +90,7 @@ public class Habor extends MainLocation {
 
         // Gonzales nur, wenn Kotwica noch nicht gegeben - init erfolgt jedoch immer
         gonzales = new Gonzales(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         // Berechnung der Position usw.
         gonzalesPoint = new GenericPoint();
@@ -101,7 +101,7 @@ public class Habor extends MainLocation {
         talkPoint.x = gonzalesFeet.x;
         talkPoint.y = gonzalesPoint.y - 50;
 
-        gonzalesRect = new Borderrect(gonzalesPoint.x, gonzalesPoint.y, gonzalesPoint.x + Gonzales.Breite, gonzalesPoint.y + Gonzales.Hoehe);
+        gonzalesRect = new BorderRect(gonzalesPoint.x, gonzalesPoint.y, gonzalesPoint.x + Gonzales.Breite, gonzalesPoint.y + Gonzales.Hoehe);
 
         // Hier rauskriegen, welches Schiff gezeichnet werden muss
         if (!mainFrame.actions[568]) {
@@ -127,15 +127,15 @@ public class Habor extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
 
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(370, 397, 578, 630, 377, 428));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(370, 397, 578, 630, 377, 428));
         // Hier unterscheiden, ob Gonzales dasteht, damit man nicht durchrennt
         if (!mainFrame.actions[568]) {
             // Gonzales ist da
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(345, 347, 390, 395, 364, 376));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(345, 347, 390, 395, 364, 376));
 
         } else {
             // Gonzales ist weg
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(285, 290, 390, 395, 347, 376));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(285, 290, 390, 395, 347, 376));
         }
         mainFrame.pathFinder.ClearMatrix(2);
         mainFrame.pathFinder.PosVerbinden(0, 1);
@@ -354,7 +354,7 @@ public class Habor extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -514,7 +514,7 @@ public class Habor extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568] ||
                     sudobjaRect.IsPointInRect(pTemp);

@@ -48,19 +48,19 @@ public class Rapak2 extends MainLocation {
     private boolean setAnim = false;
 
     private Rapak rabe;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     private boolean wegFliegen = false;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(162, 150, 240, 193);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 308, 27, 425);
-    private static final Borderrect untererAusgang = new Borderrect(26, 430, 286, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(594, 319, 639, 447);
-    private static final Borderrect blRect1 = new Borderrect(0, 367, 100, 479);
-    private static final Borderrect blRect2 = new Borderrect(200, 414, 485, 479);
-    private static final Borderrect rapakRect = new Borderrect(396, 147, 465, 179);
-    private static final Borderrect brSchildOben = new Borderrect(393, 204, 466, 228);
+    private static final BorderRect obererAusgang = new BorderRect(162, 150, 240, 193);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 308, 27, 425);
+    private static final BorderRect untererAusgang = new BorderRect(26, 430, 286, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(594, 319, 639, 447);
+    private static final BorderRect blRect1 = new BorderRect(0, 367, 100, 479);
+    private static final BorderRect blRect2 = new BorderRect(200, 414, 485, 479);
+    private static final BorderRect rapakRect = new BorderRect(396, 147, 465, 179);
+    private static final BorderRect brSchildOben = new BorderRect(393, 204, 466, 228);
 
     // Punkte in Location
     private static final GenericPoint Pdown = new GenericPoint(144, 479);
@@ -92,7 +92,7 @@ public class Rapak2 extends MainLocation {
         mainFrame.krabat.defScale = -60;
 
         rabe = new Rapak(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -102,15 +102,15 @@ public class Rapak2 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(196, 205, 172, 194, 185, 229));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 230, 194, 261));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(172, 194, 190, 237, 262, 332));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(190, 237, 152, 251, 333, 365));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 369, 85, 416));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(86, 366, 277, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(86, 442, 233, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(278, 376, 459, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(460, 374, 639, 428));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(196, 205, 172, 194, 185, 229));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(172, 230, 194, 261));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(172, 194, 190, 237, 262, 332));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(190, 237, 152, 251, 333, 365));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 369, 85, 416));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(86, 366, 277, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(86, 442, 233, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(278, 376, 459, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(460, 374, 639, 428));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(9);
@@ -336,7 +336,7 @@ public class Rapak2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -540,7 +540,7 @@ public class Rapak2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     rapakRect.IsPointInRect(pTemp) && !mainFrame.actions[256] ||
                     brSchildOben.IsPointInRect(pTemp);

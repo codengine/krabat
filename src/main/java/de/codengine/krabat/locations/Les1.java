@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Reh;
+import de.codengine.krabat.anims.Deer;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,12 +36,12 @@ public class Les1 extends MainLocation {
     private GenericImage background;
     private GenericImage strauch;
 
-    private Reh reh;
+    private Deer deer;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(453, 111, 535, 215);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 306, 39, 417);
-    private static final Borderrect strauchRect = new Borderrect(0, 380, 255, 419);
+    private static final BorderRect obererAusgang = new BorderRect(453, 111, 535, 215);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 306, 39, 417);
+    private static final BorderRect strauchRect = new BorderRect(0, 380, 255, 419);
 
     // Konstante Points
     private static final GenericPoint Pup = new GenericPoint(500, 180);
@@ -60,7 +60,7 @@ public class Les1 extends MainLocation {
         mainFrame.krabat.zoomf = 2.45f;
         mainFrame.krabat.defScale = 0;
 
-        reh = new Reh(mainFrame, true, new GenericRectangle(22, 159, 50, 19), 3);
+        deer = new Deer(mainFrame, true, new GenericRectangle(22, 159, 50, 19), 3);
 
         InitLocation(oldLocation);
 
@@ -71,10 +71,10 @@ public class Les1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(484, 490, 449, 485, 205, 233));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(449, 485, 231, 339, 234, 338));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 339, 167, 413));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(168, 339, 168, 175, 339, 400));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(484, 490, 449, 485, 205, 233));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(449, 485, 231, 339, 234, 338));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 339, 167, 413));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(168, 339, 168, 175, 339, 400));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(4);
@@ -115,8 +115,8 @@ public class Les1 extends MainLocation {
         background = null;
         strauch = null;
 
-        reh.cleanup();
-        reh = null;
+        deer.cleanup();
+        deer = null;
     }
 
 
@@ -144,7 +144,7 @@ public class Les1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
-        reh.drawReh(g);
+        deer.drawReh(g);
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
@@ -252,7 +252,7 @@ public class Les1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -359,7 +359,7 @@ public class Les1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

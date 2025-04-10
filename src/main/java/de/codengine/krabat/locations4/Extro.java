@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations4;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.PtackZaRapaka;
+import de.codengine.krabat.anims.RapakiRaven;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -37,7 +37,7 @@ public class Extro extends MainLocation {
     private GenericImage ludzo_vor_buehne;
     private int PicIndex = 0;
 
-    private final PtackZaRapaka rapak;
+    private final RapakiRaven rapak;
 
     private boolean setAnim = true;
 
@@ -77,7 +77,7 @@ public class Extro extends MainLocation {
         Extropics = new GenericImage[3];
 
         // rapak = new ptack2 (caller, 460, 55, 40, -50);
-        rapak = new PtackZaRapaka(caller, 560, 50, 30, -50);
+        rapak = new RapakiRaven(caller, 560, 50, 30, -50);
 
         InitLocation();
 

@@ -21,9 +21,9 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
-import de.codengine.krabat.anims.Reh;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Deer;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -44,23 +44,23 @@ public class Sunow2 extends MainLocation2 {
     private final GenericPoint Merkpunkt;
     private boolean isTal;
 
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean setAnim = false;
     private boolean muellerda = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
-    private Reh reh;
+    private Deer deer;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(343, 137, 455, 186);
-    private static final Borderrect untererAusgang = new Borderrect(18, 408, 252, 479);
-    private static final Borderrect sunowRect = new Borderrect(260, 138, 589, 184);
+    private static final BorderRect obererAusgang = new BorderRect(343, 137, 455, 186);
+    private static final BorderRect untererAusgang = new BorderRect(18, 408, 252, 479);
+    private static final BorderRect sunowRect = new BorderRect(260, 138, 589, 184);
 
-    private static final Bordertrapez BergTrapez = new Bordertrapez(295, 322, 154, 229, 278, 394);
-    private static final Bordertrapez TalTrapez = new Bordertrapez(391, 397, 340, 356, 202, 276);
+    private static final BorderTrapezoid BergTrapez = new BorderTrapezoid(295, 322, 154, 229, 278, 394);
+    private static final BorderTrapezoid TalTrapez = new BorderTrapezoid(391, 397, 340, 356, 202, 276);
 
     // Konstanten - Points
     private static final GenericPoint Pdown = new GenericPoint(105, 479);
@@ -91,9 +91,9 @@ public class Sunow2 extends MainLocation2 {
         mainFrame.checkKrabat();
 
         Merkpunkt = new GenericPoint(0, 0);
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -104,7 +104,7 @@ public class Sunow2 extends MainLocation2 {
 
         InitLocation(oldLocation);
 
-        reh = new Reh(mainFrame, false, new GenericRectangle(530, 237, 78, 56), 5);
+        deer = new Deer(mainFrame, false, new GenericRectangle(530, 237, 78, 56), 5);
 
         mainFrame.freeze(false);
     }
@@ -117,7 +117,7 @@ public class Sunow2 extends MainLocation2 {
                 // Berechnung, ob K im Tal steht oder nicht
                 BackgroundMusicPlayer.getInstance().playTrack(20, true);
                 GenericPoint tp = mainFrame.krabat.getPos();
-                Borderrect TalRect = new Borderrect(330, 200, 400, 285);
+                BorderRect TalRect = new BorderRect(330, 200, 400, 285);
                 isTal = TalRect.IsPointInRect(tp);
                 break;
             case 89: // aus Most kommend
@@ -153,7 +153,7 @@ public class Sunow2 extends MainLocation2 {
         if (isTal) {
             // Grenzen setzen im Tal
             // Taltrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(391, 397, 340, 356, 202, 276));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(391, 397, 340, 356, 202, 276));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(1);
@@ -166,8 +166,8 @@ public class Sunow2 extends MainLocation2 {
         } else {
             // Grenzen setzen auf dem Berg
             // Bergtrapez
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(295, 322, 154, 229, 278, 394));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 229, 54, 162, 395, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(295, 322, 154, 229, 278, 394));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(154, 229, 54, 162, 395, 479));
 
             // Laufmatrix anpassen
             // Matrix loeschen
@@ -193,8 +193,8 @@ public class Sunow2 extends MainLocation2 {
         mueller = null;
         muellermorph.cleanup();
         muellermorph = null;
-        reh.cleanup();
-        reh = null;
+        deer.cleanup();
+        deer = null;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -230,7 +230,7 @@ public class Sunow2 extends MainLocation2 {
         g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
-        reh.drawReh(g);
+        deer.drawReh(g);
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
@@ -241,7 +241,7 @@ public class Sunow2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -367,7 +367,7 @@ public class Sunow2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -506,7 +506,7 @@ public class Sunow2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = sunowRect.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

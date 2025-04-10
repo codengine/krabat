@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.BurRalbicy;
+import de.codengine.krabat.anims.FarmerRalbicy;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,15 +36,15 @@ public class Ralbicy1 extends MainLocation {
     private GenericImage background;
     private GenericImage holz;
     private GenericImage kreuz;
-    private BurRalbicy bauer;
-    private final Multiple2 Dialog;
+    private FarmerRalbicy bauer;
+    private final MultipleChoice Dialog;
     private boolean isListening = false;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang = new Borderrect(450, 423, 639, 479);
-    private static final Borderrect linkerAusgang = new Borderrect(0, 290, 42, 361);
-    private static final Borderrect brKirche = new Borderrect(175, 40, 639, 267);
-    private static final Borderrect brBauer = new Borderrect(49, 221, 103, 250);
+    private static final BorderRect rechterAusgang = new BorderRect(450, 423, 639, 479);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 290, 42, 361);
+    private static final BorderRect brKirche = new BorderRect(175, 40, 639, 267);
+    private static final BorderRect brBauer = new BorderRect(49, 221, 103, 250);
 
     // Punkte in Location
     private static final GenericPoint Pkirche = new GenericPoint(77, 316);
@@ -71,8 +71,8 @@ public class Ralbicy1 extends MainLocation {
         mainFrame.krabat.zoomf = 4.92f;
         mainFrame.krabat.defScale = -20;
 
-        bauer = new BurRalbicy(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        bauer = new FarmerRalbicy(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
 
@@ -83,11 +83,11 @@ public class Ralbicy1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 16, 0, 221, 296, 362));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 223, 97, 223, 363, 420));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(224, 372, 300, 435));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(301, 390, 408, 454));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(409, 390, 639, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 16, 0, 221, 296, 362));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 223, 97, 223, 363, 420));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(224, 372, 300, 435));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(301, 390, 408, 454));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(409, 390, 639, 479));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -299,7 +299,7 @@ public class Ralbicy1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -468,7 +468,7 @@ public class Ralbicy1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = brKirche.IsPointInRect(pTemp) ||
                     tmp.IsPointInRect(pTemp) ||
                     brBauer.IsPointInRect(pTemp);

@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -40,7 +40,7 @@ public class Mlyn2 extends MainLocation {
     private int Verhinderrad;
     private static final int MAX_VERHINDERRAD = 3;
 
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean showPersonen = true;
     private boolean showKrabat = true;
 
@@ -71,7 +71,7 @@ public class Mlyn2 extends MainLocation {
         mainFrame.krabat.defScale = 0;
 
         Rad = new GenericImage[21];
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
         mueller.maxx = 440;
         mueller.zoomf = 1f;
@@ -199,7 +199,7 @@ public class Mlyn2 extends MainLocation {
         // Mueller Hintergrund loeschen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp;
+            BorderRect temp;
             if (!muellerSprichtMitStock) {
                 temp = mueller.getRect();
             } else {
@@ -231,7 +231,7 @@ public class Mlyn2 extends MainLocation {
         // Mueller zeichnen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp;
+            BorderRect temp;
             if (!muellerSprichtMitStock) {
                 temp = mueller.getRect();
             } else {

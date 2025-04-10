@@ -24,10 +24,10 @@ package de.codengine.krabat.main;
 
 public class GenericRectangle {
 
-    private final Borderrect rectangleImpl;
+    private final BorderRect rectangleImpl;
 
     public GenericRectangle(int x, int y, int width, int height) {
-        rectangleImpl = new Borderrect(x, y, x + width, y + height);
+        rectangleImpl = new BorderRect(x, y, x + width, y + height);
     }
 
     public int getX() {

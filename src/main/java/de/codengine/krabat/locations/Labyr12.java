@@ -30,17 +30,17 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public class Labyr12 extends Mainlaby {
+public class Labyr12 extends MainLabyrinth {
     private static final Logger log = LoggerFactory.getLogger(Labyr12.class);
     private GenericImage background;
     private GenericImage lab122;
     private GenericImage lab123;
 
     // Konstanten - Rects
-    private static final Borderrect untererAusgang = new Borderrect(141, 435, 356, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(611, 248, 639, 326);
-    private static final Borderrect lab122Rect = new Borderrect(296, 162, 610, 355);
-    private static final Borderrect lab123Rect = new Borderrect(189, 329, 252, 377);
+    private static final BorderRect untererAusgang = new BorderRect(141, 435, 356, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(611, 248, 639, 326);
+    private static final BorderRect lab122Rect = new BorderRect(296, 162, 610, 355);
+    private static final BorderRect lab123Rect = new BorderRect(189, 329, 252, 377);
 
     // Exitlocation - Array
     // private static final int[] Exitdown  = {52, 54, 55, 58, 60, 61};
@@ -74,12 +74,12 @@ public class Labyr12 extends Mainlaby {
     private void InitLocation(int Richtung) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(277, 295, 225, 295, 389, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(277, 356, 295, 388));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(317, 327, 257, 327, 305, 355));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(328, 305, 411, 319));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(412, 269, 441, 319));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(442, 269, 639, 293));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(277, 295, 225, 295, 389, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(277, 356, 295, 388));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(317, 327, 257, 327, 305, 355));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(328, 305, 411, 319));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(412, 269, 441, 319));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(442, 269, 639, 293));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(6);
@@ -261,7 +261,7 @@ public class Labyr12 extends Mainlaby {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -370,7 +370,7 @@ public class Labyr12 extends Mainlaby {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

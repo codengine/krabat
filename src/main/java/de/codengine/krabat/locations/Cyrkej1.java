@@ -36,9 +36,9 @@ public class Cyrkej1 extends MainLocation {
     private int WaitCount;
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang = new Borderrect(0, 426, 38, 479);
-    private static final Borderrect rechterAusgang = new Borderrect(590, 300, 639, 400);
-    private static final Borderrect brTuer = new Borderrect(312, 297, 354, 327);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 426, 38, 479);
+    private static final BorderRect rechterAusgang = new BorderRect(590, 300, 639, 400);
+    private static final BorderRect brTuer = new BorderRect(312, 297, 354, 327);
 
     // Punkte in Location
     private static final GenericPoint Ptuer = new GenericPoint(334, 330);
@@ -73,10 +73,10 @@ public class Cyrkej1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(330, 600, 40, 600, 384, 462));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(334, 335, 337, 374, 330, 383));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(605, 639, 380, 639, 311, 383));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(600, 290, 610, 310));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(330, 600, 40, 600, 384, 462));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(334, 335, 337, 374, 330, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(605, 639, 380, 639, 311, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(600, 290, 610, 310));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(4);
@@ -241,7 +241,7 @@ public class Cyrkej1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -370,7 +370,7 @@ public class Cyrkej1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || brTuer.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

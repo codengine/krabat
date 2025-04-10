@@ -61,14 +61,14 @@ public class Hrodz extends MainLocation {
     private static final GenericPoint Pstein = new GenericPoint(224, 460);
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect rechterAusgang =
-            new Borderrect(593, 373, 639, 479);
-    private static final Borderrect megaLinks =
-            new Borderrect(0, 0, 525, 479);
-    private static final Borderrect megaRechts =
-            new Borderrect(469, 0, 639, 479);
-    private static final Borderrect stein =
-            new Borderrect(158, 425, 201, 479);
+    private static final BorderRect rechterAusgang =
+            new BorderRect(593, 373, 639, 479);
+    private static final BorderRect megaLinks =
+            new BorderRect(0, 0, 525, 479);
+    private static final BorderRect megaRechts =
+            new BorderRect(469, 0, 639, 479);
+    private static final BorderRect stein =
+            new BorderRect(158, 425, 201, 479);
 
     // Konstante ints
     private static final int fStein = 9;
@@ -110,11 +110,11 @@ public class Hrodz extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(224, 450, 328, 479));
+                new BorderTrapezoid(224, 450, 328, 479));
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(329, 437, 417, 479));
+                new BorderTrapezoid(329, 437, 417, 479));
         mainFrame.pathWalker.vBorders.addElement(
-                new Bordertrapez(418, 413, 639, 479));
+                new BorderTrapezoid(418, 413, 639, 479));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -378,7 +378,7 @@ public class Hrodz extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -533,7 +533,7 @@ public class Hrodz extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     stein.IsPointInRect(pTemp) &&
                             !mainFrame.actions[980];

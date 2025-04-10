@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -37,19 +37,19 @@ public class Labyr122 extends MainLocation2 {
     private GenericImage background;
     private GenericImage lab122;
     private GenericImage lab123;
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean setAnim = true;
 
     private boolean muellerVisible = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
 
     // Vordergrund - Rects
-    private static final Borderrect lab122Rect = new Borderrect(296, 162, 610, 355);
-    private static final Borderrect lab123Rect = new Borderrect(189, 329, 252, 377);
+    private static final BorderRect lab122Rect = new BorderRect(296, 162, 610, 355);
+    private static final BorderRect lab123Rect = new BorderRect(189, 329, 252, 377);
 
     // Konstante Points
     // private static final GenericPoint Pright    = new GenericPoint (639, 282);
@@ -71,9 +71,9 @@ public class Labyr122 extends MainLocation2 {
         mainFrame.krabat.zoomf = 6.97f;
         mainFrame.krabat.defScale = -30;
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 0;
         mueller.zoomf = 4f;
@@ -146,7 +146,7 @@ public class Labyr122 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

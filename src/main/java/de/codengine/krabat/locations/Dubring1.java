@@ -40,29 +40,29 @@ public class Dubring1 extends MainLocation {
     private int scrollwert;
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect linkerAusgang = new Borderrect(0, 316, 35, 398);
-    private static final Borderrect rechterAusgang = new Borderrect(1246, 305, 1279, 393);
-    private static final Borderrect halza1Rect = new Borderrect(490, 204, 540, 290);
-    private static final Borderrect halza2Rect = new Borderrect(849, 259, 892, 320);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 316, 35, 398);
+    private static final BorderRect rechterAusgang = new BorderRect(1246, 305, 1279, 393);
+    private static final BorderRect halza1Rect = new BorderRect(490, 204, 540, 290);
+    private static final BorderRect halza2Rect = new BorderRect(849, 259, 892, 320);
     // private static final borderrect stomyRect      = new borderrect (   0,   0, 1279, 200);
-    private static final Borderrect trawaRect = new Borderrect(1000, 350, 1279, 479);
+    private static final BorderRect trawaRect = new BorderRect(1000, 350, 1279, 479);
 
     // alle Schlamm-Moeglichkeiten registrieren
-    private static final Borderrect schlamm1 = new Borderrect(40, 302, 143, 332);
+    private static final BorderRect schlamm1 = new BorderRect(40, 302, 143, 332);
     private static final GenericPoint Pschlamm1 = new GenericPoint(76, 358);
-    private static final Borderrect schlamm2 = new Borderrect(0, 406, 145, 479);
+    private static final BorderRect schlamm2 = new BorderRect(0, 406, 145, 479);
     private static final GenericPoint Pschlamm2 = new GenericPoint(75, 381);
-    private static final Borderrect schlamm3 = new Borderrect(251, 302, 660, 333);
+    private static final BorderRect schlamm3 = new BorderRect(251, 302, 660, 333);
     private static final GenericPoint Pschlamm3 = new GenericPoint(431, 350);
-    private static final Borderrect schlamm4 = new Borderrect(338, 395, 457, 435);
+    private static final BorderRect schlamm4 = new BorderRect(338, 395, 457, 435);
     private static final GenericPoint Pschlamm4 = new GenericPoint(399, 373);
-    private static final Bordertrapez schlamm5 = new Bordertrapez(611, 731, 500, 620, 400, 479);
+    private static final BorderTrapezoid schlamm5 = new BorderTrapezoid(611, 731, 500, 620, 400, 479);
     private static final GenericPoint Pschlamm5 = new GenericPoint(685, 374);
-    private static final Borderrect schlamm6 = new Borderrect(845, 292, 1279, 314);
+    private static final BorderRect schlamm6 = new BorderRect(845, 292, 1279, 314);
     private static final GenericPoint Pschlamm6 = new GenericPoint(1154, 365);
-    private static final Borderrect schlamm7 = new Borderrect(837, 396, 985, 455);
+    private static final BorderRect schlamm7 = new BorderRect(837, 396, 985, 455);
     private static final GenericPoint Pschlamm7 = new GenericPoint(923, 379);
-    private static final Borderrect schlamm8 = new Borderrect(1083, 423, 1279, 479);
+    private static final BorderRect schlamm8 = new BorderRect(1083, 423, 1279, 479);
     private static final GenericPoint Pschlamm8 = new GenericPoint(1196, 397);
 
     private static final GenericPoint Pleft = new GenericPoint(0, 361);
@@ -119,14 +119,14 @@ public class Dubring1 extends MainLocation {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 48, 0, 144, 352, 373));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(72, 321, 167, 272, 374, 390));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(300, 506, 213, 506, 360, 373));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(507, 363, 571, 381));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(572, 956, 572, 1113, 357, 373));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(740, 810, 652, 957, 339, 356));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(900, 1251, 1082, 1206, 374, 403));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1278, 1279, 1148, 1279, 326, 373));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 48, 0, 144, 352, 373));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(72, 321, 167, 272, 374, 390));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(300, 506, 213, 506, 360, 373));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(507, 363, 571, 381));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(572, 956, 572, 1113, 357, 373));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(740, 810, 652, 957, 339, 356));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(900, 1251, 1082, 1206, 374, 403));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1278, 1279, 1148, 1279, 326, 373));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(8);
@@ -308,7 +308,7 @@ public class Dubring1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -719,7 +719,7 @@ public class Dubring1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             // (stomyRect.IsPointInRect (pTemp) == true))
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || schlamm1.IsPointInRect(pTemp) ||
                     schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||

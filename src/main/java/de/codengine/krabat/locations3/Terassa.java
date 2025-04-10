@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.DDKowar;
+import de.codengine.krabat.anims.DDBlacksmith;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -39,10 +39,10 @@ public class Terassa extends MainLocation {
     private GenericImage hammer;
     private GenericImage gelaender2;
     private GenericImage delle;
-    private final DDKowar schmied;
+    private final DDBlacksmith schmied;
 
     // private borderrect schmiedRect;
-    private final Borderrect schmiedClickRect;
+    private final BorderRect schmiedClickRect;
     private final GenericPoint schmiedPoint;
     private final GenericPoint schmiedTalk;
     private final boolean schmiedVisible;
@@ -54,35 +54,35 @@ public class Terassa extends MainLocation {
     private boolean isVordergrund;
 
     // Eingrenzung, ob K nach vorn will, wenn er hinten steht
-    private static final Bordertrapez[] vorWennHinten =
-            {new Bordertrapez(0, 1, 0, 330, 408, 479),
-                    new Bordertrapez(43, 334, 132, 430)};
+    private static final BorderTrapezoid[] vorWennHinten =
+            {new BorderTrapezoid(0, 1, 0, 330, 408, 479),
+                    new BorderTrapezoid(43, 334, 132, 430)};
 
     // Eingrenzung, ob K vorn bleiben will, wenn er vorn steht
-    private static final Bordertrapez[] vorWennVor =
-            {new Bordertrapez(0, 408, 41, 479),
-                    new Bordertrapez(42, 129, 42, 639, 335, 446),
-                    new Bordertrapez(42, 447, 639, 479)};
+    private static final BorderTrapezoid[] vorWennVor =
+            {new BorderTrapezoid(0, 408, 41, 479),
+                    new BorderTrapezoid(42, 129, 42, 639, 335, 446),
+                    new BorderTrapezoid(42, 447, 639, 479)};
 
     // Merkvariablen fuer Zielpunkt und ZielActionID, wenn Ebene wechselt
     private int MerkActionID;
     private GenericPoint MerkPunkt;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangMurja
-            = new Borderrect(491, 252, 560, 330);
-    private static final Borderrect ausgangStraza
-            = new Borderrect(171, 313, 215, 360);
-    private static final Borderrect ausgangCychi
-            = new Borderrect(0, 300, 40, 380);
-    private static final Borderrect ausgangKarta
-            = new Borderrect(600, 385, 639, 460);
-    private static final Borderrect gelaenderRect  // fuer Vordergrund
-            = new Borderrect(-400, 326, 639, 800);
-    private static final Borderrect buschRect      // fuer Vordergrund
-            = new Borderrect(498, 283, 639, 374);
-    private static final Borderrect hammerRect
-            = new Borderrect(221, 463, 248, 479);
+    private static final BorderRect ausgangMurja
+            = new BorderRect(491, 252, 560, 330);
+    private static final BorderRect ausgangStraza
+            = new BorderRect(171, 313, 215, 360);
+    private static final BorderRect ausgangCychi
+            = new BorderRect(0, 300, 40, 380);
+    private static final BorderRect ausgangKarta
+            = new BorderRect(600, 385, 639, 460);
+    private static final BorderRect gelaenderRect  // fuer Vordergrund
+            = new BorderRect(-400, 326, 639, 800);
+    private static final BorderRect buschRect      // fuer Vordergrund
+            = new BorderRect(498, 283, 639, 374);
+    private static final BorderRect hammerRect
+            = new BorderRect(221, 463, 248, 479);
 
     // Konstante Points
     private static final GenericPoint pExitMurja = new GenericPoint(515, 337);
@@ -128,18 +128,18 @@ public class Terassa extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        schmied = new DDKowar(mainFrame);
+        schmied = new DDBlacksmith(mainFrame);
 
         schmiedPoint = new GenericPoint();
-        schmiedPoint.x = schmiedFeet.x - DDKowar.Breite / 2;
-        schmiedPoint.y = schmiedFeet.y - DDKowar.Hoehe;
+        schmiedPoint.x = schmiedFeet.x - DDBlacksmith.Breite / 2;
+        schmiedPoint.y = schmiedFeet.y - DDBlacksmith.Hoehe;
 
         schmiedTalk = new GenericPoint();
         schmiedTalk.x = schmiedFeet.x;
         schmiedTalk.y = schmiedPoint.y - 50;
 
         // schmiedRect = new borderrect (schmiedPoint.x, schmiedPoint.y, schmiedPoint.x + DDKowar.Breite, schmiedPoint.y + DDKowar.Hoehe);
-        schmiedClickRect = new Borderrect(schmiedPoint.x + 7, schmiedPoint.y, schmiedPoint.x + DDKowar.Breite - 14, schmiedPoint.y + DDKowar.Hoehe);
+        schmiedClickRect = new BorderRect(schmiedPoint.x + 7, schmiedPoint.y, schmiedPoint.x + DDBlacksmith.Breite - 14, schmiedPoint.y + DDBlacksmith.Hoehe);
 
         // hier evaluieren, ob Schmied ueberhaupt da ist
         schmiedVisible = mainFrame.actions[529] && !mainFrame.actions[701];
@@ -203,9 +203,9 @@ public class Terassa extends MainLocation {
 
         // Testen, welche Grenzen gesetzt werden muessen
         if (!isVordergrund) {
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(515, 550, 300, 500, 337, 362));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(10, 450, 10, 560, 363, 389));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(10, 560, 250, 630, 390, 440));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(515, 550, 300, 500, 337, 362));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(10, 450, 10, 560, 363, 389));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(10, 560, 250, 630, 390, 440));
 
             mainFrame.pathFinder.ClearMatrix(3);
 
@@ -217,8 +217,8 @@ public class Terassa extends MainLocation {
             mainFrame.krabat.defScale = UNTEN_DEFSCALE;
             mainFrame.krabat.zoomf = UNTEN_ZOOMF;
         } else {
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(15, 446, 34, 479));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(35, 73, 35, 191, 446, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(15, 446, 34, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(35, 73, 35, 191, 446, 479));
 
             mainFrame.pathFinder.ClearMatrix(2);
 
@@ -252,7 +252,7 @@ public class Terassa extends MainLocation {
 
         // Kowar Hintergrund loeschen (sonst vielleicht K geloescht)
         if (schmiedVisible) {
-            g.setClip(schmiedPoint.x, schmiedPoint.y, DDKowar.Breite, DDKowar.Hoehe);
+            g.setClip(schmiedPoint.x, schmiedPoint.y, DDBlacksmith.Breite, DDBlacksmith.Hoehe);
             g.drawImage(background, 0, 0);
             g.drawImage(gelaender, 0, 284);
 
@@ -333,7 +333,7 @@ public class Terassa extends MainLocation {
         if (schmiedVisible) {
             GenericRectangle may;
             may = g.getClipBounds();
-            g.setClip(schmiedPoint.x, schmiedPoint.y, DDKowar.Breite, DDKowar.Hoehe);
+            g.setClip(schmiedPoint.x, schmiedPoint.y, DDBlacksmith.Breite, DDBlacksmith.Hoehe);
             schmied.drawDDkowar(g, TalkPerson, schmiedPoint, schmiedhoertzu);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
@@ -398,7 +398,7 @@ public class Terassa extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
@@ -596,7 +596,7 @@ public class Terassa extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     schmiedClickRect.IsPointInRect(pTemp) && schmiedVisible ||
                     hammerRect.IsPointInRect(pTemp) && !mainFrame.actions[953] &&

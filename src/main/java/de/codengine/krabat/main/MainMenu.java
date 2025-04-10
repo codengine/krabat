@@ -22,13 +22,13 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mainanim;
+import de.codengine.krabat.anims.MainAnim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MainMenu extends Mainanim {
+public class MainMenu extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(MainMenu.class);
     private GenericImage screen;
     private GenericImage newGame;
@@ -38,14 +38,14 @@ public class MainMenu extends Mainanim {
     private GenericImage continueGame;
     private GenericImage exit;
     private GenericImage langSwitch;
-    private Borderrect brGesamt;
-    private Borderrect brNewGame;
-    private Borderrect brLoadGame;
-    private Borderrect brSaveGame;
-    private Borderrect brInfo;
-    private Borderrect brContinueGame;
-    private Borderrect brExit;
-    private Borderrect brLangSwitch;
+    private BorderRect brGesamt;
+    private BorderRect brNewGame;
+    private BorderRect brLoadGame;
+    private BorderRect brSaveGame;
+    private BorderRect brInfo;
+    private BorderRect brContinueGame;
+    private BorderRect brExit;
+    private BorderRect brLangSwitch;
 
     private final GenericPoint pLO;
 
@@ -75,11 +75,11 @@ public class MainMenu extends Mainanim {
 
     // hier der Init je nach Sprache
     public void InitRec() {
-        brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46, pLO.x + 513, pLO.y + 380);
+        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46, pLO.x + 513, pLO.y + 380);
         screen = getPicture("gfx/mainmenu/main-menu.png", true);
         int baseX1 = pLO.x + 89;
         int baseXRight = baseX1 + 396;
-        brInfo = new Borderrect(baseX1, pLO.y + 314,pLO.x + 159, pLO.y + 336);
+        brInfo = new BorderRect(baseX1, pLO.y + 314,pLO.x + 159, pLO.y + 336);
 
         langSwitch = getPicture("gfx/mainmenu/lang-switch.png", true);
         info = getPicture("gfx/mainmenu/info.png", true);
@@ -91,19 +91,19 @@ public class MainMenu extends Mainanim {
         exit = getPicture("gfx/mainmenu/exit.png", true);
 
         if (Start.language == 2) {
-            brLangSwitch = new Borderrect(baseX1, pLO.y + 221,pLO.x + 227, pLO.y + 267);
-            brContinueGame = new Borderrect(pLO.x + 297, pLO.y + 65, pLO.x + 486, pLO.y + 93);
-            brLoadGame = new Borderrect(pLO.x + 352, pLO.y + 147, baseXRight, pLO.y + 175);
-            brSaveGame = new Borderrect(pLO.x + 302, pLO.y + 186, baseXRight, pLO.y + 214);
-            brNewGame = new Borderrect(pLO.x + 287, pLO.y + 275, baseXRight, pLO.y + 297);
-            brExit = new Borderrect(pLO.x + 291, pLO.y + 308, baseXRight, pLO.y + 336);
+            brLangSwitch = new BorderRect(baseX1, pLO.y + 221,pLO.x + 227, pLO.y + 267);
+            brContinueGame = new BorderRect(pLO.x + 297, pLO.y + 65, pLO.x + 486, pLO.y + 93);
+            brLoadGame = new BorderRect(pLO.x + 352, pLO.y + 147, baseXRight, pLO.y + 175);
+            brSaveGame = new BorderRect(pLO.x + 302, pLO.y + 186, baseXRight, pLO.y + 214);
+            brNewGame = new BorderRect(pLO.x + 287, pLO.y + 275, baseXRight, pLO.y + 297);
+            brExit = new BorderRect(pLO.x + 291, pLO.y + 308, baseXRight, pLO.y + 336);
         } else {
-            brLangSwitch = new Borderrect(baseX1, pLO.y + 221, baseX1 + langSwitch.getWidth(), pLO.y + 221 + langSwitch.getHeight());
-            brContinueGame = new Borderrect(baseXRight - continueGame.getWidth(), pLO.y + 65, baseXRight, pLO.y + 65 + continueGame.getHeight());
-            brLoadGame = new Borderrect(baseXRight - loadGame.getWidth(), pLO.y + 147, baseXRight, pLO.y + 147 + loadGame.getHeight());
-            brSaveGame = new Borderrect(baseXRight - saveGame.getWidth(), pLO.y + 186, baseXRight, pLO.y + 186 + saveGame.getHeight());
-            brNewGame = new Borderrect(baseXRight - newGame.getWidth(), pLO.y + 275, baseXRight, pLO.y + 275 + newGame.getHeight());
-            brExit = new Borderrect(baseXRight - exit.getWidth(), pLO.y + 308, baseXRight, pLO.y + 308 + exit.getHeight());
+            brLangSwitch = new BorderRect(baseX1, pLO.y + 221, baseX1 + langSwitch.getWidth(), pLO.y + 221 + langSwitch.getHeight());
+            brContinueGame = new BorderRect(baseXRight - continueGame.getWidth(), pLO.y + 65, baseXRight, pLO.y + 65 + continueGame.getHeight());
+            brLoadGame = new BorderRect(baseXRight - loadGame.getWidth(), pLO.y + 147, baseXRight, pLO.y + 147 + loadGame.getHeight());
+            brSaveGame = new BorderRect(baseXRight - saveGame.getWidth(), pLO.y + 186, baseXRight, pLO.y + 186 + saveGame.getHeight());
+            brNewGame = new BorderRect(baseXRight - newGame.getWidth(), pLO.y + 275, baseXRight, pLO.y + 275 + newGame.getHeight());
+            brExit = new BorderRect(baseXRight - exit.getWidth(), pLO.y + 308, baseXRight, pLO.y + 308 + exit.getHeight());
         }
     }
 

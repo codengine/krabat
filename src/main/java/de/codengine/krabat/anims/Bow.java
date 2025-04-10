@@ -27,7 +27,7 @@ import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Bow extends Mainanim {
+public class Bow extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Bow.class);
     private final GenericImage[] bow;
 

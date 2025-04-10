@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Hojnt;
+import de.codengine.krabat.anims.Hunter;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -41,7 +41,7 @@ public class Jama1 extends MainLocation {
     private int Counter = 0;
     private final GenericImage[] Wuermer;
 
-    private Hojnt jaeger;
+    private Hunter jaeger;
     private boolean showHojnt = false;
     private boolean walkReady = true;
 
@@ -49,7 +49,7 @@ public class Jama1 extends MainLocation {
     private static final GenericPoint EndPunkt = new GenericPoint(236, 179);
 
     // Konstanten - Rects
-    private static final Borderrect wackiRect = new Borderrect(253, 350, 253 + 14, 350 + 13);
+    private static final BorderRect wackiRect = new BorderRect(253, 350, 253 + 14, 350 + 13);
 
     // Konstante ints
     private static final int fWacki = 9;
@@ -73,7 +73,7 @@ public class Jama1 extends MainLocation {
         mainFrame.krabat.zoomf = 2.1f;
         mainFrame.krabat.defScale = -90;
 
-        jaeger = new Hojnt(mainFrame);
+        jaeger = new Hunter(mainFrame);
         jaeger.maxx = 0;
         jaeger.zoomf = 1f;
         jaeger.defScale = -30;
@@ -91,7 +91,7 @@ public class Jama1 extends MainLocation {
     private void InitLocation() {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(310, 390, 330, 396));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(310, 390, 330, 396));
 
         mainFrame.pathFinder.ClearMatrix(1);
 
@@ -160,7 +160,7 @@ public class Jama1 extends MainLocation {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
 
             if (!istJaegerGebueckt) {
                 g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
@@ -203,7 +203,7 @@ public class Jama1 extends MainLocation {
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getRect();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
@@ -342,7 +342,7 @@ public class Jama1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -420,7 +420,7 @@ public class Jama1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wackiRect.IsPointInRect(pTemp) && !mainFrame.actions[908];
 
@@ -520,7 +520,7 @@ public class Jama1 extends MainLocation {
     // Aktionen dieser Location ////////////////////////////////////////
 
     private void DoAction() {
-        Borderrect tmp;
+        BorderRect tmp;
         GenericPoint tTlk;
 
         // nichts zu tun, oder Krabat laeuft noch

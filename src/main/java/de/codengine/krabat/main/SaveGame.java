@@ -22,7 +22,7 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mainanim;
+import de.codengine.krabat.anims.MainAnim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-public class SaveGame extends Mainanim {
+public class SaveGame extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(SaveGame.class);
     private boolean Paintcall = false;
 
@@ -42,9 +42,9 @@ public class SaveGame extends Mainanim {
     private final GenericImage downArrow;
     private GenericImage saveButton;
     private GenericImage empty;
-    private final Borderrect brGesamt;
-    private final Borderrect brPfeil;
-    private Borderrect brSaveButton;
+    private final BorderRect brGesamt;
+    private final BorderRect brPfeil;
+    private BorderRect brSaveButton;
     private final GenericColor inactive = new GenericColor(156, 132, 107);
 
     private int menuItem = 0;
@@ -54,8 +54,8 @@ public class SaveGame extends Mainanim {
     private int selected = -1;
     private int unselected = -1;
 
-    private final Spielstand[] Dir;
-    private Spielstand currentSavegame;
+    private final SavegameData[] Dir;
+    private SavegameData currentSavegame;
     private GenericImage actualImage;
 
     public boolean saveIsValid = false;
@@ -72,16 +72,16 @@ public class SaveGame extends Mainanim {
         InitRec();
 
         // Rechtecke im Inventar-Fenster festlegen
-        brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
+        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
         brPfeil = mainFrame.inventory.brPfeill;
         arrow = mainFrame.inventory.Pfeill;
         downArrow = mainFrame.inventory.DPfeill;
 
         // Spielstaende laden
-        Dir = new Spielstand[7];
+        Dir = new SavegameData[7];
         for (int i = 49; i <= 54; ++i) {
-            Dir[i - 48] = new Spielstand(mainFrame);
+            Dir[i - 48] = new SavegameData(mainFrame);
             Dir[i - 48].GetSavedSpiel(i - 48);
         }
 
@@ -102,7 +102,7 @@ public class SaveGame extends Mainanim {
         int xOffset = 310 - ((saveButton.getWidth() - 179) / 2);
         int baseX = pLO.x + xOffset;
         int baseY = pLO.y + 327;
-        brSaveButton = new Borderrect(baseX, baseY,baseX + saveButton.getWidth(), baseY + saveButton.getHeight());
+        brSaveButton = new BorderRect(baseX, baseY,baseX + saveButton.getWidth(), baseY + saveButton.getHeight());
         empty = getPicture("gfx/mainmenu/leerzelle.png");
         actualImage = mainFrame.saveImage;
     }
@@ -365,9 +365,9 @@ public class SaveGame extends Mainanim {
     }
 
     // Berechnungsroutine Spielstandsfensternummer - X/Y-Koordinaten//////////////
-    private Borderrect GetCurrentRect(int Number) {
+    private BorderRect GetCurrentRect(int Number) {
         GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
+        return new BorderRect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
     }
 
     private GenericPoint GetCurrentXY(int Number) {
@@ -387,7 +387,7 @@ public class SaveGame extends Mainanim {
         GenericToolkit.getDefaultToolkit().grabPixelsFromImage(actualImage, 0, 0, 118, 88, tempp, 0, 118);
 
         // erzeugt den aktuellen Spielstand (nicht komplett!!)
-        currentSavegame = new Spielstand(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
+        currentSavegame = new SavegameData(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
                 Kal.get(Calendar.YEAR));
     }
 }

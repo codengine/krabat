@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -35,18 +35,18 @@ import java.util.Objects;
 public class Njedz2 extends MainLocation2 {
     private static final Logger log = LoggerFactory.getLogger(Njedz2.class);
     private GenericImage background;
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean setAnim = false;
     private boolean muellerda = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang = new Borderrect(307, 222, 361, 262);
-    private static final Borderrect untererAusgang = new Borderrect(291, 435, 639, 479);
-    private static final Borderrect wodaRect = new Borderrect(406, 258, 500, 300);
+    private static final BorderRect obererAusgang = new BorderRect(307, 222, 361, 262);
+    private static final BorderRect untererAusgang = new BorderRect(291, 435, 639, 479);
+    private static final BorderRect wodaRect = new BorderRect(406, 258, 500, 300);
 
     // Konstante Points
     private static final GenericPoint Pdown = new GenericPoint(494, 479);
@@ -55,13 +55,13 @@ public class Njedz2 extends MainLocation2 {
     private static final GenericPoint Pwoda = new GenericPoint(393, 342);
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(407, 422, 399, 400, 259, 283),
-                    new Bordertrapez(423, 260, 498, 266),
-                    new Bordertrapez(473, 267, 498, 302),
-                    new Bordertrapez(464, 306, 480, 315),
-                    new Bordertrapez(601, 263, 639, 276),
-                    new Bordertrapez(598, 609, 594, 603, 277, 289)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(407, 422, 399, 400, 259, 283),
+                    new BorderTrapezoid(423, 260, 498, 266),
+                    new BorderTrapezoid(473, 267, 498, 302),
+                    new BorderTrapezoid(464, 306, 480, 315),
+                    new BorderTrapezoid(601, 263, 639, 276),
+                    new BorderTrapezoid(598, 609, 594, 603, 277, 289)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -83,9 +83,9 @@ public class Njedz2 extends MainLocation2 {
         mainFrame.krabat.zoomf = 2.1f;
         mainFrame.krabat.defScale = -50;
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -106,8 +106,8 @@ public class Njedz2 extends MainLocation2 {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(256, 305, 349, 639, 293, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(323, 335, 256, 305, 259, 292));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(256, 305, 349, 639, 293, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(323, 335, 256, 305, 259, 292));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(2);
@@ -167,9 +167,9 @@ public class Njedz2 extends MainLocation2 {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1; // 1 Mindestens !
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -246,7 +246,7 @@ public class Njedz2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -370,7 +370,7 @@ public class Njedz2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -506,7 +506,7 @@ public class Njedz2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

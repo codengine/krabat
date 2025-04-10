@@ -22,8 +22,8 @@ package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.WikowarRybow;
-import de.codengine.krabat.anims.WikowarZita;
+import de.codengine.krabat.anims.MerchantFish;
+import de.codengine.krabat.anims.MerchantGrain;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -43,32 +43,32 @@ public class Kulow2 extends MainLocation {
     private boolean setScroll = false;
     private int scrollwert;
 
-    private WikowarZita haendler;
-    private WikowarRybow fischer;
+    private MerchantGrain haendler;
+    private MerchantFish fischer;
     private final GenericPoint rybowarTalk;
     // private borderrect rybowarRect;
     private boolean rybowarhoertzu = false;
     // private boolean rybowarsuchtzrawc = false;
     // private boolean octopussyerscheint = false;
 
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     private boolean wikowarhoertzu = false;
-    private final Borderrect wikowarRect;
+    private final BorderRect wikowarRect;
     private final GenericPoint wikowarTalk;
 
     // Konstanten - Rects
-    private static final Borderrect untererAusgang = new Borderrect(0, 444, 330, 479);
-    private static final Borderrect linkerAusgang = new Borderrect(343, 318, 395, 347);
-    private static final Borderrect rechterAusgang = new Borderrect(1240, 407, 1279, 479);
-    private static final Borderrect kulow2Rect = new Borderrect(343, 305, 558, 479);
+    private static final BorderRect untererAusgang = new BorderRect(0, 444, 330, 479);
+    private static final BorderRect linkerAusgang = new BorderRect(343, 318, 395, 347);
+    private static final BorderRect rechterAusgang = new BorderRect(1240, 407, 1279, 479);
+    private static final BorderRect kulow2Rect = new BorderRect(343, 305, 558, 479);
     // private static final borderrect drybaRect      = new borderrect ( 721, 338,  783, 372);
-    private static final Borderrect durjelRect = new Borderrect(194, 341, 215, 390);
-    private static final Borderrect durjerRect = new Borderrect(865, 347, 898, 429);
-    private static final Borderrect synoRect = new Borderrect(998, 407, 1043, 431);
-    private static final Borderrect sudobjoRect = new Borderrect(1061, 411, 1090, 443);
+    private static final BorderRect durjelRect = new BorderRect(194, 341, 215, 390);
+    private static final BorderRect durjerRect = new BorderRect(865, 347, 898, 429);
+    private static final BorderRect synoRect = new BorderRect(998, 407, 1043, 431);
+    private static final BorderRect sudobjoRect = new BorderRect(1061, 411, 1090, 443);
 
-    private static final Borderrect rybowarLookRect = new Borderrect(714, 343, 741, 384);
+    private static final BorderRect rybowarLookRect = new BorderRect(714, 343, 741, 384);
 
     // Konstante Points
     private static final GenericPoint Pwikowar = new GenericPoint(532, 467);
@@ -106,20 +106,20 @@ public class Kulow2 extends MainLocation {
         mainFrame.krabat.zoomf = 1.54f;
         mainFrame.krabat.defScale = 0;
 
-        haendler = new WikowarZita(mainFrame);
-        fischer = new WikowarRybow(mainFrame);
+        haendler = new MerchantGrain(mainFrame);
+        fischer = new MerchantFish(mainFrame);
 
         rybowarTalk = new GenericPoint();
-        rybowarTalk.x = rybowarUp.x + WikowarRybow.Breite / 2;
+        rybowarTalk.x = rybowarUp.x + MerchantFish.Breite / 2;
         rybowarTalk.y = rybowarUp.y - 100;
 
         // rybowarRect = new borderrect (rybowarUp.x, rybowarUp.y, rybowarUp.x + WikowarRybow.Breite, rybowarUp.y + WikowarRybow.Hoehe);
 
-        wikowarTalk = new GenericPoint(PwikZita.x + WikowarZita.Breite / 2, PwikZita.y - 50);
+        wikowarTalk = new GenericPoint(PwikZita.x + MerchantGrain.Breite / 2, PwikZita.y - 50);
 
-        wikowarRect = new Borderrect(PwikZita.x, PwikZita.y, PwikZita.x + WikowarZita.Breite, PwikZita.y + WikowarZita.Hoehe);
+        wikowarRect = new BorderRect(PwikZita.x, PwikZita.y, PwikZita.x + MerchantGrain.Breite, PwikZita.y + MerchantGrain.Hoehe);
 
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
@@ -158,17 +158,17 @@ public class Kulow2 extends MainLocation {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         // Grenzen setzen
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 455, 310, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(134, 355, 0, 310, 395, 454));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(370, 424, 318, 481, 371, 394));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(479, 623, 540, 623, 395, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(624, 655, 624, 761, 430, 461));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(624, 462, 813, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(814, 468, 959, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(881, 881, 840, 933, 443, 467));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(960, 468, 1279, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1267, 1279, 985, 1279, 434, 467));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(1262, 1271, 1267, 1279, 421, 433));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 455, 310, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(134, 355, 0, 310, 395, 454));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(370, 424, 318, 481, 371, 394));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(479, 623, 540, 623, 395, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(624, 655, 624, 761, 430, 461));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(624, 462, 813, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(814, 468, 959, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(881, 881, 840, 933, 443, 467));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(960, 468, 1279, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1267, 1279, 985, 1279, 434, 467));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1262, 1271, 1267, 1279, 421, 433));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(11);
@@ -268,7 +268,7 @@ public class Kulow2 extends MainLocation {
         g.drawImage(backright, 640, 0);
 
         // Hintergrund fuer Wikowar loeschen -> sonst loescht der Krabat
-        g.setClip(PwikZita.x, PwikZita.y, WikowarZita.Breite, WikowarZita.Hoehe);
+        g.setClip(PwikZita.x, PwikZita.y, MerchantGrain.Breite, MerchantGrain.Hoehe);
         g.drawImage(backleft, 0, 0);
 
         // Ab hier ist Retten des ClipRect sinnlos!!!
@@ -281,7 +281,7 @@ public class Kulow2 extends MainLocation {
         // Andere Personen zeichnen
 
         // Rybowar
-        g.setClip(rybowarUp.x, rybowarUp.y, WikowarRybow.Breite, WikowarRybow.Hoehe);
+        g.setClip(rybowarUp.x, rybowarUp.y, MerchantFish.Breite, MerchantFish.Hoehe);
         g.drawImage(backright, 640, 0);
         fischer.drawRybowar(g, TalkPerson, 0, rybowarUp, rybowarhoertzu, false, false, false, false);
 
@@ -335,7 +335,7 @@ public class Kulow2 extends MainLocation {
         // Wikowar
         GenericRectangle mx;
         mx = g.getClipBounds();
-        g.setClip(PwikZita.x, PwikZita.y, WikowarZita.Breite, WikowarZita.Hoehe);
+        g.setClip(PwikZita.x, PwikZita.y, MerchantGrain.Breite, MerchantGrain.Hoehe);
         haendler.drawWikowar(g, PwikZita, TalkPerson, wikowarhoertzu);
         g.setClip(mx.getX(), mx.getY(), mx.getWidth(), mx.getHeight());
 
@@ -427,7 +427,7 @@ public class Kulow2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -715,7 +715,7 @@ public class Kulow2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wikowarRect.IsPointInRect(pTemp) ||
                     rybowarLookRect.IsPointInRect(pTemp) ||

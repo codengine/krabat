@@ -34,7 +34,7 @@ public class Debug {
     }
 
     // private Start mainFrame;
-    public static void DrawRect(GenericDrawingContext g, Iterable<Bordertrapez> rectangles) {
+    public static void DrawRect(GenericDrawingContext g, Iterable<BorderTrapezoid> rectangles) {
         if (!enabled) {
             return;
         }
@@ -44,7 +44,7 @@ public class Debug {
         my = g.getClipBounds();
         g.setClip(0, 0, 1280, 480);
 
-        for (Bordertrapez di : rectangles) {
+        for (BorderTrapezoid di : rectangles) {
             g.drawLine(di.x1, di.y1, di.x3, di.y2);
             g.drawLine(di.x3, di.y2, di.x4, di.y2);
             g.drawLine(di.x4, di.y2, di.x2, di.y1);
@@ -54,7 +54,7 @@ public class Debug {
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
-    public static void DrawRect(GenericDrawingContext g, Borderrect rectangle, int scrollx, int scrolly)
+    public static void DrawRect(GenericDrawingContext g, BorderRect rectangle, int scrollx, int scrolly)
     {
         g.setColor(GenericColor.white);
         g.drawRect(rectangle.lo_point.x + scrollx, rectangle.lo_point.y + scrolly,

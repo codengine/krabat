@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Boote;
+import de.codengine.krabat.anims.Boats;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -37,17 +37,17 @@ public class Hdwor extends MainLocation {
     private GenericImage stOben;
     private GenericImage stUnten;
 
-    private final Boote boot;
+    private final Boats boot;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangStraza
-            = new Borderrect(283, 172, 317, 209);
-    private static final Borderrect ausgangTreppe
-            = new Borderrect(65, 282, 101, 343);
-    private static final Borderrect stObenRect
-            = new Borderrect(286, 238, 407, 293);
-    private static final Borderrect stUntenRect
-            = new Borderrect(293, 370, 442, 402);
+    private static final BorderRect ausgangStraza
+            = new BorderRect(283, 172, 317, 209);
+    private static final BorderRect ausgangTreppe
+            = new BorderRect(65, 282, 101, 343);
+    private static final BorderRect stObenRect
+            = new BorderRect(286, 238, 407, 293);
+    private static final BorderRect stUntenRect
+            = new BorderRect(293, 370, 442, 402);
 
     // Konstante Points
     private static final GenericPoint pExitTreppe = new GenericPoint(75, 343);
@@ -68,7 +68,7 @@ public class Hdwor extends MainLocation {
         mainFrame.krabat.zoomf = 6.0f;
         mainFrame.krabat.defScale = 35;
 
-        boot = new Boote(mainFrame, 2);
+        boot = new Boats(mainFrame, 2);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -79,25 +79,25 @@ public class Hdwor extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(284, 343, 284, 343, 211, 222));
+                (new BorderTrapezoid(284, 343, 284, 343, 211, 222));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(247, 385, 247, 435, 223, 289));
+                (new BorderTrapezoid(247, 385, 247, 435, 223, 289));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(330, 362, 330, 362, 290, 319));
+                (new BorderTrapezoid(330, 362, 330, 362, 290, 319));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(253, 463, 253, 492, 320, 362));
+                (new BorderTrapezoid(253, 463, 253, 492, 320, 362));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 492, 35, 520, 363, 392));
+                (new BorderTrapezoid(20, 492, 35, 520, 363, 392));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(70, 113, 70, 132, 347, 362));
+                (new BorderTrapezoid(70, 113, 70, 132, 347, 362));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(50, 290, 62, 310, 393, 475));
+                (new BorderTrapezoid(50, 290, 62, 310, 393, 475));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(342, 390, 365, 435, 393, 475));
+                (new BorderTrapezoid(342, 390, 365, 435, 393, 475));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(445, 520, 500, 576, 393, 475));
+                (new BorderTrapezoid(445, 520, 500, 576, 393, 475));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 69, 20, 69, 353, 362));
+                (new BorderTrapezoid(20, 69, 20, 69, 353, 362));
 
         mainFrame.pathFinder.ClearMatrix(10);
 
@@ -163,7 +163,7 @@ public class Hdwor extends MainLocation {
 
         // Boot-Routine
         // Hintergrund loeschen
-        Borderrect temp = boot.evalBootRect();
+        BorderRect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
         g.drawImage(background, 0, 0);
@@ -275,7 +275,7 @@ public class Hdwor extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -378,7 +378,7 @@ public class Hdwor extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

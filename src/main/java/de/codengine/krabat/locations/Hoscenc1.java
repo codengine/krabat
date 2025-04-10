@@ -21,9 +21,9 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
+import de.codengine.krabat.anims.DrunkGuest;
 import de.codengine.krabat.anims.Dundak;
-import de.codengine.krabat.anims.Korcmar;
-import de.codengine.krabat.anims.Pjany;
+import de.codengine.krabat.anims.Innkeeper;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -40,13 +40,13 @@ public class Hoscenc1 extends MainLocation {
     private GenericImage honck;
     private GenericImage durje;
     private GenericImage vorderdurje;
-    private Korcmar wirt;
+    private Innkeeper wirt;
     private Dundak strolch;
-    private Pjany saeufer;
-    private final Multiple2 Dialog;
+    private DrunkGuest saeufer;
+    private final MultipleChoice Dialog;
 
-    private final Borderrect brStrolch;
-    private final Borderrect brSaeufer;
+    private final BorderRect brStrolch;
+    private final BorderRect brSaeufer;
     private final GenericPoint strolchPoint;
     private final GenericPoint saeuferPoint;
     private final GenericPoint StrolchTalk;
@@ -72,13 +72,13 @@ public class Hoscenc1 extends MainLocation {
     private static final String[] AP = {"Hoscenc1_79", "Hoscenc1_80", "Hoscenc1_81"};
 
     // Konstanten - Rects
-    private static final Borderrect linkerAusgang = new Borderrect(0, 380, 74, 479);
-    private static final Borderrect hosc6Rect = new Borderrect(0, 85, 360, 479);
-    private static final Borderrect honckRect = new Borderrect(235, 271, 267, 314);
-    private static final Borderrect wobraz1Rect = new Borderrect(158, 166, 236, 215);
-    private static final Borderrect wobraz2Rect = new Borderrect(271, 118, 343, 166);
-    private static final Borderrect stolcRect = new Borderrect(553, 398, 625, 444);
-    private static final Borderrect durjeRect = new Borderrect(394, 108, 460, 259);
+    private static final BorderRect linkerAusgang = new BorderRect(0, 380, 74, 479);
+    private static final BorderRect hosc6Rect = new BorderRect(0, 85, 360, 479);
+    private static final BorderRect honckRect = new BorderRect(235, 271, 267, 314);
+    private static final BorderRect wobraz1Rect = new BorderRect(158, 166, 236, 215);
+    private static final BorderRect wobraz2Rect = new BorderRect(271, 118, 343, 166);
+    private static final BorderRect stolcRect = new BorderRect(553, 398, 625, 444);
+    private static final BorderRect durjeRect = new BorderRect(394, 108, 460, 259);
 
     // Konstante Punkte
     private static final GenericPoint Psaeufer = new GenericPoint(436, 380);
@@ -125,7 +125,7 @@ public class Hoscenc1 extends MainLocation {
         mainFrame.krabat.zoomf = 10.95f;
         mainFrame.krabat.defScale = -70;
 
-        wirt = new Korcmar(mainFrame);
+        wirt = new Innkeeper(mainFrame);
         wirt.maxx = 0;
         wirt.zoomf = 10.95f;
         wirt.defScale = 0;
@@ -140,19 +140,19 @@ public class Hoscenc1 extends MainLocation {
         StrolchTalk.x = strolchPoint.x + Dundak.Breite / 2;
         StrolchTalk.y = strolchPoint.y - 50;
 
-        brStrolch = new Borderrect(strolchPoint.x, strolchPoint.y, strolchPoint.x + Dundak.Breite, strolchPoint.y + Dundak.Hoehe);
+        brStrolch = new BorderRect(strolchPoint.x, strolchPoint.y, strolchPoint.x + Dundak.Breite, strolchPoint.y + Dundak.Hoehe);
 
-        saeufer = new Pjany(mainFrame);
+        saeufer = new DrunkGuest(mainFrame);
 
         saeuferPoint = new GenericPoint(265, 262);
 
         SaeuferTalk = new GenericPoint();
-        SaeuferTalk.x = saeuferPoint.x + Pjany.Breite / 2;
+        SaeuferTalk.x = saeuferPoint.x + DrunkGuest.Breite / 2;
         SaeuferTalk.y = saeuferPoint.y - 78;  // war 50, hat Strolchtext gestoert
 
-        brSaeufer = new Borderrect(saeuferPoint.x, saeuferPoint.y, saeuferPoint.x + Pjany.Breite, saeuferPoint.y + Pjany.Hoehe);
+        brSaeufer = new BorderRect(saeuferPoint.x, saeuferPoint.y, saeuferPoint.x + DrunkGuest.Breite, saeuferPoint.y + DrunkGuest.Hoehe);
 
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
 
@@ -163,11 +163,11 @@ public class Hoscenc1 extends MainLocation {
     private void InitLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(447, 448, 441, 495, 283, 399));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(441, 495, 370, 450, 400, 425));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(0, 460, 0, 362, 426, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(52, 220, 15, 260, 384, 425));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(185, 185, 52, 221, 340, 383));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(447, 448, 441, 495, 283, 399));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(441, 495, 370, 450, 400, 425));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 460, 0, 362, 426, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(52, 220, 15, 260, 384, 425));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(185, 185, 52, 221, 340, 383));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(5);
@@ -267,7 +267,7 @@ public class Hoscenc1 extends MainLocation {
         // Wirt Hintergrund loeschen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = wirt.getRect();
+            BorderRect temp = wirt.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -291,7 +291,7 @@ public class Hoscenc1 extends MainLocation {
 
         // Andere Personen zeichnen
         // Pjany
-        g.setClip(saeuferPoint.x, saeuferPoint.y, Pjany.Breite, Pjany.Hoehe);
+        g.setClip(saeuferPoint.x, saeuferPoint.y, DrunkGuest.Breite, DrunkGuest.Hoehe);
         g.drawImage(background, 0, 0);
         // Saeufer darf nur reden, wenn die Anims nicht gesperrt sind
         saeufer.drawPjany(g, saeuferPoint);
@@ -313,7 +313,7 @@ public class Hoscenc1 extends MainLocation {
         // Wirt zeichnen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = wirt.getRect();
+            BorderRect temp = wirt.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -461,7 +461,7 @@ public class Hoscenc1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -708,7 +708,7 @@ public class Hoscenc1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     brSaeufer.IsPointInRect(pTemp) || brStrolch.IsPointInRect(pTemp) ||
                     honckRect.IsPointInRect(pTemp) && !mainFrame.actions[902] ||

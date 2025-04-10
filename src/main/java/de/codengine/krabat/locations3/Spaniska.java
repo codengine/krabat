@@ -22,7 +22,7 @@ package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Dziwadzelnica;
-import de.codengine.krabat.anims.KrabatFall;
+import de.codengine.krabat.anims.KrabatFalling;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -43,9 +43,9 @@ public class Spaniska extends MainLocation {
     private GenericImage krabat_steigen;
     private final Dziwadzelnica dziwadzelnica;
     private final GenericPoint talkPoint;
-    private final Borderrect rectDziwadzelnica;
-    private final Borderrect rectLeftDziwadzelnica;
-    private final Borderrect rectLookDziwadzelnica;
+    private final BorderRect rectDziwadzelnica;
+    private final BorderRect rectLeftDziwadzelnica;
+    private final BorderRect rectLookDziwadzelnica;
     private final GenericPoint dziwPoint;
     private final GenericPoint dziwLeftPoint;
 
@@ -57,7 +57,7 @@ public class Spaniska extends MainLocation {
     private boolean beatRueckgabe = true;
     private boolean dziwSagtNurKurzeSaetze = false; // wenn Hakenanim, dann keinen Monstersatz von sich geben -> lesbar in kurzer Zeit
 
-    private final KrabatFall krabatFall;
+    private final KrabatFalling krabatFalling;
 
     private boolean setAnim = false;
     private int setAnimID = 0;
@@ -79,22 +79,22 @@ public class Spaniska extends MainLocation {
     private boolean klettertRein = false;
 
     // Konstanten - Rects
-    private static final Borderrect untererAusgang
-            = new Borderrect(275, 445, 500, 479);
-    private static final Borderrect obererAusgang
-            = new Borderrect(456, 126, 554, 287);
-    private static final Borderrect papier
-            = new Borderrect(67, 352, 115, 378);
-    private static final Borderrect spiegel
-            = new Borderrect(35, 146, 110, 306);
-    private static final Borderrect blumen
-            = new Borderrect(558, 317, 639, 440);
-    private static final Borderrect faltWand
-            = new Borderrect(235, 167, 413, 373);
-    private static final Borderrect rectHaken
-            = new Borderrect(460, 288, 524, 333);
-    private static final Borderrect geld
-            = new Borderrect(144, 355, 171, 374);
+    private static final BorderRect untererAusgang
+            = new BorderRect(275, 445, 500, 479);
+    private static final BorderRect obererAusgang
+            = new BorderRect(456, 126, 554, 287);
+    private static final BorderRect papier
+            = new BorderRect(67, 352, 115, 378);
+    private static final BorderRect spiegel
+            = new BorderRect(35, 146, 110, 306);
+    private static final BorderRect blumen
+            = new BorderRect(558, 317, 639, 440);
+    private static final BorderRect faltWand
+            = new BorderRect(235, 167, 413, 373);
+    private static final BorderRect rectHaken
+            = new BorderRect(460, 288, 524, 333);
+    private static final BorderRect geld
+            = new BorderRect(144, 355, 171, 374);
 
     // Konstante Points
     private static final GenericPoint pExitDown = new GenericPoint(415, 479);
@@ -141,14 +141,14 @@ public class Spaniska extends MainLocation {
         dziwLeftPoint = new GenericPoint(dziwFeetLeft.x - Dziwadzelnica.Breite / 2, dziwFeetLeft.y - Dziwadzelnica.Hoehe);
         talkPoint = new GenericPoint(dziwFeetLeft.x, dziwLeftPoint.y - 50);
 
-        rectDziwadzelnica = new Borderrect(dziwPoint.x, dziwPoint.y, dziwPoint.x + Dziwadzelnica.Breite,
+        rectDziwadzelnica = new BorderRect(dziwPoint.x, dziwPoint.y, dziwPoint.x + Dziwadzelnica.Breite,
                 dziwPoint.y + Dziwadzelnica.Hoehe);
-        rectLeftDziwadzelnica = new Borderrect(dziwLeftPoint.x, dziwLeftPoint.y, dziwLeftPoint.x + Dziwadzelnica.Breite,
+        rectLeftDziwadzelnica = new BorderRect(dziwLeftPoint.x, dziwLeftPoint.y, dziwLeftPoint.x + Dziwadzelnica.Breite,
                 dziwLeftPoint.y + Dziwadzelnica.Hoehe);
-        rectLookDziwadzelnica = new Borderrect(dziwLeftPoint.x, dziwLeftPoint.y, 294, /* Achtung, wird nicht berechnet!!*/ dziwPoint.y + Dziwadzelnica.Hoehe);
+        rectLookDziwadzelnica = new BorderRect(dziwLeftPoint.x, dziwLeftPoint.y, 294, /* Achtung, wird nicht berechnet!!*/ dziwPoint.y + Dziwadzelnica.Hoehe);
 
 
-        krabatFall = new KrabatFall(mainFrame, -90);
+        krabatFalling = new KrabatFalling(mainFrame, -90);
 
         InitLocation(oldLocation);
 
@@ -162,13 +162,13 @@ public class Spaniska extends MainLocation {
         // mainFrame.wegGeher.vBorders.addElement 
         //	(new bordertrapez (230, 245, 230, 290, 395, 429));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(325, 490, 318, 490, 430, 479));
+                (new BorderTrapezoid(325, 490, 318, 490, 430, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(245, 317, 185, 317, 465, 479));
+                (new BorderTrapezoid(245, 317, 185, 317, 465, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(450, 455, 435, 600, 370, 429));
+                (new BorderTrapezoid(450, 455, 435, 600, 370, 429));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(590, 430, 620, 432));
+                (new BorderTrapezoid(590, 430, 620, 432));
 
         mainFrame.pathFinder.ClearMatrix(4);
 
@@ -295,7 +295,7 @@ public class Spaniska extends MainLocation {
             if (krabatFaellt || klettertRein) {
                 // hier das Hinfallen, Cliprect besorgt diese Routine selbst
                 if (krabatFaellt) {
-                    fallRueckgabe = krabatFall.drawKrabat(g, mainFrame.krabat.getPos());
+                    fallRueckgabe = krabatFalling.drawKrabat(g, mainFrame.krabat.getPos());
                 }
 
                 // hier das reinklettern, nur 1 Image
@@ -460,7 +460,7 @@ public class Spaniska extends MainLocation {
 
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -737,7 +737,7 @@ public class Spaniska extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     rectLookDziwadzelnica.IsPointInRect(pTemp) && !mainFrame.actions[515] ||
                     papier.IsPointInRect(pTemp) ||

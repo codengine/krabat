@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Handrij extends Mainanim {
+public class Handrij extends MainAnim {
     private final GenericImage[] hand_work;
     private final GenericImage[] hand_down;
     private final GenericImage[] hand_head;

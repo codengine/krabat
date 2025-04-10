@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Law;
+import de.codengine.krabat.anims.Lion;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,11 +36,11 @@ public class Manega extends MainLocation {
     private GenericImage background;
     private GenericImage friedhelm;
 
-    private final Law loewe;
+    private final Lion loewe;
 
     private final GenericPoint loewePoint;
     private final GenericPoint loeweTalk;
-    private final Borderrect loeweRect;
+    private final BorderRect loeweRect;
 
     private boolean loeweSchnarcht = false;
     private boolean hoertZu = false;
@@ -52,10 +52,10 @@ public class Manega extends MainLocation {
     private int AnimTalkPerson = 0;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangZastup
-            = new Borderrect(198, 270, 256, 350);
-    private static final Borderrect helm
-            = new Borderrect(365, 380, 381, 390);
+    private static final BorderRect ausgangZastup
+            = new BorderRect(198, 270, 256, 350);
+    private static final BorderRect helm
+            = new BorderRect(365, 380, 381, 390);
 
     // Konstante Points
     private static final GenericPoint pExitZastup = new GenericPoint(267, 345);
@@ -88,11 +88,11 @@ public class Manega extends MainLocation {
         mainFrame.krabat.zoomf = 12.5f;
         mainFrame.krabat.defScale = 20;
 
-        loewe = new Law(mainFrame);
+        loewe = new Lion(mainFrame);
 
-        loewePoint = new GenericPoint(loeweFeet.x - Law.Breite / 2, loeweFeet.y - Law.Hoehe);
+        loewePoint = new GenericPoint(loeweFeet.x - Lion.Breite / 2, loeweFeet.y - Lion.Hoehe);
         loeweTalk = new GenericPoint(loeweFeet.x, loewePoint.y - 50);
-        loeweRect = new Borderrect(loewePoint.x, loewePoint.y, loewePoint.x + Law.Breite, loewePoint.y + Law.Hoehe);
+        loeweRect = new BorderRect(loewePoint.x, loewePoint.y, loewePoint.x + Lion.Breite, loewePoint.y + Lion.Hoehe);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -103,15 +103,15 @@ public class Manega extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(190, 367, 266, 415));
+                (new BorderTrapezoid(190, 367, 266, 415));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(267, 353, 287, 437));
+                (new BorderTrapezoid(267, 353, 287, 437));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(288, 408, 400, 442));
+                (new BorderTrapezoid(288, 408, 400, 442));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(401, 353, 479, 445));
+                (new BorderTrapezoid(401, 353, 479, 445));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(480, 368, 550, 434));
+                (new BorderTrapezoid(480, 368, 550, 434));
 
         mainFrame.pathFinder.ClearMatrix(5);
 
@@ -169,7 +169,7 @@ public class Manega extends MainLocation {
         }
 
         // Loewen zeichnen
-        g.setClip(loewePoint.x, loewePoint.y, Law.Breite, Law.Hoehe);
+        g.setClip(loewePoint.x, loewePoint.y, Lion.Breite, Lion.Hoehe);
         g.drawImage(background, 0, 0);
         loewe.drawLaw(g, TalkPerson, loewePoint, AnimTalkPerson, hoertZu);
 
@@ -296,7 +296,7 @@ public class Manega extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -417,7 +417,7 @@ public class Manega extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     loeweRect.IsPointInRect(pTemp) ||
                     helm.IsPointInRect(pTemp) && !mainFrame.actions[611];

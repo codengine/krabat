@@ -22,13 +22,13 @@ package de.codengine.krabat.main;
 
 import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Mainanim;
+import de.codengine.krabat.anims.MainAnim;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LoadGame extends Mainanim {
+public class LoadGame extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(LoadGame.class);
     private boolean Paintcall = false;
 
@@ -38,9 +38,9 @@ public class LoadGame extends Mainanim {
     private GenericImage Woci;
     private GenericImage Empty;
     private final GenericPoint pLO;
-    private final Borderrect brGesamt;
-    private final Borderrect brPfeil;
-    private Borderrect brWoci;
+    private final BorderRect brGesamt;
+    private final BorderRect brPfeil;
+    private BorderRect brWoci;
     private final GenericColor inakt = new GenericColor(156, 132, 107);
 
     private int menuitem = 0;
@@ -50,7 +50,7 @@ public class LoadGame extends Mainanim {
     private int selected = -1;
     private int unselected = -1;
 
-    private final Spielstand[] Dir;
+    private final SavegameData[] Dir;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -65,16 +65,16 @@ public class LoadGame extends Mainanim {
         InitRec();
 
         // Rechtecke im Inventar-Fenster festlegen
-        brGesamt = new Borderrect(pLO.x + 65, pLO.y + 46,
+        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
         brPfeil = mainFrame.inventory.brPfeill;
         Pfeil = mainFrame.inventory.Pfeill;
         DPfeil = mainFrame.inventory.DPfeill;
 
         // Spielstaende einlesen
-        Dir = new Spielstand[7];
+        Dir = new SavegameData[7];
         for (int i = 49; i <= 54; ++i) {
-            Dir[i - 48] = new Spielstand(mainFrame);
+            Dir[i - 48] = new SavegameData(mainFrame);
             Dir[i - 48].GetSavedSpiel(i - 48);
         }
 
@@ -93,7 +93,7 @@ public class LoadGame extends Mainanim {
                 Empty = getPicture("gfx/mainmenu/leerzelle.png");
 
                 // Rects festlegen
-                brWoci = new Borderrect(pLO.x + 369, pLO.y + 327,
+                brWoci = new BorderRect(pLO.x + 369, pLO.y + 327,
                         pLO.x + 489, pLO.y + 355);
                 break;
 
@@ -104,7 +104,7 @@ public class LoadGame extends Mainanim {
                 Empty = getPicture("gfx/mainmenu/leerzelle.png");
 
                 // Rects festlegen
-                brWoci = new Borderrect(pLO.x + 356, pLO.y + 327,
+                brWoci = new BorderRect(pLO.x + 356, pLO.y + 327,
                         pLO.x + 489, pLO.y + 355);
                 break;
 
@@ -349,9 +349,9 @@ public class LoadGame extends Mainanim {
     }
 
     // Berechnungsroutine Spielstandsfensternummer - X/Y-Koordinaten//////////////
-    private Borderrect GetCurrentRect(int Number) {
+    private BorderRect GetCurrentRect(int Number) {
         GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return new Borderrect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
+        return new BorderRect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
     }
 
     private GenericPoint GetCurrentXY(int Number) {

@@ -35,12 +35,12 @@ public class Chodba extends MainLocation {
     private GenericImage background;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang
-            = new Borderrect(545, 320, 639, 479);
-    private static final Borderrect obererAusgang
-            = new Borderrect(215, 245, 270, 345);
-    private static final Borderrect bilder
-            = new Borderrect(463, 250, 500, 339);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(545, 320, 639, 479);
+    private static final BorderRect obererAusgang
+            = new BorderRect(215, 245, 270, 345);
+    private static final BorderRect bilder
+            = new BorderRect(463, 250, 500, 339);
 
     // Konstante Points
     private static final GenericPoint pExitUp = new GenericPoint(255, 350);
@@ -72,9 +72,9 @@ public class Chodba extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(70, 595, 60, 595, 435, 479));
+                (new BorderTrapezoid(70, 595, 60, 595, 435, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(210, 331, 165, 430, 382, 434));
+                (new BorderTrapezoid(210, 331, 165, 430, 382, 434));
 
         mainFrame.pathFinder.ClearMatrix(2);
 
@@ -229,7 +229,7 @@ public class Chodba extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -352,7 +352,7 @@ public class Chodba extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || bilder.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

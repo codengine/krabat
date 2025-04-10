@@ -42,14 +42,14 @@ public class Haty1 extends MainLocation {
     private int Bootcount = 4;
     private static final int[] ZEIT = {4, 4, 4, 2, 2, 2, 2, 4, 4};
 
-    private Wudzerneu1 angler1;
-    private Wudzerneu2 angler2;
+    private Fisherman1 angler1;
+    private Fisherman2 angler2;
     private Bow eimer;
-    private Ryby fische;
-    private KrabatAngeln kfischer;
-    private final Multiple2 Dialog;
+    private Fish fische;
+    private KrabatFishing kfischer;
+    private final MultipleChoice Dialog;
 
-    private Reh reh;
+    private Deer deer;
     private final boolean clipIstLinks;
 
     private final GenericImage[] muell;
@@ -93,25 +93,25 @@ public class Haty1 extends MainLocation {
     private static final GenericPoint eimerLinks = new GenericPoint(60, 331);
     private static final GenericPoint eimerRechts = new GenericPoint(495, 350);
     private GenericPoint eimerPos;
-    private Borderrect eimerRect;
+    private BorderRect eimerRect;
 
     // Konstanten - Rects deklarieren
-    private static final Borderrect untererAusgang = new Borderrect(176, 426, 286, 479);
-    private static final Borderrect obererAusgang = new Borderrect(294, 90, 340, 125);
-    private static final Borderrect rohodzLeft = new Borderrect(35, 222, 144, 265);
-    private static final Borderrect rohodzRight = new Borderrect(561, 203, 639, 260);
-    private static final Borderrect colmik = new Borderrect(410, 384, 546, 410);
-    private static final Borderrect muellRect = new Borderrect(77, 322, 147, 357);
+    private static final BorderRect untererAusgang = new BorderRect(176, 426, 286, 479);
+    private static final BorderRect obererAusgang = new BorderRect(294, 90, 340, 125);
+    private static final BorderRect rohodzLeft = new BorderRect(35, 222, 144, 265);
+    private static final BorderRect rohodzRight = new BorderRect(561, 203, 639, 260);
+    private static final BorderRect colmik = new BorderRect(410, 384, 546, 410);
+    private static final BorderRect muellRect = new BorderRect(77, 322, 147, 357);
 
     // Konstante Trapeze
     // Wasser rechts
-    private static final Bordertrapez wodaRight1 = new Bordertrapez(364, 261, 639, 327);
-    private static final Bordertrapez wodaRight2 = new Bordertrapez(550, 639, 592, 639, 328, 416);
-    private static final Bordertrapez wodaRight3 = new Bordertrapez(366, 639, 400, 639, 417, 479);
+    private static final BorderTrapezoid wodaRight1 = new BorderTrapezoid(364, 261, 639, 327);
+    private static final BorderTrapezoid wodaRight2 = new BorderTrapezoid(550, 639, 592, 639, 328, 416);
+    private static final BorderTrapezoid wodaRight3 = new BorderTrapezoid(366, 639, 400, 639, 417, 479);
 
     // Wasser links
-    private static final Bordertrapez wodaLeft1 = new Bordertrapez(0, 267, 189, 310);
-    private static final Bordertrapez wodaLeft2 = new Bordertrapez(0, 125, 0, 1, 384, 479);
+    private static final BorderTrapezoid wodaLeft1 = new BorderTrapezoid(0, 267, 189, 310);
+    private static final BorderTrapezoid wodaLeft2 = new BorderTrapezoid(0, 125, 0, 1, 384, 479);
 
     // Konstante ints
     private static final int fRohodzLeft = 12;
@@ -126,27 +126,27 @@ public class Haty1 extends MainLocation {
     private static final int fMuell = 9;
 
     // fuers Blinkern
-    private static final Bordertrapez[] Blink =
-            {new Bordertrapez(25, 26, 0, 26, 205, 229),
-                    new Bordertrapez(0, 230, 38, 268),
-                    new Bordertrapez(39, 41, 39, 153, 259, 268),
-                    new Bordertrapez(157, 167, 146, 191, 239, 268),
-                    new Bordertrapez(0, 269, 190, 311),
-                    new Bordertrapez(59, 189, 181, 182, 312, 323),
-                    new Bordertrapez(0, 28, 0, 1, 312, 333),
-                    new Bordertrapez(0, 125, 0, 3, 399, 479),
-                    new Bordertrapez(0, 378, 126, 398),
-                    new Bordertrapez(0, 352, 14, 377),
-                    new Bordertrapez(28, 362, 133, 377),
-                    new Bordertrapez(30, 31, 28, 133, 353, 361),
-                    new Bordertrapez(365, 398, 639, 443),
-                    new Bordertrapez(363, 639, 406, 639, 444, 479),
-                    new Bordertrapez(373, 373, 402, 397),
-                    new Bordertrapez(417, 379, 535, 397),
-                    new Bordertrapez(541, 639, 579, 639, 326, 397),
-                    new Bordertrapez(350, 639, 369, 639, 270, 325),
-                    new Bordertrapez(370, 549, 350, 639, 242, 269),
-                    new Bordertrapez(474, 552, 370, 549, 214, 241)};
+    private static final BorderTrapezoid[] Blink =
+            {new BorderTrapezoid(25, 26, 0, 26, 205, 229),
+                    new BorderTrapezoid(0, 230, 38, 268),
+                    new BorderTrapezoid(39, 41, 39, 153, 259, 268),
+                    new BorderTrapezoid(157, 167, 146, 191, 239, 268),
+                    new BorderTrapezoid(0, 269, 190, 311),
+                    new BorderTrapezoid(59, 189, 181, 182, 312, 323),
+                    new BorderTrapezoid(0, 28, 0, 1, 312, 333),
+                    new BorderTrapezoid(0, 125, 0, 3, 399, 479),
+                    new BorderTrapezoid(0, 378, 126, 398),
+                    new BorderTrapezoid(0, 352, 14, 377),
+                    new BorderTrapezoid(28, 362, 133, 377),
+                    new BorderTrapezoid(30, 31, 28, 133, 353, 361),
+                    new BorderTrapezoid(365, 398, 639, 443),
+                    new BorderTrapezoid(363, 639, 406, 639, 444, 479),
+                    new BorderTrapezoid(373, 373, 402, 397),
+                    new BorderTrapezoid(417, 379, 535, 397),
+                    new BorderTrapezoid(541, 639, 579, 639, 326, 397),
+                    new BorderTrapezoid(350, 639, 369, 639, 270, 325),
+                    new BorderTrapezoid(370, 549, 350, 639, 242, 269),
+                    new BorderTrapezoid(474, 552, 370, 549, 214, 241)};
 
     private int[][][] MerkArray;
     private static final int HAEUFIGKEITSKONSTANTE = 1000;
@@ -179,19 +179,19 @@ public class Haty1 extends MainLocation {
         Boot = new GenericImage[9];
         muell = new GenericImage[4];
 
-        angler1 = new Wudzerneu1(mainFrame);
-        angler2 = new Wudzerneu2(mainFrame);
+        angler1 = new Fisherman1(mainFrame);
+        angler2 = new Fisherman2(mainFrame);
         eimer = new Bow(mainFrame);
-        fische = new Ryby(mainFrame);
-        Dialog = new Multiple2(mainFrame);
-        kfischer = new KrabatAngeln(mainFrame);
+        fische = new Fish(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
+        kfischer = new KrabatFishing(mainFrame);
 
         int zf = (int) Math.round(Math.random() * 50);
         if (zf > 25) {
-            reh = new Reh(mainFrame, false, new GenericRectangle(215, 128, 33, 25), 103);
+            deer = new Deer(mainFrame, false, new GenericRectangle(215, 128, 33, 25), 103);
             clipIstLinks = true;
         } else {
-            reh = new Reh(mainFrame, false, new GenericRectangle(460, 120, 40, 25), 103);
+            deer = new Deer(mainFrame, false, new GenericRectangle(460, 120, 40, 25), 103);
             clipIstLinks = false;
         }
 
@@ -311,16 +311,16 @@ public class Haty1 extends MainLocation {
 
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(38, 93, 16, 93, 326, 340));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(310, 318, 294, 313, 115, 222));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(294, 313, 238, 271, 223, 336));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(38, 93, 16, 93, 326, 340));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(94, 332, 168, 350));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(169, 337, 216, 360));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(217, 337, 264, 407));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(265, 337, 361, 362));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(362, 342, 458, 363));
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (459, 525, 459, 542, 345, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(208, 408, 256, 479));
 
             // Matrix loeschen
             mainFrame.pathFinder.ClearMatrix(9);
@@ -345,20 +345,20 @@ public class Haty1 extends MainLocation {
 
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(310, 318, 294, 313, 115, 222));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(294, 313, 238, 271, 223, 336));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(310, 318, 294, 313, 115, 222));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(294, 313, 238, 271, 223, 336));
             // mainFrame.wegGeher.vBorders.addElement (new bordertrapez ( 38,  93,  16,  93, 326, 340));
 
             // dieses nur solange, wie kein Muell zu sehen ist
             if (!mainFrame.actions[152]) {
-                mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(94, 332, 168, 350));
+                mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(94, 332, 168, 350));
             }
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(169, 337, 216, 360));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(217, 337, 264, 407));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(265, 337, 361, 362));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(362, 342, 458, 363));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(459, 525, 459, 542, 345, 364));
-            mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(208, 408, 256, 479));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(169, 337, 216, 360));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(217, 337, 264, 407));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(265, 337, 361, 362));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(362, 342, 458, 363));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(459, 525, 459, 542, 345, 364));
+            mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(208, 408, 256, 479));
 
             // Matrix loeschen, je nachdem, wie gross noch ist
             mainFrame.pathFinder.ClearMatrix(mainFrame.actions[152] ? 8 : 9);
@@ -388,7 +388,7 @@ public class Haty1 extends MainLocation {
     private void InitEimer() {
         // Hier berechnen, auf welcher Seite der Eimer steht...
         eimerPos = !mainFrame.actions[220] ? eimerRechts : eimerLinks;
-        eimerRect = new Borderrect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
+        eimerRect = new BorderRect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
     }
 
     private void InitBlinker() {
@@ -404,9 +404,9 @@ public class Haty1 extends MainLocation {
         // So viele Striche sollen in den borderrects erscheinen
         int AnzahlStriche = 1;
 
-        for (Bordertrapez bordertrapez : Blink) {
-            if (bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = bordertrapez.Flaeche() / HAEUFIGKEITSKONSTANTE;
+        for (BorderTrapezoid borderTrapezoid : Blink) {
+            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -466,8 +466,8 @@ public class Haty1 extends MainLocation {
         fische = null;
         kfischer.cleanup();
         kfischer = null;
-        reh.cleanup();
-        reh = null;
+        deer.cleanup();
+        deer = null;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -503,7 +503,7 @@ public class Haty1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Rehe zeichnen
-        reh.drawReh(g);
+        deer.drawReh(g);
 
         // Blinkern ermoeglichen, dieses ist am Hintergruendigsten
         g.setClip(0, 181, 639, 298);  // dieses Clipping muss die kompletten Anims loeschen, alles inclusive !!!
@@ -739,7 +739,7 @@ public class Haty1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -1178,7 +1178,7 @@ public class Haty1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
                     wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||

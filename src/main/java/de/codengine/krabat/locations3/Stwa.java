@@ -38,8 +38,8 @@ public class Stwa extends MainLocation {
     private boolean firstTime = true;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangPanorama
-            = new Borderrect(346, 328, 411, 446);
+    private static final BorderRect ausgangPanorama
+            = new BorderRect(346, 328, 411, 446);
 
     // Konstante Points
     private static final GenericPoint pExitPanorama = new GenericPoint(368, 455);
@@ -67,7 +67,7 @@ public class Stwa extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(365, 370, 365, 370, 455, 456));
+                (new BorderTrapezoid(365, 370, 365, 370, 455, 456));
 
         mainFrame.pathFinder.ClearMatrix(1);
 
@@ -214,7 +214,7 @@ public class Stwa extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -305,7 +305,7 @@ public class Stwa extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

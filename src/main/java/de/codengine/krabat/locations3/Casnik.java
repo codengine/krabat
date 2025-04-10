@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.HlownyStraznik;
+import de.codengine.krabat.anims.MainGuard;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -40,8 +40,8 @@ public class Casnik extends MainLocation {
     private GenericImage kluc;
     private GenericImage zeitumstell;
     private final GenericImage[] pendel;
-    private final HlownyStraznik hlStraznik;
-    private final Multiple2 Dialog;
+    private final MainGuard hlStraznik;
+    private final MultipleChoice Dialog;
 
     // Fuer Aktionen des Hl. Straznik
     private boolean trink = false;
@@ -71,26 +71,26 @@ public class Casnik extends MainLocation {
     private int SoundCountdown = 10;
 
     // Konstanten - Rects
-    private static final Borderrect obererAusgang
-            = new Borderrect(414, 158, 496, 293);
-    private static final Borderrect untererAusgang
-            = new Borderrect(50, 439, 300, 479);
-    private static final Borderrect standuhr
-            = new Borderrect(300, 145, 345, 315);
-    private static final Borderrect morgenstern
-            = new Borderrect(22, 310, 54, 360);
-    private static final Borderrect rectKozuch
-            = new Borderrect(345, 410, 500, 470);
-    private static final Borderrect rectSchluessel
-            = new Borderrect(125, 230, 143, 253);
-    private static final Borderrect zeiger
-            = new Borderrect(303, 146, 345, 187);
-    private static final Borderrect statue
-            = new Borderrect(168, 142, 200, 237);
-    private static final Borderrect sonnenuhr
-            = new Borderrect(139, 284, 150, 296);
-    private static final Borderrect umsonnenuhr
-            = new Borderrect(133, 278, 156, 302);
+    private static final BorderRect obererAusgang
+            = new BorderRect(414, 158, 496, 293);
+    private static final BorderRect untererAusgang
+            = new BorderRect(50, 439, 300, 479);
+    private static final BorderRect standuhr
+            = new BorderRect(300, 145, 345, 315);
+    private static final BorderRect morgenstern
+            = new BorderRect(22, 310, 54, 360);
+    private static final BorderRect rectKozuch
+            = new BorderRect(345, 410, 500, 470);
+    private static final BorderRect rectSchluessel
+            = new BorderRect(125, 230, 143, 253);
+    private static final BorderRect zeiger
+            = new BorderRect(303, 146, 345, 187);
+    private static final BorderRect statue
+            = new BorderRect(168, 142, 200, 237);
+    private static final BorderRect sonnenuhr
+            = new BorderRect(139, 284, 150, 296);
+    private static final BorderRect umsonnenuhr
+            = new BorderRect(133, 278, 156, 302);
 
     // Konstante Points
     private static final GenericPoint pExitUp = new GenericPoint(450, 295);
@@ -133,9 +133,9 @@ public class Casnik extends MainLocation {
 
         pendel = new GenericImage[3];
 
-        hlStraznik = new HlownyStraznik(mainFrame, true, mainFrame.actions[705]);
+        hlStraznik = new MainGuard(mainFrame, true, mainFrame.actions[705]);
         //                                           ist casnik
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         InitLocation(oldLocation);
 
@@ -185,15 +185,15 @@ public class Casnik extends MainLocation {
         // Grenzen setzen, wenn Tigerfell liegt
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 355, 20, 355, 404, 479));
+                (new BorderTrapezoid(20, 355, 20, 355, 404, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(505, 620, 505, 620, 404, 479));
+                (new BorderTrapezoid(505, 620, 505, 620, 404, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 620, 20, 620, 364, 403));
+                (new BorderTrapezoid(20, 620, 20, 620, 364, 403));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(262, 455, 198, 550, 320, 363));
+                (new BorderTrapezoid(262, 455, 198, 550, 320, 363));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(415, 470, 415, 455, 300, 319));
+                (new BorderTrapezoid(415, 470, 415, 455, 300, 319));
 
         mainFrame.pathFinder.ClearMatrix(5);
 
@@ -207,11 +207,11 @@ public class Casnik extends MainLocation {
         // Grenzen setzen, wenn kein Tigerfell liegt
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 620, 20, 620, 364, 479));
+                (new BorderTrapezoid(20, 620, 20, 620, 364, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(262, 455, 198, 550, 320, 363));
+                (new BorderTrapezoid(262, 455, 198, 550, 320, 363));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(415, 470, 415, 455, 300, 319));
+                (new BorderTrapezoid(415, 470, 415, 455, 300, 319));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -301,7 +301,7 @@ public class Casnik extends MainLocation {
         }
 
         // Hl. Straznik Hintergrund loeschen (wg. Schluessel)
-        Borderrect temp = hlStraznik.straznikRect(TalkPerson);
+        BorderRect temp = hlStraznik.straznikRect(TalkPerson);
         // Hintergrund loeschen
         g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
                 temp.ru_point.y - temp.lo_point.y);
@@ -500,7 +500,7 @@ public class Casnik extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -813,7 +813,7 @@ public class Casnik extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     rectKozuch.IsPointInRect(pTemp) && !mainFrame.actions[600] ||
                     sonnenuhr.IsPointInRect(pTemp) && !mainFrame.actions[706] &&

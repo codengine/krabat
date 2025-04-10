@@ -36,34 +36,34 @@ public class Zahrodnik extends MainLocation {
     private GenericImage background;
     private GenericImage hrod;
     private final Handrij handrij;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     private boolean handrijHoertZu = false;
     private boolean handrijSchreibt = false;
     private boolean handrijGibt = false;
 
-    private final Borderrect reZahrodnik;
+    private final BorderRect reZahrodnik;
     private final GenericPoint talkPoint;
 
     private int tCounter = 0;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangUnten
-            = new Borderrect(596, 377, 639, 479);
-    private static final Borderrect skizze
-            = new Borderrect(525, 162, 600, 224);
-    private static final Borderrect papier
-            = new Borderrect(347, 322, 390, 355);
-    private static final Borderrect rectHrod
-            = new Borderrect(0, 352, 280, 479);
-    private static final Borderrect budka
-            = new Borderrect(388, 168, 485, 325);
-    private static final Borderrect pjerjo
-            = new Borderrect(222, 208, 233, 227);
-    private static final Borderrect dokumenty
-            = new Borderrect(246, 229, 266, 246);
-    private static final Borderrect lookHrod
-            = new Borderrect(36, 369, 160, 479);
+    private static final BorderRect ausgangUnten
+            = new BorderRect(596, 377, 639, 479);
+    private static final BorderRect skizze
+            = new BorderRect(525, 162, 600, 224);
+    private static final BorderRect papier
+            = new BorderRect(347, 322, 390, 355);
+    private static final BorderRect rectHrod
+            = new BorderRect(0, 352, 280, 479);
+    private static final BorderRect budka
+            = new BorderRect(388, 168, 485, 325);
+    private static final BorderRect pjerjo
+            = new BorderRect(222, 208, 233, 227);
+    private static final BorderRect dokumenty
+            = new BorderRect(246, 229, 266, 246);
+    private static final BorderRect lookHrod
+            = new BorderRect(36, 369, 160, 479);
 
     // Konstante Points
     private static final GenericPoint pExitUnten = new GenericPoint(639, 431);
@@ -110,10 +110,10 @@ public class Zahrodnik extends MainLocation {
         mainFrame.krabat.defScale = -100;
 
         handrij = new Handrij(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         talkPoint = new GenericPoint(handrijFeet.x, handrijFeet.y - Handrij.Hoehe - 50);
-        reZahrodnik = new Borderrect(handrijFeet.x - Handrij.Breite / 2, handrijFeet.y - Handrij.Hoehe,
+        reZahrodnik = new BorderRect(handrijFeet.x - Handrij.Breite / 2, handrijFeet.y - Handrij.Hoehe,
                 handrijFeet.x + Handrij.Breite / 2, handrijFeet.y);
 
         InitLocation(oldLocation);
@@ -126,11 +126,11 @@ public class Zahrodnik extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(327, 371, 639, 479));
+                (new BorderTrapezoid(327, 371, 639, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(505, 333, 600, 370));
+                (new BorderTrapezoid(505, 333, 600, 370));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(80, 326, 20, 326, 375, 450));
+                (new BorderTrapezoid(80, 326, 20, 326, 375, 450));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -319,7 +319,7 @@ public class Zahrodnik extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -563,7 +563,7 @@ public class Zahrodnik extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || skizze.IsPointInRect(pTemp) ||
                     papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
                     budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||

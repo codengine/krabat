@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Kuchar;
+import de.codengine.krabat.anims.KitchenChef;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -42,8 +42,8 @@ public class Kuchnja extends MainLocation {
     private final GenericImage[] Feuer;
     private final GenericImage[] Wusmuz;
     private final GenericImage[] Ueberkoch;
-    private final Kuchar kuchar;
-    private final Multiple2 Dialog;
+    private final KitchenChef kitchenChef;
+    private final MultipleChoice Dialog;
 
     private boolean kucharHoertZu = false;
     private boolean kucharIstAufgestanden = false;
@@ -86,26 +86,26 @@ public class Kuchnja extends MainLocation {
     private float Ypos;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang
-            = new Borderrect(467, 120, 505, 320);
-    private static final Borderrect glocke
-            = new Borderrect(104, 230, 125, 252);
-    private static final Borderrect kochtopf
-            = new Borderrect(40, 390, 110, 455);
-    private static final Borderrect drjewo
-            = new Borderrect(237, 342, 305, 392);
-    private static final Borderrect durje
-            = new Borderrect(9, 87, 100, 380);
-    private static final Borderrect kachle
-            = new Borderrect(141, 427, 218, 479);
-    private static final Borderrect wokno
-            = new Borderrect(560, 0, 640, 118);
-    private static final Borderrect swinjo
-            = new Borderrect(454, 387, 639, 479);
-    private static final Borderrect herdRect     // zum drueberzeichnen
-            = new Borderrect(0, 386, 347, 520);
-    private static final Borderrect schweinRect  // zum drueberzeichnen
-            = new Borderrect(388, 344, 639, 479);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(467, 120, 505, 320);
+    private static final BorderRect glocke
+            = new BorderRect(104, 230, 125, 252);
+    private static final BorderRect kochtopf
+            = new BorderRect(40, 390, 110, 455);
+    private static final BorderRect drjewo
+            = new BorderRect(237, 342, 305, 392);
+    private static final BorderRect durje
+            = new BorderRect(9, 87, 100, 380);
+    private static final BorderRect kachle
+            = new BorderRect(141, 427, 218, 479);
+    private static final BorderRect wokno
+            = new BorderRect(560, 0, 640, 118);
+    private static final BorderRect swinjo
+            = new BorderRect(454, 387, 639, 479);
+    private static final BorderRect herdRect     // zum drueberzeichnen
+            = new BorderRect(0, 386, 347, 520);
+    private static final BorderRect schweinRect  // zum drueberzeichnen
+            = new BorderRect(388, 344, 639, 479);
 
     // Konstante Points
     private static final GenericPoint pRight = new GenericPoint(470, 343);
@@ -145,8 +145,8 @@ public class Kuchnja extends MainLocation {
         mainFrame.krabat.zoomf = 2f;
         mainFrame.krabat.defScale = -80;
 
-        kuchar = new Kuchar(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        kitchenChef = new KitchenChef(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
     
         /*kuchar.maxx     = mainFrame.krabat.maxx;
           kuchar.zoomf    = mainFrame.krabat.zoomf;
@@ -204,11 +204,11 @@ public class Kuchnja extends MainLocation {
         // mainFrame.wegGeher.vBorders.addElement
         //     (new bordertrapez (478, 353, 482, 372));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(370, 575, 360, 610, 373, 399));
+                (new BorderTrapezoid(370, 575, 360, 610, 373, 399));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(125, 610, 75, 620, 400, 430));
+                (new BorderTrapezoid(125, 610, 75, 620, 400, 430));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(75, 380, 75, 380, 431, 510));
+                (new BorderTrapezoid(75, 380, 75, 380, 431, 510));
 
         mainFrame.pathFinder.ClearMatrix(3);
 
@@ -338,7 +338,7 @@ public class Kuchnja extends MainLocation {
 
         // Kuchar Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
-        Borderrect temp = kuchar.KucharRect();
+        BorderRect temp = kitchenChef.KucharRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
                 temp.ru_point.y - temp.lo_point.y);
 
@@ -379,11 +379,11 @@ public class Kuchnja extends MainLocation {
           }	*/
 
         // Kuchar-Cliprect wieder neu holen
-        temp = kuchar.KucharRect();
+        temp = kitchenChef.KucharRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y, temp.ru_point.x - temp.lo_point.x,
                 temp.ru_point.y - temp.lo_point.y);
 
-        kuchar.drawKuchar(g, TalkPerson, kucharHoertZu, kucharIstAufgestanden, schnauzeKuchar);
+        kitchenChef.drawKuchar(g, TalkPerson, kucharHoertZu, kucharIstAufgestanden, schnauzeKuchar);
 
         // Debugging - Zeichnen der Laufrechtecke
         if (Debug.enabled) {
@@ -619,7 +619,7 @@ public class Kuchnja extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -629,7 +629,7 @@ public class Kuchnja extends MainLocation {
                 }
 
                 // Ausreden fuer Koch
-                if (kuchar.KucharRect().IsPointInRect(pTemp)) {
+                if (kitchenChef.KucharRect().IsPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
                     pTemp = pKuchar;
@@ -762,7 +762,7 @@ public class Kuchnja extends MainLocation {
                 }
 
                 // Kuchar ansehen
-                if (kuchar.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
+                if (kitchenChef.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTt = pKuchar;
                 }
@@ -773,7 +773,7 @@ public class Kuchnja extends MainLocation {
                 // rechte Maustaste
 
                 // Mit dem Kuchar reden
-                if (kuchar.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
+                if (kitchenChef.KucharRect().IsPointInRect(pTemp) && !rechterAusgang.IsPointInRect(pTemp)) {
                     nextActionID = 50;
                     mainFrame.pathWalker.SetzeNeuenWeg(pKuchar);
                     mainFrame.repaint();
@@ -870,9 +870,9 @@ public class Kuchnja extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    kuchar.KucharRect().IsPointInRect(pTemp) ||
+                    kitchenChef.KucharRect().IsPointInRect(pTemp) ||
                     kachle.IsPointInRect(pTemp) ||
                     glocke.IsPointInRect(pTemp) ||
                     drjewo.IsPointInRect(pTemp) ||
@@ -909,7 +909,7 @@ public class Kuchnja extends MainLocation {
                     kachle.IsPointInRect(pTemp) ||
                     swinjo.IsPointInRect(pTemp) ||
                     kochtopf.IsPointInRect(pTemp) ||
-                    kuchar.KucharRect().IsPointInRect(pTemp)) {
+                    kitchenChef.KucharRect().IsPointInRect(pTemp)) {
                 if (Cursorform != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
                     Cursorform = 1;
@@ -996,7 +996,7 @@ public class Kuchnja extends MainLocation {
 
     private GenericPoint evalKucharTalkPoint() {
         // Hier Position des Textes berechnen
-        Borderrect temp = kuchar.KucharRect();
+        BorderRect temp = kitchenChef.KucharRect();
         return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
     }
 

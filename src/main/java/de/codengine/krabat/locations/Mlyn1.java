@@ -21,10 +21,10 @@
 package de.codengine.krabat.locations;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
-import de.codengine.krabat.anims.Mlynkptack;
-import de.codengine.krabat.anims.PtackZaRapaka;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
+import de.codengine.krabat.anims.MillerBird;
+import de.codengine.krabat.anims.RapakiRaven;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -45,7 +45,7 @@ public class Mlyn1 extends MainLocation {
     private int Verhinderrad;
     private static final int MAX_VERHINDERRAD = 3;
 
-    private Mlynk2 mueller;
+    private Miller mueller;
     private boolean showPersonen = false;
     private boolean setClipForText = false;
     private boolean allowTextClipset = false;
@@ -56,11 +56,11 @@ public class Mlyn1 extends MainLocation {
 
     private boolean showVoegel = true;
     private boolean voegelFliegen = true;
-    private PtackZaRapaka krabatvogel;
-    private Mlynkptack muellervogel;
+    private RapakiRaven krabatvogel;
+    private MillerBird muellervogel;
 
-    private Bumm muellermorph;
-    private Bumm krabatmorph;
+    private Boom muellermorph;
+    private Boom krabatmorph;
 
     private int muellermorphcount;
     // private int krabatmorphcount;
@@ -97,7 +97,7 @@ public class Mlyn1 extends MainLocation {
         mainFrame.krabat.defScale = -10;
 
         Rad = new GenericImage[21];
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
         mueller.maxx = 440;
         mueller.zoomf = 0.9f;
@@ -106,11 +106,11 @@ public class Mlyn1 extends MainLocation {
         mueller.setPos(mlynkFeet);
         mueller.SetFacing(3);
 
-        krabatvogel = new PtackZaRapaka(mainFrame, 845, 408, 10, 300);
-        muellervogel = new Mlynkptack(mainFrame, 700, 370, 10, 161, true);
+        krabatvogel = new RapakiRaven(mainFrame, 845, 408, 10, 300);
+        muellervogel = new MillerBird(mainFrame, 700, 370, 10, 161, true);
 
-        muellermorph = new Bumm(mainFrame);
-        krabatmorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
+        krabatmorph = new Boom(mainFrame);
 
         InitLocation();
         mainFrame.freeze(false);
@@ -125,10 +125,10 @@ public class Mlyn1 extends MainLocation {
     private void InitLocation() {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(154, 639, 242, 639, 442, 479));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(90, 100, 154, 164, 435, 441));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(90, 100, 90, 100, 420, 434));
-        mainFrame.pathWalker.vBorders.addElement(new Bordertrapez(60, 70, 77, 100, 395, 419));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(154, 639, 242, 639, 442, 479));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(90, 100, 154, 164, 435, 441));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(90, 100, 90, 100, 420, 434));
+        mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(60, 70, 77, 100, 395, 419));
 
         // Matrix loeschen
         mainFrame.pathFinder.ClearMatrix(4);
@@ -240,7 +240,7 @@ public class Mlyn1 extends MainLocation {
         // Mueller Hintergrund loeschen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 
@@ -300,7 +300,7 @@ public class Mlyn1 extends MainLocation {
         // Mueller zeichnen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

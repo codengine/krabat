@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Boote;
+import de.codengine.krabat.anims.Boats;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -36,19 +36,19 @@ public class Panorama extends MainLocation {
     private GenericImage background;
     private GenericImage cychi;
 
-    private final Boote boot;
+    private final Boats boot;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangKartaOben
-            = new Borderrect(295, 110, 400, 297);
+    private static final BorderRect ausgangKartaOben
+            = new BorderRect(295, 110, 400, 297);
     // private static final borderrect ausgangKartaRechts
     //     = new borderrect (590, 310, 639, 440);
-    private static final Borderrect ausgangZahrodnik
-            = new Borderrect(498, 343, 524, 377);
-    private static final Borderrect ausgangStwa
-            = new Borderrect(254, 354, 278, 380);
-    private static final Borderrect ausgangWobjo
-            = new Borderrect(17, 315, 62, 372);
+    private static final BorderRect ausgangZahrodnik
+            = new BorderRect(498, 343, 524, 377);
+    private static final BorderRect ausgangStwa
+            = new BorderRect(254, 354, 278, 380);
+    private static final BorderRect ausgangWobjo
+            = new BorderRect(17, 315, 62, 372);
 
     // Konstante Points
     private static final GenericPoint pExitKartaOben = new GenericPoint(327, 310);
@@ -70,7 +70,7 @@ public class Panorama extends MainLocation {
         mainFrame.krabat.zoomf = 10f;
         mainFrame.krabat.defScale = 73;
 
-        boot = new Boote(mainFrame, 3);
+        boot = new Boats(mainFrame, 3);
 
         InitLocation(oldLocation);
         mainFrame.freeze(false);
@@ -82,15 +82,15 @@ public class Panorama extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(326, 330, 308, 313, 310, 377));
+                (new BorderTrapezoid(326, 330, 308, 313, 310, 377));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(300, 625, 300, 625, 378, 405));
+                (new BorderTrapezoid(300, 625, 300, 625, 378, 405));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(230, 299, 230, 299, 381, 405));
+                (new BorderTrapezoid(230, 299, 230, 299, 381, 405));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(38, 229, 38, 229, 388, 410));
+                (new BorderTrapezoid(38, 229, 38, 229, 388, 410));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(36, 37, 36, 37, 376, 400));
+                (new BorderTrapezoid(36, 37, 36, 37, 376, 400));
 
         mainFrame.pathFinder.ClearMatrix(5);
 
@@ -164,7 +164,7 @@ public class Panorama extends MainLocation {
 
         // Boot-Routine
         // Hintergrund loeschen
-        Borderrect temp = boot.evalBootRect();
+        BorderRect temp = boot.evalBootRect();
         g.setClip(temp.lo_point.x, temp.lo_point.y,
                 temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
         g.drawImage(background, 0, 0);
@@ -275,7 +275,7 @@ public class Panorama extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -443,7 +443,7 @@ public class Panorama extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
 
             if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {

@@ -44,22 +44,22 @@ public class Gang extends MainLocation {
     private boolean ziehtKrabatAnKette = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangZachod
-            = new Borderrect(71, 93, 139, 127);
-    private static final Borderrect ausgangKapala
-            = new Borderrect(1103, 60, 1183, 98);
-    private static final Borderrect tuerUnten
-            = new Borderrect(1104, 253, 1182, 355);
-    private static final Borderrect ring
-            = new Borderrect(391, 283, 417, 337);
-    private static final Borderrect knochen
-            = new Borderrect(356, 351, 388, 369);
-    private static final Borderrect rectStamm
-            = new Borderrect(940, 190, 1060, 275);
-    private static final Borderrect buchRect
-            = new Borderrect(343, 331, 487, 344);
-    private static final Borderrect rectVorderTuer
-            = new Borderrect(1164, 223, 1255, 374);
+    private static final BorderRect ausgangZachod
+            = new BorderRect(71, 93, 139, 127);
+    private static final BorderRect ausgangKapala
+            = new BorderRect(1103, 60, 1183, 98);
+    private static final BorderRect tuerUnten
+            = new BorderRect(1104, 253, 1182, 355);
+    private static final BorderRect ring
+            = new BorderRect(391, 283, 417, 337);
+    private static final BorderRect knochen
+            = new BorderRect(356, 351, 388, 369);
+    private static final BorderRect rectStamm
+            = new BorderRect(940, 190, 1060, 275);
+    private static final BorderRect buchRect
+            = new BorderRect(343, 331, 487, 344);
+    private static final BorderRect rectVorderTuer
+            = new BorderRect(1164, 223, 1255, 374);
 
     // Konstante Points
     private static final GenericPoint pExitZachod = new GenericPoint(85, 326);
@@ -105,29 +105,29 @@ public class Gang extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(40, 120, 67, 120, 326, 358));
+                (new BorderTrapezoid(40, 120, 67, 120, 326, 358));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(121, 430, 121, 430, 348, 358));
+                (new BorderTrapezoid(121, 430, 121, 430, 348, 358));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(431, 470, 431, 470, 338, 370));
+                (new BorderTrapezoid(431, 470, 431, 470, 338, 370));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(471, 790, 471, 790, 360, 365));
+                (new BorderTrapezoid(471, 790, 471, 790, 360, 365));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(791, 885, 791, 885, 363, 370));
+                (new BorderTrapezoid(791, 885, 791, 885, 363, 370));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(886, 1185, 886, 1170, 368, 380));
+                (new BorderTrapezoid(886, 1185, 886, 1170, 368, 380));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(538, 543, 465, 470, 324, 337));
+                (new BorderTrapezoid(538, 543, 465, 470, 324, 337));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(670, 675, 538, 543, 308, 323));
+                (new BorderTrapezoid(670, 675, 538, 543, 308, 323));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(728, 733, 670, 675, 298, 307));
+                (new BorderTrapezoid(728, 733, 670, 675, 298, 307));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(880, 885, 728, 733, 268, 297));
+                (new BorderTrapezoid(880, 885, 728, 733, 268, 297));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(1031, 1036, 880, 885, 225, 267));
+                (new BorderTrapezoid(1031, 1036, 880, 885, 225, 267));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(1178, 1183, 1031, 1036, 188, 224));
+                (new BorderTrapezoid(1178, 1183, 1031, 1036, 188, 224));
 
         mainFrame.pathFinder.ClearMatrix(12);
 
@@ -341,7 +341,7 @@ public class Gang extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -543,7 +543,7 @@ public class Gang extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || ring.IsPointInRect(pTemp) ||
                     knochen.IsPointInRect(pTemp) || tuerUnten.IsPointInRect(pTemp) ||
                     buchRect.IsPointInRect(pTemp) && mainFrame.actions[690];

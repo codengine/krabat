@@ -25,7 +25,7 @@ import de.codengine.krabat.main.GenericPoint;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
 
-public class Dziwadzelnica extends Mainanim {
+public class Dziwadzelnica extends MainAnim {
     private final GenericImage[] dziw_talk;
     private final GenericImage[] dziw_beat;
 

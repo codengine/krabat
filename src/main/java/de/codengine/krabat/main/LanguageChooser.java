@@ -44,15 +44,15 @@ public class LanguageChooser extends MainLocation {
     private static final int BREITE = 35; // dto.
     private static final int HOEHE = 53;
 
-    private final Borderrect brPfeilOben;
-    private final Borderrect brPfeilUnten;
-    private final Borderrect brOk;
+    private final BorderRect brPfeilOben;
+    private final BorderRect brPfeilUnten;
+    private final BorderRect brOk;
 
     private int Cursorform = 200;
 
     private int Index;
 
-    private final Borderrect brGesamt;   // Gesamtrect fuer Auswahlleiste
+    private final BorderRect brGesamt;   // Gesamtrect fuer Auswahlleiste
 
     private int menuitem = 0;
     private int olditem = 0;
@@ -82,12 +82,12 @@ public class LanguageChooser extends MainLocation {
 
         this.properties = properties;
 
-        brPfeilOben = new Borderrect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
-        brPfeilUnten = new Borderrect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
+        brPfeilOben = new BorderRect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
+        brPfeilUnten = new BorderRect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
 
-        brOk = new Borderrect(pOkUnten.x, pOkUnten.y, pOkUnten.x + 40, pOkUnten.y + 20);
+        brOk = new BorderRect(pOkUnten.x, pOkUnten.y, pOkUnten.x + 40, pOkUnten.y + 20);
 
-        brGesamt = new Borderrect(X_LEFT, Y_UP, pPfeilOben.x - 10, Y_UP + 10 * 25);
+        brGesamt = new BorderRect(X_LEFT, Y_UP, pPfeilOben.x - 10, Y_UP + 10 * 25);
 
         InitImages();
 

@@ -21,8 +21,8 @@
 package de.codengine.krabat.locations2;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.Bumm;
-import de.codengine.krabat.anims.Mlynk2;
+import de.codengine.krabat.anims.Boom;
+import de.codengine.krabat.anims.Miller;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -38,11 +38,11 @@ public class Dubring2 extends MainLocation2 {
     private GenericImage backr;
     private GenericImage sky;
     private boolean setScroll = false;
-    private Mlynk2 mueller;
+    private Miller mueller;
 
     private boolean muellerVisible = false;
 
-    private Bumm muellermorph;
+    private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
@@ -65,7 +65,7 @@ public class Dubring2 extends MainLocation2 {
         mainFrame.krabat.setPos(Pkrabat);
         mainFrame.krabat.SetFacing(3);
 
-        mueller = new Mlynk2(mainFrame);
+        mueller = new Miller(mainFrame);
 
         mueller.maxx = 300;
         mueller.zoomf = 4f;
@@ -74,7 +74,7 @@ public class Dubring2 extends MainLocation2 {
         mueller.setPos(mlynkFeet);
         mueller.SetFacing(9);
 
-        muellermorph = new Bumm(mainFrame);
+        muellermorph = new Boom(mainFrame);
 
         InitImages();
         Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
@@ -150,7 +150,7 @@ public class Dubring2 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            Borderrect temp = mueller.getRect();
+            BorderRect temp = mueller.getRect();
             g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
                     temp.ru_point.y - temp.lo_point.y + 20);
 

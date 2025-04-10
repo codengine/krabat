@@ -41,22 +41,22 @@ public class Kuchnjaopen extends MainLocation {
     // private GenericPoint talkPoint;
 
     // Konstanten - Rects
-    private static final Borderrect rechterAusgang
-            = new Borderrect(467, 120, 505, 320);
-    private static final Borderrect glocke
-            = new Borderrect(104, 230, 125, 252);
-    private static final Borderrect drjewo
-            = new Borderrect(237, 342, 305, 392);
-    private static final Borderrect durje
-            = new Borderrect(9, 87, 100, 380);
-    private static final Borderrect wokno
-            = new Borderrect(560, 0, 640, 118);
-    private static final Borderrect swinjo
-            = new Borderrect(454, 387, 639, 479);
-    private static final Borderrect herdRect     // zum drueberzeichnen
-            = new Borderrect(0, 386, 347, 479);
-    private static final Borderrect schweinRect  // zum drueberzeichnen
-            = new Borderrect(388, 344, 639, 479);
+    private static final BorderRect rechterAusgang
+            = new BorderRect(467, 120, 505, 320);
+    private static final BorderRect glocke
+            = new BorderRect(104, 230, 125, 252);
+    private static final BorderRect drjewo
+            = new BorderRect(237, 342, 305, 392);
+    private static final BorderRect durje
+            = new BorderRect(9, 87, 100, 380);
+    private static final BorderRect wokno
+            = new BorderRect(560, 0, 640, 118);
+    private static final BorderRect swinjo
+            = new BorderRect(454, 387, 639, 479);
+    private static final BorderRect herdRect     // zum drueberzeichnen
+            = new BorderRect(0, 386, 347, 479);
+    private static final BorderRect schweinRect  // zum drueberzeichnen
+            = new BorderRect(388, 344, 639, 479);
 
     // Konstante Points
     private static final GenericPoint pRight = new GenericPoint(449, 320);
@@ -115,13 +115,13 @@ public class Kuchnjaopen extends MainLocation {
         // mainFrame.wegGeher.vBorders.addElement
         //	(new bordertrapez (405, 445, 400, 475, 305, 354));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(400, 311, 449, 354));
+                (new BorderTrapezoid(400, 311, 449, 354));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(370, 575, 360, 610, 355, 399));
+                (new BorderTrapezoid(370, 575, 360, 610, 355, 399));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(125, 610, 75, 620, 400, 430));
+                (new BorderTrapezoid(125, 610, 75, 620, 400, 430));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(75, 380, 75, 380, 431, 479));
+                (new BorderTrapezoid(75, 380, 75, 380, 431, 479));
 
         mainFrame.pathFinder.ClearMatrix(4);
 
@@ -314,7 +314,7 @@ public class Kuchnjaopen extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -495,7 +495,7 @@ public class Kuchnjaopen extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     glocke.IsPointInRect(pTemp) ||
                     drjewo.IsPointInRect(pTemp) ||

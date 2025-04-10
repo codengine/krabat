@@ -21,7 +21,7 @@
 package de.codengine.krabat.locations3;
 
 import de.codengine.krabat.Start;
-import de.codengine.krabat.anims.PredKorejtow;
+import de.codengine.krabat.anims.Merchant;
 import de.codengine.krabat.anims.PredMalickow;
 import de.codengine.krabat.anims.PredWosuskow;
 import de.codengine.krabat.main.*;
@@ -37,24 +37,24 @@ public class StareWiki extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(StareWiki.class);
     private GenericImage background;
     private GenericImage koleso;
-    private final PredKorejtow predKorejtow;
+    private final Merchant merchant;
     private final PredWosuskow predWosuskow;
     private final PredMalickow predMalickow;
-    private final Multiple2 Dialog;
+    private final MultipleChoice Dialog;
 
     private final GenericPoint korejtowPoint;
     private final GenericPoint talkPointKorejty;
-    private final Borderrect rePredKorejtow;
+    private final BorderRect rePredKorejtow;
 
     private final GenericPoint wosuskowPoint;
     private final GenericPoint talkPointWosuski;
-    private final Borderrect rePredWosuskow;
+    private final BorderRect rePredWosuskow;
     private boolean wosIsLooking = false;
     private boolean wosIsGiving = false;
 
     private final GenericPoint malickowPoint;
     private final GenericPoint talkPointMalicki;
-    private final Borderrect rePredMalickow;
+    private final BorderRect rePredMalickow;
     private boolean malIsWalking = false;
     private boolean malIsGiving = false;
     private boolean malIsInvisible = false;
@@ -68,10 +68,10 @@ public class StareWiki extends MainLocation {
     private boolean AnimMCLocked = false;
 
     // Konstanten - Rects
-    private static final Borderrect ausgangKarta
-            = new Borderrect(0, 440, 310, 479);
-    private static final Borderrect rectKoleso
-            = new Borderrect(305, 395, 450, 415);
+    private static final BorderRect ausgangKarta
+            = new BorderRect(0, 440, 310, 479);
+    private static final BorderRect rectKoleso
+            = new BorderRect(305, 395, 450, 415);
 
     // Konstante Points
     private static final GenericPoint pExitKarta = new GenericPoint(175, 479);
@@ -107,21 +107,21 @@ public class StareWiki extends MainLocation {
         mainFrame.krabat.zoomf = 0.15f;
         mainFrame.krabat.defScale = -90;
 
-        predKorejtow = new PredKorejtow(mainFrame, new GenericPoint(420, 250));
+        merchant = new Merchant(mainFrame, new GenericPoint(420, 250));
         predWosuskow = new PredWosuskow(mainFrame);
         predMalickow = new PredMalickow(mainFrame);
-        Dialog = new Multiple2(mainFrame);
+        Dialog = new MultipleChoice(mainFrame);
 
         // Inits fuer predKorejtow
         korejtowPoint = new GenericPoint();
-        korejtowPoint.x = korejtowFeet.x - PredKorejtow.Breite / 2;
-        korejtowPoint.y = korejtowFeet.y - PredKorejtow.Hoehe;
+        korejtowPoint.x = korejtowFeet.x - Merchant.Breite / 2;
+        korejtowPoint.y = korejtowFeet.y - Merchant.Hoehe;
 
         talkPointKorejty = new GenericPoint();
         talkPointKorejty.x = korejtowFeet.x;
         talkPointKorejty.y = korejtowPoint.y - 100;
 
-        rePredKorejtow = new Borderrect(korejtowPoint.x, korejtowPoint.y, korejtowPoint.x + PredKorejtow.Breite, korejtowPoint.y + PredKorejtow.Hoehe);
+        rePredKorejtow = new BorderRect(korejtowPoint.x, korejtowPoint.y, korejtowPoint.x + Merchant.Breite, korejtowPoint.y + Merchant.Hoehe);
 
         // Inits fuer predWosuskow
         wosuskowPoint = new GenericPoint();
@@ -132,7 +132,7 @@ public class StareWiki extends MainLocation {
         talkPointWosuski.x = wosuskowFeet.x;
         talkPointWosuski.y = wosuskowPoint.y - 130;
 
-        rePredWosuskow = new Borderrect(wosuskowPoint.x, wosuskowPoint.y, wosuskowPoint.x + PredWosuskow.Breite, wosuskowPoint.y + PredWosuskow.Hoehe);
+        rePredWosuskow = new BorderRect(wosuskowPoint.x, wosuskowPoint.y, wosuskowPoint.x + PredWosuskow.Breite, wosuskowPoint.y + PredWosuskow.Hoehe);
 
         // Inits fuer predMalickow
         malickowPoint = new GenericPoint();
@@ -143,7 +143,7 @@ public class StareWiki extends MainLocation {
         talkPointMalicki.x = malickowFeet.x;
         talkPointMalicki.y = malickowPoint.y - 50;
 
-        rePredMalickow = new Borderrect(malickowPoint.x, malickowPoint.y, malickowPoint.x + PredMalickow.Breite, malickowPoint.y + PredMalickow.Hoehe);
+        rePredMalickow = new BorderRect(malickowPoint.x, malickowPoint.y, malickowPoint.x + PredMalickow.Breite, malickowPoint.y + PredMalickow.Hoehe);
 
         InitLocation(oldLocation);
 
@@ -155,17 +155,17 @@ public class StareWiki extends MainLocation {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 430, 412, 479));
+                (new BorderTrapezoid(20, 430, 412, 479));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(20, 290, 20, 290, 418, 429));
+                (new BorderTrapezoid(20, 290, 20, 290, 418, 429));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(244, 370, 244, 370, 400, 417));
+                (new BorderTrapezoid(244, 370, 244, 370, 400, 417));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(210, 243, 210, 243, 400, 402));
+                (new BorderTrapezoid(210, 243, 210, 243, 400, 402));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(140, 407, 180, 409));
+                (new BorderTrapezoid(140, 407, 180, 409));
         mainFrame.pathWalker.vBorders.addElement
-                (new Bordertrapez(181, 407, 184, 417));
+                (new BorderTrapezoid(181, 407, 184, 417));
 
         mainFrame.pathFinder.ClearMatrix(6);
 
@@ -232,18 +232,18 @@ public class StareWiki extends MainLocation {
         }
 
         // Predawar Korejtow zeichnen
-        g.setClip(korejtowPoint.x, korejtowPoint.y, PredKorejtow.Breite, PredKorejtow.Hoehe);
+        g.setClip(korejtowPoint.x, korejtowPoint.y, Merchant.Breite, Merchant.Hoehe);
         g.drawImage(background, 0, 0);
         if (AnimTalkPerson == 62 && !AnimMCLocked) {
             // bei einer Anim rumschreien lassen
-            predKorejtow.callPredawar(g);
+            merchant.callPredawar(g);
         } else {
             if (TalkPerson == 62) {
                 // beim Reden
-                predKorejtow.talkPredawar(g);
+                merchant.talkPredawar(g);
             } else {
                 // beim Rumstehen
-                predKorejtow.drawPredawar(g);
+                merchant.drawPredawar(g);
             }
         }
 
@@ -437,7 +437,7 @@ public class StareWiki extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                Borderrect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getRect();
 
                 // Aktion, wenn Krabat angeclickt wurde
                 if (tmp.IsPointInRect(pTemp)) {
@@ -673,7 +673,7 @@ public class StareWiki extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            Borderrect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getRect();
             mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
                     rePredKorejtow.IsPointInRect(pTemp) ||
                     rePredMalickow.IsPointInRect(pTemp) ||
