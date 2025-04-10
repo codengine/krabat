@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.platform.GenericDrawingContext;
 import de.codengine.krabat.platform.GenericImage;
@@ -281,7 +282,7 @@ abstract public class MainLocation {
                 mainFrame.ConstructLocation(106);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.isBackgroundAnimRunning = false;
-                mainFrame.whatScreen = 6;
+                mainFrame.whatScreen = ScreenType.MAP;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
@@ -393,7 +394,7 @@ abstract public class MainLocation {
                 // Krabat mit Skica benutzen
                 mainFrame.ConstructLocation(108);
                 mainFrame.isInventoryCursor = false;
-                mainFrame.whatScreen = 8;
+                mainFrame.whatScreen = ScreenType.SKETCH;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
@@ -591,7 +592,7 @@ abstract public class MainLocation {
                 // Load - Screen aktivieren
                 nextActionID = 0;
                 mainFrame.ConstructLocation(102);
-                mainFrame.whatScreen = 3;
+                mainFrame.whatScreen = ScreenType.LOAD_GAME;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
@@ -601,7 +602,7 @@ abstract public class MainLocation {
                 nextActionID = 0;
                 mainFrame.StoreImage();
                 mainFrame.ConstructLocation(103);
-                mainFrame.whatScreen = 4;
+                mainFrame.whatScreen = ScreenType.SAVE_GAME;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
@@ -609,7 +610,7 @@ abstract public class MainLocation {
             case 122:
                 // Mainmenu aktivieren
                 mainFrame.StoreImage();
-                mainFrame.whatScreen = 2;
+                mainFrame.whatScreen = ScreenType.MAIN_MENU;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
@@ -621,7 +622,7 @@ abstract public class MainLocation {
                 mainFrame.krabat.StopWalking();
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
-                mainFrame.whatScreen = 1;
+                mainFrame.whatScreen = ScreenType.INVENTORY;
                 nextActionID = 0;
                 mainFrame.repaint();
                 break;

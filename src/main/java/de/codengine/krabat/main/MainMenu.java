@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -240,7 +241,7 @@ public class MainMenu extends Mainanim {
         // bei Click Ausserhalb zurueck ins Spiel
         if (!brGesamt.IsPointInRect(pTemp)) {
             Deactivate();
-            mainFrame.whatScreen = 0;
+            mainFrame.whatScreen = ScreenType.NONE;
             mainFrame.repaint();
             return;
         }
@@ -264,7 +265,7 @@ public class MainMenu extends Mainanim {
             }
             Deactivate();
             mainFrame.ConstructLocation(102);
-            mainFrame.whatScreen = 3;
+            mainFrame.whatScreen = ScreenType.LOAD_GAME;
             MMactive = true;
             mainFrame.repaint();
             return;
@@ -281,7 +282,7 @@ public class MainMenu extends Mainanim {
             }
             Deactivate();
             mainFrame.ConstructLocation(103);
-            mainFrame.whatScreen = 4;
+            mainFrame.whatScreen = ScreenType.SAVE_GAME;
             MMactive = true;
             mainFrame.repaint();
             return;
@@ -291,7 +292,7 @@ public class MainMenu extends Mainanim {
         if (brInfo.IsPointInRect(pTemp)) {
             Deactivate();
             mainFrame.ConstructLocation(104);
-            mainFrame.whatScreen = 5;
+            mainFrame.whatScreen = ScreenType.CREDITS;
             MMactive = true;
             mainFrame.repaint();
             return;
@@ -390,7 +391,7 @@ public class MainMenu extends Mainanim {
     // Deaktivieren
     private void Deactivate() {
         menuitem = 0;
-        mainFrame.whatScreen = 0;
+        mainFrame.whatScreen = ScreenType.NONE;
         mainFrame.isClipSet = false;
         MMactive = false;
     }

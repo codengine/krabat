@@ -90,8 +90,7 @@ public class Start implements Runnable {
     private boolean isListenerActive;         // Flag, ob Listener ausgefuehrt werden oder nicht
     private boolean stopPaint = false;        // Paint - Schleife waehrend Init anhalten
 
-    // Flags, die Override fuer Menue festlegen
-    public int whatScreen;
+    public ScreenType whatScreen = ScreenType.NONE;
 
     public static int language; // Sprache
 
@@ -258,7 +257,7 @@ public class Start implements Runnable {
         isBackgroundAnimRunning = false;
         isMultipleChoiceActive = false;
         isListenerActive = false;
-        whatScreen = 0;
+        whatScreen = ScreenType.NONE;
         scrollX = 0;
         scrollY = 0;
         isScrolling = false;
@@ -297,30 +296,30 @@ public class Start implements Runnable {
         }
 
         // bei aktivem Inventar,Load,Save,Credits,Hauptmenu hierher umleiten - Prioritaet 2 - kein Scrolling
-        if (whatScreen != 0) {
+        if (whatScreen != ScreenType.NONE) {
             switch (whatScreen) {
-                case 1:
+                case INVENTORY:
                     inventory.paintInventory(offGraphics);
                     break;
-                case 2:
+                case MAIN_MENU:
                     mainMenu.paintMainmenu(offGraphics);
                     break;
-                case 3:
+                case LOAD_GAME:
                     loadGame.paintLaden(offGraphics);
                     break;
-                case 4:
+                case SAVE_GAME:
                     saveGame.paintSpeichern(offGraphics);
                     break;
-                case 5:
+                case CREDITS:
                     credits.paintCredits(offGraphics);
                     break;
-                case 6:
+                case MAP:
                     map.paintKarte(offGraphics);
                     break;
-                case 7:
+                case DICTIONARY:
                     dictionary.paintSlownik(offGraphics);
                     break;
-                case 8:
+                case SKETCH:
                     sketch.paintSkizze(offGraphics);
                     break;
                 default:
@@ -492,30 +491,30 @@ public class Start implements Runnable {
         isMouseValid = false;
 
         //Signal an Menuelocations, dass HiLight abgeschaltet werden soll
-        if (whatScreen != 0) {
+        if (whatScreen != ScreenType.NONE) {
             switch (whatScreen) {
-                case 1:
+                case INVENTORY:
                     inventory.evalMouseExitEvent();
                     break;
-                case 2:
+                case MAIN_MENU:
                     mainMenu.evalMouseExitEvent();
                     break;
-                case 3:
+                case LOAD_GAME:
                     loadGame.evalMouseExitEvent();
                     break;
-                case 4:
+                case SAVE_GAME:
                     saveGame.evalMouseExitEvent();
                     break;
-                case 5:
+                case CREDITS:
                     credits.evalMouseExitEvent();
                     break;
-                case 6:
+                case MAP:
                     map.evalMouseExitEvent();
                     break;
-                case 7:
+                case DICTIONARY:
                     dictionary.evalMouseExitEvent();
                     break;
-                case 8:
+                case SKETCH:
                     sketch.evalMouseExitEvent();
                     break;
                 default:
@@ -547,30 +546,30 @@ public class Start implements Runnable {
         }
 
         // bei aktivem Inventar,Load,Save,Credits,Hauptmenu hierher umleiten - Prioritaet 2
-        if (whatScreen != 0) {
+        if (whatScreen != ScreenType.NONE) {
             switch (whatScreen) {
-                case 1:
+                case INVENTORY:
                     inventory.evalMouseEvent(e);
                     break;
-                case 2:
+                case MAIN_MENU:
                     mainMenu.evalMouseEvent(e);
                     break;
-                case 3:
+                case LOAD_GAME:
                     loadGame.evalMouseEvent(e);
                     break;
-                case 4:
+                case SAVE_GAME:
                     saveGame.evalMouseEvent(e);
                     break;
-                case 5:
+                case CREDITS:
                     credits.evalMouseEvent(e);
                     break;
-                case 6:
+                case MAP:
                     map.evalMouseEvent(e);
                     break;
-                case 7:
+                case DICTIONARY:
                     dictionary.evalMouseEvent(e);
                     break;
-                case 8:
+                case SKETCH:
                     sketch.evalMouseEvent(e);
                     break;
                 default:
@@ -604,30 +603,30 @@ public class Start implements Runnable {
         }
 
         // bei aktivem Inventar,Load,Save,Credits,Hauptmenu hierher umleiten - Prioritaet 2
-        if (whatScreen != 0) {
+        if (whatScreen != ScreenType.NONE) {
             switch (whatScreen) {
-                case 1:
+                case INVENTORY:
                     inventory.evalMouseMoveEvent(mousePoint);
                     break;
-                case 2:
+                case MAIN_MENU:
                     mainMenu.evalMouseMoveEvent(mousePoint);
                     break;
-                case 3:
+                case LOAD_GAME:
                     loadGame.evalMouseMoveEvent(mousePoint);
                     break;
-                case 4:
+                case SAVE_GAME:
                     saveGame.evalMouseMoveEvent(mousePoint);
                     break;
-                case 5:
+                case CREDITS:
                     credits.evalMouseMoveEvent(mousePoint);
                     break;
-                case 6:
+                case MAP:
                     map.evalMouseMoveEvent(mousePoint);
                     break;
-                case 7:
+                case DICTIONARY:
                     dictionary.evalMouseMoveEvent(mousePoint);
                     break;
-                case 8:
+                case SKETCH:
                     sketch.evalMouseMoveEvent();
                     break;
                 default:
@@ -1108,7 +1107,7 @@ public class Start implements Runnable {
 
         // Zum Debuggen hier Krabat-Groesse einstellbar
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
+        int key = e.getKeyCode();
 
         // Bei aktivem Exit dorthin - Prio 1
         if (exitGame.active) {
@@ -1117,40 +1116,40 @@ public class Start implements Runnable {
         }
 
         // Feststellen, ob das Woerterbuch aktiviert werden soll
-        if (whatScreen == 0) {
-            if (Taste == GenericKeyEvent.VK_F5) {
+        if (whatScreen == ScreenType.NONE) {
+            if (key == GenericKeyEvent.VK_F5) {
                 ConstructLocation(107);
-                whatScreen = 7;
+                whatScreen = ScreenType.DICTIONARY;
                 isClipSet = false;
                 repaint();
             }
         }
 
         // bei aktivem Inventar,Load,Save,Credits,Hauptmenu hierher umleiten - Prioritaet 2
-        if (whatScreen != 0) {
+        if (whatScreen != ScreenType.NONE) {
             switch (whatScreen) {
-                case 1:
+                case INVENTORY:
                     inventory.evalKeyEvent(e);
                     break;
-                case 2:
+                case MAIN_MENU:
                     mainMenu.evalKeyEvent(e);
                     break;
-                case 3:
+                case LOAD_GAME:
                     loadGame.evalKeyEvent(e);
                     break;
-                case 4:
+                case SAVE_GAME:
                     saveGame.evalKeyEvent(e);
                     break;
-                case 5:
+                case CREDITS:
                     credits.evalKeyEvent(e);
                     break;
-                case 6:
+                case MAP:
                     map.evalKeyEvent(e);
                     break;
-                case 7:
+                case DICTIONARY:
                     dictionary.evalKeyEvent(e);
                     break;
-                case 8:
+                case SKETCH:
                     sketch.evalKeyEvent(e);
                     break;
                 default:

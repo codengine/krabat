@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.locations2;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Rapak;
 import de.codengine.krabat.main.*;
@@ -735,7 +736,7 @@ public class Rapak2 extends MainLocation {
                 // Karte einblenden
                 mainFrame.ConstructLocation(106);
                 mainFrame.isBackgroundAnimRunning = false;
-                mainFrame.whatScreen = 6;
+                mainFrame.whatScreen = ScreenType.MAP;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();

@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -141,7 +142,7 @@ public class Skica extends Mainanim {
     private void Deactivate() {
         mainFrame.DestructLocation(108);
         mainFrame.isClipSet = false;
-        mainFrame.whatScreen = 0;
+        mainFrame.whatScreen = ScreenType.NONE;
         Cursorform = 200;
         mainFrame.repaint();
     }

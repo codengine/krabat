@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.locations2;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Bumm;
 import de.codengine.krabat.anims.Mlynk2;
@@ -651,7 +652,7 @@ public class Wila2 extends MainLocation2 {
                     mainFrame.DestructLocation(85);
                 } else {
                     mainFrame.ConstructLocation(106);
-                    mainFrame.whatScreen = 6;
+                    mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
                 break;
@@ -666,7 +667,7 @@ public class Wila2 extends MainLocation2 {
                     mainFrame.DestructLocation(85);
                 } else {
                     mainFrame.ConstructLocation(106);
-                    mainFrame.whatScreen = 6;
+                    mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
                 break;
@@ -681,7 +682,7 @@ public class Wila2 extends MainLocation2 {
                     mainFrame.DestructLocation(85);
                 } else {
                     mainFrame.ConstructLocation(106);
-                    mainFrame.whatScreen = 6;
+                    mainFrame.whatScreen = ScreenType.MAP;
                 }
                 mainFrame.repaint();
                 break;

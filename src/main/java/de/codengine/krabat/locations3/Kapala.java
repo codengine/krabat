@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.locations3;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.main.*;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -629,7 +630,7 @@ public class Kapala extends MainLocation {
                 mainFrame.ConstructLocation(108);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.isAnimRunning = false;
-                mainFrame.whatScreen = 8;
+                mainFrame.whatScreen = ScreenType.SKETCH;
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();

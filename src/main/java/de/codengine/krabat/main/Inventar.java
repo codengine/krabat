@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -627,7 +628,7 @@ public class Inventar extends Mainanim {
                 // ins Hauptmenue verzweigen
                 if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
                     Deactivate();
-                    mainFrame.whatScreen = 2;
+                    mainFrame.whatScreen = ScreenType.MAIN_MENU;
                     mainFrame.repaint();
                     return;
                 }
@@ -881,7 +882,7 @@ public class Inventar extends Mainanim {
         mainFrame.isClipSet = false;
         menuitem = 0;
         nFeldAktiv = -1;
-        mainFrame.whatScreen = 0;
+        mainFrame.whatScreen = ScreenType.NONE;
         secScreenActive = false;
         mainFrame.isInventoryHighlightCursor = false;
     }

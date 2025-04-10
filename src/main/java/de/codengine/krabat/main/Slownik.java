@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -375,7 +376,7 @@ public class Slownik extends Mainanim {
     private void Deactivate() {
         mainFrame.isClipSet = false;
         mainFrame.DestructLocation(107);
-        mainFrame.whatScreen = 0;
+        mainFrame.whatScreen = ScreenType.NONE;
 
         mainFrame.NoPaint(false);
 

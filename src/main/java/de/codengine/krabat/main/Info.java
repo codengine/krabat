@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -235,7 +236,7 @@ public class Info extends Mainanim {
         // bei Click Ausserhalb zurueck ins Spiel
         if (!brGesamt.IsPointInRect(pTemp)) {
             Deactivate();
-            mainFrame.whatScreen = 0;
+            mainFrame.whatScreen = ScreenType.NONE;
             return;
         }
 
@@ -301,9 +302,9 @@ public class Info extends Mainanim {
         mainFrame.isClipSet = false;
         mainFrame.DestructLocation(104);
         if (mainFrame.mainMenu.MMactive) {
-            mainFrame.whatScreen = 2;
+            mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {
-            mainFrame.whatScreen = 0;
+            mainFrame.whatScreen = ScreenType.NONE;
         }
         mainFrame.repaint();
     }

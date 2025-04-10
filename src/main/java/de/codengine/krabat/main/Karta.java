@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.main;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Mainanim;
 import de.codengine.krabat.platform.GenericDrawingContext;
@@ -697,7 +698,7 @@ public class Karta extends Mainanim {
         mainFrame.DestructLocation(106);
         newort = 0;
         mainFrame.isClipSet = false;
-        mainFrame.whatScreen = 0;
+        mainFrame.whatScreen = ScreenType.NONE;
         Cursorform = 200;
         mainFrame.repaint();
     }

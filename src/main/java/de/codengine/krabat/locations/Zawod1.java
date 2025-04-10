@@ -20,6 +20,7 @@
 
 package de.codengine.krabat.locations;
 
+import de.codengine.krabat.ScreenType;
 import de.codengine.krabat.Start;
 import de.codengine.krabat.anims.Husa;
 import de.codengine.krabat.anims.IntroDomaPtack;
@@ -639,7 +640,7 @@ public class Zawod1 extends MainLocation {
                 case 100:
                     // Mainmenu aktivieren
                     mainFrame.isAnimRunning = false;
-                    mainFrame.whatScreen = 2;
+                    mainFrame.whatScreen = ScreenType.MAIN_MENU;
                     skipActionID = 0;
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
@@ -651,7 +652,7 @@ public class Zawod1 extends MainLocation {
                     mainFrame.isAnimRunning = false;
                     skipActionID = 0;
                     mainFrame.ConstructLocation(102);
-                    mainFrame.whatScreen = 3;
+                    mainFrame.whatScreen = ScreenType.LOAD_GAME;
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
                     Cursorform = 200;
