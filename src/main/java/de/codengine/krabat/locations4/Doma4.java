@@ -79,9 +79,9 @@ public class Doma4 extends MainLocation {
         LeuteLinks = new GenericImage[7];
         LeuteMitte = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
         scrollwert = 640;
         setScroll = true;
@@ -95,7 +95,7 @@ public class Doma4 extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background1 = getPicture("gfx/doma/dom-l.png");
         background2 = getPicture("gfx/doma/dom-r.png");
         back = getPicture("gfx/doma/domsky.png");
@@ -145,7 +145,7 @@ public class Doma4 extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isAnimRunning = true;
@@ -228,7 +228,7 @@ public class Doma4 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
@@ -237,18 +237,18 @@ public class Doma4 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount == 0) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount == 0) {
+            talkPause--;
         }
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
-        if (nextActionID != 0 && TalkPause == 0 && mainFrame.talkCount == 0) {
-            DoAction();
+        if (nextActionID != 0 && talkPause == 0 && mainFrame.talkCount == 0) {
+            doAction();
         }
     }
 
@@ -264,15 +264,15 @@ public class Doma4 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
     }
 
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -289,24 +289,24 @@ public class Doma4 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
 
         // Was soll Krabat machen ?
         switch (nextActionID) {
 
             case 10:
                 // Text Erzaehler
-                PersonSagt("Doma4_1", 0, 54, 2, 15, mittelPunkt);
+                personSays("Doma4_1", 0, 54, 2, 15, mittelPunkt);
                 break;
 
             case 15:
                 // Text Erzaehler
-                PersonSagt("Doma4_2", 0, 54, 2, 20, mittelPunkt);
+                personSays("Doma4_2", 0, 54, 2, 20, mittelPunkt);
                 break;
 
             case 20:
                 // Skip zu Wotrow
-                NeuesBild(200, 203);
+                createNewLocation(200, 203);
                 break;
 
             default:

@@ -32,16 +32,16 @@ import java.util.Objects;
 
 public class Sketch extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Sketch.class);
-    private GenericImage skizze;
+    private GenericImage sketch;
 
-    private int Counter = 0;
+    private int counter = 0;
 
     // Sachen, dies hier nicht gibt, weil nicht von Mainloc abgeleitet
     private int nextActionID;
     private String outputText = "";
-    private int Cursorform;
+    private int cusorShape;
     private GenericPoint outputTextPos;
-    private int TalkPause;
+    private int talkPause;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -50,7 +50,7 @@ public class Sketch extends MainAnim {
         super(caller);
         mainFrame.freeze(true);
 
-        InitImages();
+        initImages();
 
         nextActionID = 10;
 
@@ -58,29 +58,28 @@ public class Sketch extends MainAnim {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
-        skizze = getPicture("gfx-dd/kapala/skica.png");
+    private void initImages() {
+        sketch = getPicture("gfx-dd/kapala/skica.png");
     }
 
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintSkizze(GenericDrawingContext g) {
+    public void paintSketch(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 1284, 484);
-            Cursorform = 200;
+            cusorShape = 200;
             evalMouseMoveEvent();
         }
 
-        g.drawImage(skizze, mainFrame.scrollX, mainFrame.scrollY);
+        g.drawImage(sketch, mainFrame.scrollX, mainFrame.scrollY);
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
-            // System.out.println ("Skica: Trying to draw text.");
             mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xff00ff00); // Krabats Frabe
         }
 
@@ -93,13 +92,13 @@ public class Sketch extends MainAnim {
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -110,21 +109,15 @@ public class Sketch extends MainAnim {
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
 
-    public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
-
-        if (e.isLeftClick()) {
-            Deactivate();
-        } else {
-            Deactivate();
-        }
+    public void evalMouseEvent(GenericMouseEvent ignored) {
+        deactivate();
     }
 
     public void evalMouseMoveEvent() {
-        if (Cursorform == 20) {
+        if (cusorShape == 20) {
             return;
         }
-        Cursorform = 20;
+        cusorShape = 20;
         mainFrame.setCursor(mainFrame.cursorNone);
     }
 
@@ -132,55 +125,55 @@ public class Sketch extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
         }
     }
 
     // Deaktivieren //////////
-    private void Deactivate() {
+    private void deactivate() {
         mainFrame.destructLocation(108);
         mainFrame.isClipSet = false;
         mainFrame.whatScreen = ScreenType.NONE;
-        Cursorform = 200;
+        cusorShape = 200;
         mainFrame.repaint();
     }
 
-    private void DoAction() {
+    private void doAction() {
 
         switch (nextActionID) {
             case 10:
                 // bisschen warten
-                Counter = 10;
+                counter = 10;
                 nextActionID = 20;
                 break;
 
             case 20:
                 // jetzt Text
-                if (--Counter > 1) {
+                if (--counter > 1) {
                     break;
                 }
 
                 if (!mainFrame.actions[633]) // Text nur 1x sagen, wenn gefunden
                 {
-                    outputText = mainFrame.imageFont.TeileTextKey("Skica_1");
-                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 200));
+                    outputText = mainFrame.imageFont.splitTextKey("Skica_1");
+                    outputTextPos = mainFrame.imageFont.centerText(outputText, new GenericPoint(320, 200));
 
                     mainFrame.actions[633] = true;
-                    Counter = 0;
+                    counter = 0;
                 } else {
-                    Counter = 50;
+                    counter = 50;
                 }
                 nextActionID = 30;
                 break;
 
             case 30:
                 // und schluss, wenn bis hierhin gekommen
-                if (--Counter > 1) {
+                if (--counter > 1) {
                     break; // warten, falls Counter gesetzt wurde
                 }
-                Deactivate();
+                deactivate();
                 break;
 
             default:

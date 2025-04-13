@@ -72,19 +72,19 @@ public class Labyr4 extends MainLabyrinth {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 300;
-        mainFrame.krabat.zoomf = 5.07f;
-        mainFrame.krabat.defScale = -30;
+        mainFrame.krabat.maxX = 300;
+        mainFrame.krabat.zoomFactor = 5.07f;
+        mainFrame.krabat.defaultScale = -30;
 
         feuer = new Fire(mainFrame);
 
-        InitLocation(Richtung);
+        initLocation(Richtung);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int Richtung) {
+    private void initLocation(int Richtung) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 312, 0, 287, 262, 294));
@@ -92,36 +92,36 @@ public class Labyr4 extends MainLabyrinth {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(301, 313, 270, 312, 224, 261));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(3);
+        mainFrame.pathFinder.clearMatrix(3);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(0, 2);
 
-        InitImages();
+        initImages();
         switch (Richtung) {
             case 0:
                 // Einsprung fuer Load
                 BackgroundMusicPlayer.getInstance().playTrack(10, true);
-                Ausgang = BerechneAusgang(true, true, false, false);
+                Ausgang = calculateExit(true, true, false, false);
                 break;
             case 3:
                 // von links aus
                 mainFrame.krabat.setPos(new GenericPoint(27, 283));
-                mainFrame.krabat.SetFacing(3);
-                Ausgang = BerechneAusgang(true, true, false, false);
+                mainFrame.krabat.setFacing(3);
+                Ausgang = calculateExit(true, true, false, false);
                 break;
             case 6:
                 // von oben aus
                 mainFrame.krabat.setPos(new GenericPoint(304, 237));
-                mainFrame.krabat.SetFacing(6);
-                Ausgang = BerechneAusgang(false, true, false, false);
+                mainFrame.krabat.setFacing(6);
+                Ausgang = calculateExit(false, true, false, false);
                 break;
             case 12:
                 // von unten aus
                 mainFrame.krabat.setPos(new GenericPoint(252, 458));
-                mainFrame.krabat.SetFacing(12);
-                Ausgang = BerechneAusgang(true, false, false, false);
+                mainFrame.krabat.setFacing(12);
+                Ausgang = calculateExit(true, false, false, false);
                 break;
         }
         // Hier richtigen Punkt fuers Geblinker eintragen
@@ -141,7 +141,7 @@ public class Labyr4 extends MainLabyrinth {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/labyrinth/laby4.png");
         lab42 = getPicture("gfx/labyrinth/lab4-2.png");
 
@@ -165,7 +165,7 @@ public class Labyr4 extends MainLabyrinth {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -176,7 +176,7 @@ public class Labyr4 extends MainLabyrinth {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -187,20 +187,20 @@ public class Labyr4 extends MainLabyrinth {
             feuer.drawPlomja(g, AusPoint);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -225,7 +225,7 @@ public class Labyr4 extends MainLabyrinth {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (lab42Rect.IsPointInRect(pKrTemp)) {
+        if (lab42Rect.isPointInRect(pKrTemp)) {
             g.drawImage(lab42, 77, 135);
         }
 
@@ -235,7 +235,7 @@ public class Labyr4 extends MainLabyrinth {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -245,17 +245,17 @@ public class Labyr4 extends MainLabyrinth {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -289,17 +289,17 @@ public class Labyr4 extends MainLabyrinth {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -309,7 +309,7 @@ public class Labyr4 extends MainLabyrinth {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -321,85 +321,85 @@ public class Labyr4 extends MainLabyrinth {
                 nextActionID = 0;
 
                 // zu naechstem Laby gehen links
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu naechstem Laby gehen oben
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu naechstem Laby gehen unten
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Naechstes Laby anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Naechstes Laby anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Naechstes Laby anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -410,8 +410,8 @@ public class Labyr4 extends MainLabyrinth {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -420,61 +420,51 @@ public class Labyr4 extends MainLabyrinth {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-      /*if ((brEingang.IsPointInRect (pTemp) == true) ||
-          (brWagen.IsPointInRect (pTemp) == true))
-      {
-        if (Cursorform != 1)
-        {
-          mainFrame.setCursor (mainFrame.Kreuz);
-          Cursorform = 1;
-        }
-        return;
-      }*/
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -508,7 +498,7 @@ public class Labyr4 extends MainLabyrinth {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -516,7 +506,7 @@ public class Labyr4 extends MainLabyrinth {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -524,28 +514,28 @@ public class Labyr4 extends MainLabyrinth {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     private void evalNewLocationLeft() {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
-            zuffi = (int) Math.round(Math.random() * Start.labyrinthHelp) + 50;
+            zuffi = (int) Math.round(Math.random() * Start.LABYRINTH_HELP) + 50;
             while (zuffi > 62) {
                 zuffi--;
             }
@@ -591,7 +581,7 @@ public class Labyr4 extends MainLabyrinth {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -611,7 +601,7 @@ public class Labyr4 extends MainLabyrinth {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -622,9 +612,9 @@ public class Labyr4 extends MainLabyrinth {
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
-                Erscheinen(Ausgang == 9);
+                appear(Ausgang == 9);
                 if (mainFrame.actions[235]) {
-                    BludLocationLeft();
+                    bludLocationLeft();
                 } else {
                     evalNewLocationLeft();
                 }
@@ -638,9 +628,9 @@ public class Labyr4 extends MainLabyrinth {
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
-                Erscheinen(Ausgang == 12);
+                appear(Ausgang == 12);
                 if (mainFrame.actions[235]) {
-                    BludLocationUp();
+                    bludLocationUp();
                 } else {
                     evalNewLocationUp();
                 }
@@ -654,9 +644,9 @@ public class Labyr4 extends MainLabyrinth {
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 nextActionID = 0;
-                Erscheinen(Ausgang == 6);
+                appear(Ausgang == 6);
                 if (mainFrame.actions[235]) {
-                    BludLocationDown();
+                    bludLocationDown();
                 } else {
                     evalNewLocationDown();
                 }

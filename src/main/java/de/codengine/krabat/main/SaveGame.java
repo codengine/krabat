@@ -34,7 +34,7 @@ import java.util.TimeZone;
 
 public class SaveGame extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(SaveGame.class);
-    private boolean Paintcall = false;
+    private boolean paintCall = false;
 
     private final GenericPoint pLO;
     private GenericImage saveScreen;
@@ -54,7 +54,7 @@ public class SaveGame extends MainAnim {
     private int selected = -1;
     private int unselected = -1;
 
-    private final SavegameData[] Dir;
+    private final SavegameData[] dir;
     private SavegameData currentSavegame;
     private GenericImage actualImage;
 
@@ -69,31 +69,31 @@ public class SaveGame extends MainAnim {
 
         pLO = new GenericPoint(31, 31);
 
-        InitRec();
+        initRec();
 
         // Rechtecke im Inventar-Fenster festlegen
         brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
-        brPfeil = mainFrame.inventory.brPfeill;
-        arrow = mainFrame.inventory.Pfeill;
-        downArrow = mainFrame.inventory.DPfeill;
+        brPfeil = mainFrame.inventory.brArrowLeft;
+        arrow = mainFrame.inventory.arrowLeft;
+        downArrow = mainFrame.inventory.arrowLeftDisabled;
 
         // Spielstaende laden
-        Dir = new SavegameData[7];
+        dir = new SavegameData[7];
         for (int i = 49; i <= 54; ++i) {
-            Dir[i - 48] = new SavegameData(mainFrame);
-            Dir[i - 48].GetSavedSpiel(i - 48);
+            dir[i - 48] = new SavegameData(mainFrame);
+            dir[i - 48].getSavedGame(i - 48);
         }
 
         // aktuellen Spielstand (nicht komplett!!) erzeugen
-        GetActualSpielstand();
+        getActualSavegame();
 
         mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // je nach Sprache init vornehmen
-    private void InitRec() {
+    private void initRec() {
         // Bilder rein
         saveScreen = getPicture("gfx/mainmenu/save-menu.png", true);
         saveButton = getPicture("gfx/mainmenu/save-button.png", true);
@@ -102,14 +102,14 @@ public class SaveGame extends MainAnim {
         int xOffset = 310 - ((saveButton.getWidth() - 179) / 2);
         int baseX = pLO.x + xOffset;
         int baseY = pLO.y + 327;
-        brSaveButton = new BorderRect(baseX, baseY,baseX + saveButton.getWidth(), baseY + saveButton.getHeight());
+        brSaveButton = new BorderRect(baseX, baseY, baseX + saveButton.getWidth(), baseY + saveButton.getHeight());
         empty = getPicture("gfx/mainmenu/leerzelle.png");
         actualImage = mainFrame.saveImage;
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintSpeichern(GenericDrawingContext g) {
+    public void paintSaveGame(GenericDrawingContext g) {
 
         // Speichern - Background zeichnen
         String outputText;
@@ -118,15 +118,15 @@ public class SaveGame extends MainAnim {
             g.setClip(0, 0, 1284, 484);
             g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
             g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
-            Paintcall = true;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
 
             // Datum und GenericImage jedes Spielstandes anzeigen
             for (int i = 1; i <= 6; ++i) {
-                GenericPoint outputTextPos = GetCurrentXY(i - 1);
-                if (Dir[i].Location != 0) {
-                    outputText = Dir[i].ConvertTime();
-                    g.drawImage(Dir[i].DarkPicture, outputTextPos.x + mainFrame.scrollX + 1,
+                GenericPoint outputTextPos = getCurrentXY(i - 1);
+                if (dir[i].location != 0) {
+                    outputText = dir[i].convertTime();
+                    g.drawImage(dir[i].darkImage, outputTextPos.x + mainFrame.scrollX + 1,
                             outputTextPos.y + mainFrame.scrollY + 1);
                     outputTextPos.y += 87;
                     mainFrame.imageFont.drawString(g, outputText, outputTextPos.x + mainFrame.scrollX,
@@ -141,32 +141,32 @@ public class SaveGame extends MainAnim {
         // Testen, ob nach Save over Existing gespeichert werden darf
         if (saveIsValid) {
             saveIsValid = false;
-            currentSavegame.Save(selected + 1);
-            Deactivate();
+            currentSavegame.save(selected + 1);
+            deactivate();
             return;
         }
 
         // Ist ein Feld weg vom Cursor ? Dann roten Rahmen weg
         if (oFieldActive >= 0) {
             g.setColor(inactive);
-            GenericPoint pTemp = GetCurrentXY(oFieldActive);
+            GenericPoint pTemp = getCurrentXY(oFieldActive);
             g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 119, 89);
             oFieldActive = -1;
         }
 
         // Ist ein Feld unter Cursor ? Dann roten Rahmen drum
         if (nFieldActive >= 0) {
-            g.setColor(GenericColor.red);
-            GenericPoint pTemp = GetCurrentXY(nFieldActive);
+            g.setColor(GenericColor.RED);
+            GenericPoint pTemp = getCurrentXY(nFieldActive);
             g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 119, 89);
             oFieldActive = nFieldActive;
         }
 
         // Demarkiertes Feld mit richtigem Geisterimage �berpinseln und Datum Korrigieren!
         if (unselected != -1) {
-            GenericPoint pTemp = GetCurrentXY(unselected);
-            if (Dir[unselected + 1].Location != 0) {
-                g.drawImage(Dir[unselected + 1].DarkPicture,
+            GenericPoint pTemp = getCurrentXY(unselected);
+            if (dir[unselected + 1].location != 0) {
+                g.drawImage(dir[unselected + 1].darkImage,
                         pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
             } else {
                 g.drawImage(empty, pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
@@ -174,8 +174,8 @@ public class SaveGame extends MainAnim {
             pTemp.y += 87;
             g.setClip(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY + 4, 110, 20);
             g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
-            if (Dir[unselected + 1].Location != 0) {
-                outputText = Dir[unselected + 1].ConvertTime();
+            if (dir[unselected + 1].location != 0) {
+                outputText = dir[unselected + 1].convertTime();
                 mainFrame.imageFont.drawString(g, outputText, pTemp.x + mainFrame.scrollX,
                         pTemp.y + mainFrame.scrollY, 0xffff0000);
             }
@@ -185,12 +185,12 @@ public class SaveGame extends MainAnim {
 
         // Markiertes Feld mit richtigem GenericImage �berpinseln und neues Datum hinzufuegen!
         if (selected != -1) {
-            GenericPoint pTemp = GetCurrentXY(selected);
-            g.drawImage(currentSavegame.Picture, pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
+            GenericPoint pTemp = getCurrentXY(selected);
+            g.drawImage(currentSavegame.image, pTemp.x + mainFrame.scrollX + 1, pTemp.y + mainFrame.scrollY + 1);
             pTemp.y += 87;
             g.setClip(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY + 4, 110, 20);
             g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
-            outputText = currentSavegame.ConvertTime();
+            outputText = currentSavegame.convertTime();
             mainFrame.imageFont.drawString(g, outputText, pTemp.x + mainFrame.scrollX,
                     pTemp.y + mainFrame.scrollY, 0xffff0000);
             g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
@@ -206,9 +206,9 @@ public class SaveGame extends MainAnim {
                 break;
             case 2:
                 GenericRectangle tep = g.getClipBounds();
-                g.setClip(brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY,
-                        brSaveButton.ru_point.x - brSaveButton.lo_point.x + mainFrame.scrollX,
-                        brSaveButton.ru_point.y - brSaveButton.lo_point.y + mainFrame.scrollY);
+                g.setClip(brSaveButton.topLeftPoint.x + mainFrame.scrollX, brSaveButton.topLeftPoint.y + mainFrame.scrollY,
+                        brSaveButton.bottomRightPoint.x - brSaveButton.topLeftPoint.x + mainFrame.scrollX,
+                        brSaveButton.bottomRightPoint.y - brSaveButton.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(saveScreen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 g.setClip(tep);
                 break;
@@ -228,10 +228,10 @@ public class SaveGame extends MainAnim {
                 break;
             case 2:
                 GenericRectangle tepm = g.getClipBounds();
-                g.setClip(brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY,
-                        brSaveButton.ru_point.x - brSaveButton.lo_point.x + mainFrame.scrollX,
-                        brSaveButton.ru_point.y - brSaveButton.lo_point.y + mainFrame.scrollY);
-                g.drawImage(saveButton, brSaveButton.lo_point.x + mainFrame.scrollX, brSaveButton.lo_point.y + mainFrame.scrollY);
+                g.setClip(brSaveButton.topLeftPoint.x + mainFrame.scrollX, brSaveButton.topLeftPoint.y + mainFrame.scrollY,
+                        brSaveButton.bottomRightPoint.x - brSaveButton.topLeftPoint.x + mainFrame.scrollX,
+                        brSaveButton.bottomRightPoint.y - brSaveButton.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(saveButton, brSaveButton.topLeftPoint.x + mainFrame.scrollX, brSaveButton.topLeftPoint.y + mainFrame.scrollY);
                 g.setClip(tepm);
                 break;
             default:
@@ -253,46 +253,46 @@ public class SaveGame extends MainAnim {
         GenericPoint pTemp = e.getPoint();
 
         // bei Click Ausserhalb zurueck ins Spiel
-        if (!brGesamt.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (!brGesamt.isPointInRect(pTemp)) {
+            deactivate();
             mainFrame.whatScreen = ScreenType.NONE;
             return;
         }
 
         // bei Pfeil links verlassen
-        if (brPfeil.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (brPfeil.isPointInRect(pTemp)) {
+            deactivate();
             return;
         }
 
         // Bei Speichern und erlaubt speichern
-        if (brSaveButton.IsPointInRect(pTemp) && selected != -1) {
-            if (Dir[selected + 1].Location != 0) {
+        if (brSaveButton.isPointInRect(pTemp) && selected != -1) {
+            if (dir[selected + 1].location != 0) {
                 // Sicherheitsabfrage aktivieren
-                mainFrame.exitGame.Activate(3);
+                mainFrame.exitGame.activate(3);
                 return;
             }
-            currentSavegame.Save(selected + 1);
-            Deactivate();
+            currentSavegame.save(selected + 1);
+            deactivate();
             return;
         }
 
         // bei Klick auf Spielstand aktuellen Spielstand darueberzeichnen
         for (int i = 0; i <= 5; ++i) {
-            if (GetCurrentRect(i).IsPointInRect(pTemp)) {
+            if (getCurrentRect(i).isPointInRect(pTemp)) {
                 if (selected != i) {
                     selected = i;
                 }
                 if (mainFrame.isDoubleClick) {
 
                     // Bei Doppelklick sofort speichern
-                    if (Dir[selected + 1].Location != 0) {
+                    if (dir[selected + 1].location != 0) {
                         // Sicherheitsabfrage aktivieren
-                        mainFrame.exitGame.Activate(3);
+                        mainFrame.exitGame.activate(3);
                         return;
                     }
-                    currentSavegame.Save(selected + 1);
-                    Deactivate();
+                    currentSavegame.save(selected + 1);
+                    deactivate();
                     return;
                 }
                 mainFrame.repaint();
@@ -305,23 +305,23 @@ public class SaveGame extends MainAnim {
         // roten Rahmen zum Umranden festlegen
         nFieldActive = -1;
         for (int i = 0; i < 6; i++) {
-            if (GetCurrentRect(i).IsPointInRect(pTemp)) {
+            if (getCurrentRect(i).isPointInRect(pTemp)) {
                 nFieldActive = i;
             }
         }
 
         // Menueitems fuer Highlight festlegen
         menuItem = 0;
-        if (brPfeil.IsPointInRect(pTemp)) {
+        if (brPfeil.isPointInRect(pTemp)) {
             menuItem = 1;
         }
-        if (brSaveButton.IsPointInRect(pTemp) && selected != -1) {
+        if (brSaveButton.isPointInRect(pTemp) && selected != -1) {
             menuItem = 2;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             mainFrame.setCursor(mainFrame.cursorNormal);
             return;
         }
@@ -341,22 +341,22 @@ public class SaveGame extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
+        int key = e.getKeyCode();
 
         // Bei ESCAPE verlassen
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
         }
     }
 
 
     // Deaktivieren /////////
-    private void Deactivate() {
+    private void deactivate() {
         menuItem = 0;
         nFieldActive = -1;
         mainFrame.isClipSet = false;
         mainFrame.destructLocation(103);
-        if (mainFrame.mainMenu.MMactive) {
+        if (mainFrame.mainMenu.mmActive) {
             mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {
             mainFrame.whatScreen = ScreenType.NONE;
@@ -365,29 +365,29 @@ public class SaveGame extends MainAnim {
     }
 
     // Berechnungsroutine Spielstandsfensternummer - X/Y-Koordinaten//////////////
-    private BorderRect GetCurrentRect(int Number) {
-        GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return new BorderRect(Pleftup.x, Pleftup.y, Pleftup.x + 120, Pleftup.y + 90);
+    private BorderRect getCurrentRect(int number) {
+        GenericPoint topLeft = new GenericPoint(getCurrentXY(number));
+        return new BorderRect(topLeft.x, topLeft.y, topLeft.x + 120, topLeft.y + 90);
     }
 
-    private GenericPoint GetCurrentXY(int Number) {
-        GenericPoint Pleftup = new GenericPoint();
-        Pleftup.x = 117 + Number % 3 * 142;
-        Pleftup.y = 89 + Number / 3 * 112;
-        return Pleftup;
+    private GenericPoint getCurrentXY(int number) {
+        GenericPoint topLeft = new GenericPoint();
+        topLeft.x = 117 + number % 3 * 142;
+        topLeft.y = 89 + number / 3 * 112;
+        return topLeft;
     }
 
-    private void GetActualSpielstand() {
+    private void getActualSavegame() {
         // Auslesen des Datums vorbereiten
-        GregorianCalendar Kal = new GregorianCalendar();
-        Kal.setTimeZone(TimeZone.getTimeZone("ECT"));
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeZone(TimeZone.getTimeZone("ECT"));
 
         // erzeugt das Icon fuer den im Spiel aktuellen Spielstand
         int[] tempp = new int[10593];
         GenericToolkit.getDefaultToolkit().grabPixelsFromImage(actualImage, 0, 0, 118, 88, tempp, 0, 118);
 
         // erzeugt den aktuellen Spielstand (nicht komplett!!)
-        currentSavegame = new SavegameData(mainFrame, tempp, Kal.get(Calendar.DAY_OF_MONTH), Kal.get(Calendar.MONTH) + 1,
-                Kal.get(Calendar.YEAR));
+        currentSavegame = new SavegameData(mainFrame, tempp, calendar.get(Calendar.DAY_OF_MONTH), calendar.get(Calendar.MONTH) + 1,
+                calendar.get(Calendar.YEAR));
     }
 }

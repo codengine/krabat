@@ -31,23 +31,23 @@ public class GenericRectangle {
     }
 
     public int getX() {
-        return rectangleImpl.lo_point.x;
+        return rectangleImpl.topLeftPoint.x;
     }
 
     public int getY() {
-        return rectangleImpl.lo_point.y;
+        return rectangleImpl.topLeftPoint.y;
     }
 
     public int getWidth() {
-        return rectangleImpl.ru_point.x - rectangleImpl.lo_point.x;
+        return rectangleImpl.bottomRightPoint.x - rectangleImpl.topLeftPoint.x;
     }
 
     public int getHeight() {
-        return rectangleImpl.ru_point.y - rectangleImpl.lo_point.y;
+        return rectangleImpl.bottomRightPoint.y - rectangleImpl.topLeftPoint.y;
     }
 
     public boolean contains(GenericPoint pTemp) {
-        return rectangleImpl.IsPointInRect(pTemp);
+        return rectangleImpl.isPointInRect(pTemp);
     }
 
 }

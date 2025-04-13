@@ -52,7 +52,7 @@ public class Pig2 extends MainAnim {
         swinjo_look = new GenericImage[5];
         swinjo_dance = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         Verhinderlook = MAX_VERHINDERLOOK;
         Verhinderdance = MAX_VERHINDERDANCE;
@@ -60,7 +60,7 @@ public class Pig2 extends MainAnim {
         this.Posit = Posit;
     }
 
-    private void InitImages() {
+    private void initImages() {
         swinjo_look[0] = getPicture("gfx/most/swino2.png");
         swinjo_look[1] = getPicture("gfx/most/swino2a.png");
         swinjo_look[2] = getPicture("gfx/most/swino2b.png");
@@ -179,7 +179,7 @@ public class Pig2 extends MainAnim {
             int zwzfz = (int) (Math.random() * 4.99);
             zwzfz += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/swino" + (char) zwzfz + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/swino" + (char) zwzfz + ".wav");
         }
     }
 }    

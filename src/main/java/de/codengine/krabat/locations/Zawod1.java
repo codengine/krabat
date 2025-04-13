@@ -108,7 +108,7 @@ public class Zawod1 extends MainLocation {
 
         floete = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         ptack1 = new IntroHomeBird(mainFrame, 1150, 10);
         ptack2 = new IntroHomeBird(mainFrame, 1250, 15);
@@ -124,11 +124,11 @@ public class Zawod1 extends MainLocation {
         mainFrame.isClipSet = false;
 
         mainFrame.krabat.setPos(new GenericPoint(128, 352));
-        mainFrame.krabat.SetFacing(3);
+        mainFrame.krabat.setFacing(3);
 
-        mainFrame.krabat.maxx = 402;
-        mainFrame.krabat.zoomf = 2.32f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 402;
+        mainFrame.krabat.zoomFactor = 2.32f;
+        mainFrame.krabat.defaultScale = 0;
 
         offImage = GenericToolkit.getDefaultToolkit().createImage(250, 200);
         offGraphics = offImage.getGraphics();
@@ -139,7 +139,7 @@ public class Zawod1 extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         rapaki = getPicture("gfx/intro/rap100.png");
         domal = getPicture("gfx/doma/dom-l.png");
         domar = getPicture("gfx/doma/dom-r.png");
@@ -215,7 +215,7 @@ public class Zawod1 extends MainLocation {
             // Wiederherstellen, wenn Mainmenu aufgerufen
             if (!mainFrame.isClipSet) {
                 mainFrame.isClipSet = true;
-                Cursorform = 200;
+                cursorShape = 200;
                 mainFrame.isAnimRunning = true;
                 mainFrame.scrollX = 0;
                 mainFrame.scrollY = 0;
@@ -224,7 +224,7 @@ public class Zawod1 extends MainLocation {
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 if (!playing) {
                     playing = true;
-                    mainFrame.soundPlayer.PlayFile("gamesound.wav"); // passiert nicht mehr,nur Gag
+                    mainFrame.soundPlayer.playFile("gamesound.wav"); // passiert nicht mehr,nur Gag
                 }
             }
 
@@ -234,7 +234,7 @@ public class Zawod1 extends MainLocation {
 
                 GenericAlphaComposite ac = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, 1);
                 g2.setComposite(ac);
-                g2.setColor(GenericColor.black);
+                g2.setColor(GenericColor.BLACK);
                 g2.fillRect(0, 0, 250, 200);
 
                 float fuckhelp = Help;
@@ -256,19 +256,19 @@ public class Zawod1 extends MainLocation {
                 g.setClip(0, 0, 644, 484);
                 g.clearRect(0, 170, 640, 180);
                 g.drawImage(rapaki, 205, 150);
-                vogel1.Flieg(g);
-                vogel2.Flieg(g);
-                boolean ende = vogel3.Flieg(g);
+                vogel1.doFly(g);
+                vogel2.doFly(g);
+                boolean ende = vogel3.doFly(g);
                 if (!ende) {
                     nextActionID = 1;
                 }
 
                 // hier den Sound eval.
                 if (++Counter == 30) {
-                    mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
+                    mainFrame.soundPlayer.playFile("sfx/rapak1.wav");
                 }
                 if (Counter == 60) {
-                    mainFrame.soundPlayer.PlayFile("sfx/rapak2.wav");
+                    mainFrame.soundPlayer.playFile("sfx/rapak2.wav");
                 }
             }
 
@@ -277,7 +277,7 @@ public class Zawod1 extends MainLocation {
                 GenericDrawingContext2D g3 = offGraphics.get2DContext();
                 GenericAlphaComposite ad = GenericAlphaComposite.getInstance(GenericAlphaComposite.SRC_OVER, 1);
                 g3.setComposite(ad);
-                g3.setColor(GenericColor.black);
+                g3.setColor(GenericColor.BLACK);
                 g3.fillRect(0, 0, 250, 200);
 
                 float fhelp = Help;
@@ -301,7 +301,7 @@ public class Zawod1 extends MainLocation {
             if (!mainFrame.isClipSet) {
                 g.setClip(0, 0, 644, 484);
                 mainFrame.isClipSet = true;
-                Cursorform = 200;
+                cursorShape = 200;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
@@ -325,7 +325,7 @@ public class Zawod1 extends MainLocation {
             // Textausgabe
             if (!Objects.equals(outputText, "")) {
                 g.setClip(0, 0, 644, 484);
-                mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[13]);
+                mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[13]);
             }
 
             // Textausgabezeit mit talkCount realisieren
@@ -351,7 +351,7 @@ public class Zawod1 extends MainLocation {
             // Wiederherstellen, wenn Exit aufgerufen
             if (!mainFrame.isClipSet) {
                 mainFrame.isClipSet = true;
-                Cursorform = 200;
+                cursorShape = 200;
                 mainFrame.isAnimRunning = true;
                 if (setScroll) {
                     setScroll = false;
@@ -380,12 +380,12 @@ public class Zawod1 extends MainLocation {
                 g.drawImage(kij, 80, 325);
                 evalKrabat(g);
                 g.setClip(0, 0, 900, 250);
-                ptack1.Flieg(g);
+                ptack1.doFly(g);
                 mainFrame.scrollX -= 1;
                 if (mainFrame.scrollX < 0) {
                     mainFrame.scrollX = 0;
                 }
-                if (!ptack2.Flieg(g) && mainFrame.scrollX == 0) {
+                if (!ptack2.doFly(g) && mainFrame.scrollX == 0) {
                     IntroStep++;
                 }
                 evalSound();
@@ -396,12 +396,9 @@ public class Zawod1 extends MainLocation {
             g.drawImage(sky, mainFrame.scrollX / 10, 0);
             g.drawImage(domal, 0, 0);
             g.drawImage(domar, 640, 0);
-            gans1.BewegeGans(g);
-            gans2.BewegeGans(g);
-            gans3.BewegeGans(g);
-
-// 		if (FloetenSpielZeit < 300) FloetenSpielZeit++; // Floete nur 1x waehrend repaint erhoehen
-// 		System.out.println (System.currentTimeMillis());
+            gans1.moveGoose(g);
+            gans2.moveGoose(g);
+            gans3.moveGoose(g);
 
             evalKrabat(g);
 
@@ -429,9 +426,9 @@ public class Zawod1 extends MainLocation {
             nextActionID = IntroStep;
 
             if (IntroStep < 102) {
-                Farb = FarbenArray[13];
+                Farb = COLORS[13];
             } else {
-                Farb = FarbenArray[1];
+                Farb = COLORS[1];
             }
 
             if (IntroStep == 106) {
@@ -440,7 +437,7 @@ public class Zawod1 extends MainLocation {
         }
 
         if (skipActionID != 0 || nextActionID != 0) {
-            DoAction();
+            doAction();
         }
     }
 
@@ -463,7 +460,6 @@ public class Zawod1 extends MainLocation {
                         }
                     }
                     g.drawImage(floete[floetenIndex], 103, 316);
-                    // System.out.print (FloetenSpielZeit + " ");
                     break;
                 }  // ansonsten gehts jetzt mit diesen cases weiter (denken)
 
@@ -524,13 +520,13 @@ public class Zawod1 extends MainLocation {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         if (mainFrame.isAnimRunning) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
         } else {
-            if (Cursorform != 0) {
-                Cursorform = 0;
+            if (cursorShape != 0) {
+                cursorShape = 0;
                 mainFrame.setCursor(mainFrame.cursorNormal);
             }
         }
@@ -551,14 +547,6 @@ public class Zawod1 extends MainLocation {
         int Taste = e.getKeyCode();
         if (Taste == GenericKeyEvent.VK_ESCAPE) {
             // Disabled - kein Escape im Intro
-                /*if (IntroStep < 10)
-                  {
-                  mainFrame.talkCount = 1;
-                  TalkPause = 0;
-                  skipActionID = 10;
-                  mainFrame.repaint();
-                  return;
-                  }	*/
 
             if (IntroStep > 9 && IntroStep < 100) {
                 mainFrame.talkCount = 1;
@@ -607,12 +595,12 @@ public class Zawod1 extends MainLocation {
             int zweiteZahl = (int) (Math.random() * 1.9);
             zweiteZahl += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/rapak" + (char) zweiteZahl + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/rapak" + (char) zweiteZahl + ".wav");
         }
     }
 
     // Aktionen, die ausgefuehrt werden muessen /////////////////////////////
-    private void DoAction() {
+    private void doAction() {
         // SkipActionID hat Vorrang
         if (skipActionID != 0) {
             switch (skipActionID) {
@@ -644,7 +632,7 @@ public class Zawod1 extends MainLocation {
                     skipActionID = 0;
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
-                    Cursorform = 200;
+                    cursorShape = 200;
                     break;
 
                 case 120:
@@ -655,7 +643,7 @@ public class Zawod1 extends MainLocation {
                     mainFrame.whatScreen = ScreenType.LOAD_GAME;
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
-                    Cursorform = 200;
+                    cursorShape = 200;
                     break;
 
                 case 200:
@@ -674,7 +662,6 @@ public class Zawod1 extends MainLocation {
                     log.error("Wrong SkipAction !! skipActionID = {}", skipActionID);
             }
         } else {
-            // System.out.println ("A-ID" + nextActionID);
 
             switch (nextActionID) {
                 case 1:
@@ -682,11 +669,6 @@ public class Zawod1 extends MainLocation {
                     IntroStep++;
                     nextActionID = 0;
                     break;
-
-// 		    case 3:
-// 			// 1 Repaint dazwischen platzlassen, damit "Rapaki" verschwindet
-// 			nextActionID = 4;
-// 			break;
 
                 case 3:
                     // Von Rapaki auf Bautzen umschalten
@@ -698,9 +680,8 @@ public class Zawod1 extends MainLocation {
 
                 case 10:
                     // Einfuehrungstext
-                    // mainFrame.player.Play ("2", -133600);
-                    outputText = Start.stringManager.getTranslation("Zawod1_13");
-                    outputTextPos = mainFrame.imageFont.CenterText(outputText, MittelPunkt);
+                    outputText = Start.STRING_MANAGER.getTranslation("Zawod1_13");
+                    outputTextPos = mainFrame.imageFont.centerText(outputText, MittelPunkt);
                     mainFrame.talkCount += 50; // Zeit fuer Bautzen-Bild kuenstlich verlaengern
                     TalkPause = 5;
                     IntroStep++;
@@ -715,8 +696,8 @@ public class Zawod1 extends MainLocation {
 
                 case 12:
                     // Text ueber Situation
-                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_1");
-                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 450));
+                    outputText = mainFrame.imageFont.splitTextKey("Zawod1_1");
+                    outputTextPos = mainFrame.imageFont.centerText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -730,8 +711,8 @@ public class Zawod1 extends MainLocation {
 
                 case 14:
                     // Text ueber die dicken Gutsherren
-                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_2");
-                    outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320, 450));
+                    outputText = mainFrame.imageFont.splitTextKey("Zawod1_2");
+                    outputTextPos = mainFrame.imageFont.centerText(outputText, new GenericPoint(320, 450));
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -753,8 +734,8 @@ public class Zawod1 extends MainLocation {
 
                 case 101:
                     // Text ueber Krabat (Erzaehler)
-                    outputText = mainFrame.imageFont.TeileTextKey("Zawod1_3");
-                    outputTextPos = mainFrame.imageFont.CenterText(outputText, MittelPunkt);
+                    outputText = mainFrame.imageFont.splitTextKey("Zawod1_3");
+                    outputTextPos = mainFrame.imageFont.centerText(outputText, MittelPunkt);
                     IntroStep++;
                     TalkPause = 5;
                     break;
@@ -765,8 +746,8 @@ public class Zawod1 extends MainLocation {
 
                 case 103:
                     // Text von Krabat denkend
-                    outputText = mainFrame.imageFont.TeileTextKey(TEXTS4[line4]);
-                    outputTextPos = mainFrame.imageFont.KrabatText(outputText);
+                    outputText = mainFrame.imageFont.splitTextKey(TEXTS4[line4]);
+                    outputTextPos = mainFrame.imageFont.krabatText(outputText);
                     line4++;
                     if (line4 == TEXTS4.length) {
                         IntroStep++;
@@ -779,8 +760,8 @@ public class Zawod1 extends MainLocation {
                 case 104:
                     // Text von Krabat redend
                     mainFrame.isClipSet = false;
-                    outputText = Start.stringManager.getTranslation("Zawod1_14");
-                    outputTextPos = mainFrame.imageFont.KrabatText(outputText);
+                    outputText = Start.STRING_MANAGER.getTranslation("Zawod1_14");
+                    outputTextPos = mainFrame.imageFont.krabatText(outputText);
                     IntroStep++;
                     TalkPause = 3;
                     break;

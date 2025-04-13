@@ -59,17 +59,17 @@ public class Zdzary2 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 449;
-        mainFrame.krabat.zoomf = 1.66f;
-        mainFrame.krabat.defScale = -25;
+        mainFrame.krabat.maxX = 449;
+        mainFrame.krabat.zoomFactor = 1.66f;
+        mainFrame.krabat.defaultScale = -25;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(77, 609, 126, 609, 454, 479));
@@ -80,16 +80,16 @@ public class Zdzary2 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(33, 50, 17, 19, 290, 314));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(6);
+        mainFrame.pathFinder.clearMatrix(6);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(0, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(0, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -97,13 +97,13 @@ public class Zdzary2 extends MainLocation {
             case 83:
                 // von Rapak aus
                 mainFrame.krabat.setPos(new GenericPoint(270, 467));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/zdzary/zdzary.png");
     }
 
@@ -121,7 +121,7 @@ public class Zdzary2 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -132,26 +132,26 @@ public class Zdzary2 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -178,7 +178,7 @@ public class Zdzary2 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -188,17 +188,17 @@ public class Zdzary2 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -212,7 +212,7 @@ public class Zdzary2 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -232,24 +232,24 @@ public class Zdzary2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Durje
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 155;
                     pTemp = Pdurje;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -259,7 +259,7 @@ public class Zdzary2 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -271,77 +271,69 @@ public class Zdzary2 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Rapak gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // nach oben raus
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
-
-                    // Doppelclick ist hier unpassend
-          /*if (mainFrame.dClick == true)
-          {
-            mainFrame.krabat.StopWalking();
-            mainFrame.repaint();
-            return;
-          } */
                 }
 
                 // Durje ansehen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pdurje;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Rapak Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // oberen Ausgang Anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Durje mitnehmen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -352,8 +344,8 @@ public class Zdzary2 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -362,51 +354,51 @@ public class Zdzary2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    durjeRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    durjeRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (durjeRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (durjeRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -439,7 +431,7 @@ public class Zdzary2 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -447,7 +439,7 @@ public class Zdzary2 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -455,26 +447,26 @@ public class Zdzary2 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -494,7 +486,7 @@ public class Zdzary2 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -503,17 +495,17 @@ public class Zdzary2 extends MainLocation {
 
             case 2:
                 // Durje anschauen
-                KrabatSagt("Zdzary2_1", fDurje, 3, 0, 0);
+                krabatSays("Zdzary2_1", fDurje, 3, 0, 0);
                 break;
 
             case 55:
                 // Durje mitnehmen
-                KrabatSagt("Zdzary2_2", fDurje, 3, 0, 0);
+                krabatSays("Zdzary2_2", fDurje, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Rapak
-                NeuesBild(83, 93);
+                createNewLocation(83, 93);
                 break;
 
             case 101:
@@ -522,16 +514,16 @@ public class Zdzary2 extends MainLocation {
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 int zfz = (int) (Math.random() * 100);
                 if (zfz > 50) {
-                    mainFrame.soundPlayer.PlayFile("sfx/pos.wav");
+                    mainFrame.soundPlayer.playFile("sfx/pos.wav");
                 } else {
-                    mainFrame.soundPlayer.PlayFile("sfx/pos2.wav");
+                    mainFrame.soundPlayer.playFile("sfx/pos2.wav");
                 }
                 nextActionID = 105;
                 break;
 
             case 105:
                 // Krabat hat Angst vor dem boesen Hund
-                KrabatSagt("Zdzary2_3", fExitUp, 1, 2, 110);
+                krabatSays("Zdzary2_3", fExitUp, 1, 2, 110);
                 break;
 
             case 110:
@@ -544,7 +536,7 @@ public class Zdzary2 extends MainLocation {
 
             case 155:
                 // Tuer - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             default:

@@ -56,8 +56,6 @@ public class Haska extends MainLocation {
             = new BorderRect(33, 11, 110, 127);
     private static final BorderRect wino
             = new BorderRect(452, 396, 509, 452);
-    // private static final borderrect komedHaus
-    //     = new borderrect (115, 135, 204, 365);
     private static final BorderRect seilHaken
             = new BorderRect(60, 132, 90, 425);
 
@@ -90,20 +88,20 @@ public class Haska extends MainLocation {
 
         krabatThrow = new KrabatThrow(mainFrame);
 
-        mainFrame.krabat.maxx = 424;
-        mainFrame.krabat.zoomf = 1.48f;
-        mainFrame.krabat.defScale = -50;
+        mainFrame.krabat.maxX = 424;
+        mainFrame.krabat.zoomFactor = 1.48f;
+        mainFrame.krabat.defaultScale = -50;
 
-        krabatThrow.maxx = mainFrame.krabat.maxx;
-        krabatThrow.zoomf = mainFrame.krabat.zoomf;
-        krabatThrow.defScale = mainFrame.krabat.defScale;
+        krabatThrow.maxx = mainFrame.krabat.maxX;
+        krabatThrow.zoomf = mainFrame.krabat.zoomFactor;
+        krabatThrow.defScale = mainFrame.krabat.defaultScale;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -111,11 +109,11 @@ public class Haska extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(193, 400, 145, 443, 420, 479));
 
-        mainFrame.pathFinder.ClearMatrix(2);
+        mainFrame.pathFinder.clearMatrix(2);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -123,11 +121,11 @@ public class Haska extends MainLocation {
             case 120: // von Kuchnja aus
             case 132: // von Kuchnjaopen dasselbe
                 mainFrame.krabat.setPos(new GenericPoint(400, 420));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
             case 122: // von Spaniska aus
                 mainFrame.krabat.setPos(new GenericPoint(180, 460));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 if (!mainFrame.actions[519]) {
                     setAnim = true;
                     mainFrame.actions[519] = true;
@@ -135,13 +133,13 @@ public class Haska extends MainLocation {
                 break;
             case 126: // von Murja aus
                 mainFrame.krabat.setPos(new GenericPoint(322, 370));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/haska/haska.png");
         ohneSeil = getPicture("gfx-dd/haska/haska2.png");
 
@@ -166,7 +164,7 @@ public class Haska extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
@@ -203,11 +201,11 @@ public class Haska extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // hier die Extrawurst fuer den Hakenwurf
         if (krabatWirft) {
@@ -215,16 +213,16 @@ public class Haska extends MainLocation {
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -246,22 +244,13 @@ public class Haska extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-        /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-          {
-          g.drawImage (weiden2, 84, 221, null);
-          }*/
-
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -271,24 +260,24 @@ public class Haska extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // wenn automatische Anim, dann jetzt beginnen
         if (setAnim) {
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             setAnim = false;
             nextActionID = 27;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -322,24 +311,24 @@ public class Haska extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Enterhaken mit Fenster benutzen
-                if (fenster.IsPointInRect(pTemp)) {
+                if (fenster.isPointInRect(pTemp)) {
                     // kotwica + lajna
                     nextActionID = mainFrame.whatItem == 39 ? 20 : 155;
                     pTemp = pFenster;
                 }
 
                 // Helm mit wein fuellen
-                if (wino.IsPointInRect(pTemp)) {
+                if (wino.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 43: // Friedhelm
                             nextActionID = 30;
@@ -358,13 +347,13 @@ public class Haska extends MainLocation {
                 }
 
                 // Enterhaken am Haus Ausreden
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
+                if (seilHaken.isPointInRect(pTemp) && mainFrame.actions[519]) {
                     pTemp = pFenster;
                     nextActionID = 160;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -374,7 +363,7 @@ public class Haska extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -386,32 +375,32 @@ public class Haska extends MainLocation {
                 nextActionID = 0;
 
                 // zu Ostansicht gehen ?
-                if (ausgangStadt.IsPointInRect(pTemp)) {
+                if (ausgangStadt.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangStadt.IsPointInRect(kt)) {
+                    if (!ausgangStadt.isPointInRect(kt)) {
                         pTemp = pExitStadt;
                     } else {
                         pTemp = new GenericPoint(pExitStadt.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Kuchnja gehen ? - nicht reingehen -> Ausreden
-                if (ausgangKuchnja.IsPointInRect(pTemp)) {
+                if (ausgangKuchnja.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // gerade verlassen, wenn nahe
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangKuchnja.IsPointInRect(kt)) {
+                    if (!ausgangKuchnja.isPointInRect(kt)) {
                         pTemp = pExitKuchnja;
                     } else {
                         pTemp = new GenericPoint(pExitKuchnja.x, kt.y);
@@ -419,75 +408,69 @@ public class Haska extends MainLocation {
 
                     // nur dann Doppelklick, wenn man in die Kueche gehen kann
                     if (mainFrame.isDoubleClick && mainFrame.actions[655]) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Fenster ansehen
-                if (fenster.IsPointInRect(pTemp)) {
+                if (fenster.isPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = pFenster;
                 }
 
 
                 // Wino ansehen
-                if (wino.IsPointInRect(pTemp)) {
+                if (wino.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pWino;
                 }
 
-                // KomedHaus ansehen
-                        /*if (komedHaus.IsPointInRect (pTemp) == true) 
-                          {
-                          nextActionID = 3;
-                          }*/
-
                 // Enterhaken am Haus ansehen
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
+                if (seilHaken.isPointInRect(pTemp) && mainFrame.actions[519]) {
                     pTemp = pFenster;
                     nextActionID = 6;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wino trinken
-                if (wino.IsPointInRect(pTemp)) {
+                if (wino.isPointInRect(pTemp)) {
                     nextActionID = 2;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWino);
+                    mainFrame.pathWalker.setNewWay(pWino);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Fenster benutzen
-                if (fenster.IsPointInRect(pTemp)) {
+                if (fenster.isPointInRect(pTemp)) {
                     nextActionID = 5;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pFenster);
+                    mainFrame.pathWalker.setNewWay(pFenster);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Am Enterhaken hochklettern
-                if (seilHaken.IsPointInRect(pTemp) && mainFrame.actions[519]) {
+                if (seilHaken.isPointInRect(pTemp) && mainFrame.actions[519]) {
                     nextActionID = 101;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pFenster);
+                    mainFrame.pathWalker.setNewWay(pFenster);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangKuchnja.IsPointInRect(pTemp) ||
-                        ausgangStadt.IsPointInRect(pTemp)) {
+                if (ausgangKuchnja.isPointInRect(pTemp) ||
+                        ausgangStadt.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -498,8 +481,8 @@ public class Haska extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -508,51 +491,51 @@ public class Haska extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    fenster.IsPointInRect(pTemp) ||
-                    wino.IsPointInRect(pTemp) ||
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    fenster.isPointInRect(pTemp) ||
+                    wino.isPointInRect(pTemp) ||
                     mainFrame.actions[519] &&
-                            seilHaken.IsPointInRect(pTemp);
+                            seilHaken.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (wino.IsPointInRect(pTemp) ||
+            if (wino.isPointInRect(pTemp) ||
                     // (komedHaus.IsPointInRect (pTemp) == true) ||
-                    fenster.IsPointInRect(pTemp) ||
+                    fenster.isPointInRect(pTemp) ||
                     mainFrame.actions[519] &&
-                            seilHaken.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+                            seilHaken.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (ausgangKuchnja.IsPointInRect(pTemp) ||
-                    ausgangStadt.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (ausgangKuchnja.isPointInRect(pTemp) ||
+                    ausgangStadt.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -586,7 +569,7 @@ public class Haska extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -594,7 +577,7 @@ public class Haska extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -602,21 +585,21 @@ public class Haska extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     private void evalSound(int wein) {
@@ -626,14 +609,14 @@ public class Haska extends MainLocation {
         }
 
         if (wein == 5) {
-            mainFrame.soundPlayer.PlayFile("sfx-dd/tropf.wav");
+            mainFrame.soundPlayer.playFile("sfx-dd/tropf.wav");
         }
 
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -651,7 +634,7 @@ public class Haska extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -662,40 +645,40 @@ public class Haska extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Haska_1", fWino, 3, 0, 0);
+                        krabatSays("Haska_1", fWino, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Haska_2", fWino, 3, 0, 0);
+                        krabatSays("Haska_2", fWino, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 2:
                 // Wino benutzen
-                KrabatSagt("Haska_3", fWino, 3, 0, 0);
+                krabatSays("Haska_3", fWino, 3, 0, 0);
                 break;
 
             case 4:
                 // Fenster ansehen
-                KrabatSagt("Haska_4", fFenster, 3, 0, 0);
+                krabatSays("Haska_4", fFenster, 3, 0, 0);
                 break;
 
             case 5:
                 // versuch ins Fenster reinzukommen (benutzen)
-                KrabatSagt("Haska_5", fFenster, 3, 0, 0);
+                krabatSays("Haska_5", fFenster, 3, 0, 0);
                 break;
 
             case 6:
                 // Enterhaken am Fenster ansehen
-                KrabatSagt("Haska_6", fEnterhaken, 3, 0, 0);
+                krabatSays("Haska_6", fEnterhaken, 3, 0, 0);
                 break;
 
             case 20:
                 // Enterhaken an Fenster schmeissen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fEnterhaken);
+                mainFrame.krabat.setFacing(fEnterhaken);
                 schnauzeWein = true;
                 Counter = 20;
                 nextActionID = 21;
@@ -718,12 +701,12 @@ public class Haska extends MainLocation {
                 if (krabatWirft) {
                     break;
                 }
-                NeuesBild(122, locationID);
+                createNewLocation(122, locationID);
                 break;
 
             case 27:
                 // Bemerkung nach Hakenwurf
-                KrabatSagt("Haska_7", fEnterhaken, 3, 0, 28);
+                krabatSays("Haska_7", fEnterhaken, 3, 0, 28);
                 break;
 
             case 28:
@@ -739,7 +722,7 @@ public class Haska extends MainLocation {
                 // Helm mit wein fuellen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 mainFrame.isInventoryCursor = false;
                 mainFrame.inventory.vInventory.removeElement(43);
                 mainFrame.inventory.vInventory.addElement(44);
@@ -756,7 +739,7 @@ public class Haska extends MainLocation {
                 }
                 mainFrame.krabat.nAnimation = 152;
                 nextActionID = 37;
-                mainFrame.soundPlayer.PlayFile("sfx-dd/tropftropf.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/tropftropf.wav");
                 Counter = 15;
                 break;
 
@@ -777,20 +760,20 @@ public class Haska extends MainLocation {
                     int zuffZahl2 = (int) (Math.random() * 2.9);
                     switch (zuffZahl2) {
                         case 0:
-                            KrabatSagt("Haska_8", fKuchnja, 3, 0, 0);
+                            krabatSays("Haska_8", fKuchnja, 3, 0, 0);
                             break;
 
                         case 1:
-                            KrabatSagt("Haska_9", fKuchnja, 3, 0, 0);
+                            krabatSays("Haska_9", fKuchnja, 3, 0, 0);
                             break;
 
                         case 2:
-                            KrabatSagt("Haska_10", fKuchnja, 3, 0, 0);
+                            krabatSays("Haska_10", fKuchnja, 3, 0, 0);
                             break;
                     }
                 } else {
                     // ab jetzt will er...
-                    NeuesBild(132, locationID);
+                    createNewLocation(132, locationID);
                 }
                 break;
 
@@ -798,7 +781,7 @@ public class Haska extends MainLocation {
                 // Gehe zu Spaniska, zuerst richtig rangehen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pAmHaken);
+                mainFrame.pathWalker.setNewWayGuaranteed(pAmHaken);
                 nextActionID = 110;
                 break;
 
@@ -806,15 +789,15 @@ public class Haska extends MainLocation {
                 // Gehe zu Murja
                 // hier unterscheiden, welche Location konstruhiert wird
                 if (mainFrame.actions[655] && !mainFrame.actions[656]) {
-                    NeuesBild(129, locationID);
+                    createNewLocation(129, locationID);
                 } else {
-                    NeuesBild(126, locationID);
+                    createNewLocation(126, locationID);
                 }
                 break;
 
             case 110:
                 // Spruch vorm hochklettern
-                KrabatSagt("Haska_11", fEnterhaken, 3, 0, 112);
+                krabatSays("Haska_11", fEnterhaken, 3, 0, 112);
                 break;
 
             case 112:
@@ -829,17 +812,17 @@ public class Haska extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                NeuesBild(122, locationID);
+                createNewLocation(122, locationID);
                 break;
 
             case 200:
                 // drasta auf wino
-                KrabatSagt("Haska_12", fWino, 3, 0, 0);
+                krabatSays("Haska_12", fWino, 3, 0, 0);
                 break;
 
             case 210:
                 // wosusk auf wino
-                KrabatSagt("Haska_13", fWino, 3, 0, 0);
+                krabatSays("Haska_13", fWino, 3, 0, 0);
                 break;
 
             default:

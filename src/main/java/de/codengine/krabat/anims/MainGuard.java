@@ -54,11 +54,9 @@ public class MainGuard extends MainAnim {
 
     private int Verhinderstand;
     private int Verhindertalk;
-    // private int Verhinderdrink;
 
     private static final int MAX_VERHINDERSTAND = 50;
     private static final int MAX_VERHINDERTALK = 2;
-    // private static final int MAX_VERHINDERDRINK = 5;
 
     public MainGuard(Start caller, boolean istCasnik, boolean isSleeping) {
         super(caller);
@@ -71,14 +69,13 @@ public class MainGuard extends MainAnim {
         this.istCasnik = istCasnik;
         this.isSleeping = isSleeping;
 
-        InitImages();
+        initImages();
 
         Verhinderstand = MAX_VERHINDERSTAND;
         Verhindertalk = MAX_VERHINDERTALK;
-        // Verhinderdrink = MAX_VERHINDERDRINK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         if (istCasnik) {
             straz_stand[0] = getPicture("gfx-dd/casnik/straznik1.png");
             straz_stand[1] = getPicture("gfx-dd/casnik/straznik1z.png");

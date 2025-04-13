@@ -30,49 +30,49 @@ import java.awt.*;
 
 public class JavaDrawingContext extends GenericDrawingContext {
 
-    private final Graphics g;
+    private final Graphics graphics;
 
-    public JavaDrawingContext(Graphics g) {
-        this.g = g;
+    public JavaDrawingContext(Graphics graphics) {
+        this.graphics = graphics;
     }
 
     @Override
     public void clearRect(int x, int y, int width, int height) {
-        g.clearRect(x, y, width, height);
+        graphics.clearRect(x, y, width, height);
     }
 
     @Override
     public void drawImage(GenericImage genericImage, int x, int y,
                           int width, int height) {
         Image image = ((JavaImage) genericImage).getImage();
-        g.drawImage(image, x, y, width, height, null);
+        graphics.drawImage(image, x, y, width, height, null);
     }
 
     @Override
     public void drawImage(GenericImage genericImage, int x, int y) {
         Image image = ((JavaImage) genericImage).getImage();
-        g.drawImage(image, x, y, null);
+        graphics.drawImage(image, x, y, null);
     }
 
     @Override
     public void drawLine(int x1, int y1, int x2, int y2) {
-        g.drawLine(x1, y1, x2, y2);
+        graphics.drawLine(x1, y1, x2, y2);
     }
 
     @Override
     public void drawRect(int x, int y, int width, int height) {
-        g.drawRect(x, y, width, height);
+        graphics.drawRect(x, y, width, height);
     }
 
     @Override
     public GenericRectangle getClipBounds() {
-        Rectangle rect = g.getClipBounds();
+        Rectangle rect = graphics.getClipBounds();
         return new GenericRectangle(rect.x, rect.y, rect.width, rect.height);
     }
 
     @Override
     public void setClip(int x, int y, int width, int height) {
-        g.setClip(x, y, width, height);
+        graphics.setClip(x, y, width, height);
     }
 
     @Override
@@ -82,12 +82,12 @@ public class JavaDrawingContext extends GenericDrawingContext {
 
     @Override
     public void setColor(GenericColor inakt) {
-        g.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
+        graphics.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
     }
 
     @Override
     public GenericDrawingContext2D get2DContext() {
-        return new JavaDrawingContext2D(g);
+        return new JavaDrawingContext2D(graphics);
     }
 
 }

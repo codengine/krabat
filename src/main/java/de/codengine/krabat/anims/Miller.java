@@ -78,17 +78,7 @@ public class Miller extends MovableMainAnim {
     private final float scaleVerhaeltnisStock = (float) COFFSET_STOCK / CHEIGHT;
 
     // Abstaende default
-    // private static final int[] CHORIZ_DIST = {6, 10, 11, 9, 10, 10, 10, 11, 11, 10};
     private static final int CVERT_DIST = 1;
-
-    // Variablen fuer Laufberechnung
-    // private static final int CLOHNENX = 49;  // Werte fuer Entscheidung, ob sich
-    // private static final int CLOHNENY = 10;  // Laufen ueberhaupt lohnt (halber Schritt)
-
-    // Variablen fuer Animationen
-    // public  int nAnimation = 0;           // ID der ggw. Animation
-    // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
-    // private int nAnimStep = 0;            // ggw. Pos in Animation
 
     // beim Zoomen veraendern
     private static final int SLOWY = 10;  // dsgl. fuer y - Richtung
@@ -116,14 +106,14 @@ public class Miller extends MovableMainAnim {
         krabat_talk_right_head = new GenericImage[4];
         krabat_talk_right_body = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         krabat_back[0] = getPicture("gfx/anims/ml3.png");
         krabat_back[1] = getPicture("gfx/anims/ml3-1.png");
         krabat_back[2] = getPicture("gfx/anims/ml3-1.png");
@@ -159,14 +149,12 @@ public class Miller extends MovableMainAnim {
         krabat_talk_left_head[0] = getPicture("gfx/anims/ml2-h1.png");
         krabat_talk_left_head[1] = getPicture("gfx/anims/ml2-h2.png");
         krabat_talk_left_head[2] = getPicture("gfx/anims/ml2-h3.png");
-        // krabat_talk_left_head[3]  = getPicture ("gfx/anims/ml2-h4.png");
         krabat_talk_left_head[3] = getPicture("gfx/anims/ml2-h5.png");
 
         krabat_talk_left_body[0] = getPicture("gfx/anims/ml2-b1.png");
         krabat_talk_left_body[1] = getPicture("gfx/anims/ml2-b2.png");
         krabat_talk_left_body[2] = getPicture("gfx/anims/ml2-b3.png");
 
-        // krabat_talk_right_head[0]  = getPicture ("gfx/anims/ml4-h1.png");
         krabat_talk_right_head[0] = getPicture("gfx/anims/ml4-h2.png");
         krabat_talk_right_head[1] = getPicture("gfx/anims/ml4-h3.png");
         krabat_talk_right_head[2] = getPicture("gfx/anims/ml4-h4.png");
@@ -187,35 +175,34 @@ public class Miller extends MovableMainAnim {
 
     // Plokarka um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        isAnimHorizontal = tmpIsAnimHorizontal;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
-        if (!horizontal)
+        if (!isAnimHorizontal)
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
-            VerschiebeY();
-            xps = txps;
-            yps = typs;
+            moveY();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 9) {
-                anim_pos = 1;
+            animPos++;
+            if (animPos == 9) {
+                animPos = 1;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeY();
+            moveY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-                // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                anim_pos = 0;
+            if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
+                setPos(walkTo);
+                animPos = 0;
                 return true;
             }
         }
@@ -224,18 +211,18 @@ public class Miller extends MovableMainAnim {
     }
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY() {
-        verschiebeYdefault(CVERT_DIST, SLOWY);
+    private void moveY() {
+        moveYdefault(CVERT_DIST, SLOWY);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
-        Thorizontal = false;
+        tmpIsAnimHorizontal = false;
 
-        if (anim_pos == 0) {
-            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        if (animPos == 0) {
+            animPos = 1;       // Animationsimage bei Neubeginn initialis.
         }
     }
 
@@ -262,27 +249,27 @@ public class Miller extends MovableMainAnim {
         }
 
         // fuer MaleIhn nur Richtung angeben, restlichen Variablen koennen dort ausgewertet werden
-        if (horizontal) {
+        if (isAnimHorizontal) {
             // nach links laufen
             if (directionX == LEFT) {
-                MaleIhn(offGraph, 9);
+                drawHim(offGraph, 9);
             }
 
             // nach rechts laufen
             if (directionX == RIGHT) {
-                MaleIhn(offGraph, 3);
+                drawHim(offGraph, 3);
             }
         } else {
             // Bei normaler Darstellung
-            if (!upsidedown) {
+            if (!upsideDown) {
                 // nach oben laufen
                 if (directionY == UP) {
-                    MaleIhn(offGraph, 12);
+                    drawHim(offGraph, 12);
                 }
 
                 // nach unten laufen
                 if (directionY == DOWN) {
-                    MaleIhn(offGraph, 6);
+                    drawHim(offGraph, 6);
                 }
             }
         }
@@ -307,31 +294,31 @@ public class Miller extends MovableMainAnim {
             }
         }
 
-        MaleIhnMitStock(offGraph, 150);
+        drawHimWithStick(offGraph, 150);
     }
 
     // hier gibt er die Karte an Krabat
     public void drawMlynkWithKarte(GenericDrawingContext offGraph) {
-        MaleIhn(offGraph, 20);
+        drawHim(offGraph, 20);
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 3:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = RIGHT;
                 break;
             case 6:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = DOWN;
                 break;
             case 9:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = LEFT;
                 break;
             case 12:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = UP;
                 break;
             default:
@@ -340,8 +327,8 @@ public class Miller extends MovableMainAnim {
     }
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
-    public int GetFacing() {
-        if (horizontal) {
+    public int getFacing() {
+        if (isAnimHorizontal) {
             return directionX == RIGHT ? 3 : 9;
         } else {
             return directionY == DOWN ? 6 : 12;
@@ -372,7 +359,7 @@ public class Miller extends MovableMainAnim {
             }
         }
 
-        int tFacing = GetFacing();
+        int tFacing = getFacing();
         if (tFacing == 12) {
             log.debug("Nach hinten kann er nicht reden !!!");
             tFacing = 9;
@@ -385,7 +372,7 @@ public class Miller extends MovableMainAnim {
 
         tFacing *= 10;
 
-        MaleIhn(offGraph, tFacing);
+        drawHim(offGraph, tFacing);
     }
 
     // hat Stock immer nach links erhoben fuers Verzaubern
@@ -400,7 +387,7 @@ public class Miller extends MovableMainAnim {
             }
         }
 
-        MaleIhnMitStock(offGraph, 180);
+        drawHimWithStick(offGraph, 180);
     }
 
     public void talkMlynkWithKijAndersrum(GenericDrawingContext offGraph, boolean stockIstImmerOben) {
@@ -421,34 +408,20 @@ public class Miller extends MovableMainAnim {
         }
 
         // Malen und gut
-        MaleIhnMitStockAndersrum(offGraph);
+        drawHimWithStickInverse(offGraph);
 
     }
 
     public GenericPoint evalMlynkTalkPoint() {
         // Hier Position des Textes berechnen
-        BorderRect temp = getRect();
-        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
+        BorderRect temp = getBoundingBox();
+        return new GenericPoint((temp.bottomRightPoint.x + temp.topLeftPoint.x) / 2, temp.topLeftPoint.y - 50);
     }
-
-    // Hojnt beim Monolog (ohne Gestikulieren)
-    /*public void describeHojnt(Graphics offGraph)
-      {
-      if (mainFrame.talkCount != 1)
-      {
-      int nTemp;
-      do
-      nTemp = (int) Math.round(Math.random()*6);
-      while ((nTemp==3)||(nTemp==4)||(nTemp==6)||(nTemp==0));
-      MaleIhn (offGraph, krabat_talk[nTemp]);
-      }
-      else drawHojnt (offGraph);
-      }*/
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int poy) {
-        return calcLeftPosDefault(pox, poy, scaleFactor);
+    protected int getLeftPos(int x, int y) {
+        return calcLeftPosDefault(x, y, scaleFactor);
     }
 
     // hier beachten, dass er einen Stock in der Hand haelt !!!!!!
@@ -459,17 +432,17 @@ public class Miller extends MovableMainAnim {
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return calcUpPosDefault(poy);
+    protected int getUpPos(int y) {
+        return calcUpPosDefault(y);
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy, defScale);
+    protected int getScale(int y) {
+        return calcScaleDefault(y, defaultScale);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen, hier mit Stock in der Hand
-    private void KrabatClipWithKij(GenericDrawingContext g, int xx, int yy) {
+    private void krabatClipWithKij(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPosWithKij(xx, yy);
         int y = getUpPos(yy);
@@ -479,15 +452,10 @@ public class Miller extends MovableMainAnim {
         int xd = 2 * (xx - x);
         int yd = yy - y;
         g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
     // Clipping-Region wird gross gesetzt, denn man weiss ja nie, ob er den Stock in der Hand haelt oder nicht
-    private void KrabatClipWithKijAndersrum(GenericDrawingContext g, int xx, int yy) {
+    private void krabatClipWithKijInverse(GenericDrawingContext g, int xx, int yy) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
         int y = getUpPos(yy);
@@ -502,49 +470,43 @@ public class Miller extends MovableMainAnim {
         int yd = yy - y;
 
         g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet, wenn er den Stock hat !!!
-    public BorderRect MlynkRectMitStock() {
-        int x = getLeftPosWithKij((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
+    public BorderRect mlynkRectWithStick() {
+        int x = getLeftPosWithKij((int) posX, (int) posY);
+        int y = getUpPos((int) posY);
+        int xd = 2 * ((int) posX - x) + x;
+        int yd = (int) posY;
         return new BorderRect(x, y, xd, yd);
     }
 
-    public BorderRect MlynkRectMitStockAndersrum() {
+    public BorderRect mlynkRectWithStickInverse() {
         // Links - oben - Korrdinaten ermitteln
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
+        int x = getLeftPos((int) posX, (int) posY);
+        int y = getUpPos((int) posY);
         // System.out.println(xx +  " " + x);
 
         // Skalierungsfaktor holen
 
-        float fScaleY = getScale((int) yps) * scaleVerhaeltnisStock;
+        float fScaleY = getScale((int) posY) * scaleVerhaeltnisStock;
 
         // Breite und Hoehe ermitteln
         int xd = x + CWIDTH_STOCK - (int) fScaleY;
-        int yd = (int) yps;
+        int yd = (int) posY;
 
         return new BorderRect(x, y, xd, yd);
     }
 
     // ganz normales Darstellen
-    private void MaleIhn(GenericDrawingContext g, int Richtung) {
+    private void drawHim(GenericDrawingContext g, int Richtung) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -575,7 +537,7 @@ public class Miller extends MovableMainAnim {
                 break;
 
             case 12: // nach hinten gehen
-                g.drawImage(krabat_back[anim_pos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
+                g.drawImage(krabat_back[animPos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
                 break;
 
             case 20: // Karte geben, nach vorn schauen
@@ -605,14 +567,14 @@ public class Miller extends MovableMainAnim {
     }
 
     // Stock nach links und immer oben
-    private void MaleIhnMitStock(GenericDrawingContext g, int Richtung) {
+    private void drawHimWithStick(GenericDrawingContext g, int Richtung) {
         // Clipping - Region setzen
-        KrabatClipWithKij(g, (int) xps, (int) yps);
+        krabatClipWithKij(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPosWithKij((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPosWithKij((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -625,7 +587,7 @@ public class Miller extends MovableMainAnim {
 
         // hier die Extrawurst, wenn er den Stock hat
         int KoerperbreiteMitStock = CWIDTH_STOCK - scale;
-        int OffsetMitStock = getLeftPos((int) xps, (int) yps) - getLeftPosWithKij((int) xps, (int) yps);
+        int OffsetMitStock = getLeftPos((int) posX, (int) posY) - getLeftPosWithKij((int) posX, (int) posY);
 
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
@@ -650,14 +612,14 @@ public class Miller extends MovableMainAnim {
     }
 
     // hier soll er den Stock nur ab und zu hochhalten
-    private void MaleIhnMitStockAndersrum(GenericDrawingContext g) {
+    private void drawHimWithStickInverse(GenericDrawingContext g) {
         // Clipping - Region setzen
-        KrabatClipWithKijAndersrum(g, (int) xps, (int) yps);
+        krabatClipWithKijInverse(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;

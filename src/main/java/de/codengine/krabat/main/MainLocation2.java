@@ -25,7 +25,7 @@ import de.codengine.krabat.platform.GenericDrawingContext;
 
 abstract public class MainLocation2 extends MainLocation {
     // Variablen deklarieren, die in der Location dann nicht mehr erscheinen duerfen
-    private static final String[] MMe_TEXTS = {"Mainloc2_1", "Mainloc2_2", "Mainloc2_3"};
+    private static final String[] MME_TEXTS = {"Mainloc2_1", "Mainloc2_2", "Mainloc2_3"};
 
     // Methodendefinitionen
 
@@ -35,10 +35,10 @@ abstract public class MainLocation2 extends MainLocation {
     }
 
     // Mueller - Anmeckersprueche  				
-    public void MuellerMecker(GenericPoint posit) {
-        int random = (int) Math.round(Math.random() * (MMe_TEXTS.length - 1));
-        outputText = mainFrame.imageFont.TeileTextKey(MMe_TEXTS[random]);
-        outputTextPos = mainFrame.imageFont.CenterText(outputText, posit);
+    public void millerComplain(GenericPoint position) {
+        int random = (int) Math.round(Math.random() * (MME_TEXTS.length - 1));
+        outputText = mainFrame.imageFont.splitTextKey(MME_TEXTS[random]);
+        outputTextPos = mainFrame.imageFont.centerText(outputText, position);
     }
 
     // Diese Methoden werden erst in den einzelnen Labyrinths implementiert.

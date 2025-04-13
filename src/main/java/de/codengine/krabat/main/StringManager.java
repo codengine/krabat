@@ -43,7 +43,7 @@ public class StringManager {
     }
 
     public String getTranslation(String key) {
-        return Optional.ofNullable(translations.get(Start.language))
+        return Optional.ofNullable(translations.get(Start.LANGUAGE))
                 .map(map -> map.get(key))
                 .orElseGet(() -> "Missing translation: " + key);
     }

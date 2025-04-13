@@ -37,18 +37,14 @@ public class Ralbicy2 extends MainLocation2 {
     private GenericImage background;
     private GenericImage holz;
     private GenericImage kreuz;
-    // private bur1 bauer;
     private Miller mueller;
     private final MultipleChoice Dialog;
     private boolean setAnim = false;
     private boolean muellerda = false;
-    // private boolean isListening = false;
 
     private Boom muellermorph;
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
-
-    // private boolean schnauzeBauer = false;
 
     private static final boolean bauerda = false;
 
@@ -60,7 +56,6 @@ public class Ralbicy2 extends MainLocation2 {
 
     // Punkte in Location
     private static final GenericPoint Pkirche = new GenericPoint(77, 316);
-    // private static final GenericPoint Pbauer    = new GenericPoint ( 44, 307);
     private static final GenericPoint BurTalk = new GenericPoint(90, 140);
     private static final GenericPoint Pright = new GenericPoint(581, 479);
     private static final GenericPoint Pleft = new GenericPoint(0, 327);
@@ -79,30 +74,29 @@ public class Ralbicy2 extends MainLocation2 {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 424;
-        mainFrame.krabat.zoomf = 1.63f;
-        mainFrame.krabat.defScale = -40;
+        mainFrame.krabat.maxX = 424;
+        mainFrame.krabat.zoomFactor = 1.63f;
+        mainFrame.krabat.defaultScale = -40;
 
-        // bauer  = new bur1 (mainFrame);
         Dialog = new MultipleChoice(mainFrame);
         mueller = new Miller(mainFrame);
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = -30;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = -30;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 16, 0, 221, 296, 362));
@@ -112,15 +106,15 @@ public class Ralbicy2 extends MainLocation2 {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(409, 390, 639, 479));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -131,22 +125,21 @@ public class Ralbicy2 extends MainLocation2 {
                 // von Jitk aus, Mueller kommt
                 BackgroundMusicPlayer.getInstance().stop();
                 mainFrame.krabat.setPos(new GenericPoint(581, 463));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 setAnim = true;
-                // schnauzeBauer = true;
-                TalkPause = 10;
+                talkPause = 10;
                 break;
 
             case 89:
                 // von Most aus
                 mainFrame.krabat.setPos(new GenericPoint(20, 332));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/ralbicy/ralbicy4.png");
         holz = getPicture("gfx/ralbicy/holz2.png");
         kreuz = getPicture("gfx/ralbicy/kreuz.png");
@@ -170,14 +163,6 @@ public class Ralbicy2 extends MainLocation2 {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-
-        // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-	/*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
-	    {
-		Dialog.paintMultiple (g);
-		return;
-		}  */
-
         // Clipping -Region initialisieren
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
@@ -188,7 +173,7 @@ public class Ralbicy2 extends MainLocation2 {
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
@@ -199,7 +184,7 @@ public class Ralbicy2 extends MainLocation2 {
 
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -223,9 +208,9 @@ public class Ralbicy2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -233,7 +218,7 @@ public class Ralbicy2 extends MainLocation2 {
             g.drawImage(kreuz, 118, 194);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -250,22 +235,22 @@ public class Ralbicy2 extends MainLocation2 {
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -296,7 +281,7 @@ public class Ralbicy2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -306,12 +291,12 @@ public class Ralbicy2 extends MainLocation2 {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -323,13 +308,13 @@ public class Ralbicy2 extends MainLocation2 {
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = 1000;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -350,7 +335,7 @@ public class Ralbicy2 extends MainLocation2 {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -370,17 +355,17 @@ public class Ralbicy2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Kirche
-                if (brKirche.IsPointInRect(pTemp)) {
+                if (brKirche.isPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Pkirche;
@@ -395,7 +380,7 @@ public class Ralbicy2 extends MainLocation2 {
 //			    }				        
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -405,7 +390,7 @@ public class Ralbicy2 extends MainLocation2 {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -417,12 +402,12 @@ public class Ralbicy2 extends MainLocation2 {
                 nextActionID = 0;
 
                 // zu Jitk gehen ?
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         // es wird nach unten verlassen
@@ -430,63 +415,56 @@ public class Ralbicy2 extends MainLocation2 {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Most gehen?
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Kirche ansehen
-                if (brKirche.IsPointInRect(pTemp)) {
+                if (brKirche.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pkirche;
                 }
 
-                // Bauer ansehen
-//			if ((brBauer.IsPointInRect (pTemp) == true) && (bauerda == true))
-//			    {
-//				nextActionID = 2;
-//				pTemp = Pbauer;
-//			    }
-
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Jitk anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ausgang zu Most abfangen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Kirche mitnehmen
-                if (brKirche.IsPointInRect(pTemp)) {
+                if (brKirche.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkirche);
+                    mainFrame.pathWalker.setNewWay(Pkirche);
                     mainFrame.repaint();
                     return;
                 }
@@ -502,7 +480,7 @@ public class Ralbicy2 extends MainLocation2 {
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -519,8 +497,8 @@ public class Ralbicy2 extends MainLocation2 {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -529,18 +507,18 @@ public class Ralbicy2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = brKirche.IsPointInRect(pTemp) ||
-                    tmp.IsPointInRect(pTemp) ||
-                    brBauer.IsPointInRect(pTemp) && bauerda;
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = brKirche.isPointInRect(pTemp) ||
+                    tmp.isPointInRect(pTemp) ||
+                    brBauer.isPointInRect(pTemp) && bauerda;
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -548,35 +526,35 @@ public class Ralbicy2 extends MainLocation2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (brKirche.IsPointInRect(pTemp) ||
-                    brBauer.IsPointInRect(pTemp) && bauerda) {
-                if (Cursorform != 1) {
+            if (brKirche.isPointInRect(pTemp) ||
+                    brBauer.isPointInRect(pTemp) && bauerda) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -617,7 +595,7 @@ public class Ralbicy2 extends MainLocation2 {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -625,7 +603,7 @@ public class Ralbicy2 extends MainLocation2 {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -633,26 +611,26 @@ public class Ralbicy2 extends MainLocation2 {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -672,7 +650,7 @@ public class Ralbicy2 extends MainLocation2 {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -680,81 +658,80 @@ public class Ralbicy2 extends MainLocation2 {
         switch (nextActionID) {
             case 1:
                 // Kirche anschauen
-                KrabatSagt("Ralbicy2_1", fKirche, 3, 0, 0);
+                krabatSays("Ralbicy2_1", fKirche, 3, 0, 0);
                 break;
 
             case 2:
                 // Bauer anschauen
-                KrabatSagt("Ralbicy2_2", fBauer, 3, 0, 0);
+                krabatSays("Ralbicy2_2", fBauer, 3, 0, 0);
                 break;
 
             case 50:
                 // Kirche mitnehmen
-                KrabatSagt("Ralbicy2_3", fKirche, 3, 0, 0);
+                krabatSays("Ralbicy2_3", fKirche, 3, 0, 0);
                 break;
 
             case 51:
                 // Krabat beginnt MC (Bauer benutzen)
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                // isListening = true;  // Bauer hoert auf zu arbeiten
                 nextActionID = 600;
                 break;
 
             case 100:
                 // Gehe zu Jitk
-                NeuesBild(74, 82);
+                createNewLocation(74, 82);
                 break;
 
             case 101:
                 // nach Most gehen
-                NeuesBild(89, 82);
+                createNewLocation(89, 82);
                 break;
 
             case 150:
                 // Kirche - Ausreden
-                DingAusrede(fKirche);
+                thingExcuse(fKirche);
                 break;
 
             case 155:
                 // Bauer - Ausreden
-                MPersonAusrede(fBauer);
+                maleExcuse(fBauer);
                 break;
 
             case 200:
                 // Stock oder Angel auf Bauern
-                KrabatSagt("Ralbicy2_4", fBauer, 3, 0, 0);
+                krabatSays("Ralbicy2_4", fBauer, 3, 0, 0);
                 break;
 
             case 220:
                 // Krosik auf Bauern
-                KrabatSagt("Ralbicy2_5", fBauer, 3, 0, 0);
+                krabatSays("Ralbicy2_5", fBauer, 3, 0, 0);
                 break;
 
             case 230:
                 // Bron auf Bauern
-                KrabatSagt("Ralbicy2_6", fBauer, 3, 0, 0);
+                krabatSays("Ralbicy2_6", fBauer, 3, 0, 0);
                 break;
 
             // Dialog mit Bauer
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Ralbicy2_18", 1000, 22, new int[]{22}, 640);
-                Dialog.ExtendMC("Ralbicy2_19", 22, 21, new int[]{21}, 630);
-                Dialog.ExtendMC("Ralbicy2_20", 21, 20, new int[]{20}, 620);
-                Dialog.ExtendMC("Ralbicy2_21", 20, 1000, null, 610);
+                Dialog.extend("Ralbicy2_18", 1000, 22, new int[]{22}, 640);
+                Dialog.extend("Ralbicy2_19", 22, 21, new int[]{21}, 630);
+                Dialog.extend("Ralbicy2_20", 21, 20, new int[]{20}, 620);
+                Dialog.extend("Ralbicy2_21", 20, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMC("Ralbicy2_22", 1000, 23, new int[]{23}, 660);
-                Dialog.ExtendMC("Ralbicy2_23", 23, 24, new int[]{24}, 650);
+                Dialog.extend("Ralbicy2_22", 1000, 23, new int[]{23}, 660);
+                Dialog.extend("Ralbicy2_23", 23, 24, new int[]{24}, 650);
 
                 // 4. Frage
-                Dialog.ExtendMC("Ralbicy2_24", 25, 1000, null, 800);
-                Dialog.ExtendMC("Ralbicy2_25", 1000, 25, null, 800);
+                Dialog.extend("Ralbicy2_24", 25, 1000, null, 800);
+                Dialog.extend("Ralbicy2_25", 1000, 25, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -768,66 +745,66 @@ public class Ralbicy2 extends MainLocation2 {
                 mainFrame.actions[25] = true;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-                nextActionID = Dialog.ActionID;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
+                nextActionID = Dialog.actionId;
                 break;
 
             case 610:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_7", 0, 21, 2, 611, BurTalk);
+                personSays("Ralbicy2_7", 0, 21, 2, 611, BurTalk);
                 break;
 
             case 611:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_8", 0, 21, 2, 612, BurTalk);
+                personSays("Ralbicy2_8", 0, 21, 2, 612, BurTalk);
                 break;
 
             case 612:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_9", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_9", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 620:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_10", 0, 21, 2, 621, BurTalk);
+                personSays("Ralbicy2_10", 0, 21, 2, 621, BurTalk);
                 break;
 
             case 621:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_11", 0, 21, 2, 622, BurTalk);
+                personSays("Ralbicy2_11", 0, 21, 2, 622, BurTalk);
                 break;
 
             case 622:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_12", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_12", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 630:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_13", 0, 21, 2, 631, BurTalk);
+                personSays("Ralbicy2_13", 0, 21, 2, 631, BurTalk);
                 break;
 
             case 631:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_14", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_14", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 640:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_15", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_15", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 650:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_16", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_16", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 660:
                 // Reaktion Bauer
-                PersonSagt("Ralbicy2_17", 0, 21, 2, 600, BurTalk);
+                personSays("Ralbicy2_17", 0, 21, 2, 600, BurTalk);
                 break;
 
             case 800:
@@ -835,14 +812,13 @@ public class Ralbicy2 extends MainLocation2 {
                 mainFrame.actions[25] = false; // wieder nico dale beim 1. MC
                 mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                // isListening = false; // Bauer hoert wieder auf zuzuhoeren
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 mainFrame.repaint();
                 break;
 
             case 1000:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 1003;
                 break;
@@ -863,15 +839,15 @@ public class Ralbicy2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 1010;
                 break;
 
             case 1010:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 89);
+                createNewLocation(90, 89);
                 break;
 
             default:

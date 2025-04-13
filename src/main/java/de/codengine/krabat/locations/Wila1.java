@@ -104,14 +104,14 @@ public class Wila1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 463;
-        mainFrame.krabat.zoomf = 5.3f;
-        mainFrame.krabat.defScale = 10;
+        mainFrame.krabat.maxX = 463;
+        mainFrame.krabat.zoomFactor = 5.3f;
+        mainFrame.krabat.defaultScale = 10;
 
         waschfrau = new WasherWoman(mainFrame);
-        waschfrau.maxx = 400;
-        waschfrau.zoomf = 4f;
-        waschfrau.defScale = 0;
+        waschfrau.maxX = 400;
+        waschfrau.zoomFactor = 4f;
+        waschfrau.defaultScale = 0;
 
         if (!mainFrame.actions[175]) {
             waescheFehlt = 0;
@@ -119,19 +119,18 @@ public class Wila1 extends MainLocation {
 
         krabat_waesche = new GenericImage[2];
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 458, 639, 479));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(352, 639, 166, 639, 428, 457));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(536, 639, 464, 639, 373, 427));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(550, 639, 536, 639, 333, 372));
-        // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (488, 494, 550, 625, 249, 332));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(488, 494, 519, 560, 249, 297));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(465, 298, 567, 307));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(523, 567, 550, 625, 308, 332));
@@ -140,20 +139,20 @@ public class Wila1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(435, 437, 460, 464, 145, 177));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(10);
+        mainFrame.pathFinder.clearMatrix(10);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 5);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 7);
-        mainFrame.pathFinder.PosVerbinden(4, 8);
-        mainFrame.pathFinder.PosVerbinden(8, 9);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 6);
+        mainFrame.pathFinder.connectPos(6, 5);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(5, 7);
+        mainFrame.pathFinder.connectPos(4, 8);
+        mainFrame.pathFinder.connectPos(8, 9);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -166,7 +165,7 @@ public class Wila1 extends MainLocation {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
                 mainFrame.krabat.setPos(new GenericPoint(293, 465));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
             case 17:
                 // von Kolmc aus
@@ -175,20 +174,20 @@ public class Wila1 extends MainLocation {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
                 mainFrame.krabat.setPos(new GenericPoint(436, 147));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 18:
                 // von Dubring aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 mainFrame.krabat.setPos(new GenericPoint(620, 404));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
         }
         mainFrame.enteringFromMap = false;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/villa/villa.png");
         foreground = getPicture("gfx/villa/villa2.png");
         leineleer = getPicture("gfx/villa/villa3.png");
@@ -242,7 +241,7 @@ public class Wila1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -255,9 +254,9 @@ public class Wila1 extends MainLocation {
         // Waschfrau Hintergrund loeschen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = waschfrau.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = waschfrau.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -314,31 +313,31 @@ public class Wila1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Waschfrau bewegen
         if (showPlokarka && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = waschfrau.Move();
+            walkReady = waschfrau.move();
         }
 
         // Waschfrau zeichnen
         if (showPlokarka) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = waschfrau.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = waschfrau.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne sie jetzt
 
             // Redet sie etwa gerade ??
-            if ((TalkPerson == 27 || TalkPerson == 55) && mainFrame.talkCount > 0) {
-                if (TalkPerson == 27) {
+            if ((talkPerson == 27 || talkPerson == 55) && mainFrame.talkCount > 0) {
+                if (talkPerson == 27) {
                     waschfrau.talkPlokarka(g);
                 }
-                if (TalkPerson == 55) {
+                if (talkPerson == 55) {
                     waschfrau.haendePlokarka(g);
                 }
             }
@@ -364,7 +363,7 @@ public class Wila1 extends MainLocation {
             g.drawImage(foreground, 340, 292);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
@@ -374,8 +373,8 @@ public class Wila1 extends MainLocation {
                 // Waesche beschmutzen
 
                 // Groesse
-                int scale = mainFrame.krabat.defScale;
-                scale += (int) (((float) mainFrame.krabat.maxx - (float) mainFrame.krabat.getPos().y) / mainFrame.krabat.zoomf);
+                int scale = mainFrame.krabat.defaultScale;
+                scale += (int) (((float) mainFrame.krabat.maxX - (float) mainFrame.krabat.getPos().y) / mainFrame.krabat.zoomFactor);
 
                 // Hoehe: nur offset
                 int hoch = 100 - scale;
@@ -412,16 +411,16 @@ public class Wila1 extends MainLocation {
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -453,12 +452,12 @@ public class Wila1 extends MainLocation {
         }
 
         // Hier Krabat - Vordergruende zeichnen
-        if (dachRect.IsPointInRect(pKrTemp)) {
+        if (dachRect.isPointInRect(pKrTemp)) {
             g.drawImage(vdoor, 285, 330);
         }
 
         // Hier Krabat - Vordergruende zeichnen
-        if (stangeRect.IsPointInRect(pKrTemp)) {
+        if (stangeRect.isPointInRect(pKrTemp)) {
             g.drawImage(stange, 444, 273);
         }
 
@@ -468,7 +467,7 @@ public class Wila1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -478,17 +477,17 @@ public class Wila1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -503,7 +502,7 @@ public class Wila1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -523,24 +522,24 @@ public class Wila1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Leine
-                if (leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] &&
+                if (leineRect.isPointInRect(pTemp) && !mainFrame.actions[906] &&
                         mainFrame.actions[175]) {
                     nextActionID = 260;
                     pTemp = Pleine;
                 }
 
                 // Ausreden fuer Kleider
-                if (kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175]) {
+                if (kleiderRect.isPointInRect(pTemp) && !mainFrame.actions[175]) {
                     if (mainFrame.whatItem == 16) { // Honck z blotom
                         nextActionID = 155;
                         pTemp = pVollspritz;
@@ -551,14 +550,14 @@ public class Wila1 extends MainLocation {
                 }
 
                 // Ausreden fuer Tuer
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     // kamuski
                     nextActionID = mainFrame.whatItem == 12 ? 250 : 270;
                     pTemp = Pdurje;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -568,7 +567,7 @@ public class Wila1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -580,129 +579,129 @@ public class Wila1 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Njedz gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Dubring gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Kolmc gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Leine ansehen
-                if (leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] &&
+                if (leineRect.isPointInRect(pTemp) && !mainFrame.actions[906] &&
                         mainFrame.actions[175]) {
                     nextActionID = 2;
                     pTemp = Pleine;
                 }
 
                 // Kleider ansehen
-                if (kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175]) {
+                if (kleiderRect.isPointInRect(pTemp) && !mainFrame.actions[175]) {
                     nextActionID = 1;
                     pTemp = Pkleider;
                 }
 
                 // Tuer ansehen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Pdurje;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Njedz Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Kolmc anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Dubring anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Leine benutzen ?
-                if (leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] &&
+                if (leineRect.isPointInRect(pTemp) && !mainFrame.actions[906] &&
                         mainFrame.actions[175]) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pleine);
+                    mainFrame.pathWalker.setNewWay(Pleine);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kleider benutzen ?
-                if (kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175]) {
+                if (kleiderRect.isPointInRect(pTemp) && !mainFrame.actions[175]) {
                     nextActionID = 53;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkleider);
+                    mainFrame.pathWalker.setNewWay(Pkleider);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Tuer benutzen ?
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 280;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -713,8 +712,8 @@ public class Wila1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -723,19 +722,19 @@ public class Wila1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] && mainFrame.actions[175] ||
-                    kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175] ||
-                    durjeRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    leineRect.isPointInRect(pTemp) && !mainFrame.actions[906] && mainFrame.actions[175] ||
+                    kleiderRect.isPointInRect(pTemp) && !mainFrame.actions[175] ||
+                    durjeRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -743,44 +742,44 @@ public class Wila1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (leineRect.IsPointInRect(pTemp) && !mainFrame.actions[906] && mainFrame.actions[175] ||
-                    kleiderRect.IsPointInRect(pTemp) && !mainFrame.actions[175] ||
-                    durjeRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (leineRect.isPointInRect(pTemp) && !mainFrame.actions[906] && mainFrame.actions[175] ||
+                    kleiderRect.isPointInRect(pTemp) && !mainFrame.actions[175] ||
+                    durjeRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -814,7 +813,7 @@ public class Wila1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -822,7 +821,7 @@ public class Wila1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -830,26 +829,26 @@ public class Wila1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -869,7 +868,7 @@ public class Wila1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -877,7 +876,7 @@ public class Wila1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Kleider anschauen
-                KrabatSagt("Wila1_1", fSaty, 3, 0, 0);
+                krabatSays("Wila1_1", fSaty, 3, 0, 0);
                 break;
 
             case 2:
@@ -886,24 +885,24 @@ public class Wila1 extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Wila1_2", fLajna, 3, 0, 0);
+                        krabatSays("Wila1_2", fLajna, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Wila1_3", fLajna, 3, 0, 0);
+                        krabatSays("Wila1_3", fLajna, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 3:
                 // Tuer anschauen
-                KrabatSagt("Wila1_4", fDurje, 3, 0, 0);
+                krabatSays("Wila1_4", fDurje, 3, 0, 0);
                 break;
 
             case 50:
                 // Leine mitnehmen ??
                 mainFrame.isAnimRunning = true;
-                mainFrame.krabat.SetFacing(fLajna);
+                mainFrame.krabat.setFacing(fLajna);
                 mainFrame.krabat.nAnimation = 120;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 51;
@@ -931,7 +930,7 @@ public class Wila1 extends MainLocation {
                 // Waschfrau muss erscheinen, vorher Versuch mitnehmen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fLajna); // Krabat schaut auf Leine
+                mainFrame.krabat.setFacing(fLajna); // Krabat schaut auf Leine
                 mainFrame.krabat.nAnimation = 121;
                 Counter = 3;
                 nextActionID = 54;
@@ -942,16 +941,16 @@ public class Wila1 extends MainLocation {
                 if (--Counter > 0) {
                     break;
                 }
-                mainFrame.soundPlayer.PlayFile("sfx/vdurjeauf.wav");
+                mainFrame.soundPlayer.playFile("sfx/vdurjeauf.wav");
                 showPlokarka = true;
                 waschfrau.setPos(waschInDoor);
-                waschfrau.SetFacing(3);
+                waschfrau.setFacing(3);
                 nextActionID = 55;
                 break;
 
             case 55:
                 // Waschfrau loslaufen lassen nach unten
-                waschfrau.MoveTo(waschVorDoor);
+                waschfrau.moveTo(waschVorDoor);
                 walkReady = false;
                 nextActionID = 58;
                 break;
@@ -965,7 +964,7 @@ public class Wila1 extends MainLocation {
 
             case 60:
                 // Waschfrau loslaufen lassen zur Anguckposition
-                waschfrau.MoveTo(waschLook);
+                waschfrau.moveTo(waschLook);
                 walkReady = false;
                 nextActionID = 62;
                 break;
@@ -979,25 +978,25 @@ public class Wila1 extends MainLocation {
 
             case 65:
                 // Sie sagt ihren Spruch
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 if (!mainFrame.actions[176]) {
-                    outputText = mainFrame.imageFont.TeileTextKey("Wila1_8");
+                    outputText = mainFrame.imageFont.splitTextKey("Wila1_8");
                     mainFrame.actions[176] = true;
                 } else {
-                    outputText = mainFrame.imageFont.TeileTextKey("Wila1_9");
+                    outputText = mainFrame.imageFont.splitTextKey("Wila1_9");
                 }
-                waschfrau.SetFacing(12);
+                waschfrau.setFacing(12);
                 // Hier Position des Textes berechnen
-                BorderRect temp = waschfrau.getRect();
-                GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, tTalk);
-                TalkPerson = 27;
+                BorderRect temp = waschfrau.getBoundingBox();
+                GenericPoint tTalk = new GenericPoint((temp.bottomRightPoint.x + temp.topLeftPoint.x) / 2, temp.topLeftPoint.y - 50);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, tTalk);
+                talkPerson = 27;
                 nextActionID = 70;
                 break;
 
             case 70:
                 // Waschfrau loslaufen lassen nach links
-                waschfrau.MoveTo(waschVorDoor);
+                waschfrau.moveTo(waschVorDoor);
                 walkReady = false;
                 nextActionID = 72;
                 break;
@@ -1011,7 +1010,7 @@ public class Wila1 extends MainLocation {
 
             case 75:
                 // Waschfrau loslaufen lassen nach Oben
-                waschfrau.MoveTo(waschInDoor);
+                waschfrau.moveTo(waschInDoor);
                 walkReady = false;
                 nextActionID = 78;
                 break;
@@ -1026,7 +1025,7 @@ public class Wila1 extends MainLocation {
             case 80:
                 // Waschfrau wieder verschwinden lassen
                 showPlokarka = false;
-                mainFrame.soundPlayer.PlayFile("sfx/vdurjezu.wav");
+                mainFrame.soundPlayer.playFile("sfx/vdurjezu.wav");
                 mainFrame.isClipSet = false;
                 nextActionID = 0;
                 mainFrame.isAnimRunning = false;
@@ -1036,22 +1035,22 @@ public class Wila1 extends MainLocation {
 
             case 100:
                 // Gehe zu Njedz
-                NeuesBild(15, 16);
+                createNewLocation(15, 16);
                 break;
 
             case 101:
                 // gehe zu Kolmc 
-                NeuesBild(17, 16);
+                createNewLocation(17, 16);
                 break;
 
             case 102:
                 // nach Dubring gehen
-                NeuesBild(18, 16);
+                createNewLocation(18, 16);
                 break;
 
             case 150:
                 // Kleider - Ausreden
-                DingAusrede(fLajna);
+                thingExcuse(fLajna);
                 break;
 
             // Anim : Waesche vollspritzen und verstecken ////////////////////////////
@@ -1061,7 +1060,7 @@ public class Wila1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fVollspritz);
+                mainFrame.krabat.setFacing(fVollspritz);
                 SonderAnim = 1;
                 nextActionID = 160;
                 break;
@@ -1072,12 +1071,12 @@ public class Wila1 extends MainLocation {
                     // hier die Waesche schmutzig machen
                     mainFrame.actions[177] = true;
                     mainFrame.isClipSet = false;
-                    mainFrame.soundPlayer.PlayFile("sfx/bloto2.wav");
+                    mainFrame.soundPlayer.playFile("sfx/bloto2.wav");
                 }
                 if (mainFrame.krabat.nAnimation != 0 || SonderAnim != 0) {
                     break;
                 }
-                KrabatSagt("Wila1_5", 0, 3, 0, 165);
+                krabatSays("Wila1_5", 0, 3, 0, 165);
                 break;
 
             case 165:
@@ -1085,34 +1084,34 @@ public class Wila1 extends MainLocation {
                 hide = true;
                 mainFrame.inventory.vInventory.addElement(4);
                 mainFrame.inventory.vInventory.removeElement(16); // honck wieder leer machen
-                mainFrame.pathWalker.SetzeNeuenWeg(pVorBaum);
+                mainFrame.pathWalker.setNewWay(pVorBaum);
                 nextActionID = 168;
                 break;
 
             case 168:
                 // hinter Baum gehen
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pBaum);
+                mainFrame.pathWalker.setNewWayGuaranteed(pBaum);
                 nextActionID = 170;
                 break;
 
             case 170:
                 // Noch richtigrumdrehen
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 nextActionID = 175;
                 break;
 
             case 175:
                 // Waschfrau muss erscheinen
                 showPlokarka = true;
-                mainFrame.soundPlayer.PlayFile("sfx/vdurjeauf.wav");
+                mainFrame.soundPlayer.playFile("sfx/vdurjeauf.wav");
                 waschfrau.setPos(waschInDoor);
-                waschfrau.SetFacing(6);
+                waschfrau.setFacing(6);
                 nextActionID = 180;
                 break;
 
             case 180:
                 // Waschfrau loslaufen lassen nach unten
-                waschfrau.MoveTo(waschVorDoor);
+                waschfrau.moveTo(waschVorDoor);
                 walkReady = false;
                 nextActionID = 185;
                 break;
@@ -1126,7 +1125,7 @@ public class Wila1 extends MainLocation {
 
             case 186:
                 // Waschfrau loslaufen lassen zur Anguckposition
-                waschfrau.MoveTo(waschLook);
+                waschfrau.moveTo(waschLook);
                 walkReady = false;
                 nextActionID = 187;
                 break;
@@ -1140,20 +1139,20 @@ public class Wila1 extends MainLocation {
 
             case 190:
                 // Sie sagt ihren Spruch
-                outputText = mainFrame.imageFont.TeileTextKey("Wila1_10");
+                outputText = mainFrame.imageFont.splitTextKey("Wila1_10");
                 // Hier Position des Textes berechnen
-                BorderRect tmp = waschfrau.getRect();
-                GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, tTlk);
-                waschfrau.SetFacing(12);
-                TalkPerson = 55;
+                BorderRect tmp = waschfrau.getBoundingBox();
+                GenericPoint tTlk = new GenericPoint((tmp.bottomRightPoint.x + tmp.topLeftPoint.x) / 2, tmp.topLeftPoint.y - 50);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, tTlk);
+                waschfrau.setFacing(12);
+                talkPerson = 55;
                 nextActionID = 191;
                 break;
 
             case 191:
                 // Waschfrau loslaufen lassen, soll 1. Stueck abnehmen
                 waschClip = true;
-                waschfrau.MoveTo(new GenericPoint(426, 304));
+                waschfrau.moveTo(new GenericPoint(426, 304));
                 walkReady = false;
                 nextActionID = 192;
                 break;
@@ -1181,7 +1180,7 @@ public class Wila1 extends MainLocation {
             case 195:
                 // Waschfrau loslaufen lassen, soll 2. Stueck abnehmen
                 waschfrau.hasWaesche = true;
-                waschfrau.MoveTo(new GenericPoint(410, 313));
+                waschfrau.moveTo(new GenericPoint(410, 313));
                 walkReady = false;
                 nextActionID = 196;
                 break;
@@ -1208,7 +1207,7 @@ public class Wila1 extends MainLocation {
 
             case 199:
                 // Waschfrau loslaufen lassen, soll 3. Stueck abnehmen
-                waschfrau.MoveTo(new GenericPoint(389, 315));
+                waschfrau.moveTo(new GenericPoint(389, 315));
                 walkReady = false;
                 nextActionID = 200;
                 break;
@@ -1235,7 +1234,7 @@ public class Wila1 extends MainLocation {
 
             case 203:
                 // Waschfrau loslaufen lassen, soll 4. Stueck abnehmen
-                waschfrau.MoveTo(new GenericPoint(371, 315));
+                waschfrau.moveTo(new GenericPoint(371, 315));
                 walkReady = false;
                 nextActionID = 204;
                 break;
@@ -1270,7 +1269,7 @@ public class Wila1 extends MainLocation {
             case 210:
                 // Waschfrau loslaufen lassen zurueck zur Anguckposition
                 waschClip = true;
-                waschfrau.MoveTo(waschLook);
+                waschfrau.moveTo(waschLook);
                 walkReady = false;
                 nextActionID = 215;
                 break;
@@ -1285,7 +1284,7 @@ public class Wila1 extends MainLocation {
             case 220:
                 // Waschfrau loslaufen lassen anch links
                 waschClip = false;
-                waschfrau.MoveTo(waschVorDoor);
+                waschfrau.moveTo(waschVorDoor);
                 walkReady = false;
                 nextActionID = 225;
                 break;
@@ -1299,7 +1298,7 @@ public class Wila1 extends MainLocation {
 
             case 226:
                 // Waschfrau loslaufen lassen nach oben
-                waschfrau.MoveTo(waschInDoor);
+                waschfrau.moveTo(waschInDoor);
                 walkReady = false;
                 nextActionID = 227;
                 break;
@@ -1314,14 +1313,14 @@ public class Wila1 extends MainLocation {
             case 230:
                 // Waschfrau wieder verschwinden lassen
                 showPlokarka = false;
-                mainFrame.soundPlayer.PlayFile("sfx/vdurjezu.wav");
+                mainFrame.soundPlayer.playFile("sfx/vdurjezu.wav");
                 mainFrame.isClipSet = false;
                 nextActionID = 235;
                 break;
 
             case 235:
                 // Krabat kommt hinter Versteck wieder vor
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pVorBaum);
+                mainFrame.pathWalker.setNewWayGuaranteed(pVorBaum);
                 nextActionID = 240;
                 break;
 
@@ -1337,22 +1336,22 @@ public class Wila1 extends MainLocation {
 
             case 250:
                 // Tuer anschauen
-                KrabatSagt("Wila1_6", fDurje, 3, 0, 0);
+                krabatSays("Wila1_6", fDurje, 3, 0, 0);
                 break;
 
             case 260:
                 // lajna - Ausreden
-                DingAusrede(fLajna);
+                thingExcuse(fLajna);
                 break;
 
             case 270:
                 // Durje - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 280:
                 // Tuer mitnehmen
-                KrabatSagt("Wila1_7", fDurje, 3, 0, 0);
+                krabatSays("Wila1_7", fDurje, 3, 0, 0);
                 break;
 
             default:

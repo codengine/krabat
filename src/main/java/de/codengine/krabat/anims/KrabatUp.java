@@ -132,11 +132,11 @@ public class KrabatUp extends Krabat {
         krabato_feuerf = new GenericImage[2];
         krabato_feuerb = new GenericImage[2];
 
-        InitImages();
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         // Images von oben (alle)
         krabato_left[1] = getPicture("gfx/anims/h-l-1.png");
         krabato_left[2] = getPicture("gfx/anims/h-l-2.png");
@@ -284,126 +284,117 @@ public class KrabatUp extends Krabat {
 
     // Diese Routine bleibt unveraendert, unabhaengig davon, wie Krabat gerade aussieht
     @Override
-    public synchronized void Move() {
+    public synchronized void move() {
         // Wenn kein Laufen gewuenscht, dann auch nicht laufen!
         if (!isWalking && !isWandering) {
             return;
         }
 
         // Variablen uebernehmen (Threadsynchronisierung)
-        horizontal = Thorizontal;
-        walkto = new GenericPoint(Twalkto.x, Twalkto.y);
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        isAnimHorizontal = tmpIsAnimHorizontal;
+        walkTo = new GenericPoint(tmpWalkTo.x, tmpWalkTo.y);
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
-        if (horizontal)
+        if (isAnimHorizontal)
         // Horizontal laufen, es gelten die Images left und right, gehen von 2 bis 11, von oben 1 bis 9
         {
             // Animationsphase weiterschalten,
-            anim_pos++;
+            animPos++;
 
             // Laufen von Oben, Ueberschreitung pruefen
-            if (anim_pos > 9) {
-                anim_pos = 1;
+            if (animPos > 9) {
+                animPos = 1;
             }
 
             // neuen Punkt ermitteln und setzen
-            VerschiebeX();
-            xps = txps;
-            yps = typs;
+            moveX();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeX();
+            moveX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
-                // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
+            if ((walkTo.x - (int) tempPosX) * directionX.getVal() <= 0) {
                 isWalking = false;
-                if (!isWandering && clearanimpos) {
-                    anim_pos = 0;
+                if (!isWandering && resetAnimPos) {
+                    animPos = 0;
                 }
             }
         } else
         // Vertikal laufen, Images front und back von 2 bis 9, von oben 1 bis 9
         {
             // Animationsphase weiterschalten
-            anim_pos++;
+            animPos++;
 
             // Laufen von Oben, Ueberschreitung pruefen
-            if (anim_pos > 9) {
-                anim_pos = 1;
+            if (animPos > 9) {
+                animPos = 1;
             }
 
             // neuen Punkt ermitteln und setzen
-            VerschiebeY();
-            xps = txps;
-            yps = typs;
+            moveY();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeY();
+            moveY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-                // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
+            if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
                 isWalking = false;
-                if (!isWandering && clearanimpos) {
-                    anim_pos = 0;
+                if (!isWandering && resetAnimPos) {
+                    animPos = 0;
                 }
             }
         }
 
         if (!isWalking && !isWandering) {
-            // System.out.println("Krabatpos korrigiert!");
-            setPos(walkto);
-            if (clearanimpos) {
-                anim_pos = 0;
+            setPos(walkTo);
+            if (resetAnimPos) {
+                animPos = 0;
             }
         }
-        // if (anim_pos == 0) 
-        //{
-        //System.out.println("Animpos reset!");
-        //}
-        // pos_x = (int) xps;
-        // pos_y = (int) yps;
     }
 
     // Horizontal - Positions - Verschieberoutine, je nach Krabat - Aussehen
-    private void VerschiebeX() {
+    private void moveX() {
         // Verschieberoutine fuer Laufen von oben
         // Skalierungsfaktor ist gleich zoomf bei von Oben
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horizDist = CHORIZO_DIST - zoomf / SLOWXO;
+        float horizDist = CHORIZO_DIST - zoomFactor / SLOWXO;
         if (horizDist < 1) {
             horizDist = 1;
         }
 
-        verschiebeXkrabat(horizDist);
+        moveXkrabat(horizDist);
     }
 
     // Vertikal - Positions - Verschieberoutine, je nach Krabat - Aussehen
-    private void VerschiebeY() {
+    private void moveY() {
         // Verschieberoutine fuer Laufen von oben
         // Skalierungsfaktor ist zoomf fuer von Oben
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vertDist = CVERTO_DIST - zoomf / SLOWYO;
+        float vertDist = CVERTO_DIST - zoomFactor / SLOWYO;
         if (vertDist < 1) {
             vertDist = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
             // und vert_distance ein Pixel erlaubt oder nicht
         }
 
-        verschiebeYkrabat(vertDist);
+        moveYkrabat(vertDist);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
     @Override
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         // Lohnt es sich zu laufen ?
-        int lohnx = CLOHNENXO - (int) zoomf;
-        int lohny = CLOHNENYO - (int) zoomf;
+        int lohnx = CLOHNENXO - (int) zoomFactor;
+        int lohny = CLOHNENYO - (int) zoomFactor;
         moveToKrabat(aim, lohnx, lohny, 1, 45);
     }
 
@@ -414,25 +405,25 @@ public class KrabatUp extends Krabat {
     public void drawKrabat(GenericDrawingContext offGraph) {
         // Malen von oben
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal) {
+        if (isAnimHorizontal) {
             // nach links laufen
             if (directionX == LEFT) {
-                MaleIhn(offGraph, krabato_left[anim_pos]);
+                drawHim(offGraph, krabato_left[animPos]);
             }
 
             // nach rechts laufen
             if (directionX == RIGHT) {
-                MaleIhn(offGraph, krabato_right[anim_pos]);
+                drawHim(offGraph, krabato_right[animPos]);
             }
         } else {
             // nach oben laufen
             if (directionY == UP) {
-                MaleIhn(offGraph, krabato_back[anim_pos]);
+                drawHim(offGraph, krabato_back[animPos]);
             }
 
             // nach unten laufen
             if (directionY == DOWN) {
-                MaleIhn(offGraph, krabato_front[anim_pos]);
+                drawHim(offGraph, krabato_front[animPos]);
             }
         }
     }
@@ -440,29 +431,29 @@ public class KrabatUp extends Krabat {
 
     // Abspielen einer Animation
     @Override
-    public void DoAnimation(GenericDrawingContext g) {
+    public void doAnimation(GenericDrawingContext g) {
         switch (nAnimation) {
             case 2:    // Floete spielen
-                SpieleFloete(g, nAnimStep++);
+                playFlute(g, nAnimStep++);
                 break;
 
             case 4:    // An Tuer klopfen
                 if (nAnimStep < 11) {
-                    Klopfe(g, nAnimStep++);
+                    knock(g, nAnimStep++);
                 } else {
-                    StopAnim();
+                    stopAnim();
                     drawKrabat(g);
                 }
                 break;
 
             case 5:  // Rohodz spielen
                 if (nAnimStep == 0) {
-                    mainFrame.soundPlayer.PlayFile("sfx/frohodz.wav");
+                    mainFrame.soundPlayer.playFile("sfx/frohodz.wav");
                 } ///////////////// Sound !!!!!!!!!!!!!!
                 if (nAnimStep < rohodzWartezeit) {
-                    SpieleRohodz(g, nAnimStep++);
+                    playRohodz(g, nAnimStep++);
                 } else {
-                    StopAnim();
+                    stopAnim();
                     drawKrabat(g);
                 }
                 break;
@@ -470,12 +461,12 @@ public class KrabatUp extends Krabat {
             case 146: // Wosusk essen (speziell)
                 if (nAnimStep < 20) {
                     if (nAnimStep == 0) {
-                        mainFrame.soundPlayer.PlayFile("sfx-dd/wosusk.wav");
+                        mainFrame.soundPlayer.playFile("sfx-dd/wosusk.wav");
                     } ////////////Sound!!!!!!!!!!!!!!!!!!!!!!
-                    IssWosusk(g);
+                    eatWosusk(g);
                     nAnimStep++;
                 } else {
-                    StopAnim();
+                    stopAnim();
                     drawKrabat(g);
                 }
                 break;
@@ -483,35 +474,35 @@ public class KrabatUp extends Krabat {
             case 154: // Feuer machen
                 if (nAnimStep < 8) {
                     if (nAnimStep == 0) {
-                        mainFrame.soundPlayer.PlayFile("sfx/kamjeny.wav");
+                        mainFrame.soundPlayer.playFile("sfx/kamjeny.wav");
                     } /////////////////// Sound !!!!!!!!!!!
-                    MacheFeuer(g);
+                    makeFire(g);
                     nAnimStep++;
                 } else {
-                    StopAnim();
+                    stopAnim();
                     drawKrabat(g);
                 }
                 break;
 
             case 155: // aus dem Buch lesen
-                LiesBuch(g);
+                readBook(g);
                 break;
 
         }
     }
 
     // Krabat spielt Floete incl Zoominginformationen
-    private void SpieleFloete(GenericDrawingContext g, int tCount) {
+    private void playFlute(GenericDrawingContext g, int tCount) {
         // Sound abspielen
         if (tCount == 0) {
             int zuffi = (int) (Math.random() * 4.99);
-            mainFrame.soundPlayer.PlayFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/flejta" + (char) (zuffi + 49) + ".wav");
             Floetenwartezeit = Floetenwartezeitarray[zuffi];
         }
 
         if (--Floetenwartezeit < 1) {
             // als letztes normal nach vorn sehend hinstellen
-            StopAnim();
+            stopAnim();
             drawKrabat(g);
             return;
         }
@@ -519,97 +510,97 @@ public class KrabatUp extends Krabat {
         // von Oben
         int nFrame = tCount % 10 / 2;
 
-        if (GetFacing() == 3) {
-            MaleIhn(g, krabato_floeter[nFrame]);
+        if (getFacing() == 3) {
+            drawHim(g, krabato_floeter[nFrame]);
         }
-        if (GetFacing() == 6) {
-            MaleIhn(g, krabato_floetef[nFrame]);
+        if (getFacing() == 6) {
+            drawHim(g, krabato_floetef[nFrame]);
         }
-        if (GetFacing() == 9) {
-            MaleIhn(g, krabato_floetel[nFrame]);
+        if (getFacing() == 9) {
+            drawHim(g, krabato_floetel[nFrame]);
         }
-        if (GetFacing() == 12) {
-            MaleIhn(g, krabato_floeteb[nFrame]);
+        if (getFacing() == 12) {
+            drawHim(g, krabato_floeteb[nFrame]);
         }
     }
 
     // Krabat spielt Rohodz incl Zoominginformationen
-    private void SpieleRohodz(GenericDrawingContext g, int tCount) {
+    private void playRohodz(GenericDrawingContext g, int tCount) {
         // von Oben
         int nFrame = tCount % 10 / 2;
 
-        if (GetFacing() == 3) {
-            MaleIhn(g, krabato_rfloeter[nFrame]);
+        if (getFacing() == 3) {
+            drawHim(g, krabato_rfloeter[nFrame]);
         }
-        if (GetFacing() == 6) {
-            MaleIhn(g, krabato_rfloetef[nFrame]);
+        if (getFacing() == 6) {
+            drawHim(g, krabato_rfloetef[nFrame]);
         }
-        if (GetFacing() == 9) {
-            MaleIhn(g, krabato_rfloetel[nFrame]);
+        if (getFacing() == 9) {
+            drawHim(g, krabato_rfloetel[nFrame]);
         }
-        if (GetFacing() == 12) {
-            MaleIhn(g, krabato_rfloeteb[nFrame]);
+        if (getFacing() == 12) {
+            drawHim(g, krabato_rfloeteb[nFrame]);
         }
     }
 
     // Krabat klopft an Tuer
-    private void Klopfe(GenericDrawingContext g, int tCount) {
+    private void knock(GenericDrawingContext g, int tCount) {
         int welche = (tCount & 1) + 1;
 
-        MaleIhn(g, krabato_klopf[welche]);
+        drawHim(g, krabato_klopf[welche]);
     }
 
 
     // Lasse K wosusk essen
-    private void IssWosusk(GenericDrawingContext g) {
+    private void eatWosusk(GenericDrawingContext g) {
         int tempvar = nAnimStep % 4 < 2 ? 0 : 1;
 
-        if (GetFacing() == 3) {
-            MaleIhn(g, krabato_wosuskr[tempvar]);
+        if (getFacing() == 3) {
+            drawHim(g, krabato_wosuskr[tempvar]);
         }
-        if (GetFacing() == 6) {
-            MaleIhn(g, krabato_wosuskf[tempvar]);
+        if (getFacing() == 6) {
+            drawHim(g, krabato_wosuskf[tempvar]);
         }
-        if (GetFacing() == 9) {
-            MaleIhn(g, krabato_wosuskl[tempvar]);
+        if (getFacing() == 9) {
+            drawHim(g, krabato_wosuskl[tempvar]);
         }
-        if (GetFacing() == 12) {
-            MaleIhn(g, krabato_wosuskb[tempvar]);
+        if (getFacing() == 12) {
+            drawHim(g, krabato_wosuskb[tempvar]);
         }
 
     }
 
     // Lasse K mit Feuersteinen spielen
-    private void MacheFeuer(GenericDrawingContext g) {
+    private void makeFire(GenericDrawingContext g) {
         int tempvar = nAnimStep % 4 < 2 ? 0 : 1;
 
-        if (GetFacing() == 3) {
-            MaleIhn(g, krabato_feuerr[tempvar]);
+        if (getFacing() == 3) {
+            drawHim(g, krabato_feuerr[tempvar]);
         }
-        if (GetFacing() == 6) {
-            MaleIhn(g, krabato_feuerf[tempvar]);
+        if (getFacing() == 6) {
+            drawHim(g, krabato_feuerf[tempvar]);
         }
-        if (GetFacing() == 9) {
-            MaleIhn(g, krabato_feuerl[tempvar]);
+        if (getFacing() == 9) {
+            drawHim(g, krabato_feuerl[tempvar]);
         }
-        if (GetFacing() == 12) {
-            MaleIhn(g, krabato_feuerb[tempvar]);
+        if (getFacing() == 12) {
+            drawHim(g, krabato_feuerb[tempvar]);
         }
     }
 
     // Lasse K das Buch lesen
-    private void LiesBuch(GenericDrawingContext g) {
-        if (GetFacing() == 3) {
-            MaleIhn(g, krabato_liesr);
+    private void readBook(GenericDrawingContext g) {
+        if (getFacing() == 3) {
+            drawHim(g, krabato_liesr);
         }
-        if (GetFacing() == 6) {
-            MaleIhn(g, krabato_liesf);
+        if (getFacing() == 6) {
+            drawHim(g, krabato_liesf);
         }
-        if (GetFacing() == 9) {
-            MaleIhn(g, krabato_liesl);
+        if (getFacing() == 9) {
+            drawHim(g, krabato_liesl);
         }
-        if (GetFacing() == 12) {
-            MaleIhn(g, krabato_liesb);
+        if (getFacing() == 12) {
+            drawHim(g, krabato_liesb);
         }
     }
 
@@ -643,7 +634,7 @@ public class KrabatUp extends Krabat {
                 }
             }
 
-            Rede(offGraph, TalkLeft, TalkMitte, TalkRight);
+            talk(offGraph, TalkLeft, TalkMitte, TalkRight);
         } else {
             drawKrabat(offGraph);
         }
@@ -666,21 +657,21 @@ public class KrabatUp extends Krabat {
                 }
             }
 
-            Rede(offGraph, links, describeMitte, rechts);
+            talk(offGraph, links, describeMitte, rechts);
         } else {
             drawKrabat(offGraph);
         }
     }
 
     // Gilt nur fuer von Oben, Images wurden bereits getestet
-    private void Rede(GenericDrawingContext g, int links, int mitte, int rechts) {
+    private void talk(GenericDrawingContext g, int links, int mitte, int rechts) {
         // Clipping - Region setzen
-        krabatClip(g, (int) xps, (int) yps);
+        krabatClip(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
-        int scale = (int) zoomf;
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
+        int scale = (int) zoomFactor;
 
         // linken Teil der Figur zeichnen
         g.drawImage(krabato_talkl[links], left, up, 9 - scale * 9 / 41, CHEIGHTO - scale);
@@ -701,18 +692,18 @@ public class KrabatUp extends Krabat {
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int ignored) {
-        return pox - (CWIDTHO - (int) zoomf) / 2;
+    protected int getLeftPos(int x, int ignored) {
+        return x - (CWIDTHO - (int) zoomFactor) / 2;
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return poy - (CHEIGHTO - (int) zoomf) / 2;
+    protected int getUpPos(int y) {
+        return y - (CHEIGHTO - (int) zoomFactor) / 2;
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy);
+    protected int getScale(int y) {
+        return calcScaleDefault(y);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
@@ -722,22 +713,22 @@ public class KrabatUp extends Krabat {
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
-    public BorderRect getRect() {
-        int x = getLeftPos((int) xps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = 2 * ((int) yps - y) + y;
+    public BorderRect getBoundingBox() {
+        int x = getLeftPos((int) posX);
+        int y = getUpPos((int) posY);
+        int xd = 2 * ((int) posX - x) + x;
+        int yd = 2 * ((int) posY - y) + y;
         return new BorderRect(x, y, xd, yd);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
+    private void drawHim(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        krabatClip(g, (int) xps, (int) yps);
+        krabatClip(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
-        int scale = (int) zoomf;
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
+        int scale = (int) zoomFactor;
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTHO - scale, CHEIGHTO - scale);

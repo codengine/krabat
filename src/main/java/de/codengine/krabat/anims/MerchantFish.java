@@ -71,7 +71,7 @@ public class MerchantFish extends MainAnim {
         wik_kram = new GenericImage[3];
         octopussy = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
@@ -80,7 +80,7 @@ public class MerchantFish extends MainAnim {
         Verhinderocto = MAX_VERHINDEROCTO;
     }
 
-    private void InitImages() {
+    private void initImages() {
         wik_head[0] = getPicture("gfx/kulow/fh-h.png");
         wik_head[1] = getPicture("gfx/kulow/fh-h1.png");
         wik_head[2] = getPicture("gfx/kulow/fh-h2.png");

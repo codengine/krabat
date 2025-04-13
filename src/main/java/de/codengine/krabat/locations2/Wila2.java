@@ -68,35 +68,34 @@ public class Wila2 extends MainLocation2 {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 400;
-        mainFrame.krabat.zoomf = 4f;
-        mainFrame.krabat.defScale = 5;
+        mainFrame.krabat.maxX = 400;
+        mainFrame.krabat.zoomFactor = 4f;
+        mainFrame.krabat.defaultScale = 5;
 
         mueller = new Miller(mainFrame);
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = 10;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = 10;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(6);
+        mueller.setFacing(6);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 458, 639, 479));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(352, 639, 166, 639, 428, 457));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(536, 639, 464, 639, 373, 427));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(550, 639, 536, 639, 333, 372));
-        // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (488, 494, 550, 625, 249, 332));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(488, 494, 519, 560, 249, 297));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(465, 298, 567, 307));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(523, 567, 550, 625, 308, 332));
@@ -105,20 +104,20 @@ public class Wila2 extends MainLocation2 {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(435, 437, 460, 464, 145, 177));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(10);
+        mainFrame.pathFinder.clearMatrix(10);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 5);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 7);
-        mainFrame.pathFinder.PosVerbinden(4, 8);
-        mainFrame.pathFinder.PosVerbinden(8, 9);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 6);
+        mainFrame.pathFinder.connectPos(6, 5);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(5, 7);
+        mainFrame.pathFinder.connectPos(4, 8);
+        mainFrame.pathFinder.connectPos(8, 9);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -131,11 +130,11 @@ public class Wila2 extends MainLocation2 {
             case 80:
                 // von Njedz aus (Mueller oder Karte)
                 mainFrame.krabat.setPos(new GenericPoint(293, 475));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 if (mainFrame.actions[300]) {
                     BackgroundMusicPlayer.getInstance().stop(); // wenn Mueller, dann CD aus
                     setAnim = true;
-                    TalkPause = 10;
+                    talkPause = 10;
                 } else {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
@@ -144,20 +143,20 @@ public class Wila2 extends MainLocation2 {
                 // von Kolmc aus
                 // nix Musik, kann nur Heimgehszene sein
                 mainFrame.krabat.setPos(new GenericPoint(436, 147));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
 
             case 72:
                 // von Dubring aus (ueber die Karte)
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 mainFrame.krabat.setPos(new GenericPoint(620, 404));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/villa/villa.png");
 
     }
@@ -181,7 +180,7 @@ public class Wila2 extends MainLocation2 {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -195,7 +194,7 @@ public class Wila2 extends MainLocation2 {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -209,15 +208,15 @@ public class Wila2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -233,22 +232,22 @@ public class Wila2 extends MainLocation2 {
             muellermorphcount = muellermorph.drawBumm(g);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -275,7 +274,7 @@ public class Wila2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -285,23 +284,23 @@ public class Wila2 extends MainLocation2 {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = 1000;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -316,7 +315,7 @@ public class Wila2 extends MainLocation2 {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -336,24 +335,24 @@ public class Wila2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Tuer
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     // kamuski
                     nextActionID = mainFrame.whatItem == 12 ? 250 : 270;
                     pTemp = Pdurje;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -363,7 +362,7 @@ public class Wila2 extends MainLocation2 {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -375,99 +374,99 @@ public class Wila2 extends MainLocation2 {
                 nextActionID = 0;
 
                 // zu Njedz gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Dubring gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Kolmc gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Tuer ansehen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Pdurje;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Njedz Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Kolmc anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Dubring anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Tuer benutzen ?
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 280;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -478,8 +477,8 @@ public class Wila2 extends MainLocation2 {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -488,17 +487,17 @@ public class Wila2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    durjeRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    durjeRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -506,42 +505,42 @@ public class Wila2 extends MainLocation2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (durjeRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (durjeRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -575,7 +574,7 @@ public class Wila2 extends MainLocation2 {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -583,7 +582,7 @@ public class Wila2 extends MainLocation2 {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -591,26 +590,26 @@ public class Wila2 extends MainLocation2 {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -630,7 +629,7 @@ public class Wila2 extends MainLocation2 {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -639,7 +638,7 @@ public class Wila2 extends MainLocation2 {
 
             case 3:
                 // Tuer anschauen
-                KrabatSagt("Wila2_1", fDurje, 3, 0, 0);
+                krabatSays("Wila2_1", fDurje, 3, 0, 0);
                 break;
 
             case 100:
@@ -689,22 +688,22 @@ public class Wila2 extends MainLocation2 {
 
             case 250:
                 // Tuer anschauen
-                KrabatSagt("Wila2_2", fDurje, 3, 0, 0);
+                krabatSays("Wila2_2", fDurje, 3, 0, 0);
                 break;
 
             case 270:
                 // Durje - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 280:
                 // Tuer mitnehmen
-                KrabatSagt("Wila2_3", fDurje, 3, 0, 0);
+                krabatSays("Wila2_3", fDurje, 3, 0, 0);
                 break;
 
             case 1000:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 100);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 100);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 1003;
                 break;
@@ -725,15 +724,15 @@ public class Wila2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 1010;
                 break;
 
             case 1010:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 85);
+                createNewLocation(90, 85);
                 break;
 
             default:

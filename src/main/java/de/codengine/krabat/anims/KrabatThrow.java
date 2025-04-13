@@ -47,12 +47,12 @@ public class KrabatThrow extends MainAnim {
 
         krabat_werfen = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         Verhinderwerfen = MAX_VERHINDERWERFEN;
     }
 
-    private void InitImages() {
+    private void initImages() {
         krabat_werfen[0] = getPicture("gfx-dd/haska/k-l-kw1.png");
         krabat_werfen[1] = getPicture("gfx-dd/haska/k-l-kw2.png");
         krabat_werfen[2] = getPicture("gfx-dd/haska/k-l-kw3.png");
@@ -86,18 +86,13 @@ public class KrabatThrow extends MainAnim {
             BildIndex++;
 
             if (BildIndex == 1) {
-                mainFrame.soundPlayer.PlayFile("sfx-dd/wusch2.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/wusch2.wav");
             }
 
             if (BildIndex > 3) {
                 // hier einen Umaluf weiterschalten
                 --Umlaeufe;
                 BildIndex = 0;
-                        /*if (Umlaeufe < 1)
-                            {
-                               // Ende, wenn fertig!
-                                zurueck = false;
-                            }*/
             }
             if (Umlaeufe == 0 && BildIndex == 3) {
                 zurueck = false;

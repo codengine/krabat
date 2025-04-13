@@ -302,7 +302,6 @@ public class OGGPlayer extends AbstractPlayer {
                                                 // interleave
                                                 for (i = 0; i < vi.channels; i++) {
                                                     int ptr = i * 2;
-                                                    //int ptr=i;
                                                     int mono = _index[i];
                                                     for (int j = 0; j < bout; j++) {
                                                         int val = (int) (pcm[i][mono + j] * 32767.);

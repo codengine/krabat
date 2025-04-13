@@ -45,12 +45,12 @@ public class Guard1 extends MainAnim {
         straza_stand = new GenericImage[4];
         straza_talk = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         straza_stand[0] = getPicture("gfx-dd/straze/straza1.png");
         straza_stand[1] = getPicture("gfx-dd/straze/straza1a.png");
         straza_stand[2] = getPicture("gfx-dd/straze/straza1b.png");

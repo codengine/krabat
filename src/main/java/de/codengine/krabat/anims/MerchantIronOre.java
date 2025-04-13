@@ -45,14 +45,12 @@ public class MerchantIronOre extends MovableMainAnim {
     private static final int CHEIGHT = 35;
 
     // Abstaende default
-    // private static final int[] CHORIZ_DIST = {6, 10, 11, 9, 10, 10, 10, 11, 11, 10};
     private static final int CVERT_DIST = 4;
 
     private int VerhinderTalk;
     private static final int MAX_VERHINDERTALK = 5;
     private int TalkPos = 0;
 
-    // private boolean isListening = false;
     private boolean isMoving = false;
 
     private int Guck = 0;
@@ -70,14 +68,14 @@ public class MerchantIronOre extends MovableMainAnim {
         krabat_extra = new GenericImage[2];
         hrajer_extra = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         VerhinderTalk = MAX_VERHINDERTALK;
         Verhinderguck = MAX_VERHINDERGUCK;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         krabat_front[0] = getPicture("gfx-dd/lodz/zona.png");
         krabat_front[1] = getPicture("gfx-dd/lodz/zona5.png");
         krabat_front[2] = getPicture("gfx-dd/lodz/zona.png");
@@ -110,32 +108,30 @@ public class MerchantIronOre extends MovableMainAnim {
 
     // Plokarka um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        // horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         // neuen Punkt ermitteln und setzen
-        VerschiebeY();
-        xps = txps;
-        yps = typs;
+        moveY();
+        posX = tempPosX;
+        posY = tempPosY;
 
         // Animationsphase weiterschalten
-        anim_pos++;
-        if (anim_pos == 4) {
-            anim_pos = 0;
+        animPos++;
+        if (animPos == 4) {
+            animPos = 0;
         }
 
         // Naechsten Schritt auf Gueltigkeit ueberpruefen
-        VerschiebeY();
+        moveY();
 
         // Ueberschreitung feststellen in Y - Richtung
-        if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-            // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-            setPos(walkto);
-            anim_pos = 0;
+        if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
+            setPos(walkTo);
+            animPos = 0;
             isMoving = true;
             return true;
         }
@@ -145,17 +141,17 @@ public class MerchantIronOre extends MovableMainAnim {
     }
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY() {
-        verschiebeY(CVERT_DIST);
+    private void moveY() {
+        moveY(CVERT_DIST);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
 
-        if (anim_pos == 0) {
-            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        if (animPos == 0) {
+            animPos = 1;       // Animationsimage bei Neubeginn initialis.
         }
     }
 
@@ -173,31 +169,29 @@ public class MerchantIronOre extends MovableMainAnim {
 
             // Wenn Extrawurst, dann diese ausfuehren
             if (Guck == 1) {
-                MaleIhn(offGraph, krabat_talk[1]);
+                drawHim(offGraph, krabat_talk[1]);
                 return;
             }
         }
 
         // nach oben laufen
         if (directionY == DOWN) {
-            MaleIhn(offGraph, krabat_front[anim_pos]);
+            drawHim(offGraph, krabat_front[animPos]);
         }
 
         // nach unten laufen
         if (directionY == UP) {
-            MaleIhn(offGraph, krabat_back[anim_pos]);
+            drawHim(offGraph, krabat_back[animPos]);
         }
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 6:
-                // horizontal=false;
                 directionY = DOWN;
                 break;
             case 12:
-                // horizontal=false;
                 directionY = UP;
                 break;
             default:
@@ -225,7 +219,7 @@ public class MerchantIronOre extends MovableMainAnim {
             }
         }
 
-        MaleIhn(offGraph, krabat_talk[TalkPos]);
+        drawHim(offGraph, krabat_talk[TalkPos]);
     }
 
     public void giveWosusk(GenericDrawingContext g, GenericPoint lo) {
@@ -244,7 +238,7 @@ public class MerchantIronOre extends MovableMainAnim {
         g.drawImage(hrajer_extra[1], lo.x, lo.y + CHEIGHT);
     }
 
-    public void Kiss(GenericDrawingContext g, GenericPoint lo) {
+    public void kiss(GenericDrawingContext g, GenericPoint lo) {
         // alles "overriden" und 1 Kiss-Image zeichnen
         // Achtung ! Nachher per Clipset Neuzeichnen erzwingen !!
         g.setClip(lo.x, lo.y, lo.x + CWIDTH * 2, lo.y + CHEIGHT * 2);
@@ -258,33 +252,31 @@ public class MerchantIronOre extends MovableMainAnim {
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int ignored) {
+    protected int getLeftPos(int x, int ignored) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        // int helper = getScale(pox, poy);
-        return pox - CWIDTH / 2;
+        return x - CWIDTH / 2;
     }
 
     @Override
-    protected int getUpPos(int poy) {
+    protected int getUpPos(int y) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        // int helper = getScale(pox, poy);
-        return poy - CHEIGHT / 2;
+        return y - CHEIGHT / 2;
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy);
+    protected int getScale(int y) {
+        return calcScaleDefault(y);
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
-    public BorderRect getRect() {
-        int x = getLeftPos((int) xps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = 2 * ((int) yps - y) + y;
+    public BorderRect getBoundingBox() {
+        int x = getLeftPos((int) posX);
+        int y = getUpPos((int) posY);
+        int xd = 2 * ((int) posX - x) + x;
+        int yd = 2 * ((int) posY - y) + y;
         return new BorderRect(x, y, xd, yd);
     }
 
@@ -292,13 +284,13 @@ public class MerchantIronOre extends MovableMainAnim {
         krabatClipDefault(g, xps, yps, 2);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
+    private void drawHim(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        krabatClip(g, (int) xps, (int) yps);
+        krabatClip(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
         // int scale = getScale   ( ((int) xps), ((int) yps) );
 
         // Figur zeichnen

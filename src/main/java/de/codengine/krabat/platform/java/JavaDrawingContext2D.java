@@ -29,32 +29,32 @@ import java.awt.*;
 
 public class JavaDrawingContext2D extends GenericDrawingContext2D {
 
-    private final Graphics2D g;
+    private final Graphics2D graphics;
 
-    public JavaDrawingContext2D(Graphics g) {
-        this.g = (Graphics2D) g;
+    public JavaDrawingContext2D(Graphics graphics) {
+        this.graphics = (Graphics2D) graphics;
     }
 
     @Override
-    public void setComposite(GenericAlphaComposite ad) {
-        AlphaComposite ac = AlphaComposite.getInstance(ad.getRule(), ad.getAplha());
-        g.setComposite(ac);
+    public void setComposite(GenericAlphaComposite alphaComposite) {
+        AlphaComposite ac = AlphaComposite.getInstance(alphaComposite.getRule(), alphaComposite.getAplha());
+        graphics.setComposite(ac);
     }
 
     @Override
     public void drawImage(GenericImage genericImage, int x, int y) {
         Image image = ((JavaImage) genericImage).getImage();
-        g.drawImage(image, x, y, null);
+        graphics.drawImage(image, x, y, null);
     }
 
     @Override
     public void fillRect(int x1, int y1, int width, int height) {
-        g.fillRect(x1, y1, width, height);
+        graphics.fillRect(x1, y1, width, height);
     }
 
     @Override
-    public void setColor(GenericColor inakt) {
-        g.setColor(new Color(inakt.getR(), inakt.getG(), inakt.getB()));
+    public void setColor(GenericColor color) {
+        graphics.setColor(new Color(color.getR(), color.getG(), color.getB()));
     }
 
 }

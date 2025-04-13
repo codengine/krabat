@@ -25,15 +25,15 @@ import java.util.Properties;
 
 public abstract class GenericStorageManager {
 
-    protected static final int fileSize = 44100;
+    protected static final int FILE_SIZE = 44100;
 
     public int getFileSize() {
-        return fileSize;
+        return FILE_SIZE;
     }
 
     public abstract boolean isLoadSaveSupported();
 
-    public abstract boolean isSlownikSupported();
+    public abstract boolean isDictionarySupported();
 
     public abstract boolean isPropertyStorageSupported();
 
@@ -41,7 +41,7 @@ public abstract class GenericStorageManager {
 
     public abstract boolean saveToFile(byte[] data, int gameIndex);
 
-    public abstract byte[] loadSlownik(String relativeFileName);
+    public abstract byte[] loadDictionary(String relativeFileName);
 
     public abstract void getGameProperties(Properties props);
 

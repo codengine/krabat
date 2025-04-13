@@ -31,7 +31,6 @@ public class FontFilter extends GenericImageFilter {
     public int filterRGB(int rgb) {
         // Unveraendert !!!
         if (rgb != 0xff00ff00) {
-            // System.out.print ("X");
             return rgb;
         } else {
             return whatColor;

@@ -54,12 +54,12 @@ public class OldWoman extends MainAnim {
         alte_body = new GenericImage[5];
         alte_lach = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verbody = MAX_VERBODY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         alte_head[1] = getPicture("gfx/zdzary/st-k.png");
         alte_head[2] = getPicture("gfx/zdzary/st-k1.png");
         alte_head[3] = getPicture("gfx/zdzary/st-k2.png");

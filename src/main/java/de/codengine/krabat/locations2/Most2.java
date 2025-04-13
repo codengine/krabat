@@ -64,7 +64,6 @@ public class Most2 extends MainLocation2 {
 
     private Coach coach;
     private boolean kutscheOpen = false;
-    // private int Kutschenstatus;
     private int kutscheArbeitet = 0;
     private boolean kutscheda = false;
 
@@ -89,7 +88,6 @@ public class Most2 extends MainLocation2 {
     private static final BorderRect rechterAusgang = new BorderRect(609, 353, 639, 415);
     private static final BorderRect obererAusgang = new BorderRect(412, 176, 496, 221);
     private static final BorderRect untererAusgang = new BorderRect(0, 436, 246, 479);
-    // private static final borderrect gelRect        = new borderrect (351, 284, 430, 343); 
     private static final BorderRect ralbitzSchild = new BorderRect(254, 208, 301, 228);
     private static final BorderRect dresdenSchild = new BorderRect(255, 233, 296, 246);
     private static final BorderRect rekaRect = new BorderRect(427, 383, 513, 476);
@@ -154,12 +152,12 @@ public class Most2 extends MainLocation2 {
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = -30;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = -30;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
         kutscher = new Coachman(mainFrame);
 
@@ -175,14 +173,14 @@ public class Most2 extends MainLocation2 {
         schwein2 = new Pig2(mainFrame, new GenericPoint(180, 250));
         schwein3 = new Pig3(mainFrame, new GenericPoint(110, 280));
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
-        InitImages();
+    private void initLocation(int oldLocation) {
+        initImages();
         switch (oldLocation) {
             case 0: // Einsprung fuer Load
                 if (mainFrame.actions[300]) {
@@ -192,30 +190,30 @@ public class Most2 extends MainLocation2 {
                 }
                 GenericPoint tp = mainFrame.krabat.getPos();
                 BorderRect TalRect = new BorderRect(400, 220, 460, 290);
-                isTal = TalRect.IsPointInRect(tp);
+                isTal = TalRect.isPointInRect(tp);
                 break;
             case 71:
                 // von Doma aus - Sonderstellung, soll nix spielen
                 BackgroundMusicPlayer.getInstance().stop();
                 mainFrame.krabat.setPos(new GenericPoint(293, 351));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 isTal = false;
                 break;
             case 82:
                 // von Ralbicy aus
                 BackgroundMusicPlayer.getInstance().stop();
                 mainFrame.krabat.setPos(new GenericPoint(624, 384));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 isTal = false;
                 backgroundSoundAus = true; // Hintergrundgeraeusche hier abschalten
                 wasserAus = true;
                 setAnim = true;
-                TalkPause = 10;
+                talkPause = 10;
                 break;
             case 84:
                 // von Sunow aus, heimgehszene, nix tun
                 mainFrame.krabat.setPos(new GenericPoint(458, 226));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 isTal = true;
                 break;
         }
@@ -227,12 +225,12 @@ public class Most2 extends MainLocation2 {
         }
 
         // Matrix - Init
-        InitMatrix();
+        initMatrix();
 
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/most/most2.png");
         gelaend = getPicture("gfx/most/most-2.png");
         wegstueck = getPicture("gfx/most/most-3.png");
@@ -280,7 +278,7 @@ public class Most2 extends MainLocation2 {
         schwein3 = null;
     }
 
-    private void InitMatrix() {
+    private void initMatrix() {
         mainFrame.pathWalker.vBorders.removeAllElements();
 
         if (isTal) {
@@ -289,13 +287,13 @@ public class Most2 extends MainLocation2 {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(457, 459, 407, 419, 225, 284));
 
             // Laufmatrix anpassen
-            mainFrame.pathFinder.ClearMatrix(1);
+            mainFrame.pathFinder.clearMatrix(1);
 
             // Zooming anpassen
-            mainFrame.krabat.maxx = TAL_MAXX;
-            mainFrame.krabat.minx = TAL_MINX;
-            mainFrame.krabat.zoomf = TAL_ZOOMF;
-            mainFrame.krabat.defScale = TAL_DEFSCALE;
+            mainFrame.krabat.maxX = TAL_MAXX;
+            mainFrame.krabat.minX = TAL_MINX;
+            mainFrame.krabat.zoomFactor = TAL_ZOOMF;
+            mainFrame.krabat.defaultScale = TAL_DEFSCALE;
         } else {
             // Grenzen setzen auf dem Berg
             // Bergtrapez
@@ -307,20 +305,20 @@ public class Most2 extends MainLocation2 {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(218, 286, 43, 182, 368, 479));
 
             // Laufmatrix anpassen
-            mainFrame.pathFinder.ClearMatrix(6);
+            mainFrame.pathFinder.clearMatrix(6);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 2);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(1, 5);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 2);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(1, 5);
 
             // Zooming anpassen
-            mainFrame.krabat.maxx = BERG_MAXX;
-            mainFrame.krabat.minx = BERG_MINX;
-            mainFrame.krabat.zoomf = BERG_ZOOMF;
-            mainFrame.krabat.defScale = BERG_DEFSCALE;
+            mainFrame.krabat.maxX = BERG_MAXX;
+            mainFrame.krabat.minX = BERG_MINX;
+            mainFrame.krabat.zoomFactor = BERG_ZOOMF;
+            mainFrame.krabat.defaultScale = BERG_DEFSCALE;
         }
     }
 
@@ -340,7 +338,7 @@ public class Most2 extends MainLocation2 {
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
@@ -387,7 +385,7 @@ public class Most2 extends MainLocation2 {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -398,15 +396,15 @@ public class Most2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -433,20 +431,20 @@ public class Most2 extends MainLocation2 {
             muellermorphcount = muellermorph.drawBumm(g);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -472,7 +470,7 @@ public class Most2 extends MainLocation2 {
 
         GenericPoint tem = mainFrame.krabat.getPos();
 
-        if (BergTrapez.PointInside(tem)) {
+        if (BergTrapez.pointInside(tem)) {
             g.drawImage(gelaend, 379, 273);
         }
 
@@ -493,7 +491,7 @@ public class Most2 extends MainLocation2 {
         // Pohonc zeichnen, auch Vorrang, weil auf Kutsche, aber nicht, wenn sie aus dem Rauch aufsteigt.
         if (showPohonc) {
             g.setClip(pohoncPoint.x, pohoncPoint.y, Coachman.Breite, Coachman.Hoehe);
-            kutscher.drawKutser(g, TalkPerson, pohoncPoint, pohoncHoertZu);
+            kutscher.drawKutser(g, talkPerson, pohoncPoint, pohoncHoertZu);
         }
 
         // altes rect wiederherstellen
@@ -505,7 +503,7 @@ public class Most2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -529,25 +527,25 @@ public class Most2 extends MainLocation2 {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             if (mainFrame.actions[300]) {
                 nextActionID = 1000;
             }
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -581,10 +579,10 @@ public class Most2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 500 + mainFrame.whatItem;
                     } else {
@@ -599,31 +597,31 @@ public class Most2 extends MainLocation2 {
                 }
 
                 // Ausreden fuer Schild Ralbitz
-                if (ralbitzSchild.IsPointInRect(pTemp)) {
+                if (ralbitzSchild.isPointInRect(pTemp)) {
                     // kamuski
                     nextActionID = mainFrame.whatItem == 16 ? 200 : 150;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Schild Dresden
-                if (dresdenSchild.IsPointInRect(pTemp)) {
+                if (dresdenSchild.isPointInRect(pTemp)) {
                     // kamuski
                     nextActionID = mainFrame.whatItem == 16 ? 200 : 155;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Reka
-                if (rekaRect.IsPointInRect(pTemp)) {
+                if (rekaRect.isPointInRect(pTemp)) {
                     // wuda + wacki
                     nextActionID = mainFrame.whatItem == 10 ? 210 : 160;
                     pTemp = Preka;
                 }
 
-                boolean tp = TesteLauf(pTemp, nextActionID);
+                boolean tp = tryWalk(pTemp, nextActionID);
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
                 if (!tp) {
-                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.setNewWay(pTemp);
                 }
                 mainFrame.repaint();
             }
@@ -634,7 +632,7 @@ public class Most2 extends MainLocation2 {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -646,13 +644,13 @@ public class Most2 extends MainLocation2 {
                 nextActionID = 0;
 
                 // zu Dresden gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 60;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (!untererAusgang.IsPointInRect(kt)) {
+                        if (!untererAusgang.isPointInRect(kt)) {
                             pTemp = Pdown;
                         } else {
                             pTemp = new GenericPoint(kt.x, Pdown.y);
@@ -664,20 +662,20 @@ public class Most2 extends MainLocation2 {
                 }
 
                 // nach Sunow gehen?
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 102;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (!obererAusgang.IsPointInRect(kt)) {
+                        if (!obererAusgang.isPointInRect(kt)) {
                             pTemp = Pup;
                         } else {
                             pTemp = new GenericPoint(kt.x, Pup.y);
                         }
 
                         if (mainFrame.isDoubleClick) {
-                            mainFrame.krabat.StopWalking();
+                            mainFrame.krabat.stopWalking();
                             mainFrame.repaint();
                             return;
                         }
@@ -688,20 +686,20 @@ public class Most2 extends MainLocation2 {
                 }
 
                 // rechter Ausgang zu Ralbicy
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     if (!setAusnahme) {
                         nextActionID = 100;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (!rechterAusgang.IsPointInRect(kt)) {
+                        if (!rechterAusgang.isPointInRect(kt)) {
                             pTemp = Pright;
                         } else {
                             pTemp = new GenericPoint(Pright.x, kt.y);
                         }
 
                         if (mainFrame.isDoubleClick) {
-                            mainFrame.krabat.StopWalking();
+                            mainFrame.krabat.stopWalking();
                             mainFrame.repaint();
                             return;
                         }
@@ -712,29 +710,29 @@ public class Most2 extends MainLocation2 {
                 }
 
                 // Schild Ralbitz ansehen
-                if (ralbitzSchild.IsPointInRect(pTemp)) {
+                if (ralbitzSchild.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pschild;
                 }
 
                 // Schild Dresden ansehen
-                if (dresdenSchild.IsPointInRect(pTemp)) {
+                if (dresdenSchild.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschild;
                 }
 
                 // Reka ansehen
-                if (rekaRect.IsPointInRect(pTemp)) {
+                if (rekaRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Preka;
                 }
 
-                boolean tz = TesteLauf(pTemp, nextActionID);
+                boolean tz = tryWalk(pTemp, nextActionID);
 
                 log.debug("Lauftest ergab : {}", tz);
 
                 if (!tz) {
-                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.setNewWay(pTemp);
                 }
                 mainFrame.repaint();
             } else {
@@ -743,51 +741,51 @@ public class Most2 extends MainLocation2 {
                 nextActionID = 0;
 
                 // ??? Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Sunow anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ralbitz anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Schild Ralbitz mitnehmen
-                if (ralbitzSchild.IsPointInRect(pTemp)) {
+                if (ralbitzSchild.isPointInRect(pTemp)) {
                     nextActionID = 50;
                     pTemp = Pschild;
-                    boolean tu = TesteLauf(pTemp, nextActionID);
+                    boolean tu = tryWalk(pTemp, nextActionID);
                     if (!tu) {
-                        mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                        mainFrame.pathWalker.setNewWay(pTemp);
                     }
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schild Ralbitz mitnehmen
-                if (dresdenSchild.IsPointInRect(pTemp)) {
+                if (dresdenSchild.isPointInRect(pTemp)) {
                     nextActionID = 55;
                     pTemp = Pschild;
-                    boolean tu = TesteLauf(pTemp, nextActionID);
+                    boolean tu = tryWalk(pTemp, nextActionID);
                     if (!tu) {
-                        mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                        mainFrame.pathWalker.setNewWay(pTemp);
                     }
                     mainFrame.repaint();
                     return;
                 }
 
                 // Reka mitnehmen
-                if (rekaRect.IsPointInRect(pTemp)) {
+                if (rekaRect.isPointInRect(pTemp)) {
                     nextActionID = 70;
                     pTemp = Preka;
-                    boolean tu = TesteLauf(pTemp, nextActionID);
+                    boolean tu = tryWalk(pTemp, nextActionID);
                     if (!tu) {
-                        mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                        mainFrame.pathWalker.setNewWay(pTemp);
                     }
                     mainFrame.repaint();
                     return;
@@ -795,7 +793,7 @@ public class Most2 extends MainLocation2 {
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -806,8 +804,8 @@ public class Most2 extends MainLocation2 {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -816,17 +814,17 @@ public class Most2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = ralbitzSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
-                    dresdenSchild.IsPointInRect(pTemp) || rekaRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = ralbitzSchild.isPointInRect(pTemp) || tmp.isPointInRect(pTemp) ||
+                    dresdenSchild.isPointInRect(pTemp) || rekaRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -834,49 +832,49 @@ public class Most2 extends MainLocation2 {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (ralbitzSchild.IsPointInRect(pTemp) || dresdenSchild.IsPointInRect(pTemp) ||
-                    rekaRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (ralbitzSchild.isPointInRect(pTemp) || dresdenSchild.isPointInRect(pTemp) ||
+                    rekaRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
 
     // Erkennungsroutine, ob Animationsmodus eingeschaltet werden muss
-    private boolean TesteLauf(GenericPoint pTxxx, int Action) {
+    private boolean tryWalk(GenericPoint pTxxx, int Action) {
         // hier mit "false" zurueckspringen, wenn die Ausnahmeszene ist, da soll Krabat nicht runtergehen koennen
         if (setAusnahme) {
             return false;
@@ -898,7 +896,7 @@ public class Most2 extends MainLocation2 {
             Merkpunkt.y = pTemp.y;
 
             // Punkt vor dem Verschwinden berechnen
-            GenericPoint rand = TalTrapez.Punkte(kpos.y);
+            GenericPoint rand = TalTrapez.points(kpos.y);
             log.debug(" links aktuell rechts {} {} {}", rand.x, kpos.x, rand.y);
             pTemp.y = TalTrapez.y2;
             float t1 = kpos.x - rand.x;
@@ -912,7 +910,7 @@ public class Most2 extends MainLocation2 {
             Endpunkt = new GenericPoint((int) (BergTrapez.x1 + (BergTrapez.x2 - BergTrapez.x1) * teil), BergTrapez.y1);
             Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
-            mainFrame.pathWalker.SetzeWegOhneStand(pTemp);
+            mainFrame.pathWalker.setWayWithoutStanding(pTemp);
 
             log.debug(" Startpunkt {} {}", pTemp.x, pTemp.y);
 
@@ -932,7 +930,7 @@ public class Most2 extends MainLocation2 {
             Merkpunkt.y = pTemp.y;
 
             // Punkt vor Verschwinden berechnen
-            GenericPoint raud = BergTrapez.Punkte(kpos.y);
+            GenericPoint raud = BergTrapez.points(kpos.y);
 
             log.debug(" links aktuell rechts {} {} {}", raud.x, kpos.x, raud.y);
 
@@ -943,7 +941,7 @@ public class Most2 extends MainLocation2 {
 
             log.debug(" Mittenfaktor {}", teal);
 
-            if (BergTrapez.PointInside(mainFrame.krabat.getPos())) {
+            if (BergTrapez.pointInside(mainFrame.krabat.getPos())) {
                 pTemp.x = BergTrapez.x1 + (int) ((BergTrapez.x2 - BergTrapez.x1) * teal);
             } else {
                 // Default - Werte fuer Tallauf, wenn noch zu weit weg
@@ -957,7 +955,7 @@ public class Most2 extends MainLocation2 {
             Endpunkt = new GenericPoint((int) (TalTrapez.x3 + (TalTrapez.x4 - TalTrapez.x3) * teal), TalTrapez.y2);
             Wendepunkt = new GenericPoint((pTemp.x + Endpunkt.x) / 2, 380);
 
-            mainFrame.pathWalker.SetzeWegOhneStand(pTemp);
+            mainFrame.pathWalker.setWayWithoutStanding(pTemp);
 
             log.debug(" Startpunkt {} {}", pTemp.x, pTemp.y);
 
@@ -999,7 +997,7 @@ public class Most2 extends MainLocation2 {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -1007,7 +1005,7 @@ public class Most2 extends MainLocation2 {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -1015,21 +1013,21 @@ public class Most2 extends MainLocation2 {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     private void evalSound() {
@@ -1043,13 +1041,13 @@ public class Most2 extends MainLocation2 {
             int zwzfz = (int) (Math.random() * 4.99);
             zwzfz += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/recka" + (char) zwzfz + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/recka" + (char) zwzfz + ".wav");
         }
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -1069,7 +1067,7 @@ public class Most2 extends MainLocation2 {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -1077,32 +1075,32 @@ public class Most2 extends MainLocation2 {
         switch (nextActionID) {
             case 1:
                 // Schild Ralbitz anschauen
-                KrabatSagt("Most2_1", fPokazRal, 3, 0, 0);
+                krabatSays("Most2_1", fPokazRal, 3, 0, 0);
                 break;
 
             case 2:
                 // Schild Dresden anschauen
-                KrabatSagt("Most2_2", fPokazDrj, 3, 0, 0);
+                krabatSays("Most2_2", fPokazDrj, 3, 0, 0);
                 break;
 
             case 3:
                 // Reka anschauen
-                KrabatSagt("Most2_3", fReka, 3, 0, 0);
+                krabatSays("Most2_3", fReka, 3, 0, 0);
                 break;
 
             case 50:
                 // Schild Ralbitz mitnehmen
-                KrabatSagt("Most2_4", fPokazRal, 3, 0, 0);
+                krabatSays("Most2_4", fPokazRal, 3, 0, 0);
                 break;
 
             case 55:
                 // Schild Dresden mitnehmen
-                KrabatSagt("Most2_5", fPokazDrj, 3, 0, 0);
+                krabatSays("Most2_5", fPokazDrj, 3, 0, 0);
                 break;
 
             case 60:
                 // Nach Dresden gehen
-                KrabatSagt("Most2_6", fDrjezdzany, 3, 0, 0);
+                krabatSays("Most2_6", fDrjezdzany, 3, 0, 0);
                 break;
 
             case 70:
@@ -1111,48 +1109,48 @@ public class Most2 extends MainLocation2 {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Most2_7", fReka, 3, 0, 0);
+                        krabatSays("Most2_7", fReka, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Most2_8", fReka, 3, 0, 0);
+                        krabatSays("Most2_8", fReka, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 100:
                 // Gehe zu Ralbicy
-                NeuesBild(82, 89);
+                createNewLocation(82, 89);
                 break;
 
             case 102:
                 // nach Sunow gehen 
-                NeuesBild(84, 89);
+                createNewLocation(84, 89);
                 break;
 
             case 150:
                 // Schild - Ausreden Ralbitz
-                DingAusrede(fPokazRal);
+                thingExcuse(fPokazRal);
                 break;
 
             case 155:
                 // Schild - Ausreden Ralbitz
-                DingAusrede(fPokazDrj);
+                thingExcuse(fPokazDrj);
                 break;
 
             case 160:
                 // Ausrede Wasser
-                DingAusrede(fReka);
+                thingExcuse(fReka);
                 break;
 
             case 200:
                 // kamuski auf schild
-                KrabatSagt("Most2_9", fPokazRal, 3, 0, 0);
+                krabatSays("Most2_9", fPokazRal, 3, 0, 0);
                 break;
 
             case 210:
                 // Wuda + wacki auf Wasser
-                KrabatSagt("Most2_10", fReka, 3, 0, 0);
+                krabatSays("Most2_10", fReka, 3, 0, 0);
                 break;
 
             case 520:
@@ -1162,7 +1160,7 @@ public class Most2 extends MainLocation2 {
                     ersteAusredeGesagt = true;
                     zd = 0;
                 }
-                KrabatSagt(TEXTS[zd], 0, 3, 0, 0);
+                krabatSays(TEXTS[zd], 0, 3, 0, 0);
                 break;
 
             case 600:
@@ -1170,17 +1168,17 @@ public class Most2 extends MainLocation2 {
                 Berglauf = true;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Wendepunkt);
+                mainFrame.pathWalker.setNewWayGuaranteed(Wendepunkt);
                 nextActionID = 601;
                 break;
 
             case 601:
                 // beim Lauf Tal auf Berg wieder zum Vorschein kommen
-                mainFrame.krabat.maxx = BERG_MAXX;
-                mainFrame.krabat.minx = BERG_MINX;
-                mainFrame.krabat.defScale = BERG_DEFSCALE;
-                mainFrame.krabat.zoomf = BERG_ZOOMF;
-                mainFrame.pathWalker.SetzeGarantiertWegFalsch(Endpunkt);
+                mainFrame.krabat.maxX = BERG_MAXX;
+                mainFrame.krabat.minX = BERG_MINX;
+                mainFrame.krabat.defaultScale = BERG_DEFSCALE;
+                mainFrame.krabat.zoomFactor = BERG_ZOOMF;
+                mainFrame.pathWalker.setWayGuaranteedWrong(Endpunkt);
                 nextActionID = 620;
                 break;
 
@@ -1189,17 +1187,17 @@ public class Most2 extends MainLocation2 {
                 Berglauf = true;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeGarantiertWegFalsch(Wendepunkt);
+                mainFrame.pathWalker.setWayGuaranteedWrong(Wendepunkt);
                 nextActionID = 611;
                 break;
 
             case 611:
                 // beim Lauf Berg ins Tal wieder zum Vorschein kommen
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Endpunkt);
-                mainFrame.krabat.maxx = TAL_MAXX;
-                mainFrame.krabat.defScale = TAL_DEFSCALE;
-                mainFrame.krabat.zoomf = TAL_ZOOMF;
-                mainFrame.krabat.minx = TAL_MINX;
+                mainFrame.pathWalker.setNewWayGuaranteed(Endpunkt);
+                mainFrame.krabat.maxX = TAL_MAXX;
+                mainFrame.krabat.defaultScale = TAL_DEFSCALE;
+                mainFrame.krabat.zoomFactor = TAL_ZOOMF;
+                mainFrame.krabat.minX = TAL_MINX;
                 nextActionID = 620;
                 break;
 
@@ -1207,18 +1205,18 @@ public class Most2 extends MainLocation2 {
                 // Laufen beenden und alles wieder auf Normal zuruecksetzen
                 mainFrame.isAnimRunning = false;
                 Berglauf = false;
-                Cursorform = 200;
+                cursorShape = 200;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 isTal = !isTal;
-                InitMatrix();
+                initMatrix();
                 nextActionID = oldActionID;
-                mainFrame.pathWalker.SetzeNeuenWeg(Merkpunkt);
+                mainFrame.pathWalker.setNewWay(Merkpunkt);
                 mainFrame.repaint();
                 break;
 
             case 1000:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 1003;
                 break;
@@ -1239,15 +1237,15 @@ public class Most2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 1010;
                 break;
 
             case 1010:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 89);
+                createNewLocation(90, 89);
                 break;
 
             case 2000:
@@ -1257,7 +1255,7 @@ public class Most2 extends MainLocation2 {
                     ersteAusredeGesagt = true;
                     zr = 0;
                 }
-                KrabatSagt(TEXTS[zr], 0, 3, 0, 0);
+                krabatSays(TEXTS[zr], 0, 3, 0, 0);
                 break;
 
             case 2010:
@@ -1265,26 +1263,26 @@ public class Most2 extends MainLocation2 {
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 backgroundSoundAus = true;
-                mainFrame.pathWalker.SetzeNeuenWeg(PvorGras);
+                mainFrame.pathWalker.setNewWay(PvorGras);
                 nextActionID = 2011;
                 break;
 
             case 2011:
                 // uebers Gras laufen
                 zeigeGras = true;
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(PnachGras);
+                mainFrame.pathWalker.setNewWayGuaranteed(PnachGras);
                 nextActionID = 2012;
                 break;
 
             case 2012:
                 // und hin zur Floetenpos
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(PvorFloete);
+                mainFrame.pathWalker.setNewWayGuaranteed(PvorFloete);
                 nextActionID = 2013;
                 break;
 
             case 2013:
                 // und genau hin
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Pfloete);
+                mainFrame.pathWalker.setNewWayGuaranteed(Pfloete);
                 nextActionID = 2015;
                 break;
 
@@ -1318,15 +1316,14 @@ public class Most2 extends MainLocation2 {
             case 2020:
                 // Kutsche hinten Init und los gehts...
                 if (Counter == 100) {
-                    coach.InitKutsche(0);
+                    coach.initCoach(0);
                     kutscheda = true;
                     kutscheArbeitet = 1;
                 }
                 if (--Counter > 1) {
                     break;
                 }
-                // System.out.println ("Floete gestoppt...");
-                mainFrame.krabat.StopAnim();
+                mainFrame.krabat.stopAnim();
                 nextActionID = 2030;
                 break;
 
@@ -1347,7 +1344,7 @@ public class Most2 extends MainLocation2 {
                     break;
                 }
                 kutscheda = true;
-                coach.InitKutsche(1);
+                coach.initCoach(1);
                 kutscheArbeitet = 1;
                 nextActionID = 2040;
                 break;
@@ -1357,7 +1354,7 @@ public class Most2 extends MainLocation2 {
                 if (kutscheArbeitet != 10) {
                     break;
                 }
-                PersonSagt("Most2_11", fPohonc, 39, 2, 2500, pohoncBrrr);
+                personSays("Most2_11", fPohonc, 39, 2, 2500, pohoncBrrr);
                 break;
 
             case 2500:
@@ -1368,7 +1365,7 @@ public class Most2 extends MainLocation2 {
                 schwein1Tanzt = false;
                 schwein2Tanzt = false;
                 schwein3Tanzt = false;
-                coach.InitKutsche(2);
+                coach.initCoach(2);
                 mainFrame.isClipSet = false;
                 nextActionID = 2520;
                 break;
@@ -1380,78 +1377,78 @@ public class Most2 extends MainLocation2 {
                 }
                 showPohonc = true;
                 pohoncHoertZu = true;
-                KrabatSagt("Most2_12", 0, 1, 0, 2530);
+                krabatSays("Most2_12", 0, 1, 0, 2530);
                 break;
 
             case 2530:
                 // Pohonc spricht
-                PersonSagt("Most2_13", 0, 39, 2, 2540, pohoncTalk);
+                personSays("Most2_13", 0, 39, 2, 2540, pohoncTalk);
                 break;
 
             case 2540:
                 // Krabat spricht
-                KrabatSagt("Most2_14", 0, 1, 2, 2550);
+                krabatSays("Most2_14", 0, 1, 2, 2550);
                 break;
 
             case 2550:
                 // Pohonc spricht
-                PersonSagt("Most2_15", 0, 39, 2, 2560, pohoncTalk);
+                personSays("Most2_15", 0, 39, 2, 2560, pohoncTalk);
                 break;
 
             case 2560:
                 // Krabat spricht
-                KrabatSagt("Most2_16", 0, 1, 2, 2570);
+                krabatSays("Most2_16", 0, 1, 2, 2570);
                 break;
 
             case 2570:
                 // Pohonc spricht
-                PersonSagt("Most2_17", 0, 39, 2, 2580, pohoncTalk);
+                personSays("Most2_17", 0, 39, 2, 2580, pohoncTalk);
                 break;
 
             case 2580:
                 // Krabat spricht
-                KrabatSagt("Most2_18", 0, 1, 2, 2590);
+                krabatSays("Most2_18", 0, 1, 2, 2590);
                 break;
 
             case 2590:
                 // Pohonc spricht
-                PersonSagt("Most2_19", 0, 39, 2, 2600, pohoncTalk);
+                personSays("Most2_19", 0, 39, 2, 2600, pohoncTalk);
                 break;
 
             case 2600:
                 // Krabat geht vor die Kutsche
                 kutscheOpen = true;
-                mainFrame.soundPlayer.PlayFile("sfx/kdurjeauf.wav");
+                mainFrame.soundPlayer.playFile("sfx/kdurjeauf.wav");
                 pohoncHoertZu = false;
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(kVorKutsche);
+                mainFrame.pathWalker.setNewWayGuaranteed(kVorKutsche);
                 nextActionID = 2605;
                 break;
 
             case 2605:
                 // K spricht
-                KrabatSagt("Most2_20", 0, 1, 2, 2610);
+                krabatSays("Most2_20", 0, 1, 2, 2610);
                 break;
 
             case 2610:
                 // Kral spricht
-                PersonSagt("Most2_21", 0, 40, 2, 2620, kralTalk);
+                personSays("Most2_21", 0, 40, 2, 2620, kralTalk);
                 break;
 
             case 2620:
                 // Krabat spricht
-                KrabatSagt("Most2_22", 0, 1, 2, 2630);
+                krabatSays("Most2_22", 0, 1, 2, 2630);
                 break;
 
             case 2630:
                 // Kral spricht
-                PersonSagt("Most2_23", 0, 40, 2, 2640, kralTalk);
+                personSays("Most2_23", 0, 40, 2, 2640, kralTalk);
                 break;
 
             case 2640:
                 // Kral spricht
-                mainFrame.soundPlayer.PlayFile("sfx/kdurjezu.wav");
+                mainFrame.soundPlayer.playFile("sfx/kdurjezu.wav");
                 kutscheOpen = false;
-                PersonSagt("Most2_24", 0, 40, 2, 2650, kralTalk);
+                personSays("Most2_24", 0, 40, 2, 2650, kralTalk);
                 break;
 
             case 2650:
@@ -1475,7 +1472,7 @@ public class Most2 extends MainLocation2 {
 
             case 2660:
                 // Skip zum Bild Kutsche
-                NeuesBild(94, 89);
+                createNewLocation(94, 89);
                 break;
 
             default:

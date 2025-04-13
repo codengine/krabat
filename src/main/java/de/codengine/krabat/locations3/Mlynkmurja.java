@@ -66,11 +66,11 @@ public class Mlynkmurja extends MainLocation {
         mainFrame.checkKrabat();
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 469;
-        mainFrame.krabat.zoomf = 1f;
-        mainFrame.krabat.defScale = 35;
+        mainFrame.krabat.maxX = 469;
+        mainFrame.krabat.zoomFactor = 1f;
+        mainFrame.krabat.defaultScale = 35;
 
-        InitLocation();
+        initLocation();
 
         // Mueller initialisieren
         mueller = new OldMiller(mainFrame, Muellerzooming);
@@ -83,13 +83,11 @@ public class Mlynkmurja extends MainLocation {
         float xtf = 900 - (float) ((640 - 110) * 4) / 7;
         laterneAdd = (int) (xtf - 640);
 
-        // System.out.println ("Laterne wird auf Pos. " + laterneAdd + " gezeichnet.");
-
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -99,19 +97,19 @@ public class Mlynkmurja extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(620, 630, 620, 630, 435, 479));
 
-        mainFrame.pathFinder.ClearMatrix(3);
+        mainFrame.pathFinder.clearMatrix(3);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
 
-        InitImages();
+        initImages();
 
         mainFrame.krabat.setPos(new GenericPoint(607, 475));
-        mainFrame.krabat.SetFacing(9);
+        mainFrame.krabat.setFacing(9);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backr = getPicture("gfx-dd/murja/murja-r.png");
         laterne = getPicture("gfx-dd/murja/laterna.png");
 
@@ -123,13 +121,13 @@ public class Mlynkmurja extends MainLocation {
     public void paintLocation(GenericDrawingContext g) {
         if (initplay) {
             initplay = false;
-            mainFrame.soundPlayer.PlayFile("sfx-dd/mlynk-dd.wav");
+            mainFrame.soundPlayer.playFile("sfx-dd/mlynk-dd.wav");
         }
 
         // Clipping -Region initialisieren
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 644, 484);
             mainFrame.isBackgroundAnimRunning = true;
@@ -143,30 +141,30 @@ public class Mlynkmurja extends MainLocation {
         // Mueller zeichnen
         g.setClip(muellerPoint.x, muellerPoint.y, OldMiller.Breite, OldMiller.Hoehe);
         g.drawImage(backr, 0, 0);
-        mueller.drawOldmlynk(g, TalkPerson, muellerPoint);
+        mueller.drawOldmlynk(g, talkPerson, muellerPoint);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         if (krabatVisible) {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -194,21 +192,12 @@ public class Mlynkmurja extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // Laterne zeichnen, wenn im Bild
         g.drawImage(laterne, laterneAdd, 0);
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-	/*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-	  {
-	  g.drawImage (weiden2, 84, 221, null);
-	  }*/
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
@@ -216,17 +205,17 @@ public class Mlynkmurja extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount == 0) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount == 0) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause == 0 && mainFrame.talkCount == 0) {
-            DoAction();
+        if (nextActionID != 0 && talkPause == 0 && mainFrame.talkCount == 0) {
+            doAction();
         }
     }
 
@@ -251,8 +240,8 @@ public class Mlynkmurja extends MainLocation {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -270,7 +259,7 @@ public class Mlynkmurja extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -290,49 +279,49 @@ public class Mlynkmurja extends MainLocation {
         switch (nextActionID) {
             case 10:
                 // Krabat laeuft zum Mueller
-                mainFrame.pathWalker.SetzeNeuenWeg(Pmueller);
+                mainFrame.pathWalker.setNewWay(Pmueller);
                 nextActionID = 20;
                 break;
 
             case 20:
                 // richtigrum hinstellen
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 nextActionID = 30;
                 break;
 
             case 30:
                 // Mueller spricht
-                PersonSagt("Mlynkmurja_1", 0, 36, 2, 40, muellerTalk);
+                personSays("Mlynkmurja_1", 0, 36, 2, 40, muellerTalk);
                 break;
 
             case 40:
                 // Krabat spricht
-                KrabatSagt("Mlynkmurja_2", 0, 1, 2, 50);
+                krabatSays("Mlynkmurja_2", 0, 1, 2, 50);
                 break;
 
             case 50:
                 // Mueller spricht
-                PersonSagt("Mlynkmurja_3", 0, 36, 2, 60, muellerTalk);
+                personSays("Mlynkmurja_3", 0, 36, 2, 60, muellerTalk);
                 break;
 
             case 60:
                 // Krabat spricht
-                KrabatSagt("Mlynkmurja_4", 0, 1, 2, 70);
+                krabatSays("Mlynkmurja_4", 0, 1, 2, 70);
                 break;
 
             case 70:
                 // Mueller spricht
-                PersonSagt("Mlynkmurja_5", 0, 36, 2, 80, muellerTalk);
+                personSays("Mlynkmurja_5", 0, 36, 2, 80, muellerTalk);
                 break;
 
             case 80:
                 // Krabat spricht
-                KrabatSagt("Mlynkmurja_6", 0, 1, 2, 90);
+                krabatSays("Mlynkmurja_6", 0, 1, 2, 90);
                 break;
 
             case 90:
                 // Krabat laeuft aus dem Bild
-                mainFrame.pathWalker.SetzeNeuenWeg(Pexit);
+                mainFrame.pathWalker.setNewWay(Pexit);
                 nextActionID = 95;
                 break;
 
@@ -348,17 +337,17 @@ public class Mlynkmurja extends MainLocation {
                 if (--Counter > 0) {
                     break;
                 }
-                PersonSagt("Mlynkmurja_7", 0, 66, 2, 110, muellerTalk);
+                personSays("Mlynkmurja_7", 0, 66, 2, 110, muellerTalk);
                 break;
 
             case 110:
                 // Mueller spricht
-                PersonSagt("Mlynkmurja_8", 0, 67, 2, 120, muellerTalk);
+                personSays("Mlynkmurja_8", 0, 67, 2, 120, muellerTalk);
                 break;
 
             case 120:
                 // Gehe zu Murja, aber diesmal wieder die alte...
-                NeuesBild(126, locationID);
+                createNewLocation(126, locationID);
                 mainFrame.actions[656] = true; // hier verhindern, dass Szene ein zweites Mal passiert
                 break;
 

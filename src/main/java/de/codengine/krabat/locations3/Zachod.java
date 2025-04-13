@@ -132,41 +132,39 @@ public class Zachod extends MainLocation {
 
         Yoffset = (ye - ypos) / (xe - xpos) * Xoffset;
 
-        // System.out.println ("Y - Offset = " + Yoffset);
-
-        mainFrame.krabat.maxx = 403;
-        mainFrame.krabat.zoomf = 2.29f;
-        mainFrame.krabat.defScale = -50;
+        mainFrame.krabat.maxX = 403;
+        mainFrame.krabat.zoomFactor = 2.29f;
+        mainFrame.krabat.defaultScale = -50;
 
         krabat_schieb = new GenericImage[2];
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
-        InitMatrix();
+        initMatrix();
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 break;
             case 150: // von Cychi
                 mainFrame.krabat.setPos(new GenericPoint(500, 310));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 152: // von Gang
                 mainFrame.krabat.setPos(new GenericPoint(214, 395));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/zachod/zachod.png");
 
         seil = getPicture("gfx-dd/zachod/seil.png");
@@ -180,7 +178,7 @@ public class Zachod extends MainLocation {
     }
 
     // Laufrectangles aendern, je nachdem, wo Kisten sind
-    private void InitMatrix() {
+    private void initMatrix() {
         if (!mainFrame.actions[516]) {
             // Kisten sind noch oben
             mainFrame.pathWalker.vBorders.removeAllElements();
@@ -191,13 +189,13 @@ public class Zachod extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(242, 244, 298, 300, 381, 443));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(155, 375, 244, 380));
 
-            mainFrame.pathFinder.ClearMatrix(6);
+            mainFrame.pathFinder.clearMatrix(6);
 
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(0, 2);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(0, 2);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
         } else {
             // Kisten sind unten
             // Brett ist noch drauf
@@ -211,14 +209,14 @@ public class Zachod extends MainLocation {
                 mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(120, 393, 149, 443));
                 mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(159, 370, 210, 386));
 
-                mainFrame.pathFinder.ClearMatrix(7);
+                mainFrame.pathFinder.clearMatrix(7);
 
-                mainFrame.pathFinder.PosVerbinden(0, 1);
-                mainFrame.pathFinder.PosVerbinden(0, 2);
-                mainFrame.pathFinder.PosVerbinden(2, 3);
-                mainFrame.pathFinder.PosVerbinden(3, 4);
-                mainFrame.pathFinder.PosVerbinden(4, 5);
-                mainFrame.pathFinder.PosVerbinden(4, 6);
+                mainFrame.pathFinder.connectPos(0, 1);
+                mainFrame.pathFinder.connectPos(0, 2);
+                mainFrame.pathFinder.connectPos(2, 3);
+                mainFrame.pathFinder.connectPos(3, 4);
+                mainFrame.pathFinder.connectPos(4, 5);
+                mainFrame.pathFinder.connectPos(4, 6);
             } else {
                 // Brett ist weg
                 mainFrame.pathWalker.vBorders.removeAllElements();
@@ -228,12 +226,12 @@ public class Zachod extends MainLocation {
                 mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(233, 466, 220, 466, 444, 479));
                 mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(201, 245, 220, 300, 387, 443));
 
-                mainFrame.pathFinder.ClearMatrix(5);
+                mainFrame.pathFinder.clearMatrix(5);
 
-                mainFrame.pathFinder.PosVerbinden(0, 1);
-                mainFrame.pathFinder.PosVerbinden(0, 2);
-                mainFrame.pathFinder.PosVerbinden(2, 3);
-                mainFrame.pathFinder.PosVerbinden(3, 4);
+                mainFrame.pathFinder.connectPos(0, 1);
+                mainFrame.pathFinder.connectPos(0, 2);
+                mainFrame.pathFinder.connectPos(2, 3);
+                mainFrame.pathFinder.connectPos(3, 4);
             }
         }
     }
@@ -247,7 +245,7 @@ public class Zachod extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -280,29 +278,21 @@ public class Zachod extends MainLocation {
 
         // Krabats neue Position hier bestimmen, damit beide Kistenzeichenroutinen
         // mit dem gleichen Punkt arbeiten...
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Kiste oben zeichnen, wenn keine Verschieberoutine und wenn Krabat davor ist
         if (!verschiebeKiste) {
             if (!mainFrame.actions[516] &&
-                    !kistenRect.IsPointInRect(mainFrame.krabat.getPos())) {
+                    !kistenRect.isPointInRect(mainFrame.krabat.getPos())) {
                 // Kisten sind nicht verschoben und Krabat ist davor
                 g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
                 g.drawImage(kista, AnfangsPunkt.x, AnfangsPunkt.y);
                 g.drawImage(kista2, AnfangsPunkt2.x, AnfangsPunkt2.y);
             }
-      
-                /*if (mainFrame.Actions[516] == true)
-                    {
-                        // Kisten sind verschoben, dann Krabat nicht im Rect, also immer hier zeichnen
-                        g.setClip (EndPunkt.x, EndPunkt.y, 178, 183);
-                        g.drawImage (kista, EndPunkt.x, EndPunkt.y, null);
-                        g.drawImage (kista2, EndPunkt.x + (AnfangsPunkt2.x - AnfangsPunkt.x), EndPunkt.y + (AnfangsPunkt2.y - AnfangsPunkt.y), null);
-			}*/
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -312,8 +302,8 @@ public class Zachod extends MainLocation {
                 // Kisten schieben
 
                 // Groesse
-                int scale = mainFrame.krabat.defScale;
-                scale += (int) (((float) mainFrame.krabat.maxx - (float) (festnagelPoint.y - 50)) / mainFrame.krabat.zoomf);
+                int scale = mainFrame.krabat.defaultScale;
+                scale += (int) (((float) mainFrame.krabat.maxX - (float) (festnagelPoint.y - 50)) / mainFrame.krabat.zoomFactor);
 
                 // zum 1. Mal merken, wie gross Scale war
                 if (Anfangsscale == 0) {
@@ -350,21 +340,20 @@ public class Zachod extends MainLocation {
                 // Krabat zeichnen
                 g.drawImage(krabat_schieb[AnimPosition], hier.x, hier.y, weit, hoch);
 
-                // System.out.println ("Krabats Pos ist: " + festnagelPoint.x + " " + festnagelPoint.y);
             }
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -389,18 +378,12 @@ public class Zachod extends MainLocation {
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-        /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-          {
-          g.drawImage (weiden2, 84, 221, null);
-          }*/
-
         GenericRectangle myx;
         myx = g.getClipBounds();
 
         // Kiste oben zeichnen, aber nur, wenn nicht gerade die Verschieberoutine aktiv ist
         // und nur, wenn Krabat dahinter ist
-        if (!verschiebeKiste && kistenRect.IsPointInRect(pKrTemp) &&
+        if (!verschiebeKiste && kistenRect.isPointInRect(pKrTemp) &&
                 !mainFrame.actions[516]) {
             // Kisten sind nicht verschoben
             g.setClip(AnfangsPunkt.x, AnfangsPunkt.y, 178, 183);
@@ -411,7 +394,7 @@ public class Zachod extends MainLocation {
         // Hier Routine fuer Kiste verschieben aufrufen, Krabat ist immer dahinter
         if (verschiebeKiste) {
             g.setClip(50, 340, 220, 140);
-            verschiebeKiste = MoveIt(g);
+            verschiebeKiste = moveIt(g);
         }
 
         // verschobene Kisten sind auch immer vor Krabat
@@ -430,7 +413,7 @@ public class Zachod extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -440,17 +423,17 @@ public class Zachod extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -484,35 +467,35 @@ public class Zachod extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Kiste, je nachdem, wo, hier oben
-                if (kisty.IsPointInRect(pTemp) && !mainFrame.actions[516]) {
+                if (kisty.isPointInRect(pTemp) && !mainFrame.actions[516]) {
                     nextActionID = 150;
                     pTemp = pKistyOben;
                 }
 
                 // Kiste unten
-                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.actions[516]) {
+                if (kistyUnten.isPointInRect(pTemp) && mainFrame.actions[516]) {
                     nextActionID = 155;
                     pTemp = pKistyUnten;
                 }
 
                 // Seil Ausreden, falls noch da
-                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518]) {
+                if (rectSeil.isPointInRect(pTemp) && !mainFrame.actions[518]) {
                     nextActionID = 160;
                     pTemp = pSeil;
                 }
 
                 // Brett Ausreden, falls noch da und Kiste verschoben
-                if (nowaDeska.IsPointInRect(pTemp) &&
+                if (nowaDeska.isPointInRect(pTemp) &&
                         !mainFrame.actions[517] && mainFrame.actions[516]) {
                     switch (mainFrame.whatItem) {
                         case 46: // hamor
@@ -529,25 +512,25 @@ public class Zachod extends MainLocation {
                 }
 
                 // deska alt Ausreden
-                if (staraDeska.IsPointInRect(pTemp)) {
+                if (staraDeska.isPointInRect(pTemp)) {
                     nextActionID = 210;
                     pTemp = pStaraDeska;
                 }
 
                 // blido Ausreden
-                if (blido.IsPointInRect(pTemp)) {
+                if (blido.isPointInRect(pTemp)) {
                     nextActionID = 220;
                     pTemp = pBlido;
                 }
 
                 // korbik Ausreden
-                if (korbik.IsPointInRect(pTemp)) {
+                if (korbik.isPointInRect(pTemp)) {
                     nextActionID = 230;
                     pTemp = pKorbik;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -557,7 +540,7 @@ public class Zachod extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -569,157 +552,157 @@ public class Zachod extends MainLocation {
                 nextActionID = 0;
 
                 // zu Cychi gehen ?
-                if (ausgangCychi.IsPointInRect(pTemp)) {
+                if (ausgangCychi.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangCychi.IsPointInRect(kt)) {
+                    if (!ausgangCychi.isPointInRect(kt)) {
                         pTemp = pExitCychi;
                     } else {
                         pTemp = new GenericPoint(pExitCychi.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Gang gehen ?
-                if (ausgangGang.IsPointInRect(pTemp) && mainFrame.actions[517]) {
+                if (ausgangGang.isPointInRect(pTemp) && mainFrame.actions[517]) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangGang.IsPointInRect(kt)) {
+                    if (!ausgangGang.isPointInRect(kt)) {
                         pTemp = pExitGang;
                     } else {
                         pTemp = new GenericPoint(pExitGang.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Seil ansehen, falls noch da
-                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518]) {
+                if (rectSeil.isPointInRect(pTemp) && !mainFrame.actions[518]) {
                     nextActionID = 1;
                     pTemp = pSeil;
                 }
 
                 // Kiste unverschoben ansehen
-                if (kisty.IsPointInRect(pTemp) && !mainFrame.actions[516]) {
+                if (kisty.isPointInRect(pTemp) && !mainFrame.actions[516]) {
                     nextActionID = 3;
                     pTemp = pKistyOben;
                 }
 
                 // Kiste verschoben ansehen
-                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.actions[516]) {
+                if (kistyUnten.isPointInRect(pTemp) && mainFrame.actions[516]) {
                     nextActionID = 8;
                     pTemp = pKistyUnten;
                 }
 
                 // Deska ansehen, wenn noch da, nur bei verschobener Kiste
-                if (nowaDeska.IsPointInRect(pTemp) &&
+                if (nowaDeska.isPointInRect(pTemp) &&
                         !mainFrame.actions[517] && mainFrame.actions[516]) {
                     nextActionID = 4;
                     pTemp = pNowaDeska;
                 }
 
                 // stara Deska ansehen
-                if (staraDeska.IsPointInRect(pTemp)) {
+                if (staraDeska.isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = pStaraDeska;
                 }
 
                 // Blido ansehen
-                if (blido.IsPointInRect(pTemp)) {
+                if (blido.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = pBlido;
                 }
 
                 // Korbik ansehen
-                if (korbik.IsPointInRect(pTemp)) {
+                if (korbik.isPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = pKorbik;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Seil mitnehmen
-                if (rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518]) {
+                if (rectSeil.isPointInRect(pTemp) && !mainFrame.actions[518]) {
                     nextActionID = 20;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pSeil);
+                    mainFrame.pathWalker.setNewWay(pSeil);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kiste verschieben
-                if (kisty.IsPointInRect(pTemp) && !mainFrame.actions[516]) {
+                if (kisty.isPointInRect(pTemp) && !mainFrame.actions[516]) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pKistyOben);
+                    mainFrame.pathWalker.setNewWay(pKistyOben);
                     mainFrame.repaint();
                     return;
                 }
 
                 // verschobene Kiste nicht nochmal verschieben
-                if (kistyUnten.IsPointInRect(pTemp) && mainFrame.actions[516]) {
+                if (kistyUnten.isPointInRect(pTemp) && mainFrame.actions[516]) {
                     nextActionID = 80;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pKistyUnten);
+                    mainFrame.pathWalker.setNewWay(pKistyUnten);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Brett mitnehmen, nur wenn da und sichtbar
-                if (nowaDeska.IsPointInRect(pTemp) &&
+                if (nowaDeska.isPointInRect(pTemp) &&
                         !mainFrame.actions[517] && mainFrame.actions[516]) {
                     nextActionID = 85;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pNowaDeska);
+                    mainFrame.pathWalker.setNewWay(pNowaDeska);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen, 2. Ausgang beachten, da nicht immer zu sehen !
-                if (ausgangCychi.IsPointInRect(pTemp) ||
-                        ausgangGang.IsPointInRect(pTemp) && mainFrame.actions[517]) {
+                if (ausgangCychi.isPointInRect(pTemp) ||
+                        ausgangGang.isPointInRect(pTemp) && mainFrame.actions[517]) {
                     return;
                 }
 
                 // stara Deska mitnehmen
-                if (staraDeska.IsPointInRect(pTemp)) {
+                if (staraDeska.isPointInRect(pTemp)) {
                     nextActionID = 240;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pStaraDeska);
+                    mainFrame.pathWalker.setNewWay(pStaraDeska);
                     mainFrame.repaint();
                     return;
                 }
 
                 // blido mitnehmen
-                if (blido.IsPointInRect(pTemp)) {
+                if (blido.isPointInRect(pTemp)) {
                     nextActionID = 250;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pBlido);
+                    mainFrame.pathWalker.setNewWay(pBlido);
                     mainFrame.repaint();
                     return;
                 }
 
                 // korbik mitnehmen
-                if (korbik.IsPointInRect(pTemp)) {
+                if (korbik.isPointInRect(pTemp)) {
                     nextActionID = 260;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pKorbik);
+                    mainFrame.pathWalker.setNewWay(pKorbik);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -730,8 +713,8 @@ public class Zachod extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -740,22 +723,22 @@ public class Zachod extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518] ||
-                    kisty.IsPointInRect(pTemp) && !mainFrame.actions[516] ||
-                    kistyUnten.IsPointInRect(pTemp) && mainFrame.actions[516] ||
-                    nowaDeska.IsPointInRect(pTemp) && !mainFrame.actions[517] ||
-                    staraDeska.IsPointInRect(pTemp) || blido.IsPointInRect(pTemp) ||
-                    korbik.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    rectSeil.isPointInRect(pTemp) && !mainFrame.actions[518] ||
+                    kisty.isPointInRect(pTemp) && !mainFrame.actions[516] ||
+                    kistyUnten.isPointInRect(pTemp) && mainFrame.actions[516] ||
+                    nowaDeska.isPointInRect(pTemp) && !mainFrame.actions[517] ||
+                    staraDeska.isPointInRect(pTemp) || blido.isPointInRect(pTemp) ||
+                    korbik.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -763,39 +746,39 @@ public class Zachod extends MainLocation {
         // normaler Cursor, normale Reaktion
         else {
             // Fenster und Seil, falls noch da und den ganzen Rest
-            if (rectSeil.IsPointInRect(pTemp) && !mainFrame.actions[518] ||
-                    kisty.IsPointInRect(pTemp) && !mainFrame.actions[516] ||
-                    kistyUnten.IsPointInRect(pTemp) && mainFrame.actions[516] ||
-                    nowaDeska.IsPointInRect(pTemp) && !mainFrame.actions[517] ||
-                    staraDeska.IsPointInRect(pTemp) || blido.IsPointInRect(pTemp) ||
-                    korbik.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (rectSeil.isPointInRect(pTemp) && !mainFrame.actions[518] ||
+                    kisty.isPointInRect(pTemp) && !mainFrame.actions[516] ||
+                    kistyUnten.isPointInRect(pTemp) && mainFrame.actions[516] ||
+                    nowaDeska.isPointInRect(pTemp) && !mainFrame.actions[517] ||
+                    staraDeska.isPointInRect(pTemp) || blido.isPointInRect(pTemp) ||
+                    korbik.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (ausgangCychi.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangCychi.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (ausgangGang.IsPointInRect(pTemp) && mainFrame.actions[517]) {
-                if (Cursorform != 6) {
+            if (ausgangGang.isPointInRect(pTemp) && mainFrame.actions[517]) {
+                if (cursorShape != 6) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 6;
+                    cursorShape = 6;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -829,7 +812,7 @@ public class Zachod extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -837,7 +820,7 @@ public class Zachod extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -845,25 +828,25 @@ public class Zachod extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Verschiebe die Kiste ("Wo hat Kollege Kiste hingestellt ??")
-    private boolean MoveIt(GenericDrawingContext g) {
+    private boolean moveIt(GenericDrawingContext g) {
         // Position der Kisten veraendern
         xpos -= Xoffset;
         ypos -= Yoffset;
@@ -889,7 +872,7 @@ public class Zachod extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -907,7 +890,7 @@ public class Zachod extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -915,44 +898,44 @@ public class Zachod extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Seil ansehen
-                KrabatSagt("Zachod_1", fSeil, 3, 0, 0);
+                krabatSays("Zachod_1", fSeil, 3, 0, 0);
                 break;
 
             case 3:
                 // Kiste oben ansehen
-                KrabatSagt("Zachod_2", fKisteOben, 3, 0, 0);
+                krabatSays("Zachod_2", fKisteOben, 3, 0, 0);
                 break;
 
             case 4:
                 // neues Brett ansehen
-                KrabatSagt("Zachod_3", fBrettNeu, 3, 0, 0);
+                krabatSays("Zachod_3", fBrettNeu, 3, 0, 0);
                 break;
 
             case 5:
                 // stara Deska ansehen
-                KrabatSagt("Zachod_4", fBrettAlt, 3, 0, 0);
+                krabatSays("Zachod_4", fBrettAlt, 3, 0, 0);
                 break;
 
             case 6:
                 // Blido ansehen
-                KrabatSagt("Zachod_5", fBlido, 3, 0, 0);
+                krabatSays("Zachod_5", fBlido, 3, 0, 0);
                 break;
 
             case 7:
                 // korbik ansehen
-                KrabatSagt("Zachod_6", fKorbik, 3, 0, 0);
+                krabatSays("Zachod_6", fKorbik, 3, 0, 0);
                 break;
 
             case 8:
                 // Kiste unten ansehen
-                KrabatSagt("Zachod_7", fKisteUnten, 3, 0, 0);
+                krabatSays("Zachod_7", fKisteUnten, 3, 0, 0);
                 break;
 
             case 20:
                 // Seil mitnehmen (wenn noch da)
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fSeil);
+                mainFrame.krabat.setFacing(fSeil);
                 nextActionID = 21;
                 // zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(38);
@@ -997,7 +980,7 @@ public class Zachod extends MainLocation {
                 // Auf fertige Kiste warten
                 if (!kistenSound) {
                     kistenSound = true;
-                    mainFrame.soundPlayer.PlayFile("sfx-dd/kisty.wav");
+                    mainFrame.soundPlayer.playFile("sfx-dd/kisty.wav");
                 }
                 if (!verschiebeKiste) {
                     nextActionID = 60;
@@ -1007,9 +990,9 @@ public class Zachod extends MainLocation {
             case 60:
                 // Anim beenden
                 SonderAnim = 0;
-                InitMatrix();
+                initMatrix();
                 mainFrame.krabat.setPos(new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y - 40));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 mainFrame.isClipSet = false;
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
@@ -1026,18 +1009,17 @@ public class Zachod extends MainLocation {
                 mainFrame.isClipSet = false;
                 if (!mainFrame.actions[559] || !mainFrame.actions[681]) {
                     // Noch keinen 1. Teil Stollen gegessen oder noch nie Kisten verschoben
-                    KrabatSagt("Zachod_8", fKisteOben, 3, 2, 70);
+                    krabatSays("Zachod_8", fKisteOben, 3, 2, 70);
                     mainFrame.actions[681] = true;
                 } else {
                     // Noch keinen 2. Teil Stollen gegessen
-                    KrabatSagt("Zachod_9", fKisteOben, 3, 2, 70);
+                    krabatSays("Zachod_9", fKisteOben, 3, 2, 70);
                 }
                 break;
 
             case 70:
                 // Ende dieser Anim
-                // mainFrame.krabat.SetKrabatPos (new GenericPoint (mainFrame.krabat.GetKrabatPos().x, mainFrame.krabat.GetKrabatPos().y - 60));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 mainFrame.isClipSet = false;
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
@@ -1047,54 +1029,54 @@ public class Zachod extends MainLocation {
 
             case 80:
                 // verschobene Kiste nochmal verschieben
-                KrabatSagt("Zachod_10", fKisteUnten, 3, 0, 0);
+                krabatSays("Zachod_10", fKisteUnten, 3, 0, 0);
                 break;
 
             case 85:
                 // Brett mitnehmen
-                KrabatSagt("Zachod_11", fBrettNeu, 3, 0, 0);
+                krabatSays("Zachod_11", fBrettNeu, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Cychi
-                NeuesBild(150, locationID);
+                createNewLocation(150, locationID);
                 break;
 
             case 101:
                 // Gehe zu Gang (unterirdisch)
-                NeuesBild(152, locationID);
+                createNewLocation(152, locationID);
                 break;
 
             case 150:
                 // Kiste - Ausreden
-                DingAusrede(fKisteOben);
+                thingExcuse(fKisteOben);
                 break;
 
             case 155:
                 // Kisteu - Ausreden
-                DingAusrede(fKisteUnten);
+                thingExcuse(fKisteUnten);
                 break;
 
             case 160:
                 // Seil
-                DingAusrede(fSeil);
+                thingExcuse(fSeil);
                 break;
 
             case 165:
                 // Brett - Ausreden
-                DingAusrede(fBrettNeu);
+                thingExcuse(fBrettNeu);
                 break;
 
             case 180:
                 // Brett entfernen ansagen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                KrabatSagt("Zachod_12", fBrettNeu, 3, 0, 185);
+                krabatSays("Zachod_12", fBrettNeu, 3, 0, 185);
                 break;
 
             case 185:
                 // zu erstem Nagel laufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pEntnagel1);
+                mainFrame.pathWalker.setNewWay(pEntnagel1);
                 nextActionID = 187;
                 break;
 
@@ -1110,7 +1092,7 @@ public class Zachod extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                mainFrame.pathWalker.SetzeNeuenWeg(pEntnagel2);
+                mainFrame.pathWalker.setNewWay(pEntnagel2);
                 nextActionID = 191;
                 break;
 
@@ -1125,7 +1107,7 @@ public class Zachod extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                mainFrame.pathWalker.SetzeNeuenWeg(pEntnagel3);
+                mainFrame.pathWalker.setNewWay(pEntnagel3);
                 nextActionID = 194;
                 break;
 
@@ -1140,7 +1122,7 @@ public class Zachod extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                mainFrame.pathWalker.SetzeNeuenWeg(pEntnagel4);
+                mainFrame.pathWalker.setNewWay(pEntnagel4);
                 nextActionID = 196;
                 break;
 
@@ -1155,17 +1137,17 @@ public class Zachod extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                mainFrame.pathWalker.SetzeNeuenWeg(pNowaDeska);
+                mainFrame.pathWalker.setNewWay(pNowaDeska);
                 nextActionID = 198;
                 break;
 
             case 198:
                 // Brett entfernen
                 mainFrame.actions[517] = true;
-                InitMatrix();
-                mainFrame.krabat.SetFacing(fBrettNeu);
+                initMatrix();
+                mainFrame.krabat.setFacing(fBrettNeu);
                 mainFrame.krabat.nAnimation = 92;
-                mainFrame.soundPlayer.PlayFile("sfx-dd/deska.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/deska.wav");
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
@@ -1177,43 +1159,43 @@ public class Zachod extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Zachod_13", fBrettNeu, 3, 0, 0);
+                        krabatSays("Zachod_13", fBrettNeu, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Zachod_14", fBrettNeu, 3, 0, 0);
+                        krabatSays("Zachod_14", fBrettNeu, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 210:
                 // stara Deska - Ausreden
-                DingAusrede(fBrettAlt);
+                thingExcuse(fBrettAlt);
                 break;
 
             case 220:
                 // blido - Ausreden
-                DingAusrede(fBlido);
+                thingExcuse(fBlido);
                 break;
 
             case 230:
                 // korbik - Ausreden
-                DingAusrede(fKorbik);
+                thingExcuse(fKorbik);
                 break;
 
             case 240:
                 // stara Deska mitnehmen
-                KrabatSagt("Zachod_15", fBrettAlt, 3, 0, 0);
+                krabatSays("Zachod_15", fBrettAlt, 3, 0, 0);
                 break;
 
             case 250:
                 // Blido mitnehmen
-                KrabatSagt("Zachod_16", fBlido, 3, 0, 0);
+                krabatSays("Zachod_16", fBlido, 3, 0, 0);
                 break;
 
             case 260:
                 // korbik mitnehmen
-                KrabatSagt("Zachod_17", fKorbik, 3, 0, 0);
+                krabatSays("Zachod_17", fKorbik, 3, 0, 0);
                 break;
 
             default:

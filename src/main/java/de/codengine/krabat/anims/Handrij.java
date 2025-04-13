@@ -63,14 +63,14 @@ public class Handrij extends MainAnim {
         hand_head = new GenericImage[8];
         hand_body = new GenericImage[5];
 
-        InitImages();
+        initImages();
 
         Verhinderwork = MAX_VERHINDERWORK;
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         hand_work[0] = getPicture("gfx-dd/zahrod/zahrod-o.png");
         hand_work[1] = getPicture("gfx-dd/zahrod/zahrod-o1.png");
         hand_work[2] = getPicture("gfx-dd/zahrod/zahrod-o2.png");

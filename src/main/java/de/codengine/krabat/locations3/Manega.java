@@ -84,9 +84,9 @@ public class Manega extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 465;
-        mainFrame.krabat.zoomf = 12.5f;
-        mainFrame.krabat.defScale = 20;
+        mainFrame.krabat.maxX = 465;
+        mainFrame.krabat.zoomFactor = 12.5f;
+        mainFrame.krabat.defaultScale = 20;
 
         loewe = new Lion(mainFrame);
 
@@ -94,12 +94,12 @@ public class Manega extends MainLocation {
         loeweTalk = new GenericPoint(loeweFeet.x, loewePoint.y - 50);
         loeweRect = new BorderRect(loewePoint.x, loewePoint.y, loewePoint.x + Lion.Breite, loewePoint.y + Lion.Hoehe);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -113,21 +113,21 @@ public class Manega extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(480, 368, 550, 434));
 
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 break;
             case 170: // von Zastup
                 mainFrame.krabat.setPos(new GenericPoint(278, 367));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
 
@@ -140,7 +140,7 @@ public class Manega extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/manega/manega.png");
         friedhelm = getPicture("gfx-dd/manega/friedhelm.png");
 
@@ -155,7 +155,7 @@ public class Manega extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -171,27 +171,27 @@ public class Manega extends MainLocation {
         // Loewen zeichnen
         g.setClip(loewePoint.x, loewePoint.y, Lion.Breite, Lion.Hoehe);
         g.drawImage(background, 0, 0);
-        loewe.drawLaw(g, TalkPerson, loewePoint, AnimTalkPerson, hoertZu);
+        loewe.drawLaw(g, talkPerson, loewePoint, AnimTalkPerson, hoertZu);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -212,22 +212,13 @@ public class Manega extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-        /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-          {
-          g.drawImage (weiden2, 84, 221, null);
-          }*/
-
         // Ausgabe von Animoutputtext
         if (!Objects.equals(AnimOutputText, "")) {
             // Textausgabe
             GenericRectangle may;
             may = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
+            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, COLORS[AnimTalkPerson]);
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
@@ -237,7 +228,7 @@ public class Manega extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -247,22 +238,22 @@ public class Manega extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Anims bedienen
         if (loeweSchnarcht) {
-            DoAnims();
+            doAnims();
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -296,23 +287,23 @@ public class Manega extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Zeugs an loewen geben
-                if (loeweRect.IsPointInRect(pTemp)) {
+                if (loeweRect.isPointInRect(pTemp)) {
                     nextActionID = 150;
                     pTemp = pLoewe;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -322,7 +313,7 @@ public class Manega extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -334,69 +325,69 @@ public class Manega extends MainLocation {
                 nextActionID = 0;
 
                 // zu Zastup gehen ?
-                if (ausgangZastup.IsPointInRect(pTemp)) {
+                if (ausgangZastup.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangZastup.IsPointInRect(kt)) {
+                    if (!ausgangZastup.isPointInRect(kt)) {
                         pTemp = pExitZastup;
                     } else {
                         pTemp = new GenericPoint(pExitZastup.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Helm ansehen
-                if (helm.IsPointInRect(pTemp) &&
+                if (helm.isPointInRect(pTemp) &&
                         !mainFrame.actions[611]) {
                     nextActionID = 1;
                     pTemp = pHelm;
                 }
 
                 // Loewen anschauen
-                if (loeweRect.IsPointInRect(pTemp)) {
+                if (loeweRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pLoewe;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Helm mitnehmen
-                if (helm.IsPointInRect(pTemp) &&
+                if (helm.isPointInRect(pTemp) &&
                         !mainFrame.actions[611]) {
                     nextActionID = 4;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pHelm);
+                    mainFrame.pathWalker.setNewWay(pHelm);
                     mainFrame.repaint();
                     return;
                 }
 
                 // mit Loewen reden
-                if (loeweRect.IsPointInRect(pTemp)) {
+                if (loeweRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pLoewe);
+                    mainFrame.pathWalker.setNewWay(pLoewe);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangZastup.IsPointInRect(pTemp)) {
+                if (ausgangZastup.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.isClipSet = false;
-                ResetAnims();
+                resetAnims();
                 mainFrame.repaint();
             }
         }
@@ -407,8 +398,8 @@ public class Manega extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -417,45 +408,45 @@ public class Manega extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    loeweRect.IsPointInRect(pTemp) ||
-                    helm.IsPointInRect(pTemp) && !mainFrame.actions[611];
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    loeweRect.isPointInRect(pTemp) ||
+                    helm.isPointInRect(pTemp) && !mainFrame.actions[611];
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (helm.IsPointInRect(pTemp) && !mainFrame.actions[611] ||
-                    loeweRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (helm.isPointInRect(pTemp) && !mainFrame.actions[611] ||
+                    loeweRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (ausgangZastup.IsPointInRect(pTemp)) {
-                if (Cursorform != 9) {
+            if (ausgangZastup.isPointInRect(pTemp)) {
+                if (cursorShape != 9) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 9;
+                    cursorShape = 9;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -489,7 +480,7 @@ public class Manega extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -497,7 +488,7 @@ public class Manega extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -505,22 +496,22 @@ public class Manega extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
-        ResetAnims();
+        mainFrame.krabat.stopWalking();
+        resetAnims();
     }
 
     private void evalSound() {
@@ -534,12 +525,12 @@ public class Manega extends MainLocation {
         int zf = (int) (Math.random() * 2.99);
         zf += 49;
 
-        mainFrame.soundPlayer.PlayFile("sfx-dd/law" + (char) zf + ".wav");
+        mainFrame.soundPlayer.playFile("sfx-dd/law" + (char) zf + ".wav");
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -557,7 +548,7 @@ public class Manega extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -565,15 +556,15 @@ public class Manega extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Helm anschauen
-                KrabatSagt("Manega_1", fHelm, 3, 0, 0);
+                krabatSays("Manega_1", fHelm, 3, 0, 0);
                 break;
 
             case 2:
                 // Loewen anschauen, wenn er noch wach ist oder schon schlaeft
                 if (!mainFrame.actions[613]) {
-                    KrabatSagt("Manega_2", fLoewe, 3, 0, 0);
+                    krabatSays("Manega_2", fLoewe, 3, 0, 0);
                 } else {
-                    KrabatSagt("Manega_3", fLoewe, 3, 0, 0);
+                    krabatSays("Manega_3", fLoewe, 3, 0, 0);
                 }
                 break;
 
@@ -582,7 +573,7 @@ public class Manega extends MainLocation {
                 // Hier Entscheidung, ob schon Buch gelesen
                 if (!mainFrame.actions[955]) {
                     // noch nicht gelesen
-                    KrabatSagt("Manega_4", fLoewe, 3, 0, 0);
+                    krabatSays("Manega_4", fLoewe, 3, 0, 0);
                 } else {
                     // Animszene mit Loewe
                     if (!mainFrame.actions[610]) {
@@ -592,9 +583,9 @@ public class Manega extends MainLocation {
                     } else {
                         // Loewe ist sauer, oder wenn er schon schlaeft, will K ihn auch in Ruhe lassen
                         if (!mainFrame.actions[613]) {
-                            PersonSagt("Manega_5", 0, 68, 0, 0, loeweTalk);
+                            personSays("Manega_5", 0, 68, 0, 0, loeweTalk);
                         } else {
-                            KrabatSagt("Manega_6", fLoewe, 3, 0, 0);
+                            krabatSays("Manega_6", fLoewe, 3, 0, 0);
                         }
                     }
                 }
@@ -606,7 +597,7 @@ public class Manega extends MainLocation {
                     // darf mitnehmen
                     mainFrame.isAnimRunning = true;
                     evalMouseMoveEvent(mainFrame.mousePoint);
-                    mainFrame.krabat.SetFacing(fHelm);
+                    mainFrame.krabat.setFacing(fHelm);
                     nextActionID = 10;
                     Counter = 5;
                     // Inventar hinzufuegen
@@ -618,10 +609,10 @@ public class Manega extends MainLocation {
                     evalSound();
                     if (mainFrame.actions[955]) {
                         // Krabat hat Buch gelesen, versteht Loewen also
-                        PersonSagt(LION_TEXTS[zuffZahl], 0, 68, 0, 0, loeweTalk);
+                        personSays(LION_TEXTS[zuffZahl], 0, 68, 0, 0, loeweTalk);
                     } else {
                         // Krabat hat Buch noch nicht gelesen
-                        PersonSagt(VLION_TEXTS[zuffZahl], 0, 70, 0, 0, loeweTalk);
+                        personSays(VLION_TEXTS[zuffZahl], 0, 70, 0, 0, loeweTalk);
                     }
                 }
                 break;
@@ -643,73 +634,73 @@ public class Manega extends MainLocation {
 
             case 100:
                 // Gehe zu Zastup
-                NeuesBild(170, locationID);
+                createNewLocation(170, locationID);
                 break;
 
             case 150:
                 // Dinge an Loewen geben
-                MPersonAusrede(fLoewe);
+                maleExcuse(fLoewe);
                 break;
 
             case 200:
                 // Animszene mit Loewe
                 hoertZu = true;
-                KrabatSagt("Manega_7", fLoewe, 1, 2, 210);
+                krabatSays("Manega_7", fLoewe, 1, 2, 210);
                 break;
 
             case 210:
                 // Antwort law
-                PersonSagt("Manega_8", 0, 68, 2, 220, loeweTalk);
+                personSays("Manega_8", 0, 68, 2, 220, loeweTalk);
                 break;
 
             case 220:
                 // Krabat
-                KrabatSagt("Manega_9", 0, 1, 2, 230);
+                krabatSays("Manega_9", 0, 1, 2, 230);
                 break;
 
             case 230:
                 // Loewe
-                PersonSagt("Manega_10", 0, 68, 2, 240, loeweTalk);
+                personSays("Manega_10", 0, 68, 2, 240, loeweTalk);
                 break;
 
             case 240:
                 // K
-                KrabatSagt("Manega_11", 0, 1, 2, 250);
+                krabatSays("Manega_11", 0, 1, 2, 250);
                 break;
 
             case 250:
                 // Loewe
-                PersonSagt("Manega_12", 0, 68, 2, 260, loeweTalk);
+                personSays("Manega_12", 0, 68, 2, 260, loeweTalk);
                 break;
 
             case 260:
                 // K
-                KrabatSagt("Manega_13", 0, 1, 2, 270);
+                krabatSays("Manega_13", 0, 1, 2, 270);
                 break;
 
             case 270:
                 // Loewe
-                PersonSagt("Manega_14", 0, 68, 2, 280, loeweTalk);
+                personSays("Manega_14", 0, 68, 2, 280, loeweTalk);
                 break;
 
             case 280:
                 // Loewe
-                PersonSagt("Manega_15", 0, 68, 2, 290, loeweTalk);
+                personSays("Manega_15", 0, 68, 2, 290, loeweTalk);
                 break;
 
             case 290:
                 // K
-                KrabatSagt("Manega_16", 0, 3, 2, 300);
+                krabatSays("Manega_16", 0, 3, 2, 300);
                 break;
 
             case 300:
                 // K
-                KrabatSagt("Manega_17", 0, 1, 2, 310);
+                krabatSays("Manega_17", 0, 1, 2, 310);
                 break;
 
             case 310:
                 // Loewe
-                PersonSagt("Manega_18", 0, 68, 2, 320, loeweTalk);
+                personSays("Manega_18", 0, 68, 2, 320, loeweTalk);
                 break;
 
             case 320:
@@ -761,7 +752,7 @@ public class Manega extends MainLocation {
 
             case 610:
                 // 1. Loewenreaktion
-                PersonSagt("Manega_19", 0, 68, 0, 615, loeweTalk);
+                personSays("Manega_19", 0, 68, 0, 615, loeweTalk);
                 break;
 
             case 615:
@@ -773,7 +764,7 @@ public class Manega extends MainLocation {
 
             case 620:
                 // 2. Loewenreaktion
-                PersonSagt("Manega_20", 0, 68, 0, 625, loeweTalk);
+                personSays("Manega_20", 0, 68, 0, 625, loeweTalk);
                 break;
 
             case 625:
@@ -790,7 +781,7 @@ public class Manega extends MainLocation {
     }
 
     // Schnarchanim des Loewen ausfuehren
-    private void DoAnims() {
+    private void doAnims() {
         switch (AnimID) {
 
             case 10:
@@ -808,9 +799,8 @@ public class Manega extends MainLocation {
 
             case 30:
                 // Text ueber Loewen ausgeben
-                AnimOutputText = Start.stringManager.getTranslation("Manega_27");
-                AnimOutputTextPos = mainFrame.imageFont.CenterAnimText(AnimOutputText, loeweTalk);
-                // evalSound (true); // schnarchen, hier nicht!!!
+                AnimOutputText = Start.STRING_MANAGER.getTranslation("Manega_27");
+                AnimOutputTextPos = mainFrame.imageFont.centerAnimText(AnimOutputText, loeweTalk);
                 AnimCounter = 50;
                 AnimTalkPerson = 68;
                 AnimID = 40;
@@ -841,7 +831,7 @@ public class Manega extends MainLocation {
     }
 
     // Anims zuruecksetzen, damit leerer Screen bei Menu usw...
-    private void ResetAnims() {
+    private void resetAnims() {
         AnimOutputText = "";
         AnimCounter = 10;
         AnimID = 10;

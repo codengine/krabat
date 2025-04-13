@@ -47,7 +47,6 @@ public class Jitk1 extends MainLocation {
     private static final BorderRect untererAusgang = new BorderRect(172, 435, 364, 479);
     private static final BorderRect brEingang = new BorderRect(353, 250, 397, 334);
     private static final BorderRect brWagen = new BorderRect(0, 338, 142, 479);
-    // private static final borderrect buschRect      = new borderrect (0, 0, 0, 0);
 
     // Konstante ints
     private static final int fWagen = 9;
@@ -62,17 +61,17 @@ public class Jitk1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 374;
-        mainFrame.krabat.zoomf = 3.38f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 374;
+        mainFrame.krabat.zoomFactor = 3.38f;
+        mainFrame.krabat.defaultScale = 0;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(276, 346, 213, 296, 399, 479));
@@ -86,19 +85,19 @@ public class Jitk1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(83, 90, 91, 96, 137, 219));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(9);
+        mainFrame.pathFinder.clearMatrix(9);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(1, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(3, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 7);
-        mainFrame.pathFinder.PosVerbinden(7, 8);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(1, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(3, 5);
+        mainFrame.pathFinder.connectPos(5, 6);
+        mainFrame.pathFinder.connectPos(6, 7);
+        mainFrame.pathFinder.connectPos(7, 8);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -111,13 +110,13 @@ public class Jitk1 extends MainLocation {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
                 mainFrame.krabat.setPos(new GenericPoint(616, 371));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
             case 6:
                 // von Doma aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 mainFrame.krabat.setPos(new GenericPoint(284, 453));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
             case 1:
                 // von Ralbicy aus
@@ -126,14 +125,14 @@ public class Jitk1 extends MainLocation {
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 }
                 mainFrame.krabat.setPos(new GenericPoint(90, 154));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
         mainFrame.enteringFromMap = false;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/jitk/jitk.png");
 
     }
@@ -153,7 +152,7 @@ public class Jitk1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -164,25 +163,25 @@ public class Jitk1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabat einen Schritt gehen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -203,21 +202,13 @@ public class Jitk1 extends MainLocation {
             }
         }
 
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
-
-        // Krabat hinter Strauch ??
-    /*if (buschRect.IsPointInRect (pKrTemp) == true)
-    {	
-      g.drawImage(strauch, 104, 266, null);
-    }*/
-
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -227,17 +218,17 @@ public class Jitk1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -271,24 +262,24 @@ public class Jitk1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Eingang
-                if (brEingang.IsPointInRect(pTemp)) {
+                if (brEingang.isPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                     pTemp = Peingang;
                 }
 
                 // Ausreden fuer Wagen
-                if (brWagen.IsPointInRect(pTemp)) {
+                if (brWagen.isPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 155;
                     pTemp = Pwagen;
@@ -296,7 +287,7 @@ public class Jitk1 extends MainLocation {
 
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -306,7 +297,7 @@ public class Jitk1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -318,31 +309,31 @@ public class Jitk1 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Doma gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Ralbicy gehen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         // Wegen nach oben gehen hier diese Variante
@@ -350,82 +341,82 @@ public class Jitk1 extends MainLocation {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Les1 gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Tuer ansehen
-                if (brEingang.IsPointInRect(pTemp)) {
+                if (brEingang.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Peingang;
                 }
 
                 // Wagen ansehen
-                if (brWagen.IsPointInRect(pTemp)) {
+                if (brWagen.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pwagen;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Doma Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Ralbitz anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Les1 anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Tuer mitnehmen
-                if (brEingang.IsPointInRect(pTemp)) {
+                if (brEingang.isPointInRect(pTemp)) {
                     nextActionID = 51;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Peingang);
+                    mainFrame.pathWalker.setNewWay(Peingang);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wagen mitnehmen
-                if (brWagen.IsPointInRect(pTemp)) {
+                if (brWagen.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwagen);
+                    mainFrame.pathWalker.setNewWay(Pwagen);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -436,8 +427,8 @@ public class Jitk1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -446,60 +437,60 @@ public class Jitk1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = brEingang.IsPointInRect(pTemp) || brWagen.IsPointInRect(pTemp) ||
-                    tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = brEingang.isPointInRect(pTemp) || brWagen.isPointInRect(pTemp) ||
+                    tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
-            if (brEingang.IsPointInRect(pTemp) ||
-                    brWagen.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (brEingang.isPointInRect(pTemp) ||
+                    brWagen.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -533,7 +524,7 @@ public class Jitk1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -541,7 +532,7 @@ public class Jitk1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -549,26 +540,26 @@ public class Jitk1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -588,7 +579,7 @@ public class Jitk1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -596,47 +587,47 @@ public class Jitk1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Eingang anschauen
-                KrabatSagt("Jitk1_1", fEingang, 3, 0, 0);
+                krabatSays("Jitk1_1", fEingang, 3, 0, 0);
                 break;
 
             case 2:
                 // Wagen anschauen
-                KrabatSagt("Jitk1_2", fWagen, 3, 0, 0);
+                krabatSays("Jitk1_2", fWagen, 3, 0, 0);
                 break;
 
             case 50:
                 // Wagen mitnehmen
-                KrabatSagt("Jitk1_3", fWagen, 3, 0, 0);
+                krabatSays("Jitk1_3", fWagen, 3, 0, 0);
                 break;
 
             case 51:
                 // Tuer mitnehmen
-                KrabatSagt("Jitk1_4", fEingang, 3, 0, 0);
+                krabatSays("Jitk1_4", fEingang, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Doma
-                NeuesBild(6, 3);
+                createNewLocation(6, 3);
                 break;
 
             case 101:
                 // gehe zu Les1
-                NeuesBild(5, 3);
+                createNewLocation(5, 3);
                 break;
 
             case 102:
                 // nach Ralbitz gehen
-                NeuesBild(1, 3);
+                createNewLocation(1, 3);
                 break;
 
             case 150:
                 // Eingang - Ausreden
-                DingAusrede(fEingang);
+                thingExcuse(fEingang);
                 break;
 
             case 155:
                 // Wagen - Ausreden
-                DingAusrede(fWagen);
+                thingExcuse(fWagen);
                 break;
 
             default:

@@ -56,13 +56,13 @@ public class MerchantGrain extends MainAnim {
         wik_body = new GenericImage[2];
         wik_wait = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         wik_head[0] = getPicture("gfx/kulow/ah-h1.png");
         wik_head[1] = getPicture("gfx/kulow/ah-h2.png");
         wik_head[2] = getPicture("gfx/kulow/ah-h3.png");

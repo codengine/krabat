@@ -33,7 +33,6 @@ public class Guard2 extends MainAnim {
     public static final int Hoehe = 135;
 
     private int Head = 0;
-    // private int Body = 0;
 
     private int Verhinderhead;
     private int Verhinderversperr;
@@ -51,13 +50,13 @@ public class Guard2 extends MainAnim {
         straza_head = new GenericImage[9];
         straza_body = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderversperr = MAX_VERHINDERVERSPERR;
     }
 
-    private void InitImages() {
+    private void initImages() {
         straza_head[0] = getPicture("gfx-dd/straze/straza2-h.png");
         straza_head[1] = getPicture("gfx-dd/straze/straza2-ha.png");
         straza_head[2] = getPicture("gfx-dd/straze/straza2-t1.png");

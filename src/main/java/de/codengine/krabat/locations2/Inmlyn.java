@@ -59,26 +59,26 @@ public class Inmlyn extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 4.93f;
-        mainFrame.krabat.defScale = -120;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 4.93f;
+        mainFrame.krabat.defaultScale = -120;
 
         krabatKopf = new GenericImage[2];
 
-        InitLocation();
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initLocation();
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
         switch (oldLocation) {
             case 25: // 1. Mal aus Mlyn
                 mainFrame.krabat.setPos(new GenericPoint(0, 0));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 scrollwert = 0;
                 setScroll = true;
                 break;
 
             case 28: // von Dzera aus
                 mainFrame.krabat.setPos(new GenericPoint(833, 429));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 scrollwert = 513;
                 setScroll = true;
                 break;
@@ -90,7 +90,7 @@ public class Inmlyn extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(423, 450, 403, 450, 407, 479));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(451, 446, 613, 479));
@@ -99,17 +99,17 @@ public class Inmlyn extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(857, 466, 1199, 479));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // Wege eintragen
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background1 = getPicture("gfx/mlyn/mlynn-l.png");
         background2 = getPicture("gfx/mlyn/mlynn-r.png");
         fenster = getPicture("gfx/mlyn/wokno.png");
@@ -152,7 +152,7 @@ public class Inmlyn extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
@@ -182,40 +182,39 @@ public class Inmlyn extends MainLocation {
         // hier am Anfang das Buecken einschalten, wenn aus Dzera zurueckkommend
         if (setAnim && mainFrame.actions[310]) {
             mainFrame.krabat.nAnimation = 122;
-            // System.out.println ("Habe aber doch die Anim eingeschaltet!");
         }
 
         // Hier Raben zeichnen, solange noetig
         if (showRapak) {
             g.setClip(0, 200, 500, 280);
             g.drawImage(background1, 0, 0);
-            showRapak = rabe.Flieg(g);
+            showRapak = rabe.doFly(g);
             g.drawImage(rabeVorder, 0, 242);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.actions[310] && krabatVisible) {
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -237,16 +236,12 @@ public class Inmlyn extends MainLocation {
             }
         }
 
-        // Ab hier muss Cliprect wieder gerettet werden
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // Textausgabe, falls noetig
         if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -256,12 +251,12 @@ public class Inmlyn extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
@@ -275,10 +270,8 @@ public class Inmlyn extends MainLocation {
             }
         }
 
-        // System.out.println ("nAnimation ist " + mainFrame.krabat.nAnimation);
-
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -294,7 +287,7 @@ public class Inmlyn extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
 
     }
@@ -304,8 +297,8 @@ public class Inmlyn extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
         }
@@ -324,7 +317,7 @@ public class Inmlyn extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -338,15 +331,15 @@ public class Inmlyn extends MainLocation {
 
             case 100:
                 // Textausgabe auf Bild Wokno
-                mainFrame.soundPlayer.PlayFile("sound.wav");
-                PersonSagt("Inmlyn_2", 0, 54, 2, 110, new GenericPoint(320, 400));
+                mainFrame.soundPlayer.playFile("sound.wav");
+                personSays("Inmlyn_2", 0, 54, 2, 110, new GenericPoint(320, 400));
                 break;
 
             case 110:
                 // Umschalten
                 mainFrame.actions[310] = true;
                 mainFrame.krabat.setPos(new GenericPoint(437, 412));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 scrollwert = 117;
                 setScroll = true;
                 mainFrame.isClipSet = false;
@@ -355,8 +348,8 @@ public class Inmlyn extends MainLocation {
 
             case 120:
                 // Rumlaufen
-                TalkPause = 20;
-                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(833, 429));
+                talkPause = 20;
+                mainFrame.pathWalker.setNewWay(new GenericPoint(833, 429));
                 nextActionID = 130;
                 break;
 
@@ -365,13 +358,13 @@ public class Inmlyn extends MainLocation {
                 if (mainFrame.isScrolling) {
                     break;
                 }
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 nextActionID = 140;
                 break;
 
             case 140:
                 // Naechsten Text einblenden
-                PersonSagt("Inmlyn_3", 0, 54, 2, 150, new GenericPoint(320, 200));
+                personSays("Inmlyn_3", 0, 54, 2, 150, new GenericPoint(320, 200));
                 break;
 
             case 150:
@@ -386,24 +379,23 @@ public class Inmlyn extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                mainFrame.krabat.StopAnim();
-                NeuesBild(28, 91);
+                mainFrame.krabat.stopAnim();
+                createNewLocation(28, 91);
                 break;
 
             //------------------------Hier der Einsprung fuer zurueck---------------------------
 
             case 1000:
                 // Krabat spricht
-                // System.out.println ("nAnimation = " + mainFrame.krabat.nAnimation);
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt("Inmlyn_1", 0, 3, 2, 1020);
+                krabatSays("Inmlyn_1", 0, 3, 2, 1020);
                 break;
 
             case 1020:
                 // Sound playen und 2 Sek. warten...
-                mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
+                mainFrame.soundPlayer.playFile("sfx/rapak1.wav");
                 Counter = 20;
                 nextActionID = 1030;
                 break;
@@ -434,14 +426,13 @@ public class Inmlyn extends MainLocation {
                     break;
                 }
                 mainFrame.krabat.setPos(tempPoint);
-                mainFrame.krabat.SetFacing(9);  // in Richtung des Raben schauen lassen
+                mainFrame.krabat.setFacing(9);  // in Richtung des Raben schauen lassen
                 krabatVisible = true;
                 nextActionID = 1050;
                 break;
 
             case 1050:
                 // Abwarten, bis Scroller zurueck
-                // System.out.println ("Rabe = " + showRapak + " Scroller = " + mainFrame.isScrolling);
                 if (showRapak || mainFrame.isScrolling) {
                     break;
                 }
@@ -450,12 +441,12 @@ public class Inmlyn extends MainLocation {
 
             case 1060:
                 // ErzaehlerText
-                PersonSagt("Inmlyn_4", 0, 54, 2, 1070, new GenericPoint(320, 200));
+                personSays("Inmlyn_4", 0, 54, 2, 1070, new GenericPoint(320, 200));
                 break;
 
             case 1070:
                 // Umschalten auf Mlyn 2. Teil
-                NeuesBild(90, 91);
+                createNewLocation(90, 91);
                 break;
 
             default:

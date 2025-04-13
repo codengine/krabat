@@ -47,13 +47,13 @@ public class Dziwadzelnica extends MainAnim {
         dziw_talk = new GenericImage[9];
         dziw_beat = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderscream = MAX_VERHINDERSCREAM;
         Verhinderbeat = MAX_VERHINDERBEAT;
     }
 
-    private void InitImages() {
+    private void initImages() {
         dziw_talk[0] = getPicture("gfx-dd/spaniska/dziwa2.png");
         dziw_talk[1] = getPicture("gfx-dd/spaniska/dziwa2a.png");
         dziw_talk[2] = getPicture("gfx-dd/spaniska/dziwa2b.png");
@@ -95,7 +95,7 @@ public class Dziwadzelnica extends MainAnim {
                 Verhinderbeat = MAX_VERHINDERBEAT;
                 Beat++;
                 if (Beat == 2) {
-                    mainFrame.soundPlayer.PlayFile("sfx-dd/dyr.wav");
+                    mainFrame.soundPlayer.playFile("sfx-dd/dyr.wav");
                 }
             }
 

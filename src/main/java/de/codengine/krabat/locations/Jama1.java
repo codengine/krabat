@@ -69,40 +69,40 @@ public class Jama1 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 492;
-        mainFrame.krabat.zoomf = 2.1f;
-        mainFrame.krabat.defScale = -90;
+        mainFrame.krabat.maxX = 492;
+        mainFrame.krabat.zoomFactor = 2.1f;
+        mainFrame.krabat.defaultScale = -90;
 
         jaeger = new Hunter(mainFrame);
-        jaeger.maxx = 0;
-        jaeger.zoomf = 1f;
-        jaeger.defScale = -30;
+        jaeger.maxX = 0;
+        jaeger.zoomFactor = 1f;
+        jaeger.defaultScale = -30;
 
         jaeger.setPos(AnfangsPunkt);
-        jaeger.SetFacing(3);
+        jaeger.setFacing(3);
 
         Wuermer = new GenericImage[8];
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(310, 390, 330, 396));
 
-        mainFrame.pathFinder.ClearMatrix(1);
+        mainFrame.pathFinder.clearMatrix(1);
 
-        InitImages();
+        initImages();
 
         mainFrame.krabat.setPos(new GenericPoint(317, 393));
-        mainFrame.krabat.SetFacing(12);
+        mainFrame.krabat.setFacing(12);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/jama/dzera2.png");
         foreground = getPicture("gfx/jama/black.png");
 
@@ -146,7 +146,7 @@ public class Jama1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -160,19 +160,19 @@ public class Jama1 extends MainLocation {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getBoundingBox();
 
             if (!istJaegerGebueckt) {
-                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
-                        temp.ru_point.x - temp.lo_point.x + 20,
-                        temp.ru_point.y - temp.lo_point.y + 20);
+                g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10,
+                        temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                        temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
             }
 
             // groesseres Cliprect weg wegen Buecken
             else {
-                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
-                        temp.ru_point.x - temp.lo_point.x + 50,
-                        temp.ru_point.y - temp.lo_point.y + 50);
+                g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10,
+                        temp.bottomRightPoint.x - temp.topLeftPoint.x + 50,
+                        temp.bottomRightPoint.y - temp.topLeftPoint.y + 50);
             }
 
             // Zeichne Hintergrund neu
@@ -189,40 +189,40 @@ public class Jama1 extends MainLocation {
                     Animcount = 1;
                 }
             }
-            g.setClip(wackiRect.lo_point.x, wackiRect.lo_point.y, 15, 14);
+            g.setClip(wackiRect.topLeftPoint.x, wackiRect.topLeftPoint.y, 15, 14);
             g.drawImage(background, 0, 0);
-            g.drawImage(Wuermer[Animcount], wackiRect.lo_point.x, wackiRect.lo_point.y);
+            g.drawImage(Wuermer[Animcount], wackiRect.topLeftPoint.x, wackiRect.topLeftPoint.y);
         }
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = jaeger.Move();
+            walkReady = jaeger.move();
         }
 
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = jaeger.getRect();
+            BorderRect temp = jaeger.getBoundingBox();
 
             // normales Cliprectloeschen
             if (!istJaegerGebueckt) {
-                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
-                        temp.ru_point.x - temp.lo_point.x + 20,
-                        temp.ru_point.y - temp.lo_point.y + 20);
+                g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10,
+                        temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                        temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
             }
 
             // groesseres Cliprect weg wegen Buecken
             else {
-                g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10,
-                        temp.ru_point.x - temp.lo_point.x + 50,
-                        temp.ru_point.y - temp.lo_point.y + 50);
+                g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10,
+                        temp.bottomRightPoint.x - temp.topLeftPoint.x + 50,
+                        temp.bottomRightPoint.y - temp.topLeftPoint.y + 50);
             }
 
             // Zeichne sie jetzt
 
             // Redet sie etwa gerade ??
-            if (TalkPerson == 26 && mainFrame.talkCount > 0) {
+            if (talkPerson == 26 && mainFrame.talkCount > 0) {
                 jaeger.talkHojnt(g);
             }
 
@@ -244,24 +244,24 @@ public class Jama1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -288,7 +288,7 @@ public class Jama1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -298,17 +298,17 @@ public class Jama1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -342,23 +342,23 @@ public class Jama1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Wacki
-                if (wackiRect.IsPointInRect(pTemp) && !mainFrame.actions[908]) {
+                if (wackiRect.isPointInRect(pTemp) && !mainFrame.actions[908]) {
                     // Standard - Sinnloszeug
                     nextActionID = 150;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -368,7 +368,7 @@ public class Jama1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -380,17 +380,17 @@ public class Jama1 extends MainLocation {
                 nextActionID = 0;
 
                 // Wacki ansehen
-                if (wackiRect.IsPointInRect(pTemp) && !mainFrame.actions[908]) {
+                if (wackiRect.isPointInRect(pTemp) && !mainFrame.actions[908]) {
                     nextActionID = 1;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wacki mitnehmen ?
-                if (wackiRect.IsPointInRect(pTemp) &&
+                if (wackiRect.isPointInRect(pTemp) &&
                         !mainFrame.actions[908]) {
                     nextActionID = 50;
                     mainFrame.repaint();
@@ -399,7 +399,7 @@ public class Jama1 extends MainLocation {
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -410,8 +410,8 @@ public class Jama1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -420,17 +420,17 @@ public class Jama1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    wackiRect.IsPointInRect(pTemp) && !mainFrame.actions[908];
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    wackiRect.isPointInRect(pTemp) && !mainFrame.actions[908];
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -438,19 +438,19 @@ public class Jama1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (wackiRect.IsPointInRect(pTemp) &&
+            if (wackiRect.isPointInRect(pTemp) &&
                     !mainFrame.actions[908]) {
-                if (Cursorform != 1) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -484,7 +484,7 @@ public class Jama1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -492,7 +492,7 @@ public class Jama1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -500,26 +500,26 @@ public class Jama1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         BorderRect tmp;
         GenericPoint tTlk;
 
@@ -542,7 +542,7 @@ public class Jama1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -550,14 +550,14 @@ public class Jama1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Wuermer anschauen
-                KrabatSagt("Jama1_1", fWacki, 3, 0, 0);
+                krabatSays("Jama1_1", fWacki, 3, 0, 0);
                 break;
 
             case 50:
                 // Wuermer mitnehmen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                KrabatSagt("Jama1_2", fWacki, 3, 0, 52);
+                krabatSays("Jama1_2", fWacki, 3, 0, 52);
                 break;
 
             case 52:
@@ -579,7 +579,7 @@ public class Jama1 extends MainLocation {
                     break;
                 }
                 showHojnt = true;
-                jaeger.MoveTo(EndPunkt);
+                jaeger.moveTo(EndPunkt);
                 walkReady = false;
                 nextActionID = 54;
                 break;
@@ -594,37 +594,37 @@ public class Jama1 extends MainLocation {
             case 55:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.getRect();
-                tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt("Jama1_3", 0, 26, 2, 60, tTlk);
+                tmp = jaeger.getBoundingBox();
+                tTlk = new GenericPoint((tmp.bottomRightPoint.x + tmp.topLeftPoint.x) / 2, tmp.bottomRightPoint.y + 30);
+                personSays("Jama1_3", 0, 26, 2, 60, tTlk);
                 break;
 
 
             case 60:
                 // K spricht
-                KrabatSagt("Jama1_4", 0, 1, 2, 65);
+                krabatSays("Jama1_4", 0, 1, 2, 65);
                 break;
 
             case 65:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.getRect();
-                tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt("Jama1_5", 0, 26, 2, 70, tTlk);
+                tmp = jaeger.getBoundingBox();
+                tTlk = new GenericPoint((tmp.bottomRightPoint.x + tmp.topLeftPoint.x) / 2, tmp.bottomRightPoint.y + 30);
+                personSays("Jama1_5", 0, 26, 2, 70, tTlk);
                 break;
 
 
             case 70:
                 // K spricht
-                KrabatSagt("Jama1_6", 0, 1, 2, 75);
+                krabatSays("Jama1_6", 0, 1, 2, 75);
                 break;
 
             case 75:
                 // Jaeger kommt zur Hilfe
                 // Hier Position des Textes berechnen
-                tmp = jaeger.getRect();
-                tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.ru_point.y + 30);
-                PersonSagt("Jama1_7", 0, 26, 2, 80, tTlk);
+                tmp = jaeger.getBoundingBox();
+                tTlk = new GenericPoint((tmp.bottomRightPoint.x + tmp.topLeftPoint.x) / 2, tmp.bottomRightPoint.y + 30);
+                personSays("Jama1_7", 0, 26, 2, 80, tTlk);
                 break;
 
             case 80:
@@ -640,12 +640,12 @@ public class Jama1 extends MainLocation {
                 if (--TakeCounter > 1) {
                     break;
                 }
-                NeuesBild(14, 27);
+                createNewLocation(14, 27);
                 break;
 
             case 150:
                 // Wacki - Ausreden
-                DingAusrede(fWacki);
+                thingExcuse(fWacki);
                 break;
 
             default:

@@ -101,7 +101,7 @@ public class VorbisFile{
       }
     }
     catch(Exception e){
-      throw new JOrbisException("VorbisFile: "+e.toString());
+      throw new JOrbisException("VorbisFile: "+ e);
     }
     finally{
       if(is!=null){

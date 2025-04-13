@@ -40,7 +40,6 @@ public class Rapak extends MainAnim {
 
     private final int flyx;
     private int flyy;
-    // private int flycount = 1;
     private boolean fliegehoch = true;
     private boolean flyfront = true;
 
@@ -63,10 +62,10 @@ public class Rapak extends MainAnim {
         flyx = MAX_FLYX;
         flyy = MAX_FLYY;
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         Vogel[1] = getPicture("gfx/rapak/pk1.png");
         Vogel[2] = getPicture("gfx/rapak/pk2.png");
         Vogel[3] = getPicture("gfx/rapak/pk3.png");
@@ -260,10 +259,10 @@ public class Rapak extends MainAnim {
         else {
             if (!flyawaySound) {
                 flyawaySound = true;
-                mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
+                mainFrame.soundPlayer.playFile("sfx/rapak1.wav");
             }
 
-            return sideptack.Flieg(g);
+            return sideptack.doFly(g);
         }
     }
 }    

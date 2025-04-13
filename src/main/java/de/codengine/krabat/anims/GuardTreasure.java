@@ -45,12 +45,12 @@ public class GuardTreasure extends MainAnim {
         straza_head = new GenericImage[8];
         straza_body = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
     }
 
-    private void InitImages() {
+    private void initImages() {
         straza_head[0] = getPicture("gfx-dd/trepj/pstraza-h1.png");
         straza_head[1] = getPicture("gfx-dd/trepj/pstraza-h1a.png");
         straza_head[2] = getPicture("gfx-dd/trepj/pstraza-h2.png");

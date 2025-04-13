@@ -76,21 +76,19 @@ public class Swoboda extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        // mainFrame.player.Play ("12", 174000);  // kommt schon durch Mlyn2 rein
-
-        mainFrame.krabat.maxx = 200;
-        mainFrame.krabat.zoomf = 4.93f;
-        mainFrame.krabat.defScale = -150;
+        mainFrame.krabat.maxX = 200;
+        mainFrame.krabat.zoomFactor = 4.93f;
+        mainFrame.krabat.defaultScale = -150;
 
         krabatmorph = new Boom(mainFrame);
         rabemorph = new Boom(mainFrame);
 
-        InitLocation();
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initLocation();
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
         if (oldLocation == 71) { // Aus Doma kommend
             mainFrame.krabat.setPos(krabatPoint);
-            mainFrame.krabat.SetFacing(9);
+            mainFrame.krabat.setFacing(9);
         }
 
         setAnim = true;
@@ -99,16 +97,16 @@ public class Swoboda extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         mutter = new Mother(mainFrame, false);
         mueller = new Miller(mainFrame);
 
-        mueller.maxx = 467;
-        mueller.zoomf = 4f;
-        mueller.defScale = -120;
+        mueller.maxX = 467;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = -120;
 
         mueller.setPos(Pmueller);
-        mueller.SetFacing(9);
+        mueller.setFacing(9);
 
         mutterPoint = new GenericPoint();
         mutterPoint.x = Pmutter.x - mutter.Breites / 2;
@@ -134,7 +132,6 @@ public class Swoboda extends MainLocation {
 
         rapakpos = new GenericPoint[13];
         for (int i = 1; i <= 12; i++) {
-            // rapakpos[i] = new GenericPoint (((i - 1) * 23) + 142, ((i - 1) * 2) + 231);
             rapakpos[i] = new GenericPoint((i - 1) * 23 + 142, Rarray[i] - RavenFreedom.Hoehe + 3);
         }
 
@@ -147,7 +144,7 @@ public class Swoboda extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mlyn/mlynn-r.png");
 
     }
@@ -184,7 +181,7 @@ public class Swoboda extends MainLocation {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
             mainFrame.isClipSet = true;
-            Cursorform = 200;
+            cursorShape = 200;
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
             mainFrame.isAnimRunning = true;
@@ -195,7 +192,7 @@ public class Swoboda extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -220,12 +217,12 @@ public class Swoboda extends MainLocation {
         // Clipping - Rectangle feststellen und setzen
         BorderRect temp;
         if (!mlynkHatStock) {
-            temp = mueller.getRect();
+            temp = mueller.getBoundingBox();
         } else {
-            temp = mueller.MlynkRectMitStock();
+            temp = mueller.mlynkRectWithStick();
         }
-        g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                temp.ru_point.y - temp.lo_point.y + 20);
+        g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
         // Zeichne Hintergrund neu
         g.drawImage(background, 0, 0);
@@ -252,9 +249,9 @@ public class Swoboda extends MainLocation {
                 }
                 g.setClip(rapakpos[i].x, rapakpos[i].y, RavenFreedom.Breite, RavenFreedom.Hoehe);
                 if (i != KRABATRABE) {
-                    raben[i].KratzeLinks(g, rapakpos[i]);
+                    raben[i].scratchLeft(g, rapakpos[i]);
                 } else {
-                    raben[i].KratzeRechts(g, rapakpos[i]);
+                    raben[i].scratchRight(g, rapakpos[i]);
                 }
             }
         }
@@ -267,23 +264,23 @@ public class Swoboda extends MainLocation {
 
         // Mac zeichnen bei Reden und Herumstehen,
         g.setClip(mutterPoint.x, mutterPoint.y, mutter.Breites, mutter.Hoehes);
-        mutter.drawMac(g, mutterPoint, TalkPerson);
+        mutter.drawMac(g, mutterPoint, talkPerson);
 
         // Mueller zeichnen
         // Clipping - Rectangle feststellen und setzen
         BorderRect tmp;
         if (!mlynkHatStock) {
-            tmp = mueller.getRect();
+            tmp = mueller.getBoundingBox();
         } else {
-            tmp = mueller.MlynkRectMitStock();
+            tmp = mueller.mlynkRectWithStick();
         }
-        g.setClip(tmp.lo_point.x - 10, tmp.lo_point.y - 10, tmp.ru_point.x - tmp.lo_point.x + 20,
-                tmp.ru_point.y - tmp.lo_point.y + 20);
+        g.setClip(tmp.topLeftPoint.x - 10, tmp.topLeftPoint.y - 10, tmp.bottomRightPoint.x - tmp.topLeftPoint.x + 20,
+                tmp.bottomRightPoint.y - tmp.topLeftPoint.y + 20);
 
         // Zeichne ihn jetzt
 
         // Redet er etwa gerade ??
-        if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+        if (talkPerson == 36 && mainFrame.talkCount > 0) {
             if (!mlynkHatStock) {
                 mueller.talkMlynk(g);
             } else {
@@ -301,23 +298,23 @@ public class Swoboda extends MainLocation {
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (krabatHere) {
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -344,16 +341,12 @@ public class Swoboda extends MainLocation {
             krabatmorphcount = krabatmorph.drawBumm(g);
         }
 
-        // Ab hier muss Cliprect wieder gerettet werden
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // Textausgabe, falls noetig
         if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -363,12 +356,12 @@ public class Swoboda extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
@@ -378,8 +371,8 @@ public class Swoboda extends MainLocation {
             nextActionID = 100;
         }
 
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -395,7 +388,7 @@ public class Swoboda extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
     }
 
@@ -404,8 +397,8 @@ public class Swoboda extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
         }
@@ -423,34 +416,34 @@ public class Swoboda extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
 
             case 100:
                 // Mueller spricht
-                PersonSagt("Swoboda_1", 0, 36, 2, 120, mueller.evalMlynkTalkPoint());
+                personSays("Swoboda_1", 0, 36, 2, 120, mueller.evalMlynkTalkPoint());
                 break;
 
             case 120:
                 // Mueller spricht
-                PersonSagt("Swoboda_2", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
+                personSays("Swoboda_2", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
                 break;
 
             case 130:
                 // Mutter spricht 1. Satz, Raben beginnen mit gezieltem Kratzen
-                PersonSagt("Swoboda_3", 0, 20, 2, 135, mutterTalk);
+                personSays("Swoboda_3", 0, 20, 2, 135, mutterTalk);
                 rapakiAchtung = true;
                 break;
 
             case 135:
                 // Mutter spricht und zeigt auf K
-                PersonSagt("Swoboda_4", 0, 60, 2, 140, mutterTalk);
+                personSays("Swoboda_4", 0, 60, 2, 140, mutterTalk);
                 break;
 
             case 140:
                 // Mueller spricht, Raben hoeren auf sich zu kratzen
-                PersonSagt("Swoboda_5", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
+                personSays("Swoboda_5", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
                 mlynkHatStock = true;
                 rapakiAchtung = false;
                 break;
@@ -459,7 +452,7 @@ public class Swoboda extends MainLocation {
                 // Raben rausmorphen
                 GenericPoint pTe = new GenericPoint(rapakpos[KRABATRABE].x + RavenFreedom.Breite / 2,
                         rapakpos[KRABATRABE].y + RavenFreedom.Hoehe);
-                rabemorph.Init(pTe, 50);
+                rabemorph.init(pTe, 50);
                 israbemorphing = true;
                 nextActionID = 153;
                 break;
@@ -489,7 +482,7 @@ public class Swoboda extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                krabatmorph.Init(mainFrame.krabat.getPos(), 240);
+                krabatmorph.init(mainFrame.krabat.getPos(), 240);
                 iskrabatmorphing = true;
                 nextActionID = 170;
                 break;
@@ -511,18 +504,18 @@ public class Swoboda extends MainLocation {
                 mlynkHatStock = false;
                 iskrabatmorphing = false;
                 mainFrame.isClipSet = false;
-                TalkPause = 10;
+                talkPause = 10;
                 nextActionID = 185;
                 break;
 
             case 185:
                 // Mueller spricht
-                PersonSagt("Swoboda_6", 0, 36, 2, 210, mueller.evalMlynkTalkPoint());
+                personSays("Swoboda_6", 0, 36, 2, 210, mueller.evalMlynkTalkPoint());
                 break;
 
             case 210:
                 // Skip zu Mlyn2
-                NeuesBild(90, 92);
+                createNewLocation(90, 92);
                 break;
 
             default:

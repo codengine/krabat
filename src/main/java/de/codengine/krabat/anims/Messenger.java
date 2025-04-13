@@ -50,13 +50,13 @@ public class Messenger extends MainAnim {
         bote_head = new GenericImage[6];
         bote_body = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         bote_head[0] = getPicture("gfx/wjes/bote-h0.png");
         bote_head[1] = getPicture("gfx/wjes/bote-h1.png");
         bote_head[2] = getPicture("gfx/wjes/bote-h2.png");

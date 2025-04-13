@@ -172,9 +172,9 @@ public class Haty1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 325;
-        mainFrame.krabat.zoomf = 2.99f;
-        mainFrame.krabat.defScale = 0;  // genau zum Angeln muss es 0 sein -> testen
+        mainFrame.krabat.maxX = 325;
+        mainFrame.krabat.zoomFactor = 2.99f;
+        mainFrame.krabat.defaultScale = 0;  // genau zum Angeln muss es 0 sein -> testen
 
         Boot = new GenericImage[9];
         muell = new GenericImage[4];
@@ -195,17 +195,17 @@ public class Haty1 extends MainLocation {
             clipIstLinks = false;
         }
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         // fuer Blinkern rein
-        InitBlinker();
+        initBlinker();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
-        InitImages();
+    private void initLocation(int oldLocation) {
+        initImages();
 
         // wenn kein Load, dann die Moeglichkeit, dass mehr Muell da ist, berechnen
         if (oldLocation != 0 && mainFrame.actions[220]) {
@@ -256,8 +256,8 @@ public class Haty1 extends MainLocation {
         }
 
 
-        InitAngler();
-        InitEimer();
+        initFisher();
+        initBucket();
 
         switch (oldLocation) {
             case 0:
@@ -267,19 +267,19 @@ public class Haty1 extends MainLocation {
             case 5:
                 // Von Les1 aus
                 mainFrame.krabat.setPos(new GenericPoint(232, 463));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
             case 8:
                 // von Rapak aus
                 mainFrame.krabat.setPos(new GenericPoint(318, 120));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
 
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/haty/haty2.png");
 
         Boot[1] = getPicture("gfx/haty/bt3.png");
@@ -299,15 +299,15 @@ public class Haty1 extends MainLocation {
     }
 
     // Anglerpositionen definieren
-    private void InitAngler() {
+    private void initFisher() {
         // Hier berechnen, auf welcher Seite die netten Angler stehen...
         if (!mainFrame.actions[220]) {
             // stehen rechts
             angler1.setPos(wudzer1RightFeet);
-            angler1.SetFacing(3);
+            angler1.setFacing(3);
 
             angler2.setPos(wudzer2RightFeet);
-            angler2.SetFacing(3);
+            angler2.setFacing(3);
 
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
@@ -319,29 +319,28 @@ public class Haty1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(217, 337, 264, 407));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(265, 337, 361, 362));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(362, 342, 458, 363));
-            // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (459, 525, 459, 542, 345, 364));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(208, 408, 256, 479));
 
             // Matrix loeschen
-            mainFrame.pathFinder.ClearMatrix(9);
+            mainFrame.pathFinder.clearMatrix(9);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 5);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
-            mainFrame.pathFinder.PosVerbinden(5, 6);
-            mainFrame.pathFinder.PosVerbinden(6, 7);
-            mainFrame.pathFinder.PosVerbinden(5, 8);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 5);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
+            mainFrame.pathFinder.connectPos(5, 6);
+            mainFrame.pathFinder.connectPos(6, 7);
+            mainFrame.pathFinder.connectPos(5, 8);
 
         } else {
             // stehen links
             angler1.setPos(wudzer1LeftFeet);
-            angler1.SetFacing(9);
+            angler1.setFacing(9);
 
             angler2.setPos(wudzer2LeftFeet);
-            angler2.SetFacing(9);
+            angler2.setFacing(9);
 
             // Grenzen setzen
             mainFrame.pathWalker.vBorders.removeAllElements();
@@ -361,37 +360,37 @@ public class Haty1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(208, 408, 256, 479));
 
             // Matrix loeschen, je nachdem, wie gross noch ist
-            mainFrame.pathFinder.ClearMatrix(mainFrame.actions[152] ? 8 : 9);
+            mainFrame.pathFinder.clearMatrix(mainFrame.actions[152] ? 8 : 9);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
             if (!mainFrame.actions[152]) {
-                mainFrame.pathFinder.PosVerbinden(0, 1);
-                mainFrame.pathFinder.PosVerbinden(1, 4);
-                mainFrame.pathFinder.PosVerbinden(2, 3);
-                mainFrame.pathFinder.PosVerbinden(3, 4);
-                mainFrame.pathFinder.PosVerbinden(4, 5);
-                mainFrame.pathFinder.PosVerbinden(5, 6);
-                mainFrame.pathFinder.PosVerbinden(6, 7);
-                mainFrame.pathFinder.PosVerbinden(4, 8);
+                mainFrame.pathFinder.connectPos(0, 1);
+                mainFrame.pathFinder.connectPos(1, 4);
+                mainFrame.pathFinder.connectPos(2, 3);
+                mainFrame.pathFinder.connectPos(3, 4);
+                mainFrame.pathFinder.connectPos(4, 5);
+                mainFrame.pathFinder.connectPos(5, 6);
+                mainFrame.pathFinder.connectPos(6, 7);
+                mainFrame.pathFinder.connectPos(4, 8);
             } else {
-                mainFrame.pathFinder.PosVerbinden(0, 1);
-                mainFrame.pathFinder.PosVerbinden(1, 3);
-                mainFrame.pathFinder.PosVerbinden(2, 3);
-                mainFrame.pathFinder.PosVerbinden(3, 4);
-                mainFrame.pathFinder.PosVerbinden(4, 5);
-                mainFrame.pathFinder.PosVerbinden(5, 6);
-                mainFrame.pathFinder.PosVerbinden(3, 7);
+                mainFrame.pathFinder.connectPos(0, 1);
+                mainFrame.pathFinder.connectPos(1, 3);
+                mainFrame.pathFinder.connectPos(2, 3);
+                mainFrame.pathFinder.connectPos(3, 4);
+                mainFrame.pathFinder.connectPos(4, 5);
+                mainFrame.pathFinder.connectPos(5, 6);
+                mainFrame.pathFinder.connectPos(3, 7);
             }
         }
     }
 
-    private void InitEimer() {
+    private void initBucket() {
         // Hier berechnen, auf welcher Seite der Eimer steht...
         eimerPos = !mainFrame.actions[220] ? eimerRechts : eimerLinks;
         eimerRect = new BorderRect(eimerPos.x, eimerPos.y, eimerPos.x + Bow.Breite, eimerPos.y + Bow.Hoehe);
     }
 
-    private void InitBlinker() {
+    private void initBlinker() {
         // hier wird das Blinkern festgelegt, indem das Array initialisiert wird, wo der
         // Blinkstatus gespeichert wird
 
@@ -405,8 +404,8 @@ public class Haty1 extends MainLocation {
         int AnzahlStriche = 1;
 
         for (BorderTrapezoid borderTrapezoid : Blink) {
-            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
+            if (borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -417,7 +416,7 @@ public class Haty1 extends MainLocation {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
+                if (Blink[i].surfaceArea() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
@@ -484,7 +483,7 @@ public class Haty1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isBackgroundAnimRunning = true;
             mainFrame.isClipSet = true;
@@ -508,7 +507,7 @@ public class Haty1 extends MainLocation {
         // Blinkern ermoeglichen, dieses ist am Hintergruendigsten
         g.setClip(0, 181, 639, 298);  // dieses Clipping muss die kompletten Anims loeschen, alles inclusive !!!
         g.drawImage(background, 0, 0);
-        Blink(g);
+        blink(g);
 
         // jetzt ist ALLES !!! Hintergrundanimmaessiges geloescht, also keine extra Clipsets und loeschen
 
@@ -544,11 +543,11 @@ public class Haty1 extends MainLocation {
         fische.drawRyby(g, schnauzeFische);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        if (TalkPerson == 31) {
+        if (talkPerson == 31) {
             // angler 2 redet
             angler2.talkWudzer2(g);
         } else {
@@ -557,13 +556,13 @@ public class Haty1 extends MainLocation {
 
         // Andere Personen zeichnen
         if (!walkWudzer2) {
-            walkWudzer2 = angler2.Move();
+            walkWudzer2 = angler2.move();
         }
 
         if (anglerNimmtEimer) {
             angler1.takeBow(g, merkeEimer);
         } else {
-            if (TalkPerson == 30 || schautAnglerInDerGegendRum) {
+            if (talkPerson == 30 || schautAnglerInDerGegendRum) {
                 // angler 1 redet
                 angler1.talkWudzer1(g, schautAnglerInDerGegendRum);
             } else {
@@ -573,11 +572,11 @@ public class Haty1 extends MainLocation {
 
         // Angler 1 ist vor Angler 2
         if (!walkWudzer1) {
-            walkWudzer1 = angler1.Move();
+            walkWudzer1 = angler1.move();
         }
 
         // Krabat bewegen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
@@ -589,27 +588,27 @@ public class Haty1 extends MainLocation {
             switch (Sonderstatus) {
                 case 1: // links angeln ohne Erfolg
                     g.setClip(0, 230, 200, 200);
-                    nochaktiv = kfischer.AngleLinks(g, tPoint);
+                    nochaktiv = kfischer.fishLeft(g, tPoint);
                     break;
 
                 case 2: // rechts angeln ohne Erfolg
                     g.setClip(500, 250, 140, 200);
-                    nochaktiv = kfischer.AngleRechts(g, tPoint);
+                    nochaktiv = kfischer.fishRight(g, tPoint);
                     break;
 
                 case 3: // links angeln mit Holzfisch
                     g.setClip(0, 230, 200, 200);
-                    nochaktiv = kfischer.FangeLinks(g, tPoint);
+                    nochaktiv = kfischer.catchLeft(g, tPoint);
                     break;
 
                 case 4: // rechts Angeln mit Erfolg
                     g.setClip(500, 250, 140, 200);
-                    nochaktiv = kfischer.FangeRechts(g, tPoint);
+                    nochaktiv = kfischer.catchRight(g, tPoint);
                     break;
 
                 case 5: // links reden mit Holzfisch
                     g.setClip(0, 230, 200, 200);
-                    kfischer.RedeLinks(g, tPoint, TalkPerson);
+                    kfischer.talkLeft(g, tPoint, talkPerson);
                     break;
 
                 default: // Fehler !!
@@ -625,16 +624,16 @@ public class Haty1 extends MainLocation {
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -671,7 +670,7 @@ public class Haty1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -681,12 +680,12 @@ public class Haty1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -697,8 +696,8 @@ public class Haty1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -719,7 +718,7 @@ public class Haty1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -739,18 +738,18 @@ public class Haty1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Rohodz left
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -772,8 +771,8 @@ public class Haty1 extends MainLocation {
                 }
 
                 // Ausreden fuer Rohodz right
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzRight.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -795,7 +794,7 @@ public class Haty1 extends MainLocation {
                 }
 
                 // Ausreden fuer Eimer
-                if (eimerRect.IsPointInRect(pTemp)) {
+                if (eimerRect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 8: // wacki
                             nextActionID = 330;
@@ -814,21 +813,21 @@ public class Haty1 extends MainLocation {
                 }
 
                 // Ausreden fuer Muell
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
+                if (muellRect.isPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 185;
                     pTemp = Pmuell;
                 }
 
                 // Ausreden fuer colmik
-                if (colmik.IsPointInRect(pTemp)) {
+                if (colmik.isPointInRect(pTemp)) {
                     // lajna
                     nextActionID = mainFrame.whatItem == 6 ? 360 : 165;
                     pTemp = Pcolmik;
                 }
 
                 // Ausreden fuer Wasser links
-                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaLeft1.pointInside(pTemp) || wodaLeft2.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 370;
@@ -861,8 +860,8 @@ public class Haty1 extends MainLocation {
                 }
 
                 // Ausreden fuer Wasser rechts
-                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaRight1.pointInside(pTemp) || wodaRight2.pointInside(pTemp) || wodaRight3.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 7: // kij + lajna
                             nextActionID = 375;
@@ -899,7 +898,7 @@ public class Haty1 extends MainLocation {
                 }
 
                 // Ausreden fuer Angler
-                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
+                if (angler1.getBoundingBox().isPointInRect(pTemp) || angler2.getBoundingBox().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 7: // kij + lajna
@@ -942,7 +941,7 @@ public class Haty1 extends MainLocation {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -952,7 +951,7 @@ public class Haty1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -964,90 +963,90 @@ public class Haty1 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Les1 gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Rapak gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Rohodz left anschauen
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Prohodzl;
                 }
 
                 // Rohodz right anschauen
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzRight.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Prohodzr;
                 }
 
                 // Eimer anschauen
-                if (eimerRect.IsPointInRect(pTemp)) {
+                if (eimerRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = eimerPos;
                 }
 
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
+                if (muellRect.isPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 10;
                     pTemp = Pmuell;
                 }
 
                 // colmik anschauen
-                if (colmik.IsPointInRect(pTemp)) {
+                if (colmik.isPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = Pcolmik;
                 }
 
                 // Wasser links anschauen
-                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaLeft1.pointInside(pTemp) || wodaLeft2.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = PwodaLeft;
                 }
 
                 // Wasser rechts anschauen
-                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaRight1.pointInside(pTemp) || wodaRight2.pointInside(pTemp) || wodaRight3.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = PwodaRight;
                 }
 
                 // Angler anschauen
-                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
+                if (angler1.getBoundingBox().isPointInRect(pTemp) || angler2.getBoundingBox().isPointInRect(pTemp)) {
                     if (!mainFrame.actions[220]) {
                         nextActionID = 8;
                         pTemp = PwudzerRight;
@@ -1057,93 +1056,93 @@ public class Haty1 extends MainLocation {
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Les1 Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Rapak anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Rohodz left mitnehmen
-                if (rohodzLeft.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzLeft.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Prohodzl);
+                    mainFrame.pathWalker.setNewWay(Prohodzl);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Rohodz right mitnehmen
-                if (rohodzRight.IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp) &&
-                        !angler2.getRect().IsPointInRect(pTemp)) {
+                if (rohodzRight.isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp) &&
+                        !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Prohodzr);
+                    mainFrame.pathWalker.setNewWay(Prohodzr);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Eimer mitnehmen
-                if (eimerRect.IsPointInRect(pTemp)) {
+                if (eimerRect.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(eimerPos);
+                    mainFrame.pathWalker.setNewWay(eimerPos);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Muell mitnehmen
-                if (muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
+                if (muellRect.isPointInRect(pTemp) && mainFrame.actions[152]) {
                     nextActionID = 90;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pmuell);
+                    mainFrame.pathWalker.setNewWay(Pmuell);
                     mainFrame.repaint();
                     return;
                 }
 
                 // colmik use
-                if (colmik.IsPointInRect(pTemp)) {
+                if (colmik.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pcolmik);
+                    mainFrame.pathWalker.setNewWay(Pcolmik);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wasser links use
-                if ((wodaLeft1.PointInside(pTemp) || wodaLeft2.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaLeft1.pointInside(pTemp) || wodaLeft2.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.pathWalker.SetzeNeuenWeg(PwodaLeft);
+                    mainFrame.pathWalker.setNewWay(PwodaLeft);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wasser rechts use
-                if ((wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) || wodaRight3.PointInside(pTemp)) &&
-                        !angler1.getRect().IsPointInRect(pTemp) && !angler2.getRect().IsPointInRect(pTemp)) {
+                if ((wodaRight1.pointInside(pTemp) || wodaRight2.pointInside(pTemp) || wodaRight3.pointInside(pTemp)) &&
+                        !angler1.getBoundingBox().isPointInRect(pTemp) && !angler2.getBoundingBox().isPointInRect(pTemp)) {
                     nextActionID = 75;
-                    mainFrame.pathWalker.SetzeNeuenWeg(PwodaRight);
+                    mainFrame.pathWalker.setNewWay(PwodaRight);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Angler talk
-                if (angler1.getRect().IsPointInRect(pTemp) || angler2.getRect().IsPointInRect(pTemp)) {
+                if (angler1.getBoundingBox().isPointInRect(pTemp) || angler2.getBoundingBox().isPointInRect(pTemp)) {
                     if (mainFrame.actions[220]) {
                         nextActionID = 80;
-                        mainFrame.pathWalker.SetzeNeuenWeg(PwudzerLeft);
+                        mainFrame.pathWalker.setNewWay(PwudzerLeft);
                     } else {
-                        if (angler2.getRect().IsPointInRect(pTemp) && !angler1.getRect().IsPointInRect(pTemp)) {
+                        if (angler2.getBoundingBox().isPointInRect(pTemp) && !angler1.getBoundingBox().isPointInRect(pTemp)) {
                             nextActionID = 85;
                         } else {
                             nextActionID = 87;
                         }
-                        mainFrame.pathWalker.SetzeNeuenWeg(PwudzerRight);
+                        mainFrame.pathWalker.setNewWay(PwudzerRight);
                     }
                     mainFrame.repaint();
                     return;
@@ -1151,7 +1150,7 @@ public class Haty1 extends MainLocation {
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -1168,8 +1167,8 @@ public class Haty1 extends MainLocation {
 
         // Krabat - Animation = transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -1178,23 +1177,23 @@ public class Haty1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
-                    wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
-                    wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
-                    rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
-                    angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
-                    eimerRect.IsPointInRect(pTemp) ||
-                    muellRect.IsPointInRect(pTemp) && mainFrame.actions[152];
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    wodaRight1.pointInside(pTemp) || wodaRight2.pointInside(pTemp) ||
+                    wodaRight3.pointInside(pTemp) || wodaLeft1.pointInside(pTemp) ||
+                    wodaLeft2.pointInside(pTemp) || rohodzLeft.isPointInRect(pTemp) ||
+                    rohodzRight.isPointInRect(pTemp) || angler1.getBoundingBox().isPointInRect(pTemp) ||
+                    angler2.getBoundingBox().isPointInRect(pTemp) || colmik.isPointInRect(pTemp) ||
+                    eimerRect.isPointInRect(pTemp) ||
+                    muellRect.isPointInRect(pTemp) && mainFrame.actions[152];
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -1202,40 +1201,40 @@ public class Haty1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (wodaRight1.PointInside(pTemp) || wodaRight2.PointInside(pTemp) ||
-                    wodaRight3.PointInside(pTemp) || wodaLeft1.PointInside(pTemp) ||
-                    wodaLeft2.PointInside(pTemp) || rohodzLeft.IsPointInRect(pTemp) ||
-                    rohodzRight.IsPointInRect(pTemp) || angler1.getRect().IsPointInRect(pTemp) ||
-                    angler2.getRect().IsPointInRect(pTemp) || colmik.IsPointInRect(pTemp) ||
-                    eimerRect.IsPointInRect(pTemp) ||
-                    muellRect.IsPointInRect(pTemp) && mainFrame.actions[152]) {
-                if (Cursorform != 1) {
+            if (wodaRight1.pointInside(pTemp) || wodaRight2.pointInside(pTemp) ||
+                    wodaRight3.pointInside(pTemp) || wodaLeft1.pointInside(pTemp) ||
+                    wodaLeft2.pointInside(pTemp) || rohodzLeft.isPointInRect(pTemp) ||
+                    rohodzRight.isPointInRect(pTemp) || angler1.getBoundingBox().isPointInRect(pTemp) ||
+                    angler2.getBoundingBox().isPointInRect(pTemp) || colmik.isPointInRect(pTemp) ||
+                    eimerRect.isPointInRect(pTemp) ||
+                    muellRect.isPointInRect(pTemp) && mainFrame.actions[152]) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -1274,7 +1273,7 @@ public class Haty1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -1282,7 +1281,7 @@ public class Haty1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -1290,25 +1289,25 @@ public class Haty1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
-    private void Blink(GenericDrawingContext g) {
-        g.setColor(GenericColor.white);
+    private void blink(GenericDrawingContext g) {
+        g.setColor(GenericColor.WHITE);
 
         // Das Array Stueck fuer Stueck abarbeiten
         for (int i = 0; i < MerkArray.length; i++) {
@@ -1331,7 +1330,7 @@ public class Haty1 extends MainLocation {
                                 MerkArray[i][j][0] = (int) Math.round(Math.random() * xlaenge) + xoffset;
                                 MerkArray[i][j][1] = (int) Math.round(Math.random() * ylaenge) + Blink[i].y1;
                             }
-                            while (!Blink[i].PointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
+                            while (!Blink[i].pointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
                         }
                     }
 
@@ -1375,7 +1374,7 @@ public class Haty1 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -1395,7 +1394,7 @@ public class Haty1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -1403,61 +1402,61 @@ public class Haty1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Schilf links ansehen
-                KrabatSagt("Haty1_1", fRohodzLeft, 3, 0, 0);
+                krabatSays("Haty1_1", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 2:
                 // Schilf rechts ansehen
-                KrabatSagt("Haty1_2", fRohodzRight, 3, 0, 0);
+                krabatSays("Haty1_2", fRohodzRight, 3, 0, 0);
                 break;
 
             case 3:
                 // Bow z rybami ansehen
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_3", fBowRight, 3, 0, 0);
+                    krabatSays("Haty1_3", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_4", fBowLeft, 3, 0, 0);
+                    krabatSays("Haty1_4", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 4:
                 // Boot ansehen
-                KrabatSagt("Haty1_5", fBoot, 3, 0, 0);
+                krabatSays("Haty1_5", fBoot, 3, 0, 0);
                 break;
 
             case 5:
                 // Wasser links ansehen
-                KrabatSagt("Haty1_6", fWodaLeft, 3, 0, 0);
+                krabatSays("Haty1_6", fWodaLeft, 3, 0, 0);
                 break;
 
             case 6:
                 // Wasser rechts ansehen
-                KrabatSagt("Haty1_7", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_7", fWodaRight, 3, 0, 0);
                 break;
 
             case 7:
                 // Angler ansehen, wenn links und fangen nix
-                KrabatSagt("Haty1_8", fWudzerjoLeft, 3, 0, 0);
+                krabatSays("Haty1_8", fWudzerjoLeft, 3, 0, 0);
                 break;
 
             case 8:
                 // Angler ansehen, wenn rechts und erfolgreich...
-                KrabatSagt("Haty1_9", fWudzerjoRight, 3, 0, 0);
+                krabatSays("Haty1_9", fWudzerjoRight, 3, 0, 0);
                 break;
 
             case 10:
                 // Muell anschauen, sobald er da ist
-                KrabatSagt("Haty1_10", fMuell, 3, 0, 0);
+                krabatSays("Haty1_10", fMuell, 3, 0, 0);
                 break;
 
             case 50:
                 // Schilf links mitnehmen
-                KrabatSagt("Haty1_11", fRohodzLeft, 3, 0, 0);
+                krabatSays("Haty1_11", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 55:
                 // Schilf rechts mitnehmen
-                KrabatSagt("Haty1_12", fRohodzRight, 3, 0, 0);
+                krabatSays("Haty1_12", fRohodzRight, 3, 0, 0);
                 break;
 
             case 60:
@@ -1466,24 +1465,24 @@ public class Haty1 extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 2.9);
                 switch (zuffZahl) {
                     case 0:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_106");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_106");
                         break;
 
                     case 1:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_107");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_107");
                         break;
 
                     case 2:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_108");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_108");
                         break;
                 }
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
+                outputTextPos = mainFrame.imageFont.centerText(outputText, angler2.wudzer2TalkPoint());
                 if (!mainFrame.actions[220]) {
-                    mainFrame.krabat.SetFacing(3);
+                    mainFrame.krabat.setFacing(3);
                 } else {
-                    mainFrame.krabat.SetFacing(9);
+                    mainFrame.krabat.setFacing(9);
                 }
-                TalkPerson = 31;
+                talkPerson = 31;
                 nextActionID = 0;
                 break;
 
@@ -1497,31 +1496,31 @@ public class Haty1 extends MainLocation {
                 }
                 switch (zuffZahl2) {
                     case 0:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_109");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_109");
                         break;
 
                     case 1:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_110");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_110");
                         break;
                 }
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
+                outputTextPos = mainFrame.imageFont.centerText(outputText, angler2.wudzer2TalkPoint());
                 if (!mainFrame.actions[220]) {
-                    mainFrame.krabat.SetFacing(3);
+                    mainFrame.krabat.setFacing(3);
                 } else {
-                    mainFrame.krabat.SetFacing(9);
+                    mainFrame.krabat.setFacing(9);
                 }
-                TalkPerson = 31;
+                talkPerson = 31;
                 nextActionID = 0;
                 break;
 
             case 70:
                 // Woda Left mitnehmen
-                KrabatSagt("Haty1_13", fWodaLeft, 3, 0, 0);
+                krabatSays("Haty1_13", fWodaLeft, 3, 0, 0);
                 break;
 
             case 75:
                 // Woda Right mitnehmen
-                KrabatSagt("Haty1_14", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_14", fWodaRight, 3, 0, 0);
                 break;
 
             case 80:
@@ -1530,22 +1529,22 @@ public class Haty1 extends MainLocation {
                 int zuffZahl3 = (int) (Math.random() * 1.9);
                 switch (zuffZahl3) {
                     case 0:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_111");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_111");
                         break;
 
                     case 1:
-                        outputText = mainFrame.imageFont.TeileTextKey("Haty1_112");
+                        outputText = mainFrame.imageFont.splitTextKey("Haty1_112");
                         break;
                 }
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, angler2.Wudzer2TalkPoint());
-                mainFrame.krabat.SetFacing(9);
-                TalkPerson = 31;
+                outputTextPos = mainFrame.imageFont.centerText(outputText, angler2.wudzer2TalkPoint());
+                mainFrame.krabat.setFacing(9);
+                talkPerson = 31;
                 nextActionID = 0;
                 break;
 
             case 85:
                 // Krabat beginnt MC (Wudzer1 benutzen)
-                mainFrame.krabat.SetFacing(fWudzerjoRight);
+                mainFrame.krabat.setFacing(fWudzerjoRight);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 stehenderAnglerSchautSichUm = true;
@@ -1558,7 +1557,7 @@ public class Haty1 extends MainLocation {
 
             case 87:
                 // Krabat beginnt MC (Wudzer2 benutzen)
-                mainFrame.krabat.SetFacing(fWudzerjoRight);
+                mainFrame.krabat.setFacing(fWudzerjoRight);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 900;
@@ -1566,65 +1565,65 @@ public class Haty1 extends MainLocation {
 
             case 90:
                 // Muell mitnehmen
-                KrabatSagt("Haty1_15", fMuell, 3, 0, 0);
+                krabatSays("Haty1_15", fMuell, 3, 0, 0);
                 break;
 
             case 100:
                 // gehe zu Les1 
-                NeuesBild(5, 4);
+                createNewLocation(5, 4);
                 break;
 
             case 101:
                 // gehe zu Rapak 
-                NeuesBild(8, 4);
+                createNewLocation(8, 4);
                 break;
 
             case 150:
                 // Rohodz1 - Ausreden
-                DingAusrede(fRohodzLeft);
+                thingExcuse(fRohodzLeft);
                 break;
 
             case 155:
                 // Rohodz2 - Ausreden
-                DingAusrede(fRohodzRight);
+                thingExcuse(fRohodzRight);
                 break;
 
             case 160:
                 // Bow - Ausreden
                 if (!mainFrame.actions[220]) {
-                    DingAusrede(fBowRight);
+                    thingExcuse(fBowRight);
                 } else {
-                    DingAusrede(fBowLeft);
+                    thingExcuse(fBowLeft);
                 }
                 break;
 
             case 165:
                 // Colmik - Ausreden
-                DingAusrede(fBoot);
+                thingExcuse(fBoot);
                 break;
 
             case 170:
                 // Wodaleft - Ausreden
-                DingAusrede(fWodaLeft);
+                thingExcuse(fWodaLeft);
                 break;
 
             case 175:
                 // Wodaright - Ausreden
-                DingAusrede(fWodaRight);
+                thingExcuse(fWodaRight);
                 break;
 
             case 180:
                 // Angler - Ausreden
                 if (!mainFrame.actions[220]) {
-                    MPersonAusrede(fWudzerjoRight);
+                    maleExcuse(fWudzerjoRight);
                 } else {
-                    MPersonAusrede(fWudzerjoLeft);
+                    maleExcuse(fWudzerjoLeft);
                 }
                 break;
 
             case 185:
                 // Ausreden fuer Muell
-                DingAusrede(fMuell);
+                thingExcuse(fMuell);
                 break;
 
             // Sonderreaktionen - Anim "Locke die Assis vom Teich weg" /////////////////
@@ -1646,26 +1645,26 @@ public class Haty1 extends MainLocation {
                 }
                 Sonderstatus = 5;
                 // Holzfisch in Wasser tauchen
-                KrabatSagt("Haty1_16", 0, 3, 5, 205);
+                krabatSays("Haty1_16", 0, 3, 5, 205);
                 break;
 
             case 205:
                 // Reaktion Angler 1
                 schautAnglerInDerGegendRum = true;
                 stehenderAnglerSchautSichUm = true;
-                PersonSagt("Haty1_17", 0, 31, 2, 210, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_17", 0, 31, 2, 210, angler2.wudzer2TalkPoint());
                 break;
 
             case 210:
                 // Reaktion Angler 2
                 schautAnglerInDerGegendRum = false;
-                PersonSagt("Haty1_18", 0, 30, 2, 215, angler1.Wudzer1TalkPoint());
+                personSays("Haty1_18", 0, 30, 2, 215, angler1.wudzer1TalkPoint());
                 break;
 
             case 215:
                 // Reaktion Angler 1
                 stehenderAnglerSchautSichUm = false;
-                PersonSagt("Haty1_19", 0, 31, 2, 218, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_19", 0, 31, 2, 218, angler2.wudzer2TalkPoint());
                 break;
 
             case 218:
@@ -1673,7 +1672,7 @@ public class Haty1 extends MainLocation {
                 Sonderstatus = 0;
                 mainFrame.isClipSet = false;
                 angler2.setPos(wudzer2RightWalk);
-                angler2.MoveTo(wudzer2LeftWalk);
+                angler2.moveTo(wudzer2LeftWalk);
                 walkWudzer2 = false;
                 Verzoegerung = 5;
                 nextActionID = 220;
@@ -1685,7 +1684,7 @@ public class Haty1 extends MainLocation {
                     break;
                 }
                 angler1.setPos(wudzer1RightWalk);
-                angler1.MoveTo(wudzer1Eimernimm, true);
+                angler1.moveTo(wudzer1Eimernimm, true);
                 walkWudzer1 = false;
                 nextActionID = 221;
                 break;
@@ -1708,7 +1707,7 @@ public class Haty1 extends MainLocation {
                 }
                 hatAnglerDenEimer = true;
                 anglerNimmtEimer = false;
-                angler1.MoveTo(wudzer1Eimergib, false);
+                angler1.moveTo(wudzer1Eimergib, false);
                 walkWudzer1 = false;
                 nextActionID = 223;
                 break;
@@ -1722,7 +1721,7 @@ public class Haty1 extends MainLocation {
                 hatAnglerDenEimer = false;
                 merkeEimer = false;
                 mainFrame.actions[220] = true;
-                InitEimer();
+                initBucket();
                 Verzoegerung = 5;
                 nextActionID = 224;
                 break;
@@ -1733,8 +1732,8 @@ public class Haty1 extends MainLocation {
                     break;
                 }
                 anglerNimmtEimer = false;
-                angler1.SetFacing(9);
-                angler1.MoveTo(wudzer1LeftWalk, false);
+                angler1.setFacing(9);
+                angler1.moveTo(wudzer1LeftWalk, false);
                 walkWudzer1 = false;
                 nextActionID = 228;
                 break;
@@ -1744,45 +1743,45 @@ public class Haty1 extends MainLocation {
                 if (!walkWudzer1 || !walkWudzer2) {
                     break;
                 }
-                InitAngler();
+                initFisher();
                 mainFrame.isClipSet = false;
-                TalkPause = 5;
+                talkPause = 5;
                 nextActionID = 229;
                 break;
 
             case 229:
                 // Reaktion Angler 1
-                PersonSagt("Haty1_20", 0, 31, 2, 230, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_20", 0, 31, 2, 230, angler2.wudzer2TalkPoint());
                 break;
 
             case 230:
                 // Reaktion Krabat
-                KrabatSagt("Haty1_21", 0, 1, 2, 235);
+                krabatSays("Haty1_21", 0, 1, 2, 235);
                 break;
 
             case 235:
                 // Reaktion Angler 1
-                PersonSagt("Haty1_22", 0, 31, 2, 240, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_22", 0, 31, 2, 240, angler2.wudzer2TalkPoint());
                 break;
 
             case 240:
                 // Reaktion Angler 1
-                PersonSagt("Haty1_23", 0, 31, 2, 245, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_23", 0, 31, 2, 245, angler2.wudzer2TalkPoint());
                 break;
 
             case 245:
                 // Reaktion Angler 2
-                PersonSagt("Haty1_24", 0, 30, 2, 250, angler1.Wudzer1TalkPoint());
+                personSays("Haty1_24", 0, 30, 2, 250, angler1.wudzer1TalkPoint());
                 break;
 
             case 250:
                 // Reaktion Krabat
-                KrabatSagt("Haty1_25", 0, 1, 2, 255);
+                krabatSays("Haty1_25", 0, 1, 2, 255);
                 break;
 
             case 255:
                 // Reaktion Angler 2
-                PersonSagt("Haty1_26", 0, 30, 2, 260, angler1.Wudzer1TalkPoint());
+                personSays("Haty1_26", 0, 30, 2, 260, angler1.wudzer1TalkPoint());
                 break;
 
             case 260:
@@ -1796,147 +1795,147 @@ public class Haty1 extends MainLocation {
 
             case 300:
                 // Schilf links mit was erreichen versuchen
-                KrabatSagt("Haty1_27", fRohodzLeft, 3, 0, 0);
+                krabatSays("Haty1_27", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 305:
                 // Schilf rechts mit was erreichen versuchen
-                KrabatSagt("Haty1_28", fRohodzRight, 3, 0, 0);
+                krabatSays("Haty1_28", fRohodzRight, 3, 0, 0);
                 break;
 
             case 310:
                 // Schilf links mit Leine
-                KrabatSagt("Haty1_29", fRohodzLeft, 3, 0, 0);
+                krabatSays("Haty1_29", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 315:
                 // Schilf rechts mit Leine
-                KrabatSagt("Haty1_30", fRohodzRight, 3, 0, 0);
+                krabatSays("Haty1_30", fRohodzRight, 3, 0, 0);
                 break;
 
             case 320:
                 // Schilf links mit Schilf
-                KrabatSagt("Haty1_31", fRohodzLeft, 3, 0, 0);
+                krabatSays("Haty1_31", fRohodzLeft, 3, 0, 0);
                 break;
 
             case 325:
                 // Schilf rechts mit Schilf
-                KrabatSagt("Haty1_32", fRohodzRight, 3, 0, 0);
+                krabatSays("Haty1_32", fRohodzRight, 3, 0, 0);
                 break;
 
             case 330:
                 // Eimer mit Wuermern
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_33", fBowRight, 3, 0, 0);
+                    krabatSays("Haty1_33", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_34", fBowLeft, 3, 0, 0);
+                    krabatSays("Haty1_34", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 340:
                 // Eimer mit dryba
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_35", fBowRight, 3, 0, 0);
+                    krabatSays("Haty1_35", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_36", fBowLeft, 3, 0, 0);
+                    krabatSays("Haty1_36", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 350:
                 // Eimer mit ryba
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_37", fBowRight, 3, 0, 0);
+                    krabatSays("Haty1_37", fBowRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_38", fBowLeft, 3, 0, 0);
+                    krabatSays("Haty1_38", fBowLeft, 3, 0, 0);
                 }
                 break;
 
             case 360:
                 // Colmik mit Lajna
-                KrabatSagt("Haty1_39", fBoot, 3, 0, 0);
+                krabatSays("Haty1_39", fBoot, 3, 0, 0);
                 break;
 
             case 370:
                 // Woda left mit wuda
-                KrabatSagt("Haty1_40", fWodaLeft, 3, 0, 0);
+                krabatSays("Haty1_40", fWodaLeft, 3, 0, 0);
                 break;
 
             case 375:
                 // Woda right mit wuda
-                KrabatSagt("Haty1_41", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_41", fWodaRight, 3, 0, 0);
                 break;
 
             case 380:
                 // Woda left mit wuda + hocka
-                KrabatSagt("Haty1_42", fWodaLeft, 3, 0, 0);
+                krabatSays("Haty1_42", fWodaLeft, 3, 0, 0);
                 break;
 
             case 385:
                 // Woda right mit wuda + hocka
-                KrabatSagt("Haty1_43", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_43", fWodaRight, 3, 0, 0);
                 break;
 
             case 390:
                 // Woda left mit ryba
-                KrabatSagt("Haty1_44", fWodaLeft, 3, 0, 0);
+                krabatSays("Haty1_44", fWodaLeft, 3, 0, 0);
                 break;
 
             case 395:
                 // Woda right mit ryba
-                KrabatSagt("Haty1_45", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_45", fWodaRight, 3, 0, 0);
                 break;
 
             case 400:
                 // Wudzerjo verpruegeln
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_46", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_46", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_47", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_47", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 410:
                 // Wudzerjo Haken geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_48", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_48", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_49", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_49", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 420:
                 // Wudzerjo wacki geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_50", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_50", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_51", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_51", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 430:
                 // Wudzerjo angel geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_52", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_52", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_53", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_53", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 440:
                 // Wudzerjo wuda + dryba geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_54", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_54", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_55", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_55", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 450:
                 // Wudzerjo dryba geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_56", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_56", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_57", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_57", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
@@ -1945,15 +1944,15 @@ public class Haty1 extends MainLocation {
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_58", fWudzerjoRight, 1, 2, 473);
+                    krabatSays("Haty1_58", fWudzerjoRight, 1, 2, 473);
                 } else {
-                    KrabatSagt("Haty1_59", fWudzerjoLeft, 1, 2, 473);
+                    krabatSays("Haty1_59", fWudzerjoLeft, 1, 2, 473);
                 }
                 break;
 
             case 473:
                 // Reaktion Angler 1
-                PersonSagt("Haty1_60", 0, 31, 2, 476, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_60", 0, 31, 2, 476, angler2.wudzer2TalkPoint());
                 break;
 
             case 476:
@@ -1967,49 +1966,49 @@ public class Haty1 extends MainLocation {
             case 480:
                 // Wudzerjo krosik geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_61", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_61", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_62", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_62", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 490:
                 // Wudzerjo bron geben
                 if (!mainFrame.actions[220]) {
-                    KrabatSagt("Haty1_63", fWudzerjoRight, 3, 0, 0);
+                    krabatSays("Haty1_63", fWudzerjoRight, 3, 0, 0);
                 } else {
-                    KrabatSagt("Haty1_64", fWudzerjoLeft, 3, 0, 0);
+                    krabatSays("Haty1_64", fWudzerjoLeft, 3, 0, 0);
                 }
                 break;
 
             case 600:
                 // Reaktion Angler 1
-                PersonSagt("Haty1_65", fWudzerjoRight, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_65", fWudzerjoRight, 31, 2, 610, angler2.wudzer2TalkPoint());
                 mainFrame.actions[156] = true; // keine 2x dummen Sprueche
                 break;
 
             case 610:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Haty1_93", 1000, 140, new int[]{140}, 620);
-                Dialog.ExtendMC("Haty1_94", 140, 141, new int[]{141}, 630);
-                Dialog.ExtendMC("Haty1_95", 141, 142, new int[]{142}, 640);
+                Dialog.extend("Haty1_93", 1000, 140, new int[]{140}, 620);
+                Dialog.extend("Haty1_94", 140, 141, new int[]{141}, 630);
+                Dialog.extend("Haty1_95", 141, 142, new int[]{142}, 640);
 
                 // 2. Frage
-                Dialog.ExtendMC("Haty1_96", 1000, 143, new int[]{143}, 650);
-                Dialog.ExtendMC("Haty1_97", 143, 144, new int[]{144}, 660);
-                Dialog.ExtendMC("Haty1_98", 144, 145, null, 670);
+                Dialog.extend("Haty1_96", 1000, 143, new int[]{143}, 650);
+                Dialog.extend("Haty1_97", 143, 144, new int[]{144}, 660);
+                Dialog.extend("Haty1_98", 144, 145, null, 670);
 
                 // 3. Frage
-                Dialog.ExtendMC("Haty1_99", 1000, 146, new int[]{146}, 680);
-                Dialog.ExtendMC("Haty1_100", 146, 147, new int[]{148, 150}, 690);
+                Dialog.extend("Haty1_99", 1000, 146, new int[]{146}, 680);
+                Dialog.extend("Haty1_100", 146, 147, new int[]{148, 150}, 690);
 
                 // 5. Frage (4. = Ende)
-                Dialog.ExtendMC("Haty1_101", 148, 149, null, 700);
+                Dialog.extend("Haty1_101", 148, 149, null, 700);
 
                 // 4. Frage (Ende)
-                Dialog.ExtendMC("Haty1_102", 1000, 1000, null, 800);
+                Dialog.extend("Haty1_102", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -2023,96 +2022,96 @@ public class Haty1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
-                nextActionID = Dialog.ActionID;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
+                nextActionID = Dialog.actionId;
                 break;
 
             case 620:
                 // Reaktion Angler 1 auf 1. Teil 1. Frage
-                PersonSagt("Haty1_66", 0, 31, 2, 621, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_66", 0, 31, 2, 621, angler2.wudzer2TalkPoint());
                 break;
 
             case 621:
                 // Reaktion Angler 1 auf 1. Teil 1. Frage
-                PersonSagt("Haty1_67", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_67", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 630:
                 // Reaktion Angler 1 auf 2. Teil 1. Frage
-                PersonSagt("Haty1_68", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_68", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 640:
                 // Reaktion Angler 1 auf 3. Teil 1. Frage
-                PersonSagt("Haty1_69", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_69", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 650:
                 // Reaktion Angler 1 auf 1. Teil 2. Frage
-                PersonSagt("Haty1_70", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_70", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 660:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt("Haty1_71", 0, 31, 2, 661, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_71", 0, 31, 2, 661, angler2.wudzer2TalkPoint());
                 break;
 
             case 661:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt("Haty1_72", 0, 31, 2, 662, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_72", 0, 31, 2, 662, angler2.wudzer2TalkPoint());
                 break;
 
             case 662:
                 // Reaktion Angler 1 auf 2. Teil 2. Frage
-                PersonSagt("Haty1_73", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_73", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 670:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt("Haty1_74", 0, 31, 2, 671, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_74", 0, 31, 2, 671, angler2.wudzer2TalkPoint());
                 break;
 
             case 671:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt("Haty1_75", 0, 31, 2, 672, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_75", 0, 31, 2, 672, angler2.wudzer2TalkPoint());
                 break;
 
             case 672:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt("Haty1_76", 0, 31, 2, 673, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_76", 0, 31, 2, 673, angler2.wudzer2TalkPoint());
                 break;
 
             case 673:
                 // Reaktion Angler 1 auf 3. Teil 2. Frage
-                PersonSagt("Haty1_77", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_77", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 680:
                 // Reaktion Angler 1 auf 1. Teil 3. Frage
-                PersonSagt("Haty1_78", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_78", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 690:
                 // Reaktion Angler 1 auf 2. Teil 3. Frage
-                PersonSagt("Haty1_79", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_79", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 700:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt("Haty1_80", 0, 31, 2, 702, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_80", 0, 31, 2, 702, angler2.wudzer2TalkPoint());
                 break;
 
             case 702:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt("Haty1_81", 0, 31, 2, 703, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_81", 0, 31, 2, 703, angler2.wudzer2TalkPoint());
                 break;
 
             case 703:
                 // Reaktion Angler 1 auf 1. Teil 5. Frage
-                PersonSagt("Haty1_82", 0, 31, 2, 610, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_82", 0, 31, 2, 610, angler2.wudzer2TalkPoint());
                 break;
 
             case 800:
@@ -2126,15 +2125,15 @@ public class Haty1 extends MainLocation {
 
             case 900:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Haty1_103", 1000, 1000, null, 910);
+                Dialog.extend("Haty1_103", 1000, 1000, null, 910);
 
                 // 2. Frage
-                Dialog.ExtendMC("Haty1_104", 1000, 1000, null, 910);
+                Dialog.extend("Haty1_104", 1000, 1000, null, 910);
 
                 // 3. Frage
-                Dialog.ExtendMC("Haty1_105", 1000, 1000, null, 1000);
+                Dialog.extend("Haty1_105", 1000, 1000, null, 1000);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -2146,7 +2145,7 @@ public class Haty1 extends MainLocation {
             case 910:
                 // Angler 2  - Antworten
                 int zg = (int) Math.round(Math.random() * (ANGLER_ANSWERS.length - 1));
-                PersonSagt(ANGLER_ANSWERS[zg], 0, 30, 2, 900, angler1.Wudzer1TalkPoint());
+                personSays(ANGLER_ANSWERS[zg], 0, 30, 2, 900, angler1.wudzer1TalkPoint());
                 break;
 
             case 1000:
@@ -2159,12 +2158,12 @@ public class Haty1 extends MainLocation {
 
             case 1200:
                 // Reaktion Angler 1, wenn links und K irgendwie angeln will (sinnvolle Angeln)
-                PersonSagt("Haty1_83", 0, 31, 2, 0, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_83", 0, 31, 2, 0, angler2.wudzer2TalkPoint());
                 break;
 
             case 1210:
                 // Reaktion Angler 1, wenn rechts und K irgendwie angeln
-                PersonSagt("Haty1_84", 0, 31, 2, 0, angler2.Wudzer2TalkPoint());
+                personSays("Haty1_84", 0, 31, 2, 0, angler2.wudzer2TalkPoint());
                 break;
 
             case 1220:
@@ -2212,7 +2211,7 @@ public class Haty1 extends MainLocation {
 
             case 1238:
                 // Habe doch schon Fisch oder krosik
-                KrabatSagt("Haty1_85", 3, 3, 0, 0);
+                krabatSays("Haty1_85", 3, 3, 0, 0);
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = false;
@@ -2237,7 +2236,7 @@ public class Haty1 extends MainLocation {
 
             case 1248:
                 // Fange nichts
-                KrabatSagt("Haty1_86", 9, 3, 0, 0);
+                krabatSays("Haty1_86", 9, 3, 0, 0);
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 schnauzeFische = false;
@@ -2245,7 +2244,7 @@ public class Haty1 extends MainLocation {
 
             case 1250:
                 // Den Holzfischtrick nicht rechts versuchen
-                KrabatSagt("Haty1_87", fWodaRight, 3, 0, 0);
+                krabatSays("Haty1_87", fWodaRight, 3, 0, 0);
                 break;
 
             default:

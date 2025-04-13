@@ -61,14 +61,14 @@ public class Awgust extends MovableMainAnim {
         kral_head = new GenericImage[8];
         kral_body = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         kral_walk[0] = getPicture("gfx-dd/zelen/kral-u-l2.png");
         kral_walk[1] = getPicture("gfx-dd/zelen/kral-u-l4.png");
         kral_walk[2] = getPicture("gfx-dd/zelen/kral-u-l6.png");
@@ -112,35 +112,34 @@ public class Awgust extends MovableMainAnim {
 
     // Awgust um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        boolean horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        boolean horizontal = tmpIsAnimHorizontal;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         if (!horizontal)
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
-            VerschiebeY();
-            xps = txps;
-            yps = typs;
+            moveY();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 4) {
-                anim_pos = 1;
+            animPos++;
+            if (animPos == 4) {
+                animPos = 1;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeY();
+            moveY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-                // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                anim_pos = 0;
+            if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
+                setPos(walkTo);
+                animPos = 0;
                 return true;
             }
         }
@@ -149,18 +148,18 @@ public class Awgust extends MovableMainAnim {
     }
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY() {
-        verschiebeYdefault(CVERT_DIST[anim_pos], SLOWY);
+    private void moveY() {
+        moveYdefault(CVERT_DIST[animPos], SLOWY);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
-        Thorizontal = false;
+        tmpIsAnimHorizontal = false;
 
-        if (anim_pos == 0) {
-            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        if (animPos == 0) {
+            animPos = 1;       // Animationsimage bei Neubeginn initialis.
         }
     }
 
@@ -182,7 +181,7 @@ public class Awgust extends MovableMainAnim {
         }
 
         // hier wird er nur benoetigt fuer laufen oder rumstehen + zwinkern (also in MaleIhn)
-        MaleIhn(offGraph, false, false); // Grafik, erhobeneHand, isTalking
+        drawHim(offGraph, false, false); // Grafik, erhobeneHand, isTalking
     }
 
     // Zeichne Hojnt beim Sprechen mit anderen Personen
@@ -201,39 +200,39 @@ public class Awgust extends MovableMainAnim {
             // Body wird leider nicht geswitcht (ooohhh..)
         }
 
-        MaleIhn(offGraph, erhobeneHand, true); // Grafik, erhobeneHand, isTalking
+        drawHim(offGraph, erhobeneHand, true); // Grafik, erhobeneHand, isTalking
     }
 
     public GenericPoint evalAwgustTalkPoint() {
         // Hier Position des Textes berechnen
-        BorderRect temp = getRect();
-        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
+        BorderRect temp = getBoundingBox();
+        return new GenericPoint((temp.bottomRightPoint.x + temp.topLeftPoint.x) / 2, temp.topLeftPoint.y - 50);
     }
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int poy) {
-        return calcLeftPosDefault(pox, poy, scaleFactor);
+    protected int getLeftPos(int x, int y) {
+        return calcLeftPosDefault(x, y, scaleFactor);
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return calcUpPosDefault(poy);
+    protected int getUpPos(int y) {
+        return calcUpPosDefault(y);
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy, defScale);
+    protected int getScale(int y) {
+        return calcScaleDefault(y, defaultScale);
     }
 
-    private void MaleIhn(GenericDrawingContext g, boolean hatHandErhoben, boolean redet) {
+    private void drawHim(GenericDrawingContext g, boolean handRaised, boolean isTalking) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -247,20 +246,19 @@ public class Awgust extends MovableMainAnim {
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
         // Figur zeichnen
-        if (redet) {
+        if (isTalking) {
             // beim Reden und ggf. mit erhobener Hand
-            // System.out.println ("Head : " + Head + " Hand erhoben : " + hatHandErhoben);
             g.drawImage(kral_head[Head], left, up, Koerperbreite, Kopfhoehe);
-            g.drawImage(kral_body[hatHandErhoben ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
+            g.drawImage(kral_body[handRaised ? 1 : 0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
         } else {
             // beim Stehen oder Laufen
-            if (anim_pos == 0) {
+            if (animPos == 0) {
                 // er steht, also getrennt Kopf und Body
                 g.drawImage(kral_head[Zwinker], left, up, Koerperbreite, Kopfhoehe);
                 g.drawImage(kral_body[0], left, up + Kopfhoehe, Koerperbreite, Koerperhoehe);
             } else {
                 // er laeuft, das sind hier gemeinsame Images
-                g.drawImage(kral_walk[anim_pos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
+                g.drawImage(kral_walk[animPos], left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
             }
         }
     }

@@ -43,7 +43,6 @@ public class Poklad extends MainLocation {
 
     private GenericPoint talkPointStraza;
     private GenericPoint strazaPoint;
-    // private borderrect rectStraza;
 
     private boolean showDingl = false;
     private boolean showStraza = false;
@@ -82,16 +81,16 @@ public class Poklad extends MainLocation {
 
         dinglingerwalk = new DinglingerWalk(mainFrame);
 
-        dinglingerwalk.maxx = 0;
-        dinglingerwalk.zoomf = 1f;
-        dinglingerwalk.defScale = 125;
+        dinglingerwalk.maxX = 0;
+        dinglingerwalk.zoomFactor = 1f;
+        dinglingerwalk.defaultScale = 125;
 
         dinglingerwalk.setPos(dinglPoint1);
-        dinglingerwalk.SetFacing(9);
+        dinglingerwalk.setFacing(9);
 
         straza = new GuardTreasure(mainFrame);
 
-        InitLocation();
+        initLocation();
 
         whatPicture = 1;
         nextActionID = 10;
@@ -104,12 +103,12 @@ public class Poklad extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         schody = getPicture("gfx-dd/trepj/trepj.png");
         komora = getPicture("gfx-dd/poklad/poklad.png");
         skla = getPicture("gfx-dd/poklad/pskla.png");
@@ -127,7 +126,6 @@ public class Poklad extends MainLocation {
         talkPointStraza.x = Poklad.strazaFeet.x;
         talkPointStraza.y = strazaPoint.y - 50;
 
-        // rectStraza = new borderrect (strazaPoint.x, strazaPoint.y, strazaPoint.x + StrazaPoklad.Breite, strazaPoint.y + StrazaPoklad.Hoehe);
     }
 
     // Paint-Routine dieser Location //////////////////////////////////////////
@@ -139,7 +137,7 @@ public class Poklad extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             mainFrame.isAnimRunning = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
@@ -156,7 +154,7 @@ public class Poklad extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -173,9 +171,9 @@ public class Poklad extends MainLocation {
 
         if (showDingl) {
             // Hintergrund loeschen
-            BorderRect temp = dinglingerwalk.getRect();
-            g.setClip(temp.lo_point.x, temp.lo_point.y,
-                    temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
+            BorderRect temp = dinglingerwalk.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x, temp.topLeftPoint.y,
+                    temp.bottomRightPoint.x - temp.topLeftPoint.x, temp.bottomRightPoint.y - temp.topLeftPoint.y);
             if (whatPicture == 1) {
                 g.drawImage(schody, 0, 0);
             }
@@ -193,22 +191,22 @@ public class Poklad extends MainLocation {
         // Dinglinger zeichnen
         if (showDingl) {
             // Hintergrund loeschen
-            BorderRect temp = dinglingerwalk.getRect();
-            g.setClip(temp.lo_point.x, temp.lo_point.y,
-                    temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
+            BorderRect temp = dinglingerwalk.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x, temp.topLeftPoint.y,
+                    temp.bottomRightPoint.x - temp.topLeftPoint.x, temp.bottomRightPoint.y - temp.topLeftPoint.y);
 
             // Dinglinger weiterbewegen, wenn noetig
             if (!walkReady) {
-                walkReady = dinglingerwalk.Move();
+                walkReady = dinglingerwalk.move();
             }
 
             // Dinglinger zeichnen
-            if (TalkPerson == 47 && mainFrame.talkCount > 1) {
+            if (talkPerson == 47 && mainFrame.talkCount > 1) {
                 dinglingerwalk.talkDinglinger(g, welcheAnim);
             } else {
                 // Sonderanims oder normal zeichnen
                 if (welcheAnim == 3 || welcheAnim == 2) {
-                    animRueckgabe = dinglingerwalk.DoAnimation(g, welcheAnim);
+                    animRueckgabe = dinglingerwalk.doAnimation(g, welcheAnim);
                 } else {
                     dinglingerwalk.drawDinglinger(g, welcheAnim);
                 }
@@ -223,7 +221,7 @@ public class Poklad extends MainLocation {
         // Straza zeichnen
         if (showStraza) {
             g.setClip(strazaPoint.x, strazaPoint.y, GuardTreasure.Breite, GuardTreasure.Hoehe);
-            straza.drawStraza(g, TalkPerson, strazaPoint, false);
+            straza.drawStraza(g, talkPerson, strazaPoint, false);
             g.drawImage(vorderschody, 147, 0);
         }
 
@@ -233,7 +231,7 @@ public class Poklad extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -243,17 +241,17 @@ public class Poklad extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -267,7 +265,7 @@ public class Poklad extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -277,8 +275,8 @@ public class Poklad extends MainLocation {
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -295,35 +293,35 @@ public class Poklad extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
 
             case 10:
                 // Erzaehler spricht
-                PersonSagt("Poklad_1", 0, 54, 2, 20, new GenericPoint(320, 200));
+                personSays("Poklad_1", 0, 54, 2, 20, new GenericPoint(320, 200));
                 break;
 
             case 20:
                 // Straza spricht
-                PersonSagt("Poklad_2", 0, 46, 2, 30, talkPointStraza);
+                personSays("Poklad_2", 0, 46, 2, 30, talkPointStraza);
                 break;
 
             case 30:
                 // Dingl spricht
                 welcheAnim = 1;
-                PersonSagt("Poklad_3", 0, 47, 2, 40, dinglingerwalk.evalTalkPoint());
+                personSays("Poklad_3", 0, 47, 2, 40, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 40:
                 // Straza spricht
-                PersonSagt("Poklad_4", 0, 46, 2, 45, talkPointStraza);
+                personSays("Poklad_4", 0, 46, 2, 45, talkPointStraza);
                 break;
 
             case 45:
                 // Dinglinger vorlaufen lassen
                 welcheAnim = 0;
-                dinglingerwalk.MoveTo(dinglPoint9);
+                dinglingerwalk.moveTo(dinglPoint9);
                 walkReady = false;
                 nextActionID = 50;
                 break;
@@ -334,9 +332,9 @@ public class Poklad extends MainLocation {
                     break;
                 }
                 mainFrame.isClipSet = false;
-                dinglingerwalk.defScale = 0;
+                dinglingerwalk.defaultScale = 0;
                 dinglingerwalk.setPos(dinglPoint2);
-                dinglingerwalk.SetFacing(9);
+                dinglingerwalk.setFacing(9);
                 showStraza = false;
                 whatPicture = 2;
                 nextActionID = 55;
@@ -345,7 +343,7 @@ public class Poklad extends MainLocation {
             case 55:
                 // Aufschliessound bringen und bisschen warten
                 Counter = 50;
-                mainFrame.soundPlayer.PlayFile("sfx-dd/kluc.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/kluc.wav");
                 nextActionID = 60;
                 break;
 
@@ -354,13 +352,13 @@ public class Poklad extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                PersonSagt("Poklad_5", 0, 47, 2, 70, new GenericPoint(640, 200));
+                personSays("Poklad_5", 0, 47, 2, 70, new GenericPoint(640, 200));
                 break;
 
             case 70:
                 // Dinglinger erscheinen lassen und hinstellen
                 evalPersonPoints();
-                dinglingerwalk.MoveTo(dinglPoint3);
+                dinglingerwalk.moveTo(dinglPoint3);
                 walkReady = false;
                 nextActionID = 80;
                 break;
@@ -370,7 +368,7 @@ public class Poklad extends MainLocation {
                 if (!walkReady) {
                     break;
                 }
-                PersonSagt("Poklad_6", 0, 47, 2, 81, dinglingerwalk.evalTalkPoint());
+                personSays("Poklad_6", 0, 47, 2, 81, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 81:
@@ -385,7 +383,7 @@ public class Poklad extends MainLocation {
                     break;
                 }
                 welcheAnim = 0;
-                dinglingerwalk.MoveTo(dinglPoint4);
+                dinglingerwalk.moveTo(dinglPoint4);
                 walkReady = false;
                 nextActionID = 85;
                 break;
@@ -395,12 +393,12 @@ public class Poklad extends MainLocation {
                 if (!walkReady) {
                     break;
                 }
-                PersonSagt("Poklad_7", 0, 47, 2, 90, dinglingerwalk.evalTalkPoint());
+                personSays("Poklad_7", 0, 47, 2, 90, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 90:
                 // Dingl spricht
-                PersonSagt("Poklad_8", 0, 47, 2, 95, dinglingerwalk.evalTalkPoint());
+                personSays("Poklad_8", 0, 47, 2, 95, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 95:
@@ -415,14 +413,14 @@ public class Poklad extends MainLocation {
                     ausgewechselt = true;
                     if (!schalenSound) {
                         schalenSound = true;
-                        mainFrame.soundPlayer.PlayFile("sfx/becher.wav");
+                        mainFrame.soundPlayer.playFile("sfx/becher.wav");
                     }
                 }
                 if (animRueckgabe != 100) {
                     break;
                 }
                 welcheAnim = 0;
-                dinglingerwalk.MoveTo(dinglPoint2);
+                dinglingerwalk.moveTo(dinglPoint2);
                 walkReady = false;
                 nextActionID = 105;
                 break;
@@ -436,10 +434,10 @@ public class Poklad extends MainLocation {
                 showStraza = true;
                 whatPicture = 1;
                 evalPersonPoints();
-                dinglingerwalk.defScale = 125;
+                dinglingerwalk.defaultScale = 125;
                 dinglingerwalk.setPos(dinglPoint9);
-                dinglingerwalk.SetFacing(3);
-                dinglingerwalk.MoveTo(dinglPoint1);
+                dinglingerwalk.setFacing(3);
+                dinglingerwalk.moveTo(dinglPoint1);
                 walkReady = false;
                 nextActionID = 110;
                 break;
@@ -449,23 +447,23 @@ public class Poklad extends MainLocation {
                 if (!walkReady) {
                     break;
                 }
-                dinglingerwalk.SetFacing(9);
-                PersonSagt("Poklad_9", 0, 46, 2, 120, talkPointStraza);
+                dinglingerwalk.setFacing(9);
+                personSays("Poklad_9", 0, 46, 2, 120, talkPointStraza);
                 break;
 
             case 120:
                 // Dingl spricht
-                PersonSagt("Poklad_10", 0, 47, 2, 130, dinglingerwalk.evalTalkPoint());
+                personSays("Poklad_10", 0, 47, 2, 130, dinglingerwalk.evalTalkPoint());
                 break;
 
             case 130:
                 // Straza spricht
-                PersonSagt("Poklad_11", 0, 46, 2, 140, talkPointStraza);
+                personSays("Poklad_11", 0, 46, 2, 140, talkPointStraza);
                 break;
 
             case 140:
                 // Gehe zu Dinglinger (Anim)
-                NeuesBild(141, locationID);
+                createNewLocation(141, locationID);
                 break;
 
             default:

@@ -126,26 +126,26 @@ public class Wobzor1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 4f;
-        mainFrame.krabat.defScale = 80;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 4f;
+        mainFrame.krabat.defaultScale = 80;
 
         Wasser = new GenericImage[7];
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(145, 192, 577, 260));
 
-        mainFrame.pathFinder.ClearMatrix(1);
+        mainFrame.pathFinder.clearMatrix(1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -153,19 +153,19 @@ public class Wobzor1 extends MainLocation {
                 break;
             case 13:
                 // von Wjes aus
-                mainFrame.krabat.setPos(CorrectY(new GenericPoint(160, 200)));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setPos(correctY(new GenericPoint(160, 200)));
+                mainFrame.krabat.setFacing(3);
                 break;
             case 8:
                 // von Rapak aus
-                mainFrame.krabat.setPos(CorrectY(new GenericPoint(570, 211)));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setPos(correctY(new GenericPoint(570, 211)));
+                mainFrame.krabat.setFacing(9);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/horiz/horiz2.png");
         horiz3 = getPicture("gfx/horiz/horiz3.png");
         horiz4 = getPicture("gfx/horiz/horiz4.png");
@@ -203,7 +203,7 @@ public class Wobzor1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -214,7 +214,7 @@ public class Wobzor1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -243,22 +243,22 @@ public class Wobzor1 extends MainLocation {
         // hier ist der Sound...
         evalSound();
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
-        mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
+        mainFrame.krabat.setPos(correctY(mainFrame.krabat.getPos()));
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -283,12 +283,12 @@ public class Wobzor1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (horiz3Rect.IsPointInRect(pKrTemp)) {
+        if (horiz3Rect.isPointInRect(pKrTemp)) {
             g.drawImage(horiz3, 197, 186);
         }
 
         // hinterm horiz4 (nur Clipping - Region wird neugezeichnet)
-        if (horiz4Rect.IsPointInRect(pKrTemp)) {
+        if (horiz4Rect.isPointInRect(pKrTemp)) {
             g.drawImage(horiz4, 543, 186);
         }
 
@@ -298,7 +298,7 @@ public class Wobzor1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -308,17 +308,17 @@ public class Wobzor1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -352,24 +352,24 @@ public class Wobzor1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Woda
-                if (wodaRect.IsPointInRect(pTemp)) {
+                if (wodaRect.isPointInRect(pTemp)) {
                     // wuda + wacka
                     nextActionID = mainFrame.whatItem == 10 ? 155 : 150;
-                    pTemp = CorrectY(Pwoda);
+                    pTemp = correctY(Pwoda);
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -379,7 +379,7 @@ public class Wobzor1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -391,75 +391,75 @@ public class Wobzor1 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Wjes gehen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
-                        pTemp = CorrectY(Pleft);
+                    if (!linkerAusgang.isPointInRect(kt)) {
+                        pTemp = correctY(Pleft);
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Rapak gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
-                        pTemp = CorrectY(Pright);
+                    if (!rechterAusgang.isPointInRect(kt)) {
+                        pTemp = correctY(Pright);
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Wacki ansehen
-                if (wodaRect.IsPointInRect(pTemp)) {
+                if (wodaRect.isPointInRect(pTemp)) {
                     nextActionID = 1;
-                    pTemp = CorrectY(Pwoda);
+                    pTemp = correctY(Pwoda);
                 }
 
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wjes anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Rapak anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Woda mitnehmen ?
-                if (wodaRect.IsPointInRect(pTemp)) {
+                if (wodaRect.isPointInRect(pTemp)) {
                     nextActionID = 1;
-                    mainFrame.pathWalker.SetzeNeuenWeg(CorrectY(Pwoda));
+                    mainFrame.pathWalker.setNewWay(correctY(Pwoda));
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -470,8 +470,8 @@ public class Wobzor1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -480,16 +480,16 @@ public class Wobzor1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wodaRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || wodaRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -497,32 +497,32 @@ public class Wobzor1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
-            } else if (wodaRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            } else if (wodaRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -556,7 +556,7 @@ public class Wobzor1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -564,7 +564,7 @@ public class Wobzor1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -572,31 +572,31 @@ public class Wobzor1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Routinen fuer veraendertes Laufen auf definierter Linie
 
-    private void SetzeNeuenWeg(GenericPoint dest) {
-        GenericPoint right = CorrectY(dest);
-        mainFrame.pathWalker.SetzeNeuenWeg(right);
+    private void setNewWay(GenericPoint dest) {
+        GenericPoint right = correctY(dest);
+        mainFrame.pathWalker.setNewWay(right);
     }
 
-    private GenericPoint CorrectY(GenericPoint dst) {
+    private GenericPoint correctY(GenericPoint dst) {
         if (dst.x > 620) {
             return new GenericPoint(dst.x, 205);
         }
@@ -614,13 +614,13 @@ public class Wobzor1 extends MainLocation {
             int zwzfz = (int) (Math.random() * 4.99);
             zwzfz += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/recka" + (char) zwzfz + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/recka" + (char) zwzfz + ".wav");
         }
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -640,7 +640,7 @@ public class Wobzor1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -648,27 +648,27 @@ public class Wobzor1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Wasser anschauen
-                KrabatSagt("Wobzor1_1", fWoda, 3, 0, 0);
+                krabatSays("Wobzor1_1", fWoda, 3, 0, 0);
                 break;
 
             case 100:
                 // gehe zu Rapak
-                NeuesBild(8, 9);
+                createNewLocation(8, 9);
                 break;
 
             case 101:
                 // nach Wjes gehen
-                NeuesBild(13, 9);
+                createNewLocation(13, 9);
                 break;
 
             case 150:
                 // Ausreden fuer Wasser Standard
-                KrabatSagt("Wobzor1_2", fWoda, 3, 0, 0);
+                krabatSays("Wobzor1_2", fWoda, 3, 0, 0);
                 break;
 
             case 155:
                 // Wasser Extraausrede (mit Angel + Wurm)
-                KrabatSagt("Wobzor1_3", fWoda, 3, 0, 0);
+                krabatSays("Wobzor1_3", fWoda, 3, 0, 0);
                 break;
 
             default:

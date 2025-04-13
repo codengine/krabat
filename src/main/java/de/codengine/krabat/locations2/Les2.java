@@ -62,39 +62,39 @@ public class Les2 extends MainLocation2 {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 428;
-        mainFrame.krabat.zoomf = 2.88f;
-        mainFrame.krabat.defScale = -20;
+        mainFrame.krabat.maxX = 428;
+        mainFrame.krabat.zoomFactor = 2.88f;
+        mainFrame.krabat.defaultScale = -20;
 
         mueller = new Miller(mainFrame);
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = 10;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = 10;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(9);
+        mueller.setFacing(9);
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
 
         nextActionID = 10;
-        TalkPause = 10;
+        talkPause = 10;
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
 
         mainFrame.krabat.setPos(Pkrabat);
-        mainFrame.krabat.SetFacing(3);
+        mainFrame.krabat.setFacing(3);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/les1/wald.png");
         strauch = getPicture("gfx/les1/grass2.png");
 
@@ -121,7 +121,7 @@ public class Les2 extends MainLocation2 {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -141,15 +141,15 @@ public class Les2 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -171,7 +171,7 @@ public class Les2 extends MainLocation2 {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // Krabat hinterm Gras ??
-        if (strauchRect.IsPointInRect(pKrTemp)) {
+        if (strauchRect.isPointInRect(pKrTemp)) {
             g.drawImage(strauch, 0, 381);
         }
 
@@ -181,12 +181,12 @@ public class Les2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         if (mainFrame.talkCount > 0) {
@@ -198,8 +198,8 @@ public class Les2 extends MainLocation2 {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -208,7 +208,6 @@ public class Les2 extends MainLocation2 {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -221,8 +220,8 @@ public class Les2 extends MainLocation2 {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -240,12 +239,12 @@ public class Les2 extends MainLocation2 {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 10:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 80);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 80);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 13;
                 break;
@@ -266,15 +265,15 @@ public class Les2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 20;
                 break;
 
             case 20:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 78);
+                createNewLocation(90, 78);
                 break;
 
             default:

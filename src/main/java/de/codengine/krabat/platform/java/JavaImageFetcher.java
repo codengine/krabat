@@ -54,19 +54,18 @@ public class JavaImageFetcher extends GenericImageFetcher {
 
         if (useLang) {
             filePath = langPath.resolve(getLangAbbreviation()).resolve(relativePath);
-            if(!Files.exists(filePath)) {
+            if (!Files.exists(filePath)) {
                 log.warn("Translated image {} not found", filePath);
                 filePath = null;
             }
         }
 
-        if(filePath == null) {
+        if (filePath == null) {
             filePath = workingDir.resolve(relativePath);
         }
 
         // For the application, the URL will typically start with "file:///" and the user.dir
         // files from a .jar might look like this
-        // ReturnImage = getToolkit().getImage ("jar:file:///" + System.getProperty("user.dir") + "!" + Filename);
         try {
             img = comp.getToolkit().getImage(filePath.toFile().toString());
             tracker.addImage(img, 0);
@@ -79,13 +78,13 @@ public class JavaImageFetcher extends GenericImageFetcher {
     }
 
     private String getLangAbbreviation() {
-        switch (Start.language) {
+        switch (Start.LANGUAGE) {
             case 1:
                 return "hs";
             case 2:
                 return "ds";
             default:
-                return Start.thirdGameLanguage;
+                return Start.THIRD_GAME_LANGUAGE;
         }
     }
 }

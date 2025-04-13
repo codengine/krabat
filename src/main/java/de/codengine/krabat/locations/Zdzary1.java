@@ -74,23 +74,23 @@ public class Zdzary1 extends MainLocation {
         mainFrame.enteringFromMap = false; // hier ohne Bedeutung
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 428;
-        mainFrame.krabat.zoomf = 1.73f;
-        mainFrame.krabat.defScale = -30;
+        mainFrame.krabat.maxX = 428;
+        mainFrame.krabat.zoomFactor = 1.73f;
+        mainFrame.krabat.defaultScale = -30;
 
         alte = new OldWoman(mainFrame);
-        DefineAlte();
+        defineAlte();
 
         Dialog = new MultipleChoice(mainFrame);
         Userdialog = new UserMultipleChoice(mainFrame);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(77, 609, 126, 609, 454, 479));
@@ -101,16 +101,16 @@ public class Zdzary1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(33, 50, 17, 19, 290, 314));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(6);
+        mainFrame.pathFinder.clearMatrix(6);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(0, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(0, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -118,23 +118,23 @@ public class Zdzary1 extends MainLocation {
             case 99:
                 // von oben aus (gibts nicht)
                 mainFrame.krabat.setPos(new GenericPoint(29, 299));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 8:
                 // von Rapak aus
                 mainFrame.krabat.setPos(new GenericPoint(270, 467));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/zdzary/zdzary.png");
 
     }
 
-    private void DefineAlte() {
+    private void defineAlte() {
         altePoint = new GenericPoint();
         alteTalk = new GenericPoint();
 
@@ -204,7 +204,7 @@ public class Zdzary1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -215,31 +215,31 @@ public class Zdzary1 extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Alte Schachtel zeichnen
-        g.setClip(alteRect.lo_point.x, alteRect.lo_point.y, alteRect.ru_point.x - alteRect.lo_point.x, alteRect.ru_point.y - alteRect.lo_point.y);
+        g.setClip(alteRect.topLeftPoint.x, alteRect.topLeftPoint.y, alteRect.bottomRightPoint.x - alteRect.topLeftPoint.x, alteRect.bottomRightPoint.y - alteRect.topLeftPoint.y);
         g.drawImage(background, 0, 0);
-        alte.drawWudowa(g, TalkPerson, altePoint, whereIsAlte == 0);
+        alte.drawWudowa(g, talkPerson, altePoint, whereIsAlte == 0);
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -266,7 +266,7 @@ public class Zdzary1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -276,12 +276,12 @@ public class Zdzary1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Usermultiple Choice ausfuehren
@@ -299,8 +299,8 @@ public class Zdzary1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -326,7 +326,7 @@ public class Zdzary1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -348,17 +348,17 @@ public class Zdzary1 extends MainLocation {
 
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Wudowa
-                if (alteRect.IsPointInRect(pTemp)) {
+                if (alteRect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 200;
@@ -373,14 +373,14 @@ public class Zdzary1 extends MainLocation {
                 }
 
                 // Ausreden fuer Durje
-                if (durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2) {
+                if (durjeRect.isPointInRect(pTemp) && whereIsAlte != 2) {
                     // Standard - Sinnloszeug
                     nextActionID = 155;
                     pTxxx = Pdurje;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTxxx);
+                mainFrame.pathWalker.setNewWay(pTxxx);
                 mainFrame.repaint();
             }
 
@@ -390,7 +390,7 @@ public class Zdzary1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -404,91 +404,83 @@ public class Zdzary1 extends MainLocation {
                 GenericPoint pTxxx = new GenericPoint(pTemp.x, pTemp.y);
 
                 // zu Rapak gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTxxx = Pdown;
                     } else {
                         pTxxx = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // nach oben raus
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTxxx = Pup;
                     } else {
                         pTxxx = new GenericPoint(kt.x, Pup.y);
                     }
-
-                    // Doppelclick ist hier unpassend
-				/*if (mainFrame.dClick == true)
-				  {
-				  mainFrame.krabat.StopWalking();
-				  mainFrame.repaint();
-				  return;
-				  } */
                 }
 
                 // Wudowa ansehen
-                if (alteRect.IsPointInRect(pTemp)) {
+                if (alteRect.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTxxx = Palte;
                 }
 
                 // Durje ansehen
-                if (durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2) {
+                if (durjeRect.isPointInRect(pTemp) && whereIsAlte != 2) {
                     nextActionID = 2;
                     pTxxx = Pdurje;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTxxx);
+                mainFrame.pathWalker.setNewWay(pTxxx);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Rapak Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // oberen Ausgang Anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit der Wudowa reden
-                if (alteRect.IsPointInRect(pTemp)) {
+                if (alteRect.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Palte);
+                    mainFrame.pathWalker.setNewWay(Palte);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Durje mitnehmen
-                if (durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2) {
+                if (durjeRect.isPointInRect(pTemp) && whereIsAlte != 2) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -511,8 +503,8 @@ public class Zdzary1 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -521,52 +513,52 @@ public class Zdzary1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || alteRect.IsPointInRect(pTemp) ||
-                    durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2;
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || alteRect.isPointInRect(pTemp) ||
+                    durjeRect.isPointInRect(pTemp) && whereIsAlte != 2;
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (alteRect.IsPointInRect(pTemp) ||
-                    durjeRect.IsPointInRect(pTemp) && whereIsAlte != 2) {
-                if (Cursorform != 1) {
+            if (alteRect.isPointInRect(pTemp) ||
+                    durjeRect.isPointInRect(pTemp) && whereIsAlte != 2) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -615,7 +607,7 @@ public class Zdzary1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -623,7 +615,7 @@ public class Zdzary1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -631,26 +623,26 @@ public class Zdzary1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -670,7 +662,7 @@ public class Zdzary1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -680,20 +672,20 @@ public class Zdzary1 extends MainLocation {
             case 1:
                 // Wudowa anschauen
                 if (whereIsAlte == 2) {
-                    KrabatSagt("Zdzary1_1", alteFacing, 3, 0, 0);
+                    krabatSays("Zdzary1_1", alteFacing, 3, 0, 0);
                 } else {
-                    KrabatSagt("Zdzary1_2", alteFacing, 3, 0, 0);
+                    krabatSays("Zdzary1_2", alteFacing, 3, 0, 0);
                 }
                 break;
 
             case 2:
                 // Durje anschauen
-                KrabatSagt("Zdzary1_3", fDurje, 3, 0, 0);
+                krabatSays("Zdzary1_3", fDurje, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Alte benutzen)
-                mainFrame.krabat.SetFacing(alteFacing);
+                mainFrame.krabat.setFacing(alteFacing);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 600;
@@ -701,12 +693,12 @@ public class Zdzary1 extends MainLocation {
 
             case 55:
                 // Durje mitnehmen
-                KrabatSagt("Zdzary1_4", fDurje, 3, 0, 0);
+                krabatSays("Zdzary1_4", fDurje, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Rapak
-                NeuesBild(8, 19);
+                createNewLocation(8, 19);
                 break;
 
             case 101:
@@ -715,16 +707,16 @@ public class Zdzary1 extends MainLocation {
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 int zfz = (int) (Math.random() * 100);
                 if (zfz > 50) {
-                    mainFrame.soundPlayer.PlayFile("sfx/pos.wav");
+                    mainFrame.soundPlayer.playFile("sfx/pos.wav");
                 } else {
-                    mainFrame.soundPlayer.PlayFile("sfx/pos2.wav");
+                    mainFrame.soundPlayer.playFile("sfx/pos2.wav");
                 }
                 nextActionID = 105;
                 break;
 
             case 105:
                 // Krabat hat Angst vor dem boesen Hund
-                KrabatSagt("Zdzary1_5", fExitUp, 1, 2, 110);
+                krabatSays("Zdzary1_5", fExitUp, 1, 2, 110);
                 break;
 
             case 110:
@@ -737,22 +729,22 @@ public class Zdzary1 extends MainLocation {
 
             case 150:
                 // Alte - Ausreden
-                WPersonAusrede(alteFacing);
+                femaleExcuse(alteFacing);
                 break;
 
             case 155:
                 // Tuer - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 200:
                 // kij auf wudowa
-                KrabatSagt("Zdzary1_6", alteFacing, 3, 0, 0);
+                krabatSays("Zdzary1_6", alteFacing, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf wudowa
-                KrabatSagt("Zdzary1_7", alteFacing, 3, 0, 0);
+                krabatSays("Zdzary1_7", alteFacing, 3, 0, 0);
                 break;
 
 
@@ -760,31 +752,31 @@ public class Zdzary1 extends MainLocation {
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Zdzary1_74", 1000, 80, new int[]{80}, 610);
-                Dialog.ExtendMC("Zdzary1_75", 80, 81, new int[]{81}, 620);
-                Dialog.ExtendMC("Zdzary1_76", 81, 82, new int[]{82, 87, 92}, 630);
+                Dialog.extend("Zdzary1_74", 1000, 80, new int[]{80}, 610);
+                Dialog.extend("Zdzary1_75", 80, 81, new int[]{81}, 620);
+                Dialog.extend("Zdzary1_76", 81, 82, new int[]{82, 87, 92}, 630);
 
                 // 2. Frage
-                Dialog.ExtendMC("Zdzary1_77", 1000, 83, new int[]{83}, 710);
-                Dialog.ExtendMC("Zdzary1_78", 83, 84, new int[]{84}, 720);
-                Dialog.ExtendMC("Zdzary1_79", 84, 85, new int[]{85}, 730);
-                Dialog.ExtendMC("Zdzary1_80", 85, 86, new int[]{86}, 740);
+                Dialog.extend("Zdzary1_77", 1000, 83, new int[]{83}, 710);
+                Dialog.extend("Zdzary1_78", 83, 84, new int[]{84}, 720);
+                Dialog.extend("Zdzary1_79", 84, 85, new int[]{85}, 730);
+                Dialog.extend("Zdzary1_80", 85, 86, new int[]{86}, 740);
 
                 // 4. Frage ( 3. = Ende )
-                Dialog.ExtendMC("Zdzary1_81", 87, 88, new int[]{88}, 640);
-                Dialog.ExtendMC("Zdzary1_82", 88, 89, new int[]{89}, 650);
-                Dialog.ExtendMC("Zdzary1_83", 89, 90, new int[]{90}, 660);
-                Dialog.ExtendMC("Zdzary1_84", 90, 91, new int[]{91}, 670);
-                Dialog.ExtendMC("Zdzary1_85", 91, 1000, null, 680);
+                Dialog.extend("Zdzary1_81", 87, 88, new int[]{88}, 640);
+                Dialog.extend("Zdzary1_82", 88, 89, new int[]{89}, 650);
+                Dialog.extend("Zdzary1_83", 89, 90, new int[]{90}, 660);
+                Dialog.extend("Zdzary1_84", 90, 91, new int[]{91}, 670);
+                Dialog.extend("Zdzary1_85", 91, 1000, null, 680);
 
                 // 5. Frage
-                Dialog.ExtendMC("Zdzary1_86", 92, 93, new int[]{93}, 690);
-                Dialog.ExtendMC("Zdzary1_87", 93, 1000, null, 700);
+                Dialog.extend("Zdzary1_86", 92, 93, new int[]{93}, 690);
+                Dialog.extend("Zdzary1_87", 93, 1000, null, 700);
 
                 // 3. Frage (Ende)
-                Dialog.ExtendMC("Zdzary1_88", 1000, 1000, null, 800);
+                Dialog.extend("Zdzary1_88", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -797,298 +789,298 @@ public class Zdzary1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 610:
                 // Reaktion Alte auf 1. Frage 1. Teil
-                PersonSagt("Zdzary1_8", 0, 56, 2, 611, alteTalk);
+                personSays("Zdzary1_8", 0, 56, 2, 611, alteTalk);
                 break;
 
             case 611:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt("Zdzary1_9", 0, 57, 2, 612, alteTalk);
+                personSays("Zdzary1_9", 0, 57, 2, 612, alteTalk);
                 break;
 
             case 612:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt("Zdzary1_10", 0, 56, 2, 613, alteTalk);
+                personSays("Zdzary1_10", 0, 56, 2, 613, alteTalk);
                 break;
 
             case 613:
                 // Reaktion Alte auf 1. Teil 1. Frage
-                PersonSagt("Zdzary1_11", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_11", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 620:
                 // Reaktion Alte auf 2. Teil 1. Frage
-                PersonSagt("Zdzary1_12", 0, 56, 2, 621, alteTalk);
+                personSays("Zdzary1_12", 0, 56, 2, 621, alteTalk);
                 break;
 
             case 621:
                 // Reaktion Alte auf 2. Teil 1. Frage
-                PersonSagt("Zdzary1_13", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_13", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 630:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt("Zdzary1_14", 0, 57, 2, 631, alteTalk);
+                personSays("Zdzary1_14", 0, 57, 2, 631, alteTalk);
                 break;
 
             case 631:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt("Zdzary1_15", 0, 56, 2, 632, alteTalk);
+                personSays("Zdzary1_15", 0, 56, 2, 632, alteTalk);
                 break;
 
             case 632:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt("Zdzary1_16", 0, 57, 2, 633, alteTalk);
+                personSays("Zdzary1_16", 0, 57, 2, 633, alteTalk);
                 break;
 
             case 633:
                 // Reaktion Alte auf 3. Teil 1. Frage
-                PersonSagt("Zdzary1_17", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_17", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 640:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_18", 0, 57, 2, 641, alteTalk);
+                personSays("Zdzary1_18", 0, 57, 2, 641, alteTalk);
                 break;
 
             case 641:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_19", 0, 56, 2, 642, alteTalk);
+                personSays("Zdzary1_19", 0, 56, 2, 642, alteTalk);
                 break;
 
             case 642:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_20", 0, 57, 2, 643, alteTalk);
+                personSays("Zdzary1_20", 0, 57, 2, 643, alteTalk);
                 break;
 
             case 643:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_21", 0, 56, 2, 644, alteTalk);
+                personSays("Zdzary1_21", 0, 56, 2, 644, alteTalk);
                 break;
 
             case 644:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_22", 0, 57, 2, 645, alteTalk);
+                personSays("Zdzary1_22", 0, 57, 2, 645, alteTalk);
                 break;
 
             case 645:
                 // Reaktion Alte auf 1. Teil 4. Frage
-                PersonSagt("Zdzary1_23", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_23", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 650:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt("Zdzary1_24", 0, 56, 2, 651, alteTalk);
+                personSays("Zdzary1_24", 0, 56, 2, 651, alteTalk);
                 break;
 
             case 651:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt("Zdzary1_25", 0, 57, 2, 652, alteTalk);
+                personSays("Zdzary1_25", 0, 57, 2, 652, alteTalk);
                 break;
 
             case 652:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt("Zdzary1_26", 0, 56, 2, 653, alteTalk);
+                personSays("Zdzary1_26", 0, 56, 2, 653, alteTalk);
                 break;
 
             case 653:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt("Zdzary1_27", 0, 57, 2, 654, alteTalk);
+                personSays("Zdzary1_27", 0, 57, 2, 654, alteTalk);
                 break;
 
             case 654:
                 // Reaktion Alte auf 2. Teil 4. Frage
-                PersonSagt("Zdzary1_28", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_28", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 660:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt("Zdzary1_29", 0, 57, 2, 661, alteTalk);
+                personSays("Zdzary1_29", 0, 57, 2, 661, alteTalk);
                 break;
 
             case 661:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt("Zdzary1_30", 0, 56, 2, 662, alteTalk);
+                personSays("Zdzary1_30", 0, 56, 2, 662, alteTalk);
                 break;
 
             case 662:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt("Zdzary1_31", 0, 57, 2, 663, alteTalk);
+                personSays("Zdzary1_31", 0, 57, 2, 663, alteTalk);
                 break;
 
             case 663:
                 // Reaktion Alte auf 3. Teil 4. Frage
-                PersonSagt("Zdzary1_32", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_32", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 670:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_33", 0, 56, 2, 671, alteTalk);
+                personSays("Zdzary1_33", 0, 56, 2, 671, alteTalk);
                 break;
 
             case 671:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_34", 0, 57, 2, 672, alteTalk);
+                personSays("Zdzary1_34", 0, 57, 2, 672, alteTalk);
                 break;
 
             case 672:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_35", 0, 56, 2, 673, alteTalk);
+                personSays("Zdzary1_35", 0, 56, 2, 673, alteTalk);
                 break;
 
             case 673:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_36", 0, 57, 2, 674, alteTalk);
+                personSays("Zdzary1_36", 0, 57, 2, 674, alteTalk);
                 break;
 
             case 674:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_37", 0, 56, 2, 675, alteTalk);
+                personSays("Zdzary1_37", 0, 56, 2, 675, alteTalk);
                 break;
 
             case 675:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_38", 0, 57, 2, 676, alteTalk);
+                personSays("Zdzary1_38", 0, 57, 2, 676, alteTalk);
                 break;
 
             case 676:
                 // Reaktion Alte auf 4. Teil 4. Frage
-                PersonSagt("Zdzary1_39", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_39", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 680:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_40", 0, 56, 2, 681, alteTalk);
+                personSays("Zdzary1_40", 0, 56, 2, 681, alteTalk);
                 break;
 
             case 681:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_41", 0, 57, 2, 682, alteTalk);
+                personSays("Zdzary1_41", 0, 57, 2, 682, alteTalk);
                 break;
 
             case 682:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_42", 0, 56, 2, 683, alteTalk);
+                personSays("Zdzary1_42", 0, 56, 2, 683, alteTalk);
                 break;
 
             case 683:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_43", 0, 57, 2, 684, alteTalk);
+                personSays("Zdzary1_43", 0, 57, 2, 684, alteTalk);
                 break;
 
             case 684:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_44", 0, 56, 2, 685, alteTalk);
+                personSays("Zdzary1_44", 0, 56, 2, 685, alteTalk);
                 break;
 
             case 685:
                 // Reaktion Alte auf 5. Teil 4. Frage
-                PersonSagt("Zdzary1_45", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_45", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 690:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_46", 0, 56, 2, 691, alteTalk);
+                personSays("Zdzary1_46", 0, 56, 2, 691, alteTalk);
                 break;
 
             case 691:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_47", 0, 57, 2, 692, alteTalk);
+                personSays("Zdzary1_47", 0, 57, 2, 692, alteTalk);
                 break;
 
             case 692:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_48", 0, 56, 2, 693, alteTalk);
+                personSays("Zdzary1_48", 0, 56, 2, 693, alteTalk);
                 break;
 
             case 693:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_49", 0, 57, 2, 694, alteTalk);
+                personSays("Zdzary1_49", 0, 57, 2, 694, alteTalk);
                 break;
 
             case 694:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_50", 0, 56, 2, 695, alteTalk);
+                personSays("Zdzary1_50", 0, 56, 2, 695, alteTalk);
                 break;
 
             case 695:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_51", 0, 57, 2, 696, alteTalk);
+                personSays("Zdzary1_51", 0, 57, 2, 696, alteTalk);
                 break;
 
             case 696:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_52", 0, 56, 2, 697, alteTalk);
+                personSays("Zdzary1_52", 0, 56, 2, 697, alteTalk);
                 break;
 
             case 697:
                 // Reaktion Alte auf 1. Teil 5. Frage
-                PersonSagt("Zdzary1_53", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_53", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 700:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt("Zdzary1_54", 0, 56, 2, 701, alteTalk);
+                personSays("Zdzary1_54", 0, 56, 2, 701, alteTalk);
                 break;
 
             case 701:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt("Zdzary1_55", 0, 57, 2, 702, alteTalk);
+                personSays("Zdzary1_55", 0, 57, 2, 702, alteTalk);
                 break;
 
             case 702:
                 // Reaktion Alte auf 2. Teil 5. Frage
-                PersonSagt("Zdzary1_56", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_56", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 710:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt("Zdzary1_57", 0, 57, 2, 711, alteTalk);
+                personSays("Zdzary1_57", 0, 57, 2, 711, alteTalk);
                 break;
 
             case 711:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt("Zdzary1_58", 0, 56, 2, 712, alteTalk);
+                personSays("Zdzary1_58", 0, 56, 2, 712, alteTalk);
                 break;
 
             case 712:
                 // Reaktion Alte auf 1. Teil 2. Frage
-                PersonSagt("Zdzary1_59", 0, 57, 2, 713, alteTalk);
+                personSays("Zdzary1_59", 0, 57, 2, 713, alteTalk);
                 break;
 
             case 713:
                 // nach-Vorn-Laufen
-                mainFrame.pathWalker.SetzeNeuenWeg(Puser);
+                mainFrame.pathWalker.setNewWay(Puser);
                 nextActionID = 714;
                 break;
 
             case 714:
                 // User anschauen
-                outputText = mainFrame.imageFont.TeileTextKey("Zdzary1_89");
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
+                outputText = mainFrame.imageFont.splitTextKey("Zdzary1_89");
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
                 nextActionID = 715;
-                TalkPerson = 3;
-                mainFrame.krabat.SetFacing(6);
+                talkPerson = 3;
+                mainFrame.krabat.setFacing(6);
                 break;
 
             case 715:
                 // Multiple - Choice - Routine
-                Userdialog.InitMC(100);
+                Userdialog.initMC(100);
                 // 1. Frage
-                Userdialog.ExtendMC("Zdzary1_90", new GenericRectangle(30, 0, 500, 67), 1);
+                Userdialog.extend("Zdzary1_90", new GenericRectangle(30, 0, 500, 67), 1);
 
                 // 2. Frage
-                Userdialog.ExtendMC("Zdzary1_91", new GenericRectangle(30, 0, 500, 40), 2);
+                Userdialog.extend("Zdzary1_91", new GenericRectangle(30, 0, 500, 40), 2);
                 Userdialog.user = true;
                 mainFrame.isAnimRunning = false;
                 nextActionID = 716;
@@ -1102,7 +1094,7 @@ public class Zdzary1 extends MainLocation {
                 evalMouseMoveEvent(mainFrame.mousePoint);
 
                 // Aktionen dementsprechend ausfuehren
-                switch (Userdialog.Ident[Userdialog.Antwort]) {
+                switch (Userdialog.ident[Userdialog.answer]) {
                     case 1:
                         // Weglaufen
                         nextActionID = 800;
@@ -1116,84 +1108,84 @@ public class Zdzary1 extends MainLocation {
 
             case 717:
                 // wieder zur Alten hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(Palte);
+                mainFrame.pathWalker.setNewWay(Palte);
                 nextActionID = 718;
                 break;
 
             case 718:
                 // Alte anschauen und weiter im Text
-                mainFrame.krabat.SetFacing(alteFacing);
+                mainFrame.krabat.setFacing(alteFacing);
                 nextActionID = 600;
                 break;
 
             case 720:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt("Zdzary1_60", 0, 56, 2, 721, alteTalk);
+                personSays("Zdzary1_60", 0, 56, 2, 721, alteTalk);
                 break;
 
             case 721:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt("Zdzary1_61", 0, 57, 2, 722, alteTalk);
+                personSays("Zdzary1_61", 0, 57, 2, 722, alteTalk);
                 break;
 
             case 722:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt("Zdzary1_62", 0, 56, 2, 723, alteTalk);
+                personSays("Zdzary1_62", 0, 56, 2, 723, alteTalk);
                 break;
 
             case 723:
                 // Reaktion Alte auf 2. Teil 2. Frage
-                PersonSagt("Zdzary1_63", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_63", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 730:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_64", 0, 56, 2, 731, alteTalk);
+                personSays("Zdzary1_64", 0, 56, 2, 731, alteTalk);
                 break;
 
             case 731:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_65", 0, 57, 2, 732, alteTalk);
+                personSays("Zdzary1_65", 0, 57, 2, 732, alteTalk);
                 break;
 
             case 732:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_66", 0, 56, 2, 733, alteTalk);
+                personSays("Zdzary1_66", 0, 56, 2, 733, alteTalk);
                 break;
 
             case 733:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_67", 0, 56, 2, 600, alteTalk);
+                personSays("Zdzary1_67", 0, 56, 2, 600, alteTalk);
                 break;
 
             case 740:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt("Zdzary1_68", 0, 56, 2, 741, alteTalk);
+                personSays("Zdzary1_68", 0, 56, 2, 741, alteTalk);
                 break;
 
             case 741:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt("Zdzary1_69", 0, 57, 2, 742, alteTalk);
+                personSays("Zdzary1_69", 0, 57, 2, 742, alteTalk);
                 break;
 
             case 742:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt("Zdzary1_70", 0, 56, 2, 743, alteTalk);
+                personSays("Zdzary1_70", 0, 56, 2, 743, alteTalk);
                 break;
 
             case 743:
                 // Reaktion Alte auf 4. Teil 2. Frage
-                PersonSagt("Zdzary1_71", 0, 57, 2, 744, alteTalk);
+                personSays("Zdzary1_71", 0, 57, 2, 744, alteTalk);
                 break;
 
             case 744:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_72", 0, 56, 2, 745, alteTalk);
+                personSays("Zdzary1_72", 0, 56, 2, 745, alteTalk);
                 break;
 
             case 745:
                 // Reaktion Alte auf 3. Teil 2. Frage
-                PersonSagt("Zdzary1_73", 0, 57, 2, 600, alteTalk);
+                personSays("Zdzary1_73", 0, 57, 2, 600, alteTalk);
                 break;
 
             case 800:

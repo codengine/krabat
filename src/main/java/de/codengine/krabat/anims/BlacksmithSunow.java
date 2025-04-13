@@ -76,7 +76,7 @@ public class BlacksmithSunow extends MainAnim {
         kowar_walkl = new GenericImage[4];
         kowar_walkr = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         Verhinderbody = MAX_VERHINDERBODY;
         Verhinderpause = MAX_VERHINDERPAUSE;
@@ -87,7 +87,7 @@ public class BlacksmithSunow extends MainAnim {
         Walky = WorkPoint.y;
     }
 
-    private void InitImages() {
+    private void initImages() {
         kowar_head[1] = getPicture("gfx/wjes/kw-h1.png");
         kowar_head[2] = getPicture("gfx/wjes/kw-h2.png");
         kowar_head[3] = getPicture("gfx/wjes/kw-h3.png");
@@ -218,8 +218,6 @@ public class BlacksmithSunow extends MainAnim {
                             if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - TalkPoint.y) / Math.abs(Walkx - TalkPoint.x);
 
-                                // System.out.println ("Verhaeltnis = " + Verhaeltnis);
-
                                 if (WalklCount == 1 || WalklCount == 3) {
                                     // Grosser Schritt
                                     Walkx -= 8;
@@ -271,8 +269,6 @@ public class BlacksmithSunow extends MainAnim {
                             Verhinderstrampeln = !Verhinderstrampeln;
                             if (!Verhinderstrampeln) {
                                 float Verhaeltnis = Math.abs(Walky - WorkPoint.y) / Math.abs(Walkx - WorkPoint.x);
-
-                                // System.out.println ("Verhaeltnis = " + Verhaeltnis);
 
                                 if (WalkrCount == 1 || WalkrCount == 3) {
                                     // Grosser Schritt
@@ -359,7 +355,7 @@ public class BlacksmithSunow extends MainAnim {
         // 2. wave gibt an, dass die nativen Soundroutinen benutzt werden
         // 3. invCursor -> soll nur dann abschalten
 
-        mainFrame.soundPlayer.PlayFile("sfx/amboss.wav");
+        mainFrame.soundPlayer.playFile("sfx/amboss.wav");
 
     }
 

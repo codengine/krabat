@@ -76,16 +76,16 @@ public class Couch extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 4.8f;
-        mainFrame.krabat.defScale = -60;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 4.8f;
+        mainFrame.krabat.defaultScale = -60;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -93,11 +93,11 @@ public class Couch extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(371, 505, 371, 500, 426, 479));
 
-        mainFrame.pathFinder.ClearMatrix(2);
+        mainFrame.pathFinder.clearMatrix(2);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -105,17 +105,17 @@ public class Couch extends MainLocation {
                 break;
             case 143: // von Casnik aus
                 mainFrame.krabat.setPos(new GenericPoint(510, 426));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
             case 145: // von Zelen aus
                 mainFrame.krabat.setPos(new GenericPoint(315, 465));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/couch/couch.png");
         offeneTuer = getPicture("gfx-dd/couch/couch3.png");
 
@@ -133,7 +133,7 @@ public class Couch extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -151,19 +151,19 @@ public class Couch extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         if (SonderAnim != 0) {
             // hier erstmal alles berechnen, dann je nachdem die Bilder switchen
             GenericPoint hier = new GenericPoint(mainFrame.krabat.getPos().x, mainFrame.krabat.getPos().y);
 
             // Groesse
-            int scale = mainFrame.krabat.defScale;
-            scale += (int) (((float) mainFrame.krabat.maxx - (float) hier.y) / mainFrame.krabat.zoomf);
+            int scale = mainFrame.krabat.defaultScale;
+            scale += (int) (((float) mainFrame.krabat.maxX - (float) hier.y) / mainFrame.krabat.zoomFactor);
 
             // System.out.println ("Scale ist " + scale + " gross.");
 
@@ -192,16 +192,16 @@ public class Couch extends MainLocation {
         } else {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -223,15 +223,6 @@ public class Couch extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-	/*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-	  {
-	  g.drawImage (weiden2, 84, 221, null);
-	  }*/
-
         if (istTuerOffen) {
             g.drawImage(vordertuer, 219, 233);
         }
@@ -242,7 +233,7 @@ public class Couch extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -252,17 +243,17 @@ public class Couch extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -296,29 +287,29 @@ public class Couch extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Tuer
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     nextActionID = 150;
                     pTemp = pDurje;
                 }
 
                 // Ausreden fuer couch
-                if (couch.IsPointInRect(pTemp)) {
+                if (couch.isPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTemp = pCouch;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -328,7 +319,7 @@ public class Couch extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -340,85 +331,85 @@ public class Couch extends MainLocation {
                 nextActionID = 0;
 
                 // zu Casnik gehen ?
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = pExitRight;
                     } else {
                         pTemp = new GenericPoint(pExitRight.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Zelen gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = pExitDown;
                     } else {
                         pTemp = new GenericPoint(pExitDown.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Tuer anschauen
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pDurje;
                 }
 
                 // Couch anschauen
-                if (couch.IsPointInRect(pTemp)) {
+                if (couch.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pCouch;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (untererAusgang.IsPointInRect(pTemp) ||
-                        rechterAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp) ||
+                        rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // durje benutzen
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pDurje);
+                    mainFrame.pathWalker.setNewWay(pDurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Couch benutzen
-                if (couch.IsPointInRect(pTemp)) {
+                if (couch.isPointInRect(pTemp)) {
                     nextActionID = 90;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pCouch);
+                    mainFrame.pathWalker.setNewWay(pCouch);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -429,8 +420,8 @@ public class Couch extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -439,53 +430,53 @@ public class Couch extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    durje.IsPointInRect(pTemp) ||
-                    couch.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    durje.isPointInRect(pTemp) ||
+                    couch.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (durje.IsPointInRect(pTemp) ||
-                    couch.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (durje.isPointInRect(pTemp) ||
+                    couch.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 6) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 6) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 6;
+                    cursorShape = 6;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -519,7 +510,7 @@ public class Couch extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -527,7 +518,7 @@ public class Couch extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -535,26 +526,26 @@ public class Couch extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -572,7 +563,7 @@ public class Couch extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -581,22 +572,22 @@ public class Couch extends MainLocation {
             case 1:
                 // durje ansehen
                 if (!mainFrame.actions[670]) {
-                    KrabatSagt("Couch_1", fDurje, 3, 0, 0);
+                    krabatSays("Couch_1", fDurje, 3, 0, 0);
                 } else {
-                    KrabatSagt("Couch_2", fDurje, 3, 0, 0);
+                    krabatSays("Couch_2", fDurje, 3, 0, 0);
                 }
                 break;
 
             case 2:
                 // Couch ansehen
-                KrabatSagt("Couch_3", fCouch, 3, 0, 0);
+                krabatSays("Couch_3", fCouch, 3, 0, 0);
                 break;
 
             case 50:
                 // Durje oeffnen
                 // keine 2 Mal durchfuehren
                 if (mainFrame.actions[670]) {
-                    KrabatSagt("Couch_4", fDurje, 3, 0, 0);
+                    krabatSays("Couch_4", fDurje, 3, 0, 0);
                 } else {
                     mainFrame.isAnimRunning = true;
                     evalMouseMoveEvent(mainFrame.mousePoint);
@@ -604,25 +595,25 @@ public class Couch extends MainLocation {
                     nextActionID = 55;
                     mainFrame.actions[670] = true;
                     istTuerOffen = true;
-                    mainFrame.soundPlayer.PlayFile("sfx/kdurjeauf.wav");
-                    mainFrame.krabat.SetFacing(fDurje);
+                    mainFrame.soundPlayer.playFile("sfx/kdurjeauf.wav");
+                    mainFrame.krabat.setFacing(fDurje);
                 }
                 break;
 
             case 55:
                 // Animszene Tuer ist offen
-                KrabatSagt("Couch_5", 0, 3, 2, 60);
+                krabatSays("Couch_5", 0, 3, 2, 60);
                 break;
 
             case 60:
                 // Animszene Tuer ist offen
-                KrabatSagt("Couch_6", 0, 3, 2, 70);
+                krabatSays("Couch_6", 0, 3, 2, 70);
                 break;
 
             case 70:
                 // runterfallen lassen
                 SonderAnim = 1;
-                KrabatSagt("Couch_7", 0, 3, 2, 75);
+                krabatSays("Couch_7", 0, 3, 2, 75);
                 break;
 
             case 75:
@@ -639,7 +630,7 @@ public class Couch extends MainLocation {
                 if (--Counter > 0) {
                     break;
                 }
-                mainFrame.soundPlayer.PlayFile("sfx-dd/gebuesch.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/gebuesch.wav");
                 Counter = 15;
                 nextActionID = 77;
                 break;
@@ -649,32 +640,32 @@ public class Couch extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                NeuesBild(126, locationID);
+                createNewLocation(126, locationID);
                 break;
 
             case 90:
                 // Couch mitnehmen
-                KrabatSagt("Couch_8", fCouch, 3, 0, 0);
+                krabatSays("Couch_8", fCouch, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Casnik
-                NeuesBild(143, locationID);
+                createNewLocation(143, locationID);
                 break;
 
             case 101:
                 // Gehe zu Zelen
-                NeuesBild(145, locationID);
+                createNewLocation(145, locationID);
                 break;
 
             case 150:
                 // durje-Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 155:
                 // couch-Ausreden
-                DingAusrede(fCouch);
+                thingExcuse(fCouch);
                 break;
 
             default:

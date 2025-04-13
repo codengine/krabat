@@ -58,9 +58,9 @@ public class Pinca2 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().playTrack(8, true);
 
-        mainFrame.krabat.maxx = 260;
-        mainFrame.krabat.zoomf = 2f;
-        mainFrame.krabat.defScale = -127;
+        mainFrame.krabat.maxX = 260;
+        mainFrame.krabat.zoomFactor = 2f;
+        mainFrame.krabat.defaultScale = -127;
 
         pfarrer = new Farar(mainFrame);
         Pfarar = new GenericPoint();
@@ -71,20 +71,20 @@ public class Pinca2 extends MainLocation {
         fararTalk.x = Pfar.x;
         fararTalk.y = Pfarar.y - 50;
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
         mainFrame.krabat.setPos(Pkrabat);
-        mainFrame.krabat.SetFacing(9);
+        mainFrame.krabat.setFacing(9);
         nextActionID = 600;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/pinca/pinca.png");
         kniha = getPicture("gfx/pinca/kniha.png");
 
@@ -108,7 +108,7 @@ public class Pinca2 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -127,27 +127,27 @@ public class Pinca2 extends MainLocation {
         // Pfarrer
         g.setClip(Pfarar.x, Pfarar.y, Farar.Breite, Farar.Hoehe);
         g.drawImage(background, 0, 0);
-        pfarrer.drawFarar(g, TalkPerson, Pfarar);
+        pfarrer.drawFarar(g, talkPerson, Pfarar);
         if (showBuch) {
             g.drawImage(kniha, 0, 0);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -178,7 +178,7 @@ public class Pinca2 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -188,17 +188,17 @@ public class Pinca2 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -219,8 +219,8 @@ public class Pinca2 extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -238,7 +238,7 @@ public class Pinca2 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -250,41 +250,41 @@ public class Pinca2 extends MainLocation {
 
             case 600:
                 // Farar redet
-                PersonSagt("Pinca2_3", 0, 37, 2, 610, fararTalk);
+                personSays("Pinca2_3", 0, 37, 2, 610, fararTalk);
                 break;
 
             case 610:
                 // Farar redet
-                PersonSagt("Pinca2_1", 0, 37, 2, 620, fararTalk);
+                personSays("Pinca2_1", 0, 37, 2, 620, fararTalk);
                 break;
 
             case 620:
                 // Farar redet
                 mainFrame.isClipSet = false;
                 showBuch = true;
-                PersonSagt("Pinca2_4", 0, 37, 2, 625, buchTalk);
+                personSays("Pinca2_4", 0, 37, 2, 625, buchTalk);
                 break;
 
             case 625:
                 // farar redet
-                PersonSagt("Pinca2_5", 0, 37, 2, 630, buchTalk);
+                personSays("Pinca2_5", 0, 37, 2, 630, buchTalk);
                 break;
 
             case 630:
                 // Krabat spricht
                 mainFrame.isClipSet = false;
                 showBuch = false;
-                KrabatSagt("Pinca2_2", 0, 1, 2, 640);
+                krabatSays("Pinca2_2", 0, 1, 2, 640);
                 break;
 
             case 640:
                 // Farar redet
-                PersonSagt("Pinca2_6", 0, 37, 2, 643, fararTalk);
+                personSays("Pinca2_6", 0, 37, 2, 643, fararTalk);
                 break;
 
             case 643:
                 // Farar redet
-                PersonSagt("Pinca2_7", 0, 37, 2, 645, fararTalk);
+                personSays("Pinca2_7", 0, 37, 2, 645, fararTalk);
                 break;
 
             case 645:
@@ -294,7 +294,7 @@ public class Pinca2 extends MainLocation {
 
             case 650:
                 // Ab nach Mertens
-                NeuesBild(79, 81);
+                createNewLocation(79, 81);
                 break;
 
             default:

@@ -62,30 +62,30 @@ public class Dzera extends MainLocation {
         mueller = new Miller(mainFrame);
         katze = new Cat(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = -20;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = -20;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
         Pkocka.x = kockaFeet.x - Cat.Breite / 2;
         Pkocka.y = kockaFeet.y - Cat.Hoehe;
         kockaTalk.x = kockaFeet.x;
         kockaTalk.y = Pkocka.y - 50;
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mlyn/guck.png");
     }
 
@@ -112,7 +112,7 @@ public class Dzera extends MainLocation {
             g.setClip(0, 0, 644, 484);
             mainFrame.isBackgroundAnimRunning = true;
             mainFrame.isAnimRunning = true;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
@@ -121,15 +121,15 @@ public class Dzera extends MainLocation {
 
         // Hintergrund fuer Mueller loeschen
         // Clipping - Rectangle feststellen und setzen
-        BorderRect temp = mueller.getRect();
-        g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                temp.ru_point.y - temp.lo_point.y + 20);
+        BorderRect temp = mueller.getBoundingBox();
+        g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
         // Zeichne Hintergrund neu
         g.drawImage(background, 0, 0);
 
         // Redet er etwa gerade ??
-        if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+        if (talkPerson == 36 && mainFrame.talkCount > 0) {
             mueller.talkMlynk(g);
         }
 
@@ -141,7 +141,7 @@ public class Dzera extends MainLocation {
         // Katze zeichnen
         g.setClip(Pkocka.x, Pkocka.y, Cat.Breite, Cat.Hoehe);
         g.drawImage(background, 0, 0);
-        katze.drawKocka(g, TalkPerson, Pkocka);
+        katze.drawKocka(g, talkPerson, Pkocka);
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
@@ -149,7 +149,7 @@ public class Dzera extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -159,12 +159,12 @@ public class Dzera extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (!setAnim) {
@@ -173,8 +173,8 @@ public class Dzera extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -183,13 +183,12 @@ public class Dzera extends MainLocation {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
     }
@@ -197,8 +196,8 @@ public class Dzera extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -215,87 +214,87 @@ public class Dzera extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 100:
                 // Mueller redet
-                PersonSagt("Dzera_1", 0, 36, 0, 110, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_1", 0, 36, 0, 110, mueller.evalMlynkTalkPoint());
                 break;
 
             case 110:
                 // Katze redet
-                PersonSagt("Dzera_2", 0, 59, 2, 120, kockaTalk);
+                personSays("Dzera_2", 0, 59, 2, 120, kockaTalk);
                 break;
 
             case 120:
                 // Mueller redet
-                PersonSagt("Dzera_3", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_3", 0, 36, 2, 130, mueller.evalMlynkTalkPoint());
                 break;
 
             case 130:
                 // Katze redet
-                PersonSagt("Dzera_4", 0, 59, 2, 135, kockaTalk);
+                personSays("Dzera_4", 0, 59, 2, 135, kockaTalk);
                 break;
 
             case 135:
                 // Katze redet
-                PersonSagt("Dzera_5", 0, 59, 2, 140, kockaTalk);
+                personSays("Dzera_5", 0, 59, 2, 140, kockaTalk);
                 break;
 
             case 140:
                 // Mueller redet
-                PersonSagt("Dzera_6", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_6", 0, 36, 2, 150, mueller.evalMlynkTalkPoint());
                 break;
 
             case 150:
                 // Krabat redet
-                KrabatSagt("Dzera_7", 0, 3, 2, 160);
+                krabatSays("Dzera_7", 0, 3, 2, 160);
                 break;
 
             case 160:
                 // Katze redet
-                PersonSagt("Dzera_8", 0, 59, 2, 170, kockaTalk);
+                personSays("Dzera_8", 0, 59, 2, 170, kockaTalk);
                 break;
 
             case 170:
                 // Mueller redet
-                PersonSagt("Dzera_9", 0, 36, 2, 180, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_9", 0, 36, 2, 180, mueller.evalMlynkTalkPoint());
                 break;
 
             case 180:
                 // Katze redet
-                PersonSagt("Dzera_10", 0, 59, 2, 190, kockaTalk);
+                personSays("Dzera_10", 0, 59, 2, 190, kockaTalk);
                 break;
 
             case 190:
                 // Mueller redet
-                PersonSagt("Dzera_11", 0, 36, 2, 200, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_11", 0, 36, 2, 200, mueller.evalMlynkTalkPoint());
                 break;
 
             case 200:
                 // Katze redet
-                PersonSagt("Dzera_12", 0, 59, 2, 205, kockaTalk);
+                personSays("Dzera_12", 0, 59, 2, 205, kockaTalk);
                 break;
 
             case 205:
                 // Katze redet
-                PersonSagt("Dzera_13", 0, 59, 2, 210, kockaTalk);
+                personSays("Dzera_13", 0, 59, 2, 210, kockaTalk);
                 break;
 
             case 210:
                 // Mueller redet
-                PersonSagt("Dzera_14", 0, 36, 2, 220, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_14", 0, 36, 2, 220, mueller.evalMlynkTalkPoint());
                 break;
 
             case 220:
                 // Mueller redet
-                PersonSagt("Dzera_15", 0, 36, 2, 250, mueller.evalMlynkTalkPoint());
+                personSays("Dzera_15", 0, 36, 2, 250, mueller.evalMlynkTalkPoint());
                 break;
 
             case 250:
                 // Skip zur Muehle Innen
-                NeuesBild(91, 28);
+                createNewLocation(91, 28);
                 break;
 
             default:

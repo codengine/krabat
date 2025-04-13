@@ -24,9 +24,9 @@ package de.codengine.krabat.main;
 
 public class GenericColor {
 
-    public static final GenericColor red = new GenericColor(255, 0, 0);
-    public static final GenericColor white = new GenericColor(255, 255, 255);
-    public static final GenericColor black = new GenericColor(0, 0, 0);
+    public static final GenericColor RED = new GenericColor(255, 0, 0);
+    public static final GenericColor WHITE = new GenericColor(255, 255, 255);
+    public static final GenericColor BLACK = new GenericColor(0, 0, 0);
 
     private final int r;
 

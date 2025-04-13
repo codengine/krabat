@@ -52,22 +52,20 @@ public class Geese extends MainAnim {
 
         Gaense = new GenericImage[4][9];
         Grenze = gr;
-        Positx = (float) (Grenze.ru_point.x + Grenze.lo_point.x) / 2;
-        Posity = (float) (Grenze.ru_point.y + Grenze.lo_point.y) / 2;
-
-        // System.out.println (Position);
+        Positx = (float) (Grenze.bottomRightPoint.x + Grenze.topLeftPoint.x) / 2;
+        Posity = (float) (Grenze.bottomRightPoint.y + Grenze.topLeftPoint.y) / 2;
 
         Richtung = (int) Math.round(Math.random() * 3) + 1;
         if (Richtung == 4) {
             Richtung = 3;
         }
         Aktion = 3;
-        InitImages();
+        initImages();
     }
 
     // 2. Konstruktor fuer vordefinierte Positionen erforderlich !! (???)
 
-    private void InitImages() {
+    private void initImages() {
         Gaense[1][1] = getPicture("gfx/doma/g1a.png");
         Gaense[1][2] = getPicture("gfx/doma/g1a2.png");
         Gaense[1][3] = getPicture("gfx/doma/g1b.png");
@@ -118,7 +116,7 @@ public class Geese extends MainAnim {
         Gaense[3][8] = null;
     }
 
-    public void BewegeGans(GenericDrawingContext offGraph) {
+    public void moveGoose(GenericDrawingContext offGraph) {
         ResetRichtung++;
 
         // Entscheidung, ob die Animphase oder die Richtung gewechselt werden soll
@@ -172,54 +170,52 @@ public class Geese extends MainAnim {
         }
 
         ResetAktion++;
-        EvalNewAction();
+        evalNewAction();
 
         if (Aktion == 7 || Aktion == 8) {
             if (Richtung == 1) {
-                // System.out.println ("x + 1");
-                if (Positx - Grenze.lo_point.x > 1) {
+                if (Positx - Grenze.topLeftPoint.x > 1) {
                     Positx -= 0.5F;
                 } else {
                     while (Aktion == 7 || Aktion == 8) {
-                        GetNewAction();
+                        getNewAction();
                     }
                 }
             } else {
-                // System.out.println ("x - 1");
-                if (Grenze.ru_point.x - Positx > 1) {
+                if (Grenze.bottomRightPoint.x - Positx > 1) {
                     Positx += 0.5F;
                 } else {
                     while (Aktion == 7 || Aktion == 8) {
-                        GetNewAction();
+                        getNewAction();
                     }
                 }
             }
 
             int zi = (int) Math.round(Math.random() * 100);
 
-            if (zi < 15 && Posity - Grenze.lo_point.y > 1) {
+            if (zi < 15 && Posity - Grenze.topLeftPoint.y > 1) {
                 Posity -= 0.5F;
             }
-            if (zi > 85 && Grenze.ru_point.y - Posity > 1) {
+            if (zi > 85 && Grenze.bottomRightPoint.y - Posity > 1) {
                 Posity += 0.5F;
             }
         }
 
         offGraph.drawImage(Gaense[Richtung][Aktion], (int) Positx, (int) Posity);
 
-        EvalSound();
+        evalSound();
     }
 
-    private void EvalNewAction() {
+    private void evalNewAction() {
         // Hier nur zufaellig die Phasen einer Richtung berechnen
         int zuf = (int) Math.round(Math.random() * KONSTANTE3);
         if (zuf > 70 && (Aktion & 1) != 0 && ResetAktion > 10) {
             ResetAktion = 0;
-            GetNewAction();
+            getNewAction();
         }
     }
 
-    private void GetNewAction() {
+    private void getNewAction() {
         // Hier wird immer neue Aktion berechnet
         int zf;
 
@@ -229,12 +225,10 @@ public class Geese extends MainAnim {
         }
         while ((zf & 1) == 0 || zf > (Richtung == 2 ? 5 : 7) || zf == Aktion);
 
-        // System.out.println ("Neue Aktion " + zf);
-
         Aktion = zf;
     }
 
-    private void EvalSound() {
+    private void evalSound() {
         // zufaellig wavs fuer Geschnatter abspielen...
 
         if (lautloseGaense) {
@@ -247,11 +241,11 @@ public class Geese extends MainAnim {
         {
             int zweiterZufall = (int) (Math.random() * 3.9);
             zweiterZufall += 49;
-            mainFrame.soundPlayer.PlayFile("sfx/husa" + (char) zweiterZufall + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/husa" + (char) zweiterZufall + ".wav");
         }
     }
 
-    public BorderRect GetHusaRect() {
+    public BorderRect getHusaRect() {
         // gibt Borderrect zurueck, in dem sich die Gans befindet
         int a, b, c, d;
 

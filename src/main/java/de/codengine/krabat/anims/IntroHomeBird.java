@@ -31,7 +31,6 @@ public class IntroHomeBird extends MainAnim {
     private int animpos = 1;
     private boolean Gleiten = false;
     private boolean oben = true;
-    // private boolean up = false;
     private int gleitcount;
     private boolean schalt = false;
     private boolean start = true;
@@ -45,18 +44,18 @@ public class IntroHomeBird extends MainAnim {
 
         vogel = new GenericImage[5];
 
-        InitImages();
+        initImages();
 
     }
 
-    private void InitImages() {
+    private void initImages() {
         vogel[1] = getPicture("gfx/doma/vogel1.png");
         vogel[2] = getPicture("gfx/doma/vogel2.png");
         vogel[3] = getPicture("gfx/doma/vogel3.png");
         vogel[4] = getPicture("gfx/doma/vogel4.png");
     }
 
-    public boolean Flieg(GenericDrawingContext g) {
+    public boolean doFly(GenericDrawingContext g) {
         if (animpos == 1 || animpos == 4) {
             int glei = (int) Math.round(Math.random() * 30);
             if (glei < 29 && !Gleiten && !start) {

@@ -52,8 +52,6 @@ public class Labyr122 extends MainLocation2 {
     private static final BorderRect lab123Rect = new BorderRect(189, 329, 252, 377);
 
     // Konstante Points
-    // private static final GenericPoint Pright    = new GenericPoint (639, 282);
-    // private static final GenericPoint Pdown     = new GenericPoint (254, 479);
     private static final GenericPoint mlynkFeet = new GenericPoint(288, 344);
 
     // Initialisierung ////////////////////////////////////////////////////////
@@ -67,37 +65,37 @@ public class Labyr122 extends MainLocation2 {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 6.97f;
-        mainFrame.krabat.defScale = -30;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 6.97f;
+        mainFrame.krabat.defaultScale = -30;
 
         mueller = new Miller(mainFrame);
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 0;
-        mueller.zoomf = 4f;
-        mueller.defScale = 0;
+        mueller.maxX = 0;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = 0;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(6);
+        mueller.setFacing(6);
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         // von unten aus
         mainFrame.krabat.setPos(new GenericPoint(254, 452));
-        mainFrame.krabat.SetFacing(12);
-        TalkPause = 10;
-        InitImages();
+        mainFrame.krabat.setFacing(12);
+        talkPause = 10;
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/labyrinth/laby12.png");
         lab122 = getPicture("gfx/labyrinth/lab12-2.png");
         lab123 = getPicture("gfx/labyrinth/lab12-3.png");
@@ -126,7 +124,7 @@ public class Labyr122 extends MainLocation2 {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -146,14 +144,14 @@ public class Labyr122 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -177,12 +175,12 @@ public class Labyr122 extends MainLocation2 {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (lab122Rect.IsPointInRect(pKrTemp)) {
+        if (lab122Rect.isPointInRect(pKrTemp)) {
             g.drawImage(lab122, 338, 192);
         }
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (lab123Rect.IsPointInRect(pKrTemp)) {
+        if (lab123Rect.isPointInRect(pKrTemp)) {
             g.drawImage(lab123, 211, 354);
         }
 
@@ -192,12 +190,12 @@ public class Labyr122 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         if (mainFrame.talkCount > 0) {
@@ -214,8 +212,8 @@ public class Labyr122 extends MainLocation2 {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -224,7 +222,6 @@ public class Labyr122 extends MainLocation2 {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -237,8 +234,8 @@ public class Labyr122 extends MainLocation2 {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -256,12 +253,12 @@ public class Labyr122 extends MainLocation2 {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 10:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 100);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 100);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 13;
                 break;
@@ -282,15 +279,15 @@ public class Labyr122 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 20;
                 break;
 
             case 20:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 77);
+                createNewLocation(90, 77);
                 break;
 
             default:

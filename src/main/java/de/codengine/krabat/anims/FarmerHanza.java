@@ -46,13 +46,13 @@ public class FarmerHanza extends MainAnim {
         bur_work = new GenericImage[4];
         bur_talk = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
         Verhinderwork = MAX_VERHINDERWORK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         bur_work[0] = getPicture("gfx/polo/dzona1.png");
         bur_work[1] = getPicture("gfx/polo/dzona2.png");
         bur_work[2] = getPicture("gfx/polo/dzona3.png");
@@ -101,7 +101,7 @@ public class FarmerHanza extends MainAnim {
                     if (zf < 40) {
                         Work = 0;
                     } else if (!mainFrame.inventory.noBackgroundSound || !mainFrame.isInventoryCursor) {
-                        mainFrame.soundPlayer.PlayFile("sfx/nepl.wav");
+                        mainFrame.soundPlayer.playFile("sfx/nepl.wav");
                     }
                 }
             }

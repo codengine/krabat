@@ -56,14 +56,7 @@ public class Hunter extends MovableMainAnim {
     private static final int[] CHORIZ_DIST = {3, 0, 7, 7, 13, 10, 7, 13};
     private static final int CVERT_DIST = 1;
 
-    // Variablen fuer Laufberechnung
-    // private static final int CLOHNENX = 28;  // Werte fuer Entscheidung, ob sich
-    // private static final int CLOHNENY = 2;  // Laufen ueberhaupt lohnt (halber Schritt)
-
     // Variablen fuer Animationen
-    // public  int nAnimation = 0;           // ID der ggw. Animation
-    // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
-    // private int nAnimStep = 0;            // ggw. Pos in Animation
     private static final int SLOWX = 14;  // Konstante, die angibt, wie sich die x - Abstaende
     // beim Zoomen veraendern
     private static final int SLOWY = 22;  // dsgl. fuer y - Richtung                                      
@@ -102,7 +95,7 @@ public class Hunter extends MovableMainAnim {
         krabat_down_talk = new GenericImage[6];
         krabat_buecken = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
@@ -111,7 +104,7 @@ public class Hunter extends MovableMainAnim {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         krabat_left[0] = getPicture("gfx/hojnt/ho-l.png");
         krabat_left[1] = getPicture("gfx/hojnt/ho-la.png");
         krabat_left[2] = getPicture("gfx/hojnt/ho-l0.png");
@@ -241,43 +234,42 @@ public class Hunter extends MovableMainAnim {
 
     // Plokarka um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        isAnimHorizontal = tmpIsAnimHorizontal;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         // Verzoegerung einbauen beim Laufen
-        if (--Verhinderwalk > 0 && horizontal) {
+        if (--Verhinderwalk > 0 && isAnimHorizontal) {
             return false;
         }
 
         Verhinderwalk = MAX_VERHINDERWALK;
 
-        if (horizontal)
+        if (isAnimHorizontal)
         // Horizontal laufen
         {
             // neuen Punkt ermitteln und setzen
-            VerschiebeX();
-            xps = txps;
-            yps = typs;
+            moveX();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 8) {
-                anim_pos = 2;
+            animPos++;
+            if (animPos == 8) {
+                animPos = 2;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeX();
+            moveX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
-                // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                if (clearanimpos) {
-                    anim_pos = 0;
+            if ((walkTo.x - (int) tempPosX) * directionX.getVal() <= 0) {
+                setPos(walkTo);
+                if (resetAnimPos) {
+                    animPos = 0;
                 }
                 return true;
             }
@@ -285,25 +277,24 @@ public class Hunter extends MovableMainAnim {
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
-            VerschiebeY();
-            xps = txps;
-            yps = typs;
+            moveY();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 4) {
-                anim_pos = 0;
+            animPos++;
+            if (animPos == 4) {
+                animPos = 0;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeY();
+            moveY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-                // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                if (clearanimpos) {
-                    anim_pos = 0;
+            if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
+                setPos(walkTo);
+                if (resetAnimPos) {
+                    animPos = 0;
                 }
                 return true;
             }
@@ -312,31 +303,31 @@ public class Hunter extends MovableMainAnim {
     }
 
     // Horizontal - Positions - Verschieberoutine
-    private void VerschiebeX() {
-        verschiebeXdefault(CHORIZ_DIST[anim_pos], SLOWX);
+    private void moveX() {
+        moveXdefault(CHORIZ_DIST[animPos], SLOWX);
     }
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY() {
-        verschiebeYdefault(CVERT_DIST, SLOWY);
+    private void moveY() {
+        moveYdefault(CVERT_DIST, SLOWY);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
-        Thorizontal = calcHorizontal(aim, 30);
+        tmpIsAnimHorizontal = calcHorizontal(aim, 30);
 
-        if (anim_pos == 0) {
-            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        if (animPos == 0) {
+            animPos = 1;       // Animationsimage bei Neubeginn initialis.
         } else {
             // bei fortgehendem Bewegen weiterschalten
-            anim_pos++;
-            if (Thorizontal && anim_pos == 8) {
-                anim_pos = 2;
+            animPos++;
+            if (tmpIsAnimHorizontal && animPos == 8) {
+                animPos = 2;
             }
-            if (!Thorizontal && anim_pos == 4) {
-                anim_pos = 0;
+            if (!tmpIsAnimHorizontal && animPos == 4) {
+                animPos = 0;
             }
         }
     }
@@ -346,59 +337,59 @@ public class Hunter extends MovableMainAnim {
     // je nach Laufrichtung Krabat zeichnen
     public void drawHojnt(GenericDrawingContext offGraph) {
         // je nach Richtung Sprite auswaehlen und zeichnen
-        if (horizontal) {
+        if (isAnimHorizontal) {
             // nach links laufen
             if (directionX == LEFT) {
-                MaleIhn(offGraph, krabat_left[anim_pos]);
+                drawHim(offGraph, krabat_left[animPos]);
             }
 
             // nach rechts laufen
             if (directionX == RIGHT) {
-                MaleIhn(offGraph, krabat_right[anim_pos]);
+                drawHim(offGraph, krabat_right[animPos]);
             }
         } else {
             // Bei normaler Darstellung
-            if (!upsidedown) {
+            if (!upsideDown) {
                 // nach oben laufen
                 if (directionY == UP) {
-                    MaleIhn(offGraph, krabat_back[anim_pos]);
+                    drawHim(offGraph, krabat_back[animPos]);
                 }
 
                 // nach unten laufen
                 if (directionY == DOWN) {
-                    MaleIhn(offGraph, krabat_front[anim_pos]);
+                    drawHim(offGraph, krabat_front[animPos]);
                 }
             } else {
                 // nach oben laufen
                 if (directionY == UP) {
-                    MaleIhn(offGraph, krabat_front[anim_pos]);
+                    drawHim(offGraph, krabat_front[animPos]);
                 }
 
                 // nach unten laufen
                 if (directionY == DOWN) {
-                    MaleIhn(offGraph, krabat_back[anim_pos]);
+                    drawHim(offGraph, krabat_back[animPos]);
                 }
             }
         }
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 3:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = RIGHT;
                 break;
             case 6:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = DOWN;
                 break;
             case 9:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = LEFT;
                 break;
             case 12:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = UP;
                 break;
             default:
@@ -408,8 +399,8 @@ public class Hunter extends MovableMainAnim {
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
     // nur private, da nur in dieser Klasse benoetigt
-    private int GetFacing() {
-        if (horizontal) {
+    private int getFacing() {
+        if (isAnimHorizontal) {
             return directionX == RIGHT ? 3 : 9;
         } else {
             return directionY == DOWN ? 6 : 12;
@@ -431,45 +422,45 @@ public class Hunter extends MovableMainAnim {
         }
 
         // reden nach unten ist nur 1 Image
-        if (GetFacing() == 6) {
-            MaleIhn(offGraph, krabat_down_talk[talkHead]);
+        if (getFacing() == 6) {
+            drawHim(offGraph, krabat_down_talk[talkHead]);
         } else {
             // reden nach rechts
-            if (GetFacing() == 3) {
-                MaleIhn(offGraph, krabat_right_talk_head[talkHead], krabat_right_talk_body[talkBody]);
+            if (getFacing() == 3) {
+                drawHim(offGraph, krabat_right_talk_head[talkHead], krabat_right_talk_body[talkBody]);
             }
 
             // reden nach links
-            if (GetFacing() == 9) {
-                MaleIhn(offGraph, krabat_left_talk_head[talkHead], krabat_left_talk_body[talkBody]);
+            if (getFacing() == 9) {
+                drawHim(offGraph, krabat_left_talk_head[talkHead], krabat_left_talk_body[talkBody]);
             }
         }
     }
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int poy) {
-        return calcLeftPosDefault(pox, poy);
+    protected int getLeftPos(int x, int y) {
+        return calcLeftPosDefault(x, y);
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return calcUpPosDefault(poy);
+    protected int getUpPos(int y) {
+        return calcUpPosDefault(y);
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy, defScale);
+    protected int getScale(int y) {
+        return calcScaleDefault(y, defaultScale);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
+    private void drawHim(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
 
@@ -477,14 +468,14 @@ public class Hunter extends MovableMainAnim {
         g.drawImage(ktemp, left, up, CWIDTH - (int) (scale * scaleFactor), CHEIGHT - scale);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage khead, GenericImage kbody) {
+    private void drawHim(GenericDrawingContext g, GenericImage khead, GenericImage kbody) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // Scalings und Offset fuer gesplittetes Kopf/Koerperzeichnen
         float fScale = CHEIGHT - scale;
@@ -505,18 +496,18 @@ public class Hunter extends MovableMainAnim {
     public boolean bueckeHojnt(GenericDrawingContext g) {
         // Clipping - Region setzen
         // Links - oben - Korrdinaten ermitteln
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
         // System.out.println(xx +  " " + x);
 
         // Breite und Hoehe ermitteln
-        int xd = 2 * ((int) xps - left) + 30;
-        int yd = (int) yps - up;
+        int xd = 2 * ((int) posX - left) + 30;
+        int yd = (int) posY - up;
         g.setClip(left, up, xd, yd);
 
 
         // Groesse und Position der Figur berechnen
-        int scale = getScale((int) yps);
+        int scale = getScale((int) posY);
 
         // Hier beim Scaling ein echtes Verhaeltnis Hoehe/Breite einsetzen
         float fBreite = 63.0f;

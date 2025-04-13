@@ -64,18 +64,18 @@ public class Hdwor extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 6.0f;
-        mainFrame.krabat.defScale = 35;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 6.0f;
+        mainFrame.krabat.defaultScale = 35;
 
         boot = new Boats(mainFrame, 2);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -99,38 +99,38 @@ public class Hdwor extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(20, 69, 20, 69, 353, 362));
 
-        mainFrame.pathFinder.ClearMatrix(10);
+        mainFrame.pathFinder.clearMatrix(10);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(4, 6);
-        mainFrame.pathFinder.PosVerbinden(4, 7);
-        mainFrame.pathFinder.PosVerbinden(4, 8);
-        mainFrame.pathFinder.PosVerbinden(5, 9);
-        mainFrame.pathFinder.PosVerbinden(4, 9);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(4, 6);
+        mainFrame.pathFinder.connectPos(4, 7);
+        mainFrame.pathFinder.connectPos(4, 8);
+        mainFrame.pathFinder.connectPos(5, 9);
+        mainFrame.pathFinder.connectPos(4, 9);
 
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 break;
             case 128: // von Straza aus
                 mainFrame.krabat.setPos(new GenericPoint(298, 217));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 131: // von Treppe aus
                 mainFrame.krabat.setPos(new GenericPoint(75, 348));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/hdwor/hdwor.png");
         stOben = getPicture("gfx-dd/hdwor/st-oben.png");
         stUnten = getPicture("gfx-dd/hdwor/st-unten.png");
@@ -146,7 +146,7 @@ public class Hdwor extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -157,33 +157,33 @@ public class Hdwor extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Boot-Routine
         // Hintergrund loeschen
         BorderRect temp = boot.evalBootRect();
-        g.setClip(temp.lo_point.x, temp.lo_point.y,
-                temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
+        g.setClip(temp.topLeftPoint.x, temp.topLeftPoint.y,
+                temp.bottomRightPoint.x - temp.topLeftPoint.x, temp.bottomRightPoint.y - temp.topLeftPoint.y);
         g.drawImage(background, 0, 0);
         // Boot zeichnen
         boot.drawBoot(g);
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -208,10 +208,10 @@ public class Hdwor extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter den Staeben ? (nur Clipping - Region wird neugezeichnet)
-        if (stObenRect.IsPointInRect(pKrTemp)) {
+        if (stObenRect.isPointInRect(pKrTemp)) {
             g.drawImage(stOben, 296, 245);
         }
-        if (stUntenRect.IsPointInRect(pKrTemp)) {
+        if (stUntenRect.isPointInRect(pKrTemp)) {
             g.drawImage(stUnten, 315, 383);
         }
 
@@ -221,7 +221,7 @@ public class Hdwor extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -231,17 +231,17 @@ public class Hdwor extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -275,17 +275,17 @@ public class Hdwor extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -295,7 +295,7 @@ public class Hdwor extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -307,57 +307,57 @@ public class Hdwor extends MainLocation {
                 nextActionID = 0;
 
                 // zu Trjepjena gehen ?
-                if (ausgangTreppe.IsPointInRect(pTemp)) {
+                if (ausgangTreppe.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangTreppe.IsPointInRect(kt)) {
+                    if (!ausgangTreppe.isPointInRect(kt)) {
                         pTemp = pExitTreppe;
                     } else {
                         pTemp = new GenericPoint(pExitTreppe.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Straza gehen ?
-                if (ausgangStraza.IsPointInRect(pTemp)) {
+                if (ausgangStraza.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangStraza.IsPointInRect(kt)) {
+                    if (!ausgangStraza.isPointInRect(kt)) {
                         pTemp = pExitStraza;
                     } else {
                         pTemp = new GenericPoint(pExitStraza.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangStraza.IsPointInRect(pTemp) ||
-                        ausgangTreppe.IsPointInRect(pTemp)) {
+                if (ausgangStraza.isPointInRect(pTemp) ||
+                        ausgangTreppe.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -368,8 +368,8 @@ public class Hdwor extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -378,46 +378,35 @@ public class Hdwor extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            //if ((kerzen.IsPointInRect (pTemp) == true) ||
-            //    (schwerter.IsPointInRect (pTemp) == true))
-            //{
-            //    if (Cursorform != 1)
-            //    {
-            //          mainFrame.setCursor (mainFrame.Kreuz);
-            //          Cursorform = 1;
-            //    }
-            //    return;
-            //}
-
-            if (ausgangStraza.IsPointInRect(pTemp) ||
-                    ausgangTreppe.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangStraza.isPointInRect(pTemp) ||
+                    ausgangTreppe.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -451,7 +440,7 @@ public class Hdwor extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -459,7 +448,7 @@ public class Hdwor extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -467,26 +456,26 @@ public class Hdwor extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -504,7 +493,7 @@ public class Hdwor extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -512,12 +501,12 @@ public class Hdwor extends MainLocation {
         switch (nextActionID) {
             case 100:
                 // Gehe zu Treppe
-                NeuesBild(131, locationID);
+                createNewLocation(131, locationID);
                 break;
 
             case 101:
                 // Gehe zu Wache
-                NeuesBild(128, locationID);
+                createNewLocation(128, locationID);
                 break;
 
             default:

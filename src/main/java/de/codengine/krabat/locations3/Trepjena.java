@@ -36,7 +36,6 @@ public class Trepjena extends MainLocation {
     private GenericImage background;
     private GenericImage trVorn;
     private final GuardTreasure guardTreasure;
-    // private Dinglinger dinglinger;
 
     private final GenericPoint talkPoint;
     private final GenericPoint strazaPoint;
@@ -73,7 +72,6 @@ public class Trepjena extends MainLocation {
     // Konstante Points
     private static final GenericPoint pExitOben = new GenericPoint(172, 103);
     private static final GenericPoint pExitMitte = new GenericPoint(235, 288);
-    // private static final GenericPoint pExitUnten = new GenericPoint (124, 461);
     private static final GenericPoint pExitHof = new GenericPoint(507, 466);
     private static final GenericPoint pStraza = new GenericPoint(235, 288);
     private static final GenericPoint pBildOben = new GenericPoint(365, 475);
@@ -104,9 +102,9 @@ public class Trepjena extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 8f;
-        mainFrame.krabat.defScale = 20;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 8f;
+        mainFrame.krabat.defaultScale = 20;
 
         guardTreasure = new GuardTreasure(mainFrame);
 
@@ -120,13 +118,13 @@ public class Trepjena extends MainLocation {
 
         rectStraza = new BorderRect(strazaPoint.x, strazaPoint.y, strazaPoint.x + GuardTreasure.Breite, strazaPoint.y + GuardTreasure.Hoehe);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -154,21 +152,21 @@ public class Trepjena extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(175, 518, 175, 518, 103, 104));
 
-        mainFrame.pathFinder.ClearMatrix(12);
+        mainFrame.pathFinder.clearMatrix(12);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 7);
-        mainFrame.pathFinder.PosVerbinden(7, 8);
-        mainFrame.pathFinder.PosVerbinden(8, 9);
-        mainFrame.pathFinder.PosVerbinden(9, 10);
-        mainFrame.pathFinder.PosVerbinden(10, 11);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(5, 6);
+        mainFrame.pathFinder.connectPos(6, 7);
+        mainFrame.pathFinder.connectPos(7, 8);
+        mainFrame.pathFinder.connectPos(8, 9);
+        mainFrame.pathFinder.connectPos(9, 10);
+        mainFrame.pathFinder.connectPos(10, 11);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -177,25 +175,17 @@ public class Trepjena extends MainLocation {
             case 130: // von Hdwor aus
                 BackgroundMusicPlayer.getInstance().playTrack(13, true);
                 mainFrame.krabat.setPos(new GenericPoint(507, 470));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
-/*      case 132: // von Poklad aus
-      	mainFrame.krabat.SetKrabatPos (new GenericPoint (128, 463));
-      	mainFrame.krabat.SetFacing (3);
-      	break;*/
-/*      case 133: // von Kapala aus
-      	mainFrame.krabat.SetKrabatPos (new GenericPoint (178, 288));
-      	mainFrame.krabat.SetFacing (3);
-      	break;*/
             case 140: // von Saal aus
                 mainFrame.krabat.setPos(new GenericPoint(176, 103));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/trepj/trepj.png");
         trVorn = getPicture("gfx-dd/trepj/trepj-vorn.png");
 
@@ -210,7 +200,7 @@ public class Trepjena extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -221,30 +211,30 @@ public class Trepjena extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Straza zeichnen
         g.setClip(strazaPoint.x, strazaPoint.y, GuardTreasure.Breite, GuardTreasure.Hoehe);
         g.drawImage(background, 0, 0);
-        guardTreasure.drawStraza(g, TalkPerson, strazaPoint, weistzurueck);
+        guardTreasure.drawStraza(g, talkPerson, strazaPoint, weistzurueck);
         g.drawImage(trVorn, 147, 0);
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -279,7 +269,7 @@ public class Trepjena extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -289,17 +279,17 @@ public class Trepjena extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -333,54 +323,54 @@ public class Trepjena extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden Tuer
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     // kluc
                     nextActionID = mainFrame.whatItem == 47 ? 200 : 150;
                     pTemp = pDurje;
                 }
 
                 // Ausreden wokno1
-                if (wokno1.IsPointInRect(pTemp)) {
+                if (wokno1.isPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTemp = pWokno1;
                 }
 
                 // Ausreden wokno2
-                if (wokno2.IsPointInRect(pTemp)) {
+                if (wokno2.isPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTemp = pWokno2;
                 }
 
                 // Ausreden wokno3
-                if (wokno3.IsPointInRect(pTemp)) {
+                if (wokno3.isPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTemp = pWokno3;
                 }
 
                 // Ausreden wokno4
-                if (wokno4.IsPointInRect(pTemp)) {
+                if (wokno4.isPointInRect(pTemp)) {
                     nextActionID = 155;
                     pTemp = pWokno4;
                 }
 
                 // Ausreden Straza
-                if (rectStraza.IsPointInRect(pTemp)) {
+                if (rectStraza.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = pStraza;
                 }
 
                 // Ausreden Tafla
-                if (rectSchild.IsPointInRect(pTemp)) {
+                if (rectSchild.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 46: // hammer
                         case 42: // Hlebija
@@ -395,19 +385,19 @@ public class Trepjena extends MainLocation {
                 }
 
                 // Ausreden BildOben
-                if (rectBildOben.IsPointInRect(pTemp)) {
+                if (rectBildOben.isPointInRect(pTemp)) {
                     nextActionID = 170;
                     pTemp = pBildOben;
                 }
 
                 // Ausreden BildUnten
-                if (rectBildUnten.IsPointInRect(pTemp)) {
+                if (rectBildUnten.isPointInRect(pTemp)) {
                     nextActionID = 175;
                     pTemp = pBildUnten;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -417,7 +407,7 @@ public class Trepjena extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -429,191 +419,191 @@ public class Trepjena extends MainLocation {
                 nextActionID = 0;
 
                 // zu Hdwor gehen ?
-                if (ausgangHof.IsPointInRect(pTemp)) {
+                if (ausgangHof.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangHof.IsPointInRect(kt)) {
+                    if (!ausgangHof.isPointInRect(kt)) {
                         pTemp = pExitHof;
                     } else {
                         pTemp = new GenericPoint(pExitHof.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Saal (oben) gehen ?
-                if (ausgangOben.IsPointInRect(pTemp)) {
+                if (ausgangOben.isPointInRect(pTemp)) {
                     nextActionID = 103;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangOben.IsPointInRect(kt)) {
+                    if (!ausgangOben.isPointInRect(kt)) {
                         pTemp = pExitOben;
                     } else {
                         pTemp = new GenericPoint(pExitOben.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Straza ansehen
-                if (rectStraza.IsPointInRect(pTemp)) {
+                if (rectStraza.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pStraza;
                 }
 
                 // zu Poklad (mitte) gehen versuchen
-                if (ausgangMitte.IsPointInRect(pTemp)) {
+                if (ausgangMitte.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = pExitMitte;
                 }
 
                 // zu Kapala (unten) gehen ? -> verschlossen
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = pDurje;
                 }
 
                 // Schild ansehen
-                if (rectSchild.IsPointInRect(pTemp)) {
+                if (rectSchild.isPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = pSchild;
                 }
 
                 // BildUnten ansehen
-                if (rectBildUnten.IsPointInRect(pTemp)) {
+                if (rectBildUnten.isPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = pBildUnten;
                 }
 
                 // BildOben ansehen
-                if (rectBildOben.IsPointInRect(pTemp)) {
+                if (rectBildOben.isPointInRect(pTemp)) {
                     nextActionID = 8;
                     pTemp = pBildOben;
                 }
 
                 // Ansehen wokno1
-                if (wokno1.IsPointInRect(pTemp)) {
+                if (wokno1.isPointInRect(pTemp)) {
                     nextActionID = 20;
                     pTemp = pWokno1;
                 }
 
                 // Ansehen wokno2
-                if (wokno2.IsPointInRect(pTemp)) {
+                if (wokno2.isPointInRect(pTemp)) {
                     nextActionID = 20;
                     pTemp = pWokno2;
                 }
 
                 // Ansehen wokno3
-                if (wokno3.IsPointInRect(pTemp)) {
+                if (wokno3.isPointInRect(pTemp)) {
                     nextActionID = 20;
                     pTemp = pWokno3;
                 }
 
                 // Ansehen wokno4
-                if (wokno4.IsPointInRect(pTemp)) {
+                if (wokno4.isPointInRect(pTemp)) {
                     nextActionID = 20;
                     pTemp = pWokno4;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit Straza reden
-                if (rectStraza.IsPointInRect(pTemp)) {
+                if (rectStraza.isPointInRect(pTemp)) {
                     nextActionID = 2;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pStraza);
+                    mainFrame.pathWalker.setNewWay(pStraza);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schild lesen
-                if (rectSchild.IsPointInRect(pTemp)) {
+                if (rectSchild.isPointInRect(pTemp)) {
                     nextActionID = 5;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pSchild);
+                    mainFrame.pathWalker.setNewWay(pSchild);
                     mainFrame.repaint();
                     return;
                 }
 
                 // BildUnten mitnehmen
-                if (rectBildUnten.IsPointInRect(pTemp)) {
+                if (rectBildUnten.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pBildUnten);
+                    mainFrame.pathWalker.setNewWay(pBildUnten);
                     mainFrame.repaint();
                     return;
                 }
 
                 // BildOben mitnehmen
-                if (rectBildOben.IsPointInRect(pTemp)) {
+                if (rectBildOben.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pBildOben);
+                    mainFrame.pathWalker.setNewWay(pBildOben);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Tuer mitnehmen
-                if (durje.IsPointInRect(pTemp)) {
+                if (durje.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pDurje);
+                    mainFrame.pathWalker.setNewWay(pDurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno1 mitnehmen
-                if (wokno1.IsPointInRect(pTemp)) {
+                if (wokno1.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWokno1);
+                    mainFrame.pathWalker.setNewWay(pWokno1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno2 mitnehmen
-                if (wokno2.IsPointInRect(pTemp)) {
+                if (wokno2.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWokno2);
+                    mainFrame.pathWalker.setNewWay(pWokno2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno3 mitnehmen
-                if (wokno3.IsPointInRect(pTemp)) {
+                if (wokno3.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWokno3);
+                    mainFrame.pathWalker.setNewWay(pWokno3);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno4 mitnehmen
-                if (wokno4.IsPointInRect(pTemp)) {
+                if (wokno4.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWokno4);
+                    mainFrame.pathWalker.setNewWay(pWokno4);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangHof.IsPointInRect(pTemp) ||
-                        ausgangUnten.IsPointInRect(pTemp) ||
-                        ausgangMitte.IsPointInRect(pTemp) ||
-                        ausgangOben.IsPointInRect(pTemp)) {
+                if (ausgangHof.isPointInRect(pTemp) ||
+                        ausgangUnten.isPointInRect(pTemp) ||
+                        ausgangMitte.isPointInRect(pTemp) ||
+                        ausgangOben.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -624,8 +614,8 @@ public class Trepjena extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -634,58 +624,58 @@ public class Trepjena extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || rectStraza.IsPointInRect(pTemp) ||
-                    durje.IsPointInRect(pTemp) || wokno1.IsPointInRect(pTemp) ||
-                    wokno2.IsPointInRect(pTemp) || wokno3.IsPointInRect(pTemp) ||
-                    wokno4.IsPointInRect(pTemp) || rectSchild.IsPointInRect(pTemp) ||
-                    rectBildUnten.IsPointInRect(pTemp) || rectBildOben.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || rectStraza.isPointInRect(pTemp) ||
+                    durje.isPointInRect(pTemp) || wokno1.isPointInRect(pTemp) ||
+                    wokno2.isPointInRect(pTemp) || wokno3.isPointInRect(pTemp) ||
+                    wokno4.isPointInRect(pTemp) || rectSchild.isPointInRect(pTemp) ||
+                    rectBildUnten.isPointInRect(pTemp) || rectBildOben.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rectStraza.IsPointInRect(pTemp) ||
-                    durje.IsPointInRect(pTemp) || wokno1.IsPointInRect(pTemp) ||
-                    wokno2.IsPointInRect(pTemp) || wokno3.IsPointInRect(pTemp) ||
-                    wokno4.IsPointInRect(pTemp) || rectSchild.IsPointInRect(pTemp) ||
-                    rectBildUnten.IsPointInRect(pTemp) || rectBildOben.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (rectStraza.isPointInRect(pTemp) ||
+                    durje.isPointInRect(pTemp) || wokno1.isPointInRect(pTemp) ||
+                    wokno2.isPointInRect(pTemp) || wokno3.isPointInRect(pTemp) ||
+                    wokno4.isPointInRect(pTemp) || rectSchild.isPointInRect(pTemp) ||
+                    rectBildUnten.isPointInRect(pTemp) || rectBildOben.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (ausgangHof.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangHof.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (ausgangOben.IsPointInRect(pTemp)) {
-                if (Cursorform != 9) {
+            if (ausgangOben.isPointInRect(pTemp)) {
+                if (cursorShape != 9) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 9;
+                    cursorShape = 9;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -719,7 +709,7 @@ public class Trepjena extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -727,7 +717,7 @@ public class Trepjena extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -735,26 +725,26 @@ public class Trepjena extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -772,7 +762,7 @@ public class Trepjena extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -780,12 +770,12 @@ public class Trepjena extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Straza anschauen
-                KrabatSagt("Trepjena_1", fStraza, 3, 0, 0);
+                krabatSays("Trepjena_1", fStraza, 3, 0, 0);
                 break;
 
             case 2:
                 // Mit Wache reden
-                mainFrame.krabat.SetFacing(fStraza);
+                mainFrame.krabat.setFacing(fStraza);
                 mainFrame.isAnimRunning = true;
                 nextActionID = 300;
                 mainFrame.repaint();
@@ -794,119 +784,119 @@ public class Trepjena extends MainLocation {
             case 3:
                 // An Wache vorbei zur Tuer gehen (versuchen)
                 mainFrame.isAnimRunning = true;
-                mainFrame.krabat.SetFacing(fPoklad);
+                mainFrame.krabat.setFacing(fPoklad);
                 nextActionID = 301;
                 mainFrame.repaint();
                 break;
 
             case 4:
                 // Schild ansehen
-                KrabatSagt("Trepjena_2", fTafla, 3, 0, 0);
+                krabatSays("Trepjena_2", fTafla, 3, 0, 0);
                 break;
 
             case 5:
                 // Schild lesen
-                KrabatSagt("Trepjena_3", fTafla, 3, 0, 0);
+                krabatSays("Trepjena_3", fTafla, 3, 0, 0);
                 break;
 
             case 6:
                 // Zur Kapelle (unten) gehen -> verschlossen
-                KrabatSagt("Trepjena_4", fKapala, 3, 0, 0);
+                krabatSays("Trepjena_4", fKapala, 3, 0, 0);
                 break;
 
             case 7:
                 // BildUnten ansehen
-                KrabatSagt("Trepjena_5", fBildUnten, 3, 0, 0);
+                krabatSays("Trepjena_5", fBildUnten, 3, 0, 0);
                 break;
 
             case 8:
                 // BildOben ansehen
-                KrabatSagt("Trepjena_6", fBildOben, 3, 0, 0);
+                krabatSays("Trepjena_6", fBildOben, 3, 0, 0);
                 break;
 
             case 20:
                 // wokna ansehen
-                KrabatSagt("Trepjena_7", fWokna, 3, 0, 0);
+                krabatSays("Trepjena_7", fWokna, 3, 0, 0);
                 break;
 
             case 50:
                 // BildUnten mitnehmen
-                KrabatSagt("Trepjena_8", fBildUnten, 3, 0, 0);
+                krabatSays("Trepjena_8", fBildUnten, 3, 0, 0);
                 break;
 
             case 55:
                 // BildOben mitnehmen
-                KrabatSagt("Trepjena_9", fBildOben, 3, 0, 0);
+                krabatSays("Trepjena_9", fBildOben, 3, 0, 0);
                 break;
 
             case 60:
                 // Tuer mitnehmen
-                KrabatSagt("Trepjena_10", fKapala, 3, 0, 0);
+                krabatSays("Trepjena_10", fKapala, 3, 0, 0);
                 break;
 
             case 65:
                 // Fenster mitnehmen
-                KrabatSagt("Trepjena_11", fWokna, 3, 0, 0);
+                krabatSays("Trepjena_11", fWokna, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Hdwor
-                NeuesBild(130, locationID);
+                createNewLocation(130, locationID);
                 break;
 
             case 101:
                 // Gehe zu Poklad
-                NeuesBild(132, locationID);
+                createNewLocation(132, locationID);
                 break;
 
             case 102:
                 // Gehe zu Kapala
-                NeuesBild(133, locationID);
+                createNewLocation(133, locationID);
                 break;
 
             case 103:
                 // Gehe zu Saal
-                NeuesBild(140, locationID);
+                createNewLocation(140, locationID);
                 break;
 
             case 150:
                 // durje-ausreden
-                DingAusrede(fKapala);
+                thingExcuse(fKapala);
                 break;
 
             case 155:
                 // wokno-ausreden
-                DingAusrede(fWokna);
+                thingExcuse(fWokna);
                 break;
 
             case 160:
                 // straza-ausreden
-                MPersonAusrede(fStraza);
+                maleExcuse(fStraza);
                 break;
 
             case 165:
                 // tafla-ausreden
-                DingAusrede(fTafla);
+                thingExcuse(fTafla);
                 break;
 
             case 170:
                 // wobrazoben-ausreden
-                DingAusrede(fBildOben);
+                thingExcuse(fBildOben);
                 break;
 
             case 175:
                 // wobrazunten-ausreden
-                DingAusrede(fBildUnten);
+                thingExcuse(fBildUnten);
                 break;
 
             case 200:
                 // kluc auf durje
-                KrabatSagt("Trepjena_12", fKapala, 3, 0, 0);
+                krabatSays("Trepjena_12", fKapala, 3, 0, 0);
                 break;
 
             case 210:
                 // schwere ggst auf tafla.
-                KrabatSagt("Trepjena_13", fTafla, 3, 0, 0);
+                krabatSays("Trepjena_13", fTafla, 3, 0, 0);
                 break;
 
             // Versuch, mit Stra#za zu reden
@@ -915,11 +905,11 @@ public class Trepjena extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        PersonSagt("Trepjena_14", fStraza, 46, 2, 800, talkPoint);
+                        personSays("Trepjena_14", fStraza, 46, 2, 800, talkPoint);
                         break;
 
                     case 1:
-                        PersonSagt("Trepjena_15", fStraza, 46, 2, 800, talkPoint);
+                        personSays("Trepjena_15", fStraza, 46, 2, 800, talkPoint);
                         break;
                 }
                 break;
@@ -931,11 +921,11 @@ public class Trepjena extends MainLocation {
                 weistzurueck = true;
                 switch (zuffZahl2) {
                     case 0:
-                        PersonSagt("Trepjena_16", fStraza, 46, 2, 800, talkPoint);
+                        personSays("Trepjena_16", fStraza, 46, 2, 800, talkPoint);
                         break;
 
                     case 1:
-                        PersonSagt("Trepjena_17", fStraza, 46, 2, 800, talkPoint);
+                        personSays("Trepjena_17", fStraza, 46, 2, 800, talkPoint);
                         break;
                 }
                 break;

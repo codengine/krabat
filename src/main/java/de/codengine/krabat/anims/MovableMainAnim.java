@@ -15,35 +15,35 @@ public abstract class MovableMainAnim extends MainAnim {
     protected final int height;
     protected final float scaleFactor;
     // Grundlegende Variablen
-    protected float xps;
-    protected float yps;               // genaue Position der Fuesse fuer Offsetberechnung
-    protected float txps;
-    protected float typs;             // temporaere Variablen fuer genaue Position
-    protected int anim_pos = 0;             // Animationsbild
-    public boolean clearanimpos = true;  // Bewirkt Standsprite nach Laufen
+    protected float posX;
+    protected float posY;               // genaue Position der Fuesse fuer Offsetberechnung
+    protected float tempPosX;
+    protected float tempPosY;             // temporaere Variablen fuer genaue Position
+    protected int animPos = 0;             // Animationsbild
+    public boolean resetAnimPos = true;  // Bewirkt Standsprite nach Laufen
 
     // Variablen fuer Bewegung und Richtung
-    protected GenericPoint walkto = new GenericPoint(0, 0);                 // Zielpunkt fuer Move()
-    protected GenericPoint Twalkto = new GenericPoint(0, 0);                // Zielpunkt, der in MoveTo() gesetzt und von Move uebernommen wird
+    protected GenericPoint walkTo = new GenericPoint(0, 0);                 // Zielpunkt fuer move()
+    protected GenericPoint tmpWalkTo = new GenericPoint(0, 0);                // Zielpunkt, der in moveTo() gesetzt und von Move uebernommen wird
     // hier ist das Problem der Threadsynchronisierung !!!!!!!
     protected DirectionX directionX = RIGHT;          // Laufrichtung x
-    protected DirectionX tDirectionX = RIGHT;
+    protected DirectionX tmpDirectionX = RIGHT;
 
     protected DirectionY directionY = DOWN;          // Laufrichtung y
-    protected DirectionY tDirectionY = DOWN;
+    protected DirectionY tmpDirectionY = DOWN;
 
-    protected boolean horizontal = true;    // Animationen in x oder y Richtung
-    protected boolean Thorizontal = true; // Animationen in x oder y Richtung
+    protected boolean isAnimHorizontal = true;    // Animationen in x oder y Richtung
+    protected boolean tmpIsAnimHorizontal = true; // Animationen in x oder y Richtung
 
-    public boolean upsidedown = false;   // Beim Berg - und Tallauf GenericImage wenden
-    public int minx;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
+    public boolean upsideDown = false;   // Beim Berg - und Tallauf GenericImage wenden
+    public int minX;                      // "Falschherum" - X - Koordinate, damit Scaling wieder stimmt...
     // Variablen fuer Zooming
-    public int maxx;                      // X - Koordinate, bis zu der nicht gezoomt wird
+    public int maxX;                      // X - Koordinate, bis zu der nicht gezoomt wird
     // (Vordergrund) bildabhaengig
-    public float zoomf;                   // gibt an, wie stark gezoomt wird, wenn Figur in
+    public float zoomFactor;                   // gibt an, wie stark gezoomt wird, wenn Figur in
     // den Hintergrund geht (bildabhaengig)
 
-    public int defScale;                  // definiert maximale Groesse von Krabat bei x > maxx
+    public int defaultScale;                  // definiert maximale Groesse von Krabat bei x > maxx
 
     public MovableMainAnim(Start caller, int width, int height) {
         super(caller);
@@ -52,188 +52,181 @@ public abstract class MovableMainAnim extends MainAnim {
         this.scaleFactor = (float) width / height;
     }
 
-    protected abstract int getLeftPos(int pox, int poy);
+    protected abstract int getLeftPos(int x, int y);
 
-    protected abstract int getUpPos(int poy);
+    protected abstract int getUpPos(int y);
 
-    protected abstract int getScale(int poy);
+    protected abstract int getScale(int y);
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
-    public BorderRect getRect() {
-        int x = getLeftPos((int) xps, (int) yps);
-        int y = getUpPos((int) yps);
-        int xd = 2 * ((int) xps - x) + x;
-        int yd = (int) yps;
+    public BorderRect getBoundingBox() {
+        int x = getLeftPos((int) posX, (int) posY);
+        int y = getUpPos((int) posY);
+        int xd = 2 * ((int) posX - x) + x;
+        int yd = (int) posY;
         return new BorderRect(x, y, xd, yd);
     }
 
-    protected int calcLeftPosDefault(int pox, int poy) {
+    protected int calcLeftPosDefault(int x, int y) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        int scaleY = getScale(poy);
-        return pox - (width - scaleY / 2) / 2;
+        int scaleY = getScale(y);
+        return x - (width - scaleY / 2) / 2;
     }
 
-    protected int calcLeftPosDefault(int pox, int poy, float scaleFactor) {
+    protected int calcLeftPosDefault(int x, int y, float scaleFactor) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        float fScaleY = getScale(poy) * scaleFactor;
-        return pox - (width - (int) fScaleY) / 2;
+        float scaleY = getScale(y) * scaleFactor;
+        return x - (width - (int) scaleY) / 2;
     }
 
-    protected int calcUpPosDefault(int poy) {
+    protected int calcUpPosDefault(int y) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        int fScaleY = getScale(poy);
-        return poy - height + fScaleY;
+        int scaleY = getScale(y);
+        return y - height + scaleY;
     }
 
-    protected int calcScaleDefault(int poy) {
-        return calcScaleDefault(poy, 0);
+    protected int calcScaleDefault(int y) {
+        return calcScaleDefault(y, 0);
     }
 
-    protected int calcScaleDefault(int poy, int defScale) {
+    protected int calcScaleDefault(int y, int defaultScale) {
         // Ermittlung der Hoehendifferenz beim Zooming
-        if (!upsidedown) {
+        if (!upsideDown) {
             // normale Berechnung
-            float helper = (maxx - poy) / zoomf;
+            float helper = (maxX - y) / zoomFactor;
             if (helper < 0) {
                 helper = 0;
             }
-            helper += defScale;
+            helper += defaultScale;
             return (int) helper;
         } else {
             // Berechnung bei "upsidedown" - Berg/Tallauf
-            float help2 = (poy - minx) / zoomf;
+            float help2 = (y - minX) / zoomFactor;
             if (help2 < 0) {
                 help2 = 0;
             }
-            help2 += defScale;
+            help2 += defaultScale;
             return (int) help2;
         }
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
-    protected void krabatClipDefault(GenericDrawingContext g, int xx, int yy) {
-        krabatClipDefault(g, xx, yy, 1);
+    protected void krabatClipDefault(GenericDrawingContext drawingContext, int x, int y) {
+        krabatClipDefault(drawingContext, x, y, 1);
     }
 
     // Clipping - Region vor Zeichnen von Krabat setzen
-    protected void krabatClipDefault(GenericDrawingContext g, int xx, int yy, int ydFactor) {
+    protected void krabatClipDefault(GenericDrawingContext drawingContext, int xx, int yy, int verticalDisplacementFactor) {
         // Links - oben - Korrdinaten ermitteln
         int x = getLeftPos(xx, yy);
         int y = getUpPos(yy);
 
         // Breite und Hoehe ermitteln
         int xd = 2 * (xx - x);
-        int yd = ydFactor * (yy - y);
-        g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
+        int yd = verticalDisplacementFactor * (yy - y);
+        drawingContext.setClip(x, y, xd, yd);
     }
 
-    protected boolean calcHorizontal(GenericPoint aim, int maxAngle) {
+    protected boolean calcHorizontal(GenericPoint targetPoint, int maxAngle) {
         // Horizontal oder verikal laufen ?
-        if (aim.x != (int) xps) {
+        if (targetPoint.x != (int) posX) {
             // Winkel berechnen, den Krabat laufen soll
-            double yangle = Math.abs(aim.y - (int) yps);
-            double xangle = Math.abs(aim.x - (int) xps);
-            double angle = Math.atan(yangle / xangle);
+            double yAngle = Math.abs(targetPoint.y - (int) posY);
+            double xAngle = Math.abs(targetPoint.x - (int) posX);
+            double angle = Math.atan(yAngle / xAngle);
             return !(angle > maxAngle * Math.PI / 180);
         }
 
         return false;
     }
 
-    protected void verschiebeXdefault(int dist, int slowX) {
+    protected void moveXdefault(int distance, int slowdownFactor) {
         // Skalierungsfaktor holen
-        int scale = getScale((int) yps);
+        int scale = getScale((int) posY);
 
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        float horizDist = dist - (float) scale / slowX;
-        if (horizDist < 1) {
-            horizDist = 1;
+        float horizontalDistance = distance - (float) scale / slowdownFactor;
+        if (horizontalDistance < 1) {
+            horizontalDistance = 1;
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(xps - walkto.x) / horizDist;
+        float z = Math.abs(posX - walkTo.x) / horizontalDistance;
 
-        typs = yps;
+        tempPosY = posY;
         if (z != 0) {
-            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+            tempPosY += directionY.getVal() * (Math.abs(posY - walkTo.y) / z);
         }
 
-        txps = xps + directionX.getVal() * horizDist;
+        tempPosX = posX + directionX.getVal() * horizontalDistance;
     }
 
     // Horizontal - Positions - Verschieberoutine
-    protected void verschiebeXdefault(float horizDist) {
+    protected void moveXdefault(float horizontalDistance) {
         // Zooming - Faktor beruecksichtigen in x - Richtung
-        if (horizDist < 1) {
-            horizDist = 1;
+        if (horizontalDistance < 1) {
+            horizontalDistance = 1;
         }
 
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(xps - walkto.x) / horizDist;
+        float z = Math.abs(posX - walkTo.x) / horizontalDistance;
 
-        typs = yps;
+        tempPosY = posY;
         if (z != 0) {
-            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+            tempPosY += directionY.getVal() * (Math.abs(posY - walkTo.y) / z);
         }
 
-        txps = xps + directionX.getVal() * horizDist;
+        tempPosX = posX + directionX.getVal() * horizontalDistance;
     }
 
     // Vertikal - Positions - Verschieberoutine
-    protected void verschiebeYdefault(int dist, int slowY) {
+    protected void moveYdefault(int distance, int slowdownFactor) {
         // Skalierungsfaktor holen
-        int scale = getScale((int) yps);
+        int scale = getScale((int) posY);
 
         // Zooming - Faktor beruecksichtigen in y-Richtung
-        float vertDist = dist - (float) scale / slowY;
-        if (vertDist < 1) {
-            vertDist = 1;
+        float verticalDistance = distance - (float) scale / slowdownFactor;
+        if (verticalDistance < 1) {
+            verticalDistance = 1;
             // hier kann noch eine Entscheidungsroutine hin, die je nach Animationsphase
             // und vert_distance ein Pixel erlaubt oder nicht
         }
 
-        verschiebeY(vertDist);
+        moveY(verticalDistance);
     }
 
-    protected void verschiebeY(float vertDist) {
+    protected void moveY(float verticalDistance) {
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vertDist;
+        float z = Math.abs(posY - walkTo.y) / verticalDistance;
 
-        txps = xps;
+        tempPosX = posX;
         if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
+            tempPosX += directionX.getVal() * (Math.abs(posX - walkTo.x) / z);
         }
 
-        typs = yps + directionY.getVal() * vertDist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        tempPosY = posY + directionY.getVal() * verticalDistance;
     }
 
     // Krabat an bestimmte Position setzen incl richtigem Zoomfaktor (Fuss-Koordinaten angegeben)
-    public void setPos(GenericPoint aim) {
-        xps = aim.x;        // Float - Variablen initialisieren
-        yps = aim.y;
+    public void setPos(GenericPoint targetPoint) {
+        posX = targetPoint.x;        // Float - Variablen initialisieren
+        posY = targetPoint.y;
     }
 
     // Krabats Position ermitteln incl richtigem Zoomfaktor (Ausgabe der Fuss-Koordinaten)
     public GenericPoint getPos() {
-        //System.out.println(" Aktuelle Pos : "+pos_x+" "+pos_y);
-        return new GenericPoint((int) xps, (int) yps);
+        return new GenericPoint((int) posX, (int) posY);
     }
 
-    protected void moveToDefault(GenericPoint aim) {
+    protected void moveToDefault(GenericPoint targetPoint) {
         // Variablen an Move uebergeben
-        Twalkto = aim;
+        tmpWalkTo = targetPoint;
 
         // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
+        tmpDirectionX = targetPoint.x > (int) posX ? RIGHT : LEFT;
+        tmpDirectionY = targetPoint.y > (int) posY ? DOWN : UP;
     }
 }

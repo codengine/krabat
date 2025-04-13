@@ -75,7 +75,7 @@ public class Merchant extends MainAnim {
         pred_talk_head = new GenericImage[8];
         pred_talk_body = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderwaithead = MAX_VERHINDERWAITHEAD;
         Verhinderwaitbody = MAX_VERHINDERWAITBODY;
@@ -86,7 +86,7 @@ public class Merchant extends MainAnim {
         Verhindertalkbody = MAX_VERHINDERTALKBODY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         pred_wait_head[0] = getPicture("gfx-dd/starewiki/khaendler-h1.png");
         pred_wait_head[1] = getPicture("gfx-dd/starewiki/khaendler-h1a.png");
         pred_wait_head[2] = getPicture("gfx-dd/starewiki/khaendler-h2.png");

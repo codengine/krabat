@@ -27,10 +27,9 @@ import org.slf4j.LoggerFactory;
 
 public class ImageHelperStatic {
     private static final Logger log = LoggerFactory.getLogger(ImageHelperStatic.class);
-    private final int char_height = 21;  // Hoehe eines Zeichens in Pixeln
-    // private GenericImage Fontbild;
-    private int[][] ftable;
-    private final GenericImage Error;
+    private final int charHeight = 21;  // Hoehe eines Zeichens in Pixeln
+    private int[][] fontTable;
+    private final GenericImage error;
     private static final int[] SPACEBITS = {0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0,
@@ -59,376 +58,372 @@ public class ImageHelperStatic {
 
     // Konstruktor
     public ImageHelperStatic() {
-        Error = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource(8, char_height, SPACEBITS, 0, 8));
+        error = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource(8, charHeight, SPACEBITS, 0, 8));
 
         fontdata = new byte[255][];
     }
 
-    public void CutFont(GenericImage[] allFont) {
-        // System.out.print ("Cutting Font");
-        InitCharData();
+    public void cutFont(GenericImage[] allFont) {
+        initCharData();
         for (int i = 1; i < MAXGR; i++) {
-            if (ftable[i][0] == 0) {
-                allFont[i] = Error;
+            if (fontTable[i][0] == 0) {
+                allFont[i] = error;
             } else {
                 allFont[i] = cutChar(i);
                 GenericToolkit.getDefaultToolkit().prepareImage(allFont[i]);
                 int stat = 0;
                 while ((stat & GenericToolkitImpl.ALLBITS) == 0) {
                     stat = GenericToolkit.getDefaultToolkit().checkImage(allFont[i]);
-                    // update (stat);
-                    // System.out.println("CheckImage returned: " + stat);
                 }
             }
-            // System.out.println (i);
         }
     }
 
     // Zuordnung aller ASCII-Zeichen einem Bildausschnitt
-    private void InitCharData() {
-        ftable = new int[MAXGR][3];
+    private void initCharData() {
+        fontTable = new int[MAXGR][3];
 
         for (int i = 0; i < MAXGR; i++) {
-            ftable[i][0] = 0;
-            ftable[i][1] = 0;
-            ftable[i][2] = 0;
+            fontTable[i][0] = 0;
+            fontTable[i][1] = 0;
+            fontTable[i][2] = 0;
         }
 
         // Li.Ob. X         Li.Ob. Y           Breite
-        ftable[97][0] = 12;
-        ftable[97][1] = 6;
-        ftable[97][2] = 12;  // a
-        ftable[98][0] = 30;
-        ftable[98][1] = 6;
-        ftable[98][2] = 12;  // b
-        ftable[99][0] = 49;
-        ftable[99][1] = 6;
-        ftable[99][2] = 10;  // c
-        ftable[100][0] = 67;
-        ftable[100][1] = 6;
-        ftable[100][2] = 13; // d
-        ftable[101][0] = 86;
-        ftable[101][1] = 6;
-        ftable[101][2] = 11; // e
-        ftable[102][0] = 104;
-        ftable[102][1] = 6;
-        ftable[102][2] = 10; // f
-        ftable[103][0] = 122;
-        ftable[103][1] = 10;
-        ftable[103][2] = 11; // g* 4 Pix unten
-        ftable[104][0] = 140;
-        ftable[104][1] = 6;
-        ftable[104][2] = 12; // h
-        ftable[105][0] = 159;
-        ftable[105][1] = 6;
-        ftable[105][2] = 8; // i
-        ftable[106][0] = 176;
-        ftable[106][1] = 10;
-        ftable[106][2] = 9; // j* 4
-        ftable[107][0] = 196;
-        ftable[107][1] = 6;
-        ftable[107][2] = 13; // k
-        ftable[108][0] = 214;
-        ftable[108][1] = 6;
-        ftable[108][2] = 8; // l
-        ftable[109][0] = 233;
-        ftable[109][1] = 6;
-        ftable[109][2] = 18; // m
-        ftable[110][0] = 270;
-        ftable[110][1] = 6;
-        ftable[110][2] = 13; // n
-        ftable[111][0] = 288;
-        ftable[111][1] = 6;
-        ftable[111][2] = 11; // o
-        ftable[112][0] = 12;
-        ftable[112][1] = 31;
-        ftable[112][2] = 12; // p* 4
-        ftable[113][0] = 30;
-        ftable[113][1] = 31;
-        ftable[113][2] = 13; // q* 4
-        ftable[114][0] = 49;
-        ftable[114][1] = 27;
-        ftable[114][2] = 11; // r
-        ftable[115][0] = 66;
-        ftable[115][1] = 27;
-        ftable[115][2] = 10; // s
-        ftable[116][0] = 86;
-        ftable[116][1] = 27;
-        ftable[116][2] = 9; // t
-        ftable[117][0] = 104;
-        ftable[117][1] = 27;
-        ftable[117][2] = 13; // u
-        ftable[118][0] = 122;
-        ftable[118][1] = 31;
-        ftable[118][2] = 12; // v
-        ftable[119][0] = 140;
-        ftable[119][1] = 27;
-        ftable[119][2] = 16; // w
-        ftable[120][0] = 159;
-        ftable[120][1] = 27;
-        ftable[120][2] = 12; // x
-        ftable[121][0] = 177;
-        ftable[121][1] = 31;
-        ftable[121][2] = 12; // y* 4
-        ftable[122][0] = 196;
-        ftable[122][1] = 27;
-        ftable[122][2] = 11; // z
+        fontTable[97][0] = 12;
+        fontTable[97][1] = 6;
+        fontTable[97][2] = 12;  // a
+        fontTable[98][0] = 30;
+        fontTable[98][1] = 6;
+        fontTable[98][2] = 12;  // b
+        fontTable[99][0] = 49;
+        fontTable[99][1] = 6;
+        fontTable[99][2] = 10;  // c
+        fontTable[100][0] = 67;
+        fontTable[100][1] = 6;
+        fontTable[100][2] = 13; // d
+        fontTable[101][0] = 86;
+        fontTable[101][1] = 6;
+        fontTable[101][2] = 11; // e
+        fontTable[102][0] = 104;
+        fontTable[102][1] = 6;
+        fontTable[102][2] = 10; // f
+        fontTable[103][0] = 122;
+        fontTable[103][1] = 10;
+        fontTable[103][2] = 11; // g* 4 Pix unten
+        fontTable[104][0] = 140;
+        fontTable[104][1] = 6;
+        fontTable[104][2] = 12; // h
+        fontTable[105][0] = 159;
+        fontTable[105][1] = 6;
+        fontTable[105][2] = 8; // i
+        fontTable[106][0] = 176;
+        fontTable[106][1] = 10;
+        fontTable[106][2] = 9; // j* 4
+        fontTable[107][0] = 196;
+        fontTable[107][1] = 6;
+        fontTable[107][2] = 13; // k
+        fontTable[108][0] = 214;
+        fontTable[108][1] = 6;
+        fontTable[108][2] = 8; // l
+        fontTable[109][0] = 233;
+        fontTable[109][1] = 6;
+        fontTable[109][2] = 18; // m
+        fontTable[110][0] = 270;
+        fontTable[110][1] = 6;
+        fontTable[110][2] = 13; // n
+        fontTable[111][0] = 288;
+        fontTable[111][1] = 6;
+        fontTable[111][2] = 11; // o
+        fontTable[112][0] = 12;
+        fontTable[112][1] = 31;
+        fontTable[112][2] = 12; // p* 4
+        fontTable[113][0] = 30;
+        fontTable[113][1] = 31;
+        fontTable[113][2] = 13; // q* 4
+        fontTable[114][0] = 49;
+        fontTable[114][1] = 27;
+        fontTable[114][2] = 11; // r
+        fontTable[115][0] = 66;
+        fontTable[115][1] = 27;
+        fontTable[115][2] = 10; // s
+        fontTable[116][0] = 86;
+        fontTable[116][1] = 27;
+        fontTable[116][2] = 9; // t
+        fontTable[117][0] = 104;
+        fontTable[117][1] = 27;
+        fontTable[117][2] = 13; // u
+        fontTable[118][0] = 122;
+        fontTable[118][1] = 31;
+        fontTable[118][2] = 12; // v
+        fontTable[119][0] = 140;
+        fontTable[119][1] = 27;
+        fontTable[119][2] = 16; // w
+        fontTable[120][0] = 159;
+        fontTable[120][1] = 27;
+        fontTable[120][2] = 12; // x
+        fontTable[121][0] = 177;
+        fontTable[121][1] = 31;
+        fontTable[121][2] = 12; // y* 4
+        fontTable[122][0] = 196;
+        fontTable[122][1] = 27;
+        fontTable[122][2] = 11; // z
 
-        ftable[65][0] = 159;
-        ftable[65][1] = 50;
-        ftable[65][2] = 17; // A
-        ftable[66][0] = 179;
-        ftable[66][1] = 56;
-        ftable[66][2] = 15; // B
-        ftable[67][0] = 197;
-        ftable[67][1] = 50;
-        ftable[67][2] = 15; // C
-        ftable[68][0] = 214;
-        ftable[68][1] = 50;
-        ftable[68][2] = 16; // D
-        ftable[69][0] = 233;
-        ftable[69][1] = 50;
-        ftable[69][2] = 16; // E
-        ftable[70][0] = 251;
-        ftable[70][1] = 50;
-        ftable[70][2] = 14; // F
-        ftable[71][0] = 271;
-        ftable[71][1] = 50;
-        ftable[71][2] = 17; // G
-        ftable[72][0] = 288;
-        ftable[72][1] = 50;
-        ftable[72][2] = 18; // H
-        ftable[73][0] = 12;
-        ftable[73][1] = 74;
-        ftable[73][2] = 10; // I
-        ftable[74][0] = 30;
-        ftable[74][1] = 76;
-        ftable[74][2] = 12; // J* 2
-        ftable[75][0] = 49;
-        ftable[75][1] = 74;
-        ftable[75][2] = 19; // K
-        ftable[76][0] = 69;
-        ftable[76][1] = 74;
-        ftable[76][2] = 15; // L
-        ftable[77][0] = 86;
-        ftable[77][1] = 74;
-        ftable[77][2] = 22; // M
-        ftable[78][0] = 122;
-        ftable[78][1] = 74;
-        ftable[78][2] = 18; // N
-        ftable[79][0] = 140;
-        ftable[79][1] = 74;
-        ftable[79][2] = 18; // O
-        ftable[80][0] = 159;
-        ftable[80][1] = 74;
-        ftable[80][2] = 14; // P
-        ftable[81][0] = 177;
-        ftable[81][1] = 78;
-        ftable[81][2] = 18; // Q* 4
-        ftable[82][0] = 196;
-        ftable[82][1] = 74;
-        ftable[82][2] = 18; // R
-        ftable[83][0] = 214;
-        ftable[83][1] = 74;
-        ftable[83][2] = 13; // S
-        ftable[84][0] = 234;
-        ftable[84][1] = 74;
-        ftable[84][2] = 14; // T
-        ftable[85][0] = 251;
-        ftable[85][1] = 74;
-        ftable[85][2] = 18; // U
-        ftable[86][0] = 270;
-        ftable[86][1] = 74;
-        ftable[86][2] = 17; // V
-        ftable[87][0] = 288;
-        ftable[87][1] = 74;
-        ftable[87][2] = 23; // W
-        ftable[88][0] = 12;
-        ftable[88][1] = 97;
-        ftable[88][2] = 17; // X
-        ftable[89][0] = 30;
-        ftable[89][1] = 97;
-        ftable[89][2] = 17; // Y
-        ftable[90][0] = 49;
-        ftable[90][1] = 97;
-        ftable[90][2] = 15; // Z
+        fontTable[65][0] = 159;
+        fontTable[65][1] = 50;
+        fontTable[65][2] = 17; // A
+        fontTable[66][0] = 179;
+        fontTable[66][1] = 56;
+        fontTable[66][2] = 15; // B
+        fontTable[67][0] = 197;
+        fontTable[67][1] = 50;
+        fontTable[67][2] = 15; // C
+        fontTable[68][0] = 214;
+        fontTable[68][1] = 50;
+        fontTable[68][2] = 16; // D
+        fontTable[69][0] = 233;
+        fontTable[69][1] = 50;
+        fontTable[69][2] = 16; // E
+        fontTable[70][0] = 251;
+        fontTable[70][1] = 50;
+        fontTable[70][2] = 14; // F
+        fontTable[71][0] = 271;
+        fontTable[71][1] = 50;
+        fontTable[71][2] = 17; // G
+        fontTable[72][0] = 288;
+        fontTable[72][1] = 50;
+        fontTable[72][2] = 18; // H
+        fontTable[73][0] = 12;
+        fontTable[73][1] = 74;
+        fontTable[73][2] = 10; // I
+        fontTable[74][0] = 30;
+        fontTable[74][1] = 76;
+        fontTable[74][2] = 12; // J* 2
+        fontTable[75][0] = 49;
+        fontTable[75][1] = 74;
+        fontTable[75][2] = 19; // K
+        fontTable[76][0] = 69;
+        fontTable[76][1] = 74;
+        fontTable[76][2] = 15; // L
+        fontTable[77][0] = 86;
+        fontTable[77][1] = 74;
+        fontTable[77][2] = 22; // M
+        fontTable[78][0] = 122;
+        fontTable[78][1] = 74;
+        fontTable[78][2] = 18; // N
+        fontTable[79][0] = 140;
+        fontTable[79][1] = 74;
+        fontTable[79][2] = 18; // O
+        fontTable[80][0] = 159;
+        fontTable[80][1] = 74;
+        fontTable[80][2] = 14; // P
+        fontTable[81][0] = 177;
+        fontTable[81][1] = 78;
+        fontTable[81][2] = 18; // Q* 4
+        fontTable[82][0] = 196;
+        fontTable[82][1] = 74;
+        fontTable[82][2] = 18; // R
+        fontTable[83][0] = 214;
+        fontTable[83][1] = 74;
+        fontTable[83][2] = 13; // S
+        fontTable[84][0] = 234;
+        fontTable[84][1] = 74;
+        fontTable[84][2] = 14; // T
+        fontTable[85][0] = 251;
+        fontTable[85][1] = 74;
+        fontTable[85][2] = 18; // U
+        fontTable[86][0] = 270;
+        fontTable[86][1] = 74;
+        fontTable[86][2] = 17; // V
+        fontTable[87][0] = 288;
+        fontTable[87][1] = 74;
+        fontTable[87][2] = 23; // W
+        fontTable[88][0] = 12;
+        fontTable[88][1] = 97;
+        fontTable[88][2] = 17; // X
+        fontTable[89][0] = 30;
+        fontTable[89][1] = 97;
+        fontTable[89][2] = 17; // Y
+        fontTable[90][0] = 49;
+        fontTable[90][1] = 97;
+        fontTable[90][2] = 15; // Z
 
         // Deutsche Umlaute
-        ftable[219][0] = 214;
-        ftable[219][1] = 27;
-        ftable[219][2] = 12; // ?
-        ftable[220][0] = 233;
-        ftable[220][1] = 27;
-        ftable[220][2] = 13; // ?
-        ftable[221][0] = 251;
-        ftable[221][1] = 27;
-        ftable[221][2] = 11; // ?
-        ftable[222][0] = 270;
-        ftable[222][1] = 27;
-        ftable[222][2] = 12; // ?
-        ftable[223][0] = 67;
-        ftable[223][1] = 97;
-        ftable[223][2] = 16; // ?
-        ftable[224][0] = 86;
-        ftable[224][1] = 97;
-        ftable[224][2] = 18; // ?
-        ftable[225][0] = 104;
-        ftable[225][1] = 97;
-        ftable[225][2] = 18; // ?
-        ftable[226][0] = 122;
-        ftable[226][1] = 97;
-        ftable[226][2] = 13; // ?
+        fontTable[219][0] = 214;
+        fontTable[219][1] = 27;
+        fontTable[219][2] = 12; // ?
+        fontTable[220][0] = 233;
+        fontTable[220][1] = 27;
+        fontTable[220][2] = 13; // ?
+        fontTable[221][0] = 251;
+        fontTable[221][1] = 27;
+        fontTable[221][2] = 11; // ?
+        fontTable[222][0] = 270;
+        fontTable[222][1] = 27;
+        fontTable[222][2] = 12; // ?
+        fontTable[223][0] = 67;
+        fontTable[223][1] = 97;
+        fontTable[223][2] = 16; // ?
+        fontTable[224][0] = 86;
+        fontTable[224][1] = 97;
+        fontTable[224][2] = 18; // ?
+        fontTable[225][0] = 104;
+        fontTable[225][1] = 97;
+        fontTable[225][2] = 18; // ?
+        fontTable[226][0] = 122;
+        fontTable[226][1] = 97;
+        fontTable[226][2] = 13; // ?
 
         // Zahlen:
-        ftable[48][0] = 177;
-        ftable[48][1] = 118;
-        ftable[48][2] = 11; // 0
-        ftable[49][0] = 13;
-        ftable[49][1] = 118;
-        ftable[49][2] = 10; // 1
-        ftable[50][0] = 30;
-        ftable[50][1] = 118;
-        ftable[50][2] = 12; // 2
-        ftable[51][0] = 49;
-        ftable[51][1] = 118;
-        ftable[51][2] = 11; // 3
-        ftable[52][0] = 67;
-        ftable[52][1] = 118;
-        ftable[52][2] = 12; // 4
-        ftable[53][0] = 86;
-        ftable[53][1] = 118;
-        ftable[53][2] = 11; // 5
-        ftable[54][0] = 104;
-        ftable[54][1] = 118;
-        ftable[54][2] = 11; // 6
-        ftable[55][0] = 122;
-        ftable[55][1] = 118;
-        ftable[55][2] = 12; // 7
-        ftable[56][0] = 140;
-        ftable[56][1] = 118;
-        ftable[56][2] = 11; // 8
-        ftable[57][0] = 159;
-        ftable[57][1] = 118;
-        ftable[57][2] = 11; // 9
+        fontTable[48][0] = 177;
+        fontTable[48][1] = 118;
+        fontTable[48][2] = 11; // 0
+        fontTable[49][0] = 13;
+        fontTable[49][1] = 118;
+        fontTable[49][2] = 10; // 1
+        fontTable[50][0] = 30;
+        fontTable[50][1] = 118;
+        fontTable[50][2] = 12; // 2
+        fontTable[51][0] = 49;
+        fontTable[51][1] = 118;
+        fontTable[51][2] = 11; // 3
+        fontTable[52][0] = 67;
+        fontTable[52][1] = 118;
+        fontTable[52][2] = 12; // 4
+        fontTable[53][0] = 86;
+        fontTable[53][1] = 118;
+        fontTable[53][2] = 11; // 5
+        fontTable[54][0] = 104;
+        fontTable[54][1] = 118;
+        fontTable[54][2] = 11; // 6
+        fontTable[55][0] = 122;
+        fontTable[55][1] = 118;
+        fontTable[55][2] = 12; // 7
+        fontTable[56][0] = 140;
+        fontTable[56][1] = 118;
+        fontTable[56][2] = 11; // 8
+        fontTable[57][0] = 159;
+        fontTable[57][1] = 118;
+        fontTable[57][2] = 11; // 9
 
         // kleine sorbische Buchstaben:
-        ftable[200][0] = 288;
-        ftable[200][1] = 27;
-        ftable[200][2] = 10; // 'c
-        ftable[201][0] = 13;
-        ftable[201][1] = 53;
-        ftable[201][2] = 10; // ^c
-        ftable[202][0] = 30;
-        ftable[202][1] = 53;
-        ftable[202][2] = 11; // 'z
-        ftable[203][0] = 49;
-        ftable[203][1] = 50;
-        ftable[203][2] = 11; // ^z
-        ftable[204][0] = 67;
-        ftable[204][1] = 50;
-        ftable[204][2] = 11; // ^e
-        ftable[205][0] = 85;
-        ftable[205][1] = 50;
-        ftable[205][2] = 10; // 'l
-        ftable[206][0] = 105;
-        ftable[206][1] = 50;
-        ftable[206][2] = 13; // 'n
-        ftable[207][0] = 124;
-        ftable[207][1] = 53;
-        ftable[207][2] = 11; // ^r
-        ftable[208][0] = 141;
-        ftable[208][1] = 50;
-        ftable[208][2] = 10; // ^s
-        ftable[209][0] = 255;
-        ftable[209][1] = 6;
-        ftable[209][2] = 11; // 'o
+        fontTable[200][0] = 288;
+        fontTable[200][1] = 27;
+        fontTable[200][2] = 10; // 'c
+        fontTable[201][0] = 13;
+        fontTable[201][1] = 53;
+        fontTable[201][2] = 10; // ^c
+        fontTable[202][0] = 30;
+        fontTable[202][1] = 53;
+        fontTable[202][2] = 11; // 'z
+        fontTable[203][0] = 49;
+        fontTable[203][1] = 50;
+        fontTable[203][2] = 11; // ^z
+        fontTable[204][0] = 67;
+        fontTable[204][1] = 50;
+        fontTable[204][2] = 11; // ^e
+        fontTable[205][0] = 85;
+        fontTable[205][1] = 50;
+        fontTable[205][2] = 10; // 'l
+        fontTable[206][0] = 105;
+        fontTable[206][1] = 50;
+        fontTable[206][2] = 13; // 'n
+        fontTable[207][0] = 124;
+        fontTable[207][1] = 53;
+        fontTable[207][2] = 11; // ^r
+        fontTable[208][0] = 141;
+        fontTable[208][1] = 50;
+        fontTable[208][2] = 10; // ^s
+        fontTable[209][0] = 255;
+        fontTable[209][1] = 6;
+        fontTable[209][2] = 11; // 'o
 
         // grosse sorbische Buchstaben:
-        ftable[210][0] = 141;
-        ftable[210][1] = 97;
-        ftable[210][2] = 15; // 'C
-        ftable[211][0] = 160;
-        ftable[211][1] = 97;
-        ftable[211][2] = 15; // ^C
-        ftable[212][0] = 196;
-        ftable[212][1] = 97;
-        ftable[212][2] = 15; // 'Z
-        ftable[213][0] = 173;
-        ftable[213][1] = 169;
-        ftable[213][2] = 15; // ^Z
-        ftable[214][0] = 214;
-        ftable[214][1] = 97;
-        ftable[214][2] = 16; // ^E
-        ftable[215][0] = 233;
-        ftable[215][1] = 97;
-        ftable[215][2] = 15; // 'L
-        ftable[216][0] = 251;
-        ftable[216][1] = 97;
-        ftable[216][2] = 18; // 'N
-        ftable[217][0] = 270;
-        ftable[217][1] = 97;
-        ftable[217][2] = 18; // ^R
-        ftable[218][0] = 288;
-        ftable[218][1] = 97;
-        ftable[218][2] = 13; // ^S
-        ftable[227][0] = 26;
-        ftable[227][1] = 163;
-        ftable[227][2] = 18; // 'O
+        fontTable[210][0] = 141;
+        fontTable[210][1] = 97;
+        fontTable[210][2] = 15; // 'C
+        fontTable[211][0] = 160;
+        fontTable[211][1] = 97;
+        fontTable[211][2] = 15; // ^C
+        fontTable[212][0] = 196;
+        fontTable[212][1] = 97;
+        fontTable[212][2] = 15; // 'Z
+        fontTable[213][0] = 173;
+        fontTable[213][1] = 169;
+        fontTable[213][2] = 15; // ^Z
+        fontTable[214][0] = 214;
+        fontTable[214][1] = 97;
+        fontTable[214][2] = 16; // ^E
+        fontTable[215][0] = 233;
+        fontTable[215][1] = 97;
+        fontTable[215][2] = 15; // 'L
+        fontTable[216][0] = 251;
+        fontTable[216][1] = 97;
+        fontTable[216][2] = 18; // 'N
+        fontTable[217][0] = 270;
+        fontTable[217][1] = 97;
+        fontTable[217][2] = 18; // ^R
+        fontTable[218][0] = 288;
+        fontTable[218][1] = 97;
+        fontTable[218][2] = 13; // ^S
+        fontTable[227][0] = 26;
+        fontTable[227][1] = 163;
+        fontTable[227][2] = 18; // 'O
 
         // Sonderzeichen:
-        ftable[33][0] = 198;
-        ftable[33][1] = 118;
-        ftable[33][2] = 6;  // !
-        ftable[63][0] = 215;
-        ftable[63][1] = 118;
-        ftable[63][2] = 10;  // ?
-        ftable[44][0] = 12;
-        ftable[44][1] = 142;
-        ftable[44][2] = 7;  // ,  * 3
-        ftable[46][0] = 234;
-        ftable[46][1] = 118;
-        ftable[46][2] = 6;  // .
-        ftable[58][0] = 253;
-        ftable[58][1] = 118;
-        ftable[58][2] = 6;  // :
-        ftable[43][0] = 12;
-        ftable[43][1] = 163;
-        ftable[43][2] = 11;  // +
-        ftable[45][0] = 270;
-        ftable[45][1] = 118;
-        ftable[45][2] = 8;  // -
-        ftable[40][0] = 159;
-        ftable[40][1] = 142;
-        ftable[40][2] = 9;  // (  * 3
-        ftable[41][0] = 177;
-        ftable[41][1] = 142;
-        ftable[41][2] = 8;  // )  * 3
-        ftable[228][0] = 49;
-        ftable[228][1] = 142;
-        ftable[228][2] = 11; // " unten * 3
-        ftable[229][0] = 67;
-        ftable[229][1] = 139;
-        ftable[229][2] = 11; // " oben
-        ftable[230][0] = 67;
-        ftable[230][1] = 139;
-        ftable[230][2] = 5;  // ' oben
-        ftable[231][0] = 67;
-        ftable[231][1] = 139;
-        ftable[231][2] = 5;  // ' unten
+        fontTable[33][0] = 198;
+        fontTable[33][1] = 118;
+        fontTable[33][2] = 6;  // !
+        fontTable[63][0] = 215;
+        fontTable[63][1] = 118;
+        fontTable[63][2] = 10;  // ?
+        fontTable[44][0] = 12;
+        fontTable[44][1] = 142;
+        fontTable[44][2] = 7;  // ,  * 3
+        fontTable[46][0] = 234;
+        fontTable[46][1] = 118;
+        fontTable[46][2] = 6;  // .
+        fontTable[58][0] = 253;
+        fontTable[58][1] = 118;
+        fontTable[58][2] = 6;  // :
+        fontTable[43][0] = 12;
+        fontTable[43][1] = 163;
+        fontTable[43][2] = 11;  // +
+        fontTable[45][0] = 270;
+        fontTable[45][1] = 118;
+        fontTable[45][2] = 8;  // -
+        fontTable[40][0] = 159;
+        fontTable[40][1] = 142;
+        fontTable[40][2] = 9;  // (  * 3
+        fontTable[41][0] = 177;
+        fontTable[41][1] = 142;
+        fontTable[41][2] = 8;  // )  * 3
+        fontTable[228][0] = 49;
+        fontTable[228][1] = 142;
+        fontTable[228][2] = 11; // " unten * 3
+        fontTable[229][0] = 67;
+        fontTable[229][1] = 139;
+        fontTable[229][2] = 11; // " oben
+        fontTable[230][0] = 67;
+        fontTable[230][1] = 139;
+        fontTable[230][2] = 5;  // ' oben
+        fontTable[231][0] = 67;
+        fontTable[231][1] = 139;
+        fontTable[231][2] = 5;  // ' unten
 
         // niedersorbische Extrazeichen
-        ftable[235][0] = 195;
-        ftable[235][1] = 169;
-        ftable[235][2] = 13;  // Gross s mit strich
-        ftable[236][0] = 254;
-        ftable[236][1] = 169;
-        ftable[236][2] = 10;  // Klein s mit strich
-        ftable[237][0] = 288;
-        ftable[237][1] = 169;
-        ftable[237][2] = 18;  // Gross r mit strich
-        ftable[238][0] = 273;
-        ftable[238][1] = 169;
-        ftable[238][2] = 11;  // Klein r mit strich
+        fontTable[235][0] = 195;
+        fontTable[235][1] = 169;
+        fontTable[235][2] = 13;  // Gross s mit strich
+        fontTable[236][0] = 254;
+        fontTable[236][1] = 169;
+        fontTable[236][2] = 10;  // Klein s mit strich
+        fontTable[237][0] = 288;
+        fontTable[237][1] = 169;
+        fontTable[237][2] = 18;  // Gross r mit strich
+        fontTable[238][0] = 273;
+        fontTable[238][1] = 169;
+        fontTable[238][2] = 11;  // Klein r mit strich
 
         initFontData1();
     }
@@ -560,17 +555,17 @@ public class ImageHelperStatic {
 
     // Zeichen aus Font-Bild ausschneiden
     private synchronized GenericImage cutChar(int code) {
-        int[] pixels = ConvertArray(fontdata[code]);
+        int[] pixels = convertArray(fontdata[code]);
 
         // System.out.print (".");
 
         // GenericImage aus Ausschnitt erzeugen und zurueckgeben
         return GenericToolkit.getDefaultToolkit().createImage(
-                new GenericMemoryImageSource(ftable[code][2], char_height,
-                        pixels, 0, ftable[code][2]));
+                new GenericMemoryImageSource(fontTable[code][2], charHeight,
+                        pixels, 0, fontTable[code][2]));
     }
 
-    private int[] ConvertArray(byte[] tmp) {
+    private int[] convertArray(byte[] tmp) {
         int[] xx = new int[tmp.length];
 
         for (int i = 0; i < tmp.length; i++) {

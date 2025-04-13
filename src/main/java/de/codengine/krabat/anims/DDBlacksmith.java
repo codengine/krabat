@@ -67,7 +67,7 @@ public class DDBlacksmith extends MainAnim {
         kowar_talk_head = new GenericImage[8];
         kowar_talk_body = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderworkhead = MAX_VERHINDERWORKHEAD;
         Verhinderworkbody = MAX_VERHINDERWORKBODY;
@@ -76,7 +76,7 @@ public class DDBlacksmith extends MainAnim {
     }
 
     // Bilder laden
-    private void InitImages() {
+    private void initImages() {
         kowar_work_head[0] = getPicture("gfx-dd/terassa/schmied-wh1.png");
         kowar_work_head[1] = getPicture("gfx-dd/terassa/schmied-wh2.png");
         kowar_work_head[2] = getPicture("gfx-dd/terassa/schmied-wh3.png");

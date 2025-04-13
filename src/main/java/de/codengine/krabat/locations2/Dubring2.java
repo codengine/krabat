@@ -58,35 +58,35 @@ public class Dubring2 extends MainLocation2 {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 7f;
-        mainFrame.krabat.defScale = -30;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 7f;
+        mainFrame.krabat.defaultScale = -30;
 
         mainFrame.krabat.setPos(Pkrabat);
-        mainFrame.krabat.SetFacing(3);
+        mainFrame.krabat.setFacing(3);
 
         mueller = new Miller(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = -30;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = -30;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(9);
+        mueller.setFacing(9);
 
         muellermorph = new Boom(mainFrame);
 
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
         mainFrame.freeze(false);
 
         nextActionID = 10;
-        TalkPause = 10;
+        talkPause = 10;
     }
 
     // Bilder vorbereiten
-    public void InitImages() {
+    public void initImages() {
         backl = getPicture("gfx/dubring/dubr-l3.png");
         backr = getPicture("gfx/dubring/dubr-r3.png");
         sky = getPicture("gfx/dubring/dubrsky.png");
@@ -116,7 +116,7 @@ public class Dubring2 extends MainLocation2 {
                 setScroll = false;
                 mainFrame.scrollX = 0;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
@@ -150,15 +150,15 @@ public class Dubring2 extends MainLocation2 {
         if (muellerVisible) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(backl, 0, 0);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -184,12 +184,12 @@ public class Dubring2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         if (mainFrame.talkCount > 0) {
@@ -202,8 +202,8 @@ public class Dubring2 extends MainLocation2 {
 
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -225,8 +225,8 @@ public class Dubring2 extends MainLocation2 {
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -244,11 +244,11 @@ public class Dubring2 extends MainLocation2 {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         switch (nextActionID) {
             case 10:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 120);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 13;
                 break;
@@ -269,15 +269,15 @@ public class Dubring2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 20;
                 break;
 
             case 20:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 72);
+                createNewLocation(90, 72);
                 break;
 
             default:

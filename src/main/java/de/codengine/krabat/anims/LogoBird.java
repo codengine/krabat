@@ -40,11 +40,11 @@ public class LogoBird extends MainAnim {
 
         vogel = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
     }
 
-    private void InitImages() {
+    private void initImages() {
         vogel[1] = getPicture("gfx/intro/iv1.png");
         vogel[2] = getPicture("gfx/intro/iv2.png");
         vogel[3] = getPicture("gfx/intro/iv3.png");
@@ -57,7 +57,7 @@ public class LogoBird extends MainAnim {
         vogel[3] = null;
     }
 
-    public boolean Flieg(GenericDrawingContext g) {
+    public boolean doFly(GenericDrawingContext g) {
         switch (animpos) {
             case 1:
                 // Gleitphase
@@ -97,7 +97,6 @@ public class LogoBird extends MainAnim {
             y -= 1;
         }
 
-        // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y);
         return x >= -50;
     }

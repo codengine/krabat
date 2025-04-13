@@ -29,144 +29,135 @@ import java.util.Vector;
 
 public class SavegameData {
     private static final Logger log = LoggerFactory.getLogger(SavegameData.class);
-    public int Location;
-    private GenericPoint Krabatpos;
+    public int location;
+    private GenericPoint krabatPos;
     private int isHornjos;
-    private int Day;
-    private int Month;
-    private int Year;
-    private Vector<Integer> Inventar;
-    private int Scrolling;
-    private int Facing;
-    private boolean[] Aktionen;
-    private int[] Bild;
-    public GenericImage Picture;
-    public GenericImage DarkPicture;
+    private int day;
+    private int month;
+    private int year;
+    private Vector<Integer> inventory;
+    private int scrolling;
+    private int facing;
+    private boolean[] actions;
+    private int[] imageData;
+    public GenericImage image;
+    public GenericImage darkImage;
     private final Start mainFrame;
-    // private int Groesse = 44100;
-    private static final byte W = -128;
+    private static final byte WIDTH = -128;
 
     // Konstruktor fuer diese Klasse
     public SavegameData(Start caller) {
         mainFrame = caller;
     }
 
-    public SavegameData(Start caller, int[] Data, int Tag, int Monat, int Jahr) {
+    public SavegameData(Start caller, int[] data, int day, int month, int year) {
         mainFrame = caller;
-        Bild = new int[10593];
-        System.arraycopy(Data, 0, Bild, 0, 10593);
-        Day = Tag;
-        Month = Monat;
-        Year = Jahr;
-        DoImages();
+        imageData = new int[10593];
+        System.arraycopy(data, 0, imageData, 0, 10593);
+        this.day = day;
+        this.month = month;
+        this.year = year;
+        doImages();
     }
 
-    public String ConvertTime() {
-        String Time = "";
-        if (Day < 10) {
-            Time += "0";
+    public String convertTime() {
+        String time = "";
+        if (day < 10) {
+            time += "0";
         }
-        Time += Integer.toString(Day);
-        Time += ".";
-        if (Month < 10) {
-            Time += "0";
+        time += Integer.toString(day);
+        time += ".";
+        if (month < 10) {
+            time += "0";
         }
-        Time += Integer.toString(Month);
-        Time += ".";
-        Time += Integer.toString(Year);
-        return Time;
+        time += Integer.toString(month);
+        time += ".";
+        time += Integer.toString(year);
+        return time;
     }
 
-    public void GetSavedSpiel(int i) {
-        // String File = "hry/krabat"+ (char) i +".hra";
-        byte[] Feld;
-        int Pos;
-        Inventar = new Vector<>();
-        Aktionen = new boolean[1002];
-        Bild = new int[10593];
-        int Checksumme = 0;
-        int Where = 0;
-        Feld = mainFrame.storageManager.loadFromFile(i);
-        Pos = Feld.length;
+    public void getSavedGame(int i) {
+        byte[] field;
+        int pos;
+        inventory = new Vector<>();
+        actions = new boolean[1002];
+        imageData = new int[10593];
+        int checksum = 0;
+        int where = 0;
+        field = mainFrame.storageManager.loadFromFile(i);
+        pos = field.length;
 
-        // System.out.println(Pos + "Datei wurde geladen");
-        if (Pos > mainFrame.storageManager.getFileSize() - 3 && Pos < mainFrame.storageManager.getFileSize() + 3) {
+        if (pos > mainFrame.storageManager.getFileSize() - 3 && pos < mainFrame.storageManager.getFileSize() + 3) {
             // wenn Datei geladen, dann Einlesen der Werte
 
             // Checksumme ueberpruefen
-            for (int d = 0; d <= Pos; d++) {
-                // if (d < 20)
-                //{
-                //System.out.print((int) Feld[d] + " ");
-                //}
-                if (Feld[d + 1] != W || d < 43381) {
-                    Checksumme ^= (Feld[d] - W) % 256;
+            for (int d = 0; d <= pos; d++) {
+                if (field[d + 1] != WIDTH || d < 43381) {
+                    checksum ^= (field[d] - WIDTH) % 256;
                 } else {
-                    Where = d;
+                    where = d;
                     break;
                 }
             }
-            // System.out.println("Checksumme : " + Checksumme + " Feld : " + (Feld[Where] - W) + " Pos : " + Where);
-            if (Checksumme != Feld[Where] - W) {
-                // System.out.println("Dieser Spielstand wurde manipuliert!");
-                Feld[0] = W;
+            if (checksum != field[where] - WIDTH) {
+                field[0] = WIDTH;
             }
-            Feld[Where] = W;
+            field[where] = WIDTH;
 
             // Location einlesen
-            Location = Feld[0] - W;
+            location = field[0] - WIDTH;
 
             // Krabats Position einlesen
-            Krabatpos = new GenericPoint((Feld[1] - W) * 256 + Feld[2] - W,
-                    (Feld[3] - W) * 256 + Feld[4] - W);
+            krabatPos = new GenericPoint((field[1] - WIDTH) * 256 + field[2] - WIDTH,
+                    (field[3] - WIDTH) * 256 + field[4] - WIDTH);
 
             // Sprache einlesen
-            isHornjos = Feld[5] - W;
+            isHornjos = field[5] - WIDTH;
 
             // Datum einlesen
-            Day = Feld[6] - W;
-            Month = Feld[7] - W;
-            Year = (Feld[8] - W) * 256 + Feld[9] - W;
+            day = field[6] - WIDTH;
+            month = field[7] - WIDTH;
+            year = (field[8] - WIDTH) * 256 + field[9] - WIDTH;
 
             // Bild einlesen
             int pxx = 0;
             for (int x = 10; x <= 42370; x += 4) {
-                Bild[pxx] = Feld[x] - W | Feld[x + 1] - W << 8 | Feld[x + 2] - W << 16 | Feld[x + 3] - W << 24;
+                imageData[pxx] = field[x] - WIDTH | field[x + 1] - WIDTH << 8 | field[x + 2] - WIDTH << 16 | field[x + 3] - WIDTH << 24;
                 pxx++;
             }
 
             // Scrolling, Facing - Variablen
-            Scrolling = (Feld[42374] - W) * 256 + Feld[42375] - W;
-            Facing = Feld[42376] - W;
+            scrolling = (field[42374] - WIDTH) * 256 + field[42375] - WIDTH;
+            facing = field[42376] - WIDTH;
 
             // Actions - Boolean - array
             for (int l = 42380; l <= 43379; l++) {
-                Aktionen[l - 42380] = Feld[l] - W != 0;
+                actions[l - 42380] = field[l] - WIDTH != 0;
             }
 
             // Inventarvektor einlesen
-            for (int r = 43381; r <= Pos; ++r) {
-                if (Feld[r] == W) {
+            for (int r = 43381; r <= pos; ++r) {
+                if (field[r] == WIDTH) {
                     break;
                 }
-                Inventar.addElement(Feld[r] - W);
+                inventory.addElement(field[r] - WIDTH);
             }
 
             // verkleinerte Bilder fuer Screen erzeugen
-            DoImages();
+            doImages();
         }
 
         // ansonsten Spielstand als ungueltig markieren
         else {
-            Location = 0;
+            location = 0;
         }
     }
 
-    private void DoImages() {
+    private void doImages() {
         // normales GenericImage erzeugen
         int[] tempx = new int[10592];
-        System.arraycopy(Bild, 0, tempx, 0, 10592);
-        Picture = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource
+        System.arraycopy(imageData, 0, tempx, 0, 10592);
+        image = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource
                 (118, 89, tempx, 0, 118));
 
         // Geisterimage erzeugen
@@ -185,57 +176,56 @@ public class SavegameData {
                 zaehl = 0;
             }
         }
-        DarkPicture = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource
+        darkImage = GenericToolkit.getDefaultToolkit().createImage(new GenericMemoryImageSource
                 (118, 89, tempy, 0, 118));
     }
 
-    public synchronized void Save(int Stand) {
+    public synchronized void save(int slot) {
         mainFrame.freeze(true);
-        // String File = "hry/krabat"+ (char) (Stand + 48) +".hra";
-        byte[] Feld = new byte[mainFrame.storageManager.getFileSize()];
+        byte[] field = new byte[mainFrame.storageManager.getFileSize()];
 
         // Location zuweisen
-        Feld[0] = (byte) (mainFrame.currentLocationIdx + W);
+        field[0] = (byte) (mainFrame.currentLocationIdx + WIDTH);
 
         // Krabats Position zuweisen
-        GenericPoint Tep = mainFrame.krabat.getPos();
-        Feld[1] = (byte) (Tep.x / 256 + W);
-        Feld[2] = (byte) (Tep.x % 256 + W);
-        Feld[3] = (byte) (Tep.y / 256 + W);
-        Feld[4] = (byte) (Tep.y % 256 + W);
+        GenericPoint krabatPos = mainFrame.krabat.getPos();
+        field[1] = (byte) (krabatPos.x / 256 + WIDTH);
+        field[2] = (byte) (krabatPos.x % 256 + WIDTH);
+        field[3] = (byte) (krabatPos.y / 256 + WIDTH);
+        field[4] = (byte) (krabatPos.y % 256 + WIDTH);
 
         // Sprache zuweisen
-        Feld[5] = (byte) (Start.language + W);
+        field[5] = (byte) (Start.LANGUAGE + WIDTH);
 
         // Datum zuweisen
-        Feld[6] = (byte) (Day + W);
-        Feld[7] = (byte) (Month + W);
-        Feld[8] = (byte) (Year / 256 + W);
-        Feld[9] = (byte) (Year % 256 + W);
+        field[6] = (byte) (day + WIDTH);
+        field[7] = (byte) (month + WIDTH);
+        field[8] = (byte) (year / 256 + WIDTH);
+        field[9] = (byte) (year % 256 + WIDTH);
 
         // Bild zerlegen und zuweisen
         int pxx = 0;
         for (int i = 0; i <= 42360; i += 4) {
-            Feld[i + 10] = (byte) ((Bild[pxx] & 255) + W);
-            Feld[i + 11] = (byte) ((Bild[pxx] >> 8 & 255) + W);
-            Feld[i + 12] = (byte) ((Bild[pxx] >> 16 & 255) + W);
-            Feld[i + 13] = (byte) ((Bild[pxx] >> 24 & 255) + W);
+            field[i + 10] = (byte) ((imageData[pxx] & 255) + WIDTH);
+            field[i + 11] = (byte) ((imageData[pxx] >> 8 & 255) + WIDTH);
+            field[i + 12] = (byte) ((imageData[pxx] >> 16 & 255) + WIDTH);
+            field[i + 13] = (byte) ((imageData[pxx] >> 24 & 255) + WIDTH);
             pxx++;
         }
 
         // Scrolling - Variable zuweisen
-        Feld[42374] = (byte) (mainFrame.scrollX / 256 + W);
-        Feld[42375] = (byte) (mainFrame.scrollX % 256 + W);
+        field[42374] = (byte) (mainFrame.scrollX / 256 + WIDTH);
+        field[42375] = (byte) (mainFrame.scrollX % 256 + WIDTH);
 
         // Facing - Variable zuweisen
-        Feld[42376] = (byte) (mainFrame.krabat.GetFacing() + W);
+        field[42376] = (byte) (mainFrame.krabat.getFacing() + WIDTH);
 
         // Boolean - Array Actions zuweisen
         for (int i = 42380; i <= 43379; i++) {
             if (!mainFrame.actions[i - 42380]) {
-                Feld[i] = W;
+                field[i] = WIDTH;
             } else {
-                Feld[i] = (byte) (1 + W);
+                field[i] = (byte) (1 + WIDTH);
             }
         }
 
@@ -243,70 +233,64 @@ public class SavegameData {
         int nAnzahl = mainFrame.inventory.vInventory.size();
         for (int x = 0; x < nAnzahl; x++) {
             int iTemp = mainFrame.inventory.vInventory.elementAt(x);
-            Feld[x + 43381] = (byte) (iTemp + W);
-            Feld[x + 43382] = W;
+            field[x + 43381] = (byte) (iTemp + WIDTH);
+            field[x + 43382] = WIDTH;
         }
 
         // Checksumme erzeugen und hinzufuegen
-        int Checksum = 0;
+        int checksum = 0;
         int undwo = 0;
         for (int e = 0; e <= 44100; e++) {
-            // if (e < 20)
-            //{
-            // System.out.print((int) Feld[e] + " ");
-            //}
-            if (Feld[e] != W || e < 43381) {
-                Checksum ^= (Feld[e] + W) % 256;
+            if (field[e] != WIDTH || e < 43381) {
+                checksum ^= (field[e] + WIDTH) % 256;
             } else {
                 undwo = e;
                 break;
             }
         }
-        Feld[undwo] = (byte) (Checksum + W);
-        Feld[undwo + 1] = W;
-        // System.out.println("Checksumme : " + Checksum + " Feld : " + (Feld[undwo] + W) + " Pos : " + (undwo));
+        field[undwo] = (byte) (checksum + WIDTH);
+        field[undwo + 1] = WIDTH;
 
-        boolean success = mainFrame.storageManager.saveToFile(Feld, Stand);
+        boolean success = mainFrame.storageManager.saveToFile(field, slot);
         if (!success) {
             log.error("File save error!");
         }
 
-        // System.out.println("Checksumme : " + Checksum + " Feld : " + (int) Feld[undwo] + " Pos : " + (undwo));
         mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // Neuen Spielstand initialisieren
-    public synchronized void Load() {
+    public synchronized void load() {
         mainFrame.freeze(true);
 
         // Sprache festlegen
-        Start.language = isHornjos;
+        Start.LANGUAGE = isHornjos;
 
         // "illegale" Sprache verhindern
         // if (mainFrame.sprache > 2) mainFrame.sprache = 1;
 
         // Inventar setzen
-        mainFrame.inventory.vInventory = Inventar;
+        mainFrame.inventory.vInventory = inventory;
 
         // Scrolling - Variable setzen
-        mainFrame.scrollX = Scrolling;
+        mainFrame.scrollX = scrolling;
 
         // Aktionen festlegen
-        mainFrame.actions = Aktionen;
+        mainFrame.actions = actions;
 
         // hier schon der Krabatinit-damit Loadberechnungen abh. von Krabatposition
         // ueberhaupt eine Chance haben
         // Krabats Position setzen
-        mainFrame.krabat.setPos(Krabatpos);
+        mainFrame.krabat.setPos(krabatPos);
 
         // Krabats Blickrichtung festlegen
-        mainFrame.krabat.SetFacing(Facing);
+        mainFrame.krabat.setFacing(facing);
 
         // alte Location zerstoeren, neue erzeugen
         mainFrame.destructLocation(mainFrame.currentLocationIdx);
         mainFrame.currentLocationIdx = 0;    // fuer Krabatpositionsinit darf keine alte Location erscheinen
-        mainFrame.constructLocation(Location);
+        mainFrame.constructLocation(location);
 
         mainFrame.freeze(false);
     }

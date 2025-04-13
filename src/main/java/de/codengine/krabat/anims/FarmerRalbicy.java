@@ -64,7 +64,7 @@ public class FarmerRalbicy extends MainAnim {
         bur_body = new GenericImage[7];
         bur_work = new GenericImage[9];
 
-        InitImages();
+        initImages();
 
         Pausenlaenge = MAX_PAUSENLAENGE;
         Arbeitspause = MAX_ARBEITSPAUSE;
@@ -77,7 +77,7 @@ public class FarmerRalbicy extends MainAnim {
 
     }
 
-    private void InitImages() {
+    private void initImages() {
 
         bur_head[1] = getPicture("gfx/ralbicy/b-k1.png");
         bur_head[2] = getPicture("gfx/ralbicy/b-k2.png");
@@ -251,10 +251,8 @@ public class FarmerRalbicy extends MainAnim {
                     if (Work != 8) {
                         Pausenlaenge = MAX_PAUSENLAENGE;
                     }
-                    // System.out.println ("Pause = " + Pausenlaenge);
                     break;
             }
-            // System.out.println ("Phase " + Work);
 
             g.drawImage(bur_work[Work], Work == 2 ? 62 : 60, Work == 2 ? 223 : 227);
         }
@@ -262,6 +260,6 @@ public class FarmerRalbicy extends MainAnim {
 
     private void evalSound(int welcher) {
         // zufaellig wavs fuer Geschnatter abspielen...
-        mainFrame.soundPlayer.PlayFile("sfx/stroh" + (char) (welcher + 48) + ".wav");
+        mainFrame.soundPlayer.playFile("sfx/stroh" + (char) (welcher + 48) + ".wav");
     }
 }    

@@ -32,30 +32,30 @@ import java.util.Objects;
 
 public class Info extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Info.class);
-    private GenericImage Bild;
-    private GenericImage Jan;
-    private GenericImage Jiri;
-    private GenericImage Daniel;
-    private GenericImage Eddie;
-    private GenericImage Hanus;
-    private GenericImage Mic;
-    private final GenericImage Pfeill;
-    private final GenericImage DPfeill;
-    private final GenericImage Pfeilr; /* DPfeilr, */
-    private GenericImage Abdecken;
+    private GenericImage image;
+    private GenericImage jan;
+    private GenericImage jiri;
+    private GenericImage daniel;
+    private GenericImage eddie;
+    private GenericImage hanus;
+    private GenericImage mic;
+    private final GenericImage arrowLeft;
+    private final GenericImage arrowLeftDisabled;
+    private final GenericImage arrowRight;
+    private GenericImage cover;
 
     private final GenericPoint pLO;
 
-    private final BorderRect brGesamt;
-    private final BorderRect brPfeill;
-    private final BorderRect brPfeilr;
+    private final BorderRect brTotal;
+    private final BorderRect brArrowLeft;
+    private final BorderRect brArrowRight;
 
-    private int menuitem = 0;
-    private int olditem = 0;
+    private int menuItem = 0;
+    private int oldItem = 0;
 
-    private boolean Paintcall = false;
+    private boolean paintCall = false;
 
-    private int PictureCounter;
+    private int pictureCounter;
 
     // Hier die Texte
     private static final String[][] IMAGE_TEXTS = {
@@ -68,7 +68,7 @@ public class Info extends MainAnim {
             {"Info_17", "", "", ""}
     };
 
-    private static final GenericPoint[][] BildPunkte = {
+    private static final GenericPoint[][] IMAGE_POINTS = {
             {new GenericPoint(110, 55), new GenericPoint(113, 238), new GenericPoint(413, 170), null},
             {new GenericPoint(94, 52), new GenericPoint(90, 215), new GenericPoint(440, 80), null},
             {new GenericPoint(142, 64), new GenericPoint(257, 223), null, null},
@@ -86,39 +86,38 @@ public class Info extends MainAnim {
         super(caller);
         mainFrame.freeze(true);
 
-        InitImages();
+        initImages();
 
-        PictureCounter = 0;  // Reset der Bilder
+        pictureCounter = 0;  // Reset der Bilder
 
         // Rechtecke im Inventar-Fenster festlegen
         pLO = new GenericPoint(31, 31);
-        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
+        brTotal = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
 
-        brPfeill = mainFrame.inventory.brPfeill;
-        brPfeilr = new BorderRect(pLO.x + 391, pLO.y + 319,
+        brArrowLeft = mainFrame.inventory.brArrowLeft;
+        brArrowRight = new BorderRect(pLO.x + 391, pLO.y + 319,
                 pLO.x + 481, pLO.y + 359);
 
-        Pfeill = mainFrame.inventory.Pfeill;
-        DPfeill = mainFrame.inventory.DPfeill;
-        Pfeilr = mainFrame.inventory.Pfeilr;
-        // DPfeilr = mainFrame.inventory.DPfeilr;
+        arrowLeft = mainFrame.inventory.arrowLeft;
+        arrowLeftDisabled = mainFrame.inventory.arrowLeftDisabled;
+        arrowRight = mainFrame.inventory.arrowRight;
 
         mainFrame.freeze(false);
         mainFrame.setCursor(mainFrame.cursorNormal);
     }
 
     // Bilder vorbereiten
-    public void InitImages() {
-        Bild = getPicture("gfx/mainmenu/info-7.png");
-        Jan = getPicture("gfx/mainmenu/jan.png");
-        Jiri = getPicture("gfx/mainmenu/jiri.png");
-        Daniel = getPicture("gfx/mainmenu/daniel.png");
-        Eddie = getPicture("gfx/mainmenu/eddie.png");
-        Hanus = getPicture("gfx/mainmenu/hanus.png");
-        Mic = getPicture("gfx/mainmenu/mic.png");
+    public void initImages() {
+        image = getPicture("gfx/mainmenu/info-7.png");
+        jan = getPicture("gfx/mainmenu/jan.png");
+        jiri = getPicture("gfx/mainmenu/jiri.png");
+        daniel = getPicture("gfx/mainmenu/daniel.png");
+        eddie = getPicture("gfx/mainmenu/eddie.png");
+        hanus = getPicture("gfx/mainmenu/hanus.png");
+        mic = getPicture("gfx/mainmenu/mic.png");
 
-        Abdecken = getPicture("gfx/mainmenu/dpfeil.png");
+        cover = getPicture("gfx/mainmenu/dpfeil.png");
     }
 
 
@@ -131,42 +130,42 @@ public class Info extends MainAnim {
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
 
-            g.drawImage(Bild, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
-            switch (PictureCounter) {
+            g.drawImage(image, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
+            switch (pictureCounter) {
                 case 0:  // Jan und Joerg
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
                 case 1: // Daniel und Eddie
-                    g.drawImage(Daniel, 186 + pLO.x + mainFrame.scrollX, 87 + pLO.y + mainFrame.scrollY);
-                    g.drawImage(Eddie, 338 + pLO.x + mainFrame.scrollX, 40 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(daniel, 186 + pLO.x + mainFrame.scrollX, 87 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(eddie, 338 + pLO.x + mainFrame.scrollX, 40 + pLO.y + mainFrame.scrollY);
                     break;
                 case 2: // Hanus
-                    g.drawImage(Hanus, 314 + pLO.x + mainFrame.scrollX, 31 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(hanus, 314 + pLO.x + mainFrame.scrollX, 31 + pLO.y + mainFrame.scrollY);
                     break;
                 case 3: // Jan
-                    g.drawImage(Jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(jan, 186 + pLO.x + mainFrame.scrollX, 58 + pLO.y + mainFrame.scrollY);
                     break;
                 case 4: // Mic
-                    g.drawImage(Mic, 174 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(mic, 174 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
                 case 5: // Jiri
-                    g.drawImage(Jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
+                    g.drawImage(jiri, 310 + pLO.x + mainFrame.scrollX, 43 + pLO.y + mainFrame.scrollY);
                     break;
             }
 
-            if (PictureCounter == 6) {
-                g.drawImage(Abdecken, pLO.x + mainFrame.scrollX + 380, pLO.y + mainFrame.scrollY + 307);
+            if (pictureCounter == 6) {
+                g.drawImage(cover, pLO.x + mainFrame.scrollX + 380, pLO.y + mainFrame.scrollY + 307);
             }
 
             g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
-            Paintcall = true;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
 
             for (int i = 0; i <= 3; i++) {
-                String textKey = IMAGE_TEXTS[PictureCounter][i];
-                String outputText = Objects.equals(textKey, "") ? "" : Start.stringManager.getTranslation(textKey);
-                GenericPoint outputTextPos = BildPunkte[PictureCounter][i];
+                String textKey = IMAGE_TEXTS[pictureCounter][i];
+                String outputText = Objects.equals(textKey, "") ? "" : Start.STRING_MANAGER.getTranslation(textKey);
+                GenericPoint outputTextPos = IMAGE_POINTS[pictureCounter][i];
                 if (!Objects.equals(outputText, "")) // leere Dinger ueberspringen
                 {
                     mainFrame.imageFont.drawString(g, outputText, pLO.x + outputTextPos.x + mainFrame.scrollX,
@@ -176,51 +175,49 @@ public class Info extends MainAnim {
         }
 
         // Wenn noetig, dann highlight aufheben!!!
-        switch (olditem) {
+        switch (oldItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
+                g.drawImage(arrowLeftDisabled, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
                 break;
             case 2:
-                if (PictureCounter != 6) {
+                if (pictureCounter != 6) {
                     GenericRectangle txx = g.getClipBounds();
                     g.setClip(422 + mainFrame.scrollX, 348 + mainFrame.scrollY, 100, 50);
-                    // BUG!!!
-                    //		    g.setClip (422, 348, 100, 50);
-                    g.drawImage(Bild, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
+                    g.drawImage(image, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                     g.setClip(txx);
                 }
                 break;
             default:
-                log.error("Falsches Menu-Item!!! oldItem = {}", olditem);
+                log.error("Falsches Menu-Item!!! oldItem = {}", oldItem);
         }
 
-        if (olditem != 0) {
-            olditem = 0;
+        if (oldItem != 0) {
+            oldItem = 0;
         }
 
         // Wenn noetig, dann highlighten!!!
-        switch (menuitem) {
+        switch (menuItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
+                g.drawImage(arrowLeft, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(Pfeilr, 423 + mainFrame.scrollX, 350 + mainFrame.scrollY);
+                g.drawImage(arrowRight, 423 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             default:
-                log.error("Falsches Menu-Item fuers Highlight!!! menuitem = {}", menuitem);
+                log.error("Falsches Menu-Item fuers Highlight!!! menuitem = {}", menuItem);
         }
 
-        if (menuitem != 0) {
-            olditem = menuitem;
+        if (menuItem != 0) {
+            oldItem = menuItem;
         }
     }
 
     public void evalMouseExitEvent() {
-        menuitem = 0;
+        menuItem = 0;
         mainFrame.repaint();
     }
 
@@ -234,17 +231,17 @@ public class Info extends MainAnim {
         GenericPoint pTemp = e.getPoint();
 
         // bei Click Ausserhalb zurueck ins Spiel
-        if (!brGesamt.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (!brTotal.isPointInRect(pTemp)) {
+            deactivate();
             mainFrame.whatScreen = ScreenType.NONE;
             return;
         }
 
         // bei Click auf Pfeil links zurueck ins vorherige Bild oder verlassen
-        if (brPfeill.IsPointInRect(pTemp)) {
-            PictureCounter--;
-            if (PictureCounter < 0) {
-                Deactivate();
+        if (brArrowLeft.isPointInRect(pTemp)) {
+            pictureCounter--;
+            if (pictureCounter < 0) {
+                deactivate();
                 return;
             } else {
                 mainFrame.isClipSet = false;
@@ -253,9 +250,9 @@ public class Info extends MainAnim {
         }
 
         // bei Click auf Pfeil rechts ein Bild weiter
-        if (brPfeilr.IsPointInRect(pTemp)) {
-            if (PictureCounter < 6) {
-                PictureCounter++;
+        if (brArrowRight.isPointInRect(pTemp)) {
+            if (pictureCounter < 6) {
+                pictureCounter++;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
             }
@@ -264,23 +261,23 @@ public class Info extends MainAnim {
     }
 
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        menuitem = 0;
-        if (brPfeill.IsPointInRect(pTemp)) {
-            menuitem = 1;
+        menuItem = 0;
+        if (brArrowLeft.isPointInRect(pTemp)) {
+            menuItem = 1;
         }
 
         // wenn nicht im letzten Bild, dann auch den rechten Pfeil zeichnen
-        if (brPfeilr.IsPointInRect(pTemp) && PictureCounter < 6) {
-            menuitem = 2;
+        if (brArrowRight.isPointInRect(pTemp) && pictureCounter < 6) {
+            menuItem = 2;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
 
-        if (menuitem != olditem) {
+        if (menuItem != oldItem) {
             mainFrame.repaint();
         }
     }
@@ -289,19 +286,19 @@ public class Info extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
         }
     }
 
 
     // Deaktivieren //////////
-    private void Deactivate() {
-        menuitem = 0;
+    private void deactivate() {
+        menuItem = 0;
         mainFrame.isClipSet = false;
         mainFrame.destructLocation(104);
-        if (mainFrame.mainMenu.MMactive) {
+        if (mainFrame.mainMenu.mmActive) {
             mainFrame.whatScreen = ScreenType.MAIN_MENU;
         } else {
             mainFrame.whatScreen = ScreenType.NONE;

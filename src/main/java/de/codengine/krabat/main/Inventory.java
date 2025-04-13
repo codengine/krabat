@@ -37,37 +37,37 @@ public class Inventory extends MainAnim {
     private GenericImage inactiveMenu;
     private GenericImage activeMenu;
 
-    private final GenericImage[] InventarStuecke;
-    private final int[] InventarID;
+    private final GenericImage[] inventoryPieces;
+    private final int[] inventoryId;
 
     private static final int INVENTAR_CACHE = 10;
-    private int CachePosition = 1;
+    private int cachePosition = 1;
 
-    public GenericImage Pfeill;
-    public GenericImage DPfeill;
-    public GenericImage Pfeilr;
-    public GenericImage DPfeilr;  // damit man das auch woanders nutzen kann
+    public GenericImage arrowLeft;
+    public GenericImage arrowLeftDisabled;
+    public GenericImage arrowRight;
+    public GenericImage arrowRightDisabled;  // damit man das auch woanders nutzen kann
     public Vector<Integer> vInventory;                       // Vektor , der alle Inventarstuecke beinhaltet
     private int nextActionID;                       // zur Textausgabe der Inventarstuecke
     private final GenericPoint pLO;                              // Offset der Linken oberen Ecke
-    private final BorderRect brGesamt;
+    private final BorderRect brTotal;
     private final BorderRect brMenu;            // Rectangles fuer mousemove
-    public final BorderRect brPfeill;
-    public final BorderRect brPfeilr;           // fuer andere Klassen nutzbar
-    private int nFeldAktiv = -1;                    // Flags fuer roten Rahmen
-    private int oFeldAktiv = -1;
+    public final BorderRect brArrowLeft;
+    public final BorderRect brArrowRight;           // fuer andere Klassen nutzbar
+    private int nFieldActive = -1;                    // Flags fuer roten Rahmen
+    private int oFieldActive = -1;
     private String outputText = "";                 // fuer Textausgabe
     private GenericPoint outputTextPos;
-    private int menuitem = 0;                       // Flags fuer Menuitems
-    private int olditem = 0;
-    private boolean Paintcall = false;              // soll mousemoved auch neu zeichnen??
-    private final GenericColor inakt = new GenericColor(156, 132, 107); // Farbe zum loeschen roter Rahmen
+    private int menuItem = 0;                       // Flags fuer Menuitems
+    private int oldItem = 0;
+    private boolean paintCall = false;              // soll mousemoved auch neu zeichnen??
+    private final GenericColor inactive = new GenericColor(156, 132, 107); // Farbe zum loeschen roter Rahmen
     private boolean secScreenAvail = false;        // ist 2. Screen moeglich??
     private boolean secScreenActive = false;        // ist 2. Screen aktiv??
-    private int Cursorform = 200;
-    private int ytemp;                              // TempVariable fuer y - Position Text
+    private int cursorShape = 200;
+    private int yTemp;                              // TempVariable fuer y - Position Text
 
-    private final GenericPoint HotSpot;
+    private final GenericPoint hotspot;
 
     public boolean noBackgroundSound = false;       // Anzeige, ob Backgroundwavs deaktiviert werden sollen
 
@@ -77,12 +77,12 @@ public class Inventory extends MainAnim {
     // ----PARSER_DISABLE----
 
     // Texte fuer das Laden der einzelnen Images
-    private static final String ImageDirectory = "gfx/inventar/i-";
-    private static final String CursorDirectory = "gfx/cursors/";
-    private static final String Suffix = ".png";
+    private static final String IMAGE_DIRECTORY = "gfx/inventar/i-";
+    private static final String CURSOR_DIRECTORY = "gfx/cursors/";
+    private static final String SUFFIX = ".png";
 
     // Imagefilenamen
-    private static final String[] IconImages =
+    private static final String[] ICON_IMAGES =
             {"leer", "floete2", "stock", "schild", "honck", "hocka", "lajna", "wuda1", "hadz", "wuda2",
                     "wuda3", "wuda4", "kamj", "dryba", "ryba", "krosk", "bloto", "rohodz", "bron", "pjero2",
                     "karta", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer",
@@ -91,7 +91,7 @@ public class Inventory extends MainAnim {
                     "skica", "wosusk2", "wosusk", "drasta2", "karta", "kniha", "leer", "leer", "leer", "leer",
                     "skla", "koraktor", "kamjen", "stroh"};
 
-    private static final String[] CursorImages =
+    private static final String[] CURSOR_IMAGES =
             {"leer", "flej2", "kij2", "schild2", "honck", "hocka", "lajna", "kijw", "hadz", "kijwu",
                     "kijwuw", "kijwur", "kamj", "dryba", "ryba", "krosk", "bloto", "roh", "bron", "pjero",
                     "kkarta", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer",
@@ -100,7 +100,7 @@ public class Inventory extends MainAnim {
                     "skica", "wosusk2", "wosusk", "drasta2", "kkarta", "kniha", "leer", "leer", "leer", "leer",
                     "skla", "koraktor", "kamjen", "stroh"};
 
-    private static final String[] CursorHighImages =
+    private static final String[] CURSOR_HIGH_IMAGES =
             {"leer", "flej2-u", "kij-u3", "schild-u3", "honck-u", "hocka-u", "lajna-u", "kijw-u", "hadz-u", "kijwu-u",
                     "kijwuw-u", "kijwur-u", "kamj-u", "dryba-u", "ryba-u", "krosk-u", "bloto-u", "roh-u", "bron-u", "pjero-u",
                     "kkarta-u", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer", "leer",
@@ -114,64 +114,64 @@ public class Inventory extends MainAnim {
     // Initialisierung ////////////////////////////////////////////////////////
 
     // Instanz von dieser Location erzeugen
-    public Inventory(Start caller, GenericPoint HotSpot) {
+    public Inventory(Start caller, GenericPoint hotspot) {
         super(caller);
 
-        InventarStuecke = new GenericImage[INVENTAR_CACHE + 1];
-        InventarID = new int[INVENTAR_CACHE + 1];
+        inventoryPieces = new GenericImage[INVENTAR_CACHE + 1];
+        inventoryId = new int[INVENTAR_CACHE + 1];
 
         for (int i = 0; i <= INVENTAR_CACHE; i++) {
-            InventarStuecke[i] = null;
-            InventarID[i] = 0;
+            inventoryPieces[i] = null;
+            inventoryId[i] = 0;
         }
 
-        InitImages();
+        initImages();
 
-        this.HotSpot = HotSpot;
+        this.hotspot = hotspot;
 
         // Rechtecke im Inventar-Fenster festlegen
         pLO = new GenericPoint(31, 31);
-        brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46,
+        brTotal = new BorderRect(pLO.x + 65, pLO.y + 46,
                 pLO.x + 513, pLO.y + 380);
         brMenu = new BorderRect(pLO.x + 415, pLO.y + 331,
                 pLO.x + 493, pLO.y + 360);
-        brPfeill = new BorderRect(pLO.x + 90, pLO.y + 319,
+        brArrowLeft = new BorderRect(pLO.x + 90, pLO.y + 319,
                 pLO.x + 180, pLO.y + 358);
-        brPfeilr = new BorderRect(pLO.x + 249, pLO.y + 319,
+        brArrowRight = new BorderRect(pLO.x + 249, pLO.y + 319,
                 pLO.x + 339, pLO.y + 358);
         vInventory = new Vector<>();
-        ResetInventory();
+        resetInventory();
     }
 
-    public void ResetInventory() {
+    public void resetInventory() {
         vInventory.removeAllElements();
         vInventory.addElement(1); // hier wird Floete addiert
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         iInventar = getPicture("gfx/inventar/inventar.png");
         activeMenu = getPicture("gfx/inventar/m-meni.png");
         inactiveMenu = getPicture("gfx/inventar/meni.png");
-        Pfeill = getPicture("gfx/inventar/r-p-l.png");
-        DPfeill = getPicture("gfx/inventar/d-p-l.png");
-        Pfeilr = getPicture("gfx/inventar/r-p-r.png");
-        DPfeilr = getPicture("gfx/inventar/d-p-r.png");
+        arrowLeft = getPicture("gfx/inventar/r-p-l.png");
+        arrowLeftDisabled = getPicture("gfx/inventar/d-p-l.png");
+        arrowRight = getPicture("gfx/inventar/r-p-r.png");
+        arrowRightDisabled = getPicture("gfx/inventar/d-p-r.png");
     }
 
     // Laderoutine fuer Inventarimages
-    private GenericImage IconImages(int nGegID) {
-        return getPicture(ImageDirectory + IconImages[nGegID] + Suffix);
+    private GenericImage iconImages(int itemId) {
+        return getPicture(IMAGE_DIRECTORY + ICON_IMAGES[itemId] + SUFFIX);
     }
 
     // Laderoutine fuer Cursors
-    private GenericImage GetCursorImage(int nGegID) {
-        return mainFrame.constructCursorImage(CursorDirectory + CursorImages[nGegID] + Suffix);
+    private GenericImage getCursorImage(int itemId) {
+        return mainFrame.constructCursorImage(CURSOR_DIRECTORY + CURSOR_IMAGES[itemId] + SUFFIX);
     }
 
     // Laderoutine fuer HighlightCursors
-    private GenericImage GetCursorHighImage(int nGegID) {
-        return mainFrame.constructCursorImage(CursorDirectory + CursorHighImages[nGegID] + Suffix);
+    private GenericImage getCursorHighImage(int itemId) {
+        return mainFrame.constructCursorImage(CURSOR_DIRECTORY + CURSOR_HIGH_IMAGES[itemId] + SUFFIX);
     }
 
 
@@ -193,14 +193,14 @@ public class Inventory extends MainAnim {
                 g.drawImage
                         (inactiveMenu, pLO.x + 415 + mainFrame.scrollX, pLO.y + 331 + mainFrame.scrollY);
             }
-            g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
+            g.drawImage(arrowLeftDisabled, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
 
             // Gegenstand-Icons zeichnen
             int nAnzahl = vInventory.size();
             if (nAnzahl > 9) {
                 secScreenAvail = true;
                 if (!secScreenActive) {
-                    g.drawImage(DPfeilr, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
+                    g.drawImage(arrowRightDisabled, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
                 }
             } else {
                 secScreenAvail = false;
@@ -211,78 +211,77 @@ public class Inventory extends MainAnim {
             } else if (nAnzahl > 9) {
                 nAnzahl = 9;
             }
-            // System.out.println("Inventarstuecke : " + nAnzahl);
             for (int i = f; i < nAnzahl; i++) {
                 int iTemp = vInventory.elementAt(i);
-                GenericPoint pTemp = new GenericPoint(GetCurrentXY(i));
+                GenericPoint pTemp = new GenericPoint(getCurrentXY(i));
                 if (mainFrame.whatItem != iTemp || !mainFrame.isInventoryCursor) {
-                    g.drawImage(GetIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollX, pTemp.y + 1 + mainFrame.scrollY);
+                    g.drawImage(getIconImage(iTemp), pTemp.x + 1 + mainFrame.scrollX, pTemp.y + 1 + mainFrame.scrollY);
                 }
             }
 
             // original Mauspoint bei Init beachten, erst zuletzt, da es die Variablen "secScreenAvail" gueltig benoetigt
-            Cursorform = 200;
-            Paintcall = true;
+            cursorShape = 200;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
         // Alten roten Rahmen loeschen
-        if (oFeldAktiv >= 0) {
-            g.setColor(inakt);
-            GenericPoint pTemp = GetCurrentXY(oFeldAktiv);
+        if (oFieldActive >= 0) {
+            g.setColor(inactive);
+            GenericPoint pTemp = getCurrentXY(oFieldActive);
             g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 145, 75);
-            oFeldAktiv = -1;
+            oFieldActive = -1;
         }
 
         // Ist ein Feld aktiv ? Dann roten Rahmen drum
-        if (nFeldAktiv >= 0) {
-            g.setColor(GenericColor.red);
-            GenericPoint pTemp = GetCurrentXY(nFeldAktiv);
+        if (nFieldActive >= 0) {
+            g.setColor(GenericColor.RED);
+            GenericPoint pTemp = getCurrentXY(nFieldActive);
             g.drawRect(pTemp.x + mainFrame.scrollX, pTemp.y + mainFrame.scrollY, 145, 75);
         }
 
-        if (nFeldAktiv >= 0) {
-            oFeldAktiv = nFeldAktiv;
+        if (nFieldActive >= 0) {
+            oFieldActive = nFieldActive;
         }
 
         // Menuitem abdunkeln, wenn Maus weg
-        switch (olditem) {
+        switch (oldItem) {
             case 0:
                 break;
             case 1:
                 g.drawImage(inactiveMenu, pLO.x + 415 + mainFrame.scrollX, pLO.y + 331 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(DPfeill, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
+                g.drawImage(arrowLeftDisabled, 119 + mainFrame.scrollX, 349 + mainFrame.scrollY);
                 break;
             case 3:
-                g.drawImage(DPfeilr, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
+                g.drawImage(arrowRightDisabled, 279 + mainFrame.scrollX, 348 + mainFrame.scrollY);
                 break;
             default:
-                log.error("Wrong inv - menuitem to clear! olditem = {}", olditem);
+                log.error("Wrong inv - menuitem to clear! olditem = {}", oldItem);
         }
 
-        olditem = 0;  // anders loesen! - too many repaints
+        oldItem = 0;  // anders loesen! - too many repaints
 
         // Menuitem highlighten , wenn maus darueber
-        switch (menuitem) {
+        switch (menuItem) {
             case 0:
                 break;
             case 1:
                 g.drawImage(activeMenu, pLO.x + 416 + mainFrame.scrollX, pLO.y + 333 + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(Pfeill, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
+                g.drawImage(arrowLeft, 121 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             case 3:
-                g.drawImage(Pfeilr, 280 + mainFrame.scrollX, 350 + mainFrame.scrollY);
+                g.drawImage(arrowRight, 280 + mainFrame.scrollX, 350 + mainFrame.scrollY);
                 break;
             default:
-                log.error("Wrong inventar-menuitem!!! menuitem = {}", menuitem);
+                log.error("Wrong inventar-menuitem!!! menuitem = {}", menuItem);
         }
 
-        if (menuitem != 0) {
-            olditem = menuitem;
+        if (menuItem != 0) {
+            oldItem = menuItem;
         }
 
         // Textausgabe, falls noetig
@@ -293,7 +292,6 @@ public class Inventory extends MainAnim {
         // Talkcount herunterzaehlen fuer Anzeige
         if (mainFrame.talkCount > 0) {
             mainFrame.talkCount--;
-            // System.out.println(mainFrame.talkCount);
             if (mainFrame.talkCount == 0) {
                 mainFrame.isClipSet = false;
                 outputText = "";
@@ -304,29 +302,29 @@ public class Inventory extends MainAnim {
 
         // Gibt es was zu tun ?
         if (nextActionID != 0) {
-            DoAction();
+            doAction();
         }
     }
 
-    private GenericImage GetIconImage(int nGegID) {
+    private GenericImage getIconImage(int itemId) {
         // hier Caching - Routine
 
         // Suchen, ob Inventarstueck in Cache gespeichert
         for (int i = 1; i <= INVENTAR_CACHE; i++) {
-            if (nGegID == InventarID[i]) {
-                return InventarStuecke[i];
+            if (itemId == inventoryId[i]) {
+                return inventoryPieces[i];
             }
         }
 
         // Gegenstand ist nicht im Cache, also neu holen
-        GenericImage Temp = IconImages(nGegID);
-        InventarStuecke[CachePosition] = Temp;
-        CachePosition++;
-        if (CachePosition == 11) {
-            CachePosition = 1;
+        GenericImage temp = iconImages(itemId);
+        inventoryPieces[cachePosition] = temp;
+        cachePosition++;
+        if (cachePosition == 11) {
+            cachePosition = 1;
         }
 
-        return Temp;
+        return temp;
     }
 
     // Mouse-Auswertung dieser Location ///////////////////////////////////////
@@ -343,36 +341,36 @@ public class Inventory extends MainAnim {
         if (mainFrame.isInventoryCursor) {
             if (e.isLeftClick()) {
                 // linke Maustaste gedrueckt
-                if (brPfeill.IsPointInRect(pTemp)) {
+                if (brArrowLeft.isPointInRect(pTemp)) {
                     // bei Pfeil links verlassen bzw auf 1. Screen zurueck
                     if (!secScreenActive) {
-                        Deactivate();
+                        deactivate();
                     } else {
                         secScreenActive = false;
                         mainFrame.isClipSet = false;
-                        menuitem = 0;
-                        olditem = 0;
-                        nFeldAktiv = -1;
-                        oFeldAktiv = -1;
+                        menuItem = 0;
+                        oldItem = 0;
+                        nFieldActive = -1;
+                        oFieldActive = -1;
                     }
                     mainFrame.repaint();
                     return;
                 }
 
-                if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
+                if (brArrowRight.isPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     // bei Pfeil nach rechts 2. Screen anzeigen
                     secScreenActive = true;
                     mainFrame.isClipSet = false;
-                    menuitem = 0;
-                    olditem = 0;
-                    nFeldAktiv = -1;
-                    oFeldAktiv = -1;
+                    menuItem = 0;
+                    oldItem = 0;
+                    nFieldActive = -1;
+                    oFieldActive = -1;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kombinationen abfragen und erledigen
-                int x = GetMouseRect(pTemp);
+                int x = getMouseRect(pTemp);
                 if (x != -1) {
                     int xx = vInventory.elementAt(x);
 
@@ -619,50 +617,50 @@ public class Inventory extends MainAnim {
                 // linke Maustaste
 
                 // Click ausserhalb Inventarfenster beendet Inventar
-                if (!brGesamt.IsPointInRect(pTemp)) {
-                    Deactivate();
+                if (!brTotal.isPointInRect(pTemp)) {
+                    deactivate();
                     mainFrame.repaint();
                     return;
                 }
 
                 // ins Hauptmenue verzweigen
-                if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
-                    Deactivate();
+                if (brMenu.isPointInRect(pTemp) && !secScreenActive) {
+                    deactivate();
                     mainFrame.whatScreen = ScreenType.MAIN_MENU;
                     mainFrame.repaint();
                     return;
                 }
 
                 // bei Pfeil links beenden oder auf 1. Screen zurueck
-                if (brPfeill.IsPointInRect(pTemp)) {
+                if (brArrowLeft.isPointInRect(pTemp)) {
                     if (!secScreenActive) {
-                        Deactivate();
+                        deactivate();
                     } else {
                         secScreenActive = false;
                         mainFrame.isClipSet = false;
-                        menuitem = 0;
-                        olditem = 0;
-                        nFeldAktiv = -1;
-                        oFeldAktiv = -1;
+                        menuItem = 0;
+                        oldItem = 0;
+                        nFieldActive = -1;
+                        oFieldActive = -1;
                     }
                     mainFrame.repaint();
                     return;
                 }
 
                 // 2. Screen bei rechtem Pfeil anzeigen
-                if (brPfeilr.IsPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
+                if (brArrowRight.isPointInRect(pTemp) && !secScreenActive && secScreenAvail) {
                     secScreenActive = true;
                     mainFrame.isClipSet = false;
-                    menuitem = 0;
-                    olditem = 0;
-                    nFeldAktiv = -1;
-                    oFeldAktiv = -1;
+                    menuItem = 0;
+                    oldItem = 0;
+                    nFieldActive = -1;
+                    oFieldActive = -1;
                     mainFrame.repaint();
                     return;
                 }
 
                 // jeweilige Beschreibung zum Inventar
-                int x = GetMouseRect(pTemp);
+                int x = getMouseRect(pTemp);
                 if (x > -1) {
                     // TexthoehenAnfang berechnen
                     evalYPos(x);
@@ -676,14 +674,14 @@ public class Inventory extends MainAnim {
                 // ----PARSER_DISABLE----
 
                 // rechte Maustaste
-                int x = GetMouseRect(pTemp);
+                int x = getMouseRect(pTemp);
                 if (x > -1) {
                     mainFrame.cursorInventory = GenericToolkit.getDefaultToolkit().createCustomCursor
-                            (GetCursorImage(vInventory.elementAt(x)),
-                                    HotSpot, "Inv");
+                            (getCursorImage(vInventory.elementAt(x)),
+                                    hotspot, "Inv");
                     mainFrame.cursorHighlightInventory = GenericToolkit.getDefaultToolkit().createCustomCursor
-                            (GetCursorHighImage(vInventory.elementAt(x)),
-                                    HotSpot, "HInv");
+                            (getCursorHighImage(vInventory.elementAt(x)),
+                                    hotspot, "HInv");
                     mainFrame.isInventoryCursor = true;
                     mainFrame.whatItem = vInventory.elementAt(x);
 
@@ -712,7 +710,7 @@ public class Inventory extends MainAnim {
     // Kombinationen erledigen
     private boolean evalKombination(int erstesItem, int zweitesItem, int neuesItem, int xx) {
         if (mainFrame.whatItem == erstesItem && xx == zweitesItem || mainFrame.whatItem == zweitesItem && xx == erstesItem) {
-            vInventory.insertElementAt(neuesItem, GetVektorPos(erstesItem, zweitesItem));
+            vInventory.insertElementAt(neuesItem, getVectorPos(erstesItem, zweitesItem));
 
             // Extrawurst fuer die Steine, werden bei Kombination mit dem Schilf nicht geloescht
             if (erstesItem != 12) {
@@ -733,10 +731,10 @@ public class Inventory extends MainAnim {
     }
 
     // Ausreden anzeigen
-    private boolean evalAusrede(int erstesItem, int zweitesItem, int AusredenID, int xx, int x) {
+    private boolean evalAusrede(int erstesItem, int zweitesItem, int excuseId, int xx, int x) {
         if (mainFrame.whatItem == erstesItem && xx == zweitesItem || mainFrame.whatItem == zweitesItem && xx == erstesItem) {
             evalYPos(x);
-            nextActionID = AusredenID;
+            nextActionID = excuseId;
             mainFrame.repaint();
             return true;
         } else {
@@ -756,17 +754,17 @@ public class Inventory extends MainAnim {
 
         // Inventarstueck in oberer Reihe, also Text in 2. Reihe
         if (dies < 3) {
-            ytemp = 169 + offsett;
+            yTemp = 169 + offsett;
         }
 
         // Inventarstueck in mittlerer Reihe, also Text in 1. Reihe
         if (dies > 2 && dies < 6) {
-            ytemp = 88 + offsett;
+            yTemp = 88 + offsett;
         }
 
         // Inventarstueck in unterer Reihe, also Text in 2. Reihe
         if (dies > 5) {
-            ytemp = 169 + offsett;
+            yTemp = 169 + offsett;
         }
 
         // 1. Reihe waere 88
@@ -778,11 +776,10 @@ public class Inventory extends MainAnim {
         // Kursor = Sprite -> andere Reaktion!!
         // Talkcount - Schleife beenden
         // ist wegen Text loeschen noetig !!!!!
-        // System.out.println(olditem + " " + menuitem + " " + oFeldAktiv + " " + nFeldAktiv);
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die erkennt, ob gehighlighted wird
 
-            int invTemp = GetMouseRect(pTemp);
+            int invTemp = getMouseRect(pTemp);
 
             if (invTemp > -1) {
                 if (vInventory.elementAt(invTemp) != mainFrame.whatItem) {
@@ -793,29 +790,29 @@ public class Inventory extends MainAnim {
             }
 
             // bei Inventarcursor diesen setzen
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
             // bei Inventarcursor mit Highlight diesen setzen
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
 
             // Beenden ,wenn mit Inventarstueck Screen verlassen
-            if (!brGesamt.IsPointInRect(pTemp)) {
-                Deactivate();
+            if (!brTotal.isPointInRect(pTemp)) {
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
             // Roten Rand um Inventarstuecke berechnen
-            nFeldAktiv = GetMouseRect(pTemp);
+            nFieldActive = getMouseRect(pTemp);
 
             // Menu - Hilight berechnen
-            menuitem = 0;
+            menuItem = 0;
 
             // Nur Neuzeichnen, wenn sich etwas geaendert hat
         }
@@ -823,33 +820,33 @@ public class Inventory extends MainAnim {
         // Kursor normal, default - Reaktion
         else {
             // Standard - Cursor setzen
-            if (Cursorform != 0) {
-                Cursorform = 0;
+            if (cursorShape != 0) {
+                cursorShape = 0;
                 mainFrame.setCursor(mainFrame.cursorNormal);
             }
 
             // Roten rand berechnen
-            nFeldAktiv = GetMouseRect(pTemp);
+            nFieldActive = getMouseRect(pTemp);
 
-            menuitem = 0;
-            if (brMenu.IsPointInRect(pTemp) && !secScreenActive) {
-                menuitem = 1;
+            menuItem = 0;
+            if (brMenu.isPointInRect(pTemp) && !secScreenActive) {
+                menuItem = 1;
             }
 
             // wenn noetig, dann repaint
         }
-        if (brPfeill.IsPointInRect(pTemp)) {
-            menuitem = 2;
+        if (brArrowLeft.isPointInRect(pTemp)) {
+            menuItem = 2;
         }
-        if (brPfeilr.IsPointInRect(pTemp) &&
+        if (brArrowRight.isPointInRect(pTemp) &&
                 secScreenAvail && !secScreenActive) {
-            menuitem = 3;
+            menuItem = 3;
         }
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
-        if (olditem != menuitem || oFeldAktiv != nFeldAktiv) {
+        if (oldItem != menuItem || oFieldActive != nFieldActive) {
             // Talkcount - Schleife beenden
             mainFrame.talkCount = 0;
 
@@ -860,8 +857,8 @@ public class Inventory extends MainAnim {
     }
 
     public void evalMouseExitEvent() {
-        menuitem = 0;
-        nFeldAktiv = -1;
+        menuItem = 0;
+        nFieldActive = -1;
         mainFrame.repaint();
     }
 
@@ -869,56 +866,44 @@ public class Inventory extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
             mainFrame.repaint();
         }
     }
 
 
     // Inventar - deaktivieren - Routine//////////////////////////////////////
-    public void Deactivate() {
+    public void deactivate() {
         mainFrame.isClipSet = false;
-        menuitem = 0;
-        nFeldAktiv = -1;
+        menuItem = 0;
+        nFieldActive = -1;
         mainFrame.whatScreen = ScreenType.NONE;
         secScreenActive = false;
         mainFrame.isInventoryHighlightCursor = false;
     }
 
     // Berechnungsroutine Inventarfensternummer - X/Y-Koordinaten//////////////
-    private BorderRect GetCurrentRect(int Number) {
-        GenericPoint Pleftup = new GenericPoint(GetCurrentXY(Number));
-        return new BorderRect(Pleftup.x, Pleftup.y, Pleftup.x + 145, Pleftup.y + 75);
+    private BorderRect getCurrentRect(int number) {
+        GenericPoint topLeft = new GenericPoint(getCurrentXY(number));
+        return new BorderRect(topLeft.x, topLeft.y, topLeft.x + 145, topLeft.y + 75);
     }
 
     // 2.Screen wird beachtet - X/Y Koordinaten stimmen
-    private GenericPoint GetCurrentXY(int Numb) {
-        GenericPoint Pleftup = new GenericPoint();
-        int Number = Numb;
+    private GenericPoint getCurrentXY(int number) {
+        GenericPoint topLeft = new GenericPoint();
+        int tmpNum = number;
         if (secScreenActive) {
-            Number = Numb - 9;
+            tmpNum = number - 9;
         }
-        Pleftup.x = 95 + Number % 3 * 151;
-        Pleftup.y = 76 + Number / 3 * 81;
-        return Pleftup;
-    }  
-
-    /*  public boolean isInventory(int which)
-	{
-	boolean ret = false;
-	int nAnzahl = vInventory.size ();
-	for (int i = 0; i < nAnzahl; i++)
-	{
-	int iTemp = ((Integer) vInventory.elementAt (i)).intValue();
-	if (iTemp == which) ret = true;
-	}
-	return ret;
-	}*/
+        topLeft.x = 95 + tmpNum % 3 * 151;
+        topLeft.y = 76 + tmpNum / 3 * 81;
+        return topLeft;
+    }
 
     // gibt Inventarposition zurueck, wo Maus drueber ( = Vectorposition im Inventarvektor)
-    private int GetMouseRect(GenericPoint Mp) {
+    private int getMouseRect(GenericPoint point) {
         int nAnzahl = vInventory.size();
         int giveback = -1;
         if (!secScreenActive) {
@@ -926,13 +911,13 @@ public class Inventory extends MainAnim {
                 nAnzahl = 9;
             }
             for (int i = 0; i < nAnzahl; i++) {
-                if (GetCurrentRect(i).IsPointInRect(Mp)) {
+                if (getCurrentRect(i).isPointInRect(point)) {
                     giveback = i;
                 }
             }
         } else {
             for (int i = 9; i < nAnzahl; i++) {
-                if (GetCurrentRect(i).IsPointInRect(Mp)) {
+                if (getCurrentRect(i).isPointInRect(point)) {
                     giveback = i;
                 }
             }
@@ -941,7 +926,7 @@ public class Inventory extends MainAnim {
     }
 
     // Routine, die feststellt, wo die beiden Objekte im Vektor liegen und kleineren zurueckgibt
-    private int GetVektorPos(int first, int second) {
+    private int getVectorPos(int first, int second) {
         for (int i = 0; i < vInventory.size(); i++) {
             if (vInventory.elementAt(i) == first || vInventory.elementAt(i) == second) {
                 return i;
@@ -951,115 +936,115 @@ public class Inventory extends MainAnim {
     }
 
     // Routine, die die allgemeinen Sachen der Textausgabe regelt
-    private void ShowText(String langKey) {
-        outputText = Start.stringManager.getTranslation(langKey);
-        outputTextPos = mainFrame.imageFont.CenterText(outputText, new GenericPoint(320 + mainFrame.scrollX, ytemp));
+    private void showText(String langKey) {
+        outputText = Start.STRING_MANAGER.getTranslation(langKey);
+        outputTextPos = mainFrame.imageFont.centerText(outputText, new GenericPoint(320 + mainFrame.scrollX, yTemp));
         mainFrame.repaint();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll getan werden ?
         switch (nextActionID) {
             case 1:
                 // Pfeife anschauen
-                ShowText("Inventar_1");
+                showText("Inventar_1");
                 break;
 
             case 2:
                 // Stock anschauen
-                ShowText("Inventar_2");
+                showText("Inventar_2");
                 break;
 
             case 3:
                 // Schild (deska) anschauen
-                ShowText("Inventar_3");
+                showText("Inventar_3");
                 break;
 
             case 4:
                 // Honck anschauen
-                ShowText("Inventar_4");
+                showText("Inventar_4");
                 break;
 
             case 5:
                 // Hocka  anschauen
-                ShowText("Inventar_5");
+                showText("Inventar_5");
                 break;
 
             case 6:
                 // Lajna anschauen
-                ShowText("Inventar_6");
+                showText("Inventar_6");
                 break;
 
             case 7:
                 // Wuda anschauen
-                ShowText("Inventar_7");
+                showText("Inventar_7");
                 break;
 
             case 8:
                 // Wacki anschauen
-                ShowText("Inventar_8");
+                showText("Inventar_8");
                 break;
 
             case 9:
                 // Wuda + Hocka anschauen
-                ShowText("Inventar_9");
+                showText("Inventar_9");
                 break;
 
             case 10:
                 // Wuda + Hocka + Wacka anschauen
-                ShowText("Inventar_10");
+                showText("Inventar_10");
                 break;
 
             case 11:
                 // Wuda + Hocka + Drjewjana Ryba anschauen
-                ShowText("Inventar_11");
+                showText("Inventar_11");
                 break;
 
             case 12:
                 // Wohnjowe kamuski anschauen
-                ShowText("Inventar_12");
+                showText("Inventar_12");
                 break;
 
             case 13:
                 // Drjewjana Ryba anschauen
-                ShowText("Inventar_13");
+                showText("Inventar_13");
                 break;
 
             case 14:
                 // Ryba anschauen
-                ShowText("Inventar_14");
+                showText("Inventar_14");
                 break;
 
             case 15:
                 // Krosik anschauen
-                ShowText("Inventar_15");
+                showText("Inventar_15");
                 break;
 
             case 16:
                 // Honck z blotom anschauen
-                ShowText("Inventar_16");
+                showText("Inventar_16");
                 break;
 
             case 17:
                 // Rohodz anschauen
-                ShowText("Inventar_17");
+                showText("Inventar_17");
                 break;
 
             case 18:
                 // Rohodz + Kamusk anschauen
-                ShowText("Inventar_18");
+                showText("Inventar_18");
                 break;
 
             case 19:
                 // Pjero anschauen
-                ShowText("Inventar_19");
+                showText("Inventar_19");
                 break;
 
             case 20:
                 // Karta anschauen
-                ShowText("Inventar_20");
+                showText("Inventar_20");
                 break;
 
 
@@ -1067,315 +1052,312 @@ public class Inventory extends MainAnim {
 
             case 30:
                 // List Zahrodnika anschauen
-                ShowText("Inventar_21");
+                showText("Inventar_21");
                 break;
 
             case 31:
                 // dowolnosc1 anschauen
-                ShowText("Inventar_22");
+                showText("Inventar_22");
                 break;
 
             case 32:
                 // dowolnosc3 anschauen
-                ShowText("Inventar_23");
+                showText("Inventar_23");
                 break;
 
             case 33:
                 // dowolnosc2 anschauen
-                ShowText("Inventar_24");
+                showText("Inventar_24");
                 break;
 
             case 34:
                 // dowolnosc4 anschauen
-                ShowText("Inventar_25");
+                showText("Inventar_25");
                 break;
 
             case 35:
                 // Drjewo anschauen
-                ShowText("Inventar_26");
+                showText("Inventar_26");
                 break;
 
             case 36:
                 // Tigerowy kozuch anschauen
-                ShowText("Inventar_27");
+                showText("Inventar_27");
                 break;
 
             case 37:
                 // Kotwica anschauen
-                ShowText("Inventar_28");
+                showText("Inventar_28");
                 break;
 
             case 38:
                 // Powjaz anschauen
-                ShowText("Inventar_29");
+                showText("Inventar_29");
                 break;
 
             case 39:
                 // Kotwica + Powjaz anschauen
-                ShowText("Inventar_30");
+                showText("Inventar_30");
                 break;
 
             case 40:
                 // Tolery anschauen
-                ShowText("Inventar_31");
+                showText("Inventar_31");
                 break;
 
             case 41:
                 // Sluzowna Drasta anschauen
-                ShowText("Inventar_32");
+                showText("Inventar_32");
                 break;
 
             case 42:
                 // Helbija anschauen
-                ShowText("Inventar_33");
+                showText("Inventar_33");
                 break;
 
             case 43:
                 // Helm anschauen
-                ShowText("Inventar_34");
+                showText("Inventar_34");
                 break;
 
             case 44:
                 // Helm mit Wein anschauen
-                ShowText("Inventar_35");
+                showText("Inventar_35");
                 break;
 
             case 45:
                 // Sonnenuhr anschauen
-                ShowText("Inventar_36");
+                showText("Inventar_36");
                 break;
 
             case 46:
                 // Hammer anschauen
-                ShowText("Inventar_37");
+                showText("Inventar_37");
                 break;
 
             case 47:
                 // Schluessel anschauen
-                ShowText("Inventar_38");
+                showText("Inventar_38");
                 break;
 
             case 48:
                 // Metall anschauen
-                ShowText("Inventar_39");
+                showText("Inventar_39");
                 break;
 
             case 49:
                 // Befehl anschauen
-                ShowText("Inventar_40");
+                showText("Inventar_40");
                 break;
 
             case 50:
                 // Skizze anschauen
-                ShowText("Inventar_41");
+                showText("Inventar_41");
                 break;
 
             case 51:
                 // Halben Stollen
-                ShowText("Inventar_42");
+                showText("Inventar_42");
                 break;
 
             case 52:
                 // Stollen anschauen
-                ShowText("Inventar_43");
+                showText("Inventar_43");
                 break;
 
             case 53:
                 // Drasta anschauen
-                ShowText("Inventar_44");
+                showText("Inventar_44");
                 break;
 
             case 54:
                 // Karte in Dresden anschauen
-                ShowText("Inventar_45");
+                showText("Inventar_45");
                 break;
 
             case 55:
                 // schweres Buch anschauen
-                ShowText("Inventar_46");
+                showText("Inventar_46");
                 break;
 
             case 60:
                 // Schuessel anschauen
-                ShowText("Inventar_47");
+                showText("Inventar_47");
                 break;
 
             case 61:
                 // Koraktor anschauen
-                // ShowText ("Koraktor - sk#on#knje sym knihu$mojich prjedownikow namaka#l!",
-                //	  "Koraktor - sko#ncnje som knig#ly$mojich pr#edownikow namaka#l!!",
-                //	  "Der Koraktor -$endlich habe ich ihn gefunden!");
-                ShowText("Inventar_48");
+                showText("Inventar_48");
                 break;
 
             case 62:
                 // Grossen Stein anschauen
-                ShowText("Inventar_49");
+                showText("Inventar_49");
                 break;
 
             case 63:
                 // Syno anschauen
-                ShowText("Inventar_50");
+                showText("Inventar_50");
                 break;
 
             case 100:
                 // Standardausreden
                 int zuffZahl = (int) Math.round(Math.random() * (EXCUSES.length - 1));
-                ShowText(EXCUSES[zuffZahl]);
+                showText(EXCUSES[zuffZahl]);
                 break;
 
             case 110:
                 // wacki auf hornck bloto
-                ShowText("Inventar_51");
+                showText("Inventar_51");
                 break;
 
             case 115:
                 // ryba auf hornck bloto
-                ShowText("Inventar_52");
+                showText("Inventar_52");
                 break;
 
             case 120:
                 // karta auf kamuski
-                ShowText("Inventar_53");
+                showText("Inventar_53");
                 break;
 
             case 125:
                 // deska auf kamuski
-                ShowText("Inventar_54");
+                showText("Inventar_54");
                 break;
 
             case 130:
                 // bron auf kamuski
-                ShowText("Inventar_55");
+                showText("Inventar_55");
                 break;
 
             case 135:
                 // pjerjo auf ryba
-                ShowText("Inventar_56");
+                showText("Inventar_56");
                 break;
 
             case 140:
                 // pjerjo auf hornck bloto
-                ShowText("Inventar_57");
+                showText("Inventar_57");
                 break;
 
             case 145:
                 // flejta auf kamuski
-                ShowText("Inventar_58");
+                showText("Inventar_58");
                 break;
 
             case 150:
                 // kij auf kamuski
-                ShowText("Inventar_59");
+                showText("Inventar_59");
                 break;
 
             case 155:
                 // flejta auf dryba
-                ShowText("Inventar_60");
+                showText("Inventar_60");
                 break;
 
             case 160:
                 // hocka auf dryba
-                ShowText("Inventar_61");
+                showText("Inventar_61");
                 break;
 
             case 165:
                 // wuda auf dryba
-                ShowText("Inventar_62");
+                showText("Inventar_62");
                 break;
 
             case 170:
                 // wacki auf dryba
-                ShowText("Inventar_63");
+                showText("Inventar_63");
                 break;
 
             case 175:
                 // kamuski auf dryba
-                ShowText("Inventar_64");
+                showText("Inventar_64");
                 break;
 
             case 180:
                 // wacki auf ryba
-                ShowText("Inventar_65");
+                showText("Inventar_65");
                 break;
 
             case 185:
                 // wuda + hocka auf ryba
-                ShowText("Inventar_66");
+                showText("Inventar_66");
                 break;
 
             case 190:
                 // wuda + wacki auf ryba
-                ShowText("Inventar_67");
+                showText("Inventar_67");
                 break;
 
             case 195:
                 // wuda + dryba auf ryba
-                ShowText("Inventar_68");
+                showText("Inventar_68");
                 break;
 
             case 200:
                 // wacki auf kij
-                ShowText("Inventar_69");
+                showText("Inventar_69");
                 break;
 
             case 205:
                 // wacki auf hornck
-                ShowText("Inventar_70");
+                showText("Inventar_70");
                 break;
 
             case 210:
                 // wacki auf  hocka
-                ShowText("Inventar_71");
+                showText("Inventar_71");
                 break;
 
             case 215:
                 // wacki auf wuda
-                ShowText("Inventar_72");
+                showText("Inventar_72");
                 break;
 
             case 220:
                 // lajna auf hocka
-                ShowText("Inventar_73");
+                showText("Inventar_73");
                 break;
 
             //////// Dresdner Sonderausreden ///////////////////////////////////
 
             case 225:
                 // list auf verschienden sachen
-                ShowText("Inventar_74");
+                showText("Inventar_74");
                 break;
 
             case 230:
                 // List auf 5 tolerow
-                ShowText("Inventar_75");
+                showText("Inventar_75");
                 break;
 
             case 240:
                 // 5 tolerow auf drasta / sluz drasta
-                ShowText("Inventar_76");
+                showText("Inventar_76");
                 break;
 
             case 255:
                 // hamor auf metall
-                ShowText("Inventar_77");
+                showText("Inventar_77");
                 break;
 
             // Teil 4
 
             case 270:
                 // Syno auf Lichtschaale
-                ShowText("Inventar_78");
+                showText("Inventar_78");
                 break;
 
             case 271:
                 // Feuersteine auf Syno
-                ShowText("Inventar_79");
+                showText("Inventar_79");
                 break;
 
             case 272:
                 // deska auf kamuski
-                ShowText("Inventar_80");
+                showText("Inventar_80");
                 break;
 
             default:

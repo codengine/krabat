@@ -48,38 +48,6 @@ public class Wotrow extends MainLocation {
     private static final GenericPoint Pwoda = new GenericPoint(406, 278);
     private static final GenericPoint Pwokno = new GenericPoint(388, 443);
 
-    // wir beginnen bei Y - Koordinate 148
-    /*    private static final int[] Carray = {360, 358, 356, 355, 353, 352, 351, 349, 347, 346, 
-	  345, 344, 343, 342, 341, 340, 339, 339, 338, 337,
-	  336, 335, 335, 334, 333, 333, 332, 332, 331, 331,
-	  330, 330, 330, 330, 330, 330, 330, 330, 330, 330,
-	  330, 330, 330, 330, 330, 330, 331, 331, 332, 332,
-	  
-	  333, 333, 334, 335, 337, 338, 340, 341, 343, 344,
-	  346, 348, 349, 351, 352, 355, 356, 357, 360, 361,
-	  363, 364, 366, 367, 368, 368, 370, 370, 370, 371,
-	  371, 371, 372, 372, 372, 373, 374, 374, 375, 375,
-	  375, 376, 377, 377, 378, 378, 378, 378, 379, 379,
-	  
-	  380, 380, 380, 381, 381, 382, 382, 382, 383, 384,
-	  385, 385, 386, 386, 388, 389, 390, 392, 394, 396,
-	  398, 399, 400, 401, 402, 404, 404, 405, 406, 406,
-	  407, 407, 407, 408, 409, 411, 412, 414, 415, 415,
-	  416, 417, 419, 420, 421, 423, 424, 425, 426, 426,
-	  
-	  427, 428, 430, 431, 432, 433, 434, 435, 437, 438,
-	  439, 440, 441, 442, 442, 442, 442, 442, 442, 442,
-	  442, 442, 442, 441, 440, 440, 439, 438, 437, 436,
-	  434, 432, 430, 427, 424, 420, 418, 415, 415, 413,
-	  411, 407, 404, 402, 400, 398, 395, 393, 391, 387,
-	  
-	  386, 384, 382, 381, 380, 378, 377, 376, 375, 375,
-	  375, 375, 375, 375, 375, 375, 375, 375, 375, 375,
-	  375, 375, 376, 378, 379, 380, 381, 382, 383, 385,
-	  387, 389, 390, 392, 396, 400, 404, 408, 412, 416};*/
-
-    // letzte Y - Koordinate = 387
-
     // Konstante ints
     private static final int fExit = 6;
     private static final int fWoda = 3;
@@ -107,19 +75,19 @@ public class Wotrow extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 400;
-        mainFrame.krabat.zoomf = 8f;
-        mainFrame.krabat.defScale = 60;
+        mainFrame.krabat.maxX = 400;
+        mainFrame.krabat.zoomFactor = 8f;
+        mainFrame.krabat.defaultScale = 60;
 
         // fuer Blinkern rein
-        InitBlinker();
+        initBlinker();
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(441, 463, 340, 368, 403, 479));
@@ -138,24 +106,24 @@ public class Wotrow extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(330, 331, 332, 333, 190, 198));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(332, 333, 330, 331, 175, 189));
 
-        mainFrame.pathFinder.ClearMatrix(15);
+        mainFrame.pathFinder.clearMatrix(15);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 7);
-        mainFrame.pathFinder.PosVerbinden(7, 8);
-        mainFrame.pathFinder.PosVerbinden(8, 9);
-        mainFrame.pathFinder.PosVerbinden(9, 10);
-        mainFrame.pathFinder.PosVerbinden(10, 11);
-        mainFrame.pathFinder.PosVerbinden(11, 12);
-        mainFrame.pathFinder.PosVerbinden(12, 13);
-        mainFrame.pathFinder.PosVerbinden(13, 14);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(5, 6);
+        mainFrame.pathFinder.connectPos(6, 7);
+        mainFrame.pathFinder.connectPos(7, 8);
+        mainFrame.pathFinder.connectPos(8, 9);
+        mainFrame.pathFinder.connectPos(9, 10);
+        mainFrame.pathFinder.connectPos(10, 11);
+        mainFrame.pathFinder.connectPos(11, 12);
+        mainFrame.pathFinder.connectPos(12, 13);
+        mainFrame.pathFinder.connectPos(13, 14);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -163,18 +131,18 @@ public class Wotrow extends MainLocation {
             case 201:
                 // von Oben aus 
                 mainFrame.krabat.setPos(new GenericPoint(332, 185));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 203:
                 // von Unten aus (Doma4)
                 mainFrame.krabat.setPos(new GenericPoint(372, 462));
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/wotrow/wotrow.png");
         foreground = getPicture("gfx/wotrow/wotrow-fg.png");
 
@@ -183,7 +151,7 @@ public class Wotrow extends MainLocation {
     }
 
 
-    private void InitBlinker() {
+    private void initBlinker() {
         // hier wird das Blinkern festgelegt, indem das Array initialisiert wird, wo der
         // Blinkstatus gespeichert wird
 
@@ -197,8 +165,8 @@ public class Wotrow extends MainLocation {
         int AnzahlStriche = 1; // 1 Mindestens !
 
         for (BorderTrapezoid borderTrapezoid : Blink) {
-            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
+            if (borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -209,13 +177,11 @@ public class Wotrow extends MainLocation {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
+                if (Blink[i].surfaceArea() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
                     int zuffZahl;
-
-                    // System.out.println ("Array " + i + " " + j + "bekommt einen Blinker...");
 
                     do {
                         zuffZahl = (int) Math.round(Math.random() * 7);
@@ -240,7 +206,7 @@ public class Wotrow extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -254,20 +220,19 @@ public class Wotrow extends MainLocation {
         g.drawImage(mond, 399, 26);
 
         // Blinkern ermoeglichen
-        // g.setClip (392, 246, 248, 107);
         g.setClip(0, 0, 644, 484);
         g.drawImage(background, 0, 0);
-        Blink(g);
+        blink(g);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // hier ist der Sound...
         evalSound();
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         //         mainFrame.krabat.SetKrabatPos (CorrectX (mainFrame.krabat.GetKrabatPos()));
 
@@ -275,16 +240,16 @@ public class Wotrow extends MainLocation {
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -314,7 +279,7 @@ public class Wotrow extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -324,17 +289,17 @@ public class Wotrow extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -349,7 +314,7 @@ public class Wotrow extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -369,29 +334,29 @@ public class Wotrow extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer woda
-                if (brWoda.IsPointInRect(pTemp)) {
+                if (brWoda.isPointInRect(pTemp)) {
                     pTemp = Pwoda;
                     nextActionID = 150;
                 }
 
                 // Ausreden fuer wokno
-                if (brWokno.IsPointInRect(pTemp)) {
+                if (brWokno.isPointInRect(pTemp)) {
                     pTemp = Pwokno;
                     nextActionID = 155;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -401,7 +366,7 @@ public class Wotrow extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -413,89 +378,89 @@ public class Wotrow extends MainLocation {
                 nextActionID = 0;
 
                 // nach Unten gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // nach Oben gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Anschauen woda
-                if (brWoda.IsPointInRect(pTemp)) {
+                if (brWoda.isPointInRect(pTemp)) {
                     pTemp = Pwoda;
                     nextActionID = 1;
                 }
 
                 // Anschauen wokno
-                if (brWokno.IsPointInRect(pTemp)) {
+                if (brWokno.isPointInRect(pTemp)) {
                     pTemp = Pwokno;
                     nextActionID = 5;
                 }
 
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Njedz Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Kolmc anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Woda mitnehmen
-                if (brWoda.IsPointInRect(pTemp)) {
+                if (brWoda.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwoda);
+                    mainFrame.pathWalker.setNewWay(Pwoda);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno mitnehmen
-                if (brWokno.IsPointInRect(pTemp)) {
+                if (brWokno.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwokno);
+                    mainFrame.pathWalker.setNewWay(Pwokno);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -506,8 +471,8 @@ public class Wotrow extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -516,17 +481,17 @@ public class Wotrow extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || brWoda.IsPointInRect(pTemp) ||
-                    brWokno.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || brWoda.isPointInRect(pTemp) ||
+                    brWokno.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -534,46 +499,46 @@ public class Wotrow extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (brWoda.IsPointInRect(pTemp) || brWokno.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (brWoda.isPointInRect(pTemp) || brWokno.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
 
     // Routinen fuer veraendertes Laufen auf definierter Linie, deaktiviert!!!
 
-    private void SetzeNeuenWeg(GenericPoint dest) {
+    private void setNewWay(GenericPoint dest) {
         // GenericPoint right = CorrectSetX (dest);
         // mainFrame.wegGeher.SetzeNeuenWeg (right);
 
         // Routine wird nicht mehr genutzt
-        mainFrame.pathWalker.SetzeNeuenWeg(dest);
+        mainFrame.pathWalker.setNewWay(dest);
     }		
   
     /*
@@ -635,7 +600,7 @@ public class Wotrow extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -643,7 +608,7 @@ public class Wotrow extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -651,21 +616,21 @@ public class Wotrow extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Umgebungs-Sounds abspielen
@@ -673,21 +638,21 @@ public class Wotrow extends MainLocation {
         int zfz = (int) (Math.random() * 100);
 
         if (zfz > 92) {
-            mainFrame.soundPlayer.PlayFile("sfx/grillen.wav");
+            mainFrame.soundPlayer.playFile("sfx/grillen.wav");
         }
 
         if (zfz > 98) {
             int zfz2 = (int) (Math.random() * 1.99f);
 
             if (zfz2 < 1) {
-                mainFrame.soundPlayer.PlayFile("sfx/uhu1.wav");
+                mainFrame.soundPlayer.playFile("sfx/uhu1.wav");
             } else {
-                mainFrame.soundPlayer.PlayFile("sfx/uhu2.wav");
+                mainFrame.soundPlayer.playFile("sfx/uhu2.wav");
             }
         }
     }
 
-    private void Blink(GenericDrawingContext g) {
+    private void blink(GenericDrawingContext g) {
         g.setColor(blinkFarbe);
 
         // System.out.println ("Blinkern...");
@@ -713,7 +678,7 @@ public class Wotrow extends MainLocation {
                                 MerkArray[i][j][0] = (int) Math.round(Math.random() * xlaenge) + xoffset;
                                 MerkArray[i][j][1] = (int) Math.round(Math.random() * ylaenge) + Blink[i].y1;
                             }
-                            while (!Blink[i].PointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
+                            while (!Blink[i].pointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
                         }
                     }
 
@@ -764,7 +729,7 @@ public class Wotrow extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -784,7 +749,7 @@ public class Wotrow extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -793,42 +758,42 @@ public class Wotrow extends MainLocation {
 
             case 1:
                 // Look woda
-                KrabatSagt("Wotrow_1", fWoda, 3, 0, 0);
+                krabatSays("Wotrow_1", fWoda, 3, 0, 0);
                 break;
 
             case 5:
                 // Look Wokno
-                KrabatSagt("Wotrow_2", fWokno, 3, 0, 0);
+                krabatSays("Wotrow_2", fWokno, 3, 0, 0);
                 break;
 
             case 50:
                 // Use woda
-                KrabatSagt("Wotrow_3", fWoda, 3, 0, 0);
+                krabatSays("Wotrow_3", fWoda, 3, 0, 0);
                 break;
 
             case 55:
                 // Use wokno
-                KrabatSagt("Wotrow_4", fWokno, 3, 0, 0);
+                krabatSays("Wotrow_4", fWokno, 3, 0, 0);
                 break;
 
             case 150:
                 // Ausrede woda
-                DingAusrede(fWoda);
+                thingExcuse(fWoda);
                 break;
 
             case 155:
                 // Ausrede wokno
-                DingAusrede(fWokno);
+                thingExcuse(fWokno);
                 break;
 
             case 100:
                 // Nicht zurueckgehen
-                KrabatSagt("Wotrow_5", fExit, 3, 0, 0);
+                krabatSays("Wotrow_5", fExit, 3, 0, 0);
                 break;
 
             case 101:
                 // Gehe zu Hrod
-                NeuesBild(201, 200);
+                createNewLocation(201, 200);
                 break;
 
             default:

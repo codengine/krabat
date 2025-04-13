@@ -58,10 +58,10 @@ public class Dundak extends MainAnim {
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderbody = MAX_VERHINDERBODY;
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         hosc_stand[0] = getPicture("gfx/hoscenc/gast2-1.png");
         hosc_stand[1] = getPicture("gfx/hoscenc/gast2-1a.png");
         hosc_stand[2] = getPicture("gfx/hoscenc/gast2-1b.png");
@@ -162,7 +162,7 @@ public class Dundak extends MainAnim {
             return; // bei Problemen mit dem Soundsystem zurueckspringen
         }
 
-        mainFrame.soundPlayer.PlayFile("sfx/becher.wav");
+        mainFrame.soundPlayer.playFile("sfx/becher.wav");
 
     }
 

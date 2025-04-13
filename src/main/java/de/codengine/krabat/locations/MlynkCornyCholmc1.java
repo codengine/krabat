@@ -66,20 +66,11 @@ public class MlynkCornyCholmc1 extends MainLocation {
     private Boom krabatmorph;
 
     private int muellermorphcount;
-    // private int krabatmorphcount;
 
     private boolean ismuellermorphing = false;
     private boolean iskrabatmorphing = false;
 
-    // Konstanten - Rects deklarieren
-    //   private static final borderrect obererAusgang  = new borderrect (120, 189, 177, 230);
-    //   private static final borderrect untererAusgang = new borderrect (376, 451, 590, 479);
-    //   private static final borderrect waldRect       = new borderrect (  0,   0, 366, 194);
-
     // Konstante Points
-//    private static final GenericPoint Pup          = new GenericPoint (151, 268);
-    //  private static final GenericPoint Pdown        = new GenericPoint (497, 479);
-    //  private static final GenericPoint Pwald        = new GenericPoint (213, 376);
     private static final GenericPoint mlynkFeet = new GenericPoint(171, 305);
 
     // konstantes Rectangle fuer den Waldvordergrund
@@ -99,18 +90,13 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        // es werden die alten Werte fuer Krabat erhalten, wie sie aus Kolmc stammen
-  	/*mainFrame.krabat.maxx = 458;
-	  mainFrame.krabat.zoomf = 2.79f;
-	  mainFrame.krabat.defScale = 0;*/
-
         mueller = new Miller(mainFrame);
-        mueller.maxx = 0;
-        mueller.zoomf = 4f;
-        mueller.defScale = 60;
+        mueller.maxX = 0;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = 60;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(6);
+        mueller.setFacing(6);
 
         krabatvogel = new RapakiRaven(mainFrame, 172, 290, 30, -50, true);  // start, x, y, zoomfaktor, ende, gleitet nie?
         muellervogel = new MillerBird(mainFrame, -50, 270, 25, 155, false); // start, x, y, zoomfaktor, ende, isLeft?
@@ -121,23 +107,23 @@ public class MlynkCornyCholmc1 extends MainLocation {
         offImage = GenericToolkit.getDefaultToolkit().createImage(640, 90);
         offGraphics = offImage.getGraphics();
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
     }
 
     // damit die Rueckflugssequenz immer gleich ist...
-    private void InitMuellerRueckflug() {
+    private void initMillerFlightBack() {
         muellervogel = new MillerBird(mainFrame, 155, 270, 30, -50, true);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
         setAnim = true;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/kolmc/kolmc2.png");
         himmel1 = getPicture("gfx/kolmc/kcsky1.png");
         himmel2 = getPicture("gfx/kolmc/kcsky2.png");
@@ -181,11 +167,11 @@ public class MlynkCornyCholmc1 extends MainLocation {
             g.setClip(0, 0, 644, 484);
             mainFrame.isBackgroundAnimRunning = true;
             mainFrame.isAnimRunning = true;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
-        FadeBackground();
+        fadeBackground();
 
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
@@ -201,9 +187,9 @@ public class MlynkCornyCholmc1 extends MainLocation {
         // Mlynk Hintergrund loeschen
         if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -233,16 +219,16 @@ public class MlynkCornyCholmc1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Mueller zeichnen
         if (muellerda) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne sie jetzt
 
@@ -251,7 +237,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 mueller.drawMlynkWithKarte(g);
             } else {
                 // Redet sie etwa gerade ??
-                if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+                if (talkPerson == 36 && mainFrame.talkCount > 0) {
                     mueller.talkMlynk(g);
                 }
 
@@ -271,16 +257,16 @@ public class MlynkCornyCholmc1 extends MainLocation {
         if (krabatda) {
             // Animation??
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -314,14 +300,14 @@ public class MlynkCornyCholmc1 extends MainLocation {
         if (voegelda) {
             if (muellerFliegtAllein) {
                 g.setClip(muellervogel.mlynkPtackRect());
-                voegelfertig = muellervogel.Flieg(g);
+                voegelfertig = muellervogel.doFly(g);
                 g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
             } else {
                 g.setClip(muellervogel.mlynkPtackRect());
-                muellervogel.Flieg(g);
+                muellervogel.doFly(g);
                 g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
                 g.setClip(krabatvogel.ptack2Rect());
-                voegelfertig = krabatvogel.Flieg(g);
+                voegelfertig = krabatvogel.doFly(g);
                 g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
             }
         }
@@ -332,7 +318,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -342,12 +328,12 @@ public class MlynkCornyCholmc1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (setAnim) {
@@ -362,8 +348,8 @@ public class MlynkCornyCholmc1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1 && !isFading) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1 && !isFading) {
+            doAction();
         }
     }
 
@@ -372,13 +358,12 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
     }
@@ -386,8 +371,8 @@ public class MlynkCornyCholmc1 extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -402,7 +387,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
     public void evalKeyEvent(GenericKeyEvent e) {
     }
 
-    private void FadeBackground() {
+    private void fadeBackground() {
         if (!isFading) {
             return;
         }
@@ -422,7 +407,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
             if (Fadecount < 40) {
                 if (Fadecount == 1) {
-                    mainFrame.soundPlayer.PlayFile("sfx/mlynk-les.wav");
+                    mainFrame.soundPlayer.playFile("sfx/mlynk-les.wav");
                 }
                 Fadecount++;
             } else {
@@ -452,7 +437,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // hier wird zu den Standardausreden von Krabat verzweigt, wenn noetig (in Superklasse)
         if (nextActionID > 499 && nextActionID < 600) {
             setKrabatAusrede();
@@ -468,8 +453,6 @@ public class MlynkCornyCholmc1 extends MainLocation {
         switch (nextActionID) {
             case 1000:
                 // Muellervogel soll reinfliegen, wird geskippt
-                // mainFrame.wave.PlayFile ("sfx/mlynk-les.wav");
-                // voegelda = true;
                 Counter = 30;
                 nextActionID = 1004;
                 break;
@@ -487,7 +470,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                muellermorph.Init(mlynkFeet, 35);
+                muellermorph.init(mlynkFeet, 35);
                 ismuellermorphing = true;
                 nextActionID = 1005;
                 break;
@@ -509,42 +492,42 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                PersonSagt("MlynkCornyCholmc1_1", 12, 36, 2, 1020, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_1", 12, 36, 2, 1020, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1020:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_2", 0, 36, 2, 1030, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_2", 0, 36, 2, 1030, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1030:
                 // Krabat spricht
-                KrabatSagt("MlynkCornyCholmc1_3", 0, 1, 2, 1040);
+                krabatSays("MlynkCornyCholmc1_3", 0, 1, 2, 1040);
                 break;
 
             case 1040:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_4", 0, 36, 2, 1042, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_4", 0, 36, 2, 1042, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1042:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_5", 0, 36, 2, 1050, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_5", 0, 36, 2, 1050, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1050:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_6", 0, 36, 2, 1055, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_6", 0, 36, 2, 1055, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1055:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_7", 0, 36, 2, 1060, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_7", 0, 36, 2, 1060, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1060:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_8", 0, 36, 2, 1061, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_8", 0, 36, 2, 1061, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1061:
@@ -570,12 +553,12 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                PersonSagt("MlynkCornyCholmc1_9", 0, 36, 2, 1064, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_9", 0, 36, 2, 1064, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1064:
                 // hier Unterscheidung,. ob er Feder schon hat oder noch nicht
-                InitMuellerRueckflug();
+                initMillerFlightBack();
                 if (!mainFrame.actions[919]) {
                     nextActionID = 1065;
                 } else {
@@ -587,7 +570,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 // Mueller zurueckfaden lassen
                 // Hier Karte uebergeben
                 mainFrame.inventory.vInventory.addElement(20);
-                muellermorph.Init(mlynkFeet, 35);
+                muellermorph.init(mlynkFeet, 35);
                 ismuellermorphing = true;
                 nextActionID = 1066;
                 break;
@@ -600,7 +583,6 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 }
                 mainFrame.isClipSet = false;
                 muellerda = false;
-                // voegelda = true;
                 darker = false;
                 nextActionID = 1067;
                 break;
@@ -617,8 +599,6 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
             case 1069:
                 // Zurueckfaden
-                // if (voegelfertig == true) break;
-                // voegelda = false;
                 isFading = true;
                 nextActionID = 1070;
                 break;
@@ -626,13 +606,11 @@ public class MlynkCornyCholmc1 extends MainLocation {
             case 1070:
                 // back to Kolmc
                 mainFrame.actions[226] = true;
-                NeuesBild(17, 26);
+                createNewLocation(17, 26);
                 break;
 
             case 1100:
                 // Muellervogel soll reinfliegen, wird geskippt
-                // mainFrame.wave.PlayFile ("sfx/mlynk-les.wav");
-                // voegelda = true;
                 Counter = 30;
                 nextActionID = 1120;
                 break;
@@ -650,7 +628,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                muellermorph.Init(mlynkFeet, 35);
+                muellermorph.init(mlynkFeet, 35);
                 ismuellermorphing = true;
                 nextActionID = 1130;
                 break;
@@ -677,7 +655,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
             case 1290:
                 // Krabat sagt, dass er Feder hat und gibt sie
-                KrabatSagt("MlynkCornyCholmc1_10", 0, 1, 2, 1291);
+                krabatSays("MlynkCornyCholmc1_10", 0, 1, 2, 1291);
                 break;
 
             case 1291:
@@ -696,19 +674,19 @@ public class MlynkCornyCholmc1 extends MainLocation {
             case 1300:
                 // Mueller redet
                 muellerda = true;
-                InitMuellerRueckflug();
-                PersonSagt("MlynkCornyCholmc1_11", 0, 36, 7, 1310, mueller.evalMlynkTalkPoint());
+                initMillerFlightBack();
+                personSays("MlynkCornyCholmc1_11", 0, 36, 7, 1310, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1310:
                 // Mueller redet
-                PersonSagt("MlynkCornyCholmc1_12", 0, 36, 2, 1320, mueller.evalMlynkTalkPoint());
+                personSays("MlynkCornyCholmc1_12", 0, 36, 2, 1320, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1320:
                 // Verzauberanim beider Leute
-                muellermorph.Init(mlynkFeet, 35);
-                krabatmorph.Init(mainFrame.krabat.getPos(), -40);  // Krabat macht hier keinen Krach
+                muellermorph.init(mlynkFeet, 35);
+                krabatmorph.init(mainFrame.krabat.getPos(), -40);  // Krabat macht hier keinen Krach
                 ismuellermorphing = true;
                 iskrabatmorphing = true;
                 nextActionID = 1342;
@@ -744,7 +722,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
                 if (--Counter > 1) {
                     break;
                 }
-                mainFrame.soundPlayer.PlayFile("sfx/rapak2.wav");
+                mainFrame.soundPlayer.playFile("sfx/rapak2.wav");
                 nextActionID = 1348;
                 break;
 
@@ -757,7 +735,7 @@ public class MlynkCornyCholmc1 extends MainLocation {
 
             case 1350:
                 // Skip zur Muehle
-                NeuesBild(25, 26);
+                createNewLocation(25, 26);
                 break;
 
             default:

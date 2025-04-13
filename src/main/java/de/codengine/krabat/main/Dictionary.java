@@ -31,45 +31,38 @@ import org.slf4j.LoggerFactory;
 public class Dictionary extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Dictionary.class);
     private GenericImage background;
-    private GenericImage pfeiloben;
-    private GenericImage pfeilunten;
-    private GenericImage dpfeiloben;
-    private GenericImage dpfeilunten;
+    private GenericImage arrowUp;
+    private GenericImage arrowDown;
+    private GenericImage arrowUpDisabled;
+    private GenericImage arrowDownDisabled;
 
-    private static final GenericPoint pPfeilOben = new GenericPoint(210, 80);  // allgemeine Pfeildeklarationen
-    private static final GenericPoint pPfeilUnten = new GenericPoint(210, 277);
+    private static final GenericPoint ARROW_UP_POINT = new GenericPoint(210, 80);  // allgemeine Pfeildeklarationen
+    private static final GenericPoint ARROW_DOWN_POINT = new GenericPoint(210, 277);
 
-    private static final int BREITE = 35; // dto.
-    private static final int HOEHE = 53;
+    private static final int WIDTH = 35; // dto.
+    private static final int HEIGHT = 53;
 
-    private final BorderRect brPfeilOben;
-    private final BorderRect brPfeilUnten;
+    private final BorderRect brArrowUp;
+    private final BorderRect brArrowDown;
 
-    private int Cursorform = 200;
+    private int cursorShape = 200;
 
-    // private String outputText = "";
-    // private GenericPoint outputTextPos;
+    private final String[][] entry;
 
-    private final String[][] Eintrag;
+    private int index = 0;
 
-    private int Index = 0;
-
-    // private static final int OFFSET = 256;
-
-    /*private static final String[] Auswahl = {"b", "c", "d", "e", "f", "g", "h", "j", "k", "l","#l", "m", "n",
-      "o", "p", "r", "s","#s", "t", "w", "z","#d","#z"};*/
-    private static final String[] DAuswahl = {"B", "C", "D", "E", "F", "G", "H", "Ch", "J", "K", "#L", "L", "M", "N",
+    private static final String[] D_SELECT = {"B", "C", "D", "E", "F", "G", "H", "Ch", "J", "K", "#L", "L", "M", "N",
             "O", "Pa", "Po", "P#y", "R", "S", "#S", "T", "Wa", "Wo", "Wu", "Z", "#Z", "#D"};
-    private static final int[] DSprung = {0, 25, 37, 80, 81, 83, 114, 118, 122, 126, 180, 188, 197, 218, 260,
+    private static final int[] D_JUMP = {0, 25, 37, 80, 81, 83, 114, 118, 122, 126, 180, 188, 197, 218, 260,
             262, 284, 324, 360, 378, 408, 419, 430, 448, 491, 530, 576, 586};
 
-    private static final String[] HAuswahl = {"B", "#K", "D", "D#d", "H", "Ch", "J", "K", "L", "M", "N", "O",
+    private static final String[] H_SELECT = {"B", "#K", "D", "D#d", "H", "Ch", "J", "K", "L", "M", "N", "O",
             "Pa", "Po", "P#r", "R", "S", "#S", "T", "#C", "W#e", "Wo", "Wu", "Z", "#Z"};
-    private static final int[] HSprung = {0, 6, 11, 21, 23, 30, 33, 35, 52, 56, 61, 79, 80, 89, 106,
+    private static final int[] H_JUMP = {0, 6, 11, 21, 23, 30, 33, 35, 52, 56, 61, 79, 80, 89, 106,
             117, 126, 149, 155, 162, 163, 173, 194, 207, 226};
 
-    private int Skip = -1;
-    private static final GenericPoint LinksOben = new GenericPoint(30, 400);  // fuer Beginn Auswahlleiste
+    private int skip = -1;
+    private static final GenericPoint TOP_LEFT = new GenericPoint(30, 400);  // fuer Beginn Auswahlleiste
     private static final int XDIFF = 40;    // allegemeine festlegungen fuer Auswahlleiste
     private static final int YDIFF = 30;
     private static final int DXANZA = 14;
@@ -78,17 +71,17 @@ public class Dictionary extends MainAnim {
 
     private final BorderRect brGesamt;   // Gesamtrect fuer Auswahlleiste
 
-    private int menuitem = 0;
-    private int olditem = 0;
+    private int newItem = 0;
+    private int oldItem = 0;
 
-    private int Nummer = 0;
+    private int number = 0;
 
-    private boolean Paintcall = false;
+    private boolean paintCall = false;
 
-    private static final int X_SORB = 30;  // allgemeine Deklarationen fuer Woerterbuchanfang
-    private static final int X_DEUT = 260;
-    private static final int Y_SORB = 80;
-    private static final int Y_DEUT = 80;
+    private static final int X_SORBIAN = 30;  // allgemeine Deklarationen fuer Woerterbuchanfang
+    private static final int X_GERMAN = 260;
+    private static final int Y_SORBIAN = 80;
+    private static final int Y_GERMAN = 80;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -99,81 +92,73 @@ public class Dictionary extends MainAnim {
 
         mainFrame.stopPaint(true);
 
-        Eintrag = new String[600][2];
+        entry = new String[600][2];
 
-        brPfeilOben = new BorderRect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
-        brPfeilUnten = new BorderRect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
+        brArrowUp = new BorderRect(ARROW_UP_POINT.x, ARROW_UP_POINT.y, ARROW_UP_POINT.x + WIDTH, ARROW_UP_POINT.y + HEIGHT);
+        brArrowDown = new BorderRect(ARROW_DOWN_POINT.x, ARROW_DOWN_POINT.y, ARROW_DOWN_POINT.x + WIDTH, ARROW_DOWN_POINT.y + HEIGHT);
 
         //TODO: Lang3 not considered here?
-        brGesamt = new BorderRect(LinksOben.x, LinksOben.y, LinksOben.x + (Start.language == 2 ? DXANZA : HXANZA) * XDIFF - 1, LinksOben.y + YANZA * YDIFF - 1);
+        brGesamt = new BorderRect(TOP_LEFT.x, TOP_LEFT.y, TOP_LEFT.x + (Start.LANGUAGE == 2 ? DXANZA : HXANZA) * XDIFF - 1, TOP_LEFT.y + YANZA * YDIFF - 1);
 
-        InitImages();
+        initImages();
 
         //TODO: Translations for Slownik
-        LoadSlownik();
+        loadDictionary();
 
         mainFrame.freeze(false);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mainmenu/background2.png");
-        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.png");
-        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
-        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.png");
-        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
+        arrowUp = getPicture("gfx/mainmenu/pfeil-hoch.png");
+        arrowUpDisabled = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
+        arrowDown = getPicture("gfx/mainmenu/pfeil-runter.png");
+        arrowDownDisabled = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
     }
 
     // Woerterbuch laden
-    private void LoadSlownik() {
-        String File = Start.language == 2 ? "slowds.kra" : "slowhs.kra";
+    private void loadDictionary() {
+        String file = Start.LANGUAGE == 2 ? "slowds.kra" : "slowhs.kra";
 
-        byte[] Feld = new byte[]{};
+        byte[] field = new byte[]{};
 
-        if (mainFrame.storageManager.isSlownikSupported()) {
-            Feld = mainFrame.storageManager.loadSlownik(File);
+        if (mainFrame.storageManager.isDictionarySupported()) {
+            field = mainFrame.storageManager.loadDictionary(file);
         }
 
-        int Pos = Feld.length;
+        int pos = field.length;
 
 
         // auf Strings konvertieren und Eintraege generieren
         int i = 0;
-        Nummer = 0;
+        number = 0;
 
-        if (Pos == 0) {
+        if (pos == 0) {
             return;
         }
 
         do {
             // solange String reinkopieren, bis $07 erreicht ( = Trennzeichen Sorbisch -> Deutsch)
-            Eintrag[Nummer][0] = "";
-            for (int j = i; Feld[j] != 13; j++) {
-                // System.out.print (Feld[j] + " ");
-                Eintrag[Nummer][0] += (char) Feld[j];
+            entry[number][0] = "";
+            for (int j = i; field[j] != 13; j++) {
+                entry[number][0] += (char) field[j];
                 i++;
             }
 
             i += 2;
 
-            Eintrag[Nummer][1] = "";
-            for (int j = i; Feld[j] != 13; j++) {
-                // System.out.print (Feld[j] + " ");
-                Eintrag[Nummer][1] += (char) Feld[j];
+            entry[number][1] = "";
+            for (int j = i; field[j] != 13; j++) {
+                entry[number][1] += (char) field[j];
                 i++;
             }
 
             i += 2;
-            Nummer++;
+            number++;
 
-            // System.out.println (Nummer);
         }
-        while (i < Pos);
-    
-	/*for (int f = 0; f < Nummer; f++)
-	  {
-	  System.out.println (Eintrag[f][0] + " " + Eintrag[f][1]);
-	  }	*/
+        while (i < pos);
 
         // alle Eintraege sortieren
         // Sort (Nummer);
@@ -182,82 +167,81 @@ public class Dictionary extends MainAnim {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintSlownik(GenericDrawingContext g) {
+    public void paintDictionary(GenericDrawingContext g) {
 
         // Credits-Background zeichnen
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
-            Cursorform = 200;
-            Paintcall = true;
+            cursorShape = 200;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
             g.drawImage(background, mainFrame.scrollX, 0);
-            GenericPoint ps = mainFrame.imageFont.CenterAnimText("S#lownik", new GenericPoint(320, 35));
+            GenericPoint ps = mainFrame.imageFont.centerAnimText("S#lownik", new GenericPoint(320, 35));
             mainFrame.imageFont.drawString(g, "S#lownik", ps.x, ps.y, 0xffff0000);
 
-            for (int i = Index; i < Index + 10; i++) {
-                // System.out.println (Eintrag[i][0]);
-                mainFrame.imageFont.drawString(g, Eintrag[i][0], X_SORB + mainFrame.scrollX, mainFrame.scrollY + Y_SORB + (i - Index) * 25, 0xffff0000);
-                mainFrame.imageFont.drawString(g, Eintrag[i][1], X_DEUT + mainFrame.scrollX, mainFrame.scrollY + Y_DEUT + (i - Index) * 25, 0xffff0000);
+            for (int i = index; i < index + 10; i++) {
+                mainFrame.imageFont.drawString(g, entry[i][0], X_SORBIAN + mainFrame.scrollX, mainFrame.scrollY + Y_SORBIAN + (i - index) * 25, 0xffff0000);
+                mainFrame.imageFont.drawString(g, entry[i][1], X_GERMAN + mainFrame.scrollX, mainFrame.scrollY + Y_GERMAN + (i - index) * 25, 0xffff0000);
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+            g.drawImage(arrowUpDisabled, ARROW_UP_POINT.x + mainFrame.scrollX, ARROW_UP_POINT.y + mainFrame.scrollY);
+            g.drawImage(arrowDownDisabled, ARROW_DOWN_POINT.x + mainFrame.scrollX, ARROW_DOWN_POINT.y + mainFrame.scrollY);
         }
 
         // Hier Unterscheidung HS-DS
-        int TempXANZA = Start.language == 2 ? DXANZA : HXANZA;
+        int tempXANZA = Start.LANGUAGE == 2 ? DXANZA : HXANZA;
 
         // Auswahl anzeigen bzw. highlighten (wenn ihr dabeiseid, dann gibts 'n Highlight)
-        for (int i = 0; i < TempXANZA; i++) {
-            GenericPoint px = mainFrame.imageFont.CenterAnimText(Start.language == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollX + LinksOben.x + i * XDIFF + XDIFF / 2, mainFrame.scrollY + LinksOben.y));
-            mainFrame.imageFont.drawString(g, Start.language == 2 ? DAuswahl[i] : HAuswahl[i], px.x, px.y, i == Skip ? 0xffff0000 : 0xff800000);
+        for (int i = 0; i < tempXANZA; i++) {
+            GenericPoint px = mainFrame.imageFont.centerAnimText(Start.LANGUAGE == 2 ? D_SELECT[i] : H_SELECT[i], new GenericPoint(mainFrame.scrollX + TOP_LEFT.x + i * XDIFF + XDIFF / 2, mainFrame.scrollY + TOP_LEFT.y));
+            mainFrame.imageFont.drawString(g, Start.LANGUAGE == 2 ? D_SELECT[i] : H_SELECT[i], px.x, px.y, i == skip ? 0xffff0000 : 0xff800000);
         }
 
-        for (int i = TempXANZA; i < TempXANZA * 2 - (Start.language == 2 ? 0 : 1); i++)  // HS hat ungerade Anzahl
+        for (int i = tempXANZA; i < tempXANZA * 2 - (Start.LANGUAGE == 2 ? 0 : 1); i++)  // HS hat ungerade Anzahl
         {
-            GenericPoint py = mainFrame.imageFont.CenterAnimText(Start.language == 2 ? DAuswahl[i] : HAuswahl[i], new GenericPoint(mainFrame.scrollX + LinksOben.x + (i - TempXANZA) * XDIFF + XDIFF / 2, mainFrame.scrollY + LinksOben.y + YDIFF));
-            mainFrame.imageFont.drawString(g, Start.language == 2 ? DAuswahl[i] : HAuswahl[i], py.x, py.y, i == Skip ? 0xffff0000 : 0xff800000);
+            GenericPoint py = mainFrame.imageFont.centerAnimText(Start.LANGUAGE == 2 ? D_SELECT[i] : H_SELECT[i], new GenericPoint(mainFrame.scrollX + TOP_LEFT.x + (i - tempXANZA) * XDIFF + XDIFF / 2, mainFrame.scrollY + TOP_LEFT.y + YDIFF));
+            mainFrame.imageFont.drawString(g, Start.LANGUAGE == 2 ? D_SELECT[i] : H_SELECT[i], py.x, py.y, i == skip ? 0xffff0000 : 0xff800000);
         }
 
 
         // Wenn noetig, dann highlight aufheben!!!
-        switch (olditem) {
+        switch (oldItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+                g.drawImage(arrowUpDisabled, ARROW_UP_POINT.x + mainFrame.scrollX, ARROW_UP_POINT.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+                g.drawImage(arrowDownDisabled, ARROW_DOWN_POINT.x + mainFrame.scrollX, ARROW_DOWN_POINT.y + mainFrame.scrollY);
                 break;
             default:
-                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
+                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", oldItem);
         }
 
-        if (olditem != 0) {
-            olditem = 0;
+        if (oldItem != 0) {
+            oldItem = 0;
         }
 
         // Wenn noetig, dann highlighten!!!
-        switch (menuitem) {
+        switch (newItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+                g.drawImage(arrowUp, ARROW_UP_POINT.x + mainFrame.scrollX, ARROW_UP_POINT.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+                g.drawImage(arrowDown, ARROW_DOWN_POINT.x + mainFrame.scrollX, ARROW_DOWN_POINT.y + mainFrame.scrollY);
                 break;
             default:
-                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
+                log.error("Falsches Menu-Item!!! menuitem = {}", newItem);
         }
 
-        if (menuitem != 0) {
-            olditem = menuitem;
+        if (newItem != 0) {
+            oldItem = newItem;
         }
 
     }
@@ -270,45 +254,45 @@ public class Dictionary extends MainAnim {
         if (e.isLeftClick()) {
             // linke Maustaste
             // Pfeil-Oben gedrueckt
-            if (brPfeilOben.IsPointInRect(pTemp)) {
-                Index -= 10;
+            if (brArrowUp.isPointInRect(pTemp)) {
+                index -= 10;
                 mainFrame.isClipSet = false;
-                if (Index < 0) {
-                    Index = 0;
+                if (index < 0) {
+                    index = 0;
                 }
                 mainFrame.repaint();
             }
 
             // Pfeil-Unten gedrueckt
-            if (brPfeilUnten.IsPointInRect(pTemp)) {
-                Index += 10;
+            if (brArrowDown.isPointInRect(pTemp)) {
+                index += 10;
                 mainFrame.isClipSet = false;
-                if (Index > Nummer - 10) {
-                    Index = Nummer - 10;
+                if (index > number - 10) {
+                    index = number - 10;
                 }
                 mainFrame.repaint();
             }
 
             // Buckstabe wurde ausgewaehlt
-            if (brGesamt.IsPointInRect(pTemp)) {
+            if (brGesamt.isPointInRect(pTemp)) {
                 int adresse = 0;
 
                 // Y-Offset berechnen
-                adresse += (pTemp.y - LinksOben.y) / YDIFF * (Start.language == 2 ? DXANZA : HXANZA);
+                adresse += (pTemp.y - TOP_LEFT.y) / YDIFF * (Start.LANGUAGE == 2 ? DXANZA : HXANZA);
 
                 // X-Offset dazu
-                adresse += (pTemp.x - LinksOben.x) / XDIFF;
+                adresse += (pTemp.x - TOP_LEFT.x) / XDIFF;
 
                 // Index neu festlegen, nicht, wenn auf Leerfeld in HS gedrueckt
-                if (Start.language != 1 || adresse < 25) {
-                    Index = Start.language == 2 ? DSprung[adresse] : HSprung[adresse];
+                if (Start.LANGUAGE != 1 || adresse < 25) {
+                    index = Start.LANGUAGE == 2 ? D_JUMP[adresse] : H_JUMP[adresse];
                     mainFrame.isClipSet = false;
                     mainFrame.repaint();
                 }
             }
         } else {
             // rechte Maustaste, sofort raus (immer)
-            Deactivate();
+            deactivate();
         }
 
     }
@@ -317,47 +301,47 @@ public class Dictionary extends MainAnim {
 
         // if ((NachOben.IsPointInRect (pTemp) == false) && (NachUnten.IsPointInRect (pTemp) == false))
         // {
-        if (Cursorform != 0) {
-            Cursorform = 0;
+        if (cursorShape != 0) {
+            cursorShape = 0;
             mainFrame.setCursor(mainFrame.cursorNormal);
         }
         // }
 
         // Highlight im Menue festlegen
-        menuitem = 0;
-        if (brPfeilOben.IsPointInRect(pTemp)) {
-            menuitem = 1;
+        newItem = 0;
+        if (brArrowUp.isPointInRect(pTemp)) {
+            newItem = 1;
         }
-        if (brPfeilUnten.IsPointInRect(pTemp)) {
-            menuitem = 2;
+        if (brArrowDown.isPointInRect(pTemp)) {
+            newItem = 2;
         }
 
-        int oldskip = Skip;
-        if (!brGesamt.IsPointInRect(pTemp)) {
-            Skip = -1;
+        int oldskip = skip;
+        if (!brGesamt.isPointInRect(pTemp)) {
+            skip = -1;
         } else {
-            Skip = 0;
+            skip = 0;
 
             // Y-Offset berechnen
-            Skip += (pTemp.y - LinksOben.y) / YDIFF * (Start.language == 2 ? DXANZA : HXANZA);
+            skip += (pTemp.y - TOP_LEFT.y) / YDIFF * (Start.LANGUAGE == 2 ? DXANZA : HXANZA);
 
             // X-Offset dazu
-            Skip += (pTemp.x - LinksOben.x) / XDIFF;
+            skip += (pTemp.x - TOP_LEFT.x) / XDIFF;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
-        if (menuitem != olditem || Skip != oldskip) {
+        if (newItem != oldItem || skip != oldskip) {
             mainFrame.repaint();
         }
     }
 
     public void evalMouseExitEvent() {
-        menuitem = 0;
-        Skip = -1;
+        newItem = 0;
+        skip = -1;
         mainFrame.repaint();
     }
 
@@ -365,15 +349,15 @@ public class Dictionary extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
         }
     }
 
 
     // Deaktivieren //////////
-    private void Deactivate() {
+    private void deactivate() {
         mainFrame.isClipSet = false;
         mainFrame.destructLocation(107);
         mainFrame.whatScreen = ScreenType.NONE;
@@ -382,161 +366,4 @@ public class Dictionary extends MainAnim {
 
         mainFrame.repaint();
     }
-
-    // alle Zeichen in ASCII umwandeln, dabei Sonderzeichen erzeugen
-    /*private String ConvertEntry (int Nummer)
-      {
-      // entweder normales ASCII-Zeichen zurueckgeben oder Umwandlung bei Sonderzeichen
-      if (Nummer > 0) return (new String (new char[] {(char) Nummer}));
-    
-      Nummer += OFFSET;
-    
-      switch (Nummer)
-      {
-      case 0xb3:
-      return ("#l");
-      case 0x9c:
-      return ("#y");
-      case 0x9e:
-      return ("#z");
-      case 0x9f:
-      return ("#d");
-      case 0xe6:
-      return ("#c");
-      case 0x9a:
-      return ("#s");
-      case 0xec:
-      return ("#e");
-      case 0xe0:
-      return ("#x");
-      case 0xfc:
-      return ("#u");
-      case 0xe4:
-      return ("#a");
-      case 0xf6:
-      return ("#p");			
-      case 0xdf:
-      return ("#t");
-      case 0xc8:
-      return ("#K");
-      case 0xf1:
-      return ("#n");
-      case 0xe8:
-      return ("#k");
-      case 0xd6:
-      return ("#P");
-      case 0xdc:
-      return ("#U");
-      case 0xc4:
-      return ("#A");		    
-      default:
-      System.out.println ("Fehler bei ASCIIWANDLUNG !! " + Nummer);
-      return (" ");
-      }		
-      }
-  
-      // true, wenn erster String groesser ist (spaeter erscheinen muss)
-      private boolean istGroesserAls (String Erster, String Zweiter)
-      {
-      // Strings beide konvertieren, so dass aus Sonderzeichen normale Zeichen werden
-      String Er = Convert (Erster);
-      String Zw = Convert (Zweiter);
-    
-      if (Er.compareToIgnoreCase (Zw) >= 0) return true;
-      else return false;
-      }
-  
-      // true, wenn erster String kleiner ist (eher erscheinen muss)
-      private boolean istKleinerAls (String Erster, String Zweiter)
-      {
-      return !(istGroesserAls (Erster, Zweiter));
-      }		
-  
-      private String Convert (String Source2)
-      {
-      String Target = "";
-      String Source = Source2.toLowerCase ();
-  	
-      for (int i = 0; i < Source.length(); i++)
-      {
-      if (Source.charAt (i) != 36) Target += new String (new char[] {Source.charAt (i)});
-      else
-      {
-      i++;
-      switch (Source.charAt (i))
-      {
-      case 99:
-      Target += "c";
-      break;
-      case 107:
-      Target += "c";	
-      break;
-      case 100:
-      Target += "z";
-      break;
-      case 122:
-      Target += "z";
-      break;
-      case 101:
-      Target += "e";
-      break;
-      case 108:
-      Target += "l";
-      break;
-      case 110:
-      Target += "n";
-      break;
-      case 114:
-      Target += "r";
-      break;
-      case 115:
-      Target += "s";
-      break;
-      case 111:
-      Target += "o";
-      break;
-      case 120:
-      Target += "x";
-      break;
-      case 121:
-      Target += "y";
-      break;
-      default: 
-      System.out.println ("Falscher Char in Convert !");
-      break;	
-      }	  
-      }		
-      }
-    
-      return Target;
-      }		
-  
-      // alle Eintraege sortieren
-      private void Sort (int wieviele)
-      {
-      boolean binfertig;
-    
-      String serbtemp, deuttemp;
-    
-      // solange, bis keine Aenderung mehr gemacht werden musste
-      do
-      {
-      binfertig = true;
-    	
-      for (int i = 0; i < (wieviele - 1); i++)
-      {
-      if (istGroesserAls (Eintrag[i][0], Eintrag[i+1][0]) == true)
-      {
-      binfertig = false;
-      serbtemp = Eintrag[i][0];
-      deuttemp = Eintrag[i][1];
-      Eintrag[i][0] = Eintrag[i+1][0];
-      Eintrag[i][1] = Eintrag[i+1][1];
-      Eintrag[i+1][0] = serbtemp;
-      Eintrag[i+1][1] = deuttemp;
-      }
-      }
-      }
-      while (binfertig == false);				
-      }*/
 }

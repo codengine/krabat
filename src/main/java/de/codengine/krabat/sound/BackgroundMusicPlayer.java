@@ -21,8 +21,6 @@
 package de.codengine.krabat.sound;
 
 import de.codengine.krabat.Start;
-// import rapaki.krabat.platform.java.OGGPlayer;
-// import rapaki.krabat.platform.android.DummyPlayer;
 
 /**
  * Klasse zum Abspielen der Krabat-Hintergrundmusik (Wiedergabe von MP3-Dateien). Die Benutzung
@@ -38,9 +36,7 @@ public class BackgroundMusicPlayer {
     private final AbstractPlayer player;
 
     private BackgroundMusicPlayer(AbstractPlayer player) {
-        // player = new MP3Player (urlBase);
         this.player = player;
-        // player = new DummyPlayer(urlBase);
     }
 
     /**
@@ -51,7 +47,7 @@ public class BackgroundMusicPlayer {
     public static BackgroundMusicPlayer getInstance() {
         if (instance == null) {
             // TODO yes this is dirty!!!!
-            instance = new BackgroundMusicPlayer(Start.player);
+            instance = new BackgroundMusicPlayer(Start.PLAYER);
         }
         return instance;
     }

@@ -52,8 +52,8 @@ public class MainMenu extends MainAnim {
     private int menuitem = 0;
     private int olditem = 0;
 
-    private boolean Paintcall = false;
-    public boolean MMactive;
+    private boolean paintCall = false;
+    public boolean mmActive;
     public boolean introcall = false;
 
     private final GameProperties gameProperties;
@@ -69,17 +69,17 @@ public class MainMenu extends MainAnim {
         pLO = new GenericPoint(31, 31);
 
         // Sprachenspezifische Initialisierung der Images und Rechtecke
-        InitRec();
+        initRec();
 
     }
 
     // hier der Init je nach Sprache
-    public void InitRec() {
+    public void initRec() {
         brGesamt = new BorderRect(pLO.x + 65, pLO.y + 46, pLO.x + 513, pLO.y + 380);
         screen = getPicture("gfx/mainmenu/main-menu.png", true);
         int baseX1 = pLO.x + 89;
         int baseXRight = baseX1 + 396;
-        brInfo = new BorderRect(baseX1, pLO.y + 314,pLO.x + 159, pLO.y + 336);
+        brInfo = new BorderRect(baseX1, pLO.y + 314, pLO.x + 159, pLO.y + 336);
 
         langSwitch = getPicture("gfx/mainmenu/lang-switch.png", true);
         info = getPicture("gfx/mainmenu/info.png", true);
@@ -90,8 +90,8 @@ public class MainMenu extends MainAnim {
         newGame = getPicture("gfx/mainmenu/new-game.png", true);
         exit = getPicture("gfx/mainmenu/exit.png", true);
 
-        if (Start.language == 2) {
-            brLangSwitch = new BorderRect(baseX1, pLO.y + 221,pLO.x + 227, pLO.y + 267);
+        if (Start.LANGUAGE == 2) {
+            brLangSwitch = new BorderRect(baseX1, pLO.y + 221, pLO.x + 227, pLO.y + 267);
             brContinueGame = new BorderRect(pLO.x + 297, pLO.y + 65, pLO.x + 486, pLO.y + 93);
             brLoadGame = new BorderRect(pLO.x + 352, pLO.y + 147, baseXRight, pLO.y + 175);
             brSaveGame = new BorderRect(pLO.x + 302, pLO.y + 186, baseXRight, pLO.y + 214);
@@ -109,14 +109,14 @@ public class MainMenu extends MainAnim {
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintMainmenu(GenericDrawingContext g) {
+    public void paintMainMenu(GenericDrawingContext g) {
         // Mainmenu-Background zeichnen
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 1284, 964);
             g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
             g.setClip(90 + mainFrame.scrollX, 70 + mainFrame.scrollY, 550, 390);
-            Paintcall = true;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
@@ -125,45 +125,45 @@ public class MainMenu extends MainAnim {
             case 0:
                 break;
             case 1: // Nowostart
-                g.setClip(brNewGame.lo_point.x + mainFrame.scrollX, brNewGame.lo_point.y + mainFrame.scrollY,
-                        brNewGame.ru_point.x - brNewGame.lo_point.x + mainFrame.scrollX,
-                        brNewGame.ru_point.y - brNewGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brNewGame.topLeftPoint.x + mainFrame.scrollX, brNewGame.topLeftPoint.y + mainFrame.scrollY,
+                        brNewGame.bottomRightPoint.x - brNewGame.topLeftPoint.x + mainFrame.scrollX,
+                        brNewGame.bottomRightPoint.y - brNewGame.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 2: // Wocinic
-                g.setClip(brLoadGame.lo_point.x + mainFrame.scrollX, brLoadGame.lo_point.y + mainFrame.scrollY,
-                        brLoadGame.ru_point.x - brLoadGame.lo_point.x + mainFrame.scrollX,
-                        brLoadGame.ru_point.y - brLoadGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brLoadGame.topLeftPoint.x + mainFrame.scrollX, brLoadGame.topLeftPoint.y + mainFrame.scrollY,
+                        brLoadGame.bottomRightPoint.x - brLoadGame.topLeftPoint.x + mainFrame.scrollX,
+                        brLoadGame.bottomRightPoint.y - brLoadGame.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 3: // Skladzic
-                g.setClip(brSaveGame.lo_point.x + mainFrame.scrollX, brSaveGame.lo_point.y + mainFrame.scrollY,
-                        brSaveGame.ru_point.x - brSaveGame.lo_point.x + mainFrame.scrollX,
-                        brSaveGame.ru_point.y - brSaveGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brSaveGame.topLeftPoint.x + mainFrame.scrollX, brSaveGame.topLeftPoint.y + mainFrame.scrollY,
+                        brSaveGame.bottomRightPoint.x - brSaveGame.topLeftPoint.x + mainFrame.scrollX,
+                        brSaveGame.bottomRightPoint.y - brSaveGame.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 4: // Rec
-                g.setClip(brLangSwitch.lo_point.x + mainFrame.scrollX, brLangSwitch.lo_point.y + mainFrame.scrollY,
-                        brLangSwitch.ru_point.x - brLangSwitch.lo_point.x + mainFrame.scrollX,
-                        brLangSwitch.ru_point.y - brLangSwitch.lo_point.y + mainFrame.scrollY);
+                g.setClip(brLangSwitch.topLeftPoint.x + mainFrame.scrollX, brLangSwitch.topLeftPoint.y + mainFrame.scrollY,
+                        brLangSwitch.bottomRightPoint.x - brLangSwitch.topLeftPoint.x + mainFrame.scrollX,
+                        brLangSwitch.bottomRightPoint.y - brLangSwitch.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 6: // Info
-                g.setClip(brInfo.lo_point.x + mainFrame.scrollX, brInfo.lo_point.y + mainFrame.scrollY,
-                        brInfo.ru_point.x - brInfo.lo_point.x + mainFrame.scrollX,
-                        brInfo.ru_point.y - brInfo.lo_point.y + mainFrame.scrollY);
+                g.setClip(brInfo.topLeftPoint.x + mainFrame.scrollX, brInfo.topLeftPoint.y + mainFrame.scrollY,
+                        brInfo.bottomRightPoint.x - brInfo.topLeftPoint.x + mainFrame.scrollX,
+                        brInfo.bottomRightPoint.y - brInfo.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 7: // Dalehrac
-                g.setClip(brContinueGame.lo_point.x + mainFrame.scrollX, brContinueGame.lo_point.y + mainFrame.scrollY,
-                        brContinueGame.ru_point.x - brContinueGame.lo_point.x + mainFrame.scrollX,
-                        brContinueGame.ru_point.y - brContinueGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brContinueGame.topLeftPoint.x + mainFrame.scrollX, brContinueGame.topLeftPoint.y + mainFrame.scrollY,
+                        brContinueGame.bottomRightPoint.x - brContinueGame.topLeftPoint.x + mainFrame.scrollX,
+                        brContinueGame.bottomRightPoint.y - brContinueGame.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             case 8: // Konc
-                g.setClip(brExit.lo_point.x + mainFrame.scrollX, brExit.lo_point.y + mainFrame.scrollY,
-                        brExit.ru_point.x - brExit.lo_point.x + mainFrame.scrollX,
-                        brExit.ru_point.y - brExit.lo_point.y + mainFrame.scrollY);
+                g.setClip(brExit.topLeftPoint.x + mainFrame.scrollX, brExit.topLeftPoint.y + mainFrame.scrollY,
+                        brExit.bottomRightPoint.x - brExit.topLeftPoint.x + mainFrame.scrollX,
+                        brExit.bottomRightPoint.y - brExit.topLeftPoint.y + mainFrame.scrollY);
                 g.drawImage(screen, pLO.x + mainFrame.scrollX, pLO.y + mainFrame.scrollY);
                 break;
             default:
@@ -179,46 +179,46 @@ public class MainMenu extends MainAnim {
             case 0:
                 break;
             case 1: // Nowostart
-                g.setClip(brNewGame.lo_point.x + mainFrame.scrollX, brNewGame.lo_point.y + mainFrame.scrollY,
-                        brNewGame.ru_point.x - brNewGame.lo_point.x + mainFrame.scrollX,
-                        brNewGame.ru_point.y - brNewGame.lo_point.y + mainFrame.scrollY);
-                g.drawImage(newGame, brNewGame.lo_point.x + mainFrame.scrollX, brNewGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brNewGame.topLeftPoint.x + mainFrame.scrollX, brNewGame.topLeftPoint.y + mainFrame.scrollY,
+                        brNewGame.bottomRightPoint.x - brNewGame.topLeftPoint.x + mainFrame.scrollX,
+                        brNewGame.bottomRightPoint.y - brNewGame.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(newGame, brNewGame.topLeftPoint.x + mainFrame.scrollX, brNewGame.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 2: // Wocinic
-                g.setClip(brLoadGame.lo_point.x + mainFrame.scrollX, brLoadGame.lo_point.y + mainFrame.scrollY,
-                        brLoadGame.ru_point.x - brLoadGame.lo_point.x + mainFrame.scrollX,
-                        brLoadGame.ru_point.y - brLoadGame.lo_point.y + mainFrame.scrollY);
-                g.drawImage(loadGame, brLoadGame.lo_point.x + mainFrame.scrollX, brLoadGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brLoadGame.topLeftPoint.x + mainFrame.scrollX, brLoadGame.topLeftPoint.y + mainFrame.scrollY,
+                        brLoadGame.bottomRightPoint.x - brLoadGame.topLeftPoint.x + mainFrame.scrollX,
+                        brLoadGame.bottomRightPoint.y - brLoadGame.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(loadGame, brLoadGame.topLeftPoint.x + mainFrame.scrollX, brLoadGame.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 3: // Skladzic
-                g.setClip(brSaveGame.lo_point.x + mainFrame.scrollX, brSaveGame.lo_point.y + mainFrame.scrollY,
-                        brSaveGame.ru_point.x - brSaveGame.lo_point.x + mainFrame.scrollX,
-                        brSaveGame.ru_point.y - brSaveGame.lo_point.y + mainFrame.scrollY);
-                g.drawImage(saveGame, brSaveGame.lo_point.x + mainFrame.scrollX, brSaveGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brSaveGame.topLeftPoint.x + mainFrame.scrollX, brSaveGame.topLeftPoint.y + mainFrame.scrollY,
+                        brSaveGame.bottomRightPoint.x - brSaveGame.topLeftPoint.x + mainFrame.scrollX,
+                        brSaveGame.bottomRightPoint.y - brSaveGame.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(saveGame, brSaveGame.topLeftPoint.x + mainFrame.scrollX, brSaveGame.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 4: // Rec
-                g.setClip(brLangSwitch.lo_point.x + mainFrame.scrollX, brLangSwitch.lo_point.y + mainFrame.scrollY,
-                        brLangSwitch.ru_point.x - brLangSwitch.lo_point.x + mainFrame.scrollX,
-                        brLangSwitch.ru_point.y - brLangSwitch.lo_point.y + mainFrame.scrollY);
-                g.drawImage(langSwitch, brLangSwitch.lo_point.x + mainFrame.scrollX, brLangSwitch.lo_point.y + mainFrame.scrollY);
+                g.setClip(brLangSwitch.topLeftPoint.x + mainFrame.scrollX, brLangSwitch.topLeftPoint.y + mainFrame.scrollY,
+                        brLangSwitch.bottomRightPoint.x - brLangSwitch.topLeftPoint.x + mainFrame.scrollX,
+                        brLangSwitch.bottomRightPoint.y - brLangSwitch.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(langSwitch, brLangSwitch.topLeftPoint.x + mainFrame.scrollX, brLangSwitch.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 6: // Info
-                g.setClip(brInfo.lo_point.x + mainFrame.scrollX, brInfo.lo_point.y + mainFrame.scrollY,
-                        brInfo.ru_point.x - brInfo.lo_point.x + mainFrame.scrollX,
-                        brInfo.ru_point.y - brInfo.lo_point.y + mainFrame.scrollY);
-                g.drawImage(info, brInfo.lo_point.x + mainFrame.scrollX, brInfo.lo_point.y + mainFrame.scrollY);
+                g.setClip(brInfo.topLeftPoint.x + mainFrame.scrollX, brInfo.topLeftPoint.y + mainFrame.scrollY,
+                        brInfo.bottomRightPoint.x - brInfo.topLeftPoint.x + mainFrame.scrollX,
+                        brInfo.bottomRightPoint.y - brInfo.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(info, brInfo.topLeftPoint.x + mainFrame.scrollX, brInfo.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 7: // Dalehrac
-                g.setClip(brContinueGame.lo_point.x + mainFrame.scrollX, brContinueGame.lo_point.y + mainFrame.scrollY,
-                        brContinueGame.ru_point.x - brContinueGame.lo_point.x + mainFrame.scrollX,
-                        brContinueGame.ru_point.y - brContinueGame.lo_point.y + mainFrame.scrollY);
-                g.drawImage(continueGame, brContinueGame.lo_point.x + mainFrame.scrollX, brContinueGame.lo_point.y + mainFrame.scrollY);
+                g.setClip(brContinueGame.topLeftPoint.x + mainFrame.scrollX, brContinueGame.topLeftPoint.y + mainFrame.scrollY,
+                        brContinueGame.bottomRightPoint.x - brContinueGame.topLeftPoint.x + mainFrame.scrollX,
+                        brContinueGame.bottomRightPoint.y - brContinueGame.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(continueGame, brContinueGame.topLeftPoint.x + mainFrame.scrollX, brContinueGame.topLeftPoint.y + mainFrame.scrollY);
                 break;
             case 8:
-                g.setClip(brExit.lo_point.x + mainFrame.scrollX, brExit.lo_point.y + mainFrame.scrollY,
-                        brExit.ru_point.x - brExit.lo_point.x + mainFrame.scrollX,
-                        brExit.ru_point.y - brExit.lo_point.y + mainFrame.scrollY);
-                g.drawImage(exit, brExit.lo_point.x + mainFrame.scrollX, brExit.lo_point.y + mainFrame.scrollY);
+                g.setClip(brExit.topLeftPoint.x + mainFrame.scrollX, brExit.topLeftPoint.y + mainFrame.scrollY,
+                        brExit.bottomRightPoint.x - brExit.topLeftPoint.x + mainFrame.scrollX,
+                        brExit.bottomRightPoint.y - brExit.topLeftPoint.y + mainFrame.scrollY);
+                g.drawImage(exit, brExit.topLeftPoint.x + mainFrame.scrollX, brExit.topLeftPoint.y + mainFrame.scrollY);
                 break;
             default:
                 log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
@@ -239,40 +239,40 @@ public class MainMenu extends MainAnim {
         GenericPoint pTemp = e.getPoint();
 
         // bei Click Ausserhalb zurueck ins Spiel
-        if (!brGesamt.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (!brGesamt.isPointInRect(pTemp)) {
+            deactivate();
             mainFrame.whatScreen = ScreenType.NONE;
             mainFrame.repaint();
             return;
         }
 
         // Dalehrac
-        if (brContinueGame.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (brContinueGame.isPointInRect(pTemp)) {
+            deactivate();
             mainFrame.repaint();
         }
 
         // Konc hry
-        if (brExit.IsPointInRect(pTemp)) {
-            mainFrame.exitGame.Activate(1);
+        if (brExit.isPointInRect(pTemp)) {
+            mainFrame.exitGame.activate(1);
             return;
         }
 
         // Wocinic
-        if (brLoadGame.IsPointInRect(pTemp)) {
+        if (brLoadGame.isPointInRect(pTemp)) {
             if (!mainFrame.storageManager.isLoadSaveSupported()) {
                 return;
             }
-            Deactivate();
+            deactivate();
             mainFrame.constructLocation(102);
             mainFrame.whatScreen = ScreenType.LOAD_GAME;
-            MMactive = true;
+            mmActive = true;
             mainFrame.repaint();
             return;
         }
 
         // Skladzic
-        if (brSaveGame.IsPointInRect(pTemp)) {
+        if (brSaveGame.isPointInRect(pTemp)) {
             // vom Intro aus darf nicht gespeichert werden
             if (introcall) {
                 return;
@@ -280,34 +280,34 @@ public class MainMenu extends MainAnim {
             if (!mainFrame.storageManager.isLoadSaveSupported()) {
                 return;
             }
-            Deactivate();
+            deactivate();
             mainFrame.constructLocation(103);
             mainFrame.whatScreen = ScreenType.SAVE_GAME;
-            MMactive = true;
+            mmActive = true;
             mainFrame.repaint();
             return;
         }
 
         // Info
-        if (brInfo.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (brInfo.isPointInRect(pTemp)) {
+            deactivate();
             mainFrame.constructLocation(104);
             mainFrame.whatScreen = ScreenType.CREDITS;
-            MMactive = true;
+            mmActive = true;
             mainFrame.repaint();
             return;
         }
 
         // Hornjoserbsce - Delnoserbsce
-        if (brLangSwitch.IsPointInRect(pTemp)) {
-            Start.language++;
+        if (brLangSwitch.isPointInRect(pTemp)) {
+            Start.LANGUAGE++;
             // erlaube umschalten auf deutsch
-            if (Start.language == 4) { //TODO: This is weird
-                Start.language = 1;
+            if (Start.LANGUAGE == 4) { //TODO: This is weird
+                Start.LANGUAGE = 1;
             }
-            InitRec();
+            initRec();
 
-            switch (Start.language) {
+            switch (Start.LANGUAGE) {
                 case 1:
                     gameProperties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, "1");
                     break;
@@ -324,8 +324,8 @@ public class MainMenu extends MainAnim {
         }
 
         // Nowostart
-        if (brNewGame.IsPointInRect(pTemp)) {
-            mainFrame.exitGame.Activate(2);
+        if (brNewGame.isPointInRect(pTemp)) {
+            mainFrame.exitGame.activate(2);
         }
     }
 
@@ -333,36 +333,35 @@ public class MainMenu extends MainAnim {
 
         // Highlight im Menue festlegen
         menuitem = 0;
-        if (brNewGame.IsPointInRect(pTemp)) {
+        if (brNewGame.isPointInRect(pTemp)) {
             menuitem = 1;
         }
-        if (brLoadGame.IsPointInRect(pTemp) &&
+        if (brLoadGame.isPointInRect(pTemp) &&
                 mainFrame.storageManager.isLoadSaveSupported()) {
             menuitem = 2;
         }
 
         // Speichern nicht im Introscreen!!
-        if (brSaveGame.IsPointInRect(pTemp) && !introcall &&
+        if (brSaveGame.isPointInRect(pTemp) && !introcall &&
                 mainFrame.storageManager.isLoadSaveSupported()) {
             menuitem = 3;
         }
-        if (brLangSwitch.IsPointInRect(pTemp)) {
+        if (brLangSwitch.isPointInRect(pTemp)) {
             menuitem = 4;
         }
-        // if (brNieders.IsPointInRect   (pTemp) == true) menuitem = 5;
-        if (brInfo.IsPointInRect(pTemp)) {
+        if (brInfo.isPointInRect(pTemp)) {
             menuitem = 6;
         }
-        if (brContinueGame.IsPointInRect(pTemp)) {
+        if (brContinueGame.isPointInRect(pTemp)) {
             menuitem = 7;
         }
-        if (brExit.IsPointInRect(pTemp)) {
+        if (brExit.isPointInRect(pTemp)) {
             menuitem = 8;
         }
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             mainFrame.setCursor(mainFrame.cursorNormal);
             return;
         }
@@ -380,19 +379,19 @@ public class MainMenu extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
             mainFrame.repaint();
         }
     }
 
 
     // Deaktivieren
-    private void Deactivate() {
+    private void deactivate() {
         menuitem = 0;
         mainFrame.whatScreen = ScreenType.NONE;
         mainFrame.isClipSet = false;
-        MMactive = false;
+        mmActive = false;
     }
 }

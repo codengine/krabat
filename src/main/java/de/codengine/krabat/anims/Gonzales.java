@@ -52,14 +52,14 @@ public class Gonzales extends MainAnim {
         pirat_head = new GenericImage[5];
         pirat_body = new GenericImage[4];
 
-        InitImages();
+        initImages();
 
         VerhinderHead = MAX_VERHINDERHEAD;
         VerhinderBody = MAX_VERHINDERBODY;
         VerhinderStand = MAX_VERHINDERSTAND;
     }
 
-    private void InitImages() {
+    private void initImages() {
         pirat_head[0] = getPicture("gfx-dd/habor/ph1.png");
         pirat_head[1] = getPicture("gfx-dd/habor/ph3.png");
         pirat_head[2] = getPicture("gfx-dd/habor/ph4.png");
@@ -96,7 +96,6 @@ public class Gonzales extends MainAnim {
     public void drawGonzales(GenericDrawingContext offGraph, int TalkPerson, GenericPoint Posit, boolean isGiving, boolean isListening) {
         // Pirat beim Reden
         if (TalkPerson == 61 && mainFrame.talkCount > 1) {
-            // int nTemp;
 
             if (--VerhinderHead < 1) {
                 VerhinderHead = MAX_VERHINDERHEAD;

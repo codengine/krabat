@@ -63,18 +63,13 @@ public class Mlyn1 extends MainLocation {
     private Boom krabatmorph;
 
     private int muellermorphcount;
-    // private int krabatmorphcount;
 
     private boolean ismuellermorphing = false;
     private boolean iskrabatmorphing = false;
 
     private boolean schnauzeRad = true;
 
-    // Konstanten - Rects
-    // private static final borderrect rechterAusgang = new borderrect (560, 402, 639, 479);
-
     // Konstante Points
-    // private static final GenericPoint Pright       = new GenericPoint (639, 467);
     private static final GenericPoint Pkrabat = new GenericPoint(300, 452);
     private static final GenericPoint mlynkFeet = new GenericPoint(155, 440);
     private static final GenericPoint doorPoint = new GenericPoint(65, 395);
@@ -92,19 +87,19 @@ public class Mlyn1 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().playTrack(12, true);
 
-        mainFrame.krabat.maxx = 452;
-        mainFrame.krabat.zoomf = 0.9f;
-        mainFrame.krabat.defScale = -10;
+        mainFrame.krabat.maxX = 452;
+        mainFrame.krabat.zoomFactor = 0.9f;
+        mainFrame.krabat.defaultScale = -10;
 
         Rad = new GenericImage[21];
         mueller = new Miller(mainFrame);
 
-        mueller.maxx = 440;
-        mueller.zoomf = 0.9f;
-        mueller.defScale = 0;
+        mueller.maxX = 440;
+        mueller.zoomFactor = 0.9f;
+        mueller.defaultScale = 0;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
         krabatvogel = new RapakiRaven(mainFrame, 845, 408, 10, 300);
         muellervogel = new MillerBird(mainFrame, 700, 370, 10, 161, true);
@@ -112,17 +107,17 @@ public class Mlyn1 extends MainLocation {
         muellermorph = new Boom(mainFrame);
         krabatmorph = new Boom(mainFrame);
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
 
         nextActionID = 10;
-        TalkPause = 5;
+        talkPause = 5;
 
         Verhinderrad = MAX_VERHINDERRAD;
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(154, 639, 242, 639, 442, 479));
@@ -131,24 +126,24 @@ public class Mlyn1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(60, 70, 77, 100, 395, 419));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(4);
+        mainFrame.pathFinder.clearMatrix(4);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
 
-        InitImages();
+        initImages();
 
         // Hier Inventar komplett loeschen und nur noch das Wichtige drinlassen
         mainFrame.inventory.vInventory.removeAllElements();
         mainFrame.inventory.vInventory.addElement(1);
 
         mainFrame.krabat.setPos(Pkrabat);
-        mainFrame.krabat.SetFacing(9);
+        mainFrame.krabat.setFacing(9);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mlyn/mlyn2.png");
         offeneTuer = getPicture("gfx/mlyn/mldurje.png");
         foreground = getPicture("gfx/mlyn/mlmauer.png");
@@ -225,7 +220,7 @@ public class Mlyn1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -240,9 +235,9 @@ public class Mlyn1 extends MainLocation {
         // Mueller Hintergrund loeschen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -292,22 +287,22 @@ public class Mlyn1 extends MainLocation {
         // Mueller bewegen
         if (showPersonen && !walkReady) {
             // Mueller um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = mueller.Move();
+            walkReady = mueller.move();
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Mueller zeichnen
         if (showPersonen) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne ihn jetzt
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -321,11 +316,11 @@ public class Mlyn1 extends MainLocation {
             }
 
             // redender Krabat
-            if (mainFrame.talkCount > 0 && TalkPerson == 1) {
+            if (mainFrame.talkCount > 0 && talkPerson == 1) {
                 mainFrame.krabat.talkKrabat(g);
             } else {
                 // beschreibender Krabat
-                if (mainFrame.talkCount > 0 && TalkPerson == 3) {
+                if (mainFrame.talkCount > 0 && talkPerson == 3) {
                     mainFrame.krabat.describeKrabat(g);
                 }
                 // rumstehender Krabat
@@ -340,16 +335,16 @@ public class Mlyn1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Voegel in Bild reinfliegen lassen
         if (showVoegel) {
             g.setClip(muellervogel.mlynkPtackRect());
-            voegelFliegen = muellervogel.Flieg(g);
+            voegelFliegen = muellervogel.doFly(g);
             g.setClip(krabatvogel.ptack2Rect());
-            krabatvogel.Flieg(g);
+            krabatvogel.doFly(g);
         }
 
         // hier die Morphanim zeichnen
@@ -375,7 +370,7 @@ public class Mlyn1 extends MainLocation {
             } else {
                 g.setClip(120, 260, 135, 145);
             }
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             if (allowTextClipset) {
                 if (!setClipForText) {
                     setClipForText = true;
@@ -386,8 +381,8 @@ public class Mlyn1 extends MainLocation {
             }
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         if (mainFrame.talkCount > 0) {
@@ -399,8 +394,8 @@ public class Mlyn1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -409,7 +404,6 @@ public class Mlyn1 extends MainLocation {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -422,8 +416,8 @@ public class Mlyn1 extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -441,7 +435,7 @@ public class Mlyn1 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -459,8 +453,8 @@ public class Mlyn1 extends MainLocation {
 
             case 11:
                 // morphing beginnen
-                muellermorph.Init(mlynkFeet, 100);
-                krabatmorph.Init(Pkrabat, -100);  // Krabats Morph macht keinen Krach
+                muellermorph.init(mlynkFeet, 100);
+                krabatmorph.init(Pkrabat, -100);  // Krabats Morph macht keinen Krach
                 ismuellermorphing = true;
                 iskrabatmorphing = true;
                 nextActionID = 12;
@@ -475,7 +469,7 @@ public class Mlyn1 extends MainLocation {
                 showVoegel = false;
                 mainFrame.isClipSet = false;
                 nextActionID = 15;
-                TalkPause = 2;
+                talkPause = 2;
                 break;
 
             case 15:
@@ -487,45 +481,45 @@ public class Mlyn1 extends MainLocation {
                 iskrabatmorphing = false;
                 schnauzeRad = false;
                 mainFrame.isClipSet = false;
-                PersonSagt("Mlyn1_1", 9, 36, 2, 20, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn1_1", 9, 36, 2, 20, mueller.evalMlynkTalkPoint());
                 break;
 
             case 20:
                 // Krabat spricht
-                KrabatSagt("Mlyn1_2", 0, 3, 2, 30);
+                krabatSays("Mlyn1_2", 0, 3, 2, 30);
                 break;
 
             case 30:
                 // Krabat spricht
-                KrabatSagt("Mlyn1_3", 0, 1, 2, 40);
+                krabatSays("Mlyn1_3", 0, 1, 2, 40);
                 break;
 
             case 40:
                 // Mueller spricht
-                PersonSagt("Mlyn1_4", 0, 36, 2, 50, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn1_4", 0, 36, 2, 50, mueller.evalMlynkTalkPoint());
                 break;
 
             case 50:
                 // Krabat spricht
-                KrabatSagt("Mlyn1_5", 0, 1, 2, 60);
+                krabatSays("Mlyn1_5", 0, 1, 2, 60);
                 break;
 
             case 60:
                 // Mueller spricht
-                PersonSagt("Mlyn1_6", 0, 36, 2, 65, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn1_6", 0, 36, 2, 65, mueller.evalMlynkTalkPoint());
                 break;
 
             case 65: // lasse beide reinlaufen
                 schnauzeRad = true;
-                mueller.MoveTo(doorPoint);
+                mueller.moveTo(doorPoint);
                 walkReady = false;
-                mainFrame.pathWalker.SetzeNeuenWeg(vorDoorPoint);
+                mainFrame.pathWalker.setNewWay(vorDoorPoint);
                 nextActionID = 70;
                 break;
 
             case 70:
                 // warten auf ich habe fertig
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 if (walkReady) {
                     nextActionID = 71;
                 }
@@ -534,10 +528,10 @@ public class Mlyn1 extends MainLocation {
             case 71:
                 // Mueller oeffnet Tuer und geht rein
                 openDoor = true;
-                mainFrame.soundPlayer.PlayFile("sfx/cdurjeauf.wav");
-                mueller.MoveTo(muehleRein);
+                mainFrame.soundPlayer.playFile("sfx/cdurjeauf.wav");
+                mueller.moveTo(muehleRein);
                 walkReady = false;
-                mainFrame.pathWalker.SetzeNeuenWeg(doorPoint);
+                mainFrame.pathWalker.setNewWay(doorPoint);
                 nextActionID = 72;
                 break;
 
@@ -551,7 +545,7 @@ public class Mlyn1 extends MainLocation {
             case 73:
                 // jetzt geht auch Krabat rein
                 krabatBehindDoor = true;
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(muehleRein);
+                mainFrame.pathWalker.setNewWayGuaranteed(muehleRein);
                 nextActionID = 79;
                 break;
 
@@ -560,7 +554,7 @@ public class Mlyn1 extends MainLocation {
                 mainFrame.isClipSet = false;
                 showPersonen = false;
                 openDoor = false;
-                mainFrame.soundPlayer.PlayFile("sfx-dd/gdurjezu.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/gdurjezu.wav");
                 krabatBehindDoor = false;
                 nextActionID = 80;
                 break;
@@ -569,13 +563,13 @@ public class Mlyn1 extends MainLocation {
                 // Textausgabe
                 mainFrame.isClipSet = false;
                 allowTextClipset = true;
-                PersonSagt("Mlyn1_7", 0, 54, 2, 90, new GenericPoint(320, 400));
+                personSays("Mlyn1_7", 0, 54, 2, 90, new GenericPoint(320, 400));
                 break;
 
             case 90:
                 // Weiter in den Locations
                 allowTextClipset = false;
-                NeuesBild(91, 25);
+                createNewLocation(91, 25);
                 break;
 
             default:
@@ -595,7 +589,7 @@ public class Mlyn1 extends MainLocation {
             int zwzf = (int) (Math.random() * 2.99);
             zwzf += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/mlyn" + (char) zwzf + ".wav");
         }
     }
 }

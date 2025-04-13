@@ -80,27 +80,27 @@ public class Lodz extends MainLocation {
 
         mainFrame.freeze(true);
 
-        mainFrame.krabat.maxx = 50;      // no zooming
-        mainFrame.krabat.zoomf = 0f;
-        mainFrame.krabat.defScale = 50;
+        mainFrame.krabat.maxX = 50;      // no zooming
+        mainFrame.krabat.zoomFactor = 0f;
+        mainFrame.krabat.defaultScale = 50;
 
         wikowarka = new MerchantIronOre(mainFrame);
         Dialog = new MultipleChoice(mainFrame);
 
         wikowarka.setPos(zonaPoint);
-        wikowarka.SetFacing(6);
+        wikowarka.setFacing(6);
 
         if (mainFrame.actions[559]) {
             zonaVisible = false;  // nachdem Anim gelaufen, ist sie nicht mehr da
         }
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -112,13 +112,13 @@ public class Lodz extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(144, 164, 80, 100, 258, 370));
 
-        mainFrame.pathFinder.ClearMatrix(4);
+        mainFrame.pathFinder.clearMatrix(4);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(1, 3);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(1, 3);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -127,13 +127,13 @@ public class Lodz extends MainLocation {
             case 163:
                 // von Habor aus
                 mainFrame.krabat.setPos(new GenericPoint(39, 164));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/lodz/lodz.png");
         vor1 = getPicture("gfx-dd/lodz/woc1.png");
         vor2 = getPicture("gfx-dd/lodz/woc2.png");
@@ -155,7 +155,7 @@ public class Lodz extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -167,9 +167,9 @@ public class Lodz extends MainLocation {
 
         // Zona Hintergrund loeschen
         // Clipping - Rectangle feststellen und setzen
-        BorderRect temp = wikowarka.getRect();
-        g.setClip(temp.lo_point.x - 5, temp.lo_point.y - 5, temp.ru_point.x - temp.lo_point.x + 10,
-                temp.ru_point.y - temp.lo_point.y + 10);
+        BorderRect temp = wikowarka.getBoundingBox();
+        g.setClip(temp.topLeftPoint.x - 5, temp.topLeftPoint.y - 5, temp.bottomRightPoint.x - temp.topLeftPoint.x + 10,
+                temp.bottomRightPoint.y - temp.topLeftPoint.y + 10);
 
         // Zeichne Hintergrund neu
         g.drawImage(background, 0, 0);
@@ -177,35 +177,35 @@ public class Lodz extends MainLocation {
         // Kuchar bewegen
         if (!walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = wikowarka.Move();
+            walkReady = wikowarka.move();
         }
 
         // Zona zeichnen
         // Clipping - Rectangle feststellen und setzen
-        BorderRect temp2 = wikowarka.getRect();
-        g.setClip(temp2.lo_point.x - 5, temp2.lo_point.y - 5, temp2.ru_point.x - temp2.lo_point.x + 10,
-                temp2.ru_point.y - temp2.lo_point.y + 10);
+        BorderRect temp2 = wikowarka.getBoundingBox();
+        g.setClip(temp2.topLeftPoint.x - 5, temp2.topLeftPoint.y - 5, temp2.bottomRightPoint.x - temp2.topLeftPoint.x + 10,
+                temp2.bottomRightPoint.y - temp2.topLeftPoint.y + 10);
 
         // Zeichne sie jetzt
 
         // Redet sie etwa gerade ??
         if (zonaVisible) {
-            if (TalkPerson == 65 && mainFrame.talkCount > 0) {
+            if (talkPerson == 65 && mainFrame.talkCount > 0) {
                 wikowarka.talkZona(g);
             }
 
             // nur rumstehen oder laufen
             else {
                 if (Stollen || Metall || Kiss) {
-                    BorderRect tp = wikowarka.getRect();
+                    BorderRect tp = wikowarka.getBoundingBox();
                     if (Stollen) {
-                        wikowarka.giveWosusk(g, tp.lo_point);
+                        wikowarka.giveWosusk(g, tp.topLeftPoint);
                     }
                     if (Metall) {
-                        wikowarka.giveMetal(g, tp.lo_point);
+                        wikowarka.giveMetal(g, tp.topLeftPoint);
                     }
                     if (Kiss) {
-                        wikowarka.Kiss(g, new GenericPoint(tp.lo_point.x, tp.lo_point.y + 21));
+                        wikowarka.kiss(g, new GenericPoint(tp.topLeftPoint.x, tp.topLeftPoint.y + 21));
                     }
                 } else {
                     wikowarka.drawZona(g, isListening);
@@ -216,12 +216,12 @@ public class Lodz extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Sounds abspielen
         evalSound();
@@ -231,16 +231,16 @@ public class Lodz extends MainLocation {
         // Animation??
         if (krabatVisible) {
             if (mainFrame.krabat.nAnimation != 0) {
-                mainFrame.krabat.DoAnimation(g);
+                mainFrame.krabat.doAnimation(g);
 
                 // Cursorruecksetzung nach Animationsende
                 if (mainFrame.krabat.nAnimation == 0) {
                     evalMouseMoveEvent(mainFrame.mousePoint);
                 }
             } else {
-                if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+                if (mainFrame.talkCount > 0 && talkPerson != 0) {
                     // beim Reden
-                    switch (TalkPerson) {
+                    switch (talkPerson) {
                         case 1:
                             // Krabat spricht gestikulierend
                             mainFrame.krabat.talkKrabat(g);
@@ -262,9 +262,6 @@ public class Lodz extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // da es hier nicht wehtut, wird der Vordergrund immer neu gezeichnet
         g.drawImage(vor1, 291, 204);
         g.drawImage(vor2, 419, 100);
@@ -275,7 +272,7 @@ public class Lodz extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -285,12 +282,12 @@ public class Lodz extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -301,8 +298,8 @@ public class Lodz extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -323,7 +320,7 @@ public class Lodz extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -343,10 +340,10 @@ public class Lodz extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -361,7 +358,7 @@ public class Lodz extends MainLocation {
                 // }
 
                 // Ausreden fuer Frau oder Stollen geben
-                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getBoundingBox().isPointInRect(pTemp) && zonaVisible) {
                     if (mainFrame.whatItem == 52) {
                         nextActionID = 160;
                     } else {
@@ -372,7 +369,7 @@ public class Lodz extends MainLocation {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -382,7 +379,7 @@ public class Lodz extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -394,12 +391,12 @@ public class Lodz extends MainLocation {
                 nextActionID = 0;
 
                 // zu Habor gehen ?
-                if (ausgangHabor.IsPointInRect(pTemp)) {
+                if (ausgangHabor.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangHabor.IsPointInRect(kt)) {
+                    if (!ausgangHabor.isPointInRect(kt)) {
                         pTemp = pExitHabor;
                     } else {
                         // es wird nach unten verlassen
@@ -407,7 +404,7 @@ public class Lodz extends MainLocation {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -421,32 +418,32 @@ public class Lodz extends MainLocation {
                 // }
 
                 // Frau ansehen
-                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getBoundingBox().isPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 1;
                     pTemp = pZona;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit der Frau reden
-                if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
+                if (wikowarka.getBoundingBox().isPointInRect(pTemp) && zonaVisible) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pZona);
+                    mainFrame.pathWalker.setNewWay(pZona);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangHabor.IsPointInRect(pTemp)) {
+                if (ausgangHabor.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -463,8 +460,8 @@ public class Lodz extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -473,43 +470,43 @@ public class Lodz extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible;
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    wikowarka.getBoundingBox().isPointInRect(pTemp) && zonaVisible;
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangHabor.IsPointInRect(pTemp)) {
-                if (Cursorform != 9) {
+            if (ausgangHabor.isPointInRect(pTemp)) {
+                if (cursorShape != 9) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 9;
+                    cursorShape = 9;
                 }
                 return;
             }
 
-            if (wikowarka.getRect().IsPointInRect(pTemp) && zonaVisible) {
-                if (Cursorform != 1) {
+            if (wikowarka.getBoundingBox().isPointInRect(pTemp) && zonaVisible) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -550,7 +547,7 @@ public class Lodz extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -558,7 +555,7 @@ public class Lodz extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -566,32 +563,32 @@ public class Lodz extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     private GenericPoint evalZonaTalkPoint() {
         // Hier Position des Textes berechnen
-        BorderRect temp = wikowarka.getRect();
-        return new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
+        BorderRect temp = wikowarka.getBoundingBox();
+        return new GenericPoint((temp.bottomRightPoint.x + temp.topLeftPoint.x) / 2, temp.topLeftPoint.y - 50);
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -611,7 +608,7 @@ public class Lodz extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -619,13 +616,13 @@ public class Lodz extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Wikowarka anschauen
-                KrabatSagt("Lodz_1", fZona, 3, 0, 0);
+                krabatSays("Lodz_1", fZona, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Wikowarka benutzen)
                 isListening = true;
-                mainFrame.krabat.SetFacing(fZona);
+                mainFrame.krabat.setFacing(fZona);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 600;
@@ -634,24 +631,24 @@ public class Lodz extends MainLocation {
             case 100:
                 // Gehe zu Habor
                 mainFrame.actions[851] = false;
-                NeuesBild(163, locationID);
+                createNewLocation(163, locationID);
                 break;
 
             case 155:
                 // Zona - Ausreden
-                WPersonAusrede(fZona);
+                femaleExcuse(fZona);
                 break;
 
             case 160:
                 // grosse Animszene, weil Stollen gegeben - aber nur, wenn er es auch weiss !!!
                 if (!mainFrame.actions[552]) {
-                    PersonSagt("Lodz_2", fZona, 65, 0, 0, evalZonaTalkPoint());
+                    personSays("Lodz_2", fZona, 65, 0, 0, evalZonaTalkPoint());
                 } else {
                     mainFrame.isAnimRunning = true;
                     evalMouseMoveEvent(mainFrame.mousePoint);
                     mainFrame.isInventoryCursor = false;
                     mainFrame.krabat.setPos(pZona);
-                    mainFrame.krabat.SetFacing(fZona);
+                    mainFrame.krabat.setFacing(fZona);
                     GiveCounter = 0;
                     nextActionID = 165;
                 }
@@ -688,16 +685,16 @@ public class Lodz extends MainLocation {
                 isListening = true;
                 if (!mainFrame.actions[710]) // Krabat ist vor der Uebergabe nochmal weggegangen
                 {
-                    PersonSagt("Lodz_3", 0, 65, 2, 181, evalZonaTalkPoint());
+                    personSays("Lodz_3", 0, 65, 2, 181, evalZonaTalkPoint());
                 } else {
-                    PersonSagt("Lodz_4", 0, 65, 2, 181, evalZonaTalkPoint());
+                    personSays("Lodz_4", 0, 65, 2, 181, evalZonaTalkPoint());
                 }
                 break;
 
             case 181:
                 // Laufe nach oben (beide)
-                wikowarka.MoveTo(innenPointZona);
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(innenPointKrabat);
+                wikowarka.moveTo(innenPointZona);
+                mainFrame.pathWalker.setNewWayGuaranteed(innenPointKrabat);
                 walkReady = false;
                 nextActionID = 182;
                 break;
@@ -722,7 +719,7 @@ public class Lodz extends MainLocation {
                 if (--GiveCounter > 0) {
                     break;
                 }
-                PersonSagt("Lodz_5", 0, 54, 2, 200, new GenericPoint(320, 200));
+                personSays("Lodz_5", 0, 54, 2, 200, new GenericPoint(320, 200));
                 break;
 
             case 200:
@@ -734,8 +731,8 @@ public class Lodz extends MainLocation {
 
             case 201:
                 // Laufe nach unten (beide)
-                wikowarka.MoveTo(zonaPoint);
-                mainFrame.pathWalker.SetzeNeuenWeg(pZona);
+                wikowarka.moveTo(zonaPoint);
+                mainFrame.pathWalker.setNewWay(pZona);
                 walkReady = false;
                 nextActionID = 202;
                 break;
@@ -749,7 +746,7 @@ public class Lodz extends MainLocation {
 
             case 205:
                 // Zona sagt Spruch
-                PersonSagt("Lodz_6", fZona, 65, 2, 210, evalZonaTalkPoint());
+                personSays("Lodz_6", fZona, 65, 2, 210, evalZonaTalkPoint());
                 break;
 
             case 210:
@@ -780,17 +777,17 @@ public class Lodz extends MainLocation {
 
             case 225:
                 // Krabat sagt Spruch	
-                KrabatSagt("Lodz_7", fZona, 1, 2, 230);
+                krabatSays("Lodz_7", fZona, 1, 2, 230);
                 break;
 
             case 230:
                 // Zona sagt Spruch
-                PersonSagt("Lodz_8", fZona, 65, 2, 235, evalZonaTalkPoint());
+                personSays("Lodz_8", fZona, 65, 2, 235, evalZonaTalkPoint());
                 break;
 
             case 235:
                 // Krabat verschwinden lassen und Kuss - szene
-                mainFrame.soundPlayer.PlayFile("sfx-dd/hubka.wav");
+                mainFrame.soundPlayer.playFile("sfx-dd/hubka.wav");
                 Kiss = true;
                 krabatVisible = false;
                 GiveCounter = 0;
@@ -815,18 +812,18 @@ public class Lodz extends MainLocation {
 
             case 250:
                 // Krabat sagt Spruch	
-                KrabatSagt("Lodz_9", fZona, 1, 2, 255);
+                krabatSays("Lodz_9", fZona, 1, 2, 255);
                 break;
 
             case 255:
                 // Zona sagt Spruch
                 schnauzeWasser = false;
-                PersonSagt("Lodz_10", fZona, 65, 2, 300, evalZonaTalkPoint());
+                personSays("Lodz_10", fZona, 65, 2, 300, evalZonaTalkPoint());
                 break;
 
             case 300:
                 // Laufe nach oben, gute Frau
-                wikowarka.MoveTo(innenPointZona);
+                wikowarka.moveTo(innenPointZona);
                 walkReady = false;
                 nextActionID = 305;
                 break;
@@ -854,27 +851,27 @@ public class Lodz extends MainLocation {
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Lodz_22", 1000, 550, new int[]{550}, 610);
-                Dialog.ExtendMC("Lodz_23", 550, 1000, null, 611);
+                Dialog.extend("Lodz_22", 1000, 550, new int[]{550}, 610);
+                Dialog.extend("Lodz_23", 550, 1000, null, 611);
 
                 // 2. Frage
-                Dialog.ExtendMC("Lodz_24", 550, 553, new int[]{553}, 620);
-                Dialog.ExtendMC("Lodz_25", 553, 552, new int[]{552}, 622);
+                Dialog.extend("Lodz_24", 550, 553, new int[]{553}, 620);
+                Dialog.extend("Lodz_25", 553, 552, new int[]{552}, 622);
                 if (!mainFrame.actions[956]) {
-                    Dialog.ExtendMC("Lodz_26", 552, 1000, null, 623);
+                    Dialog.extend("Lodz_26", 552, 1000, null, 623);
                 }
 
                 // 3. Frage
-                Dialog.ExtendMC("Lodz_27", 1000, 558, new int[]{558}, 630);
-                Dialog.ExtendMC("Lodz_28", 558, 557, new int[]{557}, 631);
-                Dialog.ExtendMC("Lodz_29", 557, 556, new int[]{556}, 632);
-                Dialog.ExtendMC("Lodz_30", 556, 555, new int[]{555}, 633);
-                Dialog.ExtendMC("Lodz_31", 555, 1000, null, 634);
+                Dialog.extend("Lodz_27", 1000, 558, new int[]{558}, 630);
+                Dialog.extend("Lodz_28", 558, 557, new int[]{557}, 631);
+                Dialog.extend("Lodz_29", 557, 556, new int[]{556}, 632);
+                Dialog.extend("Lodz_30", 556, 555, new int[]{555}, 633);
+                Dialog.extend("Lodz_31", 555, 1000, null, 634);
 
                 // 4. Frage
-                Dialog.ExtendMC("Lodz_32", 1000, 1000, null, 800);
+                Dialog.extend("Lodz_32", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -887,72 +884,72 @@ public class Lodz extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_11", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_11", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 611:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_12", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_12", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_13", 0, 65, 2, 621, evalZonaTalkPoint());
+                personSays("Lodz_13", 0, 65, 2, 621, evalZonaTalkPoint());
                 break;
 
             case 621:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_14", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_14", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 622:
                 // Reaktion Wikowarka
                 mainFrame.actions[710] = true;
-                PersonSagt("Lodz_15", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_15", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 623:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_16", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_16", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_17", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_17", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 631:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_18", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_18", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 632:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_19", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_19", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 633:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_20", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_20", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
             case 634:
                 // Reaktion Wikowarka
-                PersonSagt("Lodz_21", 0, 65, 2, 600, evalZonaTalkPoint());
+                personSays("Lodz_21", 0, 65, 2, 600, evalZonaTalkPoint());
                 break;
 
 
@@ -989,7 +986,7 @@ public class Lodz extends MainLocation {
             int zwzf = (int) (Math.random() * 4.99);
             zwzf += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx-dd/lodz" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.playFile("sfx-dd/lodz" + (char) zwzf + ".wav");
         }
 
     }

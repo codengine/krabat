@@ -46,14 +46,11 @@ public class HojntAuto extends MainLocation {
     private int Mehrmals;
     private static final int MAX_MEHRMALS = 3;
 
-    // private boolean setAnim = false;
     private Hunter jaeger;
     private boolean showHojnt = false;
     private boolean walkReady = true;
 
     private boolean isDoorOpen = false;
-
-    // private boolean baumActive = false;
 
     private static final int SCROLLWERT = 417;
 
@@ -61,14 +58,6 @@ public class HojntAuto extends MainLocation {
     private boolean setScroll = false;
 
     private boolean isScrollAnim = true;
-
-    // private static final borderrect obererAusgang  = new borderrect ( 199, 277,  271, 379);
-    // private static final borderrect rechterAusgang = new borderrect (1206, 409, 1279, 479);
-    // private static final borderrect strauchRect    = new borderrect ( 160, 249,  305, 394);
-    // private static final borderrect hakenRect      = new borderrect ( 426, 258,  506, 277);
-    // private static final borderrect jamaRect       = new borderrect (1081, 378, 1188, 424);
-    // private static final borderrect hoelzerRect    = new borderrect ( 613, 250,  640, 290);
-    // private static final borderrect leineRect      = new borderrect (1100, 245, 1155, 362);
 
     // Konstante Punkte
     private static final GenericPoint Pleft = new GenericPoint(279, 358);
@@ -84,20 +73,20 @@ public class HojntAuto extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 420;
-        mainFrame.krabat.zoomf = 4.4f;
-        mainFrame.krabat.defScale = 50;
+        mainFrame.krabat.maxX = 420;
+        mainFrame.krabat.zoomFactor = 4.4f;
+        mainFrame.krabat.defaultScale = 50;
 
         jaeger = new Hunter(mainFrame);
-        jaeger.maxx = 0;
-        jaeger.zoomf = mainFrame.krabat.zoomf;
-        jaeger.defScale = 0;
+        jaeger.maxX = 0;
+        jaeger.zoomFactor = mainFrame.krabat.zoomFactor;
+        jaeger.defaultScale = 0;
 
         hoelzer = new GenericImage[11];
         Mehrmals = MAX_MEHRMALS;
 
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
         // Unterscheidung nach DoActions, was zu tun ist
 
@@ -105,7 +94,7 @@ public class HojntAuto extends MainLocation {
         if (!mainFrame.actions[216] && !mainFrame.actions[217] && !mainFrame.actions[218]) {
             log.debug("An den Hoelzern gezogen - Hinlauf !");
             jaeger.setPos(Pin);
-            jaeger.SetFacing(3);
+            jaeger.setFacing(3);
             scrollPosition = 0;
             setScroll = true;
             nextActionID = 150;
@@ -115,7 +104,7 @@ public class HojntAuto extends MainLocation {
         if (!mainFrame.actions[216] && mainFrame.actions[217] && !mainFrame.actions[218]) {
             log.debug("Am Strick gezogen Hinlauf !");
             jaeger.setPos(Pin);
-            jaeger.SetFacing(3);
+            jaeger.setFacing(3);
             scrollPosition = 0;
             setScroll = true;
             nextActionID = 100;
@@ -126,7 +115,7 @@ public class HojntAuto extends MainLocation {
             log.debug("Ruecklauf aus beiden Szenen !");
             isDoorOpen = true;
             jaeger.setPos(Pright);
-            jaeger.SetFacing(9);
+            jaeger.setFacing(9);
             showHojnt = true;
             scrollPosition = SCROLLWERT;
             setScroll = true;
@@ -137,20 +126,20 @@ public class HojntAuto extends MainLocation {
         if (mainFrame.actions[218]) {
             log.debug("Szene : K in Grube.");
             jaeger.setPos(Pin);
-            jaeger.SetFacing(3);
+            jaeger.setFacing(3);
             scrollPosition = 210;
             isScrollAnim = false;
             setScroll = true;
             nextActionID = 600;
         }
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
 
         mainFrame.pathWalker.vBorders.removeAllElements();
 
@@ -162,26 +151,22 @@ public class HojntAuto extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(985, 1279, 1024, 1279, 442, 463));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backl = getPicture("gfx/hojnt/hojnt-l.png");
         backr = getPicture("gfx/hojnt/hojnt-r.png");
         skyl = getPicture("gfx/hojnt/hsky-l.png");
         skyr = getPicture("gfx/hojnt/hsky-r.png");
-        // hojnt2 =   getPicture ("gfx/hojnt/hojnt2.png");
         hojnt3 = getPicture("gfx/hojnt/hojnt3.png");
-        // hojnt4 =   getPicture ("gfx/hojnt/hojnt-r3.png");
-        // baum   =   getPicture ("gfx/hojnt/hojnt-r2.png");
-        // seil   =   getPicture ("gfx/hojnt/seil.png");
 
         offeneTuer = getPicture("gfx/hojnt/jdurje.png");
 
@@ -241,7 +226,7 @@ public class HojntAuto extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollPosition;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             mainFrame.isAnimRunning = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 484);
@@ -268,9 +253,9 @@ public class HojntAuto extends MainLocation {
         // Jaeger Hintergrund loeschen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = jaeger.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = jaeger.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(skyl, mainFrame.scrollX / 10, 0);
@@ -310,22 +295,22 @@ public class HojntAuto extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Jaeger bewegen
         if (showHojnt && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = jaeger.Move();
+            walkReady = jaeger.move();
         }
 
         // Jaeger zeichnen
         if (showHojnt) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = jaeger.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = jaeger.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne sie jetzt
 
@@ -343,8 +328,8 @@ public class HojntAuto extends MainLocation {
         // Scroller mitschieben, wenn Hojnt bewegt wird
         // Hier allgemeine Scrollingroutine, nur wenn man darf...
         if (isScrollAnim) {
-            BorderRect temprect = jaeger.getRect();
-            int temp = (temprect.lo_point.x + temprect.ru_point.x) / 2;
+            BorderRect temprect = jaeger.getBoundingBox();
+            int temp = (temprect.topLeftPoint.x + temprect.bottomRightPoint.x) / 2;
             temp -= mainFrame.scrollX;
 
             if (temp < 315) {
@@ -370,7 +355,7 @@ public class HojntAuto extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -380,17 +365,17 @@ public class HojntAuto extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling - Verriegelung in DoActions extra !!!
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -405,7 +390,7 @@ public class HojntAuto extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
     }
@@ -413,8 +398,8 @@ public class HojntAuto extends MainLocation {
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -432,14 +417,14 @@ public class HojntAuto extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
 
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 100:
                 // Klingelanim der Hoelzer
                 klingeln = true;
-                mainFrame.soundPlayer.PlayFile("sfx/klingel.wav");
+                mainFrame.soundPlayer.playFile("sfx/klingel.wav");
                 nextActionID = 110;
                 break;
 
@@ -455,7 +440,7 @@ public class HojntAuto extends MainLocation {
                 showHojnt = true;
                 isDoorOpen = true;
                 mainFrame.actions[231] = true;
-                jaeger.MoveTo(Pleft);
+                jaeger.moveTo(Pleft);
                 walkReady = false;
                 nextActionID = 155;
                 break;
@@ -469,19 +454,19 @@ public class HojntAuto extends MainLocation {
 
             case 159:
                 // Jaeger sagt Spruch vor dem Loslaufen
-                outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_1");
+                outputText = mainFrame.imageFont.splitTextKey("HojntAuto_1");
                 // Hier Position des Textes berechnen
-                BorderRect tmp = jaeger.getRect();
-                GenericPoint tTlk = new GenericPoint((tmp.ru_point.x + tmp.lo_point.x) / 2, tmp.lo_point.y - 50);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, tTlk);
-                TalkPerson = 26;
+                BorderRect tmp = jaeger.getBoundingBox();
+                GenericPoint tTlk = new GenericPoint((tmp.bottomRightPoint.x + tmp.topLeftPoint.x) / 2, tmp.topLeftPoint.y - 50);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, tTlk);
+                talkPerson = 26;
                 nextActionID = 160;
                 break;
 
             case 160:
                 // Laufe nach rechts
-                jaeger.clearanimpos = false;
-                jaeger.MoveTo(Pmitte);
+                jaeger.resetAnimPos = false;
+                jaeger.moveTo(Pmitte);
                 walkReady = false;
                 nextActionID = 170;
                 break;
@@ -495,8 +480,8 @@ public class HojntAuto extends MainLocation {
 
             case 173:
                 // Laufe nach rechts
-                jaeger.clearanimpos = true;
-                jaeger.MoveTo(Pright);
+                jaeger.resetAnimPos = true;
+                jaeger.moveTo(Pright);
                 walkReady = false;
                 nextActionID = 176;
                 break;
@@ -510,13 +495,13 @@ public class HojntAuto extends MainLocation {
 
             case 180:
                 // Wieder auf normales Hojnt zurueckschalten
-                NeuesBild(14, 29);
+                createNewLocation(14, 29);
                 break;
 
             case 500:
                 // Jaeger laeuft wieder nach links zurueck
-                jaeger.clearanimpos = false;
-                jaeger.MoveTo(Pmitte);
+                jaeger.resetAnimPos = false;
+                jaeger.moveTo(Pmitte);
                 walkReady = false;
                 nextActionID = 510;
                 break;
@@ -530,8 +515,8 @@ public class HojntAuto extends MainLocation {
 
             case 513:
                 // Jaeger laeuft wieder nach links zurueck
-                jaeger.clearanimpos = true;
-                jaeger.MoveTo(Pleft);
+                jaeger.resetAnimPos = true;
+                jaeger.moveTo(Pleft);
                 walkReady = false;
                 nextActionID = 516;
                 break;
@@ -545,18 +530,18 @@ public class HojntAuto extends MainLocation {
 
             case 520:
                 // Jaeger sagt Spruch vor dem Ende
-                outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_2");
+                outputText = mainFrame.imageFont.splitTextKey("HojntAuto_2");
                 // Hier Position des Textes berechnen
-                BorderRect temp = jaeger.getRect();
-                GenericPoint tTalk = new GenericPoint((temp.ru_point.x + temp.lo_point.x) / 2, temp.lo_point.y - 50);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, tTalk);
-                TalkPerson = 26;
+                BorderRect temp = jaeger.getBoundingBox();
+                GenericPoint tTalk = new GenericPoint((temp.bottomRightPoint.x + temp.topLeftPoint.x) / 2, temp.topLeftPoint.y - 50);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, tTalk);
+                talkPerson = 26;
                 nextActionID = 530;
                 break;
 
             case 530:
                 // Jaeger reingehen lassen
-                jaeger.MoveTo(Pin);
+                jaeger.moveTo(Pin);
                 walkReady = false;
                 nextActionID = 533;
                 break;
@@ -577,7 +562,7 @@ public class HojntAuto extends MainLocation {
 
             case 540:
                 // wieder auf NormalHojnt zurueckschalten
-                NeuesBild(14, 29);
+                createNewLocation(14, 29);
                 break;
 
             case 600:
@@ -592,7 +577,7 @@ public class HojntAuto extends MainLocation {
                     break;
                 }
                 klingeln = true;
-                mainFrame.soundPlayer.PlayFile("sfx/klingel.wav");
+                mainFrame.soundPlayer.playFile("sfx/klingel.wav");
                 nextActionID = 610;
                 break;
 
@@ -607,7 +592,7 @@ public class HojntAuto extends MainLocation {
                 // Tuer oeffnen, Jaeger zeigen und vor die Tuer laufen lassen
                 showHojnt = true;
                 isDoorOpen = true;
-                jaeger.MoveTo(Pleft);
+                jaeger.moveTo(Pleft);
                 walkReady = false;
                 nextActionID = 625;
                 break;
@@ -621,12 +606,12 @@ public class HojntAuto extends MainLocation {
 
             case 650:
                 // Jaeger sagt Spruch, wenn Krabat reingefallen ist
-                outputText = mainFrame.imageFont.TeileTextKey("HojntAuto_3");
+                outputText = mainFrame.imageFont.splitTextKey("HojntAuto_3");
                 // Hier Position des Textes berechnen
-                BorderRect teemp = jaeger.getRect();
-                GenericPoint tTaalk = new GenericPoint((teemp.ru_point.x + teemp.lo_point.x) / 2, teemp.lo_point.y - 50);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, tTaalk);
-                TalkPerson = 26;
+                BorderRect teemp = jaeger.getBoundingBox();
+                GenericPoint tTaalk = new GenericPoint((teemp.bottomRightPoint.x + teemp.topLeftPoint.x) / 2, teemp.topLeftPoint.y - 50);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, tTaalk);
+                talkPerson = 26;
                 nextActionID = 655;
                 break;
 
@@ -637,7 +622,7 @@ public class HojntAuto extends MainLocation {
 
             case 660:
                 // auf Jama umschalten
-                NeuesBild(27, 29);
+                createNewLocation(27, 29);
                 break;
 
             default:

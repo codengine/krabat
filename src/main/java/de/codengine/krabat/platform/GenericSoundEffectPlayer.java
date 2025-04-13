@@ -35,6 +35,6 @@ public abstract class GenericSoundEffectPlayer {
         this.path = path;
     }
 
-    public abstract void PlayFile(String filename);
+    public abstract void playFile(String filename);
 
 }     

@@ -73,10 +73,10 @@ public class Bludnicki extends MainAnim {
 
         feuer = new Fire(mainFrame);
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         Head[1][1] = getPicture("gfx/labyrinth/bha1.png");
         Head[1][2] = getPicture("gfx/labyrinth/bha2.png");
         Head[1][3] = getPicture("gfx/labyrinth/bha3.png");

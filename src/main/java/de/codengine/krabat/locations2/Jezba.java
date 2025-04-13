@@ -54,23 +54,23 @@ public class Jezba extends MainLocation2 {
         BackgroundMusicPlayer.getInstance().stop();
 
         // Hier Inventarvektor reduzieren (Karte austauschen)
-        mainFrame.inventory.ResetInventory();
+        mainFrame.inventory.resetInventory();
         mainFrame.inventory.vInventory.addElement(12); // Feuersteine behaelt K
         mainFrame.inventory.vInventory.addElement(54); // "Dresdener Karte" der Lausitz
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
 
         nextActionID = 10;
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/most/trip.png");
         zweitesBild = getPicture("gfx-dd/terassa/terassa.png");
 
@@ -90,7 +90,7 @@ public class Jezba extends MainLocation2 {
         // Fanfare 1x abspielen
         if (!playFanfare) {
             playFanfare = true;
-            mainFrame.soundPlayer.PlayFile("sfx/fanfara.wav");
+            mainFrame.soundPlayer.playFile("sfx/fanfara.wav");
         }
 
 
@@ -98,7 +98,7 @@ public class Jezba extends MainLocation2 {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -119,7 +119,7 @@ public class Jezba extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -131,13 +131,13 @@ public class Jezba extends MainLocation2 {
             }
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -146,7 +146,6 @@ public class Jezba extends MainLocation2 {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -159,8 +158,8 @@ public class Jezba extends MainLocation2 {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
 
@@ -179,12 +178,12 @@ public class Jezba extends MainLocation2 {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 10:
                 // Hammertext ausgeben
-                PersonSagt("Jezba_1", 0, 54, 2, 20, MittelPunkt);
+                personSays("Jezba_1", 0, 54, 2, 20, MittelPunkt);
                 break;
 
             case 20:
@@ -192,14 +191,13 @@ public class Jezba extends MainLocation2 {
                 showSecondPicture = true;
                 mainFrame.isClipSet = false;
                 BackgroundMusicPlayer.getInstance().playTrack(25, true);
-                PersonSagt("Jezba_2", 0, 54, 2, 30, UntererPunkt);
+                personSays("Jezba_2", 0, 54, 2, 30, UntererPunkt);
                 break;
 
             case 30:
                 // Jump nach Dresden in die Kueche
-                NeuesBild(120, 94);
+                createNewLocation(120, 94);
                 // temporaeres Ende hier
-                // NeuesBild (101, 94);
                 break;
 
             default:

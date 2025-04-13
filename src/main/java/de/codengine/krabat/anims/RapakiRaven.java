@@ -32,7 +32,6 @@ public class RapakiRaven extends MainAnim {
     private int animpos = 1;
     private boolean Gleiten = false;
     private boolean oben = true;
-    // private boolean up = false;
     private int gleitcount;
     private boolean schalt = false;
     private final int XEnde;
@@ -55,7 +54,7 @@ public class RapakiRaven extends MainAnim {
 
         vogel = new GenericImage[5];
 
-        InitImages();
+        initImages();
     }
 
     // gezoomten Ptack laden
@@ -69,7 +68,7 @@ public class RapakiRaven extends MainAnim {
 
         vogel = new GenericImage[5];
 
-        InitImages();
+        initImages();
     }
 
     // gezoomten Ptack laden, der nur nach oben fliegt
@@ -84,11 +83,11 @@ public class RapakiRaven extends MainAnim {
 
         vogel = new GenericImage[5];
 
-        InitImages();
+        initImages();
     }
 
     // Bilder laden
-    private void InitImages() {
+    private void initImages() {
         vogel[1] = getPicture("gfx/doma/vogel1.png");
         vogel[2] = getPicture("gfx/doma/vogel2.png");
         vogel[3] = getPicture("gfx/doma/vogel3.png");
@@ -101,7 +100,7 @@ public class RapakiRaven extends MainAnim {
     }
 
     // rumfliegen
-    public boolean Flieg(GenericDrawingContext g) {
+    public boolean doFly(GenericDrawingContext g) {
         // wenn Fluegel in Mitte, dann schauen, ob weiterfliegen oder gleiten
         if (animpos == 1 || animpos == 4) {
             int glei = (int) Math.round(Math.random() * 30);
@@ -157,13 +156,7 @@ public class RapakiRaven extends MainAnim {
                 y -= 1;
             }
         }
-    
-	/*int xx = x;
-	  if (xx < 0) xx = 0;
-	  int yy = y;
-	  if (yy < 0) yy = 0; */
 
-        // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor);
         return x > XEnde; // wenn aus dem Bild, dann das der Routine sagen !
     }

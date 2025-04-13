@@ -59,29 +59,29 @@ abstract public class Krabat extends MovableMainAnim {
     // Alle Methoden, die immer Gueltigkeit haben, egal, welche untergelagerte Krabatklasse gerade aktiv ist
 
     // Animation anhalten und Daten zuruecksetzen
-    public void StopAnim() {
+    public void stopAnim() {
         nAnimation = 0;
         fAnimHelper = false;
         nAnimStep = 0;
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 3:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = RIGHT;
                 break;
             case 6:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = DOWN;
                 break;
             case 9:
-                horizontal = true;
+                isAnimHorizontal = true;
                 directionX = LEFT;
                 break;
             case 12:
-                horizontal = false;
+                isAnimHorizontal = false;
                 directionY = UP;
                 break;
             default:
@@ -90,8 +90,8 @@ abstract public class Krabat extends MovableMainAnim {
     }
 
     // Richtung, in die Krabat schaut, ermitteln (wieder nach Uhrzeit)
-    public int GetFacing() {
-        if (horizontal) {
+    public int getFacing() {
+        if (isAnimHorizontal) {
             return directionX == RIGHT ? 3 : 9;
         } else {
             return directionY == DOWN ? 6 : 12;
@@ -99,18 +99,18 @@ abstract public class Krabat extends MovableMainAnim {
     }
 
     // Hoer auf hier rumzurennen, es gibt anderes zu tun!
-    public void StopWalking() {
-        StopAnim();
+    public void stopWalking() {
+        stopAnim();
         isWandering = false;
         isWalking = false;
-        anim_pos = 0;
+        animPos = 0;
     }
 
     // alle Methoden, die erst in der jeweiligen Klasse implementiert werden
 
-    abstract public void Move();
+    abstract public void move();
 
-    abstract public void MoveTo(GenericPoint aim);
+    abstract public void moveTo(GenericPoint aim);
 
     abstract public void talkKrabat(GenericDrawingContext g);
 
@@ -118,7 +118,7 @@ abstract public class Krabat extends MovableMainAnim {
 
     abstract public void drawKrabat(GenericDrawingContext g);
 
-    abstract public void DoAnimation(GenericDrawingContext g);
+    abstract public void doAnimation(GenericDrawingContext g);
 
     // Clipping - Region vor Zeichnen von Krabat setzen
     protected void krabatClipExtraDefault(GenericDrawingContext g, int xx, int yy, boolean isLeft) {
@@ -144,18 +144,13 @@ abstract public class Krabat extends MovableMainAnim {
         }
 
         g.setClip(x, y, xd, yd);
-
-        // Fuer Debugging ClipRectangle zeichnen
-        // g.setColor(Color.white);
-        // g.drawRect(x, y, xd - 1, yd - 1);
-        // System.out.println(x + " " + y + " " + xd + " " + yd);
     }
 
-    protected void verschiebeXkrabat(float horizDist) {
+    protected void moveXkrabat(float horizDist) {
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
         float z = 0;
         if (horizDist != 0) {
-            z = Math.abs(xps - walkto.x) / horizDist;
+            z = Math.abs(posX - walkTo.x) / horizDist;
         }
 
         // BUGFIX: kleine z nicht zulassen!!!
@@ -163,40 +158,39 @@ abstract public class Krabat extends MovableMainAnim {
             z = 0;
         }
 
-        typs = yps;
+        tempPosY = posY;
         if (z != 0) {
-            typs += directionY.getVal() * (Math.abs(yps - walkto.y) / z);
+            tempPosY += directionY.getVal() * (Math.abs(posY - walkTo.y) / z);
         }
 
-        txps = xps + directionX.getVal() * horizDist;
+        tempPosX = posX + directionX.getVal() * horizDist;
     }
 
-    protected void verschiebeYkrabat(float vertDist) {
+    protected void moveYkrabat(float vertDist) {
         // Verschiebungsoffset berechnen (fuer schraege Bewegung)
-        float z = Math.abs(yps - walkto.y) / vertDist;
+        float z = Math.abs(posY - walkTo.y) / vertDist;
 
         // BUGFIX: kleine z nicht zulassen!!!
         if (z < 1) {
             z = 0;
         }
 
-        txps = xps;
+        tempPosX = posX;
         if (z != 0) {
-            txps += directionX.getVal() * (Math.abs(xps - walkto.x) / z);
+            tempPosX += directionX.getVal() * (Math.abs(posX - walkTo.x) / z);
         }
 
-        typs = yps + directionY.getVal() * vertDist;
-        // System.out.println(xps + " " + txps + " " + yps + " " + typs);
+        tempPosY = posY + directionY.getVal() * vertDist;
     }
 
     protected synchronized void moveToKrabat(GenericPoint aim, int lohnx, int lohny, int minAnimPos, int calcHorizDeg) {
         // Variablen an Move uebergeben
-        Twalkto = aim;
-        Thorizontal = calcHorizontal(aim, calcHorizDeg);
+        tmpWalkTo = aim;
+        tmpIsAnimHorizontal = calcHorizontal(aim, calcHorizDeg);
 
         // Laufrichtung ermitteln
-        tDirectionX = aim.x > (int) xps ? RIGHT : LEFT;
-        tDirectionY = aim.y > (int) yps ? DOWN : UP;
+        tmpDirectionX = aim.x > (int) posX ? RIGHT : LEFT;
+        tmpDirectionY = aim.y > (int) posY ? DOWN : UP;
 
         // Lohnt es sich zu laufen ?
         if (lohnx < 1) {
@@ -205,18 +199,18 @@ abstract public class Krabat extends MovableMainAnim {
         if (lohny < 1) {
             lohny = 1;
         }
-        if (Math.abs(aim.x - (int) xps) < lohnx && Math.abs(aim.y - (int) yps) < lohny) {
+        if (Math.abs(aim.x - (int) posX) < lohnx && Math.abs(aim.y - (int) posY) < lohny) {
             isWalking = false;
             log.debug("Nicht gerade lohnend !!");
-            if (!isWandering && clearanimpos) {
-                anim_pos = 0;
+            if (!isWandering && resetAnimPos) {
+                animPos = 0;
             }
             return;
         }
 
         // von Oben
-        if (anim_pos < minAnimPos) {
-            anim_pos = minAnimPos;
+        if (animPos < minAnimPos) {
+            animPos = minAnimPos;
         }
 
         isWalking = true;                             // Stiefel los !

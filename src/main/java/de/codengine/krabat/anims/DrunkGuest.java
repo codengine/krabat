@@ -43,10 +43,10 @@ public class DrunkGuest extends MainAnim {
 
         Verhinderposition = MAX_VERHINDERPOSITION;
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         hosc[0] = getPicture("gfx/hoscenc/gast1-1.png");
         hosc[1] = getPicture("gfx/hoscenc/gast1-2.png");
     }

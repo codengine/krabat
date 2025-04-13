@@ -28,18 +28,17 @@ import java.time.Instant;
 @SuppressWarnings("unused")
 public class Debug {
     private static final Clock CLOCK = Clock.systemDefaultZone();
-    public static final boolean enabled = false;
+    public static final boolean ENABLED = false;
 
     private Debug() {
     }
 
-    // private Start mainFrame;
     public static void DrawRect(GenericDrawingContext g, Iterable<BorderTrapezoid> rectangles) {
-        if (!enabled) {
+        if (!ENABLED) {
             return;
         }
 
-        g.setColor(GenericColor.white);
+        g.setColor(GenericColor.WHITE);
         GenericRectangle my;
         my = g.getClipBounds();
         g.setClip(0, 0, 1280, 480);
@@ -54,12 +53,11 @@ public class Debug {
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
-    public static void DrawRect(GenericDrawingContext g, BorderRect rectangle, int scrollx, int scrolly)
-    {
-        g.setColor(GenericColor.white);
-        g.drawRect(rectangle.lo_point.x + scrollx, rectangle.lo_point.y + scrolly,
-                rectangle.ru_point.x - rectangle.lo_point.x,
-                rectangle.ru_point.y - rectangle.lo_point.y);
+    public static void DrawRect(GenericDrawingContext g, BorderRect rectangle, int scrollx, int scrolly) {
+        g.setColor(GenericColor.WHITE);
+        g.drawRect(rectangle.topLeftPoint.x + scrollx, rectangle.topLeftPoint.y + scrolly,
+                rectangle.bottomRightPoint.x - rectangle.topLeftPoint.x,
+                rectangle.bottomRightPoint.y - rectangle.topLeftPoint.y);
     }
 
     public static Instant getTimeInstant() {

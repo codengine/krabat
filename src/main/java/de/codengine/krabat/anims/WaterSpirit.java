@@ -29,7 +29,6 @@ public class WaterSpirit extends MainAnim {
     private final GenericImage[] wmuz_head;
     private final GenericImage[] wmuz_body;
     private final GenericImage[] wmuz_tauch;
-    // private GenericImage woda;
 
     private int Head = 1;
     private int Body = 1;
@@ -62,7 +61,7 @@ public class WaterSpirit extends MainAnim {
         wmuz_body = new GenericImage[6];
         wmuz_tauch = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Wait = MAX_WAIT;
         Verhinderhead = MAX_VERHINDERHEAD;
@@ -77,8 +76,7 @@ public class WaterSpirit extends MainAnim {
         }
     }
 
-    private void InitImages() {
-        // woda          = getPicture ("gfx/mertens/woda.png");
+    private void initImages() {
 
         wmuz_head[1] = getPicture("gfx/mertens/wmk1.png");
         wmuz_head[2] = getPicture("gfx/mertens/wmk1a.png");
@@ -152,7 +150,7 @@ public class WaterSpirit extends MainAnim {
         Offset = (int) Math.round(Math.sin(angle) * 2.1 + 2);
     }
 
-    public boolean Tauche(GenericDrawingContext g, GenericPoint posit) {
+    public boolean dive(GenericDrawingContext g, GenericPoint posit) {
         // Die Angabe GenericPoint posit bezieht sich auf die Position im aufgetauchten Zustand...
         // Methode gibt false zurueck, wenn sie nicht mehr aufgerufen werden soll (ich habe fertig)
 
@@ -165,7 +163,7 @@ public class WaterSpirit extends MainAnim {
             } else {
                 Offset++;
                 if (Offset == 8) {
-                    mainFrame.soundPlayer.PlayFile("sfx/wmuz.wav");
+                    mainFrame.soundPlayer.playFile("sfx/wmuz.wav");
                 }
                 g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 if (Offset < GRAFIK_HOEHE) {
@@ -182,7 +180,7 @@ public class WaterSpirit extends MainAnim {
             if (Offset > 0) {
                 Offset--;
                 if (Offset == GRAFIK_HOEHE - 1) {
-                    mainFrame.soundPlayer.PlayFile("sfx/wmuz.wav");
+                    mainFrame.soundPlayer.playFile("sfx/wmuz.wav");
                 }
                 g.drawImage(Offset > 30 ? wmuz_tauch[2] : wmuz_tauch[1], posit.x, posit.y + Offset);
                 return true;

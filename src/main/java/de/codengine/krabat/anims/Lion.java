@@ -51,13 +51,13 @@ public class Lion extends MainAnim {
         law_talk = new GenericImage[7];
         law_sleep = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
         Verhindersleep = MAX_VERHINDERSLEEP;
     }
 
-    private void InitImages() {
+    private void initImages() {
         law[0] = getPicture("gfx-dd/manega/law.png");
         law[1] = getPicture("gfx-dd/manega/lawa.png");
 
@@ -162,7 +162,7 @@ public class Lion extends MainAnim {
         // 3. invCursor -> soll nur dann abschalten
 
         // immer spielen, kommt eh nur selten
-        mainFrame.soundPlayer.PlayFile("sfx-dd/lawspi.wav");
+        mainFrame.soundPlayer.playFile("sfx-dd/lawspi.wav");
     }
 
 

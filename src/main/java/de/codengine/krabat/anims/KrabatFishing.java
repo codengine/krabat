@@ -66,7 +66,7 @@ public class KrabatFishing extends MainAnim {
         rede_rechts = new GenericImage[9];
         schaue_links = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         angeln = MAXANGELN;
         fangen = MAXFANGEN;
@@ -75,7 +75,7 @@ public class KrabatFishing extends MainAnim {
     }
 
     // alle Bilder reinladen
-    private void InitImages() {
+    private void initImages() {
         angle_rechts[0] = getPicture("gfx/haty/k-r-wuda1.png");
         angle_rechts[1] = getPicture("gfx/haty/k-r-wuda2.png");
         angle_rechts[2] = getPicture("gfx/haty/k-r-wuda3a.png");
@@ -135,7 +135,7 @@ public class KrabatFishing extends MainAnim {
     }
 
     // rechts angeln, ohne je einen Fisch zu fangen
-    public boolean AngleRechts(GenericDrawingContext g, GenericPoint feetPos) {
+    public boolean fishRight(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
         if (--Verhinderangeln < 1) {
@@ -176,7 +176,7 @@ public class KrabatFishing extends MainAnim {
     }
 
     // links angeln, ohne je einen Fisch zu fangen (Holzfisch nicht dran)
-    public boolean AngleLinks(GenericDrawingContext g, GenericPoint feetPos) {
+    public boolean fishLeft(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
         if (--Verhinderangeln < 1) {
@@ -217,11 +217,11 @@ public class KrabatFishing extends MainAnim {
     }
 
     // rechts angeln und rightigen Fisch dran
-    public boolean FangeRechts(GenericDrawingContext g, GenericPoint feetPos) {
+    public boolean catchRight(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
         if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.soundPlayer.PlayFile("sfx/woda2.wav");
+            mainFrame.soundPlayer.playFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
         if (--Verhinderangeln < 1) {
@@ -297,14 +297,14 @@ public class KrabatFishing extends MainAnim {
     }
 
     // links angeln und Holzfisch dran
-    public boolean FangeLinks(GenericDrawingContext g, GenericPoint feetPos) {
+    public boolean catchLeft(GenericDrawingContext g, GenericPoint feetPos) {
         boolean rueckgabe = true;
 
         if (fangen == MAXFANGEN && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.soundPlayer.PlayFile("sfx/woda1.wav");
+            mainFrame.soundPlayer.playFile("sfx/woda1.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
         if (fangen == 10 && Verhinderangeln == MAX_VERHINDERANGELN) {
-            mainFrame.soundPlayer.PlayFile("sfx/woda2.wav");
+            mainFrame.soundPlayer.playFile("sfx/woda2.wav");
         }      ////////////////////////////////// Sound !!!!!!!!!!!!!!!!!!
 
 
@@ -373,7 +373,7 @@ public class KrabatFishing extends MainAnim {
     }
 
     // reden mit Fisch an der Angel
-    public void RedeLinks(GenericDrawingContext g, GenericPoint feetPos, int TalkPerson) {
+    public void talkLeft(GenericDrawingContext g, GenericPoint feetPos, int TalkPerson) {
         if (--Verhinderhead < 1) {
             // Head 0, 2...8
             Verhinderhead = MAX_VERHINDERHEAD;

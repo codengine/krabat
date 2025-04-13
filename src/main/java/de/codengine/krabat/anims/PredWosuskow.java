@@ -62,14 +62,14 @@ public class PredWosuskow extends MainAnim {
         pred_call = new GenericImage[5];
         pred_talk = new GenericImage[7];
 
-        InitImages();
+        initImages();
 
         Verhinderstand = MAX_VERHINDERSTAND;
         Verhindercall = MAX_VERHINDERCALL;
         Verhindertalk = MAX_VERHINDERTALK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         pred_stand[0] = getPicture("gfx-dd/starewiki/whaendler1.png");
         pred_stand[1] = getPicture("gfx-dd/starewiki/whaendler1a.png");
         pred_stand[2] = getPicture("gfx-dd/starewiki/whaendler1b.png");

@@ -36,7 +36,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Start implements Runnable {
     private static final Logger log = LoggerFactory.getLogger(Start.class);
-    // private static final boolean have_png = true;
 
     public Thread animator;
 
@@ -73,7 +72,6 @@ public class Start implements Runnable {
     public Map map;
     public Dictionary dictionary;
     public Sketch sketch;
-    // public Slownikcreate woerterbuch;
 
     // wichtige Sachen fuer Hauptklasse
     private GenericImage offImage;
@@ -92,7 +90,7 @@ public class Start implements Runnable {
 
     public ScreenType whatScreen = ScreenType.NONE;
 
-    public static int language; // Sprache
+    public static int LANGUAGE; // Sprache
 
     // Variablen fuer Mousemove und Doppelklick
     public GenericPoint mousePoint = new GenericPoint(0, 0);
@@ -107,7 +105,7 @@ public class Start implements Runnable {
     public boolean isClipSet;
 
     // Konstante fuer Labyrinth - Schwierigkeit
-    public static final int labyrinthHelp = 15;
+    public static final int LABYRINTH_HELP = 15;
 
     private int krabatShape = 0; // gibt an, welche KrabatKlasse aktiv ist (default ist von der Seite)
 
@@ -120,9 +118,7 @@ public class Start implements Runnable {
 
     public GenericImageFetcher imageFetcher;
 
-    // public static String urlBase;
-
-    public static AbstractPlayer player;
+    public static AbstractPlayer PLAYER;
 
     private GenericContainer container;
 
@@ -132,9 +128,9 @@ public class Start implements Runnable {
 
     private GameProperties gameProperties;
 
-    public static StringManager stringManager;
+    public static StringManager STRING_MANAGER;
 
-    public static String thirdGameLanguage;
+    public static String THIRD_GAME_LANGUAGE;
 
     protected void runGamePt1(
             int currentLanguageIndex,
@@ -143,7 +139,7 @@ public class Start implements Runnable {
             GenericSoundEffectPlayer player,
             AbstractPlayer musicPlayer,
             GenericStorageManager storageManager) {
-        Start.player = musicPlayer;
+        Start.PLAYER = musicPlayer;
 
         this.imageFetcher = imageFetcher;
         this.container = container;
@@ -151,7 +147,7 @@ public class Start implements Runnable {
         // Alle wichtigen Variablen zuruecksetzen
         initGame();
 
-        stringManager = new StringManager(storageManager);
+        STRING_MANAGER = new StringManager(storageManager);
 
         // Variablen fuer Mausdoppelklick festlegen
         mousePoint = new GenericPoint(0, 0);
@@ -171,18 +167,18 @@ public class Start implements Runnable {
         }
 
         if (tmpLangIndex >= 1 && tmpLangIndex <= 3) {
-            language = tmpLangIndex;
+            LANGUAGE = tmpLangIndex;
         } else {
-            language = 1; // fallback is HS
+            LANGUAGE = 1; // fallback is HS
         }
 
         // what is the selected "third language" (if any)
-        thirdGameLanguage = gameProperties.getProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION);
+        THIRD_GAME_LANGUAGE = gameProperties.getProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION);
         // if no language selected yet, this will load German
-        stringManager.defineThirdLanguage(thirdGameLanguage);
+        STRING_MANAGER.defineThirdLanguage(THIRD_GAME_LANGUAGE);
 
-        log.info("Sprache {}", language);
-        log.info("Third language: {}", thirdGameLanguage);
+        log.info("Sprache {}", LANGUAGE);
+        log.info("Third language: {}", THIRD_GAME_LANGUAGE);
 
         // feststellen, ob Sound abgespielt werden darf und wie
         soundPlayer = player;
@@ -302,25 +298,25 @@ public class Start implements Runnable {
                     inventory.paintInventory(offGraphics);
                     break;
                 case MAIN_MENU:
-                    mainMenu.paintMainmenu(offGraphics);
+                    mainMenu.paintMainMenu(offGraphics);
                     break;
                 case LOAD_GAME:
-                    loadGame.paintLaden(offGraphics);
+                    loadGame.paintLoadGame(offGraphics);
                     break;
                 case SAVE_GAME:
-                    saveGame.paintSpeichern(offGraphics);
+                    saveGame.paintSaveGame(offGraphics);
                     break;
                 case CREDITS:
                     credits.paintCredits(offGraphics);
                     break;
                 case MAP:
-                    map.paintKarte(offGraphics);
+                    map.paintMap(offGraphics);
                     break;
                 case DICTIONARY:
-                    dictionary.paintSlownik(offGraphics);
+                    dictionary.paintDictionary(offGraphics);
                     break;
                 case SKETCH:
-                    sketch.paintSkizze(offGraphics);
+                    sketch.paintSketch(offGraphics);
                     break;
                 default:
                     log.error("Wrong Paint Prio 2! whatScreen = {}", whatScreen);
@@ -536,7 +532,7 @@ public class Start implements Runnable {
             return;
         }
 
-        // apply the doubleclick detection
+        // apply the double click detection
         isDoubleClick = e.getDoubleClick();
 
         // Wenn Exit aktiv, dorthin - Prio 1
@@ -646,7 +642,7 @@ public class Start implements Runnable {
             return;
         }
         isClipSet = false;
-        exitGame.Activate(1);
+        exitGame.activate(1);
     }
 
     // verlassene Location wird geloescht
@@ -771,8 +767,6 @@ public class Start implements Runnable {
             case 22:
                 currentLocation = new Cyrkej1(this, currentLocationIdx);
                 break;
-            //    case 23: currentLocation = (Mainloc) new pinca1 (this, currLocation);
-            //             break;
             case 24:
                 currentLocation = new Hoscenc1(this, currentLocationIdx);
                 break;
@@ -884,16 +878,12 @@ public class Start implements Runnable {
                 credits = new Info(this);
                 newLocation = currentLocationIdx;
                 break;
-            case 105:
-                currentLocation = new Install(this);
-                break;
             case 106:
                 map = new Map(this);
                 newLocation = currentLocationIdx; // alte Location bleibt bestehen
                 break;
             case 107:
                 dictionary = new Dictionary(this);
-                // woerterbuch = new Slownikcreate (this);
                 newLocation = currentLocationIdx;
                 break;
             case 108:
@@ -1028,7 +1018,7 @@ public class Start implements Runnable {
     }
 
     // neue Location wird erzeugt fuer Labyrinth extra, da Richtung unbekannt !!!
-    public synchronized void constructLocation(int newLocation, int Richtung) {
+    public synchronized void constructLocation(int newLocation, int direction) {
         // Richtungsvariable wieder nach Uhrzeit 3, 6, 9, 12
 
         // Paint - Schleife anhalten
@@ -1037,40 +1027,40 @@ public class Start implements Runnable {
         switch (newLocation) {
 
             case 51:
-                currentLocation = new Labyr1(this, Richtung);
+                currentLocation = new Labyr1(this, direction);
                 break;
             case 52:
-                currentLocation = new Labyr2(this, Richtung);
+                currentLocation = new Labyr2(this, direction);
                 break;
             case 53:
-                currentLocation = new Labyr3(this, Richtung);
+                currentLocation = new Labyr3(this, direction);
                 break;
             case 54:
-                currentLocation = new Labyr4(this, Richtung);
+                currentLocation = new Labyr4(this, direction);
                 break;
             case 55:
-                currentLocation = new Labyr5(this, Richtung);
+                currentLocation = new Labyr5(this, direction);
                 break;
             case 56:
-                currentLocation = new Labyr6(this, Richtung);
+                currentLocation = new Labyr6(this, direction);
                 break;
             case 57:
-                currentLocation = new Labyr7(this, Richtung);
+                currentLocation = new Labyr7(this, direction);
                 break;
             case 58:
-                currentLocation = new Labyr8(this, Richtung);
+                currentLocation = new Labyr8(this, direction);
                 break;
             case 59:
-                currentLocation = new Labyr9(this, Richtung);
+                currentLocation = new Labyr9(this, direction);
                 break;
             case 60:
-                currentLocation = new Labyr10(this, Richtung);
+                currentLocation = new Labyr10(this, direction);
                 break;
             case 61:
-                currentLocation = new Labyr11(this, Richtung);
+                currentLocation = new Labyr11(this, direction);
                 break;
             case 62:
-                currentLocation = new Labyr12(this, Richtung);
+                currentLocation = new Labyr12(this, direction);
                 break;
             default:
                 log.error("Not available! newLocation: {}", newLocation);
@@ -1081,7 +1071,7 @@ public class Start implements Runnable {
         stopPaint(false);
     }
 
-    public synchronized void constructLocation(int newLocation, Geese gans1, Geese gans2, Geese gans3) {
+    public synchronized void constructLocation(int newLocation, Geese goose1, Geese goose2, Geese goose3) {
         stopPaint(true);
 
         if (currentLocation != null) {
@@ -1093,7 +1083,7 @@ public class Start implements Runnable {
             System.gc();
         }
 
-        currentLocation = new Doma1(this, currentLocationIdx, gans1, gans2, gans3);
+        currentLocation = new Doma1(this, currentLocationIdx, goose1, goose2, goose3);
 
         currentLocationIdx = newLocation;
 
@@ -1176,7 +1166,7 @@ public class Start implements Runnable {
     public void restart() {
         destructLocation(currentLocationIdx);
         initGame();
-        inventory.ResetInventory();
+        inventory.resetInventory();
         constructLocation(100);
         repaint();
     }
@@ -1204,11 +1194,11 @@ public class Start implements Runnable {
         // Hilfsvariable verhindert staendiges Laden...
 
         // alte Krabatvariablen merken, die beim Umladen weg waeren
-        int merkFacing = krabat.GetFacing();
+        int merkFacing = krabat.getFacing();
         GenericPoint merkPos = krabat.getPos();
-        int merkMaxx = krabat.maxx;
-        float merkZoom = krabat.zoomf;
-        int merkDef = krabat.defScale;
+        int merkMaxx = krabat.maxX;
+        float merkZoom = krabat.zoomFactor;
+        int merkDef = krabat.defaultScale;
 
         // normales Aussehen
         if (!actions[850] && !actions[851]) {
@@ -1235,15 +1225,15 @@ public class Start implements Runnable {
         }
 
         // Krabatvariablen wiederherstellen
-        krabat.SetFacing(merkFacing);
+        krabat.setFacing(merkFacing);
         krabat.setPos(merkPos);
-        krabat.maxx = merkMaxx;
-        krabat.zoomf = merkZoom;
-        krabat.defScale = merkDef;
+        krabat.maxX = merkMaxx;
+        krabat.zoomFactor = merkZoom;
+        krabat.defaultScale = merkDef;
 
     }
 
-    public GenericImage constructCursorImage(String Pathname) {
-        return imageFetcher.fetchImage(Pathname, false);
+    public GenericImage constructCursorImage(String pathName) {
+        return imageFetcher.fetchImage(pathName, false);
     }
 }

@@ -37,8 +37,6 @@ public class Boats extends MainAnim {
 
     private BorderTrapezoid bootRect;
 
-    // private boolean forward = false;
-
     private GenericImage bootBild;
 
     private static final int[][] groesse = {{43, 41}, /*{43, 41},*/ {13, 12}, {41, 80}, {41, 80}, {69, 118}, {99, 78}};
@@ -54,16 +52,6 @@ public class Boats extends MainAnim {
                     new BorderTrapezoid(75, 255, 265, 260),
                     new BorderTrapezoid(435, 243, 700, 272)};
 
-    // private static final int XMIND = 70;
-    // private static final int XDIFF = 70;
-    // private static final int YMIND = 120;
-    // private static final int YDIFF = 60;
-
-    // private int Verhinderx;
-    // private int Verhindery;
-
-    // private int locationID;
-
     public Boats(Start caller, int locationID) {
         super(caller);
 
@@ -71,23 +59,19 @@ public class Boats extends MainAnim {
         // 1 : cychi
         // 2 : hdwor
         // 3 : panorama
-        // this.locationID = locationID;  // merken, koennte wichtig sein
 
         boots = new GenericImage[7];
 
-        InitImages();
+        initImages();
 
         evalBoot(locationID);
 
-        InitPosition();
+        initPosition();
 
-        // Verhinderx = XMIND;
-        // Verhindery = YMIND;
     }
 
-    private void InitImages() {
+    private void initImages() {
         boots[0] = getPicture("gfx-dd/cychi/boot2.png");
-        //       boots[1] = getPicture ("gfx-dd/cychi/boot2a.png");
 
         boots[1] = getPicture("gfx-dd/hdwor/boot5.png");
 
@@ -132,7 +116,7 @@ public class Boats extends MainAnim {
     }
 
     // zufaellige Position innerhalb des bordertrapez bestimmen und Richtung
-    private void InitPosition() {
+    private void initPosition() {
         // innerhalb des umschliessenden Rects Zufallsschuss und auf innerhalb pruefen
         // erstmal die Grenzen
         int xmin = Math.min(bootRect.x1, bootRect.x3);
@@ -147,18 +131,10 @@ public class Boats extends MainAnim {
             xt = (int) (Math.random() * (xmax - xmin) + xmin);
             yt = (int) (Math.random() * (ymax - ymin) + ymin);
         }
-        while (!bootRect.PointInside(new GenericPoint(xt, yt)));
+        while (!bootRect.pointInside(new GenericPoint(xt, yt)));
 
         // tu es mal auch wirklich einsetzen tun tun tun
         bootPoint = new GenericPoint(xt, yt);
-
-        // Richtung des Bootes zufaellig bestimmen
-    	/*
-    	int zf = (int) (Math.random () * 50);
-    	if (zf > 25) forward = true;
-    	else forward = false;
-    	*/
-
     }
 
     // Zeichne Boot

@@ -63,7 +63,7 @@ public class KitchenChef extends MainAnim {
         kuchar_up_talk = new GenericImage[6];
         maus = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderschlag = MAX_VERHINDERSCHLAG;
         Verhindertalkdown = MAX_VERHINDERTALKDOWN;
@@ -71,7 +71,7 @@ public class KitchenChef extends MainAnim {
         Verhinderstier = MAX_VERHINDERSTIER;
     }
 
-    private void InitImages() {
+    private void initImages() {
         kuchar_down_schlag[0] = getPicture("gfx-dd/kuchnja/koch2.png");
         kuchar_down_schlag[1] = getPicture("gfx-dd/kuchnja/koch2a.png");
         kuchar_down_schlag[2] = getPicture("gfx-dd/kuchnja/koch2b.png");
@@ -99,7 +99,7 @@ public class KitchenChef extends MainAnim {
     }
 
     // gib Borderrect fuer "inside" - Evaluierung an
-    public BorderRect KucharRect() {
+    public BorderRect kucharRect() {
         if (!isAufgestanden) {
             return new BorderRect(327, 208, 327 + 140, 208 + 164);
         } else {
@@ -184,8 +184,6 @@ public class KitchenChef extends MainAnim {
             Schlag = 2;
             if (--Verhinderstier < 1) {
                 Verhinderstier = MAX_VERHINDERSTIER;
-                // int zf = (int) (Math.random () * 50);
-                // if (zf > 30) Schlag = 3;
                 Schlag = 3;
                 if (!noSound) {
                     evalSound();
@@ -235,7 +233,7 @@ public class KitchenChef extends MainAnim {
 
     private void evalSound() {
         // zufaellig wavs fuer Geschnatter abspielen...
-        mainFrame.soundPlayer.PlayFile("sfx-dd/lzica.wav");
+        mainFrame.soundPlayer.playFile("sfx-dd/lzica.wav");
     }
 
 

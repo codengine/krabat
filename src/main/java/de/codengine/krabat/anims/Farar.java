@@ -47,13 +47,13 @@ public class Farar extends MainAnim {
         farar_head = new GenericImage[9];
         farar_body = new GenericImage[5];
 
-        InitImages();
+        initImages();
 
         Nobody = MAX_NOBODY;
         Nohead = MAX_NOHEAD;
     }
 
-    private void InitImages() {
+    private void initImages() {
         farar_head[1] = getPicture("gfx/pinca/f-h-1.png");
         farar_head[2] = getPicture("gfx/pinca/f-h-2.png");
         farar_head[3] = getPicture("gfx/pinca/f-h-3.png");

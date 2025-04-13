@@ -84,9 +84,9 @@ public class Habor extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 50;      // no zooming
-        mainFrame.krabat.zoomf = 2f;
-        mainFrame.krabat.defScale = 57;
+        mainFrame.krabat.maxX = 50;      // no zooming
+        mainFrame.krabat.zoomFactor = 2f;
+        mainFrame.krabat.defaultScale = 57;
 
         // Gonzales nur, wenn Kotwica noch nicht gegeben - init erfolgt jedoch immer
         gonzales = new Gonzales(mainFrame);
@@ -117,13 +117,13 @@ public class Habor extends MainLocation {
         // Hier das Flag "ich weiss vom Stollen" loeschen
         mainFrame.actions[710] = false;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
 
@@ -137,25 +137,10 @@ public class Habor extends MainLocation {
             // Gonzales ist weg
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(285, 290, 390, 395, 347, 376));
         }
-        mainFrame.pathFinder.ClearMatrix(2);
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-    		
-        /*    mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (578, 630, 578, 630, 423, 428));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (520, 580, 520, 580, 414, 422));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (420, 522, 420, 522, 402, 413));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (398, 460, 398, 460, 389, 401));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (370, 397, 380, 397, 377, 401));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (261, 266, 390, 395, 339, 376));
-              mainFrame.wegGeher.vBorders.addElement 
-              (new bordertrapez (280, 285, 261, 266, 331, 338));*/
+        mainFrame.pathFinder.clearMatrix(2);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -165,18 +150,18 @@ public class Habor extends MainLocation {
                 // von Panorama aus
                 BackgroundMusicPlayer.getInstance().playTrack(14, true);
                 mainFrame.krabat.setPos(new GenericPoint(611, 426));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
             case 164:
                 // von Lodz aus
                 mainFrame.krabat.setPos(new GenericPoint(301, 352));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/habor/habor.png");
         murja = getPicture("gfx-dd/habor/murja.png");
         steg = getPicture("gfx-dd/habor/steg.png");
@@ -201,7 +186,7 @@ public class Habor extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -223,7 +208,7 @@ public class Habor extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -232,26 +217,26 @@ public class Habor extends MainLocation {
             // Gonzales zeichnen
             g.setClip(gonzalesPoint.x, gonzalesPoint.y, Gonzales.Breite, Gonzales.Hoehe);
             g.drawImage(background, 0, 0);
-            gonzales.drawGonzales(g, TalkPerson, gonzalesPoint, giveHaken, isListening);
+            gonzales.drawGonzales(g, talkPerson, gonzalesPoint, giveHaken, isListening);
         }
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -276,7 +261,7 @@ public class Habor extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Mauer ? (nur Clipping - Region wird neugezeichnet)
-        if (rectMurja.IsPointInRect(pKrTemp)) {
+        if (rectMurja.isPointInRect(pKrTemp)) {
             g.drawImage(murja, 380, 387);
         }
 
@@ -286,7 +271,7 @@ public class Habor extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -296,12 +281,12 @@ public class Habor extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -312,8 +297,8 @@ public class Habor extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -334,7 +319,7 @@ public class Habor extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -354,10 +339,10 @@ public class Habor extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -372,20 +357,20 @@ public class Habor extends MainLocation {
                 // }
 
                 // Ausreden fuer Gonzales, wenn Kotwica noch nicht da
-                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568]) {
+                if (gonzalesRect.isPointInRect(pTemp) && !mainFrame.actions[568]) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pGonzales;
                 }
 
                 // Sudobja ausreden
-                if (sudobjaRect.IsPointInRect(pTemp)) {
+                if (sudobjaRect.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = pSudobja;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -395,7 +380,7 @@ public class Habor extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -407,12 +392,12 @@ public class Habor extends MainLocation {
                 nextActionID = 0;
 
                 // zu Panorama gehen ?
-                if (ausgangPanorama.IsPointInRect(pTemp)) {
+                if (ausgangPanorama.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangPanorama.IsPointInRect(kt)) {
+                    if (!ausgangPanorama.isPointInRect(kt)) {
                         pTemp = pExitPanorama;
                     } else {
                         // es wird nach unten verlassen
@@ -420,19 +405,19 @@ public class Habor extends MainLocation {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Lodz gehen ?, falls noch da (wenn Gonzales weg ist)
-                if (ausgangLodz.IsPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
+                if (ausgangLodz.isPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangLodz.IsPointInRect(kt)) {
+                    if (!ausgangLodz.isPointInRect(kt)) {
                         pTemp = pExitLodz;
                     } else {
                         // es wird nach unten verlassen
@@ -440,54 +425,54 @@ public class Habor extends MainLocation {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Gonzales ansehen, falls da
-                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568]) {
+                if (gonzalesRect.isPointInRect(pTemp) && !mainFrame.actions[568]) {
                     nextActionID = 1;
                     pTemp = pGonzales;
                 }
 
                 // Subobja ansehen
-                if (sudobjaRect.IsPointInRect(pTemp)) {
+                if (sudobjaRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pSudobja;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit Gonzales reden
-                if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568]) {
+                if (gonzalesRect.isPointInRect(pTemp) && !mainFrame.actions[568]) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pGonzales);
+                    mainFrame.pathWalker.setNewWay(pGonzales);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Sudobja mitnehmen
-                if (sudobjaRect.IsPointInRect(pTemp)) {
+                if (sudobjaRect.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pSudobja);
+                    mainFrame.pathWalker.setNewWay(pSudobja);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangPanorama.IsPointInRect(pTemp) ||
-                        ausgangLodz.IsPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
+                if (ausgangPanorama.isPointInRect(pTemp) ||
+                        ausgangLodz.isPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -504,8 +489,8 @@ public class Habor extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -514,53 +499,53 @@ public class Habor extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568] ||
-                    sudobjaRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    gonzalesRect.isPointInRect(pTemp) && !mainFrame.actions[568] ||
+                    sudobjaRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangPanorama.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (ausgangPanorama.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (ausgangLodz.IsPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
-                if (Cursorform != 12) {
+            if (ausgangLodz.isPointInRect(pTemp) && mainFrame.actions[568] && !mainFrame.actions[569]) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (gonzalesRect.IsPointInRect(pTemp) && !mainFrame.actions[568] ||
-                    sudobjaRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (gonzalesRect.isPointInRect(pTemp) && !mainFrame.actions[568] ||
+                    sudobjaRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -601,7 +586,7 @@ public class Habor extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -609,7 +594,7 @@ public class Habor extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -617,26 +602,26 @@ public class Habor extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -656,7 +641,7 @@ public class Habor extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -668,23 +653,23 @@ public class Habor extends MainLocation {
                 int zuffZahl = (int) (Math.random() * 1.9);
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Habor_1", fGonzales, 3, 0, 0);
+                        krabatSays("Habor_1", fGonzales, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Habor_2", fGonzales, 3, 0, 0);
+                        krabatSays("Habor_2", fGonzales, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 2:
                 // Sudobja anschauen
-                KrabatSagt("Habor_3", fSudobja, 3, 0, 0);
+                krabatSays("Habor_3", fSudobja, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Gonzales benutzen)
-                mainFrame.krabat.SetFacing(fGonzales);
+                mainFrame.krabat.setFacing(fGonzales);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 isListening = true;
@@ -698,53 +683,53 @@ public class Habor extends MainLocation {
 
             case 55:
                 // Sudobja mitnehmen
-                KrabatSagt("Habor_4", fSudobja, 3, 0, 0);
+                krabatSays("Habor_4", fSudobja, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Panorama
-                NeuesBild(160, locationID);
+                createNewLocation(160, locationID);
                 break;
 
             case 101:
                 // Gehe zu Lodz
-                NeuesBild(164, locationID);
+                createNewLocation(164, locationID);
                 break;
 
             case 155:
                 // Gonzales - Ausreden
-                MPersonAusrede(fGonzales);
+                maleExcuse(fGonzales);
                 break;
 
             case 160:
                 // Sudobja - Ausreden
-                DingAusrede(fSudobja);
+                thingExcuse(fSudobja);
                 break;
 
             // Dialog mit Gonzales
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
 
                 // 1. Frage
-                Dialog.ExtendMC("Habor_21", 1000, 564, new int[]{564}, 610);
-                Dialog.ExtendMC("Habor_22", 564, 563, new int[]{563}, 611);
-                Dialog.ExtendMC("Habor_23", 563, 562, new int[]{562}, 612);
-                Dialog.ExtendMC("Habor_24", 562, 561, new int[]{561}, 615);
-                Dialog.ExtendMC("Habor_25", 561, 1000, null, 614);
+                Dialog.extend("Habor_21", 1000, 564, new int[]{564}, 610);
+                Dialog.extend("Habor_22", 564, 563, new int[]{563}, 611);
+                Dialog.extend("Habor_23", 563, 562, new int[]{562}, 612);
+                Dialog.extend("Habor_24", 562, 561, new int[]{561}, 615);
+                Dialog.extend("Habor_25", 561, 1000, null, 614);
 
                 // 2. Frage
-                Dialog.ExtendMC("Habor_26", 1000, 567, new int[]{567}, 620);
-                Dialog.ExtendMC("Habor_27", 567, 566, new int[]{566}, 621);
-                Dialog.ExtendMC("Habor_28", 566, 565, new int[]{565}, 622);
-                Dialog.ExtendMC("Habor_29", 565, 1000, null, 623);
+                Dialog.extend("Habor_26", 1000, 567, new int[]{567}, 620);
+                Dialog.extend("Habor_27", 567, 566, new int[]{566}, 621);
+                Dialog.extend("Habor_28", 566, 565, new int[]{565}, 622);
+                Dialog.extend("Habor_29", 565, 1000, null, 623);
 
                 // 3. Frage
-                Dialog.ExtendMC("Habor_30", 565, 1000, null, 630);
+                Dialog.extend("Habor_30", 565, 1000, null, 630);
 
                 // 4. Frage
-                Dialog.ExtendMC("Habor_31", 1000, 1000, null, 800);
+                Dialog.extend("Habor_31", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -757,57 +742,57 @@ public class Habor extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             // Sequenz vor MC (erstes Anreden)
             case 608:
                 // Reaktion Krabat
-                KrabatSagt("Habor_5", 0, 1, 2, 609);
+                krabatSays("Habor_5", 0, 1, 2, 609);
                 break;
 
             case 609:
                 // Reaktion Gonzales
-                PersonSagt("Habor_6", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_6", 0, 61, 2, 600, talkPoint);
                 mainFrame.actions[560] = true; // Flag setzen, denn es gibt nur einen Anfang !!!
                 break;
 
             // Antworten zu Frage 1 ////////////////////////////
             case 610:
                 // Reaktion Gonzales
-                PersonSagt("Habor_7", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_7", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Gonzales
-                PersonSagt("Habor_8", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_8", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 612:
                 // Reaktion Gonzales
-                PersonSagt("Habor_9", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_9", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 614:
                 // Reaktion Gonzales
-                PersonSagt("Habor_10", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_10", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 615:
                 // Reaktion Gonzales, noch Ohne Give Haken
-                PersonSagt("Habor_11", 0, 61, 2, 616, talkPoint);
+                personSays("Habor_11", 0, 61, 2, 616, talkPoint);
                 break;
 
             case 616:
                 // Reaktion Gonzales
                 giveHaken = true;
-                PersonSagt("Habor_12", 0, 61, 2, 617, talkPoint);
+                personSays("Habor_12", 0, 61, 2, 617, talkPoint);
                 // Enterhaken zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(37);
                 Hakencounter = 10;
@@ -836,43 +821,43 @@ public class Habor extends MainLocation {
             // Antworten zu Frage 2 ////////////////////////////
             case 620:
                 // Reaktion Gonzales
-                PersonSagt("Habor_13", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_13", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 621:
                 // Reaktion Gonzales
-                PersonSagt("Habor_14", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_14", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 622:
                 // Reaktion Gonzales
-                PersonSagt("Habor_15", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_15", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 623:
                 // Reaktion Gonzales
-                PersonSagt("Habor_16", 0, 61, 2, 624, talkPoint);
+                personSays("Habor_16", 0, 61, 2, 624, talkPoint);
                 break;
 
             case 624:
                 // Reaktion Gonzales
-                PersonSagt("Habor_17", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_17", 0, 61, 2, 600, talkPoint);
                 break;
 
             // Antworten zu Frage 3 ////////////////////////////
             case 630:
                 // Reaktion Gonzales
-                PersonSagt("Habor_18", 0, 61, 2, 631, talkPoint);
+                personSays("Habor_18", 0, 61, 2, 631, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Gonzales
-                PersonSagt("Habor_19", 0, 61, 2, 632, talkPoint);
+                personSays("Habor_19", 0, 61, 2, 632, talkPoint);
                 break;
 
             case 632:
                 // Reaktion Gonzales
-                PersonSagt("Habor_20", 0, 61, 2, 600, talkPoint);
+                personSays("Habor_20", 0, 61, 2, 600, talkPoint);
                 break;
 
             case 800:

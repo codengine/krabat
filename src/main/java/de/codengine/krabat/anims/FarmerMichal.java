@@ -49,13 +49,13 @@ public class FarmerMichal extends MainAnim {
         bur_work = new GenericImage[6];
         bur_talk = new GenericImage[7];
 
-        InitImages();
+        initImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
         Verhinderwork = MAX_VERHINDERWORK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         bur_work[0] = getPicture("gfx/polo/dmuz.png");
         bur_work[1] = getPicture("gfx/polo/dmuz-a.png");
         bur_work[2] = getPicture("gfx/polo/dmuz1.png");
@@ -155,7 +155,7 @@ public class FarmerMichal extends MainAnim {
                         break;
                     case 4: // letzter Arbeitsschritt
                         if (!mainFrame.inventory.noBackgroundSound || !mainFrame.isInventoryCursor) {
-                            mainFrame.soundPlayer.PlayFile("sfx/nepl.wav");
+                            mainFrame.soundPlayer.playFile("sfx/nepl.wav");
                         }
                         Work = 5;
                         break;

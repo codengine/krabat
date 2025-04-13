@@ -77,16 +77,16 @@ public class Murja extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 470;
-        mainFrame.krabat.zoomf = 1.13f;
-        mainFrame.krabat.defScale = 40;
+        mainFrame.krabat.maxX = 470;
+        mainFrame.krabat.zoomFactor = 1.13f;
+        mainFrame.krabat.defaultScale = 40;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -94,36 +94,36 @@ public class Murja extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(1260, 1270, 1260, 1270, 435, 479));
 
-        mainFrame.pathFinder.ClearMatrix(2);
+        mainFrame.pathFinder.clearMatrix(2);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 break;
             case 121: // von Haska aus
                 mainFrame.krabat.setPos(new GenericPoint(1247, 475));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 break;
             case 127: // von Terassa aus
                 mainFrame.krabat.setPos(new GenericPoint(40, 475));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 129: // von Mlynkmurja aus
                 mainFrame.krabat.setPos(new GenericPoint(310, 474));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 144: // von Couch aus (Gag)
                 mainFrame.krabat.setPos(new GenericPoint(80, 460));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 isBuschVisible = true;
                 scrollwert = 0;
                 setScroll = true;
@@ -134,7 +134,7 @@ public class Murja extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backl = getPicture("gfx-dd/murja/murja-l.png");
         backr = getPicture("gfx-dd/murja/murja-r.png");
         himmel = getPicture("gfx-dd/murja/mur-sky.png");
@@ -156,7 +156,7 @@ public class Murja extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
@@ -194,24 +194,24 @@ public class Murja extends MainLocation {
         g.drawImage(backr, 640, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -242,15 +242,6 @@ public class Murja extends MainLocation {
             g.setClip(may.getX(), may.getY(), may.getWidth(), may.getHeight());
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-	/*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-	  {
-	  g.drawImage (weiden2, 84, 221, null);
-	  }*/
-
         if (isBuschVisible) {
             g.drawImage(busch, 51, 393);
         }
@@ -261,13 +252,13 @@ public class Murja extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = 600;
         }
 
@@ -277,17 +268,17 @@ public class Murja extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -323,17 +314,17 @@ public class Murja extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -343,7 +334,7 @@ public class Murja extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -355,57 +346,57 @@ public class Murja extends MainLocation {
                 nextActionID = 0;
 
                 // zu Haska gehen ?
-                if (ausgangHaska.IsPointInRect(pTemp)) {
+                if (ausgangHaska.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangHaska.IsPointInRect(kt)) {
+                    if (!ausgangHaska.isPointInRect(kt)) {
                         pTemp = pExitHaska;
                     } else {
                         pTemp = new GenericPoint(pExitHaska.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Terassa gehen
-                if (ausgangTerassa.IsPointInRect(pTemp)) {
+                if (ausgangTerassa.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangTerassa.IsPointInRect(kt)) {
+                    if (!ausgangTerassa.isPointInRect(kt)) {
                         pTemp = pExitTerassa;
                     } else {
                         pTemp = new GenericPoint(pExitTerassa.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangHaska.IsPointInRect(pTemp) ||
-                        ausgangTerassa.IsPointInRect(pTemp)) {
+                if (ausgangHaska.isPointInRect(pTemp) ||
+                        ausgangTerassa.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -419,8 +410,8 @@ public class Murja extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -429,53 +420,43 @@ public class Murja extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            // if ((zweiteTuer.IsPointInRect (pTemp) == true) ||
-            //   (rechterSpiegel.IsPointInRect (pTemp) == true))
-            // {
-            //   if (Cursorform != 1)
-            //   {
-            //          mainFrame.setCursor (mainFrame.Kreuz);
-            //          Cursorform = 1;
-            //   }
-            //   return;
-            // }
 
-            if (ausgangHaska.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangHaska.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (ausgangTerassa.IsPointInRect(pTemp)) {
-                if (Cursorform != 9) {
+            if (ausgangTerassa.isPointInRect(pTemp)) {
+                if (cursorShape != 9) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 9;
+                    cursorShape = 9;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -509,7 +490,7 @@ public class Murja extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -517,7 +498,7 @@ public class Murja extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -525,26 +506,26 @@ public class Murja extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -562,7 +543,7 @@ public class Murja extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -570,34 +551,34 @@ public class Murja extends MainLocation {
         switch (nextActionID) {
             case 100:
                 // Gehe zu Haska
-                NeuesBild(121, locationID);
+                createNewLocation(121, locationID);
                 break;
 
             case 101:
                 // Gehe zu Terassa
-                NeuesBild(127, locationID);
+                createNewLocation(127, locationID);
                 break;
 
             case 600:
                 // hinter Busch hervorkommen
-                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(140, 477));
+                mainFrame.pathWalker.setNewWay(new GenericPoint(140, 477));
                 nextActionID = 605;
                 break;
 
             case 605:
                 // Anim runtergefallt
                 isBuschVisible = false;
-                KrabatSagt("Murja_1", 6, 3, 2, 610);
+                krabatSays("Murja_1", 6, 3, 2, 610);
                 break;
 
             case 610:
                 // nun sagen, dass man sich ja umziehen moechte
-                KrabatSagt("Murja_2", 0, 3, 2, 620);
+                krabatSays("Murja_2", 0, 3, 2, 620);
                 break;
 
             case 620:
                 // aus dem Bild laufen
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(new GenericPoint(-80, 478));
+                mainFrame.pathWalker.setNewWayGuaranteed(new GenericPoint(-80, 478));
                 nextActionID = 630;
                 break;
 
@@ -613,7 +594,7 @@ public class Murja extends MainLocation {
 
             case 640:
                 // wieder herkommen
-                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(119, 474));
+                mainFrame.pathWalker.setNewWay(new GenericPoint(119, 474));
                 nextActionID = 650;
                 break;
 

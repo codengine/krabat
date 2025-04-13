@@ -49,11 +49,7 @@ public class Mlyn2 extends MainLocation {
     // Texte
     private static final String[] MILLER_COMPLAINTS = {"Mlyn2_8", "Mlyn2_9"};
 
-    // Konstanten - Rects
-    // private static final borderrect rechterAusgang = new borderrect (560, 402, 639, 479);
-
     // Konstante Points
-    // private static final GenericPoint Pright    = new GenericPoint (639, 467);
     private static final GenericPoint Pkrabat = new GenericPoint(243, 452);
     private static final GenericPoint mlynkFeet = new GenericPoint(161, 440);
 
@@ -66,31 +62,31 @@ public class Mlyn2 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 313;
-        mainFrame.krabat.zoomf = 2f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 313;
+        mainFrame.krabat.zoomFactor = 2f;
+        mainFrame.krabat.defaultScale = 0;
 
         Rad = new GenericImage[21];
         mueller = new Miller(mainFrame);
 
-        mueller.maxx = 440;
-        mueller.zoomf = 1f;
-        mueller.defScale = 0;
+        mueller.maxX = 440;
+        mueller.zoomFactor = 1f;
+        mueller.defaultScale = 0;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
         Verhinderrad = MAX_VERHINDERRAD;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
-        InitImages();
+    private void initLocation(int oldLocation) {
+        initImages();
         mainFrame.krabat.setPos(Pkrabat);
-        mainFrame.krabat.SetFacing(9);
+        mainFrame.krabat.setFacing(9);
 
         // Einsprung, wenn von Inmlyn kommend (Anim: darfst nach Hause gehen...)
         if (oldLocation == 91) // Inmlyn
@@ -122,7 +118,7 @@ public class Mlyn2 extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mlyn/mlyn2.png");
         Rad[1] = getPicture("gfx/mlyn/r1.png");
         Rad[2] = getPicture("gfx/mlyn/r2.png");
@@ -185,7 +181,7 @@ public class Mlyn2 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -201,13 +197,13 @@ public class Mlyn2 extends MainLocation {
             // Clipping - Rectangle feststellen und setzen
             BorderRect temp;
             if (!muellerSprichtMitStock) {
-                temp = mueller.getRect();
+                temp = mueller.getBoundingBox();
             } else {
-                temp = mueller.MlynkRectMitStockAndersrum();
+                temp = mueller.mlynkRectWithStickInverse();
             }
 
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -233,18 +229,18 @@ public class Mlyn2 extends MainLocation {
             // Clipping - Rectangle feststellen und setzen
             BorderRect temp;
             if (!muellerSprichtMitStock) {
-                temp = mueller.getRect();
+                temp = mueller.getBoundingBox();
             } else {
-                temp = mueller.MlynkRectMitStockAndersrum();
+                temp = mueller.mlynkRectWithStickInverse();
             }
 
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne ihn jetzt
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 if (!muellerSprichtMitStock) {
                     mueller.talkMlynk(g);
                 } else {
@@ -259,11 +255,11 @@ public class Mlyn2 extends MainLocation {
 
             if (showKrabat) {
                 // redender Krabat
-                if (mainFrame.talkCount > 0 && TalkPerson == 1) {
+                if (mainFrame.talkCount > 0 && talkPerson == 1) {
                     mainFrame.krabat.talkKrabat(g);
                 } else {
                     // beschreibender Krabat
-                    if (mainFrame.talkCount > 0 && TalkPerson == 3) {
+                    if (mainFrame.talkCount > 0 && talkPerson == 3) {
                         mainFrame.krabat.describeKrabat(g);
                     }
                     // rumstehender Krabat
@@ -280,12 +276,12 @@ public class Mlyn2 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
-        if (mainFrame.talkCount < 1 && TalkPause > 0) {
-            TalkPause--;
+        if (mainFrame.talkCount < 1 && talkPause > 0) {
+            talkPause--;
         }
 
         if (mainFrame.talkCount > 0) {
@@ -297,8 +293,8 @@ public class Mlyn2 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && mainFrame.talkCount < 1 && TalkPause < 1) {
-            DoAction();
+        if (nextActionID != 0 && mainFrame.talkCount < 1 && talkPause < 1) {
+            doAction();
         }
     }
 
@@ -307,7 +303,6 @@ public class Mlyn2 extends MainLocation {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -320,8 +315,8 @@ public class Mlyn2 extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -339,65 +334,65 @@ public class Mlyn2 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 10:
                 // Textausgabe
-                PersonSagt("Mlyn2_7", 0, 54, 2, 20, new GenericPoint(320, 200));
+                personSays("Mlyn2_7", 0, 54, 2, 20, new GenericPoint(320, 200));
                 break;
 
             case 20:
                 // Mueller spricht
-                PersonSagt("Mlyn2_1", 0, 36, 2, 30, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn2_1", 0, 36, 2, 30, mueller.evalMlynkTalkPoint());
                 break;
 
             case 30:
                 // Mueller spricht
-                PersonSagt("Mlyn2_2", 0, 36, 2, 35, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn2_2", 0, 36, 2, 35, mueller.evalMlynkTalkPoint());
                 break;
 
             case 35:
                 // Mueller spricht
-                PersonSagt("Mlyn2_3", 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn2_3", 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
                 break;
 
             case 40:
                 // Gehe nach Kolmc Teil 2
-                NeuesBild(75, 90);
+                createNewLocation(75, 90);
                 break;
 
             case 500:
                 // Muellertext fuer Anmecker...
                 int zf = (int) Math.round(Math.random() * (MILLER_COMPLAINTS.length - 1));
-                PersonSagt(MILLER_COMPLAINTS[zf], 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
+                personSays(MILLER_COMPLAINTS[zf], 0, 36, 2, 40, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1000:
                 // Text vom Erzaehler
-                PersonSagt("Mlyn2_4", 0, 54, 2, 1010, new GenericPoint(320, 200));
+                personSays("Mlyn2_4", 0, 54, 2, 1010, new GenericPoint(320, 200));
                 break;
 
             case 1010:
                 // Mueller spricht
                 muellerSprichtMitStock = true;
-                PersonSagt("Mlyn2_5", 0, 36, 2, 1020, mueller.evalMlynkTalkPoint());
+                personSays("Mlyn2_5", 0, 36, 2, 1020, mueller.evalMlynkTalkPoint());
                 break;
 
             case 1020:
                 // Gehe nach Doma Teil 2
                 muellerSprichtMitStock = false;
-                NeuesBild(71, 90);
+                createNewLocation(71, 90);
                 break;
 
             case 2000:
                 // Ersten Teil Text fuer Uebergang Swoboda zeichnen
-                PersonSagt("Mlyn2_6", 0, 54, 2, 2010, new GenericPoint(320, 200));
+                personSays("Mlyn2_6", 0, 54, 2, 2010, new GenericPoint(320, 200));
                 break;
 
             case 2010:
                 // Skip zu Swoboda
-                NeuesBild(92, 90);
+                createNewLocation(92, 90);
                 break;
 
             default:
@@ -414,7 +409,7 @@ public class Mlyn2 extends MainLocation {
             int zwzf = (int) (Math.random() * 2.99);
             zwzf += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx/mlyn" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.playFile("sfx/mlyn" + (char) zwzf + ".wav");
         }
     }
 }

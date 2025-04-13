@@ -70,28 +70,27 @@ public class Extro extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 519;
-        mainFrame.krabat.zoomf = 4.5f;
-        mainFrame.krabat.defScale = -10;
+        mainFrame.krabat.maxX = 519;
+        mainFrame.krabat.zoomFactor = 4.5f;
+        mainFrame.krabat.defaultScale = -10;
 
         Extropics = new GenericImage[3];
 
-        // rapak = new ptack2 (caller, 460, 55, 40, -50);
         rapak = new RapakiRaven(caller, 560, 50, 30, -50);
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
 
         // Rapak gleich mal am Anfang kreischen lassen
-        mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
+        mainFrame.soundPlayer.playFile("sfx/rapak1.wav");
     }
 
-    private void InitLocation() {
-        InitImages();
+    private void initLocation() {
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         Extropics[0] = getPicture("gfx/wotrow/wotrow.png");
         Extropics[1] = getPicture("gfx/wotrow/buehne2.png");
         Extropics[2] = getPicture("gfx/wotrow/endbild.png");
@@ -107,7 +106,7 @@ public class Extro extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -129,11 +128,11 @@ public class Extro extends MainLocation {
         if (rapakVisible) {
             g.setClip(rapak.ptack2Rect());
             g.drawImage(Extropics[PicIndex], 0, 0);
-            rapakVisible = rapak.Flieg(g);
+            rapakVisible = rapak.doFly(g);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -141,15 +140,15 @@ public class Extro extends MainLocation {
         evalSound();
 
         // Krabat einen Schritt gehen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos();
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "") || Scroller) {
-            int textColor = FarbenArray[TalkPerson];
+            int textColor = COLORS[talkPerson];
             if (Scroller) {
-                textColor = FarbenArray[92];
+                textColor = COLORS[92];
             }
 
             // welchen Text ausgeben
@@ -182,12 +181,12 @@ public class Extro extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Anim starten
@@ -211,8 +210,8 @@ public class Extro extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -220,7 +219,6 @@ public class Extro extends MainLocation {
 
     @Override
     public void evalMouseEvent(GenericMouseEvent e) {
-        // GenericPoint pTemp = e.getPoint ();
         if (mainFrame.talkCount != 0) {
             mainFrame.isClipSet = false;
         }
@@ -234,8 +232,8 @@ public class Extro extends MainLocation {
     // befindet sich Cursor ueber Gegenstand, dann Kreuz-Cursor
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 20) {
-            Cursorform = 20;
+        if (cursorShape != 20) {
+            cursorShape = 20;
             mainFrame.setCursor(mainFrame.cursorNone);
         }
     }
@@ -258,23 +256,23 @@ public class Extro extends MainLocation {
             int zfz = (int) (Math.random() * 100);
 
             if (zfz > 92) {
-                mainFrame.soundPlayer.PlayFile("sfx/grillen.wav");
+                mainFrame.soundPlayer.playFile("sfx/grillen.wav");
             }
 
             if (zfz > 98) {
                 int zfz2 = (int) (Math.random() * 1.99f);
 
                 if (zfz2 < 1) {
-                    mainFrame.soundPlayer.PlayFile("sfx/uhu1.wav");
+                    mainFrame.soundPlayer.playFile("sfx/uhu1.wav");
                 } else {
-                    mainFrame.soundPlayer.PlayFile("sfx/uhu2.wav");
+                    mainFrame.soundPlayer.playFile("sfx/uhu2.wav");
                 }
             }
 
             // Rapak-Gekreische (wenn er da ist)
             if (rapakVisible) {
                 if (zfz > 97) {
-                    mainFrame.soundPlayer.PlayFile("sfx/rapak1.wav");
+                    mainFrame.soundPlayer.playFile("sfx/rapak1.wav");
                 }
             }
         }
@@ -282,7 +280,7 @@ public class Extro extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -302,18 +300,18 @@ public class Extro extends MainLocation {
                 // ersten Text ausgeben
                 BackgroundMusicPlayer.getInstance().playTrack(18, true);
                 isWotrowLocation = false; // ab jetzt Background aus (stoert CD-Track nicht)
-                PersonSagt("Extro_2", 0, 54, 2, 1010, talkPoint);
+                personSays("Extro_2", 0, 54, 2, 1010, talkPoint);
                 break;
 
             case 1010:
                 // zweiten Text
-                PersonSagt("Extro_3",
+                personSays("Extro_3",
                         0, 54, 2, 1020, talkPoint);
                 break;
 
             case 1020:
                 // dritten Text
-                PersonSagt("Extro_4",
+                personSays("Extro_4",
                         0, 54, 2, 8000, talkPoint);
                 break;
 
@@ -322,24 +320,24 @@ public class Extro extends MainLocation {
                 mainFrame.isClipSet = false;
                 PicIndex++;
                 nextActionID = 9000;
-                mainFrame.soundPlayer.PlayFile("sfx/applaus.wav");
+                mainFrame.soundPlayer.playFile("sfx/applaus.wav");
                 break;
 
             case 9000:
                 // Extro-Scroller (testweise)
                 Scroller = true;
-                scrollerOutputText = Start.stringManager.getTranslation("Extro_5");
-                outputTextPos = mainFrame.imageFont.CenterAnimText(scrollerOutputText, scrollPoint);
-                TalkPerson = 54;
+                scrollerOutputText = Start.STRING_MANAGER.getTranslation("Extro_5");
+                outputTextPos = mainFrame.imageFont.centerAnimText(scrollerOutputText, scrollPoint);
+                talkPerson = 54;
                 nextActionID = 9010;
                 break;
 
             case 9010:
                 // scroller hochschieben
-                outputText = Start.stringManager.getTranslation("Extro_5");
+                outputText = Start.STRING_MANAGER.getTranslation("Extro_5");
                 mainFrame.isClipSet = false;
                 outputTextPos.y -= 2;
-                TalkPerson = 54;
+                talkPerson = 54;
                 if (outputTextPos.y < -1000) {
                     nextActionID = 9500;
                 }
@@ -355,7 +353,7 @@ public class Extro extends MainLocation {
                 break;
 
             case 9510:
-                PersonSagt("Extro_1", 0, 54, 2, 9520, talkPointCopyleft);
+                personSays("Extro_1", 0, 54, 2, 9520, talkPointCopyleft);
                 break;
 
             case 9520:
@@ -374,11 +372,9 @@ public class Extro extends MainLocation {
 
             case 10000:
                 // Ende
-                mainFrame.soundPlayer.PlayFile("sfx/wowca.wav");
+                mainFrame.soundPlayer.playFile("sfx/wowca.wav");
                 Scroller = false;
-                // mainFrame.setVisible (false);
                 BackgroundMusicPlayer.getInstance().stop();
-                // mainFrame.dispose ();
                 System.exit(0);
                 break;
 

@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 abstract public class MainLabyrinth extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(MainLabyrinth.class);
     public GenericPoint bludTalk = new GenericPoint(0, 0);
-    public GenericPoint Pblud = new GenericPoint(0, 0);
+    public GenericPoint bludPoint = new GenericPoint(0, 0);
 
     public BorderRect bludRect = new BorderRect(0, 0, 1, 1);
 
@@ -37,17 +37,17 @@ abstract public class MainLabyrinth extends MainLocation {
     public int locIndex = 0;
     public int newloc = 0;
 
-    public boolean hoerterzu = false;
+    public boolean doesHeListen = false;
     public boolean bludNimmt = false;
 
-    public final MultipleChoice Dialog;
+    public final MultipleChoice dialog;
 
     private static final int ERSCH_KONSTANTE = 10;
 
-    private static final int[] BludExitUp = {53, 59, 60};
-    private static final int[] BludExitDown = {52, 58, 60};
-    private static final int[] BludExitLeft = {52, 53, 57, 58, 59};
-    private static final int[] BludExitRight = {52, 53, 57, 58, 59};
+    private static final int[] BLUD_EXIT_UP = {53, 59, 60};
+    private static final int[] BLUD_EXIT_DOWN = {52, 58, 60};
+    private static final int[] BLUD_EXIT_LEFT = {52, 53, 57, 58, 59};
+    private static final int[] BLUD_EXIT_RIGHT = {52, 53, 57, 58, 59};
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -55,16 +55,16 @@ abstract public class MainLabyrinth extends MainLocation {
     public MainLabyrinth(Start caller) {
         super(caller);
 
-        Dialog = new MultipleChoice(mainFrame);
+        dialog = new MultipleChoice(mainFrame);
     }
 
     // Neue Location berechnen, die Blud enthaelt (auuser derselben)
-    public void BludLocationLeft() {
+    public void bludLocationLeft() {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int j : BludExitLeft) {
+            for (int j : BLUD_EXIT_LEFT) {
                 if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
@@ -74,12 +74,12 @@ abstract public class MainLabyrinth extends MainLocation {
         newloc = zuffi;
     }
 
-    public void BludLocationRight() {
+    public void bludLocationRight() {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int j : BludExitRight) {
+            for (int j : BLUD_EXIT_RIGHT) {
                 if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
@@ -89,12 +89,12 @@ abstract public class MainLabyrinth extends MainLocation {
         newloc = zuffi;
     }
 
-    public void BludLocationUp() {
+    public void bludLocationUp() {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int j : BludExitUp) {
+            for (int j : BLUD_EXIT_UP) {
                 if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
@@ -104,12 +104,12 @@ abstract public class MainLabyrinth extends MainLocation {
         newloc = zuffi;
     }
 
-    public void BludLocationDown() {
+    public void bludLocationDown() {
         boolean exit = false;
         int zuffi = 0;
         while (!exit) {
             zuffi = (int) Math.round(Math.random() * 12) + 50;
-            for (int j : BludExitDown) {
+            for (int j : BLUD_EXIT_DOWN) {
                 if (zuffi == j && locIndex != zuffi) {
                     exit = true;
                     break;
@@ -128,34 +128,32 @@ abstract public class MainLabyrinth extends MainLocation {
     // 240 - 245 : Zaehler, wie schnell ein Blinkern erscheinen soll, wird immer zurueckgesetzt,
     //             wenn Weg verlassen oder bereits mit dem Kunden gesprochen 
 
-    public int BerechneAusgang(boolean oben, boolean unten, boolean links, boolean rechts) {
+    public int calculateExit(boolean top, boolean bottom, boolean left, boolean right) {
         do {
-            int zuffi = (int) Math.round(Math.random() * 120);
-            if (zuffi < 30 && oben) {
+            int random = (int) Math.round(Math.random() * 120);
+            if (random < 30 && top) {
                 return 12;
             }
-            if (zuffi >= 30 && zuffi < 60 && unten) {
+            if (random >= 30 && random < 60 && bottom) {
                 return 6;
             }
-            if (zuffi >= 60 && zuffi < 90 && links) {
+            if (random >= 60 && random < 90 && left) {
                 return 9;
             }
-            if (zuffi >= 90 && rechts) {
+            if (random >= 90 && right) {
                 return 3;
             }
         }
         while (true);
     }
 
-    public void Erscheinen(boolean blink) {
+    public void appear(boolean blink) {
         if (mainFrame.actions[235]) {
-            // System.out.println ("Jetzt wieder alles deaktivieren...");
-            ClearErscheinen();
+            clearAppear();
             return;
         }
 
         if (!mainFrame.actions[236]) {
-            // System.out.println ("Noch kein Blinkern da");
 
             int i = 240;
 
@@ -241,41 +239,40 @@ abstract public class MainLabyrinth extends MainLocation {
 
     }
 
-    public void ClearErscheinen() {
+    public void clearAppear() {
         for (int i = 235; i <= 246; i++) {
             mainFrame.actions[i] = false;
         }
     }
 
-    public void BludAction(int AID) {
+    public void bludAction(int bludActionId) {
 
         // Was soll Krabat machen ?
-        switch (AID) {
+        switch (bludActionId) {
             case 1:
                 // Irrlichter anschauen
-                KrabatSagt("Mainlaby_1", bludFacing, 3, 0, 0);
+                krabatSays("Mainlaby_1", bludFacing, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Bludnicki benutzen)
-                mainFrame.krabat.SetFacing(bludFacing);
-                hoerterzu = true;
+                mainFrame.krabat.setFacing(bludFacing);
+                doesHeListen = true;
                 mainFrame.isAnimRunning = true;
-                // evalMouseMoveEvent (mainFrame.Mousepoint);
                 nextActionID = 600;
                 break;
 
             case 150:
                 // Bludnicki - Ausreden
-                MPersonAusrede(bludFacing);
+                maleExcuse(bludFacing);
                 break;
 
             case 155:
                 // Gib Krosik an Bludnickis
                 mainFrame.isAnimRunning = true;
-                hoerterzu = true;
+                doesHeListen = true;
                 mainFrame.krabat.nAnimation = 131;
-                mainFrame.krabat.SetFacing(bludFacing);
+                mainFrame.krabat.setFacing(bludFacing);
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 156;
                 break;
@@ -293,12 +290,12 @@ abstract public class MainLabyrinth extends MainLocation {
                 bludNimmt = false;
                 if (!mainFrame.actions[197]) {
                     // nur raus, kein Spruch
-                    PersonSagt("Mainlaby_2", bludFacing, 35, 2, 158, bludTalk);
+                    personSays("Mainlaby_2", bludFacing, 35, 2, 158, bludTalk);
                 } else {
                     // Spruch sagen und rausbeamen
                     BackgroundMusicPlayer.getInstance().stop();
-                    mainFrame.soundPlayer.PlayFile("sfx/spruch.wav");
-                    PersonSagt("Mainlaby_3", bludFacing, 35, 2, 158, bludTalk);
+                    mainFrame.soundPlayer.playFile("sfx/spruch.wav");
+                    personSays("Mainlaby_3", bludFacing, 35, 2, 158, bludTalk);
                     mainFrame.actions[215] = true;
 
                     // hier in den Dialogen die Muehlenfragen rausnehmen
@@ -315,35 +312,35 @@ abstract public class MainLabyrinth extends MainLocation {
                 // Krabat wird rausgebeamt
                 mainFrame.isInventoryCursor = false;
                 mainFrame.inventory.vInventory.removeElement(15);
-                NeuesBild(17, locIndex);
+                createNewLocation(17, locIndex);
                 break;
 
             case 160:
                 // Irrlichter mit kamuski benutzen
-                KrabatSagt("Mainlaby_4", bludFacing, 3, 0, 0);
+                krabatSays("Mainlaby_4", bludFacing, 3, 0, 0);
                 break;
 
             case 600:
                 // Multiple - Choice - Routine mit Bludnicki
-                Dialog.InitMC(20);
+                dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Mainlaby_12", 1000, 180, new int[]{180, 168}, 610);
-                Dialog.ExtendMC("Mainlaby_13", 180, 181, new int[]{181}, 620);
-                Dialog.ExtendMC("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
-                Dialog.ExtendMC("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
+                dialog.extend("Mainlaby_12", 1000, 180, new int[]{180, 168}, 610);
+                dialog.extend("Mainlaby_13", 180, 181, new int[]{181}, 620);
+                dialog.extend("Mainlaby_14", 181, 182, new int[]{182, 197}, 630);
+                dialog.extend("Mainlaby_15", 195, 196, new int[]{182, 196}, 630);
                 if (!mainFrame.actions[184]) {
-                    Dialog.ExtendMC("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
+                    dialog.extend("Mainlaby_16", 182, 183, new int[]{183, 195}, 640);
                 } else {
-                    Dialog.ExtendMC("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
+                    dialog.extend("Mainlaby_17", 182, 183, new int[]{183, 195}, 640);
                 }
 
                 // 2. Frage
-                Dialog.ExtendMC("Mainlaby_18", 1000, 185, new int[]{185, 168}, 650);
-                Dialog.ExtendMC("Mainlaby_19", 185, 1000, null, 660);
+                dialog.extend("Mainlaby_18", 1000, 185, new int[]{185, 168}, 650);
+                dialog.extend("Mainlaby_19", 185, 1000, null, 660);
 
                 // 3. Frage (Ende)
-                Dialog.ExtendMC("Mainlaby_20", 1000, 186, null, 800);
-                Dialog.ExtendMC("Mainlaby_21", 186, 1000, null, 800);
+                dialog.extend("Mainlaby_20", 1000, 186, null, 800);
+                dialog.extend("Mainlaby_21", 186, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -355,13 +352,12 @@ abstract public class MainLabyrinth extends MainLocation {
             case 601:
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
-                // evalMouseMoveEvent (mainFrame.Mousepoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = dialog.questions[dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = dialog.actionId;
 
                 // Fragen zurueckschalten, wegen loop "Pytam #Kertowski mlyn."
                 if (mainFrame.actions[183] && nextActionID == 630) {
@@ -375,43 +371,43 @@ abstract public class MainLabyrinth extends MainLocation {
 
             case 610:
                 // Reaktion Irrlicht auf 1. Teil 1. Frage
-                PersonSagt("Mainlaby_5", 0, 35, 2, 600, bludTalk);
+                personSays("Mainlaby_5", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 620:
                 // Reaktion Irrlicht auf 2. Teil 1. Frage
-                PersonSagt("Mainlaby_6", 0, 35, 2, 600, bludTalk);
+                personSays("Mainlaby_6", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 630:
                 // Reaktion Irrlicht auf 3. Teil 1. Frage
-                PersonSagt("Mainlaby_7", 0, 35, 2, 600, bludTalk);
+                personSays("Mainlaby_7", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 640:
                 // Reaktion Irrlicht auf 4. Teil 1. Frage
-                PersonSagt("Mainlaby_8", 0, 35, 2, 641, bludTalk);
+                personSays("Mainlaby_8", 0, 35, 2, 641, bludTalk);
                 break;
 
             case 641:
                 // Reaktion Irrlicht auf 4. Teil 1. Frage
-                PersonSagt("Mainlaby_9", 0, 35, 2, 600, bludTalk);
+                personSays("Mainlaby_9", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 650:
                 // Reaktion Irrlicht auf 1. Teil 2. Frage
-                PersonSagt("Mainlaby_10", 0, 35, 2, 651, bludTalk);
+                personSays("Mainlaby_10", 0, 35, 2, 651, bludTalk);
                 break;
 
             case 651:
                 // Skip zu Kolmc
-                NeuesBild(17, locIndex);
-                hoerterzu = false;
+                createNewLocation(17, locIndex);
+                doesHeListen = false;
                 break;
 
             case 660:
                 // Reaktion Irrlicht auf 2. Teil 3. Frage
-                PersonSagt("Mainlaby_11", 0, 35, 2, 600, bludTalk);
+                personSays("Mainlaby_11", 0, 35, 2, 600, bludTalk);
                 break;
 
             case 800:
@@ -427,8 +423,7 @@ abstract public class MainLabyrinth extends MainLocation {
                 }
                 mainFrame.isAnimRunning = false;
                 nextActionID = 0;
-                hoerterzu = false;
-                // evalMouseMoveEvent (mainFrame.Mousepoint);
+                doesHeListen = false;
                 mainFrame.repaint();
                 break;
 

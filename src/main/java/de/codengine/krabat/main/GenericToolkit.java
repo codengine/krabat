@@ -24,13 +24,13 @@ import de.codengine.krabat.platform.GenericToolkitImpl;
 
 public class GenericToolkit {
 
-    public static GenericToolkitImpl impl = null;
+    public static GenericToolkitImpl IMPL = null;
 
     public static GenericToolkitImpl getDefaultToolkit() {
-        if (impl == null) {
+        if (IMPL == null) {
             throw new InternalError("No Toolkit set!");
         }
 
-        return impl;
+        return IMPL;
     }
 }

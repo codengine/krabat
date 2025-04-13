@@ -48,12 +48,12 @@ public class Coachman extends MainAnim {
         kutser_listen = new GenericImage[2];
         kutser_talk = new GenericImage[7];
 
-        InitImages();
+        initImages();
 
         Verhindertalk = MAX_VERHINDERTALK;
     }
 
-    private void InitImages() {
+    private void initImages() {
         kutser_look[0] = getPicture("gfx/most/kutscher.png");
         kutser_look[1] = getPicture("gfx/most/kutscher-a.png");
 

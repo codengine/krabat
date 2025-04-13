@@ -105,9 +105,9 @@ public class Zahrodnik extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().stop();
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 4.6f;
-        mainFrame.krabat.defScale = -100;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 4.6f;
+        mainFrame.krabat.defaultScale = -100;
 
         handrij = new Handrij(mainFrame);
         Dialog = new MultipleChoice(mainFrame);
@@ -116,13 +116,13 @@ public class Zahrodnik extends MainLocation {
         reZahrodnik = new BorderRect(handrijFeet.x - Handrij.Breite / 2, handrijFeet.y - Handrij.Hoehe,
                 handrijFeet.x + Handrij.Breite / 2, handrijFeet.y);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -132,12 +132,12 @@ public class Zahrodnik extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(80, 326, 20, 326, 375, 450));
 
-        mainFrame.pathFinder.ClearMatrix(3);
+        mainFrame.pathFinder.clearMatrix(3);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(0, 2);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(0, 2);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -145,14 +145,14 @@ public class Zahrodnik extends MainLocation {
             case 160:
                 // von Panorama aus
                 mainFrame.krabat.setPos(new GenericPoint(557, 431));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 initSound = false;  // nur hier Sound abspielen
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/zahrod/zahrod.png");
         hrod = getPicture("gfx-dd/zahrod/hrod.png");
     }
@@ -164,7 +164,7 @@ public class Zahrodnik extends MainLocation {
         // Tuereintrittssound abspielen
         if (!initSound) {
             initSound = true;
-            mainFrame.soundPlayer.PlayFile("sfx/vdurjezu.wav");
+            mainFrame.soundPlayer.playFile("sfx/vdurjezu.wav");
         }
 
         // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
@@ -177,7 +177,7 @@ public class Zahrodnik extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -188,17 +188,17 @@ public class Zahrodnik extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Handrij zeichnen
-        g.setClip(reZahrodnik.lo_point.x, reZahrodnik.lo_point.y, Handrij.Breite, Handrij.Hoehe);
+        g.setClip(reZahrodnik.topLeftPoint.x, reZahrodnik.topLeftPoint.y, Handrij.Breite, Handrij.Hoehe);
         g.drawImage(background, 0, 0);
-        handrij.drawHandrij(g, TalkPerson, handrijHoertZu, handrijSchreibt, handrijGibt);
+        handrij.drawHandrij(g, talkPerson, handrijHoertZu, handrijSchreibt, handrijGibt);
 
         // Krabat einen Schritt laufen lassen
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Sound abspielen
         evalSound();
@@ -207,16 +207,16 @@ public class Zahrodnik extends MainLocation {
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -241,7 +241,7 @@ public class Zahrodnik extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter Schloss ? (nur Clipping - Region wird neugezeichnet)
-        if (rectHrod.IsPointInRect(pKrTemp)) {
+        if (rectHrod.isPointInRect(pKrTemp)) {
             g.drawImage(hrod, 0, 354);
         }
 
@@ -251,7 +251,7 @@ public class Zahrodnik extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -261,12 +261,12 @@ public class Zahrodnik extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -277,8 +277,8 @@ public class Zahrodnik extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -299,7 +299,7 @@ public class Zahrodnik extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -319,66 +319,66 @@ public class Zahrodnik extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Zahrodnik
-                if (reZahrodnik.IsPointInRect(pTemp)) {
+                if (reZahrodnik.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pZahrUnten;
                 }
 
                 // Ausreden fuer hrod
-                if (lookHrod.IsPointInRect(pTemp)) {
+                if (lookHrod.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = pHrod;
                 }
 
                 // Ausreden fuer blatt
-                if (papier.IsPointInRect(pTemp)) {
+                if (papier.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 165;
                     pTemp = pPapier;
                 }
 
                 // Ausreden fuer budka
-                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
+                if (budka.isPointInRect(pTemp) && !reZahrodnik.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 170;
                     pTemp = pBudka;
                 }
 
                 // Ausreden fuer skizze
-                if (skizze.IsPointInRect(pTemp)) {
+                if (skizze.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 175;
                     pTemp = pSkizze;
                 }
 
                 // Ausreden fuer pjerjo
-                if (pjerjo.IsPointInRect(pTemp)) {
+                if (pjerjo.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 180;
                     pTemp = pPjerjo;
                 }
 
                 // Ausreden fuer dokumenty
-                if (dokumenty.IsPointInRect(pTemp)) {
+                if (dokumenty.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 185;
                     pTemp = pDokumenty;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -388,7 +388,7 @@ public class Zahrodnik extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -400,12 +400,12 @@ public class Zahrodnik extends MainLocation {
                 nextActionID = 0;
 
                 // zu Panorama gehen ?
-                if (ausgangUnten.IsPointInRect(pTemp)) {
+                if (ausgangUnten.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen, Achtung: ist jetzt nach rechts!!!
-                    if (!ausgangUnten.IsPointInRect(kt)) {
+                    if (!ausgangUnten.isPointInRect(kt)) {
                         pTemp = pExitUnten;
                     } else {
                         // es wird nach rechts! verlassen
@@ -413,7 +413,7 @@ public class Zahrodnik extends MainLocation {
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -427,116 +427,116 @@ public class Zahrodnik extends MainLocation {
                 // }
 
                 // Handrij ansehen
-                if (reZahrodnik.IsPointInRect(pTemp)) {
+                if (reZahrodnik.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pZahrUnten;
                 }
 
                 // hrod ansehen
-                if (lookHrod.IsPointInRect(pTemp)) {
+                if (lookHrod.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pHrod;
                 }
 
                 // blatt ansehen
-                if (papier.IsPointInRect(pTemp)) {
+                if (papier.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = pPapier;
                 }
 
                 // budka ansehen
-                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
+                if (budka.isPointInRect(pTemp) && !reZahrodnik.isPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = pBudka;
                 }
 
                 // skizze ansehen
-                if (skizze.IsPointInRect(pTemp)) {
+                if (skizze.isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = pSkizze;
                 }
 
                 // pjerjo ansehen
-                if (pjerjo.IsPointInRect(pTemp)) {
+                if (pjerjo.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = pPjerjo;
                 }
 
                 // dokumenty ansehen
-                if (dokumenty.IsPointInRect(pTemp)) {
+                if (dokumenty.isPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = pDokumenty;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Mit dem Zahrodnik reden
-                if (reZahrodnik.IsPointInRect(pTemp)) {
+                if (reZahrodnik.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pZahrUnten);
+                    mainFrame.pathWalker.setNewWay(pZahrUnten);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangUnten.IsPointInRect(pTemp)) {
+                if (ausgangUnten.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // hrod mitnehmen
-                if (lookHrod.IsPointInRect(pTemp)) {
+                if (lookHrod.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pHrod);
+                    mainFrame.pathWalker.setNewWay(pHrod);
                     mainFrame.repaint();
                     return;
                 }
 
                 // blatt mitnehmen
-                if (papier.IsPointInRect(pTemp)) {
+                if (papier.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pPapier);
+                    mainFrame.pathWalker.setNewWay(pPapier);
                     mainFrame.repaint();
                     return;
                 }
 
                 // budka ansehen
-                if (budka.IsPointInRect(pTemp) && !reZahrodnik.IsPointInRect(pTemp)) {
+                if (budka.isPointInRect(pTemp) && !reZahrodnik.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pBudka);
+                    mainFrame.pathWalker.setNewWay(pBudka);
                     mainFrame.repaint();
                     return;
                 }
 
                 // skizze ansehen
-                if (skizze.IsPointInRect(pTemp)) {
+                if (skizze.isPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pSkizze);
+                    mainFrame.pathWalker.setNewWay(pSkizze);
                     mainFrame.repaint();
                     return;
                 }
 
                 // pjerjo ansehen
-                if (pjerjo.IsPointInRect(pTemp)) {
+                if (pjerjo.isPointInRect(pTemp)) {
                     nextActionID = 75;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pPjerjo);
+                    mainFrame.pathWalker.setNewWay(pPjerjo);
                     mainFrame.repaint();
                     return;
                 }
 
                 // dokumenty ansehen
-                if (dokumenty.IsPointInRect(pTemp)) {
+                if (dokumenty.isPointInRect(pTemp)) {
                     nextActionID = 80;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pDokumenty);
+                    mainFrame.pathWalker.setNewWay(pDokumenty);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -553,8 +553,8 @@ public class Zahrodnik extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -563,48 +563,48 @@ public class Zahrodnik extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || skizze.IsPointInRect(pTemp) ||
-                    papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
-                    budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
-                    dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || skizze.isPointInRect(pTemp) ||
+                    papier.isPointInRect(pTemp) || reZahrodnik.isPointInRect(pTemp) ||
+                    budka.isPointInRect(pTemp) || pjerjo.isPointInRect(pTemp) ||
+                    dokumenty.isPointInRect(pTemp) || lookHrod.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (ausgangUnten.IsPointInRect(pTemp)) {
-                if (Cursorform != 6) {
+            if (ausgangUnten.isPointInRect(pTemp)) {
+                if (cursorShape != 6) {
                     mainFrame.setCursor(mainFrame.cursorRight);  // Ausgang jetzt rechts!!!
-                    Cursorform = 6;
+                    cursorShape = 6;
                 }
                 return;
             }
 
-            if (skizze.IsPointInRect(pTemp) ||
-                    papier.IsPointInRect(pTemp) || reZahrodnik.IsPointInRect(pTemp) ||
-                    budka.IsPointInRect(pTemp) || pjerjo.IsPointInRect(pTemp) ||
-                    dokumenty.IsPointInRect(pTemp) || lookHrod.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (skizze.isPointInRect(pTemp) ||
+                    papier.isPointInRect(pTemp) || reZahrodnik.isPointInRect(pTemp) ||
+                    budka.isPointInRect(pTemp) || pjerjo.isPointInRect(pTemp) ||
+                    dokumenty.isPointInRect(pTemp) || lookHrod.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -645,7 +645,7 @@ public class Zahrodnik extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -653,7 +653,7 @@ public class Zahrodnik extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -661,26 +661,26 @@ public class Zahrodnik extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -700,7 +700,7 @@ public class Zahrodnik extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -708,51 +708,51 @@ public class Zahrodnik extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Zahrodnik anschauen
-                KrabatSagt("Zahrodnik_1", fZahrodLook, 3, 0, 0);
+                krabatSays("Zahrodnik_1", fZahrodLook, 3, 0, 0);
                 break;
 
             case 2:
                 // Hrod anschauen
-                KrabatSagt("Zahrodnik_2", fHrod, 3, 0, 0);
+                krabatSays("Zahrodnik_2", fHrod, 3, 0, 0);
                 break;
 
             case 3:
                 // Papier anschauen
-                KrabatSagt("Zahrodnik_3", fPapier, 3, 0, 0);
+                krabatSays("Zahrodnik_3", fPapier, 3, 0, 0);
                 break;
 
             case 4:
                 // budka anschauen
-                KrabatSagt("Zahrodnik_4", fBudka, 3, 0, 0);
+                krabatSays("Zahrodnik_4", fBudka, 3, 0, 0);
                 break;
 
             case 5:
                 // skizze anschauen
-                KrabatSagt("Zahrodnik_5", fSkizze, 3, 0, 0);
+                krabatSays("Zahrodnik_5", fSkizze, 3, 0, 0);
                 break;
 
             case 6:
                 // feder anschauen
-                KrabatSagt("Zahrodnik_6", fFeder, 3, 0, 0);
+                krabatSays("Zahrodnik_6", fFeder, 3, 0, 0);
                 break;
 
             case 7:
                 // dokuments anschauen
-                KrabatSagt("Zahrodnik_7", fDokumente, 3, 0, 0);
+                krabatSays("Zahrodnik_7", fDokumente, 3, 0, 0);
                 break;
 
             case 50:
                 // zuerstmal richtig zu Zahrodnik hinlaufen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pZahrodnik);
+                mainFrame.pathWalker.setNewWayGuaranteed(pZahrodnik);
                 nextActionID = 53;
                 break;
 
             case 53:
                 // Krabat beginnt MC (Zahrodnik benutzen)
                 schnauzeZahrod = true;  // Sound schon hier abschalten
-                mainFrame.krabat.SetFacing(fZahrod);
+                mainFrame.krabat.setFacing(fZahrod);
                 // Sequenz vor MC ? (beim ersten Ansprechen)
                 if (mainFrame.actions[530]) {
                     nextActionID = 600;
@@ -763,102 +763,102 @@ public class Zahrodnik extends MainLocation {
 
             case 55:
                 // Hrod mitnehmen
-                KrabatSagt("Zahrodnik_8", fHrod, 3, 0, 0);
+                krabatSays("Zahrodnik_8", fHrod, 3, 0, 0);
                 break;
 
             case 60:
                 // Papier mitnehmen
-                KrabatSagt("Zahrodnik_9", fPapier, 3, 0, 0);
+                krabatSays("Zahrodnik_9", fPapier, 3, 0, 0);
                 break;
 
             case 65:
                 // budka mitnehmen
-                KrabatSagt("Zahrodnik_10", fBudka, 3, 0, 0);
+                krabatSays("Zahrodnik_10", fBudka, 3, 0, 0);
                 break;
 
             case 70:
                 // skizze mitnehmen
-                KrabatSagt("Zahrodnik_11", fSkizze, 3, 0, 0);
+                krabatSays("Zahrodnik_11", fSkizze, 3, 0, 0);
                 break;
 
             case 75:
                 // feder mitnehmen
-                KrabatSagt("Zahrodnik_12", fFeder, 3, 0, 0);
+                krabatSays("Zahrodnik_12", fFeder, 3, 0, 0);
                 break;
 
             case 80:
                 // dokuments mitnehmen
-                KrabatSagt("Zahrodnik_13", fDokumente, 3, 0, 0);
+                krabatSays("Zahrodnik_13", fDokumente, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Panorama
-                NeuesBild(160, locationID);
+                createNewLocation(160, locationID);
                 break;
 
             case 155:
                 // Zahrodnik - Ausreden
-                MPersonAusrede(fZahrodLook);
+                maleExcuse(fZahrodLook);
                 break;
 
             case 160:
                 // hrod - Ausreden
-                DingAusrede(fHrod);
+                thingExcuse(fHrod);
                 break;
 
             case 165:
                 // papier - Ausreden
-                DingAusrede(fPapier);
+                thingExcuse(fPapier);
                 break;
 
             case 170:
                 // budka - Ausreden
-                DingAusrede(fBudka);
+                thingExcuse(fBudka);
                 break;
 
             case 175:
                 // skizze - Ausreden
-                DingAusrede(fSkizze);
+                thingExcuse(fSkizze);
                 break;
 
             case 180:
                 // feder - Ausreden
-                DingAusrede(fFeder);
+                thingExcuse(fFeder);
                 break;
 
             case 185:
                 // dokumente - Ausreden
-                DingAusrede(fDokumente);
+                thingExcuse(fDokumente);
                 break;
 
             // Dialog mit Kuchar
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 handrijHoertZu = true;
                 // 1. Frage nur, wenn noch kein Liscik
                 if (!mainFrame.actions[542]) {
-                    Dialog.ExtendMC("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
-                    Dialog.ExtendMC("Zahrodnik_35", 537, 536, new int[]{536}, 611);
-                    Dialog.ExtendMC("Zahrodnik_36", 536, 535, new int[]{535}, 612);
-                    Dialog.ExtendMC("Zahrodnik_37", 535, 534, new int[]{534}, 613);
-                    Dialog.ExtendMC("Zahrodnik_38", 534, 533, new int[]{533}, 614);
-                    Dialog.ExtendMC("Zahrodnik_39", 533, 532, new int[]{532}, 615);
+                    Dialog.extend("Zahrodnik_34", 1000, 537, new int[]{537}, 610);
+                    Dialog.extend("Zahrodnik_35", 537, 536, new int[]{536}, 611);
+                    Dialog.extend("Zahrodnik_36", 536, 535, new int[]{535}, 612);
+                    Dialog.extend("Zahrodnik_37", 535, 534, new int[]{534}, 613);
+                    Dialog.extend("Zahrodnik_38", 534, 533, new int[]{533}, 614);
+                    Dialog.extend("Zahrodnik_39", 533, 532, new int[]{532}, 615);
                     if (!mainFrame.actions[520]) {
-                        Dialog.ExtendMC("Zahrodnik_40", 532, 1000, null, 618);
+                        Dialog.extend("Zahrodnik_40", 532, 1000, null, 618);
                     } else {
-                        Dialog.ExtendMC("Zahrodnik_41", 532, 1000, null, 620);
+                        Dialog.extend("Zahrodnik_41", 532, 1000, null, 620);
                     }
                 }
 
                 // 2. Frage
-                Dialog.ExtendMC("Zahrodnik_42", 1000, 541, new int[]{541}, 630);
-                Dialog.ExtendMC("Zahrodnik_43", 541, 540, new int[]{540}, 631);
-                Dialog.ExtendMC("Zahrodnik_44", 540, 1000, null, 632);
+                Dialog.extend("Zahrodnik_42", 1000, 541, new int[]{541}, 630);
+                Dialog.extend("Zahrodnik_43", 541, 540, new int[]{540}, 631);
+                Dialog.extend("Zahrodnik_44", 540, 1000, null, 632);
 
                 // 3. Frage
-                Dialog.ExtendMC("Zahrodnik_45", 1000, 1000, null, 800);
+                Dialog.extend("Zahrodnik_45", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -871,12 +871,12 @@ public class Zahrodnik extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
@@ -885,12 +885,12 @@ public class Zahrodnik extends MainLocation {
                 // Reaktion Krabat
                 // hier erst Handrij aufmerksam machen
                 handrijHoertZu = true;
-                KrabatSagt("Zahrodnik_14", 0, 1, 2, 609);
+                krabatSays("Zahrodnik_14", 0, 1, 2, 609);
                 break;
 
             case 609:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_15", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_15", 0, 50, 2, 600, talkPoint);
                 mainFrame.actions[530] = true; // Flag setzen
                 break;
 
@@ -898,63 +898,63 @@ public class Zahrodnik extends MainLocation {
 
             case 610:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_16", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_16", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 611:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_17", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_17", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 612:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_18", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_18", 0, 50, 2, 600, talkPoint);
                 break;
 
 
             case 613:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_19", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_19", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 614:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_20", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_20", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 615:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_21", 0, 50, 2, 616, talkPoint);
+                personSays("Zahrodnik_21", 0, 50, 2, 616, talkPoint);
                 break;
 
             case 616:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_22", 0, 50, 2, 617, talkPoint);
+                personSays("Zahrodnik_22", 0, 50, 2, 617, talkPoint);
                 break;
 
             case 617:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_23", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_23", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 618:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_24", 0, 50, 2, 619, talkPoint);
+                personSays("Zahrodnik_24", 0, 50, 2, 619, talkPoint);
                 break;
 
             case 619:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_25", 0, 50, 2, 622, talkPoint);
+                personSays("Zahrodnik_25", 0, 50, 2, 622, talkPoint);
                 break;
 
             case 620:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_26", 0, 50, 2, 621, talkPoint);
+                personSays("Zahrodnik_26", 0, 50, 2, 621, talkPoint);
                 break;
 
             case 621:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_27", 0, 50, 2, 622, talkPoint);
+                personSays("Zahrodnik_27", 0, 50, 2, 622, talkPoint);
                 break;
 
             case 622:
@@ -967,7 +967,7 @@ public class Zahrodnik extends MainLocation {
             case 623:
                 // warten
                 if (tCounter == 48) {
-                    mainFrame.soundPlayer.PlayFile("sfx-dd/pisac.wav");
+                    mainFrame.soundPlayer.playFile("sfx-dd/pisac.wav");
                 }
                 if (--tCounter > 1) {
                     break;
@@ -995,7 +995,7 @@ public class Zahrodnik extends MainLocation {
                 if (mainFrame.krabat.nAnimation != 0) {
                     break;
                 }
-                KrabatSagt("Zahrodnik_28", 0, 1, 2, 800);
+                krabatSays("Zahrodnik_28", 0, 1, 2, 800);
                 // Empfehlungsschreiben zu Inventar hinzufuegen
                 mainFrame.inventory.vInventory.addElement(30);
                 // Flag - setzen ! Krabat bekommt Empfehl.schreiben
@@ -1006,32 +1006,32 @@ public class Zahrodnik extends MainLocation {
             // Antworten zu Frage 2 ////////////////////////////
             case 630:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_29", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_29", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 631:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_30", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_30", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 632:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_31", 0, 50, 2, 633, talkPoint);
+                personSays("Zahrodnik_31", 0, 50, 2, 633, talkPoint);
                 break;
 
             case 633:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_32", 0, 50, 2, 634, talkPoint);
+                personSays("Zahrodnik_32", 0, 50, 2, 634, talkPoint);
                 break;
 
             case 634:
                 // Reaktion Zahrodnik
-                PersonSagt("Zahrodnik_33", 0, 50, 2, 600, talkPoint);
+                personSays("Zahrodnik_33", 0, 50, 2, 600, talkPoint);
                 break;
 
             case 800:
                 // wieder weg von Zahrodnik laufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pZahrUnten);
+                mainFrame.pathWalker.setNewWay(pZahrUnten);
                 nextActionID = 810;
                 break;
 
@@ -1073,7 +1073,7 @@ public class Zahrodnik extends MainLocation {
             int zwzf = (int) (Math.random() * 4.99);
             zwzf += 49;
 
-            mainFrame.soundPlayer.PlayFile("sfx-dd/zahrod" + (char) zwzf + ".wav");
+            mainFrame.soundPlayer.playFile("sfx-dd/zahrod" + (char) zwzf + ".wav");
         }
 
     }

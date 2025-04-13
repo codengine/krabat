@@ -32,9 +32,9 @@ class Mapping0 extends FuncMapping{
   static int seq=0;
 
   void free_info(Object imap){
-  };
+  }
 
-  void free_look(Object imap){
+    void free_look(Object imap){
   }
 
   Object look(DspState vd, InfoMode vm, Object m){

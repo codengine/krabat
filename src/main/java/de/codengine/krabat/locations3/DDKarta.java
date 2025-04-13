@@ -70,11 +70,11 @@ public class DDKarta extends MainLocation {
         mainFrame.actions[851] = true;
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 36f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 36f;
+        mainFrame.krabat.defaultScale = 0;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         // Kr. hat Enterhaken bekommen -> Schiff kann wegfahren -> anderes kommt, sobald mit Dinglinger geredet
         if (mainFrame.actions[561] && mainFrame.actions[529]) {
@@ -90,7 +90,7 @@ public class DDKarta extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -130,27 +130,27 @@ public class DDKarta extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(319, 381, 320, 436));
 
-        mainFrame.pathFinder.ClearMatrix(18);
+        mainFrame.pathFinder.clearMatrix(18);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(5, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 7);
-        mainFrame.pathFinder.PosVerbinden(7, 8);
-        mainFrame.pathFinder.PosVerbinden(8, 9);
-        mainFrame.pathFinder.PosVerbinden(9, 10);
-        mainFrame.pathFinder.PosVerbinden(10, 11);
-        mainFrame.pathFinder.PosVerbinden(11, 12);
-        mainFrame.pathFinder.PosVerbinden(12, 13);
-        mainFrame.pathFinder.PosVerbinden(13, 14);
-        mainFrame.pathFinder.PosVerbinden(14, 15);
-        mainFrame.pathFinder.PosVerbinden(15, 16);
-        mainFrame.pathFinder.PosVerbinden(16, 17);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(5, 6);
+        mainFrame.pathFinder.connectPos(6, 7);
+        mainFrame.pathFinder.connectPos(7, 8);
+        mainFrame.pathFinder.connectPos(8, 9);
+        mainFrame.pathFinder.connectPos(9, 10);
+        mainFrame.pathFinder.connectPos(10, 11);
+        mainFrame.pathFinder.connectPos(11, 12);
+        mainFrame.pathFinder.connectPos(12, 13);
+        mainFrame.pathFinder.connectPos(13, 14);
+        mainFrame.pathFinder.connectPos(14, 15);
+        mainFrame.pathFinder.connectPos(15, 16);
+        mainFrame.pathFinder.connectPos(16, 17);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -158,27 +158,27 @@ public class DDKarta extends MainLocation {
                 break;
             case 160: // von Panorama
                 mainFrame.krabat.setPos(pPanorama);
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 170: // von Zastup
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 mainFrame.krabat.setPos(pZastup);
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 127: // von Hrod (Terassa)
                 mainFrame.krabat.setPos(pHrodmost);
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
             case 175: // von Starewiki
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 mainFrame.krabat.setPos(pStarewiki);
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/ddkarta/ddkarta.png");
         vor1 = getPicture("gfx-dd/ddkarta/kar1.png");
         vor2 = getPicture("gfx-dd/ddkarta/kar2.png");
@@ -196,7 +196,7 @@ public class DDKarta extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -207,24 +207,24 @@ public class DDKarta extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -245,9 +245,6 @@ public class DDKarta extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // wegen geringen Aufwandes (kleine Images) zeichnen wir immer neu
         g.drawImage(vor1, 343, 79);
         g.drawImage(vor2, 307, 151);
@@ -260,7 +257,7 @@ public class DDKarta extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -270,17 +267,17 @@ public class DDKarta extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -314,17 +311,17 @@ public class DDKarta extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -334,7 +331,7 @@ public class DDKarta extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -347,21 +344,21 @@ public class DDKarta extends MainLocation {
 
                 // zu Panorama gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brPanorama.IsPointInRect(pTemp)) {
+                if (brPanorama.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (!brPanorama.IsPointInRect(kt)) {
+                    if (!brPanorama.isPointInRect(kt)) {
                         pTemp = pPanorama;
                     } else {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -369,21 +366,21 @@ public class DDKarta extends MainLocation {
 
                 // zu Zastup gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brZastup.IsPointInRect(pTemp)) {
+                if (brZastup.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (!brZastup.IsPointInRect(kt)) {
+                    if (!brZastup.isPointInRect(kt)) {
                         pTemp = pZastup;
                     } else {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -391,21 +388,21 @@ public class DDKarta extends MainLocation {
 
                 // zu Hrod gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brHrod.IsPointInRect(pTemp)) {
+                if (brHrod.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (!brHrod.IsPointInRect(kt)) {
+                    if (!brHrod.isPointInRect(kt)) {
                         pTemp = pHrodmost;
                     } else {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -413,42 +410,42 @@ public class DDKarta extends MainLocation {
 
                 // zu Starewiki gehen ?
                 // da hier durch die Exits durchgerannt werden kann, muss die Abfrage ein bisschen anders gestaltet werden
-                if (brStarewiki.IsPointInRect(pTemp)) {
+                if (brStarewiki.isPointInRect(pTemp)) {
                     nextActionID = 103;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn im Ausgangrect, dann schon umschalten
-                    if (!brStarewiki.IsPointInRect(kt)) {
+                    if (!brStarewiki.isPointInRect(kt)) {
                         pTemp = pStarewiki;
                     } else {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (brPanorama.IsPointInRect(pTemp) ||
-                        brZastup.IsPointInRect(pTemp) ||
-                        brHrod.IsPointInRect(pTemp) ||
-                        brStarewiki.IsPointInRect(pTemp)) {
+                if (brPanorama.isPointInRect(pTemp) ||
+                        brZastup.isPointInRect(pTemp) ||
+                        brHrod.isPointInRect(pTemp) ||
+                        brStarewiki.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -459,8 +456,8 @@ public class DDKarta extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -469,16 +466,16 @@ public class DDKarta extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -486,38 +483,27 @@ public class DDKarta extends MainLocation {
         // normaler Cursor, normale Reaktion
         else {
             // bei Hrod und Starewiki nach unten
-            if (brHrod.IsPointInRect(pTemp) || brStarewiki.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (brHrod.isPointInRect(pTemp) || brStarewiki.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // Zastup und Panorama nach Oben
-            if (brZastup.IsPointInRect(pTemp) || brPanorama.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (brZastup.isPointInRect(pTemp) || brPanorama.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
-            // oben
-      /*if (brPanorama.IsPointInRect (pTemp) == true)
-      {
-      	if (Cursorform != 12) 
-      	{
-	        mainFrame.setCursor (mainFrame.Cup);
-	        Cursorform = 12;
-	      }
-	      return;
-      } */
-
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -551,7 +537,7 @@ public class DDKarta extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -559,7 +545,7 @@ public class DDKarta extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -567,26 +553,26 @@ public class DDKarta extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -604,7 +590,7 @@ public class DDKarta extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -613,25 +599,25 @@ public class DDKarta extends MainLocation {
             case 100:
                 // Gehe zu Panorama
                 mainFrame.actions[851] = false;
-                NeuesBild(160, locationID);
+                createNewLocation(160, locationID);
                 break;
 
             case 101:
                 // Gehe zu Zastup
                 mainFrame.actions[851] = false;
-                NeuesBild(170, locationID);
+                createNewLocation(170, locationID);
                 break;
 
             case 102:
                 // Gehe zu Hrod
                 mainFrame.actions[851] = false;
-                NeuesBild(127, locationID);
+                createNewLocation(127, locationID);
                 break;
 
             case 103:
                 // Gehe zu Starewiki
                 mainFrame.actions[851] = false;
-                NeuesBild(175, locationID);
+                createNewLocation(175, locationID);
                 break;
 
             default:

@@ -52,20 +52,9 @@ public class DinglingerWalk extends MovableMainAnim {
     private static final int CHEIGHT = 210;
 
     private static final int CEXTRAWIDTH = 97; // Hoehe/Breite fuer Images von vorn/hinten
-    // private static final int CEXTRAHEIGHT = 211;
 
     // Abstaende default
     private static final int[] CHORIZ_DIST = {15, 24, 27, 24, 27};
-    // private static final int[] YCORRECT    = { 0,  2,  1,  2,  1};
-
-    // Variablen fuer Laufberechnung
-    // private static final int CLOHNENX = 6;  // Werte fuer Entscheidung, ob sich
-    // private static final int CLOHNENY = 6;  // Laufen ueberhaupt lohnt (halber Schritt)
-
-    // Variablen fuer Animationen
-    // public  int nAnimation = 0;           // ID der ggw. Animation
-    // public  boolean fAnimHelper = false;  // Hilfsflag bei Animation
-    // private int nAnimStep = 0;            // ggw. Pos in Animation
 
     // den Hintergrund geht (bildabhaengig)
     private static final int SLOWX = 8;  // Konstante, die angibt, wie sich die x - Abstaende
@@ -103,14 +92,14 @@ public class DinglingerWalk extends MovableMainAnim {
 
         krabat_skla = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderhead = MAX_VERHINDERHEAD;
         Verhinderwalk = MAX_VERHINDERWALK;
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         krabat_left_talk_head[0] = getPicture("gfx-dd/dingl/dingl-t1.png");
         krabat_left_talk_head[1] = getPicture("gfx-dd/dingl/dingl-t1a.png");
         krabat_left_talk_head[2] = getPicture("gfx-dd/dingl/dingl-t2.png");
@@ -212,12 +201,11 @@ public class DinglingerWalk extends MovableMainAnim {
 
     // Dinglinger um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        // horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         if (--Verhinderwalk < 1)
         // Horizontal laufen
@@ -225,24 +213,23 @@ public class DinglingerWalk extends MovableMainAnim {
             Verhinderwalk = MAX_VERHINDERWALK;
 
             // neuen Punkt ermitteln und setzen
-            VerschiebeX();
-            xps = txps;
-            yps = typs;
+            moveX();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 5) {
-                anim_pos = 1;
+            animPos++;
+            if (animPos == 5) {
+                animPos = 1;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeX();
+            moveX();
 
             // Ueberschreitung feststellen in X - Richtung
-            if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
-                // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                anim_pos = 0;
+            if ((walkTo.x - (int) tempPosX) * directionX.getVal() <= 0) {
+                setPos(walkTo);
+                animPos = 0;
                 isStanding = true;
                 return true;
             }
@@ -254,17 +241,17 @@ public class DinglingerWalk extends MovableMainAnim {
     }
 
     // Horizontal - Positions - Verschieberoutine
-    private void VerschiebeX() {
-        verschiebeXdefault(CHORIZ_DIST[anim_pos], SLOWX);
+    private void moveX() {
+        moveXdefault(CHORIZ_DIST[animPos], SLOWX);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
 
-        if (anim_pos == 0) {
-            anim_pos = 1;       // Animationsimage bei Neubeginn initialis.
+        if (animPos == 0) {
+            animPos = 1;       // Animationsimage bei Neubeginn initialis.
         }
     }
 
@@ -280,12 +267,12 @@ public class DinglingerWalk extends MovableMainAnim {
         if (!isStanding) {
             // nach links laufen
             if (directionX == LEFT) {
-                MaleIhn(offGraph, krabat_left_walk[anim_pos], false);
+                drawHim(offGraph, krabat_left_walk[animPos], false);
             }
 
             // nach rechts laufen
             if (directionX == RIGHT) {
-                MaleIhn(offGraph, krabat_right_walk[anim_pos], false);
+                drawHim(offGraph, krabat_right_walk[animPos], false);
             }
         } else {
 
@@ -313,35 +300,31 @@ public class DinglingerWalk extends MovableMainAnim {
                     }
                 }
 
-                MaleIhn(offGraph);
+                drawHim(offGraph);
             }
 
             // zeichnen, wenn rechts steht
             if (directionX == RIGHT) {
                 Head = 0;
 
-                MaleIhn(offGraph);
+                drawHim(offGraph);
             }
         }
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 3:
-                // horizontal=true;
                 directionX = RIGHT;
                 break;
             case 6:
-                // horizontal=false;
                 directionY = DOWN;
                 break;
             case 9:
-                // horizontal=true;
                 directionX = LEFT;
                 break;
             case 12:
-                // horizontal=false;
                 directionY = UP;
                 break;
             default:
@@ -374,10 +357,10 @@ public class DinglingerWalk extends MovableMainAnim {
                 break;
         }
 
-        MaleIhn(offGraph);
+        drawHim(offGraph);
     }
 
-    public int DoAnimation(GenericDrawingContext g, int AnimID) {
+    public int doAnimation(GenericDrawingContext g, int animId) {
         // AnimID-Bedeutungen
         // 2 = umschauen links
         // 3 = Schuessel nehmen
@@ -388,12 +371,12 @@ public class DinglingerWalk extends MovableMainAnim {
         }
 
         // schaue Dich um
-        if (AnimID == 2) {
+        if (animId == 2) {
             if (AnimCounter < 15) {
-                MaleIhn(g, krabat_left_talk_body[AnimCounter / 5 + 3], false);
+                drawHim(g, krabat_left_talk_body[AnimCounter / 5 + 3], false);
             } else {
                 AnimCounter = 99;
-                MaleIhn(g, krabat_left_talk_body[5], false);
+                drawHim(g, krabat_left_talk_body[5], false);
             }
 
             AnimCounter++;
@@ -401,12 +384,12 @@ public class DinglingerWalk extends MovableMainAnim {
         }
 
         // nimm Schuessel
-        if (AnimID == 3) {
+        if (animId == 3) {
             if (AnimCounter < 9) {
-                MaleIhn(g, krabat_skla[AnimCounter / 3], true);
+                drawHim(g, krabat_skla[AnimCounter / 3], true);
             } else {
                 AnimCounter = 99;
-                MaleIhn(g, krabat_skla[0], true);
+                drawHim(g, krabat_skla[0], true);
             }
 
             AnimCounter++;
@@ -419,12 +402,12 @@ public class DinglingerWalk extends MovableMainAnim {
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int poy) {
+    protected int getLeftPos(int x, int y) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        float fScaleY = getScale(poy) * scaleFactor;
+        float fScaleY = getScale(y) * scaleFactor;
         int Koerperbreite = CWIDTH - (int) fScaleY;
-        return pox - Koerperbreite / 2;
+        return x - Koerperbreite / 2;
     }
 
     // Left-Pos bei Schuessel
@@ -436,35 +419,35 @@ public class DinglingerWalk extends MovableMainAnim {
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return calcUpPosDefault(poy);
+    protected int getUpPos(int y) {
+        return calcUpPosDefault(y);
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy, defScale);
+    protected int getScale(int y) {
+        return calcScaleDefault(y, defaultScale);
     }
 
     // gib TalkPoint von Dinglinger zurueck
     public GenericPoint evalTalkPoint() {
-        BorderRect temp = getRect();
-        return new GenericPoint((temp.lo_point.x + temp.ru_point.x) / 2, temp.lo_point.y - 50);
+        BorderRect temp = getBoundingBox();
+        return new GenericPoint((temp.topLeftPoint.x + temp.bottomRightPoint.x) / 2, temp.topLeftPoint.y - 50);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp, boolean isSkla) {
+    private void drawHim(GenericDrawingContext g, GenericImage ktemp, boolean isSkla) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         int left;
 
         // Groesse und Position der Figur berechnen
         if (!isSkla) {
-            left = getLeftPos((int) xps, (int) yps);
+            left = getLeftPos((int) posX, (int) posY);
         } else {
-            left = getLeftPosSkla((int) xps, (int) yps);
+            left = getLeftPosSkla((int) posX, (int) posY);
         }
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;
@@ -479,14 +462,14 @@ public class DinglingerWalk extends MovableMainAnim {
         g.drawImage(ktemp, left, up, Koerperbreite, Kopfhoehe + Koerperhoehe);
     }
 
-    private void MaleIhn(GenericDrawingContext g) {
+    private void drawHim(GenericDrawingContext g) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
         float fBodyoffset = BODYOFFSET;

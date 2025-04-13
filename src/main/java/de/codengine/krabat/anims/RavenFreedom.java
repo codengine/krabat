@@ -43,13 +43,13 @@ public class RavenFreedom extends MainAnim {
 
         Vogel = new GenericImage[5];
 
-        InitImages();
+        initImages();
 
         krlinks = (int) Math.round(Math.random() * 3);
         krrechts = (int) Math.round(Math.random() * 3);
     }
 
-    private void InitImages() {
+    private void initImages() {
         Vogel[1] = getPicture("gfx/rapak/pk1.png");  // 34x43 Size
         Vogel[2] = getPicture("gfx/rapak/pk2.png");
         Vogel[3] = getPicture("gfx/rapak/pk3.png");
@@ -73,16 +73,16 @@ public class RavenFreedom extends MainAnim {
         switch (whichanim) {
             case 0:
                 // normalen Raben zeichnen
-                DrawIt(g, 1, Pos);
+                drawIt(g, 1, Pos);
                 break;
 
             case 1:
                 // Zwinkern
                 if (Animcount == 0) {
-                    DrawIt(g, 2, Pos);
+                    drawIt(g, 2, Pos);
                 }
                 if (Animcount == 1) {
-                    DrawIt(g, 2, Pos);
+                    drawIt(g, 2, Pos);
                 }
                 Animcount++;
                 if (Animcount >= 2) {
@@ -94,22 +94,22 @@ public class RavenFreedom extends MainAnim {
             case 2:
                 // unter Fluegel kratzen
                 if (Animcount == 0) {
-                    DrawIt(g, 3, Pos);
+                    drawIt(g, 3, Pos);
                 }
                 if (Animcount == 1) {
-                    DrawIt(g, 3, Pos);
+                    drawIt(g, 3, Pos);
                 }
                 if (Animcount == 2) {
-                    DrawIt(g, 1, Pos);
+                    drawIt(g, 1, Pos);
                 }
                 if (Animcount == 3) {
-                    DrawIt(g, 1, Pos);
+                    drawIt(g, 1, Pos);
                 }
                 if (Animcount == 4) {
-                    DrawIt(g, 3, Pos);
+                    drawIt(g, 3, Pos);
                 }
                 if (Animcount == 5) {
-                    DrawIt(g, 3, Pos);
+                    drawIt(g, 3, Pos);
                 }
                 Animcount++;
                 if (Animcount >= 6) {
@@ -121,22 +121,22 @@ public class RavenFreedom extends MainAnim {
             case 3:
                 // unter Fluegel kratzen andere Seite
                 if (Animcount == 0) {
-                    DrawIt(g, 4, Pos);
+                    drawIt(g, 4, Pos);
                 }
                 if (Animcount == 1) {
-                    DrawIt(g, 4, Pos);
+                    drawIt(g, 4, Pos);
                 }
                 if (Animcount == 2) {
-                    DrawIt(g, 1, Pos);
+                    drawIt(g, 1, Pos);
                 }
                 if (Animcount == 3) {
-                    DrawIt(g, 1, Pos);
+                    drawIt(g, 1, Pos);
                 }
                 if (Animcount == 4) {
-                    DrawIt(g, 4, Pos);
+                    drawIt(g, 4, Pos);
                 }
                 if (Animcount == 5) {
-                    DrawIt(g, 4, Pos);
+                    drawIt(g, 4, Pos);
                 }
                 Animcount++;
                 if (Animcount >= 6) {
@@ -147,19 +147,19 @@ public class RavenFreedom extends MainAnim {
         }
     }
 
-    public void KratzeLinks(GenericDrawingContext g, GenericPoint Pos) {
+    public void scratchLeft(GenericDrawingContext g, GenericPoint position) {
         // unter linkem Fluegel kratzen
         if (krlinks == 0) {
-            DrawIt(g, 3, Pos);
+            drawIt(g, 3, position);
         }
         if (krlinks == 1) {
-            DrawIt(g, 3, Pos);
+            drawIt(g, 3, position);
         }
         if (krlinks == 2) {
-            DrawIt(g, 1, Pos);
+            drawIt(g, 1, position);
         }
         if (krlinks == 3) {
-            DrawIt(g, 1, Pos);
+            drawIt(g, 1, position);
         }
 
         krlinks++;
@@ -168,19 +168,19 @@ public class RavenFreedom extends MainAnim {
         }
     }
 
-    public void KratzeRechts(GenericDrawingContext g, GenericPoint Pos) {
+    public void scratchRight(GenericDrawingContext g, GenericPoint position) {
         // unter rechtem Fluegel kratzen
         if (krrechts == 0) {
-            DrawIt(g, 4, Pos);
+            drawIt(g, 4, position);
         }
         if (krrechts == 1) {
-            DrawIt(g, 4, Pos);
+            drawIt(g, 4, position);
         }
         if (krrechts == 2) {
-            DrawIt(g, 1, Pos);
+            drawIt(g, 1, position);
         }
         if (krrechts == 3) {
-            DrawIt(g, 1, Pos);
+            drawIt(g, 1, position);
         }
 
         krrechts++;
@@ -189,7 +189,7 @@ public class RavenFreedom extends MainAnim {
         }
     }
 
-    private void DrawIt(GenericDrawingContext offGraph, int which, GenericPoint ps) {
+    private void drawIt(GenericDrawingContext offGraph, int which, GenericPoint ps) {
         offGraph.drawImage(Vogel[which], ps.x, ps.y);
     }
 }    

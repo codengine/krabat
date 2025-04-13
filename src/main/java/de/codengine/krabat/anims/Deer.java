@@ -68,7 +68,6 @@ public class Deer extends MainAnim {
             rennenNieWeg = true;
         }
 
-        // this.Wieviele = (int) (Math.random () * Wieviele);
         int zuffiZ = (int) (Math.random() * 100);
         if (zuffiZ > AUFTAUCHWAHRSCHEINLICHKEIT) {
             this.Wieviele = 1;
@@ -94,8 +93,6 @@ public class Deer extends MainAnim {
         Animpos = new int[this.Wieviele];
 
         Positionen = new GenericPoint[this.Wieviele];
-
-        // System.out.println ("Es werden " + this.Wieviele + " Rehe im Hintergrund angezeigt.");
 
         for (int i = 0; i < this.Wieviele; i++) {
             // Berechnen, ob Hirsch oder Reh erscheint
@@ -149,10 +146,10 @@ public class Deer extends MainAnim {
             Positionen[i] = new GenericPoint(xpos, ypos);
         }
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         reh[0] = getPicture("gfx/anims/reh1.png");  // stehen in eine Richtung
         reh[1] = getPicture("gfx/anims/reh1a.png"); // grasen
         reh[2] = getPicture("gfx/anims/reh2.png");  // stehen in andere Richtung
@@ -327,7 +324,6 @@ public class Deer extends MainAnim {
                     // dieses Reh zeichnen
                     g.drawImage(reh[Animpos[j]], Positionen[j].x, Positionen[j].y - HOEHE);
 
-                    // System.out.println ("Zeichne Reh!");
                 }
             }
         }

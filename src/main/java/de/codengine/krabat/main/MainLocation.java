@@ -39,16 +39,16 @@ abstract public class MainLocation {
     // Variablen fuer Textausgabe + Zeit
     // Achtung : Diese Variablen werden nicht in jeder Klasse benutzt, sind aber fuer Krabat -
     // Ausreden unbedingt erforderlich (Multiple - Choice - Klasse)
-    public int TalkPerson = 0;
-    public int TalkPause = 0;
+    public int talkPerson = 0;
+    public int talkPause = 0;
 
-    private int Counter; // universeller Zaehler fuer alles Moegliche
+    private int counter; // universeller Zaehler fuer alles Moegliche
 
     // Variablen fuer Krabat - Ausreden
     public int nextActionID = 0;
 
     // Variablen fuer Cursor, da stets vorhanden, hierher nehmen
-    public int Cursorform = 200; // Wert, damit default = neuen Cursor setzen (siehe evalMouseMoveEvent jeder Klasse)
+    public int cursorShape = 200; // Wert, damit default = neuen Cursor setzen (siehe evalMouseMoveEvent jeder Klasse)
 
     // Objekt auf "start" - sollte das hier rein (Geschwindigkeit ???)
     public Start mainFrame;
@@ -68,7 +68,7 @@ abstract public class MainLocation {
     private static final String[] EXCUSES_MULTI = {"Mainloc_60", "Mainloc_61", "Mainloc_62"};
 
     // Hier das Farbenarray nach Talkpersons geordnet
-    public static final int[] FarbenArray = {0x00000000, 0x00000001, 0x00000000, 0x00000001, 0x00000000,
+    public static final int[] COLORS = {0x00000000, 0x00000001, 0x00000000, 0x00000001, 0x00000000,
             0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
             0x00000000, 0x00000000, 0x00000000, 0xffff0000, 0xffb00000,
             0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000,
@@ -156,21 +156,19 @@ abstract public class MainLocation {
 
     // Konstruktor
     public MainLocation(Start caller) {
-        // tracker = new MediaTracker (this);
         mainFrame = caller;
 
     }
 
     // Konstruktor mit Location-ID (SS)
     public MainLocation(Start caller, int idLocation) {
-        // tracker = new MediaTracker (this);
         mainFrame = caller;
         locationID = idLocation;
     }
 
     // Methode zum Laden (registrieren) eines Bildes
-    public GenericImage getPicture(String Filename) {
-        return mainFrame.imageFetcher.fetchImage(Filename, false);
+    public GenericImage getPicture(String filename) {
+        return mainFrame.imageFetcher.fetchImage(filename, false);
     }
 
     // Hier werden die Ausreden "Benutze Krabat mit Gegenstand" initialisiert
@@ -186,52 +184,52 @@ abstract public class MainLocation {
 
             case 502:
                 // Krabat mit Stock benutzen
-                KrabatSagt("Mainloc_1", 0, 3, 0, 0);
+                krabatSays("Mainloc_1", 0, 3, 0, 0);
                 break;
 
             case 503:
                 // Krabat mit Deska benutzen
-                KrabatSagt("Mainloc_2", 0, 3, 0, 0);
+                krabatSays("Mainloc_2", 0, 3, 0, 0);
                 break;
 
             case 504:
                 // Krabat mit Honck benutzen
-                KrabatSagt("Mainloc_3", 0, 3, 0, 0);
+                krabatSays("Mainloc_3", 0, 3, 0, 0);
                 break;
 
             case 505:
                 // Krabat mit Hocka benutzen
-                KrabatSagt("Mainloc_4", 0, 3, 0, 0);
+                krabatSays("Mainloc_4", 0, 3, 0, 0);
                 break;
 
             case 506:
                 // Krabat mit Lajna benutzen
-                KrabatSagt("Mainloc_5", 0, 3, 0, 0);
+                krabatSays("Mainloc_5", 0, 3, 0, 0);
                 break;
 
             case 507:
                 // Krabat mit Wuda benutzen
-                KrabatSagt("Mainloc_6", 0, 3, 0, 0);
+                krabatSays("Mainloc_6", 0, 3, 0, 0);
                 break;
 
             case 508:
                 // Krabat mit Wacki benutzen
-                KrabatSagt("Mainloc_7", 0, 3, 0, 0);
+                krabatSays("Mainloc_7", 0, 3, 0, 0);
                 break;
 
             case 509:
                 // Krabat mit Wuda + Hocka benutzen
-                KrabatSagt("Mainloc_8", 0, 3, 0, 0);
+                krabatSays("Mainloc_8", 0, 3, 0, 0);
                 break;
 
             case 510:
                 // Krabat mit Wuda + Hocka + Wacka benutzen
-                KrabatSagt("Mainloc_9", 0, 3, 0, 0);
+                krabatSays("Mainloc_9", 0, 3, 0, 0);
                 break;
 
             case 511:
                 // Krabat mit Wuda + Hocka + Drjewjana Ryba benutzen
-                KrabatSagt("Mainloc_10", 0, 3, 0, 0);
+                krabatSays("Mainloc_10", 0, 3, 0, 0);
                 break;
 
             case 512:
@@ -242,22 +240,22 @@ abstract public class MainLocation {
 
             case 513:
                 // Krabat mit Drjewjana Ryba benutzen
-                KrabatSagt("Mainloc_11", 0, 3, 0, 0);
+                krabatSays("Mainloc_11", 0, 3, 0, 0);
                 break;
 
             case 514:
                 // Krabat mit Ryba benutzen
-                KrabatSagt("Mainloc_12", 0, 3, 0, 0);
+                krabatSays("Mainloc_12", 0, 3, 0, 0);
                 break;
 
             case 515:
                 // Krabat mit Krosik benutzen
-                KrabatSagt("Mainloc_13", 0, 3, 0, 0);
+                krabatSays("Mainloc_13", 0, 3, 0, 0);
                 break;
 
             case 516:
                 // Krabat mit Honck z blotom benutzen
-                KrabatSagt("Mainloc_14", 0, 3, 0, 0);
+                krabatSays("Mainloc_14", 0, 3, 0, 0);
                 break;
 
             case 517:
@@ -269,12 +267,12 @@ abstract public class MainLocation {
 
             case 518:
                 // Krabat mit Rohodz + Kamusk benutzen
-                KrabatSagt("Mainloc_15", 0, 3, 0, 0);
+                krabatSays("Mainloc_15", 0, 3, 0, 0);
                 break;
 
             case 519:
                 // Krabat mit Pjero benutzen
-                KrabatSagt("Mainloc_16", 0, 3, 0, 0);
+                krabatSays("Mainloc_16", 0, 3, 0, 0);
                 break;
 
             case 520:
@@ -292,102 +290,102 @@ abstract public class MainLocation {
 
             case 530:
                 // List auf Krabat
-                KrabatSagt("Mainloc_17", 0, 3, 0, 0);
+                krabatSays("Mainloc_17", 0, 3, 0, 0);
                 break;
 
             case 531:
                 // Krabat mit Dowolnosc pur benutzen
-                KrabatSagt("Mainloc_18", 0, 3, 0, 0);
+                krabatSays("Mainloc_18", 0, 3, 0, 0);
                 break;
 
             case 532:
                 // Krabat mit Dowolnosc gesiegelt benutzen
-                KrabatSagt("Mainloc_19", 0, 3, 0, 0);
+                krabatSays("Mainloc_19", 0, 3, 0, 0);
                 break;
 
             case 533:
                 // Krabat mit Dowolnosc unterschrieben benutzen
-                KrabatSagt("Mainloc_20", 0, 3, 0, 0);
+                krabatSays("Mainloc_20", 0, 3, 0, 0);
                 break;
 
             case 534:
                 // Krabat mit Dowolnosc komplett benutzen
-                KrabatSagt("Mainloc_21", 0, 3, 0, 0);
+                krabatSays("Mainloc_21", 0, 3, 0, 0);
                 break;
 
             case 535:
                 // Krabat mit drjewo benutzen
-                KrabatSagt("Mainloc_22", 0, 3, 0, 0);
+                krabatSays("Mainloc_22", 0, 3, 0, 0);
                 break;
 
             case 536:
                 // Krabat mit Kozuch benutzen
-                KrabatSagt("Mainloc_23", 0, 3, 0, 0);
+                krabatSays("Mainloc_23", 0, 3, 0, 0);
                 break;
 
             case 537:
                 // Krabat mit kotwica benutzen
-                KrabatSagt("Mainloc_24", 0, 3, 0, 0);
+                krabatSays("Mainloc_24", 0, 3, 0, 0);
                 break;
 
             case 538:
                 // Krabat mit Lajna benutzen
-                KrabatSagt("Mainloc_25", 0, 3, 0, 0);
+                krabatSays("Mainloc_25", 0, 3, 0, 0);
                 break;
 
             case 539:
                 // Krabat mit kotwica + Lajna benutzen
-                KrabatSagt("Mainloc_26", 0, 3, 0, 0);
+                krabatSays("Mainloc_26", 0, 3, 0, 0);
                 break;
 
             case 540:
                 // Krabat mit 5 tolerow benutzen
-                KrabatSagt("Mainloc_27", 0, 3, 0, 0);
+                krabatSays("Mainloc_27", 0, 3, 0, 0);
                 break;
 
             case 541:
                 // Krabat mit Bedienstetenkleidung benutzen
-                KrabatSagt("Mainloc_28", 0, 3, 0, 0);
+                krabatSays("Mainloc_28", 0, 3, 0, 0);
                 break;
 
             case 542:
                 // Krabat mit Hlebija benutzen
-                KrabatSagt("Mainloc_29", 0, 3, 0, 0);
+                krabatSays("Mainloc_29", 0, 3, 0, 0);
                 break;
 
             case 543:
                 // Krabat mit Friedhelm benutzen
-                KrabatSagt("Mainloc_30", 0, 3, 0, 0);
+                krabatSays("Mainloc_30", 0, 3, 0, 0);
                 break;
 
             case 544:
                 // Krabat mit Wilhelm benutzen
-                KrabatSagt("Mainloc_31", 0, 3, 0, 0);
+                krabatSays("Mainloc_31", 0, 3, 0, 0);
                 break;
 
             case 545:
                 // Krabat mit Casnik benutzen
-                KrabatSagt("Mainloc_32", 0, 3, 0, 0);
+                krabatSays("Mainloc_32", 0, 3, 0, 0);
                 break;
 
             case 546:
                 // Krabat mit Hamor benutzen
-                KrabatSagt("Mainloc_33", 0, 3, 0, 0);
+                krabatSays("Mainloc_33", 0, 3, 0, 0);
                 break;
 
             case 547:
                 // Krabat mit Kluc benutzen
-                KrabatSagt("Mainloc_34", 0, 3, 0, 0);
+                krabatSays("Mainloc_34", 0, 3, 0, 0);
                 break;
 
             case 548:
                 // Krabat mit Metall benutzen
-                KrabatSagt("Mainloc_35", 0, 3, 0, 0);
+                krabatSays("Mainloc_35", 0, 3, 0, 0);
                 break;
 
             case 549:
                 // Krabat mit Prikaz benutzen
-                KrabatSagt("Mainloc_36", 0, 3, 0, 0);
+                krabatSays("Mainloc_36", 0, 3, 0, 0);
                 break;
 
             case 550:
@@ -398,10 +396,6 @@ abstract public class MainLocation {
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
-//                 KrabatSagt ("Skicu trjeba Dinglinger!",
-//                             "Skicu trjeba Dinglinger.",
-//                             "Die Skizze braucht Dinglinger!",
-//                             0, 3, 0, 0);
                 break;
 
             case 551:
@@ -417,34 +411,34 @@ abstract public class MainLocation {
 
             case 552:
                 // Krabat mit Wosusk benutzen
-                KrabatSagt("Mainloc_37", 0, 3, 0, 0);
+                krabatSays("Mainloc_37", 0, 3, 0, 0);
                 break;
 
             case 553:
                 // Krabat mit Drasta benutzen
-                KrabatSagt("Mainloc_38", 0, 3, 0, 0);
+                krabatSays("Mainloc_38", 0, 3, 0, 0);
                 break;
 
             case 554:
                 // Krabat mit Karta benutzen
-                KrabatSagt("Mainloc_39", 0, 3, 0, 0);
+                krabatSays("Mainloc_39", 0, 3, 0, 0);
                 break;
 
             case 555:
                 // Krabat liest Buch oder hat schon gelesen
                 if (mainFrame.actions[955]) {
-                    KrabatSagt("Mainloc_40", 0, 3, 0, 0);
+                    krabatSays("Mainloc_40", 0, 3, 0, 0);
                 } else {
                     mainFrame.actions[955] = true;
                     mainFrame.isAnimRunning = true;
                     evalMouseMoveEvent(mainFrame.mousePoint);
-                    KrabatSagt("Mainloc_41", 0, 3, 2, 580);
+                    krabatSays("Mainloc_41", 0, 3, 2, 580);
                 }
                 break;
 
             case 560:
                 // Schuessel auf K
-                KrabatSagt("Mainloc_42", 0, 3, 0, 0);
+                krabatSays("Mainloc_42", 0, 3, 0, 0);
                 break;
 
             case 561:
@@ -453,12 +447,12 @@ abstract public class MainLocation {
 
             case 562:
                 // grosser Stein auf K
-                KrabatSagt("Mainloc_43", 0, 3, 0, 0);
+                krabatSays("Mainloc_43", 0, 3, 0, 0);
                 break;
 
             case 563:
                 // Stroh auf K
-                KrabatSagt("Mainloc_44", 0, 3, 0, 0);
+                krabatSays("Mainloc_44", 0, 3, 0, 0);
                 break;
 
             // Ab hier Extra-IDs, die nicht an InventarID gebunden sind (Extrawuerste)
@@ -466,27 +460,27 @@ abstract public class MainLocation {
             case 580:
                 // Krabat liest im schweren Buch
                 mainFrame.krabat.nAnimation = 155;
-                KrabatSagt("Mainloc_45", 0, 3, 2, 581);
+                krabatSays("Mainloc_45", 0, 3, 2, 581);
                 break;
 
             case 581:
                 // paar Sekunden warten
-                Counter = 60;
+                counter = 60;
                 nextActionID = 582;
                 break;
 
             case 582:
                 // Erzaehlerspruch
-                if (--Counter > 1) {
+                if (--counter > 1) {
                     break;
                 }
-                PersonSagt("Mainloc_46", 0, 54, 2, 583, new GenericPoint(320, 200));
+                personSays("Mainloc_46", 0, 54, 2, 583, new GenericPoint(320, 200));
                 break;
 
             case 583:
                 // Krabat hat zuendegelesen
-                mainFrame.krabat.StopAnim();
-                KrabatSagt("Mainloc_47", 0, 3, 2, 584);
+                mainFrame.krabat.stopAnim();
+                krabatSays("Mainloc_47", 0, 3, 2, 584);
                 break;
 
             case 584:
@@ -505,7 +499,7 @@ abstract public class MainLocation {
                 }
                 mainFrame.isAnimRunning = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                KrabatSagt("Mainloc_48", 6, 3, 0, 0);
+                krabatSays("Mainloc_48", 6, 3, 0, 0);
                 break;
 
             default:
@@ -525,66 +519,66 @@ abstract public class MainLocation {
     // Neue Ausreden - Routinen, die Facing mitbehandeln und KrabatSagt benutzen
 
     // fuer Dinge in Location
-    public void DingAusrede(int facing) {
+    public void thingExcuse(int facing) {
         int random = (int) (Math.random() * (EXCUSES_THINGS.length - 1));
-        KrabatSagt(EXCUSES_THINGS[random], facing, 3, 0, 0);
+        krabatSays(EXCUSES_THINGS[random], facing, 3, 0, 0);
     }
 
     // fuer eine maennliche Person
-    public void MPersonAusrede(int facing) {
+    public void maleExcuse(int facing) {
         int random = (int) (Math.random() * (EXCUSES_MALE.length - 1));
-        KrabatSagt(EXCUSES_MALE[random], facing, 3, 0, 0);
+        krabatSays(EXCUSES_MALE[random], facing, 3, 0, 0);
     }
 
     // fuer eine weibliche Person
-    public void WPersonAusrede(int facing) {
+    public void femaleExcuse(int facing) {
         int random = (int) (Math.random() * (EXCUSES_FEMALE.length - 1));
-        KrabatSagt(EXCUSES_FEMALE[random], facing, 3, 0, 0);
+        krabatSays(EXCUSES_FEMALE[random], facing, 3, 0, 0);
     }
 
     // fuer mehr als 2 Personen (A steht fuer All)
-    public void APersonAusrede(int facing) {
+    public void allExcuse(int facing) {
         int random = (int) (Math.random() * (EXCUSES_MULTI.length - 1));
-        KrabatSagt(EXCUSES_MULTI[random], facing, 3, 0, 0);
+        krabatSays(EXCUSES_MULTI[random], facing, 3, 0, 0);
     }
 
     // Krabat spricht, entweder allein oder zu jemandem
-    public void KrabatSagt(String langKey, int Facing, int Person, int Pause, int ActionID) {
-        outputText = mainFrame.imageFont.TeileTextKey(langKey);
-        outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-        if (Facing != 0) {
-            mainFrame.krabat.SetFacing(Facing);
+    public void krabatSays(String langKey, int facing, int person, int pause, int actionID) {
+        outputText = mainFrame.imageFont.splitTextKey(langKey);
+        outputTextPos = mainFrame.imageFont.krabatText(outputText);
+        if (facing != 0) {
+            mainFrame.krabat.setFacing(facing);
         }
-        TalkPerson = Person;
-        TalkPause = Pause;
-        nextActionID = ActionID;
+        talkPerson = person;
+        talkPause = pause;
+        nextActionID = actionID;
     }
 
     // Personen sprechen (keine Hintergrundanimpersonen !!)
-    public void PersonSagt(String langKey, int Facing, int Person, int Pause, int ActionID, GenericPoint Position) {
-        outputText = mainFrame.imageFont.TeileTextKey(langKey);
-        outputTextPos = mainFrame.imageFont.CenterText(outputText, Position);
-        if (Facing != 0) {
-            mainFrame.krabat.SetFacing(Facing);
+    public void personSays(String langKey, int facing, int person, int pause, int actionID, GenericPoint position) {
+        outputText = mainFrame.imageFont.splitTextKey(langKey);
+        outputTextPos = mainFrame.imageFont.centerText(outputText, position);
+        if (facing != 0) {
+            mainFrame.krabat.setFacing(facing);
         }
-        TalkPerson = Person;
-        TalkPause = Pause;
-        nextActionID = ActionID;
+        talkPerson = person;
+        talkPause = pause;
+        nextActionID = actionID;
     }
 
     // Neue Location wird erzeugt
-    public void NeuesBild(int NewLocation, int OldLocation) {
+    public void createNewLocation(int newLocation, int oldLocation) {
         mainFrame.isBackgroundAnimRunning = false;
         mainFrame.isAnimRunning = false;
         mainFrame.isClipSet = false;
-        mainFrame.constructLocation(NewLocation);
-        mainFrame.destructLocation(OldLocation);
+        mainFrame.constructLocation(newLocation);
+        mainFrame.destructLocation(oldLocation);
         nextActionID = 0;
         mainFrame.repaint();
     }
 
     // Hier die stets gleichen Aufrufe von Load/Save/Mainmenu/Inventar
-    public void SwitchScreen() {
+    public void switchScreen() {
         switch (nextActionID) {
             // Load / Save / Mainmenu / Inventory
 
@@ -619,7 +613,7 @@ abstract public class MainLocation {
             case 123:
                 // Inventar aktivieren
                 mainFrame.storeImage();
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
                 mainFrame.whatScreen = ScreenType.INVENTORY;

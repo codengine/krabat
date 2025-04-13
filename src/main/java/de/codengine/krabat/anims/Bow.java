@@ -47,13 +47,13 @@ public class Bow extends MainAnim {
 
         bow = new GenericImage[8];
 
-        InitImages();
+        initImages();
 
         Verhinderanim = MAX_VERHINDERANIM;
         Verhindercount = MAX_VERHINDERCOUNT;
     }
 
-    private void InitImages() {
+    private void initImages() {
         bow[1] = getPicture("gfx/haty/bow1.png");
         bow[2] = getPicture("gfx/haty/bow2.png");
         bow[3] = getPicture("gfx/haty/bow3.png");

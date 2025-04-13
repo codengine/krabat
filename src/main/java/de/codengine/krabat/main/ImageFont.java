@@ -30,28 +30,18 @@ import java.util.Objects;
 
 public class ImageFont {
     private static final int SPACE = 8;  // Breite eines Spaces in Pixeln
-    private static final int ABSTAND = 25; // Abstand von 2 Zeilen
+    private static final int LINE_HEIGHT = 25; // Abstand von 2 Zeilen
     public static final int MAX_WIDTH = 600;
     private static final Logger log = LoggerFactory.getLogger(ImageFont.class);
     public final GenericImage[] redFont;
     private final Start mainFrame;
-    // private imagehelpercutandsave im2;
-    private static final int ZEIT = 3;  // entspricht 0.3 Sekunden
+    private static final int TIME = 3;  // entspricht 0.3 Sekunden
 
     // Variablen fuer das Cacheing
-    private static final int GROESSE = 150;
+    private static final int CACHE_SIZE = 150;
     private final GenericImage[] cache;
-    private final int[][] Inhalt;
-    private int Counter = 1; // Rotationsprinzip
-
-    // Hier Vars fuer Background-Verdunkelung
-    /*
-    
-    private static final boolean clear_background = false; // Einschalten
-    private boolean override_clear = false; // temporaere Variable, nicht aendern
-    private static final boolean raster_background = false; // nicht alles loeschen, sondern "Geistermuster"
-
-	*/
+    private final int[][] cacheContent;
+    private int counter = 1; // Rotationsprinzip
 
     // TODO image observer handling might not be correct!!!!
 
@@ -60,25 +50,21 @@ public class ImageFont {
         mainFrame = caller;
 
         redFont = new GenericImage[240];
-        cache = new GenericImage[GROESSE];
-        Inhalt = new int[GROESSE][3];
-
-        //    im2 = new imagehelpercutandsave ("gfx/sfont-cerw.png");
-        //  im2.CutFont (redFont);
-        //im2 = null;
+        cache = new GenericImage[CACHE_SIZE];
+        cacheContent = new int[CACHE_SIZE][3];
 
         ImageHelperStatic im = new ImageHelperStatic();
-        im.CutFont(redFont);
+        im.cutFont(redFont);
 
         // Cache saeubern
-        for (int i = 1; i < GROESSE; i++) {
-            Inhalt[i][1] = 0;
-            Inhalt[i][2] = 0;
+        for (int i = 1; i < CACHE_SIZE; i++) {
+            cacheContent[i][1] = 0;
+            cacheContent[i][2] = 0;
         }
     }
 
     // Schreiben eines Strings an best. Pos. in Grafik-Kontext g mit jeweiliger Farbe
-    public void drawString(GenericDrawingContext g, String str, int xpos, int ypos, int Farbe) {
+    public void drawString(GenericDrawingContext g, String str, int xPos, int yPos, int color) {
         // bei Nullstring tschau
         if (Objects.equals(str, "")) {
             return;
@@ -86,20 +72,15 @@ public class ImageFont {
 
         int offset;                         // Offset der Y - Position des Zeichens
         int laenge = str.length();         // Laenge des Strings insgesamt in Zeichen
-        int new_xpos = xpos;                // Aktuelle X - Position
-        int textl = LineLength(str);       // Laenge des Strings im Bild in Pixeln (Zeilenumbruch usw...)
+        int newXpos = xPos;                // Aktuelle X - Position
+        int textl = lineLength(str);       // Laenge des Strings im Bild in Pixeln (Zeilenumbruch usw...)
         boolean zentriert = true;           // Zentrierung oder linksbuendig
 
         // Fontfilter initialisieren, wenn noetig
         GenericImageFilter change = null;
-        if (Farbe != 1) {
-            change = new FontFilter(Farbe);
+        if (color != 1) {
+            change = new FontFilter(color);
         }
-
-        // feststellen, ob Rot oder Gruen oder Dunkelgruen oder Dunkelrot -> Keinen Hintergrund schwaerzen
-//	if ((Farbe == 1) || (Farbe == 0xffff0000) || (Farbe == 0xffb00000) || (Farbe == 0xff00b000) || (Farbe == 0xff00ff00)) override_clear = true;
-//	else override_clear = false;
-
 
         // jedes Zeichen einzeln kopieren
         for (int i = 0; i < laenge; i++) {
@@ -128,10 +109,10 @@ public class ImageFont {
                     }
 
                     // Laenge des Teilstrings ermitteln
-                    int tlaeng = LineLength(teil);
+                    int tlaeng = lineLength(teil);
 
                     // Teilstring zentrieren innerhalb gesamter Textbreite
-                    new_xpos = textl / 2 - tlaeng / 2 + xpos;
+                    newXpos = textl / 2 - tlaeng / 2 + xPos;
                 }
             }
 
@@ -151,41 +132,23 @@ public class ImageFont {
                     }
 
                     // Laenge des Teilstrings ermitteln
-                    int tlaeng = LineLength(teil);
+                    int tlaeng = lineLength(teil);
 
                     // Teilstring zentrieren innerhalb gesamter Textbreite
-                    new_xpos = textl / 2 - tlaeng / 2 + xpos;
+                    newXpos = textl / 2 - tlaeng / 2 + xPos;
                 } else {
                     // Linksbuendig, also sehr einfach :-)
-                    new_xpos = xpos;
+                    newXpos = xPos;
                 }
 
                 // Y - Position "eine Zeile weiter"
-                ypos += ABSTAND;
+                yPos += LINE_HEIGHT;
                 continue;
             }
 
             // wenn Space, dann ueberspringen
             if (ch == 32) {
-                // hier auch das Space loeschen, wenn eingeschaltet
-//			if ((clear_background == true) && (override_clear == false))
-//			    {
-//				if (raster_background == true)
-//				    {
-//					for (int k = new_xpos; k <= (new_xpos + SPACE); k++) {
-//					    for (int j = ypos; j <= (ypos + ABSTAND); j++) {
-//						if (((k+j) % 2) == 0)
-//						    g.clearRect (k, j, 1, 1);
-//					    }
-//					}
-//				    }
-//				else
-//				    {
-//					g.clearRect (new_xpos, ypos, SPACE, ABSTAND);
-//				    }
-//			    }
-
-                new_xpos += SPACE;
+                newXpos += SPACE;
                 continue;
             }
             // falls Raute, Sonderzeichen ermitteln
@@ -211,17 +174,15 @@ public class ImageFont {
                 case 231:
                     offset = 3;
                     break;
-                //case 41:  offset=3;
-                //          break;
                 default:
                     offset = 0;
             }
-            if (Farbe != 1) {
+            if (color != 1) {
                 int tmp = 0;
 
                 // Bild im Cache suchen
-                for (int u = 1; u < GROESSE; u++) {
-                    if (Inhalt[u][1] == ch && Inhalt[u][2] == Farbe) {
+                for (int u = 1; u < CACHE_SIZE; u++) {
+                    if (cacheContent[u][1] == ch && cacheContent[u][2] == color) {
                         tmp = u;
                         break;
                     }
@@ -229,84 +190,32 @@ public class ImageFont {
 
                 // wenn gefunden, dann zeichnen
                 if (tmp != 0) {
-//				if ((clear_background == true) && (override_clear == false))
-//				    {
-//					if (raster_background == true)
-//					    {
-//						for (int k = new_xpos; k <= (new_xpos + redFont[ch].getWidth(this)); k++) {
-//						    for (int j = ypos; j <= (ypos + ABSTAND); j++) {
-//							if (((k+j) % 2) == 0)
-//							    g.clearRect (k, j, 1, 1);
-//						    }
-//						}
-//					    }
-//					else
-//					    {
-//						g.clearRect (new_xpos, ypos, redFont[ch].getWidth(this), ABSTAND);
-//					    }
-//				    }
-
-                    g.drawImage(cache[tmp], new_xpos, ypos + offset);
+                    g.drawImage(cache[tmp], newXpos, yPos + offset);
                 } else {
                     // Bild ist nicht im Cache, also neu erzeugen und im Cache ablegen
-                    GenericImage TempIm = GenericToolkit.getDefaultToolkit().createImage(new GenericFilteredImageSource(redFont[ch].getSource(), change));
+                    GenericImage tempIm = GenericToolkit.getDefaultToolkit().createImage(new GenericFilteredImageSource(redFont[ch].getSource(), change));
 
-//				if ((clear_background == true) && (override_clear == false))
-//				    {
-//					if (raster_background == true)
-//					    {
-//						for (int k = new_xpos; k <= (new_xpos + redFont[ch].getWidth(this)); k++) {
-//						    for (int j = ypos; j <= (ypos + ABSTAND); j++) {
-//							if (((k+j) % 2) == 0)
-//							    g.clearRect (k, j, 1, 1);
-//						    }
-//						}
-//					    }
-//					else
-//					    {
-//						g.clearRect (new_xpos, ypos, redFont[ch].getWidth(this), ABSTAND);
-//					    }
-//				    }
-
-                    g.drawImage(TempIm, new_xpos, ypos + offset);
-                    cache[Counter] = TempIm;
-                    Inhalt[Counter][1] = ch;
-                    Inhalt[Counter][2] = Farbe;
-                    Counter++;
-                    // System.out.print (Counter + "  ");
-                    if (Counter == GROESSE) {
-                        Counter = 1;
+                    g.drawImage(tempIm, newXpos, yPos + offset);
+                    cache[counter] = tempIm;
+                    cacheContent[counter][1] = ch;
+                    cacheContent[counter][2] = color;
+                    counter++;
+                    if (counter == CACHE_SIZE) {
+                        counter = 1;
                     }
                 }
             } else {
-//			if ((clear_background == true) && (override_clear == false))
-//			    {
-//				if (raster_background == true)
-//				    {
-//					for (int k = new_xpos; k <= (new_xpos + redFont[ch].getWidth(this)); k++) {
-//					    for (int j = ypos; j <= (ypos + ABSTAND); j++) {
-//						if (((k+j) % 2) == 0)
-//						    g.clearRect (k, j, 1, 1);
-//					    }
-//					}
-//				    }
-//				else
-//				    {
-//					g.clearRect (new_xpos, ypos, redFont[ch].getWidth(this), ABSTAND);
-//				    }
-//			    }
-
-                g.drawImage(redFont[ch], new_xpos, ypos + offset);
+                g.drawImage(redFont[ch], newXpos, yPos + offset);
             }
-            new_xpos += redFont[ch].getWidth();
+            newXpos += redFont[ch].getWidth();
         }
     }
 
     // Gibt den Code des Sonderzeichens zurueck
-    private int evalSpecialChar(int s_char) {
+    private int evalSpecialChar(int sChar) {
         int temp = 1;
 
-        switch (s_char) {
+        switch (sChar) {
             // kleine sorb. Sonderzeichen
             case 99:
                 temp = 200;
@@ -427,7 +336,7 @@ public class ImageFont {
                 temp = 238;
                 break;             // klein r-Strich (x)
             default:
-                log.error("Achtung !!!!!!!!!! Falsches Sonderzeichen '{}' - Space auf dem Screen !!!!!!!!!!!!!", s_char);
+                log.error("Achtung !!!!!!!!!! Falsches Sonderzeichen '{}' - Space auf dem Screen !!!!!!!!!!!!!", sChar);
                 break;
         }
 
@@ -435,12 +344,12 @@ public class ImageFont {
     }
 
     // Ermittelt die X - Breite eines vorgegebenen Textes (wurst, wie lang und wieviele Zeichen)
-    public int LineLength(String Text) {
-        int bis = Text.length();
+    public int lineLength(String text) {
+        int bis = text.length();
         int laenge = 0;
         int tLaenge = 0;
         for (int i = 0; i < bis; i++) {
-            int ch = Text.charAt(i);
+            int ch = text.charAt(i);
             if (ch == '$') {
                 if (tLaenge > laenge) {
                     laenge = tLaenge;
@@ -452,7 +361,7 @@ public class ImageFont {
                 } else {
                     if (ch == '#') {
                         i++;
-                        ch = Text.charAt(i);
+                        ch = text.charAt(i);
                         tLaenge += redFont[evalSpecialChar(ch)].getWidth();
                     } else {
                         tLaenge += redFont[ch].getWidth();
@@ -467,12 +376,12 @@ public class ImageFont {
     }
 
     // Routine, die Text ueber gegebene x - Koordinate im Viewport zentriert
-    public GenericPoint CenterText(String Text, GenericPoint posit) {
+    public GenericPoint centerText(String text, GenericPoint position) {
         // Laenge des Textes in Pixeln ermitteln
-        int laenge = LineLength(Text);
+        int laenge = lineLength(text);
 
         // zentrierte x - Position ermitteln
-        int x = posit.x - laenge / 2;
+        int x = position.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
         if (x < mainFrame.scrollX + 15) {
@@ -484,26 +393,26 @@ public class ImageFont {
         }
 
         // y - Position ueber der Figur anpassen
-        int y = posit.y - (ZeilenAnzahl(Text) - 1) * ABSTAND;
+        int y = position.y - (getLineCount(text) - 1) * LINE_HEIGHT;
 
         // Redelaenge festlegen
-        RedeLaenge(Text);
+        initTalkLength(text);
 
         return new GenericPoint(x, y);
     }
 
     // Routine zum Festlegen des TalkCount - Zaehlers
-    private void RedeLaenge(String Text) {
+    private void initTalkLength(String text) {
         int zaehle = 0;
-        int laenge = Text.length();
+        int laenge = text.length();
 
         for (int i = 0; i < laenge; i++) {
-            int ch = Text.charAt(i);
+            int ch = text.charAt(i);
             if (ch != 36 && ch != 32 && ch != 35) {
                 zaehle++;
             }
         }
-        int zwiwert = zaehle * ZEIT;
+        int zwiwert = zaehle * TIME;
         if (zwiwert < 30) {
             zwiwert = 30;
         }
@@ -512,12 +421,12 @@ public class ImageFont {
     }
 
     // Routine, die Zeilen des Textes zaehlt und damit die Y - Breite bekanntgibt
-    public int ZeilenAnzahl(String Text) {
+    public int getLineCount(String text) {
         int zaehle = 1;
-        int laenge = Text.length();
+        int laenge = text.length();
 
         for (int i = 1; i < laenge; i++) {
-            int ch = Text.charAt(i);
+            int ch = text.charAt(i);
             if (ch == 36) {
                 zaehle++;
             }
@@ -526,30 +435,30 @@ public class ImageFont {
     }
 
     // Routine, die Text genau ueber Krabat zentriert
-    public GenericPoint KrabatText(String Text) {
-        BorderRect tmp = mainFrame.krabat.getRect();
+    public GenericPoint krabatText(String text) {
+        BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
         // Default : Abstand der letzten Zeile ist 25 Pixel von Krabat
-        int ypos = tmp.lo_point.y - 2 * ABSTAND;
-        int xpos = (tmp.lo_point.x + tmp.ru_point.x) / 2;
+        int ypos = tmp.topLeftPoint.y - 2 * LINE_HEIGHT;
+        int xpos = (tmp.topLeftPoint.x + tmp.bottomRightPoint.x) / 2;
 
-        GenericPoint KraPoint = CenterText(Text, new GenericPoint(xpos, ypos));
+        GenericPoint krabatPoint = centerText(text, new GenericPoint(xpos, ypos));
 
         // Text nicht oben verschwinden lassen, lieber unter Krabat setzen
-        if (KraPoint.y < 20) {
-            KraPoint.y = tmp.ru_point.y + ABSTAND;
+        if (krabatPoint.y < 20) {
+            krabatPoint.y = tmp.bottomRightPoint.y + LINE_HEIGHT;
         }
 
-        return KraPoint;
+        return krabatPoint;
     }
 
     // Routine, die Text ueber gegebene x - Koordinate im Viewport zentriert
-    public GenericPoint CenterAnimText(String Text, GenericPoint posit) {
+    public GenericPoint centerAnimText(String text, GenericPoint position) {
         // Laenge des Textes in Pixeln ermitteln
-        int laenge = LineLength(Text);
+        int laenge = lineLength(text);
 
         // zentrierte x - Position ermitteln
-        int x = posit.x - laenge / 2;
+        int x = position.x - laenge / 2;
 
         // x - Position dem Viewport anpassen
         if (x < mainFrame.scrollX + 15) {
@@ -561,21 +470,18 @@ public class ImageFont {
         }
 
         // y - Position ueber der Figur anpassen
-        int y = posit.y - (ZeilenAnzahl(Text) - 1) * ABSTAND;
-
-        // Redelaenge festlegen
-        // RedeLaenge (Text);
+        int y = position.y - (getLineCount(text) - 1) * LINE_HEIGHT;
 
         return new GenericPoint(x, y);
     }
 
-    public String TeileTextKey(String langKey) {
-        String input = Start.stringManager.getTranslation(langKey);
-        return TeileText(input);
+    public String splitTextKey(String langKey) {
+        String input = Start.STRING_MANAGER.getTranslation(langKey);
+        return splitText(input);
     }
 
     // Optimierte Methode, die die Zeilenbreite direkt aufsummiert
-    public String TeileText(String input) {
+    public String splitText(String input) {
         // Eingabetext trimmen
         String inputTrimmed = input.trim();
 

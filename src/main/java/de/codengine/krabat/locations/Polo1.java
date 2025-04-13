@@ -85,9 +85,9 @@ public class Polo1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 9.8f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 9.8f;
+        mainFrame.krabat.defaultScale = 0;
 
         agnes = new FarmerHanza(mainFrame);
         michael = new FarmerMichal(mainFrame);
@@ -95,7 +95,7 @@ public class Polo1 extends MainLocation {
 
         evalPersons();
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
@@ -111,7 +111,7 @@ public class Polo1 extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 100, 0, 30, 397, 427));
@@ -119,13 +119,13 @@ public class Polo1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(592, 639, 201, 360, 299, 352));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(3);
+        mainFrame.pathFinder.clearMatrix(3);
 
         // Wege eintragen
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -135,18 +135,18 @@ public class Polo1 extends MainLocation {
                 // von Kulow aus
                 BackgroundMusicPlayer.getInstance().playTrack(26, true);
                 mainFrame.krabat.setPos(new GenericPoint(536, 314));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
             case 10:
                 // von Weiden aus
                 mainFrame.krabat.setPos(new GenericPoint(34, 413));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/polo/polo.png");
         polo2 = getPicture("gfx/polo/polo2.png");
         polo3 = getPicture("gfx/polo/polo3.png");
@@ -173,28 +173,11 @@ public class Polo1 extends MainLocation {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-
-        // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-	/*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
-	  {
-	  Dialog.paintMultiple (g);
-	  return;
-	  }*/
-
-        // Kamuski wurden aufgehoben!!!!!!!!!
-	/*if (mainFrame.krabat.fAnimHelper == true)
-	    {
-		mainFrame.inventory.vInventory.addElement (new Integer (12));
-		mainFrame.Clipset = false; 
-		mainFrame.krabat.fAnimHelper = false;
-		mainFrame.Actions [912] = true;
-		}*/
-
         // Clipping -Region initialisieren
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -225,7 +208,7 @@ public class Polo1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -237,28 +220,28 @@ public class Polo1 extends MainLocation {
 
         // Michal
         g.setClip(michalPoint.x, michalPoint.y, FarmerMichal.Breite, FarmerMichal.Hoehe);
-        michael.drawMichal(g, TalkPerson, michalPoint, hoertkrabatzu);
+        michael.drawMichal(g, talkPerson, michalPoint, hoertkrabatzu);
 
         // Hanza
         g.setClip(hanzaPoint.x, hanzaPoint.y, FarmerHanza.Breite, FarmerHanza.Hoehe);
-        agnes.drawHanza(g, TalkPerson, hanzaPoint);
+        agnes.drawHanza(g, talkPerson, hanzaPoint);
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -283,8 +266,7 @@ public class Polo1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm polo2 (nur Clipping - Region wird neugezeichnet)
-        if (polo2Rect.IsPointInRect(pKrTemp)) {
-            // System.out.println("drawing");
+        if (polo2Rect.isPointInRect(pKrTemp)) {
             g.drawImage(polo2, 510, 240); //orig 510, 336
         }
 
@@ -294,7 +276,7 @@ public class Polo1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -304,12 +286,12 @@ public class Polo1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -320,8 +302,8 @@ public class Polo1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -342,7 +324,7 @@ public class Polo1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -362,17 +344,17 @@ public class Polo1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Hanza
-                if (hanzaRect.IsPointInRect(pTemp) && !michalRect.IsPointInRect(pTemp)) {
+                if (hanzaRect.isPointInRect(pTemp) && !michalRect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 200;
@@ -388,7 +370,7 @@ public class Polo1 extends MainLocation {
                 }
 
                 // Ausreden fuer Michal
-                if (michalRect.IsPointInRect(pTemp)) {
+                if (michalRect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                             nextActionID = 205;
@@ -404,14 +386,14 @@ public class Polo1 extends MainLocation {
                 }
 
                 // Ausreden fuer Kamuski
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
+                if (kamuskiRect.isPointInRect(pTemp) && !mainFrame.actions[912]) {
                     // rohodz
                     nextActionID = mainFrame.whatItem == 17 ? 220 : 160;
                     pTemp = Pkamuski;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -421,7 +403,7 @@ public class Polo1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -433,89 +415,89 @@ public class Polo1 extends MainLocation {
                 nextActionID = 0;
 
                 // Kamuski ansehen
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
+                if (kamuskiRect.isPointInRect(pTemp) && !mainFrame.actions[912]) {
                     nextActionID = 3;
                     pTemp = Pkamuski;
                 }
 
                 // zu Kulow gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Weiden gehen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Hanza ansehen
-                if (hanzaRect.IsPointInRect(pTemp) || michalRect.IsPointInRect(pTemp)) {
+                if (hanzaRect.isPointInRect(pTemp) || michalRect.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pburja;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Kulow anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weiden anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit den Bauern reden
-                if (michalRect.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp)) {
+                if (michalRect.isPointInRect(pTemp) || hanzaRect.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pburja);
+                    mainFrame.pathWalker.setNewWay(Pburja);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kamuski nehmen
-                if (kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
+                if (kamuskiRect.isPointInRect(pTemp) && !mainFrame.actions[912]) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkamuski);
+                    mainFrame.pathWalker.setNewWay(Pkamuski);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -532,8 +514,8 @@ public class Polo1 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -542,18 +524,18 @@ public class Polo1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || hanzaRect.IsPointInRect(pTemp) ||
-                    michalRect.IsPointInRect(pTemp) || kamuskiRect.IsPointInRect(pTemp) &&
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || hanzaRect.isPointInRect(pTemp) ||
+                    michalRect.isPointInRect(pTemp) || kamuskiRect.isPointInRect(pTemp) &&
                     !mainFrame.actions[912];
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -561,36 +543,36 @@ public class Polo1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (hanzaRect.IsPointInRect(pTemp) ||
-                    michalRect.IsPointInRect(pTemp) ||
-                    kamuskiRect.IsPointInRect(pTemp) && !mainFrame.actions[912]) {
-                if (Cursorform != 1) {
+            if (hanzaRect.isPointInRect(pTemp) ||
+                    michalRect.isPointInRect(pTemp) ||
+                    kamuskiRect.isPointInRect(pTemp) && !mainFrame.actions[912]) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -631,7 +613,7 @@ public class Polo1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -639,7 +621,7 @@ public class Polo1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -647,26 +629,26 @@ public class Polo1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -686,7 +668,7 @@ public class Polo1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -694,18 +676,18 @@ public class Polo1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Burja anschauen
-                KrabatSagt("Polo1_1", fBurja, 3, 0, 0);
+                krabatSays("Polo1_1", fBurja, 3, 0, 0);
                 break;
 
             case 3:
                 // Kamuski anschauen
-                KrabatSagt("Polo1_2", fKamuski, 3, 0, 0);
+                krabatSays("Polo1_2", fKamuski, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Bauern benutzen)
                 hoertkrabatzu = true;
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 600;
@@ -715,20 +697,20 @@ public class Polo1 extends MainLocation {
                 // Kamuski mitnehmen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                KrabatSagt("Polo1_3", fKamuski, 3, 2, 60);
+                krabatSays("Polo1_3", fKamuski, 3, 2, 60);
                 break;
 
             case 60:
                 // Kamuski benutzen
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 mainFrame.inventory.vInventory.addElement(12);
-                mainFrame.pathWalker.SetzeNeuenWeg(pStein1);
+                mainFrame.pathWalker.setNewWay(pStein1);
                 nextActionID = 62;
                 break;
 
             case 62:
                 // ersten Stein aufheben
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 mainFrame.krabat.nAnimation = 122;
                 nextActionID = 64;
                 break;
@@ -739,13 +721,13 @@ public class Polo1 extends MainLocation {
                     break;
                 }
                 stein1verdeckt = true;
-                mainFrame.pathWalker.SetzeNeuenWeg(pStein2);
+                mainFrame.pathWalker.setNewWay(pStein2);
                 nextActionID = 66;
                 break;
 
             case 66:
                 // zweiten Stein aufheben
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 mainFrame.krabat.nAnimation = 122;
                 nextActionID = 68;
                 break;
@@ -756,13 +738,13 @@ public class Polo1 extends MainLocation {
                     break;
                 }
                 stein2verdeckt = true;
-                mainFrame.pathWalker.SetzeNeuenWeg(pStein3);
+                mainFrame.pathWalker.setNewWay(pStein3);
                 nextActionID = 70;
                 break;
 
             case 70:
                 // dritten Stein aufheben
-                mainFrame.krabat.SetFacing(12);
+                mainFrame.krabat.setFacing(12);
                 mainFrame.krabat.nAnimation = 122;
                 nextActionID = 72;
                 break;
@@ -782,76 +764,76 @@ public class Polo1 extends MainLocation {
 
             case 100:
                 // gehe zu Weiden
-                NeuesBild(10, 11);
+                createNewLocation(10, 11);
                 break;
 
             case 101:
                 // Goto Kulow
-                NeuesBild(21, 11);
+                createNewLocation(21, 11);
                 break;
 
             case 150:
                 // Hanza - Ausreden
-                WPersonAusrede(fBurja);
+                femaleExcuse(fBurja);
                 break;
 
             case 155:
                 // Michal - Ausreden
-                MPersonAusrede(fBurja);
+                maleExcuse(fBurja);
                 break;
 
             case 160:
                 // kamuski - Ausreden
-                DingAusrede(fKamuski);
+                thingExcuse(fKamuski);
                 break;
 
             case 200:
                 // kij auf hanza
-                KrabatSagt("Polo1_4", fBurja, 3, 0, 0);
+                krabatSays("Polo1_4", fBurja, 3, 0, 0);
                 break;
 
             case 205:
                 // kij auf michal
-                KrabatSagt("Polo1_5", fBurja, 3, 0, 0);
+                krabatSays("Polo1_5", fBurja, 3, 0, 0);
                 break;
 
             case 210:
                 // bron auf hanza
-                KrabatSagt("Polo1_6", fBurja, 3, 0, 0);
+                krabatSays("Polo1_6", fBurja, 3, 0, 0);
                 break;
 
             case 215:
                 // bron auf michal
-                KrabatSagt("Polo1_7", fBurja, 3, 0, 0);
+                krabatSays("Polo1_7", fBurja, 3, 0, 0);
                 break;
 
             case 220:
                 // rohodz auf kamuski
-                KrabatSagt("Polo1_8", fKamuski, 3, 0, 0);
+                krabatSays("Polo1_8", fKamuski, 3, 0, 0);
                 break;
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Polo1_29", 1000, 100, new int[]{100}, 610);
-                Dialog.ExtendMC("Polo1_30", 100, 101, new int[]{101}, 620);
-                Dialog.ExtendMC("Polo1_31", 101, 102, new int[]{102, 106, 109}, 630);
+                Dialog.extend("Polo1_29", 1000, 100, new int[]{100}, 610);
+                Dialog.extend("Polo1_30", 100, 101, new int[]{101}, 620);
+                Dialog.extend("Polo1_31", 101, 102, new int[]{102, 106, 109}, 630);
 
                 // 2. Frage
-                Dialog.ExtendMC("Polo1_32", 1000, 103, new int[]{103}, 640);
-                Dialog.ExtendMC("Polo1_33", 103, 104, new int[]{104}, 650);
-                Dialog.ExtendMC("Polo1_34", 104, 1000, null, 660);
+                Dialog.extend("Polo1_32", 1000, 103, new int[]{103}, 640);
+                Dialog.extend("Polo1_33", 103, 104, new int[]{104}, 650);
+                Dialog.extend("Polo1_34", 104, 1000, null, 660);
 
                 // 4. Frage
-                Dialog.ExtendMC("Polo1_35", 106, 107, new int[]{107}, 670);
-                Dialog.ExtendMC("Polo1_36", 107, 1000, null, 680);
+                Dialog.extend("Polo1_35", 106, 107, new int[]{107}, 670);
+                Dialog.extend("Polo1_36", 107, 1000, null, 680);
 
                 // 5. Frage
-                Dialog.ExtendMC("Polo1_37", 109, 110, new int[]{110}, 690);
+                Dialog.extend("Polo1_37", 109, 110, new int[]{110}, 690);
 
                 // 3. Frage
-                Dialog.ExtendMC("Polo1_38", 1000, 1000, null, 800);
+                Dialog.extend("Polo1_38", 1000, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -864,113 +846,113 @@ public class Polo1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 610:
                 // Reaktion Michal auf 1. Teil 1. Frage
-                PersonSagt("Polo1_9", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_9", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 620:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt("Polo1_10", 0, 28, 2, 621, michalTalk);
+                personSays("Polo1_10", 0, 28, 2, 621, michalTalk);
                 break;
 
             case 621:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt("Polo1_11", 0, 28, 2, 622, michalTalk);
+                personSays("Polo1_11", 0, 28, 2, 622, michalTalk);
                 break;
 
             case 622:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt("Polo1_12", 0, 28, 0, 623, michalTalk);
+                personSays("Polo1_12", 0, 28, 0, 623, michalTalk);
                 break;
 
             case 623:
                 // Reaktion Hanza auf 2. Teil 1. Frage
-                PersonSagt("Polo1_13", 0, 29, 0, 624, hanzaTalk);
+                personSays("Polo1_13", 0, 29, 0, 624, hanzaTalk);
                 break;
 
             case 624:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt("Polo1_14", 0, 28, 2, 625, michalTalk);
+                personSays("Polo1_14", 0, 28, 2, 625, michalTalk);
                 break;
 
             case 625:
                 // Reaktion Michal auf 2. Teil 1. Frage
-                PersonSagt("Polo1_15", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_15", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 630:
                 // Reaktion Michal auf 3. Teil 1. Frage
-                PersonSagt("Polo1_16", 0, 28, 2, 631, michalTalk);
+                personSays("Polo1_16", 0, 28, 2, 631, michalTalk);
                 break;
 
             case 631:
                 // Reaktion Michal auf 3. Teil 1. Frage
-                PersonSagt("Polo1_17", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_17", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 640:
                 // Reaktion Michal auf 1. Teil 2. Frage
-                PersonSagt("Polo1_18", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_18", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 650:
                 // Reaktion Michal auf 2. Teil 2. Frage
-                PersonSagt("Polo1_19", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_19", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 660:
                 // Reaktion Michal auf 3. Teil 2. Frage
-                PersonSagt("Polo1_20", 0, 28, 2, 661, michalTalk);
+                personSays("Polo1_20", 0, 28, 2, 661, michalTalk);
                 break;
 
             case 661:
                 // Reaktion Michal auf 3. Teil 2. Frage
-                PersonSagt("Polo1_21", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_21", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 670:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt("Polo1_22", 0, 28, 2, 671, michalTalk);
+                personSays("Polo1_22", 0, 28, 2, 671, michalTalk);
                 break;
 
             case 671:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt("Polo1_23", 0, 28, 2, 672, michalTalk);
+                personSays("Polo1_23", 0, 28, 2, 672, michalTalk);
                 break;
 
             case 672:
                 // Reaktion Michal auf 1. Teil 4. Frage
-                PersonSagt("Polo1_24", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_24", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 680:
                 // Reaktion Michal auf 2. Teil 4. Frage
-                PersonSagt("Polo1_25", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_25", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 690:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt("Polo1_26", 0, 28, 2, 691, michalTalk);
+                personSays("Polo1_26", 0, 28, 2, 691, michalTalk);
                 break;
 
             case 691:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt("Polo1_27", 0, 28, 2, 692, michalTalk);
+                personSays("Polo1_27", 0, 28, 2, 692, michalTalk);
                 break;
 
             case 692:
                 // Reaktion Michal auf 1. Teil 5. Frage
-                PersonSagt("Polo1_28", 0, 28, 2, 600, michalTalk);
+                personSays("Polo1_28", 0, 28, 2, 600, michalTalk);
                 break;
 
             case 800:

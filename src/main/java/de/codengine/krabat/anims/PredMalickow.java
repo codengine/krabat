@@ -63,7 +63,7 @@ public class PredMalickow extends MainAnim {
         pred_call = new GenericImage[5];
         pred_talk = new GenericImage[7];
 
-        InitImages();
+        initImages();
 
         Verhinderstand = MAX_VERHINDERSTAND;
         Verhindercall = MAX_VERHINDERCALL;
@@ -72,7 +72,7 @@ public class PredMalickow extends MainAnim {
         walkpunkt = new GenericPoint(punkt.x, punkt.y);
     }
 
-    private void InitImages() {
+    private void initImages() {
         pred_stand[0] = getPicture("gfx-dd/starewiki/faelscher1.png");
         pred_stand[1] = getPicture("gfx-dd/starewiki/faelscher1a.png");
         pred_stand[2] = getPicture("gfx-dd/starewiki/faelscher1b.png");

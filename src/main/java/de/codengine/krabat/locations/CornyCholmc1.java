@@ -66,18 +66,18 @@ public class CornyCholmc1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 4.2f;
-        mainFrame.krabat.defScale = 20;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 4.2f;
+        mainFrame.krabat.defaultScale = 20;
 
         Dialog = new MultipleChoice(mainFrame);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(437, 490, 472, 497, 466, 479));
@@ -87,20 +87,20 @@ public class CornyCholmc1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(153, 163, 169, 184, 276, 324));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
 
-        InitImages();
+        initImages();
         if (oldLocation > 50 && oldLocation < 62) {
             // von Bludnickis teleportiert
             BackgroundMusicPlayer.getInstance().playTrack(26, true);
             mainFrame.krabat.setPos(new GenericPoint(161, 276));
-            mainFrame.krabat.SetFacing(6);
+            mainFrame.krabat.setFacing(6);
         } else {
             switch (oldLocation) {
                 case 0:
@@ -114,19 +114,17 @@ public class CornyCholmc1 extends MainLocation {
                         BackgroundMusicPlayer.getInstance().playTrack(26, true);
                     }
                     mainFrame.krabat.setPos(new GenericPoint(463, 468));
-                    mainFrame.krabat.SetFacing(12);
+                    mainFrame.krabat.setFacing(12);
                     break;
                 case 26:
                     // von Mlynkkolmc aus, Position nicht veraendern...
-			/*mainFrame.krabat.SetKrabatPos (new GenericPoint (213, 376));
-			  mainFrame.krabat.SetFacing (12);*/
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                     break;
                 case 62:
                     // von Labyrinth aus
                     BackgroundMusicPlayer.getInstance().playTrack(26, true);
                     mainFrame.krabat.setPos(new GenericPoint(161, 286));
-                    mainFrame.krabat.SetFacing(6);
+                    mainFrame.krabat.setFacing(6);
                     break;
             }
         }
@@ -134,7 +132,7 @@ public class CornyCholmc1 extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/kolmc/kolmc2.png");
         himmel = getPicture("gfx/kolmc/kcsky1.png");
         vorder = getPicture("gfx/kolmc/kwald.png");
@@ -163,7 +161,7 @@ public class CornyCholmc1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -177,24 +175,24 @@ public class CornyCholmc1 extends MainLocation {
         g.drawImage(vorder, vorderWaldRect.getX(), vorderWaldRect.getY());
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -221,7 +219,7 @@ public class CornyCholmc1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -231,12 +229,12 @@ public class CornyCholmc1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -247,8 +245,8 @@ public class CornyCholmc1 extends MainLocation {
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -269,7 +267,7 @@ public class CornyCholmc1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -289,31 +287,31 @@ public class CornyCholmc1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Wald
-                if (waldRect.IsPointInRect(pTemp)) {
+                if (waldRect.isPointInRect(pTemp)) {
                     // Kamuski
                     nextActionID = mainFrame.whatItem == 12 ? 200 : 150;
                     pTemp = Pwald;
                 }
 
                 // Ausreden fuer Kolmc
-                if (kolmcRect.IsPointInRect(pTemp)) {
+                if (kolmcRect.isPointInRect(pTemp)) {
                     // Standard - Sinnloszeug
                     nextActionID = 155;
                     pTemp = Pkolmc;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -323,7 +321,7 @@ public class CornyCholmc1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -335,89 +333,89 @@ public class CornyCholmc1 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Villa gehen ?
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!untererAusgang.IsPointInRect(kt)) {
+                    if (!untererAusgang.isPointInRect(kt)) {
                         pTemp = Pdown;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pdown.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Labyrinth gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Wald ansehen
-                if (waldRect.IsPointInRect(pTemp)) {
+                if (waldRect.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pwald;
                 }
 
                 // Kolmc ansehen
-                if (kolmcRect.IsPointInRect(pTemp)) {
+                if (kolmcRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pkolmc;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Hojnt Anschauen
-                if (untererAusgang.IsPointInRect(pTemp)) {
+                if (untererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Villa anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit dem Wald reden
-                if (waldRect.IsPointInRect(pTemp)) {
+                if (waldRect.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwald);
+                    mainFrame.pathWalker.setNewWay(Pwald);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kolmc mitnehmen
-                if (kolmcRect.IsPointInRect(pTemp)) {
+                if (kolmcRect.isPointInRect(pTemp)) {
                     nextActionID = 85;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkolmc);
+                    mainFrame.pathWalker.setNewWay(Pkolmc);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -434,8 +432,8 @@ public class CornyCholmc1 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -444,17 +442,17 @@ public class CornyCholmc1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || waldRect.IsPointInRect(pTemp) ||
-                    kolmcRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || waldRect.isPointInRect(pTemp) ||
+                    kolmcRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -462,34 +460,34 @@ public class CornyCholmc1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (waldRect.IsPointInRect(pTemp) || kolmcRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (waldRect.isPointInRect(pTemp) || kolmcRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
-            if (untererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 5) {
+            if (untererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 5) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 5;
+                    cursorShape = 5;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -531,7 +529,7 @@ public class CornyCholmc1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -539,7 +537,7 @@ public class CornyCholmc1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -547,26 +545,26 @@ public class CornyCholmc1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -586,7 +584,7 @@ public class CornyCholmc1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -594,15 +592,15 @@ public class CornyCholmc1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Wald anschauen
-                KrabatSagt("CornyCholmc1_1", fWald, 3, 0, 0);
+                krabatSays("CornyCholmc1_1", fWald, 3, 0, 0);
                 break;
 
             case 2:
                 // Kolmc anschauen
                 if (!mainFrame.actions[225]) {
-                    KrabatSagt("CornyCholmc1_2", fWjes, 3, 0, 0);
+                    krabatSays("CornyCholmc1_2", fWjes, 3, 0, 0);
                 } else {
-                    KrabatSagt("CornyCholmc1_3", fWjes, 3, 0, 0);
+                    krabatSays("CornyCholmc1_3", fWjes, 3, 0, 0);
                 }
                 break;
 
@@ -610,7 +608,7 @@ public class CornyCholmc1 extends MainLocation {
                 // Wald benutzen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fWald);
+                mainFrame.krabat.setFacing(fWald);
                 // 3 Moeglichkeiten: 1. Echoanim
                 //                   2. Sprueche rufen ohne den richtigen
                 //                   3. Sprueche rufen mit dem richtigen
@@ -631,22 +629,22 @@ public class CornyCholmc1 extends MainLocation {
 
             case 60:
                 // Wald Anim
-                KrabatSagt("CornyCholmc1_4", fWald, 1, 2, 65);
+                krabatSays("CornyCholmc1_4", fWald, 1, 2, 65);
                 break;
 
             case 65:
                 // Wald Anim
-                PersonSagt("CornyCholmc1_5", 0, 51, 2, 70, waldTalk);
+                personSays("CornyCholmc1_5", 0, 51, 2, 70, waldTalk);
                 break;
 
             case 70:
                 // Wald Anim
-                KrabatSagt("CornyCholmc1_6", 0, 3, 2, 75);
+                krabatSays("CornyCholmc1_6", 0, 3, 2, 75);
                 break;
 
             case 75:
                 // Wald Anim
-                KrabatSagt("CornyCholmc1_7", 0, 3, 2, 80);
+                krabatSays("CornyCholmc1_7", 0, 3, 2, 80);
                 break;
 
             case 80:
@@ -659,12 +657,12 @@ public class CornyCholmc1 extends MainLocation {
 
             case 85:
                 // Kolmc mitnehmen
-                KrabatSagt("CornyCholmc1_8", fWjes, 3, 0, 0);
+                krabatSays("CornyCholmc1_8", fWjes, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Villa
-                NeuesBild(16, 17);
+                createNewLocation(16, 17);
                 break;
 
             case 101:
@@ -679,25 +677,25 @@ public class CornyCholmc1 extends MainLocation {
 
             case 150:
                 // Wald - Ausreden
-                DingAusrede(fWald);
+                thingExcuse(fWald);
                 break;
 
             case 155:
                 // Kolmc - Ausreden
-                DingAusrede(fWjes);
+                thingExcuse(fWjes);
                 break;
 
             case 600:
                 // Multiple - Choice - Routine, Mueller kommt aber nie
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("CornyCholmc1_13", 1000, 1000, null, 610);
+                Dialog.extend("CornyCholmc1_13", 1000, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMC("CornyCholmc1_14", 1000, 1000, null, 620);
+                Dialog.extend("CornyCholmc1_14", 1000, 1000, null, 620);
 
                 // 3. Frage
-                Dialog.ExtendMC("CornyCholmc1_15", 1000, 1000, null, 630);
+                Dialog.extend("CornyCholmc1_15", 1000, 1000, null, 630);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -711,28 +709,28 @@ public class CornyCholmc1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 610:
                 // Wald Antwort
-                PersonSagt("CornyCholmc1_9", 0, 51, 2, 700, waldTalk);
+                personSays("CornyCholmc1_9", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 620:
                 // Wald Antwort
-                PersonSagt("CornyCholmc1_10", 0, 51, 2, 700, waldTalk);
+                personSays("CornyCholmc1_10", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 630:
                 // Wald Antwort
-                PersonSagt("CornyCholmc1_11", 0, 51, 2, 700, waldTalk);
+                personSays("CornyCholmc1_11", 0, 51, 2, 700, waldTalk);
                 break;
 
             case 700:
@@ -745,15 +743,15 @@ public class CornyCholmc1 extends MainLocation {
 
             case 1000:
                 // Multiple - Choice - Routine, Mueller kommt bei letztem Spruch
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("CornyCholmc1_16", 1000, 1000, null, 610);
+                Dialog.extend("CornyCholmc1_16", 1000, 1000, null, 610);
 
                 // 2. Frage
-                Dialog.ExtendMC("CornyCholmc1_17", 1000, 1000, null, 620);
+                Dialog.extend("CornyCholmc1_17", 1000, 1000, null, 620);
 
                 // 3. Frage
-                Dialog.ExtendMC("CornyCholmc1_18", 1000, 1000, null, 1010);
+                Dialog.extend("CornyCholmc1_18", 1000, 1000, null, 1010);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -764,7 +762,7 @@ public class CornyCholmc1 extends MainLocation {
 
             case 1010:
                 // Wald Antwort
-                PersonSagt("CornyCholmc1_12", 0, 51, 2, 0, waldTalk);
+                personSays("CornyCholmc1_12", 0, 51, 2, 0, waldTalk);
                 // Test, ob Mueller auch kommen darf
                 if (!mainFrame.actions[226] || mainFrame.actions[919]) {
                     nextActionID = 1020;
@@ -775,7 +773,7 @@ public class CornyCholmc1 extends MainLocation {
 
             case 1020:
                 // Goto Mlynkkolmc
-                NeuesBild(26, 17);
+                createNewLocation(26, 17);
                 break;
 
             default:

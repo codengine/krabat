@@ -32,25 +32,25 @@ import java.util.Objects;
 
 public class Map extends MainAnim {
     private static final Logger log = LoggerFactory.getLogger(Map.class);
-    private GenericImage karta;
+    private GenericImage map;
     private String outputText = "";
     private GenericPoint outputTextPos;
-    private int newort = 0;
-    private int oldort = 0;
-    private int Cursorform = 200;
-    private boolean Paintcall = false;
+    private int newLocation = 0;
+    private int oldLocation = 0;
+    private int cursorShape = 200;
+    private boolean paintCall = false;
 
-    private static final GenericPoint Plo = new GenericPoint(87, 18);
+    private static final GenericPoint POINT_LOCATION = new GenericPoint(87, 18);
 
-    private static final int Offset = 25;
+    private static final int OFFSET = 25;
 
-    private final GenericPoint Pkulow;
-    private final GenericPoint Pnjedz;
-    private final GenericPoint Psunow;
-    private final GenericPoint Pralbicy;
-    private final GenericPoint Pjitk;
-    private final GenericPoint Pzdzary;
-    private final GenericPoint Pkolmc;
+    private final GenericPoint kulowPoint;
+    private final GenericPoint njedzPoint;
+    private final GenericPoint sunowPoint;
+    private final GenericPoint ralbicyPoint;
+    private final GenericPoint jitkPoint;
+    private final GenericPoint zdzaryPoint;
+    private final GenericPoint kolmcPoint;
 
     private final BorderRect kulowRect;
     private final BorderRect njedzRect;
@@ -60,7 +60,7 @@ public class Map extends MainAnim {
     private final BorderRect zdzaryRect;
     private final BorderRect kolmcRect;
 
-    private final BorderRect brGesamt;
+    private final BorderRect brTotal;
 
     // Initialisierung ////////////////////////////////////////////////////////
 
@@ -69,47 +69,47 @@ public class Map extends MainAnim {
         super(caller);
         mainFrame.freeze(true);
 
-        InitImages();
+        initImages();
 
-        kulowRect = new BorderRect(231 + Plo.x, 55 + Plo.y, 290 + Plo.x, 106 + Plo.y);
-        njedzRect = new BorderRect(109 + Plo.x, 96 + Plo.y, 150 + Plo.x, 124 + Plo.y);
-        sunowRect = new BorderRect(213 + Plo.x, 237 + Plo.y, 264 + Plo.x, 274 + Plo.y);
-        ralbicyRect = new BorderRect(166 + Plo.x, 315 + Plo.y, 223 + Plo.x, 361 + Plo.y);
-        jitkRect = new BorderRect(242 + Plo.x, 348 + Plo.y, 284 + Plo.x, 414 + Plo.y);
-        zdzaryRect = new BorderRect(372 + Plo.x, 147 + Plo.y, 397 + Plo.x, 168 + Plo.y);
-        kolmcRect = new BorderRect(140 + Plo.x, 35 + Plo.y, 177 + Plo.x, 61 + Plo.y);
+        kulowRect = new BorderRect(231 + POINT_LOCATION.x, 55 + POINT_LOCATION.y, 290 + POINT_LOCATION.x, 106 + POINT_LOCATION.y);
+        njedzRect = new BorderRect(109 + POINT_LOCATION.x, 96 + POINT_LOCATION.y, 150 + POINT_LOCATION.x, 124 + POINT_LOCATION.y);
+        sunowRect = new BorderRect(213 + POINT_LOCATION.x, 237 + POINT_LOCATION.y, 264 + POINT_LOCATION.x, 274 + POINT_LOCATION.y);
+        ralbicyRect = new BorderRect(166 + POINT_LOCATION.x, 315 + POINT_LOCATION.y, 223 + POINT_LOCATION.x, 361 + POINT_LOCATION.y);
+        jitkRect = new BorderRect(242 + POINT_LOCATION.x, 348 + POINT_LOCATION.y, 284 + POINT_LOCATION.x, 414 + POINT_LOCATION.y);
+        zdzaryRect = new BorderRect(372 + POINT_LOCATION.x, 147 + POINT_LOCATION.y, 397 + POINT_LOCATION.x, 168 + POINT_LOCATION.y);
+        kolmcRect = new BorderRect(140 + POINT_LOCATION.x, 35 + POINT_LOCATION.y, 177 + POINT_LOCATION.x, 61 + POINT_LOCATION.y);
 
-        brGesamt = new BorderRect(57 + Plo.x, 0, 436 + Plo.x, 479);
+        brTotal = new BorderRect(57 + POINT_LOCATION.x, 0, 436 + POINT_LOCATION.x, 479);
 
-        Pkulow = new GenericPoint(265 + Plo.x, 49 + Plo.y - Offset);
-        Pnjedz = new GenericPoint(91 + Plo.x, 90 + Plo.y - Offset);
-        Psunow = new GenericPoint(237 + Plo.x, 233 + Plo.y - Offset);
-        Pralbicy = new GenericPoint(192 + Plo.x, 316 + Plo.y - Offset);
-        Pjitk = new GenericPoint(260 + Plo.x, 342 + Plo.y - Offset);
-        Pzdzary = new GenericPoint(352 + Plo.x, 142 + Plo.y - Offset);
-        Pkolmc = new GenericPoint(186 + Plo.x, 61 + Plo.y - Offset);
+        kulowPoint = new GenericPoint(265 + POINT_LOCATION.x, 49 + POINT_LOCATION.y - OFFSET);
+        njedzPoint = new GenericPoint(91 + POINT_LOCATION.x, 90 + POINT_LOCATION.y - OFFSET);
+        sunowPoint = new GenericPoint(237 + POINT_LOCATION.x, 233 + POINT_LOCATION.y - OFFSET);
+        ralbicyPoint = new GenericPoint(192 + POINT_LOCATION.x, 316 + POINT_LOCATION.y - OFFSET);
+        jitkPoint = new GenericPoint(260 + POINT_LOCATION.x, 342 + POINT_LOCATION.y - OFFSET);
+        zdzaryPoint = new GenericPoint(352 + POINT_LOCATION.x, 142 + POINT_LOCATION.y - OFFSET);
+        kolmcPoint = new GenericPoint(186 + POINT_LOCATION.x, 61 + POINT_LOCATION.y - OFFSET);
 
         mainFrame.freeze(false);
-        Paintcall = true;
+        paintCall = true;
         evalMouseMoveEvent(mainFrame.mousePoint);
     }
 
     // Bilder vorbereiten
-    public void InitImages() {
-        karta = getPicture("gfx/karta/karta.png");
+    public void initImages() {
+        map = getPicture("gfx/karta/karta.png");
     }
 
 
     // Paint-Routine dieser Location //////////////////////////////////////////
 
-    public void paintKarte(GenericDrawingContext g) {
+    public void paintMap(GenericDrawingContext g) {
 
         // Karte - Background zeichnen
         if (!mainFrame.isClipSet) {
             g.setClip(0, 0, 1280, 480);
-            g.drawImage(karta, mainFrame.scrollX + Plo.x, mainFrame.scrollY + Plo.y);
-            Cursorform = 200;
-            Paintcall = true;
+            g.drawImage(map, mainFrame.scrollX + POINT_LOCATION.x, mainFrame.scrollY + POINT_LOCATION.y);
+            cursorShape = 200;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
         }
 
@@ -118,7 +118,7 @@ public class Map extends MainAnim {
             // Textausgabe
             mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, 0xffff0000);
         }
-        oldort = newort;
+        oldLocation = newLocation;
     }
 
     public void evalMouseExitEvent() {
@@ -139,8 +139,8 @@ public class Map extends MainAnim {
         // Hier Entscheidung nach Teilen
 
         // wenn ausserhalb der Karte, dann weg
-        if (!brGesamt.IsPointInRect(pTemp)) {
-            Deactivate();
+        if (!brTotal.isPointInRect(pTemp)) {
+            deactivate();
             return;
         }
 
@@ -159,7 +159,7 @@ public class Map extends MainAnim {
             // 7 = kolmc
             // 8 = doma
 
-            if (kulowRect.IsPointInRect(pTemp)) {
+            if (kulowRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(21);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -168,12 +168,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(21);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (njedzRect.IsPointInRect(pTemp)) {
+            if (njedzRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(16);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -182,12 +182,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(16);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (sunowRect.IsPointInRect(pTemp)) {
+            if (sunowRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(13);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -196,12 +196,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(13);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (ralbicyRect.IsPointInRect(pTemp)) {
+            if (ralbicyRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(1);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -210,12 +210,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(1);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (jitkRect.IsPointInRect(pTemp)) {
+            if (jitkRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(3);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -224,12 +224,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(3);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (zdzaryRect.IsPointInRect(pTemp)) {
+            if (zdzaryRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(19);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -238,12 +238,12 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(19);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
                 return;
             }
 
-            if (kolmcRect.IsPointInRect(pTemp)) {
+            if (kolmcRect.isPointInRect(pTemp)) {
                 tloc = evalCurrLocation(17);
                 if (tloc != 0) {
                     mainFrame.enteringFromMap = true;
@@ -252,7 +252,7 @@ public class Map extends MainAnim {
                     mainFrame.constructLocation(17);
                 }
                 mainFrame.isClipSet = false;
-                Deactivate();
+                deactivate();
                 mainFrame.repaint();
             }
         } else {
@@ -260,7 +260,7 @@ public class Map extends MainAnim {
             if (!mainFrame.actions[499]) {
                 int tloc;
 
-                if (kulowRect.IsPointInRect(pTemp)) {
+                if (kulowRect.isPointInRect(pTemp)) {
                     tloc = evalCurrLocation(76);
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
@@ -268,12 +268,12 @@ public class Map extends MainAnim {
                         mainFrame.constructLocation(76);
                     }
                     mainFrame.isClipSet = false;
-                    Deactivate();
+                    deactivate();
                     mainFrame.repaint();
                     return;
                 }
 
-                if (sunowRect.IsPointInRect(pTemp)) {
+                if (sunowRect.isPointInRect(pTemp)) {
                     tloc = evalCurrLocation(87);
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
@@ -281,12 +281,12 @@ public class Map extends MainAnim {
                         mainFrame.constructLocation(87);
                     }
                     mainFrame.isClipSet = false;
-                    Deactivate();
+                    deactivate();
                     mainFrame.repaint();
                     return;
                 }
 
-                if (jitkRect.IsPointInRect(pTemp)) {
+                if (jitkRect.isPointInRect(pTemp)) {
                     tloc = evalCurrLocation(71);
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
@@ -294,12 +294,12 @@ public class Map extends MainAnim {
                         mainFrame.constructLocation(71);
                     }
                     mainFrame.isClipSet = false;
-                    Deactivate();
+                    deactivate();
                     mainFrame.repaint();
                     return;
                 }
 
-                if (zdzaryRect.IsPointInRect(pTemp)) {
+                if (zdzaryRect.isPointInRect(pTemp)) {
                     tloc = evalCurrLocation(93);
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
@@ -307,12 +307,12 @@ public class Map extends MainAnim {
                         mainFrame.constructLocation(93);
                     }
                     mainFrame.isClipSet = false;
-                    Deactivate();
+                    deactivate();
                     mainFrame.repaint();
                     return;
                 }
 
-                if (njedzRect.IsPointInRect(pTemp)) {
+                if (njedzRect.isPointInRect(pTemp)) {
                     tloc = evalCurrLocation(85);
                     if (tloc != 0) {
                         mainFrame.currentLocationIdx = tloc;
@@ -320,51 +320,10 @@ public class Map extends MainAnim {
                         mainFrame.constructLocation(85);
                     }
                     mainFrame.isClipSet = false;
-                    Deactivate();
+                    deactivate();
                     mainFrame.repaint();
                 }
             }
-        /*else
-          {
-          // Hier 3. Teil...
-          // Locationevaluation erst, wenn alle Locations drin
-
-          if (kutsaRect.IsPointInRect (pTemp) == true)
-          {
-          mainFrame.ConstructLocation (120);
-          mainFrame.Clipset = false;
-          Deactivate();
-          mainFrame.repaint();
-          return;
-          }
-
-          if (hrodRect.IsPointInRect (pTemp) == true)
-          {
-          mainFrame.ConstructLocation (130);
-          mainFrame.Clipset = false;
-          Deactivate();
-          mainFrame.repaint();
-          return;
-          }
-
-          if (panorRect.IsPointInRect (pTemp) == true)
-          {
-          mainFrame.ConstructLocation (140);
-          mainFrame.Clipset = false;
-          Deactivate();
-          mainFrame.repaint();
-          return;
-          }
-
-          if (zastupRect.IsPointInRect (pTemp) == true)
-          {
-          mainFrame.ConstructLocation (150);
-          mainFrame.Clipset = false;
-          Deactivate();
-          mainFrame.repaint();
-          return;
-          }
-          }	*/
         }
     }
 
@@ -379,85 +338,66 @@ public class Map extends MainAnim {
         // 7 = kolmc
         // 8 = doma
 
-        newort = 0;
+        newLocation = 0;
 
         // Hier Aufteilung nach Teil
         if (!mainFrame.actions[305]) {
-            if (kulowRect.IsPointInRect(pTemp)) {
-                newort = 1;
+            if (kulowRect.isPointInRect(pTemp)) {
+                newLocation = 1;
             }
-            if (njedzRect.IsPointInRect(pTemp)) {
-                newort = 2;
+            if (njedzRect.isPointInRect(pTemp)) {
+                newLocation = 2;
             }
-            if (sunowRect.IsPointInRect(pTemp)) {
-                newort = 3;
+            if (sunowRect.isPointInRect(pTemp)) {
+                newLocation = 3;
             }
-            if (ralbicyRect.IsPointInRect(pTemp)) {
-                newort = 4;
+            if (ralbicyRect.isPointInRect(pTemp)) {
+                newLocation = 4;
             }
-            if (jitkRect.IsPointInRect(pTemp)) {
-                newort = 5;
+            if (jitkRect.isPointInRect(pTemp)) {
+                newLocation = 5;
             }
-            if (zdzaryRect.IsPointInRect(pTemp)) {
-                newort = 6;
+            if (zdzaryRect.isPointInRect(pTemp)) {
+                newLocation = 6;
             }
-            if (kolmcRect.IsPointInRect(pTemp)) {
-                newort = 7;
+            if (kolmcRect.isPointInRect(pTemp)) {
+                newLocation = 7;
             }
         } else {
             // Hier zur Not 3. Teil noch drin
             if (!mainFrame.actions[499]) {
-                if (kulowRect.IsPointInRect(pTemp)) {
-                    newort = 1;
+                if (kulowRect.isPointInRect(pTemp)) {
+                    newLocation = 1;
                 }
-                if (sunowRect.IsPointInRect(pTemp)) {
-                    newort = 3;
+                if (sunowRect.isPointInRect(pTemp)) {
+                    newLocation = 3;
                 }
-                if (jitkRect.IsPointInRect(pTemp)) {
-                    newort = 5;
+                if (jitkRect.isPointInRect(pTemp)) {
+                    newLocation = 5;
                 }
-                if (zdzaryRect.IsPointInRect(pTemp)) {
-                    newort = 6;
+                if (zdzaryRect.isPointInRect(pTemp)) {
+                    newLocation = 6;
                 }
-                if (njedzRect.IsPointInRect(pTemp)) {
-                    newort = 2;
+                if (njedzRect.isPointInRect(pTemp)) {
+                    newLocation = 2;
                 }
             }
-		/*else
-		  {
-		  if (kutsaRect.IsPointInRect   (pTemp) == true) newort = 9;
-		  if (hrodRect.IsPointInRect    (pTemp) == true) newort = 10;
-		  if (panorRect.IsPointInRect   (pTemp) == true) newort = 11;
-		  if (zastupRect.IsPointInRect  (pTemp) == true) newort = 12;
-		  }	*/
         }
-      
-	/*if ((newort != 0) && (Cursorform != 1))
-	  {
-	  Cursorform = 1;
-	  mainFrame.setCursor (mainFrame.Kreuz);
-	  }
-    
-	  if ((newort == 0) && (Cursorform != 0))
-	  {
-	  Cursorform = 0;
-	  mainFrame.setCursor (mainFrame.Normal);
-	  }	*/
 
-        if (Cursorform != 0) {
-            Cursorform = 0;
+        if (cursorShape != 0) {
+            cursorShape = 0;
             mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
-        evalString(newort);
+        evalString(newLocation);
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
 
-        if (newort != oldort) {
+        if (newLocation != oldLocation) {
             mainFrame.repaint();
         }
     }
@@ -469,38 +409,38 @@ public class Map extends MainAnim {
                 break;
 
             case 1:
-                outputText = Start.stringManager.getTranslation("Karta_1");
-                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pkulow.x + mainFrame.scrollX, Pkulow.y + mainFrame.scrollY));
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_1");
+                outputTextPos = mainFrame.imageFont.centerAnimText(outputText, new GenericPoint(kulowPoint.x + mainFrame.scrollX, kulowPoint.y + mainFrame.scrollY));
                 break;
 
             case 2:
-                outputText = Start.stringManager.getTranslation("Karta_2");
-                outputTextPos = new GenericPoint(Pnjedz.x + mainFrame.scrollX, Pnjedz.y + mainFrame.scrollY);
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_2");
+                outputTextPos = new GenericPoint(njedzPoint.x + mainFrame.scrollX, njedzPoint.y + mainFrame.scrollY);
                 break;
 
             case 3:
-                outputText = Start.stringManager.getTranslation("Karta_3");
-                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Psunow.x + mainFrame.scrollX, Psunow.y + mainFrame.scrollY));
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_3");
+                outputTextPos = mainFrame.imageFont.centerAnimText(outputText, new GenericPoint(sunowPoint.x + mainFrame.scrollX, sunowPoint.y + mainFrame.scrollY));
                 break;
 
             case 4:
-                outputText = Start.stringManager.getTranslation("Karta_4");
-                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pralbicy.x + mainFrame.scrollX, Pralbicy.y + mainFrame.scrollY));
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_4");
+                outputTextPos = mainFrame.imageFont.centerAnimText(outputText, new GenericPoint(ralbicyPoint.x + mainFrame.scrollX, ralbicyPoint.y + mainFrame.scrollY));
                 break;
 
             case 5:
-                outputText = Start.stringManager.getTranslation("Karta_5");
-                outputTextPos = mainFrame.imageFont.CenterAnimText(outputText, new GenericPoint(Pjitk.x + mainFrame.scrollX, Pjitk.y + mainFrame.scrollY));
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_5");
+                outputTextPos = mainFrame.imageFont.centerAnimText(outputText, new GenericPoint(jitkPoint.x + mainFrame.scrollX, jitkPoint.y + mainFrame.scrollY));
                 break;
 
             case 6:
-                outputText = Start.stringManager.getTranslation("Karta_6");
-                outputTextPos = new GenericPoint(Pzdzary.x + mainFrame.scrollX, Pzdzary.y + mainFrame.scrollY);
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_6");
+                outputTextPos = new GenericPoint(zdzaryPoint.x + mainFrame.scrollX, zdzaryPoint.y + mainFrame.scrollY);
                 break;
 
             case 7:
-                outputText = Start.stringManager.getTranslation("Karta_7");
-                outputTextPos = new GenericPoint(Pkolmc.x + mainFrame.scrollX, Pkolmc.y + mainFrame.scrollY);
+                outputText = Start.STRING_MANAGER.getTranslation("Karta_7");
+                outputTextPos = new GenericPoint(kolmcPoint.x + mainFrame.scrollX, kolmcPoint.y + mainFrame.scrollY);
                 break;
 
             default:
@@ -509,15 +449,15 @@ public class Map extends MainAnim {
         }
     }
 
-    private int evalCurrLocation(int Ziel) {
+    private int evalCurrLocation(int target) {
         int rueck = 0;
         int t = mainFrame.currentLocationIdx;
 
-        if (t == Ziel) {
+        if (t == target) {
             return rueck;
         }
 
-        switch (Ziel) {
+        switch (target) {
             case 1:
                 // Ralbicy
                 if (t > 2 && t < 7) {
@@ -676,7 +616,7 @@ public class Map extends MainAnim {
                 break;
 
             default:
-                log.error("Fehler beim Locationaussuchen aufgetreten! Ziel = {}", Ziel);
+                log.error("Fehler beim Locationaussuchen aufgetreten! Ziel = {}", target);
                 break;
         }
 
@@ -687,19 +627,19 @@ public class Map extends MainAnim {
 
     public void evalKeyEvent(GenericKeyEvent e) {
         // Nur auf Funktionstasten reagieren
-        int Taste = e.getKeyCode();
-        if (Taste == GenericKeyEvent.VK_ESCAPE) {
-            Deactivate();
+        int key = e.getKeyCode();
+        if (key == GenericKeyEvent.VK_ESCAPE) {
+            deactivate();
         }
     }
 
     // Deaktivieren //////////
-    private void Deactivate() {
+    private void deactivate() {
         mainFrame.destructLocation(106);
-        newort = 0;
+        newLocation = 0;
         mainFrame.isClipSet = false;
         mainFrame.whatScreen = ScreenType.NONE;
-        Cursorform = 200;
+        cursorShape = 200;
         mainFrame.repaint();
     }
 }

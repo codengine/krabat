@@ -28,17 +28,17 @@ public class UserMultipleChoice {
 
     // fuer Anzeige
     private int selected = -1;
-    private int oldsel = -1;
-    private int Cursorform;
-    private boolean Paintcall = false;
-    private int yoff;
+    private int oldSelected = -1;
+    private int cursorShape;
+    private boolean paintCall = false;
+    private int yOff;
 
     // Variablen fuer Fragen
-    public int Anzahl;
-    public final String[] Fragen = new String[10];
-    public final int[] Ident = new int[10];
-    public final GenericRectangle[] Positionen = new GenericRectangle[10];
-    public int Antwort = 0;
+    public int count;
+    public final String[] questions = new String[10];
+    public final int[] ident = new int[10];
+    public final GenericRectangle[] positions = new GenericRectangle[10];
+    public int answer = 0;
 
     public boolean user = false;
 
@@ -48,27 +48,27 @@ public class UserMultipleChoice {
     }
 
     // Hier wird neue MC-Routine initialisiert
-    public void InitMC(int yoff) {
+    public void initMC(int yOff) {
         // hier wird Init des Cursors beim Aufrufen erzwungen
-        Cursorform = 200;
-        Anzahl = -1;
-        this.yoff = yoff;
+        cursorShape = 200;
+        count = -1;
+        this.yOff = yOff;
     }
 
     // Hier wird ein MC - Element hinzugefuegt
-    public void ExtendMC(String langKey, GenericRectangle posit, int index) {
-        String text = mainFrame.imageFont.TeileTextKey(langKey);
-        Anzahl++;
-        Fragen[Anzahl] = text;
-        if (Anzahl == 0) {
-            Positionen[Anzahl] = new GenericRectangle(posit.getX(), posit.getY() + yoff,
-                    posit.getWidth(), posit.getHeight());
+    public void extend(String langKey, GenericRectangle position, int index) {
+        String text = mainFrame.imageFont.splitTextKey(langKey);
+        count++;
+        questions[count] = text;
+        if (count == 0) {
+            positions[count] = new GenericRectangle(position.getX(), position.getY() + yOff,
+                    position.getWidth(), position.getHeight());
         } else {
-            int temp = Positionen[Anzahl - 1].getY() + Positionen[Anzahl - 1].getHeight();
-            Positionen[Anzahl] = new GenericRectangle(posit.getX(), temp, posit.getWidth(),
-                    posit.getHeight());
+            int temp = positions[count - 1].getY() + positions[count - 1].getHeight();
+            positions[count] = new GenericRectangle(position.getX(), temp, position.getWidth(),
+                    position.getHeight());
         }
-        Ident[Anzahl] = index;
+        ident[count] = index;
     }
 
     // Paint - Routine fuer Multiple Choice
@@ -80,44 +80,43 @@ public class UserMultipleChoice {
         // 1.Aufruf, zuerst alles Zeichnen
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
-            Paintcall = true;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
 
-            for (int i = 0; i <= Anzahl; ++i) {
+            for (int i = 0; i <= count; ++i) {
                 if (selected == i) {
-                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollX,
-                            Positionen[i].getY() + mainFrame.scrollY + 10, 0xffff0000);
+                    mainFrame.imageFont.drawString(g, "$" + questions[i],
+                            positions[i].getX() + mainFrame.scrollX,
+                            positions[i].getY() + mainFrame.scrollY + 10, 0xffff0000);
                 } else {
-                    mainFrame.imageFont.drawString(g, "$" + Fragen[i],
-                            Positionen[i].getX() + mainFrame.scrollX,
-                            Positionen[i].getY() + mainFrame.scrollY + 10, 0xffb00000);
+                    mainFrame.imageFont.drawString(g, "$" + questions[i],
+                            positions[i].getX() + mainFrame.scrollX,
+                            positions[i].getY() + mainFrame.scrollY + 10, 0xffb00000);
                 }
             }
-            oldsel = selected;
+            oldSelected = selected;
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
             return;
         }
 
-        if (oldsel != -1) {
-            mainFrame.imageFont.drawString(g, "$" + Fragen[oldsel],
-                    Positionen[oldsel].getX() + mainFrame.scrollX,
-                    Positionen[oldsel].getY() + mainFrame.scrollY + 10, 0xffb00000);
+        if (oldSelected != -1) {
+            mainFrame.imageFont.drawString(g, "$" + questions[oldSelected],
+                    positions[oldSelected].getX() + mainFrame.scrollX,
+                    positions[oldSelected].getY() + mainFrame.scrollY + 10, 0xffb00000);
         }
-        if (oldsel != -1) {
-            oldsel = -1;
-        }
-
-        if (selected != -1) {
-            mainFrame.imageFont.drawString(g, "$" + Fragen[selected],
-                    Positionen[selected].getX() + mainFrame.scrollX,
-                    Positionen[selected].getY() + mainFrame.scrollY + 10, 0xffff0000);
+        if (oldSelected != -1) {
+            oldSelected = -1;
         }
 
         if (selected != -1) {
-            oldsel = selected;
+            mainFrame.imageFont.drawString(g, "$" + questions[selected],
+                    positions[selected].getX() + mainFrame.scrollX,
+                    positions[selected].getY() + mainFrame.scrollY + 10, 0xffff0000);
         }
-        // System.out.println ("Paint : " + selected);
+
+        if (selected != -1) {
+            oldSelected = selected;
+        }
         g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
     }
 
@@ -126,11 +125,11 @@ public class UserMultipleChoice {
         GenericPoint pTemp = e.getPoint();
         if (e.isLeftClick()) {
             // Linke Maustaste
-            for (int i = 0; i <= Anzahl; ++i) {
-                if (Positionen[i].contains(pTemp)) {
-                    Antwort = i;
+            for (int i = 0; i <= count; ++i) {
+                if (positions[i].contains(pTemp)) {
+                    answer = i;
                     selected = -1;
-                    oldsel = -1;
+                    oldSelected = -1;
                     mainFrame.isAnimRunning = true;
                     user = false;
                     mainFrame.isClipSet = false;
@@ -143,35 +142,29 @@ public class UserMultipleChoice {
 
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Cursor auf Normal setzen je nach Bedarf
-        if (Cursorform != 0) {
-            Cursorform = 0;
+        if (cursorShape != 0) {
+            cursorShape = 0;
             mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
-        // System.out.println("Move Thrown !");
         selected = -1;
-        for (int i = 0; i <= Anzahl; ++i) {
-            if (Positionen[i].contains(pTemp)) {
+        for (int i = 0; i <= count; ++i) {
+            if (positions[i].contains(pTemp)) {
                 selected = i;
-                // System.out.println("Over an Item!");
                 break;
             }
         }
 
-        // System.out.println("Move : " + selected);
-
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
-        if (oldsel != selected) {
-            // System.out.println("Repainting for move!");
+        if (oldSelected != selected) {
             mainFrame.repaint();
         }
     }
 
     public void evalMouseExitEvent() {
-        // System.out.println("ExitEvent erhalten !");
         selected = -1;
         mainFrame.repaint();
     }

@@ -41,8 +41,6 @@ public class Panorama extends MainLocation {
     // Konstanten - Rects
     private static final BorderRect ausgangKartaOben
             = new BorderRect(295, 110, 400, 297);
-    // private static final borderrect ausgangKartaRechts
-    //     = new borderrect (590, 310, 639, 440);
     private static final BorderRect ausgangZahrodnik
             = new BorderRect(498, 343, 524, 377);
     private static final BorderRect ausgangStwa
@@ -52,7 +50,6 @@ public class Panorama extends MainLocation {
 
     // Konstante Points
     private static final GenericPoint pExitKartaOben = new GenericPoint(327, 310);
-    // private static final GenericPoint pExitKartaRechts = new GenericPoint (625, 385);
     private static final GenericPoint pExitZahrodnik = new GenericPoint(511, 378);
     private static final GenericPoint pExitStwa = new GenericPoint(266, 385);
     private static final GenericPoint pExitWobjo = new GenericPoint(37, 373);
@@ -66,19 +63,19 @@ public class Panorama extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 377;
-        mainFrame.krabat.zoomf = 10f;
-        mainFrame.krabat.defScale = 73;
+        mainFrame.krabat.maxX = 377;
+        mainFrame.krabat.zoomFactor = 10f;
+        mainFrame.krabat.defaultScale = 73;
 
         boot = new Boats(mainFrame, 3);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
 
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -92,14 +89,14 @@ public class Panorama extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(36, 37, 36, 37, 376, 400));
 
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -107,32 +104,28 @@ public class Panorama extends MainLocation {
                 break;
             case 180: // von Karta (Oben)
                 mainFrame.krabat.setPos(new GenericPoint(327, 310));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
-            // case 170: // von KartaRechts   ???????????????? (Zastup)
-            //	mainFrame.krabat.SetKrabatPos (new GenericPoint (620, 385));
-            //	mainFrame.krabat.SetFacing (9);
-            //	break;
             case 161: // von Stwa
                 mainFrame.krabat.setPos(new GenericPoint(266, 385));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 162: // von Zahrodnik
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 mainFrame.krabat.setPos(new GenericPoint(511, 382));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
             case 163: // von Wobjo (Habor)
                 BackgroundMusicPlayer.getInstance().playTrack(21, true);
                 mainFrame.krabat.setPos(new GenericPoint(37, 376));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
 
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/panorama/panorama.png");
         cychi = getPicture("gfx-dd/panorama/cychi.png");
 
@@ -147,7 +140,7 @@ public class Panorama extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -158,33 +151,33 @@ public class Panorama extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Boot-Routine
         // Hintergrund loeschen
         BorderRect temp = boot.evalBootRect();
-        g.setClip(temp.lo_point.x, temp.lo_point.y,
-                temp.ru_point.x - temp.lo_point.x, temp.ru_point.y - temp.lo_point.y);
+        g.setClip(temp.topLeftPoint.x, temp.topLeftPoint.y,
+                temp.bottomRightPoint.x - temp.topLeftPoint.x, temp.bottomRightPoint.y - temp.topLeftPoint.y);
         g.drawImage(background, 0, 0);
         // Boot zeichnen
         boot.drawBoot(g);
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -206,14 +199,7 @@ public class Panorama extends MainLocation {
         }
 
         // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
         g.drawImage(cychi, 0, 329);
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-    /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-    {
-      g.drawImage (weiden2, 84, 221, null);
-    }*/
 
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
@@ -221,7 +207,7 @@ public class Panorama extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -231,17 +217,17 @@ public class Panorama extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -275,17 +261,17 @@ public class Panorama extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -295,7 +281,7 @@ public class Panorama extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -307,122 +293,98 @@ public class Panorama extends MainLocation {
                 nextActionID = 0;
 
                 // zu KarteOben gehen ?
-                if (ausgangKartaOben.IsPointInRect(pTemp)) {
+                if (ausgangKartaOben.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangKartaOben.IsPointInRect(kt)) {
+                    if (!ausgangKartaOben.isPointInRect(kt)) {
                         pTemp = pExitKartaOben;
                     } else {
                         pTemp = new GenericPoint(pExitKartaOben.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                // zu KartaRechts gehen ?
-        /*if (ausgangKartaRechts.IsPointInRect (pTemp) == true)
-        { 
-          nextActionID = 100;
-          GenericPoint kt = mainFrame.krabat.GetKrabatPos();
-          
-          // Wenn nahe am Ausgang, dann "gerade" verlassen
-          if (ausgangKartaRechts.IsPointInRect (kt) == false)
-          {
-          	pTemp = pExitKartaRechts;
-          }
-          else
-          {
-          	pTemp = new GenericPoint (pExitKartaRechts.x, kt.y);
-          }
-            
-          if (mainFrame.dClick == true)
-          {
-            mainFrame.krabat.StopWalking();
-            mainFrame.repaint();
-            return;
-          }  
-        }*/
-
                 // zu Zahrodnik gehen ?
-                if (ausgangZahrodnik.IsPointInRect(pTemp)) {
+                if (ausgangZahrodnik.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangZahrodnik.IsPointInRect(kt)) {
+                    if (!ausgangZahrodnik.isPointInRect(kt)) {
                         pTemp = pExitZahrodnik;
                     } else {
                         pTemp = new GenericPoint(pExitZahrodnik.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Stwa gehen ?
-                if (ausgangStwa.IsPointInRect(pTemp)) {
+                if (ausgangStwa.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangStwa.IsPointInRect(kt)) {
+                    if (!ausgangStwa.isPointInRect(kt)) {
                         pTemp = pExitStwa;
                     } else {
                         pTemp = new GenericPoint(pExitStwa.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // zu Habor gehen ?
-                if (ausgangWobjo.IsPointInRect(pTemp)) {
+                if (ausgangWobjo.isPointInRect(pTemp)) {
                     nextActionID = 103;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangWobjo.IsPointInRect(kt)) {
+                    if (!ausgangWobjo.isPointInRect(kt)) {
                         pTemp = pExitWobjo;
                     } else {
                         pTemp = new GenericPoint(pExitWobjo.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangKartaOben.IsPointInRect(pTemp) ||
+                if (ausgangKartaOben.isPointInRect(pTemp) ||
                         // (ausgangKartaRechts.IsPointInRect (pTemp)) ||
-                        ausgangZahrodnik.IsPointInRect(pTemp) ||
-                        ausgangStwa.IsPointInRect(pTemp) ||
-                        ausgangWobjo.IsPointInRect(pTemp)) {
+                        ausgangZahrodnik.isPointInRect(pTemp) ||
+                        ausgangStwa.isPointInRect(pTemp) ||
+                        ausgangWobjo.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -433,8 +395,8 @@ public class Panorama extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -443,57 +405,38 @@ public class Panorama extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            // if ((kellerFenster.IsPointInRect (pTemp) == true) ||
-            //   (wino.IsPointInRect (pTemp) == true))
-            // {
-            //   if (Cursorform != 1)
-            //   {
-            //      mainFrame.setCursor (mainFrame.Kreuz);
-            //      Cursorform = 1;
-            //   }
-            //  return;
-            // }
-   
- /*     if (ausgangKartaRechts.IsPointInRect (pTemp) == true) {
-	  if (Cursorform != 3) {
-	      mainFrame.setCursor (mainFrame.Cright);
-	      Cursorform = 3;
-	  }
-	  return;
-      }*/
-
-            if (ausgangKartaOben.IsPointInRect(pTemp) ||
-                    ausgangZahrodnik.IsPointInRect(pTemp) ||
-                    ausgangStwa.IsPointInRect(pTemp) ||
-                    ausgangWobjo.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangKartaOben.isPointInRect(pTemp) ||
+                    ausgangZahrodnik.isPointInRect(pTemp) ||
+                    ausgangStwa.isPointInRect(pTemp) ||
+                    ausgangWobjo.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -527,7 +470,7 @@ public class Panorama extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -535,7 +478,7 @@ public class Panorama extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -543,26 +486,26 @@ public class Panorama extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -580,7 +523,7 @@ public class Panorama extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -588,22 +531,22 @@ public class Panorama extends MainLocation {
         switch (nextActionID) {
             case 100:
                 // Gehe zu Karta
-                NeuesBild(180, locationID);
+                createNewLocation(180, locationID);
                 break;
 
             case 101:
                 // Gehe zu Stwa
-                NeuesBild(161, locationID);
+                createNewLocation(161, locationID);
                 break;
 
             case 102:
                 // Gehe zu Zahrodnik
-                NeuesBild(162, locationID);
+                createNewLocation(162, locationID);
                 break;
 
             case 103:
                 // Gehe zu Habor
-                NeuesBild(163, locationID);
+                createNewLocation(163, locationID);
                 break;
 
             default:

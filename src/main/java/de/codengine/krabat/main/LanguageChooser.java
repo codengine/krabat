@@ -31,36 +31,36 @@ import java.util.Map;
 public class LanguageChooser extends MainLocation {
     private static final Logger log = LoggerFactory.getLogger(LanguageChooser.class);
     private GenericImage background;
-    private GenericImage pfeiloben;
-    private GenericImage pfeilunten;
-    private GenericImage dpfeiloben;
-    private GenericImage dpfeilunten;
+    private GenericImage arrowUp;
+    private GenericImage arrowDown;
+    private GenericImage arrowUpDisabled;
+    private GenericImage arrowDownDisabled;
 
-    private static final GenericPoint pPfeilOben = new GenericPoint(210, 80);  // allgemeine Pfeildeklarationen
-    private static final GenericPoint pPfeilUnten = new GenericPoint(210, 277);
+    private static final GenericPoint ARROW_UP = new GenericPoint(210, 80);  // allgemeine Pfeildeklarationen
+    private static final GenericPoint ARROW_DOWN = new GenericPoint(210, 277);
 
-    private static final GenericPoint pOkUnten = new GenericPoint(400, 300);
+    private static final GenericPoint OK_BOTTOM = new GenericPoint(400, 300);
 
-    private static final int BREITE = 35; // dto.
-    private static final int HOEHE = 53;
+    private static final int WIDTH = 35; // dto.
+    private static final int HEIGHT = 53;
 
-    private final BorderRect brPfeilOben;
-    private final BorderRect brPfeilUnten;
+    private final BorderRect brArrowUp;
+    private final BorderRect brArrowDown;
     private final BorderRect brOk;
 
-    private int Cursorform = 200;
+    private int cursorShape = 200;
 
-    private int Index;
+    private int index;
 
     private final BorderRect brGesamt;   // Gesamtrect fuer Auswahlleiste
 
-    private int menuitem = 0;
-    private int olditem = 0;
+    private int menuItem = 0;
+    private int oldItem = 0;
 
     private int currLang = 0;
     private int oldLang = 0;
 
-    private boolean Paintcall = false;
+    private boolean paintCall = false;
 
     private static final int X_LEFT = 30;  // allgemeine Deklarationen fuer Woerterbuchanfang
     private static final int Y_UP = 80;
@@ -82,17 +82,17 @@ public class LanguageChooser extends MainLocation {
 
         this.properties = properties;
 
-        brPfeilOben = new BorderRect(pPfeilOben.x, pPfeilOben.y, pPfeilOben.x + BREITE, pPfeilOben.y + HOEHE);
-        brPfeilUnten = new BorderRect(pPfeilUnten.x, pPfeilUnten.y, pPfeilUnten.x + BREITE, pPfeilUnten.y + HOEHE);
+        brArrowUp = new BorderRect(ARROW_UP.x, ARROW_UP.y, ARROW_UP.x + WIDTH, ARROW_UP.y + HEIGHT);
+        brArrowDown = new BorderRect(ARROW_DOWN.x, ARROW_DOWN.y, ARROW_DOWN.x + WIDTH, ARROW_DOWN.y + HEIGHT);
 
-        brOk = new BorderRect(pOkUnten.x, pOkUnten.y, pOkUnten.x + 40, pOkUnten.y + 20);
+        brOk = new BorderRect(OK_BOTTOM.x, OK_BOTTOM.y, OK_BOTTOM.x + 40, OK_BOTTOM.y + 20);
 
-        brGesamt = new BorderRect(X_LEFT, Y_UP, pPfeilOben.x - 10, Y_UP + 10 * 25);
+        brGesamt = new BorderRect(X_LEFT, Y_UP, ARROW_UP.x - 10, Y_UP + 10 * 25);
 
-        InitImages();
+        initImages();
 
         initLanguages();
-        Index = 0;
+        index = 0;
 
         mainFrame.isClipSet = false;
 
@@ -102,12 +102,12 @@ public class LanguageChooser extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mainmenu/background2.png");
-        pfeiloben = getPicture("gfx/mainmenu/pfeil-hoch.png");
-        dpfeiloben = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
-        pfeilunten = getPicture("gfx/mainmenu/pfeil-runter.png");
-        dpfeilunten = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
+        arrowUp = getPicture("gfx/mainmenu/pfeil-hoch.png");
+        arrowUpDisabled = getPicture("gfx/mainmenu/pfeil-hoch-leer.png");
+        arrowDown = getPicture("gfx/mainmenu/pfeil-runter.png");
+        arrowDownDisabled = getPicture("gfx/mainmenu/pfeil-runter-leer.png");
     }
 
     private void initLanguages() {
@@ -137,29 +137,29 @@ public class LanguageChooser extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 1280, 480);
-            Cursorform = 200;
-            Paintcall = true;
+            cursorShape = 200;
+            paintCall = true;
             evalMouseMoveEvent(mainFrame.mousePoint);
 
             // alles loeschen und neuzeichnen - hier die texte, die sich nur bei "Clipset = false" aendern (Mouseclick)
             g.drawImage(background, mainFrame.scrollX, 0);
-            GenericPoint ps = mainFrame.imageFont.CenterAnimText("Select language", new GenericPoint(320, 35));
+            GenericPoint ps = mainFrame.imageFont.centerAnimText("Select language", new GenericPoint(320, 35));
             mainFrame.imageFont.drawString(g, "Select language", ps.x, ps.y, 0xffff0000);
 
-            for (int i = Math.max(Index, 0); i < Math.min(Index + 10, languages.length); i++) {
-                mainFrame.imageFont.drawString(g, languages[i], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (i - Index) * 25, 0xff800000);
+            for (int i = Math.max(index, 0); i < Math.min(index + 10, languages.length); i++) {
+                mainFrame.imageFont.drawString(g, languages[i], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (i - index) * 25, 0xff800000);
             }
 
             // Pfeile dazu-sind ja sonst geloescht !
-            g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
-            g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+            g.drawImage(arrowUpDisabled, ARROW_UP.x + mainFrame.scrollX, ARROW_UP.y + mainFrame.scrollY);
+            g.drawImage(arrowDownDisabled, ARROW_DOWN.x + mainFrame.scrollX, ARROW_DOWN.y + mainFrame.scrollY);
 
-            mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xff800000);
+            mainFrame.imageFont.drawString(g, "OK", OK_BOTTOM.x + mainFrame.scrollX, mainFrame.scrollY + OK_BOTTOM.y, 0xff800000);
         }
 
         if (oldLang > 0) {
             if (oldLang <= languages.length) {
-                mainFrame.imageFont.drawString(g, languages[oldLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (oldLang - Index - 1) * 25, 0xff800000);
+                mainFrame.imageFont.drawString(g, languages[oldLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (oldLang - index - 1) * 25, 0xff800000);
             } else {
                 log.warn("Wrong language to deselect! oldLang: {}, languages.length: {}", oldLang, languages.length);
             }
@@ -170,7 +170,7 @@ public class LanguageChooser extends MainLocation {
 
         if (currLang > 0) {
             if (currLang <= languages.length) {
-                mainFrame.imageFont.drawString(g, languages[currLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (currLang - Index - 1) * 25, 0xffff0000);
+                mainFrame.imageFont.drawString(g, languages[currLang - 1], X_LEFT + mainFrame.scrollX, mainFrame.scrollY + Y_UP + (currLang - index - 1) * 25, 0xffff0000);
             } else {
                 log.warn("Wrong language to select! currLang: {}, languages.length: {}", currLang, languages.length);
             }
@@ -180,45 +180,45 @@ public class LanguageChooser extends MainLocation {
         }
 
         // Wenn noetig, dann highlight aufheben!!!
-        switch (olditem) {
+        switch (oldItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(dpfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+                g.drawImage(arrowUpDisabled, ARROW_UP.x + mainFrame.scrollX, ARROW_UP.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(dpfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+                g.drawImage(arrowDownDisabled, ARROW_DOWN.x + mainFrame.scrollX, ARROW_DOWN.y + mainFrame.scrollY);
                 break;
             case 3:
-                mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xff800000);
+                mainFrame.imageFont.drawString(g, "OK", OK_BOTTOM.x + mainFrame.scrollX, mainFrame.scrollY + OK_BOTTOM.y, 0xff800000);
                 break;
             default:
-                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", olditem);
+                log.error("Falsches Menu-Item zum abdunkeln!!! olditem = {}", oldItem);
         }
 
-        if (olditem != 0) {
-            olditem = 0;
+        if (oldItem != 0) {
+            oldItem = 0;
         }
 
         // Wenn noetig, dann highlighten!!!
-        switch (menuitem) {
+        switch (menuItem) {
             case 0:
                 break;
             case 1:
-                g.drawImage(pfeiloben, pPfeilOben.x + mainFrame.scrollX, pPfeilOben.y + mainFrame.scrollY);
+                g.drawImage(arrowUp, ARROW_UP.x + mainFrame.scrollX, ARROW_UP.y + mainFrame.scrollY);
                 break;
             case 2:
-                g.drawImage(pfeilunten, pPfeilUnten.x + mainFrame.scrollX, pPfeilUnten.y + mainFrame.scrollY);
+                g.drawImage(arrowDown, ARROW_DOWN.x + mainFrame.scrollX, ARROW_DOWN.y + mainFrame.scrollY);
                 break;
             case 3:
-                mainFrame.imageFont.drawString(g, "OK", pOkUnten.x + mainFrame.scrollX, mainFrame.scrollY + pOkUnten.y, 0xffff0000);
+                mainFrame.imageFont.drawString(g, "OK", OK_BOTTOM.x + mainFrame.scrollX, mainFrame.scrollY + OK_BOTTOM.y, 0xffff0000);
                 break;
             default:
-                log.error("Falsches Menu-Item!!! menuitem = {}", menuitem);
+                log.error("Falsches Menu-Item!!! menuitem = {}", menuItem);
         }
 
-        if (menuitem != 0) {
-            olditem = menuitem;
+        if (menuItem != 0) {
+            oldItem = menuItem;
         }
     }
 
@@ -233,57 +233,53 @@ public class LanguageChooser extends MainLocation {
         GenericPoint pTemp = e.getPoint();
 
         // Pfeil-Oben gedrueckt
-        if (brPfeilOben.IsPointInRect(pTemp)) {
-            Index -= 10;
+        if (brArrowUp.isPointInRect(pTemp)) {
+            index -= 10;
             mainFrame.isClipSet = false;
-            if (Index < 0) {
-                Index = 0;
+            if (index < 0) {
+                index = 0;
             }
             mainFrame.repaint();
         }
 
         // Pfeil-Unten gedrueckt
-        if (brPfeilUnten.IsPointInRect(pTemp)) {
-            Index += 10;
+        if (brArrowDown.isPointInRect(pTemp)) {
+            index += 10;
             mainFrame.isClipSet = false;
-            if (Index > languages.length - 10) {
-                Index = languages.length - 10;
+            if (index > languages.length - 10) {
+                index = languages.length - 10;
             }
             mainFrame.repaint();
         }
 
-        if (brOk.IsPointInRect(pTemp) && currLang != 0) {
+        if (brOk.isPointInRect(pTemp) && currLang != 0) {
             log.debug("Selected language = {}", currLang);
             if (abbreviations[currLang - 1].equalsIgnoreCase("hs")
                     || abbreviations[currLang - 1].equalsIgnoreCase("ds")
                     || abbreviations[currLang - 1].equalsIgnoreCase("de")) {
-                mainFrame.thirdGameLanguage = "de";
+                Start.THIRD_GAME_LANGUAGE = "de";
             } else {
-                mainFrame.thirdGameLanguage = abbreviations[currLang - 1];
+                Start.THIRD_GAME_LANGUAGE = abbreviations[currLang - 1];
             }
             if (abbreviations[currLang - 1].equalsIgnoreCase("hs")) {
-                Start.language = 1;
+                Start.LANGUAGE = 1;
             } else if (abbreviations[currLang - 1].equalsIgnoreCase("ds")) {
-                Start.language = 2;
+                Start.LANGUAGE = 2;
             } else {
-                Start.language = 3;
+                Start.LANGUAGE = 3;
             }
-            Start.stringManager.defineThirdLanguage(abbreviations[currLang - 1]);
-            properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(Start.language));
-            properties.setProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, mainFrame.thirdGameLanguage);
-            NeuesBild(100, 109);
+            Start.STRING_MANAGER.defineThirdLanguage(abbreviations[currLang - 1]);
+            properties.setProperty(GameProperties.CURRENT_GAME_LANGUAGE_INDEX, Integer.toString(Start.LANGUAGE));
+            properties.setProperty(GameProperties.THIRD_GAME_LANGUAGE_SELECTION, Start.THIRD_GAME_LANGUAGE);
+            createNewLocation(100, 109);
             mainFrame.repaint();
         }
 
         // Sprache wurde ausgewaehlt
-        if (brGesamt.IsPointInRect(pTemp)) {
+        if (brGesamt.isPointInRect(pTemp)) {
             for (int i = 0; i < languages.length; i++) {
 
-                // System.out.println("Curr Y: " + pTemp.y);
-                // System.out.println("Min y: " + (Y_UP + (i - Index) * 25));
-                // System.out.println("Max y: " + ((Y_UP + (i - Index) * 25) + 24));
-
-                if (pTemp.y >= Y_UP + (i - Index) * 25 && pTemp.y < Y_UP + (i - Index) * 25 + 24) {
+                if (pTemp.y >= Y_UP + (i - index) * 25 && pTemp.y < Y_UP + (i - index) * 25 + 24) {
                     currLang = i + 1;
                     mainFrame.repaint();
                     log.debug("Selected lang={}", abbreviations[i]);
@@ -295,37 +291,37 @@ public class LanguageChooser extends MainLocation {
 
     @Override
     public void evalMouseMoveEvent(GenericPoint pTemp) {
-        if (Cursorform != 0) {
-            Cursorform = 0;
+        if (cursorShape != 0) {
+            cursorShape = 0;
             mainFrame.setCursor(mainFrame.cursorNormal);
         }
 
         // Highlight im Menue festlegen
-        menuitem = 0;
-        if (brPfeilOben.IsPointInRect(pTemp)) {
-            menuitem = 1;
+        menuItem = 0;
+        if (brArrowUp.isPointInRect(pTemp)) {
+            menuItem = 1;
         }
-        if (brPfeilUnten.IsPointInRect(pTemp)) {
-            menuitem = 2;
+        if (brArrowDown.isPointInRect(pTemp)) {
+            menuItem = 2;
         }
-        if (brOk.IsPointInRect(pTemp) && currLang != 0) {
-            menuitem = 3;
+        if (brOk.isPointInRect(pTemp) && currLang != 0) {
+            menuItem = 3;
         }
 
 
         // wenn noetig , dann Neuzeichnen!
-        if (Paintcall) {
-            Paintcall = false;
+        if (paintCall) {
+            paintCall = false;
             return;
         }
-        if (menuitem != olditem) {
+        if (menuItem != oldItem) {
             mainFrame.repaint();
         }
     }
 
     @Override
     public void evalMouseExitEvent() {
-        menuitem = 0;
+        menuItem = 0;
         mainFrame.repaint();
     }
 

@@ -45,8 +45,8 @@ public class Boom extends MainAnim {
 
     private final float xScale;
 
-    private int Groesse;
-    private GenericPoint Posit;
+    private int size;
+    private GenericPoint position;
 
     private boolean playBumm;
 
@@ -55,12 +55,12 @@ public class Boom extends MainAnim {
 
         bumm = new GenericImage[8];
 
-        InitImages();
+        initImages();
 
         xScale = Breite / Hoehe / 3.8f;  // soll nicht so in die Breite gehen
     }
 
-    private void InitImages() {
+    private void initImages() {
         bumm[0] = getPicture("gfx/anims/mo1.png");
         bumm[1] = getPicture("gfx/anims/mo2.png");
         bumm[2] = getPicture("gfx/anims/mo3.png");
@@ -84,17 +84,17 @@ public class Boom extends MainAnim {
     }
 
     // initialisiert die Anim
-    public void Init(GenericPoint Posit, int Groesse)  // Fusspos. des Objektes, Hoehe in Pixeln
+    public void init(GenericPoint position, int size)  // Fusspos. des Objektes, Hoehe in Pixeln
     {
-        this.Groesse = Groesse;
-        this.Posit = Posit;
+        this.size = size;
+        this.position = position;
         Bummcount = 0;
         Verhinderbumm = MAX_VERHINDERBUMM;
         playBumm = true;
 
-        if (this.Groesse < 0) // wenn gewuenscht, dann kein Bumm abspielen (Groesse < 0)
+        if (this.size < 0) // wenn gewuenscht, dann kein Bumm abspielen (Groesse < 0)
         {
-            this.Groesse = -this.Groesse;
+            this.size = -this.size;
             playBumm = false;
         }
     }
@@ -102,7 +102,7 @@ public class Boom extends MainAnim {
     // gibt Rectangle zurueck, wie gross der Spass wird
     public GenericRectangle bummRect() {
         // Groesse des Images bestimmen
-        float fGroesse = Groesse;  // so gross soll es von y=15 bis y=55 sein
+        float fGroesse = size;  // so gross soll es von y=15 bis y=55 sein
         float Scale = fGroesse / (Yende - Yanfang);  // Faktor, um wieviel sich das GenericImage vergroessert
 
         float yGroesse = Hoehe * Scale;
@@ -114,7 +114,7 @@ public class Boom extends MainAnim {
         // float Xabstand = xGroesse / 2;
 
         // aus Fussposition folgt x/y-Position
-        return new GenericRectangle((int) (Posit.x - Xabstand), (int) (Posit.y - Yabstand), (int) xGroesse, (int) yGroesse);
+        return new GenericRectangle((int) (position.x - Xabstand), (int) (position.y - Yabstand), (int) xGroesse, (int) yGroesse);
     }
 
     // Zeichne Anim
@@ -124,7 +124,7 @@ public class Boom extends MainAnim {
 
         if (playBumm) {
             playBumm = false;
-            mainFrame.soundPlayer.PlayFile("sfx/morph.wav");
+            mainFrame.soundPlayer.playFile("sfx/morph.wav");
         }
 
         if (--Verhinderbumm < 1) {

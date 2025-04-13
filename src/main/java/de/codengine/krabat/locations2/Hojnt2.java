@@ -50,7 +50,6 @@ public class Hojnt2 extends MainLocation2 {
     private int muellermorphcount = 0;
     private boolean ismuellermorphing = false;
 
-    // private boolean AnimActive = false;
     private Miller mueller;
 
     private GenericImage leftschatten;
@@ -110,27 +109,27 @@ public class Hojnt2 extends MainLocation2 {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 420;
-        mainFrame.krabat.zoomf = 4.4f;
-        mainFrame.krabat.defScale = -10;
+        mainFrame.krabat.maxX = 420;
+        mainFrame.krabat.zoomFactor = 4.4f;
+        mainFrame.krabat.defaultScale = -10;
 
         mueller = new Miller(mainFrame);
 
         muellermorph = new Boom(mainFrame);
 
-        mueller.maxx = 300;
-        mueller.zoomf = 4f;
-        mueller.defScale = 0;
+        mueller.maxX = 300;
+        mueller.zoomFactor = 4f;
+        mueller.defaultScale = 0;
 
         mueller.setPos(mlynkFeet);
-        mueller.SetFacing(3);
+        mueller.setFacing(3);
 
         xpos = (int) (Math.random() * (MAX_SCHATTENX - MIN_SCHATTENX - 10) + MIN_SCHATTENX + 5);
         isLeft = (int) (Math.random() * 50) > 25;
         Verhinderwandern = MAX_VERHINDERWANDERN;
 
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
         switch (oldLocation) {
             case 0: // Einsprung von Load
@@ -139,28 +138,28 @@ public class Hojnt2 extends MainLocation2 {
             case 87: // Aus Wjes kommend
                 BackgroundMusicPlayer.getInstance().stop();
                 mainFrame.krabat.setPos(new GenericPoint(1243, 458));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 setAnim = true;
-                TalkPause = 10;
+                talkPause = 10;
                 break;
 
             case 80: // Von Njedz aus
                 mainFrame.krabat.setPos(new GenericPoint(256, 354));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 scrollwert = 0;
                 setScroll = true;
                 break;
         }
 
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
 
         mainFrame.pathWalker.vBorders.removeAllElements();
 
@@ -172,17 +171,17 @@ public class Hojnt2 extends MainLocation2 {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(985, 1279, 1117, 1279, 442, 463));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backl = getPicture("gfx/hojnt/hojnt-l.png");
         backr = getPicture("gfx/hojnt/hojnt-r.png");
         skyl = getPicture("gfx/hojnt/hsky-l.png");
@@ -228,7 +227,7 @@ public class Hojnt2 extends MainLocation2 {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
@@ -299,7 +298,7 @@ public class Hojnt2 extends MainLocation2 {
         g.drawImage(hojnt3, 426, 258);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -307,15 +306,15 @@ public class Hojnt2 extends MainLocation2 {
         if (muellerda) {
             // Hintergrund fuer Mueller loeschen
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = mueller.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = mueller.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(backr, 640, 0);
 
             // Redet er etwa gerade ??
-            if (TalkPerson == 36 && mainFrame.talkCount > 0) {
+            if (talkPerson == 36 && mainFrame.talkCount > 0) {
                 mueller.talkMlynk(g);
             }
 
@@ -332,20 +331,20 @@ public class Hojnt2 extends MainLocation2 {
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -370,7 +369,7 @@ public class Hojnt2 extends MainLocation2 {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
-        if (strauchRect.IsPointInRect(pKrTemp)) {
+        if (strauchRect.isPointInRect(pKrTemp)) {
             g.drawImage(hojnt2, 143, 262);
         }
 
@@ -380,7 +379,7 @@ public class Hojnt2 extends MainLocation2 {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -390,23 +389,23 @@ public class Hojnt2 extends MainLocation2 {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = 1000;
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling - Verriegelung in DoActions extra !!!
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -444,10 +443,10 @@ public class Hojnt2 extends MainLocation2 {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -457,38 +456,38 @@ public class Hojnt2 extends MainLocation2 {
                 // in Location, damit Textposition bekannt ist!!!
 
                 // Ausreden fuer Grube
-                if (jamaRect.IsPointInRect(pTemp)) {
+                if (jamaRect.isPointInRect(pTemp)) {
                     // nur Ausreden
                     nextActionID = 155;
                     pTemp = Pjama;
                 }
 
                 // an Leine ziehen mit Stock oder sowas
-                if (leineRect.IsPointInRect(pTemp)) {
+                if (leineRect.isPointInRect(pTemp)) {
                     nextActionID = 660;
                     pTemp = Pjama;
                 }
 
                 // an Hoelzern mit Gegenstand, immer Ausrede
-                if (hoelzerRect.IsPointInRect(pTemp)) {
+                if (hoelzerRect.isPointInRect(pTemp)) {
                     nextActionID = 166;
                     pTemp = Phoelzer;
                 }
 
                 // Ausrede fuer Rebhuehner1
-                if (kurotwy1Rect.IsPointInRect(pTemp)) {
+                if (kurotwy1Rect.isPointInRect(pTemp)) {
                     nextActionID = 420;
                     pTemp = Pkurotwy1;
                 }
 
                 // Ausrede fuer Rebhuehner2
-                if (kurotwy2Rect.IsPointInRect(pTemp)) {
+                if (kurotwy2Rect.isPointInRect(pTemp)) {
                     nextActionID = 420;
                     pTemp = Pkurotwy2;
                 }
 
                 // Ausrede fuer Schatten (Fenster1)
-                if (wokno1Rect.IsPointInRect(pTemp)) {
+                if (wokno1Rect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                         case 18: // bron
@@ -502,7 +501,7 @@ public class Hojnt2 extends MainLocation2 {
                 }
 
                 // Ausrede fuer Schatten (Fenster2)
-                if (wokno2Rect.IsPointInRect(pTemp)) {
+                if (wokno2Rect.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 12: // kamuski
                         case 18: // bron
@@ -516,26 +515,26 @@ public class Hojnt2 extends MainLocation2 {
                 }
 
                 // Ausrede fuer Axt
-                if (sekeraRect.IsPointInRect(pTemp)) {
+                if (sekeraRect.isPointInRect(pTemp)) {
                     nextActionID = 440;
                     pTemp = Psekera;
                 }
 
                 // Ausrede fuer Tuer
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 450;
                     pTemp = Pdurje;
                 }
 
                 // Ausrede fuer Drjewo
-                if (drjewoRect.IsPointInRect(pTemp)) {
+                if (drjewoRect.isPointInRect(pTemp)) {
                     // kamuski
                     nextActionID = mainFrame.whatItem == 12 ? 680 : 460;
                     pTemp = Pdrjewo;
                 }
 
                 // wenn nix ausgewaehlt, dann einfach nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -545,7 +544,7 @@ public class Hojnt2 extends MainLocation2 {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -557,201 +556,201 @@ public class Hojnt2 extends MainLocation2 {
                 nextActionID = 0;
 
                 // nach Njedz gehen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!obererAusgang.IsPointInRect(kt)) {
+                    if (!obererAusgang.isPointInRect(kt)) {
                         pTemp = Pup;
                     } else {
                         pTemp = new GenericPoint(kt.x, Pup.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // nach Wjes gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Jama ansehen
-                if (jamaRect.IsPointInRect(pTemp)) {
+                if (jamaRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pjama;
                 }
 
                 // Leine ansehen
-                if (leineRect.IsPointInRect(pTemp)) {
+                if (leineRect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Pjama;
                 }
 
                 // Hoelzer ansehen
-                if (hoelzerRect.IsPointInRect(pTemp)) {
+                if (hoelzerRect.isPointInRect(pTemp)) {
                     nextActionID = 4;
                     pTemp = Phoelzer;
                 }
 
                 // Rebhuehner1 ansehen
-                if (kurotwy1Rect.IsPointInRect(pTemp)) {
+                if (kurotwy1Rect.isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pkurotwy1;
                 }
 
                 // Rebhuehner2 ansehen
-                if (kurotwy2Rect.IsPointInRect(pTemp)) {
+                if (kurotwy2Rect.isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pkurotwy2;
                 }
 
                 // Schatten (Fenster1) ansehen
-                if (wokno1Rect.IsPointInRect(pTemp)) {
+                if (wokno1Rect.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwokno1;
                 }
 
                 // Schatten (Fenster2) ansehen
-                if (wokno2Rect.IsPointInRect(pTemp)) {
+                if (wokno2Rect.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwokno2;
                 }
 
                 // Axt ansehen
-                if (sekeraRect.IsPointInRect(pTemp)) {
+                if (sekeraRect.isPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = Psekera;
                 }
 
                 // Tuer ansehen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 8;
                     pTemp = Pdurje;
                 }
 
                 // Drjewo ansehen
-                if (drjewoRect.IsPointInRect(pTemp)) {
+                if (drjewoRect.isPointInRect(pTemp)) {
                     nextActionID = 9;
                     pTemp = Pdrjewo;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Weg nach Wjes anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Njedz anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Jama mitnehmen ?
-                if (jamaRect.IsPointInRect(pTemp)) {
+                if (jamaRect.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pjama);
+                    mainFrame.pathWalker.setNewWay(Pjama);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Leine benutzen geht nicht !
-                if (leineRect.IsPointInRect(pTemp)) {
+                if (leineRect.isPointInRect(pTemp)) {
                     nextActionID = 53;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pjama);
+                    mainFrame.pathWalker.setNewWay(Pjama);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Hoelzer benutzen endet in Ausrede
-                if (hoelzerRect.IsPointInRect(pTemp)) {
+                if (hoelzerRect.isPointInRect(pTemp)) {
                     nextActionID = 190;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Phoelzer);
+                    mainFrame.pathWalker.setNewWay(Phoelzer);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kurotwy1 mitnehmen
-                if (kurotwy1Rect.IsPointInRect(pTemp)) {
+                if (kurotwy1Rect.isPointInRect(pTemp)) {
                     nextActionID = 600;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkurotwy1);
+                    mainFrame.pathWalker.setNewWay(Pkurotwy1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Kurotwy2 mitnehmen
-                if (kurotwy2Rect.IsPointInRect(pTemp)) {
+                if (kurotwy2Rect.isPointInRect(pTemp)) {
                     nextActionID = 600;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pkurotwy2);
+                    mainFrame.pathWalker.setNewWay(Pkurotwy2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno1 mitnehmen
-                if (wokno1Rect.IsPointInRect(pTemp)) {
+                if (wokno1Rect.isPointInRect(pTemp)) {
                     nextActionID = 610;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwokno1);
+                    mainFrame.pathWalker.setNewWay(Pwokno1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wokno2 mitnehmen
-                if (wokno2Rect.IsPointInRect(pTemp)) {
+                if (wokno2Rect.isPointInRect(pTemp)) {
                     nextActionID = 610;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwokno2);
+                    mainFrame.pathWalker.setNewWay(Pwokno2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Sekera mitnehmen
-                if (sekeraRect.IsPointInRect(pTemp)) {
+                if (sekeraRect.isPointInRect(pTemp)) {
                     nextActionID = 620;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Psekera);
+                    mainFrame.pathWalker.setNewWay(Psekera);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Durje mitnehmen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 630;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Drjewo mitnehmen
-                if (drjewoRect.IsPointInRect(pTemp)) {
+                if (drjewoRect.isPointInRect(pTemp)) {
                     nextActionID = 640;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdrjewo);
+                    mainFrame.pathWalker.setNewWay(Pdrjewo);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
 
             }
@@ -763,8 +762,8 @@ public class Hojnt2 extends MainLocation2 {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -776,61 +775,61 @@ public class Hojnt2 extends MainLocation2 {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
-                    hoelzerRect.IsPointInRect(pTemp) ||
-                    kurotwy1Rect.IsPointInRect(pTemp) || kurotwy2Rect.IsPointInRect(pTemp) ||
-                    wokno1Rect.IsPointInRect(pTemp) || wokno2Rect.IsPointInRect(pTemp) ||
-                    sekeraRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp) ||
-                    drjewoRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    jamaRect.isPointInRect(pTemp) || leineRect.isPointInRect(pTemp) ||
+                    hoelzerRect.isPointInRect(pTemp) ||
+                    kurotwy1Rect.isPointInRect(pTemp) || kurotwy2Rect.isPointInRect(pTemp) ||
+                    wokno1Rect.isPointInRect(pTemp) || wokno2Rect.isPointInRect(pTemp) ||
+                    sekeraRect.isPointInRect(pTemp) || durjeRect.isPointInRect(pTemp) ||
+                    drjewoRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
-            if (jamaRect.IsPointInRect(pTemp) || leineRect.IsPointInRect(pTemp) ||
-                    hoelzerRect.IsPointInRect(pTemp) ||
-                    kurotwy1Rect.IsPointInRect(pTemp) || kurotwy2Rect.IsPointInRect(pTemp) ||
-                    wokno1Rect.IsPointInRect(pTemp) || wokno2Rect.IsPointInRect(pTemp) ||
-                    sekeraRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp) ||
-                    drjewoRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (jamaRect.isPointInRect(pTemp) || leineRect.isPointInRect(pTemp) ||
+                    hoelzerRect.isPointInRect(pTemp) ||
+                    kurotwy1Rect.isPointInRect(pTemp) || kurotwy2Rect.isPointInRect(pTemp) ||
+                    wokno1Rect.isPointInRect(pTemp) || wokno2Rect.isPointInRect(pTemp) ||
+                    sekeraRect.isPointInRect(pTemp) || durjeRect.isPointInRect(pTemp) ||
+                    drjewoRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -864,7 +863,7 @@ public class Hojnt2 extends MainLocation2 {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -872,7 +871,7 @@ public class Hojnt2 extends MainLocation2 {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -880,26 +879,26 @@ public class Hojnt2 extends MainLocation2 {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
@@ -911,7 +910,7 @@ public class Hojnt2 extends MainLocation2 {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -919,152 +918,152 @@ public class Hojnt2 extends MainLocation2 {
         switch (nextActionID) {
             case 2:
                 // Jama anschauen
-                KrabatSagt("Hojnt2_1", fJama, 3, 0, 0);
+                krabatSays("Hojnt2_1", fJama, 3, 0, 0);
                 break;
 
             case 3:
                 // Leine anschauen
-                KrabatSagt("Hojnt2_2", fLeine, 3, 0, 0);
+                krabatSays("Hojnt2_2", fLeine, 3, 0, 0);
                 break;
 
             case 4:
                 // Hoelzer anschauen
-                KrabatSagt("Hojnt2_3", fHoelzer, 3, 0, 0);
+                krabatSays("Hojnt2_3", fHoelzer, 3, 0, 0);
                 break;
 
             case 5:
                 // Kurotwy anschauen
-                KrabatSagt("Hojnt2_4", fKurotwy, 3, 0, 0);
+                krabatSays("Hojnt2_4", fKurotwy, 3, 0, 0);
                 break;
 
             case 6:
                 // Wokno anschauen
-                KrabatSagt("Hojnt2_5", fWokno, 3, 0, 0);
+                krabatSays("Hojnt2_5", fWokno, 3, 0, 0);
                 break;
 
             case 7:
                 // Sekera anschauen
-                KrabatSagt("Hojnt2_6", fSekera, 3, 0, 0);
+                krabatSays("Hojnt2_6", fSekera, 3, 0, 0);
                 break;
 
             case 8:
                 // Durje anschauen
-                KrabatSagt("Hojnt2_7", fDurje, 3, 0, 0);
+                krabatSays("Hojnt2_7", fDurje, 3, 0, 0);
                 break;
 
             case 9:
                 // Drjewo anschauen
-                KrabatSagt("Hojnt2_8", fDrjewo, 3, 0, 0);
+                krabatSays("Hojnt2_8", fDrjewo, 3, 0, 0);
                 break;
 
             case 53:
                 // Leine mitnehmen
-                KrabatSagt("Hojnt2_9", fLeine, 3, 0, 0);
+                krabatSays("Hojnt2_9", fLeine, 3, 0, 0);
                 break;
 
             case 55:
                 // Jama mitnehmen
-                KrabatSagt("Hojnt2_10", fJama, 3, 0, 0);
+                krabatSays("Hojnt2_10", fJama, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Njedz
-                NeuesBild(80, 73);
+                createNewLocation(80, 73);
                 break;
 
             case 101:
                 // Gehe zu Wjes
-                NeuesBild(87, 73);
+                createNewLocation(87, 73);
                 break;
 
             case 150:
                 // Standard - Ausreden fuer Jama
-                DingAusrede(fJama);
+                thingExcuse(fJama);
                 break;
 
             case 165:
                 // Leine - Ausreden
-                DingAusrede(fLeine);
+                thingExcuse(fLeine);
                 break;
 
             case 166:
                 // Hoelzer - Ausreden
-                DingAusrede(fHoelzer);
+                thingExcuse(fHoelzer);
                 break;
 
             case 190:
                 // Ausrede, wenn vor dem Jaegerhaus die Hoelzer benutzt werden sollen
-                KrabatSagt("Hojnt2_11", fHoelzer, 3, 0, 0);
+                krabatSays("Hojnt2_11", fHoelzer, 3, 0, 0);
                 break;
 
             case 420:
                 // Rebhuehner - Ausreden
-                DingAusrede(fKurotwy);
+                thingExcuse(fKurotwy);
                 break;
 
             case 430:
                 // Wokno - Ausreden
-                DingAusrede(fWokno);
+                thingExcuse(fWokno);
                 break;
 
             case 440:
                 // Sekera - Ausreden
-                DingAusrede(fSekera);
+                thingExcuse(fSekera);
                 break;
 
             case 450:
                 // Durje - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 460:
                 // Drjewo - Ausreden
-                DingAusrede(fDrjewo);
+                thingExcuse(fDrjewo);
                 break;
 
             case 600:
                 // Kurotwy mitnehmen
-                KrabatSagt("Hojnt2_12", fKurotwy, 3, 0, 0);
+                krabatSays("Hojnt2_12", fKurotwy, 3, 0, 0);
                 break;
 
             case 610:
                 // Wokno mitnehmen
-                KrabatSagt("Hojnt2_13", fWokno, 3, 0, 0);
+                krabatSays("Hojnt2_13", fWokno, 3, 0, 0);
                 break;
 
             case 620:
                 // Sekera mitnehmen
-                KrabatSagt("Hojnt2_14", fSekera, 3, 0, 0);
+                krabatSays("Hojnt2_14", fSekera, 3, 0, 0);
                 break;
 
             case 630:
                 // Durje mitnehmen
-                KrabatSagt("Hojnt2_15", fDurje, 3, 0, 0);
+                krabatSays("Hojnt2_15", fDurje, 3, 0, 0);
                 break;
 
             case 640:
                 // Drjewo mitnehmen
-                KrabatSagt("Hojnt2_16", fDrjewo, 3, 0, 0);
+                krabatSays("Hojnt2_16", fDrjewo, 3, 0, 0);
                 break;
 
             case 660:
                 // kij auf lajna, wenn haken schon genommen
-                KrabatSagt("Hojnt2_17", fLeine, 3, 0, 0);
+                krabatSays("Hojnt2_17", fLeine, 3, 0, 0);
                 break;
 
             case 670:
                 // kamuski und bron auf wokno
-                KrabatSagt("Hojnt2_18", fWokno, 3, 0, 0);
+                krabatSays("Hojnt2_18", fWokno, 3, 0, 0);
                 break;
 
             case 680:
                 // kamuski auf drjewo
-                KrabatSagt("Hojnt2_19", fDrjewo, 3, 0, 0);
+                krabatSays("Hojnt2_19", fDrjewo, 3, 0, 0);
                 break;
 
             case 1000:
                 // Morphing beginnt
-                muellermorph.Init(mlynkFeet, 110);  // 68 - 100 - scaleMueller
+                muellermorph.init(mlynkFeet, 110);  // 68 - 100 - scaleMueller
                 ismuellermorphing = true;
                 nextActionID = 1003;
                 break;
@@ -1085,15 +1084,15 @@ public class Hojnt2 extends MainLocation2 {
                 }
                 ismuellermorphing = false;
                 mainFrame.isClipSet = false;
-                MuellerMecker(mueller.evalMlynkTalkPoint());
-                TalkPerson = 36;
-                TalkPause = 5;
+                millerComplain(mueller.evalMlynkTalkPoint());
+                talkPerson = 36;
+                talkPause = 5;
                 nextActionID = 1010;
                 break;
 
             case 1010:
                 // Gehe zu Muehle zurueck
-                NeuesBild(90, 73);
+                createNewLocation(90, 73);
                 break;
 
             default:

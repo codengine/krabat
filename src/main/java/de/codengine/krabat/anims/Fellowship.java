@@ -47,11 +47,11 @@ public class Fellowship extends MovableMainAnim {
 
         druzina_walk = new GenericImage[6];
 
-        InitImages();
+        initImages();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         druzina_walk[0] = getPicture("gfx-dd/zelen/gefolge1.png");
         druzina_walk[1] = getPicture("gfx-dd/zelen/gefolge1a.png");
         druzina_walk[2] = getPicture("gfx-dd/zelen/gefolge1-l2.png");
@@ -75,36 +75,35 @@ public class Fellowship extends MovableMainAnim {
 
     // Druzina um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
         // Animationen in x oder y Richtung
-        boolean horizontal = Thorizontal;
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        boolean horizontal = tmpIsAnimHorizontal;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         if (!horizontal)
         // Vertikal laufen
         {
             // neuen Punkt ermitteln und setzen
-            VerschiebeY();
-            xps = txps;
-            yps = typs;
+            moveY();
+            posX = tempPosX;
+            posY = tempPosY;
 
             // Animationsphase weiterschalten
-            anim_pos++;
-            if (anim_pos == 6) {
-                anim_pos = 2;
+            animPos++;
+            if (animPos == 6) {
+                animPos = 2;
             }
 
             // Naechsten Schritt auf Gueltigkeit ueberpruefen
-            VerschiebeY();
+            moveY();
 
             // Ueberschreitung feststellen in Y - Richtung
-            if ((walkto.y - (int) typs) * directionY.getVal() <= 0) {
-                // System.out.println("Ueberschreitung y! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-                setPos(walkto);
-                anim_pos = 0;
+            if ((walkTo.y - (int) tempPosY) * directionY.getVal() <= 0) {
+                setPos(walkTo);
+                animPos = 0;
                 return true;
             }
         }
@@ -113,18 +112,18 @@ public class Fellowship extends MovableMainAnim {
     }
 
     // Vertikal - Positions - Verschieberoutine
-    private void VerschiebeY() {
-        verschiebeYdefault(CVERT_DIST[anim_pos], SLOWY);
+    private void moveY() {
+        moveYdefault(CVERT_DIST[animPos], SLOWY);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim) {
+    public synchronized void moveTo(GenericPoint aim) {
         moveToDefault(aim);
-        Thorizontal = false;
+        tmpIsAnimHorizontal = false;
 
-        if (anim_pos < 2) {
-            anim_pos = 2;       // Animationsimage bei Neubeginn initialis.
+        if (animPos < 2) {
+            animPos = 2;       // Animationsimage bei Neubeginn initialis.
         }
     }
 
@@ -145,38 +144,38 @@ public class Fellowship extends MovableMainAnim {
             }
         }
 
-        if (anim_pos < 2) {
-            anim_pos = Zwinker;
+        if (animPos < 2) {
+            animPos = Zwinker;
         }
 
         // hier wird er nur benoetigt fuer laufen oder rumstehen + zwinkern (also in MaleIhn)
-        MaleIhn(offGraph);
+        drawHim(offGraph);
     }
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int poy) {
-        return calcLeftPosDefault(pox, poy, scaleFactor);
+    protected int getLeftPos(int x, int y) {
+        return calcLeftPosDefault(x, y, scaleFactor);
     }
 
     @Override
-    protected int getUpPos(int poy) {
-        return calcUpPosDefault(poy);
+    protected int getUpPos(int y) {
+        return calcUpPosDefault(y);
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy);
+    protected int getScale(int y) {
+        return calcScaleDefault(y);
     }
 
-    private void MaleIhn(GenericDrawingContext g) {
+    private void drawHim(GenericDrawingContext g) {
         // Clipping - Region setzen
-        krabatClipDefault(g, (int) xps, (int) yps);
+        krabatClipDefault(g, (int) posX, (int) posY);
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps, (int) yps);
-        int up = getUpPos((int) yps);
-        int scale = getScale((int) yps);
+        int left = getLeftPos((int) posX, (int) posY);
+        int up = getUpPos((int) posY);
+        int scale = getScale((int) posY);
 
         // hier die Breiten und Hoehenscalings fuer Kopf und Body berechnen
 
@@ -187,6 +186,6 @@ public class Fellowship extends MovableMainAnim {
         // System.out.println ("Mueller ist " + Koerperbreite + " breit und Kopf " + Kopfhoehe + " und Body " + Koerperhoehe + " hoch.");
 
         // Figur zeichnen
-        g.drawImage(druzina_walk[anim_pos], left, up, Koerperbreite, Koerperhoehe);
+        g.drawImage(druzina_walk[animPos], left, up, Koerperbreite, Koerperhoehe);
     }
 }

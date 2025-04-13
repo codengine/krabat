@@ -71,16 +71,16 @@ public class Hala extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 50;   // nicht zoomen !!!
-        mainFrame.krabat.zoomf = 1f;
-        mainFrame.krabat.defScale = -100;
+        mainFrame.krabat.maxX = 50;   // nicht zoomen !!!
+        mainFrame.krabat.zoomFactor = 1f;
+        mainFrame.krabat.defaultScale = -100;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -88,11 +88,11 @@ public class Hala extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(811, 1115, 811, 1235, 407, 479));
 
-        mainFrame.pathFinder.ClearMatrix(2);
+        mainFrame.pathFinder.clearMatrix(2);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -100,19 +100,19 @@ public class Hala extends MainLocation {
                 break;
             case 122: // von Spaniska aus
                 mainFrame.krabat.setPos(new GenericPoint(180, 415));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 124: // von Komedij aus
                 mainFrame.krabat.setPos(new GenericPoint(920, 420));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 scrollwert = 600;
                 setScroll = true;
                 break;
             case 125: // von Jewisco aus
                 mainFrame.krabat.setPos(new GenericPoint(1220, 470));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 break;
@@ -120,7 +120,7 @@ public class Hala extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backl = getPicture("gfx-dd/hala/hala-l.png");
         backr = getPicture("gfx-dd/hala/hala-r.png");
         door = getPicture("gfx-dd/hala/hala-r2.png");
@@ -139,7 +139,7 @@ public class Hala extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
@@ -156,24 +156,24 @@ public class Hala extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -194,22 +194,13 @@ public class Hala extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-    /*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-    {
-      g.drawImage (weiden2, 84, 221, null);
-    }*/
-
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -219,17 +210,17 @@ public class Hala extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -265,36 +256,36 @@ public class Hala extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Tuer, wenn noch anwaehlbar
-                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675]) {
+                if (dritteTuer.isPointInRect(pTemp) && !mainFrame.actions[675]) {
                     nextActionID = 150;
                     pTemp = pExitKomedij;
                 }
 
                 // Ausreden fuer 2. Tuer
-                if (zweiteTuer.IsPointInRect(pTemp)) {
+                if (zweiteTuer.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = pZweiteTuer;
                 }
 
                 // Ausreden fuer Bild
-                if (wobraz.IsPointInRect(pTemp)) {
+                if (wobraz.isPointInRect(pTemp)) {
                     // hlebija
                     nextActionID = mainFrame.whatItem == 42 ? 200 : 155;
                     pTemp = pWobraz;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -304,7 +295,7 @@ public class Hala extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -316,19 +307,19 @@ public class Hala extends MainLocation {
                 nextActionID = 0;
 
                 // zu Spaniska gehen ?
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = pExitLinks;
                     } else {
                         pTemp = new GenericPoint(pExitLinks.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -336,25 +327,25 @@ public class Hala extends MainLocation {
 
                 // zu Komedij gehen , wenn schon geoeffnet
                 if (mainFrame.actions[675]) {
-                    if (dritteTuer.IsPointInRect(pTemp)) {
+                    if (dritteTuer.isPointInRect(pTemp)) {
                         nextActionID = 101;
                         GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (!dritteTuer.IsPointInRect(kt)) {
+                        if (!dritteTuer.isPointInRect(kt)) {
                             pTemp = pExitKomedij;
                         } else {
                             pTemp = new GenericPoint(pExitKomedij.x, kt.y);
                         }
 
                         if (mainFrame.isDoubleClick) {
-                            mainFrame.krabat.StopWalking();
+                            mainFrame.krabat.stopWalking();
                             mainFrame.repaint();
                             return;
                         }
                     }
                 } else {
-                    if (dritteTuer.IsPointInRect(pTemp)) {
+                    if (dritteTuer.isPointInRect(pTemp)) {
                         // Tuer ist noch nicht geoeffnet
                         nextActionID = 5;
                         pTemp = pExitKomedij;
@@ -362,75 +353,75 @@ public class Hala extends MainLocation {
                 }
 
                 // zu Jewisco gehen ?
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 102;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = pExitRechts;
                     } else {
                         pTemp = new GenericPoint(pExitRechts.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // 2. Tuer ansehen
-                if (zweiteTuer.IsPointInRect(pTemp)) {
+                if (zweiteTuer.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pZweiteTuer;
                 }
 
                 // Bild ansehen
-                if (wobraz.IsPointInRect(pTemp)) {
+                if (wobraz.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pWobraz;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (linkerAusgang.IsPointInRect(pTemp) ||
-                        rechterAusgang.IsPointInRect(pTemp) ||
-                        dritteTuer.IsPointInRect(pTemp) && mainFrame.actions[675]) {
+                if (linkerAusgang.isPointInRect(pTemp) ||
+                        rechterAusgang.isPointInRect(pTemp) ||
+                        dritteTuer.isPointInRect(pTemp) && mainFrame.actions[675]) {
                     return;
                 }
 
                 // verschlossene Tuer oeffnen (erfolglos)
-                if (zweiteTuer.IsPointInRect(pTemp)) {
+                if (zweiteTuer.isPointInRect(pTemp)) {
                     nextActionID = 1;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pZweiteTuer);
+                    mainFrame.pathWalker.setNewWay(pZweiteTuer);
                     mainFrame.repaint();
                     return;
                 }
 
                 // offene Tuer oeffnen
-                if (dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675]) {
+                if (dritteTuer.isPointInRect(pTemp) && !mainFrame.actions[675]) {
                     nextActionID = 10;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pExitKomedij);
+                    mainFrame.pathWalker.setNewWay(pExitKomedij);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Bild mitnehmen
-                if (wobraz.IsPointInRect(pTemp)) {
+                if (wobraz.isPointInRect(pTemp)) {
                     nextActionID = 15;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pWobraz);
+                    mainFrame.pathWalker.setNewWay(pWobraz);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -444,8 +435,8 @@ public class Hala extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -454,63 +445,63 @@ public class Hala extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    wobraz.IsPointInRect(pTemp) ||
-                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675] ||
-                    zweiteTuer.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    wobraz.isPointInRect(pTemp) ||
+                    dritteTuer.isPointInRect(pTemp) && !mainFrame.actions[675] ||
+                    zweiteTuer.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (wobraz.IsPointInRect(pTemp) ||
-                    dritteTuer.IsPointInRect(pTemp) && !mainFrame.actions[675] ||
-                    zweiteTuer.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (wobraz.isPointInRect(pTemp) ||
+                    dritteTuer.isPointInRect(pTemp) && !mainFrame.actions[675] ||
+                    zweiteTuer.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (dritteTuer.IsPointInRect(pTemp) && mainFrame.actions[675]) {
-                if (Cursorform != 12) {
+            if (dritteTuer.isPointInRect(pTemp) && mainFrame.actions[675]) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -544,7 +535,7 @@ public class Hala extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -552,7 +543,7 @@ public class Hala extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -560,26 +551,26 @@ public class Hala extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -597,7 +588,7 @@ public class Hala extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -605,67 +596,67 @@ public class Hala extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // 2. Tuer ansehen
-                KrabatSagt("Hala_1", fTueren, 3, 0, 0);
+                krabatSays("Hala_1", fTueren, 3, 0, 0);
                 break;
 
             case 2:
                 // Bild ansehen
-                KrabatSagt("Hala_2", fBild, 3, 0, 0);
+                krabatSays("Hala_2", fBild, 3, 0, 0);
                 break;
 
             case 5:
                 // 3. Tuer  ansehen
-                KrabatSagt("Hala_3", fTueren, 3, 0, 0);
+                krabatSays("Hala_3", fTueren, 3, 0, 0);
                 break;
 
             case 10:
                 // Tuer aufmachen
-                mainFrame.krabat.SetFacing(fTueren);
+                mainFrame.krabat.setFacing(fTueren);
                 mainFrame.actions[675] = true;
                 nextActionID = 0;
-                mainFrame.soundPlayer.PlayFile("sfx/kdurjeauf.wav");
+                mainFrame.soundPlayer.playFile("sfx/kdurjeauf.wav");
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
                 break;
 
             case 15:
                 // Bild mitnehmen
-                KrabatSagt("Hala_4", fBild, 3, 0, 0);
+                krabatSays("Hala_4", fBild, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Spaniska
-                NeuesBild(122, locationID);
+                createNewLocation(122, locationID);
                 break;
 
             case 101:
                 // Gehe zu Komedij
-                NeuesBild(124, locationID);
+                createNewLocation(124, locationID);
                 break;
 
             case 102:
                 // Gehe zu Jewisco
-                NeuesBild(125, locationID);
+                createNewLocation(125, locationID);
                 break;
 
             case 150:
                 // durje-Ausreden
-                DingAusrede(fTueren);
+                thingExcuse(fTueren);
                 break;
 
             case 155:
                 // wobraz-Ausreden
-                DingAusrede(fBild);
+                thingExcuse(fBild);
                 break;
 
             case 160:
                 // durje2-Ausreden
-                DingAusrede(fTueren);
+                thingExcuse(fTueren);
                 break;
 
             case 200:
                 // Hlebija auf bild
-                KrabatSagt("Hala_5", fBild, 3, 0, 0);
+                krabatSays("Hala_5", fBild, 3, 0, 0);
                 break;
 
             default:

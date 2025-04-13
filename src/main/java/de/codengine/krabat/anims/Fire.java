@@ -40,10 +40,10 @@ public class Fire extends MainAnim {
         super(caller);
 
         Feuer = new GenericImage[8];
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         Feuer[1] = getPicture("gfx/labyrinth/blink1.png");
         Feuer[2] = getPicture("gfx/labyrinth/blink2.png");
         Feuer[3] = getPicture("gfx/labyrinth/blink3.png");

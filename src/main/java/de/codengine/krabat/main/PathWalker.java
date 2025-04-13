@@ -40,25 +40,24 @@ public class PathWalker {
     }
 
     // normale Laufroutine ohne irgendwelche Extras
-    public void SetzeNeuenWeg(GenericPoint destPoint) {
+    public void setNewWay(GenericPoint destination) {
         // Extras alle wieder ausschalten
-        mainFrame.krabat.clearanimpos = true;
-        mainFrame.krabat.upsidedown = false;
+        mainFrame.krabat.resetAnimPos = true;
+        mainFrame.krabat.upsideDown = false;
 
-        //System.out.println("Neuer Weg "+destPoint.x+" "+destPoint.y);
         // Krabats Animation stoppen, falls aktiv
-        mainFrame.krabat.StopAnim();
+        mainFrame.krabat.stopAnim();
 
-        destinationPlace = destPoint;
+        destinationPlace = destination;
         int nAnzahlRect = vBorders.size();
         BorderTrapezoid tBestRect;
-        int currBorder = GetCurrentBorder();
+        int currBorder = getCurrentBorder();
         int bestRect = -1;
         float minDistance = 1000;
 
         // Wurde ggw. Rechteck korrekt ermittelt ?
         if (currBorder < 0) {
-            currBorder = RightRect();
+            currBorder = rightRect();
             log.debug("Rectangle wurde neubestimmt : {}", currBorder);
         }
 
@@ -69,11 +68,11 @@ public class PathWalker {
         // alle Grenzrechtecke dursuchen, welches der Beste als Ziel
         for (int i = 0; i < nAnzahlRect; i++) {
             BorderTrapezoid tBRect = vBorders.elementAt(i);
-            float t_dist = tBRect.CenterDistance(feetPoint);
-            if (t_dist < minDistance) {
+            float temporaryDist = tBRect.centerDistance(feetPoint);
+            if (temporaryDist < minDistance) {
                 // dieses Rechteck ist besser
                 bestRect = i;
-                minDistance = t_dist;
+                minDistance = temporaryDist;
             }
         }
 
@@ -82,10 +81,9 @@ public class PathWalker {
 
         log.debug("BestRect : {}", bestRect);
 
-        if (!tBestRect.PointInside(feetPoint)) {
+        if (!tBestRect.pointInside(feetPoint)) {
             // optimales Ziel im Rectangle suchen
-            destinationPlace = tBestRect.RandPunkt(feetPoint);
-            // System.out.println("Best GenericPoint " + destinationPlace.x + " " + destinationPlace.y + " of " + feetPoint.x + " " + feetPoint.y);
+            destinationPlace = tBestRect.edgePoint(feetPoint);
         }
 
         //   System.out.print ("Destination: ");
@@ -97,7 +95,7 @@ public class PathWalker {
             // System.out.println ("Das selbe  Border-Rectangle !");
             // keine grosse Wanderung noetig
             mainFrame.krabat.isWandering = false;
-            mainFrame.krabat.MoveTo(destinationPlace);
+            mainFrame.krabat.moveTo(destinationPlace);
             return;
         }
 
@@ -108,7 +106,7 @@ public class PathWalker {
         //    System.out.println (bestRect);
 
         // besten Weg zum Ziel ermitteln
-        vBestWeg = mainFrame.pathFinder.StartSuche(currBorder, bestRect);
+        vBestWeg = mainFrame.pathFinder.startSearch(currBorder, bestRect);
 
         //    System.out.print ("Weglaenge: ");
         //    System.out.println (vBestWeg.size ());
@@ -120,28 +118,28 @@ public class PathWalker {
     }
 
     // Hier wird von der aktuellen Position genau auf den Punkt gelaufen, Rectangles sind egal
-    public void SetzeGarantiertNeuenWeg(GenericPoint destPoint) {
-        mainFrame.krabat.upsidedown = false;
-        mainFrame.krabat.clearanimpos = false;
+    public void setNewWayGuaranteed(GenericPoint destPoint) {
+        mainFrame.krabat.upsideDown = false;
+        mainFrame.krabat.resetAnimPos = false;
         mainFrame.krabat.isWandering = false;
-        mainFrame.krabat.MoveTo(destPoint);
+        mainFrame.krabat.moveTo(destPoint);
     }
 
-    public void SetzeWegOhneStand(GenericPoint dpoint) {
-        SetzeNeuenWeg(dpoint);
-        mainFrame.krabat.clearanimpos = false;
+    public void setWayWithoutStanding(GenericPoint dpoint) {
+        setNewWay(dpoint);
+        mainFrame.krabat.resetAnimPos = false;
     }
 
-    public void SetzeGarantiertWegFalsch(GenericPoint pt) {
-        SetzeGarantiertNeuenWeg(pt);
-        mainFrame.krabat.upsidedown = true;
+    public void setWayGuaranteedWrong(GenericPoint pt) {
+        setNewWayGuaranteed(pt);
+        mainFrame.krabat.upsideDown = true;
     }
 
     // Krabat auf seinem Weg weiterbewegen
-    public void GeheWeg() {
+    public void doWalk() {
         if (mainFrame.krabat.isWalking) {
             // erst zur naechten Station gehen lassen
-            mainFrame.krabat.Move();
+            mainFrame.krabat.move();
             return;
         }
 
@@ -167,34 +165,32 @@ public class PathWalker {
             GenericPoint pKrFeetPos = mainFrame.krabat.getPos();
             BorderTrapezoid thisBRect = vBorders.elementAt(thisRect);
             BorderTrapezoid nextBRect = vBorders.elementAt(nextRect);
-            GenericPoint pUeber = OptimalUebergang(thisBRect, nextBRect, pKrFeetPos);
+            GenericPoint pUeber = optimalTransition(thisBRect, nextBRect, pKrFeetPos);
 
             //      System.out.print ("Schritt: ");
             //      System.out.println (wegPosition);
 
             // bis zur naechsten Station marschieren
-            mainFrame.krabat.MoveTo(pUeber);
+            mainFrame.krabat.moveTo(pUeber);
         } else {
             // die letzte Station; Wanderung beenden und direkt zum Ziel gehen
             vBestWeg.removeAllElements();
-            //      bestWeg = "";
             mainFrame.krabat.isWandering = false;
-            mainFrame.krabat.MoveTo(destinationPlace);
-            //      System.out.print ("Letzte Station !");
+            mainFrame.krabat.moveTo(destinationPlace);
         }
         wegPosition++;
         // schliesslich einen Schritt setzen
-        mainFrame.krabat.Move();
+        mainFrame.krabat.move();
     }
 
     // Ermitteln des Grenzrechtecks, in welchem sich Krabat ggw. befindet
-    private int GetCurrentBorder() {
+    private int getCurrentBorder() {
         int nTemp = -1;
         int nBRAnzahl = vBorders.size();
         GenericPoint pKrabat = mainFrame.krabat.getPos();
         for (int i = 0; i < nBRAnzahl; i++) {
             BorderTrapezoid tBRect = vBorders.elementAt(i);
-            if (tBRect.PointInside(pKrabat)) {
+            if (tBRect.pointInside(pKrabat)) {
                 nTemp = i;
                 break;
             }
@@ -206,8 +202,8 @@ public class PathWalker {
 
     // Ermittelt den Punkt des besten Ubergangs zwischen zwei Grenzrechtecken,
     // wobei die aktuelle Position der Figur beachtet wird (Fuesse)
-    private GenericPoint OptimalUebergang(BorderTrapezoid quell, BorderTrapezoid ziel,
-                                          GenericPoint pKrabatFeets) {
+    private GenericPoint optimalTransition(BorderTrapezoid quell, BorderTrapezoid ziel,
+                                           GenericPoint pKrabatFeets) {
         // Testen, ob Mittenlauf sinnvoll!
         boolean mittenlauf = false;
         if (vBestWeg.size() - wegPosition > 2) {
@@ -306,15 +302,15 @@ public class PathWalker {
         return pBest;
     }
 
-    private int RightRect() {
+    private int rightRect() {
         int rgbe = -1;
         int wieviele = vBorders.size();
-        GenericPoint Fussp = mainFrame.krabat.getPos();
+        GenericPoint footPosition = mainFrame.krabat.getPos();
         int tAbstand = 20000;
         for (int fuck = 0; fuck < wieviele; fuck++) {
             BorderTrapezoid temprect = vBorders.elementAt(fuck);
-            if (temprect.CenterDistance(Fussp) < tAbstand) {
-                tAbstand = temprect.CenterDistance(Fussp);
+            if (temprect.centerDistance(footPosition) < tAbstand) {
+                tAbstand = temprect.centerDistance(footPosition);
                 rgbe = fuck;
             }
         }

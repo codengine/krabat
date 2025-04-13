@@ -66,7 +66,7 @@ public class Dinglinger extends MainAnim {
         dingl_sit_waithead = new GenericImage[2];
         dingl_sit_talkhead = new GenericImage[10];
 
-        InitImages();
+        initImages();
 
         Verhindertalkhead = MAX_VERHINDERTALKHEAD;
         Verhindertalkbody = MAX_VERHINDERTALKBODY;
@@ -76,7 +76,7 @@ public class Dinglinger extends MainAnim {
         Verhinderaugennachoben = MAX_VERHINDERAUGENNACHOBEN;
     }
 
-    private void InitImages() {
+    private void initImages() {
         dingl_sit_body[0] = getPicture("gfx-dd/dingl/dingl-sb1.png");
         dingl_sit_body[1] = getPicture("gfx-dd/dingl/dingl-sb2.png");
         dingl_sit_body[2] = getPicture("gfx-dd/dingl/dingl-sb3.png");

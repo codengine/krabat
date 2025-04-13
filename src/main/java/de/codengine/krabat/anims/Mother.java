@@ -69,7 +69,7 @@ public class Mother extends MainAnim {
         mac_body_right = new GenericImage[3];
         mac_r = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         if (isLeft) {
             links = 1;
@@ -82,7 +82,6 @@ public class Mother extends MainAnim {
         float ho = Hoehe;
 
         Scalex = (int) (sc / ho * (float) Breite);
-        // Scalex = (SCALEY / Hoehe) * Breite;
 
         float hy = KOPFY;
         Scaleyh = (int) (sc / ho * hy);
@@ -94,7 +93,7 @@ public class Mother extends MainAnim {
         Hoehes = SCALEY;
     }
 
-    private void InitImages() {
+    private void initImages() {
         mac_head_left[1] = getPicture("gfx/anims/ma-k1.png");
         mac_head_left[2] = getPicture("gfx/anims/ma-k2.png");
         mac_head_left[3] = getPicture("gfx/anims/ma-k3.png");

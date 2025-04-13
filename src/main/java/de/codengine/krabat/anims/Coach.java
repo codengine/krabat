@@ -37,8 +37,6 @@ public class Coach extends MainAnim {
 
     private static final GenericPoint kutscheLO = new GenericPoint(0, 252);
 
-    // private int Auge = 0;
-    // private int Ohr = 0;
     private int Schwanz = 0;
 
     private int Verhinderschwanz;
@@ -83,7 +81,6 @@ public class Coach extends MainAnim {
 
     private float Xende;
 
-    // private float Xanfang;
     private float Yanfang;
 
     private float scale;
@@ -117,7 +114,7 @@ public class Coach extends MainAnim {
         kleineWolke = new GenericImage[6];
         grosseWolke = new GenericImage[6];
 
-        InitImages();
+        initImages();
 
         Verhinderschwanz = MAX_VERHINDERSCHWANZ;
 
@@ -136,7 +133,7 @@ public class Coach extends MainAnim {
     }
 
     // Initialisiert die Kutsche in den Zustaenden
-    public void InitKutsche(int Kutschenzustand) {
+    public void initCoach(int Kutschenzustand) {
         // 0 = Hinten zu sehen
         // 1 = Vorn heranfahrend
         // 2 = Vorn stehend
@@ -155,7 +152,6 @@ public class Coach extends MainAnim {
         Xpos = Anfangspunkte[Kutschenzustand].x;
         Ypos = Anfangspunkte[Kutschenzustand].y;
 
-        // Xanfang = Xpos;
         Yanfang = Ypos;
 
         Xende = Endpunkte[Kutschenzustand].x;
@@ -171,13 +167,9 @@ public class Coach extends MainAnim {
         }
     }
 
-    private void InitImages() {
+    private void initImages() {
         kutsche = getPicture("gfx/most/kutse.png");
         kutschentuer = getPicture("gfx/most/kudurje.png");
-
-        // pferdohr1    = getPicture ("gfx/most/kohr.png");
-        // pferdohr2    = getPicture ("gfx/most/kohr2.png");
-        // hinterohr    = getPicture ("gfx/most/kohr3.png");
 
         pferdschwanz[0] = getPicture("gfx/most/ps1.png");
         pferdschwanz[1] = getPicture("gfx/most/ps2.png");
@@ -244,7 +236,6 @@ public class Coach extends MainAnim {
                 // Sound eval.
                 if (hintenMusik) {
                     hintenMusik = false;
-                    // mainFrame.wave.PlayFile ("sfx/fanfara.wav");
                 }
 
                 // GenericImage weiterschalten
@@ -289,7 +280,7 @@ public class Coach extends MainAnim {
                 // Sound eval.
                 if (vornMusik) {
                     vornMusik = false;
-                    mainFrame.soundPlayer.PlayFile("sfx/kutsa.wav");
+                    mainFrame.soundPlayer.playFile("sfx/kutsa.wav");
                 }
 
                 // GenericImage weiterschalten
@@ -346,32 +337,6 @@ public class Coach extends MainAnim {
                 if (doorOpen) {
                     g.drawImage(kutschentuer, kutscheLO.x + 68, kutscheLO.y + 20);
                 }
-
-                // eval. ob das pferd mit den Augen zwinkert
-                // int zf = (int) (Math.random () * 50);
-		/*  if (Auge == 1) 
-		  {
-		  Auge = 0;
-		  g.drawImage (pferdauge, kutscheLO.x + 17, kutscheLO.y + 119, null);
-		  }
-		  else
-		  {
-		  if (zf > 45) Auge = 1;
-		  }*/
-
-                // eval, ob es mit den Ohren wackelt
-		/*if (Ohr == 1)
-		    {
-			Ohr = 0;
-			g.drawImage (hinterohr, 41, 347, null);
-			g.drawImage (pferdohr1, kutscheLO.x + 39, kutscheLO.y + 99, null);
-		    }
-		else
-		    {
-			if (zf > 48) Ohr = 1;
-			g.drawImage (hinterohr, 41, 347, null);
-                        g.drawImage (pferdohr2, kutscheLO.x + 39, kutscheLO.y + 99, null);
-			}*/
 
                 // eval. ob es mit dem Schwanz wackelt
                 if (--Verhinderschwanz < 1) {

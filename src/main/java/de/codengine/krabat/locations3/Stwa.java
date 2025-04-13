@@ -54,24 +54,24 @@ public class Stwa extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 50;   // nicht zoomen !!!
-        mainFrame.krabat.zoomf = 1f;
-        mainFrame.krabat.defScale = -30;
+        mainFrame.krabat.maxX = 50;   // nicht zoomen !!!
+        mainFrame.krabat.zoomFactor = 1f;
+        mainFrame.krabat.defaultScale = -30;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(365, 370, 365, 370, 455, 456));
 
-        mainFrame.pathFinder.ClearMatrix(1);
+        mainFrame.pathFinder.clearMatrix(1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -79,13 +79,13 @@ public class Stwa extends MainLocation {
                 break;
             case 160: // von Panorama
                 mainFrame.krabat.setPos(new GenericPoint(368, 455));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/stwa/stwa.png");
         lzica = getPicture("gfx-dd/stwa/lzica.png");
     }
@@ -99,7 +99,7 @@ public class Stwa extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -110,24 +110,24 @@ public class Stwa extends MainLocation {
         g.drawImage(background, 0, 0);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -148,9 +148,6 @@ public class Stwa extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
         // hinter Loeffel (nur Clipping - Region wird neugezeichnet)
         g.drawImage(lzica, 335, 427);
 
@@ -160,7 +157,7 @@ public class Stwa extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -170,17 +167,17 @@ public class Stwa extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -214,10 +211,10 @@ public class Stwa extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
@@ -227,7 +224,7 @@ public class Stwa extends MainLocation {
                 nextActionID = 10;
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -237,7 +234,7 @@ public class Stwa extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -249,19 +246,19 @@ public class Stwa extends MainLocation {
                 nextActionID = 0;
 
                 // zu Panorama gehen ?
-                if (ausgangPanorama.IsPointInRect(pTemp)) {
+                if (ausgangPanorama.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangPanorama.IsPointInRect(kt)) {
+                    if (!ausgangPanorama.isPointInRect(kt)) {
                         pTemp = pExitPanorama;
                     } else {
                         pTemp = new GenericPoint(pExitPanorama.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
@@ -272,19 +269,19 @@ public class Stwa extends MainLocation {
                     nextActionID = 10;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangPanorama.IsPointInRect(pTemp)) {
+                if (ausgangPanorama.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -295,8 +292,8 @@ public class Stwa extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -305,37 +302,27 @@ public class Stwa extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            // if ((kerzen.IsPointInRect (pTemp) == true) ||
-            //    (schwerter.IsPointInRect (pTemp) == true))
-            //{
-            //if (Cursorform != 1)
-            //{
-            //  mainFrame.setCursor (mainFrame.Kreuz);
-            //  Cursorform = 1;
-            // }
-            // return;
-            // }
 
-            if (ausgangPanorama.IsPointInRect(pTemp)) {
-                if (Cursorform != 12) {
+            if (ausgangPanorama.isPointInRect(pTemp)) {
+                if (cursorShape != 12) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 12;
+                    cursorShape = 12;
                 }
                 return;
             }
@@ -351,9 +338,9 @@ public class Stwa extends MainLocation {
             // }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -387,7 +374,7 @@ public class Stwa extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -395,7 +382,7 @@ public class Stwa extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -403,26 +390,26 @@ public class Stwa extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -440,14 +427,14 @@ public class Stwa extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
         // Was soll Krabat machen ?
         switch (nextActionID) {
             case 10:
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 // hier Art der Anmecker festlegen
@@ -470,32 +457,32 @@ public class Stwa extends MainLocation {
 
             case 20:
                 // fremde Stimme meckert
-                PersonSagt("Stwa_1", 0, 69, 2, 22, talkPoint);
+                personSays("Stwa_1", 0, 69, 2, 22, talkPoint);
                 break;
 
             case 22:
                 // Krabat spricht
-                KrabatSagt("Stwa_2", 0, 1, 2, 24);
+                krabatSays("Stwa_2", 0, 1, 2, 24);
                 break;
 
             case 24:
                 // Krabat spricht
-                KrabatSagt("Stwa_3", 0, 3, 2, 26);
+                krabatSays("Stwa_3", 0, 3, 2, 26);
                 break;
 
             case 26:
                 // fremde Stimme meckert
-                PersonSagt("Stwa_4", 0, 69, 2, 80, talkPoint);
+                personSays("Stwa_4", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 30:
                 // fremde Stimme meckert
-                PersonSagt("Stwa_5", 0, 69, 2, 80, talkPoint);
+                personSays("Stwa_5", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 40:
                 // fremde Stimme meckert
-                PersonSagt("Stwa_6", 0, 69, 2, 80, talkPoint);
+                personSays("Stwa_6", 0, 69, 2, 80, talkPoint);
                 break;
 
             case 80:
@@ -508,7 +495,7 @@ public class Stwa extends MainLocation {
 
             case 100:
                 // Gehe zu Panorama
-                NeuesBild(160, locationID);
+                createNewLocation(160, locationID);
                 break;
 
             default:

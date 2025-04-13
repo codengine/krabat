@@ -54,7 +54,7 @@ public class Duck1 extends MainAnim {
         kacka_left = new GenericImage[2];
         kacka_front = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderschnatter = MAX_VERHINDERSCHNATTER;
 
@@ -65,7 +65,7 @@ public class Duck1 extends MainAnim {
         Posit = new GenericPoint(Pstart.x, Pstart.y);
     }
 
-    private void InitImages() {
+    private void initImages() {
         kacka_left[0] = getPicture("gfx/mertens/kacka1.png");
         kacka_left[1] = getPicture("gfx/mertens/kacka1a.png");
 

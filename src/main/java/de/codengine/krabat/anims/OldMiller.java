@@ -42,7 +42,6 @@ public class OldMiller extends MainAnim {
 
     private int Head = 0;
     private int Body = 0;
-    // private int Lach = 0;
 
     private int Scalex;
     private int Scaleyhead;
@@ -76,7 +75,7 @@ public class OldMiller extends MainAnim {
         mlynk_body = new GenericImage[4];
         mlynk_left = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderkopf = MAX_VERHINDERKOPF;
         Verhinderbody = MAX_VERHINDERBODY;
@@ -103,7 +102,7 @@ public class OldMiller extends MainAnim {
         return new GenericPoint(feet.x, feet.y - Scaleyhead - Scaleybody - 50);
     }
 
-    private void InitImages() {
+    private void initImages() {
         // Wenn OldMlynk fuer Teil 4 -> nur Grafiken fuer Links-Stehen laden
         if (!fOnlyStandAndLookLeft) {
             mlynk_body[0] = getPicture("gfx-dd/murja/dml-b.png");

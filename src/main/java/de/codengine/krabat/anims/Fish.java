@@ -31,7 +31,6 @@ public class Fish extends MainAnim {
     private final GenericImage[] ryby_right;
 
     private static final BorderRect fisch1Rect = new BorderRect(364, 266, 639, 300);
-    // private static final borderrect fisch2Rect = new borderrect (559, 300, 639, 399);
     private static final BorderRect fisch3Rect = new BorderRect(546, 451, 639, 479);
 
     private int Rybycount = 0;
@@ -53,7 +52,7 @@ public class Fish extends MainAnim {
         ryby_left = new GenericImage[5];
         ryby_right = new GenericImage[5];
 
-        InitImages();
+        initImages();
 
         Position = new GenericPoint();
 
@@ -61,7 +60,7 @@ public class Fish extends MainAnim {
         Verhindercount = MAX_VERHINDERCOUNT;
     }
 
-    private void InitImages() {
+    private void initImages() {
         ryby_left[0] = getPicture("gfx/haty/fisch1.png");
         ryby_left[1] = getPicture("gfx/haty/fisch2.png");
         ryby_left[2] = getPicture("gfx/haty/fisch3.png");
@@ -82,7 +81,7 @@ public class Fish extends MainAnim {
             // Fisch weiterschalten, wenn noetig
             if (--Verhindercount < 1) {
                 if (Rybycount == 3 && !noSound) {
-                    mainFrame.soundPlayer.PlayFile("sfx/woda1.wav");
+                    mainFrame.soundPlayer.playFile("sfx/woda1.wav");
                 }
 
                 Verhindercount = MAX_VERHINDERCOUNT;
@@ -123,8 +122,8 @@ public class Fish extends MainAnim {
                         Position.x = (int) (Math.random() * 293.9 + 346);
                         Position.y = (int) (Math.random() * 285.9 + 194);
                     }
-                    while (!fisch1Rect.IsPointInRect(Position) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
-                            !fisch3Rect.IsPointInRect(Position));
+                    while (!fisch1Rect.isPointInRect(Position) && /*(fisch2Rect.IsPointInRect (Position) == false) && */
+                            !fisch3Rect.isPointInRect(Position));
 
                     Rybycount = 0;
                     isFischJumping = true;

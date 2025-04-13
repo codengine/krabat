@@ -65,7 +65,6 @@ public class Mertens2 extends MainLocation {
     // Punkte in Location
     private static final GenericPoint Pleft = new GenericPoint(0, 305);
     private static final GenericPoint wmannFeet = new GenericPoint(365, 373);
-    // private static final GenericPoint wmannfrauTalk = new GenericPoint (240,  60);
     private static final GenericPoint Pwmann = new GenericPoint(59, 305);
     private static final GenericPoint Pverlassen = new GenericPoint(-50, 305);
 
@@ -113,11 +112,11 @@ public class Mertens2 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().playTrack(26, true);
 
-        mainFrame.krabat.maxx = 323;
-        mainFrame.krabat.zoomf = 3.05f;
-        mainFrame.krabat.defScale = -20;
+        mainFrame.krabat.maxX = 323;
+        mainFrame.krabat.zoomFactor = 3.05f;
+        mainFrame.krabat.defaultScale = -20;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         wmann = new WaterSpirit(mainFrame, mainFrame.actions[207]);
         Dialog = new MultipleChoice(mainFrame);
@@ -137,25 +136,25 @@ public class Mertens2 extends MainLocation {
         duck2 = new Duck2(mainFrame);
 
         // fuer Blinkern rein
-        InitBlinker();
+        initBlinker();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(0, 150, 0, 13, 288, 323));
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(284, 307, 65, 185, 266, 287));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(2);
+        mainFrame.pathFinder.clearMatrix(2);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
+        mainFrame.pathFinder.connectPos(0, 1);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -164,7 +163,7 @@ public class Mertens2 extends MainLocation {
             case 81:
                 // von Pinca aus (Anim)
                 mainFrame.krabat.setPos(new GenericPoint(59, 305));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 setAnim = true;
                 noCounter = true;
                 isShowing = true;
@@ -175,19 +174,19 @@ public class Mertens2 extends MainLocation {
             case 76:
                 // von Kulow aus
                 mainFrame.krabat.setPos(new GenericPoint(38, 305));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 mainFrame.actions[207] = false; // Wassermann taucht erst auf
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/mertens/mertens.png");
 
     }
 
-    private void InitBlinker() {
+    private void initBlinker() {
         // hier wird das Blinkern festgelegt, indem das Array initialisiert wird, wo der
         // Blinkstatus gespeichert wird
 
@@ -201,8 +200,8 @@ public class Mertens2 extends MainLocation {
         int AnzahlStriche = 1;
 
         for (BorderTrapezoid borderTrapezoid : Blink) {
-            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
+            if (borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -213,7 +212,7 @@ public class Mertens2 extends MainLocation {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
+                if (Blink[i].surfaceArea() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
@@ -250,18 +249,11 @@ public class Mertens2 extends MainLocation {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-        // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        /*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
-          {
-          Dialog.paintMultiple (g);
-          return;
-          } */
-
         // Clipping -Region initialisieren
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
@@ -274,55 +266,27 @@ public class Mertens2 extends MainLocation {
         // Hintergrund und Krabat zeichnen
         g.drawImage(background, 0, 0);
 
-        /*if (mainFrame.isAnim == true)
-          {
-          switchanim = ! (switchanim);
-          if (switchanim == true)
-          {
-          if (forward == true)
-          {
-          Wellencount++;
-          if (Wellencount == 10)
-          {
-          Wellencount = 8;
-          forward = false;
-          }
-          }
-          else
-          {
-          Wellencount--;
-          if (Wellencount == 0)
-          {
-          Wellencount = 2;
-          forward = true;
-          }
-          }
-          }	
-          g.setClip (  0, 169, 640, 241);
-          g.drawImage (Wellen[Wellencount], 0, 169, this);
-          }	*/
-
         // fuers Blinkern rein
         g.setClip(0, 157, 639, 276);
         g.drawImage(background, 0, 0);
-        Blink(g);
+        blink(g);
 
         // erste Ente zeichnen, wenn da
         if (kacka1Visible) {
             g.setClip(duck1.kackaRect());
             g.drawImage(background, 0, 0);
-            duck1.drawKacka(g, TalkPerson, kacka1IsLeft, kacka1IsMoving);
+            duck1.drawKacka(g, talkPerson, kacka1IsLeft, kacka1IsMoving);
         }
 
         // zweite Ente zeichnen, wenn da
         if (kacka2Visible) {
             g.setClip(duck2.kackaRect());
             g.drawImage(background, 0, 0);
-            kacka2FliegtNoch = duck2.drawKacka(g, TalkPerson);
+            kacka2FliegtNoch = duck2.drawKacka(g, talkPerson);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -339,34 +303,34 @@ public class Mertens2 extends MainLocation {
 
         // Wassermann zeichnen beim Schwimmen und Reden
         if (isShowing) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
+            g.setClip(wmannRect.topLeftPoint.x, wmannRect.topLeftPoint.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
-            wmann.drawWmuz(g, TalkPerson, wmannRect.lo_point);
+            wmann.drawWmuz(g, talkPerson, wmannRect.topLeftPoint);
         }
 
         // Wassermann zeichnen beim Auf / Abtauchen
         if (isTauching) {
-            g.setClip(wmannRect.lo_point.x, wmannRect.lo_point.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
+            g.setClip(wmannRect.topLeftPoint.x, wmannRect.topLeftPoint.y, WaterSpirit.Breite, WaterSpirit.Tauchhoehe);
             g.drawImage(background, 0, 0);
-            isTauching = wmann.Tauche(g, wmannRect.lo_point);
+            isTauching = wmann.dive(g, wmannRect.topLeftPoint);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -393,7 +357,7 @@ public class Mertens2 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -403,12 +367,12 @@ public class Mertens2 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -420,14 +384,14 @@ public class Mertens2 extends MainLocation {
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = whichAnim;
             whichAnim = 0;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -448,7 +412,7 @@ public class Mertens2 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -468,23 +432,23 @@ public class Mertens2 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Wasser, kein Punkt
-                if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
+                if (wasserobenRect.isPointInRect(pTemp) || wasseruntenRect.isPointInRect(pTemp)) {
                     // wuda + wacka
                     nextActionID = mainFrame.whatItem == 10 ? 170 : 160;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -494,7 +458,7 @@ public class Mertens2 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -506,50 +470,50 @@ public class Mertens2 extends MainLocation {
                 nextActionID = 0;
 
                 // zu Kulow gehen ?
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Wasser ansehen
-                if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
+                if (wasserobenRect.isPointInRect(pTemp) || wasseruntenRect.isPointInRect(pTemp)) {
                     nextActionID = 2;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Kulow anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Wasser mitnehmen
-                if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
+                if (wasserobenRect.isPointInRect(pTemp) || wasseruntenRect.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                    mainFrame.pathWalker.setNewWay(pTemp);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -566,8 +530,8 @@ public class Mertens2 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -576,43 +540,43 @@ public class Mertens2 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || wasserobenRect.IsPointInRect(pTemp) ||
-                    wasseruntenRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || wasserobenRect.isPointInRect(pTemp) ||
+                    wasseruntenRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (wasserobenRect.IsPointInRect(pTemp) || wasseruntenRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (wasserobenRect.isPointInRect(pTemp) || wasseruntenRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -653,7 +617,7 @@ public class Mertens2 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -661,7 +625,7 @@ public class Mertens2 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -669,25 +633,25 @@ public class Mertens2 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
-    private void Blink(GenericDrawingContext g) {
-        g.setColor(GenericColor.white);
+    private void blink(GenericDrawingContext g) {
+        g.setColor(GenericColor.WHITE);
 
         // Das Array Stueck fuer Stueck abarbeiten
         for (int i = 0; i < MerkArray.length; i++) {
@@ -710,7 +674,7 @@ public class Mertens2 extends MainLocation {
                                 MerkArray[i][j][0] = (int) Math.round(Math.random() * xlaenge) + xoffset;
                                 MerkArray[i][j][1] = (int) Math.round(Math.random() * ylaenge) + Blink[i].y1;
                             }
-                            while (!Blink[i].PointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
+                            while (!Blink[i].pointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
                         }
                     }
 
@@ -754,7 +718,7 @@ public class Mertens2 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -774,7 +738,7 @@ public class Mertens2 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -782,12 +746,12 @@ public class Mertens2 extends MainLocation {
         switch (nextActionID) {
             case 2:
                 // Wasser anschauen
-                KrabatSagt("Mertens2_1", fWoda, 3, 0, 0);
+                krabatSays("Mertens2_1", fWoda, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Wmann benutzen)
-                mainFrame.krabat.SetFacing(fWmuz);
+                mainFrame.krabat.setFacing(fWmuz);
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
 
@@ -801,12 +765,12 @@ public class Mertens2 extends MainLocation {
 
             case 55:
                 // Wasser mitnehmen
-                KrabatSagt("Mertens2_2", fWoda, 3, 0, 0);
+                krabatSays("Mertens2_2", fWoda, 3, 0, 0);
                 break;
 
             case 60:
                 // Wassermann begruesst Krabat
-                PersonSagt("Mertens2_47", 0, 34, 2, 70, wmannTalk);
+                personSays("Mertens2_47", 0, 34, 2, 70, wmannTalk);
                 mainFrame.actions[290] = true;
                 break;
 
@@ -821,37 +785,37 @@ public class Mertens2 extends MainLocation {
 
             case 100:
                 // Gehe zu Kulow
-                NeuesBild(76, 79);
+                createNewLocation(76, 79);
                 break;
 
             case 160:
                 // Wasser - Ausreden
-                DingAusrede(fWoda);
+                thingExcuse(fWoda);
                 break;
 
             case 170:
                 // wuda auf Wasser ausreden
-                KrabatSagt("Mertens2_3", fWoda, 3, 0, 0);
+                krabatSays("Mertens2_3", fWoda, 3, 0, 0);
                 break;
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Mertens2_48", 1000, 161, new int[]{161}, 610);
-                Dialog.ExtendMC("Mertens2_49", 161, 1000, null, 620);
+                Dialog.extend("Mertens2_48", 1000, 161, new int[]{161}, 610);
+                Dialog.extend("Mertens2_49", 161, 1000, null, 620);
 
                 // 2. Frage
-                Dialog.ExtendMC("Mertens2_50", 1000, 280, new int[]{280}, 630);
-                Dialog.ExtendMC("Mertens2_51", 280, 281, new int[]{281}, 640);
-                Dialog.ExtendMC("Mertens2_52", 281, 282, new int[]{282, 283, 267}, 650);
+                Dialog.extend("Mertens2_50", 1000, 280, new int[]{280}, 630);
+                Dialog.extend("Mertens2_51", 280, 281, new int[]{281}, 640);
+                Dialog.extend("Mertens2_52", 281, 282, new int[]{282, 283, 267}, 650);
 
                 // 4. Frage
-                Dialog.ExtendMC("Mertens2_53", 283, 1000, null, 660);
+                Dialog.extend("Mertens2_53", 283, 1000, null, 660);
 
                 // 3. Frage
-                Dialog.ExtendMC("Mertens2_54", 1000, 284, null, 800);
-                Dialog.ExtendMC("Mertens2_55", 284, 1000, null, 800);
+                Dialog.extend("Mertens2_54", 1000, 284, null, 800);
+                Dialog.extend("Mertens2_55", 284, 1000, null, 800);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -865,98 +829,98 @@ public class Mertens2 extends MainLocation {
                 mainFrame.actions[284] = true;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 610:
                 // Reaktion Wmuz auf 1. Teil 1. Frage
-                PersonSagt("Mertens2_4", 0, 34, 2, 600, wmannTalk);
+                personSays("Mertens2_4", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 620:
                 // Reaktion Wmuz auf 2. Teil 1. Frage
-                PersonSagt("Mertens2_5", 0, 34, 2, 600, wmannTalk);
+                personSays("Mertens2_5", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 630:
                 // Reaktion Wmuz auf 1. Teil 2. Frage
-                PersonSagt("Mertens2_6", 0, 34, 2, 600, wmannTalk);
+                personSays("Mertens2_6", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 640:
                 // Reaktion Wmuz auf 2. Teil 2. Frage
-                PersonSagt("Mertens2_7", 0, 34, 2, 641, wmannTalk);
+                personSays("Mertens2_7", 0, 34, 2, 641, wmannTalk);
                 break;
 
             case 641:
                 // Reaktion Wmuz auf 2. Teil 2. Frage
-                PersonSagt("Mertens2_8", 0, 34, 2, 600, wmannTalk);
+                personSays("Mertens2_8", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 650:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_9", 0, 34, 2, 651, wmannTalk);
+                personSays("Mertens2_9", 0, 34, 2, 651, wmannTalk);
                 break;
 
             case 651:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_37", 0, 34, 2, 652, wmannTalk);
+                personSays("Mertens2_37", 0, 34, 2, 652, wmannTalk);
                 break;
 
             case 652:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_38", 0, 34, 2, 653, wmannTalk);
+                personSays("Mertens2_38", 0, 34, 2, 653, wmannTalk);
                 break;
 
             case 653:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_39", 0, 34, 2, 654, wmannTalk);
+                personSays("Mertens2_39", 0, 34, 2, 654, wmannTalk);
                 break;
 
             case 654:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_40", 0, 34, 2, 655, wmannTalk);
+                personSays("Mertens2_40", 0, 34, 2, 655, wmannTalk);
                 break;
 
             case 655:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_41", 0, 34, 2, 656, wmannTalk);
+                personSays("Mertens2_41", 0, 34, 2, 656, wmannTalk);
                 break;
 
             case 656:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_42", 0, 34, 2, 657, wmannTalk);
+                personSays("Mertens2_42", 0, 34, 2, 657, wmannTalk);
                 break;
 
             case 657:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_43", 0, 34, 2, 658, wmannTalk);
+                personSays("Mertens2_43", 0, 34, 2, 658, wmannTalk);
                 break;
 
             case 658:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_44", 0, 34, 2, 659, wmannTalk);
+                personSays("Mertens2_44", 0, 34, 2, 659, wmannTalk);
                 break;
 
             case 659:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_45", 0, 34, 2, 661, wmannTalk);
+                personSays("Mertens2_45", 0, 34, 2, 661, wmannTalk);
                 break;
 
             case 660:
                 // Reaktion Wmuz auf 4. Teil 2. Frage
-                PersonSagt("Mertens2_10", 0, 34, 2, 651, wmannTalk);
+                personSays("Mertens2_10", 0, 34, 2, 651, wmannTalk);
                 break;
 
             case 661:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_46", 0, 34, 2, 600, wmannTalk);
+                personSays("Mertens2_46", 0, 34, 2, 600, wmannTalk);
                 break;
 
             case 800:
@@ -980,18 +944,18 @@ public class Mertens2 extends MainLocation {
 
             case 900:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Mertens2_56", 1000, 285, new int[]{285}, 910);
-                Dialog.ExtendMC("Mertens2_57", 285, 286, new int[]{286}, 920);
+                Dialog.extend("Mertens2_56", 1000, 285, new int[]{285}, 910);
+                Dialog.extend("Mertens2_57", 285, 286, new int[]{286}, 920);
 
                 // 2. Frage
-                Dialog.ExtendMC("Mertens2_58", 1000, 288, new int[]{267, 288}, 930);
-                Dialog.ExtendMC("Mertens2_59", 288, 1000, null, 950);
+                Dialog.extend("Mertens2_58", 1000, 288, new int[]{267, 288}, 930);
+                Dialog.extend("Mertens2_59", 288, 1000, null, 950);
 
                 // 3. Frage
-                Dialog.ExtendMC("Mertens2_60", 1000, 287, null, 1000);
-                Dialog.ExtendMC("Mertens2_61", 287, 1000, null, 1000);
+                Dialog.extend("Mertens2_60", 1000, 287, null, 1000);
+                Dialog.extend("Mertens2_61", 287, 1000, null, 1000);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -1005,83 +969,83 @@ public class Mertens2 extends MainLocation {
                 mainFrame.actions[287] = true;
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 910:
                 // Reaktion Wmuz auf 1. Teil 1. Frage
-                PersonSagt("Mertens2_11", 0, 34, 2, 900, wmannTalk);
+                personSays("Mertens2_11", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 920:
                 // Reaktion Wmuz auf 2. Teil 1. Frage
-                PersonSagt("Mertens2_12", 0, 34, 2, 900, wmannTalk);
+                personSays("Mertens2_12", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 930:
                 // Reaktion Wmuz auf 1. Teil 2. Frage
-                PersonSagt("Mertens2_13", 0, 34, 2, 931, wmannTalk);
+                personSays("Mertens2_13", 0, 34, 2, 931, wmannTalk);
                 break;
 
             case 931:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_37", 0, 34, 2, 932, wmannTalk);
+                personSays("Mertens2_37", 0, 34, 2, 932, wmannTalk);
                 break;
 
             case 932:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_38", 0, 34, 2, 933, wmannTalk);
+                personSays("Mertens2_38", 0, 34, 2, 933, wmannTalk);
                 break;
 
             case 933:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_39", 0, 34, 2, 934, wmannTalk);
+                personSays("Mertens2_39", 0, 34, 2, 934, wmannTalk);
                 break;
 
             case 934:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_40", 0, 34, 2, 935, wmannTalk);
+                personSays("Mertens2_40", 0, 34, 2, 935, wmannTalk);
                 break;
 
             case 935:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_41", 0, 34, 2, 936, wmannTalk);
+                personSays("Mertens2_41", 0, 34, 2, 936, wmannTalk);
                 break;
 
             case 936:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_42", 0, 34, 2, 937, wmannTalk);
+                personSays("Mertens2_42", 0, 34, 2, 937, wmannTalk);
                 break;
 
             case 937:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_43", 0, 34, 2, 938, wmannTalk);
+                personSays("Mertens2_43", 0, 34, 2, 938, wmannTalk);
                 break;
 
             case 938:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_44", 0, 34, 2, 939, wmannTalk);
+                personSays("Mertens2_44", 0, 34, 2, 939, wmannTalk);
                 break;
 
             case 939:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_45", 0, 34, 2, 940, wmannTalk);
+                personSays("Mertens2_45", 0, 34, 2, 940, wmannTalk);
                 break;
 
             case 940:
                 // Reaktion Wmuz auf 3. Teil 2. Frage
-                PersonSagt("Mertens2_46", 0, 34, 2, 900, wmannTalk);
+                personSays("Mertens2_46", 0, 34, 2, 900, wmannTalk);
                 break;
 
             case 950:
                 // Reaktion Wmuz auf 4. Teil 2. Frage
-                PersonSagt("Mertens2_14", 0, 34, 2, 933, wmannTalk);
+                personSays("Mertens2_14", 0, 34, 2, 933, wmannTalk);
                 break;
 
             case 1000:
@@ -1106,72 +1070,72 @@ public class Mertens2 extends MainLocation {
             // Action, wenn Karte gegeben
             case 1100:
                 // Wmuz spricht
-                PersonSagt("Mertens2_15", fWmuz, 34, 2, 1110, wmannTalk);
+                personSays("Mertens2_15", fWmuz, 34, 2, 1110, wmannTalk);
                 break;
 
             case 1110:
                 // Krabat spricht
-                KrabatSagt("Mertens2_16", 0, 1, 2, 1120);
+                krabatSays("Mertens2_16", 0, 1, 2, 1120);
                 break;
 
             case 1120:
                 // Wmuz spricht
-                PersonSagt("Mertens2_17", 0, 34, 2, 1130, wmannTalk);
+                personSays("Mertens2_17", 0, 34, 2, 1130, wmannTalk);
                 break;
 
             case 1130:
                 // Krabat spricht
-                KrabatSagt("Mertens2_18", 0, 1, 2, 1140);
+                krabatSays("Mertens2_18", 0, 1, 2, 1140);
                 break;
 
             case 1140:
                 // Wmuz spricht
-                PersonSagt("Mertens2_19", 0, 34, 2, 1150, wmannTalk);
+                personSays("Mertens2_19", 0, 34, 2, 1150, wmannTalk);
                 break;
 
             case 1150:
                 // Krabat spricht
-                KrabatSagt("Mertens2_20", 0, 1, 2, 1160);
+                krabatSays("Mertens2_20", 0, 1, 2, 1160);
                 break;
 
             case 1160:
                 // Wmuz spricht
-                PersonSagt("Mertens2_21", 0, 34, 2, 1165, wmannTalk);
+                personSays("Mertens2_21", 0, 34, 2, 1165, wmannTalk);
                 break;
 
             case 1165:
                 // Wmuz spricht
-                PersonSagt("Mertens2_22", 0, 34, 2, 1170, wmannTalk);
+                personSays("Mertens2_22", 0, 34, 2, 1170, wmannTalk);
                 break;
 
             case 1170:
                 // Wmuz spricht
-                PersonSagt("Mertens2_23", 0, 34, 2, 1180, wmannTalk);
+                personSays("Mertens2_23", 0, 34, 2, 1180, wmannTalk);
                 break;
 
             case 1180:
                 // Krabat spricht
-                KrabatSagt("Mertens2_24", 0, 1, 2, 1190);
+                krabatSays("Mertens2_24", 0, 1, 2, 1190);
                 break;
 
             case 1190:
                 // Wmuz spricht
-                PersonSagt("Mertens2_25", 0, 34, 2, 1193, wmannTalk);
+                personSays("Mertens2_25", 0, 34, 2, 1193, wmannTalk);
                 break;
 
             case 1193:
                 // Wmuz spricht
-                PersonSagt("Mertens2_26", 0, 34, 2, 1195, wmannTalk);
+                personSays("Mertens2_26", 0, 34, 2, 1195, wmannTalk);
                 break;
 
             case 1195:
                 // Wmuz spricht
-                PersonSagt("Mertens2_27", 0, 34, 2, 1200, wmannTalk);
+                personSays("Mertens2_27", 0, 34, 2, 1200, wmannTalk);
                 break;
 
             case 1200:
                 // Krabat spricht
-                KrabatSagt("Mertens2_28", 0, 1, 2, 1205);
+                krabatSays("Mertens2_28", 0, 1, 2, 1205);
                 // Hier beginnt Wassermann abzutauchen
                 isShowing = false;
                 isTauching = true;
@@ -1182,14 +1146,14 @@ public class Mertens2 extends MainLocation {
                 if (isTauching) {
                     break;
                 }
-                KrabatSagt("Mertens2_29", 0, 1, 2, 1210);
+                krabatSays("Mertens2_29", 0, 1, 2, 1210);
                 break;
 
             case 1210:
                 // Krabat verlaesst das Bild
                 // Hier wird der Bote in Wjes aktiviert,,,und Pfarrer ausgeschaltet
                 mainFrame.actions[302] = true;
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Pverlassen);
+                mainFrame.pathWalker.setNewWayGuaranteed(Pverlassen);
                 nextActionID = 1220;
                 // hier werden die talkPoints fuer die Enten zugewiesen
                 GenericRectangle k1Temp = duck1.kackaRect();
@@ -1199,13 +1163,13 @@ public class Mertens2 extends MainLocation {
             case 1220:
                 // Animszene mit Enten
                 kacka1IsMoving = false;
-                mainFrame.soundPlayer.PlayFile("sfx/mlynk-kacka.wav");
-                PersonSagt("Mertens2_30", 0, 71, 2, 1225, kacka1TalkPoint);
+                mainFrame.soundPlayer.playFile("sfx/mlynk-kacka.wav");
+                personSays("Mertens2_30", 0, 71, 2, 1225, kacka1TalkPoint);
                 break;
 
             case 1225:
                 // erste Ente spricht noch
-                PersonSagt("Mertens2_31", 0, 71, 2, 1230, kacka1TalkPoint);
+                personSays("Mertens2_31", 0, 71, 2, 1230, kacka1TalkPoint);
                 break;
 
             case 1230:
@@ -1223,7 +1187,6 @@ public class Mertens2 extends MainLocation {
                 }
                 GenericRectangle k2Temp = duck2.kackaRect();
                 kacka2TalkPoint = new GenericPoint(k2Temp.getX() + k2Temp.getWidth() / 2, k2Temp.getY() - 50);
-                // System.out.println ("Talkpoint Ente 2: " + kacka2TalkPoint.x + " " + kacka2TalkPoint.y);
                 nextActionID = 1250;
                 Counter2 = 20;
                 break;
@@ -1233,33 +1196,33 @@ public class Mertens2 extends MainLocation {
                 if (--Counter2 > 1) {
                     break;
                 }
-                PersonSagt("Mertens2_32", 0, 71, 2, 1260, kacka1TalkPoint);
+                personSays("Mertens2_32", 0, 71, 2, 1260, kacka1TalkPoint);
                 break;
 
             case 1260:
                 // zweite Ente spricht
-                PersonSagt("Mertens2_33", 0, 72, 2, 1270, kacka2TalkPoint);
+                personSays("Mertens2_33", 0, 72, 2, 1270, kacka2TalkPoint);
                 break;
 
             case 1270:
                 // erste Ente
-                PersonSagt("Mertens2_34", 0, 71, 2, 1280, kacka1TalkPoint);
+                personSays("Mertens2_34", 0, 71, 2, 1280, kacka1TalkPoint);
                 break;
 
             case 1280:
                 // zweite Ente
-                PersonSagt("Mertens2_35", 0, 72, 2, 1290, kacka2TalkPoint);
+                personSays("Mertens2_35", 0, 72, 2, 1290, kacka2TalkPoint);
                 break;
 
             case 1290:
                 // erste Ente
-                PersonSagt("Mertens2_36", 0, 71, 2, 1900, kacka1TalkPoint);
+                personSays("Mertens2_36", 0, 71, 2, 1900, kacka1TalkPoint);
                 break;
 
 
             case 1900:
                 // Ende dieser Anim
-                NeuesBild(76, 79);
+                createNewLocation(76, 79);
                 break;
 
             case 2000:
@@ -1278,7 +1241,7 @@ public class Mertens2 extends MainLocation {
 
             case 2020:
                 // Krabat stellt sich richtig hin
-                mainFrame.pathWalker.SetzeNeuenWeg(Pwmann);
+                mainFrame.pathWalker.setNewWay(Pwmann);
                 nextActionID = 50;
                 break;
 

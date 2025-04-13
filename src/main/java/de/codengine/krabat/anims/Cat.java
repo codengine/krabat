@@ -57,7 +57,7 @@ public class Cat extends MainAnim {
         kocka_look = new GenericImage[6];
         kocka_talk = new GenericImage[6];
 
-        InitImages();
+        initImages();
 
         Verhinderlook = MAX_VERHINDERLOOK;
         Verhindertalk = MAX_VERHINDERTALK;
@@ -67,7 +67,7 @@ public class Cat extends MainAnim {
         Lecken = MAX_LECKEN;
     }
 
-    private void InitImages() {
+    private void initImages() {
         kocka_look[0] = getPicture("gfx/mlyn/kocka2.png");
         kocka_look[1] = getPicture("gfx/mlyn/kocka2a.png");
         kocka_look[2] = getPicture("gfx/mlyn/kocka1.png");

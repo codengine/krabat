@@ -101,21 +101,21 @@ public class Kupa1 extends MainLocation {
 
         mainFrame.checkKrabat();
 
-        mainFrame.krabat.maxx = 480;
-        mainFrame.krabat.zoomf = 2.0f;
-        mainFrame.krabat.defScale = -20;
+        mainFrame.krabat.maxX = 480;
+        mainFrame.krabat.zoomFactor = 2.0f;
+        mainFrame.krabat.defaultScale = -20;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         // fuer Blinkern rein
-        InitBlinker();
+        initBlinker();
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
-        InitImages();
+    private void initLocation(int oldLocation) {
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -124,14 +124,14 @@ public class Kupa1 extends MainLocation {
             case 10:
                 // von Weiden aus
                 mainFrame.krabat.setPos(new GenericPoint(612, 376));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 break;
         }
-        InitMatrix();
+        initMatrix();
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/kupa/kupa2.png");
         kupa3 = getPicture("gfx/kupa/kupa3.png");
         kupa4 = getPicture("gfx/kupa/kupa4.png");
@@ -141,7 +141,7 @@ public class Kupa1 extends MainLocation {
 
     }
 
-    private void InitMatrix() {
+    private void initMatrix() {
         // Entscheidung, ob Schild schon reingelegt oder noch nicht
         if (mainFrame.actions[224]) {
             // Schild ist drin
@@ -155,25 +155,24 @@ public class Kupa1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(262, 356, 411, 371));
 
             // Borders auf der Insel
-            // mainFrame.wegGeher.vBorders.addElement (new bordertrapez (243, 361, 261, 404));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(210, 261, 210, 261, 356, 371));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(166, 209, 156, 209, 368, 371));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(156, 158, 123, 125, 372, 404));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(117, 252, 117, 181, 405, 450));
 
             // Matrix loeschen
-            mainFrame.pathFinder.ClearMatrix(10);
+            mainFrame.pathFinder.clearMatrix(10);
 
             // Wege eintragen
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 2);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
-            mainFrame.pathFinder.PosVerbinden(5, 6);
-            mainFrame.pathFinder.PosVerbinden(6, 7);
-            mainFrame.pathFinder.PosVerbinden(7, 8);
-            mainFrame.pathFinder.PosVerbinden(8, 9);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 2);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
+            mainFrame.pathFinder.connectPos(5, 6);
+            mainFrame.pathFinder.connectPos(6, 7);
+            mainFrame.pathFinder.connectPos(7, 8);
+            mainFrame.pathFinder.connectPos(8, 9);
         } else {
             // noch kein Schild drin, nix mit auf die Insel geh...
             // Grenzen setzen
@@ -186,18 +185,18 @@ public class Kupa1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(356, 356, 411, 371));
 
             // Matrix loeschen
-            mainFrame.pathFinder.ClearMatrix(6);
+            mainFrame.pathFinder.clearMatrix(6);
 
             // Wege eintragen
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 2);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 2);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
         }
     }
 
-    private void InitBlinker() {
+    private void initBlinker() {
         // hier wird das Blinkern festgelegt, indem das Array initialisiert wird, wo der
         // Blinkstatus gespeichert wird
 
@@ -211,8 +210,8 @@ public class Kupa1 extends MainLocation {
         int AnzahlStriche = 1;
 
         for (BorderTrapezoid borderTrapezoid : Blink) {
-            if (borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
-                AnzahlStriche = borderTrapezoid.Flaeche() / HAEUFIGKEITSKONSTANTE;
+            if (borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE > AnzahlStriche) {
+                AnzahlStriche = borderTrapezoid.surfaceArea() / HAEUFIGKEITSKONSTANTE;
             }
         }
 
@@ -223,7 +222,7 @@ public class Kupa1 extends MainLocation {
         for (int i = 0; i < MerkArray.length; i++) {
             for (int j = 0; j < MerkArray[i].length; j++) {
                 // mit -1 kennzeichnen, das dieser Eintrag nicht beachtet werden soll
-                if (Blink[i].Flaeche() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
+                if (Blink[i].surfaceArea() / HAEUFIGKEITSKONSTANTE < j && j > 0) {
                     MerkArray[i][j][2] = -1;
                 } else {
                     // gewisse Anfangszufaelligkeit zuweisen, damit nicht alle im selben Status
@@ -272,7 +271,7 @@ public class Kupa1 extends MainLocation {
                 mainFrame.isClipSet = false;
                 mainFrame.krabat.fAnimHelper = false;
                 mainFrame.actions[224] = true;
-                InitMatrix();
+                initMatrix();
                 WhichItem = 0;
             }
         }
@@ -281,7 +280,7 @@ public class Kupa1 extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -294,7 +293,7 @@ public class Kupa1 extends MainLocation {
         // Blinkern ermoeglichen
         g.setClip(0, 323, 639, 479);
         g.drawImage(background, 0, 0);
-        Blink(g);
+        blink(g);
 
         // fehlendes Stueck Bruecke zeichnen
         if (!mainFrame.actions[224]) {
@@ -314,26 +313,26 @@ public class Kupa1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
-        mainFrame.krabat.setPos(CorrectY(mainFrame.krabat.getPos()));
+        mainFrame.krabat.setPos(correctY(mainFrame.krabat.getPos()));
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -358,7 +357,7 @@ public class Kupa1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinter kupa3 (nur Clipping - Region wird neugezeichnet)
-        if (kupa3Rect.IsPointInRect(pKrTemp)) {
+        if (kupa3Rect.isPointInRect(pKrTemp)) {
             g.drawImage(kupa3, 138, 281);
         }
 
@@ -368,7 +367,7 @@ public class Kupa1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -378,17 +377,17 @@ public class Kupa1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -422,17 +421,17 @@ public class Kupa1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Rohodz
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                if (rohodzRect.isPointInRect(pTemp) && !mainFrame.actions[917] &&
                         mainFrame.actions[224]) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
@@ -440,7 +439,7 @@ public class Kupa1 extends MainLocation {
                 }
 
                 // Ausreden fuer Schild
-                if (schildRect.IsPointInRect(pTemp) &&
+                if (schildRect.isPointInRect(pTemp) &&
                         !mainFrame.actions[224]) {
                     if (mainFrame.whatItem == 3) {
                         nextActionID = 160;
@@ -452,7 +451,7 @@ public class Kupa1 extends MainLocation {
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -462,7 +461,7 @@ public class Kupa1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -474,69 +473,69 @@ public class Kupa1 extends MainLocation {
                 nextActionID = 0;
 
                 // Rohodz ansehen
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                if (rohodzRect.isPointInRect(pTemp) && !mainFrame.actions[917] &&
                         mainFrame.actions[224]) {
                     nextActionID = 1;
                     pTemp = Prohodz;
                 }
 
                 // Schild ansehen
-                if (schildRect.IsPointInRect(pTemp) &&
+                if (schildRect.isPointInRect(pTemp) &&
                         !mainFrame.actions[224]) {
                     nextActionID = 2;
                     pTemp = Pschild;
                 }
 
                 // zu Weiden gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
-                SetzeNeuenWeg(pTemp);
+                setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Weiden anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Rohodz nehmen
-                if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
+                if (rohodzRect.isPointInRect(pTemp) && !mainFrame.actions[917] &&
                         mainFrame.actions[224]) {
                     nextActionID = 50;
-                    SetzeNeuenWeg(Prohodz);
+                    setNewWay(Prohodz);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schild nehmen
-                if (schildRect.IsPointInRect(pTemp) &&
+                if (schildRect.isPointInRect(pTemp) &&
                         !mainFrame.actions[224]) {
                     nextActionID = 55;
-                    SetzeNeuenWeg(Pschild);
+                    setNewWay(Pschild);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -547,8 +546,8 @@ public class Kupa1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -557,18 +556,18 @@ public class Kupa1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || rohodzRect.IsPointInRect(pTemp) &&
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || rohodzRect.isPointInRect(pTemp) &&
                     !mainFrame.actions[917] && mainFrame.actions[224] ||
-                    !mainFrame.actions[224] && schildRect.IsPointInRect(pTemp);
+                    !mainFrame.actions[224] && schildRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -576,40 +575,40 @@ public class Kupa1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (rohodzRect.IsPointInRect(pTemp) && !mainFrame.actions[917] &&
-                    mainFrame.actions[224] || schildRect.IsPointInRect(pTemp) &&
+            if (rohodzRect.isPointInRect(pTemp) && !mainFrame.actions[917] &&
+                    mainFrame.actions[224] || schildRect.isPointInRect(pTemp) &&
                     !mainFrame.actions[224]) {
-                if (Cursorform != 1) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
 
     // Routinen fuer veraendertes Laufen auf definierter Linie
 
-    private void SetzeNeuenWeg(GenericPoint dest) {
-        GenericPoint right = CorrectSetY(dest);
-        mainFrame.pathWalker.SetzeNeuenWeg(right);
+    private void setNewWay(GenericPoint dest) {
+        GenericPoint right = correctSetY(dest);
+        mainFrame.pathWalker.setNewWay(right);
     }
 
-    private GenericPoint CorrectY(GenericPoint dst) {
+    private GenericPoint correctY(GenericPoint dst) {
         // Y - Koordinate beim Laufen nur auf definiertem Stueck beachten
         if (dst.x > 411) {
             return dst;
@@ -621,7 +620,7 @@ public class Kupa1 extends MainLocation {
         }
     }
 
-    private GenericPoint CorrectSetY(GenericPoint dst) {
+    private GenericPoint correctSetY(GenericPoint dst) {
         // Hier wird Y-Koordinate auch in anderen Rects beeinflusst -> "Ausschalten" der BestRect - Routine
         if (dst.x > 499) {
             return dst;
@@ -639,11 +638,11 @@ public class Kupa1 extends MainLocation {
         // Hier Korrektur, wenn Schild noch nicht in Location
         if (!mainFrame.actions[224]) {
             if (dst.x < 362) {
-                return CorrectY(new GenericPoint(362, 300));
+                return correctY(new GenericPoint(362, 300));
             }
         }
         if (dst.x < 262) {
-            return dst; //(new GenericPoint (262, 363));
+            return dst;
         }
         return new GenericPoint(dst.x, Carray[dst.x - 262] + 2);
     }
@@ -677,7 +676,7 @@ public class Kupa1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -685,7 +684,7 @@ public class Kupa1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -693,27 +692,27 @@ public class Kupa1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Hier ist die Blinkerroutine //////////////////////////////////////////
 
-    private void Blink(GenericDrawingContext g) {
-        g.setColor(GenericColor.white);
+    private void blink(GenericDrawingContext g) {
+        g.setColor(GenericColor.WHITE);
 
         // Das Array Stueck fuer Stueck abarbeiten
         for (int i = 0; i < MerkArray.length; i++) {
@@ -736,7 +735,7 @@ public class Kupa1 extends MainLocation {
                                 MerkArray[i][j][0] = (int) Math.round(Math.random() * xlaenge) + xoffset;
                                 MerkArray[i][j][1] = (int) Math.round(Math.random() * ylaenge) + Blink[i].y1;
                             }
-                            while (!Blink[i].PointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
+                            while (!Blink[i].pointInside(new GenericPoint(MerkArray[i][j][0], MerkArray[i][j][1])));
                         }
                     }
 
@@ -780,7 +779,7 @@ public class Kupa1 extends MainLocation {
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -800,7 +799,7 @@ public class Kupa1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -808,19 +807,19 @@ public class Kupa1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Rohodz anschauen
-                KrabatSagt("Kupa1_1", fRohodz, 3, 0, 0);
+                krabatSays("Kupa1_1", fRohodz, 3, 0, 0);
                 break;
 
             case 2:
                 // Schild anschauen
-                KrabatSagt("Kupa1_2", fSchild, 3, 0, 0);
+                krabatSays("Kupa1_2", fSchild, 3, 0, 0);
                 break;
 
             case 50:
                 // Rohodz benutzen
                 nextActionID = 0;
-                mainFrame.soundPlayer.PlayFile("sfx/rohodz.wav");
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.soundPlayer.playFile("sfx/rohodz.wav");
+                mainFrame.krabat.setFacing(9);
                 WhichItem = 17;
                 mainFrame.krabat.nAnimation = 92;
                 evalMouseMoveEvent(mainFrame.mousePoint);
@@ -834,35 +833,35 @@ public class Kupa1 extends MainLocation {
                 }
                 switch (zuffZahl) {
                     case 0:
-                        KrabatSagt("Kupa1_3", fSchild, 3, 0, 0);
+                        krabatSays("Kupa1_3", fSchild, 3, 0, 0);
                         break;
 
                     case 1:
-                        KrabatSagt("Kupa1_4", fSchild, 3, 0, 0);
+                        krabatSays("Kupa1_4", fSchild, 3, 0, 0);
                         break;
                 }
                 break;
 
             case 100:
                 // gehe zu Wjerby
-                NeuesBild(10, 12);
+                createNewLocation(10, 12);
                 break;
 
             case 150:
                 // Rohodz - Ausreden
-                DingAusrede(fRohodz);
+                thingExcuse(fRohodz);
                 break;
 
             case 155:
                 // Schild - Ausreden
-                DingAusrede(fSchild);
+                thingExcuse(fSchild);
                 break;
 
             case 160:
                 // Schild hinlegen
                 nextActionID = 0;
-                mainFrame.soundPlayer.PlayFile("sfx/schildlegen.wav");
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.soundPlayer.playFile("sfx/schildlegen.wav");
+                mainFrame.krabat.setFacing(9);
                 WhichItem = 500;
                 mainFrame.krabat.nAnimation = 130;
                 evalMouseMoveEvent(mainFrame.mousePoint);

@@ -82,7 +82,7 @@ public class Fisherman1 extends MovableMainAnim {
         angler_right_talk_head = new GenericImage[7];
         angler_right_talk_body = new GenericImage[3];
 
-        InitImages();
+        initImages();
 
         Verhinderstand = MAX_VERHINDERSTAND;
         Verhinderhead = MAX_VERHINDERHEAD;
@@ -90,7 +90,7 @@ public class Fisherman1 extends MovableMainAnim {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         angler_left_stand[0] = getPicture("gfx/haty/ang1-1.png");
         angler_left_stand[1] = getPicture("gfx/haty/ang1-1a.png");
         angler_left_stand[2] = getPicture("gfx/haty/ang1-2.png");
@@ -149,11 +149,11 @@ public class Fisherman1 extends MovableMainAnim {
 
     // Plokarka um einen Schritt weitersetzen
     // false = weiterlaufen, true = stehengebleibt
-    public synchronized boolean Move() {
+    public synchronized boolean move() {
         // Variablen uebernehmen (Threadsynchronisierung)
-        walkto = Twalkto;
-        directionX = tDirectionX;
-        directionY = tDirectionY;
+        walkTo = tmpWalkTo;
+        directionX = tmpDirectionX;
+        directionY = tmpDirectionY;
 
         if (--Verhinderwalk > 0) {
             laeuftNicht = false;
@@ -162,32 +162,31 @@ public class Fisherman1 extends MovableMainAnim {
 
         Verhinderwalk = MAX_VERHINDERWALK;
 
-        if (anim_pos < 1) {
+        if (animPos < 1) {
             // null-Position nur zeigen
-            anim_pos++;
+            animPos++;
             laeuftNicht = false;
             return false;
         }
 
         // neuen Punkt ermitteln und setzen
-        VerschiebeX();
-        xps = txps;
-        yps = typs;
+        moveX();
+        posX = tempPosX;
+        posY = tempPosY;
 
         // Animationsphase weiterschalten
-        anim_pos++;
-        if (anim_pos == 6) {
-            anim_pos = 2;
+        animPos++;
+        if (animPos == 6) {
+            animPos = 2;
         }
 
         // Naechsten Schritt auf Gueltigkeit ueberpruefen
-        VerschiebeX();
+        moveX();
 
         // Ueberschreitung feststellen in X - Richtung
-        if ((walkto.x - (int) txps) * directionX.getVal() <= 0) {
-            // System.out.println("Ueberschreitung x! " + walkto.x + " " + walkto.y + " " + txps + " " + typs);
-            setPos(walkto);
-            anim_pos = 1;
+        if ((walkTo.x - (int) tempPosX) * directionX.getVal() <= 0) {
+            setPos(walkTo);
+            animPos = 1;
             laeuftNicht = true;
             return true;
         }
@@ -197,16 +196,16 @@ public class Fisherman1 extends MovableMainAnim {
     }
 
     // Horizontal - Positions - Verschieberoutine
-    private void VerschiebeX() {
-        verschiebeXdefault(CHORIZ_DIST[anim_pos]);
+    private void moveX() {
+        moveXdefault(CHORIZ_DIST[animPos]);
     }
 
     // Vorbereitungen fuer das Laufen treffen und starten
     // Diese Routine wird nur im "MousePressed" - Event angesprungen
-    public synchronized void MoveTo(GenericPoint aim, boolean clearAnimPos) {
+    public synchronized void moveTo(GenericPoint aim, boolean clearAnimPos) {
         laeuftNicht = false;
         moveToDefault(aim);
-        anim_pos = clearAnimPos ? 0 : 1;       // Animationsimage bei Neubeginn initialis.
+        animPos = clearAnimPos ? 0 : 1;       // Animationsimage bei Neubeginn initialis.
     }
 
     // Krabat - Animationen /////////////////////////////////////////////////////////////
@@ -233,36 +232,32 @@ public class Fisherman1 extends MovableMainAnim {
 
             // links sitzen
             if (directionX == LEFT) {
-                MaleIhn(offGraph, angler_left_stand[Stand]);
+                drawHim(offGraph, angler_left_stand[Stand]);
             }
 
             // rechts sitzen
             if (directionX == RIGHT) {
-                MaleIhn(offGraph, angler_right_stand[Stand]);
+                drawHim(offGraph, angler_right_stand[Stand]);
             }
         } else {
             // hier wird gelaufen
-            MaleIhn(offGraph, !hasEimer ? angler_walk[anim_pos] : angler_walk_eimer[anim_pos]);
+            drawHim(offGraph, !hasEimer ? angler_walk[animPos] : angler_walk_eimer[animPos]);
         }
     }
 
     // Lasse Krabat in eine bestimmte Richtung schauen (nach Uhrzeit!)
-    public void SetFacing(int direction) {
+    public void setFacing(int direction) {
         switch (direction) {
             case 3:
-                // horizontal=true;
                 directionX = RIGHT;
                 break;
             case 6:
-                // horizontal=false;
                 directionY = DOWN;
                 break;
             case 9:
-                // horizontal=true;
                 directionX = LEFT;
                 break;
             case 12:
-                // horizontal=false;
                 directionY = UP;
                 break;
             default:
@@ -286,8 +281,8 @@ public class Fisherman1 extends MovableMainAnim {
         }
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
 
         // Figur zeichnen
         if (directionX == RIGHT) {
@@ -303,7 +298,7 @@ public class Fisherman1 extends MovableMainAnim {
 
     public void takeBow(GenericDrawingContext g, boolean hatJetztEimer) {
         hasEimer = hatJetztEimer;
-        MaleIhnGebueckt(g, angler_walk_eimer[0]);
+        drawHimBentOver(g, angler_walk_eimer[0]);
     }
 
     // Zooming-Variablen berechnen
@@ -313,29 +308,29 @@ public class Fisherman1 extends MovableMainAnim {
 
     // Zooming-Variablen berechnen
     @Override
-    protected int getLeftPos(int pox, int ignored) {
+    protected int getLeftPos(int x, int ignored) {
         // Linke x-Koordinate = Fusspunkt - halbe Breite
         // + halbe Hoehendifferenz
-        return pox - CWIDTH / (laeuftNicht ? 2 : 4);
+        return x - CWIDTH / (laeuftNicht ? 2 : 4);
     }
 
     @Override
-    protected int getUpPos(int poy) {
+    protected int getUpPos(int y) {
         // obere y-Koordinate = untere y-Koordinate - konstante Hoehe
         // + Hoehendifferenz
-        return poy - CHEIGHT;
+        return y - CHEIGHT;
     }
 
     @Override
-    protected int getScale(int poy) {
-        return calcScaleDefault(poy);
+    protected int getScale(int y) {
+        return calcScaleDefault(y);
     }
 
     // Routine, die BorderRect zurueckgibt, wo sich Krabat gerade befindet
     @Override
-    public BorderRect getRect() {
-        int x = getLeftPos((int) xps);
-        int y = getUpPos((int) yps);
+    public BorderRect getBoundingBox() {
+        int x = getLeftPos((int) posX);
+        int y = getUpPos((int) posY);
 
         // hier Unterscheidung nach Richtung, da die Angler viel breitere Images haben
         if (directionX == RIGHT) {
@@ -347,26 +342,26 @@ public class Fisherman1 extends MovableMainAnim {
         }
     }
 
-    public GenericPoint Wudzer1TalkPoint() {
-        return new GenericPoint((int) xps, (int) yps - CHEIGHT - 50);
+    public GenericPoint wudzer1TalkPoint() {
+        return new GenericPoint((int) posX, (int) posY - CHEIGHT - 50);
     }
 
-    private void MaleIhn(GenericDrawingContext g, GenericImage ktemp) {
+    private void drawHim(GenericDrawingContext g, GenericImage ktemp) {
         // Clipping - Region setzen, wir nehmen an, dass Haty die richtige Region bereitstellt...
         // KrabatClip(g, ((int) xps), ((int) yps));
 
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
 
         // Figur zeichnen
         g.drawImage(ktemp, left, up, CWIDTH - (!laeuftNicht ? 50 : 0), CHEIGHT);
     }
 
-    private void MaleIhnGebueckt(GenericDrawingContext g, GenericImage ktemp) {
+    private void drawHimBentOver(GenericDrawingContext g, GenericImage ktemp) {
         // Groesse und Position der Figur berechnen
-        int left = getLeftPos((int) xps);
-        int up = getUpPos((int) yps);
+        int left = getLeftPos((int) posX);
+        int up = getUpPos((int) posY);
 
         // Figur zeichnen
         g.drawImage(ktemp, left + 10, up, CWIDTH - 30, CHEIGHT);

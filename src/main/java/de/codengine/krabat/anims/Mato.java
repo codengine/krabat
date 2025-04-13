@@ -54,14 +54,14 @@ public class Mato extends MainAnim {
         mato_talk = new GenericImage[7];
         mato_open = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderwait = MAX_VERHINDERWAIT;
         Verhindertalk = MAX_VERHINDERTALK;
         Verhinderopen = MAX_VERHINDEROPEN;
     }
 
-    private void InitImages() {
+    private void initImages() {
         mato_look[0] = getPicture("gfx-dd/zastup/schrankier.png");
         mato_look[1] = getPicture("gfx-dd/zastup/schrankier-a.png");
         mato_look[2] = getPicture("gfx-dd/zastup/schrankier2.png");

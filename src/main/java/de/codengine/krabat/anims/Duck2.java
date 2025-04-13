@@ -81,14 +81,14 @@ public class Duck2 extends MainAnim {
         kacka_lande = new GenericImage[3];
         kacka_rede = new GenericImage[2];
 
-        InitImages();
+        initImages();
 
         Verhinderschnatter = MAX_VERHINDERSCHNATTER;
         Verhinderflieg = MAX_VERHINDERFLIEG;
         Verhinderland = MAX_VERHINDERLAND;
     }
 
-    private void InitImages() {
+    private void initImages() {
         kacka_flieg[0] = getPicture("gfx/mertens/kacka2-f1.png");
         kacka_flieg[1] = getPicture("gfx/mertens/kacka2-f3.png");
         kacka_flieg[2] = getPicture("gfx/mertens/kacka2-f2.png");
@@ -126,7 +126,7 @@ public class Duck2 extends MainAnim {
 
         Yoffset = Ydiff / Xdiff * Xoffset;
 
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             log.debug("Yoffset = {}", Yoffset);
         }
     }
@@ -142,7 +142,6 @@ public class Duck2 extends MainAnim {
             // Berechnung beim Reden
             int x = (int) (Positx - (float) Redebreite / 2);
             int y = (int) (Posity - Redehoehe);
-            // System.out.println ("Rectangle Ente 2 : " + x + " " + y + " " + Redebreite + " " + Redehoehe);
             return new GenericRectangle(x, y, Redebreite, Redehoehe);
         }
     }
@@ -174,7 +173,7 @@ public class Duck2 extends MainAnim {
                         if (!landeSoundPlayed)  // hier Sound 1x abspielen
                         {
                             landeSoundPlayed = true;
-                            mainFrame.soundPlayer.PlayFile("sfx/woda3.wav");
+                            mainFrame.soundPlayer.playFile("sfx/woda3.wav");
                         }
 
                         if (--Verhinderland < 1) {
@@ -224,7 +223,7 @@ public class Duck2 extends MainAnim {
         if (Pstop.x - Positx < 180) {
             if (!flugSoundPlayed) {
                 flugSoundPlayed = true;
-                mainFrame.soundPlayer.PlayFile("sfx/quack.wav");
+                mainFrame.soundPlayer.playFile("sfx/quack.wav");
             }
         }
 

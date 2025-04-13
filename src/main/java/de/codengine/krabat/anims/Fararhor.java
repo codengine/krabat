@@ -46,14 +46,14 @@ public class Fararhor extends MainAnim {
 
         farar_talk = new GenericImage[8];
 
-        InitImages();
+        initImages();
 
         Notalk = MAX_NOTALK;
         Doorcount = MAX_DOORCOUNT;
 
     }
 
-    private void InitImages() {
+    private void initImages() {
         farar_talk[1] = getPicture("gfx/cyrkej/f-t-1.png");
         farar_talk[2] = getPicture("gfx/cyrkej/f-t-2.png");
         farar_talk[3] = getPicture("gfx/cyrkej/f-t-3.png");

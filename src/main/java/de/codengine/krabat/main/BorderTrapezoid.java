@@ -49,81 +49,34 @@ public class BorderTrapezoid {
     }
 
     // Hier wird ermittelt, ob Punkt innerhalb des Trapezes ist
-    public boolean PointInside(GenericPoint der) {
+    public boolean pointInside(GenericPoint point) {
         // Zuerst wird Rechteck um Viereck berechnet
         int lox = Math.min(x3, x1);
 
         int hix = Math.max(x2, x4);
 
         // Hier erfolgt Abfrage, ob Punkt innerhalb des Vierecks oder nicht
-        if (der.x < lox || der.x > hix || der.y < y1 || der.y > y2) {
-            // System.out.println(der.x + " " + der.y + " outside " + lox + " " + hix + " " + y1 + " " + y2);
+        if (point.x < lox || point.x > hix || point.y < y1 || point.y > y2) {
             return false;
         }
 
-        GenericPoint temp = Punkte(der.y);
+        GenericPoint temp = points(point.y);
 
         // Abfrage, ob Punkt innerhalb
-        // System.out.println("No Trapez !");
-        // System.out.println("Inside !");
-        return temp.x <= der.x && temp.y >= der.x;
+        return temp.x <= point.x && temp.y >= point.x;
     }
 
     // Hier wird der kuerzeste Abstand des Punktes zum Trapez ueberhaupt ermittelt
-    public int CenterDistance(GenericPoint dieser) {
-        GenericPoint Ptemp = RandPunkt(dieser);
-        int xdist = Math.abs(dieser.x - Ptemp.x);
-        int ydist = Math.abs(dieser.y - Ptemp.y);
+    public int centerDistance(GenericPoint point) {
+        GenericPoint pTemp = edgePoint(point);
+        int xdist = Math.abs(point.x - pTemp.x);
+        int ydist = Math.abs(point.y - pTemp.y);
         return (int) Math.sqrt(xdist * xdist + ydist * ydist);
     }
 
-    // Hier wird der beste Punkt innerhalb eines Trapezes ermittelt,
-    // falls der Punkt ausserhalb ist
-	/* public synchronized GenericPoint RandPunkt (GenericPoint dieser)
-	{
-	  // System.out.println("This GenericPoint : " + dieser.x + " " + dieser.y);
-	  
-	  // Test, ob Punkt innerhalb und tschuess
-	  if (PointInside (dieser) == true) 
-	  {
-	    // System.out.println("Falscher BestPoint Aufruf!");
-	  	return (new GenericPoint (dieser.x, dieser.y));
-	  }
-	  
-	  // falls Punkt oberhalb Trapez
-	  if (dieser.y < y1)
-	  {
-	  	// oberhalb und links
-	  	if (dieser.x < x1) return (new GenericPoint (x1, y1));
-	  	// oberhalb und rechts
-	  	if (dieser.x > x2) return (new GenericPoint (x2, y1));
-	  	// oberhalb und dazwischen
-	  	return (new GenericPoint (dieser.x, y1));
-	  }
-	  // falls Punkt unterhalb Trapez
-	  if (dieser.y > y2)
-	  {
-	  	// unterhalb und links
-	  	if (dieser.x < x3) return (new GenericPoint (x3, y2));
-	  	// unterhalb und rechts
-	  	if (dieser.x > x4) return (new GenericPoint (x4, y2));
-	  	// unterhalb und dazwischen
-	  	return (new GenericPoint (dieser.x, y2));
-	  }
-	  // X-Koordinaten des Trapezes zur Y-Koordinate holen
-	  GenericPoint temp = Punkte (dieser.y);
-	  // wenn Punkt links vom Trapez
-	  if (dieser.x <= temp.x) return (new GenericPoint (temp.x, dieser.y));			 
-	  // wenn Punkt rechts vom Trapez
-	  if (dieser.x >= temp.y) return (new GenericPoint (temp.y, dieser.y));
-	  
-	  System.out.println("Fehler bei BestPointBerechnung !!");
-	  return (new GenericPoint (0, 0)); 
-	}	*/
-
     // Routine, die zu gegebener Y-Koordinate nach Anstiegsgleichung
     // die linke und rechte X-Koordinate des Trapezes ermittelt
-    public GenericPoint Punkte(int ykoord) {
+    public GenericPoint points(int y) {
         float yy1 = y1;
         float yy2 = y2;
 
@@ -133,17 +86,16 @@ public class BorderTrapezoid {
         // ein positiver Offset gibt positiven Anstieg an
 
         // hier wird die X-Koordinate der schraegen Trapezlinien an der Y-Position des Punktes berechnet
-        int leftx = (int) (x3 + leftoff * (y2 - ykoord));
-        int rightx = (int) (x4 + rightoff * (y2 - ykoord));
+        int leftx = (int) (x3 + leftoff * (y2 - y));
+        int rightx = (int) (x4 + rightoff * (y2 - y));
 
         return new GenericPoint(leftx, rightx);
     }
 
-    public synchronized GenericPoint RandPunkt(GenericPoint dieser) {
+    public synchronized GenericPoint edgePoint(GenericPoint point) {
         // Zuerst testen, ob nicht doch innerhalb gelegen
-        if (PointInside(dieser)) {
-            // System.out.println("Dieser Punkt ist innerhalb!!!");
-            return new GenericPoint(dieser.x, dieser.y);
+        if (pointInside(point)) {
+            return new GenericPoint(point.x, point.y);
         }
 
         // Zur Anstiegsberechnung muessen Koordinaten in float umgewandelt werden
@@ -158,25 +110,22 @@ public class BorderTrapezoid {
         // -> welche Seite ist ueberhaupt relevant...
 
         // wenn Punkt genau ueber Gerade des Trapezes, dann keine Berechnung notwendig
-        if (dieser.y < yy1 && dieser.x > xx1 && dieser.x < xx2) {
-            // System.out.println("Punkt ist genau ueber Trapez !!");
-            return new GenericPoint(dieser.x, y1);
+        if (point.y < yy1 && point.x > xx1 && point.x < xx2) {
+            return new GenericPoint(point.x, y1);
         }
 
         // Wenn Punkt genau unter Gerade des Trapezes, dann keine Berechnung notwendig
-        if (dieser.y > yy2 && dieser.x > xx3 && dieser.x < xx4) {
-            // System.out.println("Punkt ist genau unter Trapez !!");
-            return new GenericPoint(dieser.x, y2);
+        if (point.y > yy2 && point.x > xx3 && point.x < xx4) {
+            return new GenericPoint(point.x, y2);
         }
 
 
         boolean isLeft = false;
         // Feststellen, ob Punkt eindeutig links oder rechts vom Trapez ueber Viereckvergleich
-        if (dieser.x < xx1 && dieser.x < xx3) {
+        if (point.x < xx1 && point.x < xx3) {
             isLeft = true;
-            // System.out.println("Eindeutig Links !");
         } else {
-            if (dieser.x <= xx2 || dieser.x <= xx4) {
+            if (point.x <= xx2 || point.x <= xx4) {
                 // Gerade mitten durch Trapez berechnen fuer rechts/links - Auswahl
 
                 // Fixpunkte in der Mitte der Waagerechten
@@ -188,12 +137,11 @@ public class BorderTrapezoid {
                 // System.out.println("Anstieg : " + ans);
 
                 // Geradenpunkt bei aktueller Y - Koordinate
-                float aktx = dox + (yy2 - dieser.y) * ans;
+                float aktx = dox + (yy2 - point.y) * ans;
                 // System.out.println("X1 : " + xx1 + "X3 : " + xx3 + "Geradenpunkt : " + aktx);
 
                 // Punkt links von Trapez
-                isLeft = aktx > dieser.x;
-                // System.out.println("Berechnung notwendig !");
+                isLeft = aktx > point.x;
             }
         }
 
@@ -210,20 +158,17 @@ public class BorderTrapezoid {
                 // System.out.print("Linke Seite ist senkrecht!");
 
                 // Punkt ist oberhalb, oberen Eckpunkt zurueckgeben
-                if (dieser.y < yy1) {
-                    // System.out.println("Obere Ecke!");
+                if (point.y < yy1) {
                     return new GenericPoint(x1, y1);
                 }
 
                 // Punkt ist unterhalb, unteren Eckpunkt zurueckgeben
-                if (dieser.y > yy2) {
-                    // System.out.println("Untere Ecke!");
+                if (point.y > yy2) {
                     return new GenericPoint(x3, y2);
                 }
 
                 // Punkt muss auf Hoehe Rechteck sein, angepasste Koordinaten zurueckgeben
-                // System.out.println("Innerhalb erlaubt!");
-                return new GenericPoint(x1, dieser.y);
+                return new GenericPoint(x1, point.y);
             }
             // System.out.print("Anstieg " + ml);
 
@@ -232,7 +177,7 @@ public class BorderTrapezoid {
             // System.out.println("Y-Offset Trapez " + nl);
 
             // Hier folgt der Offset fuer den Punkt (reziproker negativer Anstieg)
-            float npl = dieser.y + dieser.x * (-1 / ml);
+            float npl = point.y + point.x * (-1 / ml);
             // System.out.print("Y-Offset Punkt " + npl);
 
             // nun alles ins geloeste Gleichungssystem fuer Schnittpunkt 2-er Geraden einsetzen
@@ -249,24 +194,20 @@ public class BorderTrapezoid {
                 GenericPoint tmp = new GenericPoint((int) xl, (int) yl);
 
                 // Solange testen, bis sich Punkt innerhalb ergibt
-                while (!PointInside(tmp) && tmp.x < 1300) {
-                    // System.out.println("Searching...");
+                while (!pointInside(tmp) && tmp.x < 1300) {
                     tmp.x++;
                 }
-                // System.out.println("Routine erfolgreich beendet!" + tmp.x + " " + tmp.y);
                 return tmp;
             } else {
                 // Schnittpunkt ist ausserhalb, Eckpunkt zurueckgeben
 
                 // oberer Punkt
                 if (yl < yy1) {
-                    // System.out.println("Punkt zu hoch, oberer Eckpunkt zurueckgegeben!" + (int) xl + " " + (int) yl);
                     return new GenericPoint(x1, y1);
                 }
 
                 // unterer Punkt
                 else {
-                    // System.out.println("Punkt zu tief, unterer Eckpunkt zurueckgegeben!" + (int) xl + " " + (int) yl);
                     return new GenericPoint(x3, y2);
                 }
             }
@@ -286,20 +227,17 @@ public class BorderTrapezoid {
                 // System.out.print("Rechte Seite ist senkrecht!");
 
                 // Punkt ist oberhalb, oberen Eckpunkt zurueckgeben
-                if (dieser.y < yy1) {
-                    // System.out.println("Obere Ecke!");
+                if (point.y < yy1) {
                     return new GenericPoint(x2, y1);
                 }
 
                 // Punkt ist unterhalb, unteren Eckpunkt zurueckgeben
-                if (dieser.y > yy2) {
-                    // System.out.println("Untere Ecke!");
+                if (point.y > yy2) {
                     return new GenericPoint(x4, y2);
                 }
 
                 // Punkt muss auf Hoehe Rechteck sein, angepasste Koordinaten zurueckgeben
-                // System.out.println("Innerhalb erlaubt!");
-                return new GenericPoint(x2, dieser.y);
+                return new GenericPoint(x2, point.y);
             }
             // System.out.print("Anstieg " + mr);
 
@@ -308,7 +246,7 @@ public class BorderTrapezoid {
             // System.out.println("Y-Offset Trapez " + nr);
 
             // Hier folgen die Offsets fuer den Punkt (reziproker negativer Anstieg)
-            float npr = dieser.y + dieser.x * (-1 / mr);
+            float npr = point.y + point.x * (-1 / mr);
             // System.out.println("Y-Offset Punkt " + npr);
 
             // nun alles ins geloeste Gleichungssystem fuer Schnittpunkt 2-er Geraden einsetzen
@@ -325,24 +263,20 @@ public class BorderTrapezoid {
                 GenericPoint tmp = new GenericPoint((int) xr, (int) yr);
 
                 // Solange testen, bis sich Punkt innerhalb ergibt
-                while (!PointInside(tmp) && tmp.x > -1) {
-                    // System.out.println("Searching!");
+                while (!pointInside(tmp) && tmp.x > -1) {
                     tmp.x--;
                 }
-                // System.out.println("Routine erfolgreich beendet!" + tmp.x + " " + tmp.y);
                 return tmp;
             } else {
                 // Schnittpunkt ist ausserhalb, Eckpunkt zurueckgeben
 
                 // oberer Punkt
                 if (yr < yy1) {
-                    // System.out.println("Punkt zu hoch, oberer Eckpunkt zurueckgegeben!" + (int) xr + " " + (int) yr);
                     return new GenericPoint(x2, y1);
                 }
 
                 // unterer Punkt
                 else {
-                    // System.out.println("Punkt zu tief, unterer Eckpunkt zurueckgegeben!" + (int) xr + " " + (int) yr);
                     return new GenericPoint(x4, y2);
                 }
             }
@@ -350,7 +284,7 @@ public class BorderTrapezoid {
     }
 
     // Hier wird der Flaecheninhalt des Trapezes in Pixeln wiedergegeben
-    public int Flaeche() {
+    public int surfaceArea() {
         int xoffset = (x3 + x4) / 2 - (x1 + x3) / 2;
         int yoffset = y2 - y1;
         return xoffset * yoffset;

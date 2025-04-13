@@ -32,7 +32,6 @@ public class MillerBird extends MainAnim {
     private int animpos = 1;
     private boolean Gleiten = false;
     private boolean oben = true;
-    // private boolean up = false;
     private int gleitcount;
     private boolean schalt = false;
     private final int XEnde;
@@ -55,11 +54,11 @@ public class MillerBird extends MainAnim {
 
         vogel = new GenericImage[4];
 
-        InitImages();
+        initImages();
     }
 
     // Bilder laden
-    private void InitImages() {
+    private void initImages() {
         if (isLeft) {
             vogel[1] = getPicture("gfx/kolmc/iv1a.png");
             vogel[2] = getPicture("gfx/kolmc/iv2a.png");
@@ -77,7 +76,7 @@ public class MillerBird extends MainAnim {
     }
 
     // rumfliegen
-    public boolean Flieg(GenericDrawingContext g) {
+    public boolean doFly(GenericDrawingContext g) {
         // wenn Fluegel in Mitte, dann schauen, ob weiterfliegen oder gleiten
         if (animpos == 1 || animpos == 4) {
             int glei = (int) Math.round(Math.random() * 30);
@@ -137,13 +136,7 @@ public class MillerBird extends MainAnim {
                 y -= 1;
             }
         }
-    
-	/*int xx = x;
-	  if (xx < 0) xx = 0;
-	  int yy = y;
-	  if (yy < 0) yy = 0; */
 
-        // g.setClip (xx, yy, xx + 50, yy + 50);
         g.drawImage(vogel[animpos], x, y, 50 - Zoomfaktor, 50 - Zoomfaktor);
         if (isLeft) {
             return x > XEnde; // wenn aus dem Bild, dann das der Routine sagen !

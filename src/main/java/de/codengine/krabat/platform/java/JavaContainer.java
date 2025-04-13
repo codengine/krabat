@@ -35,7 +35,6 @@ public class JavaContainer extends GenericContainer {
 
     @Override
     public void repaint() {
-        // System.out.println("Container repaint!");
         container.repaint();
     }
 

@@ -39,7 +39,7 @@ public class JavaSoundEffectPlayer extends GenericSoundEffectPlayer {
     }
 
     @Override
-    public void PlayFile(String filename) {
+    public void playFile(String filename) {
         try {
             AudioInputStream stream = AudioSystem.getAudioInputStream(path.resolve(filename).toFile());
             DataLine.Info info = new DataLine.Info(Clip.class, stream.getFormat());

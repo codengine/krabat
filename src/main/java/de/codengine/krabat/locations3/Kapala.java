@@ -53,8 +53,6 @@ public class Kapala extends MainLocation {
     private int Verhinderfeuer;
     private static final int MAX_VERHINDERFEUER = 2;
 
-    // private boolean zeigeSkizze = false;
-
     // Konstante Points
     private static final GenericPoint pExitGang = new GenericPoint(295, 425);
     private static final GenericPoint pRollen = new GenericPoint(421, 457);
@@ -82,18 +80,18 @@ public class Kapala extends MainLocation {
 
         Feuer = new GenericImage[11];
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 2.5f;
-        mainFrame.krabat.defScale = -50;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 2.5f;
+        mainFrame.krabat.defaultScale = -50;
 
         Verhinderfeuer = MAX_VERHINDERFEUER;
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement
@@ -103,19 +101,19 @@ public class Kapala extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement
                 (new BorderTrapezoid(433, 434, 433, 469, 467, 479));
 
-        mainFrame.pathFinder.ClearMatrix(3);
+        mainFrame.pathFinder.clearMatrix(3);
 
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
                 break;
             case 152: // von Gang
                 mainFrame.krabat.setPos(new GenericPoint(317, 438));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
 
@@ -124,7 +122,7 @@ public class Kapala extends MainLocation {
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx-dd/kapala/kapala.png");
         rolle1 = getPicture("gfx-dd/kapala/rolla1.png");
         rolle2 = getPicture("gfx-dd/kapala/rolla2.png");
@@ -151,7 +149,7 @@ public class Kapala extends MainLocation {
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -186,24 +184,24 @@ public class Kapala extends MainLocation {
         g.drawImage(Feuer[Feuercount], FeuerMitte.x - Feuerwidth / 2, FeuerMitte.y - Feuerwidth, Feuerwidth, Feuerwidth);
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -224,32 +222,13 @@ public class Kapala extends MainLocation {
             }
         }
 
-        // Steht Krabat hinter einem Gegenstand ? Koordinaten noch mal checken !!!
-        // GenericPoint pKrTemp = mainFrame.krabat.GetKrabatPos ();
-
-        // hinter weiden2 (nur Clipping - Region wird neugezeichnet)
-	/*if (weiden2Rect.IsPointInRect (pKrTemp) == true)
-	  {
-	  g.drawImage (weiden2, 84, 221, null);
-	  }*/
-
-        // grosses Skizzenbild zeigen, wenn noetig
-// 	if (zeigeSkizze == true)
-// 	    {
-// 		GenericRectangle mx = new Rectangle ();
-// 		mx = g.getClipBounds ();
-// 		g.setClip (0, 0, 644, 484);
-// 		g.drawImage (skizze, 0, 0, null);
-// 		g.setClip (mx);
-// 	    }
-
         // sonst noch was zu tun ?
         if (!Objects.equals(outputText, "")) {
             // Textausgabe
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -259,17 +238,17 @@ public class Kapala extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -303,38 +282,38 @@ public class Kapala extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Papierrollen unten
-                if (papierRollen.IsPointInRect(pTemp)) {
+                if (papierRollen.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 150;
                     pTemp = pRollen;
                 }
 
                 // Ausreden fuer Papierrolle 1
-                if (papierRolle1.IsPointInRect(pTemp)) {
+                if (papierRolle1.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 155;
                     pTemp = pRolle1;
                 }
 
                 // Ausreden fuer Papierrolle 2
-                if (papierRolle2.IsPointInRect(pTemp) && !mainFrame.actions[630]) {
+                if (papierRolle2.isPointInRect(pTemp) && !mainFrame.actions[630]) {
                     // Extra - Sinnloszeug
                     nextActionID = 160;
                     pTemp = pRolle2;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -344,7 +323,7 @@ public class Kapala extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -356,79 +335,79 @@ public class Kapala extends MainLocation {
                 nextActionID = 0;
 
                 // zu Gang gehen ?
-                if (ausgangGang.IsPointInRect(pTemp)) {
+                if (ausgangGang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!ausgangGang.IsPointInRect(kt)) {
+                    if (!ausgangGang.isPointInRect(kt)) {
                         pTemp = pExitGang;
                     } else {
                         pTemp = new GenericPoint(pExitGang.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Rollen unten
-                if (papierRollen.IsPointInRect(pTemp)) {
+                if (papierRollen.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = pRollen;
                 }
 
                 // Rolle1 ansehen
-                if (papierRolle1.IsPointInRect(pTemp)) {
+                if (papierRolle1.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = pRolle1;
                 }
 
                 // Rolle2 ansehen
-                if (papierRolle2.IsPointInRect(pTemp) && !mainFrame.actions[630]) {
+                if (papierRolle2.isPointInRect(pTemp) && !mainFrame.actions[630]) {
                     nextActionID = 3;
                     pTemp = pRolle2;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Papierrollen unten mitnehmen
-                if (papierRollen.IsPointInRect(pTemp)) {
+                if (papierRollen.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pRollen);
+                    mainFrame.pathWalker.setNewWay(pRollen);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Papierrolle1 mitnehmen
-                if (papierRolle1.IsPointInRect(pTemp)) {
+                if (papierRolle1.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pRolle1);
+                    mainFrame.pathWalker.setNewWay(pRolle1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Papierrolle2 mitnehmen
-                if (papierRolle2.IsPointInRect(pTemp) && !mainFrame.actions[630]) {
+                if (papierRolle2.isPointInRect(pTemp) && !mainFrame.actions[630]) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(pRolle2);
+                    mainFrame.pathWalker.setNewWay(pRolle2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wenn Ausgang -> kein Inventar anzeigen
-                if (ausgangGang.IsPointInRect(pTemp)) {
+                if (ausgangGang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -439,8 +418,8 @@ public class Kapala extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTemp) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -449,47 +428,47 @@ public class Kapala extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    papierRollen.IsPointInRect(pTemp) ||
-                    papierRolle1.IsPointInRect(pTemp) ||
-                    papierRolle2.IsPointInRect(pTemp) && !mainFrame.actions[630];
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    papierRollen.isPointInRect(pTemp) ||
+                    papierRolle1.isPointInRect(pTemp) ||
+                    papierRolle2.isPointInRect(pTemp) && !mainFrame.actions[630];
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (papierRollen.IsPointInRect(pTemp) ||
-                    papierRolle1.IsPointInRect(pTemp) ||
-                    papierRolle2.IsPointInRect(pTemp) && !mainFrame.actions[630]) {
-                if (Cursorform != 1) {
+            if (papierRollen.isPointInRect(pTemp) ||
+                    papierRolle1.isPointInRect(pTemp) ||
+                    papierRolle2.isPointInRect(pTemp) && !mainFrame.actions[630]) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (ausgangGang.IsPointInRect(pTemp)) {
-                if (Cursorform != 6) {
+            if (ausgangGang.isPointInRect(pTemp)) {
+                if (cursorShape != 6) {
                     mainFrame.setCursor(mainFrame.cursorDown);
-                    Cursorform = 6;
+                    cursorShape = 6;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -523,7 +502,7 @@ public class Kapala extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -531,7 +510,7 @@ public class Kapala extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -539,26 +518,26 @@ public class Kapala extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -576,7 +555,7 @@ public class Kapala extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -584,34 +563,34 @@ public class Kapala extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Rollen unten anschauen
-                KrabatSagt("Kapala_1", fRolleUnten, 3, 0, 0);
+                krabatSays("Kapala_1", fRolleUnten, 3, 0, 0);
                 break;
 
             case 2:
                 // Rolle1 oben anschauen
-                KrabatSagt("Kapala_2", fRolle1, 3, 0, 0);
+                krabatSays("Kapala_2", fRolle1, 3, 0, 0);
                 break;
 
             case 3:
                 // Rolle2 anschauen
-                KrabatSagt("Kapala_3", fRolle2, 3, 0, 0);
+                krabatSays("Kapala_3", fRolle2, 3, 0, 0);
                 break;
 
             case 50:
                 // Rollen unten take
-                KrabatSagt("Kapala_4", fRolleUnten, 3, 0, 0);
+                krabatSays("Kapala_4", fRolleUnten, 3, 0, 0);
                 break;
 
             case 55:
                 // Rolle1 oben take
-                KrabatSagt("Kapala_5", fRolle1, 3, 0, 0);
+                krabatSays("Kapala_5", fRolle1, 3, 0, 0);
                 break;
 
             case 60:
                 // Rolle2 take
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.krabat.SetFacing(fRolle2);
+                mainFrame.krabat.setFacing(fRolle2);
                 mainFrame.krabat.nAnimation = 121;
                 Counter = 5;
                 nextActionID = 65;
@@ -634,48 +613,26 @@ public class Kapala extends MainLocation {
                 nextActionID = 0;
                 mainFrame.isClipSet = false;
                 mainFrame.repaint();
-// 		zeigeSkizze = true;
-// 		Counter = 20;
-// 		nextActionID = 70;
                 break;
-
-// 	    case 70:
-            // Bild weg und Spruch
-// 		if ((--Counter) > 1) break;
-// 		KrabatSagt ("Aha, to wupada ka#z skica woporneje #skl#e. Tak, ka#z na rysowance Kulowskeho fararja. To bud#de so Dinglinger wjeseli#c.",
-// 			    "Aha, to wugl#edajo ako skica woporneje #skl#e. Tak, ako na kreslance Kulojskego fararja. To bu#do se Dinglinger wjaseli#y.",
-// 			    "Heh, jetzt wei#t ich es wieder! Das ist die Skizze, die der Pfarrer in Wittichenau mir gezeigt hatte.",
-// 			    fRolle2, 3, 2, 75);
-// 		break;
-
-// 	    case 75:
-            // Ende nehmen
-// 		zeigeSkizze = false;
-// 		mainFrame.Clipset = false;
-// 		mainFrame.fPlayAnim = false;
-// 		evalMouseMoveEvent (mainFrame.Mousepoint);
-// 		nextActionID = 0;
-// 		mainFrame.repaint();
-// 		break;
 
             case 100:
                 // Gehe zu Gang
-                NeuesBild(152, locationID);
+                createNewLocation(152, locationID);
                 break;
 
             case 150:
                 // Rollen unten - Ausreden
-                DingAusrede(fRolleUnten);
+                thingExcuse(fRolleUnten);
                 break;
 
             case 155:
                 // Rolle1 - Ausreden
-                DingAusrede(fRolle1);
+                thingExcuse(fRolle1);
                 break;
 
             case 160:
                 // Rolle2 - Ausreden
-                DingAusrede(fRolle2);
+                thingExcuse(fRolle2);
                 break;
 
             default:

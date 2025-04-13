@@ -45,9 +45,9 @@ public class JavaStorageManager extends GenericStorageManager {
 
     private final String loadSaveSuffix;
 
-    private final boolean slownikSupported;
+    private final boolean dictionarySupported;
 
-    private final Path slownikRootPath;
+    private final Path dictionaryRootPath;
 
     private final boolean propertyStorageSupported;
 
@@ -56,14 +56,14 @@ public class JavaStorageManager extends GenericStorageManager {
     private final Path translationsRootPath;
 
     public JavaStorageManager(boolean loadSaveSupported, Path loadSaveRootPath, String loadSavePrefix, String loadSaveSuffix,
-                              boolean slownikSupported, Path slownikRootPath, boolean propertyStorageSupported, Path propertyRootPath,
+                              boolean dictionarySupported, Path dictionaryRootPath, boolean propertyStorageSupported, Path propertyRootPath,
                               Path translationsRootPath) {
         this.loadSaveSupported = loadSaveSupported;
         this.loadSaveRootPath = loadSaveRootPath;
         this.loadSavePrefix = loadSavePrefix;
         this.loadSaveSuffix = loadSaveSuffix;
-        this.slownikSupported = slownikSupported;
-        this.slownikRootPath = slownikRootPath;
+        this.dictionarySupported = dictionarySupported;
+        this.dictionaryRootPath = dictionaryRootPath;
         this.propertyStorageSupported = propertyStorageSupported;
         this.propertyRootPath = propertyRootPath;
         this.translationsRootPath = translationsRootPath;
@@ -80,7 +80,7 @@ public class JavaStorageManager extends GenericStorageManager {
         byte[] ret;
         try {
             BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
-            ret = new byte[fileSize];
+            ret = new byte[FILE_SIZE];
             int ptr = 0;
             int status;
             while (ptr < ret.length) {
@@ -117,15 +117,15 @@ public class JavaStorageManager extends GenericStorageManager {
     }
 
     @Override
-    public boolean isSlownikSupported() {
-        return slownikSupported;
+    public boolean isDictionarySupported() {
+        return dictionarySupported;
     }
 
     @Override
-    public byte[] loadSlownik(String relativeFileName) {
+    public byte[] loadDictionary(String relativeFileName) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
-        File file = slownikRootPath.resolve(relativeFileName).toFile();
+        File file = dictionaryRootPath.resolve(relativeFileName).toFile();
         try {
             BufferedInputStream stream = new BufferedInputStream(new FileInputStream(file));
             byte[] tmp = new byte[1024];
@@ -139,7 +139,7 @@ public class JavaStorageManager extends GenericStorageManager {
             }
             stream.close();
         } catch (IOException e) {
-            log.error("Could not load slownik from {}", file.getAbsolutePath(), e);
+            log.error("Could not load dictionary from {}", file.getAbsolutePath(), e);
             return new byte[]{};
         }
 

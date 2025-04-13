@@ -46,10 +46,10 @@ public class KrabatFalling extends MainAnim {
 
         Verhinderfallen = MAX_VERHINDERFALLEN;
 
-        InitImages();
+        initImages();
     }
 
-    private void InitImages() {
+    private void initImages() {
         krabat_fallen[0] = getPicture("gfx-dd/spaniska/k-l-zucken.png");
         krabat_fallen[1] = getPicture("gfx-dd/spaniska/k-l-zucken2.png");
         krabat_fallen[2] = getPicture("gfx-dd/spaniska/k-l-zucken3.png");
@@ -78,7 +78,7 @@ public class KrabatFalling extends MainAnim {
                 if (!fallSound) {
 
                     fallSound = true;
-                    mainFrame.soundPlayer.PlayFile("sfx-dd/fallen.wav");
+                    mainFrame.soundPlayer.playFile("sfx-dd/fallen.wav");
                 }
             }
         }

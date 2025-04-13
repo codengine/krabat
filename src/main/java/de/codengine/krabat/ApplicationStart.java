@@ -56,9 +56,9 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
 
     private long timeskip;
 
-    private static final int doubleClickPointLimit = 5;
+    private static final int DOUBLE_CLICK_POINT_LIMIT = 5;
 
-    private static final long doubleClickTimeLimit = 500;
+    private static final long DOUBLE_CLICK_TIME_LIMIT = 500;
 
     public ApplicationStart(int defaultLanguageIndex, boolean fullscreen) {
         super("Krabat");
@@ -68,10 +68,10 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
         Path workingDir = Paths.get(System.getProperty("user.dir"));
 
         Path langPath = workingDir.resolve("lang");
-        GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, langPath,this);
+        GenericImageFetcher imageFetcher = new JavaImageFetcher(workingDir, langPath, this);
         GenericContainer container = new JavaContainer(this);
         GenericSoundEffectPlayer player = new JavaSoundEffectPlayer(workingDir);
-        GenericToolkit.impl = new JavaToolkitImpl(this);
+        GenericToolkit.IMPL = new JavaToolkitImpl(this);
         AbstractPlayer musicPlayer = new OGGPlayer(workingDir);
         Path resourcePath = workingDir.resolve("resource");
         GenericStorageManager storageManager = new JavaStorageManager(
@@ -222,9 +222,9 @@ public class ApplicationStart extends Frame implements WindowListener, MouseList
     @Override
     public void mousePressed(MouseEvent e) {
         // Doppelclick (zeitlich begrenzt) erkennen
-        isDoubleClick = Math.abs(mouseTemp.x - e.getPoint().x) < doubleClickPointLimit &&
-                Math.abs(mouseTemp.y - e.getPoint().y) < doubleClickPointLimit &&
-                !isDoubleClick && System.currentTimeMillis() - timeskip < doubleClickTimeLimit;
+        isDoubleClick = Math.abs(mouseTemp.x - e.getPoint().x) < DOUBLE_CLICK_POINT_LIMIT &&
+                Math.abs(mouseTemp.y - e.getPoint().y) < DOUBLE_CLICK_POINT_LIMIT &&
+                !isDoubleClick && System.currentTimeMillis() - timeskip < DOUBLE_CLICK_TIME_LIMIT;
         timeskip = System.currentTimeMillis();
         mouseTemp = e.getPoint();
 

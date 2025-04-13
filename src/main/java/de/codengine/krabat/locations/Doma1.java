@@ -91,8 +91,6 @@ public class Doma1 extends MainLocation {
     private static final int fMutter = 3;
     private static final int fGaense = 12;
 
-    // private boolean playIntroMusic = false;
-
     private int Counter = 0;
 
     // normaler Einsprung waehrend Spiel oder Load
@@ -107,7 +105,7 @@ public class Doma1 extends MainLocation {
         gans3 = new Geese(mainFrame, new BorderRect(182, 300, 276, 310));
 
         // Sachen initialisieren, die immer gleich sind
-        Init(oldLocation);
+        init(oldLocation);
 
         // Mutter laden
         mutter = new Mother(mainFrame, true);
@@ -137,7 +135,7 @@ public class Doma1 extends MainLocation {
             showRauch = false;
             Dialog = new MultipleChoice(mainFrame);
         }
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
@@ -156,11 +154,11 @@ public class Doma1 extends MainLocation {
         this.gans3 = gans3;
 
         // Sachen initialisieren, die immer gleich sind
-        Init(oldLocation);
+        init(oldLocation);
 
         // Krabat definieren
         mainFrame.krabat.setPos(new GenericPoint(128, 352));
-        mainFrame.krabat.SetFacing(3);
+        mainFrame.krabat.setFacing(3);
         scrollwert = 0;
         setScroll = true;
 
@@ -181,28 +179,28 @@ public class Doma1 extends MainLocation {
         macIsVisible = true;
         setAnim = true;
         Dialog = new MultipleChoice(mainFrame);
-        InitLocation();
+        initLocation();
 
         mainFrame.freeze(false);
     }
 
-    private void Init(int oldLocation) {
-        TalkPerson = 0;
+    private void init(int oldLocation) {
+        talkPerson = 0;
 
-        mainFrame.krabat.maxx = 402;
-        mainFrame.krabat.zoomf = 2.32f;
-        mainFrame.krabat.defScale = 0;
+        mainFrame.krabat.maxX = 402;
+        mainFrame.krabat.zoomFactor = 2.32f;
+        mainFrame.krabat.defaultScale = 0;
 
         Rauchanim = new GenericImage[13];
 
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
         switch (oldLocation) {
             case 0: // Einsprung von Load
                 break;
             case 3: // Aus Jitk kommend
                 mainFrame.krabat.setPos(new GenericPoint(410, 289));
-                mainFrame.krabat.SetFacing(6);
+                mainFrame.krabat.setFacing(6);
                 scrollwert = 88;
                 setScroll = true;
                 break;
@@ -210,7 +208,7 @@ public class Doma1 extends MainLocation {
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
 
         mainFrame.pathWalker.vBorders.removeAllElements();
 
@@ -229,18 +227,18 @@ public class Doma1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1128, 366, 1200, 392));
 
             // Matrix loeschen
-            mainFrame.pathFinder.ClearMatrix(10);
+            mainFrame.pathFinder.clearMatrix(10);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 3);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
-            mainFrame.pathFinder.PosVerbinden(5, 6);
-            mainFrame.pathFinder.PosVerbinden(6, 7);
-            mainFrame.pathFinder.PosVerbinden(7, 8);
-            mainFrame.pathFinder.PosVerbinden(8, 9);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 3);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
+            mainFrame.pathFinder.connectPos(5, 6);
+            mainFrame.pathFinder.connectPos(6, 7);
+            mainFrame.pathFinder.connectPos(7, 8);
+            mainFrame.pathFinder.connectPos(8, 9);
         } else {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(411, 423, 396, 420, 281, 329));
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(396, 420, 382, 470, 330, 364));
@@ -250,23 +248,21 @@ public class Doma1 extends MainLocation {
             mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(640, 370, 824, 408));
 
             // Matrix loeschen
-            mainFrame.pathFinder.ClearMatrix(6);
+            mainFrame.pathFinder.clearMatrix(6);
 
             // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-            mainFrame.pathFinder.PosVerbinden(0, 1);
-            mainFrame.pathFinder.PosVerbinden(1, 3);
-            mainFrame.pathFinder.PosVerbinden(2, 3);
-            mainFrame.pathFinder.PosVerbinden(3, 4);
-            mainFrame.pathFinder.PosVerbinden(4, 5);
+            mainFrame.pathFinder.connectPos(0, 1);
+            mainFrame.pathFinder.connectPos(1, 3);
+            mainFrame.pathFinder.connectPos(2, 3);
+            mainFrame.pathFinder.connectPos(3, 4);
+            mainFrame.pathFinder.connectPos(4, 5);
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background1 = getPicture("gfx/doma/dom-l.png");
         background2 = getPicture("gfx/doma/dom-r.png");
-// 	background1   = getPicture ("gfx/doma/dom-l.png");
-// 	background2   = getPicture ("gfx/doma/dom-r.png");
         back = getPicture("gfx/doma/domsky.png");
         stock = getPicture("gfx/doma/doma2.png");
         brunnen = getPicture("gfx/doma/brunnen.png");
@@ -327,17 +323,6 @@ public class Doma1 extends MainLocation {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-
-        // System.out.print("g");
-
-        // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-	/*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
-	    {
-		// System.out.println("Hier bin ich!");
-		Dialog.paintMultiple (g);
-		return;
-		}  */
-
         // Stock wurde aufgehoben!!!!!!!!!
         if (mainFrame.krabat.fAnimHelper) {
             mainFrame.inventory.vInventory.addElement(2);
@@ -353,7 +338,7 @@ public class Doma1 extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             if (setAnim) {
                 mainFrame.isAnimRunning = true;
             }
@@ -382,11 +367,6 @@ public class Doma1 extends MainLocation {
 
         // Logo im Intro zeigen
         if (showLogo) {
-// 		if (playIntroMusic == false)
-// 		    {
-// 			playIntroMusic = true;
-// 			mainFrame.player.Play ("24", -17700);
-// 		    }
             g.setClip(195 + mainFrame.scrollX, 150, 250, 100);
             g.drawImage(logo, 205 + mainFrame.scrollX, 150);
         }
@@ -413,24 +393,24 @@ public class Doma1 extends MainLocation {
             g.drawImage(back, mainFrame.scrollX / 10, 0);
             g.drawImage(background1, 0, 0);
             g.drawImage(background2, 640, 0);
-            gans1.BewegeGans(g);
-            gans2.BewegeGans(g);
-            gans3.BewegeGans(g);
+            gans1.moveGoose(g);
+            gans2.moveGoose(g);
+            gans3.moveGoose(g);
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Mac zeichnen bei Reden und Herumstehen, vorher Hintergrund wiederherstellen
         if (macIsVisible && mainFrame.scrollX > 130) {
             g.setClip(Pmac.x, Pmac.y, Mother.Breite, Mother.Hoehe);
             g.drawImage(background2, 640, 0);
-            mutter.drawMac(g, Pmac, TalkPerson);
+            mutter.drawMac(g, Pmac, talkPerson);
         }
 
         //hinterm Stock
@@ -443,16 +423,16 @@ public class Doma1 extends MainLocation {
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -478,32 +458,21 @@ public class Doma1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Brunnen (nur Clipping - Region wird neugezeichnet)
-        if (brunnenRect.IsPointInRect(pKrTemp)) {
+        if (brunnenRect.isPointInRect(pKrTemp)) {
             g.drawImage(brunnen, 1055, 251);
         }
 
         //hinterm Blatt
-        if (blattRect.IsPointInRect(pKrTemp)) {
+        if (blattRect.isPointInRect(pKrTemp)) {
             g.drawImage(blatt, 764, 393);
         }
-
-        // Stock wurde testweise mal hinter Krabat gelegt
-        //hinterm Stock
-	/*if (mainFrame.Actions[900] == false)
-	  {    
-	  GenericRectangle my;
-	  my = g.getClipBounds();
-	  g.setClip (80, 325, 29, 38);
-	  g.drawImage (stock, 80, 325, null);
-	  g.setClip( (int) my.getX(), (int) my.getY(), (int) my.getWidth(), (int) my.getHeight()); 
-	  } */
 
         // Textausgabe, falls noetig
         if (!Objects.equals(outputText, "")) {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 964);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -513,12 +482,12 @@ public class Doma1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         if (mainFrame.isMultipleChoiceActive) {
@@ -529,14 +498,14 @@ public class Doma1 extends MainLocation {
 
         if (setAnim) {
             setAnim = false;
-            mainFrame.krabat.StopWalking();
+            mainFrame.krabat.stopWalking();
             nextActionID = 600;
         }
 
         // Gibt es was zu tun , Achtung: Scrolling wird in jeder DoAction einzeln kontrolliert!!!
 
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -558,7 +527,7 @@ public class Doma1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
 
         // Cursorpunkt mit Scrolloffset berechnen
@@ -581,31 +550,31 @@ public class Doma1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Mac
-                if (brMac.IsPointInRect(pTemp) && macIsVisible) {
+                if (brMac.isPointInRect(pTemp) && macIsVisible) {
                     // Mac bekommt nur Standardausreden
                     nextActionID = 150;
                     pTemp = Pmutter;
                 }
 
                 // Ausreden fuer Stock
-                if (brStock.IsPointInRect(pTemp) && !mainFrame.actions[900]) {
+                if (brStock.isPointInRect(pTemp) && !mainFrame.actions[900]) {
                     // Stock bekommt nur Standardausreden
                     nextActionID = 155;
                     pTemp = Pstock;
                 }
 
                 // Ausreden fuer Brunnen
-                if (brBrunnen.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brBrunnen.isPointInRect(pTemp) && !macIsVisible) {
                     switch (mainFrame.whatItem) {
                         case 9: // wuda + hocka
                             nextActionID = 200;
@@ -625,22 +594,22 @@ public class Doma1 extends MainLocation {
                 }
 
                 // Ausreden fuer Tuer
-                if (brTuer.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brTuer.isPointInRect(pTemp) && !macIsVisible) {
                     // nur Standard
                     nextActionID = 165;
                     pTemp = Ptuer;
                 }
 
                 // Ausreden fuer Schild
-                if (brSchild.IsPointInRect(pTemp)) {
+                if (brSchild.isPointInRect(pTemp)) {
                     // nur Standard
                     nextActionID = 170;
                     pTemp = Pschild;
                 }
 
                 // Ausreden fuer Gaense
-                if (gans1.GetHusaRect().IsPointInRect(pTemp) || gans2.GetHusaRect().IsPointInRect(pTemp) ||
-                        gans3.GetHusaRect().IsPointInRect(pTemp)) {
+                if (gans1.getHusaRect().isPointInRect(pTemp) || gans2.getHusaRect().isPointInRect(pTemp) ||
+                        gans3.getHusaRect().isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 2: // kij
                         case 18: // roh + kam
@@ -661,7 +630,7 @@ public class Doma1 extends MainLocation {
                 }
 
                 // wenn nix ausgewaehlt, dann einfach nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -671,7 +640,7 @@ public class Doma1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -683,39 +652,39 @@ public class Doma1 extends MainLocation {
                 nextActionID = 0;
 
                 // Brunnen ansehen
-                if (brBrunnen.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brBrunnen.isPointInRect(pTemp) && !macIsVisible) {
                     nextActionID = 1;
                     pTemp = Pbrunnen;
                 }
 
                 // Tuer ansehen
-                if (brTuer.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brTuer.isPointInRect(pTemp) && !macIsVisible) {
                     nextActionID = 2;
                     pTemp = Ptuer;
                 }
 
                 // Stock ansehen ?
-                if (brStock.IsPointInRect(pTemp) &&
+                if (brStock.isPointInRect(pTemp) &&
                         !mainFrame.actions[900]) {
                     nextActionID = 3;
                     pTemp = Pstock;
                 }
 
                 // Schild ansehen
-                if (brSchild.IsPointInRect(pTemp)) {
+                if (brSchild.isPointInRect(pTemp)) {
                     pTemp = Pschild;
                     nextActionID = 4;
                 }
 
                 // nach Jitk gehen oder zurueckgepfiffen werden
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     if (mainFrame.actions[0]) {
                         nextActionID = 100;
 
                         GenericPoint kt = mainFrame.krabat.getPos();
 
                         // Wenn nahe am Ausgang, dann "gerade" verlassen
-                        if (!obererAusgang.IsPointInRect(kt)) {
+                        if (!obererAusgang.isPointInRect(kt)) {
                             pTemp = Pup;
                         } else {
                             pTemp = new GenericPoint(kt.x, Pup.y);
@@ -723,7 +692,7 @@ public class Doma1 extends MainLocation {
 
                         // Bei Doppelklick sofort springen
                         if (mainFrame.isDoubleClick) {
-                            mainFrame.krabat.StopWalking();
+                            mainFrame.krabat.stopWalking();
                             mainFrame.repaint();
                             return;
                         }
@@ -733,81 +702,81 @@ public class Doma1 extends MainLocation {
                 }
 
                 // Mutter ansehen
-                if (brMac.IsPointInRect(pTemp) && macIsVisible) {
+                if (brMac.isPointInRect(pTemp) && macIsVisible) {
                     pTemp = Pmutter;
                     nextActionID = 5;
                 }
 
                 // Gaense ansehen
-                if (gans1.GetHusaRect().IsPointInRect(pTemp) || gans2.GetHusaRect().IsPointInRect(pTemp) ||
-                        gans3.GetHusaRect().IsPointInRect(pTemp)) {
+                if (gans1.getHusaRect().isPointInRect(pTemp) || gans2.getHusaRect().isPointInRect(pTemp) ||
+                        gans3.getHusaRect().isPointInRect(pTemp)) {
                     pTemp = Pgaense;
                     nextActionID = 6;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Brunnen benutzen ?
-                if (brBrunnen.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brBrunnen.isPointInRect(pTemp) && !macIsVisible) {
                     nextActionID = 52;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pbrunnen);
+                    mainFrame.pathWalker.setNewWay(Pbrunnen);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Stock mitnehmen ?
-                if (brStock.IsPointInRect(pTemp) &&
+                if (brStock.isPointInRect(pTemp) &&
                         !mainFrame.actions[900]) {
                     nextActionID = 53;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pstock);
+                    mainFrame.pathWalker.setNewWay(Pstock);
                     mainFrame.repaint();
                     return;
                 }
 
                 // mit Mutter reden
-                if (brMac.IsPointInRect(pTemp) && macIsVisible) {
+                if (brMac.isPointInRect(pTemp) && macIsVisible) {
                     nextActionID = 54;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pmutter);
+                    mainFrame.pathWalker.setNewWay(Pmutter);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Weg nach Jitk anschauen
-                if (obererAusgang.IsPointInRect(pTemp)) {
+                if (obererAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // ins Haus gehen
-                if (brTuer.IsPointInRect(pTemp) && !macIsVisible) {
+                if (brTuer.isPointInRect(pTemp) && !macIsVisible) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Ptuer);
+                    mainFrame.pathWalker.setNewWay(Ptuer);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schild mitnehmen
-                if (brSchild.IsPointInRect(pTemp)) {
+                if (brSchild.isPointInRect(pTemp)) {
                     nextActionID = 51;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschild);
+                    mainFrame.pathWalker.setNewWay(Pschild);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Gaense mitnehmen
-                if (gans1.GetHusaRect().IsPointInRect(pTemp) || gans2.GetHusaRect().IsPointInRect(pTemp) ||
-                        gans3.GetHusaRect().IsPointInRect(pTemp)) {
+                if (gans1.getHusaRect().isPointInRect(pTemp) || gans2.getHusaRect().isPointInRect(pTemp) ||
+                        gans3.getHusaRect().isPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pgaense);
+                    mainFrame.pathWalker.setNewWay(Pgaense);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
 
             }
@@ -826,8 +795,8 @@ public class Doma1 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -839,53 +808,53 @@ public class Doma1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = brBrunnen.IsPointInRect(pTemp) && !macIsVisible ||
-                    brTuer.IsPointInRect(pTemp) && !macIsVisible ||
-                    brSchild.IsPointInRect(pTemp) || tmp.IsPointInRect(pTemp) ||
-                    brStock.IsPointInRect(pTemp) && !mainFrame.actions[900] ||
-                    gans1.GetHusaRect().IsPointInRect(pTemp) || gans2.GetHusaRect().IsPointInRect(pTemp) ||
-                    gans3.GetHusaRect().IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = brBrunnen.isPointInRect(pTemp) && !macIsVisible ||
+                    brTuer.isPointInRect(pTemp) && !macIsVisible ||
+                    brSchild.isPointInRect(pTemp) || tmp.isPointInRect(pTemp) ||
+                    brStock.isPointInRect(pTemp) && !mainFrame.actions[900] ||
+                    gans1.getHusaRect().isPointInRect(pTemp) || gans2.getHusaRect().isPointInRect(pTemp) ||
+                    gans3.getHusaRect().isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (brBrunnen.IsPointInRect(pTemp) && !macIsVisible ||
-                    brTuer.IsPointInRect(pTemp) && !macIsVisible ||
-                    brSchild.IsPointInRect(pTemp) ||
-                    brMac.IsPointInRect(pTemp) && macIsVisible ||
-                    brStock.IsPointInRect(pTemp) && !mainFrame.actions[900] ||
-                    gans1.GetHusaRect().IsPointInRect(pTemp) || gans2.GetHusaRect().IsPointInRect(pTemp) ||
-                    gans3.GetHusaRect().IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+            if (brBrunnen.isPointInRect(pTemp) && !macIsVisible ||
+                    brTuer.isPointInRect(pTemp) && !macIsVisible ||
+                    brSchild.isPointInRect(pTemp) ||
+                    brMac.isPointInRect(pTemp) && macIsVisible ||
+                    brStock.isPointInRect(pTemp) && !mainFrame.actions[900] ||
+                    gans1.getHusaRect().isPointInRect(pTemp) || gans2.getHusaRect().isPointInRect(pTemp) ||
+                    gans3.getHusaRect().isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (obererAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (obererAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorUp);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -926,7 +895,7 @@ public class Doma1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -934,7 +903,7 @@ public class Doma1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -942,27 +911,27 @@ public class Doma1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
-        TalkPerson = 0;
+        talkPerson = 0;
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
         if ((mainFrame.krabat.isWandering || mainFrame.krabat.isWalking) && nextActionID != 400) {
@@ -984,7 +953,7 @@ public class Doma1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -995,49 +964,49 @@ public class Doma1 extends MainLocation {
 
             case 1:
                 // Brunnen anschauen
-                KrabatSagt("Doma1_1", fBrunnen, 3, 0, 0);
+                krabatSays("Doma1_1", fBrunnen, 3, 0, 0);
                 break;
 
             case 2:
                 // Haustuer anschauen
-                KrabatSagt("Doma1_2", fTuer, 3, 0, 0);
+                krabatSays("Doma1_2", fTuer, 3, 0, 0);
                 break;
 
             case 3:
                 // Stock anschauen
-                KrabatSagt("Doma1_3", fStock, 3, 0, 0);
+                krabatSays("Doma1_3", fStock, 3, 0, 0);
                 break;
 
             case 4:
                 // Schild anschauen
-                KrabatSagt("Doma1_4", fSchild, 3, 0, 0);
+                krabatSays("Doma1_4", fSchild, 3, 0, 0);
                 break;
 
             case 5:
                 // Mutter anschauen
-                KrabatSagt("Doma1_5", fMutter, 3, 0, 0);
+                krabatSays("Doma1_5", fMutter, 3, 0, 0);
                 break;
 
             case 6:
                 // Gaense anschauen
-                KrabatSagt("Doma1_6", fGaense, 3, 0, 0);
+                krabatSays("Doma1_6", fGaense, 3, 0, 0);
                 break;
 
             // Use - DoActions
 
             case 50:
                 // ins Haus gehen ??
-                KrabatSagt("Doma1_7", fTuer, 3, 0, 0);
+                krabatSays("Doma1_7", fTuer, 3, 0, 0);
                 break;
 
             case 51:
                 // Schild mitnehmen
-                KrabatSagt("Doma1_8", fSchild, 3, 0, 0);
+                krabatSays("Doma1_8", fSchild, 3, 0, 0);
                 break;
 
             case 52:
                 // Brunnen benutzen
-                KrabatSagt("Doma1_9", fBrunnen, 3, 0, 0);
+                krabatSays("Doma1_9", fBrunnen, 3, 0, 0);
                 break;
 
             case 53:
@@ -1045,13 +1014,13 @@ public class Doma1 extends MainLocation {
                 // zuerstmal richtig hinlaufen
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(pVorStock);
+                mainFrame.pathWalker.setNewWayGuaranteed(pVorStock);
                 nextActionID = 80;
                 break;
 
             case 54:
                 // Krabat beginnt MC (Mutter benutzen)
-                mainFrame.krabat.SetFacing(fMutter);
+                mainFrame.krabat.setFacing(fMutter);
                 if (mainFrame.isScrolling) {
                     break;
                 }
@@ -1062,12 +1031,12 @@ public class Doma1 extends MainLocation {
 
             case 70:
                 // Gaense mitnehmen
-                KrabatSagt("Doma1_10", fGaense, 3, 0, 0);
+                krabatSays("Doma1_10", fGaense, 3, 0, 0);
                 break;
 
             case 80:
                 // Stock mitnehmen
-                mainFrame.krabat.SetFacing(fStock);
+                mainFrame.krabat.setFacing(fStock);
                 mainFrame.krabat.nAnimation = 92;
                 nextActionID = 85;
                 break;
@@ -1081,14 +1050,14 @@ public class Doma1 extends MainLocation {
 
             case 90:
                 // zuruecklaufen
-                mainFrame.pathWalker.SetzeGarantiertNeuenWeg(Pstock);
+                mainFrame.pathWalker.setNewWayGuaranteed(Pstock);
                 nextActionID = 95;
                 break;
 
             case 95:
                 // Ende Stockanim
                 mainFrame.isAnimRunning = false;
-                mainFrame.krabat.SetFacing(3); // nach rechts schauen, nachdeem der Stock genommen wurde
+                mainFrame.krabat.setFacing(3); // nach rechts schauen, nachdeem der Stock genommen wurde
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
                 mainFrame.repaint();
@@ -1098,7 +1067,7 @@ public class Doma1 extends MainLocation {
 
             case 100:
                 // Nach Jitk gehen
-                NeuesBild(3, 6);
+                createNewLocation(3, 6);
                 break;
 
             case 101:
@@ -1108,10 +1077,10 @@ public class Doma1 extends MainLocation {
                 }
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Start.stringManager.getTranslation("Doma1_33");
-                TalkPerson = 20;
+                outputText = Start.STRING_MANAGER.getTranslation("Doma1_33");
+                talkPerson = 20;
                 mainFrame.talkCount = 30;
-                TalkPause = 0;
+                talkPause = 0;
                 outputTextPos = new GenericPoint(400, 100);
                 nextActionID = 610;
                 break;
@@ -1120,64 +1089,64 @@ public class Doma1 extends MainLocation {
 
             case 150:
                 // Mutter - Ausreden
-                WPersonAusrede(fMutter);
+                femaleExcuse(fMutter);
                 break;
 
             case 155:
                 // Stock - Ausreden
-                DingAusrede(fStock);
+                thingExcuse(fStock);
                 break;
 
             case 160:
                 // Brunnen - Ausreden
-                DingAusrede(fBrunnen);
+                thingExcuse(fBrunnen);
                 break;
 
             case 165:
                 // Tuer - Ausreden
-                DingAusrede(fTuer);
+                thingExcuse(fTuer);
                 break;
 
             case 170:
                 // Schild - Ausreden
-                DingAusrede(fSchild);
+                thingExcuse(fSchild);
                 break;
 
             case 175:
                 // Gaense - Ausreden
-                APersonAusrede(fGaense);
+                allExcuse(fGaense);
                 break;
 
             // Extra - Ausreden fuer ggst-Benutzen
 
             case 200:
                 // Angel auf Brunnen
-                KrabatSagt("Doma1_11", fBrunnen, 3, 0, 0);
+                krabatSays("Doma1_11", fBrunnen, 3, 0, 0);
                 break;
 
             case 210:
                 // Angel mit Wurm oder Holzfisch auf Brunnen
-                KrabatSagt("Doma1_12", fBrunnen, 3, 0, 0);
+                krabatSays("Doma1_12", fBrunnen, 3, 0, 0);
                 break;
 
             case 220:
                 // Fisch auf Brunnen
-                KrabatSagt("Doma1_13", fBrunnen, 3, 0, 0);
+                krabatSays("Doma1_13", fBrunnen, 3, 0, 0);
                 break;
 
             case 230:
                 // Kij auf Husy
-                KrabatSagt("Doma1_14", fGaense, 3, 0, 0);
+                krabatSays("Doma1_14", fGaense, 3, 0, 0);
                 break;
 
             case 240:
                 // Lajna auf Husy
-                KrabatSagt("Doma1_15", fGaense, 3, 0, 0);
+                krabatSays("Doma1_15", fGaense, 3, 0, 0);
                 break;
 
             case 250:
                 // Wacki oder Ryba auf Husy
-                KrabatSagt("Doma1_16", fGaense, 3, 0, 0);
+                krabatSays("Doma1_16", fGaense, 3, 0, 0);
                 break;
 
             // Multiple Choice
@@ -1187,7 +1156,7 @@ public class Doma1 extends MainLocation {
                 mainFrame.isAnimRunning = true;
                 showLogo = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                mainFrame.pathWalker.SetzeNeuenWeg(Pmutter);
+                mainFrame.pathWalker.setNewWay(Pmutter);
                 mainFrame.repaint();
                 nextActionID = 601;
                 break;
@@ -1199,53 +1168,53 @@ public class Doma1 extends MainLocation {
                 }
                 showLogo = false;
                 mainFrame.isClipSet = false;
-                mainFrame.krabat.SetFacing(fMutter);
+                mainFrame.krabat.setFacing(fMutter);
                 nextActionID = 602;
                 break;
 
             case 602:
                 // 1. Argument Krabat
-                KrabatSagt("Doma1_17", fMutter, 1, 2, 603);
+                krabatSays("Doma1_17", fMutter, 1, 2, 603);
                 break;
 
             case 603:
                 // 1. Argument Mutter
-                PersonSagt("Doma1_18", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_18", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 610:
                 // Krabat geht zur Mutter bei Versuch gehe nach Jitk
-                mainFrame.pathWalker.SetzeNeuenWeg(Pmutter);
+                mainFrame.pathWalker.setNewWay(Pmutter);
                 mainFrame.repaint();
                 nextActionID = 611;
                 break;
 
             case 611:
                 // Krabat wird von Mutter gefragt
-                mainFrame.krabat.SetFacing(fMutter);
+                mainFrame.krabat.setFacing(fMutter);
                 if (mainFrame.isScrolling) {
                     break;
                 }
-                PersonSagt("Doma1_19", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_19", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 630:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Doma1_26", 1000, 1, new int[]{1}, 640);
+                Dialog.extend("Doma1_26", 1000, 1, new int[]{1}, 640);
 
                 // 2. Frage
-                Dialog.ExtendMC("Doma1_27", 1000, 3, new int[]{3}, 660);
-                Dialog.ExtendMC("Doma1_28", 3, 4, new int[]{4}, 670);
+                Dialog.extend("Doma1_27", 1000, 3, new int[]{3}, 660);
+                Dialog.extend("Doma1_28", 3, 4, new int[]{4}, 670);
 
                 // 3. Frage
-                Dialog.ExtendMC("Doma1_29", 1000, 2, new int[]{2}, 650);
-                Dialog.ExtendMC("Doma1_30", 2, 5, new int[]{5}, 680);
+                Dialog.extend("Doma1_29", 1000, 2, new int[]{2}, 650);
+                Dialog.extend("Doma1_30", 2, 5, new int[]{5}, 680);
 
                 // 4. Frage (Ende)
-                Dialog.ExtendMC("Doma1_31", 6, 7, null, 690);
-                Dialog.ExtendMC("Doma1_32", 7, 1000, null, 690);
+                Dialog.extend("Doma1_31", 6, 7, null, 690);
+                Dialog.extend("Doma1_32", 7, 1000, null, 690);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -1258,16 +1227,16 @@ public class Doma1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
                 // Exit bereitstellen
                 mainFrame.actions[6] = true;
                 mainFrame.actions[7] = true;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 // Wenn alles abgefragt, dann beenden
                 if (mainFrame.actions[1] && mainFrame.actions[2] && mainFrame.actions[3] &&
@@ -1278,32 +1247,31 @@ public class Doma1 extends MainLocation {
 
             case 640:
                 // Reaktion Mutter 1. Fr/ 1. T
-                PersonSagt("Doma1_20", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_20", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 650:
                 // Reaktion Mutter 1. Fr/2. T
-                PersonSagt("Doma1_21", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_21", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 660:
                 // Reaktion Mutter 2. Fr/1. T
-                PersonSagt("Doma1_22", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_22", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 670:
                 // Reaktion Mutter 2. Fr/ 2. T
-                PersonSagt("Doma1_23", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_23", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 680:
                 // Reaktion Mutter 2. Fr/ 3. T
-                PersonSagt("Doma1_24", 0, 20, 2, 630, MacTalk);
+                personSays("Doma1_24", 0, 20, 2, 630, MacTalk);
                 break;
 
             case 690:
                 // Vorzeitiger Abbruch des Intros
-                // System.out.println("Vorzeitig verlassen !");
                 mainFrame.actions[7] = false; // nico dale statt derje tak beim naechsten mal
                 mainFrame.isAnimRunning = false;
                 mainFrame.isClipSet = false;
@@ -1314,12 +1282,12 @@ public class Doma1 extends MainLocation {
 
             case 700:
                 // Mutter gibt auf - Erfolg
-                PersonSagt("Doma1_25", 0, 20, 2, 710, MacTalk);
+                personSays("Doma1_25", 0, 20, 2, 710, MacTalk);
                 break;
 
             case 710:
                 // Krabat laeuft zurueck
-                mainFrame.pathWalker.SetzeNeuenWeg(new GenericPoint(380, 400));
+                mainFrame.pathWalker.setNewWay(new GenericPoint(380, 400));
                 mainFrame.repaint();
                 nextActionID = 711;
                 break;
@@ -1327,7 +1295,7 @@ public class Doma1 extends MainLocation {
             case 711:
                 // Back to normal Gameplay (Mutter weg)
                 macIsVisible = false;
-                InitLocation();
+                initLocation();
                 mainFrame.actions[0] = true;
                 showRauch = true;
                 mainFrame.isClipSet = false;

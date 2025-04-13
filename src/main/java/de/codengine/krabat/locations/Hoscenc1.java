@@ -83,7 +83,6 @@ public class Hoscenc1 extends MainLocation {
     // Konstante Punkte
     private static final GenericPoint Psaeufer = new GenericPoint(436, 380);
     private static final GenericPoint Pstrolch = new GenericPoint(444, 434);
-    // private static final GenericPoint wirtFeet    = new GenericPoint (320, 464);
     private static final GenericPoint Phonck = new GenericPoint(221, 369);
     private static final GenericPoint Pleft = new GenericPoint(0, 464);
     private static final GenericPoint Pwobraz1 = new GenericPoint(187, 367);
@@ -121,16 +120,16 @@ public class Hoscenc1 extends MainLocation {
             BackgroundMusicPlayer.getInstance().playTrack(19, true);
         }
 
-        mainFrame.krabat.maxx = 479;
-        mainFrame.krabat.zoomf = 10.95f;
-        mainFrame.krabat.defScale = -70;
+        mainFrame.krabat.maxX = 479;
+        mainFrame.krabat.zoomFactor = 10.95f;
+        mainFrame.krabat.defaultScale = -70;
 
         wirt = new Innkeeper(mainFrame);
-        wirt.maxx = 0;
-        wirt.zoomf = 10.95f;
-        wirt.defScale = 0;
+        wirt.maxX = 0;
+        wirt.zoomFactor = 10.95f;
+        wirt.defaultScale = 0;
         wirt.setPos(new GenericPoint(300, 300));
-        wirt.SetFacing(6);
+        wirt.setFacing(6);
 
         strolch = new Dundak(mainFrame);
 
@@ -154,13 +153,13 @@ public class Hoscenc1 extends MainLocation {
 
         Dialog = new MultipleChoice(mainFrame);
 
-        InitLocation(oldLocation);
+        initLocation(oldLocation);
 
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation(int oldLocation) {
+    private void initLocation(int oldLocation) {
         // Grenzen setzen
         mainFrame.pathWalker.vBorders.removeAllElements();
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(447, 448, 441, 495, 283, 399));
@@ -170,15 +169,15 @@ public class Hoscenc1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(185, 185, 52, 221, 340, 383));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(5);
+        mainFrame.pathFinder.clearMatrix(5);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
 
-        InitImages();
+        initImages();
         switch (oldLocation) {
             case 0:
                 // Einsprung fuer Load
@@ -187,13 +186,13 @@ public class Hoscenc1 extends MainLocation {
                 // von Wjes aus
                 initSound = true; // nur hier auch wirklich abspielen, wenn man reinkommt...
                 mainFrame.krabat.setPos(new GenericPoint(35, 454));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 break;
         }
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         background = getPicture("gfx/hoscenc/hosc.png");
         hosc6 = getPicture("gfx/hoscenc/hosc6.png");
         honck = getPicture("gfx/hoscenc/hosc7.png");
@@ -222,33 +221,16 @@ public class Hoscenc1 extends MainLocation {
 
     @Override
     public void paintLocation(GenericDrawingContext g) {
-
-        // bei Multiple Choice und keinem Grund zum Neuzeichnen hier abkuerzen
-        /*if ((mainFrame.isMultiple == true) && (mainFrame.Clipset == true))
-          {
-          Dialog.paintMultiple (g);
-          return;
-          } */
-
-        // Honck wurde aufgehoben!!!!!!!!!
-        /*if (mainFrame.krabat.fAnimHelper == true)
-          {
-          mainFrame.inventory.vInventory.addElement (new Integer (4));
-          mainFrame.Clipset = false; 
-          mainFrame.krabat.fAnimHelper = false;
-          mainFrame.Actions [902] = true;
-          }*/
-
         if (initSound) {
             initSound = false;
-            mainFrame.soundPlayer.PlayFile("sfx/wdurjezu.wav");
+            mainFrame.soundPlayer.playFile("sfx/wdurjezu.wav");
         }
 
         // Clipping -Region initialisieren
         if (!mainFrame.isClipSet) {
             mainFrame.scrollX = 0;
             mainFrame.scrollY = 0;
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             mainFrame.isClipSet = true;
             g.setClip(0, 0, 644, 484);
@@ -267,9 +249,9 @@ public class Hoscenc1 extends MainLocation {
         // Wirt Hintergrund loeschen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = wirt.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = wirt.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Hintergrund neu
             g.drawImage(background, 0, 0);
@@ -279,7 +261,7 @@ public class Hoscenc1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
@@ -299,7 +281,7 @@ public class Hoscenc1 extends MainLocation {
         // Dundak
         g.setClip(strolchPoint.x, strolchPoint.y, Dundak.Breite, Dundak.Hoehe);
         g.drawImage(background, 0, 0);
-        strolch.drawDundak(g, TalkPerson, strolchPoint, SoundCountdown);
+        strolch.drawDundak(g, talkPerson, strolchPoint, SoundCountdown);
         if (SoundCountdown > 0) {
             SoundCountdown--;
         }
@@ -307,18 +289,18 @@ public class Hoscenc1 extends MainLocation {
         // Korcmar bewegen
         if (showKorcmar && !walkReady) {
             // Waschfrau um 1 Schritt weiterbewegen (nur virtuell)
-            walkReady = wirt.Move();
+            walkReady = wirt.move();
         }
 
         // Wirt zeichnen
         if (showKorcmar) {
             // Clipping - Rectangle feststellen und setzen
-            BorderRect temp = wirt.getRect();
-            g.setClip(temp.lo_point.x - 10, temp.lo_point.y - 10, temp.ru_point.x - temp.lo_point.x + 20,
-                    temp.ru_point.y - temp.lo_point.y + 20);
+            BorderRect temp = wirt.getBoundingBox();
+            g.setClip(temp.topLeftPoint.x - 10, temp.topLeftPoint.y - 10, temp.bottomRightPoint.x - temp.topLeftPoint.x + 20,
+                    temp.bottomRightPoint.y - temp.topLeftPoint.y + 20);
 
             // Zeichne Wirt neu
-            if (TalkPerson == 25 && mainFrame.talkCount > 1) {
+            if (talkPerson == 25 && mainFrame.talkCount > 1) {
                 wirt.talkKorcmar(g);
             } else {
                 wirt.drawKorcmar(g);
@@ -328,22 +310,22 @@ public class Hoscenc1 extends MainLocation {
             g.drawImage(vorderdurje, 294, 63);
         }
 
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -368,7 +350,7 @@ public class Hoscenc1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm Balken (nur Clipping - Region wird neugezeichnet)
-        if (hosc6Rect.IsPointInRect(pKrTemp)) {
+        if (hosc6Rect.isPointInRect(pKrTemp)) {
             g.drawImage(hosc6, 51, 185);
         }
 
@@ -378,7 +360,7 @@ public class Hoscenc1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, FarbenArray[AnimTalkPerson]);
+            mainFrame.imageFont.drawString(g, AnimOutputText, AnimOutputTextPos.x, AnimOutputTextPos.y, COLORS[AnimTalkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -388,7 +370,7 @@ public class Hoscenc1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 644, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -398,12 +380,12 @@ public class Hoscenc1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Multiple Choice ausfuehren
@@ -415,12 +397,12 @@ public class Hoscenc1 extends MainLocation {
 
         // Die Anims muessen bedient werden
         if (AnimID != 0 && !AnimMCLocked) {
-            DoAnims();
+            doAnims();
         }
 
         // Gibt es was zu tun ?
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -441,7 +423,7 @@ public class Hoscenc1 extends MainLocation {
         }
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
-            TalkPerson = 0;
+            talkPerson = 0;
         }
         outputText = "";
 
@@ -461,17 +443,17 @@ public class Hoscenc1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Saeufer
-                if (brSaeufer.IsPointInRect(pTemp)) {
+                if (brSaeufer.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 19: // pjero
                             nextActionID = 210;
@@ -487,48 +469,48 @@ public class Hoscenc1 extends MainLocation {
                 }
 
                 // Ausreden fuer Strolch
-                if (brStrolch.IsPointInRect(pTemp)) {
+                if (brStrolch.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = Pstrolch;
                 }
 
                 // Ausreden fuer Wobraz1
-                if (wobraz1Rect.IsPointInRect(pTemp)) {
+                if (wobraz1Rect.isPointInRect(pTemp)) {
                     // honck z blotom
                     nextActionID = mainFrame.whatItem == 16 ? 202 : 172;
                     pTemp = Pwobraz1;
                 }
 
                 // Ausreden fuer Wobraz2
-                if (wobraz2Rect.IsPointInRect(pTemp)) {
+                if (wobraz2Rect.isPointInRect(pTemp)) {
                     // honck z blotom
                     nextActionID = mainFrame.whatItem == 16 ? 200 : 170;
                     pTemp = Pwobraz2;
                 }
 
                 // Ausreden fuer Stolc
-                if (stolcRect.IsPointInRect(pTemp)) {
+                if (stolcRect.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 175;
                     pTemp = Pstolc;
                 }
 
                 // Ausreden fuer Durje
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     // Extra - Sinnloszeug
                     nextActionID = 180;
                     pTemp = Pdurje;
                 }
 
                 // Ausreden fuer Honck
-                if (honckRect.IsPointInRect(pTemp) && !mainFrame.actions[902]) {
+                if (honckRect.isPointInRect(pTemp) && !mainFrame.actions[902]) {
                     // Extra - Sinnloszeug
                     nextActionID = 165;
                     pTemp = Phonck;
                 }
 
                 // wenn nichts anderes gewaehlt, dann nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -538,7 +520,7 @@ public class Hoscenc1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -550,138 +532,138 @@ public class Hoscenc1 extends MainLocation {
                 nextActionID = 0;
 
                 // Saeufer ansehen
-                if (brSaeufer.IsPointInRect(pTemp)) {
+                if (brSaeufer.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Psaeufer;
                 }
 
                 // Strolch ansehen
-                if (brStrolch.IsPointInRect(pTemp)) {
+                if (brStrolch.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Pstrolch;
                 }
 
                 // Honck ansehen
-                if (honckRect.IsPointInRect(pTemp) && !mainFrame.actions[902]) {
+                if (honckRect.isPointInRect(pTemp) && !mainFrame.actions[902]) {
                     nextActionID = 4;
                     pTemp = Phonck;
                 }
 
                 // zu Wjes gehen ?
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // wobraz1 ansehen
-                if (wobraz1Rect.IsPointInRect(pTemp)) {
+                if (wobraz1Rect.isPointInRect(pTemp)) {
                     nextActionID = 5;
                     pTemp = Pwobraz1;
                 }
 
                 // wobraz2 ansehen
-                if (wobraz2Rect.IsPointInRect(pTemp)) {
+                if (wobraz2Rect.isPointInRect(pTemp)) {
                     nextActionID = 6;
                     pTemp = Pwobraz2;
                 }
 
                 // stolc ansehen
-                if (stolcRect.IsPointInRect(pTemp)) {
+                if (stolcRect.isPointInRect(pTemp)) {
                     nextActionID = 7;
                     pTemp = Pstolc;
                 }
 
                 // durje ansehen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 8;
                     pTemp = Pdurje;
                 }
 
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Ausgang zu Wjes abfangen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Mit dem Saeufer reden
-                if (brSaeufer.IsPointInRect(pTemp)) {
+                if (brSaeufer.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Psaeufer);
+                    mainFrame.pathWalker.setNewWay(Psaeufer);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Mit dem Strolch reden
-                if (brStrolch.IsPointInRect(pTemp)) {
+                if (brStrolch.isPointInRect(pTemp)) {
                     nextActionID = 51;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pstrolch);
+                    mainFrame.pathWalker.setNewWay(Pstrolch);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Honck nehmen
-                if (honckRect.IsPointInRect(pTemp) && !mainFrame.actions[902]) {
+                if (honckRect.isPointInRect(pTemp) && !mainFrame.actions[902]) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Phonck);
+                    mainFrame.pathWalker.setNewWay(Phonck);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wobraz1 nehmen
-                if (wobraz1Rect.IsPointInRect(pTemp)) {
+                if (wobraz1Rect.isPointInRect(pTemp)) {
                     nextActionID = 62;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwobraz1);
+                    mainFrame.pathWalker.setNewWay(Pwobraz1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Wobraz2 nehmen
-                if (wobraz2Rect.IsPointInRect(pTemp)) {
+                if (wobraz2Rect.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pwobraz2);
+                    mainFrame.pathWalker.setNewWay(Pwobraz2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Stolc nehmen
-                if (stolcRect.IsPointInRect(pTemp)) {
+                if (stolcRect.isPointInRect(pTemp)) {
                     nextActionID = 65;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pstolc);
+                    mainFrame.pathWalker.setNewWay(Pstolc);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Durje nehmen
-                if (durjeRect.IsPointInRect(pTemp)) {
+                if (durjeRect.isPointInRect(pTemp)) {
                     nextActionID = 70;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pdurje);
+                    mainFrame.pathWalker.setNewWay(Pdurje);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                ResetAnims();
+                resetAnims();
                 mainFrame.isClipSet = false;
                 mainFrame.isBackgroundAnimRunning = false;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -698,8 +680,8 @@ public class Hoscenc1 extends MainLocation {
 
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -708,20 +690,20 @@ public class Hoscenc1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) ||
-                    brSaeufer.IsPointInRect(pTemp) || brStrolch.IsPointInRect(pTemp) ||
-                    honckRect.IsPointInRect(pTemp) && !mainFrame.actions[902] ||
-                    wobraz1Rect.IsPointInRect(pTemp) || wobraz2Rect.IsPointInRect(pTemp) ||
-                    stolcRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp);
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) ||
+                    brSaeufer.isPointInRect(pTemp) || brStrolch.isPointInRect(pTemp) ||
+                    honckRect.isPointInRect(pTemp) && !mainFrame.actions[902] ||
+                    wobraz1Rect.isPointInRect(pTemp) || wobraz2Rect.isPointInRect(pTemp) ||
+                    stolcRect.isPointInRect(pTemp) || durjeRect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
@@ -729,30 +711,30 @@ public class Hoscenc1 extends MainLocation {
 
         // normaler Cursor, normale Reaktion
         else {
-            if (brSaeufer.IsPointInRect(pTemp) ||
-                    brStrolch.IsPointInRect(pTemp) || honckRect.IsPointInRect(pTemp) &&
+            if (brSaeufer.isPointInRect(pTemp) ||
+                    brStrolch.isPointInRect(pTemp) || honckRect.isPointInRect(pTemp) &&
                     !mainFrame.actions[902] ||
-                    wobraz1Rect.IsPointInRect(pTemp) || wobraz2Rect.IsPointInRect(pTemp) ||
-                    stolcRect.IsPointInRect(pTemp) || durjeRect.IsPointInRect(pTemp)) {
-                if (Cursorform != 1) {
+                    wobraz1Rect.isPointInRect(pTemp) || wobraz2Rect.isPointInRect(pTemp) ||
+                    stolcRect.isPointInRect(pTemp) || durjeRect.isPointInRect(pTemp)) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 4) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 4) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 4;
+                    cursorShape = 4;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -793,7 +775,7 @@ public class Hoscenc1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -801,7 +783,7 @@ public class Hoscenc1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -809,27 +791,27 @@ public class Hoscenc1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
-        ResetAnims();
+        resetAnims();
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
                 mainFrame.krabat.isWalking) {
@@ -849,7 +831,7 @@ public class Hoscenc1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -857,52 +839,52 @@ public class Hoscenc1 extends MainLocation {
         switch (nextActionID) {
             case 2:
                 // Saeufer anschauen
-                KrabatSagt("Hoscenc1_1", fSaeufer, 3, 0, 0);
+                krabatSays("Hoscenc1_1", fSaeufer, 3, 0, 0);
                 break;
 
             case 3:
                 // Strolch anschauen
-                KrabatSagt("Hoscenc1_2", fStrolch, 3, 0, 0);
+                krabatSays("Hoscenc1_2", fStrolch, 3, 0, 0);
                 break;
 
             case 4:
                 // Honck anschauen
-                KrabatSagt("Hoscenc1_3", fHonck, 3, 0, 0);
+                krabatSays("Hoscenc1_3", fHonck, 3, 0, 0);
                 break;
 
             case 5:
                 // Wobraz1 anschauen
-                KrabatSagt("Hoscenc1_4", fWobraz2, 3, 0, 0);
+                krabatSays("Hoscenc1_4", fWobraz2, 3, 0, 0);
                 break;
 
             case 6:
                 // Wobraz2 anschauen
-                KrabatSagt("Hoscenc1_5", fWobraz1, 3, 0, 0);
+                krabatSays("Hoscenc1_5", fWobraz1, 3, 0, 0);
                 break;
 
             case 7:
                 // Stolc anschauen
-                KrabatSagt("Hoscenc1_6", fStolc, 3, 0, 0);
+                krabatSays("Hoscenc1_6", fStolc, 3, 0, 0);
                 break;
 
             case 8:
                 // Durje anschauen
-                KrabatSagt("Hoscenc1_7", fDurje, 3, 0, 0);
+                krabatSays("Hoscenc1_7", fDurje, 3, 0, 0);
                 break;
 
             case 50:
                 // Krabat beginnt MC (Saeufer benutzen)
-                mainFrame.krabat.SetFacing(fSaeufer);
+                mainFrame.krabat.setFacing(fSaeufer);
                 mainFrame.isAnimRunning = true;
                 AnimMCLocked = true;
-                ResetAnims();
+                resetAnims();
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 600;
                 break;
 
             case 51:
                 // Krabat beginnt MC (Strolch benutzen)
-                mainFrame.krabat.SetFacing(fStrolch);
+                mainFrame.krabat.setFacing(fStrolch);
                 mainFrame.isAnimRunning = true;
                 AnimMCLocked = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
@@ -915,7 +897,7 @@ public class Hoscenc1 extends MainLocation {
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 58;
                 mainFrame.inventory.vInventory.addElement(4);
-                mainFrame.krabat.SetFacing(fHonck);
+                mainFrame.krabat.setFacing(fHonck);
                 mainFrame.krabat.nAnimation = 31;
                 Counter = 5;
                 break;
@@ -938,138 +920,138 @@ public class Hoscenc1 extends MainLocation {
 
             case 60:
                 // Wobraz 1 mitnehmen
-                KrabatSagt("Hoscenc1_8", fWobraz1, 3, 0, 0);
+                krabatSays("Hoscenc1_8", fWobraz1, 3, 0, 0);
                 break;
 
             case 62:
                 // Wobraz 2 mitnehmen
-                KrabatSagt("Hoscenc1_9", fWobraz2, 3, 0, 0);
+                krabatSays("Hoscenc1_9", fWobraz2, 3, 0, 0);
                 break;
 
             case 65:
                 // Stolc mitnehmen
-                KrabatSagt("Hoscenc1_10", fStolc, 3, 0, 0);
+                krabatSays("Hoscenc1_10", fStolc, 3, 0, 0);
                 break;
 
             case 70:
                 // Durje mitnehmen
-                KrabatSagt("Hoscenc1_11", fDurje, 3, 0, 0);
+                krabatSays("Hoscenc1_11", fDurje, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Wjes
-                NeuesBild(13, 24);
+                createNewLocation(13, 24);
                 break;
 
             case 150:
                 // Wirt - Ausreden
-                MPersonAusrede(fWirt);
+                maleExcuse(fWirt);
                 break;
 
             case 155:
                 // Saeufer - Ausreden
-                MPersonAusrede(fSaeufer);
+                maleExcuse(fSaeufer);
                 break;
 
             case 160:
                 // Strolch - Ausreden
-                MPersonAusrede(fStrolch);
+                maleExcuse(fStrolch);
                 break;
 
             case 165:
                 // Honck - Ausreden
-                DingAusrede(fHonck);
+                thingExcuse(fHonck);
                 break;
 
             case 170:
                 // Wobrazy 1 Ausreden
-                DingAusrede(fWobraz1);
+                thingExcuse(fWobraz1);
                 break;
 
             case 172:
                 // Wobrazy 2 Ausreden
-                DingAusrede(fWobraz2);
+                thingExcuse(fWobraz2);
                 break;
 
             case 175:
                 // Stolc - Ausreden
-                DingAusrede(fStolc);
+                thingExcuse(fStolc);
                 break;
 
             case 180:
                 // Durje - Ausreden
-                DingAusrede(fDurje);
+                thingExcuse(fDurje);
                 break;
 
             case 200:
                 // Honck z Blotom auf Wobraz 1
-                KrabatSagt("Hoscenc1_12", fWobraz1, 3, 0, 0);
+                krabatSays("Hoscenc1_12", fWobraz1, 3, 0, 0);
                 break;
 
             case 202:
                 // Honck z Blotom auf Wobraz 2
-                KrabatSagt("Hoscenc1_13", fWobraz2, 3, 0, 0);
+                krabatSays("Hoscenc1_13", fWobraz2, 3, 0, 0);
                 break;
 
             case 210:
                 // Pjero auf Pjany
-                KrabatSagt("Hoscenc1_14", fSaeufer, 3, 0, 0);
+                krabatSays("Hoscenc1_14", fSaeufer, 3, 0, 0);
                 break;
 
             case 220:
                 // Kij auf Pjany
-                KrabatSagt("Hoscenc1_15", fSaeufer, 3, 0, 0);
+                krabatSays("Hoscenc1_15", fSaeufer, 3, 0, 0);
                 break;
 
             case 230:
                 // Kij auf Dundak
-                KrabatSagt("Hoscenc1_16", fStrolch, 3, 0, 0);
+                krabatSays("Hoscenc1_16", fStrolch, 3, 0, 0);
                 break;
 
             case 240:
                 // bron auf Dundak
-                KrabatSagt("Hoscenc1_17", fStrolch, 3, 0, 0);
+                krabatSays("Hoscenc1_17", fStrolch, 3, 0, 0);
                 break;
 
             // Dialog mit Saeufer (spaeter Wirt)
 
             case 600:
                 // Multiple - Choice - Routine
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // Test, ob Saeufer oder Wirt gefragt wird
                 if (!mainFrame.actions[30]) {
                     // Dialog mit Saeufer...
-                    Dialog.ExtendMC("Hoscenc1_54", 1000, 1000, null, 0);
-                    Dialog.ExtendMC("Hoscenc1_55", 1000, 1000, null, 0);
-                    Dialog.ExtendMC("Hoscenc1_56", 1000, 1000, null, 0);
+                    Dialog.extend("Hoscenc1_54", 1000, 1000, null, 0);
+                    Dialog.extend("Hoscenc1_55", 1000, 1000, null, 0);
+                    Dialog.extend("Hoscenc1_56", 1000, 1000, null, 0);
                 } else {
                     // Dialog mit Wirt
                     // 1. Frage
-                    Dialog.ExtendMC("Hoscenc1_57", 1000, 1000, null, 610);
+                    Dialog.extend("Hoscenc1_57", 1000, 1000, null, 610);
 
                     // 2. Frage
-                    Dialog.ExtendMC("Hoscenc1_58", 1000, 32, new int[]{32}, 620);
-                    Dialog.ExtendMC("Hoscenc1_59", 32, 33, new int[]{33}, 630);
-                    Dialog.ExtendMC("Hoscenc1_60", 33, 31, new int[]{31, 39, 44}, 640);
+                    Dialog.extend("Hoscenc1_58", 1000, 32, new int[]{32}, 620);
+                    Dialog.extend("Hoscenc1_59", 32, 33, new int[]{33}, 630);
+                    Dialog.extend("Hoscenc1_60", 33, 31, new int[]{31, 39, 44}, 640);
 
                     // 3. Frage
-                    Dialog.ExtendMC("Hoscenc1_61", 1000, 36, new int[]{36}, 650);
-                    Dialog.ExtendMC("Hoscenc1_62", 36, 37, new int[]{37}, 660);
-                    Dialog.ExtendMC("Hoscenc1_63", 37, 35, new int[]{35}, 670);
+                    Dialog.extend("Hoscenc1_61", 1000, 36, new int[]{36}, 650);
+                    Dialog.extend("Hoscenc1_62", 36, 37, new int[]{37}, 660);
+                    Dialog.extend("Hoscenc1_63", 37, 35, new int[]{35}, 670);
 
                     // 5. Frage (4. bedeutet Ende...)
-                    Dialog.ExtendMC("Hoscenc1_64", 39, 40, new int[]{40}, 680);
-                    Dialog.ExtendMC("Hoscenc1_65", 40, 41, new int[]{41}, 690);
-                    Dialog.ExtendMC("Hoscenc1_66", 41, 42, new int[]{42}, 700);
-                    Dialog.ExtendMC("Hoscenc1_67", 42, 43, new int[]{43}, 710);
-                    Dialog.ExtendMC("Hoscenc1_68", 43, 1000, null, 720);
+                    Dialog.extend("Hoscenc1_64", 39, 40, new int[]{40}, 680);
+                    Dialog.extend("Hoscenc1_65", 40, 41, new int[]{41}, 690);
+                    Dialog.extend("Hoscenc1_66", 41, 42, new int[]{42}, 700);
+                    Dialog.extend("Hoscenc1_67", 42, 43, new int[]{43}, 710);
+                    Dialog.extend("Hoscenc1_68", 43, 1000, null, 720);
 
                     // 6. Frage
-                    Dialog.ExtendMC("Hoscenc1_69", 44, 45, new int[]{45}, 730);
-                    Dialog.ExtendMC("Hoscenc1_70", 45, 1000, null, 740);
+                    Dialog.extend("Hoscenc1_69", 44, 45, new int[]{45}, 730);
+                    Dialog.extend("Hoscenc1_70", 45, 1000, null, 740);
 
                     // 4. Frage
-                    Dialog.ExtendMC("Hoscenc1_71", 1000, 1000, null, 785);
+                    Dialog.extend("Hoscenc1_71", 1000, 1000, null, 785);
                 }
 
                 mainFrame.isMultipleChoiceActive = true;
@@ -1083,10 +1065,10 @@ public class Hoscenc1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
                 // Je nach ausgewaehlter Frage Action ausfuehren
                 if (!mainFrame.actions[30]) {
@@ -1101,132 +1083,132 @@ public class Hoscenc1 extends MainLocation {
                         nextActionID = 760;
                     }
                 } else {
-                    nextActionID = Dialog.ActionID;
+                    nextActionID = Dialog.actionId;
                 }
                 break;
 
             case 610:
                 // Reaktion Wirt auf 1. Frage
-                PersonSagt("Hoscenc1_18", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_18", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 620:
                 // Reaktion Wirt auf 1. Teil 2. Frage
-                PersonSagt("Hoscenc1_19", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_19", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 630:
                 // Reaktion Wirt auf 2. Teil 2. Frage
-                PersonSagt("Hoscenc1_20", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_20", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 640:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt("Hoscenc1_21", 0, 25, 2, 641, wirt.evalTalkPoint());
+                personSays("Hoscenc1_21", 0, 25, 2, 641, wirt.evalTalkPoint());
                 break;
 
             case 641:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt("Hoscenc1_22", 0, 25, 2, 642, wirt.evalTalkPoint());
+                personSays("Hoscenc1_22", 0, 25, 2, 642, wirt.evalTalkPoint());
                 break;
 
             case 642:
                 // Reaktion Wirt auf 3. Teil 2. Frage
-                PersonSagt("Hoscenc1_23", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_23", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 650:
                 // Reaktion Wirt auf 1. Teil 3. Frage
-                PersonSagt("Hoscenc1_24", 0, 25, 2, 651, wirt.evalTalkPoint());
+                personSays("Hoscenc1_24", 0, 25, 2, 651, wirt.evalTalkPoint());
                 break;
 
             case 651:
                 // Reaktion Wirt auf 1. Teil 3. Frage
-                PersonSagt("Hoscenc1_25", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_25", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 660:
                 // Reaktion Wirt auf 2. Teil 3. Frage
-                PersonSagt("Hoscenc1_26", 0, 25, 2, 661, wirt.evalTalkPoint());
+                personSays("Hoscenc1_26", 0, 25, 2, 661, wirt.evalTalkPoint());
                 break;
 
             case 661:
                 // Reaktion Wirt auf 2. Teil 3. Frage
-                PersonSagt("Hoscenc1_27", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_27", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 670:
                 // Reaktion Wirt auf 3. Teil 3. Frage
-                PersonSagt("Hoscenc1_28", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_28", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 680:
                 // Reaktion Wirt auf 1. Teil 5. Frage
-                PersonSagt("Hoscenc1_29", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_29", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 690:
                 // Reaktion Wirt auf 2. Teil 5. Frage
-                PersonSagt("Hoscenc1_30", 0, 25, 2, 691, wirt.evalTalkPoint());
+                personSays("Hoscenc1_30", 0, 25, 2, 691, wirt.evalTalkPoint());
                 break;
 
             case 691:
                 // Reaktion Wirt auf 2. Teil 5. Frage
-                PersonSagt("Hoscenc1_31", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_31", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 700:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt("Hoscenc1_32", 0, 25, 2, 701, wirt.evalTalkPoint());
+                personSays("Hoscenc1_32", 0, 25, 2, 701, wirt.evalTalkPoint());
                 break;
 
             case 701:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt("Hoscenc1_33", 0, 25, 2, 702, wirt.evalTalkPoint());
+                personSays("Hoscenc1_33", 0, 25, 2, 702, wirt.evalTalkPoint());
                 break;
 
             case 702:
                 // Reaktion Wirt auf 3. Teil 5. Frage
-                PersonSagt("Hoscenc1_34", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_34", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 710:
                 // Reaktion Wirt auf 4. Teil 5. Frage
-                PersonSagt("Hoscenc1_35", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_35", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 720:
                 // Reaktion Wirt auf 5. Teil 5. Frage
-                PersonSagt("Hoscenc1_36", 0, 25, 2, 721, wirt.evalTalkPoint());
+                personSays("Hoscenc1_36", 0, 25, 2, 721, wirt.evalTalkPoint());
                 break;
 
             case 721:
                 // Reaktion Wirt auf 5. Teil 5. Frage
-                PersonSagt("Hoscenc1_37", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_37", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 730:
                 // Reaktion Wirt auf 1. Teil 6. Frage
-                PersonSagt("Hoscenc1_38", 0, 25, 2, 731, wirt.evalTalkPoint());
+                personSays("Hoscenc1_38", 0, 25, 2, 731, wirt.evalTalkPoint());
                 break;
 
             case 731:
                 // Reaktion Wirt auf 1. Teil 6. Frage
-                PersonSagt("Hoscenc1_39", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_39", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 740:
                 // Reaktion Wirt auf 2. Teil 6. Frage
-                PersonSagt("Hoscenc1_40", 0, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_40", 0, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 750:
                 // Reaktion Saeufer auf 1. Krabat - Frage
                 int random = (int) Math.round(Math.random() * (AP.length - 1));
-                outputText = Start.stringManager.getTranslation(AP[random]);
-                outputTextPos = mainFrame.imageFont.CenterText(outputText, SaeuferTalk);
-                TalkPerson = 23;
-                TalkPause = 2;
+                outputText = Start.STRING_MANAGER.getTranslation(AP[random]);
+                outputTextPos = mainFrame.imageFont.centerText(outputText, SaeuferTalk);
+                talkPerson = 23;
+                talkPause = 2;
                 nextActionID = 910;
                 break;
 
@@ -1236,10 +1218,10 @@ public class Hoscenc1 extends MainLocation {
                 // Wirt kommt gelaufen
                 SoundCountdown = 30; // Strolch-Sound deaktivieren
                 doorOpen = true;
-                mainFrame.soundPlayer.PlayFile("sfx/hdurjeauf.wav");
+                mainFrame.soundPlayer.playFile("sfx/hdurjeauf.wav");
                 wirt.setPos(WirtOOben);
-                wirt.SetFacing(6);
-                wirt.MoveTo(WirtOben);
+                wirt.setFacing(6);
+                wirt.moveTo(WirtOben);
                 walkReady = false;
                 showKorcmar = true;
                 nextActionID = 770;
@@ -1254,7 +1236,7 @@ public class Hoscenc1 extends MainLocation {
 
             case 773:
                 // wirt kommt weitergelaufen
-                wirt.MoveTo(WirtUnten);
+                wirt.moveTo(WirtUnten);
                 walkReady = false;
                 nextActionID = 777;
                 break;
@@ -1268,12 +1250,12 @@ public class Hoscenc1 extends MainLocation {
 
             case 780:
                 // Reaktion Wirt wenn Saeufer von Krabat 2. Mal gefragt
-                PersonSagt("Hoscenc1_41", fWirt, 25, 2, 600, wirt.evalTalkPoint());
+                personSays("Hoscenc1_41", fWirt, 25, 2, 600, wirt.evalTalkPoint());
                 break;
 
             case 785:
                 // Wirt geht zurueck
-                wirt.MoveTo(WirtOben);
+                wirt.moveTo(WirtOben);
                 walkReady = false;
                 nextActionID = 790;
                 break;
@@ -1288,7 +1270,7 @@ public class Hoscenc1 extends MainLocation {
             case 791:
                 // wirt geht weiter weg
                 SoundCountdown = 100; // Strolch-Sound deaktivieren
-                wirt.MoveTo(WirtOOben);
+                wirt.moveTo(WirtOOben);
                 walkReady = false;
                 nextActionID = 793;
                 break;
@@ -1303,7 +1285,7 @@ public class Hoscenc1 extends MainLocation {
             case 795:
                 // Wirt weg
                 doorOpen = false;
-                mainFrame.soundPlayer.PlayFile("sfx/hdurjezu.wav");
+                mainFrame.soundPlayer.playFile("sfx/hdurjezu.wav");
                 showKorcmar = false;
                 mainFrame.isClipSet = false;
                 nextActionID = 900;
@@ -1313,23 +1295,23 @@ public class Hoscenc1 extends MainLocation {
 
             case 800:
                 // Multiple - Choice - Routine Dundak
-                Dialog.InitMC(20);
+                Dialog.initMC(20);
                 // 1. Frage
-                Dialog.ExtendMC("Hoscenc1_72", 1000, 50, new int[]{50, 51, 55}, 810);
+                Dialog.extend("Hoscenc1_72", 1000, 50, new int[]{50, 51, 55}, 810);
 
                 // 2. Frage
-                Dialog.ExtendMC("Hoscenc1_73", 1000, 1000, null, 820);
+                Dialog.extend("Hoscenc1_73", 1000, 1000, null, 820);
 
                 // 4. Frage
-                Dialog.ExtendMC("Hoscenc1_74", 51, 52, new int[]{52}, 830);
-                Dialog.ExtendMC("Hoscenc1_75", 52, 53, new int[]{53}, 840);
+                Dialog.extend("Hoscenc1_74", 51, 52, new int[]{52}, 830);
+                Dialog.extend("Hoscenc1_75", 52, 53, new int[]{53}, 840);
 
                 // 5. Frage
-                Dialog.ExtendMC("Hoscenc1_76", 55, 56, new int[]{56}, 860);
-                Dialog.ExtendMC("Hoscenc1_77", 56, 57, new int[]{57}, 870);
+                Dialog.extend("Hoscenc1_76", 55, 56, new int[]{56}, 860);
+                Dialog.extend("Hoscenc1_77", 56, 57, new int[]{57}, 870);
 
                 // 3. Frage (bedeutet Ende)
-                Dialog.ExtendMC("Hoscenc1_78", 1000, 1000, null, 900);
+                Dialog.extend("Hoscenc1_78", 1000, 1000, null, 900);
 
                 mainFrame.isMultipleChoiceActive = true;
                 mainFrame.isAnimRunning = false;
@@ -1342,73 +1324,73 @@ public class Hoscenc1 extends MainLocation {
                 // Ausgewaehltes Multiple-Choice-Ding wird angezeigt
                 mainFrame.isAnimRunning = true;
                 evalMouseMoveEvent(mainFrame.mousePoint);
-                outputText = Dialog.Fragen[Dialog.Antwort];
-                outputTextPos = mainFrame.imageFont.KrabatText(outputText);
-                TalkPerson = 1;
-                TalkPause = 2;
+                outputText = Dialog.questions[Dialog.answer];
+                outputTextPos = mainFrame.imageFont.krabatText(outputText);
+                talkPerson = 1;
+                talkPause = 2;
 
-                nextActionID = Dialog.ActionID;
+                nextActionID = Dialog.actionId;
 
                 break;
 
             case 810:
                 // Reaktion Strolch auf 1. Frage
-                PersonSagt("Hoscenc1_42", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_42", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 820:
                 // Reaktion Strolch auf 2. Frage
-                PersonSagt("Hoscenc1_43", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_43", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 830:
                 // Reaktion Strolch auf 1. Teil 4. Frage
-                PersonSagt("Hoscenc1_44", 0, 24, 2, 831, StrolchTalk);
+                personSays("Hoscenc1_44", 0, 24, 2, 831, StrolchTalk);
                 break;
 
             case 831:
                 // Reaktion Strolch auf 1. Teil 4. Frage
-                PersonSagt("Hoscenc1_45", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_45", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 840:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt("Hoscenc1_46", 0, 24, 2, 841, StrolchTalk);
+                personSays("Hoscenc1_46", 0, 24, 2, 841, StrolchTalk);
                 break;
 
             case 841:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt("Hoscenc1_47", 0, 24, 2, 842, StrolchTalk);
+                personSays("Hoscenc1_47", 0, 24, 2, 842, StrolchTalk);
                 break;
 
             case 842:
                 // Reaktion Strolch auf 2. Teil 4. Frage
-                PersonSagt("Hoscenc1_48", 0, 24, 2, 845, StrolchTalk);
+                personSays("Hoscenc1_48", 0, 24, 2, 845, StrolchTalk);
                 break;
 
             case 845:
                 // Krabat sagt Spruch
-                KrabatSagt("Hoscenc1_49", 0, 1, 2, 850);
+                krabatSays("Hoscenc1_49", 0, 1, 2, 850);
                 break;
 
             case 850:
                 // Reaktion Strolch auf 3. Teil 4. Frage
-                PersonSagt("Hoscenc1_50", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_50", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 860:
                 // Reaktion Strolch auf 1. Teil 5. Frage
-                PersonSagt("Hoscenc1_51", 0, 24, 2, 861, StrolchTalk);
+                personSays("Hoscenc1_51", 0, 24, 2, 861, StrolchTalk);
                 break;
 
             case 861:
                 // Reaktion Strolch auf 1. Teil 5. Frage
-                PersonSagt("Hoscenc1_52", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_52", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 870:
                 // Reaktion Strolch auf 2. Teil 5. Frage
-                PersonSagt("Hoscenc1_53", 0, 24, 2, 800, StrolchTalk);
+                personSays("Hoscenc1_53", 0, 24, 2, 800, StrolchTalk);
                 break;
 
             case 900:
@@ -1437,7 +1419,7 @@ public class Hoscenc1 extends MainLocation {
 
     }
 
-    private void DoAnims() {
+    private void doAnims() {
         switch (AnimID) {
             case 1:
                 AnimCounter--;
@@ -1464,8 +1446,8 @@ public class Hoscenc1 extends MainLocation {
             case 4:
                 // Saeufer - Schnarchen
                 int random = (int) Math.round(Math.random() * (AP.length - 1));
-                AnimOutputText = Start.stringManager.getTranslation(AP[random]);
-                AnimOutputTextPos = mainFrame.imageFont.CenterAnimText(AnimOutputText, SaeuferTalk);
+                AnimOutputText = Start.STRING_MANAGER.getTranslation(AP[random]);
+                AnimOutputTextPos = mainFrame.imageFont.centerAnimText(AnimOutputText, SaeuferTalk);
                 AnimCounter = 30;
                 AnimTalkPerson = 23;
                 AnimID = 1;
@@ -1476,7 +1458,7 @@ public class Hoscenc1 extends MainLocation {
     }
 
     // setzt Anim so zurueck, dass beim ersten Aufruf nix auf dem Bildschirm steht
-    private void ResetAnims() {
+    private void resetAnims() {
         AnimOutputText = "";
         AnimCounter = 300;
         AnimID = 1;

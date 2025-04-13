@@ -44,7 +44,6 @@ public class Dubring1 extends MainLocation {
     private static final BorderRect rechterAusgang = new BorderRect(1246, 305, 1279, 393);
     private static final BorderRect halza1Rect = new BorderRect(490, 204, 540, 290);
     private static final BorderRect halza2Rect = new BorderRect(849, 259, 892, 320);
-    // private static final borderrect stomyRect      = new borderrect (   0,   0, 1279, 200);
     private static final BorderRect trawaRect = new BorderRect(1000, 350, 1279, 479);
 
     // alle Schlamm-Moeglichkeiten registrieren
@@ -85,36 +84,36 @@ public class Dubring1 extends MainLocation {
 
         BackgroundMusicPlayer.getInstance().playTrack(9, true);
 
-        mainFrame.krabat.maxx = 0;
-        mainFrame.krabat.zoomf = 7f;
-        mainFrame.krabat.defScale = -0;
+        mainFrame.krabat.maxX = 0;
+        mainFrame.krabat.zoomFactor = 7f;
+        mainFrame.krabat.defaultScale = -0;
 
-        InitImages();
-        Cursorform = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
+        initImages();
+        cursorShape = 200;  // Sinnloser Wert, damit garantiert neuer Cursor gesetzt wird
 
         switch (oldLocation) {
             case 0: // Einsprung von Load
                 break;
             case 16: // Aus Villa kommend
                 mainFrame.krabat.setPos(new GenericPoint(20, 365));
-                mainFrame.krabat.SetFacing(3);
+                mainFrame.krabat.setFacing(3);
                 scrollwert = 0;
                 setScroll = true;
                 break;
             case 22: // Von Cyrkej aus
                 mainFrame.krabat.setPos(new GenericPoint(1262, 344));
-                mainFrame.krabat.SetFacing(9);
+                mainFrame.krabat.setFacing(9);
                 scrollwert = 640;
                 setScroll = true;
                 break;
         }
 
-        InitLocation();
+        initLocation();
         mainFrame.freeze(false);
     }
 
     // Gegend intialisieren (Grenzen u.s.w.)
-    private void InitLocation() {
+    private void initLocation() {
 
         mainFrame.pathWalker.vBorders.removeAllElements();
 
@@ -129,20 +128,20 @@ public class Dubring1 extends MainLocation {
         mainFrame.pathWalker.vBorders.addElement(new BorderTrapezoid(1278, 1279, 1148, 1279, 326, 373));
 
         // Matrix loeschen
-        mainFrame.pathFinder.ClearMatrix(8);
+        mainFrame.pathFinder.clearMatrix(8);
 
         // moegliche Wege eintragen (Positionen (= Rechtecke) verbinden)
-        mainFrame.pathFinder.PosVerbinden(0, 1);
-        mainFrame.pathFinder.PosVerbinden(1, 2);
-        mainFrame.pathFinder.PosVerbinden(2, 3);
-        mainFrame.pathFinder.PosVerbinden(3, 4);
-        mainFrame.pathFinder.PosVerbinden(4, 5);
-        mainFrame.pathFinder.PosVerbinden(4, 6);
-        mainFrame.pathFinder.PosVerbinden(6, 7);
+        mainFrame.pathFinder.connectPos(0, 1);
+        mainFrame.pathFinder.connectPos(1, 2);
+        mainFrame.pathFinder.connectPos(2, 3);
+        mainFrame.pathFinder.connectPos(3, 4);
+        mainFrame.pathFinder.connectPos(4, 5);
+        mainFrame.pathFinder.connectPos(4, 6);
+        mainFrame.pathFinder.connectPos(6, 7);
     }
 
     // Bilder vorbereiten
-    private void InitImages() {
+    private void initImages() {
         backl = getPicture("gfx/dubring/dubr-l3.png");
         backr = getPicture("gfx/dubring/dubr-r3.png");
         sky = getPicture("gfx/dubring/dubrsky.png");
@@ -170,7 +169,7 @@ public class Dubring1 extends MainLocation {
                 setScroll = false;
                 mainFrame.scrollX = scrollwert;
             }
-            Cursorform = 200;
+            cursorShape = 200;
             evalMouseMoveEvent(mainFrame.mousePoint);
             g.setClip(0, 0, 1284, 964);
             mainFrame.isBackgroundAnimRunning = true;
@@ -194,27 +193,27 @@ public class Dubring1 extends MainLocation {
         }
 
         // Debugging - Zeichnen der Laufrechtecke
-        if (Debug.enabled) {
+        if (Debug.ENABLED) {
             Debug.DrawRect(g, mainFrame.pathWalker.vBorders);
         }
 
         // Krabats neue Position festlegen wenn noetig
-        mainFrame.pathWalker.GeheWeg();
+        mainFrame.pathWalker.doWalk();
 
         // Krabat zeichnen
 
         // Animation??
         if (mainFrame.krabat.nAnimation != 0) {
-            mainFrame.krabat.DoAnimation(g);
+            mainFrame.krabat.doAnimation(g);
 
             // Cursorruecksetzung nach Animationsende
             if (mainFrame.krabat.nAnimation == 0) {
                 evalMouseMoveEvent(mainFrame.mousePoint);
             }
         } else {
-            if (mainFrame.talkCount > 0 && TalkPerson != 0) {
+            if (mainFrame.talkCount > 0 && talkPerson != 0) {
                 // beim Reden
-                switch (TalkPerson) {
+                switch (talkPerson) {
                     case 1:
                         // Krabat spricht gestikulierend
                         mainFrame.krabat.talkKrabat(g);
@@ -239,7 +238,7 @@ public class Dubring1 extends MainLocation {
         GenericPoint pKrTemp = mainFrame.krabat.getPos();
 
         // hinterm horiz3 (nur Clipping - Region wird neugezeichnet)
-        if (trawaRect.IsPointInRect(pKrTemp)) {
+        if (trawaRect.isPointInRect(pKrTemp)) {
             g.drawImage(vorder, 1061, 377);
         }
 
@@ -250,7 +249,7 @@ public class Dubring1 extends MainLocation {
             GenericRectangle my;
             my = g.getClipBounds();
             g.setClip(0, 0, 1284, 484);
-            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, FarbenArray[TalkPerson]);
+            mainFrame.imageFont.drawString(g, outputText, outputTextPos.x, outputTextPos.y, COLORS[talkPerson]);
             g.setClip(my.getX(), my.getY(), my.getWidth(), my.getHeight());
         }
 
@@ -260,17 +259,17 @@ public class Dubring1 extends MainLocation {
             if (mainFrame.talkCount <= 1) {
                 mainFrame.isClipSet = false;
                 outputText = "";
-                TalkPerson = 0;
+                talkPerson = 0;
             }
         }
 
-        if (TalkPause > 0 && mainFrame.talkCount < 1) {
-            TalkPause--;
+        if (talkPause > 0 && mainFrame.talkCount < 1) {
+            talkPause--;
         }
 
         // Gibt es was zu tun ? Achtung! Scrolling fuer DoAction jeweils extra abfangen!
-        if (nextActionID != 0 && TalkPause < 1 && mainFrame.talkCount < 1) {
-            DoAction();
+        if (nextActionID != 0 && talkPause < 1 && mainFrame.talkCount < 1) {
+            doAction();
         }
     }
 
@@ -308,17 +307,17 @@ public class Dubring1 extends MainLocation {
             if (e.isLeftClick()) {
                 nextActionID = 0;
 
-                BorderRect tmp = mainFrame.krabat.getRect();
+                BorderRect tmp = mainFrame.krabat.getBoundingBox();
 
                 // Aktion, wenn Krabat angeclickt wurde
-                if (tmp.IsPointInRect(pTemp)) {
+                if (tmp.isPointInRect(pTemp)) {
                     nextActionID = 500 + mainFrame.whatItem;
                     mainFrame.repaint();
                     return;
                 }
 
                 // Ausreden fuer Bloto1
-                if (schlamm1.IsPointInRect(pTemp)) {
+                if (schlamm1.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 150;
@@ -334,7 +333,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto2
-                if (schlamm2.IsPointInRect(pTemp)) {
+                if (schlamm2.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 155;
@@ -350,7 +349,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto3
-                if (schlamm3.IsPointInRect(pTemp)) {
+                if (schlamm3.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 150;
@@ -366,7 +365,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto4
-                if (schlamm4.IsPointInRect(pTemp)) {
+                if (schlamm4.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 155;
@@ -382,7 +381,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto5
-                if (schlamm5.PointInside(pTemp)) {
+                if (schlamm5.pointInside(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 155;
@@ -398,7 +397,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto6
-                if (schlamm6.IsPointInRect(pTemp)) {
+                if (schlamm6.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 150;
@@ -414,7 +413,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto7
-                if (schlamm7.IsPointInRect(pTemp)) {
+                if (schlamm7.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 155;
@@ -430,7 +429,7 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Bloto8
-                if (schlamm8.IsPointInRect(pTemp)) {
+                if (schlamm8.isPointInRect(pTemp)) {
                     switch (mainFrame.whatItem) {
                         case 4: // honck
                             nextActionID = 155;
@@ -446,25 +445,19 @@ public class Dubring1 extends MainLocation {
                 }
 
                 // Ausreden fuer Halza1
-                if (halza1Rect.IsPointInRect(pTemp)) {
+                if (halza1Rect.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = Phalza1;
                 }
 
                 // Ausreden fuer Halza2
-                if (halza2Rect.IsPointInRect(pTemp)) {
+                if (halza2Rect.isPointInRect(pTemp)) {
                     nextActionID = 160;
                     pTemp = Phalza2;
                 }
 
-                // Ausreden fuer Stomy, kein spezieller Punkt, aber hinlaufen
-        /*if (stomyRect.IsPointInRect (pTemp) == true)
-        {
-        	nextActionID = 165;
-        }	*/
-
                 // wenn nix ausgewaehlt, dann einfach nur hinlaufen
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             }
 
@@ -474,7 +467,7 @@ public class Dubring1 extends MainLocation {
                 mainFrame.isInventoryCursor = false;
                 evalMouseMoveEvent(mainFrame.mousePoint);
                 nextActionID = 0;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
             }
         }
@@ -486,215 +479,201 @@ public class Dubring1 extends MainLocation {
                 nextActionID = 0;
 
                 // nach Villa gehen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     nextActionID = 100;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!linkerAusgang.IsPointInRect(kt)) {
+                    if (!linkerAusgang.isPointInRect(kt)) {
                         pTemp = Pleft;
                     } else {
                         pTemp = new GenericPoint(Pleft.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // nach Cyrkej gehen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     nextActionID = 101;
                     GenericPoint kt = mainFrame.krabat.getPos();
 
                     // Wenn nahe am Ausgang, dann "gerade" verlassen
-                    if (!rechterAusgang.IsPointInRect(kt)) {
+                    if (!rechterAusgang.isPointInRect(kt)) {
                         pTemp = Pright;
                     } else {
                         pTemp = new GenericPoint(Pright.x, kt.y);
                     }
 
                     if (mainFrame.isDoubleClick) {
-                        mainFrame.krabat.StopWalking();
+                        mainFrame.krabat.stopWalking();
                         mainFrame.repaint();
                         return;
                     }
                 }
 
                 // Schlamm1 ansehen
-                if (schlamm1.IsPointInRect(pTemp)) {
+                if (schlamm1.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pschlamm1;
                 }
 
                 // Schlamm2 ansehen
-                if (schlamm2.IsPointInRect(pTemp)) {
+                if (schlamm2.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschlamm2;
                 }
 
                 // Schlamm3 ansehen
-                if (schlamm3.IsPointInRect(pTemp)) {
+                if (schlamm3.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pschlamm3;
                 }
 
                 // Schlamm4 ansehen
-                if (schlamm4.IsPointInRect(pTemp)) {
+                if (schlamm4.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschlamm4;
                 }
 
                 // Schlamm5 ansehen
-                if (schlamm5.PointInside(pTemp)) {
+                if (schlamm5.pointInside(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschlamm5;
                 }
 
                 // Schlamm6 ansehen
-                if (schlamm6.IsPointInRect(pTemp)) {
+                if (schlamm6.isPointInRect(pTemp)) {
                     nextActionID = 1;
                     pTemp = Pschlamm6;
                 }
 
                 // Schlamm7 ansehen
-                if (schlamm7.IsPointInRect(pTemp)) {
+                if (schlamm7.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschlamm7;
                 }
 
                 // Schlamm8 ansehen
-                if (schlamm8.IsPointInRect(pTemp)) {
+                if (schlamm8.isPointInRect(pTemp)) {
                     nextActionID = 2;
                     pTemp = Pschlamm8;
                 }
 
                 // Halza1 ansehen
-                if (halza1Rect.IsPointInRect(pTemp)) {
+                if (halza1Rect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Phalza1;
                 }
 
                 // Halza2 ansehen
-                if (halza2Rect.IsPointInRect(pTemp)) {
+                if (halza2Rect.isPointInRect(pTemp)) {
                     nextActionID = 3;
                     pTemp = Phalza2;
                 }
 
-                // Stomy ansehen, kein spezieller Punkt
-        /*if (halza2Rect.IsPointInRect (pTemp) == true)
-        {
-          nextActionID = 4;
-        }*/
-
-                mainFrame.pathWalker.SetzeNeuenWeg(pTemp);
+                mainFrame.pathWalker.setNewWay(pTemp);
                 mainFrame.repaint();
             } else {
                 // rechte Maustaste
 
                 // Weg nach Cyrkej anschauen
-                if (rechterAusgang.IsPointInRect(pTemp)) {
+                if (rechterAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Weg nach Villa anschauen
-                if (linkerAusgang.IsPointInRect(pTemp)) {
+                if (linkerAusgang.isPointInRect(pTemp)) {
                     return;
                 }
 
                 // Schlamm1 mitnehmen
-                if (schlamm1.IsPointInRect(pTemp)) {
+                if (schlamm1.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm1);
+                    mainFrame.pathWalker.setNewWay(Pschlamm1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm2 mitnehmen
-                if (schlamm2.IsPointInRect(pTemp)) {
+                if (schlamm2.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm2);
+                    mainFrame.pathWalker.setNewWay(Pschlamm2);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm3 mitnehmen
-                if (schlamm3.IsPointInRect(pTemp)) {
+                if (schlamm3.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm3);
+                    mainFrame.pathWalker.setNewWay(Pschlamm3);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm4 mitnehmen
-                if (schlamm4.IsPointInRect(pTemp)) {
+                if (schlamm4.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm4);
+                    mainFrame.pathWalker.setNewWay(Pschlamm4);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm5 mitnehmen
-                if (schlamm5.PointInside(pTemp)) {
+                if (schlamm5.pointInside(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm5);
+                    mainFrame.pathWalker.setNewWay(Pschlamm5);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm6 mitnehmen
-                if (schlamm6.IsPointInRect(pTemp)) {
+                if (schlamm6.isPointInRect(pTemp)) {
                     nextActionID = 50;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm6);
+                    mainFrame.pathWalker.setNewWay(Pschlamm6);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm7 mitnehmen
-                if (schlamm7.IsPointInRect(pTemp)) {
+                if (schlamm7.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm7);
+                    mainFrame.pathWalker.setNewWay(Pschlamm7);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Schlamm8 mitnehmen
-                if (schlamm8.IsPointInRect(pTemp)) {
+                if (schlamm8.isPointInRect(pTemp)) {
                     nextActionID = 55;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Pschlamm8);
+                    mainFrame.pathWalker.setNewWay(Pschlamm8);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Halza 1 mitnehmen
-                if (halza1Rect.IsPointInRect(pTemp)) {
+                if (halza1Rect.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Phalza1);
+                    mainFrame.pathWalker.setNewWay(Phalza1);
                     mainFrame.repaint();
                     return;
                 }
 
                 // Halza 2 mitnehmen
-                if (halza2Rect.IsPointInRect(pTemp)) {
+                if (halza2Rect.isPointInRect(pTemp)) {
                     nextActionID = 60;
-                    mainFrame.pathWalker.SetzeNeuenWeg(Phalza2);
+                    mainFrame.pathWalker.setNewWay(Phalza2);
                     mainFrame.repaint();
                     return;
                 }
 
-                // Stomy mitnehmen
-        /*if (stomyRect.IsPointInRect (pTemp) == true)
-        {
-          nextActionID = 65;
-          mainFrame.repaint();
-          return;
-        }*/
-
                 // Inventarroutine aktivieren, wenn nichts anderes angeklickt ist
                 nextActionID = 123;
-                mainFrame.krabat.StopWalking();
+                mainFrame.krabat.stopWalking();
                 mainFrame.repaint();
 
             }
@@ -706,8 +685,8 @@ public class Dubring1 extends MainLocation {
     public void evalMouseMoveEvent(GenericPoint pTxxx) {
         // Wenn Animation oder Krabat - Animation, dann transparenter Cursor
         if (mainFrame.isAnimRunning || mainFrame.krabat.nAnimation != 0) {
-            if (Cursorform != 20) {
-                Cursorform = 20;
+            if (cursorShape != 20) {
+                cursorShape = 20;
                 mainFrame.setCursor(mainFrame.cursorNone);
             }
             return;
@@ -719,63 +698,63 @@ public class Dubring1 extends MainLocation {
         // wenn InventarCursor, dann anders reagieren
         if (mainFrame.isInventoryCursor) {
             // hier kommt Routine hin, die Highlight berechnet
-            BorderRect tmp = mainFrame.krabat.getRect();
+            BorderRect tmp = mainFrame.krabat.getBoundingBox();
             // (stomyRect.IsPointInRect (pTemp) == true))
-            mainFrame.isInventoryHighlightCursor = tmp.IsPointInRect(pTemp) || schlamm1.IsPointInRect(pTemp) ||
-                    schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||
-                    schlamm4.IsPointInRect(pTemp) || schlamm5.PointInside(pTemp) ||
-                    schlamm6.IsPointInRect(pTemp) || schlamm7.IsPointInRect(pTemp) ||
-                    schlamm8.IsPointInRect(pTemp) ||
-                    halza1Rect.IsPointInRect(pTemp) || halza2Rect.IsPointInRect(pTemp);
+            mainFrame.isInventoryHighlightCursor = tmp.isPointInRect(pTemp) || schlamm1.isPointInRect(pTemp) ||
+                    schlamm2.isPointInRect(pTemp) || schlamm3.isPointInRect(pTemp) ||
+                    schlamm4.isPointInRect(pTemp) || schlamm5.pointInside(pTemp) ||
+                    schlamm6.isPointInRect(pTemp) || schlamm7.isPointInRect(pTemp) ||
+                    schlamm8.isPointInRect(pTemp) ||
+                    halza1Rect.isPointInRect(pTemp) || halza2Rect.isPointInRect(pTemp);
 
-            if (Cursorform != 10 && !mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 10;
+            if (cursorShape != 10 && !mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 10;
                 mainFrame.setCursor(mainFrame.cursorInventory);
             }
 
-            if (Cursorform != 11 && mainFrame.isInventoryHighlightCursor) {
-                Cursorform = 11;
+            if (cursorShape != 11 && mainFrame.isInventoryHighlightCursor) {
+                cursorShape = 11;
                 mainFrame.setCursor(mainFrame.cursorHighlightInventory);
             }
         }
 
         // normaler Cursor, normale Reaktion
         else {
-            if (schlamm1.IsPointInRect(pTemp) ||
-                    schlamm2.IsPointInRect(pTemp) || schlamm3.IsPointInRect(pTemp) ||
-                    schlamm4.IsPointInRect(pTemp) || schlamm5.PointInside(pTemp) ||
-                    schlamm6.IsPointInRect(pTemp) || schlamm7.IsPointInRect(pTemp) ||
-                    schlamm8.IsPointInRect(pTemp) ||
-                    halza1Rect.IsPointInRect(pTemp) || halza2Rect.IsPointInRect(pTemp))
+            if (schlamm1.isPointInRect(pTemp) ||
+                    schlamm2.isPointInRect(pTemp) || schlamm3.isPointInRect(pTemp) ||
+                    schlamm4.isPointInRect(pTemp) || schlamm5.pointInside(pTemp) ||
+                    schlamm6.isPointInRect(pTemp) || schlamm7.isPointInRect(pTemp) ||
+                    schlamm8.isPointInRect(pTemp) ||
+                    halza1Rect.isPointInRect(pTemp) || halza2Rect.isPointInRect(pTemp))
             // (stomyRect.IsPointInRect (pTemp) == true))
             {
-                if (Cursorform != 1) {
+                if (cursorShape != 1) {
                     mainFrame.setCursor(mainFrame.cursorCross);
-                    Cursorform = 1;
+                    cursorShape = 1;
                 }
                 return;
             }
 
-            if (linkerAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 2) {
+            if (linkerAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 2) {
                     mainFrame.setCursor(mainFrame.cursorLeft);
-                    Cursorform = 2;
+                    cursorShape = 2;
                 }
                 return;
             }
 
-            if (rechterAusgang.IsPointInRect(pTemp)) {
-                if (Cursorform != 3) {
+            if (rechterAusgang.isPointInRect(pTemp)) {
+                if (cursorShape != 3) {
                     mainFrame.setCursor(mainFrame.cursorRight);
-                    Cursorform = 3;
+                    cursorShape = 3;
                 }
                 return;
             }
 
             // sonst normal-Cursor
-            if (Cursorform != 0) {
+            if (cursorShape != 0) {
                 mainFrame.setCursor(mainFrame.cursorNormal);
-                Cursorform = 0;
+                cursorShape = 0;
             }
         }
     }
@@ -809,7 +788,7 @@ public class Dubring1 extends MainLocation {
 
         // Hauptmenue aktivieren
         if (Taste == GenericKeyEvent.VK_F1) {
-            Keyclear();
+            keyClear();
             nextActionID = 122;
             mainFrame.repaint();
             return;
@@ -817,7 +796,7 @@ public class Dubring1 extends MainLocation {
 
         // Save - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F2) {
-            Keyclear();
+            keyClear();
             nextActionID = 121;
             mainFrame.repaint();
             return;
@@ -825,26 +804,26 @@ public class Dubring1 extends MainLocation {
 
         // Load - Screen aktivieren
         if (Taste == GenericKeyEvent.VK_F3) {
-            Keyclear();
+            keyClear();
             nextActionID = 120;
             mainFrame.repaint();
         }
     }
 
     // Vor Key - Events alles deaktivieren
-    private void Keyclear() {
+    private void keyClear() {
         outputText = "";
         if (mainFrame.talkCount > 1) {
             mainFrame.talkCount = 1;
         }
         mainFrame.isClipSet = false;
         mainFrame.isBackgroundAnimRunning = false;
-        mainFrame.krabat.StopWalking();
+        mainFrame.krabat.stopWalking();
     }
 
     // Aktionen dieser Location ////////////////////////////////////////
 
-    private void DoAction() {
+    private void doAction() {
 
         // nichts zu tun, oder Krabat laeuft noch
         if (mainFrame.krabat.isWandering ||
@@ -865,7 +844,7 @@ public class Dubring1 extends MainLocation {
 
         // Hier Evaluation der Screenaufrufe, in Superklasse
         if (nextActionID > 119 && nextActionID < 129) {
-            SwitchScreen();
+            switchScreen();
             return;
         }
 
@@ -873,55 +852,55 @@ public class Dubring1 extends MainLocation {
         switch (nextActionID) {
             case 1:
                 // Schlamm anschauen nach hinten
-                KrabatSagt("Dubring1_1", fSchlammHinten, 3, 0, 0);
+                krabatSays("Dubring1_1", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 2:
                 // Schlamm anschauen nach vorn
-                KrabatSagt("Dubring1_2", fSchlammVorn, 3, 0, 0);
+                krabatSays("Dubring1_2", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 3:
                 // Halzy 1 und 2 anschauen
-                KrabatSagt("Dubring1_3", fHalza, 3, 0, 0);
+                krabatSays("Dubring1_3", fHalza, 3, 0, 0);
                 break;
 
             case 4:
                 // Stomy anschauen
-                KrabatSagt("Dubring1_4", fStomy, 3, 0, 0);
+                krabatSays("Dubring1_4", fStomy, 3, 0, 0);
                 break;
 
             case 50:
                 // Schlamm mitnehmen nach hinten
-                KrabatSagt("Dubring1_5", fSchlammHinten, 3, 0, 0);
+                krabatSays("Dubring1_5", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 55:
                 // Schlamm mitnehmen nach vorn
-                KrabatSagt("Dubring1_6", fSchlammVorn, 3, 0, 0);
+                krabatSays("Dubring1_6", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 60:
                 // Halzy 1 und 2 mitnehmen
-                KrabatSagt("Dubring1_7", fHalza, 3, 0, 0);
+                krabatSays("Dubring1_7", fHalza, 3, 0, 0);
                 break;
 
             case 100:
                 // Gehe zu Villa
-                NeuesBild(16, 18);
+                createNewLocation(16, 18);
                 break;
 
             case 101:
                 // gehe zu Cyrkej
-                NeuesBild(22, 18);
+                createNewLocation(22, 18);
                 break;
 
             case 150:
                 // Bloto schoepfen nach hinten schauen
                 nextActionID = 0;
-                mainFrame.soundPlayer.PlayFile("sfx/bloto1.wav");
+                mainFrame.soundPlayer.playFile("sfx/bloto1.wav");
                 mainFrame.isInventoryCursor = false;
-                mainFrame.krabat.SetFacing(fSchlammHinten);
+                mainFrame.krabat.setFacing(fSchlammHinten);
                 mainFrame.krabat.nAnimation = 143;
                 mainFrame.inventory.vInventory.addElement(16);
                 mainFrame.inventory.vInventory.removeElement(4);
@@ -932,9 +911,9 @@ public class Dubring1 extends MainLocation {
             case 155:
                 // Bloto schoepfen nach vorne schauen
                 nextActionID = 0;
-                mainFrame.soundPlayer.PlayFile("sfx/bloto1.wav");
+                mainFrame.soundPlayer.playFile("sfx/bloto1.wav");
                 mainFrame.isInventoryCursor = false;
-                mainFrame.krabat.SetFacing(fSchlammVorn);
+                mainFrame.krabat.setFacing(fSchlammVorn);
                 mainFrame.krabat.nAnimation = 144;
                 mainFrame.inventory.vInventory.addElement(16);
                 mainFrame.inventory.vInventory.removeElement(4);
@@ -944,32 +923,32 @@ public class Dubring1 extends MainLocation {
 
             case 160:
                 // Ausreden fuer halzy 1 und 2
-                DingAusrede(fHalza);
+                thingExcuse(fHalza);
                 break;
 
             case 165:
                 // Ausreden fuer Stomy
-                DingAusrede(fStomy);
+                thingExcuse(fStomy);
                 break;
 
             case 200:
                 // Schlamm - Ausreden nach hinten schauen
-                KrabatSagt("Dubring1_8", fSchlammHinten, 3, 0, 0);
+                krabatSays("Dubring1_8", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 205:
                 // Schlamm - Ausreden nach vorne schauen
-                KrabatSagt("Dubring1_9", fSchlammVorn, 3, 0, 0);
+                krabatSays("Dubring1_9", fSchlammVorn, 3, 0, 0);
                 break;
 
             case 210:
                 // fisch auf Schlamm - Ausreden nach hinten schauen
-                KrabatSagt("Dubring1_10", fSchlammHinten, 3, 0, 0);
+                krabatSays("Dubring1_10", fSchlammHinten, 3, 0, 0);
                 break;
 
             case 215:
                 // fisch auf Schlamm - Ausreden nach vorne schauen
-                KrabatSagt("Dubring1_11", fSchlammVorn, 3, 0, 0);
+                krabatSays("Dubring1_11", fSchlammVorn, 3, 0, 0);
                 break;
 
             default:
